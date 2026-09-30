@@ -1,0 +1,14 @@
+.......................................E.........................
+======================================================================
+ERROR: test_real_cases_windows_and_in_flight_exclusions (test_certified_gap_ledger.CheckedInLedger.test_real_cases_windows_and_in_flight_exclusions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_certified_gap_ledger.py", line 530, in test_real_cases_windows_and_in_flight_exclusions
+    self.assertGreater(roles[key]['unresolved_days'], 0)
+                       ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'unresolved_days'
+
+----------------------------------------------------------------------
+Ran 65 tests in 5.516s
+
+FAILED (errors=1)

@@ -98,30 +98,35 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-25 | accepted | 71 |
 | CLAUDE-C01-26 | pending | 30 |
 | CLAUDE-C01-27 | accepted | 74 |
+| CLAUDE-C01-29 | accepted | 54 |
 | CLAUDE-C01-30 | accepted | 39 |
 | CLAUDE-C01-32 | accepted | 38 |
 | CLAUDE-C01-33 | accepted | 22 |
+| CLAUDE-C01-34 | accepted | 76 |
+| CLAUDE-C01-35 | accepted | 16 |
+| CLAUDE-C01-36 | accepted | 39 |
+| CLAUDE-C01-37 | accepted | 31 |
 
 ## Coverage by country
 
 | Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
-| France | France | 1 / 15 / 1 | 995 | 0/37 | 197/555 | 23/198 |
-| Japan | Japan | 5 / 8 / 1 | 1013 | 9/185 | 151/296 | 15/151 |
+| France | France | 2 / 15 / 1 | 1079 | 0/74 | 197/555 | 23/198 |
+| Japan | Japan | 6 / 8 / 1 | 1101 | 9/222 | 151/296 | 15/151 |
 | India | India | 5 / 4 / 1 | 720 | 6/185 | 109/148 | 10/109 |
-| Brazil | Brazil | 3 / 6 / 1 | 688 | 20/111 | 99/222 | 7/100 |
+| Brazil | Brazil | 5 / 6 / 1 | 819 | 20/185 | 99/222 | 7/100 |
 | SouthAfrica | SouthAfrica | 11 / 7 / 1 | 1190 | 4/407 | 151/259 | 13/151 |
-| Tonga | Tonga | 15 / 0 / 1 | 948 | 15/555 | none | none |
+| Tonga | Tonga | 15 / 0 / 1 | 978 | 15/555 | none | none |
 | SaudiArabia | SaudiArabia | 10 / 0 / 1 | 680 | 0/370 | none | none |
-| USSR -> Russia | USSR | 6 / 3 / 1 | 561 | 0/222 | 0/111 | none |
+| USSR -> Russia | USSR | 8 / 3 / 1 | 675 | 0/296 | 0/111 | none |
 | USSR -> Russia | Russia | 9 / 5 / 1 | 885 | 3/333 | 0/185 | none |
 
 ## Headline findings
 
 ### France
 
-- Research roles: 1 (1 with holder observations); 0 of 37 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 13 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 7.
+- Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 23.
 - Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.
 - Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).
 - Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
@@ -131,8 +136,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Japan
 
-- Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 44, unattributed_intake 5.
+- Research roles: 6 (6 with holder observations); 9 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 83 uncertain, 129 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 16, pending 44, unattributed_intake 5.
 - Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.
 - Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).
 - Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
@@ -156,8 +161,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Brazil
 
-- Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 39.
+- Research roles: 5 (5 with holder observations); 20 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 62 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 12, pending 39.
 - Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.
 - Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).
 - Campaign-start executive Jose Sarney: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
@@ -179,8 +184,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Tonga
 
-- Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 62 uncertain, 320 unknown and 148 unresearched.
-- Research holder observations by acceptance: accepted 30, unattributed_intake 10.
+- Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 94 uncertain, 288 unknown and 148 unresearched.
+- Research holder observations by acceptance: accepted 40, unattributed_intake 10.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
 - Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -201,8 +206,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 **USSR**
 
-- Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.
-- Research holder observations by acceptance: pending 6, unattributed_intake 4.
+- Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.
+- Research holder observations by acceptance: accepted 8, pending 6, unattributed_intake 4.
 - Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.
 - Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -243,6 +248,7 @@ established holders at those samples; for the executive they count the campaign-
 | France | `party:fr_pcf` French Communist Party | production_registry 6 | 37/0/0/0/0/0/0 | 9 | 0 | 5/38 |
 | France | `party:fr_fn` National Front | production_registry 7 | 37/0/0/0/0/0/0 | 15 | 0 | 5/37 |
 | France | `research:fr_president` Président de la République | accepted 7 | 0/0/0/24/13/0/0 | 15 | 4 | - |
+| France | `research:fr_pm` Premier ministre | accepted 16 | 0/0/0/0/37/0/0 | 0 | 32 | - |
 | Japan | `executive` Prime Minister | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | 5/37 |
 | Japan | `party:jp_ldp` Liberal Democratic Party | production_registry 16 | 37/0/0/0/0/0/0 | 45 | 0 | 2/37 |
 | Japan | `party:jp_jsp/jp_jsp_1945` Japan Socialist Party | production_registry 4 | 6/0/0/1/0/0/30 | 3 | 0 | 2/6 |
@@ -255,6 +261,7 @@ established holders at those samples; for the executive they count the campaign-
 | Japan | `research:jp_jcp_executive_committee_chair` 幹部会委員長 — Executive Committee chair | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | Japan | `research:jp_jcp_central_committee_chair` 中央委員会議長 — Central Committee chair | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | Japan | `research:jp_dpfp_representative` 代表 — party representative | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Japan | `research:jp_sdp_chair` 委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party | accepted 16 | 0/0/1/36/0/0/0 | 6 | 30 | - |
 | Japan | `research:jp_ldp_party_president` 総裁 — party president | pending 14, unattributed_intake 2 | 0/0/0/26/11/0/0 | 3 | 30 | - |
 | Japan | `research:jp_pm` 内閣総理大臣 — Prime Minister of Japan | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | - |
 | India | `executive` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | 0/37 |
@@ -274,6 +281,8 @@ established holders at those samples; for the executive they count the campaign-
 | Brazil | `party:br_pt` Workers' Party | production_registry 11 | 25/0/0/12/0/0/0 | 0 | 0 | 0/25 |
 | Brazil | `party:br_pdt` Democratic Labour Party | production_registry 2 | 37/0/0/0/0/0/0 | 3 | 0 | 5/37 |
 | Brazil | `party:br_pds` Democratic Social Party | none | 0/0/0/0/0/4/33 | 0 | 0 | - |
+| Brazil | `research:br_mdb_president` Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro) | accepted 5 | 0/0/0/0/37/0/0 | 0 | 10 | - |
+| Brazil | `research:br_pdt_president` Presidente Nacional do Partido Democrático Trabalhista | accepted 7 | 0/0/0/15/22/0/0 | 3 | 14 | - |
 | Brazil | `research:br_pt_president` Presidente Nacional do Partido dos Trabalhadores | pending 18 | 1/0/0/35/1/0/0 | 21 | 24 | - |
 | Brazil | `research:br_president` President of the Federative Republic of Brazil | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | - |
 | Brazil | `research:br_vice_president` Vice-President of the Federative Republic of Brazil | pending 9 | 8/0/0/28/1/0/0 | 27 | 0 | - |
@@ -306,7 +315,7 @@ established holders at those samples; for the executive they count the campaign-
 | Tonga | `research:to_king` King | accepted 3, unattributed_intake 1 | 6/0/0/31/0/0/0 | 6 | 2 | - |
 | Tonga | `research:to_pm` Prime Minister | accepted 9, unattributed_intake 3 | 9/8/0/5/15/0/0 | 15 | 14 | - |
 | Tonga | `research:to_ministers` Cabinet ministers | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| Tonga | `research:to_deputy_pm` Deputy Prime Minister | accepted 3, unattributed_intake 1 | 0/0/0/5/32/0/0 | 6 | 4 | - |
+| Tonga | `research:to_deputy_pm` Deputy Prime Minister | accepted 13, unattributed_intake 1 | 0/0/0/37/0/0/0 | 27 | 14 | - |
 | Tonga | `research:to_privy_councillors` Privy Councillors | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Tonga | `research:to_speaker` Speaker | accepted 11, unattributed_intake 1 | 0/0/2/21/14/0/0 | 6 | 24 | - |
 | Tonga | `research:to_deputy_speaker` Deputy Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
@@ -329,6 +338,8 @@ established holders at those samples; for the executive they count the campaign-
 | USSR | `party:su_soyuz` Soyuz group | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | USSR | `research:su_cpsu_general_secretary` General Secretary | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
 | USSR | `research:su_cpsu_deputy_general_secretary` Deputy General Secretary | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
+| USSR | `research:su_dr_co_chair` Сопредседатель движения «Демократическая Россия» (Координационного совета) — Co-chair of the Democratic Russia movement | accepted 7 | 0/0/0/0/37/0/0 | 0 | 8 | - |
+| USSR | `research:su_soyuz_co_chair` Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group | accepted 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | USSR | `research:su_president` President of the USSR | pending 1, unattributed_intake 1 | 0/0/0/0/36/0/1 | 3 | 4 | - |
 | USSR | `research:su_congress_deputies` USSR people's deputies in Congress | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | USSR | `research:su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet | pending 2, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 5 | - |

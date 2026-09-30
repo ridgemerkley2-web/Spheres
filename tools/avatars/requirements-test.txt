@@ -1,0 +1,5 @@
+# Image decoding and exact portrait validation exercised by the avatar suite.
+# Keep CI aligned with the version used for the reviewed local test evidence.
+Pillow==11.3.0
+# Enable the optional source-PDF corroboration audit in the full CI suite.
+pypdf==6.17.0

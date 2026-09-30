@@ -502,12 +502,13 @@ class CheckedInLedger(unittest.TestCase):
         entities = {i['entity'] for i in items}
         completed = {row['task']: row for row in self.data['completed_research_intakes']}
         self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25',
-                                         'CLAUDE-C01-27', 'CLAUDE-C01-30', 'CLAUDE-C01-32', 'CLAUDE-C01-33'})
+                                         'CLAUDE-C01-27', 'CLAUDE-C01-29', 'CLAUDE-C01-30', 'CLAUDE-C01-32', 'CLAUDE-C01-33',
+                                         'CLAUDE-C01-34', 'CLAUDE-C01-35', 'CLAUDE-C01-36', 'CLAUDE-C01-37'})
         self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
                             for row in completed.values()))
         self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
         claims = {row['task']: row for row in self.data['in_flight']}
-        self.assertEqual(set(claims), {f'CLAUDE-C01-{n}' for n in (28, 29, 34, 35, 36, 37)})
+        self.assertEqual(set(claims), {f'CLAUDE-C01-{n}' for n in (28,)})
         chains = {row['id']: row for case in self.data['cases'] for row in case['party_chains']}
         for tid, claim in claims.items():
             self.assertEqual(claim['state'], 'ready_for_review')
@@ -517,13 +518,16 @@ class CheckedInLedger(unittest.TestCase):
                     entity = target.removeprefix('party:')
                     self.assertEqual(chains[entity]['in_flight'], tid)
                     self.assertNotIn(entity, entities)
-        self.assertNotIn('institution:fr_prime_minister', entities)
-        self.assertNotIn('to_cabinet#to_deputy_pm', entities)
+        self.assertNotIn('institution:fr_prime_minister', entities)  # The institution now exists.
+        self.assertIn(('France', 'fr_pm'), {(r['nation'], r['id']) for c in self.data['cases'] for r in c['research_roles']})
+        self.assertIn(('Tonga', 'to_deputy_pm'), {(r['nation'], r['id']) for c in self.data['cases'] for r in c['research_roles']})
         self.assertTrue(all(len(b['items']) <= ledger.MAX_BATCH for b in self.data['next_batches']))
         roles = {(r['nation'], r['id']): r for c in self.data['cases'] for r in c['research_roles']}
         self.assertEqual(roles[('USSR', 'su_president')]['window']['until'], '1991-12-25')
         self.assertEqual(roles[('Russia', 'ru_president')]['window']['from'], '1991-12-25')
-        self.assertEqual(roles[('Tonga', 'to_deputy_pm')]['in_flight'], 'CLAUDE-C01-36')
+        for key in (('Tonga', 'to_deputy_pm'), ('France', 'fr_pm')):
+            self.assertIsNone(roles[key]['in_flight'])
+            self.assertGreater(roles[key]['coverage']['unresolved_days'], 0)
 
     def test_party_chains_hold_only_their_own_census_terms(self):
         census = json.loads((ledger.ROOT / ledger.C01 / 'roles-and-lifecycle.json').read_text(encoding='utf-8'))
@@ -544,7 +548,10 @@ class CheckedInLedger(unittest.TestCase):
         self.assertEqual(classes['CLAUDE-C01-03'], 'c01_accepted')
         expected = {'CLAUDE-C01-23': ('09b27c49', 49), 'CLAUDE-C01-24': ('6af1e942', 49),
                     'CLAUDE-C01-25': ('61a3402d', 71), 'CLAUDE-C01-27': ('644ce003', 74),
-                    'CLAUDE-C01-30': ('1b2c1ae2', 39), 'CLAUDE-C01-32': ('62f6be6c', 38)}
+                    'CLAUDE-C01-29': ('b2098862', 54), 'CLAUDE-C01-30': ('1b2c1ae2', 39), 'CLAUDE-C01-32': ('62f6be6c', 38),
+                    'CLAUDE-C01-33': ('9d97caa9', 22), 'CLAUDE-C01-34': ('0eba7867', 76),
+                    'CLAUDE-C01-35': ('e4e8d389', 16), 'CLAUDE-C01-36': ('364c6f6d', 39),
+                    'CLAUDE-C01-37': ('4d88fd03', 31)}
         for packet, (commit, count) in expected.items():
             rows = [row for sources in attribution['sources'].values() for row in sources.values() if row['packet'] == packet]
             self.assertEqual(len(rows), count)

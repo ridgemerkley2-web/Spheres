@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 1069, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 1057, in main
+    files = outputs()
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 1034, in outputs
+    ledger = build(root, attribution)
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 526, in build
+    classes = acceptance_classes(root)
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 340, in acceptance_classes
+    classes.update({packet: 'c01_accepted' for packet in acceptance_records(root)})
+                                                         ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 331, in acceptance_records
+    raise ValueError(f'No explicit accepted decision in {record.relative_to(root).as_posix()}')
+ValueError: No explicit accepted decision in docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md

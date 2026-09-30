@@ -1,0 +1,48 @@
+{
+  "observed_utc": "2026-09-30T10:00:17.236923+00:00",
+  "candidate": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "full_matrix_pass_claimed": false,
+  "qualification": false,
+  "progress": [
+    {
+      "cell": "france-1990",
+      "last_recorded_progress": {
+        "actions": 212,
+        "comparisons": 341,
+        "days_each_leg": 4991,
+        "end_native_date": "2003-09-01",
+        "kind": "checkpoint"
+      }
+    },
+    {
+      "cell": "france-42",
+      "last_recorded_progress": {
+        "actions": 191,
+        "comparisons": 337,
+        "days_each_leg": 4929,
+        "end_native_date": "2003-07-01",
+        "kind": "checkpoint"
+      }
+    },
+    {
+      "cell": "france-7",
+      "last_recorded_progress": {
+        "actions": 180,
+        "comparisons": 356,
+        "days_each_leg": 5204,
+        "end_native_date": "2004-04-01",
+        "kind": "checkpoint"
+      }
+    },
+    {
+      "cell": "japan-1990",
+      "last_recorded_progress": {
+        "actions": 152,
+        "comparisons": 337,
+        "days_each_leg": 4929,
+        "end_native_date": "2003-07-01",
+        "kind": "checkpoint"
+      }
+    }
+  ]
+}

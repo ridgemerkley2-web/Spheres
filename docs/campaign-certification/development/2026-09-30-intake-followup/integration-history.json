@@ -1,0 +1,141 @@
+{
+  "base": "3947d1f1d34fba93dc81c476a97a6e52edf0c8b8",
+  "through": "0efebde9c787af31f9443292501ed61f0694cf6e",
+  "commits": [
+    {
+      "revision": "0eba7867ec69c4dc3cf85308ce65a777dae83968",
+      "parents": "3947d1f1d34fba93dc81c476a97a6e52edf0c8b8",
+      "subject": "Add CLAUDE-C01-34: PFL/DEM, PDT and PMDB/MDB national presidents, 1990-2026"
+    },
+    {
+      "revision": "ce59bec2378ed0274b35f47397c9b5d837956e46",
+      "parents": "0eba7867ec69c4dc3cf85308ce65a777dae83968",
+      "subject": "Apply verifier fixes to CLAUDE-C01-34"
+    },
+    {
+      "revision": "26ebfd249e40ec80c630269c7cef80873be16015",
+      "parents": "ce59bec2378ed0274b35f47397c9b5d837956e46",
+      "subject": "Qualify C01-34 changed registry response and acting-service explanation"
+    },
+    {
+      "revision": "fa19d1beecff97eb584cc267b8f83d22c0444fed",
+      "parents": "26ebfd249e40ec80c630269c7cef80873be16015",
+      "subject": "Record independent C01-34 Brazil source review with bounded current-response qualification"
+    },
+    {
+      "revision": "e4e8d389fce703cb42a3200037dcf9f414a45f44",
+      "parents": "fa19d1beecff97eb584cc267b8f83d22c0444fed",
+      "subject": "Add CLAUDE-C01-35: Democratic Russia and Soyuz group leaders, 1990-1991"
+    },
+    {
+      "revision": "1ae2adbbec73e5abff5ee4a3bdba3fac5b23d72f",
+      "parents": "e4e8d389fce703cb42a3200037dcf9f414a45f44",
+      "subject": "Apply verifier fixes to CLAUDE-C01-35"
+    },
+    {
+      "revision": "d5d7df6c480088ee53c64a81debd6c99afa4582c",
+      "parents": "1ae2adbbec73e5abff5ee4a3bdba3fac5b23d72f",
+      "subject": "Clarify USSR group evidence wording and archival host status"
+    },
+    {
+      "revision": "a9998ffa338cf8ebc20443077bd88fc590070b9d",
+      "parents": "d5d7df6c480088ee53c64a81debd6c99afa4582c",
+      "subject": "Record independent bounded C01-35 source and content review"
+    },
+    {
+      "revision": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789",
+      "parents": "a9998ffa338cf8ebc20443077bd88fc590070b9d",
+      "subject": "Accept independently reviewed Brazil and USSR research with explicit source limits"
+    },
+    {
+      "revision": "364c6f6dfb55a7f9b06fe41b99efbc6b47e04441",
+      "parents": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789",
+      "subject": "Add CLAUDE-C01-36: Tongan Deputy Prime Ministers, 1990-2026"
+    },
+    {
+      "revision": "f7f28cca50144838c987897794a322d973269411",
+      "parents": "364c6f6dfb55a7f9b06fe41b99efbc6b47e04441",
+      "subject": "Apply verifier fix to CLAUDE-C01-36"
+    },
+    {
+      "revision": "83b8bee5a61b36406f2ffb18b5baf000f392d8a3",
+      "parents": "f7f28cca50144838c987897794a322d973269411",
+      "subject": "Clarify unsupported causes of Tonga acting premiership attestations"
+    },
+    {
+      "revision": "95f6a04f107633612222aa0b7f797e8463a16d05",
+      "parents": "83b8bee5a61b36406f2ffb18b5baf000f392d8a3",
+      "subject": "Record independent bounded Tonga deputy-prime-minister review"
+    },
+    {
+      "revision": "c29f17093b9b34bcef90b25ae53d349fe36330a7",
+      "parents": "95f6a04f107633612222aa0b7f797e8463a16d05",
+      "subject": "Accept bounded Tonga deputy-prime-minister intake and preserve independent review"
+    },
+    {
+      "revision": "4d88fd039a5a2653966e7fabde1353d17e30ef7a",
+      "parents": "c29f17093b9b34bcef90b25ae53d349fe36330a7",
+      "subject": "Add CLAUDE-C01-37: French prime ministers, 1990-2026"
+    },
+    {
+      "revision": "0857872ea5fd48dc5f0a5d2a6eb5823342a0806f",
+      "parents": "4d88fd039a5a2653966e7fabde1353d17e30ef7a",
+      "subject": "Apply verifier fixes to CLAUDE-C01-37"
+    },
+    {
+      "revision": "2cd68f24df3c6f9aab4bf911439b6c4c11b5bb6f",
+      "parents": "0857872ea5fd48dc5f0a5d2a6eb5823342a0806f",
+      "subject": "Distinguish C01-37 publication metadata and unverified interpretation attribution"
+    },
+    {
+      "revision": "1739eccb847fec15c1a71b3c46e31e97156eadf1",
+      "parents": "2cd68f24df3c6f9aab4bf911439b6c4c11b5bb6f",
+      "subject": "Retain French PM instrument observations without inferred effective term boundaries"
+    },
+    {
+      "revision": "d29fd3ba2c487ac146034d5f492f53bd43289cbd",
+      "parents": "1739eccb847fec15c1a71b3c46e31e97156eadf1",
+      "subject": "Record verified C01-37 source observations and conservative boundary review"
+    },
+    {
+      "revision": "ed36670ef6125257bfa9e178c93049a303e0eb37",
+      "parents": "d29fd3ba2c487ac146034d5f492f53bd43289cbd",
+      "subject": "Accept French prime-minister source observations with effective-term research open"
+    },
+    {
+      "revision": "0719ba7bdab5c75749e4577aa1d67a090adaf2d0",
+      "parents": "ed36670ef6125257bfa9e178c93049a303e0eb37",
+      "subject": "Retain held independent C01-28 response and holder review"
+    },
+    {
+      "revision": "b20988624c9c78f75448506345db0c763907f294",
+      "parents": "0719ba7bdab5c75749e4577aa1d67a090adaf2d0",
+      "subject": "Add CLAUDE-C01-29: Social Democratic Party (Japan Socialist Party) chairs, 1990–2026"
+    },
+    {
+      "revision": "969b24a9149ab2a2fffc0fba11ddb738ead76440",
+      "parents": "b20988624c9c78f75448506345db0c763907f294",
+      "subject": "Apply verifier fixes to CLAUDE-C01-29"
+    },
+    {
+      "revision": "5879bc239e08cd01e9f39d622b06e734705a768a",
+      "parents": "969b24a9149ab2a2fffc0fba11ddb738ead76440",
+      "subject": "Apply retained Japan SDP wording correction without stale aggregate index"
+    },
+    {
+      "revision": "919f13c940599487b0700bb27072d7404473abc6",
+      "parents": "5879bc239e08cd01e9f39d622b06e734705a768a",
+      "subject": "Complete additive original-source review of Japan SDP intake"
+    },
+    {
+      "revision": "dc65b5100cbce2dac447e08987235566376fcd14",
+      "parents": "919f13c940599487b0700bb27072d7404473abc6",
+      "subject": "Accept Japan SDP intake after complete resumed original-source review"
+    },
+    {
+      "revision": "0efebde9c787af31f9443292501ed61f0694cf6e",
+      "parents": "dc65b5100cbce2dac447e08987235566376fcd14",
+      "subject": "Keep held Russia receipt in review queue outside accepted integrations"
+    }
+  ]
+}

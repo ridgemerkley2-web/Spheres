@@ -1,0 +1,45 @@
+[codex/campaign-certification d29fd3ba] Record verified C01-37 source observations and conservative boundary review
+ Date: Wed Sep 30 02:39:04 2026 -0700
+ 42 files changed, 4407 insertions(+)
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/.gitattributes
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/baseline-limit.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/boundary-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/claim-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/manifest.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/scope-audit.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/source-attempts.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/source-verification.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/boundary-regression-original/result.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/boundary-regression-original/tests.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/france.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/import-tests.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/importer.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/leadership-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/research-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/corrected-first/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/final/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/final/france.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/final/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/original-with-final-regression/result.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/original-with-final-regression/tests.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/prose/pm.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/prose/result.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/france.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/import-tests.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/importer.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/leadership-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/research-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/validation/submission/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-37/verify_receipt.py

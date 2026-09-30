@@ -1,0 +1,505 @@
+{
+  "format": "spheres-integration-audit/v1",
+  "created_utc": "2026-09-30T09:48:12.937907+00:00",
+  "reviewer": "Codex /root/s20_preflight",
+  "scope": "Read-only integration/provenance/metadata/CI-dependency audit; no new independent source-content review, no Cargo or test execution. C01-37 was authored-reviewed by this same agent; this audit is byte/schema/status preservation only. Future C01-29 work excluded.",
+  "head_start": "0719ba7bdab5c75749e4577aa1d67a090adaf2d0",
+  "checks": {
+    "C01-34": {
+      "country": "brazil",
+      "reviewed_repaired_revision": "255a66c0317fca81fcbac1461b986aa2b029162d",
+      "original_receipt_revision": "645fb9ff9171b92694f164f72f76d5de16cb4334",
+      "baseline_revision": "e8f38113b6dff6b5376b657dc3905ec5204b7b9a",
+      "git_blob_equal_to_review": true,
+      "json_equal_to_review": true,
+      "current_working_bytes": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\research\\brazil.json",
+        "bytes": 1029474,
+        "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a"
+      },
+      "review_git_blob_bytes": 1029474,
+      "review_git_blob_sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a",
+      "current_manifest_payloads": 36,
+      "current_manifest_errors": [],
+      "original_manifest_payloads": 34,
+      "original_manifest_errors": [],
+      "original_receipt_bytes_equal_to_review": {
+        "README.md": true,
+        "manifest.json": true
+      },
+      "prior_source_count": 172,
+      "all_prior_sources_exact": true,
+      "prior_leaf_changes": [],
+      "source_snapshot_count": 248,
+      "source_snapshot_failures": []
+    },
+    "C01-35": {
+      "country": "ussr",
+      "reviewed_repaired_revision": "6582e01ca1a0fc8a497e15cab186ee53eeb7f8e5",
+      "original_receipt_revision": "fac43ace04ca3acb30e270e2572135593430863a",
+      "baseline_revision": "9d97caa982f9dfc03aeda4fdb87d6d584dfad6a4",
+      "git_blob_equal_to_review": true,
+      "json_equal_to_review": true,
+      "current_working_bytes": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\research\\ussr.json",
+        "bytes": 300502,
+        "sha256": "1fdb9f98ae0edcc10366bbea508c71140a8f949947d9f63db1a7dca32f016089"
+      },
+      "review_git_blob_bytes": 300502,
+      "review_git_blob_sha256": "1fdb9f98ae0edcc10366bbea508c71140a8f949947d9f63db1a7dca32f016089",
+      "current_manifest_payloads": 49,
+      "current_manifest_errors": [],
+      "original_manifest_payloads": 47,
+      "original_manifest_errors": [],
+      "original_receipt_bytes_equal_to_review": {
+        "README.md": true,
+        "manifest.json": true
+      },
+      "prior_source_count": 40,
+      "all_prior_sources_exact": true,
+      "prior_leaf_changes": [],
+      "source_snapshot_count": 56,
+      "source_snapshot_failures": []
+    },
+    "C01-36": {
+      "country": "tonga",
+      "reviewed_repaired_revision": "7caba83835ab5385a9e9b581f89920a5d717328b",
+      "original_receipt_revision": "17c9e1ab94f6179b6f18b17f3e4da8f45bb327d2",
+      "baseline_revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "git_blob_equal_to_review": true,
+      "json_equal_to_review": true,
+      "current_working_bytes": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\research\\tonga.json",
+        "bytes": 637522,
+        "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853"
+      },
+      "review_git_blob_bytes": 637522,
+      "review_git_blob_sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853",
+      "current_manifest_payloads": 91,
+      "current_manifest_errors": [],
+      "original_manifest_payloads": 89,
+      "original_manifest_errors": [],
+      "original_receipt_bytes_equal_to_review": {
+        "README.md": true,
+        "manifest.json": true
+      },
+      "prior_source_count": 168,
+      "all_prior_sources_exact": true,
+      "prior_leaf_changes": [],
+      "source_snapshot_count": 194,
+      "source_snapshot_failures": []
+    },
+    "C01-37": {
+      "country": "france",
+      "reviewed_repaired_revision": "73d748ef541d4d1970a07b9050115cf52bb2ecee",
+      "original_receipt_revision": "56fba2c0d74877f42ac0705fb54a7e340e81efa1",
+      "baseline_revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "git_blob_equal_to_review": true,
+      "json_equal_to_review": true,
+      "current_working_bytes": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\research\\france.json",
+        "bytes": 2122964,
+        "sha256": "6c4ed32a719effc98a4c5e8755eafcc9e1a3559c92b21c4fb3192b3368b76baf"
+      },
+      "review_git_blob_bytes": 2122964,
+      "review_git_blob_sha256": "6c4ed32a719effc98a4c5e8755eafcc9e1a3559c92b21c4fb3192b3368b76baf",
+      "current_manifest_payloads": 43,
+      "current_manifest_errors": [],
+      "original_manifest_payloads": 41,
+      "original_manifest_errors": [],
+      "original_receipt_bytes_equal_to_review": {
+        "README.md": true,
+        "manifest.json": true
+      },
+      "prior_source_count": 57,
+      "all_prior_sources_exact": true,
+      "prior_leaf_changes": [],
+      "source_snapshot_count": 86,
+      "source_snapshot_failures": []
+    },
+    "SOURCE-17": [
+      {
+        "filename": "brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+        "reviewed_bytes": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-SOURCE-17\\reviewed-extracts\\brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+          "bytes": 20657,
+          "sha256": "102e464ce7ad598a30a1a62407656a7640a09380638814e55fe4c94c76ec5334"
+        },
+        "current_equal": true
+      },
+      {
+        "filename": "brazil-congress-dcn-lula-diploma-20230102-facts.json",
+        "reviewed_bytes": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-SOURCE-17\\reviewed-extracts\\brazil-congress-dcn-lula-diploma-20230102-facts.json",
+          "bytes": 15764,
+          "sha256": "c6154fddb8d94deefbd77e30dc130e76103680175a0caa15239778b053d4a9c9"
+        },
+        "current_equal": true
+      },
+      {
+        "filename": "brazil-congress-dcn-lula-posse-20230102-facts.json",
+        "reviewed_bytes": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-SOURCE-17\\reviewed-extracts\\brazil-congress-dcn-lula-posse-20230102-facts.json",
+          "bytes": 24816,
+          "sha256": "ef87316cc5d6b22ebd3220dfb1151d645c2e51eb412e63cc587c5396d8982e38"
+        },
+        "current_equal": true
+      }
+    ],
+    "gap-ledger-inputs": {
+      "count": 141,
+      "errors": []
+    },
+    "boundary-inputs": {
+      "count": 105,
+      "errors": []
+    },
+    "acceptance": {
+      "boundary_accepted": [
+        "CLAUDE-C01-01",
+        "CLAUDE-C01-02",
+        "CLAUDE-C01-03",
+        "CLAUDE-C01-04",
+        "CLAUDE-C01-07",
+        "CLAUDE-C01-08",
+        "CLAUDE-C01-23",
+        "CLAUDE-C01-24",
+        "CLAUDE-C01-25",
+        "CLAUDE-C01-27",
+        "CLAUDE-C01-30",
+        "CLAUDE-C01-32",
+        "CLAUDE-C01-33",
+        "CLAUDE-C01-34",
+        "CLAUDE-C01-35",
+        "CLAUDE-C01-36",
+        "CLAUDE-C01-37"
+      ],
+      "matches_expected": true,
+      "gap_completed": [
+        "CLAUDE-C01-23",
+        "CLAUDE-C01-24",
+        "CLAUDE-C01-25",
+        "CLAUDE-C01-27",
+        "CLAUDE-C01-30",
+        "CLAUDE-C01-32",
+        "CLAUDE-C01-33",
+        "CLAUDE-C01-34",
+        "CLAUDE-C01-35",
+        "CLAUDE-C01-36",
+        "CLAUDE-C01-37"
+      ],
+      "matches_expected_recent": true,
+      "in_flight": [
+        "CLAUDE-C01-28",
+        "CLAUDE-C01-29"
+      ],
+      "unearned_parent_markers": {
+        "s23_complete": false,
+        "c06_complete": false,
+        "c01_complete": false,
+        "g2_prerequisite_satisfied": false,
+        "runtime_roster_modified": false
+      },
+      "no_runtime_or_full_history_acceptance": true,
+      "queue_rows": [
+        {
+          "id": "CLAUDE-C01-34",
+          "owner": "Claude",
+          "session": "C01",
+          "state": "complete",
+          "priority": 20,
+          "title": "Research PFL/DEM, PDT and PMDB/MDB national presidents",
+          "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+          "depends_on": [],
+          "branch": "claude/c01-br-34",
+          "claim_revision": "c2ff93965b8a3e04c9d6755dcda6c99266c06032",
+          "submission_revision": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+          "next": "Accepted bounded research intake at ec8cb88b; first-source import 0eba7867. 75 exact original responses plus one separately qualified current registry response; 127 claims and 12 holder observations reviewed. The missing prior registry body, unknown change cause and source limits remain explicit. SOURCE-17 is preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-34/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+          "review_revision": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789"
+        },
+        {
+          "id": "CLAUDE-C01-35",
+          "owner": "Claude",
+          "session": "C01",
+          "state": "complete",
+          "priority": 21,
+          "title": "Research Democratic Russia and Soyuz group leaders",
+          "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-35.md",
+          "depends_on": [],
+          "branch": "claude/c01-su-35",
+          "claim_revision": "c1475ada8058f3861c560caa1cf082f5a97c244c",
+          "submission_revision": "52e3e313b7c53601833c2b170d504b3bed9fe4ff",
+          "next": "Accepted bounded research intake at ec8cb88b; first-source import e4e8d389. 16 exact original facsimile responses, 36 claims and eight dated holder observations reviewed. Private/nonprofit host attribution and paper-original authentication limits remain explicit. SOURCE-26 is preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-35/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+          "review_revision": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789"
+        },
+        {
+          "id": "CLAUDE-C01-36",
+          "owner": "Claude",
+          "session": "C01",
+          "state": "complete",
+          "priority": 22,
+          "title": "Research Tongan deputy prime ministers",
+          "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+          "depends_on": [],
+          "branch": "claude/c01-to-36",
+          "claim_revision": "e8821f40ab28d49aa3a329940f89de9599300f7f",
+          "submission_revision": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+          "next": "Accepted bounded research intake at c29f1709; first-source import 364c6f6d. 39 exact original responses, 53 claims and ten holder observations reviewed. Seven unsupported explanations for acting service were removed without changing holders or dates. C01-24, C04 preparation and all earlier sources remain intact. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-36/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+          "review_revision": "c29f17093b9b34bcef90b25ae53d349fe36330a7"
+        },
+        {
+          "id": "CLAUDE-C01-37",
+          "owner": "Claude",
+          "session": "C01",
+          "state": "complete",
+          "priority": 23,
+          "title": "Research French prime ministers",
+          "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+          "depends_on": [],
+          "branch": "claude/c01-fr-37",
+          "claim_revision": "1a3fc352711169d41a2182cb46fae85ea4e8d611",
+          "submission_revision": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+          "next": "Accepted bounded research intake at ed36670e; first-source import 4d88fd03. 31 exact original responses, 48 claims and 16 named source observations reviewed. Twelve inferred effective starts and fourteen inferred effective ends were removed; instrument dates remain. This first ten-person batch runs through March 2014. Effective-term and later-PM research remain open. C01-23 and the importer are preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+          "review_revision": "ed36670ef6125257bfa9e178c93049a303e0eb37"
+        }
+      ],
+      "boundary_case_count": 8039
+    },
+    "attribution": [
+      {
+        "packet": "CLAUDE-C01-34",
+        "new_source_count": 76,
+        "attribution_commits": {
+          "0eba7867": 76
+        },
+        "wrong_packet_ids": [],
+        "changed_old_attributions": []
+      },
+      {
+        "packet": "CLAUDE-C01-35",
+        "new_source_count": 16,
+        "attribution_commits": {
+          "e4e8d389": 16
+        },
+        "wrong_packet_ids": [],
+        "changed_old_attributions": []
+      },
+      {
+        "packet": "CLAUDE-C01-36",
+        "new_source_count": 39,
+        "attribution_commits": {
+          "364c6f6d": 39
+        },
+        "wrong_packet_ids": [],
+        "changed_old_attributions": []
+      },
+      {
+        "packet": "CLAUDE-C01-37",
+        "new_source_count": 31,
+        "attribution_commits": {
+          "4d88fd03": 31
+        },
+        "wrong_packet_ids": [],
+        "changed_old_attributions": []
+      }
+    ],
+    "local_markdown_links": {
+      "count": 108,
+      "missing": [],
+      "anchor_validation": false
+    },
+    "ci_setup_repairs": {
+      "failed_revision": "3947d1f1d34fba93dc81c476a97a6e52edf0c8b8",
+      "linux_avatar_result": {
+        "tests": 539,
+        "failure_entries": 4,
+        "skipped": 2,
+        "root_cause_evidence": "Explicit PIL import errors in test_reviewed_art_has_valid_real_files_and_exact_identity; all three other failure entries are select_portrait returning None via the same validate_manifest call."
+      },
+      "dependency_fix": "Pillow==11.3.0 installed with --only-binary=:all: after setup-python in both OS variants of the existing javascript job; no test skipped or assertion weakened.",
+      "clean_local_evidence": {
+        "platform": "Windows",
+        "wheel": "pillow-11.3.0-cp313-cp313-win_amd64.whl",
+        "portrait_tests": 6,
+        "passed": true,
+        "new_linux_run_claimed": false
+      },
+      "windows_cancelled_job": "109823782731",
+      "windows_run": "36695935387",
+      "windows_result": "cancelled, not passing",
+      "windows_timestamps_utc": {
+        "job_started": "2026-09-30T09:24:45",
+        "fetch_started": "2026-09-30T09:24:50",
+        "fetch_ended": "2026-09-30T09:36:53",
+        "checkout_completed": "2026-09-30T09:38:14",
+        "unit_tests_started": "2026-09-30T09:38:39",
+        "cancelled": "2026-09-30T09:44:46"
+      },
+      "timeout_fix": "Only javascript job resource budget changes from 20 to 40 minutes, matrix keeps Ubuntu and Windows. Full-history checkout, provenance fetch, all checks and their existing failure semantics remain.",
+      "unrelated_political_failure": "A1 elected-government coup distribution failure is separate and remains uncorrected by these environment changes.",
+      "combined_metadata_checks": {
+        "first_65_test_run": "failed stale expected in-flight status; retained",
+        "second_65_test_run": "errored incorrect coverage field path; retained",
+        "final_65_test_run": "65 passed in 5.800 seconds, reviewed existing log only",
+        "workboard": "existing retained log reports 44 canonical markers and 39 bounded tasks; not rerun by auditor"
+      }
+    },
+    "Tonga_original_holder_order": {
+      "old_count": 4,
+      "new_count": 14,
+      "positions_of_exact_old_rows": [
+        0,
+        11,
+        12,
+        13
+      ],
+      "method": "Existing holder rows verified as exact ordered subsequence because new observations are chronologically inserted; original positional-prefix exploration is retained but not a defect."
+    },
+    "canonical_parent_status": {
+      "C01": "in_progress",
+      "C06": "planned",
+      "S23": "planned",
+      "canonical_pathway_workstreams_and_human_pathway_unchanged_from": "44098c5a48f491f43fbcb74d121f290380af0b12"
+    }
+  },
+  "findings": [],
+  "inspected_file_pins": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\.github\\workflows\\verify.yml",
+      "bytes": 9899,
+      "sha256": "693dbeed1c3055659caafba7a47e03805c7efa2d1735800747d4907d5f7d0cbf"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars\\requirements-test.txt",
+      "bytes": 171,
+      "sha256": "7bee792845811c1518cab2da7578ea72c613c07719782892b64a8e5c996d0141"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars\\person_art_pipeline.py",
+      "bytes": 41580,
+      "sha256": "6afa236683c311ca9e70779ab4666063be18b12969286c8de5fe8b1556833947"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars\\test_tupou_portrait_s10c.py",
+      "bytes": 4704,
+      "sha256": "8333dc9be5057c46f0fbcc1eaed5e9594c5c2aa50e87e4906b2334c1b1b9f5f5"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\AI_WORKSTREAMS.md",
+      "bytes": 33580,
+      "sha256": "6ec201bf717956e07df5f2da52f87639b58c3a4f1f4327f6740a81189fb0a78b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\planning\\ai-task-queue.json",
+      "bytes": 31238,
+      "sha256": "6bf74c447c67c1051be4540aa947720afbc6544b9cb17a0030565853681e16b9"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\planning\\ai-handoffs\\CODEX-NEXT-ENGINEERING.md",
+      "bytes": 16260,
+      "sha256": "318738e1894474279d7aec843b1205d54c562cfc1e8fe9bc801aff66bf453adf"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\research-index.json",
+      "bytes": 124810,
+      "sha256": "3d4381d4c611fa386957210c2cdd37b8afb45ffa0258f1c6773aeb1f11f360af"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\gap-ledger\\inputs\\source-attribution.json",
+      "bytes": 284967,
+      "sha256": "15709d30343309dbd2ca087039bca5effc1d7dd552f381868dc9bd2514bc96f4"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\gap-ledger\\ledger.json",
+      "bytes": 1163460,
+      "sha256": "1aa971ebe2e426fe57f333b3618d1edbef6bc8961fbe8f5610c7128d3f9b2562"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\C01\\gap-ledger\\ledger.md",
+      "bytes": 92624,
+      "sha256": "3521ea6c417663e74ae1e41afcd715b6afa78c9f57ad4a2b90c7143ba1dccb17"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S23\\preparation\\boundary-matrix\\summary.json",
+      "bytes": 82280,
+      "sha256": "eed83c79d4465097a312f6429f6fc2ac8b9f21e35e24499296fe935128be31c9"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S23\\preparation\\boundary-matrix\\README.md",
+      "bytes": 34331,
+      "sha256": "00878621773ffed05caa0929d924c9c40f96b1aaeced7b9b6b1b4c88fe838b05"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars\\certified_gap_ledger.py",
+      "bytes": 68706,
+      "sha256": "9947751d1b6caac875ef8eab6618315aa5527dd82487e9e32cd9ec7aad73feb5"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars\\test_certified_gap_ledger.py",
+      "bytes": 38745,
+      "sha256": "9a4115deef11f6bbecb5095c47becaf1d404c14e4626b76400165c2506b10e2f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars\\test_certified_boundary_matrix.py",
+      "bytes": 48882,
+      "sha256": "de54b1e747e6f6e7e588081aef18ca39f8a481c812023fb1da4c429299ee8cbf"
+    }
+  ],
+  "validation_log_pins": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\ci-3947-javascript-linux.log",
+      "bytes": 794830,
+      "sha256": "b6cc5bef2531e6245d5e253557029532814a532b2d119e7efdc2d7bd9b98ba07"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\ci-3947-javascript-windows.log",
+      "bytes": 650696,
+      "sha256": "3188adc0b7601a2539d0c02bb3de9c7e36dceb2894f5fcd525c450a0c4c9777b"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\ci-3947-political-linux.log",
+      "bytes": 38130,
+      "sha256": "b24e0c5cd5ddb6fbdd081488ccdf452cef2b77915943f3f33741fbc6b7a902db"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\clean-pillow-install.log",
+      "bytes": 492,
+      "sha256": "a68747da148d438705fb7c96221447ddacf1652570f6ae32e47e0aecbb008d22"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\clean-tupou-tests.log",
+      "bytes": 109,
+      "sha256": "754c93d587103da58e3d61529c80a4b14dd24f67ed0a433a504fb23ded2124ab"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\clean-certified-checks.log",
+      "bytes": 956,
+      "sha256": "f8834aa20abc7fd2871a745667b1bbd3607a5f76a7ab122904a571dd95b2fcc2"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\clean-certified-checks-corrected.log",
+      "bytes": 883,
+      "sha256": "aef0706e0582a5928ebce6e2c58f84187aeb961ee6915729390829b43318a0ad"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\clean-certified-checks-final.log",
+      "bytes": 169,
+      "sha256": "352aed4359f925c0abc3292def642745a6b818187b6110eef58e413e33f2713b"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\combined-intakes-34-37-validation\\workboard-check.log",
+      "bytes": 146,
+      "sha256": "91a06802a0182a47dd07bac7c5075fa23ab5c1abcaede60142a852c12c720160"
+    }
+  ],
+  "head_end": "0719ba7bdab5c75749e4577aa1d67a090adaf2d0",
+  "limitations": [
+    "No new network retrieval/source-content review in this audit. The original independent reviews carry those claims and qualifications.",
+    "C01-37 source review was performed by this same agent; this second pass checks integration preservation and metadata only.",
+    "No Cargo, application execution, test rerun or Linux environment reproduction. Existing log results are identified as reviewed evidence.",
+    "Japan C01-29 and the newly retained held Russia C01-28 packet are outside this audit; neither is accepted here.",
+    "Root metadata was uncommitted when audited. Per-file SHA-256 pins bind the observed working files. Source-attribution generated_from ed36670e remains truthful although a held Russia receipt commit subsequently became HEAD.",
+    "Markdown target existence checked; anchors not validated."
+  ],
+  "finished_utc": "2026-09-30T09:50:06.982712+00:00"
+}

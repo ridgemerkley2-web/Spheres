@@ -7,10 +7,10 @@
   "counts": {
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
-    "organization_observations": 842,
-    "institution_observations": 35,
-    "sources": 1670,
-    "source_claims": 4352,
+    "organization_observations": 844,
+    "institution_observations": 36,
+    "sources": 1886,
+    "source_claims": 4727,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -21,8 +21,8 @@
       "packet": "docs/campaign-certification/C01/research/brazil.json",
       "organization_observations": 31,
       "institution_observations": 1,
-      "role_observations": 3,
-      "source_claims": 408,
+      "role_observations": 5,
+      "source_claims": 535,
       "mapping_pending": 32,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -72,7 +72,8 @@
           "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown.",
           "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
           "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted.",
-          "PT national presidents 1990-2026 (CLAUDE-C01-22, PT-PRES-01..10): the PT funding observation br_tse_fefc_2024_party_03 now holds one party role, br_pt_president, with eighteen dated holder observations; the earlier statement in this list that party offices remain outside this intake no longer applies to the PT national presidency. Party office and the Presidency of the Republic stay separate, the presidency and vice-presidency holders are unchanged, interim and acting service is claims only, and no game identity or portrait permission is granted."
+          "PT national presidents 1990-2026 (CLAUDE-C01-22, PT-PRES-01..10): the PT funding observation br_tse_fefc_2024_party_03 now holds one party role, br_pt_president, with eighteen dated holder observations; the earlier statement in this list that party offices remain outside this intake no longer applies to the PT national presidency. Party office and the Presidency of the Republic stay separate, the presidency and vice-presidency holders are unchanged, interim and acting service is claims only, and no game identity or portrait permission is granted.",
+          "PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34): the MDB funding observation br_tse_fefc_2024_party_01 now holds one party role, br_mdb_president, and the PDT funding observation br_tse_fefc_2024_party_02 one party role, br_pdt_president, each with dated holder observations; the PFL/DEM national presidency is recorded only as claims (sources br_pfl_*) that no organization, role or holder cites, and the UNIÃO funding observation is unchanged. Renamings (PFL to Democratas, PMDB to MDB) and the fusion of the Democratas with the PSL into União Brasil are claims about the organizations, never merged identities. Party office and state office stay separate, acting and interim service is claims only, the presidency, vice-presidency and PT holders are unchanged, and no game identity or portrait permission is granted. At most ten people are researched: Leonel Brizola and Carlos Lupi (PDT); Jader Barbalho, Michel Temer, Romero Jucá and Baleia Rossi (PMDB/MDB); Jorge Bornhausen, Rodrigo Maia, José Agripino and ACM Neto (PFL/DEM, claims only). The PMDB presidents of 1990-1998 (Jarbas Vasconcelos, Ulysses Guimarães, Orestes Quércia, José Fogaça, Luiz Henrique da Silveira and Paes de Andrade, as the party's retrospective list gives them, the first two with overlapping mandates and the third and fourth likewise), the PFL presidents before 1999 (including Hugo Napoleão) and every other party office remain unresearched."
         ]
       }
     },
@@ -80,10 +81,10 @@
       "nation": "France",
       "packet": "docs/campaign-certification/C01/research/france.json",
       "organization_observations": 635,
-      "institution_observations": 1,
-      "role_observations": 1,
-      "source_claims": 1372,
-      "mapping_pending": 636,
+      "institution_observations": 2,
+      "role_observations": 2,
+      "source_claims": 1420,
+      "mapping_pending": 637,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -101,7 +102,8 @@
           "No chair, executive, lifespan, succession, cartoon likeness or 2035 continuation has been inferred from accounts.",
           "Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.",
           "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
-          "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched."
+          "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched.",
+          "CLAUDE-C01-37 adds the executive institution fr_prime_minister (Premier ministre) through the same supplement; it covers the first ten people to hold the office from 1 January 1990 (Michel Rocard to Jean-Marc Ayrault, to 31 March 2014). The Prime Ministers appointed from 31 March 2014 onward, ministers and party offices remain unresearched."
         ],
         "financial_reporting_universe": {
           "exercise": "2024",
@@ -247,8 +249,8 @@
       "packet": "docs/campaign-certification/C01/research/japan.json",
       "organization_observations": 16,
       "institution_observations": 8,
-      "role_observations": 5,
-      "source_claims": 688,
+      "role_observations": 6,
+      "source_claims": 799,
       "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -288,7 +290,8 @@
           "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here.",
           "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted.",
           "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2014 appointments (the Official Gazette of 2006-2017 is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership.",
-          "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995."
+          "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
+          "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office."
         ]
       }
     },
@@ -431,7 +434,7 @@
       "organization_observations": 4,
       "institution_observations": 5,
       "role_observations": 15,
-      "source_claims": 266,
+      "source_claims": 319,
       "mapping_pending": 9,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -458,18 +461,19 @@
           "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved.",
           "Prime-minister packet 08 (tonga-prime-ministers-1990-2019-08.md) adds 1990-2019 to_pm holder observations: Fatafehi Tu'ipelehake and Baron Vaea at year precision only; Prince 'Ulukalala Lavaka Ata from his stated commencement on 3 January 2000 until his resignation was accepted on 11 February 2006; Feleti Sevele (attested 7 April 2006); Lord Tu'ivakano (appointment audience 22 December 2010); and Samuela 'Akilisi Pohiva (appointment audience 30 December 2014, then appointed with effect from 2 January 2018, with no end). Assembly selections, appointment audiences, oaths, acting service, the 2017 dissolution and the 2019 death and funeral are separate claims. The 1991 and 1999-2000 transitions, the 2006 substantive appointment day, Pohiva's status after the 2017 dissolution and the day of his death remain unresolved.",
           "Transition packet 03 (tonga-transition-2024-03.md) adds the 2024-2025 resignation, caretaker attestations, Assembly selection, royal appointment and first Eke Cabinet, with the end of the Sovaleni observation and three holder observations. The warrant, the boundaries of the acting premiership and the caretaker Cabinet's end remain unresolved; no complete leadership term is claimed.",
-          "Speaker packet 24 (tonga-speakers-1990-2026-24.md) adds 1990-2026 to_speaker holder observations after the unchanged string observation to_speakers_appointment: Fusitu'a (attested 1996-11-14), Hon. Veikune (attested 2001-04-30), Hon. Tu'ivakano (attested 2003-04-08), Hon. Veikune (attested 2005-03-22, until 2006-01-25), Lord Tu'ilakepa (attested 2008-06-02), Lord Lasike (attested 2011-01-14, until 2012-07-17), Lord Fakafanua (attested 2012-07-19), Lord Tu'ivakano (attested 2015-02-24), Lord Fakafanua (attested 2018-03-05 and 2022-02-17) and Lord Vaea (attested 2026-05-19). Royal appointments, the Assembly's elections and recommendations, oaths, the 2012 revocation, acting and interim Speakers and retrospective lists are separate claims. The Speaker on 1 January 1990, every pre-2010 appointment instrument, Tu'iha'angana's 2006-2008 Speakership and the post-2014 appointment days remain unresolved; no complete term is claimed."
+          "Speaker packet 24 (tonga-speakers-1990-2026-24.md) adds 1990-2026 to_speaker holder observations after the unchanged string observation to_speakers_appointment: Fusitu'a (attested 1996-11-14), Hon. Veikune (attested 2001-04-30), Hon. Tu'ivakano (attested 2003-04-08), Hon. Veikune (attested 2005-03-22, until 2006-01-25), Lord Tu'ilakepa (attested 2008-06-02), Lord Lasike (attested 2011-01-14, until 2012-07-17), Lord Fakafanua (attested 2012-07-19), Lord Tu'ivakano (attested 2015-02-24), Lord Fakafanua (attested 2018-03-05 and 2022-02-17) and Lord Vaea (attested 2026-05-19). Royal appointments, the Assembly's elections and recommendations, oaths, the 2012 revocation, acting and interim Speakers and retrospective lists are separate claims. The Speaker on 1 January 1990, every pre-2010 appointment instrument, Tu'iha'angana's 2006-2008 Speakership and the post-2014 appointment days remain unresolved; no complete term is claimed.",
+          "Deputy Prime Minister packet 36 (tonga-deputy-prime-ministers-1990-2026-36.md) adds 1990-2021 to_deputy_pm holder observations after the unchanged string observation to_cabinet_appointment and before the existing 2021-2025 holders: Langi Kavaliku (attested 2000-11-06), Tevita Poasi Tupou (2001-01-24 to 2001-09-28), James Cecil Cocker (attested 2002-05-13), Viliami Ta'u Tangi (attested 2006-08-08), Samiu Kuita Vaipulu (from 2011-01-04), Siaosi Sovaleni (attested 2014-12-31), Lord Ma'afu (from 2017-09-01), Semisi Kioa Lafu Sika (from 2018-01-05), Sione Vuna Fa'otusia (from 2019-10-09) and Lord Ma'afu (attested 2021-04-21, until his death on 2021-12-12). The Deputy Prime Minister of 1 January 1990 and most ends remain unresolved; acting service is recorded as claims only, and no complete term is claimed."
         ]
       }
     },
     {
       "nation": "USSR",
       "packet": "docs/campaign-certification/C01/research/ussr.json",
-      "organization_observations": 1,
+      "organization_observations": 3,
       "institution_observations": 4,
-      "role_observations": 6,
-      "source_claims": 95,
-      "mapping_pending": 5,
+      "role_observations": 8,
+      "source_claims": 131,
+      "mapping_pending": 7,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -488,7 +492,8 @@
           "1991 office changes, emergency claims, resignations, suspensions and dissolution require their own source review. No legal or organizational continuity through 2026 is inferred.",
           "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed.",
           "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
-          "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until."
+          "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until.",
+          "CLAUDE-C01-35 adds two organizations: su_democratic_russia (the Democratic Russia movement, with the co-leadership role su_dr_co_chair) and su_soyuz_deputies_group (the Soyuz group of USSR people's deputies, with the co-leadership role su_soyuz_co_chair). It reviews their leaders from 1 January 1990 to 25 December 1991 (SU-DR-01 to 05, SU-SOYUZ-01 to 05) from Congress and Supreme Soviet stenograms and archival facsimiles of the movement's own papers and of the RSFSR President's office. Co-chairs are recorded as co-leadership, one person per observation; no holder has a from or an until. Neither organization is mapped to a simulation party row, and the RSFSR deputies' faction of the same name and the later organizations called «Союз» remain unreviewed."
         ]
       }
     }
@@ -2109,7 +2114,8 @@
         "fr_cnccfp_1573",
         "fr_cnccfp_1584",
         "fr_cnccfp_1598",
-        "fr_presidency"
+        "fr_presidency",
+        "fr_prime_minister"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2665,6 +2671,8 @@
       ],
       "members": [
         "su_cpsu",
+        "su_democratic_russia",
+        "su_soyuz_deputies_group",
         "su_presidency",
         "su_congress_peoples_deputies",
         "su_supreme_soviet",
@@ -2677,13 +2685,13 @@
   "source_files": [
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 786813,
-      "sha256": "d4136c3d287d604f980f1da2107b31568790366debeb20eb0bc91a3b82122009"
+      "bytes": 1029474,
+      "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 1987748,
-      "sha256": "a6e6bd18f47a78e5c2de84e562bd86c1013e5281b4afde9d1bb37a102f22d126"
+      "bytes": 2122964,
+      "sha256": "6c4ed32a719effc98a4c5e8755eafcc9e1a3559c92b21c4fb3192b3368b76baf"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
@@ -2692,8 +2700,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 1393225,
-      "sha256": "918afdce0cce6e43019a565f88720109e53cfc5a6bee40cfb46e0ccf8d324752"
+      "bytes": 1590799,
+      "sha256": "7aae60165858f216411adae3836cf98355ce867a834521e72c3a13427efeff06"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
@@ -2712,13 +2720,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 524600,
-      "sha256": "ddff43808e68bc19c0ea74d5751125c57950a041c603f238a1e1310bb464b5b4"
+      "bytes": 637522,
+      "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 199067,
-      "sha256": "68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8"
+      "bytes": 300502,
+      "sha256": "1fdb9f98ae0edcc10366bbea508c71140a8f949947d9f63db1a7dca32f016089"
     },
     {
       "path": "tools/avatars/campaign_research.py",

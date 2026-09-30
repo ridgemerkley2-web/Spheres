@@ -1,0 +1,9 @@
+Requirement already satisfied: Pillow==11.3.0 in d:\spheres-offload\codex-next-20260928\avatar-ci-clean-venv\lib\site-packages (from -r tools/avatars/requirements-test.txt (line 3)) (11.3.0)
+Collecting pypdf==6.17.0 (from -r tools/avatars/requirements-test.txt (line 5))
+  Using cached pypdf-6.17.0-py3-none-any.whl.metadata (7.5 kB)
+Using cached pypdf-6.17.0-py3-none-any.whl (388 kB)
+Installing collected packages: pypdf
+Successfully installed pypdf-6.17.0
+
+[notice] A new release of pip is available: 25.3 -> 26.2.1
+[notice] To update, run: D:\spheres-offload\codex-next-20260928\avatar-ci-clean-venv\Scripts\python.exe -m pip install --upgrade pip

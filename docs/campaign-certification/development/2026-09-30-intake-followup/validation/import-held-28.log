@@ -1,0 +1,31 @@
+[codex/campaign-certification 0719ba7b] Retain held independent C01-28 response and holder review
+ Date: Wed Sep 30 02:46:54 2026 -0700
+ 28 files changed, 5698 insertions(+)
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/.gitattributes
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/baseline-isolation.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/claim-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/header-pins.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/holder-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/integration-plan.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/ru28-retrieval-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/ru28-retrieval.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/russia.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/ussr.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/logs/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/manifest.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/recipes/ru28-checks.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/recipes/ru28-extract.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/recipes/ru28-retrieve.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/rendered-pages.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/retrieval-retry.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/retrieval.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/source-holds.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/source-verification.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/validation-commands.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-28/visual-review.json

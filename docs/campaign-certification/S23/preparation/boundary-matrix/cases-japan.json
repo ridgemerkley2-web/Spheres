@@ -18,41 +18,43 @@
    },
    "statistics": {
     "roles": {
-     "research": 5,
+     "research": 6,
      "production_party": 8,
      "executive": 1
     },
-    "cases": 1013,
+    "cases": 1101,
     "case_kinds": {
-     "attestation_day": 34,
-     "attestation_day_after": 34,
-     "cutoff_day": 14,
-     "cutoff_day_before": 14,
+     "attestation_day": 49,
+     "attestation_day_after": 49,
+     "cutoff_day": 15,
+     "cutoff_day_before": 15,
      "dissolution_day_after": 3,
      "dissolution_day_before": 3,
      "dissolution_day_of": 3,
-     "fictional_end_exclusive": 14,
-     "fictional_last_day": 14,
-     "fictional_start_day": 14,
+     "fictional_end_exclusive": 15,
+     "fictional_last_day": 15,
+     "fictional_start_day": 15,
      "founding_day_after": 2,
      "founding_day_before": 2,
      "founding_day_of": 2,
-     "future_2030": 14,
-     "handover_day_after": 72,
-     "handover_day_before": 72,
-     "handover_day_of": 72,
-     "reference_start": 14,
-     "reference_start_day_before": 14,
-     "yearly": 644
+     "future_2030": 15,
+     "handover_day_after": 74,
+     "handover_day_before": 74,
+     "handover_day_of": 74,
+     "reference_start": 15,
+     "reference_start_day_before": 15,
+     "yearly": 690
     },
     "observations_by_acceptance": {
+     "accepted": 16,
      "pending": 44,
      "production_registry": 42,
      "unattributed_intake": 5
     },
     "research_yearly_status": {
+     "bracketed": 1,
      "established": 9,
-     "uncertain": 47,
+     "uncertain": 83,
      "unknown": 129
     },
     "production_party_yearly_status": {
@@ -81,8 +83,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: pending 44, unattributed_intake 5.",
+    "Research roles: 6 (6 with holder observations); 9 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 83 uncertain, 129 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 16, pending 44, unattributed_intake 5.",
     "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
     "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
     "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1591,6 +1593,144 @@
     },
     "boundary_cases": 0,
     "attestation_cases": 2
+   }
+  },
+  {
+   "key": "research:jp_sdp_chair",
+   "identity": "Japan",
+   "family": "research_role",
+   "role_id": "jp_sdp_chair",
+   "title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+   "kind": "party_leader",
+   "entry": {
+    "id": "jp_sangiin_pr_2025_10",
+    "category": "organizations",
+    "name": "社会民主党",
+    "kind": "electoral_list_political_party_or_other_political_organization",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "jp_sdp_chair#1",
+    "jp_sdp_chair#2",
+    "jp_sdp_chair#3",
+    "jp_sdp_chair#4",
+    "jp_sdp_chair#5",
+    "jp_sdp_chair#6",
+    "jp_sdp_chair#7",
+    "jp_sdp_chair#8",
+    "jp_sdp_chair#9",
+    "jp_sdp_chair#10",
+    "jp_sdp_chair#11",
+    "jp_sdp_chair#12",
+    "jp_sdp_chair#13",
+    "jp_sdp_chair#14",
+    "jp_sdp_chair#15",
+    "jp_sdp_chair#16"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-04-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-04-07","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-21","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-26","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-10-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-10-14","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-11-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-12-01","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-22","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-22","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-11-14","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-11-15","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["jp_sdp_chair#8","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-11-16","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-12-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-12-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"],["jp_sdp_chair#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-25","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["jp_sdp_chair#10","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["jp_sdp_chair#10","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-07-24","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["jp_sdp_chair#10","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-07-25","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["jp_sdp_chair#10","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-07-26","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-10-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-10-25","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-02-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-02-26","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-02-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-02-29","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#14","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-15","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-12-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#15","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-12-02","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-04-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_sdp_chair#16","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-04-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_sdp_chair#8","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 88,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "bracketed": 1,
+     "uncertain": 36
+    },
+    "boundary_cases": 6,
+    "attestation_cases": 30
    }
   },
   {
@@ -4316,6 +4456,362 @@
    ],
    "source_classes": {
     "pending": 1
+   }
+  },
+  "jp_sdp_chair#1": {
+   "role": "research:jp_sdp_chair",
+   "name": "土井たか子",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-04-06",
+   "claim_ids": [
+    "jp_sdp_doi_named_chair_by_secretary_general_19900406"
+   ],
+   "note": "Observed on 6 April 1990: the party secretary-general 山口鶴男's statement in the House of Representatives Budget Committee that '土井委員長はかねがね強調いたしておられます', the first dated statement by a party officer naming her in the office found after 1 January 1990. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; nothing attests 1 January 1990 itself; her September 1986 assumption and July 1991 resignation are month-only retrospective claims, and no party record of her 1991 resignation, of its acceptance or of an acting chair was found; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_diet_hr_budget_19900406"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#10": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": null,
+   "until": "2013-07-25",
+   "attested_on": "2012-01-24",
+   "claim_ids": [
+    "jp_sdp_fukushima_in_office_20120124",
+    "jp_sdp_fukushima_end_stated_20130725"
+   ],
+   "note": "Observed on 24 January 2012: the party organ 社会新報 (issue of 1 February 2012) reporting that 福島党首 spoke to reporters in the Diet on 24 January, after her uncontested fifth election of 20 January 2012. Until 25 July 2013: the party's report of her resignation press conference, dated 2013-07-25, quoting her '本日で辞任する'. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "The end is stated by her own words as the party reported them (resigning as of today, 25 July 2013); the standing committee's acceptance and the acting leader designated on 1 August 2013 are claims, and the acting leader is never a holder. No start is stated; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+    "jp_sdp_fukushima_resignation_kaiken_20130725"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "jp_sdp_chair#11": {
+   "role": "research:jp_sdp_chair",
+   "name": "吉田忠智",
+   "from": null,
+   "until": null,
+   "attested_on": "2013-10-24",
+   "claim_ids": [
+    "jp_sdp_yoshida_in_office_diet_20131024"
+   ],
+   "note": "Observed on 24 October 2013: his own statement in the House of Councillors Budget Committee that, having become leader of the SDP, this is his first question ('党首になりまして今日は初めての質問であります'). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his recollection of 24 February 2018 that he took over on 1 November 2013 conflicts with this statement and is never a from; the 14 October 2013 count and declaration are claims; no record of a 2015 result was found; his withdrawn 2016 resignation intention and his 2018 explanation of his departure state no end day; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_diet_hc_budget_20131024"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#12": {
+   "role": "research:jp_sdp_chair",
+   "name": "又市征治",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-02-25",
+   "claim_ids": [
+    "jp_sdp_mataichi_in_office_inaugural_greeting_20180225"
+   ],
+   "note": "Observed on 25 February 2018: his address to the 16th regular convention, dated 25 February 2018, headed 党首就任あいさつ and signed 社会民主党党首 又市征治; 就任 in a heading is not a day. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his uncontested election on the re-notice of 26 January 2018 is a claim, and the party said he would formally take office at the late-February convention; no source states the day his office ended in 2020; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_mataichi_inaugural_greeting_20180225"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#13": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-02-28",
+   "claim_ids": [
+    "jp_sdp_fukushima_new_leader_news_item_20200228"
+   ],
+   "note": "Observed on 28 February 2020: the party's news items dated 2020.2.28 calling her 福島みずほ新党首 and printing her address as new leader ('新たに新党首に就任させていただきました'). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; her uncontested election on the first day of the 22-23 February 2020 convention is a claim; the November 2020 convention decision is a claim about the organization only; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_top_page_17th_convention_2020"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#14": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-01-14",
+   "claim_ids": [
+    "jp_sdp_fukushima_in_office_20220114"
+   ],
+   "note": "Observed on 14 January 2022: the party's notice of the result of its 12th leader election, dated 14 January 2022, reporting 福島党首's press conference after her uncontested re-election. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the notice said the new term would begin after the March 2022 convention approved the result, which is a plan, not a start; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_fukushima_reelection_12th_20220114"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#15": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": null,
+   "until": null,
+   "attested_on": "2023-12-01",
+   "claim_ids": [
+    "jp_sdp_fukushima_in_office_20231201"
+   ],
+   "note": "Observed on 1 December 2023: the party organ's report of her uncontested re-election, whose photograph caption dated 1 December names 福島党首. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_fukushima_reelection_20231201"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#16": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-04-08",
+   "claim_ids": [
+    "jp_sdp_fukushima_in_office_kaiken_20260408"
+   ],
+   "note": "Observed on 8 April 2026: the party organ's report of 社民党の福島みずほ党首's press conference of 8 April 2026, after the 6 April run-off count. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the 4 March notice, the inconclusive 23 March count, the re-notice and the 6 April run-off count and declaration are claims; the 29 April and 29 July 2026 attestations are continuations; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_fukushima_kaiken_20260408"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#2": {
+   "role": "research:jp_sdp_chair",
+   "name": "田邊誠",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-08-20",
+   "claim_ids": [
+    "jp_sdp_tanabe_named_chair_by_secretary_general_19910820"
+   ],
+   "note": "Observed on 20 August 1991: the party secretary-general 山花貞夫's statement in the House of Representatives Budget Committee '過日の代表質問で田邊委員長が指摘しましたとおり'. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; neither his 1991 selection nor his resignation (December 1992 to January 1993) is attested by a party record or a party officer's dated statement; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_diet_hr_budget_19910820"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#3": {
+   "role": "research:jp_sdp_chair",
+   "name": "山花貞夫",
+   "from": null,
+   "until": null,
+   "attested_on": "1993-01-25",
+   "claim_ids": [
+    "jp_sdp_yamahana_self_stated_chair_19930125"
+   ],
+   "note": "Observed on 25 January 1993: his own statement in the House of Representatives plenary that he has newly taken office as chair of 日本社会党 ('新しく日本社会党の委員長に就任いたしました'); 就任 without a day is not a start. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his statement of 24 September 1993 that he is still chair is a continuation; his later recollection, as a minister holding no party office, that he resigned gives no day and is a lead; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_diet_hr_plenary_19930125"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#4": {
+   "role": "research:jp_sdp_chair",
+   "name": "村山富市",
+   "from": null,
+   "until": null,
+   "attested_on": "1994-10-13",
+   "claim_ids": [
+    "jp_sdp_murayama_self_stated_chair_19941013"
+   ],
+   "note": "Observed on 13 October 1994: his own statement in the House of Representatives Budget Committee '私は党の委員長であり' (party-office wording only; the prime-ministership is excluded). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his September 1993 election is not attested by a party record or a party officer's dated statement; the January 1996 renaming and his becoming 党首 are claims, and his September 1996 departure is attested only retrospectively; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_diet_hr_budget_19941013"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#5": {
+   "role": "research:jp_sdp_chair",
+   "name": "土井たか子",
+   "from": null,
+   "until": null,
+   "attested_on": "1996-11-30",
+   "claim_ids": [
+    "jp_sdp_doi_in_office_kanjicho_meeting_19961130"
+   ],
+   "note": "Observed on 30 November 1996: the party's report of its 都道府県連合幹事長会議, whose opening address was given by 土井たか子党首 (the page prints 11月30日; the year follows from the report and the party's index). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the day she took over from 村山富市 is not stated (the secretary-general's report of her 就任 gives no day; later retrospectives say 1996 and September 1996); the convention's confirmation of 22 December 1996 is a claim; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_doi_kenren_kanjicho_meeting_19961130"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#6": {
+   "role": "research:jp_sdp_chair",
+   "name": "土井たか子",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-01-21",
+   "claim_ids": [
+    "jp_sdp_doi_in_office_shakaishinpo_19980121"
+   ],
+   "note": "Observed on 21 January 1998: the party organ 社会新報 (issue of 21 January 1998) calling her 再選の土井党首 after her uncontested re-election. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the re-notice (8 January) and the confirmation of her election (10 January) are claims; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_doi_reelection_shakaishinpo_19980121"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#7": {
+   "role": "research:jp_sdp_chair",
+   "name": "土井たか子",
+   "from": null,
+   "until": null,
+   "attested_on": "2000-01-21",
+   "claim_ids": [
+    "jp_sdp_doi_in_office_third_term_danwa_20000121"
+   ],
+   "note": "Observed on 21 January 2000: her statement on her third election, dated 21 January 2000 and signed 社会民主党 党首 土井たか子. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; her 2003 resignation was announced on 13 November and stated to the representatives' meeting on 15 November 2003, and no source states the day her office ended; no record of a 2002 election was found; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_doi_third_term_danwa_20000121"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_sdp_chair#8": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": "2003-11-15",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "jp_sdp_fukushima_assumption_stated_20031115",
+    "jp_sdp_fukushima_in_office_inaugural_greeting_20031115"
+   ],
+   "note": "From 15 November 2003: her own statement in the House of Councillors Budget Committee on 26 November 2003 that on 15 November she became the new leader of the SDP ('私は、十一月十五日、社民党の新党首になりました'), with the party's record of her inaugural address as new leader (新党首就任あいさつ) dated 15 November 2003. Not a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No end is stated for this observation: her re-elections of 2009 and 2012 have their own observations, and those of 2005 and 2007 were not found; the joint plenary selection and the convention's confirmation of 13 December 2003 are claims, and no end is inferred from a later election.",
+   "sources": [
+    "jp_sdp_diet_hc_budget_20031126",
+    "jp_sdp_fukushima_inaugural_greeting_20031115"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "jp_sdp_chair#9": {
+   "role": "research:jp_sdp_chair",
+   "name": "福島瑞穂",
+   "from": null,
+   "until": null,
+   "attested_on": "2009-12-09",
+   "claim_ids": [
+    "jp_sdp_fukushima_in_office_20091209"
+   ],
+   "note": "Observed on 9 December 2009: the party organ 社会新報 (issue of 16 December 2009) reporting 社民党の福島党首's press conference of the 9th (month and year from the issue date); party-office naming only, her ministerial office is excluded. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the notice and her uncontested fourth election (4 December 2009) are claims; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election.",
+   "sources": [
+    "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-29"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   }
  },

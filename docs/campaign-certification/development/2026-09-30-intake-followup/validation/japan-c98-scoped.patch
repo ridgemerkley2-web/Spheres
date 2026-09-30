@@ -1,0 +1,85 @@
+diff --git a/docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md b/docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md
+index 243c02be..bda59fd2 100644
+--- a/docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md
++++ b/docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md
+@@ -288,12 +288,12 @@ December 2003. 社会新報 reports her uncontested fourth election on 4 Decembe
+ press conferences on 9 December 2009 and 24 January 2012 (`jp_sdp_fukushima_in_office_20091209`, `jp_sdp_fukushima_in_office_20120124`).
+ The party's page of 25 July 2013 reports that she stated her intention to resign at the standing committee, which accepted it and
+ decided to appoint an acting leader, and quotes her press conference: 'その敗北の責任を取って本日で辞任する'
+-(`jp_sdp_fukushima_end_stated_20130725`); it adds that she was re-elected unopposed five times after 2003.
++(`jp_sdp_fukushima_end_stated_20130725`); it adds that she won five consecutive uncontested leader elections.
+ 
+ Decision: accepted in part: from 15 November 2003 (her own statement of the day); observations of 9 December 2009 and 24 January
+ 2012; until 25 July 2013 on the 2012 observation.
+ 
+-Limits: the 2005 and 2007 elections were not found (the page of 2013 counts five uncontested re-elections); the 2003 and 2009
++Limits: the 2005 and 2007 elections were not found. The 2013 wording does not establish five additional re-elections after the initial election; the January 2012 record explicitly calls that election her fifth. The 2003 and 2009
+ observations have no end, and no end is inferred from the next election.
+ 
+ ### SDP-CHAIR-08 — 2013-2018: the acting leader and 吉田忠智
+diff --git a/docs/campaign-certification/C01/research/japan.json b/docs/campaign-certification/C01/research/japan.json
+index b0f04750..f4c5b6bc 100644
+--- a/docs/campaign-certification/C01/research/japan.json
++++ b/docs/campaign-certification/C01/research/japan.json
+@@ -16529,8 +16529,8 @@
+       "scope_note": "Party web page (TOPICS, お知らせ, posted 25 July 2013) on 福島みずほ's resignation after the July 2013 House of Councillors election.",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json",
+-        "bytes": 7595,
+-        "sha256": "8724ba871f1d8bad8cddc9ae8f2fd8860581da879e6cbc162202a7a0a397cfa3"
++        "bytes": 7572,
++        "sha256": "57fb3af103f021e82d4b3edf7a19962cf14def55abc2d39ddf0b7bdf7d244385"
+       },
+       "claims": [
+         {
+@@ -16571,11 +16571,11 @@
+         },
+         {
+           "id": "jp_sdp_fukushima_tenure_record_2003_2013",
+-          "text": "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and was afterwards re-elected unopposed in five consecutive leader elections.",
++          "text": "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and won five consecutive uncontested leader elections.",
+           "locator": {
+             "paragraph": 4
+           },
+-          "uncertainty": "Retrospective; month only for the assumption and no dates for the five uncontested re-elections; of these the December 2009 and January 2012 ones were found as contemporaneous records (2005 and 2007 not found). Never a holder boundary. No structured date is stored."
++          "uncertainty": "Retrospective; month only for the assumption and no dates for the five consecutive uncontested leader elections. The wording does not establish five additional re-elections after the initial election; the contemporaneous January 2012 record calls that election her fifth. The December 2009 and January 2012 elections were found as contemporaneous records (2005 and 2007 not found). Never a holder boundary. No structured date is stored."
+         }
+       ]
+     },
+diff --git a/docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json b/docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json
+index f0bc19ad..322768f6 100644
+--- a/docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json
++++ b/docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json
+@@ -87,7 +87,7 @@
+       "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+       "event_kind": "retrospective_election_record",
+       "attested_on": null,
+-      "text": "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and was afterwards re-elected unopposed in five consecutive leader elections.",
++      "text": "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and won five consecutive uncontested leader elections.",
+       "locator": {
+         "paragraph": 4
+       }
+diff --git a/tools/avatars/test_japan_sdp_chairs_c01_29.py b/tools/avatars/test_japan_sdp_chairs_c01_29.py
+index 4158b3bc..8db951e7 100644
+--- a/tools/avatars/test_japan_sdp_chairs_c01_29.py
++++ b/tools/avatars/test_japan_sdp_chairs_c01_29.py
+@@ -993,6 +993,19 @@ class JapanSdpChairsTests(unittest.TestCase):
+         self.assertTrue(packet_unresolved[-1].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
+         self.assertTrue(packet_unresolved[-2].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
+ 
++    def test_retrospective_election_count_does_not_invent_additional_wins(self):
++        claim = self.claims['jp_sdp_fukushima_tenure_record_2003_2013']
++        self.assertEqual(claim['text'],
++                         "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor "
++                         "and won five consecutive uncontested leader elections.")
++        self.assertIn('does not establish five additional re-elections after the initial election', claim['uncertainty'])
++        self.assertIn('the contemporaneous January 2012 record calls that election her fifth', claim['uncertainty'])
++        self.assertNotIn('attested_on', claim)
++        self.assertNotIn(claim['id'], HOLDER_CLAIM_SET)
++        self.assertIn('five consecutive uncontested leader elections', self.report)
++        self.assertNotIn('re-elected unopposed five times after 2003', self.report)
++        self.assertNotIn('counts five uncontested re-elections', self.report)
++
+     def test_extracts_match_packet_claims_and_record_original_responses(self):
+         for sid in NEW_SOURCES:
+             source, extract = self.sources[sid], self.extracts[sid]

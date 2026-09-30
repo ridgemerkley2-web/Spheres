@@ -18,37 +18,37 @@
    },
    "statistics": {
     "roles": {
-     "research": 1,
+     "research": 2,
      "production_party": 15,
      "executive": 1
     },
-    "cases": 995,
+    "cases": 1079,
     "case_kinds": {
-     "attestation_day": 2,
-     "attestation_day_after": 2,
-     "cutoff_day": 17,
-     "cutoff_day_before": 17,
+     "attestation_day": 18,
+     "attestation_day_after": 18,
+     "cutoff_day": 18,
+     "cutoff_day_before": 18,
      "dissolution_day_after": 1,
      "dissolution_day_before": 1,
      "dissolution_day_of": 1,
-     "fictional_end_exclusive": 17,
-     "fictional_last_day": 17,
-     "fictional_start_day": 17,
-     "future_2030": 17,
+     "fictional_end_exclusive": 18,
+     "fictional_last_day": 18,
+     "fictional_start_day": 18,
+     "future_2030": 18,
      "handover_day_after": 37,
      "handover_day_before": 37,
      "handover_day_of": 37,
-     "reference_start": 17,
-     "reference_start_day_before": 17,
-     "yearly": 782
+     "reference_start": 18,
+     "reference_start_day_before": 18,
+     "yearly": 828
     },
     "observations_by_acceptance": {
-     "accepted": 7,
+     "accepted": 23,
      "production_registry": 54
     },
     "research_yearly_status": {
      "uncertain": 24,
-     "unknown": 13
+     "unknown": 50
     },
     "production_party_yearly_status": {
      "established": 197,
@@ -74,8 +74,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 1 (1 with holder observations); 0 of 37 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 13 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 7.",
+    "Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 23.",
     "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
     "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
     "Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
@@ -2718,6 +2718,139 @@
     "boundary_cases": 15,
     "attestation_cases": 4
    }
+  },
+  {
+   "key": "research:fr_pm",
+   "identity": "France",
+   "family": "research_role",
+   "role_id": "fr_pm",
+   "title": "Premier ministre",
+   "kind": "head_of_government",
+   "entry": {
+    "id": "fr_prime_minister",
+    "category": "institutions",
+    "name": "Premier ministre",
+    "kind": "executive_institution",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "fr_pm#1",
+    "fr_pm#2",
+    "fr_pm#3",
+    "fr_pm#4",
+    "fr_pm#5",
+    "fr_pm#6",
+    "fr_pm#7",
+    "fr_pm#8",
+    "fr_pm#9",
+    "fr_pm#10",
+    "fr_pm#11",
+    "fr_pm#12",
+    "fr_pm#13",
+    "fr_pm#14",
+    "fr_pm#15",
+    "fr_pm#16"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-05-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-05-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-04-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-04-03","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-03-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-03-31","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-05-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-05-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-11-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-11-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-06-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-06-03","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-06-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-06-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-03-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-03-31","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-05-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-06-01","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-06-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-06-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-11-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#14","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-11-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-05-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#15","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-05-16","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#16","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 84,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 32
+   }
   }
  ],
  "observations": {
@@ -3095,6 +3228,386 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "fr_pm#1": {
+   "role": "research:fr_pm",
+   "name": "Michel Rocard",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-01-24",
+   "claim_ids": [
+    "fr_jorf_rocard_signs_decree_as_pm_19900124",
+    "fr_jorf_rocard_functions_ended_19910515"
+   ],
+   "note": "Observed on 24 January 1990: decree no. 90-89 of that day opens 'Le Premier ministre,' and is signed 'MICHEL ROCARD'. A separate signed cessation instrument dated 1991-05-15 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_rocard_signs_decree_90_89_19900124",
+    "fr_jorf_cessation_rocard_19910515"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#10": {
+   "role": "research:fr_pm",
+   "name": "Jean-Pierre Raffarin",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-03-30",
+   "claim_ids": [
+    "fr_jorf_raffarin_appointed_pm_20040330",
+    "fr_jorf_raffarin_functions_ended_20050531"
+   ],
+   "note": "Observed on 2004-03-30: the signed instrument names Jean-Pierre Raffarin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2005-05-31 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_raffarin_20040330",
+    "fr_jorf_cessation_raffarin_20050531"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#11": {
+   "role": "research:fr_pm",
+   "name": "Dominique de Villepin",
+   "from": null,
+   "until": null,
+   "attested_on": "2005-05-31",
+   "claim_ids": [
+    "fr_jorf_villepin_appointed_pm_20050531",
+    "fr_jorf_villepin_functions_ended_20070515"
+   ],
+   "note": "Observed on 2005-05-31: the signed instrument names Dominique de Villepin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2007-05-15 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_villepin_20050531",
+    "fr_jorf_cessation_villepin_20070515"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#12": {
+   "role": "research:fr_pm",
+   "name": "François Fillon",
+   "from": null,
+   "until": null,
+   "attested_on": "2007-05-17",
+   "claim_ids": [
+    "fr_jorf_fillon_appointed_pm_20070517",
+    "fr_jorf_fillon_functions_ended_20070618"
+   ],
+   "note": "Observed on 2007-05-17: the signed instrument names François Fillon as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2007-06-18 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_fillon_20070517",
+    "fr_jorf_cessation_fillon_20070618"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#13": {
+   "role": "research:fr_pm",
+   "name": "François Fillon",
+   "from": null,
+   "until": null,
+   "attested_on": "2007-06-18",
+   "claim_ids": [
+    "fr_jorf_fillon_appointed_pm_20070618",
+    "fr_jorf_fillon_functions_ended_20101113"
+   ],
+   "note": "Observed on 2007-06-18: the signed instrument names François Fillon as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2010-11-13 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_fillon_20070618",
+    "fr_jorf_cessation_fillon_20101113"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#14": {
+   "role": "research:fr_pm",
+   "name": "François Fillon",
+   "from": null,
+   "until": null,
+   "attested_on": "2010-11-14",
+   "claim_ids": [
+    "fr_jorf_fillon_appointed_pm_20101114",
+    "fr_jorf_fillon_functions_ended_20120510"
+   ],
+   "note": "Observed on 2010-11-14: the signed instrument names François Fillon as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2012-05-10 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_fillon_20101114",
+    "fr_jorf_cessation_fillon_20120510"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#15": {
+   "role": "research:fr_pm",
+   "name": "Jean-Marc Ayrault",
+   "from": null,
+   "until": null,
+   "attested_on": "2012-05-15",
+   "claim_ids": [
+    "fr_jorf_ayrault_appointed_pm_20120515",
+    "fr_jorf_ayrault_functions_ended_20120618"
+   ],
+   "note": "Observed on 2012-05-15: the signed instrument names Jean-Marc Ayrault as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2012-06-18 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_ayrault_20120515",
+    "fr_jorf_cessation_ayrault_20120618"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#16": {
+   "role": "research:fr_pm",
+   "name": "Jean-Marc Ayrault",
+   "from": null,
+   "until": null,
+   "attested_on": "2012-06-18",
+   "claim_ids": [
+    "fr_jorf_ayrault_appointed_pm_20120618",
+    "fr_jorf_ayrault_functions_ended_20140331"
+   ],
+   "note": "Observed on 2012-06-18: the signed instrument names Jean-Marc Ayrault as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2014-03-31 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_ayrault_20120618",
+    "fr_jorf_cessation_ayrault_20140331"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#2": {
+   "role": "research:fr_pm",
+   "name": "Édith Cresson",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-05-16",
+   "claim_ids": [
+    "fr_jorf_cresson_countersigns_composition_19910516"
+   ],
+   "note": "Observed on 16 May 1991: the decree on the composition of the Government of that day, made 'Sur proposition du Premier ministre', is countersigned 'Le Premier ministre, EDITH CRESSON'.",
+   "uncertainty": "No start: Légifrance's page for the appointment decree of 15 May 1991 renders no text and names nobody, and the composition decree's reference to 'le décret du 15 mai 1991 portant nomination du Premier ministre' does not name the appointee; pairing the two would infer a start, so neither is used. No end: the decree of 2 April 1992 ending her Government's functions (JORFTEXT000000539723) has no usable archive capture, and her successor's appointment of 2 April 1992 is never used as this end.",
+   "sources": [
+    "fr_jorf_composition_cresson_19910516"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_pm#3": {
+   "role": "research:fr_pm",
+   "name": "Pierre Bérégovoy",
+   "from": null,
+   "until": null,
+   "attested_on": "1992-04-02",
+   "claim_ids": [
+    "fr_jorf_beregovoy_appointed_pm_19920402",
+    "fr_jorf_beregovoy_functions_ended_19930329"
+   ],
+   "note": "Observed on 1992-04-02: the signed instrument names Pierre Bérégovoy as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 1993-03-29 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_beregovoy_19920402",
+    "fr_jorf_cessation_beregovoy_19930329"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#4": {
+   "role": "research:fr_pm",
+   "name": "Édouard Balladur",
+   "from": null,
+   "until": null,
+   "attested_on": "1993-03-30",
+   "claim_ids": [
+    "fr_jorf_balladur_countersigns_composition_19930330",
+    "fr_jorf_balladur_functions_ended_19950511"
+   ],
+   "note": "Observed on 30 March 1993: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, EDOUARD BALLADUR'. A separate signed cessation instrument dated 1995-05-11 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_composition_balladur_19930330",
+    "fr_jorf_cessation_balladur_19950511"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#5": {
+   "role": "research:fr_pm",
+   "name": "Alain Juppé",
+   "from": null,
+   "until": null,
+   "attested_on": "1995-05-18",
+   "claim_ids": [
+    "fr_jorf_juppe_countersigns_composition_19950518"
+   ],
+   "note": "Observed on 18 May 1995: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, Alain Juppé'.",
+   "uncertainty": "No start: the appointment decree of 17 May 1995 (JORFTEXT000000718399) has no archive capture, and the composition decree's reference to it names nobody. No end: the decree of 7 November 1995 ending the first Government's functions was not retrieved (its likely identifier, JORFTEXT000000189843, has no capture), and his own reappointment of 7 November 1995 is never used as this end.",
+   "sources": [
+    "fr_jorf_composition_juppe_19950518"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_pm#6": {
+   "role": "research:fr_pm",
+   "name": "Alain Juppé",
+   "from": null,
+   "until": null,
+   "attested_on": "1995-11-07",
+   "claim_ids": [
+    "fr_jorf_juppe_appointed_pm_19951107",
+    "fr_jorf_juppe_functions_ended_19970602"
+   ],
+   "note": "Observed on 1995-11-07: the signed instrument names Alain Juppé as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 1997-06-02 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_juppe_19951107",
+    "fr_jorf_cessation_juppe_19970602"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#7": {
+   "role": "research:fr_pm",
+   "name": "Lionel Jospin",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-06-02",
+   "claim_ids": [
+    "fr_jorf_jospin_appointed_pm_19970602",
+    "fr_jorf_jospin_functions_ended_20020506"
+   ],
+   "note": "Observed on 1997-06-02: the signed instrument names Lionel Jospin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2002-05-06 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_jospin_19970602",
+    "fr_jorf_cessation_jospin_20020506"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#8": {
+   "role": "research:fr_pm",
+   "name": "Jean-Pierre Raffarin",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-05-06",
+   "claim_ids": [
+    "fr_jorf_raffarin_appointed_pm_20020506",
+    "fr_jorf_raffarin_functions_ended_20020617"
+   ],
+   "note": "Observed on 2002-05-06: the signed instrument names Jean-Pierre Raffarin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2002-06-17 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_raffarin_20020506",
+    "fr_jorf_cessation_raffarin_20020617"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#9": {
+   "role": "research:fr_pm",
+   "name": "Jean-Pierre Raffarin",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-06-17",
+   "claim_ids": [
+    "fr_jorf_raffarin_appointed_pm_20020617",
+    "fr_jorf_raffarin_functions_ended_20040330"
+   ],
+   "note": "Observed on 2002-06-17: the signed instrument names Jean-Pierre Raffarin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2004-03-30 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_raffarin_20020617",
+    "fr_jorf_cessation_raffarin_20040330"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-37"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
   },
   "fr_president#1": {
    "role": "research:fr_president",

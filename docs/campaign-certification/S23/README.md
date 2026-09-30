@@ -26,11 +26,16 @@ only the finance read model and display; it has separate exact-build evidence.
 
 ## What the audit currently shows
 
-The regenerated [boundary matrix](preparation/boundary-matrix/README.md) contains
-**7,093 role/date cases over 115 roles**, spanning eight CP1 country cases and
-nine national identities. The initial corrected review recorded 7,095 cases;
-withdrawing the unsupported Soviet appointment removes two date observations.
-This count measures audit scope, not passing historical coverage.
+The current [boundary matrix](preparation/boundary-matrix/README.md), regenerated
+on 30 September 2026 after the bounded C01-29/34–37 intakes, contains
+**8,127 role/date cases over 128 roles** across eight CP1 country cases and nine
+national identities; [summary.json](preparation/boundary-matrix/summary.json)
+pins its inputs and counts.
+
+The dated 28 September 2026 checkpoint contained **7,093 role/date cases over
+115 roles**. Its initial corrected review recorded 7,095 cases; withdrawing the
+unsupported Soviet appointment removed two date observations. These counts
+measure audit scope, not passing historical coverage.
 
 Historical research is frozen at **7 September 2026**. Explicit fictional
 eligibility begins afterward and runs through 2035; an eligible candidate is
@@ -58,9 +63,14 @@ research-to-runtime identity mappings remain incomplete.
    2030 and end-2035. Any required unresolved identity or artwork still blocks
    that country's certificate.
 
-C01-23/24/25/27 remain submitted for independent review. Preserve the active
-C01-28 Russia and C01-29 Japan claims. The S24 successor-fixture and E05
-company-research deliveries are now accepted as bounded preparation, with
+C01-23/24/25/27/29/30/32–37 are accepted as bounded research intake. The
+[Japan acceptance](../C01/integrations/CLAUDE-C01-29/README.md) preserves its earlier
+held checkpoint. Russia C01-28 remains held: its [available-content addendum](../C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md)
+at `031bd0e37e24526dcb3f42449002a31c5b03f654` checks 113/137 claims and 20/24 holder
+observations; 24 claims, four holder observations and 12 unavailable originals
+remain held, with no new Russia research imported. These bounded reviews do not
+complete C01, C06 or S23. The S24 successor-fixture and E05 company-research
+deliveries are accepted as bounded preparation, with
 [successor limitations](../S24/integrations/CLAUDE-S24-SUCCESSORS-01/README.md) and
 [company source-review limits](../E05/integrations/CLAUDE-E05-RESEARCH-01/README.md).
 Query the [task queue](../../planning/ai-task-queue.json)

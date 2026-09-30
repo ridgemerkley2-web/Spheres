@@ -1,0 +1,121 @@
+{
+  "recorded_utc": "2026-09-30T10:08:34.684958+00:00",
+  "results": [
+    {
+      "name": "post-review-ledger-generate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-boundary-generate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-research-check",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-ledger-check",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-boundary-check",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-census-check",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-workboard-check",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-planning-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "post-review-certified-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_certified_*.py"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

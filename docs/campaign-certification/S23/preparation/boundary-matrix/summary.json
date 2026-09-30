@@ -310,6 +310,14 @@
    "sources_listed": 74
   },
   {
+   "packet": "CLAUDE-C01-29",
+   "report": "docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
+   "reviewed_head": null,
+   "sources_listed": 54
+  },
+  {
    "packet": "CLAUDE-C01-30",
    "report": "docs/campaign-certification/C01/research/south-africa-acdp-ff-ifp-leaders-1990-2026-30.md",
    "status": "accepted",
@@ -332,6 +340,38 @@
    "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-33/README.md",
    "reviewed_head": null,
    "sources_listed": 22
+  },
+  {
+   "packet": "CLAUDE-C01-34",
+   "report": "docs/campaign-certification/C01/research/brazil-party-presidents-1990-2026-34.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-34/README.md",
+   "reviewed_head": null,
+   "sources_listed": 76
+  },
+  {
+   "packet": "CLAUDE-C01-35",
+   "report": "docs/campaign-certification/C01/research/ussr-democratic-russia-soyuz-1990-1991-35.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-35/README.md",
+   "reviewed_head": null,
+   "sources_listed": 16
+  },
+  {
+   "packet": "CLAUDE-C01-36",
+   "report": "docs/campaign-certification/C01/research/tonga-deputy-prime-ministers-1990-2026-36.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-36/README.md",
+   "reviewed_head": null,
+   "sources_listed": 39
+  },
+  {
+   "packet": "CLAUDE-C01-37",
+   "report": "docs/campaign-certification/C01/research/france-prime-ministers-1990-2026-37.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md",
+   "reviewed_head": null,
+   "sources_listed": 31
   }
  ],
  "packets_without_report": [],
@@ -386,37 +426,37 @@
      "identity": "France",
      "statistics": {
       "roles": {
-       "research": 1,
+       "research": 2,
        "production_party": 15,
        "executive": 1
       },
-      "cases": 995,
+      "cases": 1079,
       "case_kinds": {
-       "attestation_day": 2,
-       "attestation_day_after": 2,
-       "cutoff_day": 17,
-       "cutoff_day_before": 17,
+       "attestation_day": 18,
+       "attestation_day_after": 18,
+       "cutoff_day": 18,
+       "cutoff_day_before": 18,
        "dissolution_day_after": 1,
        "dissolution_day_before": 1,
        "dissolution_day_of": 1,
-       "fictional_end_exclusive": 17,
-       "fictional_last_day": 17,
-       "fictional_start_day": 17,
-       "future_2030": 17,
+       "fictional_end_exclusive": 18,
+       "fictional_last_day": 18,
+       "fictional_start_day": 18,
+       "future_2030": 18,
        "handover_day_after": 37,
        "handover_day_before": 37,
        "handover_day_of": 37,
-       "reference_start": 17,
-       "reference_start_day_before": 17,
-       "yearly": 782
+       "reference_start": 18,
+       "reference_start_day_before": 18,
+       "yearly": 828
       },
       "observations_by_acceptance": {
-       "accepted": 7,
+       "accepted": 23,
        "production_registry": 54
       },
       "research_yearly_status": {
        "uncertain": 24,
-       "unknown": 13
+       "unknown": 50
       },
       "production_party_yearly_status": {
        "established": 197,
@@ -442,8 +482,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 1 (1 with holder observations); 0 of 37 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 13 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 7.",
+      "Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 23.",
       "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
       "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
       "Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
@@ -463,41 +503,43 @@
      "identity": "Japan",
      "statistics": {
       "roles": {
-       "research": 5,
+       "research": 6,
        "production_party": 8,
        "executive": 1
       },
-      "cases": 1013,
+      "cases": 1101,
       "case_kinds": {
-       "attestation_day": 34,
-       "attestation_day_after": 34,
-       "cutoff_day": 14,
-       "cutoff_day_before": 14,
+       "attestation_day": 49,
+       "attestation_day_after": 49,
+       "cutoff_day": 15,
+       "cutoff_day_before": 15,
        "dissolution_day_after": 3,
        "dissolution_day_before": 3,
        "dissolution_day_of": 3,
-       "fictional_end_exclusive": 14,
-       "fictional_last_day": 14,
-       "fictional_start_day": 14,
+       "fictional_end_exclusive": 15,
+       "fictional_last_day": 15,
+       "fictional_start_day": 15,
        "founding_day_after": 2,
        "founding_day_before": 2,
        "founding_day_of": 2,
-       "future_2030": 14,
-       "handover_day_after": 72,
-       "handover_day_before": 72,
-       "handover_day_of": 72,
-       "reference_start": 14,
-       "reference_start_day_before": 14,
-       "yearly": 644
+       "future_2030": 15,
+       "handover_day_after": 74,
+       "handover_day_before": 74,
+       "handover_day_of": 74,
+       "reference_start": 15,
+       "reference_start_day_before": 15,
+       "yearly": 690
       },
       "observations_by_acceptance": {
+       "accepted": 16,
        "pending": 44,
        "production_registry": 42,
        "unattributed_intake": 5
       },
       "research_yearly_status": {
+       "bracketed": 1,
        "established": 9,
-       "uncertain": 47,
+       "uncertain": 83,
        "unknown": 129
       },
       "production_party_yearly_status": {
@@ -526,8 +568,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: pending 44, unattributed_intake 5.",
+      "Research roles: 6 (6 with holder observations); 9 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 83 uncertain, 129 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 16, pending 44, unattributed_intake 5.",
       "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
       "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
       "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -633,42 +675,43 @@
      "identity": "Brazil",
      "statistics": {
       "roles": {
-       "research": 3,
+       "research": 5,
        "production_party": 6,
        "executive": 1
       },
-      "cases": 688,
+      "cases": 819,
       "case_kinds": {
-       "attestation_day": 14,
-       "attestation_day_after": 14,
-       "cutoff_day": 10,
-       "cutoff_day_before": 10,
+       "attestation_day": 26,
+       "attestation_day_after": 26,
+       "cutoff_day": 12,
+       "cutoff_day_before": 12,
        "death_day_after": 1,
        "death_day_before": 1,
        "death_day_of": 1,
        "dissolution_day_after": 1,
        "dissolution_day_before": 1,
        "dissolution_day_of": 1,
-       "fictional_end_exclusive": 10,
-       "fictional_last_day": 10,
-       "fictional_start_day": 10,
-       "future_2030": 10,
-       "handover_day_after": 54,
-       "handover_day_before": 54,
-       "handover_day_of": 54,
-       "reference_start": 10,
-       "reference_start_day_before": 10,
-       "yearly": 460
+       "fictional_end_exclusive": 12,
+       "fictional_last_day": 12,
+       "fictional_start_day": 12,
+       "future_2030": 12,
+       "handover_day_after": 55,
+       "handover_day_before": 55,
+       "handover_day_of": 55,
+       "reference_start": 12,
+       "reference_start_day_before": 12,
+       "yearly": 552
       },
       "observations_by_acceptance": {
+       "accepted": 12,
        "pending": 39,
        "production_registry": 28
       },
       "research_yearly_status": {
        "boundary_day": 16,
        "established": 4,
-       "uncertain": 88,
-       "unknown": 3
+       "uncertain": 103,
+       "unknown": 62
       },
       "production_party_yearly_status": {
        "established": 99,
@@ -697,8 +740,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: pending 39.",
+      "Research roles: 5 (5 with holder observations); 20 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 62 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 12, pending 39.",
       "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
       "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
       "Campaign-start executive Jose Sarney: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
@@ -812,10 +855,10 @@
        "production_party": 0,
        "executive": 1
       },
-      "cases": 948,
+      "cases": 978,
       "case_kinds": {
-       "attestation_day": 28,
-       "attestation_day_after": 28,
+       "attestation_day": 33,
+       "attestation_day_after": 33,
        "attested_period_from_day_after": 5,
        "attested_period_from_day_before": 5,
        "attested_period_from_day_of": 5,
@@ -828,23 +871,23 @@
        "fictional_last_day": 16,
        "fictional_start_day": 16,
        "future_2030": 16,
-       "handover_day_after": 13,
-       "handover_day_before": 13,
-       "handover_day_of": 13,
+       "handover_day_after": 20,
+       "handover_day_before": 20,
+       "handover_day_of": 20,
        "reference_start": 16,
        "reference_start_day_before": 16,
        "yearly": 736
       },
       "observations_by_acceptance": {
-       "accepted": 30,
+       "accepted": 40,
        "unattributed_intake": 10
       },
       "research_yearly_status": {
        "bracketed": 2,
        "established": 15,
        "period_attested": 8,
-       "uncertain": 62,
-       "unknown": 320,
+       "uncertain": 94,
+       "unknown": 288,
        "unresearched": 148
       },
       "production_party_yearly_status": {},
@@ -868,8 +911,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 62 uncertain, 320 unknown and 148 unresearched.",
-      "Research holder observations by acceptance: accepted 30, unattributed_intake 10.",
+      "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 94 uncertain, 288 unknown and 148 unresearched.",
+      "Research holder observations by acceptance: accepted 40, unattributed_intake 10.",
       "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
       "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -963,40 +1006,41 @@
      "identity": "USSR",
      "statistics": {
       "roles": {
-       "research": 6,
+       "research": 8,
        "production_party": 3,
        "executive": 1
       },
-      "cases": 561,
+      "cases": 675,
       "case_kinds": {
-       "attestation_day": 11,
-       "attestation_day_after": 11,
+       "attestation_day": 16,
+       "attestation_day_after": 16,
        "creation_day_after": 1,
        "creation_day_before": 1,
        "creation_day_of": 1,
-       "cutoff_day": 10,
-       "cutoff_day_before": 10,
-       "fictional_end_exclusive": 10,
-       "fictional_last_day": 10,
-       "fictional_start_day": 10,
-       "future_2030": 10,
+       "cutoff_day": 12,
+       "cutoff_day_before": 12,
+       "fictional_end_exclusive": 12,
+       "fictional_last_day": 12,
+       "fictional_start_day": 12,
+       "future_2030": 12,
        "observation_window_from_day_after": 3,
        "observation_window_from_day_before": 3,
        "observation_window_from_day_of": 3,
        "observation_window_through_day_after": 3,
        "observation_window_through_day_before": 3,
        "observation_window_through_day_of": 3,
-       "reference_start": 10,
-       "reference_start_day_before": 10,
-       "yearly": 460
+       "reference_start": 12,
+       "reference_start_day_before": 12,
+       "yearly": 552
       },
       "observations_by_acceptance": {
+       "accepted": 8,
        "pending": 6,
        "unattributed_intake": 4
       },
       "research_yearly_status": {
        "inapplicable": 1,
-       "unknown": 184,
+       "unknown": 258,
        "unresearched": 37
       },
       "production_party_yearly_status": {
@@ -1018,8 +1062,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.",
-      "Research holder observations by acceptance: pending 6, unattributed_intake 4.",
+      "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.",
+      "Research holder observations by acceptance: accepted 8, pending 6, unattributed_intake 4.",
       "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
       "Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -1621,6 +1665,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
+   "bytes": 1759,
+   "sha256": "8adb8d1a92ccb5d4bdb86c5e9248efd156386168cbc494a94588e98ecddce262",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
    "bytes": 7345,
    "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9",
@@ -1642,9 +1693,44 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-34/README.md",
+   "bytes": 1252,
+   "sha256": "bcda1daef7a2e4ba9af252b38361542ea6a58b663dde7fd219e5bd2e3b56b044",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-35/README.md",
+   "bytes": 1226,
+   "sha256": "d2c8aa66409f083fa33aa48acb0ceab16dc5abb659b314c407b66320a23fd8d5",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-36/README.md",
+   "bytes": 1291,
+   "sha256": "188a763e86efce72ca7bab5812689b54fabd89aa0fc9935a08c18d99511d1cbb",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md",
+   "bytes": 1441,
+   "sha256": "b2e04a7865eefaeeb42338c44b082d5f3b2005b654192d3e35325dffb85d7493",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/represented-organizations.json",
    "bytes": 793318,
    "sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/brazil-party-presidents-1990-2026-34.md",
+   "bytes": 101766,
+   "sha256": "312d27e7d93c8d75a032375b9405089e9846326dadaa2b795f8c13fd9fbd0aba",
    "newline_normalized": true,
    "exists": true
   },
@@ -1671,8 +1757,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/brazil.json",
-   "bytes": 786813,
-   "sha256": "d4136c3d287d604f980f1da2107b31568790366debeb20eb0bc91a3b82122009",
+   "bytes": 1029474,
+   "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a",
    "newline_normalized": true,
    "exists": true
   },
@@ -1684,9 +1770,16 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/france-prime-ministers-1990-2026-37.md",
+   "bytes": 35885,
+   "sha256": "97999dbfeebb7a0b9801fff26ee392cef3ab37d8e6e9b5b104b3664d39eef325",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/france.json",
-   "bytes": 1987748,
-   "sha256": "a6e6bd18f47a78e5c2de84e562bd86c1013e5281b4afde9d1bb37a102f22d126",
+   "bytes": 2122964,
+   "sha256": "6c4ed32a719effc98a4c5e8755eafcc9e1a3559c92b21c4fb3192b3368b76baf",
    "newline_normalized": true,
    "exists": true
   },
@@ -1754,9 +1847,16 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md",
+   "bytes": 71634,
+   "sha256": "f46d563a968547ca25ed4a3b405a63d5ea646836ed93bd29b29fb1e9650cd70a",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/japan.json",
-   "bytes": 1393225,
-   "sha256": "918afdce0cce6e43019a565f88720109e53cfc5a6bee40cfb46e0ccf8d324752",
+   "bytes": 1590799,
+   "sha256": "7aae60165858f216411adae3836cf98355ce867a834521e72c3a13427efeff06",
    "newline_normalized": true,
    "exists": true
   },
@@ -1852,6 +1952,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/tonga-deputy-prime-ministers-1990-2026-36.md",
+   "bytes": 60447,
+   "sha256": "a5dcac8880759a7294a1b1b296d4a48815287249a5175465dbc74e60384293f3",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
    "bytes": 34940,
    "sha256": "755f9db2abfb5c26e7d916f845bcba279c5ffdc41c8d895489437f9996b46f7d",
@@ -1895,8 +2002,15 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/tonga.json",
-   "bytes": 524600,
-   "sha256": "ddff43808e68bc19c0ea74d5751125c57950a041c603f238a1e1310bb464b5b4",
+   "bytes": 637522,
+   "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/ussr-democratic-russia-soyuz-1990-1991-35.md",
+   "bytes": 53520,
+   "sha256": "a7c6679e2e8995b982cb7ac3074019390cc7510ba011440162517cd634ef17e8",
    "newline_normalized": true,
    "exists": true
   },
@@ -1916,8 +2030,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/ussr.json",
-   "bytes": 199067,
-   "sha256": "68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8",
+   "bytes": 300502,
+   "sha256": "1fdb9f98ae0edcc10366bbea508c71140a8f949947d9f63db1a7dca32f016089",
    "newline_normalized": true,
    "exists": true
   },

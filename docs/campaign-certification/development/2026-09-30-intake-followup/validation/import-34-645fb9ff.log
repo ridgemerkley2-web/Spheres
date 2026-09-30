@@ -1,0 +1,38 @@
+[codex/campaign-certification fa19d1be] Record independent C01-34 Brazil source review with bounded current-response qualification
+ Date: Wed Sep 30 02:21:16 2026 -0700
+ 35 files changed, 7049 insertions(+)
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/.gitattributes
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/README.md
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/baseline-limit.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/claim-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/current-response-repair.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/manifest.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/pdf-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/retrieval-tools.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/scope-audit.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/source-attempts.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/source-verification.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/brazil.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/leadership-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/research-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/corrected/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/final/brazil.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/final/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/final/research-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/final/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/brazil.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/leadership-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/research-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/validation/submission/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-34/verify_receipt.py

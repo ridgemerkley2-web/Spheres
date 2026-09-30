@@ -18,9 +18,11 @@ unrepresented/minor/dissolved organizations, accepted claims, pending submission
 unresearched intervals and institutional exceptions.
 
 Produce a prioritized ledger of the next bounded research batches, at most ten
-chains/people each, with source leads and exact missing fields. Do not re-research
-pending C01-23/24/25/27 or label their claims accepted. This is a gap audit of known
-inputs, not proof that all real-world organizations have been discovered. Record
+chains/people each, with source leads and exact missing fields. Do not repeat
+existing submissions or accepted intake. Classify each packet only from its
+current explicit integration decision; bounded acceptance does not establish
+complete history. This is a gap audit of known inputs, not proof that all
+real-world organizations have been discovered. Record
 the frozen 2026-09-07 cutoff and explicit worldwide discovery limitations.
 
 ## Owned paths

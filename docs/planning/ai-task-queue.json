@@ -245,22 +245,24 @@
       "depends_on": [],
       "branch": "claude/c01-ru-28",
       "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
-      "next": "Latest remote follow-up inspected at03141c43 on claude/c01-ru-28. Submitted research remains unreviewed and unaccepted; no import of its new research. Preserve existing claim and scoped five-party chain; independent content/source checks still required.",
-      "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa"
+      "next": "Independent review remains held on original-source access. The unchanged initial receipt records 56/68 exact originals and twelve unavailable originals. Addendum 031bd0e3 completes all accessible content: 113/137 claims and 20/24 holder observations checked; 24 claims and four observations remain held. No accessible claim remains deferred. Two narrow uncertainty repairs are retained only on the unmerged review branch at 35ea76f6; 39 Russia tests and refreshed index pass there. No new Russia research is imported or accepted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md. No historical or parent closure.",
+      "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
+      "review_revision": "031bd0e37e24526dcb3f42449002a31c5b03f654"
     },
     {
       "id": "CLAUDE-C01-29",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 16,
       "title": "Research Japanese Socialist / Social Democratic Party chairs",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
       "depends_on": [],
       "branch": "claude/c01-jp-29",
       "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
-      "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 is separately submitted and unaccepted. The later bounded C01-30 acceptance does not resolve this Japan source-access hold.",
-      "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd"
+      "next": "Bounded intake accepted at dc65b510 after all 19 held original responses were recovered; all 54 originals, 111 claims and 16 holder observations reviewed. First-source import b2098862 and retained correction 5879bc23 preserve earlier Japan data. The unchanged old held checkpoint and fresh resumed review remain under docs/campaign-certification/C01/reviews/CLAUDE-C01-29. Root decision: docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md. No complete history, runtime mapping, portraits or parent closure.",
+      "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd",
+      "review_revision": "dc65b5100cbce2dac447e08987235566376fcd14"
     },
     {
       "id": "CODEX-S24-BUDGET-01",
@@ -470,7 +472,7 @@
       "id": "CLAUDE-C01-34",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 20,
       "title": "Research PFL/DEM, PDT and PMDB/MDB national presidents",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
@@ -478,13 +480,14 @@
       "branch": "claude/c01-br-34",
       "claim_revision": "c2ff93965b8a3e04c9d6755dcda6c99266c06032",
       "submission_revision": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
-      "next": "Submitted at 16ef41a66d992e7a09417ab332cb6fc8fb6e1c76; independent source, content, isolation and focused technical review required before acceptance. Reserve Brazil/br_pfl, Brazil/br_pdt and Brazil/br_pmdb from duplicate research. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+      "next": "Accepted bounded research intake at ec8cb88b; first-source import 0eba7867. 75 exact original responses plus one separately qualified current registry response; 127 claims and 12 holder observations reviewed. The missing prior registry body, unknown change cause and source limits remain explicit. SOURCE-17 is preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-34/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+      "review_revision": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789"
     },
     {
       "id": "CLAUDE-C01-35",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 21,
       "title": "Research Democratic Russia and Soyuz group leaders",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-35.md",
@@ -492,13 +495,14 @@
       "branch": "claude/c01-su-35",
       "claim_revision": "c1475ada8058f3861c560caa1cf082f5a97c244c",
       "submission_revision": "52e3e313b7c53601833c2b170d504b3bed9fe4ff",
-      "next": "Submitted at 52e3e313b7c53601833c2b170d504b3bed9fe4ff; independent source, content, isolation and focused technical review required before acceptance. Reserve USSR/su_dr and USSR/su_soyuz from duplicate research. The bounded period is 1990-1991. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+      "next": "Accepted bounded research intake at ec8cb88b; first-source import e4e8d389. 16 exact original facsimile responses, 36 claims and eight dated holder observations reviewed. Private/nonprofit host attribution and paper-original authentication limits remain explicit. SOURCE-26 is preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-35/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+      "review_revision": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789"
     },
     {
       "id": "CLAUDE-C01-36",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 22,
       "title": "Research Tongan deputy prime ministers",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
@@ -506,13 +510,14 @@
       "branch": "claude/c01-to-36",
       "claim_revision": "e8821f40ab28d49aa3a329940f89de9599300f7f",
       "submission_revision": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
-      "next": "Submitted at 6b82475ea8224a7fecf911f6442e8b6d7b506ca1; independent source, content, isolation and focused technical review required before acceptance. Reserve to_cabinet#to_deputy_pm from duplicate research. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+      "next": "Accepted bounded research intake at c29f1709; first-source import 364c6f6d. 39 exact original responses, 53 claims and ten holder observations reviewed. Seven unsupported explanations for acting service were removed without changing holders or dates. C01-24, C04 preparation and all earlier sources remain intact. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-36/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+      "review_revision": "c29f17093b9b34bcef90b25ae53d349fe36330a7"
     },
     {
       "id": "CLAUDE-C01-37",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 23,
       "title": "Research French prime ministers",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
@@ -520,7 +525,8 @@
       "branch": "claude/c01-fr-37",
       "claim_revision": "1a3fc352711169d41a2182cb46fae85ea4e8d611",
       "submission_revision": "eb7006176756796f5fd0a7244d9a3316ab275e60",
-      "next": "Submitted at eb7006176756796f5fd0a7244d9a3316ab275e60; independent source, content, isolation and focused technical review required before acceptance. Reserve institution:fr_prime_minister from duplicate research. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+      "next": "Accepted bounded research intake at ed36670e; first-source import 4d88fd03. 31 exact original responses, 48 claims and 16 named source observations reviewed. Twelve inferred effective starts and fourteen inferred effective ends were removed; instrument dates remain. This first ten-person batch runs through March 2014. Effective-term and later-PM research remain open. C01-23 and the importer are preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
+      "review_revision": "ed36670ef6125257bfa9e178c93049a303e0eb37"
     }
   ]
 }

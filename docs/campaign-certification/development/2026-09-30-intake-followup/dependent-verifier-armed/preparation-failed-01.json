@@ -1,0 +1,9 @@
+{
+  "status": "preparation_failed_before_configuration_or_launch",
+  "error": "OSError WinError 1920: pathlib cannot resolve the Microsoft Store sys.executable execution alias",
+  "location": "prepare.py interpreter pin, before snapshots/config/tests/launch",
+  "repair": "Pin and invoke the actual current Python process ExecutablePath returned by read-only Win32_Process, preserving the launcher command separately.",
+  "campaign_executed": false,
+  "matrix_files_modified": false,
+  "qualification": false
+}

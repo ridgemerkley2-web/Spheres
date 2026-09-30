@@ -1,0 +1,127 @@
+{
+  "format": "spheres-dependent-verification-arming-manifest/v1",
+  "created_utc": "2026-09-30T10:02:37.835739+00:00",
+  "scope": "Immutable preparation and armed handshake only. Future event/verifier/terminal outputs are not yet claimed.",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "worker_pid": 35664,
+  "parent_pid": 9040,
+  "status": "waiting_for_exact_launcher",
+  "files": [
+    {
+      "relative": "dependent_verify.py",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\dependent_verify.py",
+      "bytes": 15996,
+      "sha256": "111f15ad6be59641b64cbd6c84369c8b7c0301b89602de58a4c50e5ced5052c5"
+    },
+    {
+      "relative": "test_dependent_verify.py",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\test_dependent_verify.py",
+      "bytes": 7788,
+      "sha256": "d3e60062ceb91dc14e8bfe7f6d2d7508c612378e420438a46140841747cb2d19"
+    },
+    {
+      "relative": "prepare.py",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\prepare.py",
+      "bytes": 5432,
+      "sha256": "851d2210582b95826758343eaa31d7ff65e78022e42b95b146f5686c529e6b29"
+    },
+    {
+      "relative": "config.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\config.json",
+      "bytes": 7178,
+      "sha256": "5143c308436e0b8f98287fe7fff2bc8cabb2555f548badeee046ed5dfedde26e"
+    },
+    {
+      "relative": "prepared.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\prepared.json",
+      "bytes": 849,
+      "sha256": "397fec58e7236c953d8e26350cfefa8227e38a523377a6ab81a5a34cb3e5a85d"
+    },
+    {
+      "relative": "preparation-failed-01.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\preparation-failed-01.json",
+      "bytes": 511,
+      "sha256": "d677363b20b110d2e94cb421264d688fb7d90d4a79ae3ffdf66fb69b404f9c4d"
+    },
+    {
+      "relative": "guard-tests.stdout.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\guard-tests.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "guard-tests.stderr.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\guard-tests.stderr.log",
+      "bytes": 1664,
+      "sha256": "2f4f928c1ea12d4c80042c25374b65f667ad077bd5b8bd9a5481efc445158abe"
+    },
+    {
+      "relative": "guard-tests-result.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\guard-tests-result.json",
+      "bytes": 688,
+      "sha256": "cb4e7f82010c7f84f67ba4e84cc18bef3ed9f966a7c7a31eaeefd1f7fcd35763"
+    },
+    {
+      "relative": "launch.ps1",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\launch.ps1",
+      "bytes": 2832,
+      "sha256": "3962eb251eebb0f8cac230e3df95166ba57d2d2bf2f8c81fa2547c63e4de1129"
+    },
+    {
+      "relative": "launch-syntax.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\launch-syntax.json",
+      "bytes": 207,
+      "sha256": "175184266700553f5a9096d50f6f3cfaf5b55d29412d98881d4d07fdb5999cc4"
+    },
+    {
+      "relative": "README.md",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\README.md",
+      "bytes": 3144,
+      "sha256": "94560df0ae014a5dad21c2aad5663e3de165775041d37b369e1d252ccbcd1098"
+    },
+    {
+      "relative": "independent-source-review.md",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\independent-source-review.md",
+      "bytes": 961,
+      "sha256": "bc9782e5322f21942722c7a7d72e72843ebf89fb5fceffc670efff2af2e9227e"
+    },
+    {
+      "relative": "captured/manifest.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\captured\\manifest.json",
+      "bytes": 3725,
+      "sha256": "4f8e94852b2d67e49b36dc2632940d8cf9d8079a6f848f784c50364d58894c50"
+    },
+    {
+      "relative": "captured/full-launch.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\captured\\full-launch.json",
+      "bytes": 1355,
+      "sha256": "79d4779966099e0ec118edc67313d7166aa32ee7ce5d955123e296ef5ea3426c"
+    },
+    {
+      "relative": "captured/freeze.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\captured\\freeze.json",
+      "bytes": 2136,
+      "sha256": "e987a66ae55d65e894e982b20b6ac76f4ffbbd699e3acbf7b060354bb5771f10"
+    },
+    {
+      "relative": "launch/receipt.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\launch\\receipt.json",
+      "bytes": 1206,
+      "sha256": "7e23738c7b31abe34cef06068628cb7a9a6e16502c1e4e6a3930049092c317d6"
+    },
+    {
+      "relative": "pending.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\pending.json",
+      "bytes": 574,
+      "sha256": "e1908ccdad7e7b737b5ecd71d6048e27a1d166705dba84bcc480a37e15d8aefa"
+    },
+    {
+      "relative": "launch-verification.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\launch-verification.json",
+      "bytes": 1386,
+      "sha256": "058545053b81c5d858f0dfcd44bfea94dd5b74f6ac1ffdbd5b754202c334a60d"
+    }
+  ],
+  "qualification": false,
+  "s25_complete": false
+}

@@ -1,0 +1,14 @@
+.......................................F.........................
+======================================================================
+FAIL: test_real_cases_windows_and_in_flight_exclusions (test_certified_gap_ledger.CheckedInLedger.test_real_cases_windows_and_in_flight_exclusions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_certified_gap_ledger.py", line 528, in test_real_cases_windows_and_in_flight_exclusions
+    self.assertEqual(roles[('Tonga', 'to_deputy_pm')]['in_flight'], 'CLAUDE-C01-36')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != 'CLAUDE-C01-36'
+
+----------------------------------------------------------------------
+Ran 65 tests in 6.125s
+
+FAILED (failures=1)

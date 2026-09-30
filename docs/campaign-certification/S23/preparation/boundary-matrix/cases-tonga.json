@@ -22,10 +22,10 @@
      "production_party": 0,
      "executive": 1
     },
-    "cases": 948,
+    "cases": 978,
     "case_kinds": {
-     "attestation_day": 28,
-     "attestation_day_after": 28,
+     "attestation_day": 33,
+     "attestation_day_after": 33,
      "attested_period_from_day_after": 5,
      "attested_period_from_day_before": 5,
      "attested_period_from_day_of": 5,
@@ -38,23 +38,23 @@
      "fictional_last_day": 16,
      "fictional_start_day": 16,
      "future_2030": 16,
-     "handover_day_after": 13,
-     "handover_day_before": 13,
-     "handover_day_of": 13,
+     "handover_day_after": 20,
+     "handover_day_before": 20,
+     "handover_day_of": 20,
      "reference_start": 16,
      "reference_start_day_before": 16,
      "yearly": 736
     },
     "observations_by_acceptance": {
-     "accepted": 30,
+     "accepted": 40,
      "unattributed_intake": 10
     },
     "research_yearly_status": {
      "bracketed": 2,
      "established": 15,
      "period_attested": 8,
-     "uncertain": 62,
-     "unknown": 320,
+     "uncertain": 94,
+     "unknown": 288,
      "unresearched": 148
     },
     "production_party_yearly_status": {},
@@ -78,8 +78,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 62 uncertain, 320 unknown and 148 unresearched.",
-    "Research holder observations by acceptance: accepted 30, unattributed_intake 10.",
+    "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 94 uncertain, 288 unknown and 148 unresearched.",
+    "Research holder observations by acceptance: accepted 40, unattributed_intake 10.",
     "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
     "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -1078,58 +1078,98 @@
     "to_deputy_pm#1",
     "to_deputy_pm#2",
     "to_deputy_pm#3",
-    "to_deputy_pm#4"
+    "to_deputy_pm#4",
+    "to_deputy_pm#5",
+    "to_deputy_pm#6",
+    "to_deputy_pm#7",
+    "to_deputy_pm#8",
+    "to_deputy_pm#9",
+    "to_deputy_pm#10",
+    "to_deputy_pm#11",
+    "to_deputy_pm#12",
+    "to_deputy_pm#13",
+    "to_deputy_pm#14"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-12-27","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-12-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#2","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-12-29","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-12-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-12-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-27","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#4","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-29","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-07","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-23","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-24","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#3","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-25","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["to_deputy_pm#3","within_stated_interval"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-09-27","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["to_deputy_pm#3","within_stated_interval"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-09-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#3","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-09-29","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-14","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-08-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-08-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-03","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-04","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#6","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-05","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-12-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["attestation_day_after","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-08-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#6","after_stated_start"],["to_deputy_pm#11","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-09-01","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#8","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-09-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#8","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#8","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-04","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#8","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-05","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#9","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-06","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#9","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#9","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-08","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#9","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-09","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#10","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-10","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#10","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#10","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#10","after_stated_start"],["to_deputy_pm#11","before_stated_end"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-04-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-04-22","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["to_deputy_pm#11","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-11","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["to_deputy_pm#11","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-12","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#11","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-13","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#10","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-27","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#10","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#12","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-29","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-12-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-12-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-27","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#12","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#14","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-29","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#14","after_stated_start"]],"possible_total":6},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-01-01","kinds":["attestation_day_after","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["attestation_day_after","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#14","after_stated_start"]],"possible_total":6},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#14","after_stated_start"]],"possible_total":6},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#14","after_stated_start"]],"possible_total":6},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1144,14 +1184,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 61,
+    "cases": 91,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "uncertain": 5,
-     "unknown": 32
+     "uncertain": 37
     },
-    "boundary_cases": 6,
-    "attestation_cases": 4
+    "boundary_cases": 27,
+    "attestation_cases": 14
    }
   },
   {
@@ -1643,7 +1682,56 @@
     "unattributed_intake": 1
    }
   },
-  "to_deputy_pm#2": {
+  "to_deputy_pm#10": {
+   "role": "research:to_deputy_pm",
+   "name": "Sione Vuna Fa'otusia",
+   "from": "2019-10-09",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "to_dpm_faotusia_appointment_effective_20191009",
+    "to_dpm_faotusia_styled_20200416"
+   ],
+   "note": "Appointed Deputy Prime Minister and Minister for Justice and Prison with effect from 9 October 2019; styled Deputy Prime Minister on 16 April 2020 (TO-DPM-09). Sworn in the Assembly on 28 October 2019 as 'Hon. Vuna Fa'otusia'.",
+   "uncertainty": "The oath is a separate claim and not a start. His resignation is known only as 'in 2020' (Assembly, retrospective) and 'Okatopa 2019 - 2020' (Assembly list), so no until is set.",
+   "sources": [
+    "to_pmo_20191010_new_cabinet",
+    "to_pmo_20200416_dpm_clarification"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "to_deputy_pm#11": {
+   "role": "research:to_deputy_pm",
+   "name": "Lord Ma'afu",
+   "from": null,
+   "until": "2021-12-12",
+   "attested_on": "2021-04-21",
+   "claim_ids": [
+    "to_dpm_maafu_member_page_20210421",
+    "to_dpm_maafu_styled_at_death_20211213",
+    "to_dpm_maafu_death_20211212"
+   ],
+   "note": "Deputy Prime Minister on the Assembly's member page as captured on 21 April 2021 and styled so by the PMO at his death in Auckland in the early hours of Sunday 12 December 2021 (TO-DPM-10).",
+   "uncertainty": "The start is known only as 'mei Tisema 2020' (Assembly list, month only), so the holder is event-dated to the capture; until is the stated day of his death in office. Who, if anyone, held or acted in the office from 12 to 27 December 2021 is unresolved, and Poasi Mataele Tei's start on 28 December 2021 is unchanged.",
+   "sources": [
+    "to_la_member_maafu_2021",
+    "to_pmo_20211213_maafu_death"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "to_deputy_pm#12": {
    "role": "research:to_deputy_pm",
    "name": "Poasi Mataele Tei",
    "from": "2021-12-28",
@@ -1665,7 +1753,7 @@
     "accepted": 1
    }
   },
-  "to_deputy_pm#3": {
+  "to_deputy_pm#13": {
    "role": "research:to_deputy_pm",
    "name": "Samiu Vaipulu",
    "from": null,
@@ -1687,7 +1775,7 @@
     "accepted": 1
    }
   },
-  "to_deputy_pm#4": {
+  "to_deputy_pm#14": {
    "role": "research:to_deputy_pm",
    "name": "Taniela Likuohihifo Fusimalohi",
    "from": "2025-01-28",
@@ -1707,6 +1795,213 @@
    ],
    "source_classes": {
     "accepted": 1
+   }
+  },
+  "to_deputy_pm#2": {
+   "role": "research:to_deputy_pm",
+   "name": "Langi Kavaliku",
+   "from": null,
+   "until": null,
+   "attested_on": "2000-11-06",
+   "claim_ids": [
+    "to_dpm_kavaliku_listed_20001106"
+   ],
+   "note": "Styled Deputy Prime Minister in the PMO's index row dated 6 November 2000 for the release announcing his retirement (TO-DPM-02). The release prints 'Dr. S. Langi Kavaliku'.",
+   "uncertainty": "The only contemporaneous dated record of him in office found; the PMO's retrospective 'appointed the Deputy Prime Minister in 1991' is a separate claim and supplies no start. The retirement 'due ... commencing on the 11th November 2000' is an announcement, not a stated end, so no until is set; nothing is inferred from Tevita Poasi Tupou's appointment of 24 January 2001.",
+   "sources": [
+    "to_pmo_news_in_brief_2001"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "to_deputy_pm#3": {
+   "role": "research:to_deputy_pm",
+   "name": "Tevita Poasi Tupou",
+   "from": "2001-01-24",
+   "until": "2001-09-28",
+   "attested_on": null,
+   "claim_ids": [
+    "to_dpm_tupou_appointment_effective_20010124",
+    "to_dpm_tupou_resignation_accepted_20010928"
+   ],
+   "note": "Deputy Prime Minister, Attorney General and Minister of Justice from the royal consent in Privy Council 'with effect from 24th January, 2001' until his resignation at 4 p.m. on 28 September 2001, accepted that day by the Princess Regent (TO-DPM-03). The appointment list prints 'Hon. Tevita P. Tupou'.",
+   "uncertainty": "Both boundaries are days the sources state: the effective day of the consent and the day the resignation was made and accepted. The Tongan release's '9 months' and 'January 2001' are retrospective claims, not boundaries. Clive Edwards's acting deputy premiership from the same day is a claim only.",
+   "sources": [
+    "to_pmo_20010124_pm_address",
+    "to_pmo_20010928_tupou_resignation_to"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "to_deputy_pm#4": {
+   "role": "research:to_deputy_pm",
+   "name": "James Cecil Cocker",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-05-13",
+   "claim_ids": [
+    "to_dpm_cocker_abroad_20020513",
+    "to_dpm_cocker_wssd_statement_20020903",
+    "to_dpm_cocker_appointment_confirmed_20040824",
+    "to_dpm_cocker_styled_20060308"
+   ],
+   "note": "Styled Deputy Prime Minister, abroad on official duties, when Dr Paunga's acting appointment took effect on 13 May 2002; attested again on 3 September 2002, in the reshuffle confirmed with effect from 24 August 2004, and on 8 March 2006 (TO-DPM-04). The 2002 statement prints 'Hon. Cecil Cocker'.",
+   "uncertainty": "The day of his appointment as Deputy Prime Minister (after Tupou's resignation of 28 September 2001 and the acting service of 2001-2002) was not found, and the 2004 confirmation of a reshuffle is not a start. No end is stated; the retrospective 'In May 2006' appointment of his successor is not used as an end and none is inferred.",
+   "sources": [
+    "to_pmo_20020514_acting_dpm_paunga",
+    "to_pmo_20020903_wssd_statement",
+    "to_pmo_20040909_confirmation_of_appointments",
+    "to_pmo_20060310_ub40_concert"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "to_deputy_pm#5": {
+   "role": "research:to_deputy_pm",
+   "name": "Viliami Ta'u Tangi",
+   "from": null,
+   "until": null,
+   "attested_on": "2006-08-08",
+   "claim_ids": [
+    "to_dpm_tangi_styled_20060808",
+    "to_dpm_tangi_represents_government_20090114",
+    "to_dpm_tangi_throne_reply_20100624",
+    "to_dpm_tangi_styled_life_peer_20101230"
+   ],
+   "note": "Styled Deputy Prime Minister from 8 August 2006 to 30 December 2010, when he was made a life peer as Lord Tangi of Vaonukonuka (TO-DPM-05). Printed 'Dr. Viliami Tangi', 'Dr the Hon Viliami Ta'u Tangi' and 'Hon. Dr. Viliami Tau Tangi'.",
+   "uncertainty": "The appointment is known only as 'In May 2006' (retrospective, month only), so the holder is event-dated to the first dated styling. The PMO release of 9 June 2006 names the office but not the holder and is not cited. No end is stated; the change of government of December 2010 and the Cabinet that commenced on 4 January 2011 supply none. His acting premierships are claims on to_pm.",
+   "sources": [
+    "to_pmo_20060809_common_sense",
+    "to_pmo_20090114_hauofa_funeral",
+    "to_pmo_20100624_throne_reply",
+    "to_mic_20101230_lord_tangi"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "to_deputy_pm#6": {
+   "role": "research:to_deputy_pm",
+   "name": "Samiu Kuita Vaipulu",
+   "from": "2011-01-04",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "to_dpm_vaipulu_cabinet_commences_20110104",
+    "to_dpm_vaipulu_appointment_reported_20110103",
+    "to_dpm_vaipulu_styled_20120213",
+    "to_dpm_vaipulu_styled_20140905"
+   ],
+   "note": "Deputy Prime Minister, with Justice, Transport and Works, in the Cabinet that commenced on Tuesday 4 January 2011; attested to 5 September 2014 (TO-DPM-06). A separate observation from the existing 2024 holder 'Samiu Vaipulu'.",
+   "uncertainty": "The start is the stated day the Cabinet ministers commenced; the report of 3 January 2011 is not a start. No end is stated: CLAUDE-C01-08's styling of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited, and no end is inferred from the Cabinet effective 31 December 2014. His acting premierships are claims on to_pm.",
+   "sources": [
+    "to_mic_20110104_cabinet_named",
+    "to_mic_20110103_vaipulu_appointed",
+    "to_mic_20120213_foi_speech",
+    "to_mic_20140909_toloa"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "to_deputy_pm#7": {
+   "role": "research:to_deputy_pm",
+   "name": "Siaosi Sovaleni",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-12-31",
+   "claim_ids": [
+    "to_dpm_sovaleni_cabinet_list_20141231",
+    "to_dpm_sovaleni_profile_20150212",
+    "to_dpm_sovaleni_styled_20160904",
+    "to_dpm_sovaleni_styled_20170830"
+   ],
+   "note": "Listed as Deputy Prime Minister in the Pohiva Cabinet announced on 31 December 2014; attested to 30 August 2017 (TO-DPM-07). A separate observation from the to_pm holder \"Siaosi 'Ofakivahafolau Sovaleni\" of 2021-2024.",
+   "uncertainty": "No from: the release states only the Prime Minister-elect's recommendation and that the appointments 'will be effective as of 31st December, 2014' (to_dpm_sovaleni_appointment_recommended_20141231), and IPU's Cabinet date of 19 January 2015 conflicts. No until: the PMO states only that the Prime Minister recommended the revocation 'effective from 1st September, 2017' (to_dpm_sovaleni_revocation_recommended_20170901), and the royal endorsement it reports covers the new appointments; Lord Ma'afu's start is not used as an end.",
+   "sources": [
+    "to_pmo_20141231_new_cabinet",
+    "to_mic_20150212_sovaleni_profile",
+    "to_mic_20160907_renewable",
+    "to_mic_20170831_macbio"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "to_deputy_pm#8": {
+   "role": "research:to_deputy_pm",
+   "name": "Lord Ma'afu",
+   "from": "2017-09-01",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "to_dpm_maafu_royal_endorsement_effective_20170901",
+    "to_dpm_maafu_endorsement_conveyed_20170905"
+   ],
+   "note": "Appointed Deputy Prime Minister by the King's endorsement under the Royal Sign Manual 'with effect from 1st September, 2017', conveyed to the PMO on 5 September 2017 (TO-DPM-08).",
+   "uncertainty": "No later attestation of this deputy premiership and no end was found; the Cabinet effective 5 January 2018, which names him Minister of Lands only, supplies none. His acting premiership from 1 September 2017 is a claim on to_pm. A separate observation from his 2020-2021 deputy premiership.",
+   "sources": [
+    "to_pmo_20170906_ministerial_appointments"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "to_deputy_pm#9": {
+   "role": "research:to_deputy_pm",
+   "name": "Semisi Kioa Lafu Sika",
+   "from": "2018-01-05",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "to_dpm_sika_appointment_effective_20180105",
+    "to_dpm_sika_styled_20180615",
+    "to_dpm_sika_styled_20181108"
+   ],
+   "note": "Appointed Deputy Prime Minister and Minister for Infrastructure and Tourism with effect from 5 January 2018; attested to 8 November 2018 (TO-DPM-08).",
+   "uncertainty": "No end is stated: the Assembly's retrospective 'Sanuali 2018 - Sepitema 2019' gives months only, and no end is inferred from Fa'otusia's appointment of 9 October 2019. CLAUDE-C01-08's records of his acting premiership in September 2019 are claims on to_pm and are not cited.",
+   "sources": [
+    "to_mic_20180122_cabinet_to",
+    "to_mic_20180615_dpm_gita",
+    "to_la_news_20181108_auditor"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-36"
+   ],
+   "source_classes": {
+    "accepted": 3
    }
   },
   "to_deputy_speaker#1": {

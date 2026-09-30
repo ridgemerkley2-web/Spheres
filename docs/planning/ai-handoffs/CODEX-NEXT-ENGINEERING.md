@@ -178,7 +178,11 @@ it cannot call inaccessible evidence verified or award country coverage.
 - Russia `CLAUDE-C01-28` is now **ready_for_review** at
   latest follow-up `03141c43`; original claim
   `2c4d5bd725b84161fd742adec75febc6241b8c92` remains recorded. Its five party
-  chains and submitted test/source claims require independent review.
+  chains remain unaccepted: [the held review](../../campaign-certification/C01/reviews/CLAUDE-C01-28/README.md)
+  reproduced 56/68 originals, with 12 inaccessible. The [available-content addendum](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md)
+  at `031bd0e3` checks all 113 accessible claims and all twenty accessible holder
+  observations. Twenty-four claims and four holder observations remain held;
+  no new Russia research has been imported.
 - South Africa `CLAUDE-C01-30` at submitted
   `cb0f1153f0d26729445acbc05843c3f16bf78ee7` is now **complete as bounded intake**,
   with integrated review `68ba0622ec709b78617aadd1f9198d18f532bb32`.
@@ -186,9 +190,11 @@ it cannot call inaccessible evidence verified or award country coverage.
   covers 39 exact original responses, 64 claims and 22 holder observations after
   a wording repair; 148 test executions pass. Runtime mapping, complete terms and
   parent C01 remain open.
-- Japan `CLAUDE-C01-29` remains held at its
-  [existing source-review checkpoint](../../campaign-certification/C01/reviews/CLAUDE-C01-29/README.md):
-  150 passing test executions, 35/54 original responses reproduced and 19 unavailable.
+- Japan `CLAUDE-C01-29` is **complete as bounded research intake** at `dc65b510`.
+  The resumed review recovered all 19 previously unavailable originals: 54/54
+  now match, with all 111 claims and sixteen holder observations reviewed.
+  [Acceptance](../../campaign-certification/C01/integrations/CLAUDE-C01-29/README.md)
+  retains the original held checkpoint and its earlier failures unchanged.
 - South Africa `CLAUDE-C01-32` at submitted
   `df4707462903b893916b5ef2d56a875a82f4030f` is **complete as bounded intake** at
   review `7f4d8812de15ffeb5dac802188825a8e12f0ee1a`.
@@ -201,16 +207,18 @@ it cannot call inaccessible evidence verified or award country coverage.
 - India `CLAUDE-C01-33` is **complete as bounded research intake** after independent review `7cf35886`; the submitted `claude/c01-in-33` tip is
   `2c78e89f67e9e21090a7da775fd8897c71d7dbd6`, covering Janata Dal presidents.
   Preserve the accepted BJP C01-27 repair when combining country data.
-- Brazil `CLAUDE-C01-34` is **ready_for_review** on `claude/c01-br-34` at
-  `16ef41a66d992e7a09417ab332cb6fc8fb6e1c76`, covering PFL/DEM, PDT and PMDB/MDB
-  national presidents.
-- USSR `CLAUDE-C01-35` is **ready_for_review** on `claude/c01-su-35` at
-  `52e3e313b7c53601833c2b170d504b3bed9fe4ff`, covering Democratic Russia and Soyuz
-  group leaders in 1990–1991.
-- Tonga `CLAUDE-C01-36` is **ready_for_review** on `claude/c01-to-36` at
-  `6b82475ea8224a7fecf911f6442e8b6d7b506ca1`, covering deputy prime ministers.
-- France `CLAUDE-C01-37` is **ready_for_review** on `claude/c01-fr-37` at
-  `eb7006176756796f5fd0a7244d9a3316ab275e60`, covering prime ministers.
+- Brazil `CLAUDE-C01-34` is **complete as bounded research intake** at `ec8cb88b`.
+  75 exact original responses plus one separately qualified current registry response; 127 claims and 12 holder observations reviewed. The missing prior registry body, unknown change cause and source limits remain explicit. SOURCE-17 is preserved.
+  [Independent review and root decision](../../campaign-certification/C01/integrations/CLAUDE-C01-34/README.md).
+- USSR `CLAUDE-C01-35` is **complete as bounded research intake** at `ec8cb88b`.
+  16 exact original facsimile responses, 36 claims and eight dated holder observations reviewed. Private/nonprofit host attribution and paper-original authentication limits remain explicit. SOURCE-26 is preserved.
+  [Independent review and root decision](../../campaign-certification/C01/integrations/CLAUDE-C01-35/README.md).
+- Tonga `CLAUDE-C01-36` is **complete as bounded research intake** at `c29f1709`.
+  39 exact original responses, 53 claims and ten holder observations reviewed. Seven unsupported explanations for acting service were removed without changing holders or dates. C01-24, C04 preparation and all earlier sources remain intact.
+  [Independent review and root decision](../../campaign-certification/C01/integrations/CLAUDE-C01-36/README.md).
+- France `CLAUDE-C01-37` is **complete as bounded research intake** at `ed36670e`.
+  31 exact original responses, 48 claims and 16 named source observations reviewed. Twelve inferred effective starts and fourteen inferred effective ends were removed; instrument dates remain. This first ten-person batch runs through March 2014. Effective-term and later-PM research remain open. C01-23 and the importer are preserved.
+  [Independent review and root decision](../../campaign-certification/C01/integrations/CLAUDE-C01-37/README.md).
 
 The exact authored handoffs and submission revisions are retained in the task
 queue. Registration alone imports no research sources or runtime content and
