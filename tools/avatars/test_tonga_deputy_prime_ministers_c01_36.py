@@ -389,6 +389,8 @@ def dpm_invariants(packet):
     for cid in ACTING_PM:
         assert cid in roles['to_pm']['claim_ids'] and cid in entries['to_prime_minister']['claim_ids'], cid
         assert cid not in role['claim_ids'] and cid not in cabinet['claim_ids'], cid
+        if cid != 'to_acting_pm_maafu_20170901':
+            assert 'during an absence' not in claims[cid]['uncertainty'], 'unsupported acting-service cause'
     for rid, other in roles.items():
         for entry in other['holder_claims']:
             ids = [entry] if isinstance(entry, str) else entry['claim_ids']
@@ -658,6 +660,21 @@ class TongaDeputyPrimeMinisterTests(unittest.TestCase):
         attempted = self.section('Sources attempted')
         for marker in ('gazettes-by-year', 'license_agree', 'paclii', '2020/12'):
             self.assertIn(marker, attempted, marker)
+
+    def test_acting_service_does_not_invent_an_absence(self):
+        # Only the 2017 ministerial release explicitly places the PM abroad.
+        dpm_invariants(self.packet)
+        self.assertIn('during an absence', self.claims['to_acting_pm_maafu_20170901']['uncertainty'])
+        for cid in ACTING_PM:
+            if cid == 'to_acting_pm_maafu_20170901':
+                continue
+            with self.subTest(claim=cid):
+                self.assertIn('reason for acting service is not stated', self.claims[cid]['uncertainty'])
+                packet = copy.deepcopy(self.packet)
+                claim = next(c for s in packet['sources'] for c in s['claims'] if c['id'] == cid)
+                claim['uncertainty'] += ' Service was during an absence.'
+                with self.assertRaisesRegex(AssertionError, 'unsupported acting-service cause'):
+                    dpm_invariants(packet)
 
     def test_packet_formatting_is_preserved(self):
         data = (research.ROOT / research.RESEARCH / 'tonga.json').read_bytes()
