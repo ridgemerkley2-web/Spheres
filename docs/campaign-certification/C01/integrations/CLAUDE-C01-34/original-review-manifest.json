@@ -25,24 +25,14 @@
       "sha256": "db1e5d163cb42fb2b545e585747e499813c919a245b4befc58a79a0ed89575f8"
     },
     {
-      "path": "original-review-manifest.json",
-      "bytes": 5783,
-      "sha256": "c072fb5a0041f61745b53d88e4dc64bb5e800f42b5aa972ea008358728f2062a"
-    },
-    {
-      "path": "original-review-README.md",
-      "bytes": 6232,
-      "sha256": "2e7804b34d800fdb48973ec397a958fe121938944a6d41629c06aec4bae9ed55"
-    },
-    {
       "path": "pdf-review.json",
       "bytes": 3044,
       "sha256": "0b3d8d5840e3d6ac6c3aa42a4c2d8bbd00810da265958d99a0e24ec30661d987"
     },
     {
       "path": "README.md",
-      "bytes": 1252,
-      "sha256": "bcda1daef7a2e4ba9af252b38361542ea6a58b663dde7fd219e5bd2e3b56b044"
+      "bytes": 6232,
+      "sha256": "2e7804b34d800fdb48973ec397a958fe121938944a6d41629c06aec4bae9ed55"
     },
     {
       "path": "retrieval-tools.json",
@@ -184,7 +174,5 @@
       "bytes": 4081,
       "sha256": "015ab829df910b0257c478a47eaf182dcef5de47fa4ef89216b94a8ff3fc1d1f"
     }
-  ],
-  "integration_decision": "accepted_bounded_research_intake",
-  "original_review_manifest": "original-review-manifest.json"
+  ]
 }

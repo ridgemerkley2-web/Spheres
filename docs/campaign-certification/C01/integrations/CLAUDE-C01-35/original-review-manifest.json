@@ -179,16 +179,6 @@
       "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
     },
     {
-      "path": "original-review-manifest.json",
-      "bytes": 8334,
-      "sha256": "929e4a069bcab89c2dc5e5f746d593372cc7dfc41190ac092267dc35bc221b7e"
-    },
-    {
-      "path": "original-review-README.md",
-      "bytes": 5743,
-      "sha256": "2fecf05ed6c7b406c98efb21907da68d1717cd9e6e1e1d1171142d39e44b874b"
-    },
-    {
       "path": "postrepair-preservation.json",
       "bytes": 405,
       "sha256": "68209721fda782e776d610fc835f5475403d9d407101a0267e08eae4fb636f3c"
@@ -200,8 +190,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1226,
-      "sha256": "d2c8aa66409f083fa33aa48acb0ceab16dc5abb659b314c407b66320a23fd8d5"
+      "bytes": 5743,
+      "sha256": "2fecf05ed6c7b406c98efb21907da68d1717cd9e6e1e1d1171142d39e44b874b"
     },
     {
       "path": "recipe-notes.json",
@@ -253,7 +243,5 @@
       "bytes": 13360,
       "sha256": "9093005b607848bdfda08366408d4cbc2bfbab56775463c950cc590868b685dc"
     }
-  ],
-  "integration_decision": "accepted_bounded_research_intake",
-  "original_review_manifest": "original-review-manifest.json"
+  ]
 }
