@@ -26,7 +26,7 @@ scope; an accepted research packet does not install historical people or art.
 | 1 | `CODEX-S27-A1-01` — repair political A1 calibration | S27 preparation | Blocked; A1 still fails |
 | 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | Complete: 137 native + 137 browser |
 | 3 | `CODEX-S25-SUCCESSION-01` — controlled paired USSR → Russia continuity | S25 preparation | Complete: 20 full archives verified |
-| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | In progress: fresh `68ba0622` attempt; prior 23 timeouts and lost India runner retained |
+| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | 30 September snapshot: 4 revalidated passes, 4 running, 16 queued; full matrix pending |
 | 5 | `CODEX-C01-23-REVIEW` — French presidents | C01 review | Complete: bounded acceptance |
 | 6 | `CODEX-C01-24-REVIEW` — Tongan Speakers | C01 review | Complete: bounded acceptance |
 | 7 | `CODEX-C01-25-REVIEW` — Saudi council chairs | C01 review | Complete: bounded acceptance |
@@ -144,6 +144,13 @@ artifact. All 18,100 retained partial comparisons matched, and 46 complete
 checkpoint archives have integrity receipts. No cell reached the terminal
 comparison, and aggregation refused the missing 24th shard. These partial
 states do not pass a cell or permit reuse of selected old cells in a new batch.
+The [current run record](../../campaign-certification/S25/preparation/local-matrix-20260930/README.md)
+contains a 30 September snapshot: France/1990, France/7, France/42 and Japan/1990
+have completed and their retained evidence was independently revalidated; four
+cases are running and sixteen are queued. Collect the existing run and its
+already armed dependent verifier's final results. The whole-matrix result remains
+pending.
+
 The lossless diagnostic-digest repair and a two-cell pilot now pass on candidate
 `68ba0622ec709b78617aadd1f9198d18f532bb32`. A fresh frozen full-plan execution began
 2026-09-30 at 09:03:11 UTC in
