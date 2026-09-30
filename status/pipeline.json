@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T23:16:01Z",
+  "updated": "2026-09-30T23:26:43Z",
   "mode": "parallel workflow (user, 30 Sep 2026: \"Run multiple in parallel\"; ultracode on)",
   "packets": [
     {
@@ -36,10 +36,10 @@
       "n": "31",
       "title": "Komeito representatives, 1990–2026",
       "country": "Japan",
-      "state": "verify",
+      "state": "submitted",
       "branch": "claude/c01-jp-31",
-      "head": "f15de3bc",
-      "note": "2026-09-30: jp_komeito_representative, 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS (31/31 sources); 797k research tokens (started before lean mode)"
+      "head": "696937ba",
+      "note": "Sonnet checker: clean; rulings accepted (竹谷 start per C01-18/22 with hedge; newspaper issue date per C01-29; interim claims only); 2 wording suggestions applied by me (fe855edd)"
     },
     {
       "n": "32",
@@ -139,7 +139,6 @@
     "C01-38 to 41 running in parallel (workflow)."
   ],
   "log": [
-    "2026-09-28 C01-32 fixed (a05592f7/df470746: 14 holder obs / 6 people, 6 disputed) -> submitted, worktree removed. C01-29 still under Codex review, so 31 stays held. C01-35 (Democratic Russia + Soyuz, USSR) set up at c1475ada on 44098c5a. Active: 34 research, 35 research. Remaining queued: 31 (held), 36, 37.",
     "2026-09-28 C01-34 research done (claude/c01-br-34@4d51cc10: 76 sources, 127 claims, 13 holder obs; Brizola until 2004-06-21 from party death report; open rulings on Lupi 2004/2025, Jucá, PMDB->MDB). Active: 34 verify, 35 research.",
     "2026-09-28 C01-34 verified: 76/76 sources clean, 4 text defects. Rulings: Brizola until kept; Lupi 2004 interim -> claims only (C01-22 Genoino precedent); Lupi 2025 kept; PMDB->MDB on one role; Jucá acting. Active: 34 fix, 35 research.",
     "2026-09-28 C01-34 fixed (79b028cb/16ef41a6: 12 holder obs; Lupi 2004 interim claims only) -> submitted, worktree removed. C01-36 (Tonga Deputy PMs) set up unstacked at e8821f40 on 44098c5a (to-24 now detected as merged via queue). Active: 35 research, 36 research. Remaining: 31 (held for 29), 37.",
@@ -158,6 +157,7 @@
     "2026-09-30 Lean pipeline adopted (user): tools/packet_check.py (zero-token source re-hash + structure + suite), tools/slice.py, lean RESEARCH/VERIFY/FIX instructions with the rulings list, Sonnet checks, serial, no polling. Queued 38 France PMs 2014-26, 39 DA federal leaders, 40 CPI(M) general secretaries, 41 CPSU General Secretary 1990-91. A fresh session takes over after C01-31 (START_HERE.md).",
     "2026-09-30 Codex's new roadmap/workboard (b31bdfab, 301f63cb): Claude's lane = continue existing claims, then reconcile accepted Tonga research into dated identities and a reviewed 6-8 cartoon batch, repeating country batches toward C06; no new research batch before existing claims finish. Queued 38-41 put on hold pending the user.",
     "2026-09-30 C01-31 research done (f15de3bc: 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS). Lean Sonnet checker launched.",
-    "2026-09-30 User: \"Run multiple in parallel\" (ultracode on). Released 38-41, set up (claims f1420ba1, 03cd0bb9, c152e35e, 7778be5b on 02d2c5a2), launched workflow wf_9de7b1d4-86c: research -> packet_check -> two checker lenses per packet, results back to me for rulings and fixes. C01-31 checker still running."
+    "2026-09-30 User: \"Run multiple in parallel\" (ultracode on). Released 38-41, set up (claims f1420ba1, 03cd0bb9, c152e35e, 7778be5b on 02d2c5a2), launched workflow wf_9de7b1d4-86c: research -> packet_check -> two checker lenses per packet, results back to me for rulings and fixes. C01-31 checker still running.",
+    "2026-09-30 C01-31 checked (Sonnet: clean, 376k tokens); my wording fixes fe855edd/696937ba; packet_check PASS -> submitted. Two new precedents added to the rulings list."
   ]
 }
