@@ -1,0 +1,19 @@
+{
+  "decision": "HOLD. Do not import the research or its generated index on the strength of this receipt.",
+  "scoped_original_author_commits_if_later_accepted": [
+    "cc06f873cdea897b8d32d95a0a4d2a2e5bae9de5",
+    "831ed5e731ab101a3cb5208375a9b6c037804e75",
+    "2c6709e4fef8b74328c77a076bbd44573aa6ffea"
+  ],
+  "generated_index_commits_to_omit": [
+    "16153784875006149a68e69c5e83b925e51ca294",
+    "d4d6fb36f53593b39081d6b7ed0e11d3fef92267",
+    "03141c43c5663e35d21eebc631aaf5eec4e909aa"
+  ],
+  "SOURCE_05_preservation": "baseline-isolation.json proves all inherited Russia data preserved. A later integration must apply only these deltas, never overwrite the combined packet or restore stale generated indexes.",
+  "future_requirements": [
+    "Recover and independently read the 12 exact recorded original responses, retaining prior failures.",
+    "Finish all remaining claim-level content review, including retrospective chain/identity evidence and its uncertainty.",
+    "Regenerate and validate combined census/index/attribution artifacts only after bounded acceptance."
+  ]
+}

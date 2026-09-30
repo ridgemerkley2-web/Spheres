@@ -1,0 +1,234 @@
+{
+  "remaining": 12,
+  "sources": [
+    {
+      "source_id": "ru_yabloko_press_xv_congress_decisions_20080626",
+      "source_type": "primary_party_record_archived_web_page",
+      "url": "https://web.archive.org/web/20111112203944id_/http://www.yabloko.ru/Press/2008/080626.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-xv-congress-decisions-20080626-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 4214,
+        "sha256": "3b1d0d0e2a2a0bf658aef109c9ae3b36538cabd12b28aaae9e53b04bf7b33409"
+      },
+      "expected_bytes": 12728,
+      "expected_sha256": "2bb4b07376397e9e818a4806908422ae1a99fdff29d73588f92c426e607f099a",
+      "expected_sha1_base32": "2BYTSWAVLFCBJXPFSJ2GCFIMLKEWLV5M",
+      "claims": [
+        "ru_yabloko_xv_congress_dates_20080621_20080622",
+        "ru_yabloko_xv_congress_mitrokhin_elected_2008"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_yabloko_news_term_limit_20151219",
+      "source_type": "primary_party_record_archived_web_page",
+      "url": "https://web.archive.org/web/20151224043458id_/http://www.yabloko.ru:80/news/2015/12/19_1",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-term-limit-20151219-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 4831,
+        "sha256": "8bb187eb950dd51bb31c3fce8e445a82d8ea8a13205c4794c7397508c07cec7f"
+      },
+      "expected_bytes": 51785,
+      "expected_sha256": "aad04b2c6b5a040b7721e255c2d7f82f3f7758e0ccba6c391fd0dd71cdcdb983",
+      "expected_sha1_base32": "XQ43IGPY7SH27BHDL7X6B66I2E5I63YL",
+      "claims": [
+        "ru_yabloko_mitrokhin_holds_chairmanship_20151219",
+        "ru_yabloko_retro_yavlinsky_chairman_2001_2008"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_yabloko_news_slabunova_elected_20151220",
+      "source_type": "primary_party_record_archived_web_page",
+      "url": "https://web.archive.org/web/20151222103638id_/http://www.yabloko.ru/news/2015/12/20",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-slabunova-elected-20151220-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 5231,
+        "sha256": "01fcd45d26fda924dc21222e4286b33b0259510ebd165d0491ad25d5fbdc1748"
+      },
+      "expected_bytes": 53009,
+      "expected_sha256": "3938b05732b7371d74e90d08fad34fa2fc3fb620ac458375c91cd05c44520317",
+      "expected_sha1_base32": "ZLJKRTUBCFX3U47Y243D7IJG7ZIKVGAE",
+      "claims": [
+        "ru_yabloko_slabunova_elected_xviii_congress_20151220",
+        "ru_yabloko_xviii_congress_dates_20151219_20151220",
+        "ru_yabloko_mitrokhin_incumbent_nominates_slabunova_20151220"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_congress_statement_1995",
+      "source_type": "primary_organization_record_archive_facsimile_pdf",
+      "url": "https://web.archive.org/web/20170823162628id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3734",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-congress-statement-19950618-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 4801,
+        "sha256": "07706fc1c1b3d3d45d621539d1c9be492061c38d46a67250c9d43757bb8379da"
+      },
+      "expected_bytes": 22777,
+      "expected_sha256": "33ef8455c3bbdb1259255135b878201067ed3adc583ce2ea78eb91e0b40a15a3",
+      "expected_sha1_base32": "4VSP6ZN5LRXE36L3X7477DXBXH6LVMIK",
+      "claims": [
+        "ru_dvr_ii_congress_statement_signed_by_chairman_1995"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_ii_congress_decision_19950618",
+      "source_type": "primary_organization_record_archive_facsimile_pdf",
+      "url": "https://web.archive.org/web/20151006140140id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3737",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-ii-congress-decision-19950618-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 5598,
+        "sha256": "22d7ae12179170e690bf43f94409faa5a58fe4859914b465795939da6813c0e2"
+      },
+      "expected_bytes": 23968,
+      "expected_sha256": "06aef5e3c447767ebe670384358ca960aff33972236223b795b4137b0e4e0ce7",
+      "expected_sha1_base32": "35LLDPTMKMBV3A43CRHPNKEGIT2FUM6Y",
+      "claims": [
+        "ru_dvr_ii_congress_approves_chairman_work_19950618",
+        "ru_dvr_ii_congress_decision_signed_by_chairman_19950618"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_v_congress_decision_19960921",
+      "source_type": "primary_organization_record_archive_facsimile_pdf",
+      "url": "https://web.archive.org/web/20161108004556id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3796",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-v-congress-decision-19960921-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 4911,
+        "sha256": "598b84ef03b84770090ad405f296c75131b504b5683d49c96435704b4c93686c"
+      },
+      "expected_bytes": 101000,
+      "expected_sha256": "3ec3fc209f71a789aaa0310af9af70549af2b346ffad2e8276fb2abc5aa274bd",
+      "expected_sha1_base32": "QHOZKPG6MY4FQTT2BUDAR4CPGO7TUJHD",
+      "claims": [
+        "ru_dvr_v_congress_list_decision_signed_by_chairman_19960921"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_v_congress_decisions_19960922",
+      "source_type": "primary_organization_record_archive_facsimile_pdf",
+      "url": "https://web.archive.org/web/20250115065600id_/http://www.gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3801",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-v-congress-decisions-19960922-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 5806,
+        "sha256": "422a13b36b4281a0199c8032de9acbd739e425e28f21606936e0037ba22c6541"
+      },
+      "expected_bytes": 341045,
+      "expected_sha256": "79022c35e9990e3b552f4c7310e31a9a03a7e7af87c0aff4a70c1006c1d86a71",
+      "expected_sha1_base32": "TDSXZLNJJODDCLFCUPMZADK4LJ7T67BO",
+      "claims": [
+        "ru_dvr_v_congress_chairman_ballot_protocol_approved_19960922",
+        "ru_dvr_v_congress_decision_signed_by_chairman_19960922"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_politsovet_decision_19971216",
+      "source_type": "primary_party_record_archived_web_page",
+      "url": "https://web.archive.org/web/19980627072026id_/http://www.dvr.ru:80/politsovet_16-12-97.htm",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-politsovet-decision-19971216-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 3968,
+        "sha256": "b618ebb6827afc96bdc3d086e9bb4fb77fdb48d7ca6b4da9be018d673dfbdbcf"
+      },
+      "expected_bytes": 4566,
+      "expected_sha256": "97a5c08d21ad52fe55c5e547263903fef10440da4c09ddec2d39b5c28bdb6de5",
+      "expected_sha1_base32": "IXRR2YI4M4CDZJNK2MBCGVN3ZVAPABIN",
+      "claims": [
+        "ru_dvr_politsovet_decision_signed_by_chairman_19971216"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_history_page_1998",
+      "source_type": "party_republished_reference_text",
+      "url": "https://web.archive.org/web/19980627060716id_/http://www.dvr.ru:80/history.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-history-page-19980627-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7715,
+        "sha256": "7e70ff85f1b0a5096dd8fc174dcf3fa36d96289009c4d0e74128c1be3f7a83be"
+      },
+      "expected_bytes": 8261,
+      "expected_sha256": "343d9f2a5495055f915833ee3e28ca908f3c48ef4b8e8535f26314eed78c70ad",
+      "expected_sha1_base32": "H2QN7I2TKNPFYPMYEUGNLUE2LUFO4MBZ",
+      "claims": [
+        "ru_dvr_history_created_on_basis_of_movement",
+        "ru_dvr_history_founded_and_named_1994",
+        "ru_dvr_history_registered_19940809",
+        "ru_dvr_history_programme_adopted_19941119",
+        "ru_dvr_history_ii_congress_19950618",
+        "ru_dvr_history_iii_congress_19950826"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_politsovet_statement_20001216",
+      "source_type": "primary_organization_record_archive_facsimile_pdf",
+      "url": "https://web.archive.org/web/20160827164330id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3887",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-politsovet-statement-20001216-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 4660,
+        "sha256": "819354ae4c78313e5ce428ac245fb23d82b5247b6d3b05c5a4ba4845fffc930f"
+      },
+      "expected_bytes": 123226,
+      "expected_sha256": "bb874c6be907c178703b2149c882521f35915daee84d2d96fb76b1c104230d20",
+      "expected_sha1_base32": "LNKX2CZIBFNITBYF3HLWOZYJD5BISS4B",
+      "claims": [
+        "ru_dvr_politsovet_statement_signed_chairman_20001216"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_about_page_2001",
+      "source_type": "primary_party_record_archived_web_page",
+      "url": "https://web.archive.org/web/20010303063231id_/http://www.dvr.ru:80/party.htm",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-about-page-20010303-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 3689,
+        "sha256": "9e81c28ce39dafcd1dcbc1c63e0c0636facd70824094904eaaa3de26c0fbdbd8"
+      },
+      "expected_bytes": 11695,
+      "expected_sha256": "e631023bf841216b233277344f5e6bfe92fafaca9ac375fa111385d5404cb059",
+      "expected_sha1_base32": "IMPUHI44WNNLYJU6IXJWEBA2BG6FWHN7",
+      "claims": [
+        "ru_dvr_about_page_chairman_gaidar_2001"
+      ],
+      "reproduced": false
+    },
+    {
+      "source_id": "ru_dvr_newspaper_demvybor_21_2001",
+      "source_type": "primary_party_record_archived_web_page",
+      "url": "https://web.archive.org/web/20010607195936id_/http://www.dvr.ru:80/demvyb/index.htm",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/russia-dvr-newspaper-demvybor-21-20010607-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 4994,
+        "sha256": "65091efd5b340fe56ae77646608daf55345587b149f3a9c974bf15d2b374cf55"
+      },
+      "expected_bytes": 99602,
+      "expected_sha256": "1acc8f813aa35b243ce73fb89c131c325cee163ec369ef7e60cb40471e077fb6",
+      "expected_sha1_base32": "L2ALXKHFJU4M7CBCEKSM2IAI5GA4332R",
+      "claims": [
+        "ru_dvr_x_congress_self_dissolution_decision_2001",
+        "ru_dvr_x_congress_gaidar_speech_dissolution_2001"
+      ],
+      "reproduced": false
+    }
+  ],
+  "retry_policy": "Exactly one sequential missing-only pass after the first sequential pass. No retry beyond that limit and no substituted source URL or response identity."
+}

@@ -1,0 +1,146 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-28",
+  "status": "held_pending_source_access_and_content_review",
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "reviewed_commit": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
+  "decision": "Do not accept the research submission yet: 12 of 68 recorded original responses remain inaccessible after the bounded retry, and claim-level content review remains incomplete. Technical validation and inherited SOURCE-05 preservation passed; available holder material was checked. This receipt preserves progress and failures without promoting parent certification.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "baseline-isolation.json",
+      "bytes": 3837,
+      "sha256": "827016ab0021fe536568c228f8a09574d4ac044308ed69fac536123e06932f9e"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 51972,
+      "sha256": "5af1acb4d6005ffaaf802c8c5706f2f9b45a7e2691048140bb7df041a89ade5a"
+    },
+    {
+      "path": "header-pins.json",
+      "bytes": 16342,
+      "sha256": "3991c730d5392fc538e5c731889ee0a4879253c8f77666a47fa0e07d587abcb6"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 11060,
+      "sha256": "4eb8fe1a23040d909fef42f85dd4a6fb1303013e80e83efa9ee47908c938c376"
+    },
+    {
+      "path": "integration-plan.json",
+      "bytes": 1089,
+      "sha256": "2d16f88cebcd8fa00a012589d9a1e008747fd83abbe112db06a31de167e80dba"
+    },
+    {
+      "path": "logs/atlas.log",
+      "bytes": 1123,
+      "sha256": "6102f43f28073142d36e927b9eec8e3d2085b333af64054fa0c5e1d5e9b2f73d"
+    },
+    {
+      "path": "logs/campaign.log",
+      "bytes": 120,
+      "sha256": "ce9f52c62f57f7046a624f2764c35a2b5af15a38f288808f679d32fa8185f614"
+    },
+    {
+      "path": "logs/census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "logs/index.log",
+      "bytes": 251,
+      "sha256": "c9bba357a3b2934988f2a0ebaac4421ae0a322a82873b930835a33adeb6e3649"
+    },
+    {
+      "path": "logs/research.log",
+      "bytes": 183,
+      "sha256": "d08b66197dc79a69c1206801f6d2fdc6c435152cf349336025cf36f70d9e13dc"
+    },
+    {
+      "path": "logs/ru28-retrieval-retry.log",
+      "bytes": 2574,
+      "sha256": "53d8d17bbc800503e33088fdcf430afb150d16e3c07d19b728b01da9e5522715"
+    },
+    {
+      "path": "logs/ru28-retrieval.log",
+      "bytes": 6175,
+      "sha256": "b90ef7474de9e3ea6f3ca825dff9b76223d752897a166c30418f74ef66e7471c"
+    },
+    {
+      "path": "logs/russia.log",
+      "bytes": 143,
+      "sha256": "0a9ba0975d056f23044c2e709d4f4b47fcb274b804bd49f10c581d96b63742fd"
+    },
+    {
+      "path": "logs/ussr.log",
+      "bytes": 132,
+      "sha256": "1913885658325f8554764dd9f161ed1b37a5b53f6aa66cba1139000af2a11328"
+    },
+    {
+      "path": "logs/workboard.log",
+      "bytes": 146,
+      "sha256": "22793cadcc37bb42a3049a5cf878e48b54ccb41106f7ef7984a7a76978cee39e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5823,
+      "sha256": "e078fa97009ba6fd05ad563f8b3d915ac4c440aa32a504974fce55160bd7289a"
+    },
+    {
+      "path": "recipes/ru28-checks.py",
+      "bytes": 2857,
+      "sha256": "aedc17b58ad05363b8a3b1dfa7765bed10250dc3d6fff6ecd33e5c7b8e7c6072"
+    },
+    {
+      "path": "recipes/ru28-extract.py",
+      "bytes": 2097,
+      "sha256": "759b640d0ca950ab46b4ef1ed3518ca0a26c23c3a96fc647f6f8451973b6da8e"
+    },
+    {
+      "path": "recipes/ru28-retrieve.py",
+      "bytes": 2303,
+      "sha256": "8b894e72e9336795b177dcc326ac466ffcbc02e5538d92db3a6e238cecafc7f2"
+    },
+    {
+      "path": "rendered-pages.json",
+      "bytes": 501,
+      "sha256": "45a89fd4b91b5ae50bc36b902b986fbfb9583f5cbc09d3fcaa2e70004a4209a3"
+    },
+    {
+      "path": "retrieval-retry.json",
+      "bytes": 24653,
+      "sha256": "4bc36586c9ae243240140fe431e34f6f65eaaed300ab2df430b1b4fd486ede07"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 58136,
+      "sha256": "9607b63eb73e2d7d7d670f8acd25216698fe26bc21f0edacdfcbcd419af6c61a"
+    },
+    {
+      "path": "source-holds.json",
+      "bytes": 11276,
+      "sha256": "9c54ff1e342c18c937f4420fd3bfc2f626530637d33da1a3517de5be7d5156a2"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 80251,
+      "sha256": "1972fab850a742999c360d5bdf0113a19491a227b76ec93f1975ea1a5849707a"
+    },
+    {
+      "path": "validation-commands.json",
+      "bytes": 1840,
+      "sha256": "d7ea9df37a2c2e0c581460bed80626736c8e8c31c3866e4d20a4c41e84f9fb9d"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 3852,
+      "sha256": "6a507d452aaea453797d93557d6701c6f1ef33da1a82b48bfbcda17129d23bce"
+    }
+  ]
+}
