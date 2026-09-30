@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T21:34:24Z",
+  "updated": "2026-09-30T21:43:33Z",
   "mode": "one packet at a time (user, 30 Sep 2026: \"Do them one at a time?\")",
   "packets": [
     {
@@ -99,14 +99,40 @@
       "head": "eb700617",
       "codex": "Accepted by Codex as bounded intake (see ai-task-queue, 30 Sep 2026; ref ed36670e)",
       "note": "2 recording defects (structured gzip identity; missing-text overstatement); 31/31 sources byte-identical; all 16 boundaries confirmed. Rulings: cessation decree gives until on signing day; countersignature gives attested_on only"
+    },
+    {
+      "n": "38",
+      "title": "French prime ministers, 2014–2026",
+      "country": "France",
+      "state": "queued",
+      "branch": "claude/c01-fr-38"
+    },
+    {
+      "n": "39",
+      "title": "Democratic Alliance federal leaders, 2000–2026",
+      "country": "SouthAfrica",
+      "state": "queued",
+      "branch": "claude/c01-za-39"
+    },
+    {
+      "n": "40",
+      "title": "CPI(M) general secretaries, 1990–2026",
+      "country": "India",
+      "state": "queued",
+      "branch": "claude/c01-in-40"
+    },
+    {
+      "n": "41",
+      "title": "CPSU General Secretary and Deputy General Secretary, 1990–1991",
+      "country": "USSR",
+      "state": "queued",
+      "branch": "claude/c01-su-41"
     }
   ],
   "attention": [
     "C01-28 review held by Codex: 12 archived originals unreachable from its environment."
   ],
   "log": [
-    "2026-09-28 C01-33 research done (claude/c01-in-33@d6deebd7: 22 sources, 41 claims, 3 holders). Census --check fails on integration itself since Codex 262d5f61 (government.rs test-only observer hooks; census.json not regenerated) - verified on a clean detached checkout (passes at 4a3d0572). Active: 32 research, 33 verify.",
-    "2026-09-28 C01-33 verified: 6 text/disclosure defects, sources clean. Rulings: Bommai kept (JD leader letter to the JD President), Laloo kept with disclosure (India practice of C01-20/27), Sharad Yadav demoted (party not named; one names no office); flagged C01-29 vs India evidence standard for Codex. Active: 32 research, 33 fix.",
     "2026-09-28 C01-33 fixed (ea946b3a/2c78e89f; holders Bommai + Laloo; Sharad Yadav demoted to party_not_named_lead) -> submitted, worktree removed. C01-34 setup first stacked on claude/c01-source-17 and hit brazil.json conflicts: Codex integrates Claude branches with its own scoped commits, so ancestry never shows them merged. setup_packet.merged now also treats a branch as merged when integration queue marks its task complete. C01-34 set up unstacked at c2ff9396 on 032cd6a3. Active: 32 research, 34 research.",
     "2026-09-28 C01-32 research done (claude/c01-za-32@f62aa17a: 38 sources, 65 claims, 16 holder obs / 6 people, 7 disputed). Active: 32 verify, 34 research.",
     "2026-09-28 C01-32 verified: 38/38 sources clean; 9 defects. Rulings: 2018-01-19 \"PAC post\" = uncredited republished news -> non-primary, claims only, holder dropped (same treatment as C01-28 DVR reference text); Mphahlele 2009-01-14 Joomla edit stamp demoted; Moloto 2019-07-12 court record kept. Active: 32 fix, 34 research.",
@@ -124,6 +150,8 @@
     "2026-09-29 C01-37 verified: 31/31 sources clean, 16 boundaries confirmed; 2 recording defects. Rulings: cessation decree = until on signing day; countersignature = attested_on only. Fix agent launched. Active: 37 fix.",
     "2026-09-29 C01-37 fixed (1e74a0a1/eb700617) -> submitted, worktree removed. Batch 28-37 done except 31 (held until Codex merges C01-29). Loop now idles on a long heartbeat watching for the C01-29 merge and for-claude requests.",
     "2026-09-30: user asked \"Do them one at a time?\" -> pipeline is now serial (one packet in research/verify/fix at a time). Codex accepted C01-29, 30, 32-37 (2ac34862 and follow-ups); C01-28 held on 12 originals unreachable from Codex. C01-31 unblocked. setup_packet accepts an `accepted` predecessor.",
-    "2026-09-30 C01-31 (Komeito) set up unstacked at 52b23d59 on ff01ee61 (census passes on integration again); research agent launched. Active: 31 research (serial mode)."
+    "2026-09-30 C01-31 (Komeito) set up unstacked at 52b23d59 on ff01ee61 (census passes on integration again); research agent launched. Active: 31 research (serial mode).",
+    "2026-09-30 User flagged token cost. Hourly idle polling stopped (wake on agent notifications only); no new packets queued pending the users efficiency choices. C01-31 continues. Last batch cost ~10M agent tokens (research ~5.4M, verify ~3.0M, fix ~1.5M).",
+    "2026-09-30 Lean pipeline adopted (user): tools/packet_check.py (zero-token source re-hash + structure + suite), tools/slice.py, lean RESEARCH/VERIFY/FIX instructions with the rulings list, Sonnet checks, serial, no polling. Queued 38 France PMs 2014-26, 39 DA federal leaders, 40 CPI(M) general secretaries, 41 CPSU General Secretary 1990-91. A fresh session takes over after C01-31 (START_HERE.md)."
   ]
 }
