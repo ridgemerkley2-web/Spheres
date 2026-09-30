@@ -1,0 +1,100 @@
+{
+  "scope": "Claim registration and derived metadata only; no research or qualification acceptance",
+  "results": [
+    {
+      "name": "workboard",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "claim-query",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--task",
+        "CLAUDE-C01-31"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "gap-ledger",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "boundary-matrix",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "research-index",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "certified-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_certified_*.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "planning-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

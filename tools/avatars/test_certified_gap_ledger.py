@@ -508,10 +508,11 @@ class CheckedInLedger(unittest.TestCase):
                             for row in completed.values()))
         self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
         claims = {row['task']: row for row in self.data['in_flight']}
-        self.assertEqual(set(claims), {f'CLAUDE-C01-{n}' for n in (28,)})
+        expected_states = {'CLAUDE-C01-28': 'ready_for_review', 'CLAUDE-C01-31': 'claimed'}
+        self.assertEqual({tid: row['state'] for tid, row in claims.items()}, expected_states)
         chains = {row['id']: row for case in self.data['cases'] for row in case['party_chains']}
         for tid, claim in claims.items():
-            self.assertEqual(claim['state'], 'ready_for_review')
+            self.assertEqual(claim['state'], expected_states[tid])
             self.assertFalse(claims[tid]['accepted'])
             for target in claim['targets']:
                 if target.startswith('party:'):

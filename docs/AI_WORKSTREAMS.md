@@ -13,7 +13,7 @@ remain open. Canonical session status lives in
 |---|---|---|
 | Claude | Historical research and cartoon production | Continue existing claims; reconcile accepted Tonga research into dated identities, then a reviewed 6–8-cartoon batch. Repeat country batches toward C06. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September snapshot](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 running, 16 queued. Collect the existing run and dependent verifier's final results. Full-matrix pass remains pending. |
-| Codex | Political calibration (`CODEX-S27-A1-01`) | Blocked pending new causal evidence or a reviewed model contract. Keep the failed A1 gate and its original limits. |
+| Codex | Political calibration (`CODEX-S27-A1-01`) | [Route-exposure investigation](campaign-certification/S27/preparation/a1-route-exposure-20260930/README.md) complete; A1 still blocked. Next trace actual regime-opening decisions. Keep the original gate and limits. |
 | Claude / Codex review | Russia research (`CLAUDE-C01-28`) | Twelve unavailable originals still hold 24 claims and four holder observations. Preserve the accessible-content review; import no unaccepted Russia research. |
 | Human / Codex support | Independent playtests | Prepare S26's participant and task protocol; formal qualification follows S24. |
 
@@ -36,9 +36,9 @@ exceptions to the one game integration branch:
 
 | Branch | Purpose and disposition |
 |---|---|
-| `claude/c01-jp-31` | Active Komeito research claim at `52b23d59`; its packet is on that branch and is not yet in the integrated task queue. Continue the existing claim. |
+| `claude/c01-jp-31` | Active Komeito research claim at `52b23d59`, now registered as `claimed` in the task queue with its three organizational targets reserved. Continue the existing claim; no research delivery is accepted. |
 | `claude/c01-ru-28` | Held Russia submission; source-access and review requirements remain open. |
-| `claude/c01-gaps-01-fix` | Preserve the unmerged `1aa67047` gap-ledger follow-up until its exact disposition is reviewed. The earlier bounded gap-audit task is already accepted. |
+| `claude/c01-gaps-01-fix` | Follow-up `1aa67047` reviewed and not adopted: retain current full-queue provenance and regenerate its metadata. Its older projection and generated payload are not imported. Preserve the exact tip; the earlier bounded gap-audit task remains accepted. |
 | `dashboard` | Publishes the existing GitHub Pages status site and research-pipeline status. It is not game code. |
 
 The original 145-branch inventory, recovery tags and ancestor comparisons are in
@@ -48,6 +48,7 @@ their exact tips without being imported into the game again.
 
 ## Handoffs and evidence
 
+- [30 September claim registration, ledger refresh and review checks](campaign-certification/development/2026-09-30-claim-registration/README.md)
 - [Research next tasks](planning/ai-handoffs/CLAUDE-C01-NEXT.md)
 - [Character/art preparation](planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md)
 - [Engineering next tasks](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md)
