@@ -101,8 +101,11 @@ The [combined intake and CI follow-up](campaign-certification/development/2026-0
 retains the five newest acceptance decisions, 589 passing clean-environment
 avatar/research tests, 69 passing planning tests and the independent integration
 audit. CI now installs both explicit avatar test dependencies and allows the
-unchanged suites to finish after a slow Windows checkout. A new CI result is
-still required; A1 remains failed. The full matrix's one-off retained-evidence
+unchanged suites to finish after a slow Windows checkout. [CI on `1428248c`](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36701005359)
+now passes native, JavaScript, portable-package and town-browser jobs on both
+Windows and Linux. Both political-calibration jobs still fail A1, and the
+aggregate checks correctly fail; [final observation](campaign-certification/verification/2026-09-30-ci-confirmed.json).
+The full matrix's one-off retained-evidence
 verifier is armed, with no full-horizon result or qualification yet.
 
 | Packet | Exact submitted revision | Current disposition |
