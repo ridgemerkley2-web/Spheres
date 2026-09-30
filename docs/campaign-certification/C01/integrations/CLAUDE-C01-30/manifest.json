@@ -1,0 +1,223 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-30",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "reviewed_commit": "cb0f1153f0d26729445acbc05843c3f16bf78ee7",
+  "repair_commit": "225d6e31c4285b02f5a8b9ca86c674086d364377",
+  "decision": "Accept only the bounded 39-source / 64-claim / 22-holder-observation packet after correcting the explanatory no-departure-date rationale. Original source access and content are verified within the stated scope; exact terms, organizational continuity, art permissions and parent certification remain open.",
+  "original_retrieval_successes": 20,
+  "original_retrieval_failures": 19,
+  "successful_missing_only_retries": 19,
+  "final_exact_sources": 39,
+  "content_reviewed_claims": 64,
+  "final_test_executions": 148,
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "baseline-isolation.json",
+      "bytes": 6163,
+      "sha256": "7979903999dc953d3af73a503e40155031e642c10db596a062faa9eb31cc21f6"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 30871,
+      "sha256": "f435954c955114d78a76928a07f052cb5739f136c11cfd4bc830d99234d0c640"
+    },
+    {
+      "path": "logs/za30-atlas-final.log",
+      "bytes": 1139,
+      "sha256": "b589c9e48dd2c9faa1df9f11adbfe77bf72ae81c556c212362328bcb48d1c64d"
+    },
+    {
+      "path": "logs/za30-atlas-postrepair.log",
+      "bytes": 1141,
+      "sha256": "d31bfefec3bea4f5a1e3ebebacab1b6a6fed9aace00e72f07916757530b798d5"
+    },
+    {
+      "path": "logs/za30-atlas-retry.log",
+      "bytes": 1564,
+      "sha256": "668960371b2f1edb589a88b7f4aa066c6a39bdc0b023747af6c3ecbfc5600cbe"
+    },
+    {
+      "path": "logs/za30-atlas.log",
+      "bytes": 1567,
+      "sha256": "dfa58fbed6198c234cd06ca3959bdc9898036eaea56ba91032226dd517a02af8"
+    },
+    {
+      "path": "logs/za30-census-final.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "logs/za30-census-postrepair.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "logs/za30-census-retry.log",
+      "bytes": 1806,
+      "sha256": "2383e0ddabd13e22df03ec44c61429c0960c170c960ecaba378160adc482e629"
+    },
+    {
+      "path": "logs/za30-census.log",
+      "bytes": 1806,
+      "sha256": "2383e0ddabd13e22df03ec44c61429c0960c170c960ecaba378160adc482e629"
+    },
+    {
+      "path": "logs/za30-index-final.log",
+      "bytes": 251,
+      "sha256": "45fc0f951972dfa5a2110145f93d7b2581c0c96c19dda7cd2ccd879ba7c7fefc"
+    },
+    {
+      "path": "logs/za30-index-postrepair.log",
+      "bytes": 251,
+      "sha256": "45fc0f951972dfa5a2110145f93d7b2581c0c96c19dda7cd2ccd879ba7c7fefc"
+    },
+    {
+      "path": "logs/za30-index-regenerate-postrepair.log",
+      "bytes": 252,
+      "sha256": "f6b5815ac70fb1ddb15444dbe389b72c83572f94db8680e02a059bfe021ad075"
+    },
+    {
+      "path": "logs/za30-index-retry.log",
+      "bytes": 1820,
+      "sha256": "4a2fa343f6b86b9bdce30b859734d4d081d5268da1e704313f70b39cabcc1570"
+    },
+    {
+      "path": "logs/za30-index.log",
+      "bytes": 1820,
+      "sha256": "4a2fa343f6b86b9bdce30b859734d4d081d5268da1e704313f70b39cabcc1570"
+    },
+    {
+      "path": "logs/za30-tests-campaign-final.log",
+      "bytes": 120,
+      "sha256": "050af23f3e36909316b9ffe46a0e40c05a6841408a56f26597aae5c8c108da02"
+    },
+    {
+      "path": "logs/za30-tests-campaign-postrepair-full.log",
+      "bytes": 120,
+      "sha256": "751fd1c8780a33e74c701f95186cabe9466162705fa7341931eb3a63e16787bf"
+    },
+    {
+      "path": "logs/za30-tests-campaign-postrepair.log",
+      "bytes": 112,
+      "sha256": "e40ab565e07e1a6081dae4abdaa7734f1916c5451e423e1d3f9bedaf030163cf"
+    },
+    {
+      "path": "logs/za30-tests-campaign-retry.log",
+      "bytes": 4136,
+      "sha256": "eccdfe845f935b549a055d94b68ec9b93a55103b17ae4fe05314428b41964e90"
+    },
+    {
+      "path": "logs/za30-tests-campaign.log",
+      "bytes": 4136,
+      "sha256": "b244dfe15f0025ca4fd08f55a162da355ae2d049e02397e4f4dc602724521c50"
+    },
+    {
+      "path": "logs/za30-tests-country-final.log",
+      "bytes": 146,
+      "sha256": "154fd6892acb31996cfd5ac93a1f760746189ddae143073567e4d3a311fb584c"
+    },
+    {
+      "path": "logs/za30-tests-country-postrepair.log",
+      "bytes": 146,
+      "sha256": "fffd3925b59c70b398f78cd751ea7e25129f95f2ca819092e755b6e05faefb12"
+    },
+    {
+      "path": "logs/za30-tests-country-retry.log",
+      "bytes": 10551,
+      "sha256": "6b365ae04e4d75e778a9f58800e9c8188f2fda92eae07753728f5329bc07fc15"
+    },
+    {
+      "path": "logs/za30-tests-country.log",
+      "bytes": 10551,
+      "sha256": "7cf037aed4e7f1683afa6d22953e831c12aba0544fd02bbab91a8595f9cae44f"
+    },
+    {
+      "path": "logs/za30-tests-research-final.log",
+      "bytes": 183,
+      "sha256": "878aeeabacdfb48510299a56c195763985d9d699e6012de3d917eda74dc6117e"
+    },
+    {
+      "path": "logs/za30-tests-research-postrepair-full.log",
+      "bytes": 183,
+      "sha256": "e3a5e76d3b4edaf32ee3a1295970819210899d9278140e050dc310551754c0a6"
+    },
+    {
+      "path": "logs/za30-tests-research-postrepair.log",
+      "bytes": 109,
+      "sha256": "4362eff9f610063128729946cbe29be8cce126516a4d97ad3d3038fdee0d1671"
+    },
+    {
+      "path": "logs/za30-tests-research-retry.log",
+      "bytes": 16932,
+      "sha256": "1917c462f625155905d638fe94b000c89a0980b51352a1c0d3e5fbb4813f6f19"
+    },
+    {
+      "path": "logs/za30-tests-research.log",
+      "bytes": 16932,
+      "sha256": "47a32cd931f702fe0c8e46b1de63ed0ffbf7d458ad6035deaf38df5aaf49c7a1"
+    },
+    {
+      "path": "logs/za30-workboard-postrepair.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "logs/za30-workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7345,
+      "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9"
+    },
+    {
+      "path": "retrieval-retry.json",
+      "bytes": 16033,
+      "sha256": "6912ac93f750fdf2af4eb381c0a17e9e3f68ec64ec8a83672c4d758075295ed2"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 37782,
+      "sha256": "03d3421b768cecaae0c81f8dd669ccbf357ede63af043e4a2b658feb0dce92d3"
+    },
+    {
+      "path": "scripts/za30-content-check.py",
+      "bytes": 2156,
+      "sha256": "6d47af5f2d34cbc4c461973045ce51c0777ce927f16f17685b798f2964c84580"
+    },
+    {
+      "path": "scripts/za30-retrieve.py",
+      "bytes": 2309,
+      "sha256": "133b855ff3000e52b76128b80102a7b66eeb1a39af5298cbdce7933f99cc30f7"
+    },
+    {
+      "path": "scripts/za30-retry.py",
+      "bytes": 1418,
+      "sha256": "e1b259a86275c5924cad5d3e9bca7db5b4fb6d56392e09de5fc22b397a876a33"
+    },
+    {
+      "path": "scripts/za30-verify-review.py",
+      "bytes": 4816,
+      "sha256": "bc39772656c4a2c10d42cfb7118794c345c466de438834543fd9cf63e2e6dcab"
+    },
+    {
+      "path": "source-pins.json",
+      "bytes": 45565,
+      "sha256": "617316dd5215d6d8eb4b7f08c67dcfdd3978498fd19b58d9632e52505433c64c"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 2526,
+      "sha256": "1b084f7ba5f2ac19f0bdfbfacde959b61c1960d1c089c33a71380d558188b9a3"
+    }
+  ]
+}

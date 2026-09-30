@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 273, in main
+    outputs = build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 84, in build
+    board = load(root, "spheres-web/data/leadership_production_2035.json")
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\spheres-web\\data\\leadership_production_2035.json'

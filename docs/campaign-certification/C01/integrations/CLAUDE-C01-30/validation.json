@@ -1,0 +1,53 @@
+{
+  "format": "spheres-bounded-review-validation/v1",
+  "reviewed_commit": "cb0f1153f0d26729445acbc05843c3f16bf78ee7",
+  "repair_commit": "225d6e31c4285b02f5a8b9ca86c674086d364377",
+  "generated_index_commit": "27bd1d205960e979cacdc0666ead94eded63a88a",
+  "tests": [
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p 'test_south_africa*.py'",
+      "passed": 42,
+      "log": "logs/za30-tests-country-postrepair.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p 'test_*research*.py'",
+      "passed": 79,
+      "log": "logs/za30-tests-research-postrepair-full.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p 'test_campaign*.py'",
+      "passed": 16,
+      "log": "logs/za30-tests-campaign-postrepair-full.log"
+    },
+    {
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "passed": 11,
+      "log": "logs/za30-atlas-postrepair.log"
+    }
+  ],
+  "checks": [
+    {
+      "command": "python -B tools/avatars/campaign_research.py --check",
+      "exit_code": 0,
+      "log": "logs/za30-index-postrepair.log"
+    },
+    {
+      "command": "python -B tools/avatars/campaign_census.py --check",
+      "exit_code": 0,
+      "log": "logs/za30-census-postrepair.log"
+    },
+    {
+      "command": "python -B tools/planning/workboard.py --check",
+      "exit_code": 0,
+      "log": "logs/za30-workboard-postrepair.log"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "final_test_executions": 148,
+  "initial_attempts": "Original and retry test logs are retained. Initial sparse checkout lacked common C01 JSON and web/data inputs; first sparse-add invocation also incorrectly repeated --no-cone. No failing assertion was weakened. After adding the missing tracked inputs correctly, all original groups passed, then all four groups were rerun successfully after the prose repair.",
+  "additional_bounded_checks": "The first standalone review verifier used the wrong Python field key holders instead of holder_claims and stopped with KeyError before emitting receipts. That verification-script error was corrected; fresh output za30-final-verification-02 passed every body/snapshot/isolation check. The empty failed output directory remains external. Two narrower postrepair discovery patterns ran 6 and 9 tests successfully; they did not substitute for the full 79 and 16 groups, which were also rerun.",
+  "no_cargo_simulation_browser_or_holdout_execution": true
+}

@@ -1,0 +1,181 @@
+........E..E.........E....E.................E......E...............E....E......
+======================================================================
+ERROR: test_reconciliation_never_grants_game_identity_or_closes_certification (test_brazil_research_s10f.BrazilDiscoveryTests.test_reconciliation_never_grants_game_identity_or_closes_certification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_brazil_research_s10f.py", line 201, in test_reconciliation_never_grants_game_identity_or_closes_certification
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_every_discovery_gets_one_bounded_work_order_without_closing_gate (test_campaign_research.ResearchTests.test_every_discovery_gets_one_bounded_work_order_without_closing_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_campaign_research.py", line 100, in test_every_discovery_gets_one_bounded_work_order_without_closing_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_discovery_batches_remain_open_and_separate_from_campaign_certification (test_india_research_s10e.IndiaDiscoveryTests.test_discovery_batches_remain_open_and_separate_from_campaign_certification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_india_research_s10e.py", line 275, in test_discovery_batches_remain_open_and_separate_from_campaign_certification
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_discovery_work_remains_separate_from_campaign_certification (test_japan_research_s10d.JapanDiscoveryTests.test_discovery_work_remains_separate_from_campaign_certification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_japan_research_s10d.py", line 140, in test_discovery_work_remains_separate_from_campaign_certification
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_intake_build_produces_only_open_discovery_batches (test_russia_research_s10h.RussiaDiscoveryTests.test_intake_build_produces_only_open_discovery_batches)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_russia_research_s10h.py", line 195, in test_intake_build_produces_only_open_discovery_batches
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_discovery_batches_stay_open_and_campaign_certification_is_not_granted (test_south_africa_research_s10h.SouthAfricaDiscoveryTests.test_discovery_batches_stay_open_and_campaign_certification_is_not_granted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_south_africa_research_s10h.py", line 298, in test_discovery_batches_stay_open_and_campaign_certification_is_not_granted
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_research_cannot_add_game_mapping_or_complete_the_discovery_batch (test_tonga_research_s10g.TongaDiscoveryTests.test_research_cannot_add_game_mapping_or_complete_the_discovery_batch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_tonga_research_s10g.py", line 163, in test_research_cannot_add_game_mapping_or_complete_the_discovery_batch
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+======================================================================
+ERROR: test_discovery_work_stays_open_without_rewriting_runtime (test_ussr_research_s10h.UssrDiscoveryTests.test_discovery_work_stays_open_without_rewriting_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\test_ussr_research_s10h.py", line 184, in test_discovery_work_stays_open_without_rewriting_runtime
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_research.py", line 121, in build
+    countries = census.load(root, 'docs/campaign-certification/C01/countries.json')
+  File "D:\spheres-offload\codex-next-20260928\review-za30\tools\avatars\campaign_census.py", line 42, in load
+    return json.loads((root / name).read_text(encoding="utf-8-sig"))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\review-za30\\docs\\campaign-certification\\C01\\countries.json'
+
+----------------------------------------------------------------------
+Ran 79 tests in 1.230s
+
+FAILED (errors=8)

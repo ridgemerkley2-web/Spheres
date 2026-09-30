@@ -1,0 +1,531 @@
+{
+  "format": "spheres-bounded-claim-review/v1",
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "reviewed_commit": "cb0f1153f0d26729445acbc05843c3f16bf78ee7",
+  "sources_reviewed": 39,
+  "claims_reviewed": 64,
+  "holder_observations_reviewed": 22,
+  "unreviewed_material_claim_ids": [],
+  "unresolved_access_source_ids": [],
+  "limitations": [
+    "Party-published observations and attributed retrospective claims only, not an independently established complete office history.",
+    "Date, chronology and organizational identity uncertainties recorded in the packet remain unresolved.",
+    "No portrait permission, game identity reconciliation, runtime installation, parent C01/C06 closure or S23/WC1/CP1 qualification."
+  ],
+  "claims": [
+    {
+      "claim_id": "za_acdp_history_party_launched_december_1993",
+      "source_id": "za_acdp_party_history_page_2004",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_acdp_kzn_newsletter_word_from_president_meshoe_199805",
+      "source_id": "za_acdp_kzn_newsletter_199805",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_acdp_home_page_president_meshoe_19990501",
+      "source_id": "za_acdp_home_page_19990501",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_acdp_meshoe_speech_as_president_20011031",
+      "source_id": "za_acdp_meshoe_nepad_speech_20011031",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_acdp_manifesto_notice_president_meshoe_20140218",
+      "source_id": "za_acdp_manifesto_launch_notice_20140218",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_acdp_leader_meshoe_statement_20180214",
+      "source_id": "za_acdp_leader_statement_20180214",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_acdp_leadership_page_president_meshoe_20190401",
+      "source_id": "za_acdp_our_leadership_page_20190401",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 4,
+      "normalized_text_fragments_matched": 4
+    },
+    {
+      "claim_id": "za_acdp_profile_meshoe_founded_party_december_1993",
+      "source_id": "za_acdp_meshoe_profile_page_2021",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_acdp_president_meshoe_statement_20260304",
+      "source_id": "za_acdp_president_statement_lekota_20260304",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ff_viljoen_media_release_leader_19970826",
+      "source_id": "za_ff_viljoen_media_release_19970826",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_ff_viljoen_profile_founded_freedom_front",
+      "source_id": "za_ff_viljoen_profile_page_2003",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_viljoen_profile_retired_as_leader_2001",
+      "source_id": "za_ff_viljoen_profile_page_2003",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_cv_af_freedom_front_founded_199403",
+      "source_id": "za_ff_mulder_profile_page_af_2003",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_cv_af_elected_leader_200104",
+      "source_id": "za_ff_mulder_profile_page_af_2003",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_cv_en_freedom_front_founded_199403",
+      "source_id": "za_ff_mulder_profile_page_en_2003",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_cv_en_elected_leader_200103",
+      "source_id": "za_ff_mulder_profile_page_en_2003",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_speech_newly_elected_party_leader_20010621",
+      "source_id": "za_ff_mulder_budget_debate_speech_20010621",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_speech_elected_leader_in_march_2001",
+      "source_id": "za_ff_mulder_budget_debate_speech_20010621",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_release_mulder_vf_leader_20030928",
+      "source_id": "za_ff_vfplus_media_release_20030928",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_vf_kp_aeb_single_unit_announced_20030927",
+      "source_id": "za_ff_vfplus_media_release_20030928",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ff_name_vryheidsfront_plus_announced_20030927",
+      "source_id": "za_ff_vfplus_media_release_20030928",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_kp_aeb_leaders_pledge_loyalty_to_mulder_20030927",
+      "source_id": "za_ff_vfplus_media_release_20030928",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_unanimously_reelected_published_20131118",
+      "source_id": "za_ff_mulder_reelected_release_20131118",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_release_mulder_vf_plus_leader_20161112",
+      "source_id": "za_ff_mulder_not_available_release_20161112",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_not_standing_again_20161112",
+      "source_id": "za_ff_mulder_not_available_release_20161112",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_mulder_led_party_since_2001_unopposed",
+      "source_id": "za_ff_mulder_not_available_release_20161112",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_groenewald_designated_new_leader_20161112",
+      "source_id": "za_ff_new_leadership_release_20161112",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_release_leader_groenewald_20161227",
+      "source_id": "za_ff_groenewald_farm_visit_release_20161227",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_item_leader_groenewald_20200402",
+      "source_id": "za_ff_groenewald_covid_item_20200402",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_passing_of_former_leader_viljoen_reported_20200403",
+      "source_id": "za_ff_viljoen_death_release_20200403",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_viljoen_very_first_leader_of_the_party",
+      "source_id": "za_ff_viljoen_death_release_20200403",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_release_vf_plus_leader_groenewald_appointed_minister_20240722",
+      "source_id": "za_ff_minister_post_release_20240722",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_corne_mulder_designated_parliamentary_leader_20240722",
+      "source_id": "za_ff_minister_post_release_20240722",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_joint_release_national_party_leader_groenewald_20240822",
+      "source_id": "za_ff_da_ff_leaders_release_20240822",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_item_leader_corne_mulder_20250716",
+      "source_id": "za_ff_presidency_budget_debate_item_20250716",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_release_leader_corne_mulder_20260325",
+      "source_id": "za_ff_new_members_release_20260325",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ff_referendum_party_dissolves_into_ff_plus_20260325",
+      "source_id": "za_ff_new_members_release_20260325",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_profile_inkatha_became_party_19900714",
+      "source_id": "za_ifp_history_profile_page_1997",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_history_party_came_into_being_19900714",
+      "source_id": "za_ifp_historical_perspective_page_2000",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 0,
+      "manual_match_note": "The source uses a superscript ordinal; the text parser separates 14 and th. The original 14 July 1990 passage was manually checked. This is not a missing statement or an inferred date."
+    },
+    {
+      "claim_id": "za_ifp_history_buthelezi_elected_president_1990",
+      "source_id": "za_ifp_historical_perspective_page_2000",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_press_release_president_buthelezi_19951024",
+      "source_id": "za_ifp_press_release_19951024",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_2012_conference_session_dates",
+      "source_id": "za_ifp_elective_conference_resolutions_2012",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_2012_conference_acclaims_buthelezi_reelection_20121216",
+      "source_id": "za_ifp_elective_conference_resolutions_2012",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216",
+      "source_id": "za_ifp_elective_conference_resolutions_2012",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_ifp_statement_president_buthelezi_20190120",
+      "source_id": "za_ifp_extended_nc_statement_buthelezi_20190120",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_buthelezi_recalls_october_2017_announcement",
+      "source_id": "za_ifp_extended_nc_statement_buthelezi_20190120",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_extended_nc_conference_after_2019_elections_20190120",
+      "source_id": "za_ifp_extended_nc_statement_buthelezi_20190120",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_conference_address_president_buthelezi_20190824",
+      "source_id": "za_ifp_conference_address_buthelezi_20190824",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_ifp_buthelezi_time_as_president_finished_20190824",
+      "source_id": "za_ifp_conference_address_buthelezi_20190824",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_extended_nc_single_candidate_for_president_20190824",
+      "source_id": "za_ifp_conference_address_buthelezi_20190824",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_hlabisa_accepts_election_20190824",
+      "source_id": "za_ifp_conference_address_hlabisa_20190824",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_ifp_conference_declares_buthelezi_president_emeritus_20190824",
+      "source_id": "za_ifp_conference_address_hlabisa_20190824",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_conference_elected_hlabisa_president_published_20190825",
+      "source_id": "za_ifp_newly_elected_leadership_20190825",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_former_president_buthelezi_made_president_emeritus_20190825",
+      "source_id": "za_ifp_newly_elected_leadership_20190825",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_35th_national_general_conference_dates",
+      "source_id": "za_ifp_nec_statement_20190827",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_advisory_president_hlabisa_20190912",
+      "source_id": "za_ifp_rally_advisory_20190912",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_death_founder_president_emeritus_buthelezi_20230909",
+      "source_id": "za_ifp_statement_passing_buthelezi_20230909",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_statement_president_hlabisa_20230909",
+      "source_id": "za_ifp_statement_passing_buthelezi_20230909",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_timeline_inkatha_becomes_ifp_19900710",
+      "source_id": "za_ifp_buthelezi_timeline_page_2024",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 2,
+      "normalized_text_fragments_matched": 2
+    },
+    {
+      "claim_id": "za_ifp_timeline_buthelezi_elected_president_1990",
+      "source_id": "za_ifp_buthelezi_timeline_page_2024",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_timeline_buthelezi_retires_presidency_24_august",
+      "source_id": "za_ifp_buthelezi_timeline_page_2024",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 3,
+      "normalized_text_fragments_matched": 3
+    },
+    {
+      "claim_id": "za_ifp_extended_nc_thanks_president_hlabisa_20240810",
+      "source_id": "za_ifp_extended_nc_resolutions_20240810",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_extended_nc_conferences_due_20240810",
+      "source_id": "za_ifp_extended_nc_resolutions_20240810",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    },
+    {
+      "claim_id": "za_ifp_advisory_president_hlabisa_20260201",
+      "source_id": "za_ifp_rally_advisory_abaqulusi_20260201",
+      "decision": "supported_with_recorded_uncertainty",
+      "review_method": "Original independently retrieved HTML body read with source context and submitted locator, dates, office and uncertainty checked; not a hash-only conclusion.",
+      "quoted_fragments_checked": 1,
+      "normalized_text_fragments_matched": 1
+    }
+  ]
+}
