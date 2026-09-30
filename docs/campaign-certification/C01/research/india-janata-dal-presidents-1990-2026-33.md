@@ -94,8 +94,9 @@ Rulings on the questions the research left open:
   Parliamentary Party, not the party office.
 - **The 1990 change has no day.** V. P. Singh is attested in the office on 28 December 1989, before the period; the Meham
   recollection of 18 May 1990 says only 'the Prime Minister' and has no day; Bommai is first attested on 14 July 1990. His
-  own statement of 26 August 1997 that he gave a report 'As Janata Dal President' in 1989 conflicts with those records and
-  is kept as printed, with no structured date. The header of the Meham record prints '[13 MAY 1990]' where the Secretariat
+  own statement of 26 August 1997 that he gave a report 'As Janata Dal President' in 1989 is kept as printed, with no
+  structured date. The year-only recollection does not establish an overlapping term or resolve the chronology. The
+  header of the Meham record prints '[13 MAY 1990]' where the Secretariat
   dates the sitting 18 May 1990; neither is used as a date.
 - **Translations are the official report.** The Lok Sabha statements of 17 March, 22 April and 29 July 1997 were made in
   Hindi; the report prints the official English translation, which is quoted. The observation of 15 July 1996 is an
