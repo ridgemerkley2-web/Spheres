@@ -16,7 +16,7 @@ two organization observations, each with one co-leadership role:
 - `su_soyuz_deputies_group`, "Депутатская группа «Союз» — Soyuz deputies' group" (kind `deputies_group`, union level), with the
   role `su_soyuz_co_chair` (kind `parliamentary_leader`) and one holder observation.
 
-In all it adds 16 sources and 36 claims, each source with a checked-in derived extract (154,583 bytes for the 16 extracts), and
+In all it adds 16 sources and 36 claims, each source with a checked-in derived extract (154,786 bytes for the 16 extracts), and
 one packet coverage item. It changes no existing source, claim, extract, entry, role or holder, adds no institution, game
 mapping, portrait or avatar, and does not touch `russia.json`. No holder has a `from` or an `until`. Co-chairs are recorded as
 co-leadership: every holder observation is one person, and several co-chairs share the same days. The parent scope (C01, C06,
@@ -66,7 +66,7 @@ check found are imported (see [Independent checks](#independent-checks)).
 ### Co-leadership, starts and ends
 
 The movement's co-chairs sign together ("Сопредседатели КС „Дем. России“" over three names), are listed together
-("сопредседатели Координационного совета: Якунин Глеб Павлович, Пономарев Лев Александрович") and speak as "один из" or "как
+("сопредседатели Координационного совета: Якунин Глеб Павлович, Пономарев Лев Александрович") and speak as "являюсь сопредседателем" or "как
 сопредседатель"; the Soyuz co-chair speaks "как один из сопредседателей". So each observation is one person, never a list of
 names, and none is recorded as the sole leader; three observations share 12 September 1991 and two share 12 December 1991. The
 test pins that no holder name joins two people and that each observation rests on one claim.
@@ -150,8 +150,9 @@ Evidence:
 - The Second (extraordinary) Congress, vol. III (16th sitting, 7 December 1990): "Членов блока ”Демократическая Россия” просьба
   собраться в два часа на балконе. Будет рассматриваться вопрос о выборах в совет представителей движения ”Демократическая
   Россия”" (printed p. 134).
-- The Third (extraordinary) Congress, vol. I (1st sitting, 28 March 1991): an appeal read out says the march of that day was held
-  "по заявке координационного совета движения ”Демократическая Россия”, удовлетворенной Мосгорисполкомом" (printed p. 59).
+- The Third (extraordinary) Congress, vol. I (1st sitting, 28 March 1991): an appeal read out says the march and meeting
+  were scheduled for that day ("должны состояться") following the Coordinating Council's approved application
+  (printed p. 59). This establishes the reported plan, not that the events were actually held.
 - The Yeltsin Center facsimile of the movement's papers (Ф. 6. Оп. 1. Д. 104, leaf 5): a delegation list "Утвержден на Пленуме
   Совета Представителей I5.09.9I".
 
@@ -168,7 +169,7 @@ December "Заславский И. И." answers the "полемику с пре�
 Мурашевым и членом координационного совета «Демократической России» депутатом Заславским" (printed p. 361).
 
 Decision: **accepted in part**, as claims on the organization. Other deputies' descriptions of an organizing-committee
-chairmanship (the second citing a newspaper interview) are not the co-chair office and state no date of office; Заславский's own
+chairmanship (the first citing a newspaper interview) are not the co-chair office and state no date of office; Заславский's own
 words make him a member, not a leader. Never holders.
 
 ### SU-DR-03 — The co-chairs
@@ -308,7 +309,9 @@ RSFSR-RF.RU project (sten.snd.rsfsr-rf.ru) — part of the private ISTNET projec
 as 'нераспознанными или частично распознанными PDF-версиями 35 из 38 томов книжной версии стенотчётов' of the edition 'М.:
 Республика, 1992-1993'; its live certificate does not verify here, so only raw captures are used; the three archival facsimiles
 are copies from the Archive of the President of the Russian Federation (fund 91) published by the Yeltsin Presidential Center, a
-federal institution. Every source says its host in its publisher; whether these hosts meet the official-facsimile standard is the
+nonprofit foundation created under federal law, according to its [own description](https://yeltsin.ru/about/).
+This does not make the host a federal state institution or independently authenticate the paper originals.
+Every source says its host in its publisher; whether these hosts meet the official-facsimile standard is the
 integrator's decision, as for CLAUDE-C01-26 (C12). If the ruling goes against the SSSR.SU and RSFSR-RF.RU hosts, SU-DR-03 keeps
 its three archival records (five of the seven observations; Дмитриев and Афанасьев of 15 July 1991 are lost), SU-DR-01 keeps only
 the plenum of 15 September 1991, SU-DR-02 loses all three claims, SU-DR-04 is kept, and every SU-SOYUZ claim is lost, so
