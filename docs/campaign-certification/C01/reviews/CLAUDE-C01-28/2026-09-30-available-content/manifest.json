@@ -1,0 +1,78 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-28",
+  "status": "held_pending_original_source_access",
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "reviewed_commit": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
+  "precision_repair_commit": "35ea76f65723f2213c893bf8338d1b146508dd0a",
+  "prior_held_receipt_commit": "a074a0f9f290acefab6f782d7854722436a68967",
+  "decision": "All 113 claims with reproduced originals are now materially checked; 24 claims and four holder observations remain held for 12 inaccessible originals. This is not an acceptance for integration.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 91610,
+      "sha256": "499da3c6a84fd3b782ed4c0b18fdb303d0e6c4c77e21d060a07972018b2e7bf9"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 11060,
+      "sha256": "4eb8fe1a23040d909fef42f85dd4a6fb1303013e80e83efa9ee47908c938c376"
+    },
+    {
+      "path": "logs/index-after-refresh.log",
+      "bytes": 251,
+      "sha256": "c9bba357a3b2934988f2a0ebaac4421ae0a322a82873b930835a33adeb6e3649"
+    },
+    {
+      "path": "logs/index.log",
+      "bytes": 720,
+      "sha256": "5996723dc83101b4bdb3ad19d41a1c0fcc90f1f126331bee4dd4ec857df19b28"
+    },
+    {
+      "path": "logs/russia.log",
+      "bytes": 143,
+      "sha256": "df7f205f904dd1fd32f47998fce384e6353845b5a2fa19f5171555487a5e230a"
+    },
+    {
+      "path": "precision-repairs.json",
+      "bytes": 1404,
+      "sha256": "4444e535208364d46fbc42d9c8087c2538f86b25820a757b3713e0c6a5f033e9"
+    },
+    {
+      "path": "prior-receipt-identity.json",
+      "bytes": 4570,
+      "sha256": "e555dbbbb6e285d472232813ebdf4f441b221ebcec4e834e30a551ee0b04de9b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3812,
+      "sha256": "03b7ecd2569a759f60cd1ebfcd183213cf3d23c092d7764dffa64356d15da18b"
+    },
+    {
+      "path": "remaining-holds.json",
+      "bytes": 15040,
+      "sha256": "066bc56ded78c61b3f352b05ac2bc2b38024984cacdd4dedd5b8a7e56a9d2268"
+    },
+    {
+      "path": "retained-body-recheck.json",
+      "bytes": 16633,
+      "sha256": "304dc89dc33d776da2aed73ebbe27010b4fd6f7bc4db4f7a8ed4acee6f5b3f40"
+    },
+    {
+      "path": "source-content-review.json",
+      "bytes": 23666,
+      "sha256": "28a1b1ea8cfc6868cab59e57a0f9ee191b5aa221162cec8af94abc6128122691"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 871,
+      "sha256": "3916afdf1c6833a56fdeeaa7c86979914bfe87fed105734531ed9d3b30be901f"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "new_russia_tests": {
+    "command": "python -B -m unittest discover -s tools/avatars -p test_russia*.py",
+    "passed": 39,
+    "failed": 0,
+    "log": "logs/russia.log"
+  },
+  "index": {
+    "initial_check_exit": 1,
+    "reason": "Expected stale Russia input byte/hash pin after the two uncertainty edits.",
+    "initial_log": "logs/index.log",
+    "regeneration_command": "python -B tools/avatars/campaign_research.py",
+    "check_command": "python -B tools/avatars/campaign_research.py --check",
+    "final_exit": 0,
+    "final_log": "logs/index-after-refresh.log",
+    "only_changed_generated_fields": "Russia input bytes and SHA256"
+  },
+  "prior_checks": "173 test executions and index/census/workboard checks passed in a074a0f9; only the 39 Russia tests and index check were repeated for these two wording edits.",
+  "no_cargo_runtime_or_browser_run": true
+}

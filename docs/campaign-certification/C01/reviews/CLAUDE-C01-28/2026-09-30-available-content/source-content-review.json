@@ -1,0 +1,427 @@
+{
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "new_requests": 0,
+  "new_retries": 0,
+  "newly_completed_claims": 70,
+  "sources_read": [
+    {
+      "source_id": "ru_kprf_date_in_history_1993_20260213",
+      "url": "https://web.archive.org/web/20260727165041id_/https://kprf.ru/history/date/241272.html",
+      "original_body": {
+        "bytes": 26386,
+        "sha256": "750fce202fef2eea9b2e70514d0f8926f9e25d6528dce20be0c1138e81aca23b"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_retro_ii_extraordinary_congress_opened_19930213",
+        "ru_kprf_retro_congress_renamed_party_1993",
+        "ru_kprf_retro_congress_elected_cec_1993",
+        "ru_kprf_retro_zyuganov_elected_cec_chairman_1993"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the retrospective opening, renaming, 148-member CEC and subsequent plenum paragraphs. February 13 is the congress opening; the subsequent Zyuganov chair election has no independently stated day. No office start inferred."
+    },
+    {
+      "source_id": "ru_kprf_party_reference_20250912",
+      "url": "https://web.archive.org/web/20250912215927id_/https://kprf.ru/party/",
+      "original_body": {
+        "bytes": 33284,
+        "sha256": "6cb3631316ef553130ef831df03da8221b734b9653a13f66e6f46524fa070330"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_reference_zyuganov_since_february_1993",
+        "ru_kprf_reference_registered_since_ii_congress_1993"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the undated reference entry: leadership since February 1993 and registration linked to the February 13-14 congress. These are party retrospective assertions, not a registration instrument or exact assumption date."
+    },
+    {
+      "source_id": "ru_kprf_xviii_congress_notice_20210424",
+      "url": "https://web.archive.org/web/20210426151642id_/https://kprf.ru/party-live/cknews/202177.html",
+      "original_body": {
+        "bytes": 29955,
+        "sha256": "18d432dfbcd78ae8b4d69207244728ace5ecd3a4a0823ec42ff895ef99bb4efd"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_xviii_congress_held_20210424",
+        "ru_kprf_xviii_congress_chairman_presents_report_20210424"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the notice published April 26: its body explicitly dates the congress April 24 and identifies Zyuganov giving the report as chairman. Distinct from the following plenum election."
+    },
+    {
+      "source_id": "ru_kprf_i_plenum_notice_20210424",
+      "url": "https://web.archive.org/web/20210426152225id_/https://kprf.ru/party-live/cknews/202175.html",
+      "original_body": {
+        "bytes": 24747,
+        "sha256": "470281b2c1b526e675989adfd19123bcc7fcd59796354b9e552db7dcf558b0a2"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_i_plenum_zyuganov_elected_chairman_20210424"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the complete short notice: explicit April 24 plenum and chair election; published April 26. No from date inferred."
+    },
+    {
+      "source_id": "ru_kprf_xix_congress_notice_20250705",
+      "url": "https://web.archive.org/web/20250708140517id_/https://kprf.ru/party-live/cknews/235899.html",
+      "original_body": {
+        "bytes": 41887,
+        "sha256": "4414392c9bd4221361d6ccf326f65cb07456a3bb3424ee454e68862416e6edc9"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_xix_congress_held_20250705",
+        "ru_kprf_xix_congress_chairman_presents_party_cards_20250705"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the July 5 congress and membership-card presentation paragraphs, chair title and congress powers retained. These support the two event claims without dating a new office term."
+    },
+    {
+      "source_id": "ru_kprf_official_i_plenum_20250705",
+      "url": "https://web.archive.org/web/20251211130650id_/https://kprf.ru/official/2025/07/05/5-iiulia-2025-goda-sostoialsia-i-organizatsionnyi-plenum-tsk-kprf/",
+      "original_body": {
+        "bytes": 18158,
+        "sha256": "3aa99b06879c7c6b882488255fa71f930d2309018001ac7a5aa968fb1e65b508"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_official_zyuganov_unanimously_elected_20250705"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the official July 5 plenum paragraph reporting a unanimous vote for Zyuganov as CC chairman. Election remains separate from office attestation."
+    },
+    {
+      "source_id": "ru_kprf_official_xix_second_stage_20260620",
+      "url": "https://web.archive.org/web/20260727152918id_/https://kprf.ru/official/2026/06/20/xix-sezd-kprf--vtoroi-etap/",
+      "original_body": {
+        "bytes": 15328,
+        "sha256": "6feb71b7794466210aeb0fd941ce944a37bac65ac35b9c593b34e1cda795a303"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_kprf_xix_congress_second_stage_20260620"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the complete short June 20 second-stage notice and candidate-list decisions. No chairman election is printed; no leadership change inferred."
+    },
+    {
+      "source_id": "ru_ldpr_party_history_20100922",
+      "url": "https://web.archive.org/web/20101016073607id_/http://www.ldpr.ru:80/party/history",
+      "original_body": {
+        "bytes": 36369,
+        "sha256": "693b4c46f11322968cce1625b44206cd616fc268f0dbe512942449ec3e85cdaa"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_ldpr_history2010_ldpss_founding_congress_19900331",
+        "ru_ldpr_history2010_ldpss_chairman_elected_19900331",
+        "ru_ldpr_history2010_ussr_justice_registration_19910412",
+        "ru_ldpr_history2010_iii_congress_founds_ldpr_1992",
+        "ru_ldpr_history2010_iii_congress_chairman_1992",
+        "ru_ldpr_history2010_iv_congress_chairman_1993"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the 1990-1993 timeline entries: LDPSS congress/chair on March 31, 1990; USSR charter registration April 12, 1991; LDPR formation/chair resolution April 18-19, 1992; chair election April 24-25, 1993. Retrospective party narrative and distinct Soviet/Russian names remain explicit; spans are not exact holder dates."
+    },
+    {
+      "source_id": "ru_ldpr_party_history_2026",
+      "url": "https://web.archive.org/web/20260216025055id_/https://ldpr.ru/party/history/",
+      "original_body": {
+        "bytes": 245090,
+        "sha256": "1a65aaacafec3d5af3fdeae3459139f95ce74d36b8faef6ac4cc49b7fba97f78"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_ldpr_history2026_zhirinovsky_death_20220406",
+        "ru_ldpr_history2026_slutsky_elected_chairman_20220527"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the complete relevant 2022 year block: April 6 death and May 27 party-chair election. The same block anachronistically places Slutsky at the head on February 24; the existing warning is warranted. Corrected the stale claim that this is the only party record dating the election, because the contemporary May 27 vote notice also does so."
+    },
+    {
+      "source_id": "ru_ldpr_news_supreme_council_recommendation_20220526",
+      "url": "https://web.archive.org/web/20251012221126id_/https://ldpr.ru/event/213302/",
+      "original_body": {
+        "bytes": 98454,
+        "sha256": "3bae640922307d0b660ad9822677644db82c87a78d90a5a95062f5d3ec0d6c91"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_ldpr_news_xxxiv_congress_announced",
+        "ru_ldpr_news_supreme_council_recommends_slutsky_20220526"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the full short May 26 notice. May 27 congress is prospective; the Supreme Council recommendation is dated May 26 and is a nomination, not election or acting chair service."
+    },
+    {
+      "source_id": "ru_ldpr_news_xxxiv_congress_opens_20220527",
+      "url": "https://web.archive.org/web/20251012090749id_/https://ldpr.ru/event/213496/",
+      "original_body": {
+        "bytes": 95630,
+        "sha256": "02b87926427668f49bafdabf36f8910ba77e417465b47666bba5f424a11413be"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_ldpr_news_xxxiv_congress_opened_20220527"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the full May 27 opening notice: chairman election is the agenda; 87 delegates from 85 regions. Opening does not establish the result or office start."
+    },
+    {
+      "source_id": "ru_ldpr_news_vote_day_20220527",
+      "url": "https://web.archive.org/web/20251012070034id_/https://ldpr.ru/event/213560/",
+      "original_body": {
+        "bytes": 97383,
+        "sha256": "661c9a01775e9b455f19f6b806f65beb2f7e42fe7df7fb05cd6d62c47b482b52"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_ldpr_news_leader_vote_held_20220527"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read the full May 27 notice: explicitly dates the vote May 27, identifies Slutsky as the new party chairman and reports 86 votes. Prior Duma-faction leadership is separate. This directly disproves the timeline uncertainty sentence claiming exclusive date evidence."
+    },
+    {
+      "source_id": "ru_yabloko_site_reference_1998",
+      "url": "https://web.archive.org/web/19980630062735id_/http://www.yabloko.ru:80/Union/gdy.html",
+      "original_body": {
+        "bytes": 20333,
+        "sha256": "699e5af47134de1f71fc6d331cfb510c02cafbde86daf33fd1b3bdaf73e1b014"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_reference_bloc_lists_autumn_1993",
+        "ru_yabloko_reference_former_names_1993_1994",
+        "ru_yabloko_reference_founding_congress_19950105_19950106",
+        "ru_yabloko_reference_yavlinsky_chairman_elected_1995",
+        "ru_yabloko_reference_yavlinsky_chairman_since_january_1995",
+        "ru_yabloko_reference_registration_19950210"
+      ],
+      "decoder_used": "koi8-r",
+      "material_read_and_finding": "Read all six target passages from the original bytes decoded as KOI8-R: autumn 1993 bloc lists; former bloc/faction names; January 5-6, 1995 congress and Yavlinsky election; month-only leadership heading; February 10 registration number 2554. The earlier Windows-1251 derived review text was mojibake. No raw body changed. The narrative does not independently establish shared legal identity."
+    },
+    {
+      "source_id": "ru_yabloko_x_congress_section_2001",
+      "url": "https://web.archive.org/web/20020123194510id_/http://www.yabloko.ru:80/Union/XCongress/index.html",
+      "original_body": {
+        "bytes": 49435,
+        "sha256": "99e5545f0354467aa2539e6016a2f84341bd4f95d284f8261e1fa6e09c6327e9"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_x_congress_dates_20011222_20011223",
+        "ru_yabloko_x_congress_association_chairman_report_20011222"
+      ],
+      "decoder_used": "koi8-r",
+      "material_read_and_finding": "Read the title/date span and first-day speech list: December 22-23 congress, association-chair report December 22. Also rechecked the December 23 party-chair closing-speech listing previously used as holder attestation. A listing title is not the speech transcript."
+    },
+    {
+      "source_id": "ru_yabloko_press_party_transformation_20011222",
+      "url": "https://web.archive.org/web/20020322235901id_/http://www.yabloko.ru:80/Press/2001/0112226.html",
+      "original_body": {
+        "bytes": 4846,
+        "sha256": "2de4e34003bc29f1fda1a3b238c2a567a45dc01e65874405629ee053b2a389da"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_association_transformed_into_party_20011222"
+      ],
+      "decoder_used": "koi8-r",
+      "material_read_and_finding": "Read the entire short release: December 22, 2001 decision to transform the association into a political party, vote counts and Interfax attribution. Reported decision does not prove legal registration or continuous organization identity."
+    },
+    {
+      "source_id": "ru_yabloko_press_yavlinsky_elected_20011223",
+      "url": "https://web.archive.org/web/20020620151948id_/http://www.yabloko.ru:80/Press/2001/011223.html",
+      "original_body": {
+        "bytes": 4974,
+        "sha256": "861d4f81af6913a3bba9aea6d06fa90f0458992dad5012c065076dbb9ad9a65b"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_yavlinsky_elected_party_chairman_20011223"
+      ],
+      "decoder_used": "koi8-r",
+      "material_read_and_finding": "Read the full release: explicit December 23 vote and 472 votes, planned term through December 31, 2004, results at 05:45. The section index labels the link December 22; uncertainty already discloses this. Prospective expiry is not an observed office end."
+    },
+    {
+      "source_id": "ru_yabloko_press_congress_schedule_20040703",
+      "url": "https://web.archive.org/web/20050302004743id_/http://www.yabloko.ru:80/Press/Docs/2004/0703_info.html",
+      "original_body": {
+        "bytes": 7308,
+        "sha256": "8224f98af3927f3f674258a2995f46717141c279977c5c914c7f1e290010ea8e"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_chairman_vote_scheduled_2004"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the full July 3 agenda notice: nominations planned at 00:00 July 4 and vote at 01:00. Schedule is prospective and does not prove that voting occurred then."
+    },
+    {
+      "source_id": "ru_yabloko_press_yavlinsky_reelected_20040703",
+      "url": "https://web.archive.org/web/20050301190917id_/http://www.yabloko.ru:80/Press/2004/0407041.html",
+      "original_body": {
+        "bytes": 6103,
+        "sha256": "a925474e81356d4e9641d2be167bbc23bcb3991c6b50d2e2eba6f26aa6c0bc0a"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_yavlinsky_reelected_chairman_2004"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the full election release: displayed July 3 dateline, Yavlinsky 190 of 252 and Kuznetsov 59. No vote day in body; July 4 URL/schedule conflict is disclosed. No exact structured election date added."
+    },
+    {
+      "source_id": "ru_yabloko_leadership_report_2004_2008",
+      "url": "https://web.archive.org/web/20111112212637id_/http://www.yabloko.ru/Union/XYCongress/congr-report.html",
+      "original_body": {
+        "bytes": 238829,
+        "sha256": "33605fe72f6f5bc1c913b501262c5184ccac7e16fb3bf088b48ab9246731cd1e"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_report_2008_chairman_title_block",
+        "ru_yabloko_report_2008_xii_congress_2004",
+        "ru_yabloko_report_2008_xiii_congress_2006",
+        "ru_yabloko_report_2008_bureau_list_chairman"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read title block and complete item 3 governing-body heading/list opening: Yavlinsky chair, Moscow 2008; Bureau election July 3-4, 2004; by-elections June 10-11, 2006. No claim that the 2006 congress re-elected the chair. Unrelated sections of the long report are outside this claim review."
+    },
+    {
+      "source_id": "ru_yabloko_news_rybakov_elected_20191215",
+      "url": "https://web.archive.org/web/20210627225332id_/https://www.yabloko.ru/news/2019/12/15",
+      "original_body": {
+        "bytes": 48691,
+        "sha256": "a4f7e57392ae431d6291a80b0e4b580b3dd5f6af1d45e838c985b9deef2b22e3"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_rybakov_elected_xxi_congress_20191215"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read dated release lead and election results: Rybakov fourth chair and 69 delegates. Release date is December 15, but vote day is not separately printed. No from inferred."
+    },
+    {
+      "source_id": "ru_yabloko_news_xxi_congress_main_20191216",
+      "url": "https://web.archive.org/web/20200513204833id_/https://yabloko.ru/news/2019/12/16-0",
+      "original_body": {
+        "bytes": 58217,
+        "sha256": "1aedcf739af38cb9bc631d6aa19c72efced17e3b9620faf9b6a6f93b182116f3"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_xxi_congress_dates_20191214_20191215",
+        "ru_yabloko_slabunova_report_as_chairman_2015_2019",
+        "ru_yabloko_xxi_congress_vote_about_one_am"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read congress dates, Slabunova report, vote and Rybakov-plan paragraphs: December 14-15 congress remains open; Slabunova report covers 2015-2019; vote about 01:00 without separately stated day. Rechecked December 16 in-office wording; no arithmetic date inference."
+    },
+    {
+      "source_id": "ru_yabloko_news_rybakov_second_term_20231209",
+      "url": "https://web.archive.org/web/20231209211736id_/https://www.yabloko.ru/cat-news/2023/12/09-3",
+      "original_body": {
+        "bytes": 58023,
+        "sha256": "dae451e56be9d65878c7f86bae6f81737792ac8e9929382143d1cca995423a63"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_rybakov_incumbent_candidate_20231209",
+        "ru_yabloko_rybakov_reelected_second_term_20231209"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read December 9 release lead/results and candidate paragraph: incumbent Rybakov, then second-term election with 59 votes (55%). Publication date is retained as report date; no prospective four-year end inferred."
+    },
+    {
+      "source_id": "ru_yabloko_news_xxii_congress_main_20231211",
+      "url": "https://web.archive.org/web/20231212111820id_/https://www.yabloko.ru/cat-news/2023/12/11",
+      "original_body": {
+        "bytes": 51800,
+        "sha256": "a2e879fbb23f312047fd0e2706da0d174a098c9abde33f105e29bdf2056d8788"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_yabloko_rybakov_retained_chairmanship_20231211"
+      ],
+      "decoder_used": "utf-8",
+      "material_read_and_finding": "Read December 11 release: retained chairmanship and weekend election, 55%, governing bodies for four years. Caption/appeal dates do not independently date the vote; no holder start/end inferred."
+    },
+    {
+      "source_id": "ru_apr_history_note_2002",
+      "url": "https://web.archive.org/web/20021117045251id_/http://www.agroparty.ru:80/hist.htm",
+      "original_body": {
+        "bytes": 14361,
+        "sha256": "66679607a6f07c944035ce3023ac5732dbf78fc54e653f676515fc464323632e"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_apr_history_chairman_heading_2002",
+        "ru_apr_history_founding_congress_19930226",
+        "ru_apr_history_lapshin_elected_founding_congress_1993",
+        "ru_apr_history_charter_registered_19930409",
+        "ru_apr_history_iii_congress_lapshin_reelected_1994",
+        "ru_apr_history_vii_congress_lapshin_reelected_19990320",
+        "ru_apr_history_ix_congress_lapshin_elected_20010324",
+        "ru_apr_history_x_congress_transformation_20011208",
+        "ru_apr_history_x_congress_lapshin_elected_20011208",
+        "ru_apr_history_v_congress_lapshin_remained_1997",
+        "ru_apr_history_vi_congress_powers_confirmed_19980226",
+        "ru_apr_history_charter_changes_registered_19980529",
+        "ru_apr_history_party_registration_20020531"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the full history note and all thirteen target passages. It supports Lapshin heading, February 26 founding, April 9 charter registration, 1994/1997 two-day congresses, February 26, 1998 confirmation, May 29 charter changes, March 20, 1999 and March 24, 2001 elections, December 8, 2001 transformation/election and May 31, 2002 registration. All remain party retrospective statements, not external register proofs or term boundaries."
+    },
+    {
+      "source_id": "ru_apr_release_new_chairman_20040526",
+      "url": "https://web.archive.org/web/20040710080750id_/http://www.agroparty.ru:80/releases/3/178/",
+      "original_body": {
+        "bytes": 32743,
+        "sha256": "918fbe1edec05ad1fd73a97625f6c4b4d00c697ccf28cb5916da399202e8efec"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_apr_old_leadership_under_lapshin_20040426",
+        "ru_apr_xii_congress_plotnikov_elected_20040428"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the full May 26 release: old leadership under Lapshin filed April 26, while its next paragraph explicitly dates the Plotnikov election April 28. Corrected the uncertainty calling April 26 the day before the congress. Existing uncertainty preserves conflicting external-reprint leads; no holder date or end changes."
+    },
+    {
+      "source_id": "ru_apr_leadership_page_2004",
+      "url": "https://web.archive.org/web/20040520161601id_/http://www.agroparty.ru:80/party/people.php?id=10",
+      "original_body": {
+        "bytes": 24462,
+        "sha256": "ddbf238c820898f9ee875b6ae272f81e23d675024171abc9e366356d57cb9aaa"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_apr_leadership_page_plotnikov_chairman_2004"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the complete short leading-bodies page: Plotnikov full name as chairman. Undated page is capture-dated only; not a holder boundary."
+    },
+    {
+      "source_id": "ru_apr_release_xii_congress_second_stage_20041012",
+      "url": "https://web.archive.org/web/20041124131828id_/http://www.agroparty.ru:80/releases/3/215/",
+      "original_body": {
+        "bytes": 39474,
+        "sha256": "dd8913f30fa1f2b53dda0fb4256ea763af3e250fa458913840342a4124dc11e2"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_apr_xii_congress_second_stage_ended_20041009",
+        "ru_apr_plotnikov_comments_as_chairman_20041012"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read October 12 release opening and chair-comment paragraphs: second stage ended October 9; first stage only April; Plotnikov chair comments and amendments. No chair election is reported by this release."
+    },
+    {
+      "source_id": "ru_apr_chairman_page_2008",
+      "url": "https://web.archive.org/web/20080630045912id_/http://www.agroparty.ru:80/?id=31",
+      "original_body": {
+        "bytes": 9335,
+        "sha256": "c85cca5ccc1033bc961c1dba9fbe852d96ec6bfd8b47bf809f1834ac129d9971"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_apr_chairman_page_plotnikov_elected_20040428",
+        "ru_apr_chairman_page_heading_2008"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the complete chair page, including heading and explicit April 28, 2004 election sentence. Undated heading is capture-dated only; election assertion agrees with May 26 release but remains retrospective."
+    },
+    {
+      "source_id": "ru_apr_home_page_20081016",
+      "url": "https://web.archive.org/web/20081016023015id_/http://www.agroparty.ru:80/",
+      "original_body": {
+        "bytes": 17490,
+        "sha256": "e8242f5ce3840ea923cd319572d629afd8a281406ed77bcb79d3c70faed2a551"
+      },
+      "newly_reviewed_claim_ids": [
+        "ru_apr_memorandum_with_united_russia_20080912",
+        "ru_apr_xv_congress_accession_to_united_russia_20081010"
+      ],
+      "decoder_used": "windows-1251",
+      "material_read_and_finding": "Read the September 12 memorandum teaser and full October 10 congress teaser: appeal to unite, then decision to reorganize by accession and approve agreement. Also rechecked September 26 chair attestation. Neither decision nor teaser proves completed legal accession or Plotnikov office end."
+    }
+  ]
+}

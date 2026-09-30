@@ -1,0 +1,18 @@
+{
+  "only_two_uncertainty_strings_changed": true,
+  "holders_dates_sources_extracts_and_inherited_SOURCE05_unchanged": true,
+  "changes": [
+    {
+      "claim_id": "ru_ldpr_history2026_slutsky_elected_chairman_20220527",
+      "source_id": "ru_ldpr_party_history_2026",
+      "before": "Retrospective; the only party record found that dates the 2022 election. The stated day is recorded, but an election is never a holder date or start. The faction leadership in the same entry is outside this role.",
+      "after": "Retrospective; the stated election day is also printed in the contemporary party notice ru_ldpr_news_vote_day_20220527. The stated day is recorded, but an election is never a holder date or start. The faction leadership in the same entry is outside this role."
+    },
+    {
+      "claim_id": "ru_apr_old_leadership_under_lapshin_20040426",
+      "source_id": "ru_apr_release_new_chairman_20040526",
+      "before": "Written a month later about the day before the congress: a continuation claim for Lapshin, never a holder date and not an end (\"старое руководство\" is not a statement of the day his office ended).",
+      "after": "Written a month later about the leadership before the congress: a continuation claim for Lapshin, never a holder date and not an end (\"старое руководство\" is not a statement of the day his office ended)."
+    }
+  ]
+}
