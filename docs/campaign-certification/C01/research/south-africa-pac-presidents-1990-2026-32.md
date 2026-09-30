@@ -75,7 +75,7 @@ its own `attested_on` day; the test pins that every cited claim carries exactly 
 claim that never feeds a holder: retrospective lists, elections and election references, result publications, congress
 sessions, acting service, the Secretary General's office, suspensions, expulsions (including one stated to have taken
 effect on a day), rival claims, court orders, declarations and findings, the IEC's funding decision, undated or mixed
-continuation attestations, and the claims of a PAC post that republishes a news article without credit.
+continuation attestations, and claims from two PAC posts that republish news text without credit.
 
 No end is inferred from a successor's election or first attestation, from an expulsion, from a suspension or from a
 court order. Four printed days are recorded and explicitly not used as boundaries: Mbinda's expulsion that "took effect on
@@ -386,7 +386,7 @@ judgment of 23 August 2021 records the same order as uniting the PAC under "Pres
 President, Mr Nyntsho" (`za_pac_court_mavundla_order_president_moloto_20190308`) and its chronology reads "24-25 August 2019:
 PAC hold Conference in Limpopo-Mr Narious Moloto is elected President" and "29-30 August 2019: PAC hold Conference in
 Bloemfontein – Mr Mzwanele Nyontsho is elected President" (`za_pac_court_limpopo_congress_elects_moloto_2019`,
-`za_pac_court_bloemfontein_congress_elects_nyhontso_2019`). The PAC post dated September 1, 2019 says "Mzwanele Nyhontso
+`za_pac_court_bloemfontein_congress_elects_nyhontso_2019`). The PAC post dated September 1, 2019, republishing SABC news text, says "Mzwanele Nyhontso
 has been re-elected as the president of one of the Pan Africanist Congress of Azania (PAC) factions"
 (`za_pac_post_nyhontso_re_elected_president_published_20190901`). The PAC statement "Dated: 30 December 2019" says the
 order combined "the NEC elected in December 2018, in Kimberly" with "that elected in Mpumalanga in 2017"
@@ -491,8 +491,8 @@ pages kept as sources link their "Twitter" menu item to twitter.com/mypaconline.
 
 All 38 sources are raw Internet Archive captures (`id_` form) made between 1998 and 29 August 2026, before the cutoff: 32
 PAC pages (www.paca.org.za and paca.org.za, 1998-2004; www.pac.org.za, pac.org.za and new-web.pac.org.za, 2008-2019;
-www.pacofazania.org.za and pacofazania.org, the PAC's later sites, 2019-2022; one of them, the post of 19 January 2018,
-republishes a news article and is typed `party_republished_news_text`), two posts of the PAC's X account
+www.pacofazania.org.za and pacofazania.org, the PAC's later sites, 2019-2022; two of them, the posts of 19 January 2018
+and 1 September 2019, republish news text and are typed `party_republished_news_text`), two posts of the PAC's X account
 @MyPAConline (archived as fixed JSON payloads), and four judgments as published by SAFLII (three of the Gauteng Division of
 the High Court, Pretoria, and one of the Supreme Court of Appeal, one of them a PDF). No IEC or Parliament record is used:
 the IEC's registered-party pages record only a contact person, and no Parliament record of the party office was found.
@@ -674,3 +674,7 @@ classifies the packet's commit in `COMMIT_PACKETS` at integration; `tools/avatar
 needs `spheres-web/src`, which the sparse checkout lacks, and in a full checkout reports the packet as
 `unclassified_packet` with stale boundary-matrix files, so Codex must list the packet and regenerate
 `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration.
+
+## Independent Codex source review, 30 September 2026
+
+The PAC post dated 1 September 2019 reproduces the opening text of [SABC News, “PAC re-elects Mzwanele Nyhontso as president”](https://www.sabcnews.com/sabcnews/pac-re-elects-mzwanele-nyhontso-as-president/), by Makgala Masiteng, published that day at 11:24 SAST, without credit. Its type is corrected to `party_republished_news_text`, matching the earlier January 2018 ruling. The single result-publication claim remains claims only. The current SABC page was used only to establish the copied text's authorship; it adds no historical holder or office date. The archived PAC response hash, 38 sources, 65 claims and all 14 holder observations are unchanged. Two new negative mutations reject restoring primary status or feeding this claim into a holder. Original author validation results above remain historical; the independent review receipt records the corrected-run results. No parent gate is closed.

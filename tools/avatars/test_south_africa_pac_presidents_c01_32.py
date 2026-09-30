@@ -243,6 +243,9 @@ NEW_SOURCES = list(RESPONSES)
 # article of 18 January 2018. It is non-primary (like CLAUDE-C01-28's republished reference text): its four claims are
 # kept as claims only and never feed a holder.
 REPUBLISHED_SOURCE = 'za_pac_post_case_against_mbinda_20180119'
+SABC_REPUBLISHED_SOURCE = 'za_pac_post_nyhontso_re_elected_20190901'
+SABC_REPUBLISHED_CLAIM = 'za_pac_post_nyhontso_re_elected_president_published_20190901'
+REPUBLISHED_SOURCES = (REPUBLISHED_SOURCE, SABC_REPUBLISHED_SOURCE)
 REPUBLISHED_TYPE = 'party_republished_news_text'
 REPUBLISHED_CLAIMS = ('za_pac_post_president_moloto_20180119', 'za_pac_post_former_president_mbinda_expelled_2017',
                       'za_pac_post_then_president_mphethi_2014',
@@ -404,12 +407,13 @@ def pac_invariants(packet):
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
     claim_source = {c['id']: s['id'] for s in packet['sources'] for c in s['claims']}
     orgs = {o['id']: o for o in packet['organizations']}
-    # The PAC's copy of a news article is the packet's only non-primary PAC source, and its four claims are claims only.
+    # Both PAC copies of news articles are non-primary, with all five claims excluded from holders.
     assert [s['id'] for s in packet['sources']
-            if s['id'].startswith(PREFIX) and s['source_type'] == REPUBLISHED_TYPE] == [REPUBLISHED_SOURCE]
+            if s['id'].startswith(PREFIX) and s['source_type'] == REPUBLISHED_TYPE] == list(REPUBLISHED_SOURCES)
     assert [c['id'] for s in packet['sources'] if s['id'] == REPUBLISHED_SOURCE for c in s['claims']] == list(
         REPUBLISHED_CLAIMS)
-    assert set(REPUBLISHED_CLAIMS) <= set(NEVER_HOLDER) and EDIT_STAMP_CLAIM in NEVER_HOLDER
+    assert set(REPUBLISHED_CLAIMS) | {SABC_REPUBLISHED_CLAIM} <= set(NEVER_HOLDER)
+    assert EDIT_STAMP_CLAIM in NEVER_HOLDER
     assert len(packet['institutions']) == 1 and packet['institutions'][0]['id'] == 'za_presidency'
     presidency = packet['institutions'][0]
     # The presidency roles and the ANC, DA, ACDP, Freedom Front and IFP party roles are unchanged by this packet.
@@ -442,7 +446,8 @@ def pac_invariants(packet):
         assert 'acting' not in h['name'].lower() and 'interim' not in h['name'].lower(), h['name']
         assert h['from'] is None and h['until'] is None, h['name']
         # Republished news text and an undated statement's page edit stamp never date a holder.
-        assert REPUBLISHED_SOURCE not in h['sources'] and not set(h['claim_ids']) & set(REPUBLISHED_CLAIMS), h['name']
+        assert not set(REPUBLISHED_SOURCES) & set(h['sources']), h['name']
+        assert not (set(REPUBLISHED_CLAIMS) | {SABC_REPUBLISHED_CLAIM}) & set(h['claim_ids']), h['name']
         assert EDIT_STAMP_CLAIM not in h['claim_ids'], h['name']
         assert h['attested_on'] not in NEVER_HOLDER_DATE, h['name']
         assert not set(h['claim_ids']) & set(NEVER_HOLDER), h['name']
@@ -573,6 +578,17 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
                          'in_office_reference_republished_news')
         self.assertFalse([h for h in self.role['holder_claims']
                           if REPUBLISHED_SOURCE in h['sources'] or set(h['claim_ids']) & set(REPUBLISHED_CLAIMS)])
+        # Independent review: the 2019 result post copies SABC news, without becoming a primary result declaration.
+        sabc = self.sources[SABC_REPUBLISHED_SOURCE]
+        self.assertEqual(sabc['source_type'], REPUBLISHED_TYPE)
+        self.assertEqual([c['id'] for c in sabc['claims']], [SABC_REPUBLISHED_CLAIM])
+        for phrase in ('SABC News', 'Makgala Masiteng', 'published 1 September 2019', 'without credit',
+                       'https://www.sabcnews.com/sabcnews/pac-re-elects-mzwanele-nyhontso-as-president/'):
+            self.assertIn(phrase, sabc['scope_note'])
+        self.assertIn('republished news text', self.claims[SABC_REPUBLISHED_CLAIM]['uncertainty'].lower())
+        self.assertNotIn(self.rows[SABC_REPUBLISHED_CLAIM]['event_kind'], HOLDER_KINDS | BOUNDARY_KINDS)
+        self.assertFalse([h for h in self.role['holder_claims']
+                          if SABC_REPUBLISHED_SOURCE in h['sources'] or SABC_REPUBLISHED_CLAIM in h['claim_ids']])
         self.assertIn('reproducing a Political Analysis South Africa interview',
                       self.sources['za_pac_interview_moloto_secretary_general_20171004']['scope_note'])
         # Ruling: the 2009 statement is an undated continuation claim; its page's Joomla edit stamp is no date.
@@ -710,7 +726,7 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
             if sid in X_SOURCES:
                 self.assertIn('@MyPAConline', extract['provenance_note'])
                 self.assertEqual(source['source_type'], 'party_social_media_post_archived')
-            self.assertEqual(source['source_type'] == REPUBLISHED_TYPE, sid == REPUBLISHED_SOURCE, sid)
+            self.assertEqual(source['source_type'] == REPUBLISHED_TYPE, sid in REPUBLISHED_SOURCES, sid)
             self.assertIn('No open license, portrait permission or likeness approval', extract['rights_note'])
             self.assertEqual(extract['visual_review']['pdf_pages_one_based'], PDF_PAGES.get(sid, []))
             self.assertTrue(source['source_type'] and source['scope_note'] and source['publisher'])
@@ -757,7 +773,13 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
             self.assertIsNone(PER_REQUEST_URL.search(url), sid)
             for marker in LEAD_URL_MARKERS:
                 self.assertNotIn(marker, url, sid)
-        lowered = self.raw.lower()
+        # Original-news attribution is permitted only in the reviewed copy's scope note, never as a source URL.
+        without_attribution = copy.deepcopy(self.packet)
+        sabc = next(s for s in without_attribution['sources'] if s['id'] == SABC_REPUBLISHED_SOURCE)
+        self.assertEqual(sabc['scope_note'].lower().count('sabcnews'), 2)
+        sabc['scope_note'] = sabc['scope_note'].replace(
+            'https://www.sabcnews.com/sabcnews/pac-re-elects-mzwanele-nyhontso-as-president/', '')
+        lowered = json.dumps(without_attribution, ensure_ascii=False).lower()
         for marker in ('wikipedia', 'sahistory', 'britannica', 'news24', 'iol.co.za', 'dailymaverick', 'ewn.co.za',
                        'sabcnews', 'lawlibrary', 'justice.gov.za', 'disa.ukzn', 'omalley'):
             self.assertNotIn(marker, lowered, marker)
@@ -861,6 +883,11 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
                 holder(p, 8)['sources'].append(REPUBLISHED_SOURCE))),
             ('republished news text typed as a primary statement', lambda p: source(p, REPUBLISHED_SOURCE).update(
                 source_type='primary_party_statement_archived')),
+            ('republished SABC news typed as a primary statement', lambda p: source(p, SABC_REPUBLISHED_SOURCE).update(
+                source_type='primary_party_statement_archived')),
+            ('republished SABC claim cited by a holder (Nyhontso 2020)', lambda p: (
+                holder(p, 10)['claim_ids'].append(SABC_REPUBLISHED_CLAIM),
+                holder(p, 10)['sources'].append(SABC_REPUBLISHED_SOURCE))),
             ('page edit stamp used as an observation (Mphahlele 2009)', lambda p: role(p)['holder_claims'].insert(6, {
                 'name': 'Letlapa Mphahlele', 'attested_on': '2009-01-14', 'from': None, 'until': None,
                 'sources': ['za_pac_statement_zuma_case_2009'], 'claim_ids': [EDIT_STAMP_CLAIM],

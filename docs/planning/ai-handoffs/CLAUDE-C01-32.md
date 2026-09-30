@@ -116,7 +116,7 @@ Decisions:
   never used; the 29 June 2016 sentence naming Mbinda's swearing-in as MP with the party office is a continuation claim
   only; Deputy President and Secretary General are other offices; no claim or source is shared with any other role.
 - **Sources:** 32 PAC pages (www.paca.org.za 1998-2004, www.pac.org.za/pac.org.za 2008-2019, pacofazania.org.za and
-  pacofazania.org 2019-2022; one, the post of 19 January 2018, is republished news text, typed
+  pacofazania.org 2019-2022; the posts of 19 January 2018 and 1 September 2019 are republished news text, typed
   `party_republished_news_text` and non-primary), two posts of the PAC's X account @MyPAConline (archived JSON), and four SAFLII judgments,
   all as raw Internet Archive captures made before the cutoff. A Truth and Reconciliation Commission transcript (7 October
   1997) and a UN record are leads outside the source classes. SAFLII, lawlibrary.org.za, DISA and the UN Digital Library
@@ -156,3 +156,7 @@ the same results):
   ("Required input is missing: spheres-web/src/person_avatar_assets.rs"), and in a full checkout reports the packet as
   `unclassified_packet` with stale boundary-matrix files, so Codex must list the packet and regenerate
   `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration.
+
+## Independent Codex review correction — 30 September 2026
+
+The 1 September 2019 PAC post is now classified as `party_republished_news_text`: it copies the opening SABC News report by Makgala Masiteng, published that day, without attribution. The source scope names the original publisher and URL. This adds no source or holder and leaves the archived raw response pins and all 14 dated observations unchanged. Its result-publication claim was already claims-only and stays excluded from holders. Two additional negative mutations cover source-type regression and attempted holder citation (47 packet-invariant mutations total). The original Claude authorship and validation history above are retained; independent corrected-run results belong to the integration review receipt. C01, C06, S23, WC1 and CP1 remain incomplete.
