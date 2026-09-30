@@ -30,19 +30,9 @@
       "sha256": "0c037c23bd6e0478863e5d9bf8ca3d2353cb568eff393d15695c8091cd8a8878"
     },
     {
-      "path": "original-review-manifest.json",
-      "bytes": 16443,
-      "sha256": "454a80f7bfd9060e841aafe65cdfce8c505da82511379aed2d480c566f061919"
-    },
-    {
-      "path": "original-review-README.md",
+      "path": "README.md",
       "bytes": 4753,
       "sha256": "c13ed3700512475de7ddd294b98040880eb8e95258c11c21cbcc0f26352b5642"
-    },
-    {
-      "path": "README.md",
-      "bytes": 1291,
-      "sha256": "188a763e86efce72ca7bab5812689b54fabd89aa0fc9935a08c18d99511d1cbb"
     },
     {
       "path": "retrieval-01/headers/to_la_member_maafu_2021.txt",
@@ -464,7 +454,5 @@
       "bytes": 2295,
       "sha256": "7a19a1f1ce833c106c6e8b8922d55959e89c198f9d6411375b8700522d81096a"
     }
-  ],
-  "integration_decision": "accepted_bounded_research_intake",
-  "original_review_manifest": "original-review-manifest.json"
+  ]
 }

@@ -1,19 +1,17 @@
-# C01-36 Tonga Deputy Prime Minister review
+# Integration acceptance — CLAUDE-C01-36
 
-**Recommendation: accept this bounded research intake after the precision repair.** Reviewer: Codex `/root/review_gap_submission`, 30 September 2026. This review covers submitted revision `6b82475ea8224a7fecf911f6442e8b6d7b506ca1`: 39 original sources, 53 claims and ten holder observations for nine people. Final integration and queue status remain the parent reviewer's responsibility. C01, historical-period completeness, runtime mapping, portraits and campaign gates remain unearned.
+**Decision: accepted as bounded research intake.**
 
-All 39 original response bodies were independently retrieved and matched by exact byte count and SHA-256. The initial sequential pass reproduced 22 and encountered 17 connection refusals; one missing-only retry recovered all 17. Both attempt ledgers, including every failure, are retained. The original bodies remain outside Git at the paths in `source-verification.json`; no source text, PDF or source artwork is republished here. This review did not repeat the author's separated-in-time stability experiment or investigate the report's excluded leads.
+The coordinating Codex review accepts the exact corrected country data reviewed
+at `7caba83835ab5385a9e9b581f89920a5d717328b`. The integrated JSON was compared in full with that reviewed
+revision. The original independent review and manifest are preserved verbatim
+as [original-review-README.md](original-review-README.md) and
+[original-review-manifest.json](original-review-manifest.json).
 
-All 53 claims were checked against their material original locators. The Assembly report's PDF pages 206, 208 and 209 (printed pages 203, 205 and 206), the 2020 clarification PNG and the 2021 death-notice JPEG were visually read. The PNG needed a white background for its transparent text image. Poppler reported missing Symbol and ArialUnicode display fonts; the relevant table text was legible. The bounded Tongan readings are reviewer interpretations, not certified translations.
+All 39 recorded original responses match exactly. Acceptance covers 53 reviewed claims and ten holder observations, after removing seven unsupported explanations for acting service. Existing dated appointment, oath, resignation and death distinctions remain intact, together with Speakers C01-24, C04 preparation and all 168 earlier sources. Tongan-language interpretations are explicitly bounded rather than certified translations.
 
-Seven acting-PM uncertainty notes asserted an absence which their cited sources did not state. Commit `7caba83835ab5385a9e9b581f89920a5d717328b` replaces that inference with an explicitly unstated reason and updates the matching extracts and their LF byte pins. The eighth acting-PM record, Lord Ma'afu in September 2017, explicitly says the Prime Minister is in Apia and retains that explanation. The new regression failed on the submitted wording, then passed after repair, including seven mutations that reintroduce the unsupported inference. No holder, date, source-response pin or term boundary changed.
-
-Appointment recommendations, royal endorsements, effective days, later letters, oaths, acting service, resignations and death stay separate. Year/month-only retrospectives do not become exact dates; the 1990 incumbent and other unresolved boundaries remain open. Acting deputies and acting prime ministers remain claims rather than new substantive holders. The ten added observations retain the existing string observation and all three later holders. Exact structural comparison with packet base `44098c5a48f491f43fbcb74d121f290380af0b12` confirms all previous 168 sources, their claims, existing holders and ordering are preserved. Speakers C01-24, earlier C04 material and all unrelated institutions are unchanged. No simulation, web runtime or runtime-data files are in this delta.
-
-Validation after repair passed: 90 Tonga tests, 79 research tests, 16 campaign tests and 11 Node atlas tests. These suites overlap and are not a unique-test census. The research index was regenerated in separate commit `50a8808163e1b38bbe2c48dee2e59b2016ef9500`; its exact check passed. The submitted index and workboard checks also passed. An initial Tonga run failed only because the sparse checkout omitted the previously accepted C01-08 README; adding that exact tracked file produced 89 passing submitted tests. Both logs are retained.
-
-The submitted census check failed on an inherited government-source pin. The government and census Git blobs are identical at the packet base and submission. External regeneration confirms only the recorded government byte/hash pin and the derived stale-input status differ; this review does not alter those out-of-scope artifacts. Root must regenerate combined indices/census after import. There was no Cargo, native, browser, full-avatar or qualification run in this review.
-
-For scoped import, retain the authored packet `6ddcb9c1` and verifier follow-up `9cd621ba`, then the precision repair and this review receipt. The branch also preserves both original index commits; use fresh combined regeneration instead of importing an outdated aggregate index. `reviewed-file-pins.json` labels Git blob bytes separately from raw checkout hashes and proves any checkout discrepancy is CRLF only.
-
-Run `python -B -X utf8 verify.py` from this directory to verify every retained payload. Optional `--repo PATH` checks the exact reviewed Git blobs, and `--external-originals` rehashes the 39 external originals and all copied evidence at their provenance paths. These are offline evidence checks, not new historical research or campaign execution.
+The independent review's original tests, failures, retrieval attempts and
+limitations remain unchanged. Combined-branch checks are recorded separately.
+The wrapper manifest pins both original records and every current receipt file.
+No runtime character installation, portrait rights, complete chronology,
+country certification or parent C01/C06/S23 acceptance follows.
