@@ -15789,4 +15789,4 @@ mod tests {
 // Test-only opt-in fixed-development-seed observation; never part of release state/API.
 #[cfg(test)]
 #[path = "government_a1_observer.rs"]
-mod a1_observer;
+pub(crate) mod a1_observer;
