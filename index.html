@@ -320,7 +320,7 @@ function err(where, e) { errs.add(`${where}: ${e.message || e}`); renderErrors()
 function renderErrors() { $('#errors').innerHTML = [...errs].map(m => `<div class="err">${esc(m)}</div>`).join(''); }
 
 // ---------- pills ----------
-const STATE_PILL = { complete: 'ok', ready_for_review: 'info', claimed: 'acc', in_progress: 'acc', blocked: 'bad', planned: '', submitted: 'info', research: 'acc', verify: 'warn', fix: 'warn', queued: '', held: 'bad' };
+const STATE_PILL = { complete: 'ok', accepted: 'ok', ready_for_review: 'info', claimed: 'acc', in_progress: 'acc', blocked: 'bad', planned: '', submitted: 'info', research: 'acc', verify: 'warn', fix: 'warn', queued: '', held: 'bad' };
 const pill = (s, label) => `<span class="pill ${STATE_PILL[s] ?? ''}">${esc(label ?? String(s).replace(/_/g, ' '))}</span>`;
 const ownerPill = o => `<span class="pill ${o === 'Claude' ? 'warn' : o === 'Codex' ? 'acc' : ''}">${esc(o)}</span>`;
 
@@ -374,8 +374,8 @@ function renderOverview() {
   const pipe = state.data.pipe;
   if (pipe) {
     const pk = pipe.packets || [], c = s => pk.filter(x => x.state === s).length;
-    stats.push(`<div class="card stat"><div class="l">C01 research packets</div><div class="v">${c('submitted')} submitted</div>
-      <div class="s">${pill('research', c('research') + ' research')} ${pill('verify', c('verify') + c('fix') + ' checking')} ${pill('queued', c('queued') + ' queued')}</div></div>`);
+    stats.push(`<div class="card stat"><div class="l">C01 research packets${pipe.mode ? ' · ' + esc(pipe.mode.split(' (')[0]) : ''}</div><div class="v">${c('accepted')} accepted</div>
+      <div class="s">${pill('submitted', c('submitted') + ' in review')} ${pill('research', c('research') + ' research')} ${pill('verify', c('verify') + c('fix') + ' checking')} ${pill('queued', c('queued') + ' queued')}</div></div>`);
   } else stats.push(`<div class="card stat"><div class="l">C01 research packets</div><div class="v">—</div><div class="s">No pipeline status published yet.</div></div>`);
   const last = runs.find(r => r.head_branch === cfg.branch) || runs[0];
   if (last) {
@@ -412,7 +412,7 @@ function renderOverview() {
   wireRows($('#attention'));
 
   $('#pipeUpdated').textContent = pipe ? 'updated ' + ago(pipe.updated) : '';
-  $('#pipeSummary').innerHTML = pipe ? (pipe.packets || []).filter(x => x.state !== 'submitted' || x.recent).slice(0, 8).map(x =>
+  $('#pipeSummary').innerHTML = pipe ? (pipe.packets || []).filter(x => !['submitted', 'accepted'].includes(x.state) || x.recent).slice(0, 8).map(x =>
     `<div class="list-row"><div>${pill(x.state)}</div><div class="main"><b>C01-${esc(x.n)}</b> ${esc(x.title)}<div class="sub">${esc(x.country)}${x.head ? ' · <code>' + esc(x.head) + '</code>' : ''}${x.hold ? ' · held: ' + esc(x.hold) : ''}</div></div></div>`).join('') || '<div class="empty">Queue empty.</div>'
     : '<div class="empty">The pipeline publishes its status here on its next check.</div>';
 
