@@ -36,9 +36,9 @@ exceptions to the one game integration branch:
 
 | Branch | Purpose and disposition |
 |---|---|
-| `claude/c01-jp-31` | Active Komeito research claim at `52b23d59`; its packet is on that branch and is not yet in the integrated task queue. Continue the existing claim. |
+| `claude/c01-jp-31` | Active Komeito research claim at `52b23d59`, now registered as `claimed` in the task queue with its three organizational targets reserved. Continue the existing claim; no research delivery is accepted. |
 | `claude/c01-ru-28` | Held Russia submission; source-access and review requirements remain open. |
-| `claude/c01-gaps-01-fix` | Preserve the unmerged `1aa67047` gap-ledger follow-up until its exact disposition is reviewed. The earlier bounded gap-audit task is already accepted. |
+| `claude/c01-gaps-01-fix` | Follow-up `1aa67047` reviewed and not adopted: retain current full-queue provenance and regenerate its metadata. Its older projection and generated payload are not imported. Preserve the exact tip; the earlier bounded gap-audit task remains accepted. |
 | `dashboard` | Publishes the existing GitHub Pages status site and research-pipeline status. It is not game code. |
 
 The original 145-branch inventory, recovery tags and ancestor comparisons are in
@@ -48,6 +48,7 @@ their exact tips without being imported into the game again.
 
 ## Handoffs and evidence
 
+- [30 September claim registration, ledger refresh and review checks](campaign-certification/development/2026-09-30-claim-registration/README.md)
 - [Research next tasks](planning/ai-handoffs/CLAUDE-C01-NEXT.md)
 - [Character/art preparation](planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md)
 - [Engineering next tasks](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md)

@@ -527,6 +527,19 @@
       "submission_revision": "eb7006176756796f5fd0a7244d9a3316ab275e60",
       "next": "Accepted bounded research intake at ed36670e; first-source import 4d88fd03. 31 exact original responses, 48 claims and 16 named source observations reviewed. Twelve inferred effective starts and fourteen inferred effective ends were removed; instrument dates remain. This first ten-person batch runs through March 2014. Effective-term and later-PM research remain open. C01-23 and the importer are preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md. No complete country chronology, runtime mapping, portraits or parent C01/C06/S23 closure.",
       "review_revision": "ed36670ef6125257bfa9e178c93049a303e0eb37"
+    },
+    {
+      "id": "CLAUDE-C01-31",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 24,
+      "title": "Research Komeito representatives and distinct organizational phases",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
+      "depends_on": [],
+      "branch": "claude/c01-jp-31",
+      "claim_revision": "52b23d5961ea13355ab1e3edd497be0920b6bea6",
+      "next": "Continue the existing claim based on ff01ee61. Research at most ten Komeito representatives through 7 September 2026, preserving distinct 1994 and 1998 organizations and separating elections, assumptions, acting service and departures. Claim registration reserves Japan/jp_komeito and its two named phases against duplicate assignments. No research, source validation, runtime mapping or artwork is delivered or accepted yet; mark ready_for_review only when the bounded handoff and its checks are complete."
     }
   ]
 }

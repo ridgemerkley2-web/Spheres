@@ -1,0 +1,9 @@
+Integration branch: codex/campaign-certification
+Bounded task states do not change canonical session status.
+
+CLAUDE-C01-31 | Claude | claimed | priority 24 | Research Komeito representatives and distinct organizational phases
+  Parent: C01 (in_progress)
+  Waiting for: no incomplete task dependency; follow handoff scope
+  Existing branch: claude/c01-jp-31
+  Next: Continue the existing claim based on ff01ee61. Research at most ten Komeito representatives through 7 September 2026, preserving distinct 1994 and 1998 organizations and separating elections, assumptions, acting service and departures. Claim registration reserves Japan/jp_komeito and its two named phases against duplicate assignments. No research, source validation, runtime mapping or artwork is delivered or accepted yet; mark ready_for_review only when the bounded handoff and its checks are complete.
+  Handoff: docs/planning/ai-handoffs/CLAUDE-C01-31.md

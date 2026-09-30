@@ -37,3 +37,11 @@ Checks: research-index `--check`; `campaign_census.py --check`; the Japan, resea
 (census included); the atlas Node check; `workboard.py --check`; `git diff --check`.
 
 Mark the packet `ready_for_review` when done. C01 and all parent gates stay open.
+
+## Integration registration — 30 September 2026
+
+The original claim above is now registered in the integrated task queue as
+`claimed`; its earlier unregistered statement describes submission time.
+The exact authored claim remains available at `52b23d5961ea13355ab1e3edd497be0920b6bea6`.
+The gap ledger reserves all three named targets. This registers work in
+progress and imports no historical research, runtime mapping or artwork.

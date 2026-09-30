@@ -1,0 +1,7 @@
+{
+  "candidate": "aba3902b7e56804eca6f52edcc32bfe7fbea9b2c",
+  "command": "python -B tools/avatars/certified_gap_ledger.py --check",
+  "exit_code": 1,
+  "output": "Gap ledger differs from its pinned inputs: docs/campaign-certification/C01/gap-ledger/ledger.json\r\n",
+  "diagnosis": "Only the complete ai-task-queue.json input byte count and SHA differ after the matrix task's next-action text changed; no historical coverage changed."
+}

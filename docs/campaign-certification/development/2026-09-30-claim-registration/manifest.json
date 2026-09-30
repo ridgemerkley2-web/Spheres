@@ -1,0 +1,62 @@
+{
+  "scope": "Claim registration and metadata verification; no research or campaign qualification acceptance",
+  "integration_base": "aba3902b7e56804eca6f52edcc32bfe7fbea9b2c",
+  "claim_revision": "52b23d5961ea13355ab1e3edd497be0920b6bea6",
+  "payloads": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3503,
+      "sha256": "4432f2c095dcb528b3e75df0f08ae4127c931bfea59083dbfa26fa3e638ea956"
+    },
+    {
+      "path": "validation/baseline-ledger-check.json",
+      "bytes": 438,
+      "sha256": "ab77759288ceae2d9f43b14891cbf770dc66c7d83be111fd41b912b25e879478"
+    },
+    {
+      "path": "validation/boundary-matrix.log",
+      "bytes": 237,
+      "sha256": "053a85df44e9f27caaea931516fec171f32f73875b9f72990b52ce01e4280202"
+    },
+    {
+      "path": "validation/certified-tests.log",
+      "bytes": 169,
+      "sha256": "70a5355910437d803f67f98f3ec7bf7e8bfc0bf0e32c996c1422ef29888d9041"
+    },
+    {
+      "path": "validation/claim-query.log",
+      "bytes": 936,
+      "sha256": "90ec0d35041903e60ac2dcd2508053862fca5d0e60772db6826aee4a8fa21e40"
+    },
+    {
+      "path": "validation/gap-ledger.log",
+      "bytes": 258,
+      "sha256": "aabd8ec3423755cc7d63879958df5f8c3af068dd0e681ad23c807d662d14420b"
+    },
+    {
+      "path": "validation/planning-tests.log",
+      "bytes": 173,
+      "sha256": "2485ecd947f0ed5af36e2bb64f71d8b97e836a581c2edec6a7b61a13609527b2"
+    },
+    {
+      "path": "validation/research-index.log",
+      "bytes": 251,
+      "sha256": "3733ab7111cb7b92a28a3f019a2b1e9096c833d2554cdd653905db9322c546b0"
+    },
+    {
+      "path": "validation/results.json",
+      "bytes": 2349,
+      "sha256": "08b9ca8c98b3180f700d87b27bd5f075c77cf45f256870caf4a77f1dbbfb89dc"
+    },
+    {
+      "path": "validation/workboard.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    }
+  ]
+}

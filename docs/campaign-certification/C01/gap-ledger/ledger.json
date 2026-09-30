@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 31785,
-      "sha256": "626bfd49e97e424a8e7fd6ccceced4a8c7ff680ffcb033374f431d3b41e87073"
+      "bytes": 32578,
+      "sha256": "c9a4f063214b731319a423c79d13d3d3dfb0fba75cbebb1be12e1df4a4a71ddc"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -774,6 +774,19 @@
         "party:Russia/ru_yabloko",
         "party:Russia/ru_apr",
         "party:Russia/ru_vybor"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-31",
+      "state": "claimed",
+      "branch": "claude/c01-jp-31",
+      "case": "Japan",
+      "scope": "Komeito representatives and distinct 1994/1998 organizations; active claim only, no accepted research or runtime mapping",
+      "targets": [
+        "party:Japan/jp_komeito",
+        "party:Japan/jp_komeito/jp_komei_1994",
+        "party:Japan/jp_komeito/jp_komeito_1998"
       ],
       "accepted": false
     }
@@ -6389,7 +6402,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-31",
           "uncertain_research_candidates": []
         },
         {
@@ -6504,7 +6517,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-31",
           "uncertain_research_candidates": []
         },
         {
@@ -6747,7 +6760,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-31",
           "uncertain_research_candidates": []
         },
         {
@@ -28415,71 +28428,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_komeito",
-          "title": "Komeito",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1994-12-05"
-              },
-              "until": {
-                "kind": "day",
-                "value": "1998-11-07"
-              },
-              "reason": "Local Komei chronology is included, but the national New Komei and New Peace Party branches have unverified terms. Do not substitute New Frontier leaders for Komei leaders.",
-              "sources": [
-                "https://www.komei.or.jp/about/history/"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Early appointment precision and party membership outside the leadership windows need further review.",
-              "sources": [
-                "https://www.jnpc.or.jp/archive/conferences/20132/report"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://www.komei.or.jp/about/history/",
-            "https://www.jnpc.or.jp/archive/conferences/20132/report"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "components_with_terms": [
-            "Japan/jp_komeito/jp_komei_1994 (2 terms)",
-            "Japan/jp_komeito/jp_komeito_1964 (1 terms)",
-            "Japan/jp_komeito/jp_komeito_1998 (7 terms)"
-          ],
-          "note": "Leadership recorded on components or name phases does not fill this parent chain; check whether the parent office is separate from the components listed."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
           "entity": "Japan/jp_jcp",
           "title": "Japanese Communist Party",
           "role": "party leader (census term records)",
@@ -29103,45 +29051,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_komeito/jp_komeito_1998",
-          "title": "Komeito (reconstituted in 1998)",
-          "role": "party leader (census term records)",
-          "priority": 3,
-          "unresolved_days": 177,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "2026-03-15",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "toshiko_takeya",
-              "record": "jp_komeito_toshiko_takeya_20260314",
-              "missing": [
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://www.komei.or.jp/about/history/"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1998-11-07",
-            "until": "2026-09-07",
-            "pinned": true
-          },
-          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
           "entity": "Japan/jp_jsp/jp_jsp_1945",
           "title": "Japan Socialist Party",
           "role": "party leader (census term records)",
@@ -29216,68 +29125,6 @@
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
         },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
-          "entity": "Japan/jp_komeito/jp_komei_1994",
-          "title": "Komei (local assembly and House of Councillors organization)",
-          "role": "party leader (census term records)",
-          "priority": 3,
-          "unresolved_days": 55,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1994-12-05",
-              "through": "1994-12-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1998-01-02",
-              "through": "1998-01-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "dates",
-              "holder": "tomio_fujii",
-              "record": "jp_komeito_tomio_fujii_199412",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "toshiko_hamayotsu",
-              "record": "jp_komeito_toshiko_hamayotsu_199801",
-              "missing": [
-                "from (known only to month)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://www.komei.or.jp/about/history/"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1994-12-05",
-            "until": "1998-11-07",
-            "pinned": true
-          },
-          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Japan-B002",
-      "case": "Japan",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -29436,7 +29283,15 @@
           },
           "first_evidence": "2026-09-06",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-Japan-B002",
+      "case": "Japan",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -36391,6 +36246,6 @@
     "research_roles": 71,
     "research_roles_with_unresolved_days": 62,
     "next_batches": 13,
-    "next_items": 97
+    "next_items": 94
   }
 }
