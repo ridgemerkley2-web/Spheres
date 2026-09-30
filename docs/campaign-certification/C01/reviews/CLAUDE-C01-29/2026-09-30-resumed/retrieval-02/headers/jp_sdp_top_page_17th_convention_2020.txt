@@ -1,0 +1,35 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 30 Sep 2026 09:40:00 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+x-archive-orig-date: Tue, 24 Mar 2020 08:28:30 GMT
+x-archive-orig-server: Apache
+x-archive-orig-x-frame-options: SAMEORIGIN
+x-archive-orig-x-pingback: http://www5.sdp.or.jp/xmlrpc.php
+x-archive-orig-connection: close
+cache-control: max-age=1800
+accept-ranges: bytes
+memento-datetime: Tue, 24 Mar 2020 08:28:30 GMT
+link: <http://www5.sdp.or.jp:80/>; rel="original", <https://web.archive.org/web/timemap/link/http://www5.sdp.or.jp:80/>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/http://www5.sdp.or.jp:80/>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: alexa20200324-08/52_75_20200324081212_crawl302.arc.gz
+server-timing: captures_list;dur=0.419568, exclusion.robots;dur=0.027084, exclusion.robots.policy;dur=0.018244, esindex;dur=0.006275, cdx.remote;dur=6.158426, LoadShardBlock;dur=267.703280, PetaboxLoader3.datanode;dur=120.335893, PetaboxLoader3.resolve;dur=332.405816, load_resource;dur=330.030180
+x-app-server: wwwb-app253-dc8
+x-ts: 200
+x-tr: 666
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=0
+set-cookie: wb-p-SERVER=wwwb-app253; path=/
+cache-control: private
+X-location: All
+X-AS: 7922
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+Server-Timing: MISS
+X-NID: COMCAST-7922
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+X-sd: 0
+

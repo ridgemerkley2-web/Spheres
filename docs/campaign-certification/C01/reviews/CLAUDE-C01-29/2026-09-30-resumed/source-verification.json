@@ -1,0 +1,1049 @@
+{
+  "reviewer": "Codex /root/review_gap_submission",
+  "checked_utc": "2026-09-30T09:45:36.777880+00:00",
+  "submission": "3b30478562ec78c2392d0472061e773e23cb25dd",
+  "correction": "c98d1d5668870e184c320a3e03f477bd7f89a12c",
+  "prior_35_retained_bodies_rehashed": 35,
+  "newly_recovered": 19,
+  "first_resumed_attempt": {
+    "exact": 4,
+    "refused": 15
+  },
+  "single_missing_only_retry": {
+    "exact": 15,
+    "failed": 0
+  },
+  "exact_originals": 54,
+  "missing": 0,
+  "sources": [
+    {
+      "id": "jp_sdp_diet_hr_budget_19900406",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19900406.bin",
+      "bytes": 430425,
+      "sha256": "a1b1bb0b139fb2452a2d31f54309ede4eafbd9836e1c83768b170993abc644e4",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111805261X00519900406&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19900406-facts.json",
+        "bytes": 5657,
+        "sha256": "92089b3f2f42fbdeca8d4ce2bd1d04a7e970e5e269fb6326fa842d08ddc09b5f"
+      },
+      "claims": [
+        "jp_sdp_doi_named_chair_by_secretary_general_19900406"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19901019",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19901019.bin",
+      "bytes": 483933,
+      "sha256": "b0397d9eb15706f84a32fc333008595e1de1c5ee3f23b24719f4f1a8b99a3aa0",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111905261X00119901019&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19901019-facts.json",
+        "bytes": 6029,
+        "sha256": "33969148523296309381f3db01623bdfb0a68fef8e9c7c86db69d563de35e943"
+      },
+      "claims": [
+        "jp_sdp_doi_leaders_meeting_recalled_by_secretary_general"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_doi_profile_2000_retrospective",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_profile_2000_retrospective.bin",
+      "bytes": 2726,
+      "sha256": "9c071b37b1562347fac94334305de10578f78d38109297ce995907096f7e33dd",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20000516232711id_/http://www.sdp.or.jp:80/central/representatives/doi.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-profile-2000-retrospective-20000516-facts.json",
+        "bytes": 5717,
+        "sha256": "fa555ffcf4594100884dd39e1a28fdc6c8420418e1caf263421aa5693155baaa"
+      },
+      "claims": [
+        "jp_sdp_doi_profile_chair_from_september_1986",
+        "jp_sdp_doi_profile_resigned_july_1991"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www.sdp.or.jp/central/representatives/doi.html"
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19910820",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19910820.bin",
+      "bytes": 560358,
+      "sha256": "0028ee34fb897d7030d9684d4ba05d08f200bafff051a5eb22c335fdd7538220",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=112105261X00119910820&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19910820-facts.json",
+        "bytes": 5670,
+        "sha256": "c2ed37f553b409c216b0bf901e9e5eff139ee2c249c04b75813b66d336b6a5e5"
+      },
+      "claims": [
+        "jp_sdp_tanabe_named_chair_by_secretary_general_19910820"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_plenary_19930125",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_plenary_19930125.bin",
+      "bytes": 32223,
+      "sha256": "6e0b09252a9a3248b0fe0f428ec2e34b4b1db2ac12a15d19a7f1dface6dafbf4",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=112605254X00219930125&speechNumber=3&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-sdp-chair-19930125-facts.json",
+        "bytes": 5689,
+        "sha256": "7483aa35efa89cfe4dfa5e4007a19c63281a9d3d28d58a8d8d1373b7e0a9815d"
+      },
+      "claims": [
+        "jp_sdp_yamahana_self_stated_chair_19930125"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hc_plenary_19930924",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hc_plenary_19930924.bin",
+      "bytes": 7544,
+      "sha256": "6422e3c97512ca08f0cd24fe7d85051ba852b0c83924b9fbd0c6e996a5b5a041",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=112815254X00319930924&speechNumber=32&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-sdp-chair-19930924-facts.json",
+        "bytes": 5669,
+        "sha256": "1a90a38c64d70366e8490a1a067db4881e883c13ab18aa17a58c6d8f4c8afe15"
+      },
+      "claims": [
+        "jp_sdp_yamahana_still_chair_19930924"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19941013",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19941013.bin",
+      "bytes": 1934,
+      "sha256": "b0daae1c88e23cc28769d20f4ec33dd578416e054e8946900e950f8015a3f00a",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113105261X00319941013&speechNumber=76&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19941013-facts.json",
+        "bytes": 5534,
+        "sha256": "0f74ab3b6dd408fdc9ea5da54af36eaa77696adb71e2da0fe0e93538c08e1584"
+      },
+      "claims": [
+        "jp_sdp_murayama_self_stated_chair_19941013"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_19941018",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hc_budget_19941018.bin",
+      "bytes": 1292,
+      "sha256": "82f216a029143d09391f80b50557228b64aa293356c676c8c07896686e30771d",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113115261X00319941018&speechNumber=272&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-19941018-facts.json",
+        "bytes": 5562,
+        "sha256": "e9213952ee5d9833af5bcaba292e0074db2b1971e14d81656f1702d1863ad544"
+      },
+      "claims": [
+        "jp_sdp_murayama_self_stated_chair_19941018"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19950206",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19950206.bin",
+      "bytes": 3003,
+      "sha256": "64aebb051aeb907b6bd1e168bde9f88fe305346fbccc055a8b928b819e9c69f8",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113205261X00919950206&speechNumber=213&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19950206-facts.json",
+        "bytes": 5551,
+        "sha256": "d329b4cc0cf6e343a19e48dd888603119fdab92b4250a8a15a632f9c241aa8f0"
+      },
+      "claims": [
+        "jp_sdp_murayama_self_stated_chair_19950206"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_19950519",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hc_budget_19950519.bin",
+      "bytes": 1026,
+      "sha256": "440f7597fe3e708ce09beac22b9c5e32bdd33a31cd16b1c01d642442eaecbd2c",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113215261X02019950519&speechNumber=104&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-19950519-facts.json",
+        "bytes": 5529,
+        "sha256": "cf67a94d3b3f866d7ac04a904880dd4062ec0b49c950c149eedc7a8536be42ff"
+      },
+      "claims": [
+        "jp_sdp_murayama_self_stated_chair_19950519"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19951011_s99",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19951011_s99.bin",
+      "bytes": 1571,
+      "sha256": "44e2e9983237eb30e363404929b7f5d9df3e8dc370b8df2df9d5efe0d6a7183f",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113405261X00219951011&speechNumber=99&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19951011-s99-facts.json",
+        "bytes": 5599,
+        "sha256": "aa9dd567800b0d531e824bb28a560878b0e9eb2903a1ac3f752bf7d25efd8994"
+      },
+      "claims": [
+        "jp_sdp_murayama_self_stated_chair_s99_19951011"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19951011_s101",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_budget_19951011_s101.bin",
+      "bytes": 1421,
+      "sha256": "c0c883a7fe5ab135d3e8858775583c25ffde8f84de7b54fa3d8f128399a92ef3",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113405261X00219951011&speechNumber=101&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19951011-s101-facts.json",
+        "bytes": 5538,
+        "sha256": "29e3ee3956ca59f6762b6db355456b0c7d728fab1945fb0edca69a507fba2d77"
+      },
+      "claims": [
+        "jp_sdp_murayama_self_stated_chair_s101_19951011"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_diet_hr_plenary_19960124",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hr_plenary_19960124.bin",
+      "bytes": 29960,
+      "sha256": "fa2026135fa9dcbab89392c41ad6f099bfc9abefdded19ee3c3606ce52758989",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=113605254X00219960124&speechNumber=8&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-sdp-chair-19960124-facts.json",
+        "bytes": 5804,
+        "sha256": "e80ce4519c1235b46305696dd698579429ba3c51763ca2ab657ef8322a61e533"
+      },
+      "claims": [
+        "jp_sdp_renamed_party_named_by_secretary_general_19960124"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_statement_20th_anniversary_20160119",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_statement_20th_anniversary_20160119.bin",
+      "bytes": 14253,
+      "sha256": "3bbdac1415fef49ec20bdd04d2290a7df6ec15ed33e29badc6b6f67ff2646da7",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20160125221536id_/http://www5.sdp.or.jp:80/comment/2016/01/19/%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%EF%BC%92%EF%BC%90%E5%B9%B4%E3%81%AB%E5%BD%93%E3%81%9F%E3%81%A3%E3%81%A6%EF%BC%88%E5%A3%B0%E6%98%8E%EF%BC%89/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-statement-20th-anniversary-20160119-facts.json",
+        "bytes": 5297,
+        "sha256": "21ca4d4c0b2adebffdec2786edf2bc1a5120457ff667ffb0afc14e7baeda8420"
+      },
+      "claims": [
+        "jp_sdp_renaming_retrospective_anniversary_statement"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/comment/2016/01/19/%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%EF%BC%92%EF%BC%90%E5%B9%B4%E3%81%AB%E5%BD%93%E3%81%9F%E3%81%A3%E3%81%A6%EF%BC%88%E5%A3%B0%E6%98%8E%EF%BC%89/"
+    },
+    {
+      "id": "jp_sdp_statement_murayama_obituary_20251017",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_statement_murayama_obituary_20251017.bin",
+      "bytes": 69842,
+      "sha256": "cb9efc5316a309abf5b69bbd102690bc6b3d928fe5954662ea1a8688fc3f5d1c",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20251017084702id_/https://sdp.or.jp/statement/murayama-3/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-statement-murayama-obituary-20251017-facts.json",
+        "bytes": 7420,
+        "sha256": "b472d74ec9f47a9b16792c394919c2683e88e5a0e784b7f50aba505c5d7b9fe0"
+      },
+      "claims": [
+        "jp_sdp_murayama_obituary_chair_retrospective",
+        "jp_sdp_murayama_obituary_renaming_retrospective",
+        "jp_sdp_murayama_obituary_first_party_leader_retrospective",
+        "jp_sdp_murayama_obituary_handover_to_doi_retrospective"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/statement/murayama-3/"
+    },
+    {
+      "id": "jp_sdp_doi_kenren_kanjicho_meeting_19961130",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_kenren_kanjicho_meeting_19961130.bin",
+      "bytes": 10317,
+      "sha256": "f5b5f34ebbeb1bde67d4a7f7eab114af49fee6f22be3bdcc7c9c52076ed5ba38",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20031219113138id_/http://www5.sdp.or.jp:80/central/activity/kenrenkanji.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-kenren-kanjicho-meeting-19961130-facts.json",
+        "bytes": 5765,
+        "sha256": "8367138410ec9f14c3bb827b199ec34e9b5803fe9d66d88eddbf6a7c46c9cb1c"
+      },
+      "claims": [
+        "jp_sdp_doi_in_office_kanjicho_meeting_19961130",
+        "jp_sdp_doi_assumption_reported_to_meeting_19961130"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/activity/kenrenkanji.html"
+    },
+    {
+      "id": "jp_sdp_doi_second_rinji_convention_19961222",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_second_rinji_convention_19961222.bin",
+      "bytes": 11828,
+      "sha256": "d41ce777ab01394c7061873d13a699637b5e5803bd80b7b0307cade514c6b224",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20031219110410id_/http://www5.sdp.or.jp:80/central/activity/doi-aisatsu.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-second-rinji-convention-19961222-facts.json",
+        "bytes": 5581,
+        "sha256": "21c1fe5e1b0d71f8b0862678a4cb3d14e75301a23ad80eb1f22eb19c2f30c639"
+      },
+      "claims": [
+        "jp_sdp_doi_convention_approval_19961222",
+        "jp_sdp_doi_in_office_second_rinji_convention_19961222"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/activity/doi-aisatsu.html"
+    },
+    {
+      "id": "jp_sdp_doi_reelection_shakaishinpo_19980121",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_reelection_shakaishinpo_19980121.bin",
+      "bytes": 2595,
+      "sha256": "900c21b270bc2b8c3ed3f86e112775583bbea2f951b3aab8f94bc2edcd3ba255",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20020619173724id_/http://www5.sdp.or.jp:80/central/shinpou/newsfiles98/1doi-saisen0121.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-reelection-shakaishinpo-19980121-facts.json",
+        "bytes": 6093,
+        "sha256": "9b422ba79eaaa0d32f9d574927748e5d400cd5c7213d93aaad15c47a0761bfb7"
+      },
+      "claims": [
+        "jp_sdp_doi_leader_renotice_19980108",
+        "jp_sdp_doi_reelection_confirmed_19980110",
+        "jp_sdp_doi_in_office_shakaishinpo_19980121"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/shinpou/newsfiles98/1doi-saisen0121.html"
+    },
+    {
+      "id": "jp_sdp_doi_fifth_rinji_convention_19980830",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_fifth_rinji_convention_19980830.bin",
+      "bytes": 11151,
+      "sha256": "03b7f4168649934f45a6f0ea557d7316b4ec83c83e22ef3e1298bb318e0bc6fb",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20000917114251id_/http://www.sdp.or.jp:80/central/activity/1taikaidoi0830.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-fifth-rinji-convention-19980830-facts.json",
+        "bytes": 5205,
+        "sha256": "a90d42cd3d7efef29eb30a076b0ce280e1d54ddf918c2c1402b36555915ae9c8"
+      },
+      "claims": [
+        "jp_sdp_doi_in_office_fifth_rinji_convention_19980830"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www.sdp.or.jp/central/activity/1taikaidoi0830.html"
+    },
+    {
+      "id": "jp_sdp_doi_third_term_danwa_20000121",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_third_term_danwa_20000121.bin",
+      "bytes": 1385,
+      "sha256": "8d6c2abdf8ba7a10d56caa9fb41b6a5c0f980b86ef138b8eff3a8015cca3c61b",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20001118090400id_/http://www.sdp.or.jp:80/central/timebeing/tousyu0121.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-third-term-danwa-20000121-facts.json",
+        "bytes": 5233,
+        "sha256": "15dbcbd2781a1cc72ece449dad988d2a0b9296eab0dbf586c420e1df1167106c"
+      },
+      "claims": [
+        "jp_sdp_doi_third_election_statement_2000",
+        "jp_sdp_doi_in_office_third_term_danwa_20000121"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www.sdp.or.jp/central/timebeing/tousyu0121.html"
+    },
+    {
+      "id": "jp_sdp_doi_third_election_shakaishinpo_20000126",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_third_election_shakaishinpo_20000126.bin",
+      "bytes": 5079,
+      "sha256": "f8d180f5d9357f2031b429b52e0ec40d04eb5d97fbe43a578a9a9a7cf81d67eb",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20001023191956id_/http://www.sdp.or.jp:80/central/shinpou/newsfiles/headline0126.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-third-election-shakaishinpo-20000126-facts.json",
+        "bytes": 4874,
+        "sha256": "5390b0374a2b8079f3a0cea1889ea6c8f76ada8ba4c6f340e0791f05770ffac0"
+      },
+      "claims": [
+        "jp_sdp_doi_third_election_declared_20000121"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www.sdp.or.jp/central/shinpou/newsfiles/headline0126.html"
+    },
+    {
+      "id": "jp_sdp_doi_resignation_kaiken_20031113",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_resignation_kaiken_20031113.bin",
+      "bytes": 7791,
+      "sha256": "bacc1cac9a4c19d8c88b5ccaaae2df68b9d03b9f7f64f20fe3bbb1300186ff23",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20031208183856id_/http://www5.sdp.or.jp:80/central/news/news1113.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-resignation-kaiken-20031113-facts.json",
+        "bytes": 5943,
+        "sha256": "9aa513c8fa832a687653ff90aa1e64330693f64d3890fd77324279d7ae522090"
+      },
+      "claims": [
+        "jp_sdp_doi_in_office_resignation_kaiken_20031113",
+        "jp_sdp_doi_resignation_intent_20031113",
+        "jp_sdp_doi_resignation_accepted_standing_committee_20031113"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/news/news1113.html"
+    },
+    {
+      "id": "jp_sdp_doi_resignation_greeting_20031115",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_doi_resignation_greeting_20031115.bin",
+      "bytes": 6373,
+      "sha256": "b39999f382a5dcc21b5257b14f5b21150082d366b4f285f52cc6231f176b193f",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20031208185818id_/http://www5.sdp.or.jp:80/central/news/news111502.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-resignation-greeting-20031115-facts.json",
+        "bytes": 8172,
+        "sha256": "8459ead6f87ee7fdfef38e1beee759fd6f94ea8f05921b1cee1cc81c08c0c005"
+      },
+      "claims": [
+        "jp_sdp_doi_in_office_resignation_greeting_20031115",
+        "jp_sdp_doi_resignation_submitted_20031115",
+        "jp_sdp_doi_resignation_recalled_three_officers_20031111",
+        "jp_sdp_doi_resignation_recalled_standing_committee_20031113",
+        "jp_sdp_murayama_predecessor_recalled",
+        "jp_sdp_fukushima_selection_reported_by_doi_20031115"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/news/news111502.html"
+    },
+    {
+      "id": "jp_sdp_fukushima_inaugural_greeting_20031115",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_fukushima_inaugural_greeting_20031115.bin",
+      "bytes": 4574,
+      "sha256": "fb89762cc9037cbbae2d49b8e7fb2c804d48ce45ffbaae8829de6003541860a2",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20031119041447id_/http://www5.sdp.or.jp:80/central/news/news111501.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-inaugural-greeting-20031115-facts.json",
+        "bytes": 5897,
+        "sha256": "36d46ee1fbfc697832fd9afa5e25ce5bdd1b9a043e439741fd9ea2d8b058a63f"
+      },
+      "claims": [
+        "jp_sdp_fukushima_joint_plenary_selection_20031115",
+        "jp_sdp_fukushima_in_office_inaugural_greeting_20031115",
+        "jp_sdp_doi_resignation_greeting_referred_20031115"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/news/news111501.html"
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_20031126",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hc_budget_20031126.bin",
+      "bytes": 1815,
+      "sha256": "09ba8677cba5a257cf7c436dade777deb389eaf4129018dfbe07c723ffdc8df3",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=115815261X00120031126&speechNumber=222&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20031126-facts.json",
+        "bytes": 6081,
+        "sha256": "de6944e164418ba73324a5f97d2510f3dbefa339a2b2c87b382d967e66366b44"
+      },
+      "claims": [
+        "jp_sdp_fukushima_assumption_stated_20031115",
+        "jp_sdp_fukushima_in_office_diet_20031126"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_fukushima_eighth_convention_20031213",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_fukushima_eighth_convention_20031213.bin",
+      "bytes": 10695,
+      "sha256": "62ddee95a5120bdb6e353108c434e060c4a064433409ea50c8d1116bde19189f",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20040205234202id_/http://www5.sdp.or.jp:80/central/activity/aisatsu20031213.html",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-eighth-convention-20031213-facts.json",
+        "bytes": 6510,
+        "sha256": "59436f20dc34f9f02ebb30b65defdc08e16fb02156fcedc58b108b57a8b57d90"
+      },
+      "claims": [
+        "jp_sdp_fukushima_convention_approval_20031213",
+        "jp_sdp_fukushima_in_office_eighth_convention_20031213",
+        "jp_sdp_doi_former_leader_referred_20031213",
+        "jp_sdp_doi_term_span_recalled"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/central/activity/aisatsu20031213.html"
+    },
+    {
+      "id": "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_fukushima_fourth_election_shakaishinpo_20091216.bin",
+      "bytes": 7177,
+      "sha256": "52d75adb7a420fd96b47dc20056b4aa18104f6d7fbb3099fcbe51d19f9f94955",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20110531215640id_/http://www5.sdp.or.jp/news/newslist091216.htm",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-fourth-election-shakaishinpo-20091216-facts.json",
+        "bytes": 6133,
+        "sha256": "7b5d535f6fb29b028bfe5897bd6375e23639eea562126e1bcc0939ba0b5ca3f4"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2009_notice_20091204",
+        "jp_sdp_fukushima_fourth_election_decided_20091204",
+        "jp_sdp_fukushima_in_office_20091209"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/news/newslist091216.htm"
+    },
+    {
+      "id": "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_fukushima_fifth_election_shakaishinpo_20120201.bin",
+      "bytes": 8935,
+      "sha256": "5c64d4430a06b596ba14c28543d1549129b3af470e5580d041027c4c70f22f6a",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20120614095542id_/http://www5.sdp.or.jp/news/newslist120201.htm",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-fifth-election-shakaishinpo-20120201-facts.json",
+        "bytes": 6122,
+        "sha256": "81da99c4e9739a771f0a7757a03fd29f262bd8b58fd9fb982058bfef2ba4e04c"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2012_notice_20120120",
+        "jp_sdp_fukushima_fifth_election_decided_20120120",
+        "jp_sdp_fukushima_in_office_20120124"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/news/newslist120201.htm"
+    },
+    {
+      "id": "jp_sdp_fukushima_resignation_kaiken_20130725",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_fukushima_resignation_kaiken_20130725.bin",
+      "bytes": 11741,
+      "sha256": "55e6a2b845d476fc09fdf8527d952b0b76ef1536a21a17246941c931a685b98e",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20130820115925id_/http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json",
+        "bytes": 7572,
+        "sha256": "57fb3af103f021e82d4b3edf7a19962cf14def55abc2d39ddf0b7bdf7d244385"
+      },
+      "claims": [
+        "jp_sdp_fukushima_in_office_20130725",
+        "jp_sdp_fukushima_resignation_intent_20130725",
+        "jp_sdp_fukushima_resignation_accepted_20130725",
+        "jp_sdp_fukushima_end_stated_20130725",
+        "jp_sdp_fukushima_tenure_record_2003_2013"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/"
+    },
+    {
+      "id": "jp_sdp_mataichi_acting_leader_20130805",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_mataichi_acting_leader_20130805.bin",
+      "bytes": 11447,
+      "sha256": "bf6efa38c215ab1cd86eca35e5d0ed094ec5faa3f28d3590f8c66fa8d550bca6",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20130820140124id_/http://www5.sdp.or.jp/topics/2013/08/05/%e5%85%9a%e9%a6%96%e4%bb%a3%e8%a1%a8%e4%bb%a3%e8%a1%8c%e3%81%ab%e5%8f%88%e5%b8%82%e5%b9%b9%e4%ba%8b%e9%95%b7/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-acting-leader-20130805-facts.json",
+        "bytes": 5380,
+        "sha256": "92b3ef304b0ec23ad19c89dc8edb2ce6b778e427e073ab45c6c41ee48d18726d"
+      },
+      "claims": [
+        "jp_sdp_mataichi_acting_designated_20130801",
+        "jp_sdp_fukushima_former_20130805"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2013/08/05/%e5%85%9a%e9%a6%96%e4%bb%a3%e8%a1%a8%e4%bb%a3%e8%a1%8c%e3%81%ab%e5%8f%88%e5%b8%82%e5%b9%b9%e4%ba%8b%e9%95%b7/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2013_decided_20130830",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_leader_election_2013_decided_20130830.bin",
+      "bytes": 12330,
+      "sha256": "be90310db57bab4fefb6c825738441520f045192e872928a3ce29a565e89d04a",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20131122043121id_/http://www5.sdp.or.jp/topics/2013/08/30/%e5%85%9a%e9%a6%96%e9%81%b8%e6%8c%99%e3%81%ae%e6%97%a9%e6%9c%9f%e5%ae%9f%e6%96%bd%e3%81%b8/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2013-decided-20130830-facts.json",
+        "bytes": 5460,
+        "sha256": "397a332f0d4cff5a481f8284933fb7e4f555ac017d6de7af8e58d8265ad673c5"
+      },
+      "claims": [
+        "jp_sdp_leader_election_called_20130829",
+        "jp_sdp_leader_election_2013_term_procedure"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2013/08/30/%e5%85%9a%e9%a6%96%e9%81%b8%e6%8c%99%e3%81%ae%e6%97%a9%e6%9c%9f%e5%ae%9f%e6%96%bd%e3%81%b8/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2013_schedule_20130907",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_leader_election_2013_schedule_20130907.bin",
+      "bytes": 12253,
+      "sha256": "a5ecfee15b8d36a23a28e59eade28dd7f747115664ecc7a285488d922babed25",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20131122043054id_/http://www5.sdp.or.jp/topics/2013/09/07/%e5%85%9a%e9%a6%96%e9%81%b8%e3%81%ae%e5%91%8a%e7%a4%ba%e3%81%af%ef%bc%99%e6%9c%88%ef%bc%92%ef%bc%97%e6%97%a5/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2013-schedule-20130907-facts.json",
+        "bytes": 4723,
+        "sha256": "1852f9a88002460d5c889ab6a4300c3a24f2eff43505444c6e5bb819b99b34b2"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2013_schedule_20130905"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2013/09/07/%e5%85%9a%e9%a6%96%e9%81%b8%e3%81%ae%e5%91%8a%e7%a4%ba%e3%81%af%ef%bc%99%e6%9c%88%ef%bc%92%ef%bc%97%e6%97%a5/"
+    },
+    {
+      "id": "jp_sdp_yoshida_leader_election_page_2013",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_yoshida_leader_election_page_2013.bin",
+      "bytes": 7742,
+      "sha256": "fdf2f3042dc8580ce71d5d6765ed544b8dfe67c53c95ee930b7013cb1bdf2413",
+      "attempt": "original",
+      "source_url": "https://web.archive.org/web/20131014174026id_/http://www5.sdp.or.jp/election/2013leader/leader_top.htm",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-leader-election-page-2013-20131014-facts.json",
+        "bytes": 6527,
+        "sha256": "75d1152e666ff7c8f3f15289b6ea8f35da9c451a45e3f1d9df2127ed4be054ce"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2013_notice_20130927",
+        "jp_sdp_leader_election_2013_filings_20130927",
+        "jp_sdp_leader_election_2013_count_20131014",
+        "jp_sdp_yoshida_result_declared_20131014"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/election/2013leader/leader_top.htm"
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_20131024",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hc_budget_20131024.bin",
+      "bytes": 3091,
+      "sha256": "0b4c1fa818c748e81bfed01b907d8551be96156b343944e642abc0ac688f9a8a",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=118515261X00220131024&speechNumber=315&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20131024-facts.json",
+        "bytes": 6056,
+        "sha256": "4879e60f28d087aa401a945f49f318f090f88b616d6c253262eeb8a18b0f3545"
+      },
+      "claims": [
+        "jp_sdp_yoshida_election_recalled_diet_2013",
+        "jp_sdp_yoshida_in_office_diet_20131024"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_yoshida_teirei_kaiken_20131106",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-01\\bodies\\jp_sdp_yoshida_teirei_kaiken_20131106.bin",
+      "bytes": 12002,
+      "sha256": "1c1a6c6a96f5b560c487e40a2e816cf187e99c490576584ecf13488bf75e296f",
+      "attempt": "retrieval-01",
+      "source_url": "https://web.archive.org/web/20131122043046id_/http://www5.sdp.or.jp/topics/2013/11/06/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%83%bb%e5%ae%9a%e4%be%8b%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-teirei-kaiken-20131106-facts.json",
+        "bytes": 4762,
+        "sha256": "48b6d674965781a91468473a337dbf17c23ae3051344186880bebca9417f1b30"
+      },
+      "claims": [
+        "jp_sdp_yoshida_in_office_kaiken_20131106"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2013/11/06/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%83%bb%e5%ae%9a%e4%be%8b%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/"
+    },
+    {
+      "id": "jp_sdp_yoshida_candidacy_2015_20151204",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-01\\bodies\\jp_sdp_yoshida_candidacy_2015_20151204.bin",
+      "bytes": 14246,
+      "sha256": "5b21c4cce0ff5378bc31cf066dfa5ff7fb9220204486583ce61a2d1b136b1b21",
+      "attempt": "retrieval-01",
+      "source_url": "https://web.archive.org/web/20161126230723id_/http://www5.sdp.or.jp/topics/2015/12/04/%e5%90%89%e7%94%b0%e5%85%9a%e9%a6%96%e3%81%8c%e5%85%9a%e9%a6%96%e9%81%b8%e7%ab%8b%e5%80%99%e8%a3%9c%e3%81%ae%e6%84%8f%e6%80%9d%e8%a1%a8%e6%98%8e/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-candidacy-2015-20151204-facts.json",
+        "bytes": 5552,
+        "sha256": "be3b4f3de771c3efa73d742971df676d60343d63a06b70baf04ffbc62df4a3ee"
+      },
+      "claims": [
+        "jp_sdp_yoshida_in_office_20151126",
+        "jp_sdp_yoshida_candidacy_intent_20151126"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2015/12/04/%e5%90%89%e7%94%b0%e5%85%9a%e9%a6%96%e3%81%8c%e5%85%9a%e9%a6%96%e9%81%b8%e7%ab%8b%e5%80%99%e8%a3%9c%e3%81%ae%e6%84%8f%e6%80%9d%e8%a1%a8%e6%98%8e/"
+    },
+    {
+      "id": "jp_sdp_yoshida_stays_on_20160905",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-01\\bodies\\jp_sdp_yoshida_stays_on_20160905.bin",
+      "bytes": 15830,
+      "sha256": "a21597dc9eb0032a6bbec25ccbc8adf81a744853626ea6ee83f5029c38b00f5b",
+      "attempt": "retrieval-01",
+      "source_url": "https://web.archive.org/web/20161126220321id_/http://www5.sdp.or.jp/topics/2016/09/05/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%81%af%e7%b6%9a%e6%8a%95/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-stays-on-20160905-facts.json",
+        "bytes": 6012,
+        "sha256": "351d28b3626111324dd6bf5074fb792b73e2422c053d6d3a8dafc149ac981553"
+      },
+      "claims": [
+        "jp_sdp_yoshida_resignation_intent_20160714",
+        "jp_sdp_yoshida_resignation_withdrawn_20160901",
+        "jp_sdp_yoshida_in_office_20160901"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2016/09/05/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%81%af%e7%b6%9a%e6%8a%95/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2018_renotice_20180120",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-01\\bodies\\jp_sdp_leader_election_2018_renotice_20180120.bin",
+      "bytes": 15120,
+      "sha256": "dc7f404d1420c3ae35ab9f631f1c027004e5f3eed18187eb8804c67427ef050b",
+      "attempt": "retrieval-01",
+      "source_url": "https://web.archive.org/web/20190722040948id_/http://www5.sdp.or.jp/topics/2018/01/20/%E5%85%9A%E9%A6%96%E9%81%B8%E3%81%AF%E5%86%8D%E5%91%8A%E7%A4%BA%E3%81%B8/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2018-renotice-20180120-facts.json",
+        "bytes": 5736,
+        "sha256": "731e28584db588367b05ba4295badc9027fb9ced376feb40c8d2d8c86907ab1f"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2018_notice_20180112",
+        "jp_sdp_leader_election_2018_reschedule"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2018/01/20/%E5%85%9A%E9%A6%96%E9%81%B8%E3%81%AF%E5%86%8D%E5%91%8A%E7%A4%BA%E3%81%B8/"
+    },
+    {
+      "id": "jp_sdp_mataichi_uncontested_2018_20180208",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_mataichi_uncontested_2018_20180208.bin",
+      "bytes": 16798,
+      "sha256": "7c12ede063791ff676f1ed923ae5748d19ebc5746bd589e9f94e76f230dac4df",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20190722040945id_/http://www5.sdp.or.jp/topics/2018/02/08/%E5%8F%88%E5%B8%82%E5%BE%81%E6%B2%BB%E3%81%95%E3%82%93%E3%80%80%E6%96%B0%E5%85%9A%E9%A6%96%E5%B0%B1%E4%BB%BB%E3%81%B8/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-uncontested-2018-20180208-facts.json",
+        "bytes": 6472,
+        "sha256": "dcce45be21c9539af6f8cb063e8f5d46e465d14c29106a2eec54a984a3b26eab"
+      },
+      "claims": [
+        "jp_sdp_mataichi_renotice_20180126",
+        "jp_sdp_mataichi_uncontested_election_20180126",
+        "jp_sdp_mataichi_term_procedure_2018"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2018/02/08/%E5%8F%88%E5%B8%82%E5%BE%81%E6%B2%BB%E3%81%95%E3%82%93%E3%80%80%E6%96%B0%E5%85%9A%E9%A6%96%E5%B0%B1%E4%BB%BB%E3%81%B8/"
+    },
+    {
+      "id": "jp_sdp_yoshida_last_greeting_20180224",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_yoshida_last_greeting_20180224.bin",
+      "bytes": 23878,
+      "sha256": "2467e576561c1f381c8cbce1f8f480c62c22a054e263a4709ba52b60ddb39d0d",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20190426141337id_/http://www5.sdp.or.jp/comment/2018/02/24/%e5%85%9a%e9%a6%96%e3%81%82%e3%81%84%e3%81%95%e3%81%a4/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-last-greeting-20180224-facts.json",
+        "bytes": 6192,
+        "sha256": "43db7ea660db13bc0496b86616372192c7103302f80d94dc5b982ba0bcd665bb"
+      },
+      "claims": [
+        "jp_sdp_yoshida_in_office_last_greeting_20180224",
+        "jp_sdp_yoshida_takeover_recalled_20131101",
+        "jp_sdp_yoshida_departure_recalled_2018"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/comment/2018/02/24/%e5%85%9a%e9%a6%96%e3%81%82%e3%81%84%e3%81%95%e3%81%a4/"
+    },
+    {
+      "id": "jp_sdp_mataichi_inaugural_greeting_20180225",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_mataichi_inaugural_greeting_20180225.bin",
+      "bytes": 13887,
+      "sha256": "324db929c04f29c0284d3f4dc93cfc5f5a9f7fadb054942edba34ea19a1800f6",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20190427204110id_/http://www5.sdp.or.jp/comment/2018/02/25/%e5%85%9a%e9%a6%96%e5%b0%b1%e4%bb%bb%e3%81%82%e3%81%84%e3%81%95%e3%81%a4%ef%bc%88%e5%8f%88%e5%b8%82%e5%be%81%e6%b2%bb%ef%bc%89/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-inaugural-greeting-20180225-facts.json",
+        "bytes": 4805,
+        "sha256": "963301420dc3ce6afd8c13eee11a6a1346bea4bf5a2ed446b110b832e5e372ba"
+      },
+      "claims": [
+        "jp_sdp_mataichi_in_office_inaugural_greeting_20180225"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/comment/2018/02/25/%e5%85%9a%e9%a6%96%e5%b0%b1%e4%bb%bb%e3%81%82%e3%81%84%e3%81%95%e3%81%a4%ef%bc%88%e5%8f%88%e5%b8%82%e5%be%81%e6%b2%bb%ef%bc%89/"
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_20180302",
+      "body": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\jp29-source-review\\bodies\\jp_sdp_diet_hc_budget_20180302.bin",
+      "bytes": 1512,
+      "sha256": "656525dbd7f72b381bcb87b07abf85fc1e7066e9ea90d95ea6870a608e99af54",
+      "attempt": "original",
+      "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=119615261X00520180302&speechNumber=347&recordPacking=json",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20180302-facts.json",
+        "bytes": 5257,
+        "sha256": "f449a47c5be136b91b410df12a1707f9468c0a6b681b5e9e56ff7e165f5ece33"
+      },
+      "claims": [
+        "jp_sdp_mataichi_in_office_diet_20180302"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": null
+    },
+    {
+      "id": "jp_sdp_top_page_17th_convention_2020",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_top_page_17th_convention_2020.bin",
+      "bytes": 42355,
+      "sha256": "a41a004669a7349c45929560bec54b70e183966ee04a07504637bd1c8b491531",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20200324082830id_/http://www5.sdp.or.jp:80/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-top-page-17th-convention-2020-20200324-facts.json",
+        "bytes": 6430,
+        "sha256": "8cadda37ab7605f289ce8621347e30dde3b3c63f1c7e094c989b680608b2b5c3"
+      },
+      "claims": [
+        "jp_sdp_fukushima_uncontested_election_20200222",
+        "jp_sdp_mataichi_in_office_convention_20200222",
+        "jp_sdp_fukushima_new_leader_news_item_20200228"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/"
+    },
+    {
+      "id": "jp_sdp_convention_agenda_2020_20201022",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_convention_agenda_2020_20201022.bin",
+      "bytes": 14957,
+      "sha256": "dfa50d87ce9c5ac62777e6c161605f4a6671f975446fe0580f9d69ea0e8299f4",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20201205022156id_/http://www5.sdp.or.jp/topics/2020/10/22/%E8%87%A8%E6%99%82%E5%85%9A%E5%A4%A7%E4%BC%9A%E3%80%80%E8%AD%B0%E6%A1%88%E7%A2%BA%E5%AE%9A/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-convention-agenda-2020-20201022-facts.json",
+        "bytes": 4882,
+        "sha256": "92a7fe3d50aa5f59fe02bd186e1906b448f53ed215b08f2daaafa10ea056e460"
+      },
+      "claims": [
+        "jp_sdp_convention_agenda_decided_20201022"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2020/10/22/%E8%87%A8%E6%99%82%E5%85%9A%E5%A4%A7%E4%BC%9A%E3%80%80%E8%AD%B0%E6%A1%88%E7%A2%BA%E5%AE%9A/"
+    },
+    {
+      "id": "jp_sdp_fukushima_edano_meeting_20201117",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_fukushima_edano_meeting_20201117.bin",
+      "bytes": 14040,
+      "sha256": "7d4bce35ace5c07af62c6318a1fd8d29f61e1dfdb354830c85b237ad949ebc6e",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20210125100528id_/http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-edano-meeting-20201117-facts.json",
+        "bytes": 5450,
+        "sha256": "1c600573f02b243846d71970196dd32ec465163d7e1981f1c2a142809014ccdf"
+      },
+      "claims": [
+        "jp_sdp_split_decision_20201114",
+        "jp_sdp_fukushima_in_office_20201117"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/"
+    },
+    {
+      "id": "jp_sdp_fukushima_reelection_12th_20220114",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_fukushima_reelection_12th_20220114.bin",
+      "bytes": 46384,
+      "sha256": "5ef1ce124d2b808f3d6046b7c2b3b2f21721e5d7779d5f9c088c1ae577a28241",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20220116094341id_/https://sdp.or.jp/information/%E7%AC%AC12%E5%9B%9E%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%E5%85%9A%E9%A6%96%E9%81%B8%E6%8C%99%E3%81%AE%E7%B5%90%E6%9E%9C%E3%80%81%E7%A6%8F%E5%B3%B6%E3%81%BF%E3%81%9A%E3%81%BB%E5%85%9A%E9%A6%96/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-reelection-12th-20220114-facts.json",
+        "bytes": 7487,
+        "sha256": "d164f4d5c668bd59c87c08a6b3aeff9eb1b6970cd823125c6b45566b13cf3c3f"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2022_notice_20220114",
+        "jp_sdp_fukushima_filing_2022_20220114",
+        "jp_sdp_fukushima_reelection_declared_20220114",
+        "jp_sdp_fukushima_in_office_20220114",
+        "jp_sdp_fukushima_new_term_planned_2022"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/information/%E7%AC%AC12%E5%9B%9E%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%E5%85%9A%E9%A6%96%E9%81%B8%E6%8C%99%E3%81%AE%E7%B5%90%E6%9E%9C%E3%80%81%E7%A6%8F%E5%B3%B6%E3%81%BF%E3%81%9A%E3%81%BB%E5%85%9A%E9%A6%96/"
+    },
+    {
+      "id": "jp_sdp_fukushima_reelection_20231201",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_fukushima_reelection_20231201.bin",
+      "bytes": 63761,
+      "sha256": "3642525858f312ae7f4936fe64ee545ce70d1517a5d9b60bdcaeb86659e75753",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20231201213844id_/https://sdp.or.jp/sdp-paper/toushusen-2/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-reelection-20231201-facts.json",
+        "bytes": 5681,
+        "sha256": "61d27553887f7a295a2ac814fd2c1dc5d1b712ea7b1c0a7c465b5ef154c5f3e0"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2023_notice_20231201",
+        "jp_sdp_fukushima_reelection_declared_20231201",
+        "jp_sdp_fukushima_in_office_20231201"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/sdp-paper/toushusen-2/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_schedule_20260220",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_leader_election_2026_schedule_20260220.bin",
+      "bytes": 70650,
+      "sha256": "13d54142d767d39b5218a65d2c96d95b6035ff0e1da3ca14d3ff347a888b040a",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260312035200id_/https://sdp.or.jp/information/toushusen-3/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-schedule-20260220-facts.json",
+        "bytes": 4495,
+        "sha256": "3ed14a18b6f83275f0df09210f684263d3ead8cc467c43c755317c531cc5c712"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2026_schedule_20260218"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/information/toushusen-3/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_candidates_20260306",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_leader_election_2026_candidates_20260306.bin",
+      "bytes": 80487,
+      "sha256": "0197a7bea79b7ba2021b79e298e4aafe0a76678e3b214042db7eafd1214f3735",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260306044954id_/https://sdp.or.jp/sdp-paper/toushusen-5/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-candidates-20260306-facts.json",
+        "bytes": 5695,
+        "sha256": "36956c9a6281144fd80ede963650cb344d8019bb591070f848f64b8887f1c444"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2026_notice_20260304",
+        "jp_sdp_leader_election_2026_filings_20260304",
+        "jp_sdp_fukushima_incumbent_20260304"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/sdp-paper/toushusen-5/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_first_count_20260323",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_leader_election_2026_first_count_20260323.bin",
+      "bytes": 69898,
+      "sha256": "b79f8ad5a39777130815872651e339cd1a95f96dcab6fcdf6bb36735691de9cf",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260324042609id_/https://sdp.or.jp/information/saikokujitoushusen/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-first-count-20260323-facts.json",
+        "bytes": 5253,
+        "sha256": "e75ef39fd1cda1142a55652a89447761b01c004adcbfe6f83a54326fd0978a32"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2026_first_round_count_20260323",
+        "jp_sdp_leader_election_2026_renotice_20260323"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/information/saikokujitoushusen/"
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_rerun_result_20260406",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_leader_election_2026_rerun_result_20260406.bin",
+      "bytes": 70343,
+      "sha256": "b14b01452ab16abe2b7bf2497206a3260007f8a7171c346b8f53c0f431fbeed8",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260406155003id_/https://sdp.or.jp/information/260406result/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-rerun-result-20260406-facts.json",
+        "bytes": 5012,
+        "sha256": "4d601189bdc1c2440c647430605678e8ab04de046d698c8b2131fc71a866df67"
+      },
+      "claims": [
+        "jp_sdp_leader_election_2026_rerun_count_20260406",
+        "jp_sdp_fukushima_elected_2026_20260406"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/information/260406result/"
+    },
+    {
+      "id": "jp_sdp_fukushima_kaiken_20260408",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_fukushima_kaiken_20260408.bin",
+      "bytes": 73642,
+      "sha256": "4f5f18e5ba7160106082221a587df6c43779b1db5cd864c757ee0b6b53cd8cad",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260410042414id_/https://sdp.or.jp/sdp-paper/toushusen-6/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-kaiken-20260408-facts.json",
+        "bytes": 4417,
+        "sha256": "c745a7813e11463366dffd5dec8e3302bbd27c94a1a27f3b2029bcf321f95097"
+      },
+      "claims": [
+        "jp_sdp_fukushima_in_office_kaiken_20260408"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/sdp-paper/toushusen-6/"
+    },
+    {
+      "id": "jp_sdp_fukushima_21st_convention_20260429",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_fukushima_21st_convention_20260429.bin",
+      "bytes": 76555,
+      "sha256": "cb9ffbb0b5bd769fc122bd901cff36c0a2f8dd77b82f970483241aefc6afa902",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260516150409id_/https://sdp.or.jp/sdp-paper/taikai-5/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-21st-convention-20260429-facts.json",
+        "bytes": 4434,
+        "sha256": "9b2ba138cf0aefd642e98bb9c598f72cc6750cbf80a99887167f8c9d86e37751"
+      },
+      "claims": [
+        "jp_sdp_fukushima_in_office_21st_convention_20260429"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/sdp-paper/taikai-5/"
+    },
+    {
+      "id": "jp_sdp_fukushima_kaiken_20260729",
+      "body": "D:\\spheres-offload\\codex-next-20260928\\jp29-resumed-evidence-01\\retrieval-02\\bodies\\jp_sdp_fukushima_kaiken_20260729.bin",
+      "bytes": 81011,
+      "sha256": "a6756e25f4d65575a3f0909fc4748bac1bf5d6c6c35c1383b56a1a5103097264",
+      "attempt": "retrieval-02",
+      "source_url": "https://web.archive.org/web/20260815230711id_/https://sdp.or.jp/sdp-paper/toushu-125/",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-kaiken-20260729-facts.json",
+        "bytes": 4436,
+        "sha256": "091529b790fcbd76a9bac9483ac45aafb85b893ff04f6523371280413a87e499"
+      },
+      "claims": [
+        "jp_sdp_fukushima_in_office_kaiken_20260729"
+      ],
+      "independent_current_body_rehash": true,
+      "original_url": "https://sdp.or.jp/sdp-paper/toushu-125/"
+    }
+  ]
+}

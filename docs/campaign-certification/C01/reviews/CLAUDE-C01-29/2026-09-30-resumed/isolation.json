@@ -1,0 +1,50 @@
+{
+  "base": "41f8b976d5d617f39e41c7a445df53f0e49fb87f",
+  "submitted": "3b30478562ec78c2392d0472061e773e23cb25dd",
+  "corrected": "c98d1d5668870e184c320a3e03f477bd7f89a12c",
+  "previous_japan_values_exact": true,
+  "only_appended_ranges": [
+    {
+      "path": "$.sources",
+      "before": 418,
+      "after": 472
+    },
+    {
+      "path": "$.organizations[9].roles",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "path": "$.organizations[9].sources",
+      "before": 1,
+      "after": 55
+    },
+    {
+      "path": "$.organizations[9].claim_ids",
+      "before": 1,
+      "after": 112
+    },
+    {
+      "path": "$.organizations[9].coverage.unresolved",
+      "before": 3,
+      "after": 4
+    },
+    {
+      "path": "$.coverage.unresolved",
+      "before": 11,
+      "after": 12
+    }
+  ],
+  "runtime_and_shared_generators_unchanged": [
+    "spheres-sim",
+    "spheres-web",
+    "tools/avatars/campaign_research.py",
+    "tools/avatars/campaign_census.py"
+  ],
+  "new_sources": 54,
+  "new_claims": 111,
+  "new_roles": 1,
+  "new_holder_observations": 16,
+  "distinct_people": 7,
+  "new_source_changes_in_this_review": []
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "japan-tests",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_japan*.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-jp29-resumed",
+    "start": "2026-09-30T09:40:30.250106+00:00",
+    "finish": "2026-09-30T09:40:40.102625+00:00",
+    "exit": 0
+  },
+  {
+    "name": "index-check",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-jp29-resumed",
+    "start": "2026-09-30T09:40:40.109068+00:00",
+    "finish": "2026-09-30T09:40:40.648507+00:00",
+    "exit": 0
+  }
+]

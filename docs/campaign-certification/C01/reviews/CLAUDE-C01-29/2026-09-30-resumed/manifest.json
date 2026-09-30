@@ -1,0 +1,283 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-29",
+  "reviewer": "Codex /root/review_gap_submission",
+  "status": "accepted_for_integration",
+  "reviewed_commit": "3b30478562ec78c2392d0472061e773e23cb25dd",
+  "required_correction": "c98d1d5668870e184c320a3e03f477bd7f89a12c",
+  "decision": "All original identities and bounded material claims reviewed; integrate only with retained correction and combined validation. Prior held checkpoint unchanged; no country-period, runtime, art or campaign approval.",
+  "c01_complete": false,
+  "qualification": false,
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "content-review.json",
+      "bytes": 69851,
+      "sha256": "a53a29ef8ab768b4f76d576505d5f7d2062f230d1aa1773033bd93debfe8a2c6"
+    },
+    {
+      "path": "copy-ledger.json",
+      "bytes": 15311,
+      "sha256": "66061cc17ee79a3305c336947eac5cdec08b62f180732277f1cc5b18eb3495bc"
+    },
+    {
+      "path": "index-check.log",
+      "bytes": 251,
+      "sha256": "59fba6c5248e358669d39301a331cb54eeead300587f02e181d02fbd1bc8df40"
+    },
+    {
+      "path": "isolation.json",
+      "bytes": 1134,
+      "sha256": "c074c0fae3cc5e7a074a66b916f29005566420525637e1caf25a090f53a3a215"
+    },
+    {
+      "path": "japan-tests.log",
+      "bytes": 149,
+      "sha256": "4eb4727ff3cd71f8fd73c1326a64fc95be1a046a828f1c70cf7ade5b230a4e6a"
+    },
+    {
+      "path": "prior-checkpoint-pins.json",
+      "bytes": 23283,
+      "sha256": "3b64da96a353400e6e38ab4bc3ad19eead8cd6b9731ec9a3f9870324c719baa6"
+    },
+    {
+      "path": "prior-original-retrieval.json",
+      "bytes": 39756,
+      "sha256": "046598d3910b13de471da2d129ae8fb21953e043277cd60b1e630075eac1a037"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5951,
+      "sha256": "a75cb9ece39644f5344585ac49d3e2c917946dd246944a665c906c3484ef52f4"
+    },
+    {
+      "path": "retrieval-01/attempts.jsonl",
+      "bytes": 132279,
+      "sha256": "419be1ff462eb557b1d68ee166b6bed18a47b5c2a13288fcafda394c755ce3ed"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_convention_agenda_2020_20201022.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_fukushima_21st_convention_20260429.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_fukushima_edano_meeting_20201117.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_fukushima_kaiken_20260408.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_fukushima_kaiken_20260729.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_fukushima_reelection_12th_20220114.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_fukushima_reelection_20231201.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_leader_election_2018_renotice_20180120.txt",
+      "bytes": 2286,
+      "sha256": "d7ed8d4a32b097d16b01107279947970d1c7f4aa39c9ca3aa84751f8282ad803"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_leader_election_2026_candidates_20260306.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_leader_election_2026_first_count_20260323.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_leader_election_2026_rerun_result_20260406.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_leader_election_2026_schedule_20260220.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_mataichi_inaugural_greeting_20180225.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_mataichi_uncontested_2018_20180208.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_top_page_17th_convention_2020.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_yoshida_candidacy_2015_20151204.txt",
+      "bytes": 2582,
+      "sha256": "b262e54c8b2f17d39ca3df123d00380e1dfc4227c5bf60310c10bd6ae176be6a"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_yoshida_last_greeting_20180224.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_yoshida_stays_on_20160905.txt",
+      "bytes": 2265,
+      "sha256": "ebdc7a573bc452184f1a34f08409de5c7d44db21aa6af6f283d49308e0b5b9d1"
+    },
+    {
+      "path": "retrieval-01/headers/jp_sdp_yoshida_teirei_kaiken_20131106.txt",
+      "bytes": 2461,
+      "sha256": "f93bd550759a97326880f5e4acf59c983f408f6a1e593d1c0c3f248fb19efa16"
+    },
+    {
+      "path": "retrieval-01/retrieval.json",
+      "bytes": 147871,
+      "sha256": "a7ed2a2b7e43ea2f92fe1b445cb4e30ad44d494e4bd60e59643228819d170564"
+    },
+    {
+      "path": "retrieval-01.log",
+      "bytes": 1052,
+      "sha256": "ce1aafc3715df7d8c075f0f889b4fc3e4aa4892b27e93e2a58ce165e1586cb9a"
+    },
+    {
+      "path": "retrieval-02/attempts.jsonl",
+      "bytes": 281928,
+      "sha256": "1445405e4c8cc0ce76f762cf29e6d056ea13437285193090fa7d9b34f7bdaf97"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_convention_agenda_2020_20201022.txt",
+      "bytes": 2413,
+      "sha256": "5ae5a95dd0be9010e2fce3f9f0de7247691cfa67bd2faca264d4672f25d8be44"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_fukushima_21st_convention_20260429.txt",
+      "bytes": 2414,
+      "sha256": "64111feb93664c99feb5b256bc26ce5ffc80d161ad4c42eddfdd694c48c2f62c"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_fukushima_edano_meeting_20201117.txt",
+      "bytes": 2506,
+      "sha256": "f5e09b0a6ed51b12c3feb4e7cea814b62f1a9e8c2a1f8307a0882f2ca81a2b9e"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_fukushima_kaiken_20260408.txt",
+      "bytes": 2425,
+      "sha256": "485b18da19d9d283c8056530203ea3afdf383aa71a39109b8b9ed3fd6c32c1ba"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_fukushima_kaiken_20260729.txt",
+      "bytes": 2415,
+      "sha256": "cf5a6bd9bfe4f17f231d2da4eda6a673984bb7e725700ec721ec6bc86431c15a"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_fukushima_reelection_12th_20220114.txt",
+      "bytes": 3145,
+      "sha256": "9cff8358a030f12b022d864327762b852b74782c1ffddbf61139fc7716cb971e"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_fukushima_reelection_20231201.txt",
+      "bytes": 2418,
+      "sha256": "0e1e599c3230f39f37211eac09b7ec38937b1a29619ee4390b4052726849b57b"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_leader_election_2026_candidates_20260306.txt",
+      "bytes": 2418,
+      "sha256": "eec388af922206634ccb8dc8774ab11ae2ca3e69d5ae2aa6fbb86a541595efe8"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_leader_election_2026_first_count_20260323.txt",
+      "bytes": 2446,
+      "sha256": "c73851dd2c139b23f97bc7d0cec60a003e7d703947b9a2628eba3850a8815a88"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_leader_election_2026_rerun_result_20260406.txt",
+      "bytes": 2429,
+      "sha256": "c0a4fe1cda525dc035adb365764549be44df6b3fbb5eed06a77000bd33c829af"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_leader_election_2026_schedule_20260220.txt",
+      "bytes": 2428,
+      "sha256": "9cc692f64008e477284ad0d0f1997ab23b49ae63cdc8405edccfe58d5655aeab"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_mataichi_inaugural_greeting_20180225.txt",
+      "bytes": 2491,
+      "sha256": "78c7456b103bcf6ccb7088e8edcca6fc58e20cafa51dcc322fa8e381215fc59c"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_mataichi_uncontested_2018_20180208.txt",
+      "bytes": 2511,
+      "sha256": "d2e51ff4e40a7f8f44d8d0ad4400bcc5fa65a409c0b5621014feb707aba983b7"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_top_page_17th_convention_2020.txt",
+      "bytes": 1712,
+      "sha256": "86a1675e0785dbd36b00d05af8e2a0b1a6f968f56aaeb123d3d47544a4983532"
+    },
+    {
+      "path": "retrieval-02/headers/jp_sdp_yoshida_last_greeting_20180224.txt",
+      "bytes": 2132,
+      "sha256": "e1562755673db4a717860a6f3c7e3902a803170a08018ff879f902d8138bd11d"
+    },
+    {
+      "path": "retrieval-02/retrieval.json",
+      "bytes": 294526,
+      "sha256": "88c90227ad390344cc84ac189fe712ce2d6ccdc387f425bf38489ca984dacac4"
+    },
+    {
+      "path": "retrieval-02.log",
+      "bytes": 903,
+      "sha256": "7d87b28fdedc1be3459e1941d0ee79489d30ba4e5a5383b31d3c6f16b33adfb7"
+    },
+    {
+      "path": "retrieve_missing.py",
+      "bytes": 3637,
+      "sha256": "52cbf0e69555a522a0918a72519dbdbadd86141647b7a160935285275db47419"
+    },
+    {
+      "path": "reviewed-file-pins.json",
+      "bytes": 19836,
+      "sha256": "5ad45f17acce7cb5be33bba6da72ecb2f0f3151f29988b770aa81875477704c8"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 58628,
+      "sha256": "395fce224a7945e0b7af256cb27482cf7d288268b0af6b9ebae776ebf16984d2"
+    },
+    {
+      "path": "validation-runs.json",
+      "bytes": 824,
+      "sha256": "7e4e8ecc20d8a638b54dd1fe5365fc18bf1f751503ee115cbc13807f696582df"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 2418,
+      "sha256": "de1afd1c3f0a83a450d3c21297afbb52cbe461a528bf6ab4e1ec241227ca1446"
+    }
+  ]
+}
