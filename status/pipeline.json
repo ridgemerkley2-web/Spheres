@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T21:43:33Z",
+  "updated": "2026-09-30T23:05:08Z",
   "mode": "one packet at a time (user, 30 Sep 2026: \"Do them one at a time?\")",
   "packets": [
     {
@@ -105,35 +105,39 @@
       "title": "French prime ministers, 2014–2026",
       "country": "France",
       "state": "queued",
-      "branch": "claude/c01-fr-38"
+      "branch": "claude/c01-fr-38",
+      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
     },
     {
       "n": "39",
       "title": "Democratic Alliance federal leaders, 2000–2026",
       "country": "SouthAfrica",
       "state": "queued",
-      "branch": "claude/c01-za-39"
+      "branch": "claude/c01-za-39",
+      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
     },
     {
       "n": "40",
       "title": "CPI(M) general secretaries, 1990–2026",
       "country": "India",
       "state": "queued",
-      "branch": "claude/c01-in-40"
+      "branch": "claude/c01-in-40",
+      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
     },
     {
       "n": "41",
       "title": "CPSU General Secretary and Deputy General Secretary, 1990–1991",
       "country": "USSR",
       "state": "queued",
-      "branch": "claude/c01-su-41"
+      "branch": "claude/c01-su-41",
+      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
     }
   ],
   "attention": [
-    "C01-28 review held by Codex: 12 archived originals unreachable from its environment."
+    "C01-28 review held by Codex: 12 archived originals unreachable from its environment.",
+    "Packets 38-41 held: Codex's roadmap puts Tonga identities and cartoons next."
   ],
   "log": [
-    "2026-09-28 C01-33 fixed (ea946b3a/2c78e89f; holders Bommai + Laloo; Sharad Yadav demoted to party_not_named_lead) -> submitted, worktree removed. C01-34 setup first stacked on claude/c01-source-17 and hit brazil.json conflicts: Codex integrates Claude branches with its own scoped commits, so ancestry never shows them merged. setup_packet.merged now also treats a branch as merged when integration queue marks its task complete. C01-34 set up unstacked at c2ff9396 on 032cd6a3. Active: 32 research, 34 research.",
     "2026-09-28 C01-32 research done (claude/c01-za-32@f62aa17a: 38 sources, 65 claims, 16 holder obs / 6 people, 7 disputed). Active: 32 verify, 34 research.",
     "2026-09-28 C01-32 verified: 38/38 sources clean; 9 defects. Rulings: 2018-01-19 \"PAC post\" = uncredited republished news -> non-primary, claims only, holder dropped (same treatment as C01-28 DVR reference text); Mphahlele 2009-01-14 Joomla edit stamp demoted; Moloto 2019-07-12 court record kept. Active: 32 fix, 34 research.",
     "2026-09-28 C01-32 fixed (a05592f7/df470746: 14 holder obs / 6 people, 6 disputed) -> submitted, worktree removed. C01-29 still under Codex review, so 31 stays held. C01-35 (Democratic Russia + Soyuz, USSR) set up at c1475ada on 44098c5a. Active: 34 research, 35 research. Remaining queued: 31 (held), 36, 37.",
@@ -152,6 +156,7 @@
     "2026-09-30: user asked \"Do them one at a time?\" -> pipeline is now serial (one packet in research/verify/fix at a time). Codex accepted C01-29, 30, 32-37 (2ac34862 and follow-ups); C01-28 held on 12 originals unreachable from Codex. C01-31 unblocked. setup_packet accepts an `accepted` predecessor.",
     "2026-09-30 C01-31 (Komeito) set up unstacked at 52b23d59 on ff01ee61 (census passes on integration again); research agent launched. Active: 31 research (serial mode).",
     "2026-09-30 User flagged token cost. Hourly idle polling stopped (wake on agent notifications only); no new packets queued pending the users efficiency choices. C01-31 continues. Last batch cost ~10M agent tokens (research ~5.4M, verify ~3.0M, fix ~1.5M).",
-    "2026-09-30 Lean pipeline adopted (user): tools/packet_check.py (zero-token source re-hash + structure + suite), tools/slice.py, lean RESEARCH/VERIFY/FIX instructions with the rulings list, Sonnet checks, serial, no polling. Queued 38 France PMs 2014-26, 39 DA federal leaders, 40 CPI(M) general secretaries, 41 CPSU General Secretary 1990-91. A fresh session takes over after C01-31 (START_HERE.md)."
+    "2026-09-30 Lean pipeline adopted (user): tools/packet_check.py (zero-token source re-hash + structure + suite), tools/slice.py, lean RESEARCH/VERIFY/FIX instructions with the rulings list, Sonnet checks, serial, no polling. Queued 38 France PMs 2014-26, 39 DA federal leaders, 40 CPI(M) general secretaries, 41 CPSU General Secretary 1990-91. A fresh session takes over after C01-31 (START_HERE.md).",
+    "2026-09-30 Codex's new roadmap/workboard (b31bdfab, 301f63cb): Claude's lane = continue existing claims, then reconcile accepted Tonga research into dated identities and a reviewed 6-8 cartoon batch, repeating country batches toward C06; no new research batch before existing claims finish. Queued 38-41 put on hold pending the user."
   ]
 }
