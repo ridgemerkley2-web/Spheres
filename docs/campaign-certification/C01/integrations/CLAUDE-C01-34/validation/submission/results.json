@@ -1,0 +1,136 @@
+{
+  "submission": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+  "checks": [
+    {
+      "name": "brazil",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_brazil*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:00:53.601164+00:00",
+      "finished_utc": "2026-09-30T09:01:02.646423+00:00",
+      "log": "brazil.log"
+    },
+    {
+      "name": "research",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:01:02.646456+00:00",
+      "finished_utc": "2026-09-30T09:01:07.804411+00:00",
+      "log": "research.log"
+    },
+    {
+      "name": "campaign",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:01:07.804441+00:00",
+      "finished_utc": "2026-09-30T09:01:09.035983+00:00",
+      "log": "campaign.log"
+    },
+    {
+      "name": "research-index",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:01:09.036011+00:00",
+      "finished_utc": "2026-09-30T09:01:09.613419+00:00",
+      "log": "research-index.log"
+    },
+    {
+      "name": "census",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "started_utc": "2026-09-30T09:01:09.613451+00:00",
+      "finished_utc": "2026-09-30T09:01:09.798018+00:00",
+      "log": "census.log"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:01:09.798048+00:00",
+      "finished_utc": "2026-09-30T09:01:09.872439+00:00",
+      "log": "workboard.log"
+    },
+    {
+      "name": "leadership-atlas",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:01:09.872474+00:00",
+      "finished_utc": "2026-09-30T09:01:10.049892+00:00",
+      "log": "leadership-atlas.log"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "e8f38113",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:01:10.049953+00:00",
+      "finished_utc": "2026-09-30T09:01:10.130078+00:00",
+      "log": "diff-check.log"
+    }
+  ]
+}

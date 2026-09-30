@@ -1,0 +1,80 @@
+{
+  "pdfs": [
+    {
+      "source_id": "br_mdb_ata_diretorio_20231005",
+      "pages": [
+        {
+          "page_one_based": 1,
+          "external_relative_path": "pdf-review/directorate-1.png",
+          "bytes": 396529,
+          "sha256": "d6cf7dac760a5e99bb342f57e150160591b7fbc113d129db384612c915589f57",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 2,
+          "external_relative_path": "pdf-review/directorate-2.png",
+          "bytes": 129080,
+          "sha256": "dae1e449a1f81e7fe2bc3594a3fc2718830cd8b098d6aa21b2960349527cff08",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 3,
+          "external_relative_path": "pdf-review/directorate-3.png",
+          "bytes": 96760,
+          "sha256": "a425dcd8f1276da91f3645da6f3ea8d976724371890e832a01c4c34db39a023f",
+          "visually_read": true
+        }
+      ],
+      "method": "Poppler pdftoppm rendered 1500px; image tool visual inspection; relevant text readable. Font substitution warnings retained in original tool transcript. Signature/QR validation not performed."
+    },
+    {
+      "source_id": "br_mdb_ata_executiva_20250716",
+      "pages": [
+        {
+          "page_one_based": 1,
+          "external_relative_path": "pdf-review/executive-1.png",
+          "bytes": 312831,
+          "sha256": "2e0c82398a2f78049854182252efcadc823e40cdff57012e8c56b5c206351001",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 2,
+          "external_relative_path": "pdf-review/executive-2.png",
+          "bytes": 472815,
+          "sha256": "a147dc1e59796bb85a38785fc46bb48b887c61a710aac591815ce1d1e547e74d",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 3,
+          "external_relative_path": "pdf-review/executive-3.png",
+          "bytes": 518937,
+          "sha256": "c1a5db3928a081bf6f54ff86eeb771afddaeaddae77de317dd469ea0104ecfe0",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 4,
+          "external_relative_path": "pdf-review/executive-4.png",
+          "bytes": 518249,
+          "sha256": "3bcc2f6ea8b951f382faedd8b153fab8e16781ab813145e86a5fdaa1e0391ca2",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 5,
+          "external_relative_path": "pdf-review/executive-5.png",
+          "bytes": 517405,
+          "sha256": "cc84b632bff575e7bc998a5a70d745c83cf25a79372212699e4abdcf0eae0ba1",
+          "visually_read": true
+        },
+        {
+          "page_one_based": 6,
+          "external_relative_path": "pdf-review/executive-6.png",
+          "bytes": 127857,
+          "sha256": "3713fe12fb091c5485b58c943f4c09d4d348ef774c79bf5dcb9cb622ce0ef5cf",
+          "visually_read": true
+        }
+      ],
+      "method": "Poppler pdftoppm rendered 1500px; image tool visual inspection; relevant text readable. Font substitution warnings retained in original tool transcript. Signature/QR validation not performed."
+    }
+  ],
+  "scans_checked_into_git": false
+}

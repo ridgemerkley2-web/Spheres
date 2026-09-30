@@ -1,0 +1,53 @@
+{
+  "source_id": "br_mdb_tse_sgip_cen_2013_2019",
+  "submitted_response_identity": {
+    "accessed_date": "2026-09-28",
+    "source_response_bytes": 18952,
+    "source_response_sha256": "1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247",
+    "stability_check": "Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
+    "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet."
+  },
+  "current_response_review": {
+    "reviewer": "Codex /root/s20_preflight",
+    "reviewed_date": "2026-09-30",
+    "requests": [
+      {
+        "started_utc": "2026-09-30T09:00:32.124958+00:00",
+        "finished_utc": "2026-09-30T09:00:35.403452+00:00",
+        "bytes": 18945,
+        "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+        "http_status": 200
+      },
+      {
+        "started_utc": "2026-09-30T09:02:40.776262+00:00",
+        "finished_utc": "2026-09-30T09:02:42.027169+00:00",
+        "bytes": 18945,
+        "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+        "http_status": 200
+      },
+      {
+        "started_utc": "2026-09-30T09:09:08.507478+00:00",
+        "finished_utc": "2026-09-30T09:09:10.085593+00:00",
+        "bytes": 18945,
+        "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+        "http_status": 200
+      }
+    ],
+    "submitted_raw_body_recovered": false,
+    "cause_of_change": "unknown",
+    "whole_body_equivalence": "unknown",
+    "permanent_stability_claimed": false,
+    "directly_checked_claim_ids": [
+      "br_mdb_tse_sgip_temer_registered_presidente_licenciado_20140716_20160405",
+      "br_mdb_tse_sgip_juca_registered_presidente_em_exercicio_20160312_20191006"
+    ],
+    "uncited_fields_accepted": false,
+    "holders_or_dates_changed": false
+  },
+  "active_response_pin": {
+    "bytes": 18945,
+    "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d"
+  },
+  "all_received_claims_unchanged": true,
+  "repair_commit": "255a66c0317fca81fcbac1461b986aa2b029162d"
+}

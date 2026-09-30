@@ -1,0 +1,1454 @@
+{
+  "submission": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+  "counts": {
+    "sources": 76,
+    "exact_submitted_responses": 75,
+    "qualified_current_response": 1,
+    "unretrieved_current_sources": 0
+  },
+  "sources": [
+    {
+      "source_id": "br_pdt_legalidade_interview_199611",
+      "url": "https://web.archive.org/web/19970630073837id_/http://www.pdt.org.br:80/bzent.htm",
+      "http_status": 200,
+      "expected_bytes": 18394,
+      "expected_sha256": "fb0bf4fcb0ed1c0635364bf42e42a19898fcf350452e9e3832c8bd40a9e21f15",
+      "actual_bytes": 18394,
+      "actual_sha256": "fb0bf4fcb0ed1c0635364bf42e42a19898fcf350452e9e3832c8bd40a9e21f15",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_legalidade_interview_199611.body",
+      "claim_ids": [
+        "br_pdt_brizola_styled_presidente_nacional_199611"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_home_19970411",
+      "url": "https://web.archive.org/web/19970414062134id_/http://www.pdt.org.br:80/",
+      "http_status": 200,
+      "expected_bytes": 25433,
+      "expected_sha256": "03f0b964fee4637ae4cb3cc9350f153cc391d9d6f45f854829a06c2e0204166a",
+      "actual_bytes": 25433,
+      "actual_sha256": "03f0b964fee4637ae4cb3cc9350f153cc391d9d6f45f854829a06c2e0204166a",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_home_19970411.body",
+      "claim_ids": [
+        "br_pdt_brizola_presidente_nacional_home_19970411"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_marcha_speech_19990826",
+      "url": "https://web.archive.org/web/20000116085821id_/http://www.pdt.org.br:80/bzdisc260899.htm",
+      "http_status": 200,
+      "expected_bytes": 18015,
+      "expected_sha256": "5e4e7c6f57d5841362c4e8d3730684700d9fac9c03018eeeb3a8e756d7f54d4b",
+      "actual_bytes": 18015,
+      "actual_sha256": "5e4e7c6f57d5841362c4e8d3730684700d9fac9c03018eeeb3a8e756d7f54d4b",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_marcha_speech_19990826.body",
+      "claim_ids": [
+        "br_pdt_brizola_styled_presidente_do_pdt_19990826"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_tijolaco_35_2004",
+      "url": "https://web.archive.org/web/20040615071610id_/http://www.pdt.org.br:80/partido/tijolao35.asp",
+      "http_status": 200,
+      "expected_bytes": 25195,
+      "expected_sha256": "cc77652ee528d524a0f4aff4df7f4f337c8306c2a26ada286300fcc2477c0df0",
+      "actual_bytes": 25195,
+      "actual_sha256": "cc77652ee528d524a0f4aff4df7f4f337c8306c2a26ada286300fcc2477c0df0",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_tijolaco_35_2004.body",
+      "claim_ids": [
+        "br_pdt_brizola_signs_tijolaco_35_as_presidente_nacional"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_salario_minimo_20040602",
+      "url": "https://web.archive.org/web/20040612091805id_/http://www.pdt.org.br:80/partido/bz020604.asp",
+      "http_status": 200,
+      "expected_bytes": 13833,
+      "expected_sha256": "e3340fc33b4aca1ecb402aa9456c5c69767352b42929294af1d0ca22a3c5dccc",
+      "actual_bytes": 13833,
+      "actual_sha256": "e3340fc33b4aca1ecb402aa9456c5c69767352b42929294af1d0ca22a3c5dccc",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_salario_minimo_20040602.body",
+      "claim_ids": [
+        "br_pdt_brizola_meets_caucuses_as_presidente_nacional_20040602"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_direcao_nacional_capt20040609",
+      "url": "https://web.archive.org/web/20040609183021id_/http://www.pdt.org.br:80/quem_e_quem/direcao_nac.asp",
+      "http_status": 200,
+      "expected_bytes": 14611,
+      "expected_sha256": "709efb8dabd73c7467950275ba702c6e88c9434b15d7579191853dc0ecc68585",
+      "actual_bytes": 14611,
+      "actual_sha256": "709efb8dabd73c7467950275ba702c6e88c9434b15d7579191853dc0ecc68585",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_direcao_nacional_capt20040609.body",
+      "claim_ids": [
+        "br_pdt_roster_brizola_presidente_lupi_first_vice_capt20040609"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_home_20040621",
+      "url": "https://web.archive.org/web/20040622095219id_/http://www.pdt.org.br:80/",
+      "http_status": 200,
+      "expected_bytes": 65862,
+      "expected_sha256": "6434552e5529bff3ac6919dcc884a19eff233b06a56710e311aee39fbebe5c3e",
+      "actual_bytes": 65862,
+      "actual_sha256": "6434552e5529bff3ac6919dcc884a19eff233b06a56710e311aee39fbebe5c3e",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_home_20040621.body",
+      "claim_ids": [
+        "br_pdt_brizola_dies_as_presidente_nacional_20040621"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_curitiba_perda_20040622",
+      "url": "https://web.archive.org/web/20040818202640id_/http://www.pdt.org.br:80/partido/bzpr.asp",
+      "http_status": 200,
+      "expected_bytes": 15909,
+      "expected_sha256": "1b6b81bdd8217fe780edabdcad2213fbe72e397bfaf534523b009b84b4c75dd3",
+      "actual_bytes": 15909,
+      "actual_sha256": "1b6b81bdd8217fe780edabdcad2213fbe72e397bfaf534523b009b84b4c75dd3",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_curitiba_perda_20040622.body",
+      "claim_ids": [
+        "br_pdt_curitiba_reports_death_of_presidente_nacional"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_home_20040706",
+      "url": "https://web.archive.org/web/20040707083829id_/http://www.pdt.org.br:80/",
+      "http_status": 200,
+      "expected_bytes": 46336,
+      "expected_sha256": "7430e33a5f63f88bde80b56b64fc318c6c6feb7c392641cbd4a84cb57ebce046",
+      "actual_bytes": 46336,
+      "actual_sha256": "7430e33a5f63f88bde80b56b64fc318c6c6feb7c392641cbd4a84cb57ebce046",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_home_20040706.body",
+      "claim_ids": [
+        "br_pdt_lupi_presidente_nacional_home_20040706",
+        "br_pdt_home_links_executive_note_after_succession_20040706"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_direcao_nacional_capt20040722",
+      "url": "https://web.archive.org/web/20040722065735id_/http://www.pdt.org.br:80/quem_e_quem/direcao_nac.asp",
+      "http_status": 200,
+      "expected_bytes": 15559,
+      "expected_sha256": "1f29d9dc56b12f36992413be08074e24b3bf5f6ed9e5de762123a356b11a6f74",
+      "actual_bytes": 15559,
+      "actual_sha256": "1f29d9dc56b12f36992413be08074e24b3bf5f6ed9e5de762123a356b11a6f74",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_direcao_nacional_capt20040722.body",
+      "claim_ids": [
+        "br_pdt_roster_lupi_presidente_capt20040722"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_perfil_lupi_capt20041011",
+      "url": "https://web.archive.org/web/20041011122547id_/http://www.pdt.org.br:80/partido/clupi.asp",
+      "http_status": 200,
+      "expected_bytes": 19160,
+      "expected_sha256": "4a6e4c43bc6750f43bcda5cba3a35d31c0f031cffe00fe15b8f9a2a95c280c68",
+      "actual_bytes": 19160,
+      "actual_sha256": "4a6e4c43bc6750f43bcda5cba3a35d31c0f031cffe00fe15b8f9a2a95c280c68",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_perfil_lupi_capt20041011.body",
+      "claim_ids": [
+        "br_pdt_lupi_assumes_automatically_on_brizola_death"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_edital_convencao_20050228",
+      "url": "https://web.archive.org/web/20050305064221id_/http://www.pdt.org.br:80/partido/pdt_convencao.asp",
+      "http_status": 200,
+      "expected_bytes": 20965,
+      "expected_sha256": "b3419d17a307dde665c447e93683886a976d395fd3f760580461acaf74017db4",
+      "actual_bytes": 20965,
+      "actual_sha256": "b3419d17a307dde665c447e93683886a976d395fd3f760580461acaf74017db4",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_edital_convencao_20050228.body",
+      "claim_ids": [
+        "br_pdt_lupi_signs_convocation_as_presidente_nacional_20050228",
+        "br_pdt_convention_convoked_for_20050321_20050228"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_convencao_reelege_20050321",
+      "url": "https://web.archive.org/web/20050927215635id_/http://www.pdt.org.br/partido/pdt_convencao.asp",
+      "http_status": 200,
+      "expected_bytes": 44214,
+      "expected_sha256": "0813cd63c1108142c232dbf969ec833bf139fe92f9543dc1f52b5de84482d22a",
+      "actual_bytes": 44214,
+      "actual_sha256": "0813cd63c1108142c232dbf969ec833bf139fe92f9543dc1f52b5de84482d22a",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_convencao_reelege_20050321.body",
+      "claim_ids": [
+        "br_pdt_convention_held_20050321",
+        "br_pdt_lupi_styled_atual_presidente_on_convention_day_20050321",
+        "br_pdt_lupi_reelected_convention_20050321"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_edital_convencao_20070209",
+      "url": "https://web.archive.org/web/20070308093648id_/http://www.pdt.org.br:80/partido/pdt_convencao.asp",
+      "http_status": 200,
+      "expected_bytes": 20067,
+      "expected_sha256": "4c470275a725b531edfbdc0e09a00d69da449e8fc3f561fe7f712a2aad3cbca9",
+      "actual_bytes": 20067,
+      "actual_sha256": "4c470275a725b531edfbdc0e09a00d69da449e8fc3f561fe7f712a2aad3cbca9",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_edital_convencao_20070209.body",
+      "claim_ids": [
+        "br_pdt_lupi_signs_resolution_001_07_as_presidente_nacional_20070209",
+        "br_pdt_convention_convoked_for_20070309"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_convencao_reelege_20090306",
+      "url": "https://web.archive.org/web/20210513004503id_/https://www.pdt.org.br/index.php/convencao-nacional-reelege-lupi-presidente-do-12/",
+      "http_status": 200,
+      "expected_bytes": 72613,
+      "expected_sha256": "e43e21986754af7d3666473dd19d038205c4a49736ef3d2e161905fefe642a52",
+      "actual_bytes": 72613,
+      "actual_sha256": "e43e21986754af7d3666473dd19d038205c4a49736ef3d2e161905fefe642a52",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_convencao_reelege_20090306.body",
+      "claim_ids": [
+        "br_pdt_lupi_reelected_while_licenciado_20090306",
+        "br_pdt_vieira_da_cunha_keeps_command_20090306"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_tse_sgip_cen_2017_2019",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70996&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 14992,
+      "expected_sha256": "39ac6e0ca1c5216f4481eb60254a0c5b60e8249bd1525fee6d7cbbb7cd71572d",
+      "actual_bytes": 14992,
+      "actual_sha256": "39ac6e0ca1c5216f4481eb60254a0c5b60e8249bd1525fee6d7cbbb7cd71572d",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_tse_sgip_cen_2017_2019.body",
+      "claim_ids": [
+        "br_pdt_tse_sgip_lupi_registered_exercise_20170318_20190318"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_xxiii_convencao_20170318",
+      "url": "https://web.archive.org/web/20170318211225id_/http://www.pdt.org.br/index.php/xxiii-convencao-reconduz-lupi-e-exalta-ciro-para-presidente/",
+      "http_status": 200,
+      "expected_bytes": 63558,
+      "expected_sha256": "853b9be30199ba0c5c65ada3116e1e41fbb8c54bdc1e447cb6534b1f023e70ce",
+      "actual_bytes": 63558,
+      "actual_sha256": "853b9be30199ba0c5c65ada3116e1e41fbb8c54bdc1e447cb6534b1f023e70ce",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_xxiii_convencao_20170318.body",
+      "claim_ids": [
+        "br_pdt_lupi_reconducted_xxiii_convention_20170318"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_historia_convencoes_20190315",
+      "url": "https://web.archive.org/web/20190319020710id_/http://www.pdt.org.br:80/index.php/xxv-convencao-nacional-do-pdt-um-resgate-da-historia-e-das-lutas-do-trabalhismo/",
+      "http_status": 200,
+      "expected_bytes": 101392,
+      "expected_sha256": "a23cf8f995f9e7d86aa78721fbeb4bb9afdc170cdc65526aaaf26268c49d3e79",
+      "actual_bytes": 101392,
+      "actual_sha256": "a23cf8f995f9e7d86aa78721fbeb4bb9afdc170cdc65526aaaf26268c49d3e79",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_historia_convencoes_20190315.body",
+      "claim_ids": [
+        "br_pdt_history_v_convention_reconducts_brizola_1992",
+        "br_pdt_history_ix_convention_reconducts_brizola_1999",
+        "br_pdt_history_lupi_assumed_interim_executive_meeting_2004",
+        "br_pdt_history_xvi_convention_reelects_lupi_2007",
+        "br_pdt_history_lupi_leave_to_vieira_da_cunha_2008"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_xxv_convencao_20190318",
+      "url": "https://web.archive.org/web/20190320060546id_/http://www.pdt.org.br:80/index.php/diretorio-nacional-do-pdt-fecha-questao-contra-reforma-da-previdencia/",
+      "http_status": 200,
+      "expected_bytes": 73307,
+      "expected_sha256": "f6960ed1e4d8a4e8c5b10d199ce02fe91d63ac195a2769d84fe832e897dd03a2",
+      "actual_bytes": 73307,
+      "actual_sha256": "f6960ed1e4d8a4e8c5b10d199ce02fe91d63ac195a2769d84fe832e897dd03a2",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_xxv_convencao_20190318.body",
+      "claim_ids": [
+        "br_pdt_lupi_reconducted_xxv_convention_20190318"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_tse_sgip_cen_2019_2022",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=269142&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 15692,
+      "expected_sha256": "cde06d860b4f625fb7bf2690bf68d0fa6bfb54cdb442e80117987d0b89b21c7d",
+      "actual_bytes": 15692,
+      "actual_sha256": "cde06d860b4f625fb7bf2690bf68d0fa6bfb54cdb442e80117987d0b89b21c7d",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_tse_sgip_cen_2019_2022.body",
+      "claim_ids": [
+        "br_pdt_tse_sgip_lupi_registered_exercise_20190318_20220121"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_convencao_hibrida_20211221",
+      "url": "https://web.archive.org/web/20220120040443id_/https://www.pdt.org.br/index.php/pdt-realiza-convencao-nacional-hibrida-em-21-janeiro-em-brasilia/",
+      "http_status": 200,
+      "expected_bytes": 66378,
+      "expected_sha256": "586d61f82f732bee41f427f06d8d48e7dfd78846435dd9025fe3566ef4eaf905",
+      "actual_bytes": 66378,
+      "actual_sha256": "586d61f82f732bee41f427f06d8d48e7dfd78846435dd9025fe3566ef4eaf905",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_convencao_hibrida_20211221.body",
+      "claim_ids": [
+        "br_pdt_lupi_signs_normative_resolution_003_2021_20211221",
+        "br_pdt_convention_convoked_for_20220121_20211221"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_convencao_virtual_20220110",
+      "url": "https://web.archive.org/web/20220120052812id_/https://www.pdt.org.br/index.php/convencao-nacional-do-pdt-sera-realizada-exclusivamente-no-modelo-virtual/",
+      "http_status": 200,
+      "expected_bytes": 69032,
+      "expected_sha256": "c41343a7553dfd8f452adee7a5a64ff318fd2a3b6e1748ec5fdd0a32946c2fcb",
+      "actual_bytes": 69032,
+      "actual_sha256": "c41343a7553dfd8f452adee7a5a64ff318fd2a3b6e1748ec5fdd0a32946c2fcb",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pdt_convencao_virtual_20220110.body",
+      "claim_ids": [
+        "br_pdt_lupi_signs_communique_as_presidente_nacional_20220110"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_discurso_lupi_20220121",
+      "url": "https://web.archive.org/web/20220122061423id_/https://www.pdt.org.br/index.php/discurso-de-carlos-lupi-na-convencao-nacional-do-pdt/",
+      "http_status": 200,
+      "expected_bytes": 76754,
+      "expected_sha256": "0d13d37f8de19f8a441f2de316c064d5df03ecf3603f969b3de223d5303a51d2",
+      "actual_bytes": 76754,
+      "actual_sha256": "0d13d37f8de19f8a441f2de316c064d5df03ecf3603f969b3de223d5303a51d2",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_pdt_discurso_lupi_20220121.body",
+      "claim_ids": [
+        "br_pdt_convention_speech_published_20220121"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_figueiredo_exercicio_20230202",
+      "url": "https://web.archive.org/web/20230202164642id_/https://www.pdt.org.br/index.php/andre-figueiredo-assume-a-presidencia-nacional-do-pdt/",
+      "http_status": 200,
+      "expected_bytes": 88104,
+      "expected_sha256": "8fb843214e35c9873cabb6732e28dd94c8b7dc9e5142fff0a4c46e2fab0d4145",
+      "actual_bytes": 88104,
+      "actual_sha256": "8fb843214e35c9873cabb6732e28dd94c8b7dc9e5142fff0a4c46e2fab0d4145",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_pdt_figueiredo_exercicio_20230202.body",
+      "claim_ids": [
+        "br_pdt_lupi_takes_leave_of_presidency_20230202",
+        "br_pdt_figueiredo_announced_presidente_em_exercicio_20230202"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_lupi_retorna_20250521",
+      "url": "https://web.archive.org/web/20250521210115id_/https://pdt.org.br/index.php/carlos-lupi-retorna-a-presidencia-nacional-do-pdt/",
+      "http_status": 200,
+      "expected_bytes": 73756,
+      "expected_sha256": "f6269943fc95c3c14fd14deed647e41195b245dd345499923d96a98dc474ef80",
+      "actual_bytes": 73756,
+      "actual_sha256": "f6269943fc95c3c14fd14deed647e41195b245dd345499923d96a98dc474ef80",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_pdt_lupi_retorna_20250521.body",
+      "claim_ids": [
+        "br_pdt_lupi_returns_to_presidency_20250520",
+        "br_pdt_lupi_leave_2023_recalled",
+        "br_pdt_lupi_styled_presidente_nacional_20250521"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pdt_comite_fortaleza_20260819",
+      "url": "https://web.archive.org/web/20260819171758id_/https://pdt.org.br/index.php/com-carlos-lupi-elmano-camilo-e-cid-andre-figueiredo-inaugura-comite-em-fortaleza-e-mostra-forca-da-militancia/",
+      "http_status": 200,
+      "expected_bytes": 19286,
+      "expected_sha256": "62e503d4ac859ccaeca86a1a77da3e0904b47ca4de8b4cfdbc5585ad2b87b690",
+      "actual_bytes": 19286,
+      "actual_sha256": "62e503d4ac859ccaeca86a1a77da3e0904b47ca4de8b4cfdbc5585ad2b87b690",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "zstd",
+      "body_relative_path": "retry-02/downloaded/br_pdt_comite_fortaleza_20260819.body",
+      "claim_ids": [
+        "br_pdt_lupi_styled_presidente_nacional_20260819"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false,
+      "decoded_response": {
+        "relative_path": "source-text/br_pdt_comite_fortaleza_20260819.decoded.html",
+        "bytes": 81758,
+        "sha256": "ae6b36dedd06d3354722464585921d939757399e7412aca454dc4744e5888758",
+        "decoder": "Node zlib.zstdDecompressSync"
+      }
+    },
+    {
+      "source_id": "br_pdt_eleicoes_2026_20260904",
+      "url": "https://web.archive.org/web/20260905041426id_/https://pdt.org.br/index.php/pdt-entra-forte-na-disputa-de-2026-com-candidaturas-competitivas-em-todas-as-regioes-do-pais/",
+      "http_status": 200,
+      "expected_bytes": 24187,
+      "expected_sha256": "99e5090f3968db00f07018a04e17ede002253921ded13cfe1561f9bb720c2d48",
+      "actual_bytes": 24187,
+      "actual_sha256": "99e5090f3968db00f07018a04e17ede002253921ded13cfe1561f9bb720c2d48",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "zstd",
+      "body_relative_path": "retry-02/downloaded/br_pdt_eleicoes_2026_20260904.body",
+      "claim_ids": [
+        "br_pdt_lupi_styled_presidente_nacional_20260904"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false,
+      "decoded_response": {
+        "relative_path": "source-text/br_pdt_eleicoes_2026_20260904.decoded.html",
+        "bytes": 95681,
+        "sha256": "b836ef065993754d305254ff3b18eb23c158d39d107f4df1919f5c98ae2b43c4",
+        "decoder": "Node zlib.zstdDecompressSync"
+      }
+    },
+    {
+      "source_id": "br_mdb_jader_presidente_page_1999",
+      "url": "https://web.archive.org/web/19990209051703id_/http://www.pmdb.org.br:80/presid.htm",
+      "http_status": 200,
+      "expected_bytes": 1976,
+      "expected_sha256": "969e0f67bf42b4e12f7e955f05fa23ea5b6d0d9cd5d9732ecaa387761507efd3",
+      "actual_bytes": 1976,
+      "actual_sha256": "969e0f67bf42b4e12f7e955f05fa23ea5b6d0d9cd5d9732ecaa387761507efd3",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_jader_presidente_page_1999.body",
+      "claim_ids": [
+        "br_mdb_jader_styled_presidente_nacional_undated",
+        "br_mdb_jader_elected_19980915"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_temer_vota_clt_200112",
+      "url": "https://web.archive.org/web/20020111051010id_/http://www.pmdb.org.br:80/noticias/nt_051101_05.htm",
+      "http_status": 200,
+      "expected_bytes": 10603,
+      "expected_sha256": "30ec40a39f7a413e3e76861b04695cf8e26526f6c6bfe8a4f1da7da8da595f82",
+      "actual_bytes": 10603,
+      "actual_sha256": "30ec40a39f7a413e3e76861b04695cf8e26526f6c6bfe8a4f1da7da8da595f82",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_temer_vota_clt_200112.body",
+      "claim_ids": [
+        "br_mdb_temer_styled_presidente_do_pmdb_undated_2001"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_nota_oficial_roriz_20030702",
+      "url": "https://web.archive.org/web/20030814050244id_/http://www.pmdb.org.br:80/noticias/nt_020703.htm",
+      "http_status": 200,
+      "expected_bytes": 12317,
+      "expected_sha256": "f2110d78153bf94fcef70aca6c10c4f3f27fc2fa5a696526054323e886563a48",
+      "actual_bytes": 12317,
+      "actual_sha256": "f2110d78153bf94fcef70aca6c10c4f3f27fc2fa5a696526054323e886563a48",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_nota_oficial_roriz_20030702.body",
+      "claim_ids": [
+        "br_mdb_temer_signs_official_note_as_presidente_20030702"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_executiva_roster_capt2009",
+      "url": "https://web.archive.org/web/20091108153056id_/http://www.pmdb.org.br:80/executiva.php",
+      "http_status": 200,
+      "expected_bytes": 26330,
+      "expected_sha256": "7155be74983beae708f39769c57f2341ac950c3dd0dddfb36b6841560a934e98",
+      "actual_bytes": 26330,
+      "actual_sha256": "7155be74983beae708f39769c57f2341ac950c3dd0dddfb36b6841560a934e98",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_executiva_roster_capt2009.body",
+      "claim_ids": [
+        "br_mdb_roster_temer_presidente_licenciado_capt2009",
+        "br_mdb_iris_presidente_em_exercicio_roster_capt2009"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_iris_interina_20090310",
+      "url": "https://web.archive.org/web/20101012103809id_/http://www.pmdb.org.br/noticias.php?cd=240",
+      "http_status": 200,
+      "expected_bytes": 47549,
+      "expected_sha256": "c7a8b570f147e4976a9bd31b8f7e0f08ebf6b62ca9ec568bf383cd88e4c686d0",
+      "actual_bytes": 47549,
+      "actual_sha256": "c7a8b570f147e4976a9bd31b8f7e0f08ebf6b62ca9ec568bf383cd88e4c686d0",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_iris_interina_20090310.body",
+      "claim_ids": [
+        "br_mdb_iris_assumes_interim_presidency_20090310",
+        "br_mdb_temer_leave_20090310"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_nota_temer_licenciado_20100121",
+      "url": "https://web.archive.org/web/20101010032018id_/http://www.pmdb.org.br/noticias.php?cd=2054",
+      "http_status": 200,
+      "expected_bytes": 45487,
+      "expected_sha256": "f04896ba6d291ee985cee0c4fc0072d032ce989ed7b70d2bfa0fc17972200603",
+      "actual_bytes": 45487,
+      "actual_sha256": "f04896ba6d291ee985cee0c4fc0072d032ce989ed7b70d2bfa0fc17972200603",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_nota_temer_licenciado_20100121.body",
+      "claim_ids": [
+        "br_mdb_temer_signs_note_as_presidente_licenciado_20100121",
+        "br_mdb_convention_set_for_20100206_prospective_20100120"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_executiva_roster_capt2011",
+      "url": "https://web.archive.org/web/20110521133404id_/http://www.pmdb.org.br/executiva.php",
+      "http_status": 200,
+      "expected_bytes": 26833,
+      "expected_sha256": "3c34c2cf63ec1a410389378e63e87787a69340525bd97bc748476134b745beda",
+      "actual_bytes": 26833,
+      "actual_sha256": "3c34c2cf63ec1a410389378e63e87787a69340525bd97bc748476134b745beda",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_executiva_roster_capt2011.body",
+      "claim_ids": [
+        "br_mdb_executive_posse_20100310",
+        "br_mdb_roster_temer_presidente_licenciado_capt2011",
+        "br_mdb_raupp_em_exercicio_roster_capt2011"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_convencao_2013_20130302",
+      "url": "https://web.archive.org/web/20130305171905id_/http://pmdb.org.br:80/noticias/pmdb-elege-nova-executiva-nacional-para-o-bienio-2013-2015/",
+      "http_status": 200,
+      "expected_bytes": 24869,
+      "expected_sha256": "045d5b38dbf90c939d034b1f212710c800b56681f493ee34f366c4257d61e912",
+      "actual_bytes": 24869,
+      "actual_sha256": "045d5b38dbf90c939d034b1f212710c800b56681f493ee34f366c4257d61e912",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_convencao_2013_20130302.body",
+      "claim_ids": [
+        "br_mdb_convention_held_20130302",
+        "br_mdb_temer_reelected_20130302"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_tse_sgip_cen_2013_2019",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70945&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 18952,
+      "expected_sha256": "1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247",
+      "actual_bytes": 18945,
+      "actual_sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+      "exact_recorded_response": false,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_tse_sgip_cen_2013_2019.body",
+      "claim_ids": [
+        "br_mdb_tse_sgip_temer_registered_presidente_licenciado_20140716_20160405",
+        "br_mdb_tse_sgip_juca_registered_presidente_em_exercicio_20160312_20191006"
+      ],
+      "content_review": "Only two directly read current registry claims accepted; old full response unavailable, cause and whole-body equivalence unknown.",
+      "current_response_accepted": true,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_raupp_presidente_nacional_20140514",
+      "url": "https://web.archive.org/web/20140528172803id_/http://pmdb.org.br/noticias/em-reuniao-da-executiva-nacional-parlamentares-e-diretorios-reforcam-apoio-a-michel-temer/",
+      "http_status": 200,
+      "expected_bytes": 29191,
+      "expected_sha256": "20b987ff614df845a6f2758977dfac8e8afe6313fd80e45dff9f893a4cc912e1",
+      "actual_bytes": 29191,
+      "actual_sha256": "20b987ff614df845a6f2758977dfac8e8afe6313fd80e45dff9f893a4cc912e1",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_raupp_presidente_nacional_20140514.body",
+      "claim_ids": [
+        "br_mdb_raupp_styled_presidente_nacional_20140514"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_convencao_2016_20160312",
+      "url": "https://web.archive.org/web/20160314231847id_/http://pmdb.org.br:80/noticias/com-96-dos-votos-michel-temer-e-reconduzido-a-presidencia-do-pmdb/",
+      "http_status": 200,
+      "expected_bytes": 26811,
+      "expected_sha256": "8df431b56af013f55fc50a0f463675d37c3e8a289d0672cd9e959dc1b38f314a",
+      "actual_bytes": 26811,
+      "actual_sha256": "8df431b56af013f55fc50a0f463675d37c3e8a289d0672cd9e959dc1b38f314a",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_convencao_2016_20160312.body",
+      "claim_ids": [
+        "br_mdb_convention_held_20160312",
+        "br_mdb_temer_reelected_20160312"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_rompe_alianca_20160329",
+      "url": "https://web.archive.org/web/20160409013308id_/http://pmdb.org.br:80/noticias/pmdb-rompe-alianca-com-o-pt-e-o-governo-federal/",
+      "http_status": 200,
+      "expected_bytes": 26097,
+      "expected_sha256": "02b1d59bd0269a48d87910640a74004cc758275848dcbc428059d28f26f9c85f",
+      "actual_bytes": 26097,
+      "actual_sha256": "02b1d59bd0269a48d87910640a74004cc758275848dcbc428059d28f26f9c85f",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_rompe_alianca_20160329.body",
+      "claim_ids": [
+        "br_mdb_temer_styled_presidente_nacional_20160329"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_comunicado_licenca_temer_20160405",
+      "url": "https://web.archive.org/web/20160413120030id_/http://pmdb.org.br:80/noticias/comunicado-oficial/",
+      "http_status": 200,
+      "expected_bytes": 22944,
+      "expected_sha256": "bece8f741b6da2926d39f81ef63df7a6c87999e3310e6e3aeed5f269db6ba71d",
+      "actual_bytes": 22944,
+      "actual_sha256": "bece8f741b6da2926d39f81ef63df7a6c87999e3310e6e3aeed5f269db6ba71d",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_comunicado_licenca_temer_20160405.body",
+      "claim_ids": [
+        "br_mdb_temer_leave_20160405",
+        "br_mdb_juca_assumes_in_temer_place_20160405"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_juca_em_exercicio_20160407",
+      "url": "https://web.archive.org/web/20160421191806id_/http://pmdb.org.br/noticias/juca-encaminha-a-comissao-de-etica-do-pmdb-pedido-de-expulsao-dos-ministros-katia-abreu-e-celso-pansera/",
+      "http_status": 200,
+      "expected_bytes": 23911,
+      "expected_sha256": "48664939a6514e0088b243f2d985c9f2c636d27c86c51b708a4ec83d3953d510",
+      "actual_bytes": 23911,
+      "actual_sha256": "48664939a6514e0088b243f2d985c9f2c636d27c86c51b708a4ec83d3953d510",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_juca_em_exercicio_20160407.body",
+      "claim_ids": [
+        "br_mdb_juca_styled_presidente_em_exercicio_20160407"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_edital_convencao_20171123",
+      "url": "https://web.archive.org/web/20171230052402id_/http://pmdb.org.br:80/institucional/edital-de-convocacao/",
+      "http_status": 200,
+      "expected_bytes": 23935,
+      "expected_sha256": "d835f7606e7b3797286e44681b108e0fb6b861dcf0e2a4d0124b9153f3bfa9f3",
+      "actual_bytes": 23935,
+      "actual_sha256": "d835f7606e7b3797286e44681b108e0fb6b861dcf0e2a4d0124b9153f3bfa9f3",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_edital_convencao_20171123.body",
+      "claim_ids": [
+        "br_mdb_juca_signs_edital_as_presidente_nacional_20171123",
+        "br_mdb_convention_called_renaming_prospective_20171123"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_pmdb_muda_sigla_20171219",
+      "url": "https://web.archive.org/web/20171222052258id_/http://pmdb.org.br/noticias/pmdb-muda-a-sigla-e-volta-a-ser-o-mdb/",
+      "http_status": 200,
+      "expected_bytes": 26785,
+      "expected_sha256": "ab5b523acbdf71dc143e32833c13edc9ed80633cd0c903576cf1cd586469dca0",
+      "actual_bytes": 26785,
+      "actual_sha256": "ab5b523acbdf71dc143e32833c13edc9ed80633cd0c903576cf1cd586469dca0",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_mdb_pmdb_muda_sigla_20171219.body",
+      "claim_ids": [
+        "br_mdb_extraordinary_convention_held_20171219",
+        "br_mdb_convention_votes_renaming_20171219",
+        "br_mdb_juca_styled_presidente_nacional_20171219"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_adocao_sigla_tse_20180201",
+      "url": "https://web.archive.org/web/20190107050031id_/https://www.mdb.org.br/partido-comunica-adocao-da-sigla-mdb-a-justica-eleitoral/",
+      "http_status": 200,
+      "expected_bytes": 19879,
+      "expected_sha256": "ac7c03e352f54699dc45442c73a54dabe62e64eede810c03da12f2ec693e4ce6",
+      "actual_bytes": 19879,
+      "actual_sha256": "ac7c03e352f54699dc45442c73a54dabe62e64eede810c03da12f2ec693e4ce6",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_adocao_sigla_tse_20180201.body",
+      "claim_ids": [
+        "br_mdb_renaming_communicated_to_tse_20180131"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_prorroga_mandatos_20180222",
+      "url": "https://web.archive.org/web/20190106054630id_/https://www.mdb.org.br/executiva-do-mdb-prorroga-mandatos-da-direcao-nacional-do-partido/",
+      "http_status": 200,
+      "expected_bytes": 19612,
+      "expected_sha256": "6e841c6667e5c3848ed51305a58a6ab43918e3c8c0aeea09a732292f03432df9",
+      "actual_bytes": 19612,
+      "actual_sha256": "6e841c6667e5c3848ed51305a58a6ab43918e3c8c0aeea09a732292f03432df9",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_prorroga_mandatos_20180222.body",
+      "claim_ids": [
+        "br_mdb_executive_extends_mandates_20180221",
+        "br_mdb_juca_styled_presidente_nacional_20180222"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_tse_name_change_20180515",
+      "url": "https://web.archive.org/web/20180519032632id_/http://www.tse.jus.br/imprensa/noticias-tse/2018/Maio/aprovada-mudanca-do-nome-do-partido-do-movimento-democratico-brasileiro-pmdb",
+      "http_status": 200,
+      "expected_bytes": 90320,
+      "expected_sha256": "8489553b141275ee5d0cbc62239b41adba9d1f402ff9668c34eb524bca8375d9",
+      "actual_bytes": 90320,
+      "actual_sha256": "8489553b141275ee5d0cbc62239b41adba9d1f402ff9668c34eb524bca8375d9",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_tse_name_change_20180515.body",
+      "claim_ids": [
+        "br_mdb_tse_approves_name_change_20180515"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_executiva_roster_capt201901",
+      "url": "https://web.archive.org/web/20190105014041id_/https://www.mdb.org.br/conheca/comissao-executiva-nacional/",
+      "http_status": 200,
+      "expected_bytes": 22963,
+      "expected_sha256": "4b2e254c640213684a22209b058f1341d420ca420c2c73fc86e76574d75c04d3",
+      "actual_bytes": 22963,
+      "actual_sha256": "4b2e254c640213684a22209b058f1341d420ca420c2c73fc86e76574d75c04d3",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_executiva_roster_capt201901.body",
+      "claim_ids": [
+        "br_mdb_roster_temer_presidente_licenciado_capt201901",
+        "br_mdb_roster_juca_first_vice_em_exercicio_capt201901",
+        "br_mdb_roster_temer_elected_six_times"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_presidentes_lista_capt201901",
+      "url": "https://web.archive.org/web/20190105045549id_/https://www.mdb.org.br/conheca/presidentes-do-mdb/",
+      "http_status": 200,
+      "expected_bytes": 20891,
+      "expected_sha256": "dc42d8070c8cf504ca59d9775dd2da641da2e45c8ea3702eef04b36004148183",
+      "actual_bytes": 20891,
+      "actual_sha256": "dc42d8070c8cf504ca59d9775dd2da641da2e45c8ea3702eef04b36004148183",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_presidentes_lista_capt201901.body",
+      "claim_ids": [
+        "br_mdb_list_jader_mandate_1998_2001",
+        "br_mdb_list_maguito_mandate_2001",
+        "br_mdb_list_temer_mandate_2001_leave_2009",
+        "br_mdb_list_iris_interim_2009_2010",
+        "br_mdb_list_temer_resumes_2010_leave_2010",
+        "br_mdb_list_raupp_interim_2010_2014",
+        "br_mdb_list_temer_assumes_2014",
+        "br_mdb_list_juca_interim_2016"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_juca_juventude_20190617",
+      "url": "https://web.archive.org/web/20190619212148id_/https://www.mdb.org.br/romero-juca-presidente-do-mdb-participa-de-encontro-da-juventude-do-partido/",
+      "http_status": 200,
+      "expected_bytes": 21843,
+      "expected_sha256": "d4f1d3206c6701ab022a72bda52035712fc5d707ce140e9be2fd44e38cbef697",
+      "actual_bytes": 21843,
+      "actual_sha256": "d4f1d3206c6701ab022a72bda52035712fc5d707ce140e9be2fd44e38cbef697",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_juca_juventude_20190617.body",
+      "claim_ids": [
+        "br_mdb_juca_styled_presidente_do_mdb_20190617"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_eleicao_baleia_20191007",
+      "url": "https://web.archive.org/web/20221101093640id_/https://www.mdb.org.br/uniao-e-renovacao-marcam-eleicao-de-baleia-rossi-como-novo-presidente-nacional-do-mdb/",
+      "http_status": 200,
+      "expected_bytes": 57402,
+      "expected_sha256": "2df1129a16479263b8b668d0440a20a64d28e3ec0ca29f4fec177949b2af6953",
+      "actual_bytes": 57402,
+      "actual_sha256": "2df1129a16479263b8b668d0440a20a64d28e3ec0ca29f4fec177949b2af6953",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_eleicao_baleia_20191007.body",
+      "claim_ids": [
+        "br_mdb_convention_elects_executive_baleia_20191006"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_tse_sgip_cen_2019_2023",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=291052&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 21597,
+      "expected_sha256": "a2a977c86c8967127f78d3ac0a29d01b73579268d7f9e2c00d87350c06945697",
+      "actual_bytes": 21597,
+      "actual_sha256": "a2a977c86c8967127f78d3ac0a29d01b73579268d7f9e2c00d87350c06945697",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_mdb_tse_sgip_cen_2019_2023.body",
+      "claim_ids": [
+        "br_mdb_tse_sgip_baleia_registered_exercise_20191006_20231006"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_baleia_reune_executiva_20191017",
+      "url": "https://web.archive.org/web/20221102170525id_/https://www.mdb.org.br/presidente-baleia-rossi-reune-diretores-da-nova-executiva-do-partido/",
+      "http_status": 200,
+      "expected_bytes": 46414,
+      "expected_sha256": "b865cd05d330adc89b15e3969ab863c63c2752e92f42434b6de379a247c97eb6",
+      "actual_bytes": 46414,
+      "actual_sha256": "b865cd05d330adc89b15e3969ab863c63c2752e92f42434b6de379a247c97eb6",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_baleia_reune_executiva_20191017.body",
+      "claim_ids": [
+        "br_mdb_baleia_styled_novo_presidente_20191017"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_baleia_prorrogacao_20210223",
+      "url": "https://web.archive.org/web/20210223193830id_/https://www.mdb.org.br/baleia-rossi-e-reconduzido-como-presidente-do-mdb-ate-outubro-de-2022/",
+      "http_status": 200,
+      "expected_bytes": 25530,
+      "expected_sha256": "e8883937863e3c42e0dcbb6da44196f7289ecf55945b6b1265f421df2acadb5f",
+      "actual_bytes": 25530,
+      "actual_sha256": "e8883937863e3c42e0dcbb6da44196f7289ecf55945b6b1265f421df2acadb5f",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_baleia_prorrogacao_20210223.body",
+      "claim_ids": [
+        "br_mdb_executive_extends_baleia_mandate_20210223"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_convencao_20231005",
+      "url": "https://web.archive.org/web/20231014034532id_/https://www.mdb.org.br/convencao-do-mdb-elege-novo-diretorio-sob-influencia-de-voto-popular/",
+      "http_status": 200,
+      "expected_bytes": 43330,
+      "expected_sha256": "a8c259541a6062e40d17cb5217513eef27855dccdfe63ba4e3b4fd620a364e1e",
+      "actual_bytes": 43330,
+      "actual_sha256": "a8c259541a6062e40d17cb5217513eef27855dccdfe63ba4e3b4fd620a364e1e",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_convencao_20231005.body",
+      "claim_ids": [
+        "br_mdb_convention_held_20231005",
+        "br_mdb_baleia_reelected_20231005"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_ata_diretorio_20231005",
+      "url": "https://web.archive.org/web/20240301071321id_/https://www.mdb.org.br/wp-content/uploads/2023/12/ATA-DA-REUNIAO-DO-DIRETORIO-NACIONAL-DO-MOVIMENTO-DEMOCRATICO-BRASILEIRO-MDB-05-10-2023.pdf",
+      "http_status": 200,
+      "expected_bytes": 232963,
+      "expected_sha256": "11e40f63775353561791c7b908aebe12eea72872cc46c49600b1d132987bef00",
+      "actual_bytes": 232963,
+      "actual_sha256": "11e40f63775353561791c7b908aebe12eea72872cc46c49600b1d132987bef00",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_ata_diretorio_20231005.body",
+      "claim_ids": [
+        "br_mdb_directorate_elects_executive_by_acclamation_20231005"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_ata_executiva_20250716",
+      "url": "https://web.archive.org/web/20250915073142id_/https://www.mdb.org.br/wp-content/uploads/2025/08/ATA_COMISSAO_EXECUTIVA_NACIONAL_16_DE_JULHO_2025_protocolo-1-739-2025_assinado_versaoImpressao.pdf",
+      "http_status": 200,
+      "expected_bytes": 246382,
+      "expected_sha256": "34de51f9758a6d442539783b90ebad5ed12831d2368ed848f9978b2b2a8261cb",
+      "actual_bytes": 246382,
+      "actual_sha256": "34de51f9758a6d442539783b90ebad5ed12831d2368ed848f9978b2b2a8261cb",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_mdb_ata_executiva_20250716.body",
+      "claim_ids": [
+        "br_mdb_baleia_opens_executive_meeting_as_presidente_nacional_20250716",
+        "br_mdb_executive_and_directorate_extended_to_20270515_20250716",
+        "br_mdb_baleia_reconduction_congratulated_20250716"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_mdb_executiva_convocada_df_20260608",
+      "url": "https://web.archive.org/web/20260618071709id_/https://www.mdb.org.br/comissao-executiva-nacional-e-convocada-para-deliberar-sobre-requerimento-do-mdb-do-distrito-fderal/",
+      "http_status": 200,
+      "expected_bytes": 27805,
+      "expected_sha256": "111b30b564711c2a166e2e9c0e5b83b2dd1fce465507769bbb6c38dcc9960809",
+      "actual_bytes": 27805,
+      "actual_sha256": "111b30b564711c2a166e2e9c0e5b83b2dd1fce465507769bbb6c38dcc9960809",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "zstd",
+      "body_relative_path": "retry-03/downloaded/br_mdb_executiva_convocada_df_20260608.body",
+      "claim_ids": [
+        "br_mdb_baleia_signs_decision_as_presidente_nacional_20260607",
+        "br_mdb_baleia_styled_presidente_nacional_20260608"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false,
+      "decoded_response": {
+        "relative_path": "source-text/br_mdb_executiva_convocada_df_20260608.decoded.html",
+        "bytes": 126473,
+        "sha256": "76e523b782094669e858f2dfad5891ab11d5820db09caa7235382f561bac97e9",
+        "decoder": "Node zlib.zstdDecompressSync"
+      }
+    },
+    {
+      "source_id": "br_mdb_resolucao_blinda_20260615",
+      "url": "https://web.archive.org/web/20260618071709id_/https://www.mdb.org.br/mdb-blinda-candidaturas-para-2026-com-normas-rigidas-contra-a-influencia-do-crime-organizado/",
+      "http_status": 200,
+      "expected_bytes": 31429,
+      "expected_sha256": "6bfcfc3908787472a743b69432050ec394e319d485c6f28c90796c3ae2ec88e2",
+      "actual_bytes": 31429,
+      "actual_sha256": "6bfcfc3908787472a743b69432050ec394e319d485c6f28c90796c3ae2ec88e2",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "zstd",
+      "body_relative_path": "retry-03/downloaded/br_mdb_resolucao_blinda_20260615.body",
+      "claim_ids": [
+        "br_mdb_baleia_signs_resolution_1_2026_20260330",
+        "br_mdb_baleia_styled_presidente_20260615"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false,
+      "decoded_response": {
+        "relative_path": "source-text/br_mdb_resolucao_blinda_20260615.decoded.html",
+        "bytes": 136700,
+        "sha256": "efa57533d6c3e5eba5f58fb124139a7f4ae48592e92d574f243bbcf49e3f8c5e",
+        "decoder": "Node zlib.zstdDecompressSync"
+      }
+    },
+    {
+      "source_id": "br_pfl_site_executiva_nacional_1999",
+      "url": "https://web.archive.org/web/20001017171549id_/http://www.pfl.org.br:80/orgaos/executiva_nacional.htm",
+      "http_status": 200,
+      "expected_bytes": 3808,
+      "expected_sha256": "2383d5710185953bf65dc3e7ce65a59dea55c8b04756962c58fa614b0f0b1e79",
+      "actual_bytes": 3808,
+      "actual_sha256": "2383d5710185953bf65dc3e7ce65a59dea55c8b04756962c58fa614b0f0b1e79",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_pfl_site_executiva_nacional_1999.body",
+      "claim_ids": [
+        "br_pfl_cen_elected_and_invested_bornhausen_presidente_19990507"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_agencia_bornhausen_20030307",
+      "url": "https://web.archive.org/web/20030313120640id_/http://www.pfl.org.br:80/noticias/news_view.asp?public=2003219144521",
+      "http_status": 200,
+      "expected_bytes": 11708,
+      "expected_sha256": "0937d44119f32e10e3b0830edea7991ff38ef81289794533126e8364a19b0327",
+      "actual_bytes": 11708,
+      "actual_sha256": "0937d44119f32e10e3b0830edea7991ff38ef81289794533126e8364a19b0327",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_pfl_agencia_bornhausen_20030307.body",
+      "claim_ids": [
+        "br_pfl_bornhausen_styled_presidente_do_pfl_20030307"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_convencao_2007_edital_20070313",
+      "url": "https://web.archive.org/web/20070317095802id_/http://www.pfl.org.br:80/convencao2007.asp",
+      "http_status": 200,
+      "expected_bytes": 16102,
+      "expected_sha256": "58a436876abbb399adaee310cb336efbc45968299cb221807690af14122476ce",
+      "actual_bytes": 16102,
+      "actual_sha256": "58a436876abbb399adaee310cb336efbc45968299cb221807690af14122476ce",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_pfl_convencao_2007_edital_20070313.body",
+      "claim_ids": [
+        "br_pfl_bornhausen_signs_convocation_as_presidente_20070313",
+        "br_pfl_convention_called_for_20070328_prospective_20070313"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_site_democratas_transformation_2007",
+      "url": "https://web.archive.org/web/20070329002404id_/http://www.pfl.org.br:80/democratas.asp",
+      "http_status": 200,
+      "expected_bytes": 2298,
+      "expected_sha256": "d5d0f6cfa1a40459f4e425a147b5119d5c6157dd971f1afe59d480dbd5bc67ef",
+      "actual_bytes": 2298,
+      "actual_sha256": "d5d0f6cfa1a40459f4e425a147b5119d5c6157dd971f1afe59d480dbd5bc67ef",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_pfl_site_democratas_transformation_2007.body",
+      "claim_ids": [
+        "br_pfl_site_states_transformation_into_democratas"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_resolucao_006_20070329",
+      "url": "https://web.archive.org/web/20110825144154id_/http://www.dem.org.br/2007/03/resolucao-n%c2%b0-006-de-29-de-marco-de-2007/",
+      "http_status": 200,
+      "expected_bytes": 42365,
+      "expected_sha256": "8429f4266587d57b37a26d8dbb7a9928543b53f0a3aa1490237c1b85231a328b",
+      "actual_bytes": 42365,
+      "actual_sha256": "8429f4266587d57b37a26d8dbb7a9928543b53f0a3aa1490237c1b85231a328b",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-03/downloaded/br_pfl_dem_resolucao_006_20070329.body",
+      "claim_ids": [
+        "br_pfl_resolution_006_issued_in_name_of_democratas_20070329",
+        "br_pfl_maia_signs_resolution_006_as_presidente_nacional_20070329"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_resolucao_112_20110215",
+      "url": "https://web.archive.org/web/20111007170601id_/http://www.dem.org.br:80/2011/02/resolucao-n%C2%B0-112-de-15-de-fevereiro-de-2011/",
+      "http_status": 200,
+      "expected_bytes": 46200,
+      "expected_sha256": "458aa24579577c57c6e8c81b0a3ab85e5d44fbc0497cd309b50b596d10156edc",
+      "actual_bytes": 46200,
+      "actual_sha256": "458aa24579577c57c6e8c81b0a3ab85e5d44fbc0497cd309b50b596d10156edc",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_pfl_dem_resolucao_112_20110215.body",
+      "claim_ids": [
+        "br_pfl_maia_signs_resolution_112_as_presidente_nacional_20110215"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_convencao_20110314",
+      "url": "https://web.archive.org/web/20110318015626id_/http://www.dem.org.br:80/2011/03/democratas-realiza-convencao-nacional-e-elege-nova-executiva/",
+      "http_status": 200,
+      "expected_bytes": 42578,
+      "expected_sha256": "786f897a9181a38f9f847af336fb84020e8b362b028d6fe81f63562e94cd2b25",
+      "actual_bytes": 42578,
+      "actual_sha256": "786f897a9181a38f9f847af336fb84020e8b362b028d6fe81f63562e94cd2b25",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "retry-02/downloaded/br_pfl_dem_convencao_20110314.body",
+      "claim_ids": [
+        "br_pfl_single_slate_agreement_announced_20110216",
+        "br_pfl_maia_styled_atual_presidente_20110314",
+        "br_pfl_convention_to_formalize_agripino_prospective_20110314"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_agripino_eleito_20110316",
+      "url": "https://web.archive.org/web/20190121161430id_/http://www.dem.org.br/noticias/agripino-maia-e-eleito-por-aclamacao-novo-presidente-do-democratas/",
+      "http_status": 200,
+      "expected_bytes": 21728,
+      "expected_sha256": "68cc2f883740ea611f2ec1ed3e3f0db6cf9a3b30f4d4b6373408813505680101",
+      "actual_bytes": 21728,
+      "actual_sha256": "68cc2f883740ea611f2ec1ed3e3f0db6cf9a3b30f4d4b6373408813505680101",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_dem_agripino_eleito_20110316.body",
+      "claim_ids": [
+        "br_pfl_agripino_elected_by_acclamation_reported"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_resolucao_113_20110324",
+      "url": "https://web.archive.org/web/20111007170605id_/http://www.dem.org.br:80/2011/03/resolucao-n%C2%BA-113-de-24-de-marco-de-2011/",
+      "http_status": 200,
+      "expected_bytes": 44631,
+      "expected_sha256": "487a0eace0526e420fa8bea86338716fb71a16ceb5a4dba42e84ffb191b71df6",
+      "actual_bytes": 44631,
+      "actual_sha256": "487a0eace0526e420fa8bea86338716fb71a16ceb5a4dba42e84ffb191b71df6",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_dem_resolucao_113_20110324.body",
+      "claim_ids": [
+        "br_pfl_agripino_signs_resolution_113_as_presidente_nacional_20110324"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_tse_sgip_dem_cen_2015_2018",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70981&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 23088,
+      "expected_sha256": "c88585aee6e866a7ec1fe2f7bd1952ba016a8931bc0891521164bacfb701fd10",
+      "actual_bytes": 23088,
+      "actual_sha256": "c88585aee6e866a7ec1fe2f7bd1952ba016a8931bc0891521164bacfb701fd10",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_tse_sgip_dem_cen_2015_2018.body",
+      "claim_ids": [
+        "br_pfl_tse_sgip_agripino_registered_exercise_20151203_20180308"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_cen_refundacao_2018",
+      "url": "https://web.archive.org/web/20181016194449id_/http://www.dem.org.br:80/comissao-executiva-nacional/",
+      "http_status": 200,
+      "expected_bytes": 24687,
+      "expected_sha256": "28d6e0826ef3731adbeb3631478675eb387656a38d76ea07e23a56f7ef821efc",
+      "actual_bytes": 24687,
+      "actual_sha256": "28d6e0826ef3731adbeb3631478675eb387656a38d76ea07e23a56f7ef821efc",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_dem_cen_refundacao_2018.body",
+      "claim_ids": [
+        "br_pfl_cen_refundacao_elected_convention_acm_neto_20180308"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_tse_sgip_dem_cen_2018_2019",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=248141&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 24059,
+      "expected_sha256": "ae9ce0414b83ca5b87523757058f8eea87ef687f60fb2c571d973a8d2495c079",
+      "actual_bytes": 24059,
+      "actual_sha256": "ae9ce0414b83ca5b87523757058f8eea87ef687f60fb2c571d973a8d2495c079",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_tse_sgip_dem_cen_2018_2019.body",
+      "claim_ids": [
+        "br_pfl_tse_sgip_acm_neto_registered_exercise_20180308_20190530"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_tse_sgip_dem_cen_2019_2022",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=275827&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 24913,
+      "expected_sha256": "d22590506835f02a7d3cedcc97ec755227ae623627a6af11df467497014bacbf",
+      "actual_bytes": 24913,
+      "actual_sha256": "d22590506835f02a7d3cedcc97ec755227ae623627a6af11df467497014bacbf",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_tse_sgip_dem_cen_2019_2022.body",
+      "claim_ids": [
+        "br_pfl_tse_sgip_acm_neto_registered_exercise_20190530_20220208",
+        "br_pfl_tse_sgip_dem_party_record_extinct_by_fusion"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_convencao_fusao_20211005",
+      "url": "https://web.archive.org/web/20211027093533id_/https://dem.org.br/convencao-nacional-dem-vota-nesta-quarta-feira-6-fusao-com-psl/",
+      "http_status": 200,
+      "expected_bytes": 61005,
+      "expected_sha256": "6b48db86f1f4116d38812f71f4f563783be43c8d9252677a150b500cf44428db",
+      "actual_bytes": 61005,
+      "actual_sha256": "6b48db86f1f4116d38812f71f4f563783be43c8d9252677a150b500cf44428db",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_dem_convencao_fusao_20211005.body",
+      "claim_ids": [
+        "br_pfl_fusion_convention_scheduled_prospective_20211005",
+        "br_pfl_acm_neto_styled_presidente_do_dem_20211005"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_informe_acm_neto_20220112",
+      "url": "https://web.archive.org/web/20220112155245id_/https://dem.org.br/informe-presidente-acm-neto-testa-positivo-para-covid-19/",
+      "http_status": 200,
+      "expected_bytes": 58967,
+      "expected_sha256": "b76c74734356dfbfd093bedccaddeeb1bdd97662f4b34176f0ed128465e92ac1",
+      "actual_bytes": 58967,
+      "actual_sha256": "b76c74734356dfbfd093bedccaddeeb1bdd97662f4b34176f0ed128465e92ac1",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_dem_informe_acm_neto_20220112.body",
+      "claim_ids": [
+        "br_pfl_acm_neto_styled_presidente_nacional_20220112"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_dem_homologacao_uniao_20220208",
+      "url": "https://web.archive.org/web/20220209035246id_/https://dem.org.br/ao-vivo-homologacao-do-uniao-brasil-em-analise-no-tse/",
+      "http_status": 200,
+      "expected_bytes": 60279,
+      "expected_sha256": "744c26ceb80930b1e08db38cf3c18896745ab984d8c67c540c2e78ef440f14af",
+      "actual_bytes": 60279,
+      "actual_sha256": "744c26ceb80930b1e08db38cf3c18896745ab984d8c67c540c2e78ef440f14af",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_dem_homologacao_uniao_20220208.body",
+      "claim_ids": [
+        "br_pfl_fusion_approved_joint_convention_october_2021",
+        "br_pfl_tse_session_on_uniao_scheduled_prospective_20220208",
+        "br_pfl_acm_neto_styled_uniao_secretary_general_20220208"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_tse_sgip_uniao_cen_2022_2024",
+      "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=405173&isMembrosAtivos=false",
+      "http_status": 200,
+      "expected_bytes": 22515,
+      "expected_sha256": "1e5d34f13d653eef16d48c02ed9df27055e1096f7252a33657c16e2cd774dfa3",
+      "actual_bytes": 22515,
+      "actual_sha256": "1e5d34f13d653eef16d48c02ed9df27055e1096f7252a33657c16e2cd774dfa3",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_tse_sgip_uniao_cen_2022_2024.body",
+      "claim_ids": [
+        "br_pfl_tse_sgip_uniao_organ_registry_identity_20220208"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    },
+    {
+      "source_id": "br_pfl_tse_uniao_registro_20220208",
+      "url": "https://web.archive.org/web/20230326221359id_/https://www.tse.jus.br/comunicacao/noticias/2022/Fevereiro/tse-aprova-registro-do-partido-uniao-brasil",
+      "http_status": 200,
+      "expected_bytes": 93606,
+      "expected_sha256": "0ebc6d52bca747d6f1bb570dd61a05e8b4adc74072eaa5b48871afc6772914fe",
+      "actual_bytes": 93606,
+      "actual_sha256": "0ebc6d52bca747d6f1bb570dd61a05e8b4adc74072eaa5b48871afc6772914fe",
+      "exact_recorded_response": true,
+      "recorded_content_encoding": "identity",
+      "body_relative_path": "downloaded/br_pfl_tse_uniao_registro_20220208.body",
+      "claim_ids": [
+        "br_pfl_tse_approves_uniao_registration_fusion_20220208",
+        "br_pfl_tse_states_fusion_approved_joint_convention_20211006"
+      ],
+      "content_review": "All cited material read; bounds and locators checked against the retrieved body.",
+      "current_response_accepted": false,
+      "personal_fields_published": false
+    }
+  ]
+}

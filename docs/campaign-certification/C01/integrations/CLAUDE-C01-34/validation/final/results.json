@@ -1,0 +1,54 @@
+{
+  "reviewed_commit": "844045e39bb05c7d8d0a9a64298bfc712cf4e5a7",
+  "checks": [
+    {
+      "name": "brazil",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_brazil*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:18:49.565694+00:00",
+      "finished_utc": "2026-09-30T09:18:54.807435+00:00",
+      "log": "brazil.log"
+    },
+    {
+      "name": "research-index",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:18:54.807453+00:00",
+      "finished_utc": "2026-09-30T09:18:55.392783+00:00",
+      "log": "research-index.log"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+        "844045e39bb05c7d8d0a9a64298bfc712cf4e5a7"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:18:55.392795+00:00",
+      "finished_utc": "2026-09-30T09:18:55.430954+00:00",
+      "log": "diff-check.log"
+    }
+  ]
+}

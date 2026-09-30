@@ -1,0 +1,560 @@
+{
+  "submission": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+  "pre_packet_parent": "e8f38113b6dff6b5376b657dc3905ec5204b7b9a",
+  "reviewed_after_fix": "844045e39bb05c7d8d0a9a64298bfc712cf4e5a7",
+  "submitted_delta": [
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "git_blob": "5785742da5ce0dce00657b4756057dbc6fcc8a55",
+      "bytes": 118920,
+      "sha256": "d4ff9b6eb90ad11e7a4c23dda25c09a7c32f4deda564063f48ad200539bce6dc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-party-presidents-1990-2026-34.md",
+      "git_blob": "32f811dc6ae2b6d1a4efeac9efe917ef432c57be",
+      "bytes": 100177,
+      "sha256": "c61eec6ec0583156e44dcca5f66f2a2832e8bf068ec7cf300925a72d4ceb6dd1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "git_blob": "cc1cb0f83fde890d43f5711c08bfc920172e316b",
+      "bytes": 1028931,
+      "sha256": "2aaf44f6f7980275e0e2b54062268f063ed499c6847dd572c6212e6ffcca4bac"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-adocao-sigla-tse-20180131-facts.json",
+      "git_blob": "0e47e90d45c851ba986f5a35c9ddc29963f1ded8",
+      "bytes": 4530,
+      "sha256": "7f9ee4f0aa6dfd13cc356fe371a05d8de089dd5fb2f8e2735b7ecf0cbab25fd8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-ata-diretorio-20231005-facts.json",
+      "git_blob": "23e42198197ea0074c97d1a5282c202fe490a578",
+      "bytes": 4975,
+      "sha256": "8e6a6aa97df62c75bc8cb1ad5e17fa2e3daa5c130f0d9fb7d85996da235ccc6a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-ata-executiva-20250716-facts.json",
+      "git_blob": "a58d6cb1cacbd8cf1b870303d5d887bf9d7986de",
+      "bytes": 6198,
+      "sha256": "f488635f561213670c6c3ecd5bde3734352d1aded03b106933e1f04603ceadd9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-baleia-prorrogacao-20210223-facts.json",
+      "git_blob": "9d43a29b835138e03e5efc703eb2e731a62ab72f",
+      "bytes": 4632,
+      "sha256": "b5d9ab67e06f4efa3044f2b1796cbb09a1cd660160efe23e1ff20fa27c273a03"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-baleia-reune-executiva-20191017-facts.json",
+      "git_blob": "e034ffa97ae31df8e919533dc5acd8b9a97ba993",
+      "bytes": 4589,
+      "sha256": "b6d1090782767b3c5a7241d112723f2be05b39bbda25fbfabd9777eb2066837a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-comunicado-licenca-temer-20160405-facts.json",
+      "git_blob": "a0708c65a8b8de1e8f6ba6574456335579e91295",
+      "bytes": 5039,
+      "sha256": "db7a61c0f94c016f80981c1321f0734a905e8ed9058935910d7987a8936400d7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-convencao-2013-20130302-facts.json",
+      "git_blob": "6de96a628591fda0ddc9c538b00c95fc624f0d62",
+      "bytes": 5236,
+      "sha256": "7b73c381e5251466c93b09cfa6bd3f3ab96f588020f72bfd160747fed2b534a0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-convencao-2016-20160312-facts.json",
+      "git_blob": "a16624242f8df460e75caf17343b3ba0e0e9be44",
+      "bytes": 5191,
+      "sha256": "e0e25dd4125ed8678d88119586ad86e061fa4b61e5a62a426535d827ccaf622c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-convencao-20231005-facts.json",
+      "git_blob": "3cc5ce91300d6bbfb016ae7e4da6cfdd5e8a47a6",
+      "bytes": 5216,
+      "sha256": "0c015034dd10e8f6e581b9d101f16de8f104305d25c12e044ed7ea5ecb9b269e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-edital-convencao-20171123-facts.json",
+      "git_blob": "cd578ee10d5f7ee80d23453677ba3ccb70cda24a",
+      "bytes": 5243,
+      "sha256": "e32221209fd9f88e8cb08b75fc547588e5387ef945a998e7d6a41787ff26cfb6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-eleicao-baleia-20191007-facts.json",
+      "git_blob": "1a51bbbf9da5823e00a116841dabb230d189b28e",
+      "bytes": 4706,
+      "sha256": "ed45dd75926d9146e1d2abb796c5d396c1bcf907e4a83d30db2194e65e04d506"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-convocada-df-20260607-facts.json",
+      "git_blob": "e9b7b0049d85f8076d48e1226e05eb90d3549c47",
+      "bytes": 6141,
+      "sha256": "9e0c33da2691941a70b9fd30edb887825618734172cdf5da3f5b8cb4bf6b3da9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-roster-capt2009-facts.json",
+      "git_blob": "2443424880a80a7b0f06e55618f3667516ea4938",
+      "bytes": 5059,
+      "sha256": "fd4593ed0d08468f65a75c9d65accc3dee72bb07567200f8eb66efedf6a4e40e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-roster-capt2011-facts.json",
+      "git_blob": "22524a18eb091bd04157722388e6188de7b14b18",
+      "bytes": 5736,
+      "sha256": "7ea3863aba624cb2c50a44e7f9fdf3e6ee0dac55d8459368fb175902b9743c1f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-roster-capt201901-facts.json",
+      "git_blob": "20bbf4226899d07d2e517e5651296e1cb0922360",
+      "bytes": 5684,
+      "sha256": "8e200cec0a31a8b7ee638ec0fafde8550d143e6d73a60cee344f8e1cf7d72709"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-iris-interina-20090310-facts.json",
+      "git_blob": "b7a26740f643734a3f21ea3e5160897de77db9c7",
+      "bytes": 5033,
+      "sha256": "4083c41e24aec9e69361e2a79ac5dacfc8f498870d134daae2f3e87d86f56892"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-jader-presidente-page-19980915-facts.json",
+      "git_blob": "e99444a1dec28529e77e76f86eee653e9b0c8880",
+      "bytes": 5109,
+      "sha256": "7aee74dc97bb80876acc8e8f2a090e1f8773f4f8eac7629fa99243dff77c7ec0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-juca-em-exercicio-20160407-facts.json",
+      "git_blob": "174c60056dda607c536c8c5c0385ae1fd3cdb860",
+      "bytes": 4547,
+      "sha256": "15549dd526ec31954bb5a58ac1d6e85736599d451f421d192e4649644a08e72e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-juca-juventude-20190617-facts.json",
+      "git_blob": "d05f3d00dc6d306f1a2fa3518c647466546d5874",
+      "bytes": 4560,
+      "sha256": "2ddad16b40535f50d90a6eb61ae236ae3ccce26745dc636bd77c44d97bc16552"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-nota-oficial-roriz-20030702-facts.json",
+      "git_blob": "70018298b5c92ff794c84fcd260896ee0a363ff0",
+      "bytes": 4628,
+      "sha256": "0ade0cd7589b08e863039702c4e2b7169cd343f41780ef12aacb1a45e25378fe"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-nota-temer-licenciado-20100121-facts.json",
+      "git_blob": "57b2608700f2cd7eb9816c1b7f49646f56e3a8bc",
+      "bytes": 5134,
+      "sha256": "b67fc56107f2548ae44c8ed9095781a06eba33bd1c98946e5663953af836f827"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-pmdb-muda-sigla-20171219-facts.json",
+      "git_blob": "684aa77cc6659da6f41b485d38777e50e8ac9260",
+      "bytes": 5728,
+      "sha256": "719e9a9fd5f661c616f1dd052688c1c80f49492f23ee2078adde727f3aba3fdf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-presidentes-lista-capt201901-facts.json",
+      "git_blob": "d08782f900c6d05747c9ee320613188ceb2ba7a7",
+      "bytes": 8518,
+      "sha256": "58d341800f50f9ec106d2001632119d7aa93ee947c4abdd58f2372b7a1e48df8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-prorroga-mandatos-20180222-facts.json",
+      "git_blob": "d33974c374f11ff2a4aed77d0f7b6ea6b2b7d8d2",
+      "bytes": 5216,
+      "sha256": "226b7bfd7b9b0f289b56790eb794b409629b54192ca96e670a61a9325622aa88"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-raupp-presidente-nacional-20140514-facts.json",
+      "git_blob": "a0e7e60390c80ee2756f08044141dd8a52383347",
+      "bytes": 4612,
+      "sha256": "df8ed3149237679270b8abc0e09d53e0e159fd771c7b638ba5a4a085519fd845"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-resolucao-blinda-20260615-facts.json",
+      "git_blob": "2e4f522da82756a815bf7c310b311d309ddf10e8",
+      "bytes": 6090,
+      "sha256": "b2ba2edbe0addb59ea4522d640625014e860769ccbcb517b2f8eef762fe57ff7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-rompe-alianca-20160329-facts.json",
+      "git_blob": "4a797b8feacf94b238ff58c063be4f181a155057",
+      "bytes": 4508,
+      "sha256": "4e76cbca7f5d60ede984ba6230054a81831a946a5fffb7a6345cb5f191da22ba"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-temer-vota-clt-200112-facts.json",
+      "git_blob": "693025f6ae4478864d0e420f18f4084191ab7119",
+      "bytes": 4603,
+      "sha256": "2cb10a80f18b322cb25aa77af30ae677c0e2e6264336d990774e948d9d1edca0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-mdb-tse-name-change-20180515-facts.json",
+      "git_blob": "d36905b67cc4fc820485267b2f975aed7fd97ac0",
+      "bytes": 4879,
+      "sha256": "a76fc877e3c84281501136f870ad060e02ea869ac23035f3865e70e4f03babfb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-comite-fortaleza-20260819-facts.json",
+      "git_blob": "f94658481332f4a4709d0076c20577db60b500c0",
+      "bytes": 5389,
+      "sha256": "8f5902f26badd6d5a7046afcbb2dfba50428f99ac3d432567633c2cea8ced654"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-hibrida-20211221-facts.json",
+      "git_blob": "769691ed9fb47ee9a4e37a8bc50880ef4250e66d",
+      "bytes": 5211,
+      "sha256": "06cbb6f1422fd0184da414204ae56f2a13585916b49bd7d48eeaef757ff03a8a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-reelege-20050321-facts.json",
+      "git_blob": "338e6173d4db39961bb580a3566722b7cbbc67c2",
+      "bytes": 5784,
+      "sha256": "e99ab9f983271cd1682b6dc77b33416db90b959e2d88a0b1d73d7353ef44326f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-reelege-20090306-facts.json",
+      "git_blob": "3dbee2292954aec870b79f8f01b8c30b3fafdffc",
+      "bytes": 5292,
+      "sha256": "e6ddb759a53e83e308c2c0021afdad3287e04a8ff385ca8bc661a44bca2879ed"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-virtual-20220110-facts.json",
+      "git_blob": "1e1a92bcd0879711cae34457e75b38cba3f078b4",
+      "bytes": 4800,
+      "sha256": "96894c5002434d1aca7749109a082e23fd548d913bc1dfd25c32b3f44ecc3324"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-curitiba-perda-20040622-facts.json",
+      "git_blob": "05ed6f684a13d67982916dc4e0893808cf0057d5",
+      "bytes": 4480,
+      "sha256": "e5c7d8f71c429292aab3e7be48810d0f774e039d273ff539b2d14ab236863fd5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-direcao-nacional-capt20040609-facts.json",
+      "git_blob": "32fe3dcd062e59124fb37b158cdfdf3a222e680a",
+      "bytes": 4481,
+      "sha256": "f0b6cc986f640edeb9fbd18edaafea67fa825fabfd62335603b665caf9ac5a77"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-direcao-nacional-capt20040722-facts.json",
+      "git_blob": "f0a97d8af3f1390b97bac29494e13505b35ac742",
+      "bytes": 4430,
+      "sha256": "c3f8a0a40de90ce188b53a0b183b7835f8bd3c3ab9cb5aa7772e48b19c5cb98e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-discurso-lupi-20220121-facts.json",
+      "git_blob": "11946ef2f174385552ee4d5fa5415df7cde65a98",
+      "bytes": 4641,
+      "sha256": "eef38ba5630c4d143134621cec213f5ff17a9fbe983602c20a27a8557ae089a6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-edital-convencao-20050228-facts.json",
+      "git_blob": "7ba6fcd8fa24ff66080f045e5700faa680038c5a",
+      "bytes": 5280,
+      "sha256": "2a788b00fca91c411b749ea1b22d0849d717928824cd2696193f449cf90364f6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-edital-convencao-20070209-facts.json",
+      "git_blob": "bca2aa0ebf01d348d4705b895829a86796d5d481",
+      "bytes": 5102,
+      "sha256": "28260419de850f7a43d5ddc24a093d4c1d825a4c07be577a2b4fb5b65432d7d7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-eleicoes-2026-20260904-facts.json",
+      "git_blob": "f1f527abc5c2f80736c1c159920b475b0d540935",
+      "bytes": 5395,
+      "sha256": "bbe1759530bf7ca2e9a396990421073ae1c46d7f14a5c201c6ff7f792aac4839"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-figueiredo-exercicio-20230202-facts.json",
+      "git_blob": "a3a53d69b1d6df0eaa8ee4734d67f24d3c1e308b",
+      "bytes": 5366,
+      "sha256": "d49bdedd4ce4dd913413f7987c3791d71e21e750b77ad9a2865cfcdc70f28a01"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-historia-convencoes-20190315-facts.json",
+      "git_blob": "925bba115d26206ce4f1c24f10729e559487e9fb",
+      "bytes": 7721,
+      "sha256": "8044ec3a4bc908a72911f3067be803cc28c1dc870b1f6a77a17319f23c59c527"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-home-19970411-facts.json",
+      "git_blob": "42d99e46be66c421acdf962a12bee5bf02019399",
+      "bytes": 4599,
+      "sha256": "a39cb909b11d54a5cac87edf0a9a4aaf66659037d96b7547759bc7e1364c33a7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-home-20040621-facts.json",
+      "git_blob": "9ebcde59d5c77962218b5429785344f46d58f76f",
+      "bytes": 4616,
+      "sha256": "518dc76c1edbc744acd56a1177f8f23cab1357c148cb465b8c54cc8a9dc5022e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-home-20040706-facts.json",
+      "git_blob": "126b6d5817643b7a5b1e32b5523bbfe1c51c8209",
+      "bytes": 5108,
+      "sha256": "22c16e5554523bd45ed915906ce9dace6121f2f20e25b205d6a053004e2a136f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-legalidade-interview-199611-facts.json",
+      "git_blob": "47f84dffbe4bd014956914e6abbe6d00218e0635",
+      "bytes": 4650,
+      "sha256": "795acdfa561679e076b37f9d20344e9322c748b77e38d76e58457d645f59f215"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-lupi-retorna-20250521-facts.json",
+      "git_blob": "609bbfe95a2e1569638ba8d3fd168650d7134d16",
+      "bytes": 5799,
+      "sha256": "b87f1c4b9634438777cf526fa6cb2be182dc5bfe0e0d9b3d3e9b7f3f7bca8ace"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-marcha-speech-19990826-facts.json",
+      "git_blob": "f7506c393847ffa20d18ae17ff0efc47f7218770",
+      "bytes": 4493,
+      "sha256": "53d16ac931386e33c370f2926c560d442d45e8300a7e74116fd963840635ce21"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-perfil-lupi-capt20041011-facts.json",
+      "git_blob": "9b0ed4e67853499868a0b952949a758fd0161f3f",
+      "bytes": 4588,
+      "sha256": "5bc3f93027e683cfedab9d2628f95d2b231a00edfe1b177f40e0cf78faa2f675"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-salario-minimo-20040602-facts.json",
+      "git_blob": "a306ae2548623e715be6d683c4acf5e897684675",
+      "bytes": 4470,
+      "sha256": "3c1407dee5ce4ad2eb27fd0ad2c63cc3fa66a284ae957c5b614d7bced1a3c0d0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-tijolaco-35-2004-facts.json",
+      "git_blob": "5c60bbc2f6d433466a4ddb28596b0f0d23553097",
+      "bytes": 4787,
+      "sha256": "2b8d5a61417bf795f13a086f1de5c1eca50f414ed53f5902896590a812cad687"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-xxiii-convencao-20170318-facts.json",
+      "git_blob": "871671f41612accd9e37f7a5f6bc1d7798642a0a",
+      "bytes": 4585,
+      "sha256": "00e84bbc0758b5460fad0685fb8201847e6e44e95a5bc3b072b2747e92885ff8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-xxv-convencao-20190318-facts.json",
+      "git_blob": "ce453f9a70cf3459f953a16e171c06a949e24a81",
+      "bytes": 4690,
+      "sha256": "a7b723169a1936aa622eea2bf3377dc72b865737199ed8ba4f26142e4e98dc3d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-agencia-bornhausen-20030307-facts.json",
+      "git_blob": "b5135f70b94b9324dcffa9a7bfdefa450d855523",
+      "bytes": 4676,
+      "sha256": "47f4b917ea64c3ac541936d0dfbbbde7ae8ae61266710addb66bd9e203298dbd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-convencao-2007-edital-20070313-facts.json",
+      "git_blob": "3349cfa15582ca717806c300b629f11dfbe4049d",
+      "bytes": 5482,
+      "sha256": "6d3a5d05b538e799125be567e60f647d913a55f2cef3704a4dc9ec12fe1412f0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-agripino-eleito-20110316-facts.json",
+      "git_blob": "e5e70e0df6cac3631da6f2e1b5ce98d668b594bd",
+      "bytes": 4741,
+      "sha256": "5b05d1ea56d47180a143fefba0b1b886a8a56be2ad3d4e1af4af08d24444080d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-cen-refundacao-20180308-facts.json",
+      "git_blob": "852f3ddfa97c02740dc080790e174e4447322ae9",
+      "bytes": 4626,
+      "sha256": "258086907e146be00b3ff21f5d72530b88b0f67233e599890653edd109b0d130"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-convencao-20110314-facts.json",
+      "git_blob": "4808a4af4c8e67e486d0572f932b9039d7d8fa63",
+      "bytes": 6019,
+      "sha256": "3f6e60c531adcadc277428d6fe005af40cf10a132f0da51394c8acdad0d85e81"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-convencao-fusao-20211005-facts.json",
+      "git_blob": "a95c5fa1eb14b2fa30993117882ce777862806f2",
+      "bytes": 5247,
+      "sha256": "0c280d3696a152c801d43ed8a3699e02a144ddf5f6a6e3884e6dea64d0a01a96"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-homologacao-uniao-20220208-facts.json",
+      "git_blob": "0de48d9bfa57d17d86fbc59cd9ec421c5f157c91",
+      "bytes": 5779,
+      "sha256": "c4df5869c35cc8a23709647b5735b1576574118d9cf7bd364b525c96155567ef"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-informe-acm-neto-20220112-facts.json",
+      "git_blob": "2f986651c9ead7894dead137094294a9a52b30c6",
+      "bytes": 4540,
+      "sha256": "088cfa2ed4246c0031dd6c014f62dd7925d59d41bd6a131a98ffe534d604df3f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-resolucao-006-20070329-facts.json",
+      "git_blob": "3894dda05a27d54616abf8f097803aca5b90ded7",
+      "bytes": 5316,
+      "sha256": "22db796f9dbfbb58f7ee1fa9880a47ccf254ac820bc25e2f80ed0fd5cb39ab4e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-resolucao-112-20110215-facts.json",
+      "git_blob": "064e1b840e17e8cf9d61d92ff60b2dddc1413e09",
+      "bytes": 4779,
+      "sha256": "f1e8b113b9aa5f64856c231fd49cec6c0e9b0f4beb6ca94f1d684800e399a870"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-resolucao-113-20110324-facts.json",
+      "git_blob": "9c8c13e1f02452e1dec10d0aeb6a8e967d1644f0",
+      "bytes": 4746,
+      "sha256": "3a360e4c00a72d64478cfca53753d51ddbbce293a13c4876000cc05b7af4c016"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-site-democratas-transformation-2007-facts.json",
+      "git_blob": "f46088e938a9cf01bc4d5d53b6ab7b182a1f7c7d",
+      "bytes": 4488,
+      "sha256": "38a4c306a7fc1998038cef2bcb57128132942f54a7f119fcee5b928e7cb0bc57"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-pfl-site-executiva-nacional-19990507-facts.json",
+      "git_blob": "03890e7fa7a3ed1c98c12338eff9592baf3a9adf",
+      "bytes": 4836,
+      "sha256": "52bcd611272a2c5b6957f5712a976021dec1c268173b79f598c2c946b10ff1b7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-dem-national-organ-248141-20180308-facts.json",
+      "git_blob": "f18e35649bb43ad3c05cb89a57095d9cc7791599",
+      "bytes": 5219,
+      "sha256": "115593bf1fa83fb1ba67723872f258b721ea7b936102a1528bd88dccc90111ac"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-dem-national-organ-275827-20190530-facts.json",
+      "git_blob": "bf8d9461161802ffe521d0d6e704817dd1725df6",
+      "bytes": 6022,
+      "sha256": "8c0a99a17c7499e17cb8d3d4cdd75b6252d368a88eee0a0d751086a00dfae1b1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-dem-national-organ-70981-20151203-facts.json",
+      "git_blob": "f915fe47a7919f217a1066c8e298ef4f3fe3924f",
+      "bytes": 5257,
+      "sha256": "6c7babba4c0cb0c363161cc217e9d213382aa5b743bb8d19d7a0f9cdfa809f6b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-mdb-national-organ-291052-20191006-facts.json",
+      "git_blob": "751e1fb2285d17dd4b4f5686fcdf03158ffa5c54",
+      "bytes": 5224,
+      "sha256": "3c062eec12f98c44ee144ed89f74ad101ccc21c5363127ddb5a18b53d4bfb163"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-mdb-national-organ-70945-20130311-facts.json",
+      "git_blob": "c42c56ad87dd584692d7f28e6af16a88d13e7a8b",
+      "bytes": 6123,
+      "sha256": "aaeb1a43edc330cc2fe3f6f21815c25d604e40c7b037e768f8422281589365ab"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-pdt-national-organ-269142-20190318-facts.json",
+      "git_blob": "699fd7e65795b718adf313dcf7fd10b9dcb9f176",
+      "bytes": 5172,
+      "sha256": "6648fd23a5da71f59c1a373171d67ca6b9c2a8381b27bfb91ef0dd3586143ffd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-pdt-national-organ-70996-20170318-facts.json",
+      "git_blob": "006aa1ac17c91efe7325c2810253ff332a4b3205",
+      "bytes": 5185,
+      "sha256": "d551238988a7c78714c5ed342185e7d93b23da8188e58f2f786e98c6547403ca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-uniao-national-organ-405173-20220208-facts.json",
+      "git_blob": "f7b6bf15aa0e98ce0669941f7fe55c43091c26aa",
+      "bytes": 5032,
+      "sha256": "2245ca59925716fe5b135e9561f3729e2978306f0ac6609e447708ecd1a4a57c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-uniao-brasil-registration-20220208-facts.json",
+      "git_blob": "3c843acdd61e3490179221fcf278f915ab02718c",
+      "bytes": 5437,
+      "sha256": "47823045dfe4b96cb76eea59cd15ab9b88daef6fa6026387ce20a34e8a2085a6"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+      "git_blob": "43945949c4c3af43b4dffee16149a6a5d9500296",
+      "bytes": 16382,
+      "sha256": "ca0fdf7b330b92552e234d052270438bc5fd13658cb81e3d0b7b258e49d83018"
+    },
+    {
+      "path": "tools/avatars/test_brazil_party_presidents_c01_34.py",
+      "git_blob": "8218a745a4b1537b6addb561ba0ac3e9cd8c8544",
+      "bytes": 93113,
+      "sha256": "4fdbaffe622e92cbf182cbfef45a0c89041c4e0b48cde8afa2b3e93221be9d3e"
+    },
+    {
+      "path": "tools/avatars/test_brazil_presidents_c01_10.py",
+      "git_blob": "48297fafc492b68b6d486673fd84d96479fdb3e1",
+      "bytes": 63196,
+      "sha256": "83fce63a78b7a83116355f165a0626eab926d09938aa572f20be0e9ab5758313"
+    },
+    {
+      "path": "tools/avatars/test_brazil_pt_presidents_c01_22.py",
+      "git_blob": "267dceabdebeaeeb8aa7bba6c21c41a4be4ef131",
+      "bytes": 99379,
+      "sha256": "8ec6f3b1bfdfba3a6c8a4bdcd6485756e91706f22356857be497ddf778221232"
+    },
+    {
+      "path": "tools/avatars/test_brazil_research_s10f.py",
+      "git_blob": "9882a714a14fa5d00e466be9bc461f9129e06dd5",
+      "bytes": 15849,
+      "sha256": "b06a61b5c11e17dc3915640599f2d8fa481e3edbe56c3c6b656ee6440eb4c474"
+    },
+    {
+      "path": "tools/avatars/test_brazil_vice_presidents_c01_17.py",
+      "git_blob": "eda36a9b9dde780d177c4da7c684822baa6abe1f",
+      "bytes": 69946,
+      "sha256": "80ed6e4b730d03138ec8b4779ae295764ff3f7b1c68883dc1eaa6707eebe7a0d"
+    }
+  ],
+  "prior_sources_unchanged": 172,
+  "existing_institutions_unchanged": true,
+  "only_changed_organizations": [
+    "br_tse_fefc_2024_party_01",
+    "br_tse_fefc_2024_party_02"
+  ],
+  "all_claims_and_holders_unchanged_by_review": true,
+  "accepted_source17_exact_extracts": [
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+      "accepted_receipt_path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+      "bytes": 20657,
+      "sha256": "102e464ce7ad598a30a1a62407656a7640a09380638814e55fe4c94c76ec5334",
+      "exact_accepted_bytes": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-lula-diploma-20230102-facts.json",
+      "accepted_receipt_path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-lula-diploma-20230102-facts.json",
+      "bytes": 15764,
+      "sha256": "c6154fddb8d94deefbd77e30dc130e76103680175a0caa15239778b053d4a9c9",
+      "exact_accepted_bytes": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-lula-posse-20230102-facts.json",
+      "accepted_receipt_path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-lula-posse-20230102-facts.json",
+      "bytes": 24816,
+      "sha256": "ef87316cc5d6b22ebd3220dfb1151d645c2e51eb412e63cc587c5396d8982e38",
+      "exact_accepted_bytes": true
+    }
+  ],
+  "new_sources": 76,
+  "new_claims": 127,
+  "new_roles": [
+    "br_pdt_president",
+    "br_mdb_president"
+  ],
+  "holder_observations": {
+    "PDT": 7,
+    "MDB": 5
+  },
+  "all_holder_starts_null": true,
+  "only_holder_end": "Leonel Brizola: 2004-06-21 (reported death in office)",
+  "runtime_art_schema_mapping_changes": false
+}

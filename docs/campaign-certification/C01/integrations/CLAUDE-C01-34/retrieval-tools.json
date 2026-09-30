@@ -1,0 +1,47 @@
+{
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tools": [
+    {
+      "external_relative_path": "build_receipt.py",
+      "bytes": 13040,
+      "sha256": "31c62c501b463efea9a8a6dab6c7af49e452979588dcc70c4f8ee06e0eefac6b"
+    },
+    {
+      "external_relative_path": "extract_review.py",
+      "bytes": 3954,
+      "sha256": "c446fd844e478bcc45308d61fc6a9a739a4dba4d539f7f8ff61952d87ddd5bc6"
+    },
+    {
+      "external_relative_path": "repeat_registry.py",
+      "bytes": 2529,
+      "sha256": "ae5d73de59d9ea05544a8756dca0af30526c4670a5a23a7c391917ffacfffe6e"
+    },
+    {
+      "external_relative_path": "retrieve.py",
+      "bytes": 2410,
+      "sha256": "6a456845e6cbf143ce6c8a64720d88067e6cf77465261e74efb0df6cf7969101"
+    },
+    {
+      "external_relative_path": "retry_archive_throttled.py",
+      "bytes": 2792,
+      "sha256": "daad35926a1af8fda753209999f2b9b0dfdabda7a33b0f62a556c1a86d08e499"
+    },
+    {
+      "external_relative_path": "retry_missing.py",
+      "bytes": 2645,
+      "sha256": "bd661380ce3c283bf40561ee7563b3581970886e80ebee4410729803f1713560"
+    },
+    {
+      "external_relative_path": "run_checks.py",
+      "bytes": 1725,
+      "sha256": "e0989a3773869c7bfb82574850030a55ca41cf6c7abcfce3ee5fb32c9e1e8907"
+    },
+    {
+      "external_relative_path": "run_corrected_checks.py",
+      "bytes": 1725,
+      "sha256": "131439dfba63f30a334014fe6b9735f313fdccf81d52a7dcd0e338e05cd9e0e5"
+    }
+  ],
+  "source_content_replay_automatic": false
+}

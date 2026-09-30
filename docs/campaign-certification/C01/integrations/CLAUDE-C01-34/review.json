@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-independent-review/v1",
+  "reviewer": "Codex /root/s20_preflight",
+  "reviewed_date": "2026-09-30",
+  "submission": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+  "pre_packet_parent": "e8f38113b6dff6b5376b657dc3905ec5204b7b9a",
+  "repair_commit": "255a66c0317fca81fcbac1461b986aa2b029162d",
+  "index_commit": "844045e39bb05c7d8d0a9a64298bfc712cf4e5a7",
+  "decision": "accepted_bounded_research_with_current_response_qualification",
+  "original_response_matches": 75,
+  "qualified_current_response": 1,
+  "claims_reviewed": 127,
+  "holder_observations_reviewed": 12,
+  "prior_source17_repairs_preserved": true,
+  "tests": {
+    "final_brazil": 43,
+    "research": 79,
+    "campaign": 16,
+    "node_leadership_atlas": 11,
+    "note": "Discovery patterns overlap; these are execution counts, not unique tests. Research/campaign/Node ran after substantive fixes; final Brazil and index repeated after privacy wording clarification."
+  },
+  "known_failed_check": "Preexisting census production government pin; see baseline-limit.json. Original retrieval failures and changed response retained.",
+  "unverified": [
+    "Old SGIP70945 body not recovered: cause and whole-body equivalence unknown.",
+    "No permanent endpoint stability, PDF signature authenticity or image reuse permission.",
+    "Not an exhaustive Brazil census, complete party history or runtime installation."
+  ],
+  "parent_status": {
+    "C01": "incomplete",
+    "C06": "incomplete",
+    "S23": "incomplete",
+    "WC1": "unearned",
+    "CP1": "unearned"
+  },
+  "no_runtime_art_mapping_changes": true,
+  "external_raw_evidence_directory": "D:\\spheres-offload\\codex-next-20260928\\c01-34-review-evidence-01",
+  "git_bundle_contains_full_original_responses": false
+}
