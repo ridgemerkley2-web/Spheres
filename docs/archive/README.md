@@ -7,8 +7,10 @@ superseded plans, large historical journals and the branch-cleanup inventory.
 
 The [30 September inventory](branches-2026-09-30.json) records all 145 original
 remote branches, exact commit IDs, ancestor comparisons and dispositions.
-The intended retained set is one game integration branch, three unfinished
+The verified retained set is one game integration branch, three unfinished
 research/follow-up branches, and the separate dashboard publishing branch.
+All 140 retired tips were verified on GitHub before their old branch names were
+removed. See the [cleanup record](REPOSITORY_CLEANUP_2026-09-30.md).
 
 Retired branch tips are preserved as `archive/2026-09-30/<original-branch>` tags.
 Archiving does not mean every commit was merged: unique experiments and earlier

@@ -1599,11 +1599,12 @@
   ],
   "date": "2026-09-30",
   "canonical_branch": "codex/campaign-certification",
-  "status": "prepared",
+  "status": "verified",
   "scope": "Remote branch references only; local branches/worktrees, commits, game data and campaign saves remain intact.",
   "counts": {
     "before": 145,
     "retained": 5,
     "archived": 140
-  }
+  },
+  "verified_remote_branch_count": 5
 }
