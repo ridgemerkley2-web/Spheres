@@ -86,7 +86,7 @@ its signature day. Resignation letters (cited by the decrees), publication days,
 title-only appointment page and successors' appointments are never boundaries. No current-affairs continuation or acting Prime
 Minister is stated, so none is recorded. The Prime Ministers appointed from 31 March 2014 onward are the next batch.
 
-Rulings recorded (Ridge's, applied here; Codex may still decide otherwise). (a) The decree ending the Government's functions
+Author's proposed interpretations (the submission attributes these to Ridge; independent review has not verified that attribution, and integration acceptance remains pending). (a) The decree ending the Government's functions
 gives the outgoing Prime Minister's `until` on its signing day. It is the instrument that ends the office on a stated day,
 consistent with CLAUDE-C01-11 (resignation accepted with effect from a day), CLAUDE-C01-36 (resignation accepted on a stated
 day) and CLAUDE-C01-23's instrument test. The resignation letter and the publication date stay separate claims. Any later

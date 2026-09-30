@@ -61,18 +61,18 @@ The resulting holder observations, in date order, all on `fr_pm`:
 
 The Prime Minister is appointed and his or her functions are ended by decrees of the Président de la République under article 8
 of the Constitution. Every decree read here is dated by its signature line ("Fait à Paris, le ..." or "Fait le ...") and printed
-in the Journal officiel of a later day. A holder has `from` only where the appointment decree's text, naming the appointee, is
+with Journal officiel publication metadata recorded separately (including Légifrance's same-day header for 29 March 1993). A holder has `from` only where the appointment decree's text, naming the appointee, is
 read ("M. X est nommé Premier ministre"), and `until` only where the decree "relatif à la cessation des fonctions du
 Gouvernement" is read ("Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. X, Premier
 ministre, et des autres membres du Gouvernement"); each boundary is the decree's own date. The decree is the instrument that
 ends the office, so this packet treats it as a source stating the day, as CLAUDE-C01-11 treated a notified acceptance of a
-resignation "with effect from" a day; this reading is **recorded as a ruling** (see Integration notes).
+resignation "with effect from" a day; this reading is **the author's proposed interpretation** (see Integration notes), not a separately sourced effective-date clause.
 
 Five kinds of claim never make a boundary. (1) The Prime Minister's letter presenting the Government's resignation, which each
 decree cites with its date: it is a separate claim even on the same day, and in 1995 it precedes the decree (letter of 10 May,
 decree of 11 May), so Balladur's end is 11 May. (2) The successor's appointment: in 2007 (15 and 17 May), 2010 (13 and
 14 November) and 2012 (10 and 15 May) the end and the next start are on different days, and where no decree ending the functions
-was read (Cresson 1992, Juppé 1995) there is no end at all. (3) Publication in the Journal officiel, always a later day.
+was read (Cresson 1992, Juppé 1995) there is no end at all. (3) Publication in the Journal officiel, whose printed date is kept separately from the instrument date.
 (4) A composition decree's reference to "le décret du ... portant nomination du Premier ministre": it names nobody, and pairing
 it with the same decree's countersignature would infer a start. (5) Légifrance's page for the appointment decree of 15 May
 1991, which renders the title only. The in-office signature of 24 January 1990 and the three countersignatures date their
@@ -356,7 +356,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `research-index.json` is regenerated in a **separate commit**; it is the only file shared with other pending packets. New
   totals: 1,602 sources and 4,230 claims; 36 institution observations. If another packet lands first, regenerate the index rather
   than merging it.
-- **Rulings recorded** (Ridge's, applied in this packet; Codex may still decide otherwise). (a) The decree ending the
+- **Author's proposed interpretations** (the submission attributes these to Ridge; independent review has not verified that attribution, and integration acceptance remains pending). (a) The decree ending the
   Government's functions gives the outgoing Prime Minister's `until` on its signing day. It is the instrument that ends the
   office on a stated day, consistent with CLAUDE-C01-11 (resignation accepted with effect from a day), CLAUDE-C01-36
   (resignation accepted on a stated day) and CLAUDE-C01-23's instrument test. The resignation letter and the publication date
