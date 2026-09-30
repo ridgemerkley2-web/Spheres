@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-30T23:07:53Z",
-  "mode": "one packet at a time (user, 30 Sep 2026: \"Do them one at a time?\")",
+  "updated": "2026-09-30T23:16:01Z",
+  "mode": "parallel workflow (user, 30 Sep 2026: \"Run multiple in parallel\"; ultracode on)",
   "packets": [
     {
       "n": "28",
@@ -105,41 +105,40 @@
       "n": "38",
       "title": "French prime ministers, 2014–2026",
       "country": "France",
-      "state": "queued",
+      "state": "research",
       "branch": "claude/c01-fr-38",
-      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
+      "head": "f1420ba1"
     },
     {
       "n": "39",
       "title": "Democratic Alliance federal leaders, 2000–2026",
       "country": "SouthAfrica",
-      "state": "queued",
+      "state": "research",
       "branch": "claude/c01-za-39",
-      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
+      "head": "03cd0bb9"
     },
     {
       "n": "40",
       "title": "CPI(M) general secretaries, 1990–2026",
       "country": "India",
-      "state": "queued",
+      "state": "research",
       "branch": "claude/c01-in-40",
-      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
+      "head": "c152e35e"
     },
     {
       "n": "41",
       "title": "CPSU General Secretary and Deputy General Secretary, 1990–1991",
       "country": "USSR",
-      "state": "queued",
+      "state": "research",
       "branch": "claude/c01-su-41",
-      "hold": "Held: Codex's 30 Sep roadmap says continue existing claims before starting another batch; next Claude slice is Tonga identities + a reviewed 6-8 cartoon batch. Awaiting the user's decision."
+      "head": "7778be5b"
     }
   ],
   "attention": [
     "C01-28 review held by Codex: 12 archived originals unreachable from its environment.",
-    "Packets 38-41 held: Codex's roadmap puts Tonga identities and cartoons next."
+    "C01-38 to 41 running in parallel (workflow)."
   ],
   "log": [
-    "2026-09-28 C01-32 verified: 38/38 sources clean; 9 defects. Rulings: 2018-01-19 \"PAC post\" = uncredited republished news -> non-primary, claims only, holder dropped (same treatment as C01-28 DVR reference text); Mphahlele 2009-01-14 Joomla edit stamp demoted; Moloto 2019-07-12 court record kept. Active: 32 fix, 34 research.",
     "2026-09-28 C01-32 fixed (a05592f7/df470746: 14 holder obs / 6 people, 6 disputed) -> submitted, worktree removed. C01-29 still under Codex review, so 31 stays held. C01-35 (Democratic Russia + Soyuz, USSR) set up at c1475ada on 44098c5a. Active: 34 research, 35 research. Remaining queued: 31 (held), 36, 37.",
     "2026-09-28 C01-34 research done (claude/c01-br-34@4d51cc10: 76 sources, 127 claims, 13 holder obs; Brizola until 2004-06-21 from party death report; open rulings on Lupi 2004/2025, Jucá, PMDB->MDB). Active: 34 verify, 35 research.",
     "2026-09-28 C01-34 verified: 76/76 sources clean, 4 text defects. Rulings: Brizola until kept; Lupi 2004 interim -> claims only (C01-22 Genoino precedent); Lupi 2025 kept; PMDB->MDB on one role; Jucá acting. Active: 34 fix, 35 research.",
@@ -158,6 +157,7 @@
     "2026-09-30 User flagged token cost. Hourly idle polling stopped (wake on agent notifications only); no new packets queued pending the users efficiency choices. C01-31 continues. Last batch cost ~10M agent tokens (research ~5.4M, verify ~3.0M, fix ~1.5M).",
     "2026-09-30 Lean pipeline adopted (user): tools/packet_check.py (zero-token source re-hash + structure + suite), tools/slice.py, lean RESEARCH/VERIFY/FIX instructions with the rulings list, Sonnet checks, serial, no polling. Queued 38 France PMs 2014-26, 39 DA federal leaders, 40 CPI(M) general secretaries, 41 CPSU General Secretary 1990-91. A fresh session takes over after C01-31 (START_HERE.md).",
     "2026-09-30 Codex's new roadmap/workboard (b31bdfab, 301f63cb): Claude's lane = continue existing claims, then reconcile accepted Tonga research into dated identities and a reviewed 6-8 cartoon batch, repeating country batches toward C06; no new research batch before existing claims finish. Queued 38-41 put on hold pending the user.",
-    "2026-09-30 C01-31 research done (f15de3bc: 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS). Lean Sonnet checker launched."
+    "2026-09-30 C01-31 research done (f15de3bc: 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS). Lean Sonnet checker launched.",
+    "2026-09-30 User: \"Run multiple in parallel\" (ultracode on). Released 38-41, set up (claims f1420ba1, 03cd0bb9, c152e35e, 7778be5b on 02d2c5a2), launched workflow wf_9de7b1d4-86c: research -> packet_check -> two checker lenses per packet, results back to me for rulings and fixes. C01-31 checker still running."
   ]
 }
