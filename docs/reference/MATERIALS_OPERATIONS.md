@@ -122,7 +122,7 @@ inputs, treasury, political capital or an overridden player. It observes all
 results are invariant/coverage checks, **not a statistically calibrated growth
 or adoption-rate promise**. The original pilot's three 1,096-day seeds passed
 those checks but produced no natural AI Materials orders. See
-[the original verification results](MATERIALS_OPERATIONS_RESULTS.md) and the
+[the original verification results](../archive/2026-09-30/MATERIALS_OPERATIONS_RESULTS.md) and the
 subsequent AI integration report linked above; do not confuse evidence from
 different builds or treat three-year inactivity as permanent inability to trade.
 

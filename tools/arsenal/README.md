@@ -41,7 +41,7 @@ withdrawn; see [the scale finding](../../docs/art/SCATTER_SCALE_FINDING.md).
 
 These static catalogue previews are separate from the configurable ground and
 tactical-aircraft designer and its GLB exports. The first aircraft design slice
-is documented in [AVIATION.md](../../AVIATION.md); displaying other aircraft and
+is documented in [AVIATION.md](../../docs/reference/AVIATION.md); displaying other aircraft and
 ships here does not add their mission or naval component-design systems.
 This integration adds no new claim of independently verified historical
 dimensions or engineering fidelity; the

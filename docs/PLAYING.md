@@ -1,0 +1,77 @@
+# Playing SPHERES
+
+Build and development status: [repository home](../README.md).
+
+## Play
+
+For the ready-built Windows release, extract the whole ZIP to a writable folder
+and double-click **Play SPHERES.cmd**. No Rust installation is needed. Keep the
+server window open while playing. The game and its artwork run locally.
+
+For a source checkout, install Rust, then double-click the repository's
+`Play SPHERES.cmd`, or run:
+
+```sh
+cargo run --locked --release -p spheres-web
+```
+
+Open http://127.0.0.1:7777 if the browser does not open. A custom port is available
+with `--port 7823`; `--no-open` suppresses automatic browser launch. **About** shows
+the precise version, branch, source revision, build date and absolute save folder.
+Saves use the server's working directory. The packaged launcher selects its own
+folder so moving a shortcut does not move your saves.
+
+The browser includes the strategic map, policy controls, GDP/oil history charts,
+a league table and a dispatch feed. Click a nation to inspect it and act on it.
+
+The clock is HOI4's: it runs by itself until something stops it. Space stops it
+from any screen — the cabinet, the tech screen and the resource board included —
+and starts it again from the map or either of those two boards; 1-5 pick a speed
+(one simulated day every 1000, 500, 250, 100 or 0 ms of real time — the last is
+as fast as the server answers), + and - walk that ladder, N steps a single day.
+Opening the shortcut card or Global Command stops the clock outright. A war or a
+collapse pauses it and says why, and you press Space again when you have decided
+what to do.
+
+Choose a country, use **Advisor** to fund a budget and follow a development
+project, and use **Find** to open a province without hunting on the globe.
+**Research list** explains availability, prerequisites, payoff and estimated time.
+**Decisions** contains diplomatic requests, standing policies, monetary choices
+and optional peaceful campaign aims. Domination remains an available aim.
+
+The map opens in **Terrain**. Drag to rotate and scroll or pinch to zoom, up to
+**192×**. The corner controls switch to **Political** or **Fronts**, return to
+**World**, center **Home**, and toggle **3D / Top**. Close Terrain views use an
+actual displaced surface with valleys and peaks, shown at **3× vertical
+exaggeration**. **Details** toggles terrain, borders, provinces, cities, labels,
+physical names and the coordinate grid; **More layers** holds economic views.
+
+Use **Find** to search a city, then explore it at **128×** or closer. The map's
+1,249 sourced Natural Earth city points have selectable symbolic skylines;
+the buildings are map symbols, not surveyed streets or building footprints.
+NOAA elevation samples are spaced at 60 arc seconds, about 1.85 km at the
+equator. Further zoom enlarges that detail; it does not reveal street-level data.
+The 127 MiB of compressed native tiles ships offline and loads locally on demand
+through a bounded cache. Base relief remains available while tiles load or if
+the detailed renderer is unavailable. Select a province to inspect it.
+
+## Campaigns and recovery
+
+The main menu offers **Continue campaign**, **New campaign** and **Saved campaigns**.
+Continue resumes the world already running in the local server. Saved campaigns
+contains Load, available backups and named saves. Save explicitly before closing.
+
+New campaign opens the searchable 1990 nation roster. Compare opening population
+and output, choose a nation, then press **Govern**. **World settings** contains the
+optional seed. Historical avatars are drawn from each nation's history and do not
+identify its serving leader in 1990.
+Named slots and the default `save.json` retain the world, dispatch archive and
+multiresolution history. Atomic writes keep a previous backup; rotating autosaves
+provide additional recovery points. The save screen lists slots and backups.
+Older raw-world saves remain readable, but cannot recreate history they never
+stored. New 1990 industry profiles are granted only when starting a new campaign.
+
+A lost action response leaves a visible pending receipt. Retry that receipt or
+review the authoritative state. Reload preserves pending command identity;
+repeating the same receipt cannot charge the action twice. Starting or loading a
+different campaign invalidates old session receipts.

@@ -28,7 +28,7 @@ histories. Claude's source branches are not rewritten.
 - Selected cities show a representative town block, labeled as such. The globe
   scatter overlay withdrawn by Claude's final commit remains withdrawn.
 - Company development, company-owned stock and government purchases remain
-  planned work in [the procurement plan](../COMPANIES_AND_PROCUREMENT_PLAN.md).
+  planned work in [the procurement plan](reference/COMPANIES_AND_PROCUREMENT_PLAN.md).
 
 ## Verification
 

@@ -7,6 +7,8 @@ permissions:
   contents: read
 jobs:
   javascript:
+    # Retiring a branch is repository housekeeping, not a new candidate.
+    if: github.event.deleted != true
     strategy:
       fail-fast: false
       matrix:
@@ -59,6 +61,7 @@ jobs:
       - name: Verify extracted smoke boundary guards
         run: node --test tools/release/test_smoke_package.cjs
   native:
+    if: github.event.deleted != true
     strategy:
       fail-fast: false
       matrix:
@@ -92,6 +95,7 @@ jobs:
   # Exercise shipped bytes independently: an unrelated existing calibration or
   # source-browser failure must not hide portable-package diagnostics.
   package:
+    if: github.event.deleted != true
     strategy:
       fail-fast: false
       matrix:
@@ -146,6 +150,7 @@ jobs:
   # This static WebGL harness needs no native executable. Give it an independent
   # allowance so a cold Windows Rust build cannot consume its execution time.
   town-browser:
+    if: github.event.deleted != true
     strategy:
       fail-fast: false
       matrix:
@@ -175,6 +180,7 @@ jobs:
   # the gates kept out of the default suite while calibration was incomplete;
   # the separate measurement-only census is not an acceptance test.
   political-calibration:
+    if: github.event.deleted != true
     strategy:
       fail-fast: false
       matrix:
@@ -188,7 +194,7 @@ jobs:
         run: cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census
   # Preserve the original required-check names, each covering every suite.
   verify:
-    if: always()
+    if: always() && github.event.deleted != true
     needs: [javascript, native, package, town-browser, political-calibration]
     strategy:
       fail-fast: false

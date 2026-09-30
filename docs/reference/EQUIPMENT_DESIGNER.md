@@ -69,18 +69,18 @@ The 7 September art integration combines `feat/hoi4-map-and-tech` through
 `fc0f0c2` with `feat/art-p0` through `c2e49c6`. It adds ground-model detail,
 component-visible geometry and levels of detail while retaining the two current
 aircraft and the simulation-owned design, cost and ammunition rules. See the
-[integration record](ROADMAP.md#art-integration--shared-catalogue-sites-and-city-previews-2026-09-07)
-and [asset backlog](docs/art/3D_ASSET_BACKLOG.csv) for the wider art work and limits.
+[integration record](../../ROADMAP.md#art-integration--shared-catalogue-sites-and-city-previews-2026-09-07)
+and [asset backlog](../art/3D_ASSET_BACKLOG.csv) for the wider art work and limits.
 
 The Designer displays actual WebGL ground-vehicle and aircraft geometry with perspective, lighting, depth and a ground shadow. Drag to orbit, scroll or pinch to zoom, or use the labelled view controls. With the canvas focused, arrow keys rotate, plus/minus zoom and Home resets the view. Auto rotation is optional and stops rendering while the preview is hidden. Clicking a visible part selects its actual geometry and opens the associated specification; the part selector provides a keyboard alternative.
 
 The nine ground platforms have distinct hulls, running gear and mission fittings. Exterior choices change tracks or wheels, turret or weapon station, engine fixtures, armor, weapons, optics, troop access, scout masts, loading equipment and radar. The original models include individual track links, suspension and wheels, bevelled armor, hatches, grilles, stowage and hollow muzzles. Internal ammunition choices affect game ratings and exported metadata; visible ammunition lockers identify the associated specification. These are fictional representations of game components, not engineering models or reproductions of named historical vehicles.
 
-Olive, sand and winter finishes are cosmetic. Camera and finish survive component and name edits. **Download 3D model** exports the current configuration, its specification IDs and finish as a self-contained GLB. Selection highlights are not exported. Twelve example assets and regeneration instructions are in [equipment-models](spheres-web/ui/equipment-models/README.md).
+Olive, sand and winter finishes are cosmetic. Camera and finish survive component and name edits. **Download 3D model** exports the current configuration, its specification IDs and finish as a self-contained GLB. Selection highlights are not exported. Twelve example assets and regeneration instructions are in [equipment-models](../../spheres-web/ui/equipment-models/README.md).
 
 The renderer requires WebGL; if unavailable, design reviews and geometry downloads still work. The model uses local code and embedded vertex colors, without a CDN or external textures. Viewing, rotating, repainting and downloading create no simulation orders and change no country statistics.
 
-The separate manufacturing catalogue displays 46 static equipment models from the existing Claude-assisted Arsenal work. Source and integration attribution are recorded in [tools/arsenal](tools/arsenal/README.md). The tactical aviation designer now covers two fictional airframes. Other catalogue aircraft and ship previews do not imply their component designers or missions are implemented.
+The separate manufacturing catalogue displays 46 static equipment models from the existing Claude-assisted Arsenal work. Source and integration attribution are recorded in [tools/arsenal](../../tools/arsenal/README.md). The tactical aviation designer now covers two fictional airframes. Other catalogue aircraft and ship previews do not imply their component designers or missions are implemented.
 
 Open **Construction → Manufacture → Browse equipment catalogue** to inspect the deck before an arms plant is completed. Class filters and the technology-locked toggle expose the full collection. Production choices remain unavailable until the existing research and free-plant requirements are met.
 
