@@ -8774,10 +8774,24 @@ fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pill
 fn walk_pillars(w: &mut WorldState, id: NationId, targets: Vec<(Pillar, f64)>) {
     let loss_rate = crate::clock::blend(w, 0.10);
     let gain_rate = crate::clock::blend(w, 0.045);
+    let per_institution = w.rules.ideology_blocs;
     let g = match state_mut(w, id) {
         Some(g) => g,
         None => return,
     };
+    if per_institution {
+        // A type can have more than one sourced institution (Sudan's Army
+        // and Popular Defence Forces). Walk each stored loyalty once. Looking
+        // up the first entry for each target walked it twice and froze the rest.
+        for (pillar, loyalty) in &mut g.pillars {
+            if let Some((_, target)) = targets.iter().find(|(p, _)| p == pillar) {
+                let rate = if target < loyalty { loss_rate } else { gain_rate };
+                *loyalty = (*loyalty + (target - *loyalty) * rate).clamp(0.0, 1.0);
+            }
+        }
+        return;
+    }
+    // Preserve the pre-lens simulation and its recorded legacy replays.
     for (pillar, target) in targets {
         if let Some(e) = g.pillars.iter_mut().find(|(p, _)| *p == pillar) {
             let rate = if target < e.1 { loss_rate } else { gain_rate };
