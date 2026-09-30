@@ -1,0 +1,749 @@
+{
+  "format": "spheres-active-matrix-snapshot/v1",
+  "captured_utc": "2026-09-30T22:11:18.866330+00:00",
+  "audit_finished_utc": "2026-09-30T22:13:44.573347+00:00",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01",
+  "auditor": {
+    "path": "D:\\spheres-repository-cleanup-20260930\\docs\\campaign-certification\\S25\\preparation\\local-matrix-20260930\\audit_completed.py",
+    "bytes": 9176,
+    "sha256": "cd0d48994248c96e43bd5a7161c1ece35249356ce2b61af7f3705ffdc5798cae"
+  },
+  "frozen_helper_sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0",
+  "scope": "Completed-cell audit of an active run; not full-matrix retained verification",
+  "counts": {
+    "completed_pass_revalidated": 4,
+    "running": 4,
+    "queued": 16
+  },
+  "cells": [
+    {
+      "id": "france-1990",
+      "country": "France",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "completed_pass_revalidated",
+      "finished_utc": "2026-09-30T17:29:07.465538+00:00",
+      "files_verified": 14,
+      "archives_verified": 6,
+      "validation": {
+        "comparisons": 1156,
+        "calendar_days_each_leg": 16801,
+        "checks": {
+          "competition_adoptions": 2,
+          "daily_invariant_checks": 33602,
+          "full_horizon_pause": true,
+          "monthly_reloads": 552,
+          "native_validation_checks": 2312,
+          "sandbox_continued": true,
+          "sandbox_daily_invariant_checks": 2,
+          "terminal_reloads": 2
+        },
+        "actions": 598,
+        "final_archives": [
+          {
+            "leg": "uninterrupted",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+              "bytes": 143165126,
+              "sha256": "e55e3ffe17ebd322c3a0fc6da974d2799c071dfd3309ed62c11c03ffe8ec08f3"
+            },
+            "canonical": {
+              "bytes": 143165102,
+              "sha256": "c1084fc793037637f08b639baa556060d163c0063597a0d97edcddcc85309857",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+              "bytes": 143165126,
+              "sha256": "426fa7146a1bc6af662fbde47cc5e1ff567838c6bc72862cb1f5aae352bac66e"
+            },
+            "canonical": {
+              "bytes": 143165102,
+              "sha256": "c1084fc793037637f08b639baa556060d163c0063597a0d97edcddcc85309857",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "uninterrupted",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\sandbox.json",
+              "bytes": 142308902,
+              "sha256": "b6f06c13a1f626ea3858bc8d1f5ddc3e412ab85db9c45de2e0a0c43723361c21"
+            },
+            "canonical": {
+              "bytes": 142308878,
+              "sha256": "e7d3236afb528725e39fdd3b764d696f44238cd23d484331e092dc0108263efa",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\sandbox.json",
+              "bytes": 142308902,
+              "sha256": "19555fa5d1bc738587480798153617141c4eb245d331f0dcb96369a49dfa3b8b"
+            },
+            "canonical": {
+              "bytes": 142308878,
+              "sha256": "e7d3236afb528725e39fdd3b764d696f44238cd23d484331e092dc0108263efa",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          }
+        ],
+        "actual_final_pair_sha256_equal": true
+      }
+    },
+    {
+      "id": "france-7",
+      "country": "France",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "completed_pass_revalidated",
+      "finished_utc": "2026-09-30T16:31:15.237186+00:00",
+      "files_verified": 14,
+      "archives_verified": 6,
+      "validation": {
+        "comparisons": 1156,
+        "calendar_days_each_leg": 16801,
+        "checks": {
+          "competition_adoptions": 2,
+          "daily_invariant_checks": 33602,
+          "full_horizon_pause": true,
+          "monthly_reloads": 552,
+          "native_validation_checks": 2312,
+          "sandbox_continued": true,
+          "sandbox_daily_invariant_checks": 2,
+          "terminal_reloads": 2
+        },
+        "actions": 448,
+        "final_archives": [
+          {
+            "leg": "uninterrupted",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-7\\native\\uninterrupted\\saves\\final.json",
+              "bytes": 130447777,
+              "sha256": "d8cc4520607441d88abddf6457c2a721abba6db49128c7df4fd657a1b49b40ce"
+            },
+            "canonical": {
+              "bytes": 130447753,
+              "sha256": "9f246118391af5b7889c714b0986b746a3bb32e4f76df00b78e727ec01e5624a",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-7\\native\\resumed\\saves\\final.json",
+              "bytes": 130447777,
+              "sha256": "996ab1ca79aaf3b4f87ad33e25ea4acd837e66524bc47bd7bcb588df3a1e5297"
+            },
+            "canonical": {
+              "bytes": 130447753,
+              "sha256": "9f246118391af5b7889c714b0986b746a3bb32e4f76df00b78e727ec01e5624a",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "uninterrupted",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-7\\native\\uninterrupted\\saves\\sandbox.json",
+              "bytes": 129573095,
+              "sha256": "93476279bf6f971e839acbe29b01688cb307613afca4993d3abedea3b37bf326"
+            },
+            "canonical": {
+              "bytes": 129573071,
+              "sha256": "eedd421a37eb355e66c0642c5402777e3f804d794773821bb801ee5bbaa2683a",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-7\\native\\resumed\\saves\\sandbox.json",
+              "bytes": 129573095,
+              "sha256": "c8d4ceed931637c8549fe1cc72749bae8f4f5cb1a8b898112d1d87a45560f959"
+            },
+            "canonical": {
+              "bytes": 129573071,
+              "sha256": "eedd421a37eb355e66c0642c5402777e3f804d794773821bb801ee5bbaa2683a",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          }
+        ],
+        "actual_final_pair_sha256_equal": true
+      }
+    },
+    {
+      "id": "france-42",
+      "country": "France",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "completed_pass_revalidated",
+      "finished_utc": "2026-09-30T17:43:07.453025+00:00",
+      "files_verified": 14,
+      "archives_verified": 6,
+      "validation": {
+        "comparisons": 1156,
+        "calendar_days_each_leg": 16801,
+        "checks": {
+          "competition_adoptions": 2,
+          "daily_invariant_checks": 33602,
+          "full_horizon_pause": true,
+          "monthly_reloads": 552,
+          "native_validation_checks": 2312,
+          "sandbox_continued": true,
+          "sandbox_daily_invariant_checks": 2,
+          "terminal_reloads": 2
+        },
+        "actions": 446,
+        "final_archives": [
+          {
+            "leg": "uninterrupted",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-42\\native\\uninterrupted\\saves\\final.json",
+              "bytes": 129847467,
+              "sha256": "745b25368ffdd2082d07263f2ad74f7264a8b4440ab675f30e0b42510d07a573"
+            },
+            "canonical": {
+              "bytes": 129847443,
+              "sha256": "0b160195f40fd2c3c62b01af4982ceb763120065313bb7ae8671632dd365a86b",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-42\\native\\resumed\\saves\\final.json",
+              "bytes": 129847467,
+              "sha256": "f3f2024ce09e3fe888b2976c27b2b553a4866406b7200013e7604ce684bb2739"
+            },
+            "canonical": {
+              "bytes": 129847443,
+              "sha256": "0b160195f40fd2c3c62b01af4982ceb763120065313bb7ae8671632dd365a86b",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "uninterrupted",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-42\\native\\uninterrupted\\saves\\sandbox.json",
+              "bytes": 128977717,
+              "sha256": "a35ceeaf375147219814cc13fc9b873c65833df750b875be162468d4c3ed3fa8"
+            },
+            "canonical": {
+              "bytes": 128977693,
+              "sha256": "7753294f7f90d823544e70d2656dbc3abaa5389da73189464b742e9f60dd8430",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-42\\native\\resumed\\saves\\sandbox.json",
+              "bytes": 128977717,
+              "sha256": "d6042c6310837c0f8f0b35f6a875e44290730ef2dd1c4a5c2f30a934cd31c410"
+            },
+            "canonical": {
+              "bytes": 128977693,
+              "sha256": "7753294f7f90d823544e70d2656dbc3abaa5389da73189464b742e9f60dd8430",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          }
+        ],
+        "actual_final_pair_sha256_equal": true
+      }
+    },
+    {
+      "id": "japan-1990",
+      "country": "Japan",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "completed_pass_revalidated",
+      "finished_utc": "2026-09-30T17:40:25.726391+00:00",
+      "files_verified": 14,
+      "archives_verified": 6,
+      "validation": {
+        "comparisons": 1156,
+        "calendar_days_each_leg": 16801,
+        "checks": {
+          "competition_adoptions": 2,
+          "daily_invariant_checks": 33602,
+          "full_horizon_pause": true,
+          "monthly_reloads": 552,
+          "native_validation_checks": 2312,
+          "sandbox_continued": true,
+          "sandbox_daily_invariant_checks": 2,
+          "terminal_reloads": 2
+        },
+        "actions": 384,
+        "final_archives": [
+          {
+            "leg": "uninterrupted",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\japan-1990\\native\\uninterrupted\\saves\\final.json",
+              "bytes": 150565823,
+              "sha256": "51f51b863ba019416dfe3b101bf23c061f3c7337dc6c49704e7ce5a8eabde215"
+            },
+            "canonical": {
+              "bytes": 150565799,
+              "sha256": "423976f764f6423a3798d137cc74e976114c5b7631bd322c7250dd7c4e9ff17c",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "final",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\japan-1990\\native\\resumed\\saves\\final.json",
+              "bytes": 150565823,
+              "sha256": "b3664449a0efcc97927e7da46a0c9eb1f78f25d4082dfae4005db132955bb1f5"
+            },
+            "canonical": {
+              "bytes": 150565799,
+              "sha256": "423976f764f6423a3798d137cc74e976114c5b7631bd322c7250dd7c4e9ff17c",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "uninterrupted",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\japan-1990\\native\\uninterrupted\\saves\\sandbox.json",
+              "bytes": 149674329,
+              "sha256": "3bc0b3677cb23fbb5b05e2fd453c1008bffa1150e47c287c932d5723ec217e07"
+            },
+            "canonical": {
+              "bytes": 149674305,
+              "sha256": "63b2076d0db5389825482fb13fbb590c933215d809df179e3ecb77301ef54af3",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          },
+          {
+            "leg": "resumed",
+            "kind": "sandbox",
+            "file": {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\japan-1990\\native\\resumed\\saves\\sandbox.json",
+              "bytes": 149674329,
+              "sha256": "4390ad887067c23c1ba5931dbf65e937da68d8aa97b95127099899f183dc0a09"
+            },
+            "canonical": {
+              "bytes": 149674305,
+              "sha256": "63b2076d0db5389825482fb13fbb590c933215d809df179e3ecb77301ef54af3",
+              "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+            }
+          }
+        ],
+        "actual_final_pair_sha256_equal": true
+      }
+    },
+    {
+      "id": "japan-7",
+      "country": "Japan",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "running"
+    },
+    {
+      "id": "japan-42",
+      "country": "Japan",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "running"
+    },
+    {
+      "id": "india-1990",
+      "country": "India",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "running"
+    },
+    {
+      "id": "india-7",
+      "country": "India",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "running"
+    },
+    {
+      "id": "india-42",
+      "country": "India",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "brazil-1990",
+      "country": "Brazil",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "brazil-7",
+      "country": "Brazil",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "brazil-42",
+      "country": "Brazil",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "southafrica-1990",
+      "country": "SouthAfrica",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "southafrica-7",
+      "country": "SouthAfrica",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "southafrica-42",
+      "country": "SouthAfrica",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "tonga-1990",
+      "country": "Tonga",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "tonga-7",
+      "country": "Tonga",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "tonga-42",
+      "country": "Tonga",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "saudiarabia-1990",
+      "country": "SaudiArabia",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "saudiarabia-7",
+      "country": "SaudiArabia",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "saudiarabia-42",
+      "country": "SaudiArabia",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "ussr-1990",
+      "country": "USSR",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "ussr-7",
+      "country": "USSR",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "queued"
+    },
+    {
+      "id": "ussr-42",
+      "country": "USSR",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "queued"
+    }
+  ],
+  "copied_metadata": [
+    {
+      "relative": "freeze.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\freeze.json",
+      "bytes": 2136,
+      "sha256": "e987a66ae55d65e894e982b20b6ac76f4ffbbd699e3acbf7b060354bb5771f10"
+    },
+    {
+      "relative": "plan.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "relative": "resource-setup.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\resource-setup.json",
+      "bytes": 1182,
+      "sha256": "353bba79ca37d1289feccf913e1ecc0828c1286972c7a7892944dc255eb1ac22"
+    },
+    {
+      "relative": "stability_matrix.py",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "relative": "journal.jsonl",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\journal.jsonl",
+      "bytes": 48669,
+      "sha256": "6132ad9936f0806095a85fc66363da780f1a0230df695568343448bb7687f07d"
+    },
+    {
+      "relative": "cells/france-1990/archive-manifest.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\archive-manifest.json",
+      "bytes": 7124,
+      "sha256": "805d6684dc9a3b3482d733e86d17efa9a81f1e1e08c1facd2e220fc629c663ac"
+    },
+    {
+      "relative": "cells/france-1990/execution.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\execution.json",
+      "bytes": 1501,
+      "sha256": "323da0148e9bbe97afd740c8ede40854deaa90c7fbcdda8e48231ef6a01dff3e"
+    },
+    {
+      "relative": "cells/france-1990/native/progress.jsonl",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\progress.jsonl",
+      "bytes": 59157,
+      "sha256": "6647fcecf23e5b76f56b5f2ac9db0d2c12c46e85db4793f3686ba4f9ff3421d0"
+    },
+    {
+      "relative": "cells/france-1990/native/result.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\result.json",
+      "bytes": 493219,
+      "sha256": "3d21cfa5aff1b4590d60d5f2123f34aabf019d13dc7354c2a3a36580b32ccb94"
+    },
+    {
+      "relative": "cells/france-1990/request.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\request.json",
+      "bytes": 191,
+      "sha256": "721f4a25a6203b13fef35086bb36eb0f2195d8a2da55635c77155805b2368246"
+    },
+    {
+      "relative": "cells/france-1990/stderr.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "cells/france-1990/stdout.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\stdout.log",
+      "bytes": 170,
+      "sha256": "2901b804d82ffcbead4227dd957e21b9262d2314395aa5678ae1cb90d4bd7090"
+    },
+    {
+      "relative": "cells/france-1990/transfer.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\transfer.json",
+      "bytes": 9546,
+      "sha256": "1bade71de012ea027bdaf825ab624d5ac4399913b4668eb1bdcfa2a6e4ee6775"
+    },
+    {
+      "relative": "cells/france-1990/verdict.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\verdict.json",
+      "bytes": 15112,
+      "sha256": "1fad0cc069e53025c26a0fde8e892203390d04462760d4c654a93beec42334ce"
+    },
+    {
+      "relative": "cells/france-7/archive-manifest.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\archive-manifest.json",
+      "bytes": 7088,
+      "sha256": "a96deb6b63d0eec20701c7c63eeed66dff23026e03cf0d68f3edbaa5b6866a3c"
+    },
+    {
+      "relative": "cells/france-7/execution.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\execution.json",
+      "bytes": 1492,
+      "sha256": "83eb962e7c8e579589217d90464c372f545e1e8116a64089a4c4ff35c82b82e9"
+    },
+    {
+      "relative": "cells/france-7/native/progress.jsonl",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\native\\progress.jsonl",
+      "bytes": 59162,
+      "sha256": "7c0ac1995d1315b78bc1253415a876ec5d83a9b8aac4d80d65a6ae978fc7d93a"
+    },
+    {
+      "relative": "cells/france-7/native/result.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\native\\result.json",
+      "bytes": 459382,
+      "sha256": "db6a6a2cdd7a5ff4d88d991dc383c0b8582adb6fdead353efdf92be9e9154e35"
+    },
+    {
+      "relative": "cells/france-7/request.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\request.json",
+      "bytes": 185,
+      "sha256": "431f38eb7690db60e4201a26b052556551fe7df4b044c8d0d92f3ad289ddbf0d"
+    },
+    {
+      "relative": "cells/france-7/stderr.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "cells/france-7/stdout.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\stdout.log",
+      "bytes": 170,
+      "sha256": "d29316c87d9412626db35f6505b173c03b77c41f20d91382e9e7f83ad2f83958"
+    },
+    {
+      "relative": "cells/france-7/transfer.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\transfer.json",
+      "bytes": 9462,
+      "sha256": "fcb6922db332ddd3f403b2a1281c9c95d89260fce3835888e94e2288203a5d8b"
+    },
+    {
+      "relative": "cells/france-7/verdict.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-7\\verdict.json",
+      "bytes": 15016,
+      "sha256": "1bf9871bc1d6e92b52aa6fa7c3f70f57cf17b2be6bf1a9c936d64e7f5d457c7e"
+    },
+    {
+      "relative": "cells/france-42/archive-manifest.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\archive-manifest.json",
+      "bytes": 7100,
+      "sha256": "e2fd961a425954699b16e9a0d978da6ff56b2d033c4f29af91e692927a38c812"
+    },
+    {
+      "relative": "cells/france-42/execution.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\execution.json",
+      "bytes": 1495,
+      "sha256": "498c3983c8208fda6097c700a245f01f1261b03b9412d8fd050a21830c10e2b3"
+    },
+    {
+      "relative": "cells/france-42/native/progress.jsonl",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\native\\progress.jsonl",
+      "bytes": 59161,
+      "sha256": "dd937218bfe2afa1226b69d1aa8896b0b5e63ee66ebae6265c47e2911e97999b"
+    },
+    {
+      "relative": "cells/france-42/native/result.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\native\\result.json",
+      "bytes": 457484,
+      "sha256": "6794a7d568aeb06f22eb1ec9de957222d9c52de57901c964c9cac9facb37e28b"
+    },
+    {
+      "relative": "cells/france-42/request.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\request.json",
+      "bytes": 187,
+      "sha256": "b05bfcb03dd453f060002a4b27e9e9d849a6206ded4661c667e0d3929e70c48d"
+    },
+    {
+      "relative": "cells/france-42/stderr.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "cells/france-42/stdout.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\stdout.log",
+      "bytes": 170,
+      "sha256": "0b7a4ff955901d9c654f314438519e9703be084ac763efce943ab71b07495e54"
+    },
+    {
+      "relative": "cells/france-42/transfer.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\transfer.json",
+      "bytes": 9490,
+      "sha256": "30e488aad1fe52af64247bced83366786467e43797990b16e63645301e440bb5"
+    },
+    {
+      "relative": "cells/france-42/verdict.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-42\\verdict.json",
+      "bytes": 15048,
+      "sha256": "75424bfa4b9b14ac6221f8e89f9b490e16cc4964ce3e85a0b7e0aa43dbbeae54"
+    },
+    {
+      "relative": "cells/japan-1990/archive-manifest.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\archive-manifest.json",
+      "bytes": 7112,
+      "sha256": "3cffe07d1df3118c0873545f206a604039929972d45578995f1c1b3d1f8f7007"
+    },
+    {
+      "relative": "cells/japan-1990/execution.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\execution.json",
+      "bytes": 1498,
+      "sha256": "b18379413688c0b1b2dd1b40387446fda8da70ca824eb28b5e1fe383016d030b"
+    },
+    {
+      "relative": "cells/japan-1990/native/progress.jsonl",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\native\\progress.jsonl",
+      "bytes": 59157,
+      "sha256": "e070c8095a055c4d91a6ce6f3484a5bfbd93a53fae65a5a7657aa7da085712e2"
+    },
+    {
+      "relative": "cells/japan-1990/native/result.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\native\\result.json",
+      "bytes": 439889,
+      "sha256": "a07b30e909e726ec0862570b9b68836c3f6a0f9ace54583442a087e57f84f8e7"
+    },
+    {
+      "relative": "cells/japan-1990/request.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\request.json",
+      "bytes": 189,
+      "sha256": "58a8ac5007a59fc102161312c713814dc89b85de48e3dee702fe662e4b347331"
+    },
+    {
+      "relative": "cells/japan-1990/stderr.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "cells/japan-1990/stdout.log",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\stdout.log",
+      "bytes": 170,
+      "sha256": "f5d7cbfd3a9479479af5417350af7993cf08a60c73bf96af0f3504ffc6e0ef81"
+    },
+    {
+      "relative": "cells/japan-1990/transfer.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\transfer.json",
+      "bytes": 9518,
+      "sha256": "f7edbdd99558f55d5d9f0a85e9a8283e8c9fbe3b7dc72df6e7c00061e19e6763"
+    },
+    {
+      "relative": "cells/japan-1990/verdict.json",
+      "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-1990\\verdict.json",
+      "bytes": 15080,
+      "sha256": "b82cb538a8ba501e151803ab535ef6572f1c06aa014e1e64958c262ecfb0a824"
+    }
+  ],
+  "native_reexecuted": false,
+  "full_matrix_passed": false,
+  "qualification": false,
+  "s25_complete": false
+}

@@ -38,7 +38,7 @@ versioned game coefficients; they are not historical engineering measurements.
 The combined save is `spheres-companies-save` version 1, retaining the supplier
 equipment generation and explicit party/economy/operating capabilities. Legacy
 supplier IDs and the imported contractor roster occupy distinct namespaces.
-See [S03 integration evidence](docs/campaign-certification/S03/README.md) for
+See [S03 integration evidence](../campaign-certification/S03/README.md) for
 verification status and rollout limits. The guide below documents the preserved
 supplier lifecycle.
 

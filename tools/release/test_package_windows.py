@@ -115,6 +115,20 @@ class PackagingTests(unittest.TestCase):
                 self.assertEqual(result['manifest']['files'][result['manifest']['executable']['path']]['mode'], '0755')
                 self.assertEqual(set(result['manifest']['runtime_assets']), set(release.EMBEDDED_ASSETS) | {'/terrain-tiles/x00_y00.png'})
 
+    def test_reorganized_player_docs_ship_at_their_linked_paths(self):
+        guide = b'# Player guide\nCampaign recovery and controls.\n'
+        decisions = b'# Player decisions\nReviewed orders and receipts.\n'
+        self.write('docs/PLAYING.md', guide)
+        self.write('docs/reference/PLAYER_DECISIONS.md', decisions)
+        self.git('add', 'docs')
+        self.git('commit', '-qm', 'relocated player documentation')
+        result = release.extract_verified(self.archive(), self.base/'docs-extracted')
+        folder = Path(result['extracted_root'])
+        self.assertEqual((folder/'docs/PLAYING.md').read_bytes(), guide)
+        self.assertEqual((folder/'docs/reference/PLAYER_DECISIONS.md').read_bytes(), decisions)
+        self.assertFalse((folder/'PLAYER_DECISIONS.md').exists())
+        self.assertEqual(result['manifest']['files']['docs/PLAYING.md']['sha256'], release.sha(guide))
+
     def test_stale_or_mismatched_binary_refuses_before_output(self):
         for field, value in [('full_revision', 'f'*40), ('revision', 'f'*12), ('target_os', 'linux'), ('target_arch', 'unknown'), ('built_at_unix_seconds', True)]:
             with self.subTest(field=field):

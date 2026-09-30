@@ -85,6 +85,6 @@ first machinery orders, installation and actual output, paid processor output,
 delivered imports, actual research consumption and bounded blocking reasons by
 economic size. It neither forces adoption nor attributes a fungible consumed pack
 to an untracked source. Prior pilot results remain in
-[MATERIALS_OPERATIONS_RESULTS.md](MATERIALS_OPERATIONS_RESULTS.md); follow-up
+[MATERIALS_OPERATIONS_RESULTS.md](../archive/2026-09-30/MATERIALS_OPERATIONS_RESULTS.md); follow-up
 measurements are recorded in
-[MATERIALS_AI_INTEGRATION_RESULTS.md](MATERIALS_AI_INTEGRATION_RESULTS.md).
+[MATERIALS_AI_INTEGRATION_RESULTS.md](../archive/2026-09-30/MATERIALS_AI_INTEGRATION_RESULTS.md).

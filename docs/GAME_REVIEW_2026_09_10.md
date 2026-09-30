@@ -77,7 +77,7 @@ The population work on master must be reconciled before promising those effects.
 Source anchors: [industry.rs](../spheres-sim/src/industry.rs),
 [construction_preview.rs](../spheres-sim/src/construction_preview.rs),
 [construction_suggestions.rs](../spheres-sim/src/construction_suggestions.rs),
-[gdp_projects.rs](../spheres-sim/src/gdp_projects.rs), [CASH_FLOW.md](../CASH_FLOW.md).
+[gdp_projects.rs](../spheres-sim/src/gdp_projects.rs), [CASH_FLOW.md](reference/CASH_FLOW.md).
 
 ### Companies and equipment: the strongest distinctive loop
 
@@ -98,7 +98,7 @@ already present on master, not by creating a third supplier model.
 
 Source anchors: [companies.rs](../spheres-sim/src/companies.rs),
 [companies_refits.rs](../spheres-sim/src/companies_refits.rs),
-[COMPANIES.md](../COMPANIES.md), [equipment.rs](../spheres-sim/src/equipment.rs).
+[COMPANIES.md](reference/COMPANIES.md), [equipment.rs](../spheres-sim/src/equipment.rs).
 
 ### Military and flight: presentation is ahead of operations
 
@@ -120,7 +120,7 @@ remaining readiness. Routine support should stay automatic within the authorized
 budget. Build on the integrated operations model and existing ammunition and
 procurement, then add fighters. More specialist aircraft should follow that loop.
 
-Source anchors: [AVIATION.md](../AVIATION.md),
+Source anchors: [AVIATION.md](reference/AVIATION.md),
 [equipment_aviation_view.rs](../spheres-web/src/equipment_aviation_view.rs),
 [flight-command.js](../tools/arsenal/flight-command.js),
 [FLIGHT_LAYER_BUILDOUT.md](art/FLIGHT_LAYER_BUILDOUT.md).
@@ -171,7 +171,7 @@ size, not realism or frame rate. Test cold loading, repeated room visits and
 mobile/lower-end GPUs as well as the close-up inspection view.
 
 Source anchors: [GUIDANCE.md](GUIDANCE.md), [ADVISOR_MODEL.md](ADVISOR_MODEL.md),
-[PLAYTEST.md](../PLAYTEST.md), [README.md](../README.md),
+[PLAYTEST.md](reference/PLAYTEST.md), [README.md](../README.md),
 [terrain-surface.js](../spheres-web/ui/terrain-surface.js).
 
 ## Recommended development order

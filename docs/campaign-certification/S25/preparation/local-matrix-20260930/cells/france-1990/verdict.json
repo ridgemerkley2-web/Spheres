@@ -1,0 +1,305 @@
+{
+  "id": "france-1990",
+  "passed": true,
+  "failure": null,
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 143165126,
+        "sha256": "e55e3ffe17ebd322c3a0fc6da974d2799c071dfd3309ed62c11c03ffe8ec08f3"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 25248829,
+        "sha256": "ddd1f206ffa72010912432d347296caa5f0a3e10045b890f2d3daf0777e321c1"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 143165126,
+        "sha256": "e55e3ffe17ebd322c3a0fc6da974d2799c071dfd3309ed62c11c03ffe8ec08f3"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\sandbox.json",
+        "bytes": 142308902,
+        "sha256": "b6f06c13a1f626ea3858bc8d1f5ddc3e412ab85db9c45de2e0a0c43723361c21"
+      },
+      "original_relative": "uninterrupted/saves/sandbox.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\sandbox.json.gz",
+        "bytes": 25099873,
+        "sha256": "b1b148290665acdc7189aa14fdf1b202745c68f8f2caa0a68d687af3e27297a2"
+      },
+      "gzip_relative": "uninterrupted/saves/sandbox.json.gz",
+      "decoded": {
+        "bytes": 142308902,
+        "sha256": "b6f06c13a1f626ea3858bc8d1f5ddc3e412ab85db9c45de2e0a0c43723361c21"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+        "bytes": 143165126,
+        "sha256": "426fa7146a1bc6af662fbde47cc5e1ff567838c6bc72862cb1f5aae352bac66e"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 25248829,
+        "sha256": "2ecfb8f1441c6fd157080a470ec1e30a6d23755d2e20b13878f6c8a8499ac49e"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 143165126,
+        "sha256": "426fa7146a1bc6af662fbde47cc5e1ff567838c6bc72862cb1f5aae352bac66e"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\sandbox.json",
+        "bytes": 142308902,
+        "sha256": "19555fa5d1bc738587480798153617141c4eb245d331f0dcb96369a49dfa3b8b"
+      },
+      "original_relative": "resumed/saves/sandbox.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\sandbox.json.gz",
+        "bytes": 25099874,
+        "sha256": "259a0c7e1c122f9880c417a3489ac5693092b0f06fed4cc1eca7acfc7aaf47f5"
+      },
+      "gzip_relative": "resumed/saves/sandbox.json.gz",
+      "decoded": {
+        "bytes": 142308902,
+        "sha256": "19555fa5d1bc738587480798153617141c4eb245d331f0dcb96369a49dfa3b8b"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+        "bytes": 143165126,
+        "sha256": "85f0d334427d93edac0140b5bc0beac0c5b3bc29e4c29035c9ad011cbe25e0d0"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 25248829,
+        "sha256": "459cd532635686bf5a2c29833f9c3746f0cdb09b3424d318cca564bd4543f640"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 143165126,
+        "sha256": "85f0d334427d93edac0140b5bc0beac0c5b3bc29e4c29035c9ad011cbe25e0d0"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 136863141,
+        "sha256": "a9da2aadf69e5e6d31c3c36756a6cfc28cce1db6090f383feef7debaf0eabd5f"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 24621048,
+        "sha256": "701330935f730ab65914f08a08538c5bf11d2d12df84f010e7a27c3ebf976ae7"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 136863141,
+        "sha256": "a9da2aadf69e5e6d31c3c36756a6cfc28cce1db6090f383feef7debaf0eabd5f"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "test_execution": {
+    "executed": 1,
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 476
+  },
+  "native_validation": {
+    "comparisons": 1156,
+    "calendar_days_each_leg": 16801,
+    "checks": {
+      "competition_adoptions": 2,
+      "daily_invariant_checks": 33602,
+      "full_horizon_pause": true,
+      "monthly_reloads": 552,
+      "native_validation_checks": 2312,
+      "sandbox_continued": true,
+      "sandbox_daily_invariant_checks": 2,
+      "terminal_reloads": 2
+    },
+    "actions": 598,
+    "final_archives": [
+      {
+        "leg": "uninterrupted",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+          "bytes": 143165126,
+          "sha256": "e55e3ffe17ebd322c3a0fc6da974d2799c071dfd3309ed62c11c03ffe8ec08f3"
+        },
+        "canonical": {
+          "bytes": 143165102,
+          "sha256": "c1084fc793037637f08b639baa556060d163c0063597a0d97edcddcc85309857",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "resumed",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+          "bytes": 143165126,
+          "sha256": "426fa7146a1bc6af662fbde47cc5e1ff567838c6bc72862cb1f5aae352bac66e"
+        },
+        "canonical": {
+          "bytes": 143165102,
+          "sha256": "c1084fc793037637f08b639baa556060d163c0063597a0d97edcddcc85309857",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "uninterrupted",
+        "kind": "sandbox",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\sandbox.json",
+          "bytes": 142308902,
+          "sha256": "b6f06c13a1f626ea3858bc8d1f5ddc3e412ab85db9c45de2e0a0c43723361c21"
+        },
+        "canonical": {
+          "bytes": 142308878,
+          "sha256": "e7d3236afb528725e39fdd3b764d696f44238cd23d484331e092dc0108263efa",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "resumed",
+        "kind": "sandbox",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\sandbox.json",
+          "bytes": 142308902,
+          "sha256": "19555fa5d1bc738587480798153617141c4eb245d331f0dcb96369a49dfa3b8b"
+        },
+        "canonical": {
+          "bytes": 142308878,
+          "sha256": "e7d3236afb528725e39fdd3b764d696f44238cd23d484331e092dc0108263efa",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      }
+    ],
+    "actual_final_pair_sha256_equal": true
+  },
+  "native_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\france-1990\\native\\result.json",
+    "bytes": 493219,
+    "sha256": "3d21cfa5aff1b4590d60d5f2123f34aabf019d13dc7354c2a3a36580b32ccb94"
+  },
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\archive-manifest.json",
+      "bytes": 7124,
+      "sha256": "805d6684dc9a3b3482d733e86d17efa9a81f1e1e08c1facd2e220fc629c663ac"
+    },
+    {
+      "relative": "execution.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\execution.json",
+      "bytes": 1501,
+      "sha256": "323da0148e9bbe97afd740c8ede40854deaa90c7fbcdda8e48231ef6a01dff3e"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\progress.jsonl",
+      "bytes": 59157,
+      "sha256": "6647fcecf23e5b76f56b5f2ac9db0d2c12c46e85db4793f3686ba4f9ff3421d0"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\result.json",
+      "bytes": 493219,
+      "sha256": "3d21cfa5aff1b4590d60d5f2123f34aabf019d13dc7354c2a3a36580b32ccb94"
+    },
+    {
+      "relative": "native/resumed/saves/final.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+      "bytes": 25248829,
+      "sha256": "2ecfb8f1441c6fd157080a470ec1e30a6d23755d2e20b13878f6c8a8499ac49e"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "bytes": 24621048,
+      "sha256": "701330935f730ab65914f08a08538c5bf11d2d12df84f010e7a27c3ebf976ae7"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 25248829,
+      "sha256": "459cd532635686bf5a2c29833f9c3746f0cdb09b3424d318cca564bd4543f640"
+    },
+    {
+      "relative": "native/resumed/saves/sandbox.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\resumed\\saves\\sandbox.json.gz",
+      "bytes": 25099874,
+      "sha256": "259a0c7e1c122f9880c417a3489ac5693092b0f06fed4cc1eca7acfc7aaf47f5"
+    },
+    {
+      "relative": "native/uninterrupted/saves/final.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+      "bytes": 25248829,
+      "sha256": "ddd1f206ffa72010912432d347296caa5f0a3e10045b890f2d3daf0777e321c1"
+    },
+    {
+      "relative": "native/uninterrupted/saves/sandbox.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\native\\uninterrupted\\saves\\sandbox.json.gz",
+      "bytes": 25099873,
+      "sha256": "b1b148290665acdc7189aa14fdf1b202745c68f8f2caa0a68d687af3e27297a2"
+    },
+    {
+      "relative": "request.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\request.json",
+      "bytes": 191,
+      "sha256": "721f4a25a6203b13fef35086bb36eb0f2195d8a2da55635c77155805b2368246"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\stdout.log",
+      "bytes": 170,
+      "sha256": "2901b804d82ffcbead4227dd957e21b9262d2314395aa5678ae1cb90d4bd7090"
+    },
+    {
+      "relative": "transfer.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\france-1990\\transfer.json",
+      "bytes": 9546,
+      "sha256": "1bade71de012ea027bdaf825ab624d5ac4399913b4668eb1bdcfa2a6e4ee6775"
+    }
+  ]
+}

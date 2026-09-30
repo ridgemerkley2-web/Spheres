@@ -9,6 +9,7 @@ permissions:
   contents: read
 jobs:
   freeze:
+    if: github.event.deleted != true
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     outputs:

@@ -25,10 +25,10 @@ class PackageError(ValueError):
 
 
 REPOSITORY = 'https://github.com/ridgemerkley2-web/Spheres'
-OPTIONAL_DOCS = ('CURRENT_ARCHITECTURE.md', 'DECISIONS.md', 'PLAYTEST.md', 'PLAYER_DECISIONS.md', 'MILITARY_OPERATIONS.md',
-                 'CAMPAIGN_AIMS.md', 'SECTOR_PROFILES.md', 'TECH_REFERENCE_REPAIR.md', 'HEADLESS_BASELINE_2026-09-04.md',
-                 'DAILY_CALIBRATION.md', 'PERFORMANCE.md', 'INVESTMENT_COMPLETION_AUDIT.md', 'ART_DIRECTION.md',
-                 'MANUFACTURING.md', 'PROVINCE_ECONOMY.md')
+OPTIONAL_DOCS = ('docs/PLAYING.md', 'docs/reference/CURRENT_ARCHITECTURE.md', 'docs/reference/DECISIONS.md', 'docs/reference/PLAYTEST.md', 'docs/reference/PLAYER_DECISIONS.md', 'docs/reference/MILITARY_OPERATIONS.md',
+                 'docs/reference/CAMPAIGN_AIMS.md', 'docs/reference/SECTOR_PROFILES.md', 'docs/archive/2026-09-30/TECH_REFERENCE_REPAIR.md', 'docs/archive/2026-09-30/HEADLESS_BASELINE_2026-09-04.md',
+                 'docs/reference/DAILY_CALIBRATION.md', 'docs/reference/PERFORMANCE.md', 'docs/archive/2026-09-30/INVESTMENT_COMPLETION_AUDIT.md', 'docs/reference/ART_DIRECTION.md',
+                 'docs/reference/MANUFACTURING.md', 'docs/reference/PROVINCE_ECONOMY.md')
 REQUIRED_INPUTS = {
     'README.md': 'README.md', 'Cargo.lock': 'source/Cargo.lock',
     'spheres-web/ui/height-detail.json': 'attribution/height-detail.json',
