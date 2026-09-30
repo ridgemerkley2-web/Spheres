@@ -1,0 +1,7297 @@
+{
+  "format": "spheres-a1-route-exposure/v1",
+  "observed_revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+  "reviewed_revision": "aba3902b7e56804eca6f52edcc32bfe7fbea9b2c",
+  "seed": 0,
+  "months": 252,
+  "rows": 146525,
+  "stage_counts": {
+    "army_before_walk": 21797,
+    "army_after_walk": 21797,
+    "trigger_unsettled_interim_or_no_army": 6786,
+    "ai_before_funding": 38581,
+    "ai_after_funding": 38581,
+    "trigger_live_conditions_inactive": 18870,
+    "trigger_pressure_not_ready": 103,
+    "trigger_firing": 10
+  },
+  "inputs": {
+    "manifest": {
+      "bytes": 13955,
+      "sha256": "b3dc18e7c5cd2f3b6195d3625805e1f8aa61bcd82b52db31d39d0d2ffc94d497"
+    },
+    "native_result": {
+      "bytes": 94466,
+      "sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6"
+    },
+    "decoded_observations": {
+      "bytes": 240585752,
+      "sha256": "13676236845d5c814e640520d322227769d4a7e16c685a237a6ce99a2ca46b49"
+    },
+    "source_checks": [
+      {
+        "path": "spheres-sim/src/nations.rs",
+        "bytes": 214148,
+        "sha256": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+        "matches_observer_git_bytes": true
+      },
+      {
+        "path": "spheres-sim/src/government.rs",
+        "bytes": 849546,
+        "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+        "matches_observer_git_bytes": true
+      },
+      {
+        "path": "spheres-sim/tests/bloc_census.rs",
+        "bytes": 64036,
+        "sha256": "5f87457baf8d4f4d6a4258ea72edd4b348b18d1e7ed10c7b7be2998e837e1bb2",
+        "matches_observer_git_bytes": true
+      }
+    ]
+  },
+  "anchor_countries": [
+    {
+      "country": "Thailand",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Haiti",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Algeria",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 23,
+      "non_electoral_at_funding": 229,
+      "trigger_checks": 24,
+      "eligible_trigger_checks": 13,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 13,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 24,
+        "no_current_crisis": 16,
+        "pressure_not_ready": 24,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            11,
+            1
+          ],
+          "observations": 23
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1991,
+            12,
+            1
+          ],
+          "trigger": {
+            "line": 11679,
+            "stage": "trigger_live_conditions_inactive"
+          },
+          "later_funding_line": 11907,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Peru",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 211,
+      "eligible_crisis_checks": 211,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 211,
+        "trigger_unsettled_interim_or_no_army": 41
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 41
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "SierraLeone",
+      "funding_stage_months": 0,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": false,
+      "classification": "outside_roster"
+    },
+    {
+      "country": "Gambia",
+      "funding_stage_months": 0,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": false,
+      "classification": "outside_roster"
+    },
+    {
+      "country": "Niger",
+      "funding_stage_months": 0,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": false,
+      "classification": "outside_roster"
+    },
+    {
+      "country": "Pakistan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Honduras",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 249,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    }
+  ],
+  "countries": [
+    {
+      "country": "Afghanistan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Albania",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 196,
+      "non_electoral_at_funding": 56,
+      "trigger_checks": 196,
+      "eligible_trigger_checks": 189,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 189,
+        "trigger_unsettled_interim_or_no_army": 7
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 196,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 196,
+        "pressure_not_ready": 196,
+        "unsettled": 7
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1994,
+            8,
+            1
+          ],
+          "observations": 56
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1994,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 196
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Algeria",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 23,
+      "non_electoral_at_funding": 229,
+      "trigger_checks": 24,
+      "eligible_trigger_checks": 13,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 13,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 24,
+        "no_current_crisis": 16,
+        "pressure_not_ready": 24,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            11,
+            1
+          ],
+          "observations": 23
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1991,
+            12,
+            1
+          ],
+          "trigger": {
+            "line": 11679,
+            "stage": "trigger_live_conditions_inactive"
+          },
+          "later_funding_line": 11907,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Angola",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Argentina",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 164,
+      "eligible_crisis_checks": 110,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 164,
+        "trigger_unsettled_interim_or_no_army": 88
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 76,
+        "pressure_not_ready": 252,
+        "unsettled": 88
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Armenia",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 175,
+      "eligible_crisis_checks": 175,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 175,
+        "trigger_unsettled_interim_or_no_army": 33
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 33
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Australia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Austria",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Azerbaijan",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 160,
+      "eligible_crisis_checks": 160,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 160,
+        "trigger_unsettled_interim_or_no_army": 48
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 48
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Bahamas",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Bahrain",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Bangladesh",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 29,
+      "non_electoral_at_funding": 223,
+      "trigger_checks": 29,
+      "eligible_trigger_checks": 10,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 10,
+        "trigger_unsettled_interim_or_no_army": 19
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 29,
+        "awaiting_first_election": 19,
+        "no_current_crisis": 29,
+        "pressure_not_ready": 29,
+        "unsettled": 19
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2008,
+            7,
+            1
+          ],
+          "observations": 223
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2008,
+            8,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 29
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Belarus",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 177,
+      "eligible_crisis_checks": 177,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 177,
+        "trigger_unsettled_interim_or_no_army": 31
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 31
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Belgium",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Belize",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Bhutan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Bolivia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 219,
+      "eligible_crisis_checks": 128,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 219,
+        "trigger_unsettled_interim_or_no_army": 33
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 114,
+        "pressure_not_ready": 252,
+        "unsettled": 33
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Bosnia",
+      "funding_stage_months": 229,
+      "electoral_at_funding": 229,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 229,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 229
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 229,
+        "no_army": 229,
+        "pressure_not_ready": 229,
+        "unsettled": 77
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Botswana",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Brazil",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 107,
+      "eligible_crisis_checks": 107,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 107,
+        "trigger_unsettled_interim_or_no_army": 145
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 145
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Brunei",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Bulgaria",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 164,
+      "eligible_crisis_checks": 125,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 164,
+        "trigger_unsettled_interim_or_no_army": 88
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 61,
+        "pressure_not_ready": 252,
+        "unsettled": 88
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Cambodia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Cameroon",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 243,
+      "non_electoral_at_funding": 9,
+      "trigger_checks": 243,
+      "eligible_trigger_checks": 236,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 236,
+        "trigger_unsettled_interim_or_no_army": 7
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 243,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 243,
+        "pressure_not_ready": 243,
+        "unsettled": 7
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1990,
+            9,
+            1
+          ],
+          "observations": 9
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            10,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 243
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Canada",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "CapeVerde",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 249,
+      "non_electoral_at_funding": 3,
+      "trigger_checks": 249,
+      "eligible_trigger_checks": 231,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 231,
+        "trigger_unsettled_interim_or_no_army": 18
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 249,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 249,
+        "pressure_not_ready": 249,
+        "unsettled": 18
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1990,
+            3,
+            1
+          ],
+          "observations": 3
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            4,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 249
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "CentralAfricanRepublic",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 223,
+      "non_electoral_at_funding": 29,
+      "trigger_checks": 222,
+      "eligible_trigger_checks": 181,
+      "eligible_crisis_checks": 174,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 181,
+        "trigger_unsettled_interim_or_no_army": 41
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 222,
+        "awaiting_first_election": 19,
+        "no_current_crisis": 26,
+        "pressure_not_ready": 222,
+        "unsettled": 41
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1992,
+            5,
+            1
+          ],
+          "observations": 29
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1992,
+            6,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 223
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Chad",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Chile",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "China",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Colombia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 186,
+      "eligible_crisis_checks": 164,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 186,
+        "trigger_unsettled_interim_or_no_army": 66
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 33,
+        "pressure_not_ready": 252,
+        "unsettled": 66
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Comoros",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 192,
+      "non_electoral_at_funding": 60,
+      "trigger_checks": 193,
+      "eligible_trigger_checks": 142,
+      "eligible_crisis_checks": 142,
+      "eligible_hostile_crisis_checks": 28,
+      "firings": 1,
+      "trigger_branches": {
+        "trigger_firing": 1,
+        "trigger_live_conditions_inactive": 114,
+        "trigger_pressure_not_ready": 27,
+        "trigger_unsettled_interim_or_no_army": 51
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 165,
+        "awaiting_first_election": 7,
+        "pressure_not_ready": 192,
+        "unsettled": 51
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1995,
+            9,
+            1
+          ],
+          "observations": 69
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1995,
+            10,
+            1
+          ],
+          "last_date": [
+            2000,
+            9,
+            1
+          ],
+          "observations": 60
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2000,
+            10,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 123
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1995,
+            10,
+            1
+          ],
+          "trigger": {
+            "line": 37500,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 37787,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "fired"
+    },
+    {
+      "country": "Congo",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 219,
+      "non_electoral_at_funding": 33,
+      "trigger_checks": 218,
+      "eligible_trigger_checks": 78,
+      "eligible_crisis_checks": 78,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 78,
+        "trigger_unsettled_interim_or_no_army": 140
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 218,
+        "awaiting_first_election": 19,
+        "pressure_not_ready": 218,
+        "unsettled": 140
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1992,
+            9,
+            1
+          ],
+          "observations": 33
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1992,
+            10,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 219
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "CostaRica",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Croatia",
+      "funding_stage_months": 229,
+      "electoral_at_funding": 229,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 229,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 229
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 229,
+        "no_army": 229,
+        "no_current_crisis": 64,
+        "pressure_not_ready": 229,
+        "unsettled": 55
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Cuba",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Cyprus",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Czechoslovakia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Denmark",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "DominicanRepublic",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 225,
+      "eligible_crisis_checks": 5,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 225,
+        "trigger_unsettled_interim_or_no_army": 27
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 235,
+        "pressure_not_ready": 252,
+        "unsettled": 27
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Ecuador",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 172,
+      "non_electoral_at_funding": 80,
+      "trigger_checks": 172,
+      "eligible_trigger_checks": 109,
+      "eligible_crisis_checks": 109,
+      "eligible_hostile_crisis_checks": 19,
+      "firings": 1,
+      "trigger_branches": {
+        "trigger_firing": 1,
+        "trigger_live_conditions_inactive": 90,
+        "trigger_pressure_not_ready": 18,
+        "trigger_unsettled_interim_or_no_army": 63
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 153,
+        "awaiting_first_election": 19,
+        "pressure_not_ready": 171,
+        "unsettled": 63
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1993,
+            3,
+            1
+          ],
+          "observations": 39
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1993,
+            4,
+            1
+          ],
+          "last_date": [
+            1999,
+            11,
+            1
+          ],
+          "observations": 80
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1999,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 133
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1993,
+            4,
+            1
+          ],
+          "trigger": {
+            "line": 20111,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 20349,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "fired"
+    },
+    {
+      "country": "Egypt",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 3,
+      "non_electoral_at_funding": 249,
+      "trigger_checks": 3,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 3
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 3,
+        "awaiting_first_election": 3,
+        "no_current_crisis": 3,
+        "pressure_not_ready": 3,
+        "unsettled": 3
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            9,
+            1
+          ],
+          "observations": 249
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2010,
+            10,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 3
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "ElSalvador",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 153,
+      "eligible_crisis_checks": 29,
+      "eligible_hostile_crisis_checks": 1,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 152,
+        "trigger_pressure_not_ready": 1,
+        "trigger_unsettled_interim_or_no_army": 99
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 247,
+        "no_current_crisis": 166,
+        "pressure_not_ready": 252,
+        "unsettled": 99
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "live_conditions_observed_but_no_firing"
+    },
+    {
+      "country": "EquatorialGuinea",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Estonia",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 208
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "no_army": 208,
+        "no_current_crisis": 128,
+        "pressure_not_ready": 208,
+        "unsettled": 33
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Ethiopia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Fiji",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 248,
+      "non_electoral_at_funding": 4,
+      "trigger_checks": 248,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 18
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 248,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 248,
+        "pressure_not_ready": 248,
+        "unsettled": 18
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1990,
+            4,
+            1
+          ],
+          "observations": 4
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            5,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 248
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Finland",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "France",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Gabon",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 173,
+      "non_electoral_at_funding": 79,
+      "trigger_checks": 173,
+      "eligible_trigger_checks": 166,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 166,
+        "trigger_unsettled_interim_or_no_army": 7
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 173,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 173,
+        "pressure_not_ready": 173,
+        "unsettled": 7
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1996,
+            7,
+            1
+          ],
+          "observations": 79
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1996,
+            8,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 173
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Gambia",
+      "funding_stage_months": 0,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": false,
+      "classification": "outside_roster"
+    },
+    {
+      "country": "Georgia",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 18,
+      "non_electoral_at_funding": 190,
+      "trigger_checks": 19,
+      "eligible_trigger_checks": 8,
+      "eligible_crisis_checks": 8,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 8,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 19,
+        "pressure_not_ready": 19,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            1995,
+            2,
+            1
+          ],
+          "observations": 18
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1995,
+            3,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 190
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1995,
+            3,
+            1
+          ],
+          "trigger": {
+            "line": 33459,
+            "stage": "trigger_live_conditions_inactive"
+          },
+          "later_funding_line": 33766,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Germany",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Ghana",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 223,
+      "non_electoral_at_funding": 29,
+      "trigger_checks": 221,
+      "eligible_trigger_checks": 161,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 161,
+        "trigger_unsettled_interim_or_no_army": 60
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 221,
+        "awaiting_first_election": 38,
+        "no_current_crisis": 221,
+        "pressure_not_ready": 221,
+        "unsettled": 60
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            12,
+            1
+          ],
+          "observations": 24
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1992,
+            1,
+            1
+          ],
+          "last_date": [
+            2002,
+            8,
+            1
+          ],
+          "observations": 128
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            2002,
+            9,
+            1
+          ],
+          "last_date": [
+            2003,
+            1,
+            1
+          ],
+          "observations": 5
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2003,
+            2,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 95
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Greece",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Guatemala",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 180,
+      "non_electoral_at_funding": 72,
+      "trigger_checks": 182,
+      "eligible_trigger_checks": 124,
+      "eligible_crisis_checks": 124,
+      "eligible_hostile_crisis_checks": 27,
+      "firings": 2,
+      "trigger_branches": {
+        "trigger_firing": 2,
+        "trigger_live_conditions_inactive": 97,
+        "trigger_pressure_not_ready": 25,
+        "trigger_unsettled_interim_or_no_army": 58
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 154,
+        "awaiting_first_election": 14,
+        "pressure_not_ready": 180,
+        "unsettled": 58
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            8,
+            1
+          ],
+          "observations": 20
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1991,
+            9,
+            1
+          ],
+          "last_date": [
+            1995,
+            9,
+            1
+          ],
+          "observations": 49
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1995,
+            10,
+            1
+          ],
+          "last_date": [
+            1999,
+            2,
+            1
+          ],
+          "observations": 41
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1999,
+            3,
+            1
+          ],
+          "last_date": [
+            2001,
+            1,
+            1
+          ],
+          "observations": 23
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2001,
+            2,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 119
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1991,
+            9,
+            1
+          ],
+          "trigger": {
+            "line": 10216,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 10475,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        },
+        {
+          "date": [
+            1999,
+            3,
+            1
+          ],
+          "trigger": {
+            "line": 61342,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 61627,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "fired"
+    },
+    {
+      "country": "Guyana",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 37,
+      "non_electoral_at_funding": 215,
+      "trigger_checks": 39,
+      "eligible_trigger_checks": 10,
+      "eligible_crisis_checks": 10,
+      "eligible_hostile_crisis_checks": 10,
+      "firings": 2,
+      "trigger_branches": {
+        "trigger_firing": 2,
+        "trigger_pressure_not_ready": 8,
+        "trigger_unsettled_interim_or_no_army": 29
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 20,
+        "awaiting_first_election": 7,
+        "pressure_not_ready": 37,
+        "unsettled": 29
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            7,
+            1
+          ],
+          "observations": 19
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1991,
+            8,
+            1
+          ],
+          "last_date": [
+            1992,
+            12,
+            1
+          ],
+          "observations": 17
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            1,
+            1
+          ],
+          "last_date": [
+            1994,
+            6,
+            1
+          ],
+          "observations": 18
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1994,
+            7,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 198
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1991,
+            8,
+            1
+          ],
+          "trigger": {
+            "line": 9755,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 10029,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        },
+        {
+          "date": [
+            1994,
+            7,
+            1
+          ],
+          "trigger": {
+            "line": 28747,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 29047,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "fired"
+    },
+    {
+      "country": "Haiti",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Honduras",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 249,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Hungary",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Iceland",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "India",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Indonesia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Iran",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Iraq",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Ireland",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Israel",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 251,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Italy",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Jamaica",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Japan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Jordan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Kazakhstan",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 7,
+      "non_electoral_at_funding": 201,
+      "trigger_checks": 6,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 6
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 6,
+        "awaiting_first_election": 6,
+        "pressure_not_ready": 6,
+        "unsettled": 6
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            5,
+            1
+          ],
+          "observations": 201
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2010,
+            6,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 7
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Kenya",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 14,
+      "non_electoral_at_funding": 238,
+      "trigger_checks": 14,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 14
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 14,
+        "awaiting_first_election": 14,
+        "no_current_crisis": 14,
+        "pressure_not_ready": 14,
+        "unsettled": 14
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2009,
+            10,
+            1
+          ],
+          "observations": 238
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2009,
+            11,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 14
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Kuwait",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 119,
+      "non_electoral_at_funding": 133,
+      "trigger_checks": 119,
+      "eligible_trigger_checks": 89,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 89,
+        "trigger_unsettled_interim_or_no_army": 30
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 119,
+        "awaiting_first_election": 19,
+        "no_current_crisis": 119,
+        "pressure_not_ready": 119,
+        "unsettled": 30
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2001,
+            1,
+            1
+          ],
+          "observations": 133
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2001,
+            2,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 119
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Kyrgyzstan",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 197,
+      "eligible_crisis_checks": 197,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 197,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Laos",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Latvia",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 208
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "no_army": 208,
+        "no_current_crisis": 2,
+        "pressure_not_ready": 208,
+        "unsettled": 44
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Lebanon",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Lesotho",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 228,
+      "non_electoral_at_funding": 24,
+      "trigger_checks": 227,
+      "eligible_trigger_checks": 197,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 197,
+        "trigger_unsettled_interim_or_no_army": 30
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 227,
+        "awaiting_first_election": 19,
+        "no_current_crisis": 227,
+        "pressure_not_ready": 227,
+        "unsettled": 30
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            12,
+            1
+          ],
+          "observations": 24
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1992,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 228
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Libya",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Lithuania",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 208
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "no_army": 208,
+        "no_current_crisis": 46,
+        "pressure_not_ready": 208,
+        "unsettled": 44
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Luxembourg",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Macedonia",
+      "funding_stage_months": 229,
+      "electoral_at_funding": 229,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 229,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 229
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 229,
+        "no_army": 229,
+        "no_current_crisis": 213,
+        "pressure_not_ready": 229,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Madagascar",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Malawi",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 140,
+      "non_electoral_at_funding": 112,
+      "trigger_checks": 140,
+      "eligible_trigger_checks": 122,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 122,
+        "trigger_unsettled_interim_or_no_army": 18
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 140,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 140,
+        "pressure_not_ready": 140,
+        "unsettled": 18
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1999,
+            4,
+            1
+          ],
+          "observations": 112
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1999,
+            5,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 140
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Malaysia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Maldives",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Malta",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Mauritius",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Mexico",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 248,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Moldova",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 208
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "no_army": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 147
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Mongolia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 250,
+      "non_electoral_at_funding": 2,
+      "trigger_checks": 250,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 9
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 250,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 249,
+        "pressure_not_ready": 250,
+        "unsettled": 9
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1990,
+            2,
+            1
+          ],
+          "observations": 2
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            3,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 250
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Montenegro",
+      "funding_stage_months": 229,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 229,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Morocco",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 241,
+      "non_electoral_at_funding": 11,
+      "trigger_checks": 240,
+      "eligible_trigger_checks": 210,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 210,
+        "trigger_unsettled_interim_or_no_army": 30
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 240,
+        "awaiting_first_election": 19,
+        "no_current_crisis": 240,
+        "pressure_not_ready": 240,
+        "unsettled": 30
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1990,
+            11,
+            1
+          ],
+          "observations": 11
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 241
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Mozambique",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Myanmar",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 157,
+      "non_electoral_at_funding": 95,
+      "trigger_checks": 157,
+      "eligible_trigger_checks": 78,
+      "eligible_crisis_checks": 78,
+      "eligible_hostile_crisis_checks": 23,
+      "firings": 2,
+      "trigger_branches": {
+        "trigger_firing": 2,
+        "trigger_live_conditions_inactive": 55,
+        "trigger_pressure_not_ready": 21,
+        "trigger_unsettled_interim_or_no_army": 79
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 120,
+        "awaiting_first_election": 57,
+        "pressure_not_ready": 155,
+        "unsettled": 79
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1992,
+            9,
+            1
+          ],
+          "observations": 33
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1992,
+            10,
+            1
+          ],
+          "last_date": [
+            1996,
+            6,
+            1
+          ],
+          "observations": 45
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1996,
+            7,
+            1
+          ],
+          "last_date": [
+            1999,
+            9,
+            1
+          ],
+          "observations": 39
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1999,
+            10,
+            1
+          ],
+          "last_date": [
+            2001,
+            11,
+            1
+          ],
+          "observations": 26
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            2001,
+            12,
+            1
+          ],
+          "last_date": [
+            2003,
+            10,
+            1
+          ],
+          "observations": 23
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2003,
+            11,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 86
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1996,
+            7,
+            1
+          ],
+          "trigger": {
+            "line": 42677,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 42957,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        },
+        {
+          "date": [
+            2001,
+            12,
+            1
+          ],
+          "trigger": {
+            "line": 80820,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 81112,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "fired"
+    },
+    {
+      "country": "Nepal",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 227,
+      "non_electoral_at_funding": 25,
+      "trigger_checks": 227,
+      "eligible_trigger_checks": 209,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 209,
+        "trigger_unsettled_interim_or_no_army": 18
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 127,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 227,
+        "pressure_not_ready": 227,
+        "unsettled": 18
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1992,
+            1,
+            1
+          ],
+          "observations": 25
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1992,
+            2,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 227
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Netherlands",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "NewZealand",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Nicaragua",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 197,
+      "eligible_crisis_checks": 197,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 197,
+        "trigger_unsettled_interim_or_no_army": 55
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 55
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Niger",
+      "funding_stage_months": 0,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": false,
+      "classification": "outside_roster"
+    },
+    {
+      "country": "Nigeria",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "NorthKorea",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Norway",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Oman",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Pakistan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Panama",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 167,
+        "pressure_not_ready": 252,
+        "unsettled": 33
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "PapuaNewGuinea",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 159,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 90,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Paraguay",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 245,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Peru",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 211,
+      "eligible_crisis_checks": 211,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 211,
+        "trigger_unsettled_interim_or_no_army": 41
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 41
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Philippines",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 223,
+      "eligible_crisis_checks": 169,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 223,
+        "trigger_unsettled_interim_or_no_army": 29
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 61,
+        "pressure_not_ready": 252,
+        "unsettled": 29
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Poland",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 241,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Portugal",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Qatar",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Romania",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 212,
+      "eligible_crisis_checks": 181,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 212,
+        "trigger_unsettled_interim_or_no_army": 40
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 41,
+        "pressure_not_ready": 252,
+        "unsettled": 40
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Russia",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 142,
+      "eligible_crisis_checks": 142,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 142,
+        "trigger_unsettled_interim_or_no_army": 66
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 66
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Samoa",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "SaoTome",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 132,
+      "non_electoral_at_funding": 120,
+      "trigger_checks": 132,
+      "eligible_trigger_checks": 43,
+      "eligible_crisis_checks": 43,
+      "eligible_hostile_crisis_checks": 5,
+      "firings": 2,
+      "trigger_branches": {
+        "trigger_firing": 2,
+        "trigger_live_conditions_inactive": 38,
+        "trigger_pressure_not_ready": 3,
+        "trigger_unsettled_interim_or_no_army": 89
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 94,
+        "awaiting_first_election": 45,
+        "pressure_not_ready": 125,
+        "unsettled": 89
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1990,
+            7,
+            1
+          ],
+          "observations": 7
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            8,
+            1
+          ],
+          "last_date": [
+            1993,
+            2,
+            1
+          ],
+          "observations": 31
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1993,
+            3,
+            1
+          ],
+          "last_date": [
+            1994,
+            3,
+            1
+          ],
+          "observations": 13
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1994,
+            4,
+            1
+          ],
+          "last_date": [
+            1995,
+            12,
+            1
+          ],
+          "observations": 21
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1996,
+            1,
+            1
+          ],
+          "last_date": [
+            2004,
+            4,
+            1
+          ],
+          "observations": 100
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2004,
+            5,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 80
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1993,
+            3,
+            1
+          ],
+          "trigger": {
+            "line": 19654,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 19919,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        },
+        {
+          "date": [
+            1996,
+            1,
+            1
+          ],
+          "trigger": {
+            "line": 39234,
+            "stage": "trigger_firing"
+          },
+          "later_funding_line": 39517,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "fired"
+    },
+    {
+      "country": "SaudiArabia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Senegal",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Serbia",
+      "funding_stage_months": 229,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 229,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Seychelles",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "SierraLeone",
+      "funding_stage_months": 0,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": false,
+      "classification": "outside_roster"
+    },
+    {
+      "country": "Singapore",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Slovenia",
+      "funding_stage_months": 229,
+      "electoral_at_funding": 229,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 229,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 229
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 229,
+        "no_army": 229,
+        "no_current_crisis": 229,
+        "pressure_not_ready": 229,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1991,
+            12,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 229
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "SolomonIslands",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "SouthAfrica",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 216,
+      "non_electoral_at_funding": 36,
+      "trigger_checks": 216,
+      "eligible_trigger_checks": 198,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 198,
+        "trigger_unsettled_interim_or_no_army": 18
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 216,
+        "awaiting_first_election": 7,
+        "no_current_crisis": 216,
+        "pressure_not_ready": 216,
+        "unsettled": 18
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1992,
+            12,
+            1
+          ],
+          "observations": 36
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 216
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "SouthKorea",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Spain",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "SriLanka",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 219,
+      "eligible_crisis_checks": 109,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 219,
+        "trigger_unsettled_interim_or_no_army": 33
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 121,
+        "pressure_not_ready": 252,
+        "unsettled": 33
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Sudan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Suriname",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 219,
+      "eligible_crisis_checks": 219,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 219,
+        "trigger_unsettled_interim_or_no_army": 33
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 33
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Swaziland",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Sweden",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Switzerland",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Syria",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Taiwan",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Tajikistan",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 208
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "no_army": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 42
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Tanzania",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Thailand",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Tonga",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "TrinidadTobago",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Tunisia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 86,
+      "non_electoral_at_funding": 166,
+      "trigger_checks": 86,
+      "eligible_trigger_checks": 67,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 67,
+        "trigger_unsettled_interim_or_no_army": 19
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 86,
+        "awaiting_first_election": 19,
+        "no_current_crisis": 86,
+        "pressure_not_ready": 86,
+        "unsettled": 19
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2003,
+            10,
+            1
+          ],
+          "observations": 166
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            2003,
+            11,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 86
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "Turkey",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 1,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 240,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Turkmenistan",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 152,
+      "non_electoral_at_funding": 56,
+      "trigger_checks": 151,
+      "eligible_trigger_checks": 121,
+      "eligible_crisis_checks": 121,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 121,
+        "trigger_unsettled_interim_or_no_army": 30
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 151,
+        "awaiting_first_election": 19,
+        "pressure_not_ready": 151,
+        "unsettled": 30
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            1998,
+            4,
+            1
+          ],
+          "observations": 56
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1998,
+            5,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 152
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "UAE",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "UK",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "USA",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    },
+    {
+      "country": "USSR",
+      "funding_stage_months": 44,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 44,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1993,
+            8,
+            1
+          ],
+          "observations": 44
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Uganda",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Ukraine",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 208,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 208,
+      "eligible_trigger_checks": 76,
+      "eligible_crisis_checks": 76,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 76,
+        "trigger_unsettled_interim_or_no_army": 132
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 208,
+        "pressure_not_ready": 208,
+        "unsettled": 132
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Uruguay",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 230,
+      "eligible_crisis_checks": 6,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 230,
+        "trigger_unsettled_interim_or_no_army": 22
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 242,
+        "pressure_not_ready": 252,
+        "unsettled": 22
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Uzbekistan",
+      "funding_stage_months": 208,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 208,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1993,
+            9,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 208
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Vanuatu",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 252
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_army": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Venezuela",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 208,
+      "eligible_crisis_checks": 126,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 208,
+        "trigger_unsettled_interim_or_no_army": 44
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 96,
+        "pressure_not_ready": 252,
+        "unsettled": 44
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Vietnam",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Yemen",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 39,
+      "non_electoral_at_funding": 213,
+      "trigger_checks": 40,
+      "eligible_trigger_checks": 29,
+      "eligible_crisis_checks": 29,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 29,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 40,
+        "pressure_not_ready": 40,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1993,
+            3,
+            1
+          ],
+          "observations": 39
+        },
+        {
+          "electoral": false,
+          "first_date": [
+            1993,
+            4,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 213
+        }
+      ],
+      "same_month_exit_witnesses": [
+        {
+          "date": [
+            1993,
+            4,
+            1
+          ],
+          "trigger": {
+            "line": 20120,
+            "stage": "trigger_live_conditions_inactive"
+          },
+          "later_funding_line": 20365,
+          "interpretation": "Electoral at the trigger, non-electoral at later funding; this pair alone does not identify every possible intervening event."
+        }
+      ],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Yugoslavia",
+      "funding_stage_months": 23,
+      "electoral_at_funding": 5,
+      "non_electoral_at_funding": 18,
+      "trigger_checks": 5,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_unsettled_interim_or_no_army": 5
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 5,
+        "awaiting_first_election": 5,
+        "pressure_not_ready": 5,
+        "unsettled": 5
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            6,
+            1
+          ],
+          "observations": 18
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1991,
+            7,
+            1
+          ],
+          "last_date": [
+            1991,
+            11,
+            1
+          ],
+          "observations": 5
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_trigger_observed"
+    },
+    {
+      "country": "Zaire",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 0,
+      "non_electoral_at_funding": 252,
+      "trigger_checks": 0,
+      "eligible_trigger_checks": 0,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {},
+      "trigger_blockers_nonexclusive": {},
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_electoral_trigger_observed"
+    },
+    {
+      "country": "Zambia",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 233,
+      "non_electoral_at_funding": 19,
+      "trigger_checks": 232,
+      "eligible_trigger_checks": 169,
+      "eligible_crisis_checks": 169,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 169,
+        "trigger_unsettled_interim_or_no_army": 63
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 232,
+        "awaiting_first_election": 19,
+        "pressure_not_ready": 232,
+        "unsettled": 63
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": false,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            1991,
+            7,
+            1
+          ],
+          "observations": 19
+        },
+        {
+          "electoral": true,
+          "first_date": [
+            1991,
+            8,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 233
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_hostile_crisis_observed"
+    },
+    {
+      "country": "Zimbabwe",
+      "funding_stage_months": 252,
+      "electoral_at_funding": 252,
+      "non_electoral_at_funding": 0,
+      "trigger_checks": 252,
+      "eligible_trigger_checks": 241,
+      "eligible_crisis_checks": 0,
+      "eligible_hostile_crisis_checks": 0,
+      "firings": 0,
+      "trigger_branches": {
+        "trigger_live_conditions_inactive": 241,
+        "trigger_unsettled_interim_or_no_army": 11
+      },
+      "trigger_blockers_nonexclusive": {
+        "army_not_hostile": 252,
+        "no_current_crisis": 252,
+        "pressure_not_ready": 252,
+        "unsettled": 11
+      },
+      "funding_stage_regime_intervals": [
+        {
+          "electoral": true,
+          "first_date": [
+            1990,
+            1,
+            1
+          ],
+          "last_date": [
+            2010,
+            12,
+            1
+          ],
+          "observations": 252
+        }
+      ],
+      "same_month_exit_witnesses": [],
+      "in_reviewed_roster": true,
+      "classification": "no_eligible_crisis_observed"
+    }
+  ],
+  "native_reexecuted": false,
+  "reserved_holdouts_used": false,
+  "a1_pass_claimed": false,
+  "qualification": false,
+  "limits": "One existing development seed. Observed country-month exposures are not independent samples or counterfactual effects. Funding follows trigger/election processing; its state must not replace trigger-time state. Anchor names come from the existing A1 comment, not a new historical event classification."
+}

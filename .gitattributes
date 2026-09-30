@@ -81,6 +81,9 @@ docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoi
 docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoint26-hosted-final/** -text -whitespace
 # New diagnostic packets retain copied source, input and log bytes exactly.
 docs/campaign-certification/S27/preparation/a1-geography-20260928/** -text -whitespace
+docs/campaign-certification/S27/preparation/a1-route-exposure-20260930/** -text -whitespace
+tools/campaign/a1_route_exposure.py text eol=lf
+tools/campaign/test_a1_route_exposure.py text eol=lf
 docs/campaign-certification/S25/preparation/native-profile-1994-20260928/** -text -whitespace
 docs/campaign-certification/S25/preparation/full-matrix-20260930/** -text -whitespace
 docs/campaign-certification/S25/preparation/full-matrix-review-20260930/** -text -whitespace

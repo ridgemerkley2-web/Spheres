@@ -1,0 +1,63 @@
+{
+  "checked_utc": "2026-09-30T22:50:51.613821+00:00",
+  "commands": [
+    {
+      "args": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tools.campaign.test_a1_route_exposure"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "args": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tools.planning.test_workboard"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.922s\n\nOK\n"
+    },
+    {
+      "args": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: 44 canonical markers, each assigned once; handoffs and dependencies exist. No status is duplicated. 39 bounded tasks validated separately.\n",
+      "stderr": ""
+    }
+  ],
+  "prior_trigger_countries_agree": 118,
+  "funding_stage_countries_independently_recounted": 158,
+  "same_month_witness_rows_checked": 26,
+  "firing_exits_confirmed": 10,
+  "existing_report_overwrite_refused": true,
+  "input_pins": {
+    "docs/campaign-certification/S27/preparation/a1-route-exposure-20260930/route-exposure.json": {
+      "bytes": 186924,
+      "sha256": "a04f488a4220a0fafbeffa5c19eaa17ee24baa30d22a2ea0cabfe77e802ccf53"
+    },
+    "tools/campaign/a1_route_exposure.py": {
+      "bytes": 12082,
+      "sha256": "7ea28698bd582ba8559f202fc2baa9c51213fb42b08c32679650ef9dd369cc9e"
+    },
+    "tools/campaign/test_a1_route_exposure.py": {
+      "bytes": 4293,
+      "sha256": "a9da1c6812969239fd03bf4d5eaf0873a9b4649a921d46c3da21011759abebd6"
+    }
+  },
+  "first_reader_attempt": "Stopped before output: headline array incorrectly compared with a scalar count. Corrected with array/chronology regression before retained report.",
+  "native_reexecuted": false,
+  "a1_pass_claimed": false,
+  "qualification": false
+}

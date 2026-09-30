@@ -80,6 +80,17 @@ guards and genuine-government grace match their focused contracts. A separate
 civilian–military conflict mechanism remains an unspecified design possibility,
 not a demonstrated repair; no new trigger, coefficient trial or holdout was used.
 
+The [30 September route-exposure follow-up](../../campaign-certification/S27/preparation/a1-route-exposure-20260930/README.md)
+is complete as a bounded investigation. Its reader verifies all 146,525 retained
+observations and agrees with all 118 prior trigger-country totals; ten focused
+tests pass. It separates access to the route from failure of its live guards and
+preserves 13 same-month electoral exits between trigger and funding observations.
+In that seed Haiti never reaches the route, Pakistan/Thailand have no eligible
+crisis, and Peru's eligible crises retain a non-hostile army. Next trace actual
+regime-opening decisions on the already-used seed before proposing a policy
+change; a separate civilian–military dispute still requires a justified contract.
+No additional native run or gameplay repair is claimed; A1 remains blocked.
+
 ## 2. Startup: CODEX-S24-STARTUP-01
 
 Reuse `tools/campaign/worldwide_preflight.py`; do not rebuild the earlier work
