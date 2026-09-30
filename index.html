@@ -506,7 +506,7 @@ function renderPipeline() {
   $('#pipeTable').innerHTML = `<thead><tr><th>Packet</th><th>Country</th><th>State</th><th>Head</th><th>Notes</th></tr></thead><tbody>${(pipe.packets || []).map(x => `<tr>
     <td><b>C01-${esc(x.n)}</b><div class="sub" style="color:var(--muted)">${esc(x.title)}</div></td><td>${esc(x.country)}</td><td>${pill(x.hold && x.state === 'queued' ? 'held' : x.state, x.hold && x.state === 'queued' ? 'held' : null)}</td>
     <td>${x.head ? `<a target="_blank" rel="noopener" href="${gh('/tree/' + x.branch)}"><code>${esc(x.head)}</code></a>` : (x.branch ? `<code>${esc(x.branch)}</code>` : '—')}</td>
-    <td style="font-size:12.5px;color:var(--muted)">${esc(x.note || x.hold || '')}</td></tr>`).join('')}</tbody>`;
+    <td style="font-size:12.5px;color:var(--muted)">${x.codex ? `<div style="color:var(--text)">${esc(x.codex)}</div>` : ''}${esc(x.note || x.hold || '')}</td></tr>`).join('')}</tbody>`;
   $('#pipeLog').innerHTML = pipe.log?.length ? `<h2 style="font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Recent log</h2>${pipe.log.slice(-12).reverse().map(l => `<div class="list-row"><div class="main" style="font-size:13px">${esc(l)}</div></div>`).join('')}` : '';
 }
 
