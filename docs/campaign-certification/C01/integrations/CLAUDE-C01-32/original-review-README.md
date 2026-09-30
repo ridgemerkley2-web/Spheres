@@ -1,11 +1,3 @@
-# CLAUDE-C01-32 — bounded integration decision
-
-Accepted as a bounded research intake on 30 September 2026 after independent review and the republished-news correction. C01, C06, S23 and CP1 remain open.
-
-Root integrated the scoped authored commits, correction and review in `62f6be6c`, `5dfe5276`, `d06b1f7b` and `00bae0ce`. The only country-data merge adjustment preserves the already accepted C01-30 explanatory correction. A parsed comparison proves all other fields equal the independently reviewed corrected C01-32 packet. Original authored retrieval and review evidence remain unchanged.
-
-The original review README and manifest are retained as `original-review-README.md` and `original-review-manifest.json`. The current wrapper manifest includes those exact originals and this integration decision. Combined index, census and workboard regeneration are separate integration checks; the reviewer’s earlier stale-census failure remains retained.
-
 # CLAUDE-C01-32 independent review — 30 September 2026
 
 **Recommendation: intake the bounded PAC research packet with the attribution correction below.** This is a source/technical review receipt, not a merge or parent-session completion. Reviewer: Codex `/root/s20_preflight`, independent of the Claude submission author.

@@ -20,19 +20,9 @@
       "sha256": "73c2b8db91c5b1623bd09e57d7fd732d6bf6e903d45272c9c788565a5472edaa"
     },
     {
-      "path": "original-review-manifest.json",
-      "bytes": 6072,
-      "sha256": "cecc7f4186f40c9607c5fe95cbc3a833eabe0704e6c26e81e305ed769f6b76d9"
-    },
-    {
-      "path": "original-review-README.md",
+      "path": "README.md",
       "bytes": 5969,
       "sha256": "041d72c0218df525f02bee6dc50dda4862373bc229727c2a6f0358619442b17e"
-    },
-    {
-      "path": "README.md",
-      "bytes": 6927,
-      "sha256": "e0d8901edcf739b52d2d915d0687d5d5385cf33edac80a9b122caee310aa2afd"
     },
     {
       "path": "review.json",
@@ -189,6 +179,5 @@
       "bytes": 1937,
       "sha256": "3def615dfc27d05b37cd6ee88562c097f7dffc03b1bfe42684b3af66a10fa167"
     }
-  ],
-  "integration_decision": "Bounded accepted intake; see README; original independent review manifest retained unchanged."
+  ]
 }
