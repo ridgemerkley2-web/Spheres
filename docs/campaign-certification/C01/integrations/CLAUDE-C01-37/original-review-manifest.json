@@ -25,19 +25,9 @@
       "sha256": "4b85633b67bdd92956b0c81e2be4e1ee74efa9e70e1b0b67d6fce85d003ff14d"
     },
     {
-      "path": "original-review-manifest.json",
-      "bytes": 7106,
-      "sha256": "567edd7c81e6587ae6b2174c77eab909d26bdad5634189962327f14338b4b5e9"
-    },
-    {
-      "path": "original-review-README.md",
+      "path": "README.md",
       "bytes": 5904,
       "sha256": "32ccdc8fa6ef84112d1deba946230ed912415d82e6e80cdaa7141b97acd8cf7b"
-    },
-    {
-      "path": "README.md",
-      "bytes": 1441,
-      "sha256": "b2e04a7865eefaeeb42338c44b082d5f3b2005b654192d3e35325dffb85d7493"
     },
     {
       "path": "review.json",
@@ -219,7 +209,5 @@
       "bytes": 3113,
       "sha256": "ed669aad834c73b8d03024a790a2d2488b36cc63eab0ac308d8fb7691c770beb"
     }
-  ],
-  "integration_decision": "accepted_bounded_research_intake",
-  "original_review_manifest": "original-review-manifest.json"
+  ]
 }
