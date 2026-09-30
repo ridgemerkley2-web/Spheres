@@ -15790,3 +15790,7 @@ mod tests {
 #[cfg(test)]
 #[path = "government_a1_observer.rs"]
 pub(crate) mod a1_observer;
+
+#[cfg(test)]
+#[path = "government_opening_tests.rs"]
+mod opening_tests;
