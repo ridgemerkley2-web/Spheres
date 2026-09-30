@@ -8874,15 +8874,15 @@
       "url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70945&isMembrosAtivos=false",
       "publisher": "Tribunal Superior Eleitoral (SGIP, anotação de órgão partidário)",
       "published_date": null,
-      "accessed_date": "2026-09-28",
+      "accessed_date": "2026-09-30",
       "access_method": "downloaded_live_public_json (no login; the SGIP consultation page's own API endpoint); www.tse.jus.br pages refuse curl (Akamai 403)",
       "source_type": "primary_electoral_court_party_registry_json",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed MDB national executive committee with its members, read through the consultation page's own JSON endpoint without login; the record carries the party's later name and site (www.mdb.org.br). PRIVACY: the public response also carries members' CPF and voter-registration numbers and other personal fields; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and the raw body was deleted after hashing and review. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70945: Comissão executiva, Nacional, vigência 11/03/2013-06/10/2019, despacho 08/04/2013, record created 03/09/2019 and altered 04/09/2019.",
+      "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed MDB national executive committee with its members, read through the consultation page's own JSON endpoint without login; the record carries the party's later name and site (www.mdb.org.br). PRIVACY: the public response also carries members' CPF and voter-registration numbers and other personal fields; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and Claude reported deleting the submitted original raw body after hashing and review. The independent reviewer retained the new response externally for hash verification; no personal registry identifiers are copied into this packet. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70945: Comissão executiva, Nacional, vigência 11/03/2013-06/10/2019, despacho 08/04/2013, record created 03/09/2019 and altered 04/09/2019. Independent Codex review on 30 September 2026 found a different current response (18945 bytes). Its directly checked Temer/Jucá entries and closed organ dates support the unchanged claims. The submitted response identity is retained separately; the cause and whole-body equivalence are unknown, and no permanent stability or uncited-field acceptance is claimed.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-mdb-national-organ-70945-20130311-facts.json",
-        "bytes": 6123,
-        "sha256": "aaeb1a43edc330cc2fe3f6f21815c25d604e40c7b037e768f8422281589365ab"
+        "bytes": 10300,
+        "sha256": "db4b974df86fb53cc656d18f58a6482cefdfe5839f7e1632f71c0564506d07c0"
       },
       "claims": [
         {

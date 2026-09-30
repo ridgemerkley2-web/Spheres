@@ -113,7 +113,7 @@ RESPONSES = {
     "br_mdb_convencao_2013_20130302":
         (24869, "045d5b38dbf90c939d034b1f212710c800b56681f493ee34f366c4257d61e912"),
     "br_mdb_tse_sgip_cen_2013_2019":
-        (18952, "1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247"),
+        (18945, "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d"),
     "br_mdb_raupp_presidente_nacional_20140514":
         (29191, "20b987ff614df845a6f2758977dfac8e8afe6313fd80e45dff9f893a4cc912e1"),
     "br_mdb_convencao_2016_20160312":
@@ -1055,7 +1055,8 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
             self.assertEqual((extract['source_id'], extract['source_url']), (sid, source['url']))
             for key in ('scope_note', 'access_method', 'published_date', 'rights_note'):
                 self.assertEqual(extract[key], source[key], (sid, key))
-            self.assertEqual((extract['accessed_date'], source['accessed_date']), ('2026-09-28', '2026-09-28'))
+            accessed = '2026-09-30' if sid == 'br_mdb_tse_sgip_cen_2013_2019' else '2026-09-28'
+            self.assertEqual((extract['accessed_date'], source['accessed_date']), (accessed, accessed))
             self.assertLessEqual(source['published_date'] or '', research.CUTOFF)
             self.assertIs(extract['source_response_checked_in'], False)
             self.assertEqual((extract['source_response_bytes'], extract['source_response_sha256']), RESPONSES[sid])
@@ -1113,6 +1114,31 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
                for cid, row in self.rows.items() if cid in EVENTS}
         self.assertEqual(got, EVENTS)
         self.assertEqual(list(got), NEW_CLAIMS)
+
+    def test_changed_registry_response_preserves_original_and_limits(self):
+        extract = self.extracts['br_mdb_tse_sgip_cen_2013_2019']
+        prior = extract['submitted_response_identity']
+        self.assertEqual((prior['accessed_date'], prior['source_response_bytes'], prior['source_response_sha256']),
+                         ('2026-09-28', 18952, '1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247'))
+        self.assertIn('18952 bytes', prior['stability_check'])
+        self.assertIn(prior['stability_check'], prior['provenance_note'])
+        review = extract['current_response_review']
+        self.assertEqual(review['reviewed_date'], '2026-09-30')
+        self.assertEqual(len(review['requests']), 3)
+        self.assertEqual(len({r['finished_utc'] for r in review['requests']}), 3)
+        for r in review['requests']:
+            self.assertEqual((r['bytes'], r['sha256'], r['http_status']),
+                             (18945, 'f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d', 200))
+        self.assertIs(review['submitted_raw_body_recovered'], False)
+        self.assertEqual(review['cause_of_change'], 'unknown')
+        self.assertEqual(review['whole_body_equivalence'], 'unknown')
+        for key in ('permanent_stability_claimed', 'uncited_fields_accepted', 'holders_or_dates_changed'):
+            self.assertIs(review[key], False)
+        self.assertEqual(review['directly_checked_claim_ids'], [r['claim_id'] for r in extract['rows']])
+        self.assertEqual(len(review['directly_checked_claim_ids']), 2)
+        self.assertTrue(all(row['event_kind'].startswith('registry_') and row['attested_on'] is None
+                            for row in extract['rows']))
+        self.assertIn('whole-body equivalence remain unknown', extract['stability_check'])
 
     def test_no_per_request_url_no_secondary_lead_and_no_personal_registry_data(self):
         self.assertEqual({urlsplit(self.sources[s]['url']).hostname for s in NEW_SOURCES}, HOSTS)

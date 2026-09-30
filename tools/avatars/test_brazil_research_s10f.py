@@ -146,7 +146,8 @@ class BrazilDiscoveryTests(unittest.TestCase):
                 self.assertEqual(source['accessed_date'], '2026-09-25')
             elif source['id'] in C01_34_SOURCES:
                 self.assertIn(urlsplit(source['url']).hostname, C01_34_HOSTS)
-                self.assertEqual(source['accessed_date'], '2026-09-28')
+                expected_access = '2026-09-30' if source['id'] == 'br_mdb_tse_sgip_cen_2013_2019' else '2026-09-28'
+                self.assertEqual(source['accessed_date'], expected_access)
             else:
                 self.assertIn(urlsplit(source['url']).hostname, C01_10_HOSTS)
                 self.assertEqual(source['accessed_date'], '2026-09-23')

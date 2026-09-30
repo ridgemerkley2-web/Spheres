@@ -86,8 +86,8 @@ Decisions per chain:
   has no day-dated party attestation and no holder. Romero Jucá's service from 5 April 2016 is recorded as acting (the
   party's roster and list and the TSE registry say 'em exercício' or 'interina'), so his unqualified stylings, including
   the signed edital of 23 November 2017, are claims; the integrator's ruling keeps him acting, claims only, because the
-  edital is unqualified but every other record, including the TSE registry's 'PRESIDENTE EM EXERCÍCIO', calls his service
-  acting (Codex may still decide otherwise). The posse of the executive of 10 March 2010, printed
+  edital is unqualified but the dated acting notice, roster, retrospective list and TSE registry's 'PRESIDENTE EM EXERCÍCIO' identify his service
+  as acting (Codex may still decide otherwise). The posse of the executive of 10 March 2010, printed
   on an undated roster, is a claim, not Temer's start. The renaming PMDB to MDB (convention of 19
   December 2017, filed with the TSE on 31 January 2018, approved by the TSE on 15 May 2018) is recorded as organization
   claims and ties the MDB label to the PMDB; the integrator's ruling accepts one role, since it is a pure renaming with
@@ -178,3 +178,9 @@ and all re-run after the verifier fixes with the same results (`codex/campaign-c
 
 C01 and all parent gates (C06, S23, WC1, CP1) stay open. No installed leader, avatar, portrait, campaign rule or
 save schema changed.
+
+## Independent Codex response review — 30 September 2026
+
+Independent retrieval matched 75 of the 76 submitted response identities. The live closed SGIP organ 70945 now returns 18,945 bytes, SHA-256 `f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d`, on three ordinary requests. Its directly read Temer/Jucá office names, exercise periods, inactive status and organ dates support the two unchanged claims. The old 18,952-byte identity and Claude retrieval narrative remain under `submitted_response_identity`; that full original body is unavailable, so the cause of the change and whole-body equivalence remain unknown. This is not a claim of 76 matching original bodies or permanent stability. The active source pin and access date now describe the current response. All prior SOURCE-17 repairs, claims, holders and office dates are unchanged.
+
+The Jucá explanation is narrowed to the specific dated notice, roster, retrospective list and registry that explicitly label acting service; other unqualified stylings remain visible as claims. It no longer asserts that every other record agrees. The conservative acting-only selection remains unchanged. The integration receipt records the independent checks and retrieval failures; the earlier author validation history above remains historical. C01, C06, S23, WC1 and CP1 stay incomplete.

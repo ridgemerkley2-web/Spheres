@@ -138,8 +138,8 @@ PRIMEIRO VICE-PRESIDENTE' from 12/03/2016 to 06/10/2019. The party also printed 
 in the convocation edital signed 'ROMERO JUCÁ Presidente Nacional do PMDB' on 23 November 2017, and on 19 December 2017,
 22 February 2018 and 17 June 2019; no election of Jucá as President was found. Following the Genoino precedent of
 CLAUDE-C01-22, those stylings are claims of kind `styled_president_during_acting_period` and Jucá has no holder. The
-integrator's ruling keeps him acting, claims only: the edital is unqualified, but every other record, including the
-TSE registry's 'PRESIDENTE EM EXERCÍCIO', calls his service acting (Codex may still decide otherwise). A party item of
+integrator's ruling keeps him acting, claims only: the edital is unqualified, but the dated acting notice, roster, retrospective list and
+TSE registry's 'PRESIDENTE EM EXERCÍCIO' identify his service as acting (Codex may still decide otherwise). A party item of
 14 May 2014 styling Valdir Raupp 'presidente nacional da legenda' without a qualifier is kept as a conflicting record,
 never a holder.
 
@@ -453,7 +453,7 @@ Decision: accepted in part. No holder: Temer stays the President on leave and Ju
 The renaming is recorded as four organization claims and ties the MDB label to the PMDB.
 
 Limits: the signed edital of 23 November 2017 is unqualified; the integrator's ruling keeps Jucá acting, claims only,
-because every other record, including the TSE registry's 'PRESIDENTE EM EXERCÍCIO', calls his service acting (Codex
+because the dated acting notice, roster, retrospective list and TSE registry's 'PRESIDENTE EM EXERCÍCIO' identify his service as acting (Codex
 may still decide otherwise).
 
 ### MDB-PRES-05 — Baleia Rossi, 2019 to the cutoff
@@ -597,7 +597,7 @@ SHA-256; the full values are in each extract and pinned in the test).
 | `br_mdb_nota_temer_licenciado_20100121` | NOTA À IMPRENSA / Convenção Nacional - Fevereiro (PMDB item, 21 de Janeiro de 2010) | MDB-PRES-03 | 45,487 bytes, `f04896ba…200603`; capture 2010-10-10 |
 | `br_mdb_executiva_roster_capt2011` | Executiva Nacional (PMDB site page executiva.php, Internet Archive capture of 21 May 2011) | MDB-PRES-03 | 26,833 bytes, `3c34c2cf…45beda`; capture 2011-05-21 |
 | `br_mdb_convencao_2013_20130302` | PMDB elege nova Executiva Nacional para o biênio 2013-2015 (PMDB item, FUG/PMDB, 2 de março de 2013) | MDB-PRES-03 | 24,869 bytes, `045d5b38…61e912`; capture 2013-03-05 |
-| `br_mdb_tse_sgip_cen_2013_2019` | SGIP: MDB national organ 70945 (Comissão executiva, vigência 11/03/2013-06/10/2019) with members | MDB-PRES-03, MDB-PRES-04 | 18,952 bytes, `1d00f301…2b2247`; TSE SGIP JSON, closed organ 70945 |
+| `br_mdb_tse_sgip_cen_2013_2019` | SGIP: MDB national organ 70945 (Comissão executiva, vigência 11/03/2013-06/10/2019) with members | MDB-PRES-03, MDB-PRES-04 | 18,945 bytes, `f6a0c4ca…17b17d`, independently read 30 September 2026; submitted identity was 18,952 bytes, `1d00f301…2b2247` (unrecovered old body; see independent review below); TSE SGIP JSON, closed organ 70945 |
 | `br_mdb_raupp_presidente_nacional_20140514` | Em reunião da Executiva Nacional, parlamentares e diretórios reforçam apoio a Michel Temer (PMDB item, FUG/PMDB, 14 de maio de 2014) | MDB-PRES-03 | 29,191 bytes, `20b987ff…c912e1`; capture 2014-05-28 |
 | `br_mdb_convencao_2016_20160312` | Com 96% dos votos, Michel Temer é reconduzido à presidência do PMDB (PMDB item, 12 de março de 2016) | MDB-PRES-03 | 26,811 bytes, `8df431b5…8f314a`; capture 2016-03-14 |
 | `br_mdb_rompe_alianca_20160329` | PMDB rompe aliança com o PT e o governo federal (PMDB item, FUG/PMDB, 29 de março de 2016) | MDB-PRES-03 | 26,097 bytes, `02b1d59b…f9c85f`; capture 2016-04-09 |
@@ -877,8 +877,8 @@ These are proposals for the integrator. They are not created in `work-orders.jso
     otherwise).
   - PMDB and MDB share one role: a pure renaming with the same registration and CNPJ, consistent with CLAUDE-C01-22
     (PT) and CLAUDE-C01-30 (FF to FF Plus) (Codex may still decide otherwise).
-  - Jucá stays acting, claims only: the edital of 23 November 2017 is unqualified, but every other record, including
-    the TSE registry's 'PRESIDENTE EM EXERCÍCIO', calls his service acting (Codex may still decide otherwise).
+  - Jucá stays acting, claims only: the edital of 23 November 2017 is unqualified, but the dated acting notice, roster, retrospective list and
+    TSE registry's 'PRESIDENTE EM EXERCÍCIO' identify his service as acting (Codex may still decide otherwise).
 - Rulings still for Codex: the posse of the executive of 10 March 2010 as a claim rather than Temer's start; the
   PFL/DEM chain kept as claims only and the `UNIÃO` observation unlinked.
 - `research/README.md`, the C01 README totals and `docs/planning/ai-workstreams.json` are left for the integrator; this
@@ -899,3 +899,9 @@ git diff --check
 ```
 
 Results are recorded in the handoff.
+
+## Independent Codex response review — 30 September 2026
+
+Independent retrieval matched 75 of the 76 submitted response identities. The live closed SGIP organ 70945 now returns 18,945 bytes, SHA-256 `f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d`, on three ordinary requests. Its directly read Temer/Jucá office names, exercise periods, inactive status and organ dates support the two unchanged claims. The old 18,952-byte identity and Claude retrieval narrative remain under `submitted_response_identity`; that full original body is unavailable, so the cause of the change and whole-body equivalence remain unknown. This is not a claim of 76 matching original bodies or permanent stability. The active source pin and access date now describe the current response. All prior SOURCE-17 repairs, claims, holders and office dates are unchanged.
+
+The Jucá explanation is narrowed to the specific dated notice, roster, retrospective list and registry that explicitly label acting service; other unqualified stylings remain visible as claims. It no longer asserts that every other record agrees. The conservative acting-only selection remains unchanged. The integration receipt records the independent checks and retrieval failures; the earlier author validation history above remains historical. C01, C06, S23, WC1 and CP1 stay incomplete.

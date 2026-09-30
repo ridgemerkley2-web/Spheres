@@ -2,18 +2,18 @@
   "format": "spheres-c01-derived-factual-table/v1",
   "source_id": "br_mdb_tse_sgip_cen_2013_2019",
   "source_url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70945&isMembrosAtivos=false",
-  "accessed_date": "2026-09-28",
+  "accessed_date": "2026-09-30",
   "published_date": null,
   "access_method": "downloaded_live_public_json (no login; the SGIP consultation page's own API endpoint); www.tse.jus.br pages refuse curl (Akamai 403)",
-  "source_response_bytes": 18952,
-  "source_response_sha256": "1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247",
+  "source_response_bytes": 18945,
+  "source_response_sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
   "source_response_checked_in": false,
   "source_response_content_encoding": "identity",
   "fetch_recipe": "GET the url exactly as recorded, without login, with no Accept-Encoding request header (or Accept-Encoding: identity); compare the byte count and SHA-256 of the JSON body as received. Do not copy any personal field of the response.",
-  "stability_check": "Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
-  "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "stability_check": "Independent Codex requests at 2026-09-30T09:00:35.403452+00:00, 2026-09-30T09:02:42.027169+00:00 and again at 2026-09-30T09:09:10.085593+00:00 returned the same current body: 18945 bytes with SHA-256 f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d, HTTP 200, no content decoding. This differs from the submitted 18952-byte body (preserved in submitted_response_identity). The current record says Não Vigente, but a closed organ is not immutable. The original full response is unavailable; the cause of the difference and whole-body equivalence remain unknown. Repetition only establishes agreement for these requests, not permanent stability.",
+  "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Independent Codex requests at 2026-09-30T09:00:35.403452+00:00, 2026-09-30T09:02:42.027169+00:00 and again at 2026-09-30T09:09:10.085593+00:00 returned the same current body: 18945 bytes with SHA-256 f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d, HTTP 200, no content decoding. This differs from the submitted 18952-byte body (preserved in submitted_response_identity). The current record says Não Vigente, but a closed organ is not immutable. The original full response is unavailable; the cause of the difference and whole-body equivalence remain unknown. Repetition only establishes agreement for these requests, not permanent stability. Both cited president entries and the closed organ period were independently read in the current body and support the unchanged two claims. No inference is made about uncited member fields or the deleted earlier response. The original Claude retrieval narrative is retained in submitted_response_identity. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, registry records and personal fields are not checked into this repository. Its own checksum is recorded separately in the packet.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-  "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed MDB national executive committee with its members, read through the consultation page's own JSON endpoint without login; the record carries the party's later name and site (www.mdb.org.br). PRIVACY: the public response also carries members' CPF and voter-registration numbers and other personal fields; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and the raw body was deleted after hashing and review. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70945: Comissão executiva, Nacional, vigência 11/03/2013-06/10/2019, despacho 08/04/2013, record created 03/09/2019 and altered 04/09/2019.",
+  "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed MDB national executive committee with its members, read through the consultation page's own JSON endpoint without login; the record carries the party's later name and site (www.mdb.org.br). PRIVACY: the public response also carries members' CPF and voter-registration numbers and other personal fields; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and Claude reported deleting the submitted original raw body after hashing and review. The independent reviewer retained the new response externally for hash verification; no personal registry identifiers are copied into this packet. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70945: Comissão executiva, Nacional, vigência 11/03/2013-06/10/2019, despacho 08/04/2013, record created 03/09/2019 and altered 04/09/2019. Independent Codex review on 30 September 2026 found a different current response (18945 bytes). Its directly checked Temer/Jucá entries and closed organ dates support the unchanged claims. The submitted response identity is retained separately; the cause and whole-body equivalence are unknown, and no permanent stability or uncited-field acceptance is claimed.",
   "visual_review": {
     "pdf_pages_one_based": [],
     "method": "JSON registry record; the organ fields and the President entry read programmatically and checked by eye."
@@ -48,5 +48,49 @@
         "item": "membros[] entry nomeCargo 'PRESIDENTE EM EXERCÍCIO   |  PRIMEIRO VICE-PRESIDENTE'"
       }
     }
-  ]
+  ],
+  "submitted_response_identity": {
+    "accessed_date": "2026-09-28",
+    "source_response_bytes": 18952,
+    "source_response_sha256": "1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247",
+    "stability_check": "Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
+    "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet."
+  },
+  "current_response_review": {
+    "reviewer": "Codex /root/s20_preflight",
+    "reviewed_date": "2026-09-30",
+    "requests": [
+      {
+        "started_utc": "2026-09-30T09:00:32.124958+00:00",
+        "finished_utc": "2026-09-30T09:00:35.403452+00:00",
+        "bytes": 18945,
+        "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+        "http_status": 200
+      },
+      {
+        "started_utc": "2026-09-30T09:02:40.776262+00:00",
+        "finished_utc": "2026-09-30T09:02:42.027169+00:00",
+        "bytes": 18945,
+        "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+        "http_status": 200
+      },
+      {
+        "started_utc": "2026-09-30T09:09:08.507478+00:00",
+        "finished_utc": "2026-09-30T09:09:10.085593+00:00",
+        "bytes": 18945,
+        "sha256": "f6a0c4cacda5f5ce2e5021c74a923880eb6f2a9d270b2fb80bac1aed4c17b17d",
+        "http_status": 200
+      }
+    ],
+    "submitted_raw_body_recovered": false,
+    "cause_of_change": "unknown",
+    "whole_body_equivalence": "unknown",
+    "permanent_stability_claimed": false,
+    "directly_checked_claim_ids": [
+      "br_mdb_tse_sgip_temer_registered_presidente_licenciado_20140716_20160405",
+      "br_mdb_tse_sgip_juca_registered_presidente_em_exercicio_20160312_20191006"
+    ],
+    "uncited_fields_accepted": false,
+    "holders_or_dates_changed": false
+  }
 }
