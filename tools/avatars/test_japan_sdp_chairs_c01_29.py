@@ -993,6 +993,19 @@ class JapanSdpChairsTests(unittest.TestCase):
         self.assertTrue(packet_unresolved[-1].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
         self.assertTrue(packet_unresolved[-2].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
 
+    def test_retrospective_election_count_does_not_invent_additional_wins(self):
+        claim = self.claims['jp_sdp_fukushima_tenure_record_2003_2013']
+        self.assertEqual(claim['text'],
+                         "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor "
+                         "and won five consecutive uncontested leader elections.")
+        self.assertIn('does not establish five additional re-elections after the initial election', claim['uncertainty'])
+        self.assertIn('the contemporaneous January 2012 record calls that election her fifth', claim['uncertainty'])
+        self.assertNotIn('attested_on', claim)
+        self.assertNotIn(claim['id'], HOLDER_CLAIM_SET)
+        self.assertIn('five consecutive uncontested leader elections', self.report)
+        self.assertNotIn('re-elected unopposed five times after 2003', self.report)
+        self.assertNotIn('counts five uncontested re-elections', self.report)
+
     def test_extracts_match_packet_claims_and_record_original_responses(self):
         for sid in NEW_SOURCES:
             source, extract = self.sources[sid], self.extracts[sid]
