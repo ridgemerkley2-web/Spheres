@@ -188,10 +188,23 @@ fn native_invariants(w: &WorldState) -> Check {
 }
 
 fn equivalent(left: &Game, right: &Game) -> Check<Vec<u8>> {
+    equivalent_with_diagnostic_digest(left, right, fingerprint)
+}
+
+fn equivalent_with_diagnostic_digest(
+    left: &Game,
+    right: &Game,
+    mut diagnostic_digest: impl FnMut(&[u8]) -> String,
+) -> Check<Vec<u8>> {
     let a = canonical_archive(&storage::encode(left)?)?;
     let b = canonical_archive(&storage::encode(right)?)?;
-    require(a == b, format!("Complete archive mismatch at {}: bytes {}/{}, FNV {}/{}; no finance/history fields excluded",
-        day_label(clock::absolute_day(&left.world)), a.len(), b.len(), fingerprint(&a), fingerprint(&b)))?;
+    // These full-buffer digests explain a mismatch; they do not establish
+    // equality. Keep them off the success path, whose report digest is still
+    // computed separately by compare().
+    if a != b {
+        return Err(format!("Complete archive mismatch at {}: bytes {}/{}, FNV {}/{}; no finance/history fields excluded",
+            day_label(clock::absolute_day(&left.world)), a.len(), b.len(), diagnostic_digest(&a), diagnostic_digest(&b)));
+    }
     Ok(a)
 }
 
@@ -770,6 +783,56 @@ fn stability_archive_comparison_excludes_only_wall_clock_and_detects_finance_his
     ] {
         assert!(canonical_archive(&format!("{prefix}{tail}")).is_err());
     }
+}
+
+#[test]
+fn stability_archive_mismatch_digests_are_lazy_and_match_the_legacy_oracle() {
+    // Literal previous comparison path: preserve its exact returned bytes and
+    // mismatch text while avoiding its eager diagnostic work on equal states.
+    fn legacy_equivalent(left: &Game, right: &Game) -> Check<Vec<u8>> {
+        let a = canonical_archive(&storage::encode(left)?)?;
+        let b = canonical_archive(&storage::encode(right)?)?;
+        require(a == b, format!("Complete archive mismatch at {}: bytes {}/{}, FNV {}/{}; no finance/history fields excluded",
+            day_label(clock::absolute_day(&left.world)), a.len(), b.len(), fingerprint(&a), fingerprint(&b)))?;
+        Ok(a)
+    }
+
+    let mut left = fresh(7, NationId::Tonga).unwrap();
+    let mut right = fresh(7, NationId::Tonga).unwrap();
+    left.record("A complete native archive comparison.".into());
+    right.record("A complete native archive comparison.".into());
+    native_invariants(&left.world).unwrap();
+    native_invariants(&right.world).unwrap();
+
+    let expected = legacy_equivalent(&left, &right).unwrap();
+    let mut calls = 0;
+    let actual = equivalent_with_diagnostic_digest(&left, &right, |bytes| {
+        calls += 1;
+        fingerprint(bytes)
+    }).unwrap();
+    assert_eq!(calls, 0, "Matching archives must not compute mismatch diagnostics");
+    assert!(actual == expected, "Matching return bytes changed from the legacy path");
+    assert!(equivalent(&left, &right).unwrap() == expected,
+        "The ordinary wrapper must preserve the complete native archive");
+
+    // A same-length log change remains valid native campaign data. Length or
+    // world-only equality cannot detect it; the whole archive must differ.
+    right.log.last_mut().unwrap().text = "B complete native archive comparison.".into();
+    let changed = storage::encode(&right).unwrap();
+    assert!(storage::decode(&changed).is_ok(), "Mismatch fixture must be a valid native archive");
+    assert_eq!(canonical_archive(&changed).unwrap().len(), expected.len());
+    let expected_error = legacy_equivalent(&left, &right).unwrap_err();
+    calls = 0;
+    let actual_error = equivalent_with_diagnostic_digest(&left, &right, |bytes| {
+        calls += 1;
+        fingerprint(bytes)
+    }).unwrap_err();
+    assert_eq!(calls, 2, "A mismatch must retain both diagnostic fingerprints");
+    assert_eq!(actual_error, expected_error, "Legacy mismatch details changed");
+    assert_eq!(equivalent(&left, &right).unwrap_err(), expected_error);
+
+    // Even identical diagnostic digests cannot turn unequal bytes into a pass.
+    assert!(equivalent_with_diagnostic_digest(&left, &right, |_| "same".into()).is_err());
 }
 
 #[test]
