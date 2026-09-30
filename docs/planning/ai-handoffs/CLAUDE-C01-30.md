@@ -66,7 +66,9 @@ Submitted `ready_for_review` on 28 September 2026. Touched paths (nothing else):
 The packet gains 39 sources and 64 claims and three `party_leader` roles: `za_acdp_president` on the AFRICAN CHRISTIAN
 DEMOCRATIC PARTY observation, `za_ff_leader` on VRYHEIDSFRONT PLUS and `za_ifp_president` on INKATHA FREEDOM PARTY. The
 roles hold 22 holder observations of seven people, each dated by a party's own in-office attestation, with no start and
-no end, because no party record found states the day any leader assumed or left the office:
+no end. This packet conservatively retains attestations rather than promoting the reviewed election, acceptance and
+retirement statements into exact term boundaries. Dated retirement statements do exist, including the IFP's
+24 August 2019 address and retrospective timeline; their dates remain claims, not holder boundaries:
 
 - ACDP President: Kenneth Meshoe (1999-05-01, 2001-10-31, 2014-02-18, 2018-02-14, 2026-03-04).
 - Freedom Front / Freedom Front Plus Leader: Constand Viljoen (1997-08-26); Pieter Mulder (2001-06-21, 2003-09-28,

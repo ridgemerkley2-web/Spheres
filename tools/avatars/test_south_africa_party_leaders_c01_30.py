@@ -3,7 +3,7 @@ three party offices kept apart from each other, from the ANC and DA roles and fr
 acceptances, result publications, retirement and valedictory statements, the President Emeritus title, deaths, the
 parliamentary leader office and continuation attestations stay separate claims; founding, renaming and merger claims sit
 on the organization and set no lifecycle or identity; every holder is a dated in-office observation with no start or
-end, because no party record reviewed states one."""
+end under this packet's conservative evidence-selection decision; dated retirement statements remain separate claims."""
 import copy
 import hashlib
 import json

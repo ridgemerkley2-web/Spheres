@@ -87,8 +87,11 @@ The resulting holder observations, in date order within each role (every `from` 
 ### How a start and an end are decided
 
 The packet applies the CLAUDE-C01-09 and CLAUDE-C01-16 rule unchanged. A holder has `from` only where a source states the
-day the office was assumed or took effect, and `until` only where a source states the day it ended. No record of the
-three parties reviewed states either, so every holder is a dated observation, one per reviewed observation, citing only
+day the office was assumed or took effect, and `until` only where a source states the day it ended. This packet makes
+the conservative evidence-selection decision to retain dated observations rather than promote the reviewed election,
+acceptance and retirement statements into exact term boundaries. It does not claim that the sources contain no dated
+departure statements: the IFP's 24 August 2019 address and retrospective timeline do, and remain separately recorded
+claims below. Every holder is a dated observation, one per reviewed observation, citing only
 in-office attestations made on its own `attested_on` day; the test pins that every cited claim carries exactly the
 holder's date. Everything else is a claim that never feeds a holder: elections and election references, the IFP's 2019
 result publication, selection by congress, acceptance, re-election publication, nomination references, announcements
