@@ -1,0 +1,31 @@
+{
+  "differences": [
+    {
+      "field": "census.json/production_snapshot/all_declared_inputs_current",
+      "recorded": true,
+      "current": false
+    },
+    {
+      "field": "census.json/production_snapshot/stale_inputs",
+      "recorded": [],
+      "current": [
+        {
+          "path": "spheres-sim/src/government.rs",
+          "recorded_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+          "current_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
+        }
+      ]
+    },
+    {
+      "field": "census.json/source_files/1/bytes",
+      "recorded": 848551,
+      "current": 849546
+    },
+    {
+      "field": "census.json/source_files/1/sha256",
+      "recorded": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+      "current": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
+    }
+  ],
+  "note": "Read-only current generation against the submitted census. No census input is changed by C01-33."
+}

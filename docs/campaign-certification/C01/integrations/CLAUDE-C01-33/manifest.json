@@ -1,0 +1,147 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-33",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "reviewed_commit": "2c78e89f67e9e21090a7da775fd8897c71d7dbd6",
+  "repair_commit": "89919346344865cace7c1e20d1c9696911c03ad0",
+  "decision": "Accept only the bounded 22-source / 41-claim preparation after chronology wording and locator corrections. All recorded responses reproduced and all material claims read; retain mirror/repository-copy authentication limits and inherited census failure. Accepted India-27 data is unchanged. No parent certification or complete office history acceptance.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "baseline-isolation.json",
+      "bytes": 4932,
+      "sha256": "8ad13faf3d6ea2c6a9c831d7ee25129600403e0dfd97c246e05b26c2ca1a3b0a"
+    },
+    {
+      "path": "census-difference.json",
+      "bytes": 1042,
+      "sha256": "ca53fcb864e4433f6d517ebbc132503812cf26e3b97cf80ae8d25e5a96205de8"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 20779,
+      "sha256": "495bf01f0027a5cec42130e233023d32787d05729ccc9c6a1061178b83550150"
+    },
+    {
+      "path": "logs/in33-atlas-postrepair.log",
+      "bytes": 1141,
+      "sha256": "72b0d20f9a85dbe281ceb4b1fcbe35a231e2c8780d1d3c43df23f82d343e4d1e"
+    },
+    {
+      "path": "logs/in33-atlas.log",
+      "bytes": 1139,
+      "sha256": "867a9e312328e165351549118a4c9f8629468b35f75ad2614bff67642f9bd744"
+    },
+    {
+      "path": "logs/in33-census.log",
+      "bytes": 118,
+      "sha256": "c213c77fe41e188e64758cfece9e3dd9cd7ceacc3b3e72a9be9b1a2cf08e3b57"
+    },
+    {
+      "path": "logs/in33-extract.log",
+      "bytes": 1004,
+      "sha256": "adb7e6b656749d14db2ab3a803ff07e0d60baf01ac823cb8d32ac5a3a1b9d567"
+    },
+    {
+      "path": "logs/in33-index-postrepair.log",
+      "bytes": 251,
+      "sha256": "beea98cb7974d56b8745816ec3686ad0c3a823d44b0020c23cf132928e5cfa7d"
+    },
+    {
+      "path": "logs/in33-index-regenerate.log",
+      "bytes": 252,
+      "sha256": "74c79cef706b6343077ef7efea56acff19957cdaa3c89a72afbda12a369688cd"
+    },
+    {
+      "path": "logs/in33-index.log",
+      "bytes": 251,
+      "sha256": "beea98cb7974d56b8745816ec3686ad0c3a823d44b0020c23cf132928e5cfa7d"
+    },
+    {
+      "path": "logs/in33-retrieval.log",
+      "bytes": 2127,
+      "sha256": "d3a85be05c29089a76093d6a611d3b4f2fba712a15bfeaaa1dff51657a3f127b"
+    },
+    {
+      "path": "logs/in33-tests-campaign-postrepair.log",
+      "bytes": 120,
+      "sha256": "e32c6d612b3d7fbb0d3dec54cac5be90818ff3addc446130e464d6deb09dbe3c"
+    },
+    {
+      "path": "logs/in33-tests-campaign.log",
+      "bytes": 120,
+      "sha256": "6ae710118e2589525357487ca4423397814ac5c4caba3b470c74190a1720f78b"
+    },
+    {
+      "path": "logs/in33-tests-country-postrepair.log",
+      "bytes": 161,
+      "sha256": "001e5c6c2b617a09f8ad016b7fd31c7a80f51c20a2dcbecedbe99f235ac150a2"
+    },
+    {
+      "path": "logs/in33-tests-country.log",
+      "bytes": 162,
+      "sha256": "6781c487427690cc163f0793178ba04db05d358c205c224ba8c60692e412a312"
+    },
+    {
+      "path": "logs/in33-tests-research-postrepair.log",
+      "bytes": 183,
+      "sha256": "f2639a3adf1259c84f79e366396285419441d92a9f9cd71f72595fc216efffb1"
+    },
+    {
+      "path": "logs/in33-tests-research.log",
+      "bytes": 183,
+      "sha256": "15aab54238904dedaf33ab8948786edfdee267e4c5b01f0b1970d6f165569953"
+    },
+    {
+      "path": "logs/in33-workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "page-review.json",
+      "bytes": 14633,
+      "sha256": "092ec8a139145f8f433a5bfec4e54a06cfae939205e1999240ce6f690dff2734"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7617,
+      "sha256": "d2bfc7925e948268bd4ba49b5a385de9809238b5dc81a92abfdeffcd12c321a9"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 19915,
+      "sha256": "b9a1ceabee978c6a3835650f7c71392c23cd25f8d36be19e9d6517bfbe205644"
+    },
+    {
+      "path": "scripts/in33-extract.py",
+      "bytes": 2175,
+      "sha256": "2f6e4065adf03218cdd956ea91be6f3d00a3515fb3caf4aad0028576fa605d1d"
+    },
+    {
+      "path": "scripts/in33-retrieve.py",
+      "bytes": 1969,
+      "sha256": "374bfbf6cc84a85fd3a572b095cca1315992805e49ec95a8820ad501f00c50a9"
+    },
+    {
+      "path": "scripts/verify-preserved-inputs.py",
+      "bytes": 2121,
+      "sha256": "a765c70e19f1043e644ae1f2086d5f6a1dabbc519209c00dc16d545be32a9701"
+    },
+    {
+      "path": "source-pins.json",
+      "bytes": 28584,
+      "sha256": "74a821bb2f5f62231d8950eb486264746f549a1c2f8e4bad491b6a1b9fc09ce6"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 2322,
+      "sha256": "e11974a78244965cb667c747f6e3ea45f39f3fec2a69981726d6ab17f4b040a7"
+    }
+  ]
+}

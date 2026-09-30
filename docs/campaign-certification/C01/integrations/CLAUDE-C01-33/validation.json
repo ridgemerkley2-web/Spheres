@@ -1,0 +1,63 @@
+{
+  "format": "spheres-bounded-review-validation/v1",
+  "reviewed_commit": "2c78e89f67e9e21090a7da775fd8897c71d7dbd6",
+  "repair_commit": "89919346344865cace7c1e20d1c9696911c03ad0",
+  "generated_index_commit": "be153c4e69c1fb33218386a0a9850c52c5a8b0b3",
+  "tests": [
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p 'test_india*.py'",
+      "passed": 57,
+      "log": "logs/in33-tests-country-postrepair.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p 'test_*research*.py'",
+      "passed": 79,
+      "log": "logs/in33-tests-research-postrepair.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p 'test_campaign*.py'",
+      "passed": 16,
+      "log": "logs/in33-tests-campaign-postrepair.log"
+    },
+    {
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "passed": 11,
+      "log": "logs/in33-atlas-postrepair.log"
+    }
+  ],
+  "test_executions_passed": 163,
+  "checks": [
+    {
+      "command": "python -B tools/avatars/campaign_research.py --check",
+      "exit_code": 0,
+      "log": "logs/in33-index-postrepair.log"
+    },
+    {
+      "command": "python -B tools/planning/workboard.py --check",
+      "exit_code": 0,
+      "log": "logs/in33-workboard.log"
+    },
+    {
+      "command": "python -B tools/avatars/campaign_census.py --check",
+      "exit_code": 1,
+      "log": "logs/in33-census.log",
+      "disposition": "Inherited stale government.rs source pin and dependent census bookkeeping only. Exact four-field difference retained separately. C01-33 modifies none of these inputs; do not import stale generated census. Integrator must regenerate/check against its own runtime."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_retrieval_attempts": 22,
+  "source_retrieval_failures": 0,
+  "retries": 0,
+  "tooling_note": "An auxiliary console print of the synopsis Unicode star failed under Windows cp1252 before its image was created; a JSON-escaped print and render succeeded. Original PDF bytes were unchanged. No claim or test was bypassed.",
+  "not_run": [
+    "Cargo",
+    "simulation",
+    "reserved holdout",
+    "live atlas browser",
+    "full S23 boundary matrix",
+    "global gap-ledger acceptance reclassification"
+  ]
+}
