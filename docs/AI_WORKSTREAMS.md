@@ -11,7 +11,7 @@ remain open. Canonical session status lives in
 
 | Owner | Work | Next action |
 |---|---|---|
-| Claude | Historical research and cartoon production | Continue existing claims; reconcile accepted Tonga research into dated identities, then a reviewed 6–8-cartoon batch. Repeat country batches toward C06. |
+| Claude | Historical research and cartoon production | Komeito C01-31 is delivered for review; Russia remains held. New remote claims C01-38–41 cover French PMs, DA, CPI(M) and CPSU leadership. [Current art direction, exact remote tips and next content sequence](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md): use actual dated campaign leaders; national representative figures are retired. Next production: reconcile Tonga identities, then a reviewed 6–8-cartoon batch and further C06 country casts. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September snapshot](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 running, 16 queued. Collect the existing run and dependent verifier's final results. Full-matrix pass remains pending. |
 | Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. Next complete standalone timing and review residual concentration; retain all original limits. |
 | Claude / Codex review | Russia research (`CLAUDE-C01-28`) | Twelve unavailable originals still hold 24 claims and four holder observations. Preserve the accessible-content review; import no unaccepted Russia research. |
@@ -36,7 +36,8 @@ exceptions to the one game integration branch:
 
 | Branch | Purpose and disposition |
 |---|---|
-| `claude/c01-jp-31` | Active Komeito research claim at `52b23d59`, now registered as `claimed` in the task queue with its three organizational targets reserved. Continue the existing claim; no research delivery is accepted. |
+| `claude/c01-jp-31` | Komeito delivered for review, latest checked tip `696937ba`; the integrated queue still records its original claim. Keep the three organizational targets reserved. Independent Codex review remains pending; no acceptance or runtime installation is implied. |
+| `claude/c01-fr-38`, `claude/c01-za-39`, `claude/c01-in-40`, `claude/c01-su-41` | New claim-only handoffs for French PMs, DA, CPI(M) and CPSU leadership, respectively. Exact tips and scope are in the [current Claude handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md). Central registration and content delivery are still pending. Do not duplicate these claims. |
 | `claude/c01-ru-28` | Held Russia submission; source-access and review requirements remain open. |
 | `claude/c01-gaps-01-fix` | Follow-up `1aa67047` reviewed and not adopted: retain current full-queue provenance and regenerate its metadata. Its older projection and generated payload are not imported. Preserve the exact tip; the earlier bounded gap-audit task remains accepted. |
 | `dashboard` | Publishes the existing GitHub Pages status site and research-pipeline status. It is not game code. |
