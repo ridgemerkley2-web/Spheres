@@ -1,0 +1,48 @@
+{
+  "format": "spheres-stability-freeze/v1",
+  "created_utc": "2026-09-30T09:03:11.906977+00:00",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "expected_compiled_revision": "68ba0622ec70",
+  "binary": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+    "bytes": 353201472,
+    "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+  },
+  "plan": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\plan.json",
+    "bytes": 2861,
+    "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+  },
+  "frozen_plan": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\plan.json",
+    "bytes": 2861,
+    "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+  },
+  "harness": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+    "bytes": 81651,
+    "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+  },
+  "frozen_harness": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\stability_matrix.py",
+    "bytes": 81651,
+    "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+  },
+  "native_test": "s25_stability_tests::s25_stability_cell",
+  "scope": "full",
+  "jobs": 4,
+  "through_semantics": "Inclusive last settled date; native end is through + one calendar day.",
+  "qualification": false,
+  "s25_complete": false,
+  "resource_execution": {
+    "scratch_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01",
+    "min_free_bytes": 3221225472,
+    "monitor_seconds": 2,
+    "compress_scratch": true,
+    "setup": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\resource-setup.json",
+      "bytes": 1182,
+      "sha256": "353bba79ca37d1289feccf913e1ecc0828c1286972c7a7892944dc255eb1ac22"
+    }
+  }
+}

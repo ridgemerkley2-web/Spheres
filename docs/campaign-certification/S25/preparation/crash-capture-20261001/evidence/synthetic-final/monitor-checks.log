@@ -1,0 +1,117 @@
+{
+  "failed": 0,
+  "native_campaign_launched": false,
+  "scope": "Actual production monitor try/catch/finally and helper functions; owned Python targets and synthetic resource snapshots only.",
+  "passed": 5,
+  "cases": [
+    {
+      "cleanup": [],
+      "primary": null,
+      "owned": [
+        {
+          "exit_code": 0,
+          "pid": 46016,
+          "exited": true
+        }
+      ],
+      "mode": "success",
+      "dump_count": 0,
+      "status": "diagnostic_finished",
+      "monitor_exited": true,
+      "production_core_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+      "native_created_output": true,
+      "remaining_target_pids": [],
+      "monitor_exit": 0
+    },
+    {
+      "cleanup": [],
+      "primary": {
+        "stack": "at <ScriptBlock>, <No file>: line 30\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 55\r\nat <ScriptBlock>, <No file>: line 2",
+        "message": "Owned native target failed with exit -1073741819",
+        "type": "System.Management.Automation.RuntimeException",
+        "status": "running"
+      },
+      "owned": [
+        {
+          "exit_code": -1073741819,
+          "pid": 48876,
+          "exited": true
+        }
+      ],
+      "mode": "captured-fault",
+      "dump_count": 1,
+      "status": "diagnostic_failed_or_resource_halted",
+      "monitor_exited": true,
+      "production_core_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+      "native_created_output": true,
+      "remaining_target_pids": [],
+      "monitor_exit": 1
+    },
+    {
+      "cleanup": [],
+      "primary": {
+        "stack": "at <ScriptBlock>, <No file>: line 20\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 55\r\nat <ScriptBlock>, <No file>: line 2",
+        "message": "Resource halt: available commit below safety floor",
+        "type": "System.Management.Automation.RuntimeException",
+        "status": "running"
+      },
+      "owned": [
+        {
+          "exit_code": -1073740972,
+          "pid": 48996,
+          "exited": true
+        }
+      ],
+      "mode": "resource-halt",
+      "dump_count": 0,
+      "status": "diagnostic_failed_or_resource_halted",
+      "monitor_exited": true,
+      "production_core_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+      "native_created_output": true,
+      "remaining_target_pids": [],
+      "monitor_exit": -1
+    },
+    {
+      "cleanup": [],
+      "primary": {
+        "stack": "at Write-Event, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 16\r\nat <ScriptBlock>, <No file>: line 15\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 55\r\nat <ScriptBlock>, <No file>: line 2",
+        "message": "synthetic journal failure",
+        "type": "System.IO.IOException",
+        "status": "running"
+      },
+      "owned": [
+        {
+          "exit_code": -1073740972,
+          "pid": 52448,
+          "exited": true
+        }
+      ],
+      "mode": "journal-fault",
+      "dump_count": 0,
+      "status": "diagnostic_failed_or_resource_halted",
+      "monitor_exited": true,
+      "production_core_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+      "native_created_output": true,
+      "remaining_target_pids": [],
+      "monitor_exit": -1
+    },
+    {
+      "cleanup": [],
+      "primary": {
+        "stack": "at Write-Event, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 21\r\nat <ScriptBlock>, <No file>: line 9\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 55\r\nat <ScriptBlock>, <No file>: line 2",
+        "message": "synthetic early journal failure",
+        "type": "System.IO.IOException",
+        "status": "not_started"
+      },
+      "owned": [],
+      "mode": "early-journal-fault",
+      "dump_count": 0,
+      "status": "diagnostic_failed_or_resource_halted",
+      "monitor_exited": true,
+      "production_core_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+      "native_created_output": false,
+      "remaining_target_pids": [],
+      "monitor_exit": -1
+    }
+  ]
+}

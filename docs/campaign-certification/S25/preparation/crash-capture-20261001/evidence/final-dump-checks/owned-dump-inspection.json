@@ -1,0 +1,254 @@
+{
+  "path": "D:\\spheres-offload\\codex-next-20260928\\s25-crash-prep-raw-20261001\\owned-proof-dumps\\python.exe_260930_200244.dmp",
+  "bytes": 40903229,
+  "sha256": "988384b82553b85847745e10d9b69794419deb70a6775b7af9179654aca5e39c",
+  "flags": "0x661826",
+  "full_memory": true,
+  "process_id": 42036,
+  "memory64_payload_complete": true,
+  "memory64_bytes": 40841216,
+  "exception": {
+    "thread_id": 39588,
+    "code": "0xc0000005",
+    "flags": 0,
+    "address": "0x1",
+    "parameters": [
+      8,
+      1
+    ],
+    "context_bytes": 1232,
+    "context_rva": 13200
+  },
+  "os": {
+    "architecture": 9,
+    "major": 10,
+    "minor": 0,
+    "build": 26200
+  },
+  "streams": {
+    "3": {
+      "bytes": 244,
+      "rva": 1848
+    },
+    "17": {
+      "bytes": 332,
+      "rva": 2092
+    },
+    "4": {
+      "bytes": 2920,
+      "rva": 2424
+    },
+    "13": {
+      "bytes": 3784,
+      "rva": 5344
+    },
+    "19": {
+      "bytes": 800,
+      "rva": 9128
+    },
+    "9": {
+      "bytes": 3600,
+      "rva": 58413
+    },
+    "16": {
+      "bytes": 15664,
+      "rva": 42749
+    },
+    "6": {
+      "bytes": 168,
+      "rva": 1680
+    },
+    "7": {
+      "bytes": 56,
+      "rva": 260
+    },
+    "15": {
+      "bytes": 1364,
+      "rva": 316
+    },
+    "12": {
+      "bytes": 5056,
+      "rva": 37693
+    },
+    "21": {
+      "bytes": 524,
+      "rva": 9928
+    },
+    "22": {
+      "bytes": 152,
+      "rva": 10452
+    },
+    "11": {
+      "bytes": 1000,
+      "rva": 32249
+    },
+    "0": {
+      "bytes": 0,
+      "rva": 0
+    }
+  },
+  "modules": [
+    {
+      "name": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "base": "0x7ff6d4490000",
+      "bytes": 106496,
+      "version": "3.12.14150.1013"
+    },
+    {
+      "name": "C:\\Windows\\System32\\ntdll.dll",
+      "base": "0x7ffa05b40000",
+      "bytes": 2519040,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\kernel32.dll",
+      "base": "0x7ffa04300000",
+      "bytes": 823296,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\KERNELBASE.dll",
+      "base": "0x7ffa034e0000",
+      "bytes": 4132864,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\ucrtbase.dll",
+      "base": "0x7ffa029a0000",
+      "bytes": 1355776,
+      "version": "6.2.26100.7623"
+    },
+    {
+      "name": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\VCRUNTIME140.dll",
+      "base": "0x7ff9994d0000",
+      "bytes": 122880,
+      "version": "14.44.35211.0"
+    },
+    {
+      "name": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python312.dll",
+      "base": "0x7ff94b0f0000",
+      "bytes": 7028736,
+      "version": "3.12.14150.1013"
+    },
+    {
+      "name": "C:\\Windows\\System32\\ws2_32.dll",
+      "base": "0x7ffa04cd0000",
+      "bytes": 475136,
+      "version": "6.2.26100.7623"
+    },
+    {
+      "name": "C:\\Windows\\System32\\rpcrt4.dll",
+      "base": "0x7ffa05470000",
+      "bytes": 1146880,
+      "version": "6.2.26100.8036"
+    },
+    {
+      "name": "C:\\Windows\\System32\\version.dll",
+      "base": "0x7ff9fb800000",
+      "bytes": 45056,
+      "version": "6.2.26100.1150"
+    },
+    {
+      "name": "C:\\Windows\\System32\\msvcrt.dll",
+      "base": "0x7ffa03ac0000",
+      "bytes": 692224,
+      "version": "7.0.26100.7623"
+    },
+    {
+      "name": "C:\\Windows\\System32\\advapi32.dll",
+      "base": "0x7ffa043d0000",
+      "bytes": 765952,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\sechost.dll",
+      "base": "0x7ffa04950000",
+      "bytes": 684032,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\bcrypt.dll",
+      "base": "0x7ffa02310000",
+      "bytes": 172032,
+      "version": "6.2.26100.7623"
+    },
+    {
+      "name": "C:\\Windows\\System32\\bcryptprimitives.dll",
+      "base": "0x7ffa028f0000",
+      "bytes": 675840,
+      "version": "6.2.26100.7623"
+    },
+    {
+      "name": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python3.dll",
+      "base": "0x1d8b6960000",
+      "bytes": 61440,
+      "version": "3.12.14150.1013"
+    },
+    {
+      "name": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\DLLs\\_ctypes.pyd",
+      "base": "0x7ff999590000",
+      "bytes": 135168,
+      "version": "3.12.14150.1013"
+    },
+    {
+      "name": "C:\\Windows\\System32\\ole32.dll",
+      "base": "0x7ffa04d50000",
+      "bytes": 1658880,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\msvcp_win.dll",
+      "base": "0x7ffa02420000",
+      "bytes": 667648,
+      "version": "6.2.26100.7623"
+    },
+    {
+      "name": "C:\\Windows\\System32\\gdi32.dll",
+      "base": "0x7ffa04490000",
+      "bytes": 176128,
+      "version": "6.2.26100.8036"
+    },
+    {
+      "name": "C:\\Windows\\System32\\win32u.dll",
+      "base": "0x7ffa024d0000",
+      "bytes": 159744,
+      "version": "6.2.26100.8036"
+    },
+    {
+      "name": "C:\\Windows\\System32\\gdi32full.dll",
+      "base": "0x7ffa02500000",
+      "bytes": 1224704,
+      "version": "6.2.26100.8036"
+    },
+    {
+      "name": "C:\\Windows\\System32\\user32.dll",
+      "base": "0x7ffa044c0000",
+      "bytes": 1855488,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\combase.dll",
+      "base": "0x7ffa05590000",
+      "bytes": 3678208,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Windows\\System32\\oleaut32.dll",
+      "base": "0x7ffa04870000",
+      "bytes": 880640,
+      "version": "6.2.26100.7920"
+    },
+    {
+      "name": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\DLLs\\libffi-8.dll",
+      "base": "0x7ff9e78b0000",
+      "bytes": 45056,
+      "version": "0.0.0.0"
+    },
+    {
+      "name": "C:\\Windows\\System32\\imm32.dll",
+      "base": "0x7ffa04ad0000",
+      "bytes": 200704,
+      "version": "6.2.26100.7309"
+    }
+  ]
+}
