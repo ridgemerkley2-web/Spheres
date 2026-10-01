@@ -11,7 +11,8 @@ import campaign_research as research
 # table-format extracts, pinned in test_ussr_government_supreme_soviet_c01_26; the CLAUDE-C01-SOURCE-26 review withdrew one
 # (Izvestia No. 13), leaving 30 (positions 10-39). CLAUDE-C01-35 appended 16 sources (positions 40-55) with table-format
 # extracts, pinned in test_ussr_democratic_russia_soyuz_c01_35. CLAUDE-C01-41 appended 12 sources (positions 56-67) with
-# table-format extracts, pinned in test_ussr_cpsu_general_secretary_c01_41.
+# table-format extracts, pinned in test_ussr_cpsu_general_secretary_c01_41. CLAUDE-C01-49 appended 6 sources (positions
+# 68-73) with table-format extracts, all scanned PDFs, pinned in test_ussr_government_president_c01_49.
 ORIGINAL_1990_SOURCES = {'su_presidency_law_19900314', 'su_japan_diplomatic_bluebook_1990', 'su_bush_presidential_letter_19900320'}
 C01_26_PDF_SOURCES = {'su_snd4_steno_vol3', 'su_sten_vs_bulletin1_19910826', 'su_sten_vs_bulletin2_19910826', 'su_ved_1991_35',
                           'su_ved_1991_36', 'su_snd5_bulletin5_19910904', 'su_ved_1991_37', 'su_ved_1991_41'}
@@ -28,6 +29,10 @@ C01_41_SOURCES = {'su_pravda_no37_19900206', 'su_pravda_no192_19900711', 'su_pra
 C01_41_PDF_SOURCES = {'su_pravda_no37_19900206', 'su_pravda_no192_19900711', 'su_pravda_no193_19900712', 'su_pravda_no194_19900713',
                      'su_pravda_no195_19900714', 'su_izv_tsk_1991_08', 'su_pravda_no201_19910822', 'su_vs_bulletin1_cpsu_19910826',
                      'su_ved_1991_35_cpsu', 'su_snd5_bulletin3_cpsu_19910903', 'su_ved_1991_36_cpsu'}
+# Every CLAUDE-C01-49 source (each a scanned PDF) and the claims of its one holder with a from (the 15 March 1990 oath).
+C01_49_SOURCES = {'su_snd3_steno_vol3_president', 'su_pravda_no13_19910115', 'su_pravda_no20_19910123', 'su_izv_197_19910820',
+                  'su_ved_1991_35_president', 'su_ved_1991_41_president'}
+C01_49_OATH_CLAIMS = ['su_snd3p_gorbachev_oath_19900315', 'su_snd3p_assumption_of_office_declared_19900315']
 
 
 class UssrDiscoveryTests(unittest.TestCase):
@@ -48,8 +53,9 @@ class UssrDiscoveryTests(unittest.TestCase):
         # one institution (su_government) and one role (su_government_head); the CLAUDE-C01-SOURCE-26 review withdrew one
         # source and its three claims. CLAUDE-C01-35 added 16 sources, 36 claims, two organizations (su_democratic_russia,
         # su_soyuz_deputies_group) and two co-leadership roles. CLAUDE-C01-41 added 12 sources and 26 claims to the existing
-        # su_cpsu roles; no entry or role.
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (7, 68, 157, 8))
+        # su_cpsu roles; no entry or role. CLAUDE-C01-49 added 6 sources and 17 claims to the existing su_president and
+        # su_government_head roles; no entry or role.
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (7, 74, 174, 8))
         self.assertEqual(len(self.packet['organizations']), 3)
         self.assertEqual(len(self.packet['institutions']), 4)
         self.assertEqual(self.packet['coverage']['status'], 'partial_primary_source_inventory')
@@ -117,7 +123,13 @@ class UssrDiscoveryTests(unittest.TestCase):
             self.assertIsNone(entry['lifecycle']['until'])
             for role in entry['roles']:
                 for holder in role['holder_claims']:
-                    self.assertIsNone(holder['from'])
+                    # The one holder with a from is CLAUDE-C01-49's oath observation (the oath and the declared assumption
+                    # of office on 15 March 1990, pinned in test_ussr_government_president_c01_49); the enactment and the
+                    # letter still give none.
+                    if holder.get('claim_ids') == C01_49_OATH_CLAIMS:
+                        self.assertEqual((role['id'], holder['from']), ('su_president', '1990-03-15'))
+                    else:
+                        self.assertIsNone(holder['from'])
                     self.assertIsNone(holder['until'])
 
     def test_diplomatic_month_observations_keep_spelling_uncertainty(self):
@@ -140,10 +152,10 @@ class UssrDiscoveryTests(unittest.TestCase):
             'su_presidency_law_19900314': (166710, '710afdf4fd5df03e3098c69d783f0fdd1528f42b858e36420d531a05ce1c054e'),
             'su_bush_presidential_letter_19900320': (40716, 'e39829ace8d141b2b8651d9b8fcc7d8c6bfa19db42cda0ef0a6046aa589e3558'),
         }
-        # The ten S10.h and CLAUDE-C01-05 extracts repeat the claims; the 30 CLAUDE-C01-26, the 16 CLAUDE-C01-35 and the 12
-        # CLAUDE-C01-41 table extracts key a row to each claim.
+        # The ten S10.h and CLAUDE-C01-05 extracts repeat the claims; the 30 CLAUDE-C01-26, the 16 CLAUDE-C01-35, the 12
+        # CLAUDE-C01-41 and the 6 CLAUDE-C01-49 table extracts key a row to each claim.
         tables = {s['id'] for s in self.packet['sources'][10:]}
-        self.assertEqual(len(tables), 58)
+        self.assertEqual(len(tables), 64)
         self.assertEqual(len({s['id'] for s in self.packet['sources'][10:40]}), 30)
         for sid, extract in self.extracts.items():
             source = self.sources[sid]
@@ -186,11 +198,12 @@ class UssrDiscoveryTests(unittest.TestCase):
                 self.assertEqual(extract['visual_review']['pdf_pages_one_based'], [])
             self.assertIn('no source artwork or portrait copied', extract['rights_note'])
             self.assertIn('No portrait permission or likeness approval', extract['rights_note'])
-        # Only the CLAUDE-C01-05 UN and NARA PDFs, the eight CLAUDE-C01-26 scanned PDFs, the 13 CLAUDE-C01-35 scanned PDFs and
-        # the 11 CLAUDE-C01-41 scanned PDFs record rendered PDF pages (each pinned in its own test).
+        # Only the CLAUDE-C01-05 UN and NARA PDFs, the eight CLAUDE-C01-26 scanned PDFs, the 13 CLAUDE-C01-35 scanned PDFs,
+        # the 11 CLAUDE-C01-41 scanned PDFs and the 6 CLAUDE-C01-49 scanned PDFs record rendered PDF pages (each pinned in its
+        # own test).
         self.assertEqual({sid for sid, e in self.extracts.items() if e['visual_review']['pdf_pages_one_based']},
                          {'su_un_a46_771_minsk_19911208', 'su_un_a47_60_almaata_19911221', 'su_nara_bush_gorbachev_telcon_19911225'}
-                         | C01_26_PDF_SOURCES | C01_35_PDF_SOURCES | C01_41_PDF_SOURCES)
+                         | C01_26_PDF_SOURCES | C01_35_PDF_SOURCES | C01_41_PDF_SOURCES | C01_49_SOURCES)
 
     def test_cutoff_and_unknown_term_guards_reject_future_or_reversed_history(self):
         self.assertEqual(self.packet['research_cutoff'], '2026-09-07')
@@ -198,15 +211,18 @@ class UssrDiscoveryTests(unittest.TestCase):
         self.assertEqual({sid: s['accessed_date'] for sid, s in self.sources.items() if sid in ORIGINAL_1990_SOURCES},
                          dict.fromkeys(ORIGINAL_1990_SOURCES, '2026-09-13'))
         # CLAUDE-C01-05 sources were accessed on 2026-09-21, the 30 CLAUDE-C01-26 sources on 2026-09-26, the 16
-        # CLAUDE-C01-35 sources on 2026-09-29 and the 12 CLAUDE-C01-41 sources on 2026-09-30 (UTC).
+        # CLAUDE-C01-35 sources on 2026-09-29, the 12 CLAUDE-C01-41 sources on 2026-09-30 and the 6 CLAUDE-C01-49 sources on
+        # 2026-10-01 (UTC).
         self.assertEqual({s['accessed_date'] for s in self.sources.values()},
-                         {'2026-09-13', '2026-09-21', '2026-09-26', '2026-09-29', '2026-09-30'})
+                         {'2026-09-13', '2026-09-21', '2026-09-26', '2026-09-29', '2026-09-30', '2026-10-01'})
         self.assertEqual({s['id'] for s in self.sources.values() if s['accessed_date'] == '2026-09-26'},
                          {s['id'] for s in self.packet['sources'][10:40]})
         self.assertEqual({s['id'] for s in self.sources.values() if s['accessed_date'] == '2026-09-29'},
                          {s['id'] for s in self.packet['sources'][40:56]})
         self.assertEqual({s['id'] for s in self.sources.values() if s['accessed_date'] == '2026-09-30'},
-                         {s['id'] for s in self.packet['sources'][56:]})
+                         {s['id'] for s in self.packet['sources'][56:68]})
+        self.assertEqual({s['id'] for s in self.sources.values() if s['accessed_date'] == '2026-10-01'},
+                         {s['id'] for s in self.packet['sources'][68:]})
         packet = copy.deepcopy(self.packet)
         packet['institutions'][0]['roles'][0]['holder_claims'][0]['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -223,8 +239,8 @@ class UssrDiscoveryTests(unittest.TestCase):
         self.assertEqual(country['organization_observations'], 3)
         # CLAUDE-C01-26 added su_government (77 claims; 74 after the CLAUDE-C01-SOURCE-26 review), with no party mapping.
         self.assertEqual(country['institution_observations'], 4)
-        # CLAUDE-C01-41 added 26 claims to the existing su_cpsu roles.
-        self.assertEqual(country['source_claims'], 157)
+        # CLAUDE-C01-41 added 26 claims to the existing su_cpsu roles; CLAUDE-C01-49 17 to su_president and su_government_head.
+        self.assertEqual(country['source_claims'], 174)
         self.assertEqual(country['mapping_pending'], 7)
         self.assertFalse(country['country_census_complete'])
         self.assertFalse(index['c01_complete'])

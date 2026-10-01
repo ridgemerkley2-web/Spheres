@@ -11,6 +11,11 @@ from urllib.parse import parse_qs, urlsplit
 
 import campaign_research as research
 
+# CLAUDE-C01-49 appended su_president observations resting only on these sources (pinned in
+# test_ussr_government_president_c01_49); the two CLAUDE-C01-05 observations stay first.
+C01_49_SOURCES = {'su_snd3_steno_vol3_president', 'su_pravda_no13_19910115', 'su_pravda_no20_19910123', 'su_izv_197_19910820',
+                  'su_ved_1991_35_president', 'su_ved_1991_41_president'}
+
 
 # Original response identity recorded in each new extract: (bytes, sha256), re-downloaded byte-identical by the dossier or
 # the independent check that found the record, the check, and twice by this packet at least 30 minutes apart.
@@ -608,7 +613,8 @@ def government_invariants(russia, ussr):
                     cited = set(r['claim_ids']) | {c for h in r['holder_claims'] if isinstance(h, dict) for c in h['claim_ids']}
                     assert not cited & ours, r['id']
     su = next(r for e in ussr['institutions'] for r in e['roles'] if r['id'] == 'su_president')
-    assert [h['name'] for h in su['holder_claims']] == ['Mikhail Gorbachev', 'Mikhail Gorbachev']
+    assert [h['name'] for h in su['holder_claims'][:2]] == ['Mikhail Gorbachev', 'Mikhail Gorbachev']
+    assert all(h['sources'] and set(h['sources']) <= C01_49_SOURCES for h in su['holder_claims'][2:])
     # Exact holders; each start or attested day rests on its own appointment decree, dated that day; no end anywhere.
     holders = role['holder_claims']
     assert [(h['name'], h['attested_on'], h['from'], h['until']) for h in holders] == HOLDERS

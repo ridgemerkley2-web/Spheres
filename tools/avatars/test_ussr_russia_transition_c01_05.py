@@ -27,6 +27,9 @@ SU_SOURCES = {
     'su_garf_exhibit_res_2014i', 'su_un_a47_60_almaata_19911221', 'su_nara_bush_gorbachev_telcon_19911225',
     'su_bush_address_cis_19911225',
 }
+# CLAUDE-C01-49 appended later su_president observations resting only on its own sources (pinned in its own test).
+C01_49_SOURCES = {'su_snd3_steno_vol3_president', 'su_pravda_no13_19910115', 'su_pravda_no20_19910123', 'su_izv_197_19910820',
+                  'su_ved_1991_35_president', 'su_ved_1991_41_president'}
 # Original responses (not checked in): bytes and SHA-256 recorded by the dossier, the check and this packet.
 # None means the response is not reproducible and no hash is asserted.
 RESPONSES = {
@@ -237,7 +240,11 @@ class UssrRussiaTransitionTests(unittest.TestCase):
         self.assertIn('ru_steno_oath_19910710', yeltsin['claim_ids'])
         self.assertIn('five-year rule is not used', yeltsin['uncertainty'])
         # Gorbachev gains a dated observation, not an end: the announcement is a claim.
-        letter, dec25 = self.roles['su_president']['holder_claims']
+        # CLAUDE-C01-49 appended four observations after these two, each resting only on its own sources (pinned in
+        # test_ussr_government_president_c01_49); these two stay first and unchanged.
+        letter, dec25, *appended = self.roles['su_president']['holder_claims']
+        self.assertEqual(len(appended), 4)
+        self.assertTrue(all(h['sources'] and set(h['sources']) <= C01_49_SOURCES for h in appended))
         self.assertEqual(letter['attested_on'], '1990-03-20')
         self.assertEqual((dec25['name'], dec25['attested_on'], dec25['from'], dec25['until']),
                          ('Mikhail Gorbachev', '1991-12-25', None, None))
