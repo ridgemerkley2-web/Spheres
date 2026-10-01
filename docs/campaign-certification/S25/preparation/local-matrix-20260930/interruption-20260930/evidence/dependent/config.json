@@ -1,0 +1,145 @@
+{
+  "format": "spheres-dependent-verification-config/v1",
+  "created_utc": "2026-09-30T09:58:00.654236+00:00",
+  "output": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01",
+  "parent_pid": 9040,
+  "parent_creation_filetime": 134352325910783608,
+  "parent_creation_utc": "2026-09-30T09:03:11.078360+00:00",
+  "parent_command_line": "\"C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\" -B -X utf8 D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/run_full.py",
+  "parent_executable": "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\python3.13.exe",
+  "python": "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\python3.13.exe",
+  "launcher_started_utc": "2026-09-30T09:03:11.605697+00:00",
+  "launcher_args": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+    "--binary",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+    "--revision",
+    "68ba0622ec709b78617aadd1f9198d18f532bb32",
+    "--plan",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\plan.json",
+    "--out",
+    "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01",
+    "--scratch-root",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01",
+    "--compress-scratch",
+    "--jobs",
+    "4",
+    "--min-free-bytes",
+    "3221225472",
+    "--timeout-seconds",
+    "43200"
+  ],
+  "manifest": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\manifest.json",
+  "plan": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\plan.json",
+  "launch": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full-launch.json",
+  "completion": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full-exit.json",
+  "retained": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01",
+  "binary": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+    "bytes": 353201472,
+    "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+  },
+  "helper": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+    "bytes": 81651,
+    "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+  },
+  "pins": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\native-test",
+      "bytes": 353201472,
+      "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\distributed_stability.py",
+      "bytes": 12526,
+      "sha256": "59d10ac51ebe70d11a129fa1903221ce37fa6e1a148065ed48f19b1b1f94343f"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+      "bytes": 353201472,
+      "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\manifest.json",
+      "bytes": 3725,
+      "sha256": "4f8e94852b2d67e49b36dc2632940d8cf9d8079a6f848f784c50364d58894c50"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\run_full.py",
+      "bytes": 2362,
+      "sha256": "d17b5fa3757c37be68e43646e4cecb88a7c1577b18b4208c5a53175d8b628ab7"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full-launch.json",
+      "bytes": 1355,
+      "sha256": "79d4779966099e0ec118edc67313d7166aa32ee7ce5d955123e296ef5ea3426c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\freeze.json",
+      "bytes": 2136,
+      "sha256": "e987a66ae55d65e894e982b20b6ac76f4ffbbd699e3acbf7b060354bb5771f10"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\dependent_verify.py",
+      "bytes": 15996,
+      "sha256": "111f15ad6be59641b64cbd6c84369c8b7c0301b89602de58a4c50e5ced5052c5"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\test_dependent_verify.py",
+      "bytes": 7788,
+      "sha256": "d3e60062ceb91dc14e8bfe7f6d2d7508c612378e420438a46140841747cb2d19"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\prepare.py",
+      "bytes": 5432,
+      "sha256": "851d2210582b95826758343eaa31d7ff65e78022e42b95b146f5686c529e6b29"
+    },
+    {
+      "path": "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\python3.13.exe",
+      "bytes": 171864,
+      "sha256": "a91b8fc28604c9cb67ed362db2a7f8372d73fb37997a9dfd0ae978f922131c41"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\captured\\manifest.json",
+      "bytes": 3725,
+      "sha256": "4f8e94852b2d67e49b36dc2632940d8cf9d8079a6f848f784c50364d58894c50"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\captured\\full-launch.json",
+      "bytes": 1355,
+      "sha256": "79d4779966099e0ec118edc67313d7166aa32ee7ce5d955123e296ef5ea3426c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\captured\\freeze.json",
+      "bytes": 2136,
+      "sha256": "e987a66ae55d65e894e982b20b6ac76f4ffbbd699e3acbf7b060354bb5771f10"
+    }
+  ],
+  "qualification": false,
+  "s25_complete": false
+}

@@ -379,14 +379,14 @@
       "id": "CODEX-S25-MATRIX-01",
       "owner": "Codex",
       "session": "S25",
-      "state": "in_progress",
+      "state": "blocked",
       "priority": 4,
       "title": "Run the complete 24-cell 1990-2035 engineering preflight",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
       "depends_on": [
         "CODEX-S25-SUCCESSION-01"
       ],
-      "next": "30 September snapshot: France/1990, France/7, France/42 and Japan/1990 completed and their retained evidence was independently revalidated; Japan/7, Japan/42, India/1990 and India/7 running; 16 queued. Current candidate 68ba0622ec709b78617aadd1f9198d18f532bb32, output D:/spheres-offload/codex-next-20260928/full-matrix-local-20260930-01. Collect this existing four-worker run and the already armed dependent verifier's final results. Keep the full 24-cell plan, 12-hour per-cell budget, invariants, reloads and archive comparisons. Status, audit receipt and prior-attempt link: docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md. Full-matrix pass pending; no earlier-cell reuse or S25 qualification."
+      "next": "The frozen 68ba0622 full attempt stopped at 2026-09-30 23:30:51 UTC: 4 independently revalidated passes, 4 abnormal native exits and 16 cases not started. Japan/7 and India/7 have Windows crash records; Japan/42 and India/1990 exited 1. Launcher exit 120 produced no matrix aggregate or closing journal event. The dependent verifier failed with PermissionError before retained verification began. All original evidence is preserved; 41 prior metadata pins, 44 newly retained files and four decoded checkpoint archives were rechecked. Diagnose native crashes and lost journal writes before declaring a fresh complete attempt; do not relabel incomplete checkpoints or reuse selected old cells. Evidence: docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/README.md. No replacement run or verifier launched; this attempt monitor is paused. Full-matrix acceptance and canonical S25 remain open."
     },
     {
       "id": "CODEX-C01-23-REVIEW",

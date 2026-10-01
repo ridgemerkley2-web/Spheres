@@ -1,0 +1,18 @@
+{
+  "events": [
+    {
+      "TimeCreatedUtc": "2026-09-30T23:28:57.8845869Z",
+      "Message": "Faulting application name: spheres-web-test.exe, version: 0.0.0.0, time stamp: 0x6abccebb\r\nFaulting module name: ntdll.dll, version: 10.0.26100.7920, time stamp: 0x5ffc11eb\r\nException code: 0xc0000005\r\nFault offset: 0x0000000000010579\r\nFaulting process id: 0x4B98\r\nFaulting application start time: 0x1DD510327816AE1\r\nFaulting application path: D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe\r\nFaulting module path: C:\\WINDOWS\\SYSTEM32\\ntdll.dll\r\nReport Id: fbf88af5-fcaa-4bc3-9255-3c8d2f595d88\r\nFaulting package full name: \r\nFaulting package-relative application ID: ",
+      "Provider": "Application Error",
+      "EventId": 1000
+    },
+    {
+      "TimeCreatedUtc": "2026-09-30T23:28:41.1287122Z",
+      "Message": "Faulting application name: spheres-web-test.exe, version: 0.0.0.0, time stamp: 0x6abccebb\r\nFaulting module name: ntdll.dll, version: 10.0.26100.7920, time stamp: 0x5ffc11eb\r\nException code: 0xc0000005\r\nFault offset: 0x0000000000166167\r\nFaulting process id: 0x9150\r\nFaulting application start time: 0x1DD50F91D2D997F\r\nFaulting application path: D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe\r\nFaulting module path: C:\\WINDOWS\\SYSTEM32\\ntdll.dll\r\nReport Id: b3ab416b-ee66-4701-9f8a-eaaac5621917\r\nFaulting package full name: \r\nFaulting package-relative application ID: ",
+      "Provider": "Application Error",
+      "EventId": 1000
+    }
+  ],
+  "scope": "Application Error events for the exact matrix executable during 23:20-23:40 UTC",
+  "observed_utc": "2026-10-01T00:11:41.4105432Z"
+}
