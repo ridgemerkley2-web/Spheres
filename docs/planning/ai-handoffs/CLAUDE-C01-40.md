@@ -41,9 +41,12 @@ Mark the packet `ready_for_review` when done. C01 and all parent gates stay open
 
 ## Result
 
-Submitted `ready_for_review` on 1 October 2026 (UTC). Commits on `claude/c01-in-40`, on base `02d2c5a2` (not stacked):
-the claim commit `c152e35e` (this record only); `Add CLAUDE-C01-40: CPI(M) general secretaries, 1990–2026` (everything
-below except the index); and `Regenerate the C01 research index for CLAUDE-C01-40` (`research-index.json` only).
+Submitted `ready_for_review` on 1 October 2026 (UTC). Commits on `claude/c01-in-40` (not stacked): the claim commit
+`c152e35e` (this record only) on base `02d2c5a2`; `c70c10eb` `Add CLAUDE-C01-40: CPI(M) general secretaries, 1990–2026`
+(everything below except the index); `04019fb3` `Regenerate the C01 research index for CLAUDE-C01-40`
+(`research-index.json` only); the merge `14250447` of the moved integration `79ef97ec` (no conflict; the index needed no
+change); and a last commit recording that merge in this record and the report. The base is now
+`codex/campaign-certification` at `79ef97ec`.
 Touched paths (nothing else):
 
 - `docs/planning/ai-handoffs/CLAUDE-C01-40.md` (this record);
@@ -83,8 +86,11 @@ parallel packets;
 `test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, absent from the sparse checkout; both are disclosed, not
 fixed. C01 and every parent gate stay open.
 
-Checks (1 October 2026, before committing, integration at `02d2c5a2`): research-index regenerate and `--check` passed
-(9 country packets, 1,904 sources, 4,751 claims); `campaign_census.py --check` passed; `test_india*.py` 67 passed (the new
+Checks (1 October 2026, before committing on `02d2c5a2`, rerun after merging `79ef97ec`): research-index regenerate and
+`--check` passed (9 country packets, 1,904 sources, 4,751 claims); `campaign_census.py --check` passed on `02d2c5a2` but
+fails after the merge, inherited from integration ('C01 evidence differs: census.json': integration commits `434abd50`
+and `7c6f112c` changed `spheres-sim/src/government.rs` without regenerating `census.json`; outside this packet's
+boundary, not fixed); `test_india*.py` 67 passed (the new
 test's 10 included), `test_*research*.py` 79 passed, `test_campaign*.py` 16 passed; the atlas Node check 11 passed;
 `workboard.py --check` passed; `git diff --check` clean; `packet_check.py 40 --no-tests` re-downloaded all 18 sources and
 every one matched. The full `packet_check.py 40` is run again after pushing.

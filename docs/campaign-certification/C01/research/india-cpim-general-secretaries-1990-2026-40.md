@@ -1,8 +1,9 @@
 # CPI(M) general secretaries 40: the party office, 1990-2026
 
 Packet: **CLAUDE-C01-40**. State: **ready_for_review** (not complete).
-Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-in-40`; base `02d2c5a2` (current `codex/campaign-certification`
-when claimed); not stacked on a pending packet; claim commit `c152e35e`. Research access: 30 September 2026 (UTC); every
+Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-in-40`; claimed at `c152e35e` on base `02d2c5a2`; not
+stacked on a pending packet. After the packet commits (`c70c10eb`, `04019fb3`) the branch merged the moved integration
+`79ef97ec` without conflict (merge `14250447`), so it is based on `codex/campaign-certification` at `79ef97ec`. Research access: 30 September 2026 (UTC); every
 recorded response was first downloaded on that day, between 23:36:00Z and 23:47:22Z, which is each source's
 `accessed_date`, and again at least 30 minutes later (see the identities section). The historical cutoff stays
 **7 September 2026**.
@@ -256,8 +257,8 @@ changed.
 
 ## Checks
 
-Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` on 1 October 2026 (UTC), before committing, with integration
-`codex/campaign-certification` still at `02d2c5a2`:
+Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` on 1 October 2026 (UTC), before committing on base `02d2c5a2`, and
+rerun after merging integration `79ef97ec` (all results unchanged except the census check, below):
 
 ```text
 python -X utf8 tools/avatars/campaign_research.py
@@ -275,7 +276,7 @@ python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 40 --no-tes
 | Check | Result |
 |---|---|
 | `campaign_research.py`, then `--check` | passed: 9 country packets, 844 organization and 36 institution observations, 1,904 sources, 4,751 claims, 93 open discovery batches |
-| `campaign_census.py --check` | passed |
+| `campaign_census.py --check` | passed on `02d2c5a2`; **fails after merging `79ef97ec`, inherited from integration:** 'C01 evidence differs: census.json', because integration commits `434abd50` and `7c6f112c` changed `spheres-sim/src/government.rs` without regenerating `docs/campaign-certification/C01/census.json`, which pins that file's SHA-256 (recorded `3f846b4b...`, now `4b0b82db...` on integration itself); not fixed here (outside the file boundary) |
 | `test_india*.py` | 67 passed, including the 10 tests of `test_india_cpim_general_secretaries_c01_40.py` (its mutation test rejects 17 rule cases, a changed claim day and an extract row that disagrees with the packet) |
 | `test_*research*.py` | 79 passed |
 | `test_campaign*.py` | 16 passed |
