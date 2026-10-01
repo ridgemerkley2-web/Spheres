@@ -1,0 +1,242 @@
+{
+  "decision": "passed_bounded_checks",
+  "suites": {
+    "russia": 44,
+    "ussr": 48,
+    "research": 79,
+    "campaign": 16,
+    "atlas_node": 11
+  },
+  "counts_overlap": true,
+  "independent_negative_controls": 6,
+  "authored_negative_mutations": 26,
+  "commands": [
+    {
+      "name": "atlas-node",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "C:/Users/ridge/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "started_utc": "2026-10-01T14:30:41.512229+00:00",
+      "elapsed_seconds": 0.439,
+      "exit_code": 0,
+      "log": "validation/atlas-node.log",
+      "log_bytes": 1124,
+      "log_sha256": "0a49e4028e002d239cb998def181b2a752bb87ef86be0bb671443ef43fbea09f"
+    },
+    {
+      "name": "campaign-tests",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:27:44.996234+00:00",
+      "elapsed_seconds": 1.502,
+      "exit_code": 0,
+      "log": "validation/campaign-tests.log",
+      "log_bytes": 2544,
+      "log_sha256": "be338035e43558aa7e81b35b050ebf33e01c66eba67368ef30ce08c90bf0275c"
+    },
+    {
+      "name": "census-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:30:40.903039+00:00",
+      "elapsed_seconds": 0.248,
+      "exit_code": 0,
+      "log": "validation/census-check.log",
+      "log_bytes": 1462,
+      "log_sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "name": "index-and-controls",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "../russia-evidence/check_index_and_controls.py"
+      ],
+      "started_utc": "2026-10-01T14:32:17.704451+00:00",
+      "elapsed_seconds": 1.739,
+      "exit_code": 0,
+      "log": "validation/index-and-controls.log",
+      "log_bytes": 2102,
+      "log_sha256": "e309632a719fac525e821191af0a67c938c83160e67e59bbb63a2bdb036a63c2"
+    },
+    {
+      "name": "research-index-build",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py"
+      ],
+      "started_utc": "2026-10-01T14:32:17.922507+00:00",
+      "elapsed_seconds": 0.707,
+      "exit_code": 0,
+      "log": "validation/research-index-build.log",
+      "log_bytes": 252,
+      "log_sha256": "d3f427667d1e512577ab7d557d2308fe16304a5b17fcc4aa6dc79184b4ef9c5d"
+    },
+    {
+      "name": "research-index-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:32:18.706325+00:00",
+      "elapsed_seconds": 0.705,
+      "exit_code": 0,
+      "log": "validation/research-index-check.log",
+      "log_bytes": 251,
+      "log_sha256": "151d472ceb88ad376510b4a5def8f700845c9284a52cd15b9d9b0d7f73855610"
+    },
+    {
+      "name": "research-tests",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:27:37.951759+00:00",
+      "elapsed_seconds": 6.887,
+      "exit_code": 0,
+      "log": "validation/research-tests.log",
+      "log_bytes": 14711,
+      "log_sha256": "43558ad3af20c75d043def0277b309deeb6c0ef1fb6dff898e72901afde3f75a"
+    },
+    {
+      "name": "russia-tests",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_russia*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:27:23.442265+00:00",
+      "elapsed_seconds": 11.089,
+      "exit_code": 0,
+      "log": "validation/russia-tests.log",
+      "log_bytes": 7848,
+      "log_sha256": "62dcb64910db694330cd6246cc0f3a88f3bea8b29ae06e715bdc180f3d51727f"
+    },
+    {
+      "name": "ussr-tests",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_ussr*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:27:34.669891+00:00",
+      "elapsed_seconds": 3.15,
+      "exit_code": 0,
+      "log": "validation/ussr-tests.log",
+      "log_bytes": 8775,
+      "log_sha256": "687527b42ebcadbf058a023066ce7b9271cae11dc5670c8458df7cda55216fc4"
+    },
+    {
+      "name": "workboard-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:30:41.278531+00:00",
+      "elapsed_seconds": 0.117,
+      "exit_code": 0,
+      "log": "validation/workboard-check.log",
+      "log_bytes": 146,
+      "log_sha256": "cf7a708deb40945f526e1a9158df99c0ea8115617d47c436b54032de8bebf16e"
+    },
+    {
+      "name": "whitespace-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+        "--",
+        "docs/campaign-certification/C01/research",
+        "docs/planning/ai-handoffs/CLAUDE-C01-51.md",
+        "tools/avatars"
+      ],
+      "started_utc": "2026-10-01T14:37:17.603431+00:00",
+      "elapsed_seconds": 0.074,
+      "exit_code": 0,
+      "log": "validation/whitespace-check.log",
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "temporary_index": "Regenerated and checked locally, then exact prior bytes restored; root regenerates combined metadata.",
+  "not_run": [
+    "native builds/tests",
+    "full avatar suite",
+    "browser acceptance",
+    "packet_check HTTPS refetch"
+  ],
+  "no_test_skip_added": true
+}

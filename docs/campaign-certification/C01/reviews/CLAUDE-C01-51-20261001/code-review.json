@@ -1,0 +1,33 @@
+{
+  "changed_older_modules": [
+    {
+      "path": "tools/avatars/test_russia_duma_faction_heads_c01_46.py",
+      "assessment": "Exact presidency holder counts become 5/6; prior seven-source slice remains 170:177. New counts are exact and previous faction holders/claim-only guards remain."
+    },
+    {
+      "path": "tools/avatars/test_russia_heads_of_government_c01_19.py",
+      "assessment": "Exact presidency holder counts become 5/6. Loose end membership is replaced by the exact non-null end list: VP 1993-10-03 and RF 1999-12-31. Government holders and start/end logic remain unchanged."
+    },
+    {
+      "path": "tools/avatars/test_russia_presidents_c01_14.py",
+      "assessment": "Exact original and nine new holder fixtures; four new RF sources and five claims pinned separately. Earlier coverage is protected by prefix slices; no old holder changes allowed."
+    },
+    {
+      "path": "tools/avatars/test_russia_research_s10h.py",
+      "assessment": "Exact source partitions are 177 prior plus 16 new, with narrowly extended host/access-date sets and updated counts. No cutoff assertion is moved or removed."
+    },
+    {
+      "path": "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py",
+      "assessment": "Original Russia holder hash and C01-46 hash remain. A third hash pins all nine new holders, classified by the ten explicit attestation/removal claim IDs. Exact whole-list hashes prevent incomplete or empty claim lists passing."
+    },
+    {
+      "path": "tools/avatars/test_ussr_russia_transition_c01_05.py",
+      "assessment": "The generic end prohibition gains only the explicit VP 1993-10-03 exception requiring decree 1576 removal as last claim. Original July 1991 holders retain exact full fixtures; the C01-51 module independently pins all new observations."
+    }
+  ],
+  "new_module": "All seven new tests were read. They check 16 exact document/card response identities, 20 event classifications, unchanged starting holders, exact nine added observations, role separation, and 26 negative mutations. No test skip or relaxed acceptance found.",
+  "independent_controls": "The valid submitted packet passed the C01-51 invariant; six additional materially wrong mutations were rejected. These supplement rather than replace reading or the authored negative tests.",
+  "repository_test_changes_by_reviewer": false,
+  "concrete_defect": "Report-only RU-RSP-02 complete-sweep claim exceeded retained evidence; narrowed to retained original documents and marked the broader author-reported sweep and Dec29 act independently unverified.",
+  "acceptance_limit": "Tests verify packet integrity and bounded inference guards; they do not prove complete historical coverage or constitutional legitimacy."
+}

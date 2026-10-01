@@ -1,0 +1,89 @@
+{
+  "base_revision": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "exact_source_revision": "2fe2b752e05125e204832f5cd1f60b4c640af28d",
+  "source_branch": "origin/claude/c01-ru-51",
+  "review_branch": "codex/review-c01-51-20261001",
+  "source_import_commit": "90f7f54c2cbc3685623409eece12ee4ca592b066",
+  "correction_commit": "1369952268b6c5b65f9c74bcda0017f00dacd1d3",
+  "authored_import_files": 26,
+  "correction_files": 1,
+  "new_sources": 16,
+  "new_claims": 20,
+  "new_holder_observations": 9,
+  "distinct_people": 2,
+  "packet_exact_submitted_blob_unchanged": true,
+  "old_source_and_claim_objects_unchanged": true,
+  "old_holder_objects_unchanged": true,
+  "append_only_packet_differences": [
+    {
+      "path": "/sources",
+      "before_count": 177,
+      "after_count": 193,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/0/sources",
+      "before_count": 6,
+      "after_count": 11,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/0/claim_ids",
+      "before_count": 13,
+      "after_count": 18,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/0/holder_claims",
+      "before_count": 1,
+      "after_count": 5,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/1/sources",
+      "before_count": 5,
+      "after_count": 13,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/1/claim_ids",
+      "before_count": 5,
+      "after_count": 15,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/1/holder_claims",
+      "before_count": 1,
+      "after_count": 6,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/2/sources",
+      "before_count": 53,
+      "after_count": 57,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/roles/2/claim_ids",
+      "before_count": 94,
+      "after_count": 99,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/institutions/5/coverage/unresolved",
+      "before_count": 11,
+      "after_count": 14,
+      "old_prefix_unchanged": true
+    },
+    {
+      "path": "/coverage/unresolved",
+      "before_count": 13,
+      "after_count": 14,
+      "old_prefix_unchanged": true
+    }
+  ],
+  "generated_index_imported": false,
+  "runtime_or_art_changed": false,
+  "parent_qualification_changed": false,
+  "historical_cutoff": "2026-09-07"
+}

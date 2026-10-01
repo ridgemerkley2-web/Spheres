@@ -1,0 +1,184 @@
+[
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_president",
+    "accepted_holder": {
+      "name": "Борис Николаевич Ельцин",
+      "attested_on": "1991-07-19",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_rsfsr_ukaz_8_19910719"
+      ],
+      "claim_ids": [
+        "ru_rsfsr_ukaz_8_signed_as_president_rsfsr_19910719"
+      ],
+      "note": "Observed on 1991-07-19: Decree No. 8 of the President of the RSFSR is signed 'Президент РСФСР Б.Ельцин' (Moscow, Kremlin, 19 July 1991). Boris Nikolaevich Yeltsin, named as in the C01-05 holder (resolution 1595-I); the decree prints only 'Б.Ельцин'.",
+      "uncertainty": "A signed decree gives attested_on only (C01-37, C01-38). Not joined to the C01-05 observation from 10 July 1991; no end is set or inferred."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_president",
+    "accepted_holder": {
+      "name": "Борис Николаевич Ельцин",
+      "attested_on": "1991-11-19",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_rsfsr_rasp_98rp_19911119"
+      ],
+      "claim_ids": [
+        "ru_rsfsr_rasp_98rp_signed_as_president_rsfsr_19911119"
+      ],
+      "note": "Observed on 1991-11-19: Order No. 98-рп of the President of the RSFSR, on the Vice-President's duties, is signed 'Президент РСФСР Б. ЕЛЬЦИН'.",
+      "uncertainty": "A signed order gives attested_on only (C01-37, C01-38); no from or until."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_president",
+    "accepted_holder": {
+      "name": "Борис Николаевич Ельцин",
+      "attested_on": "1991-12-26",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_rsfsr_ukaz_318_19911226"
+      ],
+      "claim_ids": [
+        "ru_rsfsr_ukaz_318_signed_as_president_rsfsr_19911226"
+      ],
+      "note": "Observed on 1991-12-26: Decree No. 318 is headed 'УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ СОВЕТСКОЙ ФЕДЕРАТИВНОЙ СОЦИАЛИСТИЧЕСКОЙ РЕСПУБЛИКИ' and signed 'Президент РСФСР Б.Ельцин', the day after Law 2094-I renamed the state.",
+      "uncertainty": "A signed decree gives attested_on only. Decree 316 of the same day is signed 'Президент Российской Федерации' (a styling claim on this role, not an observation); the two titles overlap until at least 3 January 1992. No ru_president observation is added and no holder is merged across the roles."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_president",
+    "accepted_holder": {
+      "name": "Борис Николаевич Ельцин",
+      "attested_on": "1992-01-03",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_rsfsr_ukaz_245n_19920103"
+      ],
+      "claim_ids": [
+        "ru_rsfsr_ukaz_245n_signed_as_president_rsfsr_19920103"
+      ],
+      "note": "Observed on 1992-01-03: Decree No. 245-н, conferring an honorary title, is headed 'УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ СОВЕТСКОЙ ФЕДЕРАТИВНОЙ СОЦИАЛИСТИЧЕСКОЙ РЕСПУБЛИКИ' and signed 'Президент РСФСР Б.Ельцин' (Moscow, Kremlin, 3 January 1992).",
+      "uncertainty": "A signed decree gives attested_on only. The latest act signed 'Президент РСФСР' found in the portal's listing to 10 January 1992; it falls after the renaming of 25 December 1991, outside the gap ledger's applicability window for this role. Fallback if the reviewer closes this role's observations at the renaming: a styling claim only. No end is set; the office's later title is the ru_president question left open by CLAUDE-C01-14."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_vice_president",
+    "accepted_holder": {
+      "name": "Александр Владимирович Руцкой",
+      "attested_on": "1991-07-29",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_rsfsr_vp_rasp_1rv_19910729"
+      ],
+      "claim_ids": [
+        "ru_rsfsr_vp_rasp_1rv_signed_as_vice_president_19910729"
+      ],
+      "note": "Observed on 1991-07-29: Order No. 1-рв of the Vice-President of the RSFSR is signed 'Вице-президент РСФСР А. Руцкой'. Alexander Vladimirovich Rutskoi, named as in the C01-05 holder (resolution 1596-I); the order prints 'А. Руцкой'.",
+      "uncertainty": "The holder's own signed order gives attested_on only (C01-37, C01-38). Not joined to the C01-05 observation from 10 July 1991."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_vice_president",
+    "accepted_holder": {
+      "name": "Александр Владимирович Руцкой",
+      "attested_on": "1991-12-05",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_rsfsr_vp_rasp_8rv_19911205"
+      ],
+      "claim_ids": [
+        "ru_rsfsr_vp_rasp_8rv_signed_as_vice_president_19911205"
+      ],
+      "note": "Observed on 1991-12-05: Order No. 8-рв of the Vice-President of the RSFSR is signed 'Вице-президент РСФСР А. Руцкой'.",
+      "uncertainty": "A signed order gives attested_on only; no from or until."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_vice_president",
+    "accepted_holder": {
+      "name": "Александр Владимирович Руцкой",
+      "attested_on": "1992-01-16",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_vp_rasp_1rv_19920116"
+      ],
+      "claim_ids": [
+        "ru_vp_rasp_1rv_signed_as_vice_president_rf_19920116"
+      ],
+      "note": "Observed on 1992-01-16: Order No. 1-рв is headed 'Р А С П О Р Я Ж Е Н И Е ВИЦЕ-ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ' and signed 'Вице-президент Российской Федерации А. Руцкой'.",
+      "uncertainty": "A signed order gives attested_on only. Filed on this role under the new title because no separate Russian Federation vice-presidency role exists; the role title is unchanged (a decision for the integrator)."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_vice_president",
+    "accepted_holder": {
+      "name": "Александр Владимирович Руцкой",
+      "attested_on": "1993-04-16",
+      "from": null,
+      "until": null,
+      "sources": [
+        "ru_vs_res_4825i_19930416"
+      ],
+      "claim_ids": [
+        "ru_vs_4825i_rutskoi_styled_vice_president_19930416"
+      ],
+      "note": "Observed on 1993-04-16: Supreme Soviet resolution 4825-I takes note of the information of 'вице-президента Российской Федерации ... А. В. Руцкого'.",
+      "uncertainty": "An official record naming the office and the person attests the office on its date (C01-33, C01-35); no from or until."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  },
+  {
+    "institution_id": "ru_rsfsr_presidency",
+    "role_id": "ru_rsfsr_vice_president",
+    "accepted_holder": {
+      "name": "Александр Владимирович Руцкой",
+      "attested_on": "1993-09-01",
+      "from": null,
+      "until": "1993-10-03",
+      "sources": [
+        "ru_ukaz_1328_19930901",
+        "ru_ukaz_1576_19931003"
+      ],
+      "claim_ids": [
+        "ru_ukaz_1328_rutskoi_styled_vice_president_19930901",
+        "ru_ukaz_1576_rutskoi_released_as_vice_president_19931003"
+      ],
+      "note": "Observed on 1993-09-01: Decree No. 1328 names 'Вице-президента Российской Федерации Руцкого Александра Владимировича' while suspending him from his duties. Until 1993-10-03: Decree No. 1576 releases him from the office of Vice-President of the Russian Federation and is in force 'с момента его подписания'; it is dated 3 October 1993.",
+      "uncertainty": "The end reads an effect-on-signature clause in a dated decree as stating the effective day, as CLAUDE-C01-19 did for decrees 861 and 300; fallback under the strict signature rule (review 1739eccb): until null, with the release a dated claim. Fallback if a suspension decree is not accepted as an attestation: the end moves to the 1993-04-16 observation. The suspension (1 September), the Presidium's and the Supreme Soviet's acting-President resolutions (21-22 September) and decree 1410 are claims only. No hour is printed."
+    },
+    "decision": "accepted_bounded_dated_observation_unchanged",
+    "limitation": "No inferred start or continuous service. An end, where present, records decree 1576 stated release effect, not an adjudication of constitutional legitimacy."
+  }
+]

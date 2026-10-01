@@ -1,0 +1,24 @@
+{
+  "name": "russia-tests",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_russia*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:27:23.442265+00:00",
+  "elapsed_seconds": 11.089,
+  "exit_code": 0,
+  "log": "validation/russia-tests.log",
+  "log_bytes": 7848,
+  "log_sha256": "62dcb64910db694330cd6246cc0f3a88f3bea8b29ae06e715bdc180f3d51727f"
+}
