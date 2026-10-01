@@ -1,0 +1,554 @@
+{
+  "decision": "held; offline diff triage only; no new historical acceptance",
+  "prior_review_submission": "9cb02c20012a6e6314d7e64d52241609d566f738",
+  "latest_submission": "b66f8c074431d7e1a8c9bfca228576c7d5134655",
+  "prior_review_receipt": "d1818a48a1b117d408dafb49d7943d35f3f7c2da",
+  "changed_paths": [
+    "docs/campaign-certification/C01/research-index.json",
+    "docs/campaign-certification/C01/research/sources/south-africa-da-speech-zille-growth-victory-20140509-facts.json",
+    "docs/campaign-certification/C01/research/sources/south-africa-da-zille-acceptance-speech-20070506-facts.json",
+    "docs/campaign-certification/C01/research/south-africa-da-federal-leaders-2000-2026-39.md",
+    "docs/campaign-certification/C01/research/south-africa.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+    "tools/avatars/test_south_africa_da_federal_leaders_c01_39.py",
+    "tools/avatars/test_south_africa_research_s10h.py"
+  ],
+  "network_requests_this_triage": 0,
+  "same_originals": 24,
+  "same_claim_ids": 29,
+  "original_identity_pins": [
+    {
+      "source_id": "za_da_about_introduction_page_2001",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_about_introduction_page_2001",
+        "source_url": "https://web.archive.org/web/20011122020551id_/http://www.da.org.za:80/DA/Site/Eng/About/Intro.htm",
+        "original_url": "http://www.da.org.za/DA/Site/Eng/About/Intro.htm",
+        "archive_capture_utc": "2001-11-22T02:05:51Z",
+        "published_date": null,
+        "source_response_bytes": 2348,
+        "source_response_sha256": "ff35358de1293ee6de90502c510c3984cc67763d095d5b790959a705aaf2b7da",
+        "source_response_sha1_base32": "VDQBNMCCOHHMELPRMPH5RBHGQ6SIRVUU",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_closing_speech_congress_20180408",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_closing_speech_congress_20180408",
+        "source_url": "https://web.archive.org/web/20180408142243id_/https://www.da.org.za/2018/04/closing-speech-congress-2018/",
+        "original_url": "https://www.da.org.za/2018/04/closing-speech-congress-2018/",
+        "archive_capture_utc": "2018-04-08T14:22:43Z",
+        "published_date": "2018-04-08",
+        "source_response_bytes": 86722,
+        "source_response_sha256": "60cd833b785500e650b9c05e87f65fabda7d56d01a3efc40ab8e939686fb5d25",
+        "source_response_sha1_base32": "6O5TDQ5BLK4WHX5BGDAYMAZ36CGO32UG",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_dp_party_info_page_2000",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_dp_party_info_page_2000",
+        "source_url": "https://web.archive.org/web/20000413093038id_/http://www.dp.org.za:80/partyinfo.htm",
+        "original_url": "http://www.dp.org.za/partyinfo.htm",
+        "archive_capture_utc": "2000-04-13T09:30:38Z",
+        "published_date": null,
+        "source_response_bytes": 24997,
+        "source_response_sha256": "1fa2a4293c185a617137699512ed60d16e6fcff9773bc15297bea00e8400d5c4",
+        "source_response_sha1_base32": "4GL2O2JUJK2QKFFFR2JMP6RMVVZAESDN",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_dp_speech_taalbeleid_19970522",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_dp_speech_taalbeleid_19970522",
+        "source_url": "https://web.archive.org/web/19991117021031id_/http://www.dp.org.za:80/archiveitem.asp?archiveitem=283",
+        "original_url": "http://www.dp.org.za/archiveitem.asp?archiveitem=283",
+        "archive_capture_utc": "1999-11-17T02:10:31Z",
+        "published_date": "1997-05-22",
+        "source_response_bytes": 22392,
+        "source_response_sha256": "e998f741414e4578ca3c0c762b1c6fdcd4002c2e94398609868e0325c52fac40",
+        "source_response_sha1_base32": "ZBPO7HVGI5E3AMR6HV75AJUHEO2XPH2R",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_dp_whos_who_page_1999",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_dp_whos_who_page_1999",
+        "source_url": "https://web.archive.org/web/19990220054116id_/http://www.dp.org.za:80/whoswho.htm",
+        "original_url": "http://www.dp.org.za/whoswho.htm",
+        "archive_capture_utc": "1999-02-20T05:41:16Z",
+        "published_date": null,
+        "source_response_bytes": 25299,
+        "source_response_sha256": "164b275fb975d2162e9d56a513809f07171dc4d337457ccc56b0b03bb31c3bdc",
+        "source_response_sha1_base32": "DQFNKA7DAVDOGTFN664EAIDIZLP4NUUY",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_fedcouncil_chair_interim_election_20191025",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_fedcouncil_chair_interim_election_20191025",
+        "source_url": "https://web.archive.org/web/20191028070115id_/https://www.da.org.za/2019/10/fedco-to-elect-interim-leadership-on-sunday-17-november-2019",
+        "original_url": "https://www.da.org.za/2019/10/fedco-to-elect-interim-leadership-on-sunday-17-november-2019",
+        "archive_capture_utc": "2019-10-28T07:01:15Z",
+        "published_date": "2019-10-25",
+        "source_response_bytes": 118278,
+        "source_response_sha256": "521125be68dfeb329d5e5f491ef72d81c9d956d3a41170c40beb3dd9ff23de64",
+        "source_response_sha1_base32": "SAWRESGBJVREW6ERBCSFEO5RDYSIBQEY",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_fedcouncil_chair_leadership_vacancies_20191024",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_fedcouncil_chair_leadership_vacancies_20191024",
+        "source_url": "https://web.archive.org/web/20211108232735id_/https://www.da.org.za/2019/10/da-working-to-fill-federal-leadership-vacancies-as-a-matter-of-urgency/",
+        "original_url": "https://www.da.org.za/2019/10/da-working-to-fill-federal-leadership-vacancies-as-a-matter-of-urgency/",
+        "archive_capture_utc": "2021-11-08T23:27:35Z",
+        "published_date": "2019-10-24",
+        "source_response_bytes": 145135,
+        "source_response_sha256": "28b3452ba46f8665f4fc3b14875504a43d8ddaae8fa275b8716ab330995a76c0",
+        "source_response_sha1_base32": "4AZ4IPS2BMTHFV524GSUW3I74F6P6H32",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_federal_leadership_announcement_20150510",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_federal_leadership_announcement_20150510",
+        "source_url": "https://web.archive.org/web/20150715172231id_/http://www.da.org.za/2015/05/announcement-of-da-federal-leadership/",
+        "original_url": "http://www.da.org.za/2015/05/announcement-of-da-federal-leadership/",
+        "archive_capture_utc": "2015-07-15T17:22:31Z",
+        "published_date": "2015-05-10",
+        "source_response_bytes": 69610,
+        "source_response_sha256": "67a5d71e41832a91f8f2b4eb799b1805195f40dd82354a062ce67725d7dd6cd7",
+        "source_response_sha1_base32": "OBR5RMGBGBSKNITL6NGVVR3LYSI52N3C",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_fedex_statement_interim_leadership_20191123",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_fedex_statement_interim_leadership_20191123",
+        "source_url": "https://web.archive.org/web/20191128130944id_/https://www.da.org.za/2019/11/da-is-rebuilding-refocusing-and-reconnecting-with-the-people-of-south-africa",
+        "original_url": "https://www.da.org.za/2019/11/da-is-rebuilding-refocusing-and-reconnecting-with-the-people-of-south-africa",
+        "archive_capture_utc": "2019-11-28T13:09:44Z",
+        "published_date": "2019-11-23",
+        "source_response_bytes": 112207,
+        "source_response_sha256": "3251192c1f1c3cd9b09f00ef1cfe092c789d1ec73c4485e250cad2749da01b85",
+        "source_response_sha1_base32": "TAIIV27TOX3Q6HFAT2FC2HX6U3ZGOOMD",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_finance_chair_statement_20191004",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_finance_chair_statement_20191004",
+        "source_url": "https://web.archive.org/web/20191006050047id_/https://www.da.org.za/2019/10/da-finds-no-financial-wrongdoing-committed-by-federal-leader-mmusi-maimane",
+        "original_url": "https://www.da.org.za/2019/10/da-finds-no-financial-wrongdoing-committed-by-federal-leader-mmusi-maimane",
+        "archive_capture_utc": "2019-10-06T05:00:47Z",
+        "published_date": "2019-10-04",
+        "source_response_bytes": 95560,
+        "source_response_sha256": "d2a31ff9a233170eb2c37b195ae19231853c77efef635876bf112b84d130cce0",
+        "source_response_sha1_base32": "IGCVPDE35APL7JVT2CCKPY6PE24VMENW",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_leadership_election_results_20201101",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_leadership_election_results_20201101",
+        "source_url": "https://web.archive.org/web/20201101140257id_/https://www.da.org.za/2020/11/da-leadership-election-results",
+        "original_url": "https://www.da.org.za/2020/11/da-leadership-election-results",
+        "archive_capture_utc": "2020-11-01T14:02:57Z",
+        "published_date": "2020-11-01",
+        "source_response_bytes": 140775,
+        "source_response_sha256": "3a94aa39c9947a2b8adca0405e8829e10c1fed5f00f68764bdbb775fd8e562c3",
+        "source_response_sha1_base32": "NW54OL6USDN4XEPDYHC4YOXK2JP52UG7",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_leon_former_leader_profile_2007",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_leon_former_leader_profile_2007",
+        "source_url": "https://web.archive.org/web/20070907071445id_/http://www.da.org.za:80/da/Site/Eng/People/Leadership/Tony.asp",
+        "original_url": "http://www.da.org.za/da/Site/Eng/People/Leadership/Tony.asp",
+        "archive_capture_utc": "2007-09-07T07:14:45Z",
+        "published_date": null,
+        "source_response_bytes": 34802,
+        "source_response_sha256": "1b1579544269c46571b03cf7183494306c3037538b57b00594cd5840f206d92c",
+        "source_response_sha1_base32": "FZPESI6NNC7O5DJMKATUV5X2OR67J3RU",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_news_election_posters_20160425",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_news_election_posters_20160425",
+        "source_url": "https://web.archive.org/web/20160426174047id_/https://www.da.org.za/2016/04/da-leader-unveils-local-government-election-posters-in-tshwane/",
+        "original_url": "https://www.da.org.za/2016/04/da-leader-unveils-local-government-election-posters-in-tshwane/",
+        "archive_capture_utc": "2016-04-26T17:40:47Z",
+        "published_date": "2016-04-25",
+        "source_response_bytes": 75816,
+        "source_response_sha256": "a8f9b17bc3e314563c58b833a36e28fe3a7d7f9516bfa94f9b7c267fce9ff6c2",
+        "source_response_sha1_base32": "LW5ITB3CKNAGFTDMDOYGOK3Y6ZPPY4LI",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_news_puppet_allegations_20180407",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_news_puppet_allegations_20180407",
+        "source_url": "https://web.archive.org/web/20180407201337id_/https://www.da.org.za/2018/04/maimane-confronts-puppet-allegations-head/",
+        "original_url": "https://www.da.org.za/2018/04/maimane-confronts-puppet-allegations-head/",
+        "archive_capture_utc": "2018-04-07T20:13:37Z",
+        "published_date": "2018-04-07",
+        "source_response_bytes": 78240,
+        "source_response_sha256": "3ce2f52bdac78feeb974f69b9d24d42efffdfed3129d09a06b58e40ec58ac6a3",
+        "source_response_sha1_base32": "C5SUJ3NHDYMYFISNXG3YDS5QXWH5RAPD",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_press_release_nkandla_20121104",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_press_release_nkandla_20121104",
+        "source_url": "https://web.archive.org/web/20121108013705id_/http://www.da.org.za:80/newsroom.htm?action=view-news-item&id=11549",
+        "original_url": "http://www.da.org.za/newsroom.htm?action=view-news-item&id=11549",
+        "archive_capture_utc": "2012-11-08T01:37:05Z",
+        "published_date": "2012-11-04",
+        "source_response_bytes": 20704,
+        "source_response_sha256": "1a8c346606aaf701b344cb86e16d914010853d46e002265933f17144cf16d007",
+        "source_response_sha1_base32": "YNUSYJQJ6DKQR3CGWQBLC5XJJJNKQIOB",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_sa_today_provinces_20101015",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_sa_today_provinces_20101015",
+        "source_url": "https://web.archive.org/web/20101019153909id_/http://da.org.za/newsroom.htm?action=view-news-item&id=8805",
+        "original_url": "http://da.org.za/newsroom.htm?action=view-news-item&id=8805",
+        "archive_capture_utc": "2010-10-19T15:39:09Z",
+        "published_date": "2010-10-15",
+        "source_response_bytes": 23610,
+        "source_response_sha256": "e0bc603e06ee7d809ce03502f1e6753f340c7793fab157fe7365d14ba59d5b41",
+        "source_response_sha1_base32": "OXPCL345ZRCZGCCSN7R2LTRCPGYVJFPL",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_speech_campaign_launch_deputy_leader_20001014",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_speech_campaign_launch_deputy_leader_20001014",
+        "source_url": "https://web.archive.org/web/20010506224314id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=2",
+        "original_url": "http://www.da.org.za/site/asp/ViewSpeech.asp?SpeechID=2",
+        "archive_capture_utc": "2001-05-06T22:43:14Z",
+        "published_date": "2000-10-14",
+        "source_response_bytes": 7920,
+        "source_response_sha256": "afb6df11d7b729a5161d074e0526a52f46f77c6e41151bf0ab82be8aad3dfaa7",
+        "source_response_sha1_base32": "ZAM5C4IVBXOKEKWE2LZLDK3DO6BZKX2H",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_speech_growth_victory_20140509",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_speech_growth_victory_20140509",
+        "source_url": "https://web.archive.org/web/20140603024344id_/http://da.org.za:80/newsroom.htm?action=view-news-item&id=13746",
+        "original_url": "http://da.org.za/newsroom.htm?action=view-news-item&id=13746",
+        "archive_capture_utc": "2014-06-03T02:43:44Z",
+        "published_date": "2014-05-09",
+        "source_response_bytes": 21843,
+        "source_response_sha256": "ac49080070bd84b5b39b710de005070462024267717c4c7ee5287f282ace70e5",
+        "source_response_sha1_base32": "LJZRX3TOVCPKKNDBV3MUDUYCGLQ5RW4T",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_speech_kzn_coalition_20001122",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_speech_kzn_coalition_20001122",
+        "source_url": "https://web.archive.org/web/20010502012024id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=11",
+        "original_url": "http://www.da.org.za/site/asp/ViewSpeech.asp?SpeechID=11",
+        "archive_capture_utc": "2001-05-02T01:20:24Z",
+        "published_date": "2000-11-22",
+        "source_response_bytes": 11474,
+        "source_response_sha256": "3ed5f3fae2cefc3e2210c48891fded9115bf4da46c61a6b72defb8d797e9f9ff",
+        "source_response_sha1_base32": "BJMFTWV557IOYBUZ27KLP7PL2C5ZZJYZ",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_speech_local_elections_launch_20001014",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_speech_local_elections_launch_20001014",
+        "source_url": "https://web.archive.org/web/20010501013646id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=1",
+        "original_url": "http://www.da.org.za/site/asp/ViewSpeech.asp?SpeechID=1",
+        "archive_capture_utc": "2001-05-01T01:36:46Z",
+        "published_date": "2000-10-14",
+        "source_response_bytes": 15073,
+        "source_response_sha256": "532864af1aa95fd6df60f2ebcba862271835474ae23e13e240d6072785bdd922",
+        "source_response_sha1_base32": "CZYH6ITFCRTATBKHJN57OG7NISQPRN6N",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_statement_condolences_cope_20260304",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_statement_condolences_cope_20260304",
+        "source_url": "https://web.archive.org/web/20260410145936id_/https://www.da.org.za/2026/03/da-leader-steenhuisen-sends-condolences-to-cope-following-the-passing-of-co-founder-and-leader-mosiuoa-lekota",
+        "original_url": "https://www.da.org.za/2026/03/da-leader-steenhuisen-sends-condolences-to-cope-following-the-passing-of-co-founder-and-leader-mosiuoa-lekota",
+        "archive_capture_utc": "2026-04-10T14:59:36Z",
+        "published_date": "2026-03-04",
+        "source_response_bytes": 121009,
+        "source_response_sha256": "11cb414dc370c41b24d493ee466222a90c287e711076911438c58bd36e5d34ca",
+        "source_response_sha1_base32": "MTUDOFZAUAW6X2RZEAATB7G4CJUCX3C3",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_statement_stellenbosch_visit_20210310",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_statement_stellenbosch_visit_20210310",
+        "source_url": "https://web.archive.org/web/20210311042629id_/https://www.da.org.za/2021/03/da-leader-john-steenhuisen-visits-and-supports-afrikaans-students-in-stellenbosch",
+        "original_url": "https://www.da.org.za/2021/03/da-leader-john-steenhuisen-visits-and-supports-afrikaans-students-in-stellenbosch",
+        "archive_capture_utc": "2021-03-11T04:26:29Z",
+        "published_date": "2021-03-10",
+        "source_response_bytes": 134450,
+        "source_response_sha256": "730846b64891bac5bcd0fe512300a18b2413d9e8274fce780ff7027d04d5e32c",
+        "source_response_sha1_base32": "NK3IG4K4TFWUL67E6UE2KYSNU2T3CGBI",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_statement_thanks_steenhuisen_20260204",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_statement_thanks_steenhuisen_20260204",
+        "source_url": "https://web.archive.org/web/20260204113607id_/https://www.da.org.za/2026/02/da-thanks-john-steenhuisen-for-six-years-of-service-as-federal-leader",
+        "original_url": "https://www.da.org.za/2026/02/da-thanks-john-steenhuisen-for-six-years-of-service-as-federal-leader",
+        "archive_capture_utc": "2026-02-04T11:36:07Z",
+        "published_date": "2026-02-04",
+        "source_response_bytes": 125751,
+        "source_response_sha256": "ab6172e0c47f1efeb8cc7d4a1b6260c47ed39f9e58ab0f33bdcf94585cac3c49",
+        "source_response_sha1_base32": "EICVFMXJS3MXB7M3PTQT7C22OKBEWHJJ",
+        "source_response_content_encoding": "identity"
+      }
+    },
+    {
+      "source_id": "za_da_zille_acceptance_speech_20070506",
+      "original_pins_unchanged": true,
+      "url_unchanged": true,
+      "original": {
+        "source_id": "za_da_zille_acceptance_speech_20070506",
+        "source_url": "https://web.archive.org/web/20070518152213id_/http://www.da.org.za/DA/Site/Eng/News/Article.asp?ID=7578",
+        "original_url": "http://www.da.org.za/DA/Site/Eng/News/Article.asp?ID=7578",
+        "archive_capture_utc": "2007-05-18T15:22:13Z",
+        "published_date": "2007-05-06",
+        "source_response_bytes": 55578,
+        "source_response_sha256": "4c069e135b40f5447ee8c2c6475efbfc6ed135e3559ca0cd17d81b0b684171c0",
+        "source_response_sha1_base32": "AQJELCM4LEFVWKZWD34WR3D4QUF6A3F2",
+        "source_response_content_encoding": "identity"
+      }
+    }
+  ],
+  "prior_accepted_sources_unchanged": 245,
+  "prior_accepted_holder_objects_unchanged": true,
+  "retained_source_checkpoint": {
+    "exact_reproduced": 1,
+    "http_429": 1,
+    "not_attempted": 22,
+    "unverified": 23
+  },
+  "claim_checkpoint": {
+    "material_claim_checked": "za_da_fedex_informed_maimane_resignation_decision_20191024",
+    "material_unchanged": true,
+    "changed_interpretive_uncertainty_not_approved": true,
+    "checked": 1,
+    "held": 28
+  },
+  "new_holder_observations": 12,
+  "new_holder_observations_held": 12,
+  "holder_dependency_decisions": [
+    {
+      "name": "Tony Leon",
+      "attested_on": "2000-10-14",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_speech_local_elections_launch_20001014"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Tony Leon",
+      "attested_on": "2000-11-22",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_speech_kzn_coalition_20001122"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Helen Zille",
+      "attested_on": "2007-05-06",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_zille_acceptance_speech_20070506"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Helen Zille",
+      "attested_on": "2010-10-15",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_sa_today_provinces_20101015"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Helen Zille",
+      "attested_on": "2012-11-04",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_press_release_nkandla_20121104"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Helen Zille",
+      "attested_on": "2014-05-09",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_speech_growth_victory_20140509"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Mmusi Maimane",
+      "attested_on": "2016-04-25",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_news_election_posters_20160425"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Mmusi Maimane",
+      "attested_on": "2018-04-07",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_news_puppet_allegations_20180407"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Mmusi Maimane",
+      "attested_on": "2018-04-08",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_closing_speech_congress_20180408"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "Mmusi Maimane",
+      "attested_on": "2019-10-04",
+      "from": null,
+      "until": "2019-10-23",
+      "sources": [
+        "za_da_finance_chair_statement_20191004",
+        "za_da_fedcouncil_chair_interim_election_20191025"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "John Steenhuisen",
+      "attested_on": "2021-03-10",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_statement_stellenbosch_visit_20210310"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    },
+    {
+      "name": "John Steenhuisen",
+      "attested_on": "2026-03-04",
+      "from": null,
+      "until": null,
+      "sources": [
+        "za_da_statement_condolences_cope_20260304"
+      ],
+      "decision": "held; relevant original content not independently reviewed"
+    }
+  ],
+  "changes_assessed": [
+    "Zille 2007-05-06 acceptance adds an observation without a start; its original was unattempted. A plausible interpretation is not independent approval.",
+    "Maimane until 2019-10-23 resolves the proposed Friday 25 October vacancy statement weekday. The Oct25 original returned HTTP429 and remains unread; the read Oct24 statement alone does not independently accept that claimed vacancy boundary.",
+    "The 2014 quoted title apostrophe is repaired in the derived extract and claim; its original remains unreviewed.",
+    "New test assertions encode the submission interpretation, not independent source evidence. Assertions of user rulings are not approval evidence."
+  ],
+  "active_data_import_allowed": false,
+  "original_held_receipt_untouched": true,
+  "limits": "No historical-source fetch or follow-up tests; preserves old receipt scoped to 9cb02c20. Unattempted originals are not failed requests."
+}

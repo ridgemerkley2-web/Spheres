@@ -1,0 +1,52 @@
+{
+  "format": "spheres-russia-post-integration-verification/v1",
+  "checked_utc": "2026-10-01T01:47:20.459141+00:00",
+  "reviewer": "Codex /root/retire_selector_review",
+  "integration_checkout": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+  "integration_head_at_check": "c58ee025da50dfac164fc839b3fc021c39d483fe",
+  "baseline": "509bd2890f71850c97215d304ff16b757c7d49c2",
+  "receipt_original_commit": "6133f79b5b00126d4733453fe42839c1ca7390c4",
+  "network_requests": 0,
+  "script": {
+    "bytes": 5794,
+    "sha256": "b3d8796ae7f9a232606a32c56b8f5b3fc15b5d39c6d1c23442908ce9daac17c0"
+  },
+  "receipt_manifest_unchanged_from_original_commit": true,
+  "receipt_manifest": {
+    "bytes": 4723,
+    "sha256": "c6764ecc9dff4fb32b0ff5cac24de2477d2b80b88993553ce16306c14a8ee2b8"
+  },
+  "receipt_payloads": {
+    "files_checked": 23,
+    "all_match": true,
+    "total_bytes_read": 101204,
+    "ordered_actual_identity_record_sha256": "d6444ae00ab5553ad7d9018d1a1a222f725994d5a9c8265a54332f4d64885e4f"
+  },
+  "external_evidence": {
+    "files_checked": 76,
+    "all_match": true,
+    "total_bytes_read": 30616678,
+    "ordered_actual_identity_record_sha256": "787fcf023fe8b5e331fcbc68437e3323fea1e483df87327620c72adaafbfa272",
+    "previous_original_bodies": 56,
+    "new_response_bodies_including_429": 10,
+    "new_response_headers": 10,
+    "all_unique_files": true
+  },
+  "baseline_russia_files": {
+    "files_checked": 171,
+    "all_match": true,
+    "total_bytes_read": 1496814,
+    "ordered_actual_identity_record_sha256": "a08dbdbcf75e7ecbcfef224223503ad546e0ebc1e42aecce07e362bd9eb0b657",
+    "country_jsons": 1,
+    "russia_named_source_files": 170,
+    "referenced_snapshot_files": 170,
+    "source_file_set_unchanged": true,
+    "country_json_identity": {
+      "bytes": 575140,
+      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
+    }
+  },
+  "failures": [],
+  "passed": true,
+  "scope": "Post-copy byte verification only. Preserves the Russia packet hold, immutable receipts, raw bodies and failed attempts; no historical-content rereview or active research import."
+}

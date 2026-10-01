@@ -245,9 +245,9 @@
       "depends_on": [],
       "branch": "claude/c01-ru-28",
       "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
-      "next": "Independent review remains held on original-source access. The unchanged initial receipt records 56/68 exact originals and twelve unavailable originals. Addendum 031bd0e3 completes all accessible content: 113/137 claims and 20/24 holder observations checked; 24 claims and four observations remain held. No accessible claim remains deferred. Two narrow uncertainty repairs are retained only on the unmerged review branch at 35ea76f6; 39 Russia tests and refreshed index pass there. No new Russia research is imported or accepted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md. No historical or parent closure.",
+      "next": "Held after independent missing-only review: 65/68 originals, 133/137 claims and all 24 holder observations checked; three originals/four claims remain held, zero holder dependencies. Nine originals recovered before HTTP 429; stop preserved, two later URLs unattempted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md. Receipt only integrated; no unaccepted Russia research or runtime mappings. Resume remaining source access when normal service permits.",
       "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
-      "review_revision": "031bd0e37e24526dcb3f42449002a31c5b03f654"
+      "review_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
     },
     {
       "id": "CLAUDE-C01-29",
@@ -532,16 +532,16 @@
       "id": "CLAUDE-C01-31",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 24,
       "title": "Research Komeito representatives and distinct organizational phases",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
       "depends_on": [],
       "branch": "claude/c01-jp-31",
       "claim_revision": "52b23d5961ea13355ab1e3edd497be0920b6bea6",
-      "next": "Review held: 24 of 31 original responses reproduced and 50 of 64 claims read; seven originals, fourteen claims and five holder dependencies remain unresolved. Supply accessible original evidence and reconcile Takeya convention acceptance with the conservative boundary correction 988d5379. Only the held-review receipt is integrated; no C01-31 research or runtime mapping is accepted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-31/. Preserve the available-content review and failed requests.",
+      "next": "Accepted bounded research intake after all 31 originals, 64 claims and 15 holder observations reviewed. Seven source holds resolved; three passage locators repaired and conservative Takeya attestation preserved. First source import b74f4fa565429b63052d94cc8ec10337b0b573ed; acceptance pointer docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md. Earlier held receipt remains unchanged. No full chronology, organization equivalence, runtime mapping, portrait or parent C01/C06/S23/CP1 closure.",
       "submission_revision": "696937ba3d31280aab569cbd78418e9c3a0c6880",
-      "review_revision": "d3b4e6daede2bc9fc571a88de1b0ba1049505b70"
+      "review_revision": "d4d3542b2c7750a83d27564f99cc0428536c8852"
     },
     {
       "id": "CLAUDE-C01-38",
@@ -569,8 +569,9 @@
       "depends_on": [],
       "branch": "claude/c01-za-39",
       "claim_revision": "03cd0bb9bc6989e47e3da0ff1ca6373320daf30b",
-      "submission_revision": "9cb02c20012a6e6314d7e64d52241609d566f738",
-      "next": "Newly delivered at 9cb02c20012a6e6314d7e64d52241609d566f738. Authored handoff reports 24 new sources, 29 claims and eleven holder observations; Codex content review is pending. Register and preserve the existing claim. No DA research, acceptance, runtime mapping or art is imported by this registration."
+      "submission_revision": "b66f8c074431d7e1a8c9bfca228576c7d5134655",
+      "next": "Held: independent review d1818a48 of 9cb02c20 checked one original/one claim; second request HTTP 429, 22 sources unattempted. Final-fetch follow-up b66f8c07 retains the same 24 source identities and 29 claims, adds a Zille observation and proposes a Maimane end; diff triage is recorded in the combined review. Thus 23 originals/28 claims and all 12 proposed new holder observations remain unverified. No latest-date ruling, data, test repair or index is imported. See docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md and the immutable initial held receipt. Resume missing original content when normal service permits.",
+      "review_revision": "d1818a48a1b117d408dafb49d7943d35f3f7c2da"
     },
     {
       "id": "CLAUDE-C01-40",

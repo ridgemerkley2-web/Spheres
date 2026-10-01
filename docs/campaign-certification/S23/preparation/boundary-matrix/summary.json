@@ -326,6 +326,14 @@
    "sources_listed": 39
   },
   {
+   "packet": "CLAUDE-C01-31",
+   "report": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+   "reviewed_head": null,
+   "sources_listed": 31
+  },
+  {
    "packet": "CLAUDE-C01-32",
    "report": "docs/campaign-certification/C01/research/south-africa-pac-presidents-1990-2026-32.md",
    "status": "accepted",
@@ -528,35 +536,35 @@
      "identity": "Japan",
      "statistics": {
       "roles": {
-       "research": 6,
+       "research": 7,
        "production_party": 8,
        "executive": 1
       },
-      "cases": 1101,
+      "cases": 1184,
       "case_kinds": {
-       "attestation_day": 49,
-       "attestation_day_after": 49,
-       "cutoff_day": 15,
-       "cutoff_day_before": 15,
+       "attestation_day": 63,
+       "attestation_day_after": 63,
+       "cutoff_day": 16,
+       "cutoff_day_before": 16,
        "dissolution_day_after": 3,
        "dissolution_day_before": 3,
        "dissolution_day_of": 3,
-       "fictional_end_exclusive": 15,
-       "fictional_last_day": 15,
-       "fictional_start_day": 15,
+       "fictional_end_exclusive": 16,
+       "fictional_last_day": 16,
+       "fictional_start_day": 16,
        "founding_day_after": 2,
        "founding_day_before": 2,
        "founding_day_of": 2,
-       "future_2030": 15,
-       "handover_day_after": 74,
-       "handover_day_before": 74,
-       "handover_day_of": 74,
-       "reference_start": 15,
-       "reference_start_day_before": 15,
-       "yearly": 690
+       "future_2030": 16,
+       "handover_day_after": 75,
+       "handover_day_before": 75,
+       "handover_day_of": 75,
+       "reference_start": 16,
+       "reference_start_day_before": 16,
+       "yearly": 736
       },
       "observations_by_acceptance": {
-       "accepted": 16,
+       "accepted": 31,
        "pending": 44,
        "production_registry": 42,
        "unattributed_intake": 5
@@ -564,8 +572,8 @@
       "research_yearly_status": {
        "bracketed": 1,
        "established": 9,
-       "uncertain": 83,
-       "unknown": 129
+       "uncertain": 103,
+       "unknown": 146
       },
       "production_party_yearly_status": {
        "established": 151,
@@ -593,8 +601,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 6 (6 with holder observations); 9 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 83 uncertain, 129 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 16, pending 44, unattributed_intake 5.",
+      "Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 31, pending 44, unattributed_intake 5.",
       "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
       "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
       "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1791,6 +1799,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+   "bytes": 1271,
+   "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md",
    "bytes": 6927,
    "sha256": "e0d8901edcf739b52d2d915d0687d5d5385cf33edac80a9b122caee310aa2afd",
@@ -1973,6 +1988,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+   "bytes": 51375,
+   "sha256": "39b160a15605edd33d9c3dd1a160170645010eb804b6d1d4cea5bcf9e5c62dc5",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md",
    "bytes": 97494,
    "sha256": "61c63b8e98969d62f18e9c04d536f8fed319237bad84784d5bd79bd4ea16663b",
@@ -2002,8 +2024,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/japan.json",
-   "bytes": 1590799,
-   "sha256": "7aae60165858f216411adae3836cf98355ce867a834521e72c3a13427efeff06",
+   "bytes": 1716657,
+   "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3",
    "newline_normalized": true,
    "exists": true
   },
