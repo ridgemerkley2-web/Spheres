@@ -82,4 +82,17 @@ vote.
 
 Checks: import_cnccfp_census.py --check, campaign_research.py --check, campaign_census.py --check, the France (37), importer (10), research (79) and campaign (16) tests, the Node check (11) and `git diff --check` pass. `workboard.py --check` fails only because the sparse worktree lacks `docs/campaign-certification/S26/` (present at `5ea4f8fc`). `packet_check.py` reports the importer as outside the allowed paths (Decisions, 1). Outside the suite, `test_certified_gap_ledger.py` (no pinned attribution until Codex classifies the commit) and `test_certified_boundary_matrix.py` (needs `spheres-web/src`) are known failures. The gap ledger is untouched; the `packet_check.py 47` summary for the pushed head is returned to the pipeline.
 
+## Repair round (packet_check)
+
+On 1 October 2026 (UTC) the pipeline's repair agent was given one `packet_check.py` problem: "file outside allowed paths:
+tools/avatars/import_cnccfp_census.py". It was reviewed and declined; nothing in the packet's data, extracts, tests or
+importer changed. The base importer accepts a supplement with exactly `sources`, `institutions` and
+`coverage_unresolved`, and only the generated CNCCFP rows become organizations, so a role cannot be attached to
+`fr_cnccfp_76` as the scope requires without the importer change. Removing it would mean either dropping the role and its
+thirteen holder observations, or hand-editing the generated `france.json`, which the France packets forbid and which
+`import_cnccfp_census.py --check` rejects. Moving the role to a new supplement institution would create a second Parti
+socialiste entry and is outside the scope. The importer change stays as Decision (1) for Codex: accept the optional
+`organization_roles` merge, or rule on another mechanism. `packet_check.py` is expected to keep reporting this one path
+until that ruling.
+
 C01 and every parent gate stay open.
