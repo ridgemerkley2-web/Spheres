@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 2047,
-    "source_claims": 5010,
+    "sources": 2127,
+    "source_claims": 5136,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -83,8 +83,8 @@
       "packet": "docs/campaign-certification/C01/research/france.json",
       "organization_observations": 635,
       "institution_observations": 2,
-      "role_observations": 2,
-      "source_claims": 1453,
+      "role_observations": 3,
+      "source_claims": 1500,
       "mapping_pending": 637,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -105,7 +105,8 @@
           "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
           "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched.",
           "CLAUDE-C01-37 adds the executive institution fr_prime_minister (Premier ministre) through the same supplement; it covers the first ten people to hold the office from 1 January 1990 (Michel Rocard to Jean-Marc Ayrault, to 31 March 2014). The Prime Ministers appointed from 31 March 2014 onward, ministers and party offices remain unresearched.",
-          "CLAUDE-C01-38 extends fr_prime_minister (Premier ministre) through the same supplement with the next nine people to hold the office, the Prime Ministers appointed from 31 March 2014 to the cutoff (Manuel Valls to Sébastien Lecornu). Ministers and party offices remain unresearched."
+          "CLAUDE-C01-38 extends fr_prime_minister (Premier ministre) through the same supplement with the next nine people to hold the office, the Prime Ministers appointed from 31 March 2014 to the cutoff (Manuel Valls to Sébastien Lecornu). Ministers and party offices remain unresearched.",
+          "CLAUDE-C01-47 adds the party role fr_ps_first_secretary (Premier secrétaire du Parti socialiste) to the existing CNCCFP organization fr_cnccfp_76 (PARTI SOCIALISTE) through the supplement's organization_roles entry, merged by tools/avatars/import_cnccfp_census.py; it covers the ten people who held the office from 1 January 1990 to the cutoff (Pierre Mauroy to Olivier Faure). Other party offices, other parties and ministers remain unresearched."
         ],
         "financial_reporting_universe": {
           "exercise": "2024",
@@ -198,8 +199,8 @@
       "packet": "docs/campaign-certification/C01/research/india.json",
       "organization_observations": 83,
       "institution_observations": 2,
-      "role_observations": 6,
-      "source_claims": 625,
+      "role_observations": 9,
+      "source_claims": 649,
       "mapping_pending": 85,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -243,7 +244,8 @@
           "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted.",
-          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 10 September 2011, Sitaram Yechury 6 May 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2012, 2015, 2018, 2022 and 2025, with the 'newly elected' stylings at the rallies closing the 2005, 2012 and 2015 Congresses, are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted. This amendment changes only the selected Karat and Yechury observation dates; all earlier styling claims remain preserved, without a blanket exclusion of independently supported same-day in-office attestations."
+          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 10 September 2011, Sitaram Yechury 6 May 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2012, 2015, 2018, 2022 and 2025, with the 'newly elected' stylings at the rallies closing the 2005, 2012 and 2015 Congresses, are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted. This amendment changes only the selected Karat and Yechury observation dates; all earlier styling claims remain preserved, without a blanket exclusion of independently supported same-day in-office attestations.",
+          "BSP, AAP and NPP national leaders 1990-2026 (CLAUDE-C01-48, AAP-NC-01..02, BSP-NP-01..02, NPP-NP-01..02): three party roles on the ECI 2024 national-party observations. in_aap_national_convenor on in_eci_20240323_np_01 holds two holder observations of Arvind Kejriwal (7 October 2013; from 27 April 2016, the effective day stated in the National Executive's certified minutes filed with the Election Commission); in_bsp_national_president on in_eci_20240323_np_02 holds Mayawati, observed on 16 July 2012 in the party's signed letter to the Chief Election Commissioner; in_npp_national_president on in_eci_20240323_np_06 holds Conrad K. Sangma, observed on 11 July 2020 in the party's press release. No source states an end. Kanshi Ram and Purno Agitok Sangma, the founders, have no in-office attestation on a stated day in the period (claims only); retrospective 2003 selection and assumption entries, recalled elections and Election Commission catalogue entries are claims. State offices never feed the party offices or the reverse, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -306,7 +308,7 @@
       "organization_observations": 14,
       "institution_observations": 7,
       "role_observations": 9,
-      "source_claims": 322,
+      "source_claims": 342,
       "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -348,7 +350,8 @@
           "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
           "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
           "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim.",
-          "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched."
+          "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched.",
+          "CLAUDE-C01-51 extends ru_rsfsr_president and ru_rsfsr_vice_president with sixteen official-portal acts of 1991-1993 (twenty claims): four dated attestations of Борис Николаевич Ельцин signing as 'Президент РСФСР' (July 1991 to January 1992) and five of Александр Владимирович Руцкой as Vice-President (July 1991 to September 1993), the last ending on 3 October 1993 with decree 1576 (in force on signature, pending a ruling). The suspension of 1 September 1993 is a claim on the vice-presidency. The declared termination of Yeltsin's powers and the declared acting service of 21-22 September 1993, and the President's decree rejecting it, are five claims appended to ru_president, which gains no holder. The C01-05 and C01-14 holders, party offices and game mappings are untouched."
         ]
       }
     },
@@ -358,7 +361,7 @@
       "organization_observations": 6,
       "institution_observations": 6,
       "role_observations": 10,
-      "source_claims": 188,
+      "source_claims": 206,
       "mapping_pending": 12,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -479,7 +482,7 @@
       "organization_observations": 3,
       "institution_observations": 4,
       "role_observations": 8,
-      "source_claims": 157,
+      "source_claims": 174,
       "mapping_pending": 7,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -501,7 +504,8 @@
           "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
           "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until.",
           "CLAUDE-C01-35 adds two organizations: su_democratic_russia (the Democratic Russia movement, with the co-leadership role su_dr_co_chair) and su_soyuz_deputies_group (the Soyuz group of USSR people's deputies, with the co-leadership role su_soyuz_co_chair). It reviews their leaders from 1 January 1990 to 25 December 1991 (SU-DR-01 to 05, SU-SOYUZ-01 to 05) from Congress and Supreme Soviet stenograms and archival facsimiles of the movement's own papers and of the RSFSR President's office. Co-chairs are recorded as co-leadership, one person per observation; no holder has a from or an until. Neither organization is mapped to a simulation party row, and the RSFSR deputies' faction of the same name and the later organizations called «Союз» remain unreviewed.",
-          "CLAUDE-C01-41 dates the existing su_cpsu roles su_cpsu_general_secretary and su_cpsu_deputy_general_secretary from the party's own records (Pravda, the Central Committee's organ, and Известия ЦК КПСС, as Internet Archive stored files) and official Union records (the Supreme Soviet's and Congress's stenographic bulletins and Ведомости on the SSSR.SU host) and an RSFSR decree: three observations of Михаил Сергеевич Горбачев (5 February 1990, 10 July 1990, 22 August 1991) and two of Владимир Антонович Ивашко (13 July 1990, 21 August 1991), attested_on only, beside the unchanged S10.h month observations; 12 sources and 26 claims. The General Secretary's statement of 24 August 1991, the deputy's acting service and the party's dissolution remain unresolved; the suspension (29 August 1991) and the RSFSR decree (6 November 1991) are organization claims only."
+          "CLAUDE-C01-41 dates the existing su_cpsu roles su_cpsu_general_secretary and su_cpsu_deputy_general_secretary from the party's own records (Pravda, the Central Committee's organ, and Известия ЦК КПСС, as Internet Archive stored files) and official Union records (the Supreme Soviet's and Congress's stenographic bulletins and Ведомости on the SSSR.SU host) and an RSFSR decree: three observations of Михаил Сергеевич Горбачев (5 February 1990, 10 July 1990, 22 August 1991) and two of Владимир Антонович Ивашко (13 July 1990, 21 August 1991), attested_on only, beside the unchanged S10.h month observations; 12 sources and 26 claims. The General Secretary's statement of 24 August 1991, the deputy's acting service and the party's dissolution remain unresolved; the suspension (29 August 1991) and the RSFSR decree (6 November 1991) are organization claims only.",
+          "CLAUDE-C01-49 adds six Soviet source identities and 17 claims. Four new observations attest Михаил Сергеевич Горбачев as President: from 15 March 1990 on the oath and declared assumption of office, and attested_on 22 January, 22 August and 5 October 1991. The proposed Pavlov 22 January observation is withheld because the signature block is ambiguous. Existing holders are unchanged. Elections, approval, stylings and disputed acting authority remain claims only; no until is added."
         ]
       }
     }
@@ -2698,13 +2702,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 2224528,
-      "sha256": "03bd326b0acaddb96f33b71dad22e5f6ee906ec4649ce4de97fa2325e7a0f49e"
+      "bytes": 2320883,
+      "sha256": "207d4094a0594e6754f0a3ddc7fc9ab89f3611780e081dda2333979e9434288b"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1309163,
-      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
+      "bytes": 1378296,
+      "sha256": "4341a287e2eafed413fc375a9bac506241bb3677f7eef7bc39e507bc50244a73"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -2713,13 +2717,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 626569,
-      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9"
+      "bytes": 680168,
+      "sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 317174,
-      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e"
+      "bytes": 360048,
+      "sha256": "731f2c47c30aaae1dc36ae5427976d7700ae02dc1fa2b12635755aad277b5bb1"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
@@ -2733,8 +2737,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 360379,
-      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94"
+      "bytes": 399146,
+      "sha256": "ba7a27399237dfc49cb9d1f0e569c72b42b687a475a91c28c7152c997ff1cdd5"
     },
     {
       "path": "tools/avatars/campaign_research.py",
@@ -2743,8 +2747,8 @@
     },
     {
       "path": "tools/avatars/import_cnccfp_census.py",
-      "bytes": 24576,
-      "sha256": "93d6e863dce068f86ff417244eb598ecf93f204a09167aa730353824e34a2d80"
+      "bytes": 27217,
+      "sha256": "d571b52ccacc4dc52e039ab789c4218bce4f3cd330d202da78027dfd393e4e57"
     },
     {
       "path": "docs/campaign-certification/C01/countries.json",
