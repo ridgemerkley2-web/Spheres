@@ -1,15 +1,14 @@
 # Tonga cast production — 1 October 2026
 
-Current integration: the cast and government implementation are pushed at
+First integration: the cast and government implementation were pushed at
 `5530c298` on `codex/campaign-certification`. Subsequent review accepts the
 [Crown identity chain](crown-chain-20261001/acceptance.json), records four
 [collective-body scope exceptions](collective-scope-20261001/README.md), and
 repairs King IV's historical portrait display context. Eleven personal/party
 chains and Fatai Helu's likeness remain unresolved. Thirteen focused native
-checks passed on the repaired production inputs; the Tonga browser journey
-remains pending after a harness correction. See the
-[current receipt](ci-current-native-20261001/README.md); earlier receipts below
-describe their original tested versions.
+checks passed on the repaired production inputs. The final-label
+[production-browser journey](ci-browser-acceptance-20261001/README.md) is now
+accepted separately. Earlier receipts below describe their original tested versions.
 
 Codex has created 41 new historical appearance illustrations and four original
 fictional characters. Together with the existing King IV opening portrait, the
@@ -105,6 +104,22 @@ Political calibration still fails A1, and no country or campaign gate is closed.
 
 The [production manifest](../../countries/tonga/manifest.json) distinguishes
 installed identity/art references from country acceptance. Fatai Helu's likeness,
-the unresolved historical political chains, Tonga production-browser checks,
-final visual review and country signoff are still required. C06, S23 and CP1 remain open.
+the unresolved historical political chains, final visual review and country
+signoff are still required. Native and production-browser acceptance are recorded
+separately in their exact-source receipts. C06, S23 and CP1 remain open.
 The stable work item is `CLAUDE-C06-TONGA-01`, now owned by Codex.
+
+## Final production-browser checkpoint
+
+The [accepted browser journey](ci-browser-acceptance-20261001/README.md) covers
+the native Tonga interface, all 50 historical references, four fictional
+portraits, explicit institutional commands and refusals, mobile layout and exact
+save/reload preservation. Readable historical office titles preserve the distinct
+party leader, party president and incorporated-society roles.
+
+The [export repair](review-export-repair-20261001/README.md) restores the tracked
+Tupou IV reference omitted by the sparse checkout and prevents recurrence.
+807 full avatar/research tests and 25 focused UI checks passed after this fix.
+The [remaining-work handoff](REMAINING-WORK.md) records what still prevents full
+country completion. Prior native/browser failures and original artwork receipts
+remain unchanged.

@@ -1,0 +1,56 @@
+{
+  "retrieved_at": "2026-10-01T16:51:16.084047+00:00",
+  "revision": "f5bd21932d687532d8fda9f428b2f35a377b3f9a",
+  "run_id": 36892116144,
+  "job_id": 110470030933,
+  "platform": "windows",
+  "conclusion": "success",
+  "log_sha256": "8ffa62363c48d28f551b4d35f24634c52465f9d769345a93a83320f329cd49e5",
+  "native_test_results": [
+    "2026-10-01T16:35:07.9781824Z test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.32s",
+    "2026-10-01T16:41:26.1950566Z test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 480 filtered out; finished in 0.12s",
+    "2026-10-01T16:41:26.2132734Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s",
+    "2026-10-01T16:41:26.2258949Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s"
+  ],
+  "native_tests_passed": 13,
+  "ignored_test": "equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export (existing3000-day export, not executed)",
+  "browser": {
+    "passed": true,
+    "stage": "complete",
+    "scope": "Public native init/command/save API fixtures. Dates and 500 political capital are authored test inputs, no days were simulated. Opening Crown and PM are intentionally retained counterfactually. Future commands are explicit; this is not historical chronology, a 46-year campaign, human signoff or country qualification. Normal production Load may adopt its standard legacy-save capabilities.",
+    "checks": [
+      "historical-King-IV-image",
+      "historical-art-only-Fatai-unavailable",
+      "fresh-Tonga-opening-Crown-PM-portraits",
+      "four-fictional-preview-portraits",
+      "fifty-reference-bindings",
+      "mobile-read-only",
+      "cancelled-reform-preserves-save",
+      "save-load-full-archive",
+      "reload-continue-full-archive",
+      "historical-cutoff-refusals",
+      "explicit-reform-election-PM-minister",
+      "actual-vacancy-caretaker-recommendation",
+      "2035-inclusive",
+      "2036-new-appointments-refused-incumbents-retained"
+    ]
+  },
+  "browser_counts": {
+    "confirmed_commands": 12,
+    "refusals": 7,
+    "archive_snapshots": 46,
+    "page_errors": 0,
+    "advance_posts": 0
+  },
+  "artifact": {
+    "id": 11178592820,
+    "bytes": 2697794,
+    "sha256": "af9a4afd09c607721a5f5e7aadbeb930d50178bd0c23c129696dec2a8ada91c9",
+    "downloaded_hash_verified": true,
+    "result_sha256": "d1183a7d69deb31d2718a84fcb012759f5ccc7db0ff8646dffc989bc66c4d221"
+  },
+  "limits": [
+    "Authored date fixtures; zero simulation advances; not a simulated1990\u20132035 campaign.",
+    "No full campaign, performance, history-completeness or human signoff qualification."
+  ]
+}

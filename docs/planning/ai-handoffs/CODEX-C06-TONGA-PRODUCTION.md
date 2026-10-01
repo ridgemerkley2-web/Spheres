@@ -36,12 +36,23 @@ parent complete based on the artwork count or reference inventory.
 
 King IV's historical reference portrait now uses the accepted 12 July 1990 assent
 as display context only; his original tenure uncertainty is unchanged. The full
-805-test avatar/research suite and the 9,010-case boundary preparation check pass
-after this repair. The preceding native acceptance receipts remain preserved;
-current-source native checks and the new Tonga browser journey run in independent
-Windows/Linux CI jobs. Do not mark a pending or unexecuted check as passed.
+807-test avatar/research suite and the 9,010-case boundary preparation check pass
+after the portrait and sparse-export repairs. The exact-source native and Tonga
+browser journeys passed on both Windows and Linux. Earlier failed and passing
+receipts remain preserved; no pending check is represented as passed.
 
 The separate S25 Japan diagnostic stopped at its twelve-hour wall-clock bound
 on 1 October 2026 without campaign qualification. Its result and original evidence
 remain under the external `japan-7-diagnostic-20261001-01` directory. Tonga
 production neither closes that experiment nor starts a replacement campaign.
+
+## Current bounded acceptance
+
+The final production-browser journey is accepted with its exact-source
+[receipt](../../campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/README.md).
+All 807 local avatar/research tests and 25 focused UI tests pass. The prior sparse
+export failure is reproduced and fixed, with original evidence retained.
+Fourteen country requirements remain: eleven historical chains, Fatai Helu's
+verified likeness, final visual review and country signoff. Follow
+[REMAINING-WORK](../../campaign-certification/C06/production/tonga/REMAINING-WORK.md)
+without inventing historical dates, identities or party succession rules.

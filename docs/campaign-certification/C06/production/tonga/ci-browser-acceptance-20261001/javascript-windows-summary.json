@@ -1,0 +1,66 @@
+{
+  "created_at": "2026-10-01T16:51:42.812925+00:00",
+  "revision": "f5bd21932d687532d8fda9f428b2f35a377b3f9a",
+  "run_id": 36892116144,
+  "job_id": 110470030994,
+  "platform": "Windows",
+  "conclusion": "success",
+  "log_sha256": "46784bec4d9c2b0d246cd3046aca64eefa1ea8e8ebafdea37704a1e2779ec67d",
+  "counts": {
+    "full_ui": {
+      "total": 1832,
+      "passed": 1831,
+      "failed": 0,
+      "skipped": 1
+    },
+    "avatar_research": {
+      "total": 807,
+      "failed": 0
+    },
+    "planning": {
+      "total": 69,
+      "failed": 0
+    },
+    "native_stability_orchestration": {
+      "total": 79,
+      "skipped": 0
+    },
+    "release_packaging_guards": {
+      "total": 19,
+      "failed": 0
+    },
+    "extraction_smoke_guards": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "skip_limits": [
+    "Existing optional real cartoon-review headless browser test requires SPHERES_BROWSER_CHANNEL and is skipped in the unit job."
+  ],
+  "count_excerpts": [
+    "2026-10-01T16:39:14.1853262Z # tests 1832",
+    "2026-10-01T16:39:14.1853409Z # pass 1831",
+    "2026-10-01T16:39:14.1853475Z # fail 0",
+    "2026-10-01T16:39:14.1853623Z # skipped 1",
+    "2026-10-01T16:41:46.4783799Z Ran 10 tests in 0.032s",
+    "2026-10-01T16:41:46.4784151Z OK",
+    "2026-10-01T16:41:47.6202212Z Ran 7 tests in 0.041s",
+    "2026-10-01T16:41:47.6202500Z OK",
+    "2026-10-01T16:41:49.9118698Z Ran 8 tests in 0.784s",
+    "2026-10-01T16:41:49.9118997Z OK",
+    "2026-10-01T16:41:53.9587735Z Ran 69 tests in 2.977s",
+    "2026-10-01T16:41:53.9587959Z OK",
+    "2026-10-01T16:45:07.4377976Z Ran 807 tests in 191.917s",
+    "2026-10-01T16:45:07.4378271Z OK",
+    "2026-10-01T16:46:12.6652804Z Ran 79 tests in 64.081s",
+    "2026-10-01T16:46:12.6653377Z OK",
+    "2026-10-01T16:47:15.9792622Z Ran 19 tests in 62.611s",
+    "2026-10-01T16:47:15.9793062Z OK",
+    "2026-10-01T16:47:16.5707895Z # tests 5",
+    "2026-10-01T16:47:16.5709676Z # pass 5",
+    "2026-10-01T16:47:16.5710012Z # fail 0",
+    "2026-10-01T16:47:16.5712126Z # skipped 0"
+  ],
+  "qualification": "Only listed JavaScript/tooling checks on this exact revision. Tonga browser is a separate job; no campaign qualification.",
+  "summary_preparation_note": "Initial summary-generation assertion incorrectly expected the Linux-only tooling skip on Windows; no summary was emitted until actual Windows logs were checked. Windows79tooling tests have no skips."
+}

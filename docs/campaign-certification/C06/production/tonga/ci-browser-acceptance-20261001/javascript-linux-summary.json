@@ -1,0 +1,66 @@
+{
+  "created_at": "2026-10-01T16:45:30.935359+00:00",
+  "revision": "f5bd21932d687532d8fda9f428b2f35a377b3f9a",
+  "run_id": 36892116144,
+  "job_id": 110470031064,
+  "platform": "Linux",
+  "conclusion": "success",
+  "log_sha256": "fc105f01b622deaba7414b719e9a77be5804de0ef1c647a3fc0630e79ff67fe7",
+  "counts": {
+    "full_ui": {
+      "total": 1832,
+      "passed": 1831,
+      "failed": 0,
+      "skipped": 1
+    },
+    "avatar_research": {
+      "total": 807,
+      "failed": 0
+    },
+    "planning": {
+      "total": 69,
+      "failed": 0
+    },
+    "native_stability_orchestration": {
+      "total": 79,
+      "skipped": 1
+    },
+    "release_packaging_guards": {
+      "total": 19,
+      "failed": 0
+    },
+    "extraction_smoke_guards": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "skip_limits": [
+    "Existing optional real cartoon-review headless browser test requires SPHERES_BROWSER_CHANNEL and is skipped in the unit job.",
+    "Native stability orchestration logs report79 tests with1skip; this is tooling verification, not a campaign stability pass."
+  ],
+  "count_excerpts": [
+    "2026-10-01T16:37:59.5992468Z # tests 1832",
+    "2026-10-01T16:37:59.5992754Z # pass 1831",
+    "2026-10-01T16:37:59.5992841Z # fail 0",
+    "2026-10-01T16:37:59.5993018Z # skipped 1",
+    "2026-10-01T16:40:37.1628910Z Ran 10 tests in 0.026s",
+    "2026-10-01T16:40:37.1629443Z OK",
+    "2026-10-01T16:40:37.4032458Z Ran 7 tests in 0.028s",
+    "2026-10-01T16:40:37.4032825Z OK",
+    "2026-10-01T16:40:38.6249559Z Ran 8 tests in 0.733s",
+    "2026-10-01T16:40:38.6249914Z OK",
+    "2026-10-01T16:40:39.9001002Z Ran 69 tests in 1.049s",
+    "2026-10-01T16:40:39.9001356Z OK",
+    "2026-10-01T16:42:44.8199216Z Ran 807 tests in 123.890s",
+    "2026-10-01T16:42:44.8199590Z OK",
+    "2026-10-01T16:43:00.6517170Z Ran 79 tests in 14.932s",
+    "2026-10-01T16:43:00.6517938Z OK (skipped=1)",
+    "2026-10-01T16:43:03.5770580Z Ran 19 tests in 2.641s",
+    "2026-10-01T16:43:03.5770935Z OK",
+    "2026-10-01T16:43:03.7319758Z # tests 5",
+    "2026-10-01T16:43:03.7320589Z # pass 5",
+    "2026-10-01T16:43:03.7320984Z # fail 0",
+    "2026-10-01T16:43:03.7321791Z # skipped 0"
+  ],
+  "qualification": "Only listed JavaScript/tooling checks on this exact revision. Tonga browser is a separate job; no campaign qualification."
+}

@@ -50,14 +50,13 @@
     "to_peoples_party/to_peoples_party_leader: Pohiva Tu’ionetoa’s May 2021 leader observation is installed. Formation, leader selection, later succession and continuity with the incorporated society are not a completed chain.",
     "to_peoples_party/to_peoples_party_society_president: The April 2022 trial observation names society president Tu’ionetoa. Society-president and political-leader offices remain separate; officer rules and complete dates are unverified.",
     "to_peoples_party/to_peoples_party_society_secretary: The April 2022 trial observation names secretary Tevita Lavemaau. Appointment/end, officer-selection rules and later secretary succession remain unverified.",
-    "to_prime_minister/to_pm: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain remains open. Native appointment contracts passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.",
+    "to_prime_minister/to_pm: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain remains open. Native appointment contracts and the Tonga production-browser journey passed independently; they do not supply missing historical evidence.",
     "to_cabinet/to_deputy_pm: All 14 accepted deputy-PM observations are installed. Early coverage, acting service and unresolved start/end gaps (including late 2021) remain; no successor date fills an earlier boundary.",
     "to_legislative_assembly/to_speaker: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.",
     "to_legislative_assembly/to_deputy_speaker: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.",
     "to_fatai_helu: no reviewed cartoon for 2022-08-29 through 2022-08-30 exclusive",
     "Unfinished country acceptance check: country_signoff",
-    "Unfinished country acceptance check: likeness_visual_review",
-    "Unfinished country acceptance check: production_browser"
+    "Unfinished country acceptance check: likeness_visual_review"
   ],
   "limit": "Coverage and receipt-integrity check only; no independent historical/visual review or parent milestone qualification.",
   "validation_context": {
@@ -65,7 +64,7 @@
     "recorded_at": "2026-10-01",
     "manifest": {
       "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
-      "sha256": "2106bb334aeffcbd145f575e0207aaf44cf60390f4fbd4edaff60d50efe29ca7"
+      "sha256": "5be87022a68886e743511c83f0927f2b5496a303af4b6aace190d96463c70c94"
     },
     "source_pins": {
       "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
@@ -120,7 +119,8 @@
     "acceptance_check_scope": [
       "boundary_dates",
       "save_compatibility",
-      "institutional_rules"
+      "institutional_rules",
+      "production_browser"
     ],
     "all_acceptance_checks_executed": false,
     "native_ci_receipt": "docs/campaign-certification/C06/production/tonga/ci-current-native-20261001/receipt.json",
@@ -132,6 +132,7 @@
       "path": "docs/campaign-certification/C06/production/tonga/crown-chain-20261001/acceptance.json",
       "sha256": "a35c9c2c97114830576a17f8d8b6d4e1f335e385d7218e10b3afeb789126ef04"
     },
-    "native_ci_receipt_limit": "13 focused native checks passed; the separately retained browser attempt failed and is not accepted."
+    "native_ci_receipt_limit": "13 focused native checks passed; the separately retained browser attempt failed and is not accepted.",
+    "production_browser_receipt": "docs/campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/receipt.json"
   }
 }
