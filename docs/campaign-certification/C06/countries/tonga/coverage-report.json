@@ -55,9 +55,12 @@
     "to_legislative_assembly/to_speaker: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.",
     "to_legislative_assembly/to_deputy_speaker: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.",
     "to_fatai_helu: no reviewed cartoon for 2022-08-29 through 2022-08-30 exclusive",
+    "Unfinished country acceptance check: boundary_dates",
     "Unfinished country acceptance check: country_signoff",
+    "Unfinished country acceptance check: institutional_rules",
     "Unfinished country acceptance check: likeness_visual_review",
-    "Unfinished country acceptance check: production_browser"
+    "Unfinished country acceptance check: production_browser",
+    "Unfinished country acceptance check: save_compatibility"
   ],
   "limit": "Coverage and receipt-integrity check only; no independent historical/visual review or parent milestone qualification.",
   "validation_context": {
@@ -65,12 +68,12 @@
     "recorded_at": "2026-10-01",
     "manifest": {
       "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
-      "sha256": "a29072a8a2cb0c87d8ffca442a9a5d12e3d239e323a7a8df46d621609cf9e4e7"
+      "sha256": "e13fa4888807ba669eca52a7a1e7ccae087e4f13d21ee690d1edde8d39c1769b"
     },
     "source_pins": {
       "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
       "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
-      "spheres-sim/data/tonga_institutional_leadership.json": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+      "spheres-sim/data/tonga_institutional_leadership.json": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
       "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
       "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
       "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
@@ -84,7 +87,7 @@
       "spheres-web/src/government_view.rs": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
       "spheres-web/src/main.rs": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
       "spheres-web/src/person_avatar_assets.rs": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
-      "spheres-web/src/person_portraits.rs": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+      "spheres-web/src/person_portraits.rs": "1cdb635ad2b9bf683cf166e8d11a36be8751a0c273308ca2651a7d9731e9e657",
       "spheres-web/ui/government-ui.css": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
       "spheres-web/ui/government-ui.js": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
       "spheres-web/ui/index.html": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
@@ -116,12 +119,8 @@
         "sha256": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b"
       }
     ],
-    "acceptance_checks_executed": true,
-    "acceptance_check_scope": [
-      "boundary_dates",
-      "save_compatibility",
-      "institutional_rules"
-    ],
+    "acceptance_checks_executed": false,
+    "acceptance_check_scope": [],
     "all_acceptance_checks_executed": false,
     "native_ci_receipt": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json",
     "collective_scope_receipt": {
@@ -131,6 +130,7 @@
     "crown_chain_receipt": {
       "path": "docs/campaign-certification/C06/production/tonga/crown-chain-20261001/acceptance.json",
       "sha256": "a35c9c2c97114830576a17f8d8b6d4e1f335e385d7218e10b3afeb789126ef04"
-    }
+    },
+    "native_ci_receipt_limit": "Historical passed6829ecc7 receipt; current source recheck pending after display-context repair."
   }
 }

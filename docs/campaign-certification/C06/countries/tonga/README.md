@@ -92,3 +92,12 @@ and three final acceptance checks remain open: 15 explicit blockers.
 The original appearance inventory is preserved byte-for-byte in an
 [immutable snapshot](../../production/tonga/collective-scope-20261001/appearance-inventory-before.md).
 Updating this status page cannot silently invalidate those review references.
+
+## King IV display follow-up
+
+A missing display-context date could hide King IV’s existing historical
+cartoon. The [narrow repair](../../production/tonga/king-iv-display-fix-20261001/scope.json)
+uses the already accepted 12 July 1990 assent as appearance context without
+changing his reign record. The three native checks passed on the preceding
+candidate; their current-source recheck is pending alongside the new Tonga
+browser journey. The earlier receipts remain intact.
