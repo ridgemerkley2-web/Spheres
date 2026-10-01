@@ -37,7 +37,8 @@ class RussiaDiscoveryTests(unittest.TestCase):
         # CLAUDE-C01-14 added 53 sources, 94 claims and one role (ru_president) to that institution; no entry.
         # CLAUDE-C01-19 added 102 sources, 153 claims (two of them on a C01-14 source), one institution and one role.
         # CLAUDE-C01-46 added 7 sources and 27 claims on the five existing faction-head roles; no entry and no role.
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (21, 177, 322, 9))
+        # CLAUDE-C01-51 added 16 sources and 20 claims on the three ru_rsfsr_presidency roles; no entry and no role.
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (21, 193, 342, 9))
         self.assertEqual(len(self.packet['organizations']), 14)
         self.assertEqual(len(self.packet['institutions']), 7)
         self.assertEqual({e['kind'] for e in self.packet['organizations']}, {'federal_election_ballot_party_list'})
@@ -164,15 +165,18 @@ class RussiaDiscoveryTests(unittest.TestCase):
                          {'www.rcoit.ru', 'duma.gov.ru', 'pravo.gov.ru', 'projects.rusarchives.ru', 'www.prlib.ru',
                           'web.archive.org', 'transcript.duma.gov.ru', 'publication.pravo.gov.ru'})
         # Access dates are pinned per packet: the two original sources, CLAUDE-C01-05's 13, CLAUDE-C01-14's 53 and
-        # CLAUDE-C01-19's 102 and CLAUDE-C01-46's 7 (both use only the hosts above; C01-46 accessed 1 October 2026 UTC).
+        # CLAUDE-C01-19's 102 and CLAUDE-C01-46's 7 (both use only the hosts above; C01-46 accessed 1 October 2026 UTC),
+        # and CLAUDE-C01-51's 16 (legal portal only; accessed 1 October 2026 UTC).
         original = {'ru_cec_ballot_order_20210816', 'ru_duma_factions_20211012'}
         c01_05 = {s['id'] for s in self.packet['sources'][2:15]}
         c01_14 = {s['id'] for s in self.packet['sources'][15:68]}
         c01_19 = {s['id'] for s in self.packet['sources'][68:170]}
-        c01_46 = {s['id'] for s in self.packet['sources'][170:]}
+        c01_46 = {s['id'] for s in self.packet['sources'][170:177]}
+        c01_51 = {s['id'] for s in self.packet['sources'][177:]}
         self.assertEqual([s['id'] for s in self.packet['sources'][:2]], sorted(original))
-        self.assertEqual((len(c01_05), len(c01_14), len(c01_19), len(c01_46)), (13, 53, 102, 7))
+        self.assertEqual((len(c01_05), len(c01_14), len(c01_19), len(c01_46), len(c01_51)), (13, 53, 102, 7, 16))
         self.assertTrue(all(sid.startswith('ru_duma_news_') for sid in c01_46))
+        self.assertTrue(all(urlsplit(s['url']).hostname == 'pravo.gov.ru' for s in self.packet['sources'][177:]))
         self.assertTrue(all(sid.startswith('ru_rsfsr_') or sid.startswith('ru_garf_') or sid == 'ru_prlib_inauguration_stenogram_19910710'
                             for sid in c01_05))
         # Constitution text and one retrospective court statement carry no structured date; every other claim does.
@@ -184,10 +188,10 @@ class RussiaDiscoveryTests(unittest.TestCase):
             extract = self.extracts[source['id']]
             self.assertEqual(extract['source_url'], source['url'])
             expected = ('2026-09-13' if source['id'] in original else '2026-09-21' if source['id'] in c01_05
-                        else '2026-09-24' if source['id'] in c01_14 else '2026-10-01' if source['id'] in c01_46
+                        else '2026-09-24' if source['id'] in c01_14 else '2026-10-01' if source['id'] in c01_46 | c01_51
                         else '2026-09-25')
             self.assertEqual(source['id'] in c01_19, expected == '2026-09-25')
-            self.assertEqual(source['id'] in c01_46, expected == '2026-10-01')
+            self.assertEqual(source['id'] in c01_46 | c01_51, expected == '2026-10-01')
             self.assertEqual(source['accessed_date'], expected)
             self.assertEqual(extract['format'], 'spheres-c01-derived-factual-table/v1')
             if 'claims' in extract:

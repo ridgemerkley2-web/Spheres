@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rsfsr_vp_rasp_8rv_19911205",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013436&page=1&rdk=0",
+  "source_title": "Order of the Vice-President of the RSFSR No. 8-rv of 5 December 1991 'On an assistant to the Vice-President of the RSFSR' (original edition)",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1991-12-05",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013436&page=1&rdk=0",
+  "source_response_bytes": 6940,
+  "source_response_sha256": "6e73e35058156e358efdec9528e4087caa571d394416530ad811906e0caef032",
+  "source_response_encoding": "windows-1251; served uncompressed (no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Document frame: downloaded at 2026-10-01T11:39:34Z and again at 2026-10-01T12:20:52Z (41 minutes later); identical 6,940 bytes and SHA-256. Portal card: downloaded at 2026-10-01T11:49:04Z and again at 2026-10-01T12:20:52Z (31 minutes later); identical 2,896 bytes and SHA-256. Both with curl's default User-Agent, no Accept-Encoding header and no --compressed; the portal served both uncompressed.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=8-%F0%E2&a8type=1&a7type=4&a7from=05.12.1991&a7to=05.12.1991&sort=7&page=firstlast&lstsize=50",
+    "bytes": 2896,
+    "sha256": "60c76c34acfe7074e460e952422c6bc50241068f9ae10f6c484add4b5f628c0e",
+    "note": "Date-restricted single-document card (number 8-рв, date 05.12.1991): one hit, with no publication citation shown."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP with curl's default User-Agent and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 1 October 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act and cites no publication.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_rsfsr_vp_rasp_8rv_signed_as_vice_president_19911205",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-02",
+      "role_id": "ru_rsfsr_vice_president",
+      "holder_name": "Александр Владимирович Руцкой",
+      "printed_name": "А. Руцкой (signature)",
+      "role_title": "Vice-President of the RSFSR (вице-президент РСФСР)",
+      "event_kind": "signed_act_attestation",
+      "attested_on": "1991-12-05",
+      "text": "Order No. 8-рв, headed 'Р А С П О Р Я Ж Е Н И Е ВИЦЕ-ПРЕЗИДЕНТА РОССИЙСКОЙ СОВЕТСКОЙ ФЕДЕРАТИВНОЙ СОЦИАЛИСТИЧЕСКОЙ РЕСПУБЛИКИ', appoints an assistant to the Vice-President of the RSFSR. It is signed 'Вице-президент РСФСР А. Руцкой, 5 декабря 1991 года, N 8-рв'.",
+      "locator": "Heading; sole operative paragraph; signature and date block"
+    }
+  ],
+  "bounded_scope": "RSFSR President and Vice-President observations for CLAUDE-C01-51 only. Signed acts, official records naming the office, suspension, declared termination, declared or disputed acting service, removal and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, the Government and the USSR packet are outside this extract."
+}

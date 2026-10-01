@@ -107,7 +107,8 @@ HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-46.md'
 VOLATILE_URL = re.compile(r'(ysclid=|sessid=|PHPSESSID|[?&]cb=|nocache|token=|utm_|fbclid|yclid|DDoS|/web/\d{4}id_/|'
                           r'/web/\d{14}/)')
 # Holders on the other Russia roles, which this packet never touches: (role, number of holder observations).
-OTHER_ROLE_HOLDERS = {'ru_rsfsr_president': 1, 'ru_rsfsr_vice_president': 1, 'ru_president': 7, 'ru_government_chairman': 15}
+# CLAUDE-C01-51 later appended four observations to ru_rsfsr_president and five to ru_rsfsr_vice_president.
+OTHER_ROLE_HOLDERS = {'ru_rsfsr_president': 5, 'ru_rsfsr_vice_president': 6, 'ru_president': 7, 'ru_government_chairman': 15}
 
 
 def invariants(russia):
@@ -205,8 +206,9 @@ class RussianDumaFactionHeadsTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (177, 322, 21, 9))
-        self.assertEqual([s['id'] for s in self.packet['sources'][170:]], NEW_SOURCES)
+        # CLAUDE-C01-51 later appended 16 sources and 20 claims after these.
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))
+        self.assertEqual([s['id'] for s in self.packet['sources'][170:177]], NEW_SOURCES)
         new_claims = [c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']]
         self.assertEqual(new_claims, list(EVENTS))
         dates = [self.sources[sid]['document_date'] for sid in NEW_SOURCES]
@@ -333,7 +335,7 @@ class RussianDumaFactionHeadsTests(unittest.TestCase):
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
-        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 322, 21))
+        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))  # with CLAUDE-C01-51
         self.assertFalse(index['c01_complete'])
 
     def test_mutations_are_rejected(self):

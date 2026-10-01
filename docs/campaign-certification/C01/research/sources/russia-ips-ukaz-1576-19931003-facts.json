@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_1576_19931003",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102026474&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 1576 of 3 October 1993 'On releasing A. V. Rutskoi from the office of Vice-President of the Russian Federation' (original edition)",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1993-10-03",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102026474&page=1&rdk=0",
+  "source_response_bytes": 27293,
+  "source_response_sha256": "b7e2f7813bbb370e7482fe16f9d6c11f87697f6ad46ebbb1d6920015e7332e18",
+  "source_response_encoding": "windows-1251; served uncompressed (no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Document frame: downloaded at 2026-10-01T11:45:43Z and again at 2026-10-01T12:23:08Z (37 minutes later); identical 27,293 bytes and SHA-256. Portal card: downloaded at 2026-10-01T11:45:43Z and again at 2026-10-01T12:25:05Z (39 minutes later); identical 3,174 bytes and SHA-256. Both with curl's default User-Agent, no Accept-Encoding header and no --compressed; the portal served both uncompressed.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1576&a8type=1&a7type=4&a7from=03.10.1993&a7to=03.10.1993&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3174,
+    "sha256": "d3b03643b94b14e7ffbac6f235de248f8efbab39554ef7100481255c3a6c038c",
+    "note": "Date-restricted single-document card (number 1576, date 03.10.1993): one hit, citing Rossiyskaya Gazeta of 5 October 1993; Sobranie aktov Prezidenta i Pravitelstva Rossiyskoy Federatsii 1993 No. 40, art. 3749."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP with curl's default User-Agent and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 1 October 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act; it cites Rossiyskaya Gazeta of 5 October 1993; Sobranie aktov Prezidenta i Pravitelstva Rossiyskoy Federatsii 1993 No. 40, art. 3749 (not inspected).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_1576_rutskoi_released_as_vice_president_19931003",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-06",
+      "role_id": "ru_rsfsr_vice_president",
+      "holder_name": "Александр Владимирович Руцкой",
+      "printed_name": "Руцкого А.В. (genitive)",
+      "role_title": "Vice-President of the RSFSR (вице-президент РСФСР)",
+      "event_kind": "removal",
+      "attested_on": "1993-10-03",
+      "text": "Reciting his suspension by Decree No. 1328 and citing the referendum of 25 April 1993, Article 121-3 and points 11 and 17 of Article 121-5 of the Constitution, Article 8 of the Law 'О Президенте РСФСР' and Decree No. 1452 of 25 September 1993, point 1 of Decree No. 1576 releases him from office ('Освободить Руцкого А.В. от должности вице-президента Российской Федерации'); point 4 puts the decree into force 'с момента его подписания'. It is signed 'Президент Российской Федерации Б.Ельцин, Москва, Кремль, 3 октября 1993 года, № 1576'.",
+      "locator": "Preamble; points 1 and 4; signature and date block"
+    },
+    {
+      "claim_id": "ru_ukaz_1576_presidential_succession_rule_19931003",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-06",
+      "role_id": "ru_rsfsr_vice_president",
+      "holder_name": null,
+      "role_title": "Vice-President of the RSFSR (вице-президент РСФСР)",
+      "event_kind": "procedure_rule",
+      "attested_on": "1993-10-03",
+      "text": "Point 3 establishes that, in connection with the release, the powers of the President are exercised by the Chairman of the Council of Ministers - Government of the Russian Federation in the event of the President's resignation, inability to exercise his powers or death.",
+      "locator": "Point 3"
+    }
+  ],
+  "bounded_scope": "RSFSR President and Vice-President observations for CLAUDE-C01-51 only. Signed acts, official records naming the office, suspension, declared termination, declared or disputed acting service, removal and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, the Government and the USSR packet are outside this extract."
+}
