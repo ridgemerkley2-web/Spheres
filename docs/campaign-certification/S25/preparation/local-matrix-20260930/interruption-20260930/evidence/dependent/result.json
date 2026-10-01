@@ -1,0 +1,13 @@
+{
+  "status": "dependent_verification_failed",
+  "preflight_passed": false,
+  "failure": "PermissionError: [Errno 13] Permission denied",
+  "format": "spheres-dependent-verification-result/v1",
+  "started_utc": "2026-09-30T10:02:08.141008+00:00",
+  "finished_utc": "2026-09-30T23:30:51.322917+00:00",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "config_sha256": "5143c308436e0b8f98287fe7fff2bc8cabb2555f548badeee046ed5dfedde26e",
+  "native_reexecuted": false,
+  "qualification": false,
+  "s25_complete": false
+}

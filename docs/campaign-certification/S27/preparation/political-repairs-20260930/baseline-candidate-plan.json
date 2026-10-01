@@ -1,0 +1,39 @@
+{
+  "candidate": "Live armed threat response",
+  "base": "c41376f5",
+  "observed_defect": "The AI averages armed loyalty while regime coup pressure uses the weakest armed institution. It can decline legal affordable negotiation despite a current institution below the existing 0.35 coup-pressure line and positive pressure.",
+  "recorded_unanswered_threats": {
+    "Chad": 8,
+    "Guyana": 2,
+    "Yemen": 177,
+    "Mozambique": 13,
+    "Sudan": 155,
+    "Afghanistan": 122,
+    "Turkmenistan": 7,
+    "Kazakhstan": 79,
+    "Myanmar": 6,
+    "Ethiopia": 128,
+    "Angola": 53
+  },
+  "change": "Retain all existing priorities and the mean-loyalty/party-led routes. Add a response only when the weakest armed institution is currently below the existing coup line and coup pressure is positive. Use the same paid legal round table and existing stratagem draw.",
+  "counterexamples": [
+    "Fresh regime with pressure zero",
+    "Recovered loyalty at or above 0.35 despite stored pressure",
+    "No armed institution",
+    "Insufficient political capital",
+    "Round table refused",
+    "Political lens off"
+  ],
+  "validation": [
+    "Native regression watched fail on unchanged runtime first",
+    "All existing government and stratagem focused tests",
+    "Original unmodified A1-A10 and attribution, fixed original cohorts",
+    "Full workspace and UI verification if the outcome gates accept the candidate"
+  ],
+  "not_claimed": [
+    "This strategy correction is not a new historical fact",
+    "The Haiti trace has no weak armed institution and is not fixed by this candidate",
+    "Passing a local regression does not pass A1"
+  ],
+  "separate_observation": "Sudan contains two sourced Army institutions. walk_pillars currently updates only the first and does so twice. Retained as a separate defect; do not silently mix its correction into this candidate."
+}
