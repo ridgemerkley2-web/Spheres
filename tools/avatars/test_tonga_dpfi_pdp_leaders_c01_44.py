@@ -32,27 +32,28 @@ ARCHIVED = {
 }
 DIRECT = {'to_tlr_2014_pohiva_v_tuivakano', 'to_ca_psa_pohiva_v_kot_20150916'}
 PDF_PAGES = {'to_ca_psa_pohiva_v_kot_20150916': [3, 21]}
-# claim -> (source, attested_on, period, event kind, review observation, holder name as printed)
+# claim -> (source, attested_on, period, event kind, review observation, holder name as printed; None where the source
+# names no holder of any office)
 CLAIMS = {
     'to_la_pga_dpfi_established_sept2010': (
         'to_la_news_pga_award_20131214', None, {'from': '2010-09-01', 'through': '2010-09-30'},
-        'retrospective_founding_statement', 'TO-OPP-01', "Samuela 'Akilisi Pohiva"),
+        'retrospective_founding_statement', 'TO-OPP-01', None),
     'to_tlr_pohiva_leader_tonga_democratic_party_20140117': (
         'to_tlr_2014_pohiva_v_tuivakano', '2014-01-17', None, 'court_recital_of_party_office', 'TO-OPP-02', 'Mr Pohiva'),
     'to_ca_fidp_unincorporated_body_20150916': (
-        'to_ca_psa_pohiva_v_kot_20150916', '2015-09-16', None, 'court_description_of_legal_form', 'TO-OPP-03',
-        'Mr. Pohiva'),
+        'to_ca_psa_pohiva_v_kot_20150916', '2015-09-16', None, 'court_description_of_legal_form', 'TO-OPP-03', None),
     'to_ca_fidp_party_funds_argument_20150916': (
         'to_ca_psa_pohiva_v_kot_20150916', '2015-09-16', None, 'court_description_of_legal_form', 'TO-OPP-03', None),
     'to_la_profile_dpfi_established_2010': (
-        'to_la_profile_pohiva_2016', None, None, 'retrospective_founding_statement', 'TO-OPP-01',
-        "Hon. Samiuela 'Akilisi Pohiva"),
+        'to_la_profile_pohiva_2016', None, None, 'retrospective_founding_statement', 'TO-OPP-01', None),
     'to_pmo_ptoa_unregistered_statement_20200317': (
         'to_pmo_20200317_ptoa_reply', '2020-03-17', None, 'government_statement_on_legal_form', 'TO-OPP-03', None),
 }
 NEW_CLAIMS = list(CLAIMS)
-# Party names printed by the new sources that differ from every name observed for to_dpfi: never mapped here.
-UNMAPPED_NAMES = ('Tonga Democratic Party', 'Friendly Islands Democratic Party')
+# Party names printed by the new sources and the 2011 Assembly lead that differ from every name observed for to_dpfi:
+# never mapped here (ruling (b), decided by Ridge; routed to the Tonga reconciliation work order).
+UNMAPPED_NAMES = ('Tonga Democratic Party', 'Friendly Islands Democratic Party', 'Friendly Island Democratic Party',
+                  'Friendly Island Democratic Party (FIDP)')
 # The existing holders of the three roles in scope, unchanged by this packet.
 LEADER_2014 = {
     'name': "'Akilisi Pohiva", 'attested_on': '2014-11-27', 'from': None, 'until': None, 'sources': ['to_ipu_2014'],

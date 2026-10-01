@@ -63,12 +63,14 @@ Decisions (details in the report):
 - No holder is added. No primary record (party record, PMO, Assembly or Gazette naming the party office) names a DPFI/PTOA
   leader, president or chair after 'Akilisi Pohiva, or any PDP officer; later names are news or tertiary leads.
 - TO-OPP-02: a Supreme Court recital (AM 20/2013, 17 January 2014) calls Mr Pohiva "the leader of the Tonga Democratic
-  Party". Kept as a claim, not a `to_dpfi_leader` holder, because the name differs from DPFI (ruling requested).
+  Party". Kept as a claim, not a `to_dpfi_leader` holder, because the name differs from DPFI (ruling (a), decided by
+  Ridge: stays a claim, routed to `C01-Tonga-OPP-005`).
 - TO-OPP-03: the Court of Appeal (16 September 2015) calls the "Friendly Islands Democratic Party" an unincorporated body,
   and the PMO (17 March 2020) asserts that PTOA was unregistered with no legal body or constitution: claims only;
-  TO-DPFI-04 stays unresolved.
+  TO-DPFI-04 stays unresolved. No name observation is added (ruling (b)).
 - TO-OPP-01: founding statements (September 2010 relayed third-party text; 2010 profile line) are claims only;
-  `lifecycle.from` stays null. The relayed PGA text is typed `legislature_republished_reference_text`.
+  `lifecycle.from` stays null. The relayed PGA text is typed `legislature_republished_reference_text` (accepted by
+  ruling (c)).
 
 Checks (after the merge; full lines in the report): research-index `--check` pass; `campaign_census.py --check` pass (also
 on `509bd289`, so no census failure is disclosed); Tonga tests 101 pass; research tests 79 pass; campaign tests 16 pass;
@@ -82,3 +84,48 @@ returned to the pipeline and saved in `D:/spheres-scratch/verify/C01-44/packet_c
 Integration: the user chose to start this research batch before Codex's roadmap line "continue existing claims first";
 `research-index.json` is shared with the parallel packets (C01-38 to 41 in fixes, C01-42 to 46 in research), so regenerate it
 on any index-only conflict. C01 and all parent gates stay open.
+
+## Checker-fix round
+
+Applied on 1 October 2026 (UTC; 30 September local) on `claude/c01-to-44` from head `206df905`. State stays
+**ready_for_review**. Commits: `Apply checker fixes to CLAUDE-C01-44` (extracts, `tonga.json`, report, this record and the
+focused test) and `Regenerate the C01 research index for CLAUDE-C01-44` (`research-index.json` only; the `tonga.json`
+checksum is the only change).
+
+Fixes:
+
+1. `holder_name` set to null in the extract rows `to_la_pga_dpfi_established_sept2010`,
+   `to_la_profile_dpfi_established_2010` and `to_ca_fidp_unincorporated_body_20150916`, whose sources name no holder of any
+   office. The three snapshots in `tonga.json` are updated (bytes and SHA-256: 4,942 `189f0fc6…`, 4,391 `86dafd09…`,
+   5,924 `902bcaef…`), and `test_tonga_dpfi_pdp_leaders_c01_44.py` pins the three values as null (exact re-expression).
+   No claim text, source, holder or coverage entry changes.
+2. The report's next-work line `C01-Tonga-OPP-005` now asks for a ruling on whether "Tonga Democratic Party" (2014),
+   "Friendly Island Democratic Party" (FIDP; Assembly news item of 16 September 2011, singular 'Island' as printed) and
+   "Friendly Islands Democratic Party" (Court of Appeal AC 9/2015) name `to_dpfi`. No other place printed 'Islands' for the
+   2011 item.
+3. Rulings (a)-(c) are recorded here and in the report.
+
+Rulings, recorded as decided by Ridge (Codex may still decide otherwise):
+
+- (a) The Supreme Court recital in Pohiva v Tu'ivakano ("He is the leader of the Tonga Democratic Party") stays a claim:
+  the record does not name the organization as DPFI/PTOA or by any name already observed for `to_dpfi`, so attaching it
+  would settle an identity question. Routed to `C01-Tonga-OPP-005`.
+- (b) No name observation is added for "Tonga Democratic Party", "Friendly Island Democratic Party (FIDP)" or "Friendly
+  Islands Democratic Party"; routed to the Tonga reconciliation work order (`C01-Tonga-OPP-005`). The focused test's
+  unmapped-name guard now also lists the singular 'Island' forms.
+- (c) The new `source_type` `legislature_republished_reference_text` is accepted: non-primary, claims only, never holder or
+  organization evidence.
+
+Integration branch: `codex/campaign-certification` moved to `13367c99`. It carries Codex's held partial review of this
+packet (`214121f9`; receipt `docs/campaign-certification/C01/reviews/CLAUDE-C01-44-20261001/`: four of five originals read,
+the PMO original unread after HTTP 429, zero new holders) and Codex's registration of this record (`e7592644`). Merging it
+conflicts on `research-index.json` and, add/add, on this file (Codex's registration record at the same path), so the
+branch was **not merged** in this round; the conflict is reported for a decision. The review's prose correction
+(`9955de17` on `codex/review-c01-44-20261001`) is outside this round's fix list and is not applied here.
+
+Checks on the fix tree (full lines in the report): research-index `--check` pass; `campaign_census.py --check` pass (no
+census failure to disclose); Tonga tests 101 pass; research tests 79 pass; campaign tests 16 pass; `test_country_cast.py`
+31 pass; Node leadership check 11 pass; `workboard.py --check` pass; `git diff --check` clean. Known failures outside the
+suite are unchanged (`test_certified_gap_ledger.py`, "no pinned attribution"; `test_certified_boundary_matrix.py`, needs
+`spheres-web/src`). `packet_check.py 44 --base origin/codex/campaign-certification --no-fetch` is run on the pushed head
+and its summary returned to the pipeline.
