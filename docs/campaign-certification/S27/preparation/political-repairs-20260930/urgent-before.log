@@ -1,0 +1,16 @@
+
+running 2 tests
+test absent_recovered_unaffordable_or_closed_threat_keeps_ordinary_dispatch ... ok
+
+thread 'selected_live_threat_response_keeps_one_draw_and_pays_without_waiting_for_a_routine_roll' (34824) panicked at C:\Users\ridge\spheres-political-repair-backup-20260930\urgent_response.rs:32:9:
+the selected crisis response was left waiting
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test selected_live_threat_response_keeps_one_draw_and_pays_without_waiting_for_a_routine_roll ... FAILED
+
+failures:
+
+failures:
+    selected_live_threat_response_keeps_one_draw_and_pays_without_waiting_for_a_routine_roll
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+

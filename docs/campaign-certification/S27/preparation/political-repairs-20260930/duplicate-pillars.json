@@ -1,0 +1,163 @@
+{
+  "counts": {
+    "Sudan": 252
+  },
+  "first": {
+    "Sudan": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.65,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.65,
+        "resources_per_member": 25168.74408345634,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Sudan",
+      "date": [
+        1990,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.7314567674613505,
+        "prices": 1.0,
+        "total": 0.5657283837306752,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.16550000000000006,
+        "debt_gdp": 0.4630690687684098,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 7.2,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 34.08267427968046,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.048,
+        "political_capital": 24.75,
+        "population_m": 26.844604133333334,
+        "revenue_gdp": 0.09,
+        "spend_gdp": 0.25550000000000006,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.09
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.85,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 0,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": null,
+        "regime_bloc": "Islamist",
+        "settled_months": 0,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": "Islamist",
+          "born": "1944-01-01",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Omar al-Bashir",
+          "nation": "Sudan",
+          "native": "\u0639\u0645\u0631 \u062d\u0633\u0646 \u0623\u062d\u0645\u062f \u0627\u0644\u0628\u0634\u064a\u0631",
+          "note": "Decided case: Army tie, bloc_override Islamist - the coup was backed by the National Islamic Front and Bashir allied with Turabi. Turabi held no formal office on 1 Jan 1990 (arrested after the coup, parties banned), so he is not in also.",
+          "office": "Chairman of the Revolutionary Command Council for National Salvation",
+          "since": "1989-06-30",
+          "sources": [
+            "https://www.worldstatesmen.org/Sudan.html",
+            "https://en.wikipedia.org/wiki/Omar_al-Bashir",
+            "https://en.wikipedia.org/wiki/Hassan_al-Turabi"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.65,
+        "drift_armed": false,
+        "franchise_demand": 0.85,
+        "movements": [
+          [
+            "Western",
+            0.21408839779005526
+          ],
+          [
+            "Communist",
+            0.059392265193370174
+          ],
+          [
+            "Nationalist",
+            0.05000000000000001
+          ],
+          [
+            "Islamist",
+            0.6143646408839779
+          ],
+          [
+            "NonAligned",
+            0.06215469613259669
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.65
+          ],
+          [
+            "Party",
+            0.65
+          ],
+          [
+            "Security",
+            0.65
+          ],
+          [
+            "Army",
+            0.65
+          ]
+        ],
+        "round_table_affordable": false,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 29.504593952318977
+      },
+      "rng_state": 10315424427751516301,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  }
+}

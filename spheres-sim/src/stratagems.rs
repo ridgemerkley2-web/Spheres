@@ -534,6 +534,8 @@ pub fn ai_stratagems(w: &mut WorldState) {
         .map(|n| n.id)
         .collect();
     for id in actors.iter().copied() {
+        #[cfg(test)]
+        crate::government::a1_observer::record(w, id, "stratagem_before_decision");
         let held = w.nation(id).political_capital;
         let lever = crate::government::ai_lever(w, id);
         // Routine cards keep their standing reserve. A legally available
@@ -574,6 +576,8 @@ pub fn ai_stratagems(w: &mut WorldState) {
         // Rare, because these are decisions of a whole term, not a month.
         if w.rng.chance(crate::clock::chance(w, 0.02)) {
             let _ = crate::apply_command(w, &cmd);
+            #[cfg(test)]
+            crate::government::a1_observer::record(w, id, "stratagem_after_action");
         }
     }
 }

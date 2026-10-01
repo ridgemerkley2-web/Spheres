@@ -1,5 +1,10 @@
 # Claude — six additional independent sections
 
+**Current art direction (30 September):** follow
+[campaign-leader art and current next tasks](CLAUDE-CAMPAIGN-LEADER-ART.md).
+The user retired country-selector representative figures. Draw actual dated
+campaign/party leaders; preserve the old representative art only as archive.
+
 Assigned 27 September 2026 by the user's request, “Give Claude more sections to work on.”
 Base: `5979cf2fba78a6784a549d63223ca274950a2f7d`; fetch the latest
 `origin/codex/campaign-certification` before claiming a packet.

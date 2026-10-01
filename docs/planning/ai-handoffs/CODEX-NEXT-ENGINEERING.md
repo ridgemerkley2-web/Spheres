@@ -10,7 +10,9 @@ after diagnosis and rejected trial 01. Startup, controlled succession and all fo
 ordered source reviews are complete as bounded tasks. The full matrix remains
 open after two preserved local resource interruptions and a failed distributed
 attempt: 23 native timeouts plus India/1990's lost runner. A fresh full attempt
-on `68ba0622` began on 30 September at 09:03 UTC. Independent historical
+on `68ba0622` began on 30 September at 09:03 UTC and stopped abnormally at 23:30
+UTC: four passes, four abnormal exits and sixteen unstarted cases. Its dependent
+verifier also failed. Independent historical
 reviews followed those attempts; the matrix is not a research-data prerequisite.
 Query the [task queue](../ai-task-queue.json) with
 `python tools/planning/workboard.py --tasks --owner Codex`.
@@ -26,7 +28,7 @@ scope; an accepted research packet does not install historical people or art.
 | 1 | `CODEX-S27-A1-01` — repair political A1 calibration | S27 preparation | Blocked; A1 still fails |
 | 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | Complete: 137 native + 137 browser |
 | 3 | `CODEX-S25-SUCCESSION-01` — controlled paired USSR → Russia continuity | S25 preparation | Complete: 20 full archives verified |
-| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | 30 September snapshot: 4 revalidated passes, 4 running, 16 queued; full matrix pending |
+| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | Blocked: 4 revalidated passes, 4 abnormal exits, 16 not started; verifier failed |
 | 5 | `CODEX-C01-23-REVIEW` — French presidents | C01 review | Complete: bounded acceptance |
 | 6 | `CODEX-C01-24-REVIEW` — Tongan Speakers | C01 review | Complete: bounded acceptance |
 | 7 | `CODEX-C01-25-REVIEW` — Saudi council chairs | C01 review | Complete: bounded acceptance |
@@ -90,6 +92,22 @@ crisis, and Peru's eligible crises retain a non-hostile army. Next trace actual
 regime-opening decisions on the already-used seed before proposing a policy
 change; a separate civilian–military dispute still requires a justified contract.
 No additional native run or gameplay repair is claimed; A1 remains blocked.
+
+The [30 September repair attempt](../../campaign-certification/S27/preparation/political-repairs-20260930/README.md)
+extends the observer with 252 exact monthly comparisons and establishes two
+defects: the negotiation AI hides a hostile armed institution inside a loyal
+mean, and the institution walk updates Sudan's first Army entry twice while
+freezing its second. Both are corrected on `7c6f112c`, with actual failing
+regressions followed by passing controls. Full ordinary native verification
+passes 1,990 tests; UI coverage passes after unchanged sparse fixtures are
+restored; the release build passes. Standalone absolute timing remains pending
+while another task performs heavy native verification. The original political
+checks still fail A1 (7.5 coups / 0.571429 share), with A2–A10 and attribution
+passing. A separately declared urgent-response policy is rejected: A1 remains
+failed and A2 regresses to 6/12. Its exact patch and failures are retained, not
+integrated. No acceptance change, reserved cohort or wider scan was used. Next
+finish uncontended timing and review residual concentration against a justified
+causal contract; do not rescue the rejected policy with country exceptions.
 
 ## 2. Startup: CODEX-S24-STARTUP-01
 
@@ -156,11 +174,13 @@ checkpoint archives have integrity receipts. No cell reached the terminal
 comparison, and aggregation refused the missing 24th shard. These partial
 states do not pass a cell or permit reuse of selected old cells in a new batch.
 The [current run record](../../campaign-certification/S25/preparation/local-matrix-20260930/README.md)
-contains a 30 September snapshot: France/1990, France/7, France/42 and Japan/1990
-have completed and their retained evidence was independently revalidated; four
-cases are running and sixteen are queued. Collect the existing run and its
-already armed dependent verifier's final results. The whole-matrix result remains
-pending.
+preserves the earlier 30 September snapshot and its subsequent terminal failure.
+France/1990, France/7, France/42 and Japan/1990 retain their independently
+revalidated passes. Japan/7, Japan/42, India/1990 and India/7 exited abnormally;
+sixteen cases never started. The launcher exited 120 at 23:30:51 UTC without a
+matrix result or closing journal event. The dependent verifier reports a
+PermissionError and never started retained verification. Full-matrix acceptance
+remains blocked; no incomplete checkpoint is promoted to a pass.
 
 The lossless diagnostic-digest repair and a two-cell pilot now pass on candidate
 `68ba0622ec709b78617aadd1f9198d18f532bb32`. A fresh frozen full-plan execution began
@@ -168,9 +188,14 @@ The lossless diagnostic-digest repair and a two-cell pilot now pass on candidate
 `D:/spheres-offload/codex-next-20260928/full-matrix-local-20260930-01`. It uses four
 workers, a 12-hour per-cell resource budget, managed compressed SSD scratch and
 verified D: retention. No horizon, daily invariant, native validation, monthly
-reload or complete-archive comparison is reduced. Await all actual outcomes and
-independent retained verification. Keep both earlier local attempts and the
-distributed failure intact; no selected old cells can satisfy the new run.
+reload or complete-archive comparison was reduced. The
+[terminal reconciliation](../../campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/README.md)
+retains exact failure receipts and checks the four partial cells' file/decoded
+archive integrity. Windows records ntdll.dll faults for Japan/7 and India/7;
+the other two exits have code 1. The root cause is not established. Diagnose
+those crashes and the lost journal writes before declaring another complete
+attempt. No new run or replacement verifier was launched. Keep all previous
+attempts intact; no selected old cells can satisfy a new full-run claim.
 
 ## 5–8. Independent historical intake
 

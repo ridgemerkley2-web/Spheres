@@ -349,7 +349,7 @@
       "title": "Repair the unchanged A1 political calibration gate",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
       "depends_on": [],
-      "next": "A1 remains failed under its original limits. The 30 September route-exposure audit verifies 146,525 existing seed-0 observations and agrees with all 118 prior trigger-country totals; 10 reader tests pass. Haiti never reaches the electoral route in that trace, Pakistan/Thailand lack an eligible crisis, and Peru has eligible crises without a hostile army. Trigger and later funding snapshots are kept separate across 13 same-month electoral exits. Next trace actual regime-opening decisions on the already-used seed; do not infer a missed command or add an unsupported conflict trigger. Evidence and reproduction: docs/campaign-certification/S27/preparation/a1-route-exposure-20260930/README.md. No new simulation, justified gameplay repair, threshold change or holdout use; S27/CP1 remain unqualified."
+      "next": "Two demonstrated political defects are corrected on 7c6f112c: the AI recognizes an individual live armed threat, and each recorded institution receives one loyalty update. Actual red/green regressions and 1,990 passing ordinary native tests are retained; UI coverage and release build pass. A1 still fails under its original limits (median 7.5 coups; top-three share 0.571429); A2-A10 and attribution pass. The separate urgent-response policy is rejected because A1 remains failed and A2 regresses to 6/12. Next complete uncontended resource timing, then review residual concentration against a justified causal contract; do not add post hoc country exceptions or alter acceptance limits. Evidence: docs/campaign-certification/S27/preparation/political-repairs-20260930/README.md. Reserved cohorts and the frozen S25 matrix are unchanged; S27/CP1 remain unqualified."
     },
     {
       "id": "CODEX-S24-STARTUP-01",
@@ -379,14 +379,14 @@
       "id": "CODEX-S25-MATRIX-01",
       "owner": "Codex",
       "session": "S25",
-      "state": "in_progress",
+      "state": "blocked",
       "priority": 4,
       "title": "Run the complete 24-cell 1990-2035 engineering preflight",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
       "depends_on": [
         "CODEX-S25-SUCCESSION-01"
       ],
-      "next": "30 September snapshot: France/1990, France/7, France/42 and Japan/1990 completed and their retained evidence was independently revalidated; Japan/7, Japan/42, India/1990 and India/7 running; 16 queued. Current candidate 68ba0622ec709b78617aadd1f9198d18f532bb32, output D:/spheres-offload/codex-next-20260928/full-matrix-local-20260930-01. Collect this existing four-worker run and the already armed dependent verifier's final results. Keep the full 24-cell plan, 12-hour per-cell budget, invariants, reloads and archive comparisons. Status, audit receipt and prior-attempt link: docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md. Full-matrix pass pending; no earlier-cell reuse or S25 qualification."
+      "next": "The frozen 68ba0622 full attempt stopped at 2026-09-30 23:30:51 UTC: 4 independently revalidated passes, 4 abnormal native exits and 16 cases not started. Japan/7 and India/7 have Windows crash records; Japan/42 and India/1990 exited 1. Launcher exit 120 produced no matrix aggregate or closing journal event. The dependent verifier failed with PermissionError before retained verification began. All original evidence is preserved; 41 prior metadata pins, 44 newly retained files and four decoded checkpoint archives were rechecked. Diagnose native crashes and lost journal writes before declaring a fresh complete attempt; do not relabel incomplete checkpoints or reuse selected old cells. Evidence: docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/README.md. No replacement run or verifier launched; this attempt monitor is paused. Full-matrix acceptance and canonical S25 remain open."
     },
     {
       "id": "CODEX-C01-23-REVIEW",

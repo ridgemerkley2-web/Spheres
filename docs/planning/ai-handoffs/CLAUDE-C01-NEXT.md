@@ -1,5 +1,11 @@
 # Claude — next bounded research tasks
 
+The [30 September campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md)
+governs the transition from research to artwork. Preserve the delivered Komeito
+C01-31 packet and address review findings; resolve the held Russia C01-28
+evidence. National representative figures are retired from country selection.
+Use dated exact campaign identities.
+
 Updated 28 September 2026. Fetch the latest `codex/campaign-certification`; runtime
 checkpoint `2cb1da4a` follows the original assignment base `474df63e`.
 The machine-readable task queue is `docs/planning/ai-task-queue.json`; query it with
