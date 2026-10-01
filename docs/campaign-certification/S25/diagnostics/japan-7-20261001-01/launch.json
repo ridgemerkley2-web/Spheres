@@ -1,0 +1,23 @@
+{
+  "format": "spheres-s25-diagnostic-launch/v1",
+  "started_utc": "2026-10-01T03:26:08.2822474Z",
+  "preparation_revision": "1edabe666baf206efdcf33256f91c15b2f73e925",
+  "launcher_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+  "wrapper_pid": 47896,
+  "wrapper_start_utc": "2026-10-01T03:26:08.2761304Z",
+  "shell": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "arguments": [
+    "-NoProfile",
+    "-NonInteractive",
+    "-File",
+    "D:\\spheres-offload\\codex-next-20260928\\japan-7-launch-20261001-01\\launch-japan-diagnostic.ps1",
+    "-OutputDirectory",
+    "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01",
+    "-Run"
+  ],
+  "control_directory": "D:\\spheres-offload\\codex-next-20260928\\japan-7-launch-20261001-01",
+  "diagnostic_output": "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01",
+  "qualification": false,
+  "campaign_pass": false,
+  "s25_complete": false
+}

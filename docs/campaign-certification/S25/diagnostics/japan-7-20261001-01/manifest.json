@@ -1,0 +1,42 @@
+{
+  "format": "spheres-evidence-manifest/v1",
+  "startup_only": true,
+  "qualification": false,
+  "payloads": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29,
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+    },
+    {
+      "path": "launch.json",
+      "bytes": 1049,
+      "sha256": "228482807dc1455bbb06c329860ed43a42d94d7398c35a311e9f167e1fa10fcd"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2198,
+      "sha256": "70b1d4efba3a57d64119bbd46fb87fda4e3eaa8c07150baa9e4112a497ca8cef"
+    },
+    {
+      "path": "preflight.json",
+      "bytes": 426,
+      "sha256": "095667913068879c0366f95c68941d2c0476ca8c24c6de7ee186b631c293d5b6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3120,
+      "sha256": "a57d4d613c619da54d2a732cb1947e9fa26fe21aa1f3389b769b742db869b9e7"
+    },
+    {
+      "path": "request.json",
+      "bytes": 183,
+      "sha256": "283ffcbf56774b69abc6af7bdc1d561d7cbd9af0dbc868c331e7d85d6f3b746e"
+    },
+    {
+      "path": "startup-snapshot.json",
+      "bytes": 2115,
+      "sha256": "bce1ef34511026dbd92421060d3141747feabe237f6cabbe18d8fde56a56445e"
+    }
+  ]
+}

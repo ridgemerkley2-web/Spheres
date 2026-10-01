@@ -1,0 +1,71 @@
+{
+  "captured_utc": "2026-10-01T03:28:00.128836+00:00",
+  "status": "running_at_capture_only",
+  "terminal_receipt_present": false,
+  "qualification": false,
+  "campaign_pass": false,
+  "s25_complete": false,
+  "owned_child_event": {
+    "event": "owned_child",
+    "utc": "2026-10-01T03:26:12.4289294Z",
+    "data": {
+      "pid": 37804,
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+      "created": "2026-09-30T20:26:09.805427-07:00",
+      "parent_pid": 39860
+    }
+  },
+  "latest_resource_sample": {
+    "event": "resources",
+    "utc": "2026-10-01T03:27:58.6506101Z",
+    "data": {
+      "available_physical_bytes": 9775869952,
+      "commit_bytes": 41653051392,
+      "owned_children": [
+        {
+          "pid": 37804,
+          "private_bytes": 89956352,
+          "working_set_bytes": 109850624,
+          "cpu_seconds": 108.21875
+        }
+      ],
+      "commit_limit_bytes": 50178150400,
+      "utc": "2026-10-01T03:27:58.6425121Z",
+      "volumes": [
+        {
+          "DeviceID": "C:",
+          "FreeSpace": 62885593088,
+          "Size": 999411412992
+        },
+        {
+          "DeviceID": "D:",
+          "FreeSpace": 768109531136,
+          "Size": 1000202653696
+        }
+      ],
+      "available_commit_bytes": 8525099008
+    }
+  },
+  "native_report_at_capture": {
+    "id": "japan-7",
+    "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+    "compiled_revision": "68ba0622ec70",
+    "start_native_date": "1990-01-01",
+    "end_native_date": "1990-01-01",
+    "days_each_leg": 0,
+    "passed": false,
+    "failure": null,
+    "checks": {
+      "competition_adoptions": 2,
+      "daily_invariant_checks": 0,
+      "full_horizon_pause": null,
+      "monthly_reloads": 0,
+      "native_validation_checks": 2,
+      "sandbox_continued": false,
+      "sandbox_daily_invariant_checks": 0,
+      "terminal_reloads": 0
+    }
+  },
+  "external_control": "D:\\spheres-offload\\codex-next-20260928\\japan-7-launch-20261001-01",
+  "external_run": "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01"
+}
