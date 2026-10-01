@@ -20,7 +20,8 @@
     "roles": {
      "research": 10,
      "production_party": 0,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 753,
     "case_kinds": {
@@ -62,6 +63,8 @@
     "people_without_bound_art_at_yearly_samples": 0,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 0,
+    "fictional_party_candidates": 0,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 0,
     "fictional_executive_authorized": 0,
     "research_roles_without_holder_observation": [
@@ -76,7 +79,7 @@
    "headline": [
     "Research roles: 10 (6 with holder observations); 2 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 80 uncertain, 103 unknown and 148 unresearched.",
     "Research holder observations by acceptance: accepted 62, pending 13, unattributed_intake 3.",
-    "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
+    "No simulation party rows: no production party leadership or fictional party successor pool exists for this identity.",
     "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:sa_king, research:sa_pm): 1 of 37 yearly samples 1990-2026 identify a holder."

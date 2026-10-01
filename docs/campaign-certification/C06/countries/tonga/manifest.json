@@ -1,0 +1,3066 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "kind": "production_country_cast",
+  "status": "production_inventory_with_open_requirements",
+  "historical_cutoff": "2026-09-07",
+  "from": "1990-01-01",
+  "until_exclusive": "2036-01-01",
+  "reviewed_at": "2026-10-01",
+  "country_complete": false,
+  "scope": "Production inventory of all accepted Tonga role observations, source-reviewed personal identities, recorded appearance contexts and four authored fictional civilians. It does not claim a complete political chronology, campaign/browser validation, human approval or country signoff.",
+  "source_pins": {
+    "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+    "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+    "spheres-sim/data/tonga_institutional_leadership.json": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+    "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+    "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+    "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+    "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+    "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+    "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+    "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+    "spheres-web/data/fictional_portraits.json": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+    "spheres-web/data/future_candidates_2035.json": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+    "spheres-web/data/person_portraits.json": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+    "spheres-web/src/government_view.rs": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+    "spheres-web/src/main.rs": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+    "spheres-web/src/person_avatar_assets.rs": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+    "spheres-web/src/person_portraits.rs": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+    "spheres-web/ui/government-ui.css": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+    "spheres-web/ui/government-ui.js": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
+    "spheres-web/ui/index.html": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+    "tools/avatars/tonga_cast_coverage.py": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b"
+  },
+  "identity_and_source_reviews": [
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/civilian-source-ledger.json",
+      "sha256": "3011346a10093e99ad066e0d034ba46cf875cc347d82df38fd856a378bd23822"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/party-likeness-review.json",
+      "sha256": "d6c30ac3d808f6b5180f9ec28ed125033cc9eacc1d740c56e1f7a62699090fd0"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/historical-binding-completion-receipt.json",
+      "sha256": "a2c7ac6be520ca24334a531407211bd2291f5507b6f9b8270baee1c17978754a"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/art-registration-verification.json",
+      "sha256": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b"
+    }
+  ],
+  "coverage_inventory": {
+    "installed_observations": 50,
+    "bound_historical_people": 32,
+    "historical_appearance_people": 33,
+    "registered_historical_appearance_count": 42,
+    "registered_fictional_appearance_count": 4,
+    "additional_source_reviewed_royal_ids": [
+      "to_siaosi_manumataongo_tukuaho_1985"
+    ],
+    "fictional_civilians": 4
+  },
+  "roles": [
+    {
+      "institution_id": "to_fihrdm",
+      "role_id": "__unresearched_role__",
+      "status": "unresolved",
+      "reason": "FIHRDM/HRDM entity continuity, named leadership and officer-selection rules remain unresearched in the accepted role inventory. An empty opening party table does not waive this organization.",
+      "accepted_holder_observation_count": 0,
+      "installed_holder_reference_count": 0,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_pdp",
+      "role_id": "to_pdp_leader",
+      "status": "unresolved",
+      "reason": "Tesina Fuko’s April 2005 split/leadership claim is installed at its original precision. The PDP constitution, leadership selection, subsequent holders and organization end remain unverified.",
+      "accepted_holder_observation_count": 1,
+      "installed_holder_reference_count": 1,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_leader",
+      "status": "unresolved",
+      "reason": "The 2010 and 2014 Akilisi Pohiva observations are installed. Later leadership, selection rules and the relationship between leader and president need primary evidence; no continuous tenure or automatic successor is inferred.",
+      "accepted_holder_observation_count": 2,
+      "installed_holder_reference_count": 2,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_president",
+      "status": "unresolved",
+      "reason": "Fatai Helu is court-attested as president in August 2022. His correct political likeness, appointment/end, later succession and equivalence to party leader remain unresolved.",
+      "accepted_holder_observation_count": 1,
+      "installed_holder_reference_count": 1,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_leader",
+      "status": "unresolved",
+      "reason": "Pohiva Tu’ionetoa’s May 2021 leader observation is installed. Formation, leader selection, later succession and continuity with the incorporated society are not a completed chain.",
+      "accepted_holder_observation_count": 1,
+      "installed_holder_reference_count": 1,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_president",
+      "status": "unresolved",
+      "reason": "The April 2022 trial observation names society president Tu’ionetoa. Society-president and political-leader offices remain separate; officer rules and complete dates are unverified.",
+      "accepted_holder_observation_count": 1,
+      "installed_holder_reference_count": 1,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_secretary",
+      "status": "unresolved",
+      "reason": "The April 2022 trial observation names secretary Tevita Lavemaau. Appointment/end, officer-selection rules and later secretary succession remain unverified.",
+      "accepted_holder_observation_count": 1,
+      "installed_holder_reference_count": 1,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "status": "unresolved",
+      "reason": "All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance, boundary behavior and post-cutoff institutional succession validation remain pending; portraits do not grant royal eligibility.",
+      "accepted_holder_observation_count": 4,
+      "installed_holder_reference_count": 4,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "status": "unresolved",
+      "reason": "All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain and production appointment behavior are not signed off.",
+      "accepted_holder_observation_count": 12,
+      "installed_holder_reference_count": 12,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_cabinet",
+      "role_id": "to_ministers",
+      "status": "unresolved",
+      "reason": "This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.",
+      "accepted_holder_observation_count": 0,
+      "installed_holder_reference_count": 0,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "status": "unresolved",
+      "reason": "All 14 accepted deputy-PM observations are installed. Early coverage, acting service and unresolved start/end gaps (including late 2021) remain; no successor date fills an earlier boundary.",
+      "accepted_holder_observation_count": 14,
+      "installed_holder_reference_count": 14,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_privy_council",
+      "role_id": "to_privy_councillors",
+      "status": "unresolved",
+      "reason": "This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.",
+      "accepted_holder_observation_count": 0,
+      "installed_holder_reference_count": 0,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "status": "unresolved",
+      "reason": "All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.",
+      "accepted_holder_observation_count": 12,
+      "installed_holder_reference_count": 12,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_deputy_speaker",
+      "status": "unresolved",
+      "reason": "The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.",
+      "accepted_holder_observation_count": 1,
+      "installed_holder_reference_count": 1,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_peoples_representatives",
+      "status": "unresolved",
+      "reason": "This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description; future election permissions still need production validation.",
+      "accepted_holder_observation_count": 0,
+      "installed_holder_reference_count": 0,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_nobles_representatives",
+      "status": "unresolved",
+      "reason": "This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.",
+      "accepted_holder_observation_count": 0,
+      "installed_holder_reference_count": 0,
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+    }
+  ],
+  "historical_bindings": [
+    {
+      "observation_key": "to_pdp/to_pdp_leader/14302f87f696b7679acfd6a8e91334cce60184ac6898da13e2b8a846bcdb9579",
+      "binding_id": "to_cast_pdp_pdp_leader_14302f87f696b767",
+      "institution_id": "to_pdp",
+      "role_id": "to_pdp_leader",
+      "holder": "to_pdp_split_fuko",
+      "person_id": "to_tesina_fuko",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2005-04-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_dpfi/to_dpfi_leader/d93aa1d1fa06b58dfd13401bc8c2072519e12faef2e9e0f27661bbc5830300cb",
+      "binding_id": "to_cast_dpfi_dpfi_leader_d93aa1d1fa06b58d",
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_leader",
+      "holder": "to_dpfi_pohiva_2010",
+      "person_id": "to_samuela_akilisi_pohiva",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2010-11-25",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_dpfi/to_dpfi_leader/e2a92defb24e4453296fb38e6824c7389bd0604938bf57f66048b571427a2ed1",
+      "binding_id": "to_cast_dpfi_dpfi_leader_e2a92defb24e4453",
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_leader",
+      "holder": {
+        "name": "'Akilisi Pohiva",
+        "attested_on": "2014-11-27",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_ipu_2014"
+        ],
+        "claim_ids": [
+          "to_ipu_2014_dpfi_pohiva_leader"
+        ],
+        "note": "IPU describes DPFI as led by Pohiva at the 27 November 2014 election and calls him the DPFI leader during the campaign (TO-DPFI-05).",
+        "uncertainty": "IPU-only: an interparliamentary summary, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a start, end or continuous term; it is not joined to the 2010 observation."
+      },
+      "person_id": "to_samuela_akilisi_pohiva",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2014-11-27",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_dpfi/to_dpfi_president/c922784979330367263dc6719c7a5961c0aafb2e0f2911acc7a47ac198fda338",
+      "binding_id": "to_cast_dpfi_dpfi_president_c922784979330367",
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_president",
+      "holder": {
+        "name": "Fatai Helu",
+        "attested_on": "2022-08-29",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_sc_helu_piukala_v_ec_20220829"
+        ],
+        "claim_ids": [
+          "to_ptoa_president_helu_20220829"
+        ],
+        "note": "Recited in the present tense ('is the President of the party') in the background of the 29 August 2022 leave ruling, CV 55/2022 (TO-DPFI-07).",
+        "uncertainty": "A judicial background recital, probably drawn from the applicants' own filings, not a court finding; it carries the weight of party self-description relayed by the court. No selection date, term, constitution or successor is given. Kept separate from the Party leader role (to_dpfi_leader) because no constitution shows whether they are one office."
+      },
+      "person_id": "to_fatai_helu",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2022-08-29",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_peoples_party/to_peoples_party_leader/a92b3e5e88c0c012cb42e386daa5d02b502f6f727fe796071a979a0009fe2916",
+      "binding_id": "to_cast_peoples_party_peoples_party_leader_a92b3e5e88c0c012",
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_leader",
+      "holder": {
+        "name": "Pohiva Tu'i'onetoa",
+        "attested_on": "2021-05-28",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_idcpc_dialogue_20210528"
+        ],
+        "claim_ids": [
+          "to_peoples_party_leader_20210528"
+        ],
+        "uncertainty": "Event-host title observation only; party appointment instrument and full leadership interval are unknown."
+      },
+      "person_id": "to_pohiva_tuionetoa",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2021-05-28",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_peoples_party/to_peoples_party_society_president/aa2ddc76be06ff808faba1fc5f733d28e4521c25f41766e9203f0de552472c5e",
+      "binding_id": "to_cast_peoples_party_peoples_party_society_president_aa2ddc76be06ff80",
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_president",
+      "holder": {
+        "name": "Pohiva Tu'i'onetoa",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "2022-04-19",
+          "through": "2022-04-21"
+        },
+        "sources": [
+          "to_sc_kiu_v_tuionetoa_20220429"
+        ],
+        "claim_ids": [
+          "to_peoples_party_incorporated_society_2022"
+        ],
+        "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+        "uncertainty": "Not reconciled with the 'Leader' title. Whether Leader and society President are one office is unresolved."
+      },
+      "person_id": "to_pohiva_tuionetoa",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2022-04-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_peoples_party/to_peoples_party_society_secretary/77946462f443eb96943a69889cf1e2141f55ca096edfdd932c643948cc84f637",
+      "binding_id": "to_cast_peoples_party_peoples_party_society_secretary_77946462f443eb96",
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_secretary",
+      "holder": {
+        "name": "Tevita Lavemaau",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "2022-04-19",
+          "through": "2022-04-21"
+        },
+        "sources": [
+          "to_sc_kiu_v_tuionetoa_20220429"
+        ],
+        "claim_ids": [
+          "to_peoples_party_incorporated_society_2022"
+        ],
+        "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+        "uncertainty": "A society officer observation, not a Cabinet office or party leadership term."
+      },
+      "person_id": "to_tevita_lavemaau",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2022-04-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_crown/to_king/d38e36d0c9b36af7ab8cefea1e001a4ede9fe091c73e5f8afdc97b1ca5707f47",
+      "binding_id": "to_cast_crown_king_d38e36d0c9b36af7",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "holder": "to_tupou_vi_2025",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_crown/to_king/141b845110e8e61055a5db925bfbc87259294655eac05746fa93fe446d3e883a",
+      "binding_id": "to_cast_crown_king_141b845110e8e610",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "holder": {
+        "name": "Taufa'ahau Tupou IV",
+        "attested_on": null,
+        "from": null,
+        "until": "2006-09-11",
+        "sources": [
+          "to_act_income_tax_amend_1990",
+          "to_act_constitution_amend_1990",
+          "to_pmo_20060911_death_notice",
+          "to_pmo_20060911_proclamation"
+        ],
+        "claim_ids": [
+          "to_crown_assent_tupou_iv_19900712",
+          "to_crown_assent_tupou_iv_19900808",
+          "to_crown_tupou_iv_death_20060911",
+          "to_crown_gtv_devolution_proclamation_20060911"
+        ],
+        "note": "King when the period opens: dated royal assents of 12 July and 8 August 1990 (TO-CROWN-01). His reign ended with his death in Auckland at 00:34 on 11 September 2006, Tongan time (23:34 on 10 September, New Zealand time), as Gazette No. 20 records; Gazette No. 19 states that the Crown devolved by his decease (TO-CROWN-03, TO-CROWN-04).",
+        "uncertainty": "The start of the reign (1965) is outside the period and is not structured. The end is the Tongan calendar date of the death, to which the proclamation's devolution wording ties the transfer of the Crown; it is not taken from George Tupou V's proclamation or coronation. The State Funeral, burial and mourning are separate claims."
+      },
+      "person_id": "taufaahau_tupou_iv",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+      },
+      "reference_only": true,
+      "appearance_date": null,
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_crown/to_king/688fffc508eff322793186469dab42c4417f19976ba6673560995a4fdfae4abb",
+      "binding_id": "to_cast_crown_king_688fffc508eff322",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "holder": {
+        "name": "George Tupou V",
+        "attested_on": null,
+        "from": "2006-09-11",
+        "until": "2012-03-18",
+        "sources": [
+          "to_pmo_20060911_death_notice",
+          "to_pmo_20060911_proclamation",
+          "to_pmo_20060911_proclamation_to",
+          "to_gazette_ext_8_2012",
+          "to_gazette_ext_9_2012"
+        ],
+        "claim_ids": [
+          "to_crown_tupou_iv_death_20060911",
+          "to_crown_gtv_devolution_proclamation_20060911",
+          "to_crown_gtv_devolution_proclamation_to_20060911",
+          "to_crown_gtv_death_20120318",
+          "to_crown_tupou_vi_devolution_proclamation_20120319"
+        ],
+        "note": "Formerly Crown Prince Tupouto'a; Siaosi Tupou V in the Tongan texts. Accession by devolution of the Crown on the decease of Taufa'ahau Tupou IV at 00:34 on 11 September 2006, Tongan time (TO-CROWN-04); proclaimed King by Gazette No. 19 on the same Tongan day, as a separate event. Traditional installation (taumafa kava) on 30 July 2008 and coronation on 1 August 2008 (TO-CROWN-05). Died in Hong Kong at 20:58 on 18 March 2012, Tonga time (TO-CROWN-06).",
+        "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation, the traditional installation, the coronation or the coronation oath (which no source dates). The end is his death as Gazette Extraordinary No. 8 records it; Gazette Extraordinary No. 9 states that the Crown devolved by his decease. No accession time is stored."
+      },
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+      },
+      "reference_only": true,
+      "appearance_date": "2006-09-11",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_crown/to_king/b8f8782fa54a5ac99bb647259f3a40f5c25d9363ff33296e4c4362b4e5892691",
+      "binding_id": "to_cast_crown_king_b8f8782fa54a5ac9",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "holder": {
+        "name": "Tupou VI",
+        "attested_on": null,
+        "from": "2012-03-18",
+        "until": null,
+        "sources": [
+          "to_gazette_ext_8_2012",
+          "to_gazette_ext_9_2012"
+        ],
+        "claim_ids": [
+          "to_crown_gtv_death_20120318",
+          "to_crown_tupou_vi_devolution_proclamation_20120319"
+        ],
+        "note": "Formerly Crown Prince Tupouto'a Lavaka, the former Prince 'Ulukalala Lavaka Ata, on whom the Crown Prince title was vested in September 2006. Accession by devolution of the Crown on the decease of George Tupou V at 20:58 on 18 March 2012, Tonga time; proclaimed King on 19 March 2012 as a separate event (TO-CROWN-07); crowned on 4 July 2015 (TO-CROWN-08).",
+        "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation or the coronation. No end is inferred: no source here records one before the 7 September 2026 cutoff, and the latest attestation in this packet is 18 December 2025 (to_tupou_vi_2025)."
+      },
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+      },
+      "reference_only": true,
+      "appearance_date": "2012-03-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/36b35a9f29f89fe55beb271bc1af5c8021648781d522cbd5424f59917a98298f",
+      "binding_id": "to_cast_prime_minister_pm_36b35a9f29f89fe5",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": "to_fakafanua_appointment",
+      "person_id": "to_fatafehi_fakafanua",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/a2e373ad4345a7dee545ec17367011ca51bdd5e39d9f02b499c23e59dffeb5b6",
+      "binding_id": "to_cast_prime_minister_pm_a2e373ad4345a7de",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": "to_fakafanua_august",
+      "person_id": "to_fatafehi_fakafanua",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2026-08-03",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/94b4169750f3b44c4c5c162c2f06862383cf43e0ebb8e25b626de3bfc52ce925",
+      "binding_id": "to_cast_prime_minister_pm_94b4169750f3b44c",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Fatafehi Tu'ipelehake",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "1990-01-01",
+          "through": "1990-12-31"
+        },
+        "sources": [
+          "to_pmo_former_pms_2026",
+          "to_pmo_former_pms_2015",
+          "to_mic_pm_list_2011",
+          "to_ipu_1990"
+        ],
+        "claim_ids": [
+          "to_pmo_former_pms_2026_tuipelehake",
+          "to_pmo_former_pms_2015_list",
+          "to_mic_pm_list_2011_list",
+          "to_ipu_1990_tuipelehake"
+        ],
+        "note": "Holder when the period opens (TO-PM90-01), at year precision. All three government lists give his premiership as 1965-1991; IPU's summary of the February 1990 election names him as Prime Minister in a present-tense sentence written in March 1990 or later (reference date unknown).",
+        "uncertainty": "Year precision only. attested_period is the calendar year 1990, which lies inside the 1965-1991 range printed by every cited list if that range is read as one continuous tenure; it is not an observation on any particular day, and no 1990 gazette, instrument or contemporaneous Tongan record naming him was found. No start or end is stated; the retirement month (August 1991) is IPU-only (to_ipu_1993_retirement_succession_199108) and is not used."
+      },
+      "person_id": "fatafehi_tuipelehake",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "1990-01-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/d9754707e5d43568cc44ab20498cb9c73ad3d255f8b79760a72fbd75c0688681",
+      "binding_id": "to_cast_prime_minister_pm_d9754707e5d43568",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Baron Vaea",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "1992-01-01",
+          "through": "1998-12-31"
+        },
+        "sources": [
+          "to_pmo_former_pms_2026",
+          "to_pmo_former_pms_2015",
+          "to_mic_pm_list_2011",
+          "to_pmo_vaea_tribute_20090613",
+          "to_ipu_1993"
+        ],
+        "claim_ids": [
+          "to_pmo_former_pms_2026_vaea_lavaka",
+          "to_pmo_former_pms_2015_list",
+          "to_mic_pm_list_2011_list",
+          "to_pmo_vaea_tribute_appointment_undated",
+          "to_ipu_1993_retirement_succession_199108"
+        ],
+        "note": "Appointed Prime Minister by the Sovereign (PMO tribute, undated). The lists give 1991-2000 (current PMO list and 2011 MIC list) or 1991-1999 (2015 PMO list).",
+        "uncertainty": "Year precision only. attested_period covers the calendar years 1992-1998, which lie inside every cited list's range read as one continuous tenure; it is not a start, an end or an observation on any particular day. The appointment day is unstated (IPU gives August 1991 for the succession, month only), and the end year conflicts between the PMO lists (TO-PM90-02, TO-PM90-03)."
+      },
+      "person_id": "to_baron_vaea_pm_1992",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "1992-01-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/5658a2d7bb0abdaaaf69823ed1200e005a0e1425dd1d06800331f72fff5276df",
+      "binding_id": "to_cast_prime_minister_pm_5658a2d7bb0abdaa",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Prince 'Ulukalala Lavaka Ata",
+        "attested_on": null,
+        "from": "2000-01-03",
+        "until": "2006-02-11",
+        "sources": [
+          "to_pmo_office_pm_2002",
+          "to_pmo_timeline_2000_en",
+          "to_pmo_20060213_resignation",
+          "to_pmo_20060213_resignation_to"
+        ],
+        "claim_ids": [
+          "to_pmo_lavaka_ata_commencement_20000103",
+          "to_pmo_timeline_lavaka_ata_appointed_200001",
+          "to_lavaka_ata_resignation_accepted_20060211",
+          "to_lavaka_ata_resignation_accepted_20060211_to"
+        ],
+        "note": "The start is the PMO's stated 'Commencement Date'. The end is the Prince Regent's acceptance on 11 February 2006 of his resignation (the Tongan release: retirement) from the premiership and all his portfolios.",
+        "uncertainty": "The appointment instrument was not seen, and the date of his resignation letter is not given; 11 February 2006 is the stated date of acceptance. The end of Baron Vaea's premiership is not inferred from this start."
+      },
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+      },
+      "reference_only": true,
+      "appearance_date": "2000-01-03",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/f4ce39609313d9252f089d5503465efd7cf438445d4cb2ed74ebfed46f87aa6c",
+      "binding_id": "to_cast_prime_minister_pm_f4ce39609313d925",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Feleti Sevele",
+        "attested_on": "2006-04-07",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20060410_marist_remarks",
+          "to_pmo_20060413_psc"
+        ],
+        "claim_ids": [
+          "to_sevele_pm_20060407",
+          "to_sevele_acting_then_pm_20060413"
+        ],
+        "note": "Substantive Prime Minister, event-dated to 7 April 2006, the earliest contemporaneous PMO item found that styles him Prime Minister without 'Acting'; on 13 April the PMO refers to his tenure as 'Acting Prime Minister, and now Prime Minister'. His acting appointment of 11 February 2006 (to_sevele_acting_pm_appointed_20060211) is a separate claim on the role, not a holder.",
+        "uncertainty": "The substantive appointment day is not established: contemporaneous PMO usage brackets it between 23 March (styled Acting) and 7 April 2006, and the 30 March 2006 date is given only by a retrospective timeline (to_sevele_appointed_20060330). No instrument was seen. His leave-taking audience on 22 December 2010 (to_sevele_leave_audience_20101222) is not used as an end date."
+      },
+      "person_id": "to_feleti_sevele",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2006-04-07",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/e95437f03eac013ab97e5a84882779a2b7216a5e44a26da474a189aff9a49d8f",
+      "binding_id": "to_cast_prime_minister_pm_e95437f03eac013a",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Lord Tu'ivakano",
+        "attested_on": "2010-12-22",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_palace_20101222_appointment"
+        ],
+        "claim_ids": [
+          "to_tuivakano_royal_appointment_20101222"
+        ],
+        "note": "Received in audience at noon on 22 December 2010 at the Villa for his appointment to the office of Prime Minister ('The Kissing of Hands'), and received his Letter of Appointment. The Assembly's selection and its presentation to the King (to_tuivakano_assembly_result_presented_20101221) are separate claims.",
+        "uncertainty": "An appointment event with no stated effective date. The end is not stated: his description as 'former Prime Minister' on 29 December 2014 (to_pohiva_declared_pm_elect_pmo_20141229) is not used as an end."
+      },
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2010-12-22",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/cd4c1faf74a070af0701cc752d6a8b1f44e971318b464a34aec0de15a3a63fea",
+      "binding_id": "to_cast_prime_minister_pm_cd4c1faf74a070af",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Samuela 'Akilisi Pohiva",
+        "attested_on": "2014-12-30",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20141230_appointment"
+        ],
+        "claim_ids": [
+          "to_pohiva_royal_appointment_20141230"
+        ],
+        "note": "Received in audience at 10:00 on 30 December 2014 at the Royal Palace for his appointment to the office of Prime Minister. The Assembly's selection on 29 December 2014 (to_pohiva_assembly_selection_20141229) is a separate claim.",
+        "uncertainty": "An appointment event with no stated effective date. His status after the 24 August 2017 dissolution is unresolved (TO-PM90-07): the PMO's later wording that he 'served as the 16th Prime Minister from 2015-2017' (to_pohiva_royal_appointment_20180102) is not used as an end, and no end of this appointment is inferred from his re-appointment effective 2 January 2018."
+      },
+      "person_id": "to_samuela_akilisi_pohiva",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2014-12-30",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/6f439ecd1d2775469bc11304b47684e62a3b7eff385e7332d6f0e4f8dd98ee6e",
+      "binding_id": "to_cast_prime_minister_pm_6f439ecd1d277546",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Samuela 'Akilisi Pohiva",
+        "attested_on": null,
+        "from": "2018-01-02",
+        "until": null,
+        "sources": [
+          "to_pmo_20180104_appointment",
+          "to_pmo_20180122_cabinet"
+        ],
+        "claim_ids": [
+          "to_pohiva_royal_appointment_20180102",
+          "to_pohiva_appointment_repeated_20180122"
+        ],
+        "note": "Appointed under Clause 50A with effect from 2 January 2018, following the Assembly's re-selection on 18 December 2017 (to_pohiva_assembly_reselection_20171218). He took his oaths in the Assembly on 18 January 2018 (to_pohiva_oath_assembly_20180118). Both are separate claims.",
+        "uncertainty": "until is null. His death in September 2019 is recorded in claims (Gazette Extraordinary No. 28 of 16 September 2019; the PMO programme of 14 September places it on or before the 12th, Auckland date), but no record retrieved states the day, so no end is set (TO-PM90-08)."
+      },
+      "person_id": "to_samuela_akilisi_pohiva",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2018-01-02",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/d1d4f2b24b3def2129bb7e48b8ab811ea8b37c6e20c23883305ab20e4150e5f0",
+      "binding_id": "to_cast_prime_minister_pm_d1d4f2b24b3def21",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Pohiva Tu'i'onetoa",
+        "attested_on": "2019-10-08",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pm_appointment_20191008"
+        ],
+        "claim_ids": [
+          "to_tuionetoa_royal_appointment_20191008"
+        ],
+        "uncertainty": "Royal appointment event only. The earlier Assembly recommendation is retained separately and is not a holder observation."
+      },
+      "person_id": "to_pohiva_tuionetoa",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2019-10-08",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/d3fb996e20a72101c5806bf7af9ddbb596a253300fe1556262164b266ef633aa",
+      "binding_id": "to_cast_prime_minister_pm_d3fb996e20a72101",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "Siaosi 'Ofakivahafolau Sovaleni",
+        "attested_on": null,
+        "from": "2021-12-27",
+        "until": "2024-12-09",
+        "sources": [
+          "to_pmo_sovaleni_appointment_20211228",
+          "to_pmo_sovaleni_appointment_to_20211228",
+          "to_assembly_minutes_48_20241209"
+        ],
+        "claim_ids": [
+          "to_sovaleni_royal_appointment_en_20211227",
+          "to_sovaleni_royal_appointment_to_20211227",
+          "to_sovaleni_resignation_statement_20241209",
+          "to_palace_acceptance_letter_20241209"
+        ],
+        "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses. His resignation of 9 December 2024 ends the observation (TO-TR24-01); the 2024 Assembly records print 'Siaosi 'Ofa ki Vahafolau Sovaleni' and the Palace letter 'Hon. Hu'akavameiliku'.",
+        "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. The end is the resignation of 9 December 2024, stated in the House as effective immediately (1150-1200 transcript block) and accepted by the King the same day, during the recess before the Palace Office letter was read at 1400-1405; the date is exact to the day and the clock time of acceptance is not recorded. The end is attached to this holder as the resignation of the sitting Prime Minister, named Hu'akavameiliku in both the 2021 Tongan release and the Palace letter, not by matching spellings. No term length is inferred."
+      },
+      "person_id": "to_siaosi_ofakivahafolau_sovaleni",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2021-12-27",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_prime_minister/to_pm/302e0a15ffb065f1d56ca06bfcfc2f007c1a091bc08b233d354d0dc211075c69",
+      "binding_id": "to_cast_prime_minister_pm_302e0a15ffb065f1",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "holder": {
+        "name": "'Aisake Valu Eke",
+        "attested_on": "2025-01-22",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_eke_appointment_20250122"
+        ],
+        "claim_ids": [
+          "to_eke_royal_appointment_20250122"
+        ],
+        "note": "Royal appointment under Clause 50A(1) at the Royal Palace on Wednesday 22 January 2025 (TO-TR24-04), read from Wayback captures of the removed PMO release; the live PMO release of 24 January 2025 calls him Prime Minister.",
+        "uncertainty": "An appointment event, recorded like the 2019 Tu'i'onetoa observation: the release states no separate 'with effect from' date, and no warrant signature, presentation or instrument number is recorded (TO-TR24-05). The 24 December 2024 Assembly selection, the 28 January 2025 Cabinet list and the 31 January 2025 oath are separate claims, not the start of office. No end or term is inferred; Lord Fakafanua's 18 December 2025 appointment does not supply one."
+      },
+      "person_id": "to_aisake_valu_eke",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-01-22",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/d90938e612678fb2238bd555d9777dcfcf401770fc990f6e43b91abe8da39221",
+      "binding_id": "to_cast_cabinet_deputy_pm_d90938e612678fb2",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": "to_cabinet_appointment",
+      "person_id": "to_viliami_uasike_latu",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-12-31",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/2ecdbb68d9ec76a5ca441957e1b347086c83860b0723cec7a90b450e23694387",
+      "binding_id": "to_cast_cabinet_deputy_pm_2ecdbb68d9ec76a5",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Langi Kavaliku",
+        "attested_on": "2000-11-06",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_news_in_brief_2001"
+        ],
+        "claim_ids": [
+          "to_dpm_kavaliku_listed_20001106"
+        ],
+        "note": "Styled Deputy Prime Minister in the PMO's index row dated 6 November 2000 for the release announcing his retirement (TO-DPM-02). The release prints 'Dr. S. Langi Kavaliku'.",
+        "uncertainty": "The only contemporaneous dated record of him in office found; the PMO's retrospective 'appointed the Deputy Prime Minister in 1991' is a separate claim and supplies no start. The retirement 'due ... commencing on the 11th November 2000' is an announcement, not a stated end, so no until is set; nothing is inferred from Tevita Poasi Tupou's appointment of 24 January 2001."
+      },
+      "person_id": "to_langi_kavaliku",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2000-11-06",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/1b989205002632b291dadfa68ee1f97e6857e1d09754c42654657b642b2a6598",
+      "binding_id": "to_cast_cabinet_deputy_pm_1b989205002632b2",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Tevita Poasi Tupou",
+        "attested_on": null,
+        "from": "2001-01-24",
+        "until": "2001-09-28",
+        "sources": [
+          "to_pmo_20010124_pm_address",
+          "to_pmo_20010928_tupou_resignation_to"
+        ],
+        "claim_ids": [
+          "to_dpm_tupou_appointment_effective_20010124",
+          "to_dpm_tupou_resignation_accepted_20010928"
+        ],
+        "note": "Deputy Prime Minister, Attorney General and Minister of Justice from the royal consent in Privy Council 'with effect from 24th January, 2001' until his resignation at 4 p.m. on 28 September 2001, accepted that day by the Princess Regent (TO-DPM-03). The appointment list prints 'Hon. Tevita P. Tupou'.",
+        "uncertainty": "Both boundaries are days the sources state: the effective day of the consent and the day the resignation was made and accepted. The Tongan release's '9 months' and 'January 2001' are retrospective claims, not boundaries. Clive Edwards's acting deputy premiership from the same day is a claim only."
+      },
+      "person_id": "to_tevita_poasi_tupou",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2001-01-24",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/a406a0ff4613b2075b56de9daa62cd56549a07e630ec4732089c16d8ccd703cb",
+      "binding_id": "to_cast_cabinet_deputy_pm_a406a0ff4613b207",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "James Cecil Cocker",
+        "attested_on": "2002-05-13",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20020514_acting_dpm_paunga",
+          "to_pmo_20020903_wssd_statement",
+          "to_pmo_20040909_confirmation_of_appointments",
+          "to_pmo_20060310_ub40_concert"
+        ],
+        "claim_ids": [
+          "to_dpm_cocker_abroad_20020513",
+          "to_dpm_cocker_wssd_statement_20020903",
+          "to_dpm_cocker_appointment_confirmed_20040824",
+          "to_dpm_cocker_styled_20060308"
+        ],
+        "note": "Styled Deputy Prime Minister, abroad on official duties, when Dr Paunga's acting appointment took effect on 13 May 2002; attested again on 3 September 2002, in the reshuffle confirmed with effect from 24 August 2004, and on 8 March 2006 (TO-DPM-04). The 2002 statement prints 'Hon. Cecil Cocker'.",
+        "uncertainty": "The day of his appointment as Deputy Prime Minister (after Tupou's resignation of 28 September 2001 and the acting service of 2001-2002) was not found, and the 2004 confirmation of a reshuffle is not a start. No end is stated; the retrospective 'In May 2006' appointment of his successor is not used as an end and none is inferred."
+      },
+      "person_id": "to_james_cecil_cocker",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2002-05-13",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/ac50b1d1f05130808ecabbf8a1af4d74794ccb99d2002736df67a6556abf2ce5",
+      "binding_id": "to_cast_cabinet_deputy_pm_ac50b1d1f0513080",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Viliami Ta'u Tangi",
+        "attested_on": "2006-08-08",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20060809_common_sense",
+          "to_pmo_20090114_hauofa_funeral",
+          "to_pmo_20100624_throne_reply",
+          "to_mic_20101230_lord_tangi"
+        ],
+        "claim_ids": [
+          "to_dpm_tangi_styled_20060808",
+          "to_dpm_tangi_represents_government_20090114",
+          "to_dpm_tangi_throne_reply_20100624",
+          "to_dpm_tangi_styled_life_peer_20101230"
+        ],
+        "note": "Styled Deputy Prime Minister from 8 August 2006 to 30 December 2010, when he was made a life peer as Lord Tangi of Vaonukonuka (TO-DPM-05). Printed 'Dr. Viliami Tangi', 'Dr the Hon Viliami Ta'u Tangi' and 'Hon. Dr. Viliami Tau Tangi'.",
+        "uncertainty": "The appointment is known only as 'In May 2006' (retrospective, month only), so the holder is event-dated to the first dated styling. The PMO release of 9 June 2006 names the office but not the holder and is not cited. No end is stated; the change of government of December 2010 and the Cabinet that commenced on 4 January 2011 supply none. His acting premierships are claims on to_pm."
+      },
+      "person_id": "to_viliami_tau_tangi",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2006-08-08",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/40c05460c38d71cc2b9c6952d9d2d1aa5be1c18e45a3ca571f9ebf9f847078a2",
+      "binding_id": "to_cast_cabinet_deputy_pm_40c05460c38d71cc",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Samiu Kuita Vaipulu",
+        "attested_on": null,
+        "from": "2011-01-04",
+        "until": null,
+        "sources": [
+          "to_mic_20110104_cabinet_named",
+          "to_mic_20110103_vaipulu_appointed",
+          "to_mic_20120213_foi_speech",
+          "to_mic_20140909_toloa"
+        ],
+        "claim_ids": [
+          "to_dpm_vaipulu_cabinet_commences_20110104",
+          "to_dpm_vaipulu_appointment_reported_20110103",
+          "to_dpm_vaipulu_styled_20120213",
+          "to_dpm_vaipulu_styled_20140905"
+        ],
+        "note": "Deputy Prime Minister, with Justice, Transport and Works, in the Cabinet that commenced on Tuesday 4 January 2011; attested to 5 September 2014 (TO-DPM-06). A separate observation from the existing 2024 holder 'Samiu Vaipulu'.",
+        "uncertainty": "The start is the stated day the Cabinet ministers commenced; the report of 3 January 2011 is not a start. No end is stated: CLAUDE-C01-08's styling of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited, and no end is inferred from the Cabinet effective 31 December 2014. His acting premierships are claims on to_pm."
+      },
+      "person_id": "to_samiu_kuita_vaipulu",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2011-01-04",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/36de4dc6dfa15a45bbba1c7b3fca4150d9419553d29189ab93d65626dc468ef8",
+      "binding_id": "to_cast_cabinet_deputy_pm_36de4dc6dfa15a45",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Siaosi Sovaleni",
+        "attested_on": "2014-12-31",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20141231_new_cabinet",
+          "to_mic_20150212_sovaleni_profile",
+          "to_mic_20160907_renewable",
+          "to_mic_20170831_macbio"
+        ],
+        "claim_ids": [
+          "to_dpm_sovaleni_cabinet_list_20141231",
+          "to_dpm_sovaleni_profile_20150212",
+          "to_dpm_sovaleni_styled_20160904",
+          "to_dpm_sovaleni_styled_20170830"
+        ],
+        "note": "Listed as Deputy Prime Minister in the Pohiva Cabinet announced on 31 December 2014; attested to 30 August 2017 (TO-DPM-07). A separate observation from the to_pm holder \"Siaosi 'Ofakivahafolau Sovaleni\" of 2021-2024.",
+        "uncertainty": "No from: the release states only the Prime Minister-elect's recommendation and that the appointments 'will be effective as of 31st December, 2014' (to_dpm_sovaleni_appointment_recommended_20141231), and IPU's Cabinet date of 19 January 2015 conflicts. No until: the PMO states only that the Prime Minister recommended the revocation 'effective from 1st September, 2017' (to_dpm_sovaleni_revocation_recommended_20170901), and the royal endorsement it reports covers the new appointments; Lord Ma'afu's start is not used as an end."
+      },
+      "person_id": "to_siaosi_ofakivahafolau_sovaleni",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2014-12-31",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/d7f1274bbab9da6a994fc8f85174241e0d2d5ae7d68fec302f1d6468e08254e3",
+      "binding_id": "to_cast_cabinet_deputy_pm_d7f1274bbab9da6a",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Lord Ma'afu",
+        "attested_on": null,
+        "from": "2017-09-01",
+        "until": null,
+        "sources": [
+          "to_pmo_20170906_ministerial_appointments"
+        ],
+        "claim_ids": [
+          "to_dpm_maafu_royal_endorsement_effective_20170901",
+          "to_dpm_maafu_endorsement_conveyed_20170905"
+        ],
+        "note": "Appointed Deputy Prime Minister by the King's endorsement under the Royal Sign Manual 'with effect from 1st September, 2017', conveyed to the PMO on 5 September 2017 (TO-DPM-08).",
+        "uncertainty": "No later attestation of this deputy premiership and no end was found; the Cabinet effective 5 January 2018, which names him Minister of Lands only, supplies none. His acting premiership from 1 September 2017 is a claim on to_pm. A separate observation from his 2020-2021 deputy premiership."
+      },
+      "person_id": "to_lord_maafu_dpm_2017",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2017-09-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/0e6ff152dc172166083513f408d8a1a37d3dc773d28b0ee1f36b88dfb3fbc895",
+      "binding_id": "to_cast_cabinet_deputy_pm_0e6ff152dc172166",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Semisi Kioa Lafu Sika",
+        "attested_on": null,
+        "from": "2018-01-05",
+        "until": null,
+        "sources": [
+          "to_mic_20180122_cabinet_to",
+          "to_mic_20180615_dpm_gita",
+          "to_la_news_20181108_auditor"
+        ],
+        "claim_ids": [
+          "to_dpm_sika_appointment_effective_20180105",
+          "to_dpm_sika_styled_20180615",
+          "to_dpm_sika_styled_20181108"
+        ],
+        "note": "Appointed Deputy Prime Minister and Minister for Infrastructure and Tourism with effect from 5 January 2018; attested to 8 November 2018 (TO-DPM-08).",
+        "uncertainty": "No end is stated: the Assembly's retrospective 'Sanuali 2018 - Sepitema 2019' gives months only, and no end is inferred from Fa'otusia's appointment of 9 October 2019. CLAUDE-C01-08's records of his acting premiership in September 2019 are claims on to_pm and are not cited."
+      },
+      "person_id": "to_semisi_kioa_lafu_sika",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2018-01-05",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/96951a7034e97071bdd088d0e6b9db8a6844c2676ae531cc02c579dc6dcfcd99",
+      "binding_id": "to_cast_cabinet_deputy_pm_96951a7034e97071",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Sione Vuna Fa'otusia",
+        "attested_on": null,
+        "from": "2019-10-09",
+        "until": null,
+        "sources": [
+          "to_pmo_20191010_new_cabinet",
+          "to_pmo_20200416_dpm_clarification"
+        ],
+        "claim_ids": [
+          "to_dpm_faotusia_appointment_effective_20191009",
+          "to_dpm_faotusia_styled_20200416"
+        ],
+        "note": "Appointed Deputy Prime Minister and Minister for Justice and Prison with effect from 9 October 2019; styled Deputy Prime Minister on 16 April 2020 (TO-DPM-09). Sworn in the Assembly on 28 October 2019 as 'Hon. Vuna Fa'otusia'.",
+        "uncertainty": "The oath is a separate claim and not a start. His resignation is known only as 'in 2020' (Assembly, retrospective) and 'Okatopa 2019 - 2020' (Assembly list), so no until is set."
+      },
+      "person_id": "to_sione_vuna_faotusia",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2019-10-09",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/778b56de3f6111e23ba29577f31f76ec6ff6e9e0c4317408cf3bfb870ea22b41",
+      "binding_id": "to_cast_cabinet_deputy_pm_778b56de3f6111e2",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Lord Ma'afu",
+        "attested_on": "2021-04-21",
+        "from": null,
+        "until": "2021-12-12",
+        "sources": [
+          "to_la_member_maafu_2021",
+          "to_pmo_20211213_maafu_death"
+        ],
+        "claim_ids": [
+          "to_dpm_maafu_member_page_20210421",
+          "to_dpm_maafu_styled_at_death_20211213",
+          "to_dpm_maafu_death_20211212"
+        ],
+        "note": "Deputy Prime Minister on the Assembly's member page as captured on 21 April 2021 and styled so by the PMO at his death in Auckland in the early hours of Sunday 12 December 2021 (TO-DPM-10).",
+        "uncertainty": "The start is known only as 'mei Tisema 2020' (Assembly list, month only), so the holder is event-dated to the capture; until is the stated day of his death in office. Who, if anyone, held or acted in the office from 12 to 27 December 2021 is unresolved, and Poasi Mataele Tei's start on 28 December 2021 is unchanged."
+      },
+      "person_id": "to_lord_maafu_dpm_2017",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2021-04-21",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/9f6a087f1208c9c8bd26f450b7302d859552afb3232cec0c88db1c37750ef24f",
+      "binding_id": "to_cast_cabinet_deputy_pm_9f6a087f1208c9c8",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Poasi Mataele Tei",
+        "attested_on": null,
+        "from": "2021-12-28",
+        "until": null,
+        "sources": [
+          "to_pmo_cabinet_20211229"
+        ],
+        "claim_ids": [
+          "to_sovaleni_cabinet_effective_20211228"
+        ],
+        "note": "Appointed Deputy Prime Minister, with MEIDECC and Public Enterprises, with effect from 28 December 2021 (TO-TR21-06).",
+        "uncertainty": "The start is the stated effective date of the ministerial appointments. The letter of appointment was presented and the oath taken on 29 December, recorded as a separate claim. No end date or term is inferred."
+      },
+      "person_id": "to_poasi_mataele_tei",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2021-12-28",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/437e490fd9398f1e57415688c960f1b39f85f63221bd9f2fad151ef8bea0baea",
+      "binding_id": "to_cast_cabinet_deputy_pm_437e490fd9398f1e",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Samiu Vaipulu",
+        "attested_on": "2024-12-09",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_assembly_minutes_48_20241209"
+        ],
+        "claim_ids": [
+          "to_deputy_pm_vaipulu_listed_20241209"
+        ],
+        "note": "Printed as 'Hon. Samiu Vaipulu', Deputy Prime Minister and Minister of Justice and Prisons, in the members' list of the minutes of 9 December 2024 (TO-TR24-02). The Assembly's 24 December 2024 roll and the PMO's 6 January 2025 announcement print 'Samiu Kuita Vaipulu'.",
+        "uncertainty": "A dated membership-list observation only; his appointment date and the end of his deputy premiership are unrecorded, and Poasi Mataele Tei's 2021 observation gains no end from it. By 31 January 2025 he is listed as the People's Representative for Vava'u 15, outside the Cabinet (to_vaipulu_peoples_rep_listed_20250131); that is an upper bound, not an end date. His acting premiership is recorded as claims on the Prime Minister's office, not as a holder observation."
+      },
+      "person_id": "to_samiu_kuita_vaipulu",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2024-12-09",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_cabinet/to_deputy_pm/c9a9e50b2090cd8967f22bc5f13e386b90bb76bb0b914f28499d1ccb87208dc2",
+      "binding_id": "to_cast_cabinet_deputy_pm_c9a9e50b2090cd89",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "holder": {
+        "name": "Taniela Likuohihifo Fusimalohi",
+        "attested_on": null,
+        "from": "2025-01-28",
+        "until": null,
+        "sources": [
+          "to_pmo_eke_cabinet_20250128"
+        ],
+        "claim_ids": [
+          "to_eke_cabinet_effective_20250128"
+        ],
+        "note": "Appointed Deputy Prime Minister, with Infrastructure and MEIDECC, with effect from 28 January 2025 (TO-TR24-06). Name as printed in the PMO release; the Assembly minutes print 'Taniela Liku'ohihifo Fusimālohi'.",
+        "uncertainty": "The start is the stated effective date of the ministerial appointments. The letters of appointment were forecast for 30 January (unconfirmed) and the oath was taken in the Assembly on 31 January; both are separate claims. No end date or term is inferred."
+      },
+      "person_id": "to_taniela_likuohihifo_fusimalohi",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-01-28",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/022d07f475f4071c93f5c4abef844f3926619dd58aa182fd7c822f215939115a",
+      "binding_id": "to_cast_legislative_assembly_speaker_022d07f475f4071c",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": "to_speakers_appointment",
+      "person_id": "to_lord_vaea_speaker_2025",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/53c56d0115f3935dc74c29db716a3eb53ff6cdc3a7f35307639510df1a94cae4",
+      "binding_id": "to_cast_legislative_assembly_speaker_53c56d0115f3935d",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Fusitu'a",
+        "attested_on": "1996-11-14",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_tlr_2003",
+          "to_tlr_1997"
+        ],
+        "claim_ids": [
+          "to_speaker_warrant_fusitua_19960920",
+          "to_speaker_fusitua_interview_19961114",
+          "to_speaker_fusitua_material_times_19961114"
+        ],
+        "note": "Court records attest him as Speaker: the Court of Appeal quotes the Speaker's committal warrant of 20 September 1996, signed 'Fusitu'a / Chairman of the Legislative Assembly', and the Supreme Court found that when he was interviewed as the Speaker on 14 November 1996 he was 'at all material times the Speaker'. Event-dated to 14 November 1996, the day of that explicit finding.",
+        "uncertainty": "No appointment instrument, start or end was found. His appointment year is 1990, 1991 or 1995 in the Assembly's retrospectives (to_la_list_fusitua_1990_1998_20111130, to_la_obituary_fusitua_appointed_1991_20140505, to_la_archives_fusitua_1995_1998_20060327); none is a boundary, and the lists' 1998 end is not used. The courts name him only by his noble title."
+      },
+      "person_id": "to_fusitua_speaker_1996",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "1996-11-14",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/df766e98fea45824633c44ac4fe243349c0f0f5439f139a1b456ca27d71d7c1d",
+      "binding_id": "to_cast_legislative_assembly_speaker_df766e98fea45824",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Hon. Veikune",
+        "attested_on": "2001-04-30",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_legislative_assembly_page_2001",
+          "to_pmo_legislative_assembly_page_20011214"
+        ],
+        "claim_ids": [
+          "to_speaker_veikune_listed_20010430",
+          "to_speaker_veikune_listed_20011214"
+        ],
+        "note": "First term. The government's Legislative Assembly page presented him as Speaker when captured on 30 April 2001 (last modified 19 February 2001) and in its revision of 14 December 2001.",
+        "uncertainty": "Event-dated to the first capture only; the roster could lag (a capture of August 2002, after his successor's appointment had been reported, still marked him Speaker). His appointment (1998 or 1999 in the Assembly's retrospectives) and the end of this term (2001 or 2002) are unresolved; no end is inferred from Tu'ivakano's 2002 appointment, which the government statement says 'succeeds the Hon. Veikune'."
+      },
+      "person_id": "to_veikune_speaker_2001",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2001-04-30",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/c0fbe8a781f3ef3373fc13081ac73b8ce4d666662e88be43be702106e84143da",
+      "binding_id": "to_cast_legislative_assembly_speaker_c0fbe8a781f3ef33",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Hon. Tu'ivakano",
+        "attested_on": "2003-04-08",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_legislative_assembly_page_20030408",
+          "to_la_home_2004",
+          "to_pmo_legislative_assembly_page_20041226"
+        ],
+        "claim_ids": [
+          "to_speaker_tuivakano_listed_20030408",
+          "to_speaker_tuivakano_listed_20040906",
+          "to_speaker_tuivakano_listed_20041226"
+        ],
+        "note": "Presented as Speaker by the government's Legislative Assembly page (revision of 8 April 2003), the Assembly's home page (captured 6 September 2004) and the government page's revision of 19 September 2004 (captured 26 December 2004).",
+        "uncertainty": "Event-dated to the earliest attestation after the two conflicting appointment dates, 'last week' in a statement of about 23 May 2002 (to_speaker_tuivakano_appointment_reported_20020523) and 1 July 2002 in the Assembly's later statements; neither is a start. No end is stated: he was replaced by Veikune's appointment of 22 March 2005 after becoming Minister of Works, but no source gives the day his Speakership ended, and none is inferred."
+      },
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2003-04-08",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/54423726cbe0be8340cae03dfa6807137828d1c2760e3d80d1927b1778f85f50",
+      "binding_id": "to_cast_legislative_assembly_speaker_54423726cbe0be83",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Hon. Veikune",
+        "attested_on": "2005-03-22",
+        "from": null,
+        "until": "2006-01-25",
+        "sources": [
+          "to_la_speaker_page_2005",
+          "to_ipu_2005",
+          "to_pmo_20060209_veikune_directives"
+        ],
+        "claim_ids": [
+          "to_speaker_veikune_royal_appointment_20050322",
+          "to_ipu_2005_speaker_veikune_order_20050323",
+          "to_speaker_veikune_end_20060125",
+          "to_palace_confirms_veikune_speaker_end_20060203"
+        ],
+        "note": "Second term. The Assembly's Speaker page says King Taufa'ahau Tupou IV appointed him on 22 March 2005 (an appointment day, not a stated effective day, so no from). The PMO release of 9 February 2006 states that his position as Speaker ended on 25 January 2006, as the Acting Private Secretary to His Majesty confirmed on 3 February 2006.",
+        "uncertainty": "until is the stated end day. The appointment instrument was not seen, and IPU's 23 March 2005 statement is corroboration only. The Land Court's 2007 recital of his removal (to_speaker_veikune_removal_recited_20071213) gives no day and is not used."
+      },
+      "person_id": "to_veikune_speaker_2001",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2005-03-22",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/a9e5f57f914386f3e85d73818bfaed6ba41cf2edfcbd05db982ccd6f4db15b77",
+      "binding_id": "to_cast_legislative_assembly_speaker_a9e5f57f914386f3",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Tu'ilakepa",
+        "attested_on": "2008-06-02",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20080602_speaker_reply",
+          "to_pmo_20100629_assembly_transcript"
+        ],
+        "claim_ids": [
+          "to_speaker_tuilakepa_reply_signed_20080602",
+          "to_speaker_tuilakepa_presides_20100629"
+        ],
+        "note": "Signed the Assembly's reply of 2 June 2008 to the Princess Regent's Speech from the Throne as 'Sea 'o e Fale Alea', and presided as Speaker on 29 June 2010 in a government-published transcript that addresses a petition to 'Lord Tu'ilakepa, 'Eiki Sea 'o e Fale Alea'.",
+        "uncertainty": "Event-dated to the reply, which prints only 'Tu'ilakepa'. No appointment instrument or release was found; the day 2 May 2008 appears only in IPU's 2008 summary, which the Crown packet holds and this holder does not cite. No end is stated, and the Interim Speaker of December 2010 (to_interim_speaker_tupou_styled_20101203) is not used as one."
+      },
+      "person_id": "to_lord_tuilakepa_speaker_2008",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2008-06-02",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/ba7922e4cbb61ef98e5b05c46524d6201ec768e7b6613dc50e4222659823459a",
+      "binding_id": "to_cast_legislative_assembly_speaker_ba7922e4cbb61ef9",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Lasike",
+        "attested_on": "2011-01-14",
+        "from": null,
+        "until": "2012-07-17",
+        "sources": [
+          "to_la_20110114_oaths",
+          "to_la_20110404_knesset_visit",
+          "to_sc_r_v_lasike_cr285_2011",
+          "to_la_20120717_speaker_revoked"
+        ],
+        "claim_ids": [
+          "to_lasike_speaker_administers_oaths_20110114",
+          "to_lasike_speaker_styled_20110404",
+          "to_lasike_testimony_speaker_cr285",
+          "to_lasike_speaker_appointment_revoked_20120717"
+        ],
+        "note": "Selected unopposed by the Assembly on 21 December 2010, with the royal appointment then still to come (claims, not a start). Event-dated to 14 January 2011, the first dated record of him acting as Speaker. The end is the King's revocation of his appointment under clause 61(2)(c), stated as effective immediately and conveyed by letter on 17 July 2012.",
+        "uncertainty": "The royal appointment day is unknown, so from stays null. until rests on the release's 'effective immediately' and the letter dated 17 July 2012; the instrument's own date is not printed. The conviction of 9 July 2012 and the loss of his seat are not used as the end. No identity is asserted with 'the Honourable Lasike' who acted as Speaker in 1995."
+      },
+      "person_id": "to_lord_lasike_speaker_2011",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2011-01-14",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/0e24229e1e695782f4a15f65872b6ae10b2405cc590369ce33205a393b614f31",
+      "binding_id": "to_cast_legislative_assembly_speaker_0e24229e1e695782",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Fakafanua",
+        "attested_on": "2012-07-19",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_20120723_new_speaker_starts",
+          "to_la_20120720_fakafanua_appointed",
+          "to_la_20130828_acting_speaker",
+          "to_la_20140815_speaker_judiciary"
+        ],
+        "claim_ids": [
+          "to_fakafanua_royal_appointment_20120719",
+          "to_fakafanua_royal_appointment_reported_20120720",
+          "to_fakafanua_starts_as_speaker_20120723",
+          "to_fakafanua_speaker_abroad_20130828",
+          "to_fakafanua_speaker_20140814"
+        ],
+        "note": "Elected 17-8 by the Assembly on 19 July 2012; the Assembly's item of 23 July dates his royal appointment to that day and its item of 20 July reports the appointment as done. He began presiding on 23 July 2012 and is attested as Speaker to 14 August 2014.",
+        "uncertainty": "An appointment day with no stated effective date, so it is event-dated through attested_on, as the prime-minister holders of CLAUDE-C01-08 are. The Assembly's Tongan item created at 17:23 on 19 July still called the appointment pending (to_fakafanua_royal_appointment_pending_20120719); the conservative alternative is 20 July 2012, when it was reported as done. 'Started in his new role ... this morning' (23 July) is not taken as from, because the same item dates the appointment earlier. No end is stated, and nothing is inferred from the 2014 election or from clause 61(2)(a)."
+      },
+      "person_id": "to_fatafehi_fakafanua",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2012-07-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/681ed0888ac2f04b5ab56c3825d8aa8ac9e6a16435caf029a316b68c28f7d60e",
+      "binding_id": "to_cast_legislative_assembly_speaker_681ed0888ac2f04b",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Tu'ivakano",
+        "attested_on": "2015-02-24",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_speaker_china_20150224"
+        ],
+        "claim_ids": [
+          "to_speaker_tuivakano_styled_20150224"
+        ],
+        "note": "Styled Lord Speaker by the Assembly's news item of 24 February 2015. His election by the House on 29 December 2014 is recorded in the prime-minister packet (to_pohiva_declared_pm_elect_pmo_20141229), which this holder does not cite.",
+        "uncertainty": "No royal appointment or oath for this Assembly is dated by any source retrieved, so no start is stated. No end is stated either: the Speaker's release of 12 September 2017 already in the packet still names him Speaker. The Assembly's profile identifies him with the Hon. Tu'ivakano who was Speaker in 2002-2005, but that identity is not needed for this observation."
+      },
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2015-02-24",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/2cda47948b11024c66119e9d2174eacd613a87c5a9be940a2eb55f1b10c032fe",
+      "binding_id": "to_cast_legislative_assembly_speaker_2cda47948b11024c",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Fakafanua",
+        "attested_on": "2018-03-05",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_speaker_gita_20180305"
+        ],
+        "claim_ids": [
+          "to_speaker_fakafanua_styled_20180305"
+        ],
+        "note": "Styled Speaker, addressing the first sitting held at the Tonga National Centre, in the Assembly's item of 5 March 2018. He took the oath as 'the Lord Speaker Fakafanua' on 18 January 2018 (to_speaker_fakafanua_sworn_news_20180118; the oath is not a start), and the Assembly's election of 18 December 2017 is recorded in the prime-minister packet (to_pohiva_assembly_reselection_20171218).",
+        "uncertainty": "No royal appointment for this Assembly is dated, so there is no start; no end is stated. This is a separate holder observation from the 2012-2014 one, and no continuity or gap between the two is asserted."
+      },
+      "person_id": "to_fatafehi_fakafanua",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2018-03-05",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/fad30c9953a998e74e601bc142814bfc582943c7097675a1df2fbbd1a01c6775",
+      "binding_id": "to_cast_legislative_assembly_speaker_fad30c9953a998e7",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Fakafanua",
+        "attested_on": "2022-02-17",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_speaker_summit_20220217"
+        ],
+        "claim_ids": [
+          "to_speaker_fakafanua_styled_20220217"
+        ],
+        "note": "Styled Speaker in the Assembly's item of 17 February 2022, after the Assembly's election of December 2021 (to_speaker_fakafanua_assembly_election_20211215). Claims of the 2024-2025 transition packet style him Speaker on 9 and 10 December 2024 and 31 January 2025 (to_palace_acceptance_letter_20241209, to_pm_nominations_invited_20241210, to_eke_oath_20250131); this holder does not cite them.",
+        "uncertainty": "A separate holder observation for the Assembly elected in November 2021: no continuity with, or gap after, the 2017-2021 holder is asserted. No royal appointment for this Assembly is dated, so there is no start. No end is stated: 'Former Speaker' (16 December 2025) and Lord Vaea's succession (19 December 2025) are not end dates."
+      },
+      "person_id": "to_fatafehi_fakafanua",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2022-02-17",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_speaker/00bc4376b9c6d833fcfdc495bb104bd9f71233672390defd1c5ec08aff6d7a33",
+      "binding_id": "to_cast_legislative_assembly_speaker_00bc4376b9c6d833",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "holder": {
+        "name": "Lord Vaea",
+        "attested_on": "2026-05-19",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_china_visit_20260519"
+        ],
+        "claim_ids": [
+          "to_speaker_vaea_led_delegation_20260519"
+        ],
+        "note": "The latest official styling found before the cutoff: the Assembly's press release of 19 May 2026 says the delegation to China was led by the Speaker, Lord Vaea. His royal appointment effective 18 December 2025 is the existing string holder to_speakers_appointment, which stays first and unchanged; the Assembly's election (item of 16 December 2025) and his oath (22 January 2026) are separate claims.",
+        "uncertainty": "An attestation, not a term: no from or until. The Acting Speaker presiding on 18 August 2026 (to_acting_speaker_tuihaangana_20260818) is a claim only and neither names nor ends his Speakership."
+      },
+      "person_id": "to_lord_vaea_speaker_2025",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2026-05-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    },
+    {
+      "observation_key": "to_legislative_assembly/to_deputy_speaker/022d07f475f4071c93f5c4abef844f3926619dd58aa182fd7c822f215939115a",
+      "binding_id": "to_cast_legislative_assembly_deputy_speaker_022d07f475f4071c",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_deputy_speaker",
+      "holder": "to_speakers_appointment",
+      "person_id": "to_lord_tuihaangana_deputy_speaker_2025",
+      "status": "installed_reference",
+      "identity_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder.",
+      "limit": "Dated historical reference only. Null boundaries, period precision and string claims are preserved; this does not schedule an appointment or establish a continuous term."
+    }
+  ],
+  "historical_people": [
+    {
+      "person_id": "fatafehi_tuipelehake",
+      "name": "Prince Fatafehi Tu'ipelehake",
+      "required_appearance_intervals": [
+        {
+          "from": "1990-01-01",
+          "to": "1992-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1990-01-01",
+          "to": "1992-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-fatafehi-tuipelehake-cartoon-1990-v1.png",
+          "sha256": "22dfd4931e69b09de10a8723213407aed93deaf3e9b2be536584c0fc82eec478",
+          "era_note": "Artistic near-1990 age reconstruction from the inspected 1971 archive portrait; no dated 1990 photograph claimed. Conservatively limited to the opening era. Lower body and clothing detail are artistic extensions.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+      "required_appearance_intervals": [
+        {
+          "from": "1990-01-01",
+          "to": "2012-03-19",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1990-01-01",
+          "to": "2006-09-11",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-george-tupou-v-cartoon-1990-v1.png",
+          "sha256": "01fe94152233a6f6957cbbeca6889b505de884a9a88cc1656310d2593b4f92a4",
+          "era_note": "Near-1990 artistic age interpolation between dated 1979 and 1997 references. Ordinary civilian outfit is an artistic extension. An appearance window, not a term in office.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2006-09-11",
+          "to": "2012-03-19",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-george-tupou-v-cartoon-2011-v1.png",
+          "sha256": "5d3c6f46fb6067a7f4b75237c16c0f56c70b5c5873908f0152df53635a34d091",
+          "era_note": "Later adult likeness anchored to August 2011 USMC photograph. The observed ceremonial green jacket and sash are stylized; cap-holding standing pose and lower body are artistic extensions. Decoration details are illustrative, not a catalogue of honours.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/royal-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "taufaahau_tupou_iv",
+      "name": "Taufa'ahau Tupou IV",
+      "required_appearance_intervals": [
+        {
+          "from": "1990-01-01",
+          "to": "2006-09-11",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+          "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+          "era_note": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "1991-01-01",
+          "to": "2006-09-11",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png",
+          "sha256": "4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa",
+          "era_note": "Separate older appearance of King Taufaahau Tupou IV, artistically aged thirteen years forward from the documented 1985 ETH portrait to about 1998. The 1991–2006 appearance window is an artistic interpretation and ends at the reviewed 11 September 2006 succession boundary. It does not claim a newly found 1998 photo. The original 1990 artwork and its window are unchanged.",
+          "source_review": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "1991-01-01",
+          "to": "2006-09-11",
+          "kind": "explicit_production_appearance_request",
+          "scope": "Opening king’s remaining historical appearance contexts through the accepted death boundary; the separately reviewed older variant covers this request."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/royal-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_aisake_valu_eke",
+      "name": "'Aisake Valu Eke",
+      "required_appearance_intervals": [
+        {
+          "from": "2020-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2020-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-aisake-eke-cartoon-2025-v1.png",
+          "sha256": "0f0d74406975bd69b49b9160b35460fbb0fec3f84ebd0e8159a1f0408fabe68b",
+          "era_note": "Near-2025 adult likeness based on 10 February 2025 NZ High Commission photograph. Standing body and trousers are artistic extensions. No exact-year likeness or future office claim.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_baron_vaea_pm_1992",
+      "name": "'Alipate Halakilangi Tau'alupeoko Tupou (Baron Vaea)",
+      "required_appearance_intervals": [
+        {
+          "from": "1991-01-01",
+          "to": "2001-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1991-01-01",
+          "to": "2001-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-baron-vaea-cartoon-1996-v1.png",
+          "sha256": "be38831fb5c969b65854f7fc7669da061d37a6cf647424b160a387e54715b4f4",
+          "era_note": "Near1996 elder appearance from The Courier no.160 printedp30. Publication1996; interviewJuly1996, exact photo day unstated. Colour and full standing outfit are artistic extensions of observed blazer, shirt, tie and ta'ovala. Distinct from his son LordVaea.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_fatafehi_fakafanua",
+      "name": "Lord Fakafanua",
+      "required_appearance_intervals": [
+        {
+          "from": "2012-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2012-01-01",
+          "to": "2018-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-fakafanua-cartoon-2013-v1.png",
+          "sha256": "61ab09a259b92aeb045636cea0cd35c282280c3c9deefca2782f71dd899898da",
+          "era_note": "Early adult likeness from 15 June 2013 naval-visit photograph. Borrowed ship cap removed; hair beneath it is an explicit artistic reconstruction. Blue check shirt and beige trousers follow observed civilian outfit; shoes are extended artistically.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-fakafanua-cartoon-2026-v1.png",
+          "sha256": "4f011462d0b369bf19c96ce8a81e54b666c2f89c1ac3bfd6eeffd9e2a6de1f31",
+          "era_note": "Original authored-identity later-adult cartoon around2026, informed by factual facial traits separately observed in a27January2026 public portrait. Source has conflicting rights metadata and remains external. Only the approved style anchor was supplied to image_gen. The2018–2026 appearance, colour choices, ordinary outfit, standing body and pose are artistic interpretations. Nonoverlapping with the earlier2012–2017 appearance; no office tenure inferred.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_fatai_helu",
+      "name": "Fatai Helu",
+      "required_appearance_intervals": [
+        {
+          "from": "2022-08-29",
+          "to": "2022-08-30",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2022-08-29",
+          "to": "2022-08-30",
+          "kind": "minimum_dated_reference_appearance_request",
+          "scope": "One-day minimum display requirement for the existing dated reference. It explicitly does not approve a broader age range or fill an unknown term."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "missing_required_appearance",
+      "missing_appearance_intervals": [
+        {
+          "from": "2022-08-29",
+          "to": "2022-08-30"
+        }
+      ],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_feleti_sevele",
+      "name": "Feleti Vaka'uta Sevele",
+      "required_appearance_intervals": [
+        {
+          "from": "2006-01-01",
+          "to": "2011-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2006-01-01",
+          "to": "2011-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-feleti-sevele-cartoon-2008-v1.png",
+          "sha256": "678cb4e18f103eb411b6b811842507652b15e15269f783119335755256a4cdfc",
+          "era_note": "Near-2008 likeness used for the 2006–2010 adult appearance. Standing body, lower outfit and simplified tie are artistic extensions; not an office appointment record.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_fusitua_speaker_1996",
+      "name": "Siaosi 'Alokuo'ulu Wycliffe Fusitu'a",
+      "required_appearance_intervals": [
+        {
+          "from": "1991-01-01",
+          "to": "2001-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1991-01-01",
+          "to": "2001-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-lord-fusitua-cartoon-1998-v1.png",
+          "sha256": "b6ca5b5c2c8db2af82516d5049e4f0f73eb0bd6c53673bad1517fd4862935930",
+          "era_note": "The elder Siaosi Alokuoulu Wycliffe Fusitua (born 1927), not his son, is identified by the 2014 Assembly obituary. Its photograph is undated. The original likeness interprets him near age 70 in the late 1990s and uses a 1991–2000 appearance window, covering the accepted 1996 court observations. No disputed Speaker appointment boundary is inferred.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_james_cecil_cocker",
+      "name": "James Cecil Cocker",
+      "required_appearance_intervals": [
+        {
+          "from": "2000-01-01",
+          "to": "2015-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2000-01-01",
+          "to": "2015-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-james-cecil-cocker-cartoon-2014-v1.png",
+          "sha256": "9e397fd2632bfe5a28f25109323687ad435429d1737ea0bd9a4862e79fb5f4ca",
+          "era_note": "The named NRBT 2014 report portrait has no exact photograph date. The submitted prompt interprets his appearance near 2014; application to the earlier 2000–2013 appearance years is an explicitly approved younger-era artistic extrapolation, covering the accepted 2002, 2004 and 2006 observations. This is not evidence of his appearance or office tenure on every date.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_langi_kavaliku",
+      "name": "Langi Kavaliku",
+      "required_appearance_intervals": [
+        {
+          "from": "1995-01-01",
+          "to": "2001-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1995-01-01",
+          "to": "2001-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-langi-kavaliku-cartoon-1998-v1.png",
+          "sha256": "03b572364c63ff5aa481d0cc0bca5760771f57845a7be78b4aec9e0da84d767a",
+          "era_note": "SOPAC proceedings published December 2010 identify Dr Senipisi Langi Kavaliku; the photograph is undated and predates his December 2008 death. This original likeness interprets him modestly younger near 1998 for the 1995–2000 appearance window, covering the accepted 6 November 2000 observation. Saved registry name Langi Kavaliku is retained; no term boundary is inferred.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_lord_lasike_speaker_2011",
+      "name": "Havea Lasike (Lord Lasike)",
+      "required_appearance_intervals": [
+        {
+          "from": "2008-01-01",
+          "to": "2014-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2008-01-01",
+          "to": "2014-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-lord-lasike-cartoon-2011-v1.png",
+          "sha256": "b2ff7eccee01de2d09d9cfe6ff56ae9deb27e30ded3b039077873df202bf73ab",
+          "era_note": "Observed likeness of Havea Lasike, Lord Lasike, from the named 8 September 2021 Embassy of Japan photograph, explicitly reconstructed approximately ten years younger near 2011. The 2008–2013 appearance window covers accepted 2011–2012 observations. This is artistic age interpretation, not a dated 2011 photograph; no identity with the held 1995 acting Speaker or different title successor is inferred.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_lord_maafu_dpm_2017",
+      "name": "Lord Ma'afu",
+      "required_appearance_intervals": [
+        {
+          "from": "2013-01-01",
+          "to": "2021-12-12",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2013-01-01",
+          "to": "2021-12-12",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-lord-maafu-cartoon-2016-v1.png",
+          "sha256": "fba344ab54557135a9a473859ce5efb6c33008fa8a9303f12c0d3dc3853416a7",
+          "era_note": "Observed likeness from the named 21 September 2016 DFAT photograph. A nearby 2013–2021 appearance interpretation covers the accepted 2017 and April 2021 observations; the exclusive end is his documented 12 December 2021 death. The ordinary outfit, lower body and standing pose are artistic extensions. No title successor or office term is inferred.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_lord_tuihaangana_deputy_speaker_2025",
+      "name": "Havea Tu'iha'angana (Lord Tu'iha'angana)",
+      "required_appearance_intervals": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-havea-tuihaangana-cartoon-2019-v1.png",
+          "sha256": "0375ce565b49446d3b7a5965a5586a9ad48c82d8d0dc0f6c52b2a19973e0ef36",
+          "era_note": "Mature adult likeness anchored to4Sept2019 JapaneseEmbassy photograph. Black suit and flowergarland follow source; lower clothing and standing body extended artistically. Role and titleholder identity independently reviewed.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_lord_tuilakepa_speaker_2008",
+      "name": "Malakai Fakatoufifita (Lord Tu'ilakepa)",
+      "required_appearance_intervals": [
+        {
+          "from": "2007-01-01",
+          "to": "2018-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2007-01-01",
+          "to": "2018-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-lord-tuilakepa-cartoon-2015-v1.png",
+          "sha256": "44de72d2449850efdc8e824294dfdd1287b82d4a9e2de65c5f01d454554a65c5",
+          "era_note": "Observed likeness of Malakai Fakatoufifita, Lord Tuilakepa, from the named 24 July 2015 photograph. The 2007–2017 appearance window is a nearby artistic age interpretation, including earlier application to the accepted 2008 and 2010 observations. Ordinary civilian clothes, lower body and stance are artistic extensions, with source decorations omitted. No office term or title succession is asserted.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "name": "Siale'ataongo Tu'ivakano",
+      "required_appearance_intervals": [
+        {
+          "from": "2000-01-01",
+          "to": "2020-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2010-01-01",
+          "to": "2020-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tuivakano-cartoon-2011-v1.png",
+          "sha256": "81bf562417651ef70599e92ddf65d5040a71f0f6c5ca679cd5024532b4de1dd1",
+          "era_note": "Adult likeness anchored to 27 June 2011 source, used for the 2010s. The standing body and dark trousers are artistic extensions; appearance does not determine Speaker/PM eligibility.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2000-01-01",
+          "to": "2010-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tuivakano-cartoon-2003-v1.png",
+          "sha256": "1b45ad53ac665d4e7ecffa4763421e56f6f7ab3c250fa4590b78c52dcaa4cdbd",
+          "era_note": "Earlier appearance of Sialeataongo Tuivakano, explicitly interpreted about eight years younger near 2003 from the named 2011 photograph. The 2000–2009 appearance window covers accepted early Speaker observations, ending before the separate 2010–2019 portrait. Ordinary civilian clothing and standing body are artistic extensions. No dated 2003 photograph or office-term boundary is claimed.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_lord_vaea_speaker_2025",
+      "name": "'Alipate Tu'ivanuavou Vaea (Lord Vaea)",
+      "required_appearance_intervals": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-lord-vaea-cartoon-2020-v1.png",
+          "sha256": "4c763c9ed30d00f55befde2fcd618fc7b323d2a08e67b5aa1f09bc4f1cfaa7e0",
+          "era_note": "Later LordVaea, distinct from his father BaronVaea. Face and shirt anchored to19Jan2020 NZHC portrait; navy tupenu and shoes are artistic additions. Used for mature2020s appearance.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_poasi_mataele_tei",
+      "name": "Poasi Mataele Tei",
+      "required_appearance_intervals": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-poasi-tei-cartoon-2021-v1.png",
+          "sha256": "20f3c866db1c5330286627d41a5ca15f4893b7dc352bd8fd9e8be80b559f43dc",
+          "era_note": "Original authored likeness informed by separately observed facial traits in the named 8 June 2021 public-event photograph. A nearby 2018–2026 appearance interpretation covers the accepted December 2021 appointment reference. Original standing body, pose and ordinary clothing are artistic extensions; the photograph was not supplied to image_gen and no continuing term in office is claimed.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_pohiva_tuionetoa",
+      "name": "Pohiva Tu'i'onetoa",
+      "required_appearance_intervals": [
+        {
+          "from": "2019-01-01",
+          "to": "2024-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2019-01-01",
+          "to": "2024-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-pohiva-tuionetoa-cartoon-2019-v1.png",
+          "sha256": "addcf85eaab0c28790d9fa25d19bb9c1a1ef71a9b02d3bbcc5e013b838134d1f",
+          "era_note": "Later adult likeness from 5 December 2019 official diplomatic photograph, including his observed glasses and walking cane. A stylized 2019–2023 appearance; this window is not a claim of life or tenure throughout.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_samiu_kuita_vaipulu",
+      "name": "Samiu Kuita Vaipulu",
+      "required_appearance_intervals": [
+        {
+          "from": "2011-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-samiu-vaipulu-cartoon-2023-v1.png",
+          "sha256": "e779c8e52b7366b27901d79535cfa40d3b6ac7f4448d3ce3d1d8a0c8f3021bee",
+          "era_note": "Older adult appearance anchored to10May2023 event caption; stale2019EXIF is not used as photo date. Garland and suit follow observed clothing; full standing body is artistic extension.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2011-01-01",
+          "to": "2018-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-samiu-vaipulu-cartoon-2011-v1.png",
+          "sha256": "c9a05d980fad8642152617e55a9189a6fb88bee03b97b054e121c9743e079d50",
+          "era_note": "Earlier appearance of Samiu Kuita Vaipulu, explicitly interpreted about twelve years younger near 2011 from the named 2023 photograph. The 2011–2017 window covers accepted earlier deputy-premier references and ends before the separate 2018–2026 version. No dated 2011 photograph or new office term is claimed.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_samuela_akilisi_pohiva",
+      "name": "Samuela 'Akilisi Pohiva",
+      "required_appearance_intervals": [
+        {
+          "from": "2010-01-01",
+          "to": "2020-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2010-01-01",
+          "to": "2020-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-akilisi-pohiva-cartoon-2015-v1.png",
+          "sha256": "4fefc25c6c3d9a982ff5dd4bb8518380ccf53b5685c48adb34a8367bf58dc4b1",
+          "era_note": "Older adult appearance informed by April 2015 DFAT photograph. Source caption and EXIF differ on April day; month precision retained. The full-body slim build and lower clothing are artistic extensions; no assertion of an exact photograph for every year.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_semisi_kioa_lafu_sika",
+      "name": "Semisi Kioa Lafu Sika",
+      "required_appearance_intervals": [
+        {
+          "from": "2015-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2015-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-semisi-sika-cartoon-2019-v1.png",
+          "sha256": "677d2189a8d834e97c3cda88f7e8aca4c02b5b34b65ce4eaccb59cb310e4ebb5",
+          "era_note": "Mature adult appearance anchored to2May2019 USofficial photograph. Full body and lower clothing extend the observed suit; an appearance era, not proof of party or government office.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "name": "Crown Prince Tupouto'a 'Ulukalala",
+      "required_appearance_intervals": [
+        {
+          "from": "2012-01-01",
+          "to": "2036-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2018-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2022-v1.png",
+          "sha256": "2d3b1759852314a60fbf4fa97bd64150483ac889dd77c0aa133f6763afb7bcad",
+          "era_note": "Adult 2018–2026 appearance informed by the 5 August 2022 diplomatic photograph. Face, tied-back hair, chin beard and beige formal jacket follow the observed subject; lower tupenu and shoes are artistic extensions. This is the later heir, distinct from George Tupou V.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2012-01-01",
+          "to": "2018-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2012-v1.png",
+          "sha256": "a272d0831583e11e4da36b4b409615510a4be462b8755bbd8ff521f233997496",
+          "era_note": "Earlier adult appearance of the distinct heir born 1985, Crown Prince Tupoutoa Ulukalala, based on the man at FAR LEFT in the FCO photograph dated 8 August 2012. The 2012–2017 window is an appearance interpretation and ends before the separate 2018–2026 version. It does not establish his title vesting day or confuse him with the older George Tupou V identity.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2027-01-01",
+          "to": "2036-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.png",
+          "sha256": "778bb6b836a14888e8d42dd1daca275afee5118d0e7a8050099c356b537ebc5a",
+          "era_note": "Explicit fictional future age projection of the distinct real heir born 1985 near 2030, based on the identified man at left in the 5 August 2022 photograph. The 2027–2035 appearance window is an alternate-history artistic concept, not a prediction of lifespan, office, succession or actual appearance. The final edit corrects the background to the approved dark teal while preserving the earlier generated face, clothing and body.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2027-01-01",
+          "to": "2036-01-01",
+          "kind": "explicit_production_appearance_request",
+          "scope": "Conditional future age projection of the distinct later heir born in 1985. No guaranteed accession, regnal name or invented hereditary succession is asserted."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/royal-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival.",
+      "inventory_basis": "Additional source-reviewed royal identity and authored appearances; no holder observation is manufactured and no runtime succession permission is asserted."
+    },
+    {
+      "person_id": "to_siaosi_ofakivahafolau_sovaleni",
+      "name": "Siaosi 'Ofakivahafolau Sovaleni",
+      "required_appearance_intervals": [
+        {
+          "from": "2014-12-31",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2014-12-31",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-siaosi-sovaleni-cartoon-2022-v1.png",
+          "sha256": "cff00edfc28704b8cc8d14eca49c98e6c22d6dc0bb258857f7cca55fb2aa1763",
+          "era_note": "Mature adult likeness anchored to 3 June 2022 DFAT image. Full standing body extends the observed navy stand-collar jacket; broad appearance era does not schedule any appointment. Separate era review on 1 October 2026 extends the opening appearance boundary by one day to 31 December 2014 to cover the accepted dated observation. The same near-era artistic interpretation applies; the source photograph date, exact original prompt, image bytes and office chronology remain unchanged.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_sione_vuna_faotusia",
+      "name": "Sione Vuna Fa'otusia",
+      "required_appearance_intervals": [
+        {
+          "from": "2018-01-01",
+          "to": "2021-09-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2018-01-01",
+          "to": "2021-09-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-sione-faotusia-cartoon-2020-v1.png",
+          "sha256": "5b55ff129cec91f4a32d561fda93f2a56f58ac2041b08cd8696be85870cd3704",
+          "era_note": "Mature adult likeness anchored to20February2020 GPO Israel photograph. Standing body and lower clothing are artistic extensions. Appearance stops before1September2021, when Parliament published his obituary; this is a death-by-publication upper bound, not an assertion that1September was his death date. No office eligibility is created.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_taniela_likuohihifo_fusimalohi",
+      "name": "Taniela Likuohihifo Fusimalohi",
+      "required_appearance_intervals": [
+        {
+          "from": "2020-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2020-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-taniela-fusimalohi-cartoon-2023-v1.png",
+          "sha256": "9cd9f94b1b29366a87c7a63853b7ddf9d070e10193f29bb5f6eb502ecad45dc8",
+          "era_note": "Mature adult likeness anchored to25Aug2023 photograph. Standing pose/trousers/shoes extend a seated upper-body reference; source outfit and facial identity preserved.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_tesina_fuko",
+      "name": "Tesina Fuko",
+      "required_appearance_intervals": [
+        {
+          "from": "1996-01-01",
+          "to": "2009-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1996-01-01",
+          "to": "2009-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tesina-fuko-cartoon-1996-v2.png",
+          "sha256": "97a1099403892dbc6e861f36ba127bd1c1325f4ed8dc002d16ca754991901cb3",
+          "era_note": "Near-1996 adult appearance from The Courier no.160, printed page33 (PDF page35). Publication year1996; exact photo date unstated. Colour, full body and ordinary civilian clothing are artistic extensions. Used for the1996–2008 appearance era, including the2005 party observation; this is not an office tenure. V2 replaces rejectedv1 and keeps both hands visible against opaque teal.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_tevita_lavemaau",
+      "name": "Tevita Lavemaau",
+      "required_appearance_intervals": [
+        {
+          "from": "2017-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2017-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tevita-lavemaau-cartoon-2020-v1.png",
+          "sha256": "197098c6f91e38af0cd0cc29fcbe7c4b8458d65bcc5511d9f4642325b41ee85a",
+          "era_note": "Original authored-identity cartoon around2020, informed by factual facial traits observed separately in the official30July2020 public photograph. No photograph was supplied to image_gen; only the approved style anchor. The2017–2026 appearance window, ordinary clothing, full body and pose are artistic interpretations; no exact photograph for each year or continuing office is claimed.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_tevita_poasi_tupou",
+      "name": "Tevita Poasi Tupou",
+      "required_appearance_intervals": [
+        {
+          "from": "1998-01-01",
+          "to": "2005-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1998-01-01",
+          "to": "2005-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tevita-poasi-tupou-cartoon-2000-v1.png",
+          "sha256": "608f3196e199ea5ecbfa6cd877662e8fe2ddfb10d97dda74936aa1584e19b59e",
+          "era_note": "Explicit near2000 artistic age reconstruction from a2015ceremonial photograph. Judicial wig and robe removed in favor of invented ordinary civilian suit; hair hidden by the wig is reconstructed, not an observed hairstyle. Face/moustache/glasses inform likeness.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "name": "Prince 'Ulukalala Lavaka Ata",
+      "required_appearance_intervals": [
+        {
+          "from": "2000-01-01",
+          "to": "2036-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2012-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tupou-vi-cartoon-2019-v1.png",
+          "sha256": "f243fcfa102708033bc3fea2dca3c2d587c54c47d278324efe3fe6bf565b290b",
+          "era_note": "Later adult appearance anchored to the 27 March 2019 photograph, used across the mature 2012–2026 era. Full-body black-tie dress is a stylized extension; medals omitted. Appearance does not grant royal eligibility or establish accession.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2000-01-01",
+          "to": "2012-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-lavaka-ata-cartoon-2000-v2.png",
+          "sha256": "1e3fdf733cce5072f8625e29ad19685cbb87aa677e43aa0ea6caba93a48f20ec",
+          "era_note": "Corrected early adult likeness: target in dated21Apr2000 photo is LEFT microphone-holder, not right bespectacled guest. Undated USHouse photo supplies clearer facial geometry only. Near2000age, standing body and civilian outfit are artistic interpretations; no glasses. Replaces rejectedv1 before registration.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2027-01-01",
+          "to": "2036-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-tupou-vi-cartoon-2030-v1.png",
+          "sha256": "50f297ece6e2c5894f7b4c6d06f7acdbcbe176e90598906580d9d7df679f7dff",
+          "era_note": "Explicit fictional future age projection of the real Tupou VI near 2030, based on his identified 27 March 2019 photograph. The 2027–2035 appearance window is an alternate-history artistic concept only, not a prediction of lifespan, tenure, succession or actual future appearance. Full-body stance and ordinary civilian clothing are fresh artistic extensions; gameplay determines office eligibility separately.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2027-01-01",
+          "to": "2036-01-01",
+          "kind": "explicit_production_appearance_request",
+          "scope": "Post-cutoff appearance projection only, conditional on this existing person remaining relevant in the simulated campaign. No real future reign, survival or appointment is asserted."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/royal-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_veikune_speaker_2001",
+      "name": "Hon. Veikune",
+      "required_appearance_intervals": [
+        {
+          "from": "1999-01-01",
+          "to": "2007-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "1999-01-01",
+          "to": "2007-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-veikune-cartoon-2005-v1.png",
+          "sha256": "c72d49b506359a379614c5dfffaf486cf2c415a8fca2693b0b7f2ad0ba88d51b",
+          "era_note": "The named official 2005 Speaker profile depicts Fuatakifolaha, the former Lord Veikune. Its photograph has no precise day; the archive capture in 2007 is not a photograph date. This original authored likeness applies a nearby 1999–2006 appearance interpretation, covering accepted 2001 and 2005 observations, and does not settle disputed office boundaries or depict a different hereditary titleholder.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_viliami_tau_tangi",
+      "name": "Viliami Ta'u Tangi",
+      "required_appearance_intervals": [
+        {
+          "from": "2006-01-01",
+          "to": "2011-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2006-01-01",
+          "to": "2011-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-viliami-tangi-cartoon-2008-v1.png",
+          "sha256": "247a1aa313f06b190ac5f44b2b8eef73b0f44a9d8342e195435f6e4b8681f093",
+          "era_note": "The named 2019 PGSSC biography portrait has no exact photograph date. This original text-authored likeness interprets him modestly younger around 2008 for the 2006–2010 appearance window. It covers the accepted 2006, 2009 and 2010 observations without claiming a photograph or continuous tenure for each year.",
+          "source_review": null,
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    },
+    {
+      "person_id": "to_viliami_uasike_latu",
+      "name": "Viliami Uasike Latu",
+      "required_appearance_intervals": [
+        {
+          "from": "2010-01-01",
+          "to": "2027-01-01",
+          "meaning": "appearance_not_office_tenure"
+        }
+      ],
+      "appearance_review": {
+        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "sha256": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70"
+      },
+      "appearance_requirement_basis": [
+        {
+          "from": "2010-01-01",
+          "to": "2019-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-viliami-latu-cartoon-2013-v1.png",
+          "sha256": "73bfc4cc2057622dfd4720b040f3b95533464075164d11d203a0b100adc1c4c7",
+          "era_note": "Adult appearance anchored toDecember2013 WTO photograph. Lower body and standing suit extended artistically; later2025role needs later appearance review.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        },
+        {
+          "from": "2019-01-01",
+          "to": "2027-01-01",
+          "kind": "registered_reviewed_appearance_interval",
+          "asset": "spheres-web/ui/person-portraits/tonga-viliami-latu-cartoon-2025-v1.png",
+          "sha256": "b1ac5bd89e23f2f9d9e5298097dcaeddc33f862ef48d94bca7d710c5ccced1bc",
+          "era_note": "Later appearance of Viliami Uasike Latu, explicitly interpreted about twelve years older near 2025 from the named 2013 photograph. The 2019–2026 window follows the earlier version without overlap; hair ageing, ordinary clothes and full-body pose are artistic extensions, not a verified 2025 photograph or office-term claim.",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "scope": "Preserves root’s existing art-era review; does not independently approve the art or establish office tenure."
+        }
+      ],
+      "identity_review_paths": [
+        "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      ],
+      "status": "registered_reviewed_appearance_covers_declared_windows",
+      "missing_appearance_intervals": [],
+      "post_cutoff_limit": "Any registered or requested appearance after 2026-09-07 is an artistic/gameplay projection, never proof of a real future office or survival."
+    }
+  ],
+  "fictional_people": [
+    {
+      "person_id": "fictional_to_lesieli_fotu",
+      "name": "Lesieli Fotu",
+      "role": "peoples_representative",
+      "origin": "fictional_successor",
+      "appearance_seed": "8e79e5ffd099a2af",
+      "required_appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "meaning": "authored_fictional_appearance_not_appointment"
+      },
+      "fictional_biography": "An invented secondary-school science teacher from an outer-island village of Vava'u who later coordinated a women's handicraft and fisheries cooperative and a solar-lighting programme for remote households. In play she may register as an elector in a Vava'u constituency and stand, formally as an individual, when a general election or by-election occurs. She holds a people's seat only if she wins one in play.",
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes.",
+      "identity_is_historical": false
+    },
+    {
+      "person_id": "fictional_to_sitani_lolohea",
+      "name": "Sitani Lolohea",
+      "role": "prime_minister",
+      "origin": "fictional_successor",
+      "appearance_seed": "e60d18f4dc6b11da",
+      "required_appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "meaning": "authored_fictional_appearance_not_appointment"
+      },
+      "fictional_biography": "An invented civil engineer who managed road and water-supply works across Tongatapu and later ran a small construction-safety training business. In play he may first win a Tongatapu people's seat at a general election or by-election. Only as a sitting elected representative could he be nominated, seconded by two other elected representatives, and recommended by a majority in a secret ballot for appointment as Prime Minister.",
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes.",
+      "identity_is_historical": false
+    },
+    {
+      "person_id": "fictional_to_pisila_tukuafu",
+      "name": "Pisila Tukuafu",
+      "role": "nonelected_minister",
+      "origin": "fictional_successor",
+      "appearance_seed": "deef67d61750bff5",
+      "required_appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "meaning": "authored_fictional_appearance_not_appointment"
+      },
+      "fictional_biography": "An invented public-finance specialist who managed budget-reform programmes for a regional development organisation in the Pacific and later taught public administration at a tertiary institute in Nuku'alofa. In play a Prime Minister could nominate her as one of the few Cabinet Ministers who are not elected representatives; she would take a ministry only after formal appointment by the King on that nomination. She would sit and vote in the Assembly, but not in a vote of no confidence, and would retain office until a constitutionally defined termination. After a general election she would remain a caretaker until her appointment is revoked or continued on the incoming Prime Minister's recommendation; the election date alone does not remove her.",
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes.",
+      "identity_is_historical": false
+    },
+    {
+      "person_id": "fictional_to_kalolo_matalehu",
+      "name": "Kalolo Matalehu",
+      "role": "party_organizer",
+      "origin": "fictional_successor",
+      "appearance_seed": "e521150d49923a7f",
+      "required_appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "meaning": "authored_fictional_appearance_not_appointment"
+      },
+      "fictional_biography": "An invented community-radio producer and youth rugby coach from a village in eastern Tongatapu who later managed a small printing and publishing cooperative. In play he may join a political organization such as the Democratic Party of the Friendly Islands (PTOA) after the fictional window opens and be chosen as its leader only under that organization's own rules, if its leadership falls vacant. Leading it would not give him a seat: he would still need to win a people's constituency as an individual candidate.",
+      "restriction": "Reference only: PTOA officer rules and title equivalence remain unreviewed; no party office, seat, or executive permission.",
+      "identity_is_historical": false
+    }
+  ],
+  "fictional_party_office_grants": [],
+  "checks": {
+    "boundary_dates": {
+      "status": "pending",
+      "reason": "Focused native boundary tests on the final integrated source are pending; metadata validation does not prove runtime date behavior."
+    },
+    "country_signoff": {
+      "status": "pending",
+      "reason": "Historical/party-chain gaps, final art and required acceptance receipts remain open. No human country signoff is claimed."
+    },
+    "institutional_rules": {
+      "status": "pending",
+      "reason": "The authored institutional rules and command paths need final native/UI validation; reference observations do not grant office."
+    },
+    "likeness_visual_review": {
+      "status": "pending",
+      "reason": "Per-image root reviews and seven registration batches are retained. Complete final-source-pinned country visual acceptance remains pending; Fatai’s historical likeness is unresolved."
+    },
+    "production_browser": {
+      "status": "pending",
+      "reason": "The production browser journey on the final built sources has not been certified."
+    },
+    "save_compatibility": {
+      "status": "pending",
+      "reason": "Final integrated native save/load and compatibility evidence is pending."
+    }
+  },
+  "open_requirements": {
+    "fatai_likeness": "A securely captioned photograph or first-person visual record identifying the adult court-attested PTOA president is missing. Do not substitute Futa Helu, a child namesake or an invented historical face.",
+    "appearance_gaps_at_snapshot": [
+      {
+        "person_id": "to_fatai_helu",
+        "name": "Fatai Helu",
+        "missing_intervals": [
+          {
+            "from": "2022-08-29",
+            "to": "2022-08-30"
+          }
+        ],
+        "cause": "No verified political likeness found"
+      }
+    ],
+    "additional_political_research": "See all 16 explicit role dispositions and the civilian review’s party_coverage_gaps/incidental_and_acting_names. Small-party leads and unnamed collective rosters are not silently removed.",
+    "historical_future_exposure_audit": "Potential post-cutoff gameplay exposure for other living historical people has not been exhaustively reviewed. Their current art intervals must not be extended automatically through 2035; establish actual eligibility/display needs and review age variants separately.",
+    "future_policy": "The four fictional civilians remain distinct. Kalolo has no real PTOA office grant or automatic seat/premiership. Dates alone do not appoint a successor."
+  },
+  "evidence_limits": [
+    "All 50 holder objects or string claims are copied exactly from accepted research and matched to the installed reference.",
+    "Appearance requests describe display needs, not appointment/election/tenure boundaries. One-day requests mark minimum dated-reference gaps, not broader era approval.",
+    "Source-original hashes and access failures remain in external evidence and the identity ledgers. An HTTP failure or application shell is never counted as a source original.",
+    "Full source photos and copyright status remain governed by their individual art records; research-only photos are not game assets or generation inputs.",
+    "This manifest can be structurally valid while country signoff remains blocked. No validator rule is modified or waived."
+  ]
+}

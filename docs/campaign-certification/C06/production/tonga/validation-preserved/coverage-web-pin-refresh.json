@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-01T13:47:52.894001+00:00",
+  "changed_source": "spheres-web/src/person_portraits.rs",
+  "previous_sha256": "c698ebe2f759bf08491179d5caeebbd49292e4469b240dc358448f2e6146577d",
+  "current_sha256": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+  "manifest_sha256": "d7a1fca23594cbe6567094f9f54cb0314247726920f00d8c5de147e0ca56dfd8",
+  "report_sha256": "1cb2a1e9b2cfa5e867f7ebe4b2284da349870be7cd1f8ad35426ecd9c00e0277",
+  "source_review_and_readme_pins_checked": 28,
+  "pin_failures": [],
+  "staged_mismatches": [
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "expected": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+      "actual": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+      "valid": true,
+      "staged_valid": false
+    }
+  ],
+  "readme_links_checked": 8,
+  "missing_links": [],
+  "valid": true,
+  "blocker_count": 23,
+  "acceptance_checks_unchanged": true,
+  "earlier_receipts_unchanged": true
+}

@@ -22,7 +22,7 @@ import check_successor_proposals as csp  # noqa: E402
 class ProposalPacketTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.repo = csp.Repo(csp.ROOT)
+        cls.repo = csp.Repo(csp.ROOT, snapshot=csp.Snapshot(csp.ROOT))
         cls.doc, cls.sources = csp.load_packet(csp.ROOT, csp.PACKET)
 
     # ---------- helpers ----------
@@ -502,6 +502,14 @@ class CommandLineTests(unittest.TestCase):
         result = self.run_cli()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn('PASS: 8 proposal-only fictional drafts (France 4, Tonga 4)', result.stdout)
+        self.assertIn('immutable preparation baseline', result.stdout)
+
+    def test_json_report_cannot_be_confused_with_live_production_acceptance(self):
+        result = self.run_cli('--json')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        scope = json.loads(result.stdout)['input_scope']
+        self.assertEqual(scope['source_revision'], csp.Snapshot(csp.ROOT).scope()['source_revision'])
+        self.assertFalse(scope['live_production_checked'])
 
     def test_violation_exits_non_zero(self):
         doc, sources = csp.load_packet(csp.ROOT, csp.PACKET)

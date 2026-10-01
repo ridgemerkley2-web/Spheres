@@ -1,0 +1,60 @@
+{
+  "recorded_at": "2026-10-01T13:28:47.276489+00:00",
+  "purpose": "Align raw-byte coverage pins with already-staged LF source bytes; no semantic source changes.",
+  "files": [
+    {
+      "path": "spheres-sim/src/company_save.rs",
+      "original_sha256": "34fd577e3937a106de6fef86c7a0992620945dfcb76d0251b983cd524ab1b52b",
+      "staged_and_final_sha256": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "original_sha256": "216bf029d00952f817576583ebde95aab3339d822284abfd088374ab3bf4ac66",
+      "staged_and_final_sha256": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "original_sha256": "910e449d9f5ea1f9aa986849f1142ee1e9633d326835157d111aece4e54fdf2a",
+      "staged_and_final_sha256": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "original_sha256": "36508c8ee8e444a8a1c94e253108f9ed1de33a8e11333f3ea393850cd70f8a59",
+      "staged_and_final_sha256": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-sim/src/world.rs",
+      "original_sha256": "de9d54ab36f58154efbd32744e00ab1db7e02d386138148f5f2d5b8725bb4bf9",
+      "staged_and_final_sha256": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "original_sha256": "99a827bc8e3002793f2fc4f63d7f5248288c0428c19629d81058ba0c8dc98b56",
+      "staged_and_final_sha256": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "original_sha256": "3106b28b0e326be8ca86e183f94a7c1fcf85417ce690a9d49e9ef2569d35b354",
+      "staged_and_final_sha256": "c698ebe2f759bf08491179d5caeebbd49292e4469b240dc358448f2e6146577d",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-web/ui/government-ui.css",
+      "original_sha256": "91b357054911d0cac6f45ac67cd456c9421610f4b230e54187728ea36fddc145",
+      "staged_and_final_sha256": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "original_sha256": "f3eaa4154b3c935197f691702b58c5370b577fe3921288ecfba986126a56e22a",
+      "staged_and_final_sha256": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+      "only_crlf_to_lf": true
+    }
+  ]
+}

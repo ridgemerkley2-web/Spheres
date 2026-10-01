@@ -6679,6 +6679,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             party: v.get("party")?.as_str()?.to_string(),
         },
         "call_election" => Command::CallElection { nation: me },
+        "tonga_institutions" => Command::TongaInstitutions { nation:me, action:serde_json::from_value(v.get("action")?.clone()).ok()? },
         "secure_pillar" => Command::SecurePillar {
             nation: me,
             pillar: spheres_sim::government::Pillar::parse(v.get("pillar")?.as_str()?)?,
@@ -7945,6 +7946,15 @@ fn main() {
                 };
                 let response = match result { Ok(v) => json_response(v), Err(e) => json_error(400,serde_json::json!({"error":e})) };
                 let _ = request.respond(response);
+                continue;
+            }
+            (Method::Get, "/api/tonga-institutions") => {
+                let g=game.lock().unwrap();
+                let nation=nation_param(request.url()).or(g.world.player);
+                let response=if nation==Some(NationId::Tonga) {
+                    json_response(person_portraits::institutional_view(&g.world,NationId::Tonga))
+                } else {json_error(400,serde_json::json!({"error":"Choose Tonga to inspect these institutions."}))};
+                let _=request.respond(response);
                 continue;
             }
             (Method::Get, path) if path.starts_with("/api/government") => {

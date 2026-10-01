@@ -55,14 +55,13 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 ## Claude's current work
 
 The [CP1 acceleration assignment](CP1-ACCELERATION.md) keeps Tonga as the first
-country-cast priority. Production task `CLAUDE-C06-TONGA-01` is now owned by
-**Codex, in progress**; the stable ID preserves its original assignment history.
-Candidate `6829ecc7` on `codex/tonga-country-cast-20261001` remains isolated,
-with CI run `36878791848` running at this registration checkpoint. It is not live,
-accepted or a completed country cast. Preserve the accepted identity proposal
-and C01-44 research; coordinate any Claude assistance with Codex before changing
-production identities, artwork or shared runtime. The Russia/DA source holds
-remain separate from this candidate's validation.
+country-cast priority. Production task `CLAUDE-C06-TONGA-01` is owned by
+**Codex, in progress**. Its [integration receipt](../../campaign-certification/C06/production/tonga/integration-20261001/README.md)
+records the dated cartoon cast and institutional implementation. Preserve the
+accepted identity proposal and C01-44 research; coordinate before changing
+production identities, artwork or shared runtime. Fatai Helu's likeness, the
+remaining office/party chains and final country acceptance remain open.
+Russia and DA source reviews are separate from Tonga production.
 
 Updated 1 October 2026 against the live remote tips and completed independent
 reviews. The central queue contains 36 completed bounded Claude tasks and two

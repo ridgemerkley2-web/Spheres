@@ -661,6 +661,122 @@ class IndependentReviewRegressions(FixtureTree):
         self.assertIn(None, row['manifest_sha256'])
 
 
+class InstitutionalCandidates(FixtureTree):
+    def install_catalogue(self):
+        roles = ('peoples_representative', 'prime_minister', 'nonelected_minister', 'party_organizer')
+        source = {'nation': 'Tonga', 'historical_reference_through': '2026-09-07',
+                  'fictional_from': '2026-09-08', 'fictional_until_exclusive': '2036-01-01',
+                  'opening': {'heir_name': 'Synthetic Crown Heir'},
+                  'future_candidates': []}
+        rows = []
+        for n, role in enumerate(roles):
+            common = {'nation': 'Tonga', 'origin': 'fictional_successor', 'role': role,
+                      'appearance_seed': f'{n:016x}', 'presentation': 'female',
+                      'fictional_biography': 'Synthetic authored character.',
+                      'eligible_from': '2026-09-08', 'eligible_until_exclusive': '2036-01-01',
+                      'restriction': 'Reference only.' if role == 'party_organizer' else 'Requires runtime action checks.'}
+            person = {'id': f'fictional_tonga_fixture_{n}', 'name': f'Institutional {n}'}
+            source['future_candidates'].append({'person': person, **common})
+            rows.append({'person_id': person['id'], 'name': person['name'], **common,
+                         'party': None, 'component': None, 'institution': 'tonga_civilian_institutions'})
+        future = fixture_files()[matrix.FUTURE]
+        future['candidates'].extend(rows)
+        write_tree(self.tmp, {matrix.INSTITUTIONAL_SOURCE: source, matrix.FUTURE: future})
+        return future, rows
+
+    def crown_world(self):
+        return {'rules': {'historical_party_leadership': True},
+                'leadership': [{'nation': 'Tonga', 'name': None,
+                    'emergent': {'office': 'King', 'since': '2000-06-01',
+                                 'name': 'Campaign Crown', 'described': 'Synthetic Crown Heir'}}],
+                'party_leadership': {'executives': [], 'office_identities': []},
+                'institutional_leadership': {'inherited_monarch': {
+                    'person_id': 'p_new', 'since': '2000-06-01'}}}
+
+    def test_saved_inherited_crown_precedes_party_executive_and_binds_exact_person(self):
+        self.install_catalogue()
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        world = self.crown_world()
+        self.assertEqual(matrix.campaign_observation(production, world, 'Tonga'),
+                         {'person': 'p_new', 'name': 'Campaign Crown',
+                          'source': 'saved_inherited_crown'})
+        world['party_leadership']['executives'] = [
+            {'nation': 'Tonga', 'holder': {'person': 'p_old'}}]
+        self.assertEqual(matrix.campaign_observation(production, world, 'Tonga')['person'], 'p_new')
+
+    def test_inherited_crown_requires_exact_saved_context_not_title_or_name(self):
+        self.install_catalogue()
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        controls = ('missing_state', 'missing_link', 'missing_office', 'foreign', 'disabled',
+                    'wrong_office', 'wrong_since', 'wrong_description', 'unknown_person', 'fictional_person')
+        for control in controls:
+            with self.subTest(control=control):
+                world = self.crown_world()
+                identity = 'Tonga'
+                if control == 'missing_state':
+                    world['institutional_leadership'] = None
+                elif control == 'missing_link':
+                    world['institutional_leadership']['inherited_monarch'] = None
+                elif control == 'missing_office':
+                    world['leadership'] = []
+                elif control == 'foreign':
+                    identity = world['leadership'][0]['nation'] = 'Alpha'
+                elif control == 'disabled':
+                    world['rules']['historical_party_leadership'] = False
+                elif control.startswith('wrong_'):
+                    field, value = {'wrong_office': ('office', 'Prime Minister'),
+                                    'wrong_since': ('since', '2000-06-02'),
+                                    'wrong_description': ('described', 'Other Heir')}[control]
+                    world['leadership'][0]['emergent'][field] = value
+                else:
+                    world['institutional_leadership']['inherited_monarch']['person_id'] = (
+                        'unknown' if control == 'unknown_person' else 'fictional_tonga_fixture_0')
+                self.assertIsNone(matrix.campaign_observation(production, world, identity)['person'])
+
+    def test_institutional_roles_are_separate_and_date_scope_does_not_appoint(self):
+        _, rows = self.install_catalogue()
+        inputs = matrix.Inputs(self.tmp)
+        production = matrix.Production(inputs)
+        self.assertEqual(len(production.party_candidates), 2)
+        self.assertEqual(len(production.institutional_candidates), 4)
+        self.assertTrue(all(key[1] is not None for key in production.pool))
+        self.assertIn(matrix.INSTITUTIONAL_SOURCE, {r['path'] for r in inputs.listing()})
+        self.assertEqual(matrix.executive_role(production, 'Tonga', {})['future_executive_policy']['fictional_candidates'], 0)
+        roles = matrix.institutional_roles(production, matrix.Assets(inputs, production), 'Tonga')
+        self.assertEqual(len(roles), 4)
+        for role in roles:
+            cases = {c['date']: c for c in role['cases']}
+            self.assertFalse(cases['2026-09-07']['future']['eligible_by_date'])
+            self.assertTrue(cases['2026-09-08']['future']['eligible_by_date'])
+            self.assertTrue(cases['2035-12-31']['future']['eligible_by_date'])
+            self.assertFalse(cases['2036-01-01']['future']['eligible_by_date'])
+            for cell in cases.values():
+                self.assertNotIn('holders', cell['historical'])
+                self.assertFalse(cell['future']['party_leadership_authorized'])
+                self.assertFalse(cell['future']['national_executive_authorized'])
+        organizer = next(c for c in rows if c['role'] == 'party_organizer')
+        self.assertEqual(matrix.institutional_future_cell(organizer, date(2030, 1, 1))['action_eligibility'],
+                         'reference_only_no_appointment')
+
+    def test_unknown_nonparty_and_smuggled_party_or_executive_grants_fail_closed(self):
+        future, _ = self.install_catalogue()
+        for change in ({'person_id': 'fictional_unknown'}, {'party': 'al_main'},
+                       {'executive_eligibility': {'authorized': True}}):
+            with self.subTest(change=change):
+                altered = json.loads(json.dumps(future))
+                altered['candidates'][-1].update(change)
+                write_tree(self.tmp, {matrix.FUTURE: altered})
+                with self.assertRaises(ValueError):
+                    matrix.Production(matrix.Inputs(self.tmp))
+
+    def test_party_eligibility_metadata_remains_required(self):
+        future, _ = self.install_catalogue()
+        future['candidates'][0].pop('executive_eligibility')
+        write_tree(self.tmp, {matrix.FUTURE: future})
+        with self.assertRaisesRegex(matrix.MatrixError, 'Party candidates require explicit executive eligibility'):
+            matrix.Production(matrix.Inputs(self.tmp))
+
+
 class RealCommittedOutput(unittest.TestCase):
     """Actual production observations recorded in the committed matrix."""
 
@@ -677,6 +793,19 @@ class RealCommittedOutput(unittest.TestCase):
 
     def test_committed_matrix_is_current(self):
         self.assertEqual(matrix.check_outputs(self.outputs, matrix.ROOT / matrix.OUTPUT), [])
+
+    def test_four_institutional_candidates_do_not_expand_2556_party_candidates(self):
+        self.assertEqual(self.summary['fictional_catalogue_counts'],
+                         {'party_candidates': 2556, 'institutional_candidates': 4, 'total_candidates': 2560})
+        tonga = self.outputs['cases-tonga.json']
+        institution = [c for c in tonga['fictional_candidates'] if c.get('institution')]
+        self.assertEqual(len(institution), 4)
+        self.assertEqual({c['role'] for c in institution},
+                         {'peoples_representative', 'prime_minister', 'nonelected_minister', 'party_organizer'})
+        self.assertTrue(all(c['party'] is None and not c['executive_authorized'] for c in institution))
+        policy = self.role('cases-tonga.json', 'executive')['future_executive_policy']
+        self.assertEqual(policy['fictional_candidates'], len(tonga['fictional_candidates']) - 4)
+        self.assertEqual(len([r for r in tonga['roles'] if r['family'] == 'production_institutional_fiction']), 4)
 
     def test_scope_is_preparation_and_covers_all_eight_cases(self):
         self.assertEqual(self.summary['status'], 'preparation_only_not_s23_acceptance')

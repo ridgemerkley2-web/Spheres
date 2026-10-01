@@ -1,0 +1,50 @@
+{
+  "added_person_ids": [
+    "to_aisake_valu_eke",
+    "to_baron_vaea_pm_1992",
+    "to_fatafehi_fakafanua",
+    "to_fatai_helu",
+    "to_feleti_sevele",
+    "to_fusitua_speaker_1996",
+    "to_james_cecil_cocker",
+    "to_langi_kavaliku",
+    "to_lord_tuivakano_pm_2010",
+    "to_lord_vaea_speaker_2025",
+    "to_poasi_mataele_tei",
+    "to_pohiva_tuionetoa",
+    "to_samiu_kuita_vaipulu",
+    "to_samuela_akilisi_pohiva",
+    "to_semisi_kioa_lafu_sika",
+    "to_siaosi_ofakivahafolau_sovaleni",
+    "to_sione_vuna_faotusia",
+    "to_taniela_likuohihifo_fusimalohi",
+    "to_tesina_fuko",
+    "to_tevita_lavemaau",
+    "to_tevita_poasi_tupou",
+    "to_ulukalala_lavaka_ata_pm_2000",
+    "to_viliami_tau_tangi",
+    "to_viliami_uasike_latu",
+    "to_siaosi_manumataongo_tukuaho_1985"
+  ],
+  "source_enriched_ids": [
+    "fatafehi_tuipelehake",
+    "taufaahau_tupou_iv",
+    "siaosi_taufaahau_manumataongo"
+  ],
+  "existing_fact_conflicts_preserved": [
+    {
+      "person_id": "fatafehi_tuipelehake",
+      "fields": [
+        "name"
+      ],
+      "action": "Preserved existing saved-identity facts; proposed corrections require separate review/migration."
+    }
+  ],
+  "party_terms_changed": 0,
+  "office_links_changed": 0,
+  "portraits_generated": 0,
+  "source_file": "docs/campaign-certification/C06/production/tonga/people-import-source.json",
+  "source_sha256": "7fe986245a3b267a2919b8f41501ea74f7a4d806bbabc07bcdb709c3d291745b",
+  "status": "identities_imported",
+  "known_people": 615
+}

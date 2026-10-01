@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "registered_at": "2026-10-01",
+  "status": "four_fictional_candidates_and_portraits_registered",
+  "historical_cutoff": "2026-09-07",
+  "review_source": "docs/campaign-certification/C06/production/tonga/fictional-art-review.json",
+  "review_source_sha256": "f276ad6804151f15851ced2308e0ea09924f402b3c88fd38c09a2ac1f5237904",
+  "catalogue_counts": {
+    "all_candidates": 2560,
+    "party_candidates": 2556,
+    "institutional_candidates": 4,
+    "party_count": 624,
+    "country_count": 149,
+    "institution_count": 1
+  },
+  "party_candidate_rows_unchanged": true,
+  "historical_registry_ids_created_by_this_fictional_registration": 0,
+  "new_images_generated": 0,
+  "human_approval_claimed": false,
+  "allowlist_built": false,
+  "records": [
+    {
+      "person_id": "fictional_to_lesieli_fotu",
+      "appearance_seed": "8e79e5ffd099a2af",
+      "asset": "spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png",
+      "sha256": "f13ddcd9ad637c22c14803361d84de436e292556b3dfb4b49cf39d3fd007a2c5",
+      "prompt_record": "tools/avatars/person-prompts/tonga-lesieli-fotu-fictional-2026-v1.txt",
+      "prompt_sha256": "2c861ead3c19c3cd0138822240836aca5cbd6eb381133f10b8c2cb9d082020e6",
+      "original_bytes_match": true,
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "registration_kind": "authored_fiction_design_not_historical_likeness"
+    },
+    {
+      "person_id": "fictional_to_sitani_lolohea",
+      "appearance_seed": "e60d18f4dc6b11da",
+      "asset": "spheres-web/ui/person-portraits/tonga-sitani-lolohea-fictional-2026-v1.png",
+      "sha256": "a8281ea3b8ac15b00aa899b5af63e6ce9a66933c77ba0b4578ecd596f1d81d7f",
+      "prompt_record": "tools/avatars/person-prompts/tonga-sitani-lolohea-fictional-2026-v1.txt",
+      "prompt_sha256": "b30b9d2126b86d851a009d8330fc42510da2c505ee3336da6184a221d6c501ac",
+      "original_bytes_match": true,
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "registration_kind": "authored_fiction_design_not_historical_likeness"
+    },
+    {
+      "person_id": "fictional_to_pisila_tukuafu",
+      "appearance_seed": "deef67d61750bff5",
+      "asset": "spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png",
+      "sha256": "b057acab79696e7690f27cc2fa6886db5b7d71f73ed984a6334ee261093a16bd",
+      "prompt_record": "tools/avatars/person-prompts/tonga-pisila-tukuafu-fictional-2026-v1.txt",
+      "prompt_sha256": "0e2235123ae7620b34f7f5f8c6c75a1af6aa7c80523b6ed52eca4e56aca8936a",
+      "original_bytes_match": true,
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "registration_kind": "authored_fiction_design_not_historical_likeness"
+    },
+    {
+      "person_id": "fictional_to_kalolo_matalehu",
+      "appearance_seed": "e521150d49923a7f",
+      "asset": "spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png",
+      "sha256": "c03c951a7dac9da406def5e322346cd164727e2c1447758e09bb73f7079e6d6c",
+      "prompt_record": "tools/avatars/person-prompts/tonga-kalolo-matalehu-fictional-2026-v1.txt",
+      "prompt_sha256": "6e06968d66730e55b6a32416af0a2878acc824d3063c7b5174cf355ea5ef17d5",
+      "original_bytes_match": true,
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "registration_kind": "authored_fiction_design_not_historical_likeness"
+    }
+  ],
+  "visual_reinspection": "Codex inspected all four retained PNGs at registration; observed designs agree with the existing design/visual review. All are full-body, distinct fictional adults with opaque dark teal backgrounds. No human approval claimed.",
+  "limits": "Portrait registration grants no office or party eligibility. Kalolo remains reference-only under the institutional catalogue restriction."
+}

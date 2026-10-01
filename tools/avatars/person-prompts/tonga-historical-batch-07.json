@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-07",
+  "nation": "Tonga",
+  "reviewed_at": "2026-10-01",
+  "registration_operator": "Codex",
+  "review_owner": "Codex root",
+  "human_approval_claimed": false,
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-01-jobs-batch07.json",
+  "jobs_sha256": "8e2aee6c7c293a4caacd46db560a467462e0a332a15297acf20cf9c4a4dac4f9",
+  "manifest_before_sha256": "282696c3d324d64bba0d37511d5ffedbffc79730e9d29b57b8e85cf1a99d99e2",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/tonga/royal-identity-review.json": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+    "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+  },
+  "source_reference_records": {
+    "heir-2022": {
+      "record": {
+        "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+        "kind": "observed_portrait",
+        "reference_id": "heir-2022",
+        "asset": "spheres-web/ui/person-portraits/references/tonga-heir-2022-reference-v1.jpg",
+        "sha256": "85cd63baa19269c6f43b08d52b0abe4f09b2dc3edd7ca589ed933367874d6ec2",
+        "bytes": 9952931,
+        "width": 5725,
+        "height": 3817,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-DOS",
+        "creator": "U.S. Embassy Suva / U.S. Department of State",
+        "credit": "U.S. Embassy Suva / U.S. Department of State, Wendy Sherman and Crown Prince Tupoutoʻa ʻUlukalala, 5 August 2022; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: Public domain in the United States: official U.S. Department of State work. Caption and EXIF support 5 August 2022. The upload comment’s 2023 year is a typo and is not used. Mark post-2026 age adjustments as fictional artistic interpretation.",
+        "source_license_statement": "Public domain in the United States: official U.S. Department of State work",
+        "depiction_date": {
+          "kind": "day",
+          "value": "2022-08-05"
+        },
+        "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "source_metadata_sha256": "709e66655eeb654ef04899b1df98cdd5fa5a000174e3e3f0932bc156d7606b75",
+        "original_source": "https://www.flickr.com/photos/167418767@N06/52272084217"
+      },
+      "original_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.jpg",
+      "retained_source_record": {
+        "id": "heir-2022",
+        "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+        "photo_date": {
+          "kind": "day",
+          "value": "2022-08-05"
+        },
+        "creator": "U.S. Embassy Suva / U.S. Department of State",
+        "license": "Public domain in the United States: official U.S. Department of State work",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-DOS",
+        "recommended_credit": "U.S. Embassy Suva / U.S. Department of State, Wendy Sherman and Crown Prince Tupoutoʻa ʻUlukalala, 5 August 2022; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "commons_url": "https://commons.wikimedia.org/wiki/File:Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg",
+        "original_source": "https://www.flickr.com/photos/167418767@N06/52272084217",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "image": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.jpg",
+          "bytes": 9952931,
+          "sha256": "85cd63baa19269c6f43b08d52b0abe4f09b2dc3edd7ca589ed933367874d6ec2"
+        },
+        "metadata": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.commons-useragent.html",
+          "bytes": 110377,
+          "sha256": "709e66655eeb654ef04899b1df98cdd5fa5a000174e3e3f0932bc156d7606b75"
+        },
+        "dimensions": {
+          "width": 5725,
+          "height": 3817
+        },
+        "visual_review": {
+          "reviewer": "Codex",
+          "date": "2026-10-01",
+          "observed": "Crown Prince Tupoutoʻa ʻUlukalala at left, pulled-back dark hair and goatee, tan suit and woven taʻovala. Wendy Sherman stands at right in green."
+        },
+        "limits": "Caption and EXIF support 5 August 2022. The upload comment’s 2023 year is a typo and is not used. Mark post-2026 age adjustments as fictional artistic interpretation.",
+        "human_approval_claimed": false,
+        "generated_art_approval": false,
+        "review_file": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2",
+        "output": "exec-1adc4de8-a634-4afd-899f-5ba40fc2a78c.png",
+        "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+        "from": "2027-01-01",
+        "to": "2036-01-01",
+        "references": [
+          "heir-2022"
+        ],
+        "era_note": "Explicit fictional future age projection of the distinct real heir born 1985 near 2030, based on the identified man at left in the 5 August 2022 photograph. The 2027–2035 appearance window is an alternate-history artistic concept, not a prediction of lifespan, office, succession or actual appearance. The final edit corrects the background to the approved dark teal while preserving the earlier generated face, clothing and body.",
+        "appearance_context": "fictional_future_age_projection",
+        "visual_review": "Codex root personally inspected the final edited result: correct opaque dark teal background with unchanged recognizable face and clothing, full body with hands and shoes visible, approved outlined cartoon style. The earlier black-background version was rejected before registration. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.png",
+        "sha256": "778bb6b836a14888e8d42dd1daca275afee5118d0e7a8050099c356b537ebc5a",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-1adc4de8-a634-4afd-899f-5ba40fc2a78c.png",
+        "transformation": {
+          "operation": "Built-in image_gen background-only edit of a prior generated image",
+          "previous_generated_output": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2de0bde8-0f3c-4f1f-b006-ff77f2c11f58.png",
+            "sha256": "cc721d4edbe6c1e7bf40716397ddb7c9265eaad7f5c41b0f1bb9b8c6bc6be386",
+            "bytes": 1491836
+          },
+          "previous_prompt_record": "tools/avatars/person-prompts/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v1.txt",
+          "previous_prompt_file_sha256": "2fb5877c08dba960ad444a23907d2eac4044103328118a430f0dd0494918f9ce",
+          "previous_exact_prompt": "Create one polished full-body 2D cartoon character for Spheres, vertical 1024x1536. FIRST reference STYLE ONLY: bold clean dark outlines, beautiful graphic cel shading, restrained fine detail, adult 5.5-head proportions, smooth quiet opaque dark teal backdrop with grounding shadow. Do not copy its person's identity. Use other reference for the named person's recognizable face. Entire head, both hands outside pockets with fingers visible and both shoes within image with generous margins. Relaxed dignified standing pose, slightly three-quarter. No text, logos, flag, extra people, photorealism,3D or chibi. Draw the real later Crown Prince Tupouto'a 'Ulukalala, born1985, as expressly FICTIONAL FUTURE AGE PROJECTION near2030,about45. Exact face is MAN ON LEFT in beige jacket in2022source; notwoman. This is appearance concept for alternate-history gameplay, NOTprediction of tenure or future appearance. Tall large stocky broad adult, warmbrownskin, high receding forehead, dark hair slickedback into small low tiedtail with very slight greytemples, narrowdarkchin goatee, minimal moustache, roundedcheeks and broadnose, friendly calm expression. Add modest agecreases. Original navy blazer, whiteshirt, mutedgoldtie, tan woven ta'ovala secured atwaist, dark tupenu belowknee, blackshoes. No crown or insignia; both handsvisibleatsides. No different royalidentity.\n",
+          "previous_reference_paths": [
+            "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+            "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.jpg"
+          ],
+          "previous_generation_batch": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/generation-batch12.json",
+          "previous_generation_batch_sha256": "d362df9e819b0e777f0fa88270dd2cb1387c98bf3677dd88a36ee256a2e0422b",
+          "previous_output_registration_status": "Rejected black-background study, retained externally and never registered or shipped.",
+          "edit_input_order": "Approved Thatcher style anchor first, then the previous generated v1 image; the original 2022 photograph was not supplied again on this edit.",
+          "identity_reference_origin": "Original v1 supplied style then heir-2022 photograph. Complete reference rights and hashes are retained with this registration."
+        }
+      },
+      "exact_prompt": "Edit the SECOND reference image (the 2030 cartoon of Tonga's later Crown Prince Tupouto'a 'Ulukalala) while preserving EXACTLY his face, warm brown complexion, dark tied-back hair, chin goatee, friendly expression, full-body proportions, navy blazer, white shirt, gold tie, tan woven ta'ovala and dark tupenu, relaxed hands, shoes, composition and drawing style. Change ONLY THE BACKGROUND to the quiet OPAQUE DEEP TEAL backdrop seen in FIRST reference style anchor, approximately #102e35, with very subtle teal variation and small soft ground shadow. Remove all black/brown spotlight glow and surrounding black background. Keep the character entirely within generous vertical1024x1536 margins, same bold outlined cel-shaded cartoon rendering. This is expressly speculative future-age character art for alternate-history gameplay, not prediction of office/lifespan. No text, props, extra people, logos, photorealism,3D or new facial identity.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.txt",
+      "prompt_file_sha256": "faf8393c000739f58d5730a0108cc4e2109c60fa634a8597b022e441396767bd",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "role": "previous_generated_image_to_edit",
+          "submitted_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2de0bde8-0f3c-4f1f-b006-ff77f2c11f58.png",
+          "sha256": "cc721d4edbe6c1e7bf40716397ddb7c9265eaad7f5c41b0f1bb9b8c6bc6be386",
+          "bytes": 1491836,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGBA"
+        }
+      ],
+      "transformation": {
+        "operation": "Built-in image_gen background-only edit of a prior generated image",
+        "previous_generated_output": {
+          "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2de0bde8-0f3c-4f1f-b006-ff77f2c11f58.png",
+          "sha256": "cc721d4edbe6c1e7bf40716397ddb7c9265eaad7f5c41b0f1bb9b8c6bc6be386",
+          "bytes": 1491836
+        },
+        "previous_prompt_record": "tools/avatars/person-prompts/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v1.txt",
+        "previous_prompt_file_sha256": "2fb5877c08dba960ad444a23907d2eac4044103328118a430f0dd0494918f9ce",
+        "previous_exact_prompt": "Create one polished full-body 2D cartoon character for Spheres, vertical 1024x1536. FIRST reference STYLE ONLY: bold clean dark outlines, beautiful graphic cel shading, restrained fine detail, adult 5.5-head proportions, smooth quiet opaque dark teal backdrop with grounding shadow. Do not copy its person's identity. Use other reference for the named person's recognizable face. Entire head, both hands outside pockets with fingers visible and both shoes within image with generous margins. Relaxed dignified standing pose, slightly three-quarter. No text, logos, flag, extra people, photorealism,3D or chibi. Draw the real later Crown Prince Tupouto'a 'Ulukalala, born1985, as expressly FICTIONAL FUTURE AGE PROJECTION near2030,about45. Exact face is MAN ON LEFT in beige jacket in2022source; notwoman. This is appearance concept for alternate-history gameplay, NOTprediction of tenure or future appearance. Tall large stocky broad adult, warmbrownskin, high receding forehead, dark hair slickedback into small low tiedtail with very slight greytemples, narrowdarkchin goatee, minimal moustache, roundedcheeks and broadnose, friendly calm expression. Add modest agecreases. Original navy blazer, whiteshirt, mutedgoldtie, tan woven ta'ovala secured atwaist, dark tupenu belowknee, blackshoes. No crown or insignia; both handsvisibleatsides. No different royalidentity.\n",
+        "previous_reference_paths": [
+          "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.jpg"
+        ],
+        "previous_generation_batch": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/generation-batch12.json",
+        "previous_generation_batch_sha256": "d362df9e819b0e777f0fa88270dd2cb1387c98bf3677dd88a36ee256a2e0422b",
+        "previous_output_registration_status": "Rejected black-background study, retained externally and never registered or shipped.",
+        "edit_input_order": "Approved Thatcher style anchor first, then the previous generated v1 image; the original 2022 photograph was not supplied again on this edit.",
+        "identity_reference_origin": "Original v1 supplied style then heir-2022 photograph. Complete reference rights and hashes are retained with this registration."
+      },
+      "input_order_basis": "Root confirmed this edit used only the style anchor, then the prior generated image. Its original likeness-reference generation is retained in transformation provenance.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "778bb6b836a14888e8d42dd1daca275afee5118d0e7a8050099c356b537ebc5a",
+        "bytes": 1681834,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2027-01-01",
+        "to": "2036-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.png",
+        "sha256": "778bb6b836a14888e8d42dd1daca275afee5118d0e7a8050099c356b537ebc5a",
+        "bytes": 1681834,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg",
+        "credit": "Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: U.S. Embassy Suva / U.S. Department of State, Wendy Sherman and Crown Prince Tupoutoʻa ʻUlukalala, 5 August 2022; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "era_note": "Explicit fictional future age projection of the distinct real heir born 1985 near 2030, based on the identified man at left in the 5 August 2022 photograph. The 2027–2035 appearance window is an alternate-history artistic concept, not a prediction of lifespan, office, succession or actual appearance. The final edit corrects the background to the approved dark teal while preserving the earlier generated face, clothing and body.",
+        "identity_source": {
+          "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+          "kind": "observed_portrait",
+          "reference_id": "heir-2022",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-heir-2022-reference-v1.jpg",
+          "sha256": "85cd63baa19269c6f43b08d52b0abe4f09b2dc3edd7ca589ed933367874d6ec2",
+          "bytes": 9952931,
+          "width": 5725,
+          "height": 3817,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg",
+          "license": "Public domain",
+          "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-DOS",
+          "creator": "U.S. Embassy Suva / U.S. Department of State",
+          "credit": "U.S. Embassy Suva / U.S. Department of State, Wendy Sherman and Crown Prince Tupoutoʻa ʻUlukalala, 5 August 2022; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: Public domain in the United States: official U.S. Department of State work. Caption and EXIF support 5 August 2022. The upload comment’s 2023 year is a typo and is not used. Mark post-2026 age adjustments as fictional artistic interpretation.",
+          "source_license_statement": "Public domain in the United States: official U.S. Department of State work",
+          "depiction_date": {
+            "kind": "day",
+            "value": "2022-08-05"
+          },
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "source_metadata_sha256": "709e66655eeb654ef04899b1df98cdd5fa5a000174e3e3f0932bc156d7606b75",
+          "original_source": "https://www.flickr.com/photos/167418767@N06/52272084217"
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-07.json, job tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected the final edited result: correct opaque dark teal background with unchanged recognizable face and clothing, full body with hands and shoes visible, approved outlined cartoon style. The earlier black-background version was rejected before registration. No human approval claimed.",
+        "appearance_context": "fictional_future_age_projection"
+      },
+      "research_sources": [],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    }
+  ]
+}

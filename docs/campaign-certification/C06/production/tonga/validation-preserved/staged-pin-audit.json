@@ -1,0 +1,233 @@
+{
+  "recorded_at": "2026-10-01T13:29:34.579457+00:00",
+  "checked": 28,
+  "mismatches": [],
+  "readme_links_checked": 8,
+  "missing_links": [],
+  "all_pins": [
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "expected": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "working_tree": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "index": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+      "expected": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70",
+      "working_tree": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70",
+      "index": "f673002cb6fceeaeb13402be8135cf99772228059670f3f11ac615ee5bcaee70",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/art-registration-verification.json",
+      "expected": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b",
+      "working_tree": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b",
+      "index": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "expected": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82",
+      "working_tree": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82",
+      "index": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/civilian-source-ledger.json",
+      "expected": "3011346a10093e99ad066e0d034ba46cf875cc347d82df38fd856a378bd23822",
+      "working_tree": "3011346a10093e99ad066e0d034ba46cf875cc347d82df38fd856a378bd23822",
+      "index": "3011346a10093e99ad066e0d034ba46cf875cc347d82df38fd856a378bd23822",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/historical-binding-completion-receipt.json",
+      "expected": "a2c7ac6be520ca24334a531407211bd2291f5507b6f9b8270baee1c17978754a",
+      "working_tree": "a2c7ac6be520ca24334a531407211bd2291f5507b6f9b8270baee1c17978754a",
+      "index": "a2c7ac6be520ca24334a531407211bd2291f5507b6f9b8270baee1c17978754a",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/party-likeness-review.json",
+      "expected": "d6c30ac3d808f6b5180f9ec28ed125033cc9eacc1d740c56e1f7a62699090fd0",
+      "working_tree": "d6c30ac3d808f6b5180f9ec28ed125033cc9eacc1d740c56e1f7a62699090fd0",
+      "index": "d6c30ac3d808f6b5180f9ec28ed125033cc9eacc1d740c56e1f7a62699090fd0",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "expected": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+      "working_tree": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+      "index": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "expected": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+      "working_tree": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+      "index": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/data/tonga_institutional_leadership.json",
+      "expected": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+      "working_tree": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+      "index": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/company_save.rs",
+      "expected": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+      "working_tree": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+      "index": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "expected": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+      "working_tree": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+      "index": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "expected": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+      "working_tree": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+      "index": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/institutional_leadership.rs",
+      "expected": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+      "working_tree": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+      "index": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "expected": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+      "working_tree": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+      "index": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "expected": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+      "working_tree": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+      "index": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-sim/src/world.rs",
+      "expected": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+      "working_tree": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+      "index": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "expected": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+      "working_tree": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+      "index": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "expected": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+      "working_tree": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+      "index": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "expected": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "working_tree": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "index": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/src/government_view.rs",
+      "expected": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+      "working_tree": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+      "index": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "expected": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+      "working_tree": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+      "index": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "expected": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+      "working_tree": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+      "index": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "expected": "c698ebe2f759bf08491179d5caeebbd49292e4469b240dc358448f2e6146577d",
+      "working_tree": "c698ebe2f759bf08491179d5caeebbd49292e4469b240dc358448f2e6146577d",
+      "index": "c698ebe2f759bf08491179d5caeebbd49292e4469b240dc358448f2e6146577d",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/ui/government-ui.css",
+      "expected": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+      "working_tree": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+      "index": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/ui/government-ui.js",
+      "expected": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
+      "working_tree": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
+      "index": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "expected": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+      "working_tree": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+      "index": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+      "work_matches": true,
+      "index_matches": true
+    },
+    {
+      "path": "tools/avatars/tonga_cast_coverage.py",
+      "expected": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b",
+      "working_tree": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b",
+      "index": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b",
+      "work_matches": true,
+      "index_matches": true
+    }
+  ]
+}

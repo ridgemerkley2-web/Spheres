@@ -1,0 +1,16 @@
+﻿{
+    "command":  "cargo check --locked -j 1 -p spheres-sim --example export_future_leadership",
+    "exit_code":  0,
+    "started_utc":  "2026-10-01T13:49:23.5819522Z",
+    "finished_utc":  "2026-10-01T13:49:26.9898437Z",
+    "stopped_for_resource_floor":  false,
+    "min_available_commit_bytes":  6317387776,
+    "min_available_commit_gib":  5.884,
+    "sources_unchanged":  true,
+    "source_diff":  [
+
+                    ],
+    "source_file_count":  439,
+    "background_diagnostic_present":  true,
+    "scope":  "Final-source institutional catalogue exporter typecheck only. No native tests, web link, timing measurement or qualification result."
+}

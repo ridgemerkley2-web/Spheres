@@ -1,0 +1,24 @@
+✔ Tonga gets its own accessible institutional tab; other governments keep their existing tabs (49.6951ms)
+✔ monarch remains the hero while opening Prime Minister has a separate portrait and explicit reference label (0.6378ms)
+✔ active civilian appointments retain supplied dates, identities and vacant-office commands (0.5148ms)
+✔ inactive Crown institutions do not relabel a changed regime head as King (0.4488ms)
+✔ unadopted Assembly seats are a proposed model, not historical campaign counts (0.6505ms)
+✔ all four fictional people use supplied portraits; Kalolo has no appointment controls (1.3585ms)
+✔ date availability never promises appointment and backend refusals remain visible (0.7336ms)
+✔ foreign and pending views disable every institutional action (1.4205ms)
+✔ unknown command or nested-target mismatch does not create an action button (0.3858ms)
+✔ historical cards preserve uncertainty and appearance context without creating appointments (0.609ms)
+✔ search filters both casts while leaving serving officials visible and data unchanged (0.4911ms)
+✔ institutional names, reasons, biographies and evidence are escaped; unsafe portraits and links are refused (0.3812ms)
+✔ nested command comparison ignores key order but preserves action type and exact person (0.0944ms)
+✔ institution control uses standard preview and confirmed command receipt with exact nested payload (3.3508ms)
+✔ host rejects a preview that changes only the nested person or action type (3.8243ms)
+✔ host accepts reordered nested command keys and never bypasses foreign, refused or pending guards (6.5707ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.9453

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "validated_at": "2026-10-01",
+  "stage": "Reviewed people skeletons and four fictional portraits registered; historical Tonga artwork registration follows in root task.",
+  "historical_manifest_valid": true,
+  "fictional_manifest_valid": true,
+  "existing_identity_fields_preserved": true,
+  "all_party_rows_and_office_links_preserved": true,
+  "existing_historical_portrait_records_preserved": true,
+  "historical_people": 615,
+  "historical_people_added": 25,
+  "fictional_institutional_candidates": 4,
+  "party_candidates": 2556,
+  "party_count": 624,
+  "candidate_count": 2560,
+  "country_count": 149,
+  "validated_historical_images": 59,
+  "validated_fictional_images": 8,
+  "file_hashes": {
+    "spheres-sim/data/party_leaders.json": "88e44c5542dbd4a5fbec9123449559ba9b6882e1ca685c4b99cc9cda21f21d28",
+    "spheres-web/data/person_portraits.json": "9fa9338de5d8bb2c8dea10eba902ea02a5bd8786b9d1793bf28533370a7bde36",
+    "spheres-web/data/fictional_portraits.json": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+    "spheres-web/data/future_candidates_2035.json": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+    "spheres-web/data/leadership_production_2035.json": "cd6a320da1f95e1df64e3cabdb66436c8bfd6c5e9962aeebe96dcc39e856daff"
+  },
+  "allowlist_built": false,
+  "native_build_or_run": false,
+  "human_approval_claimed": false
+}

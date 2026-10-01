@@ -20,7 +20,8 @@
     "roles": {
      "research": 6,
      "production_party": 6,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 881,
     "case_kinds": {
@@ -76,6 +77,8 @@
     "people_without_bound_art_at_yearly_samples": 20,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 24,
+    "fictional_party_candidates": 24,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 0,
     "fictional_executive_authorized": 0,
     "research_roles_without_holder_observation": [],
@@ -90,7 +93,7 @@
     "Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.",
-    "Future: 24 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
+    "Future: 24 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive."
    ]
   }
  ],

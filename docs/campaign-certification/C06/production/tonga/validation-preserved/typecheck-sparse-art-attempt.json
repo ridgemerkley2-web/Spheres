@@ -1,0 +1,16 @@
+﻿{
+    "command":  "cargo check --locked -j 1 -p spheres-sim -p spheres-web --tests",
+    "exit_code":  null,
+    "started_utc":  "2026-10-01T13:44:38.9941018Z",
+    "finished_utc":  "2026-10-01T13:45:04.0468864Z",
+    "stopped_for_resource_floor":  false,
+    "min_available_commit_bytes":  5505712128,
+    "min_available_commit_gib":  5.128,
+    "sources_unchanged":  true,
+    "source_diff":  [
+
+                    ],
+    "source_file_count":  438,
+    "background_diagnostic_present":  true,
+    "scope":  "Final-source serial simulation/web and test-code typecheck only. No native tests, web link, timing measurement or qualification result."
+}

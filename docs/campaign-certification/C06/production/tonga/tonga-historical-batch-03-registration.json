@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-03",
+  "date": "2026-10-01",
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-04-jobs-batch03.json",
+  "jobs_sha256": "44185399aedad13b3db414f26a870f490db689a951d7054a044543a327c144b5",
+  "manifest_before_sha256": "9984329c88e6d17b2994f2cd5c934ae96f64d0a0097ee2893cc398aafec91ab8",
+  "manifest_after_sha256": "591bc870e13b585c0d0bcd4d059c4a46b0f917330e1bcc80f5fc3c1fdf3ed25d",
+  "prior_records_preserved": true,
+  "appended": [
+    {
+      "person_id": "to_viliami_tau_tangi",
+      "asset": "spheres-web/ui/person-portraits/tonga-viliami-tangi-cartoon-2008-v1.png",
+      "sha256": "247a1aa313f06b190ac5f44b2b8eef73b0f44a9d8342e195435f6e4b8681f093"
+    },
+    {
+      "person_id": "to_james_cecil_cocker",
+      "asset": "spheres-web/ui/person-portraits/tonga-james-cecil-cocker-cartoon-2014-v1.png",
+      "sha256": "9e397fd2632bfe5a28f25109323687ad435429d1737ea0bd9a4862e79fb5f4ca"
+    },
+    {
+      "person_id": "to_fusitua_speaker_1996",
+      "asset": "spheres-web/ui/person-portraits/tonga-lord-fusitua-cartoon-1998-v1.png",
+      "sha256": "b6ca5b5c2c8db2af82516d5049e4f0f73eb0bd6c53673bad1517fd4862935930"
+    },
+    {
+      "person_id": "to_langi_kavaliku",
+      "asset": "spheres-web/ui/person-portraits/tonga-langi-kavaliku-cartoon-1998-v1.png",
+      "sha256": "03b572364c63ff5aa481d0cc0bca5760771f57845a7be78b4aec9e0da84d767a"
+    }
+  ],
+  "copied_reference_images": [],
+  "generation_record": "tools/avatars/person-prompts/tonga-historical-batch-03.json",
+  "generation_record_sha256": "6184f2759c1ef19a6f4b9b510f5f1958f530148407761a382457c9deddf8b2a8",
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "warning_count": 535,
+    "historical_people_with_art": 85,
+    "historical_images": 88,
+    "appended": 4,
+    "copied_reference_images": 0
+  },
+  "allowlist_rebuilt": false,
+  "production_board_rebuilt": false,
+  "rejected_studies_excluded": true
+}

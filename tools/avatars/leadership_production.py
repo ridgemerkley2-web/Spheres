@@ -27,6 +27,8 @@ CUTOFF = date(2026, 9, 7)
 FUTURE = CUTOFF + timedelta(days=1)
 END = date(2036, 1, 1)
 STYLE = "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+INSTITUTIONAL_SOURCE = "spheres-sim/data/tonga_institutional_leadership.json"
+TONGA_INSTITUTION = "tonga_civilian_institutions"
 
 
 def load(path: Path):
@@ -133,6 +135,66 @@ def appearance_jobs(person_id: str, person: dict, windows: list, ready: list) ->
     return jobs
 
 
+def institutional_candidate_catalogue(root: Path) -> list[dict]:
+    """Read the explicit non-party catalogue; titles do not create party rows."""
+    source = load(root / INSTITUTIONAL_SOURCE)
+    if (source.get("nation"), source.get("historical_reference_through"),
+            source.get("fictional_from"), source.get("fictional_until_exclusive")) != (
+            "Tonga", CUTOFF.isoformat(), FUTURE.isoformat(), END.isoformat()):
+        raise ValueError("Institutional candidate source crosses the nation/history boundary")
+    rows = source.get("future_candidates", [])
+    expected_roles = {"peoples_representative", "prime_minister", "nonelected_minister", "party_organizer"}
+    if len(rows) != 4 or {row.get("role") for row in rows} != expected_roles:
+        raise ValueError("Tonga requires its four explicit institutional candidate roles")
+    result = []
+    for row in rows:
+        person = row.get("person", {})
+        if (not isinstance(person.get("id"), str) or not person["id"].startswith("fictional_")
+                or not person.get("name") or row.get("nation") != "Tonga"
+                or row.get("origin") != "fictional_successor"
+                or not re.fullmatch(r"[0-9a-f]{16}", row.get("appearance_seed", ""))
+                or row.get("presentation") not in {"female", "male"}
+                or not row.get("fictional_biography") or not row.get("restriction")
+                or row.get("eligible_from") != FUTURE.isoformat()
+                or row.get("eligible_until_exclusive") != END.isoformat()):
+            raise ValueError("Invalid authored institutional candidate identity, appearance or boundary")
+        result.append({"person_id": person["id"], "name": person["name"],
+                       **{key: row[key] for key in (
+                           "nation", "origin", "role", "appearance_seed", "presentation",
+                           "fictional_biography", "eligible_from", "eligible_until_exclusive", "restriction")},
+                       "party": None, "institution": TONGA_INSTITUTION, "component": None})
+    if len({row["person_id"] for row in result}) != len(result):
+        raise ValueError("Duplicate authored institutional candidate identity")
+    return result
+
+
+def partition_future_candidates(root: Path, candidates: list[dict]) -> tuple[list, list]:
+    """Accept only the exact authored institutional export alongside party rows."""
+    expected = {row["person_id"]: row for row in institutional_candidate_catalogue(root)}
+    party_rows, institutional_rows = [], []
+    for row in candidates:
+        if row.get("party") is None:
+            institutional_rows.append(row)
+        else:
+            if row.get("institution") is not None or row.get("person_id") in expected:
+                raise ValueError("Institutional candidates cannot masquerade as party candidates")
+            party_rows.append(row)
+    actual = {row.get("person_id"): row for row in institutional_rows}
+    if len(actual) != len(institutional_rows) or actual != expected:
+        raise ValueError("Institutional candidate export must exactly match the authored Tonga catalogue")
+    return party_rows, institutional_rows
+
+
+def validate_future_counts(data: dict, party_rows: list, institutional_rows: list) -> None:
+    candidates = party_rows + institutional_rows
+    counts = (len(candidates), len({(row["nation"], row["party"]) for row in party_rows}),
+              len({row["nation"] for row in candidates}), len(institutional_rows))
+    reported = tuple(data.get(key) for key in (
+        "candidate_count", "party_count", "country_count", "institutional_candidate_count"))
+    if counts != reported:
+        raise ValueError("Reported future counts disagree with actual party/institutional records")
+
+
 def future_inventory(root: Path, ready=None) -> dict:
     ready = ready or {}
     path = root / "spheres-sim/data/future_party_leadership.json"
@@ -167,31 +229,36 @@ def future_inventory(root: Path, ready=None) -> dict:
         ids = [c.get("person_id") for c in candidates]
         if not all(isinstance(pid, str) and pid.startswith("fictional_") for pid in ids) or len(set(ids)) != len(ids):
             raise ValueError("Fictional candidates require unique explicitly fictional IDs")
-        parties = {(c.get("nation"), c.get("party")) for c in candidates}
+        party_candidates, institutional_candidates = partition_future_candidates(root, candidates)
+        parties = {(c.get("nation"), c.get("party")) for c in party_candidates}
         if parties != set(simulation_parties(root)):
             raise ValueError("Fictional candidate export excludes or invents a simulation party")
         registry = load(root / "spheres-sim/data/party_leaders.json")
         component_ids = {(p["nation"], p["party"], c["id"]) for p in registry["parties"] for c in p.get("components", [])}
-        actual_components = {(c["nation"], c["party"], c["component"]) for c in candidates if c.get("component")}
+        actual_components = {(c["nation"], c["party"], c["component"]) for c in party_candidates if c.get("component")}
         if actual_components != component_ids:
             raise ValueError("Fictional candidate export excludes or invents a coalition component")
         if any(c.get("origin") != "fictional_successor" or not c.get("name") for c in candidates):
             raise ValueError("Exported future candidates must be named and explicitly fictional")
         counts = (len(candidates), len(parties), len({c["nation"] for c in candidates}))
-        if counts != (data.get("candidate_count"), data.get("party_count"), data.get("country_count")):
-            raise ValueError("Reported future counts disagree with actual exported records")
+        validate_future_counts(data, party_candidates, institutional_candidates)
         if set(ids) & {p["id"] for p in registry["people"]}:
             raise ValueError("A fictional candidate ID appears in the historical person registry")
         result.update(status="exported_fictional_templates_audited_art_and_editorial_review_incomplete",
                       validated_candidate_count=counts[0], represented_party_count=counts[1], represented_country_count=counts[2],
-                      available_component_templates=sum(c.get("component_available") is not False for c in candidates),
-                      archived_component_templates=sum(c.get("component_available") is False for c in candidates),
+                      validated_party_candidate_count=len(party_candidates),
+                      institutional_candidate_count=len(institutional_candidates),
+                      represented_institution_count=len({(c["nation"], c["institution"]) for c in institutional_candidates}),
+                      institutional_source_path=INSTITUTIONAL_SOURCE,
+                      institutional_source_sha256=sha(root / INSTITUTIONAL_SOURCE),
+                      available_component_templates=sum(c.get("component_available") is not False for c in party_candidates),
+                      archived_component_templates=sum(c.get("component_available") is False for c in party_candidates),
                       rendered_person_count=len(set(ids) & set(ready)),
                       rendered_avatar_count=sum(len(records) for pid, records in ready.items() if pid in set(ids)),
                       validated_cartoon_assets=ready,
                       export_path=exported.relative_to(root).as_posix(), export_sha256=sha(exported),
                       candidates=candidates,
-                      note="Counts verify exported fictional IDs, country/party/component coverage and dates. They do not establish complete research, editorial review or finished cartoon art.")
+                      note="Counts verify exported fictional IDs, country/party/component coverage, the separate authored institutional catalogue and dates. Institutional candidates do not create party rows or office permissions. Counts do not establish complete research, editorial review or finished cartoon art.")
     return result
 
 
@@ -298,9 +365,15 @@ def build(root: Path = ROOT) -> dict:
     fiction_ready = fiction_checked["ready"]
     future = future_inventory(root, fiction_ready)
     future_by_party = defaultdict(list)
+    future_by_institution = defaultdict(list)
     for candidate in future.get("candidates", []):
-        future_by_party[(candidate["nation"], candidate["party"])].append(candidate["person_id"])
+        if candidate["party"] is None:
+            future_by_institution[candidate["nation"]].append(candidate["person_id"])
+        else:
+            future_by_party[(candidate["nation"], candidate["party"])].append(candidate["person_id"])
     for country in countries:
+        country["institutional_candidate_ids"] = future_by_institution[country["id"]]
+        country["institutional_candidate_count"] = len(country["institutional_candidate_ids"])
         for party in country["parties"]:
             party["future_candidate_ids"] = future_by_party[(country["id"], party["id"])]
             if party["future_candidate_ids"]:
@@ -314,7 +387,8 @@ def build(root: Path = ROOT) -> dict:
                       "user_style_approval": {"date": "2026-09-07", "statement": "Looks good please do them for all parties for every country until 2035",
                                               "scope": "Visual style only; this does not approve unmade art, historical research or fictional biographies."}},
             "input_hashes": {p: sha(root / p) for p in ("spheres-sim/src/nations.rs", "spheres-sim/src/government.rs",
-                              "spheres-sim/data/party_leaders.json", "spheres-web/data/person_portraits.json", "spheres-web/data/fictional_portraits.json")},
+                              "spheres-sim/data/party_leaders.json", INSTITUTIONAL_SOURCE,
+                              "spheres-web/data/person_portraits.json", "spheres-web/data/fictional_portraits.json")},
             "counts": {"nation_identities": len(countries), "starting_nations": sum(c["start_1990"] for c in countries),
                        "successor_nations": sum(not c["start_1990"] for c in countries),
                        "nations_with_simulation_parties": sum(bool(c["parties"]) for c in countries),

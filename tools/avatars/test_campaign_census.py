@@ -56,6 +56,21 @@ class CensusTests(unittest.TestCase):
         self.assertTrue(any(t.get("component") for t in by_id.values()))
         self.assertTrue(any(t["from"]["kind"] != "day" for t in by_id.values()))
 
+    def test_tonga_institutional_candidates_are_counted_separately(self):
+        summary = self.outputs["census.json"]["counts"]
+        tonga = next(c for c in self.outputs["countries.json"] if c["id"] == "Tonga")
+        self.assertEqual(tonga["party_rows"], 0)
+        self.assertEqual(tonga["fictional_party_templates"], 0)
+        self.assertEqual(tonga["fictional_institutional_templates"], 4)
+        self.assertEqual(summary["future_templates"],
+                         summary["future_party_templates"] + summary["future_institutional_templates"])
+        self.assertEqual(summary["future_institutional_templates"], 4)
+        self.assertEqual(summary["represented_future_institutions"], 1)
+        rows = self.outputs["roles-and-lifecycle.json"]["fictional_institutional_candidates"]
+        self.assertEqual(len(rows), 4)
+        self.assertTrue(all(row["party"] is None for row in rows))
+        self.assertFalse(any(o["nation"] == "Tonga" for o in self.outputs["represented-organizations.json"]))
+
     def test_closed_or_unverified_organization_does_not_become_exhaustive(self):
         rows = self.outputs["roles-and-lifecycle.json"]["lifecycle_disclosures"]
         continuation = [r for r in rows if r["kind"] == "future_editorial_continuation_disclosure"]

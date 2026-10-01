@@ -4,6 +4,8 @@
 This is a review aid, not an identity resolver or an office/portrait importer.
 Exact observation copies retain uncertainty and null boundaries. A passing check
 does not independently verify sources or authorize a runtime mapping.
+The CLI defaults to pinned pre-production inputs; --live-inputs requests the
+original current-file compatibility check. Neither mode certifies production.
 """
 from __future__ import annotations
 
@@ -13,6 +15,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+from proposal_acceptance_inputs import Snapshot, live_scope
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT = Path('docs/campaign-certification/C06/preparation/tonga-cast-01/proposal.json')
@@ -211,15 +214,20 @@ def check(proposal, research, registry, opening, portraits, root=ROOT):
     }
 
 
-def load_inputs(root=ROOT):
-    return {key: read(root / path) for key, path in INPUTS.items()}
+def load_inputs(root=ROOT, *, snapshot=None):
+    return {key: json.loads(snapshot.read(path)) if snapshot else read(root / path)
+            for key, path in INPUTS.items()}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('proposal', nargs='?', type=Path, default=ROOT / DEFAULT)
+    parser.add_argument('--live-inputs', action='store_true',
+                        help='check compatibility against current files instead of the pinned preparation baseline')
     args = parser.parse_args()
-    result = check(read(args.proposal), **load_inputs())
+    snapshot = None if args.live_inputs else Snapshot(ROOT)
+    result = check(read(args.proposal), **load_inputs(snapshot=snapshot))
+    result['input_scope'] = snapshot.scope() if snapshot else live_scope()
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 

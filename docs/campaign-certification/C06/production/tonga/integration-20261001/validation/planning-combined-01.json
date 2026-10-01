@@ -1,0 +1,22 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/planning",
+    "-p",
+    "test_*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined",
+  "started_utc": "2026-10-01T15:10:39.398413+00:00",
+  "duration_seconds": 2.719,
+  "exit_code": 0,
+  "log": "planning-combined-01.log",
+  "bytes": 173,
+  "sha256": "a7ec387e92e19c485684a12c0e7eb24e04c3d415c82340e75e6f5edca26ff4cf"
+}

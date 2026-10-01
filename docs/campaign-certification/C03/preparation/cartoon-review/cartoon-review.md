@@ -10,39 +10,37 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 
 | Role | Path | Bytes | SHA-256 |
 |---|---|---:|---|
-| historical_portraits | `spheres-web/data/person_portraits.json` | 307745 | `a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176` |
-| fictional_portraits | `spheres-web/data/fictional_portraits.json` | 7666 | `54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c` |
+| historical_portraits | `spheres-web/data/person_portraits.json` | 494659 | `45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825` |
+| fictional_portraits | `spheres-web/data/fictional_portraits.json` | 17844 | `e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea` |
 | selector_figures | `spheres-web/data/nation_figures.json` | 408800 | `f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962` |
 | display_derivatives | `spheres-web/ui/display-art/manifest.json` | 133156 | `afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb` |
-| production_inventory | `spheres-web/data/leadership_production_2035.json` | 5997885 | `bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78` |
-| fictional_catalog | `spheres-web/data/future_candidates_2035.json` | 3273947 | `75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492` |
-| person_registry | `spheres-sim/data/party_leaders.json` | 1262625 | `18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494` |
+| production_inventory | `spheres-web/data/leadership_production_2035.json` | 6204564 | `f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245` |
+| fictional_catalog | `spheres-web/data/future_candidates_2035.json` | 3278599 | `ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd` |
+| person_registry | `spheres-sim/data/party_leaders.json` | 1282814 | `b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077` |
 | reference_audit_uk | `spheres-web/ui/person-portraits/references/source-review-uk-v1.json` | 5505 | `16baa8bba813953530af586c621f783548a2a501033f7b62bcb37c2aff5d40f1` |
-| s10c_reviewed_reference | `docs/campaign-certification/S10/c/manifest.json` | 46295 | `5fd649dec574a7e3f1bfedf8c5ac2740fd9e4d19101ef8de354fea5e4462baa4` |
 | visual_review_sample | `docs/campaign-certification/C03/preparation/cartoon-review/visual-review-sample.json` | 16431 | `b5ad58c194532222c0f8da7e465c6dede56223af4db67d92c396c4c740602061` |
 
 ## Collections
 
 | Collection | Items | Source |
 |---|---:|---|
-| historical | 59 | Historical person cartoons |
-| fictional | 4 | Fictional successor cartoons (not real people) |
+| historical | 100 | Historical person cartoons |
+| fictional | 8 | Fictional successor cartoons (not real people) |
 | unregistered | 5 | Tracked cartoon-root files bound by no manifest (not active avatars) |
 | missing | 406 | Known people with sourced art windows and no cartoon |
 
-63 active historical/fictional cartoon records have an asset path. 160 retired national-icon records are retained separately in `archived_selector`; they are not campaign leaders, active collections or active style references. Their byte pins, source/rights findings and original visual sample remain in this audit.
+108 active historical/fictional cartoon records have an asset path. 160 retired national-icon records are retained separately in `archived_selector`; they are not campaign leaders, active collections or active style references. Their byte pins, source/rights findings and original visual sample remain in this audit.
 
 | Audit scope | Errors | Warnings | Notices |
 |---|---:|---:|---:|
-| Active / unresolved | 0 | 2 | 482 |
+| Active / unresolved | 0 | 17 | 532 |
 | Archived national icons | 0 | 17 | 160 |
 
-687 image files inventoried, 687 present: `spheres-web/ui/person-portraits` 81, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
+762 image files inventoried, 762 present: `spheres-web/ui/person-portraits` 156, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
 
 ## Style references
 
 - **approved person-cartoon style anchor (production inventory)**: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`
-- **reviewed reference cartoon (S10.c Tupou IV review)**: `spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png`
 
 ## Automated findings by code
 
@@ -50,16 +48,17 @@ Severity: **error** = integrity failure; **warning** = needs a decision; **notic
 
 | Code | Severity | Count | Meaning |
 |---|---|---:|---|
-| `country_unbound` | notice | 1 | No sourced term or office observation binds this person to a country. |
+| `country_unbound` | notice | 41 | No sourced term or office observation binds this person to a country. |
 | `coverage_gap` | notice | 18 | Part of a sourced art window is not covered by any appearance interval. |
 | `identity_photo_selected_automatically` | notice | 143 | The identity photograph record states an automated title-match selection. |
 | `identity_reference_generated` | warning | 2 | The identity reference named in the prompt record is an earlier generated study, not a source photograph. |
 | `interval_after_death` | notice | 3 | The appearance interval continues after the recorded death date. |
+| `interval_outside_period` | warning | 15 | An appearance interval extends outside its declared historical or fictional period. |
 | `missing_art` | notice | 406 | A known person has sourced art windows but no cartoon. |
-| `reference_rights_not_recorded` | notice | 49 | The identity reference is not shipped and its rights are not recorded in the manifest. |
+| `reference_rights_not_recorded` | notice | 57 | The identity reference is not shipped and its rights are not recorded in the manifest. |
 | `sharealike_derivative_license_not_recorded` | warning | 17 | The identity reference is ShareAlike-licensed but no derivative licence is recorded for the artwork. |
 | `text_led_interpretation` | notice | 17 | No freely licensed identity photograph; the artwork is a text-led interpretation of a resolved identity. |
-| `unbound_file` | notice | 5 | A tracked image in an art root is not bound by any manifest or reference audit. |
+| `unbound_file` | notice | 7 | A tracked image in an art root is not bound by any manifest or reference audit. |
 
 ## Integrity errors
 
@@ -67,18 +66,34 @@ None: every bound file exists, has a readable header and matches its recorded ha
 
 ## Duplicate images bound to different identities
 
-None found among 687 files (exact SHA-256 comparison; 0 duplicate groups in total).
+None found among 762 files (exact SHA-256 comparison; 1 duplicate groups in total).
 
 ## Warnings
 
 - **`identity_reference_generated`** (2): Neil Kinnock, Paddy Ashdown
+- **`interval_outside_period`** (15): 'Aisake Valu Eke, 'Alipate Tu'ivanuavou Vaea (Lord Vaea), Crown Prince Tupouto'a 'Ulukalala, Crown Prince Tupouto'a 'Ulukalala, Havea Tu'iha'angana (Lord Tu'iha'angana), Lord Fakafanua, Poasi Mataele Tei, Prince 'Ulukalala Lavaka Ata, Prince 'Ulukalala Lavaka Ata, Samiu Kuita Vaipulu, Semisi Kioa Lafu Sika, Siaosi 'Ofakivahafolau Sovaleni, Taniela Likuohihifo Fusimalohi, Tevita Lavemaau, Viliami Uasike Latu
 - **`sharealike_derivative_license_not_recorded`** (17): Abdul Rahman Al Bakir, Jigme Dorji Wangchuck, Ban Kulin, José Figueres Ferrer, Václav Havel, Acacio Mañé Ela, Lennart Meri, Yitzhak Rabin, Wangari Maathai, Jean Ralaimongo, Jassim bin Mohammed Al Thani, Andrei Sakharov, Alda do Espírito Santo, France Bučar, Nelson Mandela, Mikhail Gorbachev, Oliver Mtukudzi
 
 ## Appearance intervals and coverage
 
 - **`invalid_interval`** (0)
 - **`overlapping_intervals`** (0)
-- **`interval_outside_period`** (0)
+- **`interval_outside_period`** (15):
+  - 'Aisake Valu Eke: 2020-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - 'Alipate Tu'ivanuavou Vaea (Lord Vaea): 2018-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Crown Prince Tupouto'a 'Ulukalala: 2018-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Crown Prince Tupouto'a 'Ulukalala: 2027-01-01 → 2036-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Havea Tu'iha'angana (Lord Tu'iha'angana): 2018-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Lord Fakafanua: 2018-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Poasi Mataele Tei: 2018-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Prince 'Ulukalala Lavaka Ata: 2012-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Prince 'Ulukalala Lavaka Ata: 2027-01-01 → 2036-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Samiu Kuita Vaipulu: 2018-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Semisi Kioa Lafu Sika: 2015-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Siaosi 'Ofakivahafolau Sovaleni: 2014-12-31 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Taniela Likuohihifo Fusimalohi: 2020-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Tevita Lavemaau: 2017-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
+  - Viliami Uasike Latu: 2019-01-01 → 2027-01-01 (end excluded) extends outside the historical period 1990-01-01 → 2026-09-08 (end excluded)
 - **`interval_after_death`** (3):
   - Rajiv Gandhi: 1990-01-01 → 1995-01-01 (end excluded) continues after the recorded death (1991-05-21 (day precision)); clip to end by 1991-05-22 (exclusive)
   - Oliver Tambo: 1990-01-01 → 1995-01-01 (end excluded) continues after the recorded death (1993-04-24 (day precision)); clip to end by 1993-04-25 (exclusive)
@@ -107,7 +122,7 @@ None found among 687 files (exact SHA-256 comparison; 0 duplicate groups in tota
 ## Source and rights gaps
 
 - **`sharealike_derivative_license_not_recorded`** (17): Abdul Rahman Al Bakir, Acacio Mañé Ela, Alda do Espírito Santo, Andrei Sakharov, Ban Kulin, France Bučar, Jassim bin Mohammed Al Thani, Jean Ralaimongo, Jigme Dorji Wangchuck, José Figueres Ferrer, Lennart Meri, Mikhail Gorbachev, Nelson Mandela, Oliver Mtukudzi, Václav Havel, Wangari Maathai, Yitzhak Rabin
-- **`reference_rights_not_recorded`** (49): Achille Occhetto, Andrew Peacock, Antonio Cariglia, Arnaldo Forlani, Audrey McLaughlin, Bettino Craxi, Bob Hawke, Brian Mulroney, David Cameron, E. M. S. Namboodiripad, Eiichi Nagasue, F. W. de Klerk, George H. W. Bush, Georges Marchais, Gianfranco Fini, Giorgio La Malfa, Gordon Brown, Hans-Jochen Vogel, Helmut Kohl, Hugo Napoleão, Jacques Chirac, Janine Haines, Jean-Marie Le Pen, Jiang Zemin, … (25 more)
+- **`reference_rights_not_recorded`** (57): Achille Occhetto, Andrew Peacock, Antonio Cariglia, Arnaldo Forlani, Audrey McLaughlin, Bettino Craxi, Bob Hawke, Brian Mulroney, David Cameron, E. M. S. Namboodiripad, Eiichi Nagasue, F. W. de Klerk, George H. W. Bush, Georges Marchais, Gianfranco Fini, Giorgio La Malfa, Gordon Brown, Hans-Jochen Vogel, Helmut Kohl, Hon. Veikune, Hugo Napoleão, Jacques Chirac, James Cecil Cocker, Janine Haines, … (33 more)
 - **`identity_reference_generated`** (2): Neil Kinnock, Paddy Ashdown
 - **`text_led_interpretation`** (17): Ahmad bin Said al-Busaidi, Ali-Shir Nava'i, Eddie Mabo, Fatima Jinnah, George Borg Olivier, George Cadle Price, Haakon VII, Joseph Brahim Seid, Konrad Adenauer, Léopold Sédar Senghor, Mário Soares, Paul Gondjout, Paul-Henri Spaak, Saïd Mohamed Cheikh, Sejong the Great, Waldemar Bastos, Walter Lini
 - **`identity_photo_selected_automatically`** (143): Abdul Rahman Al Bakir, Abdul Rahman al-Eryani, Abdullah Al-Salim Al-Sabah, Abraham Lincoln, Acacio Mañé Ela, Adolfo Suárez, Alda do Espírito Santo, Alexandru Ioan Cuza, Alikhan Bukeikhanov, Amílcar Cabral, Andimba Toivo ya Toivo, Andrei Sakharov, André Matsoua, Ante Marković, Aram Manukian, Aung San, B. P. Koirala, B. R. Ambedkar, Ban Kulin, Barthélemy Boganda, Benedicto Kiwanuka, Benito Juárez, Bernardo O'Higgins, Bogd Khan, … (119 more)
@@ -115,8 +130,8 @@ None found among 687 files (exact SHA-256 comparison; 0 duplicate groups in tota
 ## Recorded review decisions (existing manifests)
 
 - archived selector: free-text production review recorded: 160
-- fictional: design and visual recorded true: 4
-- historical: identity, likeness, era and visual all recorded true: 59
+- fictional: design and visual recorded true: 8
+- historical: identity, likeness, era and visual all recorded true: 100
 
 These are decisions recorded by earlier production passes. This export reproduces them; it does not re-decide or endorse them.
 

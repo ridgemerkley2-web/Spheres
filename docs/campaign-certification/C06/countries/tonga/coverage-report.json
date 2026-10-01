@@ -1,0 +1,129 @@
+{
+  "valid": true,
+  "ready_for_country_signoff": false,
+  "country_completed": false,
+  "nation": "Tonga",
+  "role_count": 16,
+  "holder_observation_count": 50,
+  "installed_reference_count": 50,
+  "required_historical_people": [
+    "fatafehi_tuipelehake",
+    "siaosi_taufaahau_manumataongo",
+    "taufaahau_tupou_iv",
+    "to_aisake_valu_eke",
+    "to_baron_vaea_pm_1992",
+    "to_fatafehi_fakafanua",
+    "to_fatai_helu",
+    "to_feleti_sevele",
+    "to_fusitua_speaker_1996",
+    "to_james_cecil_cocker",
+    "to_langi_kavaliku",
+    "to_lord_lasike_speaker_2011",
+    "to_lord_maafu_dpm_2017",
+    "to_lord_tuihaangana_deputy_speaker_2025",
+    "to_lord_tuilakepa_speaker_2008",
+    "to_lord_tuivakano_pm_2010",
+    "to_lord_vaea_speaker_2025",
+    "to_poasi_mataele_tei",
+    "to_pohiva_tuionetoa",
+    "to_samiu_kuita_vaipulu",
+    "to_samuela_akilisi_pohiva",
+    "to_semisi_kioa_lafu_sika",
+    "to_siaosi_ofakivahafolau_sovaleni",
+    "to_sione_vuna_faotusia",
+    "to_taniela_likuohihifo_fusimalohi",
+    "to_tesina_fuko",
+    "to_tevita_lavemaau",
+    "to_tevita_poasi_tupou",
+    "to_ulukalala_lavaka_ata_pm_2000",
+    "to_veikune_speaker_2001",
+    "to_viliami_tau_tangi",
+    "to_viliami_uasike_latu"
+  ],
+  "fictional_candidate_count": 4,
+  "errors": [],
+  "blockers": [
+    "to_fihrdm/__unresearched_role__: FIHRDM/HRDM entity continuity, named leadership and officer-selection rules remain unresearched in the accepted role inventory. An empty opening party table does not waive this organization.",
+    "to_pdp/to_pdp_leader: Tesina Fuko’s April 2005 split/leadership claim is installed at its original precision. The PDP constitution, leadership selection, subsequent holders and organization end remain unverified.",
+    "to_dpfi/to_dpfi_leader: The 2010 and 2014 Akilisi Pohiva observations are installed. Later leadership, selection rules and the relationship between leader and president need primary evidence; no continuous tenure or automatic successor is inferred.",
+    "to_dpfi/to_dpfi_president: Fatai Helu is court-attested as president in August 2022. His correct political likeness, appointment/end, later succession and equivalence to party leader remain unresolved.",
+    "to_peoples_party/to_peoples_party_leader: Pohiva Tu’ionetoa’s May 2021 leader observation is installed. Formation, leader selection, later succession and continuity with the incorporated society are not a completed chain.",
+    "to_peoples_party/to_peoples_party_society_president: The April 2022 trial observation names society president Tu’ionetoa. Society-president and political-leader offices remain separate; officer rules and complete dates are unverified.",
+    "to_peoples_party/to_peoples_party_society_secretary: The April 2022 trial observation names secretary Tevita Lavemaau. Appointment/end, officer-selection rules and later secretary succession remain unverified.",
+    "to_crown/to_king: All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance, boundary behavior and post-cutoff institutional succession validation remain pending; portraits do not grant royal eligibility.",
+    "to_prime_minister/to_pm: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain and production appointment behavior are not signed off.",
+    "to_cabinet/to_ministers: This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.",
+    "to_cabinet/to_deputy_pm: All 14 accepted deputy-PM observations are installed. Early coverage, acting service and unresolved start/end gaps (including late 2021) remain; no successor date fills an earlier boundary.",
+    "to_privy_council/to_privy_councillors: This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.",
+    "to_legislative_assembly/to_speaker: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.",
+    "to_legislative_assembly/to_deputy_speaker: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.",
+    "to_legislative_assembly/to_peoples_representatives: This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description; future election permissions still need production validation.",
+    "to_legislative_assembly/to_nobles_representatives: This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.",
+    "to_fatai_helu: no reviewed cartoon for 2022-08-29 through 2022-08-30 exclusive",
+    "Unfinished country acceptance check: boundary_dates",
+    "Unfinished country acceptance check: country_signoff",
+    "Unfinished country acceptance check: institutional_rules",
+    "Unfinished country acceptance check: likeness_visual_review",
+    "Unfinished country acceptance check: production_browser",
+    "Unfinished country acceptance check: save_compatibility"
+  ],
+  "limit": "Coverage and receipt-integrity check only; no independent historical/visual review or parent milestone qualification.",
+  "validation_context": {
+    "command": "python tools/avatars/tonga_cast_coverage.py",
+    "recorded_at": "2026-10-01",
+    "manifest": {
+      "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
+      "sha256": "d7a1fca23594cbe6567094f9f54cb0314247726920f00d8c5de147e0ca56dfd8"
+    },
+    "source_pins": {
+      "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+      "spheres-sim/data/tonga_institutional_leadership.json": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+      "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+      "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+      "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+      "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+      "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+      "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+      "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+      "spheres-web/data/fictional_portraits.json": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+      "spheres-web/data/future_candidates_2035.json": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+      "spheres-web/data/person_portraits.json": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "spheres-web/src/government_view.rs": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+      "spheres-web/src/main.rs": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+      "spheres-web/src/person_avatar_assets.rs": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+      "spheres-web/src/person_portraits.rs": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+      "spheres-web/ui/government-ui.css": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+      "spheres-web/ui/government-ui.js": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
+      "spheres-web/ui/index.html": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+      "tools/avatars/tonga_cast_coverage.py": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b"
+    },
+    "identity_review_pins": [
+      {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "sha256": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+      },
+      {
+        "path": "docs/campaign-certification/C06/production/tonga/civilian-source-ledger.json",
+        "sha256": "3011346a10093e99ad066e0d034ba46cf875cc347d82df38fd856a378bd23822"
+      },
+      {
+        "path": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "sha256": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c"
+      },
+      {
+        "path": "docs/campaign-certification/C06/production/tonga/party-likeness-review.json",
+        "sha256": "d6c30ac3d808f6b5180f9ec28ed125033cc9eacc1d740c56e1f7a62699090fd0"
+      },
+      {
+        "path": "docs/campaign-certification/C06/production/tonga/historical-binding-completion-receipt.json",
+        "sha256": "a2c7ac6be520ca24334a531407211bd2291f5507b6f9b8270baee1c17978754a"
+      },
+      {
+        "path": "docs/campaign-certification/C06/production/tonga/art-registration-verification.json",
+        "sha256": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b"
+      }
+    ],
+    "acceptance_checks_executed": false
+  }
+}

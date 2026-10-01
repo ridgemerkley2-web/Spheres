@@ -909,6 +909,7 @@ pub fn load_world(
         // carries no `leadership` key and hashes as it always has.
         leadership,
         party_leadership: None,
+        institutional_leadership: None,
         conflicts: vec![],
         theatres: crate::theatre::default_theatres(),
         access: vec![],

@@ -1,0 +1,218 @@
+{
+  "recorded_utc": "2026-10-01T13:27:08.162186+00:00",
+  "status": "bounded_implementation_checked_ui_python_native_pending",
+  "historical_bindings": 50,
+  "historical_binding_people": 32,
+  "registry_people": 620,
+  "source_pins": [
+    {
+      "path": "spheres-sim/src/institutional_leadership.rs",
+      "sha256": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f"
+    },
+    {
+      "path": "spheres-sim/data/tonga_institutional_leadership.json",
+      "sha256": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf"
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+    },
+    {
+      "path": "spheres-sim/src/company_save.rs",
+      "sha256": "34fd577e3937a106de6fef86c7a0992620945dfcb76d0251b983cd524ab1b52b"
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "sha256": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9"
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "sha256": "910e449d9f5ea1f9aa986849f1142ee1e9633d326835157d111aece4e54fdf2a"
+    },
+    {
+      "path": "spheres-sim/src/world.rs",
+      "sha256": "de9d54ab36f58154efbd32744e00ab1db7e02d386138148f5f2d5b8725bb4bf9"
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "sha256": "216bf029d00952f817576583ebde95aab3339d822284abfd088374ab3bf4ac66"
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "sha256": "36508c8ee8e444a8a1c94e253108f9ed1de33a8e11333f3ea393850cd70f8a59"
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "sha256": "3106b28b0e326be8ca86e183f94a7c1fcf85417ce690a9d49e9ef2569d35b354"
+    },
+    {
+      "path": "spheres-web/src/government_view.rs",
+      "sha256": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa"
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "sha256": "99a827bc8e3002793f2fc4f63d7f5248288c0428c19629d81058ba0c8dc98b56"
+    },
+    {
+      "path": "spheres-web/ui/government-ui.js",
+      "sha256": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083"
+    },
+    {
+      "path": "tools/ui/check_tonga_institutions.cjs",
+      "sha256": "7559afcfa56400bdea38995d6a27c9762b627e43888eebaf109189aaf28a2501"
+    },
+    {
+      "path": "tools/avatars/tonga_cast_coverage.py",
+      "sha256": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b"
+    },
+    {
+      "path": "tools/avatars/test_tonga_cast_coverage.py",
+      "sha256": "5d90ef92b6f30765473a437ef809dbbb185fe537f73ced101c9ffee6ef4c1294"
+    }
+  ],
+  "repairs": [
+    {
+      "issue": "Unadopted or inactive Assembly showed current 17/9 seat totals.",
+      "repair": "Current seat totals are null until active and reformed; proposed model totals are separately labeled.",
+      "evidence": "unadopted-seat-red.log; unadopted-seat-green.log; government-final-01.log",
+      "native_regression": "Added unadopted/adopted/inactive view assertions; not yet executed."
+    },
+    {
+      "issue": "Foreign null institutional view could become an object during mutable JSON indexing.",
+      "repair": "Return foreign null before decoration.",
+      "native_regression": "France institutional_view must remain null; not yet executed."
+    },
+    {
+      "issue": "Initializing an opening reference exposed an artificial appointment date.",
+      "repair": "Opening-reference appointment.selected_on is null; explicit game appointments keep actual ISO dates.",
+      "native_regression": "Sim and web opening-reference assertions; not yet executed."
+    },
+    {
+      "issue": "An inactive Crown view could still display a pending premier recommendation.",
+      "repair": "View masks recommendation_due when required Crown institution is inactive; saved journal is unchanged.",
+      "native_regression": "Takeover test now first creates a real pending recommendation and checks inactive view; not yet executed."
+    }
+  ],
+  "static_review": [
+    {
+      "area": "Government command preview",
+      "finding": "Clone/apply leaves source world unchanged; normalized exact nested command must match allowed action; prices/refusals are authoritative."
+    },
+    {
+      "area": "Decision review token",
+      "finding": "Existing token hashes full WorldState plus session, decision kind and command. Optional institutional state is included; canonical legality is rechecked before commit."
+    },
+    {
+      "area": "Save compatibility",
+      "finding": "Absent optional state remains absent. Present state is schema-checked and replayed against exact appointment identities and dates. No scheduled chronology or historical term completion is added."
+    },
+    {
+      "area": "Monarch and premiership",
+      "finding": "Crown succession hook preserves the exact authored heir once; later office replacement clears this inherited link. Civilian appointments never replace the monarch."
+    }
+  ],
+  "checks": {
+    "frontend_unit": {
+      "command": "node --test tools/ui/check_tonga_institutions.cjs tools/ui/check_government.cjs tools/ui/check_government_leadership.cjs",
+      "passed": 128,
+      "failed": 0
+    },
+    "coverage_unit": {
+      "passed": 13,
+      "failed": 0
+    },
+    "importer_self_tests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "native_typecheck": {
+      "status": "earlier_source_pass",
+      "receipt": "../native/check-02/result.json",
+      "limitation": "Precedes final historical imports and presentation repairs."
+    },
+    "native_release_focused": {
+      "status": "resource_cancelled_before_tests",
+      "receipt": "../native/tests-02/result.json"
+    },
+    "native_debug_focused": {
+      "status": "resource_cancelled_before_tests",
+      "receipt": "../native/tests-debug-01/result.json",
+      "min_available_commit_gib": 2.902
+    },
+    "full_frontend_unit": {
+      "command": "node external/run-unit-final.cjs",
+      "discovery": "Exact tools/ui/run-unit.cjs discovery/filter/order; --test-concurrency=1 instead of default parallel file execution; no skipped files added",
+      "counts": {
+        "tests": 1823,
+        "suites": 0,
+        "pass": 1822,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 1,
+        "todo": 0
+      },
+      "exit_code": 0,
+      "source_files_unchanged": 650,
+      "minimum_available_commit_gib": 3.604,
+      "receipt": "ui-full-final-01/result.json",
+      "existing_skip": "Real reviewer browser check requires SPHERES_BROWSER_CHANNEL and Playwright; no browser completion claim."
+    },
+    "formatting": {
+      "command": "rustfmt --edition 2021 --config skip_children=true --check <each changed Rust file>",
+      "clean": [
+        "spheres-sim/src/institutional_leadership.rs",
+        "spheres-sim/examples/export_future_leadership.rs",
+        "spheres-web/src/government_view.rs"
+      ],
+      "baseline_also_fails": [
+        "spheres-sim/src/company_save.rs",
+        "spheres-sim/src/data/mod.rs",
+        "spheres-sim/src/government.rs",
+        "spheres-sim/src/lib.rs",
+        "spheres-sim/src/party_leadership.rs",
+        "spheres-sim/src/world.rs",
+        "spheres-web/src/main.rs",
+        "spheres-web/src/person_portraits.rs"
+      ],
+      "repair": "Only government_view.rs introduced a new file-level formatting failure against a clean baseline; now formatted and check passes. No broad legacy formatting rewrite."
+    },
+    "immutable_preparation": {
+      "receipt": "preparation-core-review.json",
+      "core_algorithms_unchanged": true,
+      "prior_focused_tests_passed": 127,
+      "scope": "Pinned accepted pre-production corpus and unchanged preparation documents; separate from live production and current collisions."
+    },
+    "retained_attempts": [
+      "../native/check-01",
+      "../native/check-02",
+      "../native/tests-01",
+      "../native/tests-02",
+      "../native/tests-debug-01",
+      "ui-full-01",
+      "ui-full-serial-01",
+      "ui-fixtures-final-01",
+      "page-art-final.log"
+    ]
+  },
+  "completion_claims": {
+    "country_complete": false,
+    "release_complete": false,
+    "production_browser_pass": false,
+    "cp1_qualified": false,
+    "performance_qualified": false
+  },
+  "additional_native_regression": {
+    "file": "spheres-web/src/person_portraits.rs",
+    "purpose": "Exact King IV portrait switches at 1991-01-01 to the reviewed 1998 depiction, expires at 2006-09-11; pre1990 absence and country-name rejection preserved.",
+    "executed": false
+  },
+  "native_memory_analysis": {
+    "observed_active_phase": "rustc compiling whole spheres_sim --test target; no test binary or external linker observed",
+    "first_available_commit_gib": 5.94,
+    "minimum_available_commit_gib": 2.902,
+    "source_files": 141,
+    "rust_source_bytes": 7035763,
+    "sim_data_bytes": 7848079,
+    "limitation": "Monitor records total system commit and process identities, not per-process private-byte history or compiler phase allocation. Cannot attribute memory predominately to include_str data. No source restructuring justified by this evidence."
+  }
+}

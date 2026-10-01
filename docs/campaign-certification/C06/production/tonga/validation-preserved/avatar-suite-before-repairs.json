@@ -1,0 +1,31 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_*.py"
+  ],
+  "started_at": "2026-10-01T13:19:32.084817+00:00",
+  "completed_at": "2026-10-01T13:22:25.132360+00:00",
+  "exit_code": 1,
+  "failure_headers": [
+    "ERROR: setUpClass (test_certified_boundary_matrix.RealCommittedOutput)",
+    "FAIL: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)",
+    "FAIL: test_committed_output_is_current (test_certified_gap_ledger.CheckedInLedger.test_committed_output_is_current)",
+    "FAIL: test_conservative_half_open_appearance_window (test_tupou_portrait_s10c.TupouPortraitChecks.test_conservative_half_open_appearance_window) (date='1991-01-01')",
+    "FAIL: test_conservative_half_open_appearance_window (test_tupou_portrait_s10c.TupouPortraitChecks.test_conservative_half_open_appearance_window) (date='2006-09-10')"
+  ],
+  "environment": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]\nD:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\nFalse\n11.3.0\n6.17.0\n",
+  "log": {
+    "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/avatar-suite-final.log",
+    "sha256": "5309a77c173d4d00cf799410ea692a3be998e47fdc86eab45b7bfd427a93381b"
+  },
+  "limit": "Avatar Python tooling only. No native, production-browser, country signoff or human acceptance is claimed."
+}

@@ -1,0 +1,754 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "task": "Tonga royal identity and likeness review",
+  "reviewed_at": "2026-10-01",
+  "historical_cutoff": "2026-09-07",
+  "campaign_horizon": "2035-12-31",
+  "base_revision": "5ea4f8fc",
+  "status": "identity_bridges_reviewed_with_retained_sources",
+  "scope": {
+    "runtime_edits": false,
+    "research_packet_edits": false,
+    "art_generation": false,
+    "human_approval_claimed": false,
+    "meaning": "Codex evidence review and proposed identity bindings. Root integration owns runtime changes and generated-art review; this file grants no office eligibility or forced succession."
+  },
+  "provenance": {
+    "preparation": "docs/campaign-certification/C06/preparation/tonga-cast-01/proposal.json",
+    "preparation_original_sha256": "2b52507575857cf35cfbb8b9ef48ad4e65ce852948cdcfebc37df215ab33a093",
+    "external_evidence_directory": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals",
+    "original_bytes_retained": true,
+    "source_records": [
+      "downloads-01.json",
+      "downloads-02.json",
+      "downloads-commons.json",
+      "downloads-commons-useragent.json",
+      "pmo-crown-prince-20060928.receipt.json",
+      "pmo-office-pm-2002.receipt.json",
+      "royal-palace-family-members.receipt.json"
+    ],
+    "archive_requests": "Exactly two new original-body retrievals, successful HTTP 200, 45 seconds apart. Both body hashes match the earlier recorded originals. Archive lane returned to root after completion.",
+    "hash_meaning": "SHA-256 of retained original body bytes; inherited claim hashes below refer to prior structured claims and are not source-body hashes."
+  },
+  "identities": [
+    {
+      "person_id": "taufaahau_tupou_iv",
+      "registry_action": "preserve_existing",
+      "name": "Taufa'ahau Tupou IV",
+      "aliases": [
+        "Tāufaʻāhau Tupou IV"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1918-07-04",
+        "basis": "Preserved existing registry fact; not independently re-established here."
+      },
+      "office": {
+        "role_id": "to_king",
+        "from": "1965-12-16",
+        "until": "2006-09-11",
+        "basis": "Saved opening start preserved. End is inherited reviewed Tonga-local death date, not newly retrieved in this subtask.",
+        "inherited_evidence": {
+          "to_crown_assent_tupou_iv_19900712": {
+            "source_id": "to_act_income_tax_amend_1990",
+            "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+            "claim_sha256": "d88ba6a83d21dd1be79c0bf1fa93285d3991bea901c58d15627d2356c839a1ac"
+          },
+          "to_crown_assent_tupou_iv_19900808": {
+            "source_id": "to_act_constitution_amend_1990",
+            "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+            "claim_sha256": "5f3f6e194cff4f857595972c9100c4cd1ec8d8bdf8bfca286d7a179d59404124"
+          },
+          "to_crown_tupou_iv_death_20060911": {
+            "source_id": "to_pmo_20060911_death_notice",
+            "url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+            "claim_sha256": "8a51a75d603371dd056989a89f3f6a4b5d385860908f620bdc5bb7be1f786872"
+          },
+          "to_crown_gtv_devolution_proclamation_20060911": {
+            "source_id": "to_pmo_20060911_proclamation",
+            "url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+            "claim_sha256": "67c16e347a31c8a13af4597c34a266c0f667790e57a3eb6d661509a608336268"
+          }
+        }
+      },
+      "art": {
+        "existing_1990": {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+          "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-13",
+          "license": "generated",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "derivative_license": "CC BY-SA 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+          "credit": "Spheres cartoon adaptation generated with OpenAI image_gen from Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001 (1985), CC BY-SA 4.0. Cartoon adaptation and any copyrightable contributions are also offered under CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/. Changed to full-body cartoon, simplified shapes and near-1990 age treatment. No endorsement implied.",
+          "era_note": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+          "identity_source": {
+            "person_id": "taufaahau_tupou_iv",
+            "kind": "observed_portrait",
+            "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+            "asset": "spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg",
+            "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF."
+          },
+          "prompt_record": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt",
+          "generation_record": "Built-in image_gen, 13 September 2026. Exact prompt, input roles, original output location, file hashes, source rights and Codex visual review retained in tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; personally inspected source photograph, established style anchor and generated result. Artistic interpretation; no human or user approval claimed.",
+            "reviewed_at": "2026-09-13"
+          }
+        },
+        "decision": "Preserve the existing exclusive 1991-01-01 end. No newly dated later-era licensed reference established.",
+        "later_variant_limit": "Any newly generated later variant based on the 1985 source must explicitly be an age extrapolation, receive a separate art review and receipt, and must not pretend that the old 1990 acceptance covers it."
+      }
+    },
+    {
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "registry_action": "reuse_existing_for_all_roles",
+      "saved_name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+      "aliases": [
+        "Crown Prince Tupouto'a",
+        "Siaosi Tāufaʻāhau Manumataongo Tukuʻaho Tupou V",
+        "Siaosi Tupou V",
+        "George Tupou V"
+      ],
+      "decision": "Resolve the held alias binding: the Czech MFA explicitly equates the distinguishing full name with George Tupou V, supplementing the prior PMO proclamation’s Crown Prince bridge. Do not create another permanent King George V ID.",
+      "source_ids": [
+        "czech_mfa_2011_full_name",
+        "gazette_2012_8"
+      ],
+      "office": {
+        "role_id": "to_king",
+        "from": "2006-09-11",
+        "until": "2012-03-18",
+        "start_basis": "Inherited prior review of PMO death and proclamation records; no new Archive request for those originals in this subtask.",
+        "end_basis": "Newly retained and visually reviewed Gazette No. 8 of 2012.",
+        "inherited_evidence": {
+          "to_crown_tupou_iv_death_20060911": {
+            "source_id": "to_pmo_20060911_death_notice",
+            "url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+            "claim_sha256": "8a51a75d603371dd056989a89f3f6a4b5d385860908f620bdc5bb7be1f786872"
+          },
+          "to_crown_gtv_devolution_proclamation_20060911": {
+            "source_id": "to_pmo_20060911_proclamation",
+            "url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+            "claim_sha256": "67c16e347a31c8a13af4597c34a266c0f667790e57a3eb6d661509a608336268"
+          },
+          "to_crown_gtv_devolution_proclamation_to_20060911": {
+            "source_id": "to_pmo_20060911_proclamation_to",
+            "url": "https://web.archive.org/web/20070312032819id_/http://www.pmo.gov.to/artman/publish/article_171.shtml",
+            "claim_sha256": "bff1de6ffe6abe8e0053210d146aa14fd3259f4dd40b035af261b250ded1b0f0"
+          },
+          "to_crown_gtv_death_20120318": {
+            "source_id": "to_gazette_ext_8_2012",
+            "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+            "claim_sha256": "476ff82049684111d9bd1373d14050ea9903cb561767b8e017a2bec9dc5f0296"
+          },
+          "to_crown_tupou_vi_devolution_proclamation_20120319": {
+            "source_id": "to_gazette_ext_9_2012",
+            "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+            "claim_sha256": "0c6734dbfc157613f34ade836878ab7051009f5787414e46233902e8bed6906e"
+          }
+        },
+        "ceremonies_are_separate": "2008 coronation is not accession; preserved opening Crown Prince since 1966-05-04 is not changed."
+      },
+      "image_reference_ids": [
+        "george-v-1997",
+        "george-v-1979",
+        "george-v-2011"
+      ],
+      "art_era_proposal": "One near-1990 variant using 1997 plus 1979 context, and one later royal variant using 2011; artistically interpret intermediate ages without alleging exact-date photographs."
+    },
+    {
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "registry_action": "retain_reserved_id_as_one_cross_role_person",
+      "aliases": [
+        "Prince 'Ulukalala Lavaka Ata",
+        "Crown Prince Tupouto'a Lavaka",
+        "Tupou VI"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1959-07-12",
+        "source_id": "pmo_2002_lavaka_profile"
+      },
+      "decision": "Resolve the held PM-to-King binding through the original 2006 PMO article and 2012 Gazette proclamation. The same permanent ID carries both PM and King roles.",
+      "source_ids": [
+        "pmo_2002_lavaka_profile",
+        "pmo_2006_lavaka_alias",
+        "gazette_2012_8",
+        "gazette_2012_9"
+      ],
+      "offices": [
+        {
+          "role_id": "to_pm",
+          "from": "2000-01-03",
+          "until": "2006-02-11",
+          "start_basis": "Explicit commencement in the newly retained 2002 PMO original.",
+          "end_basis": "Resignation acceptance date inherited from prior reviewed PMO records, not newly fetched here.",
+          "inherited_evidence": {
+            "to_pmo_lavaka_ata_commencement_20000103": {
+              "source_id": "to_pmo_office_pm_2002",
+              "url": "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+              "claim_sha256": "1c3d24526930685e343e93df0743d140a3766ef55b20f2a1a71699035b80afd4"
+            },
+            "to_pmo_timeline_lavaka_ata_appointed_200001": {
+              "source_id": "to_pmo_timeline_2000_en",
+              "url": "https://web.archive.org/web/20100824203123id_/https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html",
+              "claim_sha256": "4c0784b41447750ba48795bbb64b0a119e24f0bfe151afb5cfecde5058d005fb"
+            },
+            "to_lavaka_ata_resignation_accepted_20060211": {
+              "source_id": "to_pmo_20060213_resignation",
+              "url": "https://web.archive.org/web/20060501015618id_/http://www.pmo.gov.to:80/artman/publish/article_87.shtml",
+              "claim_sha256": "c758c6d671c49b0622893263357f205f844fe971211c68346360578d3fb0cd47"
+            },
+            "to_lavaka_ata_resignation_accepted_20060211_to": {
+              "source_id": "to_pmo_20060213_resignation_to",
+              "url": "https://web.archive.org/web/20060501015706id_/http://www.pmo.gov.to:80/artman/publish/article_88.shtml",
+              "claim_sha256": "01c2c223af835027b5b10b1ef5702e8b004a209fddc29015005c0cd10551a573"
+            }
+          }
+        },
+        {
+          "role_id": "to_king",
+          "from": "2012-03-18",
+          "until": null,
+          "basis": "Gazette No. 8 establishes predecessor death; Gazette No. 9 states devolution by that death and explicitly names Tupoutoʻa Lavaka as Tupou VI.",
+          "proclaimed_on": "2012-03-19",
+          "coronation_is_separate": true,
+          "continuity_limit": "No end before the fixed cutoff established. Latest attestation already in the preparation packet is 2025-12-18; a null end is not a promise of reign through 2035."
+        }
+      ],
+      "crown_prince_vesting": {
+        "kind": "month",
+        "value": "2006-09",
+        "exact_day": null,
+        "basis": "PMO publication 2006-09-28; do not derive a day from yesterday."
+      },
+      "image_reference_ids": [
+        "lavaka-palm-2000",
+        "lavaka-undated",
+        "tupou-vi-2019"
+      ],
+      "art_era_proposal": "Early PM appearance using dated 2000 image plus undated facial supplement; later King appearance using 2019. A post-cutoff older variant, if used, is explicit fictional age interpretation."
+    },
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "registry_action": "new_proposed_identity_distinct_from_both_older_royals",
+      "name": "Crown Prince Tupouto'a 'Ulukalala",
+      "full_name": "Siaosi Manumataongo ʻAlaivahamamaʻo ʻAhoʻeitu Konstantin Tukuʻaho",
+      "born": {
+        "kind": "day",
+        "value": "1985-09-17",
+        "source_id": "royal_palace_family"
+      },
+      "decision": "Royal Palace full name, parentage and birthday establish a separate person. The 2006 PMO article identifies the father’s eldest son receiving the ʻUlukalala title. He must not merge with the existing 1990 heir just because both hold Tupoutoʻa or share Siaosi Manumataongo.",
+      "source_ids": [
+        "royal_palace_family",
+        "pmo_2006_lavaka_alias"
+      ],
+      "crown_prince": {
+        "from": null,
+        "attested_on": [
+          "2012-08-08",
+          "2022-08-05"
+        ],
+        "attestation_source_ids": [
+          "heir-2012",
+          "heir-2022"
+        ],
+        "limit": "Exact title vesting date not established here."
+      },
+      "image_reference_ids": [
+        "heir-2012",
+        "heir-2022"
+      ],
+      "post_cutoff": "No invented accession date, death date, regnal name or guaranteed succession through 2035. Any later role is conditional campaign fiction."
+    }
+  ],
+  "sources": [
+    {
+      "id": "czech_mfa_2011_full_name",
+      "url": "https://mzv.gov.cz/file/765379/_111001_STI_TONGA.pdf",
+      "kind": "Authoritative Czech diplomatic country report",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/czech-mfa-tonga-2011.pdf",
+      "bytes": 334110,
+      "sha256": "a5d39fa052ea9272bab697cfd912823b159e4322655ee99acb98145070018be7",
+      "findings": [
+        "Printed page 7, section 2.3 explicitly links Siaosi Tāufaʻāhau Manumataongo Tukuʻaho Tupou V with the English name George Tupou V.",
+        "The full name matches the distinguishing saved 1990 heir name, providing the missing identity bridge beyond the inherited Crown Prince title."
+      ],
+      "locator": "PDF page 7 (zero-based index 6); section 2.3",
+      "visual_review": true,
+      "excluded_claims": [
+        "Do not import the report’s coronation date or family/children claims; they were not accepted in this review."
+      ]
+    },
+    {
+      "id": "pmo_2002_lavaka_profile",
+      "url": "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+      "kind": "Contemporaneous Tongan PMO original preserved by Internet Archive",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/pmo-office-pm-2002.html",
+      "bytes": 7015,
+      "sha256": "05bd72340c40011fe15e3ae9fe30050ac27278b1119d692bdaa98f7bb18bbda8",
+      "findings": [
+        "Names Prince ʻUlukalala Lavaka Ata as Prime Minister.",
+        "Explicit commencement date 3 January 2000; birth date 12 July 1959."
+      ],
+      "response_receipt": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/pmo-office-pm-2002.receipt.json",
+        "bytes": 2743,
+        "sha256": "a80d937790a4266a68d0b4f847417b859ac75fb7536539ef07be58234fe77f80"
+      },
+      "photo_rights": "Embedded photograph was not downloaded or treated as licensed."
+    },
+    {
+      "id": "pmo_2006_lavaka_alias",
+      "url": "https://web.archive.org/web/20061005234019id_/http://www.pmo.gov.to/artman/publish/article_183.shtml",
+      "kind": "Contemporaneous Tongan PMO original preserved by Internet Archive",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/pmo-crown-prince-20060928.html",
+      "bytes": 12821,
+      "sha256": "4db64e8e4fa052db1c5c483e1b7d4227c2dd284f0edd1fef9988e96d0518b68a",
+      "findings": [
+        "28 September 2006 publication explicitly identifies the former Prince ʻUlukalala Lavaka Ata as Crown Prince Tupoutoʻa Lavaka.",
+        "Identifies his eldest son by the long name Jiaosi Manumataongo Alaivahamamaʻo ʻAho ʻEitu Konstantin Tukuʻaho and says that son receives the title ʻUlukalala."
+      ],
+      "response_receipt": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/pmo-crown-prince-20060928.receipt.json",
+        "bytes": 2570,
+        "sha256": "a4ca0d5fedc7c09b48105b23591ccbc24216244a07a75a43557742708b4f69b8"
+      },
+      "limits": "The vesting is described as yesterday; no exact day is derived. The source’s Jiaosi spelling is retained as a source spelling, not a new person or a link to George V."
+    },
+    {
+      "id": "gazette_2012_8",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+      "kind": "Tonga Government Gazette Extraordinary No. 8 of 2012",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tonga-gazette-2012-8.pdf",
+      "bytes": 659563,
+      "sha256": "ec50ad5d05fbf90ec52ea6dce7913178b4e4bf04456e5c78e8e619c98eef0b6b",
+      "findings": [
+        "George Tupou V died on 18 March 2012, at 15:58 Hong Kong time / 20:58 Tonga time.",
+        "Publication date 19 March 2012 is distinct from death date."
+      ],
+      "locator": "First page, printed 8/113",
+      "visual_review": true
+    },
+    {
+      "id": "gazette_2012_9",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+      "kind": "Tonga Government Gazette Extraordinary No. 9 of 2012",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tonga-gazette-2012-9.pdf",
+      "bytes": 662692,
+      "sha256": "773fd96d13b46e8fbba1e943e1f85d7b6d406cbc65937b313c3631f5b294d3e9",
+      "findings": [
+        "Explicitly links Crown Prince Tupoutoʻa Lavaka to King Tupou VI.",
+        "States that the Crown devolves upon him by George Tupou V’s decease; proclamation signed 19 March 2012."
+      ],
+      "locator": "First page, printed 9/115",
+      "visual_review": true
+    },
+    {
+      "id": "royal_palace_family",
+      "url": "https://www.royalpalace.to/royal_history.php?section=members",
+      "kind": "Royal Palace of Tonga family history",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/royal-palace-family-members.html",
+      "bytes": 31873,
+      "sha256": "2d276f01c2885801aa61afb3c5db4c9de85c08a2e1fed1b23e9ba0257d3fae1c",
+      "findings": [
+        "Identifies King Tupou VI’s son Tupoutoʻa ʻUlukalala by the full name Siaosi Manumataongo ʻAlaivahamamaʻo ʻAhoʻeitu Konstantin Tukuʻaho.",
+        "Gives his birth as 17 September 1985 in Nukuʻalofa."
+      ],
+      "response_receipt": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/royal-palace-family-members.receipt.json",
+        "bytes": 324,
+        "sha256": "a5e7a73e6b50f7f1ea2266a770c9948c77a88a42be739952660154f0c1bbbe5e"
+      },
+      "limits": "Undated live page retrieved after the fixed cutoff; used for identity and historic birth facts. Pre-cutoff Crown Prince attestations come from dated 2012 and 2022 photographs, not a claim about present status at retrieval."
+    },
+    {
+      "id": "taiwan_mofa_reuse_terms",
+      "url": "https://en.mofa.gov.tw/cp.aspx?n=1390",
+      "kind": "Taiwan MOFA Government Website Open Information Announcement",
+      "original_retained": true,
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/mofa-taiwan-license.html",
+      "bytes": 151201,
+      "sha256": "49b6181d6bcdeb15c20bc3153255ad31e08e71869c32c0335077885c7d04eaf7",
+      "findings": [
+        "Allows reproduction and adaptation, including commercial reuse, with source credit, subject to stated third-party exclusions."
+      ],
+      "limits": "Licence evaluated with the retained Commons attribution-only tag. Normal certificate-chain verification retained; Python strict X.509 extension enforcement was relaxed for the certificate’s missing SubjectKeyIdentifier."
+    }
+  ],
+  "image_references": [
+    {
+      "id": "george-v-1997",
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "photo_date": {
+        "kind": "day",
+        "value": "1997-01-24"
+      },
+      "creator": "Ministry of Foreign Affairs, Republic of China (Taiwan)",
+      "license": "Attribution-only; Taiwan MOFA Government Website Open Information Announcement",
+      "license_url": "https://en.mofa.gov.tw/cp.aspx?n=1390",
+      "recommended_credit": "Taiwan Ministry of Foreign Affairs, Crown Prince Tupoutoʻa with the Taiwanese ambassador, 24 January 1997; Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Crown_Prince_TUPOUTO%27A_with_TW_ambassador.jpg",
+      "original_source": "https://multilingual.mofa.gov.tw/web/web_UTF-8/almanac/almanac1997/3-1-1.html",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Crown_Prince_TUPOUTO%27A_with_TW_ambassador.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/george-v-1997.jpg",
+        "bytes": 255481,
+        "sha256": "1fa31268f6af733f031a2ba6256c255e903ed823c5359e99f0c7229875c55a7f"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/george-v-1997.commons-useragent.html",
+        "bytes": 98551,
+        "sha256": "64dca4d31bdf352231c24a1f7a28906a564e0e11db730e2218e46c9806fa113f"
+      },
+      "dimensions": {
+        "width": 1184,
+        "height": 833
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "Crown Prince Tupoutoʻa, seated at right, meets the Taiwanese ambassador. Short receding dark hair, moustache, glasses, patterned red shirt."
+      },
+      "limits": "The caption and image date imprint support 1997, not 1991 or 1990. A 1990 interpretation is seven years earlier; use the 1979 reference as a younger supplemental view. The retained MOFA almanac page did not expose a matching photo caption in its parsed text; date and attribution are established by the retained Commons description and image.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "george-v-1979",
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "photo_date": {
+        "kind": "day",
+        "value": "1979-10-30"
+      },
+      "creator": "European Communities",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "recommended_credit": "European Communities / European Commission Audiovisual Service, P-004609/10-22A, 30 October 1979, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Signing_of_the_2nd_ACP-EEC_Convention_by_Tupouto%27a,_Crown_Prince_of_Tonga.jpg",
+      "original_source": "https://audiovisual.ec.europa.eu/en/photo-details/P-004609~2F10-22A",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Signing_of_the_2nd_ACP-EEC_Convention_by_Tupouto%27a%2C_Crown_Prince_of_Tonga.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/george-v-1979.jpg",
+        "bytes": 918018,
+        "sha256": "a2e3fe336ec5ba028877af7f87fac630ce8df5719ae10a8ecdac44d2efa1b555"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/george-v-1979.commons-useragent.html",
+        "bytes": 86282,
+        "sha256": "03672776b7f47d8eec9c571c6bf2c55696a054ef17ee08c53dabb9a8fe69c1d3"
+      },
+      "dimensions": {
+        "width": 2515,
+        "height": 1761
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "Crown Prince Tupoutoʻa leans over a document at center-right. Dark curly hair and moustache; dark business suit."
+      },
+      "limits": "Supplemental younger appearance, eleven years before the 1990 opening. Commons records a source licence review on 9 July 2024. The current European Union copyright label is not the photograph date.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "george-v-2011",
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "photo_date": {
+        "kind": "bounded_day",
+        "from": "2011-08-01",
+        "through": "2011-08-02"
+      },
+      "creator": "United States Marine Corps",
+      "license": "Public domain in the United States: official U.S. military work",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+      "recommended_credit": "United States Marine Corps, VIRIN 110802-M-AI118-010, August 2011; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:USMC-110802-M-AI118-010.jpg",
+      "original_source": "USMC photograph VIRIN 110802-M-AI118-010",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/USMC-110802-M-AI118-010.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/george-v-2011.jpg",
+        "bytes": 5162259,
+        "sha256": "575d4ec8c7fac9fd50d3f00b1c803eb23c276d7a3eb8c33c894d731ea5f3429f"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/george-v-2011.commons-useragent.html",
+        "bytes": 134265,
+        "sha256": "5c75718d43c7293ff9940edd9dae860d27d20530316f8b6c951f978d3814f022"
+      },
+      "dimensions": {
+        "width": 4831,
+        "height": 3221
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "King George Tupou V stands at right saluting, wearing military dress with gold braid, peaked cap and white trousers. Grey moustache visible."
+      },
+      "limits": "EXIF and Commons date say 1 August 2011; caption describes the 2 August parade. Retain that one-day discrepancy. Appropriate later-reign reference with explicit age interpretation when applied to 2006.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "lavaka-palm-2000",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "photo_date": {
+        "kind": "day",
+        "value": "2000-04-21"
+      },
+      "creator": "Ministry of Foreign Affairs of Japan",
+      "license": "CC BY 4.0 / Government of Japan Standard Terms of Use 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "recommended_credit": "Ministry of Foreign Affairs of Japan, PALM 2000 reception, 21 April 2000, CC BY 4.0 / Government of Japan Standard Terms 2.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Message_from_SPF_representative_at_PALM_2000_reception.jpg",
+      "original_source": "https://www.mofa.go.jp/region/asia-paci/spf/palm2000/palm-summit/diary/dia03.html",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Message_from_SPF_representative_at_PALM_2000_reception.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/lavaka-palm-2000.jpg",
+        "bytes": 23693,
+        "sha256": "3f2b867177954c33bb606d824176343688a6bff02f27d010f83d0a3e72fdd12c"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/lavaka-palm-2000.commons-useragent.html",
+        "bytes": 97879,
+        "sha256": "758caff021e1eb8c8d0512cca5af3fb71bc13d8d55dc71f4cc99b3f0e80e1535"
+      },
+      "dimensions": {
+        "width": 220,
+        "height": 144
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "Prince ʻUlukalala Lavaka Ata stands at the left microphone, wearing a dark suit and tie; clean shaven with short dark hair."
+      },
+      "limits": "Dated contemporary PM reference, but only 220 by 144 pixels. Combine cautiously with the undated U.S. House photograph for clearer facial geometry. Original Japanese page returned 403; retained Commons metadata supplies provenance and licence.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "lavaka-undated",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "photo_date": {
+        "kind": "unknown",
+        "known_published_by": "2008-01-16"
+      },
+      "creator": "Office of U.S. Representative Eni Faleomavaega",
+      "license": "Public domain in the United States: official U.S. federal government work",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+      "recommended_credit": "Office of U.S. Representative Eni Faleomavaega, Prince ʻUlukalala Lavaka Ata, photograph undated and published by 16 January 2008; public domain U.S. government work via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Ulukalala_Lavaka_Ata.jpg",
+      "original_source": "http://www.house.gov/list/press/as00_faleomavaega/eniandtongapm.html",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ulukalala_Lavaka_Ata.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/lavaka-undated.jpg",
+        "bytes": 38685,
+        "sha256": "f68dc80df8e7e97b6ee950bc7f3a1b559c523341c21a38a20d2f2b3af8ee9fe9"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/lavaka-undated.commons-useragent.html",
+        "bytes": 106413,
+        "sha256": "f0acafac6529515cea1e07a759dc37e1ef285b62c1c5f152d161cebbc90eff0f"
+      },
+      "dimensions": {
+        "width": 348,
+        "height": 466
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "Cropped portrait of Prince ʻUlukalala Lavaka Ata in grey business suit and patterned tie, short dark hair, clean-shaven face."
+      },
+      "limits": "Photograph date unknown. The crop was uploaded to English Wikipedia on 16 January 2008. The larger image has a 19 March 2012 upload date; do not call this a 2012 photograph. Supplemental identity/likeness only; cannot independently establish a 2000 appearance date.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "tupou-vi-2019",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "photo_date": {
+        "kind": "day",
+        "value": "2019-03-27"
+      },
+      "creator": "Office of the Governor-General of New Zealand",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "recommended_credit": "Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+      "original_source": "https://gg.govt.nz/image-galleries/dinner-his-majesty-king-tupou-vi-kingdom-tonga-and-her-majesty-queen-nanasipau’u",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Tupou_VI._of_the_Kingdom_of_Tonga_%282019%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tupou-vi-2019.jpg",
+        "bytes": 210547,
+        "sha256": "dbb3b7407684e0f68d1bf229f73560cea59ff414c84f594c3e270477665d9350"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tupou-vi-2019.commons-useragent.html",
+        "bytes": 95262,
+        "sha256": "100bd17e863d35abe6a0811560eb735c947e296f876155c0a81c19d338311a1a"
+      },
+      "dimensions": {
+        "width": 659,
+        "height": 978
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "King Tupou VI in black tuxedo, bow tie and medals. Receding/balding hair and older clean-shaven face."
+      },
+      "limits": "Later King reference. A 2012 or post-cutoff 2030s application requires explicit backward/forward artistic age interpretation. Retained Commons metadata specifies CC BY 4.0; use that licence rather than substituting the current website’s broader CC0 wording.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "heir-2012",
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "photo_date": {
+        "kind": "day",
+        "value": "2012-08-08"
+      },
+      "creator": "Foreign and Commonwealth Office, United Kingdom",
+      "license": "Open Government Licence v1.0",
+      "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+      "recommended_credit": "UK Foreign and Commonwealth Office, Crown Prince of Tonga with Jeremy Browne, 8 August 2012, Open Government Licence v1.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Crown_Prince_of_Tonga_(7739361506).jpg",
+      "original_source": "https://www.flickr.com/photos/foreignoffice/7739361506/",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Crown_Prince_of_Tonga_%287739361506%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2012.jpg",
+        "bytes": 5862912,
+        "sha256": "00d6e8eadf525bc9644003f1f2eaa415d4bf2cede07efeede3cff07c933abac2"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2012.commons-useragent.html",
+        "bytes": 119300,
+        "sha256": "23044b80e1428ea6b03dfc05590c300c9fb04a4ee7bc668036d629ceccdf3aae"
+      },
+      "dimensions": {
+        "width": 4320,
+        "height": 3240
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "Crown Prince Tupoutoʻa ʻUlukalala at left in a grey checked suit, short dark hair, clean shaven. Jeremy Browne is in the center and the Crown Princess at right."
+      },
+      "limits": "Contemporary 2012 Crown Prince reference and attestation by 8 August 2012; not evidence of the exact title vesting day. Commons records permission ticket 2013061310007371.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    },
+    {
+      "id": "heir-2022",
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "photo_date": {
+        "kind": "day",
+        "value": "2022-08-05"
+      },
+      "creator": "U.S. Embassy Suva / U.S. Department of State",
+      "license": "Public domain in the United States: official U.S. Department of State work",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-DOS",
+      "recommended_credit": "U.S. Embassy Suva / U.S. Department of State, Wendy Sherman and Crown Prince Tupoutoʻa ʻUlukalala, 5 August 2022; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "commons_url": "https://commons.wikimedia.org/wiki/File:Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg",
+      "original_source": "https://www.flickr.com/photos/167418767@N06/52272084217",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "image": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.jpg",
+        "bytes": 9952931,
+        "sha256": "85cd63baa19269c6f43b08d52b0abe4f09b2dc3edd7ca589ed933367874d6ec2"
+      },
+      "metadata": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/heir-2022.commons-useragent.html",
+        "bytes": 110377,
+        "sha256": "709e66655eeb654ef04899b1df98cdd5fa5a000174e3e3f0932bc156d7606b75"
+      },
+      "dimensions": {
+        "width": 5725,
+        "height": 3817
+      },
+      "visual_review": {
+        "reviewer": "Codex",
+        "date": "2026-10-01",
+        "observed": "Crown Prince Tupoutoʻa ʻUlukalala at left, pulled-back dark hair and goatee, tan suit and woven taʻovala. Wendy Sherman stands at right in green."
+      },
+      "limits": "Caption and EXIF support 5 August 2022. The upload comment’s 2023 year is a typo and is not used. Mark post-2026 age adjustments as fictional artistic interpretation.",
+      "human_approval_claimed": false,
+      "generated_art_approval": false
+    }
+  ],
+  "corroboration_only": [
+    {
+      "url": "https://tonga-gov.pt/en/the-monarch/",
+      "finding": "Web tool read links the birth name ʻAhoʻeitu ʻUnuakiʻotonga Tukuʻaho, Prince ʻUlukalala Lavaka Ata, Crown Prince Tupoutoʻa Lavaka and Tupou VI.",
+      "limitation": "Direct original-body requests returned HTTP 406. Failure bodies retained; do not represent them as the article original. Accepted alias chain instead uses retained PMO and Gazette originals."
+    },
+    {
+      "url": "https://gg.govt.nz/copyright-and-licensing",
+      "finding": "Current live terms distinguish CC0 photographs and some CC BY 4.0 photographs.",
+      "limitation": "Direct original-body request returned 403. Retained Commons photo-specific CC BY 4.0 metadata is the licence basis for the 2019 image."
+    }
+  ],
+  "remaining_gaps": [
+    {
+      "person_id": "taufaahau_tupou_iv",
+      "gap": "No usable newly dated, licensed mid-1990s to 2006 likeness established in the bounded search.",
+      "rejected_as_dated_evidence": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Taufa_Tupou_4.jpg",
+          "reason": "CC BY-SA 2.5, but the 2006-10-30 value is expressly original upload date; actual photo date unknown."
+        },
+        {
+          "url": "https://www.gettyimages.com.au/detail/news-photo/tongas-king-taufa-ahau-topou-iv-shown-in-this-file-picture-news-photo/51346833",
+          "reason": "Photograph dated 1995-09-12, AFP/Getty; commercial/editorial licence restrictions, no licence acquired."
+        }
+      ]
+    },
+    {
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "gap": "No exact 1990 licensed photograph; 1997 is a disclosed near-era reference, supplemented by 1979."
+    },
+    {
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "gap": "The dated 2000 image is small; clearer U.S. House photo has no established photo date. Do not silently date the latter 2000 or 2012."
+    },
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "gap": "Exact Crown Prince title vesting date unverified; later accession must remain conditional."
+    }
+  ],
+  "verification": {
+    "pdf_visual_review": [
+      "czech-mfa-tonga-2011.pdf page 7",
+      "tonga-gazette-2012-8.pdf page 1",
+      "tonga-gazette-2012-9.pdf page 1"
+    ],
+    "image_visual_review": "All eight retained full-resolution image files inspected by Codex.",
+    "native_build_or_run": false,
+    "fixed_cutoff_policy": "Facts about events after 2026-09-07 are not imported as history. Retrieval after the cutoff does not shift that cutoff. Gameplay may diverge from earlier historical observations."
+  }
+}

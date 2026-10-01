@@ -22,7 +22,8 @@
     "roles": {
      "research": 8,
      "production_party": 3,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 696,
     "case_kinds": {
@@ -71,6 +72,8 @@
     "people_without_bound_art_at_yearly_samples": 0,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 12,
+    "fictional_party_candidates": 12,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 0,
     "fictional_executive_authorized": 12,
     "research_roles_without_holder_observation": [
@@ -86,7 +89,7 @@
     "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.",
-    "Future: 12 fictional candidates, 0 with a served portrait, 12 authorized for a national executive."
+    "Future: 12 party candidates and 0 institutional candidates, 0 with a served portrait, 12 authorized for a national executive."
    ]
   },
   {
@@ -106,7 +109,8 @@
     "roles": {
      "research": 9,
      "production_party": 5,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 953,
     "case_kinds": {
@@ -148,6 +152,8 @@
     "people_without_bound_art_at_yearly_samples": 0,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 20,
+    "fictional_party_candidates": 20,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 0,
     "fictional_executive_authorized": 20,
     "research_roles_without_holder_observation": [],
@@ -160,7 +166,7 @@
     "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
     "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
     "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
-    "Future: 20 fictional candidates, 0 with a served portrait, 20 authorized for a national executive."
+    "Future: 20 party candidates and 0 institutional candidates, 0 with a served portrait, 20 authorized for a national executive."
    ]
   }
  ],

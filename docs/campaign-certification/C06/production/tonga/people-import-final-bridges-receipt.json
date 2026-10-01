@@ -1,0 +1,26 @@
+{
+  "added_person_ids": [
+    "to_lord_maafu_dpm_2017",
+    "to_veikune_speaker_2001"
+  ],
+  "source_enriched_ids": [
+    "to_langi_kavaliku",
+    "to_samiu_kuita_vaipulu"
+  ],
+  "existing_fact_conflicts_preserved": [
+    {
+      "person_id": "to_langi_kavaliku",
+      "fields": [
+        "name"
+      ],
+      "action": "Preserved existing saved-identity facts; proposed corrections require separate review/migration."
+    }
+  ],
+  "party_terms_changed": 0,
+  "office_links_changed": 0,
+  "portraits_generated": 0,
+  "source_file": "docs/campaign-certification/C06/production/tonga/people-import-final-bridges-source.json",
+  "source_sha256": "a061f87c819a1639fbb3deca5a0dd79639c6ab384146311b004297026b6e6fe9",
+  "status": "identities_imported",
+  "known_people": 620
+}

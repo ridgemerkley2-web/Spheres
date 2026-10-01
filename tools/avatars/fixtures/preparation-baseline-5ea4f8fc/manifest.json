@@ -1,0 +1,417 @@
+{
+  "version": 1,
+  "source_revision": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "purpose": "Immutable preparation regression inputs from the accepted pre-production integration baseline, not a live-production certification or a claim about the earlier review date.",
+  "encoding": "Exact Git blob bytes; deterministic ZIP compression only.",
+  "bundle_sha256": "2c9f1536252c35aaa4b79f0b09cc752d6a6ed0e8a353006df2649cb5ca8440e6",
+  "files": [
+    {
+      "path": "docs/campaign-certification/C01/research/README.md",
+      "bytes": 16153,
+      "sha256": "d26aaf0c8185c09e57f341fa5e8c7d56449af6f2ba12ab0962956f512dacb2eb",
+      "git_blob": "2108f4cdcdd61358578fcbddae94fe916a2133ee"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-party-presidents-1990-2026-34.md",
+      "bytes": 101766,
+      "sha256": "312d27e7d93c8d75a032375b9405089e9846326dadaa2b795f8c13fd9fbd0aba",
+      "git_blob": "5809b83890cf24f677902b1c829f0ca46d30157d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-presidents-1990-2026-10.md",
+      "bytes": 75010,
+      "sha256": "8726df2d0686246977681b4df04250c9c4b4386a9869a884ecdb082eb7c1ae09",
+      "git_blob": "5bdeabf319769697e4b5c8f6c0f0a9e7d71dab15"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-prn-ptc-agir-presidents-1990-2026-43.md",
+      "bytes": 30804,
+      "sha256": "7c10556fc5102c82dabd9586cc30334775245232812b3a1c7f37e59a58ae3ce2",
+      "git_blob": "5c2eab9b7fe3066b786d70d980af487dfa44de5c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-pt-presidents-1990-2026-22.md",
+      "bytes": 113398,
+      "sha256": "41c82148d2601dab1abfc8c8221494176335d77471e995674757b0aa63ca38c4",
+      "git_blob": "7db2bd7784c6f19cadd26b551a591be85f9df6d5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-vice-presidents-1990-2026-17.md",
+      "bytes": 77139,
+      "sha256": "ba4b7e94ea0d3590f22557f13cc9e41ee5790203bf648d115717d4a5d599ec5d",
+      "git_blob": "22b924eac0508e7383901c117ae6d1aa913daafc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "bytes": 1077447,
+      "sha256": "a5331b1826ffa3fd02833ac05f5055b9e1852c00800766f9efc27b603ef689a6",
+      "git_blob": "49e4d53f7bac18f3750ff8e93b95eca6a22ba7dc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france-presidents-1990-2026-23.md",
+      "bytes": 62858,
+      "sha256": "1af568eb739f09c2f17fcad4fce27d1209b3df4ae17cafa328b780bde7fad211",
+      "git_blob": "b03a570ead9b7888e81bbccfb81662f0d34fa348"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france-prime-ministers-1990-2026-37.md",
+      "bytes": 35885,
+      "sha256": "97999dbfeebb7a0b9801fff26ee392cef3ab37d8e6e9b5b104b3664d39eef325",
+      "git_blob": "0b7fa159c1c54b99e9c9532c87157aa4b7b6ca9c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france-prime-ministers-2014-2026-38.md",
+      "bytes": 29895,
+      "sha256": "29d44dca20fe593ff493ff575e8f38b1fd365aeab7eef5a758dbd94f172806db",
+      "git_blob": "52e5df6259f470b45385e6c877226ee7a5d5f8ad"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "bytes": 2224528,
+      "sha256": "03bd326b0acaddb96f33b71dad22e5f6ee906ec4649ce4de97fa2325e7a0f49e",
+      "git_blob": "56d85bdcc2c915e90f260190e3b8292fb7679300"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-bjp-presidents-1990-2026-27.md",
+      "bytes": 133171,
+      "sha256": "46970670c7ba905ba509ce9556fcf23ae173a55e0fe6d2e8377a4d49a4dfe5f6",
+      "git_blob": "0759a7916bed4be5dc06424f3946e9f52b029102"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-cpim-general-secretaries-1990-2026-40.md",
+      "bytes": 28768,
+      "sha256": "328785f6fdad0814c74df160ce37db1327dc2ec0ac0dbad14d6aaff53132d14d",
+      "git_blob": "21920576e8e600c0258012276a8828f64b53ffcc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-inc-presidents-1990-2026-20.md",
+      "bytes": 96091,
+      "sha256": "b8172bbf02a9d890c1ee721e7d93412e97d5c221f3b29af57940c6fd14238875",
+      "git_blob": "27dcfc55955ffbdd1b02661f35266158dd19b8d1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-janata-dal-presidents-1990-2026-33.md",
+      "bytes": 57504,
+      "sha256": "88bd7c4e68493706be48ca598941b6d15d3e058ec07da4b52fd9813adb5c63e7",
+      "git_blob": "9aabc9a0fb75109ff3010731c084f940fc098ac2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-presidents-1990-2026-15.md",
+      "bytes": 77948,
+      "sha256": "c82ef7d94eeee02beb3af5490569549bd06a8fb61a5f1c907676441ac4d92358",
+      "git_blob": "760309fc247b8a77af7e7e1b30664b48372f42f1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-prime-ministers-1990-2026-11.md",
+      "bytes": 81506,
+      "sha256": "dff87f78665c377061ecd2dd7efa2a78e0ee573694fb4b8d852ac68fa13b6acd",
+      "git_blob": "a7ff7ef3ff99ab51b8da620e6552bed15b0f9159"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0",
+      "git_blob": "9a57159e82222f40fd0877306998697d8ccdf707"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md",
+      "bytes": 60403,
+      "sha256": "1b4e548321f93f3dfe0c7db94f20680ee6e0ee6bc2c1b7261742e6cbd9d99e47",
+      "git_blob": "db28c2eda25ea69d1ec737da79966ed20dc75fab"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+      "bytes": 51375,
+      "sha256": "39b160a15605edd33d9c3dd1a160170645010eb804b6d1d4cea5bcf9e5c62dc5",
+      "git_blob": "53d2191a1c90960e6dff7fca8de26b11159985c0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md",
+      "bytes": 97494,
+      "sha256": "61c63b8e98969d62f18e9c04d536f8fed319237bad84784d5bd79bd4ea16663b",
+      "git_blob": "15a6d876516492b32fb236e9ea6dd01c7b9d52c1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-prime-ministers-1990-2006-12.md",
+      "bytes": 110869,
+      "sha256": "64ee66ac781eaf0eb6b9cfe81859ac9232da14e8e03847168efe5b1759252a94",
+      "git_blob": "5bc7d653b96637d4ed37e3e95ba9b840ba7c899e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-prime-ministers-2006-2026-13.md",
+      "bytes": 145816,
+      "sha256": "5411d0741948981af0402a438228966b92e2116e7bda0275d10ecfa9be1dd544",
+      "git_blob": "d307a26271390fc43e3d8228076d20f848335e9e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md",
+      "bytes": 71634,
+      "sha256": "f46d563a968547ca25ed4a3b405a63d5ea646836ed93bd29b29fb1e9650cd70a",
+      "git_blob": "bda59fd26903445d7b3e513bc28a2b5a28181018"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "bytes": 1828719,
+      "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435",
+      "git_blob": "99b5c5ca243386c62474655ceb6bce330d5fcf14"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-duma-faction-heads-2021-2026-46.md",
+      "bytes": 27001,
+      "sha256": "908f7a4b8a8599c5abaa8f31c6ecd743f03153be5477d9d23a6da92f916e01bb",
+      "git_blob": "0fe96521fa23557d76292f3aecd8db1cde020967"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-heads-of-government-1991-2026-19.md",
+      "bytes": 88713,
+      "sha256": "9fba91d4572d718865f55b8d04df1711a46a231cc648e14636f726f89d6ffac0",
+      "git_blob": "aefbf3d0a04dd1880c2f1cf8364c813100a12a19"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-presidents-1991-2026-14.md",
+      "bytes": 63150,
+      "sha256": "4fd67be8aab5856e70f078548c7efa1bd27f9c1ab8a2837a746a6effd3622c47",
+      "git_blob": "63a3573640c20186ed444fb92fa309f500de089a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "bytes": 626569,
+      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9",
+      "git_blob": "9b8785fe12955ea673e25ffe3d75d21f9b4da920"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md",
+      "bytes": 31362,
+      "sha256": "cf8bfd3dd1a5d7549f34249a4f56a5531d264a219ea4c1034ea7c380068e61e3",
+      "git_blob": "ba1c0a6ef16de606eab24829806e9da35a38090c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "bytes": 317174,
+      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e",
+      "git_blob": "aaf825c0036f39ac8cde3c9daec7e7d734285631"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-executive-chronology-06.md",
+      "bytes": 37877,
+      "sha256": "b54db2a5a22577d68f96569b6d178537a50134ef55d1a9028a1d2e4d1d4a7065",
+      "git_blob": "ef9d616a32ed3994e7de3a1e57f6f9e2951e345a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-shura-allegiance-chairs-1990-2026-25.md",
+      "bytes": 75991,
+      "sha256": "3061347a212eb0c8534e5c05fa35935cf9bf8dbca45b44c57f802e01d77e454f",
+      "git_blob": "cfc72dd1f52d57a2d0461d0a0b108f523169cbe0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-acdp-ff-ifp-leaders-1990-2026-30.md",
+      "bytes": 65807,
+      "sha256": "745e2afe15d25aaf866be87fdd4a92dda2c9908577ecfbe8345d0aa8f0656ef7",
+      "git_blob": "d1560f17f324de7533d499a2c6dacc1446dde07a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-anc-presidents-1990-2026-16.md",
+      "bytes": 71961,
+      "sha256": "0de5271ce08d0701aa122f24c64c2142d8adfcc5bea682fab432a1c0019570d2",
+      "git_blob": "9f8fd071e2aabeeb04514769fddbeb20c783c820"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-deputy-presidents-1994-2026-21.md",
+      "bytes": 76200,
+      "sha256": "bf7889dcb1fa4dc9d7fee2587262274e1c3870874d2b647444033d6a1360e054",
+      "git_blob": "980fb3802164627a7dc55eb2a73cf068f9f01aaa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-heads-of-state-1990-2024-09.md",
+      "bytes": 59692,
+      "sha256": "b5c918f74bf42f23cad40540c999d4c985d979b476b07c98557b8cd658d713e7",
+      "git_blob": "5b5314a1935f3e8c843478a222203dd340726d80"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-pac-presidents-1990-2026-32.md",
+      "bytes": 70423,
+      "sha256": "7f2e449dc60a93f2e644c13ae4d029b60faf34280cd3cd8332b1f47adabfaefb",
+      "git_blob": "7d1e9863ad3b8addf139831eca9461a001bfdbc5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa.json",
+      "bytes": 1007417,
+      "sha256": "51f21208527dc405f7ef4f321d292c688dfdb3628bf8c98c4031c90762faf2d6",
+      "git_blob": "9c260672c5d6d2f70f8c772c3d72a7ac9414d8f6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+      "bytes": 37983,
+      "sha256": "a11076bba20dea088fefe7882e47586a8454c3c67f4f001c048c4c92f296a703",
+      "git_blob": "6a90e129b61a4590ad5db423886c5690648ddaa9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-deputy-prime-ministers-1990-2026-36.md",
+      "bytes": 60447,
+      "sha256": "a5dcac8880759a7294a1b1b296d4a48815287249a5175465dbc74e60384293f3",
+      "git_blob": "429cf1127a4296369a0c15490beff682a63c343d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
+      "bytes": 34940,
+      "sha256": "755f9db2abfb5c26e7d916f845bcba279c5ffdc41c8d895489437f9996b46f7d",
+      "git_blob": "bd0f7ad5970b963f038b1d6e40887cf6ab901275"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+      "bytes": 30154,
+      "sha256": "496976ffacac3e03e751f6f32283030e95f194bad954497e34662a3ffbd02945",
+      "git_blob": "498219fec9870bfa5b092fd31f7466e18d86c95b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+      "bytes": 47832,
+      "sha256": "7d2c21a3aa595c929cd108bdd265dc97e488b4ac6a259b2e5cd7a528ccd5eec9",
+      "git_blob": "e9df53e723c3edb35d6c7a3e3834101de37bc096"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+      "bytes": 12502,
+      "sha256": "fbe5cd350fed63d1811c26d303e11d39f47c586fe0addd50189d8f8f438c1149",
+      "git_blob": "ba486101c69c9fcecda8f65be3df68c856253f91"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-speakers-1990-2026-24.md",
+      "bytes": 66038,
+      "sha256": "21927add50c2ae79cdebb48ce2354f4b463649130821e636122872ff2357f2ec",
+      "git_blob": "5162b5f8c6c3b052b80ead39a9af2b64c8361397"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2021-02.md",
+      "bytes": 18258,
+      "sha256": "a3dbf99ceb61db7a284086ba1bb5accd7ee961146768f774879a8232d611c6a5",
+      "git_blob": "34fe2b3f35707781f43efd93450e7c28db262358"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+      "bytes": 33174,
+      "sha256": "abebeb4921d35213e0b2920a01ce96f7359d7910634d226115b9d5e39acbb0b5",
+      "git_blob": "1f7cc589cc29fd955c8ee0ac386eaafaa06d1490"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 655160,
+      "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "git_blob": "fa04bb669e28191d28b535bef01c936d02a9a74d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-cpsu-general-secretary-1990-1991-41.md",
+      "bytes": 42378,
+      "sha256": "f322d158043b3e8fc27174335422e87f806208c16c8f196d5d14caf984ae0b6c",
+      "git_blob": "8fac2f4fd6c7c7afe196d6d043257eb55ddf5754"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-democratic-russia-soyuz-1990-1991-35.md",
+      "bytes": 53520,
+      "sha256": "a7c6679e2e8995b982cb7ac3074019390cc7510ba011440162517cd634ef17e8",
+      "git_blob": "99e36a49dde728ecf1d4d40f6afe09e81c8f51ac"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md",
+      "bytes": 93463,
+      "sha256": "23e9f262d6115e945d4010431cd4188ffc4b41764d6e2242f9ffc841bdd434fb",
+      "git_blob": "6076836bd900a77fc5ede3a04e94ef6f77a46992"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-russia-transition-1991-05.md",
+      "bytes": 46385,
+      "sha256": "2a758b8add47dc7122ea4202d2c3477fd3bd43813d61b04b287b13515e517d63",
+      "git_blob": "f08eab915394c4bd31f8a334fa87b8275b7ea629"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "bytes": 360379,
+      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94",
+      "git_blob": "327dfa2b5924c358956b9c6f8171cc71ae795302"
+    },
+    {
+      "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+      "bytes": 554063,
+      "sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "git_blob": "0be74d03c1d1a05db0dee24b77b7d8e74b712323"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/proposals.json",
+      "bytes": 87561,
+      "sha256": "7303c854eb25c36a838bd144f6aa9639f944d9d40c2b7c9d199b6c734de637b1",
+      "git_blob": "d33f2ff2705e6675a0ebb0f7723dbf69e546d64d"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/sources.json",
+      "bytes": 70014,
+      "sha256": "36f36d56ef681a4550605879d49008fd6b49c2136e76dc7598f0ba8f138c4295",
+      "git_blob": "bce954e05d6032fba7c4a8084b0b411444eeb0db"
+    },
+    {
+      "path": "docs/campaign-certification/C06/preparation/tonga-cast-01/proposal.json",
+      "bytes": 47049,
+      "sha256": "2b52507575857cf35cfbb8b9ef48ad4e65ce852948cdcfebc37df215ab33a093",
+      "git_blob": "128eddcd3e5029ba382941ac700045c7e3fb2fe0"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership.json",
+      "bytes": 26453,
+      "sha256": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+      "git_blob": "6e7c9027a07d95e6e3e50bbd7fe3a02d832782be"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership_seats.json",
+      "bytes": 2972,
+      "sha256": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+      "git_blob": "17c6efa249f467af0e5f6ebdf663bdc7ac6b2437"
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "bytes": 117104,
+      "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008",
+      "git_blob": "9ce16bf06a5aa91b8a51b3c401f2e11081df4744"
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "bytes": 86656,
+      "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+      "git_blob": "2baf8893d4aa361cbcc83085a3fde5ea1edf09ee"
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "bytes": 1262625,
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+      "git_blob": "071f7249915b7747e28caa09460c9bec00225768"
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "bytes": 7666,
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+      "git_blob": "74321572253dda9e2b0e66f817035c0378d219ab"
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "bytes": 3273947,
+      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+      "git_blob": "2dad681e2beb8958b63a354d1dd423ee93d551e7"
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "bytes": 5997885,
+      "sha256": "bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78",
+      "git_blob": "b5814d2d0ea5109a3e2c2a6d46c1994f4f3b5f50"
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "bytes": 408800,
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+      "git_blob": "a07d586047d0eae751f0b34b809f867c6dd399b5"
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "bytes": 307745,
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
+      "git_blob": "95b6193958e279d64e1725f1b61d8d5b8877acea"
+    }
+  ]
+}

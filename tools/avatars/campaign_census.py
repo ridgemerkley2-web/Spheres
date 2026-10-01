@@ -27,6 +27,7 @@ INPUTS = (
     "spheres-sim/data/future_party_leadership.json",
     "spheres-sim/data/future_party_leadership_seats.json",
     "spheres-sim/data/future_party_continuation.json",
+    production.INSTITUTIONAL_SOURCE,
     "spheres-web/data/nation_figures.json",
     "spheres-web/data/future_candidates_2035.json",
     "spheres-web/data/person_portraits.json",
@@ -94,7 +95,8 @@ def build(root=ROOT):
         raise ValueError("Live party rows/registry or certified identities disagree")
     if set(future) & set(people) or any(not pid.startswith("fictional_") for pid in future):
         raise ValueError("Historical and fictional identities must remain separate")
-    if {(p["nation"], p["party"]) for p in future.values()} != set(live):
+    future_parties, future_institutions = production.partition_future_candidates(root, list(future.values()))
+    if {(p["nation"], p["party"]) for p in future_parties} != set(live):
         raise ValueError("Fictional export must cover exactly the represented party rows")
     boundary = (registry["reference_from"], registry["reference_through"],
                 candidates["from"], candidates["until_exclusive"])
@@ -153,8 +155,9 @@ def build(root=ROOT):
     if any(t["organization_id"] not in org_ids for t in terms):
         raise ValueError("Term references an unregistered component")
     expected_components = {(p["nation"], p["party"], c["id"]) for p in parties.values() for c in p.get("components", [])}
-    if {(p["nation"], p["party"], p["component"]) for p in future.values() if p.get("component")} != expected_components:
+    if {(p["nation"], p["party"], p["component"]) for p in future_parties if p.get("component")} != expected_components:
         raise ValueError("Future component export differs from registered components")
+    production.validate_future_counts(candidates, future_parties, future_institutions)
     for grant in eligibility["historical_grants"]:
         target = term_ids.get(grant["term"])
         if target is None or any(target.get(k) != grant.get(k) for k in ("nation", "party", "person", "component")):
@@ -193,6 +196,8 @@ def build(root=ROOT):
             "seed_executive_observations": sum(x["nation"] == nation for x in links),
             "institution_policy_records": sum(x["nation"] == nation for x in eligibility["institutions"]),
             "fictional_templates": len(future_members[nation]),
+            "fictional_party_templates": sum(p["nation"] == nation for p in future_parties),
+            "fictional_institutional_templates": sum(p["nation"] == nation for p in future_institutions),
             "all_real_organizations_status": "unreviewed_exhaustiveness",
             "unrepresented_organization_count": None, "unknown_coverage_is_not_zero": True,
             "census_work_order": country_work})
@@ -227,6 +232,9 @@ def build(root=ROOT):
         "historical_executive_gameplay_grants": len(eligibility["historical_grants"]),
         "future_seat_policies": len(seats["parties"]),
         "existing_lifecycle_records": len(lifecycle), "future_templates": len(future),
+        "future_party_templates": len(future_parties),
+        "future_institutional_templates": len(future_institutions),
+        "represented_future_institutions": len({(p["nation"], p["institution"]) for p in future_institutions}),
         "historical_manifest_assets": sum(len(v["portraits"]) for v in manifests[0].values()),
         "fictional_manifest_assets": sum(len(v["portraits"]) for v in manifests[1].values()),
         "historical_art_snapshot_pending_jobs": len(jobs),
@@ -257,6 +265,7 @@ def build(root=ROOT):
             "historical_executive_gameplay_grants": eligibility["historical_grants"],
             "institution_policy_records": eligibility["institutions"],
             "future_seat_policies": seats["parties"], "lifecycle_disclosures": lifecycle,
+            "fictional_institutional_candidates": future_institutions,
             "appearance_eligibility_research_backlog": [{"person_id": p["id"], "name": p["name"],
                 "status": p["status"], "known_associations": p["reasons"],
                 "required_action": "Research identity, life and office intervals before assigning an artwork window; an empty association list is unknown, not permission to invent a country/role."}

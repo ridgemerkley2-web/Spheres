@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-06",
+  "date": "2026-10-01",
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-02-jobs-batch06.json",
+  "jobs_sha256": "c1846a9bcbeb68a4981a6a783b171d95f4a0d31bcab28bc802745a14eece9b22",
+  "manifest_before_sha256": "8c32f5b7b1ef49691de445779bfd81e7d4f08cf08212a903a6b56be3fba9d9e1",
+  "manifest_after_sha256": "282696c3d324d64bba0d37511d5ffedbffc79730e9d29b57b8e85cf1a99d99e2",
+  "prior_records_preserved": true,
+  "appended": [
+    {
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "asset": "spheres-web/ui/person-portraits/tonga-tuivakano-cartoon-2003-v1.png",
+      "sha256": "1b45ad53ac665d4e7ecffa4763421e56f6f7ab3c250fa4590b78c52dcaa4cdbd"
+    },
+    {
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "asset": "spheres-web/ui/person-portraits/tonga-tupou-vi-cartoon-2030-v1.png",
+      "sha256": "50f297ece6e2c5894f7b4c6d06f7acdbcbe176e90598906580d9d7df679f7dff"
+    }
+  ],
+  "copied_reference_images": [
+    {
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "kind": "observed_portrait",
+      "reference_id": "tuivakano-2011",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-tuivakano-2011-reference-v1.jpg",
+      "sha256": "782d0eb778b12087bebbbf39ae96ca83cf9a3bef587ddd7b576d7075316551f4",
+      "bytes": 529428,
+      "width": 659,
+      "height": 1182,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "creator": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub",
+      "credit": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub; 2011-06-27; CC BY 2.0. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY 2.0. Date according to EXIF, as qualified on the Commons description.",
+      "source_license_statement": "CC BY 2.0",
+      "depiction_date": "2011-06-27",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "832d831d91a84fa1c506eb4243bf9a02e8076a2697b6e79fb8183a2b9fedd2ba"
+    },
+    {
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "kind": "observed_portrait",
+      "reference_id": "tupou-vi-2019",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-tupou-vi-2019-reference-v1.jpg",
+      "sha256": "dbb3b7407684e0f68d1bf229f73560cea59ff414c84f594c3e270477665d9350",
+      "bytes": 210547,
+      "width": 659,
+      "height": 978,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": "Office of the Governor-General of New Zealand",
+      "credit": "Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY 4.0. Later King reference. A 2012 or post-cutoff 2030s application requires explicit backward/forward artistic age interpretation. Retained Commons metadata specifies CC BY 4.0; use that licence rather than substituting the current website’s broader CC0 wording.",
+      "source_license_statement": "CC BY 4.0",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2019-03-27"
+      },
+      "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "source_metadata_sha256": "100bd17e863d35abe6a0811560eb735c947e296f876155c0a81c19d338311a1a",
+      "original_source": "https://gg.govt.nz/image-galleries/dinner-his-majesty-king-tupou-vi-kingdom-tonga-and-her-majesty-queen-nanasipau’u"
+    }
+  ],
+  "generation_record": "tools/avatars/person-prompts/tonga-historical-batch-06.json",
+  "generation_record_sha256": "dad1f51d89d04d36c403c5c1f4070d8dfb8fc088ea46629acf6be33c60fcaccc",
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "warning_count": 530,
+    "historical_people_with_art": 90,
+    "historical_images": 99,
+    "appended": 2,
+    "copied_reference_images": 2
+  },
+  "allowlist_rebuilt": false,
+  "production_board_rebuilt": false,
+  "rejected_studies_excluded": true
+}

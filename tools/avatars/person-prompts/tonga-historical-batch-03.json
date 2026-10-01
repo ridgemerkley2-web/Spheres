@@ -1,0 +1,556 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-03",
+  "nation": "Tonga",
+  "reviewed_at": "2026-10-01",
+  "registration_operator": "Codex",
+  "review_owner": "Codex root",
+  "human_approval_claimed": false,
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-04-jobs-batch03.json",
+  "jobs_sha256": "44185399aedad13b3db414f26a870f490db689a951d7054a044543a327c144b5",
+  "manifest_before_sha256": "9984329c88e6d17b2994f2cd5c934ae96f64d0a0097ee2893cc398aafec91ab8",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/tonga/royal-identity-review.json": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+    "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+  },
+  "source_reference_records": {},
+  "generations": [
+    {
+      "job": {
+        "stem": "tonga-viliami-tangi-cartoon-2008-v1",
+        "output": "exec-05691ad0-f3b9-40ba-8a02-7771e441cf77.png",
+        "person_id": "to_viliami_tau_tangi",
+        "from": "2006-01-01",
+        "to": "2011-01-01",
+        "references": [],
+        "era_note": "The named 2019 PGSSC biography portrait has no exact photograph date. This original text-authored likeness interprets him modestly younger around 2008 for the 2006–2010 appearance window. It covers the accepted 2006, 2009 and 2010 observations without claiming a photograph or continuous tenure for each year.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-viliami-tangi-cartoon-2008-v1.png",
+        "sha256": "247a1aa313f06b190ac5f44b2b8eef73b0f44a9d8342e195435f6e4b8681f093",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-05691ad0-f3b9-40ba-8a02-7771e441cf77.png",
+        "identity_source": {
+          "person_id": "to_viliami_tau_tangi",
+          "kind": "authored_identity",
+          "source_url": "https://web.archive.org/web/20140102125353id_/http://www.mic.gov.to:80/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "research_sources": [
+          {
+            "reference_id": "tangi-pgssc-2019",
+            "source_url": "https://www.pgssc.org/_files/ugd/d9a674_e7604efa800f4093a6f77ae3cb5d1baa.pdf",
+            "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/tangi-pgssc-2019-page21.png",
+            "sha256": "a016ab22bda0b81a57f92fe071547cdb52f0672a037836da46a5461e1f8c959b",
+            "credit": "Program in Global Surgery and Social Change; individual photographer uncredited",
+            "photo_date": null,
+            "publication_date": "2019",
+            "rights": "Copyrighted or no open reuse grant identified; identity research only",
+            "limitation": "Biography explicitly connects chief surgeon Lord Viliami Tangi to his former deputy premiership and health ministry. It supplies no exact photograph date; earlier-period age interpretation must be recorded. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+            "source_image_may_ship": false,
+            "source_image_may_be_generation_input": false,
+            "metadata_original": {
+              "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_pgssc_tangi_bio_2019.body",
+              "bytes": 1188788,
+              "sha256": "481af6a8242b9c31813b89392be7b3ebb36afb0bcb2b562f34644dec7c0bf168"
+            },
+            "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+          }
+        ],
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Program in Global Surgery and Social Change; individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied."
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical 1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult 5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text, logos, flags, extra people, photorealism, 3D or chibi. Draw an original authored-identity cartoon from the following factual facial observations. No source photograph is supplied: never reproduce a photo scene/composition; only observed person's face and the style anchor. Clothing and standing body are fresh artistic extensions. The real Tongan statesman and surgeon Viliami Tangi near 2008. His personally inspected named portrait published in Harvard PGSSC's 2019 participants booklet shows a mature medium brown man, full swept-back slightly wavy silver-grey hair with dark roots, wide forehead, heavy dark brows, expressive narrow brown eyes, long broad nose, long oval face with strong cheeks and deep smile folds, wide warm smile, clean-shaven, no glasses. Interpret modestly younger with salt-and-pepper hair and gentler wrinkles for his 2006–2010 deputy-premier era (not a claim of a dated 2008 photo). Original ordinary navy suit, white shirt and muted teal tie; dark trousers and black shoes. Slender-to-average build. All body and clothes are invented ordinary civilian styling.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-viliami-tangi-cartoon-2008-v1.txt",
+      "prompt_file_sha256": "d45d7249d965618057f8c80c29fb2f9b57235aff2382bd11c56615822beed5b7",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "247a1aa313f06b190ac5f44b2b8eef73b0f44a9d8342e195435f6e4b8681f093",
+        "bytes": 1503668,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2006-01-01",
+        "to": "2011-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-viliami-tangi-cartoon-2008-v1.png",
+        "sha256": "247a1aa313f06b190ac5f44b2b8eef73b0f44a9d8342e195435f6e4b8681f093",
+        "bytes": 1503668,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://web.archive.org/web/20140102125353id_/http://www.mic.gov.to:80/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Program in Global Surgery and Social Change; individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied.",
+        "era_note": "The named 2019 PGSSC biography portrait has no exact photograph date. This original text-authored likeness interprets him modestly younger around 2008 for the 2006–2010 appearance window. It covers the accepted 2006, 2009 and 2010 observations without claiming a photograph or continuous tenure for each year.",
+        "identity_source": {
+          "person_id": "to_viliami_tau_tangi",
+          "kind": "authored_identity",
+          "source_url": "https://web.archive.org/web/20140102125353id_/http://www.mic.gov.to:80/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-viliami-tangi-cartoon-2008-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-03.json, job tonga-viliami-tangi-cartoon-2008-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [
+        {
+          "reference_id": "tangi-pgssc-2019",
+          "source_url": "https://www.pgssc.org/_files/ugd/d9a674_e7604efa800f4093a6f77ae3cb5d1baa.pdf",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/tangi-pgssc-2019-page21.png",
+          "sha256": "a016ab22bda0b81a57f92fe071547cdb52f0672a037836da46a5461e1f8c959b",
+          "credit": "Program in Global Surgery and Social Change; individual photographer uncredited",
+          "photo_date": null,
+          "publication_date": "2019",
+          "rights": "Copyrighted or no open reuse grant identified; identity research only",
+          "limitation": "Biography explicitly connects chief surgeon Lord Viliami Tangi to his former deputy premiership and health ministry. It supplies no exact photograph date; earlier-period age interpretation must be recorded. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+          "source_image_may_ship": false,
+          "source_image_may_be_generation_input": false,
+          "metadata_original": {
+            "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_pgssc_tangi_bio_2019.body",
+            "bytes": 1188788,
+            "sha256": "481af6a8242b9c31813b89392be7b3ebb36afb0bcb2b562f34644dec7c0bf168"
+          },
+          "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+        }
+      ],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-james-cecil-cocker-cartoon-2014-v1",
+        "output": "exec-b1c7aaa5-0fc0-444b-9669-fa0ac8ff8efa.png",
+        "person_id": "to_james_cecil_cocker",
+        "from": "2000-01-01",
+        "to": "2015-01-01",
+        "references": [],
+        "era_note": "The named NRBT 2014 report portrait has no exact photograph date. The submitted prompt interprets his appearance near 2014; application to the earlier 2000–2013 appearance years is an explicitly approved younger-era artistic extrapolation, covering the accepted 2002, 2004 and 2006 observations. This is not evidence of his appearance or office tenure on every date.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-james-cecil-cocker-cartoon-2014-v1.png",
+        "sha256": "9e397fd2632bfe5a28f25109323687ad435429d1737ea0bd9a4862e79fb5f4ca",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-b1c7aaa5-0fc0-444b-9669-fa0ac8ff8efa.png",
+        "identity_source": {
+          "person_id": "to_james_cecil_cocker",
+          "kind": "authored_identity",
+          "source_url": "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "research_sources": [
+          {
+            "reference_id": "cocker-nrbt-2014",
+            "source_url": "https://www.reservebank.to/data/docs/publications/ar/annual_report_2014_eng.pdf",
+            "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/cocker-nrbt-2014-page9.png",
+            "sha256": "554009406f5e72d7827de6281f15c0111a5b7c9da7695da27d8d1f9991692e8d",
+            "credit": "National Reserve Bank of Tonga; individual photographer uncredited",
+            "photo_date": null,
+            "publication_date": "2014",
+            "rights": "Copyrighted or no open reuse grant identified; identity research only",
+            "limitation": "The report labels the portrait Director (Nov 2013–May 2014). This is publication context, not a precise photograph or death date. Older appearance may be interpreted for his earlier deputy-PM observations. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+            "source_image_may_ship": false,
+            "source_image_may_be_generation_input": false,
+            "metadata_original": {
+              "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_nrbt_ar_2014.body",
+              "bytes": 1425398,
+              "sha256": "63c1179a6eb1f4cbdffc2a3653a0af703e7fa9fd6fbcdb68261eee34f8cde1e7"
+            },
+            "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+          }
+        ],
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: National Reserve Bank of Tonga; individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied."
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical 1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult 5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text, logos, flags, extra people, photorealism, 3D or chibi. Draw an original authored-identity cartoon from the following factual facial observations. No source photograph is supplied: never reproduce a photo scene/composition; only observed person's face and the style anchor. Clothing and standing body are fresh artistic extensions. The real Tongan politician James Cecil Cocker near 2014. His personally inspected explicitly named bottom-left portrait in NRBT's 2014 annual report shows a mature man with medium-light brown complexion, high receding forehead, slicked-back very short dark hair with grey sides, narrow dark brows, almond shaped brown eyes, broad straight nose, high wide cheekbones, rounded jaw and chin, thin lips with restrained pleasant smile, clean-shaven and no glasses. Slightly stocky adult build. Original black suit, charcoal collared shirt and subtly textured dark grey tie, black trousers and black shoes. Photo exact date unstated; publication near2014 context, not a term-in-office assertion.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-james-cecil-cocker-cartoon-2014-v1.txt",
+      "prompt_file_sha256": "db482bd9863302e81087fabf20d020d3106a76f9d639c80c8d39362d335c1e06",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "9e397fd2632bfe5a28f25109323687ad435429d1737ea0bd9a4862e79fb5f4ca",
+        "bytes": 1496533,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2000-01-01",
+        "to": "2015-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-james-cecil-cocker-cartoon-2014-v1.png",
+        "sha256": "9e397fd2632bfe5a28f25109323687ad435429d1737ea0bd9a4862e79fb5f4ca",
+        "bytes": 1496533,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: National Reserve Bank of Tonga; individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied.",
+        "era_note": "The named NRBT 2014 report portrait has no exact photograph date. The submitted prompt interprets his appearance near 2014; application to the earlier 2000–2013 appearance years is an explicitly approved younger-era artistic extrapolation, covering the accepted 2002, 2004 and 2006 observations. This is not evidence of his appearance or office tenure on every date.",
+        "identity_source": {
+          "person_id": "to_james_cecil_cocker",
+          "kind": "authored_identity",
+          "source_url": "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-james-cecil-cocker-cartoon-2014-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-03.json, job tonga-james-cecil-cocker-cartoon-2014-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [
+        {
+          "reference_id": "cocker-nrbt-2014",
+          "source_url": "https://www.reservebank.to/data/docs/publications/ar/annual_report_2014_eng.pdf",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/cocker-nrbt-2014-page9.png",
+          "sha256": "554009406f5e72d7827de6281f15c0111a5b7c9da7695da27d8d1f9991692e8d",
+          "credit": "National Reserve Bank of Tonga; individual photographer uncredited",
+          "photo_date": null,
+          "publication_date": "2014",
+          "rights": "Copyrighted or no open reuse grant identified; identity research only",
+          "limitation": "The report labels the portrait Director (Nov 2013–May 2014). This is publication context, not a precise photograph or death date. Older appearance may be interpreted for his earlier deputy-PM observations. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+          "source_image_may_ship": false,
+          "source_image_may_be_generation_input": false,
+          "metadata_original": {
+            "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_nrbt_ar_2014.body",
+            "bytes": 1425398,
+            "sha256": "63c1179a6eb1f4cbdffc2a3653a0af703e7fa9fd6fbcdb68261eee34f8cde1e7"
+          },
+          "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+        }
+      ],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-lord-fusitua-cartoon-1998-v1",
+        "output": "exec-52163c51-b2d8-4772-b7c0-a0c2e726c68c.png",
+        "person_id": "to_fusitua_speaker_1996",
+        "from": "1991-01-01",
+        "to": "2001-01-01",
+        "references": [],
+        "era_note": "The elder Siaosi Alokuoulu Wycliffe Fusitua (born 1927), not his son, is identified by the 2014 Assembly obituary. Its photograph is undated. The original likeness interprets him near age 70 in the late 1990s and uses a 1991–2000 appearance window, covering the accepted 1996 court observations. No disputed Speaker appointment boundary is inferred.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-lord-fusitua-cartoon-1998-v1.png",
+        "sha256": "b6ca5b5c2c8db2af82516d5049e4f0f73eb0bd6c53673bad1517fd4862935930",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-52163c51-b2d8-4772-b7c0-a0c2e726c68c.png",
+        "identity_source": {
+          "person_id": "to_fusitua_speaker_1996",
+          "kind": "authored_identity",
+          "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "research_sources": [
+          {
+            "reference_id": "fusitua-2014-obituary",
+            "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+            "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fusitua-2014-archive-photo.jpg",
+            "sha256": "0234eb264a30b081cac6a73e16e8a908f64d8e7badd1b250a6516f0d50f1f240",
+            "credit": "Legislative Assembly of Tonga; individual photographer uncredited",
+            "photo_date": null,
+            "publication_date": "2014-05-05",
+            "rights": "Copyrighted or no open reuse grant identified; identity research only",
+            "limitation": "The older former Speaker is expressly identified in the accompanying obituary, separately from his son. Image was preserved by Archive in December 2021; do not date the photograph to that capture. Small 136 by 200 original. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+            "source_image_may_ship": false,
+            "source_image_may_be_generation_input": false,
+            "metadata_original": {
+              "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_la_obituary_fusitua_20140505.body",
+              "bytes": 44098,
+              "sha256": "fcd9294121ef73e339461af46293199af0d5fb530af5ada128b749161c133392"
+            },
+            "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+          }
+        ],
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Legislative Assembly of Tonga; individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied."
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical 1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult 5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text, logos, flags, extra people, photorealism, 3D or chibi. Draw an original authored-identity cartoon from the following factual facial observations. No source photograph is supplied: never reproduce a photo scene/composition; only observed person's face and the style anchor. Clothing and standing body are fresh artistic extensions. The real elder Lord Fusitu'a, Siaosi 'Alokuo'ulu Wycliffe Fusitu'a, born1927 (not his son). His personally inspected named Parliament obituary photo published2014 shows a broad slightly long face, medium brown complexion, high receding forehead, slicked-back short dark hair with grey at ears, dark straight brows, prominent broad nose, full cheeks, restrained closed-lip smile, clean-shaven, brown tinted rectangular gold-rim eyeglasses with a thin retaining cord. Original dark charcoal stand-collar civilian jacket, matching trousers, black shoes; omit the photograph's sash/decoration. Interpret him near age70 in late1990s with fewer age lines than obituary photo. No dated1998photo claimed; this is explicit artistic age interpretation of the documented elder individual. Solid broad-shouldered build.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-lord-fusitua-cartoon-1998-v1.txt",
+      "prompt_file_sha256": "4968ed1fd383b5bb69d91dd874a14cbaa8c73f319c411b12007e5eac5fcc4c6c",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "b6ca5b5c2c8db2af82516d5049e4f0f73eb0bd6c53673bad1517fd4862935930",
+        "bytes": 1549547,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "1991-01-01",
+        "to": "2001-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-lord-fusitua-cartoon-1998-v1.png",
+        "sha256": "b6ca5b5c2c8db2af82516d5049e4f0f73eb0bd6c53673bad1517fd4862935930",
+        "bytes": 1549547,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Legislative Assembly of Tonga; individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied.",
+        "era_note": "The elder Siaosi Alokuoulu Wycliffe Fusitua (born 1927), not his son, is identified by the 2014 Assembly obituary. Its photograph is undated. The original likeness interprets him near age 70 in the late 1990s and uses a 1991–2000 appearance window, covering the accepted 1996 court observations. No disputed Speaker appointment boundary is inferred.",
+        "identity_source": {
+          "person_id": "to_fusitua_speaker_1996",
+          "kind": "authored_identity",
+          "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-lord-fusitua-cartoon-1998-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-03.json, job tonga-lord-fusitua-cartoon-1998-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [
+        {
+          "reference_id": "fusitua-2014-obituary",
+          "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fusitua-2014-archive-photo.jpg",
+          "sha256": "0234eb264a30b081cac6a73e16e8a908f64d8e7badd1b250a6516f0d50f1f240",
+          "credit": "Legislative Assembly of Tonga; individual photographer uncredited",
+          "photo_date": null,
+          "publication_date": "2014-05-05",
+          "rights": "Copyrighted or no open reuse grant identified; identity research only",
+          "limitation": "The older former Speaker is expressly identified in the accompanying obituary, separately from his son. Image was preserved by Archive in December 2021; do not date the photograph to that capture. Small 136 by 200 original. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+          "source_image_may_ship": false,
+          "source_image_may_be_generation_input": false,
+          "metadata_original": {
+            "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_la_obituary_fusitua_20140505.body",
+            "bytes": 44098,
+            "sha256": "fcd9294121ef73e339461af46293199af0d5fb530af5ada128b749161c133392"
+          },
+          "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+        }
+      ],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-langi-kavaliku-cartoon-1998-v1",
+        "output": "exec-4fb62c09-2d2f-422c-a52c-ebc432b3c480.png",
+        "person_id": "to_langi_kavaliku",
+        "from": "1995-01-01",
+        "to": "2001-01-01",
+        "references": [],
+        "era_note": "SOPAC proceedings published December 2010 identify Dr Senipisi Langi Kavaliku; the photograph is undated and predates his December 2008 death. This original likeness interprets him modestly younger near 1998 for the 1995–2000 appearance window, covering the accepted 6 November 2000 observation. Saved registry name Langi Kavaliku is retained; no term boundary is inferred.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-langi-kavaliku-cartoon-1998-v1.png",
+        "sha256": "03b572364c63ff5aa481d0cc0bca5760771f57845a7be78b4aec9e0da84d767a",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-4fb62c09-2d2f-422c-a52c-ebc432b3c480.png",
+        "identity_source": {
+          "person_id": "to_langi_kavaliku",
+          "kind": "authored_identity",
+          "source_url": "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "research_sources": [
+          {
+            "reference_id": "langi-sopac-2010",
+            "source_url": "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf",
+            "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/langi-sopac-page7.png",
+            "sha256": "b8f0b0ef47b708947d7a98e047b00fd141372552612f99b6a1b76db4459536fe",
+            "credit": "Pacific Islands Applied Geoscience Commission (SOPAC); individual photographer uncredited",
+            "photo_date": null,
+            "publication_date": "2010-12",
+            "rights": "Copyrighted or no open reuse grant identified; identity research only",
+            "limitation": "Publication identifies Dr Senipisi Langi Kavaliku as former Deputy Prime Minister and SOPAC advocacy-team leader until his December 2008 death. Photograph predates that death; no exact photo year is supplied. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+            "source_image_may_ship": false,
+            "source_image_may_be_generation_input": false,
+            "metadata_original": {
+              "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/sopac_proceedings_2010.body",
+              "bytes": 2639028,
+              "sha256": "3fe46e59992268fcd46ffb9854d379d63c9a1bd5501102b5b15cb7bf54bfbfe5"
+            },
+            "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+          }
+        ],
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Pacific Islands Applied Geoscience Commission (SOPAC); individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied."
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical 1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult 5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text, logos, flags, extra people, photorealism, 3D or chibi. Draw an original authored-identity cartoon from the following factual facial observations. No source photograph is supplied: never reproduce a photo scene/composition; only observed person's face and the style anchor. Clothing and standing body are fresh artistic extensions. The real Tongan statesman Dr Senipisi Langi Kavaliku near the late1990s. His personally inspected named portrait in SOPAC proceedings printedpage5 shows an older medium brown man, very high receding balding forehead with very short dark-grey hair at sides and back, wide round face, heavy dark eyebrows, broad rounded nose, full cheeks and chin, warm partly open smile, clean-shaven, no glasses. Original dark charcoal open-collar short-sleeved shirt without pen or logo, tan tailored trousers, brown leather shoes. Sturdy broad body, visible relaxed hands. The reference was taken before his2008 death but has no precise date; interpret modestly younger near1998 with less grey and softer wrinkles, not a claim of a dated1998 photograph.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-langi-kavaliku-cartoon-1998-v1.txt",
+      "prompt_file_sha256": "fa38d096c620c9fc0f74aa04dd6b08b548c085382241d98df33c7345d5ac2a19",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "03b572364c63ff5aa481d0cc0bca5760771f57845a7be78b4aec9e0da84d767a",
+        "bytes": 1613803,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "1995-01-01",
+        "to": "2001-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-langi-kavaliku-cartoon-1998-v1.png",
+        "sha256": "03b572364c63ff5aa481d0cc0bca5760771f57845a7be78b4aec9e0da84d767a",
+        "bytes": 1613803,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf",
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Pacific Islands Applied Geoscience Commission (SOPAC); individual photographer uncredited; source photograph rights remain unchanged. The research photograph is not supplied to image_gen or shipped as art; no endorsement implied.",
+        "era_note": "SOPAC proceedings published December 2010 identify Dr Senipisi Langi Kavaliku; the photograph is undated and predates his December 2008 death. This original likeness interprets him modestly younger near 1998 for the 1995–2000 appearance window, covering the accepted 6 November 2000 observation. Saved registry name Langi Kavaliku is retained; no term boundary is inferred.",
+        "identity_source": {
+          "person_id": "to_langi_kavaliku",
+          "kind": "authored_identity",
+          "source_url": "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf",
+          "basis": "Reviewed exact-person source bridge. Factual facial observations were converted to an original textual description; only the approved style anchor was supplied to image_gen."
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-langi-kavaliku-cartoon-1998-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-03.json, job tonga-langi-kavaliku-cartoon-1998-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: distinct recognizable face, complete head, relaxed hands and shoes visible, approved outlined full-body cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [
+        {
+          "reference_id": "langi-sopac-2010",
+          "source_url": "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/langi-sopac-page7.png",
+          "sha256": "b8f0b0ef47b708947d7a98e047b00fd141372552612f99b6a1b76db4459536fe",
+          "credit": "Pacific Islands Applied Geoscience Commission (SOPAC); individual photographer uncredited",
+          "photo_date": null,
+          "publication_date": "2010-12",
+          "rights": "Copyrighted or no open reuse grant identified; identity research only",
+          "limitation": "Publication identifies Dr Senipisi Langi Kavaliku as former Deputy Prime Minister and SOPAC advocacy-team leader until his December 2008 death. Photograph predates that death; no exact photo year is supplied. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+          "source_image_may_ship": false,
+          "source_image_may_be_generation_input": false,
+          "metadata_original": {
+            "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/sopac_proceedings_2010.body",
+            "bytes": 2639028,
+            "sha256": "3fe46e59992268fcd46ffb9854d379d63c9a1bd5501102b5b15cb7bf54bfbfe5"
+          },
+          "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+        }
+      ],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    }
+  ]
+}

@@ -9847,6 +9847,7 @@ pub fn seat_office(w: &mut WorldState, id: NationId, how: &Succession) {
         crate::opening_mandates::clear(w, id);
     }
     let described = seat.described.clone();
+    crate::institutional_leadership::on_crown_succession(w, id, heir_used, how);
     crate::party_leadership::on_succession(w, id, how, seat.party.as_deref());
     if let Some(rows) = w.leadership.as_mut() {
         if let Some(row) = rows.iter_mut().find(|o| o.nation == id && o.holds()) {

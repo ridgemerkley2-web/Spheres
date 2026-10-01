@@ -357,6 +357,7 @@ pub fn enable_campaign(w: &mut WorldState) -> Result<(), String> {
 }
 pub fn person(id: &str) -> Option<&'static Person> {
     person_in(roster().ok()?, id).or_else(|| fictional_person(id).map(|c| &c.person))
+        .or_else(||crate::institutional_leadership::person(id))
 }
 /// Display metadata keeps invented future biographies separate from source facts.
 pub fn person_view(id: &str) -> Value {
@@ -365,6 +366,7 @@ pub fn person_view(id: &str) -> Value {
 }
 fn display_person_in(r: &Roster, id: &str) -> Value {
     if let Some(p) = person_in(r, id) { return json!(p); }
+    if crate::institutional_leadership::candidate(id).is_some() {return crate::institutional_leadership::person_view(id)}
     let Some(c) = fictional_person(id) else { return Value::Null };
     let mut value = json!(c.person);
     let mut fiction = json!(c);
@@ -730,6 +732,7 @@ pub fn executive_person(w: &WorldState, n: NationId) -> Option<&'static Person> 
     if !w.rules.historical_party_leadership {
         return None;
     }
+    if let Some(person)=crate::institutional_leadership::monarch(w,n) {return Some(person)}
     let r = roster().ok()?;
     person(&executive_id_with(w, r, n)?)
 }

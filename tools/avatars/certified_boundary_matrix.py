@@ -38,6 +38,8 @@ from pathlib import Path
 import re
 import sys
 
+from leadership_production import INSTITUTIONAL_SOURCE, partition_future_candidates
+
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = Path('docs/campaign-certification/S23/preparation/boundary-matrix')
 FORMAT = 'spheres-s23-boundary-matrix/v1'
@@ -69,6 +71,8 @@ MIRRORED_SEMANTICS = (
     'spheres-sim/src/party_leadership.rs',
     'spheres-sim/src/party_leadership_future.rs',
     'spheres-sim/src/party_executive_eligibility.rs',
+    'spheres-sim/src/institutional_leadership.rs',
+    'tools/avatars/leadership_production.py',
     'spheres-web/src/person_portraits.rs',
 )
 SELF = 'tools/avatars/certified_boundary_matrix.py'
@@ -580,8 +584,22 @@ class Production:
                 == (iso(CUTOFF), iso(FICTIONAL_FROM), iso(FICTIONAL_UNTIL)),
                 'Fictional window changed; review the frozen boundary first')
         self.candidates = {c['person_id']: c for c in future['candidates']}
+        require(len(self.candidates) == len(future['candidates']), 'Duplicate fictional candidate identity')
+        self.institutional_opening = {}
+        if (inputs.root / INSTITUTIONAL_SOURCE).is_file():
+            institution = inputs.json(INSTITUTIONAL_SOURCE)  # Pin the exact catalogue used by the strict partition.
+            self.institutional_opening = institution.get('opening', {})
+            party_candidates, institutional_candidates = partition_future_candidates(inputs.root, future['candidates'])
+        else:
+            require(all(c.get('party') is not None and c.get('institution') is None for c in future['candidates']),
+                    'Non-party candidates require their exact authored institutional catalogue')
+            party_candidates, institutional_candidates = future['candidates'], []
+        require(all(isinstance(c.get('executive_eligibility'), dict) for c in party_candidates),
+                'Party candidates require explicit executive eligibility metadata')
+        self.party_candidates = {c['person_id']: c for c in party_candidates}
+        self.institutional_candidates = {c['person_id']: c for c in institutional_candidates}
         self.pool = defaultdict(list)
-        for c in future['candidates']:
+        for c in party_candidates:
             self.pool[(c['nation'], c['party'], c.get('component'))].append(c)
         board = inputs.json(BOARD)
         self.jobs = defaultdict(list)
@@ -952,7 +970,7 @@ def executive_role(production, identity, research_roles):
     link = production.links.get(identity)
     paired = [f'research:{rid}' for rid in EXECUTIVE_PAIRING.get(identity, ())]
     missing = [key for key in paired if key not in research_roles]
-    pool = [c for c in production.candidates.values() if c['nation'] == identity]
+    pool = [c for c in production.party_candidates.values() if c['nation'] == identity]
     authorized = sum(bool(c['executive_eligibility'].get('authorized')) for c in pool)
     return {
         'key': 'executive', 'identity': identity, 'family': 'production_national_executive',
@@ -973,6 +991,45 @@ def executive_role(production, identity, research_roles):
         'production_binding': 'leaders_1990.json start row and party_leaders.json office_links at campaign start only; later incumbents are produced by play, never scheduled by date.',
         'observations': [],
     }
+
+
+def institutional_future_cell(candidate, at):
+    """Report authored date scope, never infer a campaign appointment or party grant."""
+    date_eligible = day(candidate['eligible_from']) <= at < day(candidate['eligible_until_exclusive'])
+    reference_only = candidate['role'] == 'party_organizer'
+    return {
+        'eligible_by_date': date_eligible,
+        'eligible_from': candidate['eligible_from'],
+        'eligible_until_exclusive': candidate['eligible_until_exclusive'],
+        'reference_only': reference_only,
+        'party_leadership_authorized': False,
+        'national_executive_authorized': False,
+        'action_eligibility': ('reference_only_no_appointment' if reference_only else
+                               'requires_authoritative_runtime_action_checks' if date_eligible else
+                               'outside_authored_date_window'),
+        'restriction': candidate['restriction'],
+        'scope': 'Date scope only. Government form, reform, election, vacancies, recommendation, cost and player control remain runtime checks; no office is granted by this report.',
+    }
+
+
+def institutional_roles(production, assets, identity):
+    roles = []
+    for candidate in production.institutional_candidates.values():
+        if candidate['nation'] != identity:
+            continue
+        cases = []
+        for at, kinds in case_dates({}):
+            future = institutional_future_cell(candidate, at)
+            images = [production.image(candidate['person_id'], at, 'fictional_institutional_candidate')] if future['eligible_by_date'] else []
+            cases.append({'date': iso(at), 'kinds': sorted(kinds),
+                          'historical': {'status': 'inapplicable', 'reason': 'authored_fiction_is_not_a_historical_holder'},
+                          'acceptance': ['fictional_catalog'], 'future': future,
+                          'image': images or 'no_holder', 'asset': assets.cell(images) if images else 'n/a'})
+        roles.append({'key': f"institution:{candidate['institution']}:{candidate['role']}",
+                      'identity': identity, 'family': 'production_institutional_fiction',
+                      'title': candidate['role'].replace('_', ' '), 'institution': candidate['institution'],
+                      'person': candidate['person_id'], 'party': None, 'observations': [], 'cases': cases})
+    return roles
 
 
 def combine_research(cells):
@@ -1131,6 +1188,7 @@ def build_identity(production, assets, identity, packet, owners, packets, alive_
         cases.append(cell)
     executive['cases'] = cases
     roles.insert(0, executive)
+    roles.extend(institutional_roles(production, assets, identity))
     # Research roles.
     for role in research_roles:
         cases = []
@@ -1167,7 +1225,9 @@ def person_audit(production, assets, identity, observations, roles):
                      'board_status': board.get('status'),
                      'pending_art_jobs': sorted(j['id'] for j in production.jobs.get(pid, []))})
     fictional = []
-    for (nation, party, component), pool in sorted(production.pool.items(), key=lambda kv: (kv[0][0], kv[0][1], kv[0][2] or '')):
+    pools = list(production.pool.items()) + [
+        ((c['nation'], None, None), [c]) for c in production.institutional_candidates.values()]
+    for (nation, party, component), pool in sorted(pools, key=lambda kv: (kv[0][0], kv[0][1] or '', kv[0][2] or '')):
         if nation != identity:
             continue
         for candidate in pool:
@@ -1183,11 +1243,16 @@ def person_audit(production, assets, identity, observations, roles):
                             samples.add(when)
             bound_samples = [iso(when) for when in sorted(samples)
                              if production.portrait(candidate['person_id'], when)['binding'] == 'bound']
-            fictional.append({'person': candidate['person_id'], 'name': candidate['name'], 'party': party,
+            institutional = candidate['person_id'] in production.institutional_candidates
+            row = {'person': candidate['person_id'], 'name': candidate['name'], 'party': party,
                               'component': component,
                               'portrait_assets': [[r.get('asset'), assets.check(r['asset'])['status']] for r in records if r.get('asset')],
                               'bound_portrait_sample_dates': bound_samples,
-                              'executive_authorized': bool(candidate['executive_eligibility'].get('authorized'))})
+                              'executive_authorized': False if institutional else bool(candidate['executive_eligibility'].get('authorized'))}
+            if institutional:
+                row.update(institution=candidate['institution'], role=candidate['role'],
+                           eligibility=institutional_future_cell(candidate, FICTIONAL_FROM))
+            fictional.append(row)
     return rows, fictional
 
 
@@ -1225,7 +1290,8 @@ def identity_summary(production, identity, roles, observations, people, fictiona
                              for i in c['image'] if i['binding'] == 'unbound' and i.get('as') == 'holder'})
     kinds = Counter(k for r in roles for c in r['cases'] for k in c['kinds'])
     stats = {
-        'roles': {'research': len(research), 'production_party': len(party), 'executive': 1},
+        'roles': {'research': len(research), 'production_party': len(party), 'executive': 1,
+                  'institutional_fiction': len(by_family['production_institutional_fiction'])},
         'cases': sum(len(r['cases']) for r in roles),
         'case_kinds': dict(sorted(kinds.items())),
         'observations_by_acceptance': dict(sorted(obs_acceptance.items())),
@@ -1236,6 +1302,8 @@ def identity_summary(production, identity, roles, observations, people, fictiona
         'people_without_bound_art_at_yearly_samples': len({p for p, _ in unbound_people}),
         'unbound_yearly_samples_without_art_job': sorted({p for p, job in unbound_people if job == 'none_covers_date'}),
         'fictional_candidates': len(fictional),
+        'fictional_party_candidates': sum(f['party'] is not None for f in fictional),
+        'fictional_institutional_candidates': sum(f.get('institution') is not None for f in fictional),
         'fictional_candidates_with_portrait': sum(1 for f in fictional if f['bound_portrait_sample_dates']),
         'fictional_executive_authorized': sum(f['executive_authorized'] for f in fictional),
         'research_roles_without_holder_observation': sorted(r['role_id'] for r in research if not r['observations']),
@@ -1281,7 +1349,7 @@ def headline(identity, stats, roles, production):
             lines.append(f"Registry holder portraits at yearly samples: {images.get('bound', 0)} bound, {images.get('unbound', 0)} unbound "
                          f"({stats['people_without_bound_art_at_yearly_samples']} distinct people without served art).")
     else:
-        lines.append('No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.')
+        lines.append('No simulation party rows: no production party leadership or fictional party successor pool exists for this identity.')
     if executive['start_row']:
         start = next(c for c in executive['cases'] if c['date'] == iso(CAMPAIGN_START))
         image = start['image'][0] if isinstance(start['image'], list) else None
@@ -1299,9 +1367,11 @@ def headline(identity, stats, roles, production):
         es = stats['executive_yearly_status']
         lines.append(f"Paired executive research ({', '.join(executive['paired_research_roles'])}): "
                      f"{sum(es.get(s, 0) for s in IDENTIFIED)} of {sum(v for k, v in es.items() if k != 'inapplicable')} yearly samples 1990-2026 identify a holder.")
-    if party:
-        lines.append(f"Future: {stats['fictional_candidates']} fictional candidates, {stats['fictional_candidates_with_portrait']} with a served "
+    if stats['fictional_candidates']:
+        lines.append(f"Future: {stats['fictional_party_candidates']} party candidates and {stats['fictional_institutional_candidates']} institutional candidates, {stats['fictional_candidates_with_portrait']} with a served "
                      f"portrait, {stats['fictional_executive_authorized']} authorized for a national executive.")
+    if stats['fictional_institutional_candidates']:
+        lines.append('Institutional fiction has separate authored roles and date windows. It grants no party leadership or national-executive permission; appointment prerequisites remain runtime checks and the party organizer is reference-only.')
     if stats['windows_extending_past_recorded_death']:
         lines.append('Portrait window extends past a recorded death: ' + ', '.join(stats['windows_extending_past_recorded_death']) + '.')
     if stats['unbound_yearly_samples_without_art_job']:
@@ -1444,6 +1514,9 @@ def build(root=ROOT):
         'executive_pairing': {k: list(v) for k, v in EXECUTIVE_PAIRING.items()},
         'executive_pairing_basis': PAIRING_BASIS,
         'census_outputs_consistent_with_registry': production.census_consistent,
+        'fictional_catalogue_counts': {'party_candidates': len(production.party_candidates),
+                                      'institutional_candidates': len(production.institutional_candidates),
+                                      'total_candidates': len(production.candidates)},
         'cases': summaries,
         'assets': [assets.rows[a] for a in sorted(assets.rows)],
         'wrong_or_unavailable_assets': wrong,
@@ -1500,7 +1573,7 @@ def findings_markdown(summary, outputs):
     for packet in summary['packets']:
         lines.append(f"| {packet['packet']} | {packet['status']} | {packet['sources_listed']} |")
     lines += ['', '## Coverage by country', '',
-              '| Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |',
+              '| Case | Identity | Roles (research / party / executive / institutional fiction) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |',
               '|---|---|---|---:|---:|---:|---:|']
     for case in summary['cases']:
         for row in case['identities']:
@@ -1509,7 +1582,7 @@ def findings_markdown(summary, outputs):
             research = f"{sum(rs.get(k, 0) for k in IDENTIFIED)}/{sum(rs.values())}" if rs else 'none'
             party = f"{ps.get('established', 0)}/{sum(ps.values())}" if ps else 'none'
             portraits = f"{im.get('bound', 0)}/{sum(im.values())}" if im else 'none'
-            lines.append(f"| {case['case']} | {row['identity']} | {s['roles']['research']} / {s['roles']['production_party']} / 1 | "
+            lines.append(f"| {case['case']} | {row['identity']} | {s['roles']['research']} / {s['roles']['production_party']} / 1 / {s['roles']['institutional_fiction']} | "
                          f"{s['cases']} | {research} | {party} | {portraits} |")
     lines += ['', '## Headline findings', '']
     for case in summary['cases']:
@@ -1566,6 +1639,7 @@ def findings_markdown(summary, outputs):
               '- Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.',
               '- Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.',
               '- Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.',
+              '- Institutional fictional roles are a separate catalogue, not party successors or national-executive grants. Date eligibility does not evaluate a live campaign action; the party organizer remains reference-only.',
               '- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (' +
               (', '.join(summary['integration_records_not_packet_acceptance']) or 'none') + ') do not change a packet\'s class.',
               '']
@@ -1595,12 +1669,24 @@ def campaign_date(world):
 
 
 def campaign_observation(production, world, identity):
-    """Mirror party_leadership::executive_id_with / campaign_view for one identity."""
+    """Mirror executive_person / campaign_view identity selection, not save validation."""
     rows = [r for r in (world.get('leadership') or []) if r.get('nation') == identity]
     office = rows[0] if rows else None
     book = world.get('party_leadership')
     rules = world.get('rules') or {}
     person = None
+    # executive_person resolves an exact inherited Tonga Crown link before the
+    # party book. A title, matching name or historical date alone never binds it.
+    inherited = (world.get('institutional_leadership') or {}).get('inherited_monarch')
+    emergent = (office or {}).get('emergent') or {}
+    if (identity == 'Tonga' and rules.get('historical_party_leadership') and inherited
+            and emergent.get('office') == 'King' and emergent.get('since') == inherited.get('since')
+            and production.institutional_opening.get('heir_name') is not None
+            and emergent.get('described') == production.institutional_opening['heir_name']
+            and inherited.get('person_id') in production.people):
+        person = inherited['person_id']
+        return {'person': person, 'name': emergent.get('name') or production.people[person]['name'],
+                'source': 'saved_inherited_crown'}
     # The enabled runtime checks the saved executive assignment before an
     # office row. In particular, an absent book must not trigger legacy art.
     if rules.get('historical_party_leadership') and book is not None:

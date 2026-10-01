@@ -56,6 +56,7 @@ pub mod ministries;
 pub mod nations;
 pub mod politics;
 pub mod party_leadership;
+pub mod institutional_leadership;
 pub mod production;
 pub mod programs;
 pub mod province_economy;
@@ -280,6 +281,8 @@ pub enum Command {
     ExpelFromGovernment { nation: NationId, party: String },
     /// Go back to the country before you have to.
     CallElection { nation: NationId },
+    /// Tonga's independent Assembly and Cabinet, separate from the Crown.
+    TongaInstitutions { nation: NationId, action: institutional_leadership::Action },
     /// What a regime that does not hold elections does instead: pay one of the
     /// institutions that could remove it.
     SecurePillar { nation: NationId, pillar: government::Pillar },
@@ -602,6 +605,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // Going to the country early is a gamble a weak government cannot pay
         // for, which is exactly why weak governments limp on.
         Command::CallElection { nation } => (*nation, 25.0, REFUSABLE),
+        Command::TongaInstitutions { nation, action } => (*nation, institutional_leadership::price(action), REFUSABLE),
         // Patronage. Cheaper than an election and it has to be paid again.
         Command::SecurePillar { nation, .. } => (*nation, 14.0, REFUSABLE),
         // The five levers (S3), priced in `government` beside their arms.
@@ -696,6 +700,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// through, so the two cannot answer differently — which is the whole reason
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
+    if let Command::TongaInstitutions { nation, action } = c {
+        return institutional_leadership::refusal(w, *nation, action);
+    }
     match c {
         Command::DeclareWar { .. } => w.conflict_id_refusal(),
         Command::OpenConflict { opener, target, .. } if w.conflict_between(*opener, *target).is_none() => w.conflict_id_refusal(),
@@ -1398,6 +1405,7 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             government::expel(w, *nation, party)?
         }
         Command::CallElection { nation } => government::call_election(w, *nation)?,
+        Command::TongaInstitutions { nation, action } => institutional_leadership::apply(w, *nation, action)?,
         Command::SecurePillar { nation, pillar } => {
             government::secure_pillar(w, *nation, *pillar)?
         }
@@ -1837,6 +1845,7 @@ fn finish_load(mut w: WorldState) -> Result<WorldState, String> {
     // populated or mixed obsolete bindings still fail closed.
     party_leadership::migrate_legacy_empty_components(&mut w)?;
     party_leadership::validate_state(&w)?;
+    institutional_leadership::validate(&w)?;
     connected_economy::validate(&w)?;
     company_network::validate(&w)?;
     operational_warfare::validate(&w)?;

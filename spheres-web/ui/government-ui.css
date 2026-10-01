@@ -233,6 +233,14 @@
 #govScreen .gov-ui-future-disclosure>summary { color:#e1c98f; }
 #govScreen .gov-ui-fiction-basis { padding:5px 0; border-top:1px solid var(--gov-line); }
 #govScreen .gov-ui-fiction-person .gov-ui-art-pending { border-color:#d3b56855; background:#bc994310; }
+#govScreen .gov-ui-institution-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; align-items:start; }
+#govScreen .gov-ui-institution-person { min-width:0; padding:14px; border:1px solid var(--gov-line); border-radius:10px; background:#09202a33; }
+#govScreen .gov-ui-institution-person .gov-ui-person { margin:0; }
+#govScreen .gov-ui-institution-person h3 { margin:0; font:600 23px/1.22 var(--serif,Georgia,serif); overflow-wrap:anywhere; }
+#govScreen .gov-ui-institution-action { min-width:0; padding:14px 0; border-top:1px solid var(--gov-line); }
+#govScreen .gov-ui-institution-action button { min-height:42px; }
+#govScreen .gov-ui-institution-search { margin:20px 0; max-width:540px; }
+#govScreen .gov-ui-institution-overview>.gov-ui-institution-person { max-width:720px; }
 @media(max-width:1000px) {
   #govScreen .gov-ui { padding-left:24px; padding-right:24px; }
   #govScreen .gov-ui-hero { min-height:330px; padding:30px; }
@@ -241,6 +249,7 @@
   #govScreen .gov-ui-overview-grid { grid-template-columns:minmax(0,1fr); gap:0; }
   #govScreen .gov-ui-panel { padding:22px; }
   #govScreen .gov-ui-leadership-grid { grid-template-columns:minmax(0,1fr); }
+  #govScreen .gov-ui-institution-grid { grid-template-columns:minmax(0,1fr); }
 }
 @media(max-width:700px) {
   #govScreen { --gov-toolbar-height:98px; }

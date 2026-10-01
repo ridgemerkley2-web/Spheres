@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "reviewed_at": "2026-10-01",
+  "historical_cutoff": "2026-09-07",
+  "task": "Fatai Helu and Tevita Lavemaau historical party likeness references",
+  "status": "identity_confirmed_likeness_and_rights_gaps_retained",
+  "scope": {
+    "art_generation": false,
+    "runtime_or_registry_edits": false,
+    "human_approval_claimed": false,
+    "meaning": "Codex identity research review only. Source-photo rights remain unchanged; no source photo is approved for shipping as game art. Root owns original authored-identity cartoon generation and review."
+  },
+  "evidence_directory": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces",
+  "people": [
+    {
+      "person_id": "to_fatai_helu",
+      "name": "Fatai Helu",
+      "identity_status": "court_attested_exact_named_party_president",
+      "identity_source": {
+        "source_id": "to_sc_helu_piukala_v_ec_20220829",
+        "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+        "date": "2022-08-29",
+        "locator": "CV55/2022, page1, paragraph3",
+        "sha256": "a5f84dcfa45b40af7cc2a5db28ccd47eff6d3d43f5581c9c733e8876cc8681c9",
+        "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/to_sc_helu_piukala_v_ec_20220829.pdf"
+      },
+      "identity_scope": "PTOA President named in the background recital. No birth date, term start/end or equivalence to parliamentary Party Leader is asserted.",
+      "distinct_from": [
+        "Futa Helu, philosopher and educator",
+        "Fatai Helu, school student in St Ignatius 2025/2026 school notices",
+        "Paula Piveni Piukala, separately named executive member and co-applicant"
+      ],
+      "likeness_status": "unresolved",
+      "licensed_ready_reference_count": 0,
+      "references": [],
+      "gap": "No verified public political likeness was found after exact-name, alternate punctuation, Tongan Palesiteni/Paati, party, news, Facebook-index and general/image-search passes. Searches were not limited to open licences. No unrelated person or invented face is substituted.",
+      "excluded_leads": [
+        {
+          "url": "https://www.ignatius.school.nz/news/2026-08-21-franklin-pacifika-speech-competition",
+          "reason": "Names a school student; not linked to the adult PTOA president. No image copied."
+        },
+        {
+          "url": "https://www.ignatius.school.nz/news/subject-magis-awards-term-one-2025",
+          "reason": "School student awards list; not the court-linked identity. No image copied."
+        }
+      ]
+    },
+    {
+      "person_id": "to_tevita_lavemaau",
+      "name": "Tevita Lavemaau",
+      "identity_status": "exact_court_name_and_finance_minister_role_bridge",
+      "identity_source": {
+        "source_id": "to_sc_kiu_v_tuionetoa_20220429",
+        "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+        "date": "2022-04-29",
+        "locator": "CV75/2021: paragraph8 identifies Finance Minister Tevita Lavemaau; paragraphs33–35 name incorporated-society secretary; paragraph200 identifies former minister; paragraph304 connects the Minister for Finance and fellow party member.",
+        "sha256": "57fb2ac33421699958da3267e9d0540fa533ff2f944c36c022d5535aa3012372",
+        "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/to_sc_kiu_v_tuionetoa_20220429.pdf"
+      },
+      "attestation_scope": "Society secretary testified to during19–21April2022 trial. The judgment supplies an identity bridge to the finance minister; it supplies no secretary appointment date or full tenure.",
+      "distinct_from": [
+        "Tapinga Lavemaau, journalist separately named in paragraphs9–12",
+        "Vika Sivoki Lavemaau"
+      ],
+      "likeness_status": "correct_official_photo_retained_reuse_grant_unresolved",
+      "licensed_ready_reference_count": 0,
+      "references": [
+        {
+          "reference_id": "to_tevita_lavemaau_stats_20200730",
+          "status": "retained_identity_reference_rights_unresolved",
+          "source_url": "https://tongastats.gov.to/ministerial-meeting-with-the-hon-tevita-lavemaau/",
+          "image_url": "https://tongastats.gov.to/wp-content/uploads/sites/7/2020/08/Minister-Hon.-Tevita-Lavemaau-scaled.jpg",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/lavemaau-statistics-2020.jpg",
+          "sha256": "2045ff7452f3ee725f73350d47694f5de5eaa79c3a5c9665cf074a083a59af1a",
+          "bytes": 255837,
+          "dimensions": [
+            2560,
+            1707
+          ],
+          "source_page_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/lavemaau-statistics-2020.html",
+          "source_page_sha256": "595d407c0298869edcd3d776e5460e063ba5f6cd8cb65d521888643b3e79ec81",
+          "photo_date": "2020-07-30",
+          "publication_date": "2020-08-10",
+          "date_basis": "Article explicitly dates the ministerial meeting to30July2020; publication is10August2020. Date is not inferred from filename/upload or HTTP Last-Modified. No EXIF date is present.",
+          "caption": "Minister Hon. Tevita Lavemaau",
+          "creator": "Individual photographer not stated",
+          "credit": "Tonga Statistics Department",
+          "copyright_notice": "©2020 Tonga Statistics Department",
+          "license": null,
+          "rights_basis": "No explicit reuse grant found on retained article. Its Terms and conditions link https://www.gov.to/termsandcondtions/ returned404; body and headers retained. Government publication alone is not treated as an open licence.",
+          "visual_review": {
+            "reviewer": "Codex",
+            "inspected_original": true,
+            "description": "Named minister standing at the lectern in a navy jacket, striped tie and floral lei, in the centre-right of the image. Short grey hair; clear frontal facial view. Other attendees and a screen are also present.",
+            "human_approval": false,
+            "observed_factual_traits": [
+              "Broad, rounded face with substantial cheeks and soft jawline",
+              "High, broad forehead with very short thinning grey hair",
+              "Thick dark eyebrows and deep-set eyes",
+              "Broad nose and full lips",
+              "No apparent beard or moustache in this photo"
+            ]
+          },
+          "use_limit": "Publicly visible copyrighted photo retained externally for visual identity research under docs/CARTOON_CHARACTER_ROADMAP.md:46. Root may create an original authored-identity cartoon from observed factual facial traits, passing only the approved style anchor to image_gen, preserving exact provenance and avoiding reproduction or shipment of the source photo. Do not label this source photo licensed-ready.",
+          "appearance_context": "A near-era authored interpretation for the April2022 secretary attestation can explicitly cite observed appearance in this30July2020 source. This does not attest his exact2022 appearance."
+        },
+        {
+          "reference_id": "to_tevita_lavemaau_japan_20191210",
+          "status": "official_lead_original_unavailable_rights_not_fully_resolved",
+          "source_url": "https://www.ton.emb-japan.go.jp/itprtop_en/00_000385.html",
+          "image_url": "https://www.ton.emb-japan.go.jp/files/000547960.jpg",
+          "event_date": "2019-12-10",
+          "publication_date": "2019-12-11",
+          "credit": "Embassy of Japan in the Kingdom of Tonga",
+          "creator": "Individual photographer not stated",
+          "date_basis": "Official article names Tevita Lavemaau as Finance/Revenue/Customs minister attending the10December2019 grant-contract ceremony.",
+          "original_image_retained": false,
+          "retrieval": "Direct JPG returnedHTTP403 on one attempt. Retained416-byte HTML denial is explicitly not an image; no retry or bypass.",
+          "blocked_body_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/lavemaau-japan-2019-http403.html",
+          "blocked_body_sha256": "46d3cfe17aa0f8fc10a56ff5fc4a91731605a3aec52d86b2c58c7871da0830d1",
+          "license": null,
+          "policy_url": "https://www.mofa.go.jp/about/legalmatters.html",
+          "policy_viewed_via_web": "19February2026 legal notices say Public Data License1.0 generally applies, require source/edit attribution, and warn of third-party image rights. This is not equivalent to proving the particular image is ministry-owned. Current legal HTML direct request also returned403.",
+          "policy_link": "https://www.digital.go.jp/en/resources/open_data/public_data_license_v1.0",
+          "historical_license_lead": "Civilian retained Commons metadata for other Embassy photographs under Government of Japan Standard Terms of Use2.0; that metadata is not a licence record for this particular photo.",
+          "use_limit": "Not a usable retained image; no face-position assertion or licence approval is made."
+        }
+      ],
+      "other_unselected_leads": [
+        {
+          "url": "https://www.revenue.gov.to/sites/default/files/inline-files/Final%20NL%20-%20October.pdf",
+          "event_date": "2021-10-24",
+          "reason": "Official newsletter names minister in group at Tax Week church service; no verified reuse grant. Not downloaded again."
+        },
+        {
+          "url": "https://www.finance.gov.to/annualmeetingimf",
+          "reason": "2020 ministerial statement lead; webpage unavailable in web open; no licensed image established."
+        }
+      ]
+    }
+  ],
+  "source_records": [
+    {
+      "id": "to_sc_helu_piukala_v_ec_20220829",
+      "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+      "retrieved_at": "2026-10-01T11:47:55.708573+00:00",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+      "bytes": 348680,
+      "sha256": "a5f84dcfa45b40af7cc2a5db28ccd47eff6d3d43f5581c9c733e8876cc8681c9",
+      "content_type": "application/pdf",
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/to_sc_helu_piukala_v_ec_20220829.pdf",
+      "copied_from": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_sc_helu_piukala_v_ec_20220829.body",
+      "retention": "Original downloaded PDF copied byte-for-byte from civilian evidence; no new network request."
+    },
+    {
+      "id": "to_sc_kiu_v_tuionetoa_20220429",
+      "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+      "retrieved_at": "2026-10-01T11:47:52.748014+00:00",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+      "bytes": 602620,
+      "sha256": "57fb2ac33421699958da3267e9d0540fa533ff2f944c36c022d5535aa3012372",
+      "content_type": "application/pdf",
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/to_sc_kiu_v_tuionetoa_20220429.pdf",
+      "copied_from": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_sc_kiu_v_tuionetoa_20220429.body",
+      "retention": "Original downloaded PDF copied byte-for-byte from civilian evidence; no new network request."
+    }
+  ],
+  "retrieval_receipts": [
+    {
+      "file": "lavemaau-japan-2019.jpg.receipt.json",
+      "sha256": "dd9ada569189c58295cf81d1dd5a035f02d326122c2adffe070a5322f331ad1c"
+    },
+    {
+      "file": "lavemaau-statistics-2020.html.receipt.json",
+      "sha256": "b7ab4907afed25221a604e46a797a71751fff15eff6fe5129d7ef3e1cb9d18ea"
+    },
+    {
+      "file": "lavemaau-statistics-2020.jpg.receipt.json",
+      "sha256": "502f26c421176cb2f5208e1945056e71c35fd7f2494973756767b2eb483e9891"
+    },
+    {
+      "file": "mofa-current-legal.html.receipt.json",
+      "sha256": "e7a1efdb64f61c470cc2c555d51cf09e28f2d417aeade02c4f6d3930a206169f"
+    },
+    {
+      "file": "tonga-government-terms.html.receipt.json",
+      "sha256": "28c4294b886efe7a36787d57206c48d003fc32b96350ccc0304aca2cee6f6b94"
+    }
+  ],
+  "search_log": "search-log.json",
+  "completion_notes": [
+    "Zero licensed-ready source photos established; one dated and correctly captioned official image retained for authored-identity research with source-photo reuse rights unresolved.",
+    "No Internet Archive request, Commons image retry, generated portrait, registry edit or manifest edit performed.",
+    "No alias is inferred from a title alone; the court role bridge connects Tevita the minister and society secretary."
+  ],
+  "authored_identity_route": {
+    "contract": "docs/CARTOON_CHARACTER_ROADMAP.md:46",
+    "source_photo_shipping": false,
+    "reference_photo_input_to_imagegen": false,
+    "source_rights_relabeling": false,
+    "generation_owner": "root",
+    "approval_scope": "Research is reviewed; no generated cartoon or human likeness approval is claimed here."
+  }
+}

@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-06",
+  "nation": "Tonga",
+  "reviewed_at": "2026-10-01",
+  "registration_operator": "Codex",
+  "review_owner": "Codex root",
+  "human_approval_claimed": false,
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-02-jobs-batch06.json",
+  "jobs_sha256": "c1846a9bcbeb68a4981a6a783b171d95f4a0d31bcab28bc802745a14eece9b22",
+  "manifest_before_sha256": "8c32f5b7b1ef49691de445779bfd81e7d4f08cf08212a903a6b56be3fba9d9e1",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/tonga/royal-identity-review.json": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+    "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json": "4659b92a4399e9939b464b1812f082dbb124d1ca59b62b3b1b483a4037b3ff82"
+  },
+  "source_reference_records": {
+    "tuivakano-2011": {
+      "record": {
+        "person_id": "to_lord_tuivakano_pm_2010",
+        "kind": "observed_portrait",
+        "reference_id": "tuivakano-2011",
+        "asset": "spheres-web/ui/person-portraits/references/tonga-tuivakano-2011-reference-v1.jpg",
+        "sha256": "782d0eb778b12087bebbbf39ae96ca83cf9a3bef587ddd7b576d7075316551f4",
+        "bytes": 529428,
+        "width": 659,
+        "height": 1182,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "creator": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub",
+        "credit": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub; 2011-06-27; CC BY 2.0. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 2.0. Date according to EXIF, as qualified on the Commons description.",
+        "source_license_statement": "CC BY 2.0",
+        "depiction_date": "2011-06-27",
+        "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "source_metadata_sha256": "832d831d91a84fa1c506eb4243bf9a02e8076a2697b6e79fb8183a2b9fedd2ba"
+      },
+      "original_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/tuivakano-2011.jpg",
+      "retained_source_record": {
+        "id": "tuivakano-2011",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+        "retrieved_at": "2026-10-01T11:49:32.622117+00:00",
+        "metadata_original": {
+          "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuivakano-2011.html",
+          "bytes": 118621,
+          "sha256": "832d831d91a84fa1c506eb4243bf9a02e8076a2697b6e79fb8183a2b9fedd2ba"
+        },
+        "image_original": {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Tuivakano_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuivakano-2011.jpg",
+          "bytes": 529428,
+          "sha256": "782d0eb778b12087bebbbf39ae96ca83cf9a3bef587ddd7b576d7075316551f4"
+        },
+        "width": 659,
+        "height": 1182,
+        "photograph_date": "2011-06-27",
+        "creator_or_credit": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "status": "usable_pending_visual_review",
+        "limitation": "Date according to EXIF, as qualified on the Commons description.",
+        "visual_inspection_by_this_reviewer": false,
+        "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      }
+    },
+    "tupou-vi-2019": {
+      "record": {
+        "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+        "kind": "observed_portrait",
+        "reference_id": "tupou-vi-2019",
+        "asset": "spheres-web/ui/person-portraits/references/tonga-tupou-vi-2019-reference-v1.jpg",
+        "sha256": "dbb3b7407684e0f68d1bf229f73560cea59ff414c84f594c3e270477665d9350",
+        "bytes": 210547,
+        "width": 659,
+        "height": 978,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": "Office of the Governor-General of New Zealand",
+        "credit": "Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 4.0. Later King reference. A 2012 or post-cutoff 2030s application requires explicit backward/forward artistic age interpretation. Retained Commons metadata specifies CC BY 4.0; use that licence rather than substituting the current website’s broader CC0 wording.",
+        "source_license_statement": "CC BY 4.0",
+        "depiction_date": {
+          "kind": "day",
+          "value": "2019-03-27"
+        },
+        "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+        "source_metadata_sha256": "100bd17e863d35abe6a0811560eb735c947e296f876155c0a81c19d338311a1a",
+        "original_source": "https://gg.govt.nz/image-galleries/dinner-his-majesty-king-tupou-vi-kingdom-tonga-and-her-majesty-queen-nanasipau’u"
+      },
+      "original_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tupou-vi-2019.jpg",
+      "retained_source_record": {
+        "id": "tupou-vi-2019",
+        "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+        "photo_date": {
+          "kind": "day",
+          "value": "2019-03-27"
+        },
+        "creator": "Office of the Governor-General of New Zealand",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "recommended_credit": "Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "commons_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+        "original_source": "https://gg.govt.nz/image-galleries/dinner-his-majesty-king-tupou-vi-kingdom-tonga-and-her-majesty-queen-nanasipau’u",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Tupou_VI._of_the_Kingdom_of_Tonga_%282019%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "image": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tupou-vi-2019.jpg",
+          "bytes": 210547,
+          "sha256": "dbb3b7407684e0f68d1bf229f73560cea59ff414c84f594c3e270477665d9350"
+        },
+        "metadata": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tupou-vi-2019.commons-useragent.html",
+          "bytes": 95262,
+          "sha256": "100bd17e863d35abe6a0811560eb735c947e296f876155c0a81c19d338311a1a"
+        },
+        "dimensions": {
+          "width": 659,
+          "height": 978
+        },
+        "visual_review": {
+          "reviewer": "Codex",
+          "date": "2026-10-01",
+          "observed": "King Tupou VI in black tuxedo, bow tie and medals. Receding/balding hair and older clean-shaven face."
+        },
+        "limits": "Later King reference. A 2012 or post-cutoff 2030s application requires explicit backward/forward artistic age interpretation. Retained Commons metadata specifies CC BY 4.0; use that licence rather than substituting the current website’s broader CC0 wording.",
+        "human_approval_claimed": false,
+        "generated_art_approval": false,
+        "review_file": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "tonga-tuivakano-cartoon-2003-v1",
+        "output": "exec-4a2c0feb-a1d6-46b8-a8b4-e7a3517cf5cf.png",
+        "person_id": "to_lord_tuivakano_pm_2010",
+        "from": "2000-01-01",
+        "to": "2010-01-01",
+        "references": [
+          "tuivakano-2011"
+        ],
+        "era_note": "Earlier appearance of Sialeataongo Tuivakano, explicitly interpreted about eight years younger near 2003 from the named 2011 photograph. The 2000–2009 appearance window covers accepted early Speaker observations, ending before the separate 2010–2019 portrait. Ordinary civilian clothing and standing body are artistic extensions. No dated 2003 photograph or office-term boundary is claimed.",
+        "visual_review": "Codex root personally inspected exact reference and generated result: recognizable exact person, full body with hands and shoes visible, outlined cartoon style and opaque dark teal background. Explicit age interpretation reviewed; no human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-tuivakano-cartoon-2003-v1.png",
+        "sha256": "1b45ad53ac665d4e7ecffa4763421e56f6f7ab3c250fa4590b78c52dcaa4cdbd",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-4a2c0feb-a1d6-46b8-a8b4-e7a3517cf5cf.png"
+      },
+      "exact_prompt": "Create one polished full-body 2D cartoon character for Spheres, vertical 1024x1536. FIRST reference STYLE ONLY: bold clean dark outlines, beautiful graphic cel shading, restrained fine detail, adult 5.5-head proportions, smooth quiet opaque dark teal backdrop with grounding shadow. Do not copy its person's identity. Use other reference for the named person's recognizable face. Entire head, both hands outside pockets with fingers visible and both shoes within image with generous margins. Relaxed dignified standing pose, slightly three-quarter. No text, logos, flag, extra people, photorealism,3D or chibi. Draw the real Siale'ataongo Tu'ivakano near 2003, about age51, using exact person's face in the 2011 source photo. Explicit artistic age interpretation eight years younger: dense short dark swept-back hair with less grey, broad fleshy square face, medium brown complexion, thick dark brows, broad nose, narrow brown eyes, soft cheek folds, calm gentle smile, clean-shaven, no glasses. Solid heavyset build. Original light tan blazer with subtle check, pale lavender shirt, muted dark blue tie, black trousers and black shoes. Both hands relaxed at sides. Ordinary civilian clothes, no badges or props. This is not a claim of a dated2003photo or any office term.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-tuivakano-cartoon-2003-v1.txt",
+      "prompt_file_sha256": "5eccc7425d684eb2c6f64ff569d29952600513da28d34ff9b2df5228b1a728a7",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "role": "identity_reference",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/tuivakano-2011.jpg",
+          "person_id": "to_lord_tuivakano_pm_2010",
+          "kind": "observed_portrait",
+          "reference_id": "tuivakano-2011",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-tuivakano-2011-reference-v1.jpg",
+          "sha256": "782d0eb778b12087bebbbf39ae96ca83cf9a3bef587ddd7b576d7075316551f4",
+          "bytes": 529428,
+          "width": 659,
+          "height": 1182,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+          "license": "CC BY 2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "creator": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub",
+          "credit": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub; 2011-06-27; CC BY 2.0. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: CC BY 2.0. Date according to EXIF, as qualified on the Commons description.",
+          "source_license_statement": "CC BY 2.0",
+          "depiction_date": "2011-06-27",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "source_metadata_sha256": "832d831d91a84fa1c506eb4243bf9a02e8076a2697b6e79fb8183a2b9fedd2ba"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "1b45ad53ac665d4e7ecffa4763421e56f6f7ab3c250fa4590b78c52dcaa4cdbd",
+        "bytes": 1805716,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2000-01-01",
+        "to": "2010-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-tuivakano-cartoon-2003-v1.png",
+        "sha256": "1b45ad53ac665d4e7ecffa4763421e56f6f7ab3c250fa4590b78c52dcaa4cdbd",
+        "bytes": 1805716,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+        "credit": "Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub; 2011-06-27; CC BY 2.0. Adapted for Spheres; no endorsement implied.",
+        "era_note": "Earlier appearance of Sialeataongo Tuivakano, explicitly interpreted about eight years younger near 2003 from the named 2011 photograph. The 2000–2009 appearance window covers accepted early Speaker observations, ending before the separate 2010–2019 portrait. Ordinary civilian clothing and standing body are artistic extensions. No dated 2003 photograph or office-term boundary is claimed.",
+        "identity_source": {
+          "person_id": "to_lord_tuivakano_pm_2010",
+          "kind": "observed_portrait",
+          "reference_id": "tuivakano-2011",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-tuivakano-2011-reference-v1.jpg",
+          "sha256": "782d0eb778b12087bebbbf39ae96ca83cf9a3bef587ddd7b576d7075316551f4",
+          "bytes": 529428,
+          "width": 659,
+          "height": 1182,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+          "license": "CC BY 2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "creator": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub",
+          "credit": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub; 2011-06-27; CC BY 2.0. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: CC BY 2.0. Date according to EXIF, as qualified on the Commons description.",
+          "source_license_statement": "CC BY 2.0",
+          "depiction_date": "2011-06-27",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "source_metadata_sha256": "832d831d91a84fa1c506eb4243bf9a02e8076a2697b6e79fb8183a2b9fedd2ba"
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-tuivakano-cartoon-2003-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-06.json, job tonga-tuivakano-cartoon-2003-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected exact reference and generated result: recognizable exact person, full body with hands and shoes visible, outlined cartoon style and opaque dark teal background. Explicit age interpretation reviewed; no human approval claimed.",
+        "derivative_license": "CC BY 2.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/2.0/"
+      },
+      "research_sources": [],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-tupou-vi-cartoon-2030-v1",
+        "output": "exec-8e96c233-01e2-4388-9586-a08b4745a59d.png",
+        "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+        "from": "2027-01-01",
+        "to": "2036-01-01",
+        "references": [
+          "tupou-vi-2019"
+        ],
+        "era_note": "Explicit fictional future age projection of the real Tupou VI near 2030, based on his identified 27 March 2019 photograph. The 2027–2035 appearance window is an alternate-history artistic concept only, not a prediction of lifespan, tenure, succession or actual future appearance. Full-body stance and ordinary civilian clothing are fresh artistic extensions; gameplay determines office eligibility separately.",
+        "visual_review": "Codex root personally inspected exact reference and generated result: recognizable exact person, full body with hands and shoes visible, outlined cartoon style and opaque dark teal background. Explicit age interpretation reviewed; no human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-tupou-vi-cartoon-2030-v1.png",
+        "sha256": "50f297ece6e2c5894f7b4c6d06f7acdbcbe176e90598906580d9d7df679f7dff",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-8e96c233-01e2-4388-9586-a08b4745a59d.png",
+        "appearance_context": "fictional_future_age_projection"
+      },
+      "exact_prompt": "Create one polished full-body 2D cartoon character for Spheres, vertical 1024x1536. FIRST reference STYLE ONLY: bold clean dark outlines, beautiful graphic cel shading, restrained fine detail, adult 5.5-head proportions, smooth quiet opaque dark teal backdrop with grounding shadow. Do not copy its person's identity. Use other reference for the named person's recognizable face. Entire head, both hands outside pockets with fingers visible and both shoes within image with generous margins. Relaxed dignified standing pose, slightly three-quarter. No text, logos, flag, extra people, photorealism,3D or chibi. Draw the real King Tupou VI of Tonga as an expressly FICTIONAL FUTURE AGE PROJECTION near2030, aboutage71, based on the exact person in2019reference. This is appearance concept for alternate-history gameplay, NOTprediction of tenure, lifespan or future appearance. Preserve very large broad heavyset tall body, warm brown complexion, broad round strong face, high receding forehead, short dark hair now salt-and-pepper at sides, strong dark arched brows, broad nose, full cheeks, serious gently warm expression, clean-shaven, no glasses. Add modest older forehead and eye folds. Original dark charcoal civilian formal suit, white shirt, burgundy tie, black shoes. No crown, sash, medals or imagined honours. Both hands visible atthighs.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-tupou-vi-cartoon-2030-v1.txt",
+      "prompt_file_sha256": "a9747ee652426ea896f09c9523a4dceb061cd4f1beb71e5391b4207d182b3969",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "role": "identity_reference",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/royals/tupou-vi-2019.jpg",
+          "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+          "kind": "observed_portrait",
+          "reference_id": "tupou-vi-2019",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-tupou-vi-2019-reference-v1.jpg",
+          "sha256": "dbb3b7407684e0f68d1bf229f73560cea59ff414c84f594c3e270477665d9350",
+          "bytes": 210547,
+          "width": 659,
+          "height": 978,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "creator": "Office of the Governor-General of New Zealand",
+          "credit": "Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: CC BY 4.0. Later King reference. A 2012 or post-cutoff 2030s application requires explicit backward/forward artistic age interpretation. Retained Commons metadata specifies CC BY 4.0; use that licence rather than substituting the current website’s broader CC0 wording.",
+          "source_license_statement": "CC BY 4.0",
+          "depiction_date": {
+            "kind": "day",
+            "value": "2019-03-27"
+          },
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "source_metadata_sha256": "100bd17e863d35abe6a0811560eb735c947e296f876155c0a81c19d338311a1a",
+          "original_source": "https://gg.govt.nz/image-galleries/dinner-his-majesty-king-tupou-vi-kingdom-tonga-and-her-majesty-queen-nanasipau’u"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "50f297ece6e2c5894f7b4c6d06f7acdbcbe176e90598906580d9d7df679f7dff",
+        "bytes": 1576129,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2027-01-01",
+        "to": "2036-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-tupou-vi-cartoon-2030-v1.png",
+        "sha256": "50f297ece6e2c5894f7b4c6d06f7acdbcbe176e90598906580d9d7df679f7dff",
+        "bytes": 1576129,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+        "credit": "Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "era_note": "Explicit fictional future age projection of the real Tupou VI near 2030, based on his identified 27 March 2019 photograph. The 2027–2035 appearance window is an alternate-history artistic concept only, not a prediction of lifespan, tenure, succession or actual future appearance. Full-body stance and ordinary civilian clothing are fresh artistic extensions; gameplay determines office eligibility separately.",
+        "identity_source": {
+          "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+          "kind": "observed_portrait",
+          "reference_id": "tupou-vi-2019",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-tupou-vi-2019-reference-v1.jpg",
+          "sha256": "dbb3b7407684e0f68d1bf229f73560cea59ff414c84f594c3e270477665d9350",
+          "bytes": 210547,
+          "width": 659,
+          "height": 978,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Tupou_VI._of_the_Kingdom_of_Tonga_(2019).jpg",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "creator": "Office of the Governor-General of New Zealand",
+          "credit": "Office of the Governor-General of New Zealand, King Tupou VI, 27 March 2019, CC BY 4.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: CC BY 4.0. Later King reference. A 2012 or post-cutoff 2030s application requires explicit backward/forward artistic age interpretation. Retained Commons metadata specifies CC BY 4.0; use that licence rather than substituting the current website’s broader CC0 wording.",
+          "source_license_statement": "CC BY 4.0",
+          "depiction_date": {
+            "kind": "day",
+            "value": "2019-03-27"
+          },
+          "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+          "source_metadata_sha256": "100bd17e863d35abe6a0811560eb735c947e296f876155c0a81c19d338311a1a",
+          "original_source": "https://gg.govt.nz/image-galleries/dinner-his-majesty-king-tupou-vi-kingdom-tonga-and-her-majesty-queen-nanasipau’u"
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-tupou-vi-cartoon-2030-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-06.json, job tonga-tupou-vi-cartoon-2030-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected exact reference and generated result: recognizable exact person, full body with hands and shoes visible, outlined cartoon style and opaque dark teal background. Explicit age interpretation reviewed; no human approval claimed.",
+        "appearance_context": "fictional_future_age_projection",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "research_sources": [],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    }
+  ]
+}

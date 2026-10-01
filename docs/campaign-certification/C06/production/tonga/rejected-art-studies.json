@@ -1,0 +1,42 @@
+{
+  "reviewer": "Codex",
+  "date": "2026-10-01",
+  "studies": [
+    {
+      "stem": "tonga-lavaka-ata-cartoon-2000-v1",
+      "output": "exec-8ca4ac30-ea57-413e-b9a4-0390f0f975ff.png",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "from": "2000-01-01",
+      "to": "2012-01-01",
+      "references": [
+        "lavaka-palm-2000",
+        "lavaka-undated"
+      ],
+      "era_note": "Early adult likeness anchored to the small 21 April 2000 photograph, with an undated US House portrait as facial supplement only. Middle-aged interpolation, civilian clothing and body are artistic interpretations. The undated upload is not treated as a photo date.",
+      "visual_review": "Codex personally inspected source photos and generated result: recognizable individual face, full visible head/hands/shoes, coherent outlined cartoon style, quiet opaque teal background. No human approval claimed.",
+      "asset": "spheres-web/ui/person-portraits/tonga-lavaka-ata-cartoon-2000-v1.png",
+      "sha256": "a086ae72a0efec2df8039a6d8ff0b5ccf9f18dad9afbe71bf9fc730edf2703ac",
+      "width": 1024,
+      "height": 1536,
+      "original_output": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-8ca4ac30-ea57-413e-b9a4-0390f0f975ff.png",
+      "rejected_reason": "The prompt incorrectly identified the right guest in the 2000 group photograph, producing unsupported glasses. Rejected before manifest registration; corrected v2 references the left microphone holder and clear supplemental portrait.",
+      "retained_rejected_asset": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\rejected-studies\\tonga-lavaka-ata-cartoon-2000-v1.png"
+    },
+    {
+      "stem": "tonga-tesina-fuko-cartoon-1996-v1",
+      "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-c0532921-f29e-4d54-a6c0-130a300d9472.png",
+      "rejected_reason": "Face is useful but hands hidden in pockets and backdrop mostly black. Correct to approved opaque teal with both hands visible before registration."
+    },
+    {
+      "stem": "tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v1",
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2de0bde8-0f3c-4f1f-b006-ff77f2c11f58.png",
+      "sha256": "cc721d4edbe6c1e7bf40716397ddb7c9265eaad7f5c41b0f1bb9b8c6bc6be386",
+      "retained_rejected_asset": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/rejected-studies/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v1.png",
+      "rejected_reason": "Codex root rejected before registration: face and outfit usable, but black background fails the approved opaque dark teal style. A corrected version is pending. This image is not a registered portrait or game asset.",
+      "reviewed_by": "Codex root",
+      "reviewed_at": "2026-10-01",
+      "human_approval_claimed": false
+    }
+  ]
+}

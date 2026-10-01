@@ -1,0 +1,3036 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "reviewed_at": "2026-10-01",
+  "historical_cutoff": "2026-09-07",
+  "historical_window_start": "1990-01-01",
+  "status": "identity_and_coverage_review_proposal",
+  "scope": "Civilian Prime Ministers, deputy Prime Ministers, Speakers, deputy Speakers and named party officer holder observations. Includes titleholding nobles in civilian offices. Root owns integration, artwork and fictional successors.",
+  "authority": {
+    "runtime_installation": false,
+    "office_eligibility": false,
+    "continuous_terms": false,
+    "art_approval": false,
+    "human_acceptance": false,
+    "country_completion": false
+  },
+  "accepted_research": {
+    "path": "docs/campaign-certification/C01/research/tonga.json",
+    "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1"
+  },
+  "rules": [
+    "All existing holder dictionaries and string claims below are copied exactly from the accepted research. Grouping them under a proposed person ID does not promote dates or prove an identity bridge.",
+    "Point and period observations are never expanded to full terms. No end is inferred from a successor, oath or election.",
+    "Noble titles are not stable personal identifiers. A dated official biography that connects the same incumbent across the relevant observations can establish a bounded title identity without a complete legal personal name. Do not merge earlier or later hereditary holders without evidence.",
+    "Real history stops at 2026-09-07. Any successor after that cutoff belongs to the root fictional cast and must be visibly classified as fictional.",
+    "Image dates describe the source photograph, not the production appearance window; artistic age interpretation must be explicit.",
+    "Each review batch contains at most ten people. Original bodies and image pins remain outside Git; derived facts and source references are reviewable here.",
+    "Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned."
+  ],
+  "coverage": {
+    "people_count": 30,
+    "holder_observation_count": 46,
+    "holder_observation_count_by_role": {
+      "to_pm": 12,
+      "to_deputy_pm": 14,
+      "to_speaker": 12,
+      "to_deputy_speaker": 1,
+      "to_pdp_leader": 1,
+      "to_dpfi_leader": 2,
+      "to_dpfi_president": 1,
+      "to_peoples_party_leader": 1,
+      "to_peoples_party_society_president": 1,
+      "to_peoples_party_society_secretary": 1
+    },
+    "all_target_accepted_holder_rows_inventoried": true,
+    "all_historical_officeholders_established": false,
+    "all_parties_and_successors_established": false,
+    "all_likenesses_ready": false,
+    "current_minister_collective_role_has_no_accepted_individual_holder_rows": true,
+    "likeness_reference_count": 29,
+    "usable_likeness_reference_count": 21,
+    "research_only_likeness_reference_count": 6,
+    "people_with_usable_or_research_likeness": 27
+  },
+  "batches": [
+    {
+      "id": "civilian-01",
+      "people": [
+        {
+          "person_id": "fatafehi_tuipelehake",
+          "display_name": "Fatafehi Tu'ipelehake",
+          "identity_status": "existing_identity",
+          "observed_names": [
+            "Fatafehi Tu'ipelehake"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Fatafehi Tu'ipelehake",
+                "attested_on": null,
+                "from": null,
+                "until": null,
+                "attested_period": {
+                  "from": "1990-01-01",
+                  "through": "1990-12-31"
+                },
+                "sources": [
+                  "to_pmo_former_pms_2026",
+                  "to_pmo_former_pms_2015",
+                  "to_mic_pm_list_2011",
+                  "to_ipu_1990"
+                ],
+                "claim_ids": [
+                  "to_pmo_former_pms_2026_tuipelehake",
+                  "to_pmo_former_pms_2015_list",
+                  "to_mic_pm_list_2011_list",
+                  "to_ipu_1990_tuipelehake"
+                ],
+                "note": "Holder when the period opens (TO-PM90-01), at year precision. All three government lists give his premiership as 1965-1991; IPU's summary of the February 1990 election names him as Prime Minister in a present-tense sentence written in March 1990 or later (reference date unknown).",
+                "uncertainty": "Year precision only. attested_period is the calendar year 1990, which lies inside the 1965-1991 range printed by every cited list if that range is read as one continuous tenure; it is not an observation on any particular day, and no 1990 gazette, instrument or contemporaneous Tongan record naming him was found. No start or end is stated; the retirement month (August 1991) is IPU-only (to_ipu_1993_retirement_succession_199108) and is not used."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "fatafehi-1971"
+          ],
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 1971 Archives New Zealand image supplies a dated reference; it does not establish a 1990 appearance.",
+              "evidence": [
+                "fatafehi-1971",
+                "C06/preparation/tonga-cast-01/proposal.json"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "fatafehi_tuipelehake",
+            "name": "Fatafehi Tu'ipelehake",
+            "sources": [
+              "https://data.ipu.org/election-summary/HTML/2317_90.htm",
+              "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+              "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+              "https://pmo.gov.to/former-prime-minsiters/"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_baron_vaea_pm_1992",
+          "display_name": "'Alipate Halakilangi Tau'alupeoko Tupou (Baron Vaea)",
+          "identity_status": "reserved_identity_resolved",
+          "observed_names": [
+            "Baron Vaea"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Baron Vaea",
+                "attested_on": null,
+                "from": null,
+                "until": null,
+                "attested_period": {
+                  "from": "1992-01-01",
+                  "through": "1998-12-31"
+                },
+                "sources": [
+                  "to_pmo_former_pms_2026",
+                  "to_pmo_former_pms_2015",
+                  "to_mic_pm_list_2011",
+                  "to_pmo_vaea_tribute_20090613",
+                  "to_ipu_1993"
+                ],
+                "claim_ids": [
+                  "to_pmo_former_pms_2026_vaea_lavaka",
+                  "to_pmo_former_pms_2015_list",
+                  "to_mic_pm_list_2011_list",
+                  "to_pmo_vaea_tribute_appointment_undated",
+                  "to_ipu_1993_retirement_succession_199108"
+                ],
+                "note": "Appointed Prime Minister by the Sovereign (PMO tribute, undated). The lists give 1991-2000 (current PMO list and 2011 MIC list) or 1991-1999 (2015 PMO list).",
+                "uncertainty": "Year precision only. attested_period covers the calendar years 1992-1998, which lie inside every cited list's range read as one continuous tenure; it is not a start, an end or an observation on any particular day. The appointment day is unstated (IPU gives August 1991 for the succession, month only), and the end year conflicts between the PMO lists (TO-PM90-02, TO-PM90-03)."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "vaea-ca1960-held",
+            "vaea-courier-1996"
+          ],
+          "identity_review": [
+            {
+              "finding": "The reopened PMO tribute identifies Baron Vaea of Houma as christened 'Alipate Halakilangi Tau'alupeoko Tupou, born 15 May 1921, and reports his death on 7 June 2009. It separately names his son Albert Tu'ivanuavou Vaea. This supplies the father's identity and excludes a merger with the 2025 Speaker.",
+              "evidence": [
+                "to_pmo_vaea_tribute_20090613"
+              ],
+              "limitation": "Preserve the reserved ID. Do not add a longer Siaosi alias from secondary biographies. The tribute gives no day of appointment as Prime Minister."
+            },
+            {
+              "finding": "The original 1996 Commission Courier interview labels Baron Vaea's photograph, credits The Courier, and dates the interview to July at his office. Its printed reproduction grant and the Commission reuse decision provide a usable period reference, replacing the need to rely on the held ca.1960 Palace image.",
+              "evidence": [
+                "eu_courier_160_1996",
+                "vaea-courier-1996"
+              ],
+              "limitation": "The photograph itself has no exact date; record 1996 publication context and any interpretation."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_baron_vaea_pm_1992",
+            "name": "'Alipate Halakilangi Tau'alupeoko Tupou (Baron Vaea)",
+            "sources": [
+              "https://data.ipu.org/election-summary/HTML/2317_93.htm",
+              "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+              "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+              "https://pmo.gov.to/former-prime-minsiters/",
+              "https://web.archive.org/web/20100825201222id_/https://www.pmo.gov.to/the-kingdom-of-tonga-pays-tribute-to-its-12th-prime-minister-baron-vaea-of-houma-1921-2009.html"
+            ],
+            "born": {
+              "kind": "day",
+              "value": "1921-05-15"
+            },
+            "died": {
+              "kind": "day",
+              "value": "2009-06-07"
+            }
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+          "display_name": "Prince 'Ulukalala Lavaka Ata",
+          "identity_status": "royal_agent_owns_identity_bridge",
+          "observed_names": [
+            "Prince 'Ulukalala Lavaka Ata"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Prince 'Ulukalala Lavaka Ata",
+                "attested_on": null,
+                "from": "2000-01-03",
+                "until": "2006-02-11",
+                "sources": [
+                  "to_pmo_office_pm_2002",
+                  "to_pmo_timeline_2000_en",
+                  "to_pmo_20060213_resignation",
+                  "to_pmo_20060213_resignation_to"
+                ],
+                "claim_ids": [
+                  "to_pmo_lavaka_ata_commencement_20000103",
+                  "to_pmo_timeline_lavaka_ata_appointed_200001",
+                  "to_lavaka_ata_resignation_accepted_20060211",
+                  "to_lavaka_ata_resignation_accepted_20060211_to"
+                ],
+                "note": "The start is the PMO's stated 'Commencement Date'. The end is the Prince Regent's acceptance on 11 February 2006 of his resignation (the Tongan release: retirement) from the premiership and all his portfolios.",
+                "uncertainty": "The appointment instrument was not seen, and the date of his resignation letter is not given; 11 February 2006 is the stated date of acceptance. The end of Baron Vaea's premiership is not inferred from this start."
+              }
+            }
+          ],
+          "likeness_reference_ids": [],
+          "identity_review": [
+            {
+              "finding": "Retain the accepted holder observation(s) under the printed name; this inventory does not independently resolve the personal identity or extend the term.",
+              "evidence": [
+                "to_pmo_20060213_resignation",
+                "to_pmo_20060213_resignation_to",
+                "to_pmo_office_pm_2002",
+                "to_pmo_timeline_2000_en"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_ulukalala_lavaka_ata_pm_2000",
+            "name": "Prince 'Ulukalala Lavaka Ata",
+            "sources": [
+              "https://web.archive.org/web/20060501015618id_/http://www.pmo.gov.to:80/artman/publish/article_87.shtml",
+              "https://web.archive.org/web/20060501015706id_/http://www.pmo.gov.to:80/artman/publish/article_88.shtml",
+              "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+              "https://web.archive.org/web/20100824203123id_/https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_feleti_sevele",
+          "display_name": "Feleti Vaka'uta Sevele",
+          "identity_status": "reserved_identity_resolved",
+          "observed_names": [
+            "Feleti Sevele"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Feleti Sevele",
+                "attested_on": "2006-04-07",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_20060410_marist_remarks",
+                  "to_pmo_20060413_psc"
+                ],
+                "claim_ids": [
+                  "to_sevele_pm_20060407",
+                  "to_sevele_acting_then_pm_20060413"
+                ],
+                "note": "Substantive Prime Minister, event-dated to 7 April 2006, the earliest contemporaneous PMO item found that styles him Prime Minister without 'Acting'; on 13 April the PMO refers to his tenure as 'Acting Prime Minister, and now Prime Minister'. His acting appointment of 11 February 2006 (to_sevele_acting_pm_appointed_20060211) is a separate claim on the role, not a holder.",
+                "uncertainty": "The substantive appointment day is not established: contemporaneous PMO usage brackets it between 23 March (styled Acting) and 7 April 2006, and the 30 March 2006 date is given only by a retrospective timeline (to_sevele_appointed_20060330). No instrument was seen. His leave-taking audience on 22 December 2010 (to_sevele_leave_audience_20101222) is not used as an end date."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "feleti-2008"
+          ],
+          "identity_review": [
+            {
+              "finding": "The Palace release of 22 December 2010 styles the outgoing premier Hon. Dr. Feleti Vaka'uta Sevele. The Navy portrait depicts Prime Minister Feleti Sevele in January 2008.",
+              "evidence": [
+                "to_palace_20101222_appointment",
+                "feleti-2008"
+              ],
+              "limitation": "The farewell audience supplies no exact end of office."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_feleti_sevele",
+            "name": "Feleti Vaka'uta Sevele",
+            "sources": [
+              "https://web.archive.org/web/20060501190324id_/http://www.pmo.gov.to:80/artman/publish/article_107.shtml",
+              "https://web.archive.org/web/20060501190232id_/http://www.pmo.gov.to:80/artman/publish/article_108.shtml",
+              "https://web.archive.org/web/20111130040811id_/http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_lord_tuivakano_pm_2010",
+          "display_name": "Siale'ataongo Tu'ivakano",
+          "identity_status": "reserved_identity_resolved",
+          "observed_names": [
+            "Lord Tu'ivakano",
+            "Hon. Tu'ivakano"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Lord Tu'ivakano",
+                "attested_on": "2010-12-22",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_palace_20101222_appointment"
+                ],
+                "claim_ids": [
+                  "to_tuivakano_royal_appointment_20101222"
+                ],
+                "note": "Received in audience at noon on 22 December 2010 at the Villa for his appointment to the office of Prime Minister ('The Kissing of Hands'), and received his Letter of Appointment. The Assembly's selection and its presentation to the King (to_tuivakano_assembly_result_presented_20101221) are separate claims.",
+                "uncertainty": "An appointment event with no stated effective date. The end is not stated: his description as 'former Prime Minister' on 29 December 2014 (to_pohiva_declared_pm_elect_pmo_20141229) is not used as an end."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Hon. Tu'ivakano",
+                "attested_on": "2003-04-08",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_legislative_assembly_page_20030408",
+                  "to_la_home_2004",
+                  "to_pmo_legislative_assembly_page_20041226"
+                ],
+                "claim_ids": [
+                  "to_speaker_tuivakano_listed_20030408",
+                  "to_speaker_tuivakano_listed_20040906",
+                  "to_speaker_tuivakano_listed_20041226"
+                ],
+                "note": "Presented as Speaker by the government's Legislative Assembly page (revision of 8 April 2003), the Assembly's home page (captured 6 September 2004) and the government page's revision of 19 September 2004 (captured 26 December 2004).",
+                "uncertainty": "Event-dated to the earliest attestation after the two conflicting appointment dates, 'last week' in a statement of about 23 May 2002 (to_speaker_tuivakano_appointment_reported_20020523) and 1 July 2002 in the Assembly's later statements; neither is a start. No end is stated: he was replaced by Veikune's appointment of 22 March 2005 after becoming Minister of Works, but no source gives the day his Speakership ended, and none is inferred."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Tu'ivakano",
+                "attested_on": "2015-02-24",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_la_news_speaker_china_20150224"
+                ],
+                "claim_ids": [
+                  "to_speaker_tuivakano_styled_20150224"
+                ],
+                "note": "Styled Lord Speaker by the Assembly's news item of 24 February 2015. His election by the House on 29 December 2014 is recorded in the prime-minister packet (to_pohiva_declared_pm_elect_pmo_20141229), which this holder does not cite.",
+                "uncertainty": "No royal appointment or oath for this Assembly is dated by any source retrieved, so no start is stated. No end is stated either: the Speaker's release of 12 September 2017 already in the packet still names him Speaker. The Assembly's profile identifies him with the Hon. Tu'ivakano who was Speaker in 2002-2005, but that identity is not needed for this observation."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "tuivakano-2011"
+          ],
+          "identity_review": [
+            {
+              "finding": "University of Auckland's own 25 August 2011 newsletter identifies its visiting Tongan Prime Minister as Lord Siale'ataongo Tu'ivakano. The retained 2011 Assembly profile traces his 2002-2004 Speakership and 2005 ministerial role; the Palace original documents the December 2010 appointment. These sources support the reserved identity and the historical Speaker/PM bridge.",
+              "evidence": [
+                "auckland_tuivakano_201108",
+                "to_la_profile_tuivakano_2011",
+                "to_palace_20101222_appointment",
+                "tuivakano-2011"
+              ],
+              "limitation": "Do not append Kaho or a birth date without a separate original. The conflicting 2002 Speaker appointment dates remain unresolved."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_lord_tuivakano_pm_2010",
+            "name": "Siale'ataongo Tu'ivakano",
+            "sources": [
+              "https://web.archive.org/web/20040906221508id_/http://www.parliament.gov.to:80/",
+              "https://web.archive.org/web/20150702052047id_/http://parliament.gov.to/media-centre/latest-news/latest-news-in-english/338-speaker-continues-to-pursue-vision-to-boost-tourism-fisheries-and-education-in-tonga",
+              "https://web.archive.org/web/20111130040811id_/http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano",
+              "https://web.archive.org/web/20030408005903id_/http://pmo.gov.to:80/legislative_assembly.htm",
+              "https://web.archive.org/web/20041226045411id_/http://pmo.gov.to:80/legislative_assembly.htm",
+              "https://www.auckland.ac.nz/assets/about-us/about-the-university/the-university/official-publications/uninews/2011/uninews-14-2011.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_samuela_akilisi_pohiva",
+          "display_name": "Samuela 'Akilisi Pohiva",
+          "identity_status": "reserved_identity_supported",
+          "observed_names": [
+            "Samuela 'Akilisi Pohiva",
+            "'Akilisi Pohiva"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Samuela 'Akilisi Pohiva",
+                "attested_on": "2014-12-30",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_20141230_appointment"
+                ],
+                "claim_ids": [
+                  "to_pohiva_royal_appointment_20141230"
+                ],
+                "note": "Received in audience at 10:00 on 30 December 2014 at the Royal Palace for his appointment to the office of Prime Minister. The Assembly's selection on 29 December 2014 (to_pohiva_assembly_selection_20141229) is a separate claim.",
+                "uncertainty": "An appointment event with no stated effective date. His status after the 24 August 2017 dissolution is unresolved (TO-PM90-07): the PMO's later wording that he 'served as the 16th Prime Minister from 2015-2017' (to_pohiva_royal_appointment_20180102) is not used as an end, and no end of this appointment is inferred from his re-appointment effective 2 January 2018."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Samuela 'Akilisi Pohiva",
+                "attested_on": null,
+                "from": "2018-01-02",
+                "until": null,
+                "sources": [
+                  "to_pmo_20180104_appointment",
+                  "to_pmo_20180122_cabinet"
+                ],
+                "claim_ids": [
+                  "to_pohiva_royal_appointment_20180102",
+                  "to_pohiva_appointment_repeated_20180122"
+                ],
+                "note": "Appointed under Clause 50A with effect from 2 January 2018, following the Assembly's re-selection on 18 December 2017 (to_pohiva_assembly_reselection_20171218). He took his oaths in the Assembly on 18 January 2018 (to_pohiva_oath_assembly_20180118). Both are separate claims.",
+                "uncertainty": "until is null. His death in September 2019 is recorded in claims (Gazette Extraordinary No. 28 of 16 September 2019; the PMO programme of 14 September places it on or before the 12th, Auckland date), but no record retrieved states the day, so no end is set (TO-PM90-08)."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_dpfi",
+              "role_id": "to_dpfi_leader",
+              "holder_claim": "to_dpfi_pohiva_2010",
+              "source_id": "to_ipu_2010",
+              "claim": {
+                "id": "to_dpfi_pohiva_2010",
+                "text": "IPU names the Democratic Party of the Friendly Islands among parties formed before the 2010 election and identifies its leader as 'Akilisi Pohiva, formerly of FIHRDM.",
+                "locator": "Election background",
+                "period": {
+                  "from": "2010-11-25",
+                  "through": "2010-11-25"
+                },
+                "uncertainty": "Attestation at the election, not an exact founding or leadership-start date."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_dpfi",
+              "role_id": "to_dpfi_leader",
+              "holder": {
+                "name": "'Akilisi Pohiva",
+                "attested_on": "2014-11-27",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_ipu_2014"
+                ],
+                "claim_ids": [
+                  "to_ipu_2014_dpfi_pohiva_leader"
+                ],
+                "note": "IPU describes DPFI as led by Pohiva at the 27 November 2014 election and calls him the DPFI leader during the campaign (TO-DPFI-05).",
+                "uncertainty": "IPU-only: an interparliamentary summary, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a start, end or continuous term; it is not joined to the 2010 observation."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "akilisi-2015"
+          ],
+          "identity_review": [
+            {
+              "finding": "The accepted PM observations use Samuela 'Akilisi Pohiva; IPU's 2014 summary names Pohiva as DPFI leader and reports his election as PM. The 2019 PMO appointment release calls the prior premier Hon. Samuela 'Akilisi Pohiva.",
+              "evidence": [
+                "to_ipu_2014",
+                "to_pm_appointment_20191008",
+                "akilisi-2015"
+              ],
+              "limitation": "2010 and 2014 party observations do not establish a continuous leadership term. The 2015 portrait has conflicting exact-day metadata, so retain April 2015 precision."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_samuela_akilisi_pohiva",
+            "name": "Samuela 'Akilisi Pohiva",
+            "sources": [
+              "https://data.ipu.org/election-summary/HTML/2317_10.htm",
+              "https://data.ipu.org/election-summary/HTML/2317_14.htm",
+              "https://web.archive.org/web/20150707000535id_/http://www.pmo.gov.to/king-appoints-akilisi-pohiva-as-new-prime-minister-of-tonga/",
+              "https://web.archive.org/web/20180113055859id_/http://www.mic.gov.to:80/news-today/press-releases/7065-king-appoints-prime-minister-hon-samuela-akilisi-pohiva",
+              "https://web.archive.org/web/20181030055037id_/http://www.mic.gov.to/news-today/press-releases/7086-his-majesty-the-king-appoints-prime-minister-and-ministers-of-his-majestys-cabinet"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_pohiva_tuionetoa",
+          "display_name": "Pohiva Tu'i'onetoa",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Pohiva Tu'i'onetoa"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Pohiva Tu'i'onetoa",
+                "attested_on": "2019-10-08",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pm_appointment_20191008"
+                ],
+                "claim_ids": [
+                  "to_tuionetoa_royal_appointment_20191008"
+                ],
+                "uncertainty": "Royal appointment event only. The earlier Assembly recommendation is retained separately and is not a holder observation."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_peoples_party",
+              "role_id": "to_peoples_party_leader",
+              "holder": {
+                "name": "Pohiva Tu'i'onetoa",
+                "attested_on": "2021-05-28",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_idcpc_dialogue_20210528"
+                ],
+                "claim_ids": [
+                  "to_peoples_party_leader_20210528"
+                ],
+                "uncertainty": "Event-host title observation only; party appointment instrument and full leadership interval are unknown."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_peoples_party",
+              "role_id": "to_peoples_party_society_president",
+              "holder": {
+                "name": "Pohiva Tu'i'onetoa",
+                "attested_on": null,
+                "from": null,
+                "until": null,
+                "attested_period": {
+                  "from": "2022-04-19",
+                  "through": "2022-04-21"
+                },
+                "sources": [
+                  "to_sc_kiu_v_tuionetoa_20220429"
+                ],
+                "claim_ids": [
+                  "to_peoples_party_incorporated_society_2022"
+                ],
+                "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+                "uncertainty": "Not reconciled with the 'Leader' title. Whether Leader and society President are one office is unresolved."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "tuionetoa-2019"
+          ],
+          "identity_review": [
+            {
+              "finding": "The PMO's 8 October 2019 appointment release supplies the full name. IDCPC's report explicitly identifies the same named participant as Tonga People's Party leader and Prime Minister at the 28 May 2021 dialogue. The 2022 court ruling separately relays his society presidency.",
+              "evidence": [
+                "to_pm_appointment_20191008",
+                "to_idcpc_dialogue_20210528",
+                "to_sc_kiu_v_tuionetoa_20220429",
+                "tuionetoa-2019"
+              ],
+              "limitation": "Leader and incorporated-society President remain distinct roles; the trial testimony does not establish an appointment date."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_pohiva_tuionetoa",
+            "name": "Pohiva Tu'i'onetoa",
+            "sources": [
+              "https://www.idcpc.org.cn/english2023/bzhd/202105/t20210531_160418.html",
+              "https://pmo.gov.to/wp-content/uploads/2019/12/Media_Release_08_10_2019__22The-Appointment-of-Hon.-Dr.-Pohiva-Tu%E2%80%99i%E2%80%99onetoa-as-the-New-Prime-Minister-of-Tonga-1.pdf",
+              "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_siaosi_ofakivahafolau_sovaleni",
+          "display_name": "Siaosi 'Ofakivahafolau Sovaleni",
+          "identity_status": "new_person_proposal_cross_role_bridge_supported",
+          "observed_names": [
+            "Siaosi 'Ofakivahafolau Sovaleni",
+            "Siaosi Sovaleni"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "Siaosi 'Ofakivahafolau Sovaleni",
+                "attested_on": null,
+                "from": "2021-12-27",
+                "until": "2024-12-09",
+                "sources": [
+                  "to_pmo_sovaleni_appointment_20211228",
+                  "to_pmo_sovaleni_appointment_to_20211228",
+                  "to_assembly_minutes_48_20241209"
+                ],
+                "claim_ids": [
+                  "to_sovaleni_royal_appointment_en_20211227",
+                  "to_sovaleni_royal_appointment_to_20211227",
+                  "to_sovaleni_resignation_statement_20241209",
+                  "to_palace_acceptance_letter_20241209"
+                ],
+                "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses. His resignation of 9 December 2024 ends the observation (TO-TR24-01); the 2024 Assembly records print 'Siaosi 'Ofa ki Vahafolau Sovaleni' and the Palace letter 'Hon. Hu'akavameiliku'.",
+                "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. The end is the resignation of 9 December 2024, stated in the House as effective immediately (1150-1200 transcript block) and accepted by the King the same day, during the recess before the Palace Office letter was read at 1400-1405; the date is exact to the day and the clock time of acceptance is not recorded. The end is attached to this holder as the resignation of the sitting Prime Minister, named Hu'akavameiliku in both the 2021 Tongan release and the Palace letter, not by matching spellings. No term length is inferred."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Siaosi Sovaleni",
+                "attested_on": "2014-12-31",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_20141231_new_cabinet",
+                  "to_mic_20150212_sovaleni_profile",
+                  "to_mic_20160907_renewable",
+                  "to_mic_20170831_macbio"
+                ],
+                "claim_ids": [
+                  "to_dpm_sovaleni_cabinet_list_20141231",
+                  "to_dpm_sovaleni_profile_20150212",
+                  "to_dpm_sovaleni_styled_20160904",
+                  "to_dpm_sovaleni_styled_20170830"
+                ],
+                "note": "Listed as Deputy Prime Minister in the Pohiva Cabinet announced on 31 December 2014; attested to 30 August 2017 (TO-DPM-07). A separate observation from the to_pm holder \"Siaosi 'Ofakivahafolau Sovaleni\" of 2021-2024.",
+                "uncertainty": "No from: the release states only the Prime Minister-elect's recommendation and that the appointments 'will be effective as of 31st December, 2014' (to_dpm_sovaleni_appointment_recommended_20141231), and IPU's Cabinet date of 19 January 2015 conflicts. No until: the PMO states only that the Prime Minister recommended the revocation 'effective from 1st September, 2017' (to_dpm_sovaleni_revocation_recommended_20170901), and the royal endorsement it reports covers the new appointments; Lord Ma'afu's start is not used as an end."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "sovaleni-2022"
+          ],
+          "identity_review": [
+            {
+              "finding": "UNIDO's retained 2016 panel biography uses the full name Siaosi 'Ofakivahafolau Sovaleni for the deputy Prime Minister, alongside the same public-enterprise, SPC, Oxford, USP and Auckland background printed in the reopened 2015 MIC profile. This resolves the earlier abbreviated deputy-PM/full-name PM identity bridge.",
+              "evidence": [
+                "to_unido_sovaleni_bio_2016",
+                "to_mic_20150212_sovaleni_profile"
+              ],
+              "limitation": "Use its biographical facts for identity only; the event biography does not replace the accepted uncertain 2014 appointment wording with a new start."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_siaosi_ofakivahafolau_sovaleni",
+            "name": "Siaosi 'Ofakivahafolau Sovaleni",
+            "sources": [
+              "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+              "https://web.archive.org/web/20171024204047id_/http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+              "https://web.archive.org/web/20160916095045id_/http://www.mic.gov.to:80/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+              "https://web.archive.org/web/20170903073650id_/http://mic.gov.to:80/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+              "https://web.archive.org/web/20151002125546id_/http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+              "https://pmo.gov.to/king-appoints-prime-minister-hon-siaosi-ofakivahafolau-sovaleni/",
+              "https://pmo.gov.to/fakanofo-e-he-ene-afio-a-hon-siaosi-ofakivahafolau-sovaleni-ko-e-palemia-o-tonga/",
+              "https://www.unido.org/sites/default/files/2016-11/Partnership_BIOs_final_0.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_aisake_valu_eke",
+          "display_name": "'Aisake Valu Eke",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "'Aisake Valu Eke"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder": {
+                "name": "'Aisake Valu Eke",
+                "attested_on": "2025-01-22",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_eke_appointment_20250122"
+                ],
+                "claim_ids": [
+                  "to_eke_royal_appointment_20250122"
+                ],
+                "note": "Royal appointment under Clause 50A(1) at the Royal Palace on Wednesday 22 January 2025 (TO-TR24-04), read from Wayback captures of the removed PMO release; the live PMO release of 24 January 2025 calls him Prime Minister.",
+                "uncertainty": "An appointment event, recorded like the 2019 Tu'i'onetoa observation: the release states no separate 'with effect from' date, and no warrant signature, presentation or instrument number is recorded (TO-TR24-05). The 24 December 2024 Assembly selection, the 28 January 2025 Cabinet list and the 31 January 2025 oath are separate claims, not the start of office. No end or term is inferred; Lord Fakafanua's 18 December 2025 appointment does not supply one."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "eke-nzhc"
+          ],
+          "identity_review": [
+            {
+              "finding": "The accepted PMO appointment observation names Aisake Valu Eke. The retained NZ High Commission photograph describes PM Aisake Eke at its 10 February 2025 function.",
+              "evidence": [
+                "to_pmo_eke_appointment_20250122",
+                "eke-nzhc"
+              ],
+              "limitation": "The removed PMO original was not newly retained in this review; do not turn the accepted 22 January appointment event into a continuous term."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_aisake_valu_eke",
+            "name": "'Aisake Valu Eke",
+            "sources": [
+              "https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_fatafehi_fakafanua",
+          "display_name": "Lord Fakafanua",
+          "identity_status": "new_person_proposal_cross_role_bridge_supported",
+          "observed_names": [
+            "Lord Fakafanua"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder_claim": "to_fakafanua_appointment",
+              "source_id": "to_pm_appointment_2025",
+              "claim": {
+                "id": "to_fakafanua_appointment",
+                "text": "King Tupou VI appointed Lord Fakafanua prime minister on 18 December 2025, following the Assembly's prime-minister-designate election on 15 December.",
+                "locator": "Media release, opening paragraphs",
+                "period": {
+                  "from": "2025-12-18",
+                  "through": "2025-12-18"
+                }
+              }
+            },
+            {
+              "organization_or_institution_id": "to_prime_minister",
+              "role_id": "to_pm",
+              "holder_claim": "to_fakafanua_august",
+              "source_id": "to_pm_august_2026",
+              "claim": {
+                "id": "to_fakafanua_august",
+                "text": "The PMO identifies Lord Fakafanua as prime minister in its 3 August 2026 project-launch report.",
+                "locator": "Article heading and opening paragraph",
+                "period": {
+                  "from": "2026-08-03",
+                  "through": "2026-08-03"
+                },
+                "uncertainty": "A dated office observation, not evidence that no intervening or subsequent temporary arrangements existed."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Fakafanua",
+                "attested_on": "2012-07-19",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_la_20120723_new_speaker_starts",
+                  "to_la_20120720_fakafanua_appointed",
+                  "to_la_20130828_acting_speaker",
+                  "to_la_20140815_speaker_judiciary"
+                ],
+                "claim_ids": [
+                  "to_fakafanua_royal_appointment_20120719",
+                  "to_fakafanua_royal_appointment_reported_20120720",
+                  "to_fakafanua_starts_as_speaker_20120723",
+                  "to_fakafanua_speaker_abroad_20130828",
+                  "to_fakafanua_speaker_20140814"
+                ],
+                "note": "Elected 17-8 by the Assembly on 19 July 2012; the Assembly's item of 23 July dates his royal appointment to that day and its item of 20 July reports the appointment as done. He began presiding on 23 July 2012 and is attested as Speaker to 14 August 2014.",
+                "uncertainty": "An appointment day with no stated effective date, so it is event-dated through attested_on, as the prime-minister holders of CLAUDE-C01-08 are. The Assembly's Tongan item created at 17:23 on 19 July still called the appointment pending (to_fakafanua_royal_appointment_pending_20120719); the conservative alternative is 20 July 2012, when it was reported as done. 'Started in his new role ... this morning' (23 July) is not taken as from, because the same item dates the appointment earlier. No end is stated, and nothing is inferred from the 2014 election or from clause 61(2)(a)."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Fakafanua",
+                "attested_on": "2018-03-05",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_la_news_speaker_gita_20180305"
+                ],
+                "claim_ids": [
+                  "to_speaker_fakafanua_styled_20180305"
+                ],
+                "note": "Styled Speaker, addressing the first sitting held at the Tonga National Centre, in the Assembly's item of 5 March 2018. He took the oath as 'the Lord Speaker Fakafanua' on 18 January 2018 (to_speaker_fakafanua_sworn_news_20180118; the oath is not a start), and the Assembly's election of 18 December 2017 is recorded in the prime-minister packet (to_pohiva_assembly_reselection_20171218).",
+                "uncertainty": "No royal appointment for this Assembly is dated, so there is no start; no end is stated. This is a separate holder observation from the 2012-2014 one, and no continuity or gap between the two is asserted."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Fakafanua",
+                "attested_on": "2022-02-17",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_la_news_speaker_summit_20220217"
+                ],
+                "claim_ids": [
+                  "to_speaker_fakafanua_styled_20220217"
+                ],
+                "note": "Styled Speaker in the Assembly's item of 17 February 2022, after the Assembly's election of December 2021 (to_speaker_fakafanua_assembly_election_20211215). Claims of the 2024-2025 transition packet style him Speaker on 9 and 10 December 2024 and 31 January 2025 (to_palace_acceptance_letter_20241209, to_pm_nominations_invited_20241210, to_eke_oath_20250131); this holder does not cite them.",
+                "uncertainty": "A separate holder observation for the Assembly elected in November 2021: no continuity with, or gap after, the 2017-2021 holder is asserted. No royal appointment for this Assembly is dated, so there is no start. No end is stated: 'Former Speaker' (16 December 2025) and Lord Vaea's succession (19 December 2025) are not end dates."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "fakafanua-2013",
+            "fakafanua-2026"
+          ],
+          "identity_review": [
+            {
+              "finding": "The reopened 18 December 2025 PMO release explicitly traces the new Prime Minister to Speakerships in 2012-2014 and 2017-2025. This supports one person across the accepted PM and Speaker observations. The Navy 2013 caption identifies Speaker Fatafehi Fakafanua.",
+              "evidence": [
+                "to_pm_appointment_2025",
+                "to_la_20120720_fakafanua_appointed",
+                "fakafanua-2013"
+              ],
+              "limitation": "The retrospective year ranges are identity context, not replacements for the accepted dated holder observations. No date of birth is inferred from age 40."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_fatafehi_fakafanua",
+            "name": "Lord Fakafanua",
+            "sources": [
+              "https://web.archive.org/web/20121030211302id_/http://www.parliament.gov.to/index.php/news/153-lord-fakafanua-appoints-as-new-speaker",
+              "https://web.archive.org/web/20121030211259id_/http://www.parliament.gov.to/index.php/news/152-new-speaker-starts-his-new-role",
+              "https://web.archive.org/web/20130830220536id_/http://www.parliament.gov.to/index.php/news/282-deputy-speaker-remains-acting-speaker-of-parliament",
+              "https://web.archive.org/web/20141008211705id_/http://www.parliament.gov.to/news-room/latest-news/latest-news-in-english/499-speaker-called-for-independence-of-judiciary",
+              "https://web.archive.org/web/20180322080929id_/http://www.parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/611-speaker-acknowledges-continuous-support-post-cyclone-gita",
+              "https://web.archive.org/web/20220217040741id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/885-lord-fakafanua-calls-on-the-international-community-to-continue-to-work-together-to-build-peace-trust-and-reconciliation",
+              "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+              "https://pmo.gov.to/prime-minister-lord-fakafanua-officially-launched-the-tonga-rural-innovation-project-iii-trip-iii/"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        }
+      ]
+    },
+    {
+      "id": "civilian-02",
+      "people": [
+        {
+          "person_id": "to_langi_kavaliku",
+          "display_name": "Senipisi Langi Kavaliku",
+          "identity_status": "new_person_proposal_primary_name_bridge_supported",
+          "observed_names": [
+            "Langi Kavaliku"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Langi Kavaliku",
+                "attested_on": "2000-11-06",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_news_in_brief_2001"
+                ],
+                "claim_ids": [
+                  "to_dpm_kavaliku_listed_20001106"
+                ],
+                "note": "Styled Deputy Prime Minister in the PMO's index row dated 6 November 2000 for the release announcing his retirement (TO-DPM-02). The release prints 'Dr. S. Langi Kavaliku'.",
+                "uncertainty": "The only contemporaneous dated record of him in office found; the PMO's retrospective 'appointed the Deputy Prime Minister in 1991' is a separate claim and supplies no start. The retirement 'due ... commencing on the 11th November 2000' is an announcement, not a stated end, so no until is set; nothing is inferred from Tevita Poasi Tupou's appointment of 24 January 2001."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "langi-sopac-2010"
+          ],
+          "identity_review": [
+            {
+              "finding": "SOPAC’s December 2010 proceedings explicitly identify Dr Senipisi Langi Kavaliku as former Deputy Prime Minister of Tonga and the leader of its own high-level advocacy team until his December 2008 death. The accompanying named portrait establishes the personal-name and likeness bridge.",
+              "evidence": [
+                "sopac_proceedings_2010",
+                "langi-sopac-2010"
+              ],
+              "limitation": "No birth date, exact death day, office start, or exact photo year is added."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_langi_kavaliku",
+            "name": "Senipisi Langi Kavaliku",
+            "sources": [
+              "https://web.archive.org/web/20010708233245id_/http://pmo.gov.to:80/NEWS_IN_BRIEF.html",
+              "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_tevita_poasi_tupou",
+          "display_name": "Tevita Poasi Tupou",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Tevita Poasi Tupou"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Tevita Poasi Tupou",
+                "attested_on": null,
+                "from": "2001-01-24",
+                "until": "2001-09-28",
+                "sources": [
+                  "to_pmo_20010124_pm_address",
+                  "to_pmo_20010928_tupou_resignation_to"
+                ],
+                "claim_ids": [
+                  "to_dpm_tupou_appointment_effective_20010124",
+                  "to_dpm_tupou_resignation_accepted_20010928"
+                ],
+                "note": "Deputy Prime Minister, Attorney General and Minister of Justice from the royal consent in Privy Council 'with effect from 24th January, 2001' until his resignation at 4 p.m. on 28 September 2001, accepted that day by the Princess Regent (TO-DPM-03). The appointment list prints 'Hon. Tevita P. Tupou'.",
+                "uncertainty": "Both boundaries are days the sources state: the effective day of the consent and the day the resignation was made and accepted. The Tongan release's '9 months' and 'January 2001' are retrospective claims, not boundaries. Clive Edwards's acting deputy premiership from the same day is a claim only."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "tevita-tupou-2015"
+          ],
+          "identity_review": [
+            {
+              "finding": "Retain the accepted holder observation(s) under the printed name; this inventory does not independently resolve the personal identity or extend the term.",
+              "evidence": [
+                "to_pmo_20010124_pm_address",
+                "to_pmo_20010928_tupou_resignation_to"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_tevita_poasi_tupou",
+            "name": "Tevita Poasi Tupou",
+            "sources": [
+              "https://web.archive.org/web/20010430180727id_/http://pmo.gov.to:80/hrhadd.24j.html",
+              "https://web.archive.org/web/20011230022245id_/http://pmo.gov.to:80/Fkfisitupou.html"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_james_cecil_cocker",
+          "display_name": "James Cecil Cocker",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "James Cecil Cocker"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "James Cecil Cocker",
+                "attested_on": "2002-05-13",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_20020514_acting_dpm_paunga",
+                  "to_pmo_20020903_wssd_statement",
+                  "to_pmo_20040909_confirmation_of_appointments",
+                  "to_pmo_20060310_ub40_concert"
+                ],
+                "claim_ids": [
+                  "to_dpm_cocker_abroad_20020513",
+                  "to_dpm_cocker_wssd_statement_20020903",
+                  "to_dpm_cocker_appointment_confirmed_20040824",
+                  "to_dpm_cocker_styled_20060308"
+                ],
+                "note": "Styled Deputy Prime Minister, abroad on official duties, when Dr Paunga's acting appointment took effect on 13 May 2002; attested again on 3 September 2002, in the reshuffle confirmed with effect from 24 August 2004, and on 8 March 2006 (TO-DPM-04). The 2002 statement prints 'Hon. Cecil Cocker'.",
+                "uncertainty": "The day of his appointment as Deputy Prime Minister (after Tupou's resignation of 28 September 2001 and the acting service of 2001-2002) was not found, and the 2004 confirmation of a reshuffle is not a start. No end is stated; the retrospective 'In May 2006' appointment of his successor is not used as an end and none is inferred."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "cocker-nrbt-2014"
+          ],
+          "identity_review": [
+            {
+              "finding": "The Reserve Bank’s own 2014 annual report prints an explicitly named James Cecil Cocker director portrait. This provides a later-life research reference under the accepted full-name identity.",
+              "evidence": [
+                "to_nrbt_ar_2014",
+                "cocker-nrbt-2014"
+              ],
+              "limitation": "Research-only photograph; no new office dates or source-image reuse license are inferred."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_james_cecil_cocker",
+            "name": "James Cecil Cocker",
+            "sources": [
+              "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+              "https://web.archive.org/web/20021219084233id_/http://pmo.gov.to:80/DepPM%20Speech%20on%20WSSD,%202002.htm",
+              "https://web.archive.org/web/20041105172122id_/http://www.pmo.gov.to:80/confirmation_of_appointments_24august2004.htm",
+              "https://web.archive.org/web/20060426083232id_/http://www.pmo.gov.to:80/artman/publish/article_96.shtml",
+              "https://www.reservebank.to/data/docs/publications/ar/annual_report_2014_eng.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_viliami_tau_tangi",
+          "display_name": "Viliami Ta'u Tangi",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Viliami Ta'u Tangi"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Viliami Ta'u Tangi",
+                "attested_on": "2006-08-08",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_20060809_common_sense",
+                  "to_pmo_20090114_hauofa_funeral",
+                  "to_pmo_20100624_throne_reply",
+                  "to_mic_20101230_lord_tangi"
+                ],
+                "claim_ids": [
+                  "to_dpm_tangi_styled_20060808",
+                  "to_dpm_tangi_represents_government_20090114",
+                  "to_dpm_tangi_throne_reply_20100624",
+                  "to_dpm_tangi_styled_life_peer_20101230"
+                ],
+                "note": "Styled Deputy Prime Minister from 8 August 2006 to 30 December 2010, when he was made a life peer as Lord Tangi of Vaonukonuka (TO-DPM-05). Printed 'Dr. Viliami Tangi', 'Dr the Hon Viliami Ta'u Tangi' and 'Hon. Dr. Viliami Tau Tangi'.",
+                "uncertainty": "The appointment is known only as 'In May 2006' (retrospective, month only), so the holder is event-dated to the first dated styling. The PMO release of 9 June 2006 names the office but not the holder and is not cited. No end is stated; the change of government of December 2010 and the Cabinet that commenced on 4 January 2011 supply none. His acting premierships are claims on to_pm."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "tangi-pgssc-2019"
+          ],
+          "identity_review": [
+            {
+              "finding": "The 2019 PGSSC participant biography names Lord Viliami Tangi and expressly connects the pictured chief surgeon to his former Deputy Prime Minister and Minister of Health offices.",
+              "evidence": [
+                "to_pgssc_tangi_bio_2019",
+                "tangi-pgssc-2019"
+              ],
+              "limitation": "Research-only photograph; no new office dates or source-image reuse license are inferred."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_viliami_tau_tangi",
+            "name": "Viliami Ta'u Tangi",
+            "sources": [
+              "https://web.archive.org/web/20140102125353id_/http://www.mic.gov.to:80/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+              "https://web.archive.org/web/20060822122944id_/http://www.pmo.gov.to:80/artman/publish/article_147.shtml",
+              "https://web.archive.org/web/20090122085852id_/http://pmo.gov.to:80/component/content/article/55-lastes-news/365-deputy-prime-minister-to-represent-government-at-professor-epeli-hauofas-funeral-in-suva.html",
+              "https://web.archive.org/web/20111130060948id_/http://pmo.gov.to/speeches/1541-tali-o-e-folofola-e-he-eiki-tokoni-palemia-dr-viliami-tau-tangi-",
+              "https://www.pgssc.org/_files/ugd/d9a674_e7604efa800f4093a6f77ae3cb5d1baa.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_samiu_kuita_vaipulu",
+          "display_name": "Samiu Kuita Vaipulu",
+          "identity_status": "new_person_proposal_cross_epoch_bridge_supported",
+          "observed_names": [
+            "Samiu Kuita Vaipulu",
+            "Samiu Vaipulu"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Samiu Kuita Vaipulu",
+                "attested_on": null,
+                "from": "2011-01-04",
+                "until": null,
+                "sources": [
+                  "to_mic_20110104_cabinet_named",
+                  "to_mic_20110103_vaipulu_appointed",
+                  "to_mic_20120213_foi_speech",
+                  "to_mic_20140909_toloa"
+                ],
+                "claim_ids": [
+                  "to_dpm_vaipulu_cabinet_commences_20110104",
+                  "to_dpm_vaipulu_appointment_reported_20110103",
+                  "to_dpm_vaipulu_styled_20120213",
+                  "to_dpm_vaipulu_styled_20140905"
+                ],
+                "note": "Deputy Prime Minister, with Justice, Transport and Works, in the Cabinet that commenced on Tuesday 4 January 2011; attested to 5 September 2014 (TO-DPM-06). A separate observation from the existing 2024 holder 'Samiu Vaipulu'.",
+                "uncertainty": "The start is the stated day the Cabinet ministers commenced; the report of 3 January 2011 is not a start. No end is stated: CLAUDE-C01-08's styling of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited, and no end is inferred from the Cabinet effective 31 December 2014. His acting premierships are claims on to_pm."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Samiu Vaipulu",
+                "attested_on": "2024-12-09",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_assembly_minutes_48_20241209"
+                ],
+                "claim_ids": [
+                  "to_deputy_pm_vaipulu_listed_20241209"
+                ],
+                "note": "Printed as 'Hon. Samiu Vaipulu', Deputy Prime Minister and Minister of Justice and Prisons, in the members' list of the minutes of 9 December 2024 (TO-TR24-02). The Assembly's 24 December 2024 roll and the PMO's 6 January 2025 announcement print 'Samiu Kuita Vaipulu'.",
+                "uncertainty": "A dated membership-list observation only; his appointment date and the end of his deputy premiership are unrecorded, and Poasi Mataele Tei's 2021 observation gains no end from it. By 31 January 2025 he is listed as the People's Representative for Vava'u 15, outside the Cabinet (to_vaipulu_peoples_rep_listed_20250131); that is an upper bound, not an end date. His acting premiership is recorded as claims on the Prime Minister's office, not as a holder observation."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "vaipulu-2023"
+          ],
+          "identity_review": [
+            {
+              "finding": "The reopened 3 January 2011 MIC biography equates Samiu Vaipulu with Samiu Kuita Vaipulu. A separate PMO release published 6 February 2024 names the Acting Prime Minister at the 2 February oath as Hon. Samiu Kuita Vaipulu. These establish the abbreviated/full-name identity across the accepted observations without relying on the unretrieved December minutes PDF.",
+              "evidence": [
+                "to_mic_20110103_vaipulu_appointed",
+                "to_pmo_vaipulu_fullname_20240206",
+                "vaipulu-2023"
+              ],
+              "limitation": "The February2024 public primary text was read through the web tool; direct HTTP403 receipt is retained and is not article content. No February appointment or continuous 2024 office term is added."
+            }
+          ],
+          "missing_records": [
+            "The December 2024 minutes PDF remains unretained; this does not establish any new date. The separate public PMO February 2024 full-name attestation supplies the recent identity bridge."
+          ],
+          "registry_candidate": {
+            "id": "to_samiu_kuita_vaipulu",
+            "name": "Samiu Kuita Vaipulu",
+            "sources": [
+              "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+              "https://web.archive.org/web/20171024214701id_/http://www.mic.gov.to/appointments/new-ministers-/1973-samiu-vaipulu-deputy-pm-justice-works-minister",
+              "https://web.archive.org/web/20171024212340id_/http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+              "https://web.archive.org/web/20170906162059id_/http://www.mic.gov.to:80/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+              "https://web.archive.org/web/20170127082234id_/http://www.mic.gov.to:80/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+              "https://pmo.gov.to/hon-minister-for-health/"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_lord_maafu_dpm_2017",
+          "display_name": "Lord Ma'afu",
+          "identity_status": "new_person_proposal_bounded_title_identity_supported",
+          "observed_names": [
+            "Lord Ma'afu"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Lord Ma'afu",
+                "attested_on": null,
+                "from": "2017-09-01",
+                "until": null,
+                "sources": [
+                  "to_pmo_20170906_ministerial_appointments"
+                ],
+                "claim_ids": [
+                  "to_dpm_maafu_royal_endorsement_effective_20170901",
+                  "to_dpm_maafu_endorsement_conveyed_20170905"
+                ],
+                "note": "Appointed Deputy Prime Minister by the King's endorsement under the Royal Sign Manual 'with effect from 1st September, 2017', conveyed to the PMO on 5 September 2017 (TO-DPM-08).",
+                "uncertainty": "No later attestation of this deputy premiership and no end was found; the Cabinet effective 5 January 2018, which names him Minister of Lands only, supplies none. His acting premiership from 1 September 2017 is a claim on to_pm. A separate observation from his 2020-2021 deputy premiership."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Lord Ma'afu",
+                "attested_on": "2021-04-21",
+                "from": null,
+                "until": "2021-12-12",
+                "sources": [
+                  "to_la_member_maafu_2021",
+                  "to_pmo_20211213_maafu_death"
+                ],
+                "claim_ids": [
+                  "to_dpm_maafu_member_page_20210421",
+                  "to_dpm_maafu_styled_at_death_20211213",
+                  "to_dpm_maafu_death_20211212"
+                ],
+                "note": "Deputy Prime Minister on the Assembly's member page as captured on 21 April 2021 and styled so by the PMO at his death in Auckland in the early hours of Sunday 12 December 2021 (TO-DPM-10).",
+                "uncertainty": "The start is known only as 'mei Tisema 2020' (Assembly list, month only), so the holder is event-dated to the capture; until is the stated day of his death in office. Who, if anyone, held or acted in the office from 12 to 27 December 2021 is unresolved, and Poasi Mataele Tei's start on 28 December 2021 is unchanged."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "maafu"
+          ],
+          "identity_review": [
+            {
+              "finding": "The official 2011 MIC and Assembly biographies identify the same Lord Ma’afu Tukui’aulahi: military officer, private secretary to the King in 2001–2006, first elected in 2008, then environment and lands minister. The PMO’s 13 December 2021 statement identifies the deceased Colonel Lord Ma’afu as Deputy Prime Minister and a minister in four consecutive governments. This supports the bounded incumbent across the accepted 2017 and 2021 observations and the named 2016 DFAT minister photograph.",
+              "evidence": [
+                "to_mic_maafu_bio_20110116",
+                "to_la_maafu_bio_20111009",
+                "to_pmo_maafu_20211213_image",
+                "maafu"
+              ],
+              "limitation": "Use the supported title display and era-specific ID. No Siosaia Lausi’i or other unverified legal name, succession date, continuous deputy-PM term, or earlier/later holder is introduced."
+            }
+          ],
+          "missing_records": [
+            "Full legal personal name remains unresolved; it is not required for this bounded titled incumbent. Do not infer a hereditary succession date or merge any other Ma’afu titleholder."
+          ],
+          "registry_candidate": {
+            "id": "to_lord_maafu_dpm_2017",
+            "name": "Lord Ma'afu",
+            "sources": [
+              "https://web.archive.org/web/20210421132335id_/https://parliament.gov.to/members-of-parliament/ministers/818-lord-ma-afu",
+              "https://web.archive.org/web/20170910020802id_/http://www.pmo.gov.to:80/ministerial-appointments/",
+              "https://web.archive.org/web/20250415130759id_/https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+              "https://web.archive.org/web/20181031084921id_/http://www.mic.gov.to/appointments/new-ministers-/2004-lord-maafu-mlnsre-minister",
+              "https://web.archive.org/web/20111009021639id_/http://www.parliament.gov.to/about-parliament/members/ministers/141-lord-maafu-tukuiaulahi.html",
+              "https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_semisi_kioa_lafu_sika",
+          "display_name": "Semisi Kioa Lafu Sika",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Semisi Kioa Lafu Sika"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Semisi Kioa Lafu Sika",
+                "attested_on": null,
+                "from": "2018-01-05",
+                "until": null,
+                "sources": [
+                  "to_mic_20180122_cabinet_to",
+                  "to_mic_20180615_dpm_gita",
+                  "to_la_news_20181108_auditor"
+                ],
+                "claim_ids": [
+                  "to_dpm_sika_appointment_effective_20180105",
+                  "to_dpm_sika_styled_20180615",
+                  "to_dpm_sika_styled_20181108"
+                ],
+                "note": "Appointed Deputy Prime Minister and Minister for Infrastructure and Tourism with effect from 5 January 2018; attested to 8 November 2018 (TO-DPM-08).",
+                "uncertainty": "No end is stated: the Assembly's retrospective 'Sanuali 2018 - Sepitema 2019' gives months only, and no end is inferred from Fa'otusia's appointment of 9 October 2019. CLAUDE-C01-08's records of his acting premiership in September 2019 are claims on to_pm and are not cited."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "sika-2019"
+          ],
+          "identity_review": [
+            {
+              "finding": "Retain the accepted holder observation(s) under the printed name; this inventory does not independently resolve the personal identity or extend the term.",
+              "evidence": [
+                "to_la_news_20181108_auditor",
+                "to_mic_20180122_cabinet_to",
+                "to_mic_20180615_dpm_gita"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_semisi_kioa_lafu_sika",
+            "name": "Semisi Kioa Lafu Sika",
+            "sources": [
+              "https://web.archive.org/web/20190723035015id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/658-auditor-general-independent-to-carry-out-audit-work-according-to-lord-speaker",
+              "https://web.archive.org/web/20181030055038id_/http://www.mic.gov.to/press-releases-tongan-version/7085-fakanofo-e-he-ene-afio-a-e-eiki-palmia-mo-e-houeiki-minisit-o-e-kapineti-a-ene-afio",
+              "https://web.archive.org/web/20181030053741id_/http://www.mic.gov.to/news-today/press-releases/7343-tongan-deputy-pm-surveys-cyclone-gita-recovery-with-adf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_sione_vuna_faotusia",
+          "display_name": "Sione Vuna Fa'otusia",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Sione Vuna Fa'otusia"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Sione Vuna Fa'otusia",
+                "attested_on": null,
+                "from": "2019-10-09",
+                "until": null,
+                "sources": [
+                  "to_pmo_20191010_new_cabinet",
+                  "to_pmo_20200416_dpm_clarification"
+                ],
+                "claim_ids": [
+                  "to_dpm_faotusia_appointment_effective_20191009",
+                  "to_dpm_faotusia_styled_20200416"
+                ],
+                "note": "Appointed Deputy Prime Minister and Minister for Justice and Prison with effect from 9 October 2019; styled Deputy Prime Minister on 16 April 2020 (TO-DPM-09). Sworn in the Assembly on 28 October 2019 as 'Hon. Vuna Fa'otusia'.",
+                "uncertainty": "The oath is a separate claim and not a start. His resignation is known only as 'in 2020' (Assembly, retrospective) and 'Okatopa 2019 - 2020' (Assembly list), so no until is set."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "faotusia-2020"
+          ],
+          "identity_review": [
+            {
+              "finding": "Retain the accepted holder observation(s) under the printed name; this inventory does not independently resolve the personal identity or extend the term.",
+              "evidence": [
+                "to_pmo_20191010_new_cabinet",
+                "to_pmo_20200416_dpm_clarification"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_sione_vuna_faotusia",
+            "name": "Sione Vuna Fa'otusia",
+            "sources": [
+              "https://web.archive.org/web/20191011220754id_/https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+              "https://web.archive.org/web/20230802205155id_/https://pmo.gov.to/wp-content/uploads/2020/04/image-12.png"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_poasi_mataele_tei",
+          "display_name": "Poasi Mataele Tei",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Poasi Mataele Tei"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Poasi Mataele Tei",
+                "attested_on": null,
+                "from": "2021-12-28",
+                "until": null,
+                "sources": [
+                  "to_pmo_cabinet_20211229"
+                ],
+                "claim_ids": [
+                  "to_sovaleni_cabinet_effective_20211228"
+                ],
+                "note": "Appointed Deputy Prime Minister, with MEIDECC and Public Enterprises, with effect from 28 December 2021 (TO-TR21-06).",
+                "uncertainty": "The start is the stated effective date of the ministerial appointments. The letter of appointment was presented and the oath taken on 29 December, recorded as a separate claim. No end date or term is inferred."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "poasi-tei-2021-ffa"
+          ],
+          "identity_review": [
+            {
+              "finding": "Iliesa Tora’s firsthand FFA-hosted report names Minister Poasi Tei in the caption of his individual World Oceans Day photograph on 8 June 2021.",
+              "evidence": [
+                "to_ffa_poasi_tei_20210614",
+                "poasi-tei-2021-ffa"
+              ],
+              "limitation": "Research-only photograph; no new office dates or source-image reuse license are inferred."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_poasi_mataele_tei",
+            "name": "Poasi Mataele Tei",
+            "sources": [
+              "https://pmo.gov.to/prime-minister-hon-siaosi-ofakivahafolau-sovaleni-announces-new-cabinet-ministers/",
+              "https://tunapacific.ffa.int/2021/06/14/tonga-launches-marine-atlas-and-meets-protection-promise/"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_taniela_likuohihifo_fusimalohi",
+          "display_name": "Taniela Likuohihifo Fusimalohi",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Taniela Likuohihifo Fusimalohi"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder": {
+                "name": "Taniela Likuohihifo Fusimalohi",
+                "attested_on": null,
+                "from": "2025-01-28",
+                "until": null,
+                "sources": [
+                  "to_pmo_eke_cabinet_20250128"
+                ],
+                "claim_ids": [
+                  "to_eke_cabinet_effective_20250128"
+                ],
+                "note": "Appointed Deputy Prime Minister, with Infrastructure and MEIDECC, with effect from 28 January 2025 (TO-TR24-06). Name as printed in the PMO release; the Assembly minutes print 'Taniela Liku'ohihifo Fusimālohi'.",
+                "uncertainty": "The start is the stated effective date of the ministerial appointments. The letters of appointment were forecast for 30 January (unconfirmed) and the oath was taken in the Assembly on 31 January; both are separate claims. No end date or term is inferred."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "fusimalohi-2023"
+          ],
+          "identity_review": [
+            {
+              "finding": "Retain the accepted holder observation(s) under the printed name; this inventory does not independently resolve the personal identity or extend the term.",
+              "evidence": [
+                "to_pmo_eke_cabinet_20250128"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_taniela_likuohihifo_fusimalohi",
+            "name": "Taniela Likuohihifo Fusimalohi",
+            "sources": [
+              "https://pmo.gov.to/prime-minister-hon-dr-aisake-valu-eke-announces-new-cabinet-ministers/"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        }
+      ]
+    },
+    {
+      "id": "civilian-03",
+      "people": [
+        {
+          "person_id": "to_viliami_uasike_latu",
+          "display_name": "Viliami Uasike Latu",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Viliami Uasike Latu"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_cabinet",
+              "role_id": "to_deputy_pm",
+              "holder_claim": "to_cabinet_appointment",
+              "source_id": "to_cabinet_2026",
+              "claim": {
+                "id": "to_cabinet_appointment",
+                "text": "The 5 January 2026 announcement states that the King's Cabinet appointments took effect on 31 December 2025; its list includes Dr Viliami Uasike Latu as Deputy Prime Minister and Minister for Justice.",
+                "locator": "Announcement and numbered ministerial list",
+                "period": {
+                  "from": "2025-12-31",
+                  "through": "2025-12-31"
+                },
+                "uncertainty": "This initial Cabinet list is not asserted to remain unchanged through September 2026."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "latu-2013"
+          ],
+          "identity_review": [
+            {
+              "finding": "Retain the accepted holder observation(s) under the printed name; this inventory does not independently resolve the personal identity or extend the term.",
+              "evidence": [
+                "to_cabinet_2026"
+              ]
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_viliami_uasike_latu",
+            "name": "Viliami Uasike Latu",
+            "sources": [
+              "https://parliament.gov.to/en/media-centre/latest-news/prime-minister-lord-fakafanua-announces-ministers-of-cabinet"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_fusitua_speaker_1996",
+          "display_name": "Siaosi 'Alokuo'ulu Wycliffe Fusitu'a",
+          "identity_status": "new_person_proposal_primary_name_bridge_supported",
+          "observed_names": [
+            "Fusitu'a"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Fusitu'a",
+                "attested_on": "1996-11-14",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_tlr_2003",
+                  "to_tlr_1997"
+                ],
+                "claim_ids": [
+                  "to_speaker_warrant_fusitua_19960920",
+                  "to_speaker_fusitua_interview_19961114",
+                  "to_speaker_fusitua_material_times_19961114"
+                ],
+                "note": "Court records attest him as Speaker: the Court of Appeal quotes the Speaker's committal warrant of 20 September 1996, signed 'Fusitu'a / Chairman of the Legislative Assembly', and the Supreme Court found that when he was interviewed as the Speaker on 14 November 1996 he was 'at all material times the Speaker'. Event-dated to 14 November 1996, the day of that explicit finding.",
+                "uncertainty": "No appointment instrument, start or end was found. His appointment year is 1990, 1991 or 1995 in the Assembly's retrospectives (to_la_list_fusitua_1990_1998_20111130, to_la_obituary_fusitua_appointed_1991_20140505, to_la_archives_fusitua_1995_1998_20060327); none is a boundary, and the lists' 1998 end is not used. The courts name him only by his noble title."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "fusitua-2014-obituary"
+          ],
+          "identity_review": [
+            {
+              "finding": "The reopened 5 May 2014 Assembly obituary identifies the late Speaker as Siaosi 'Alokuo'ulu Wycliffe Fusitu'a, born 27 January 1927, died 24 April 2014, and separately identifies his son Matai'ulua 'i Fonuamotu. This resolves the personal identity of the 1996 Speaker while excluding a later titleholder merger.",
+              "evidence": [
+                "to_la_obituary_fusitua_20140505"
+              ],
+              "limitation": "The obituary appointment year does not override the accepted year conflicts; holder observations stay unchanged."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_fusitua_speaker_1996",
+            "name": "Siaosi 'Alokuo'ulu Wycliffe Fusitu'a",
+            "sources": [
+              "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1572:1997_tlr",
+              "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1563:2003_tlr",
+              "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says"
+            ],
+            "born": {
+              "kind": "day",
+              "value": "1927-01-27"
+            },
+            "died": {
+              "kind": "day",
+              "value": "2014-04-24"
+            }
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_veikune_speaker_2001",
+          "display_name": "Hon. Veikune",
+          "identity_status": "new_person_proposal_bounded_title_identity_supported",
+          "observed_names": [
+            "Hon. Veikune",
+            "Fuatakifolaha (2017 Assembly obituary)"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Hon. Veikune",
+                "attested_on": "2001-04-30",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_legislative_assembly_page_2001",
+                  "to_pmo_legislative_assembly_page_20011214"
+                ],
+                "claim_ids": [
+                  "to_speaker_veikune_listed_20010430",
+                  "to_speaker_veikune_listed_20011214"
+                ],
+                "note": "First term. The government's Legislative Assembly page presented him as Speaker when captured on 30 April 2001 (last modified 19 February 2001) and in its revision of 14 December 2001.",
+                "uncertainty": "Event-dated to the first capture only; the roster could lag (a capture of August 2002, after his successor's appointment had been reported, still marked him Speaker). His appointment (1998 or 1999 in the Assembly's retrospectives) and the end of this term (2001 or 2002) are unresolved; no end is inferred from Tu'ivakano's 2002 appointment, which the government statement says 'succeeds the Hon. Veikune'."
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Hon. Veikune",
+                "attested_on": "2005-03-22",
+                "from": null,
+                "until": "2006-01-25",
+                "sources": [
+                  "to_la_speaker_page_2005",
+                  "to_ipu_2005",
+                  "to_pmo_20060209_veikune_directives"
+                ],
+                "claim_ids": [
+                  "to_speaker_veikune_royal_appointment_20050322",
+                  "to_ipu_2005_speaker_veikune_order_20050323",
+                  "to_speaker_veikune_end_20060125",
+                  "to_palace_confirms_veikune_speaker_end_20060203"
+                ],
+                "note": "Second term. The Assembly's Speaker page says King Taufa'ahau Tupou IV appointed him on 22 March 2005 (an appointment day, not a stated effective day, so no from). The PMO release of 9 February 2006 states that his position as Speaker ended on 25 January 2006, as the Acting Private Secretary to His Majesty confirmed on 3 February 2006.",
+                "uncertainty": "until is the stated end day. The appointment instrument was not seen, and IPU's 23 March 2005 statement is corroboration only. The Land Court's 2007 recital of his removal (to_speaker_veikune_removal_recited_20071213) gives no day and is not used."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "veikune-2005-speaker"
+          ],
+          "identity_review": [
+            {
+              "finding": "The official 2005 Speaker profile expressly identifies the March 2005 appointee as the same man who previously served as Speaker in 1999–2002 and supplies his portrait. The official 9 August 2017 obituary names the deceased former Lord Veikune as Fuatakifolaha. These sources support one bounded former-Speaker identity for the accepted 2001 and 2005 observations.",
+              "evidence": [
+                "to_la_speaker_page_2005",
+                "to_la_veikune_obituary_20170812",
+                "veikune-2005-speaker"
+              ],
+              "limitation": "The obituary’s 1999–2001 retrospective does not resolve or alter the existing term-year conflict. No fuller legal name, inferred birthday, relative death day or later hereditary holder is added."
+            }
+          ],
+          "missing_records": [
+            "The fuller personal name reported by secondary sources remains unverified. The supported bounded identity is the former Speaker called Hon. Veikune and later Fuatakifolaha; no successor titleholder is included."
+          ],
+          "registry_candidate": {
+            "id": "to_veikune_speaker_2001",
+            "name": "Hon. Veikune",
+            "sources": [
+              "https://web.archive.org/web/20241107233206id_/https://data.ipu.org/election-summary/HTML/2317_05.htm",
+              "https://web.archive.org/web/20070625041819id_/http://parliament.gov.to:80/speaker1.htm",
+              "https://web.archive.org/web/20070930153712id_/http://www.pmo.gov.to/artman/publish/article_85.shtml",
+              "https://web.archive.org/web/20010430084337id_/http://pmo.gov.to:80/legislative_assembly.htm",
+              "https://web.archive.org/web/20011214102436id_/http://pmo.gov.to:80/legislative_assembly.htm",
+              "https://web.archive.org/web/20170812105003id_/http://www.parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/577-former-speaker-of-parliament-veikune-passed-away"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_lord_tuilakepa_speaker_2008",
+          "display_name": "Malakai Fakatoufifita (Lord Tu'ilakepa)",
+          "identity_status": "new_person_proposal_primary_name_bridge_supported",
+          "observed_names": [
+            "Lord Tu'ilakepa"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Tu'ilakepa",
+                "attested_on": "2008-06-02",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_pmo_20080602_speaker_reply",
+                  "to_pmo_20100629_assembly_transcript"
+                ],
+                "claim_ids": [
+                  "to_speaker_tuilakepa_reply_signed_20080602",
+                  "to_speaker_tuilakepa_presides_20100629"
+                ],
+                "note": "Signed the Assembly's reply of 2 June 2008 to the Princess Regent's Speech from the Throne as 'Sea 'o e Fale Alea', and presided as Speaker on 29 June 2010 in a government-published transcript that addresses a petition to 'Lord Tu'ilakepa, 'Eiki Sea 'o e Fale Alea'.",
+                "uncertainty": "Event-dated to the reply, which prints only 'Tu'ilakepa'. No appointment instrument or release was found; the day 2 May 2008 appears only in IPU's 2008 summary, which the Crown packet holds and this holder does not cite. No end is stated, and the Interim Speaker of December 2010 (to_interim_speaker_tupou_styled_20101203) is not used as one."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "tuilakepa-2015"
+          ],
+          "identity_review": [
+            {
+              "finding": "Barbara Dreaver's own memoir excerpt, published 7 March 2026, explicitly identifies Malakai Fakatoufifita as Lord Tu'ilakepa while describing her in-person 2012 interview at Parliament. The 11 July 2016 Land Court judgment LA21/2015 identifies Fakatoufifita as holder of both Fakatoufifita and Tu'ilakepa. Together with the retained Assembly career profile, these support the 2008 Speaker identity and the 2015 own-work portrait.",
+              "evidence": [
+                "to_dreaver_tuilakepa_20260307",
+                "to_lc_fakatoufifita_20160711",
+                "to_la_profile_tuilakepa_2011",
+                "tuilakepa-2015"
+              ],
+              "limitation": "The memoir is a first-person interview account, not an official registry. No title-appointment year is adopted: the court's 'since 1995' wording does not settle whether both titles were acquired together, and secondary 1977 claims are not promoted. No other memoir allegations enter the character record."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_lord_tuilakepa_speaker_2008",
+            "name": "Malakai Fakatoufifita (Lord Tu'ilakepa)",
+            "sources": [
+              "https://web.archive.org/web/20090326123327id_/http://pmo.gov.to/media-mainmenu-82/speeches-mainmenu-84/tongan-mainmenu-96/170-ko-e-tali-a-e-sea-o-e-falealea-ki-to-folofola-mei-he-taloni-a-e-pilinisesi-pule.html",
+              "https://web.archive.org/web/20111130052033id_/http://pmo.gov.to/index.php?option=com_content&view=article&id=1570:femeaaki-e-fale-alea-o-tonga-i-he-vouti-a-e-ofisi-o-e-palasi&catid=227:debates&Itemid=728",
+              "https://thespinoff.co.nz/books/07-03-2026/how-barbara-dreaver-uncovered-a-drug-trafficking-ring-in-tonga",
+              "https://ago.gov.to/cms/judgements/land-court/category/124-la-2016.html?download=1315:huni-fifita-v-fakatoufifita-minister-of-lands-unreported-supreme-court-of-tonga-la-17-15-11-jul-16-president"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_lord_lasike_speaker_2011",
+          "display_name": "Havea Lasike (Lord Lasike)",
+          "identity_status": "new_person_proposal_primary_name_bridge_supported",
+          "observed_names": [
+            "Lord Lasike"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Lasike",
+                "attested_on": "2011-01-14",
+                "from": null,
+                "until": "2012-07-17",
+                "sources": [
+                  "to_la_20110114_oaths",
+                  "to_la_20110404_knesset_visit",
+                  "to_sc_r_v_lasike_cr285_2011",
+                  "to_la_20120717_speaker_revoked"
+                ],
+                "claim_ids": [
+                  "to_lasike_speaker_administers_oaths_20110114",
+                  "to_lasike_speaker_styled_20110404",
+                  "to_lasike_testimony_speaker_cr285",
+                  "to_lasike_speaker_appointment_revoked_20120717"
+                ],
+                "note": "Selected unopposed by the Assembly on 21 December 2010, with the royal appointment then still to come (claims, not a start). Event-dated to 14 January 2011, the first dated record of him acting as Speaker. The end is the King's revocation of his appointment under clause 61(2)(c), stated as effective immediately and conveyed by letter on 17 July 2012.",
+                "uncertainty": "The royal appointment day is unknown, so from stays null. until rests on the release's 'effective immediately' and the letter dated 17 July 2012; the instrument's own date is not printed. The conviction of 9 July 2012 and the loss of his seat are not used as the end. No identity is asserted with 'the Honourable Lasike' who acted as Speaker in 1995."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "lasike-2021"
+          ],
+          "identity_review": [
+            {
+              "finding": "The 7 August 2015 Land Court judgment LA14/2008 names Hon. Havea Lasike on its cover. Paragraph 18 records his testimony that he inherited the title from his father in 2001; paragraph 12 separately refers to his late father. Together with the Assembly obituary identifying the 2005/2008/2010 MP and former Speaker through 2025, this establishes the bounded personal-name/title bridge and supports the 2021 Embassy portrait.",
+              "evidence": [
+                "to_lc_havea_lasike_20150807",
+                "to_la_lasike_tribute_20250603",
+                "lasike-2021"
+              ],
+              "limitation": "Do not add the longer Hikule'o 'oPulotu name from unverified secondary sources, an exact succession date, or a merger with acting Lasike of 1995. The court evidence is used solely for identity."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_lord_lasike_speaker_2011",
+            "name": "Havea Lasike (Lord Lasike)",
+            "sources": [
+              "https://web.archive.org/web/20110518092811id_/http://www.parliament.gov.to:80/the-news/269-prime-minister-and-members-takes-their-oath.html",
+              "https://web.archive.org/web/20110518043655id_/http://www.parliament.gov.to:80/the-news/274-speaker-of-the-israel-knesset-to-visit-tonga-on-the-7-of-april-2011.html",
+              "https://web.archive.org/web/20130411091047id_/http://www.mic.gov.to:80/legislative-assembly/3924-king-revokes-speakers-parliamentary-appointment",
+              "https://ago.gov.to/cms/judgements/supreme-court-criminal/category/69-cr-2012.html?download=820:r-v-lasike-unreported-supreme-court-of-tonga-cr-285-11-9-july-2012-cj",
+              "https://ago.gov.to/cms/phocadownload/Judgement/2015/Court-Land/Fililangi%20Naulu%20v%20Amanaki%20a%20Tonga%20Tupou%20%20Ors%20LA%2014%20of%202008%20Judgment%20%282%29.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_lord_vaea_speaker_2025",
+          "display_name": "'Alipate Tu'ivanuavou Vaea (Lord Vaea)",
+          "identity_status": "new_person_proposal_primary_name_bridge_supported",
+          "observed_names": [
+            "Lord Vaea"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder_claim": "to_speakers_appointment",
+              "source_id": "to_speaker_appointment_2025",
+              "claim": {
+                "id": "to_speakers_appointment",
+                "text": "King Tupou VI appointed Lord Vaea Speaker and Lord Tu'iha'angana Deputy Speaker, with both instruments effective 18 December 2025. The release was issued the following day.",
+                "locator": "Appointment announcement",
+                "period": {
+                  "from": "2025-12-18",
+                  "through": "2025-12-18"
+                }
+              }
+            },
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_speaker",
+              "holder": {
+                "name": "Lord Vaea",
+                "attested_on": "2026-05-19",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_la_news_china_visit_20260519"
+                ],
+                "claim_ids": [
+                  "to_speaker_vaea_led_delegation_20260519"
+                ],
+                "note": "The latest official styling found before the cutoff: the Assembly's press release of 19 May 2026 says the delegation to China was led by the Speaker, Lord Vaea. His royal appointment effective 18 December 2025 is the existing string holder to_speakers_appointment, which stays first and unchanged; the Assembly's election (item of 16 December 2025) and his oath (22 January 2026) are separate claims.",
+                "uncertainty": "An attestation, not a term: no from or until. The Acting Speaker presiding on 18 August 2026 (to_acting_speaker_tuihaangana_20260818) is a claim only and neither names nor ends his Speakership."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "lord-vaea-2020"
+          ],
+          "identity_review": [
+            {
+              "finding": "The retained Arabic edition of Tonga's national UPR report A/HRC/WG.6/15/TON/1 contains an English note 12 (PDF page 29) explicitly equating Hon. Alipate Tuivanuavou Vaea with Lord Vaea of Houma. The 2020 NZ High Commission source caption repeats the full name and title; the 2025 Speaker announcement identifies the later office. This supports the son's personal-name/title bridge.",
+              "evidence": [
+                "to_upr_vaea_identity_2012",
+                "lord-vaea-2020",
+                "to_speaker_appointment_2025"
+              ],
+              "limitation": "The national report is preserved from UPR Info as a rehosted original; direct UN PDF retrieval was empty. No birthday or an additional Baron title is inferred."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_lord_vaea_speaker_2025",
+            "name": "'Alipate Tu'ivanuavou Vaea (Lord Vaea)",
+            "sources": [
+              "https://web.archive.org/web/20260519102917id_/https://parliament.gov.to/en/media-centre/latest-news/tonga-parliamentary-delegation-concludes-official-visit-to-the-peoples-republic-of-china",
+              "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy",
+              "https://upr-info.org/sites/default/files/documents/2013-10/ahrcwg.615ton1a.pdf"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_lord_tuihaangana_deputy_speaker_2025",
+          "display_name": "Havea Tu'iha'angana (Lord Tu'iha'angana)",
+          "identity_status": "new_person_proposal_primary_name_bridge_supported",
+          "observed_names": [
+            "Lord Tu'iha'angana"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_legislative_assembly",
+              "role_id": "to_deputy_speaker",
+              "holder_claim": "to_speakers_appointment",
+              "source_id": "to_speaker_appointment_2025",
+              "claim": {
+                "id": "to_speakers_appointment",
+                "text": "King Tupou VI appointed Lord Vaea Speaker and Lord Tu'iha'angana Deputy Speaker, with both instruments effective 18 December 2025. The release was issued the following day.",
+                "locator": "Appointment announcement",
+                "period": {
+                  "from": "2025-12-18",
+                  "through": "2025-12-18"
+                }
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "tuihaangana-2019"
+          ],
+          "identity_review": [
+            {
+              "finding": "PIANGO's 16 July 2024 release about its own CSFT launch identifies its guest as Deputy Speaker Lord Havea Tu'iha'angana. The Assembly profile updated 14 February 2025 identifies the Deputy Speaker as the Ha'apai noble first elected in 1991; the December 2025 appointment names Lord Tu'iha'angana. These provide the personal-name/title bridge for the bounded recent titleholder and the 2019 Embassy photograph.",
+              "evidence": [
+                "to_piango_tuihaangana_20240716",
+                "to_la_tuihaangana_20250214",
+                "to_speaker_appointment_2025",
+                "tuihaangana-2019"
+              ],
+              "limitation": "The host press release is a primary account reprinted by Scoop. No prior 1990s Speaker term or title succession day is inferred."
+            }
+          ],
+          "missing_records": [],
+          "registry_candidate": {
+            "id": "to_lord_tuihaangana_deputy_speaker_2025",
+            "name": "Havea Tu'iha'angana (Lord Tu'iha'angana)",
+            "sources": [
+              "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy",
+              "https://www.scoop.co.nz/stories/WO2407/S00155/listen-to-the-people-civil-society-forum-of-tonga-csft-tells-government.htm",
+              "https://parliament.gov.to/en/members/nobles-representatives/lord-tuihaangana"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_tesina_fuko",
+          "display_name": "Tesina Fuko",
+          "identity_status": "new_person_proposal_ipu_only_party_observation",
+          "observed_names": [
+            "Tesina Fuko",
+            "Teisina Fuko (1996 Courier spelling)"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_pdp",
+              "role_id": "to_pdp_leader",
+              "holder_claim": "to_pdp_split_fuko",
+              "source_id": "to_ipu_2008",
+              "claim": {
+                "id": "to_pdp_split_fuko",
+                "text": "IPU reports that an April 2005 split from FIHRDM produced the People's Democratic Party under Tesina Fuko's leadership.",
+                "locator": "Election background",
+                "period": {
+                  "from": "2005-04-01",
+                  "through": "2005-04-30"
+                },
+                "uncertainty": "A month-level formation and leadership observation, not an exact appointment or complete term."
+              }
+            }
+          ],
+          "likeness_reference_ids": [
+            "fuko-courier-1996"
+          ],
+          "identity_review": [
+            {
+              "finding": "The reopened IPU 2008 election summary reports the April 2005 PDP formation under Tesina Fuko. The National Library catalogue locates a contemporaneous copy of the party constitution and rules.",
+              "evidence": [
+                "to_ipu_2008",
+                "nlnz_pdp_catalog"
+              ],
+              "limitation": "Only IPU supports the holder observation here. The library catalogue is a lead to a physical primary document, not that document or a party office appointment."
+            },
+            {
+              "finding": "The Commission Courier of November-December 1996 prints a portrait beside its direct interview with People's Representative Teisina Fuko from Ha'apai. Its spelling Teisina is preserved as a source variant of the accepted IPU Tesina Fuko candidate; it does not add a 1996 political-party office.",
+              "evidence": [
+                "eu_courier_160_1996",
+                "fuko-courier-1996",
+                "to_ipu_2008"
+              ],
+              "limitation": "Any treatment for the April 2005 party observation is an explicit artistic age interpretation. The 1996 article states that no political parties existed in Tonga then."
+            }
+          ],
+          "missing_records": [
+            "National Library New Zealand MS-Papers-12389-05: inspect the party constitution/rules and dated officer instruments, including any successor records."
+          ],
+          "registry_candidate": {
+            "id": "to_tesina_fuko",
+            "name": "Tesina Fuko",
+            "sources": [
+              "https://data.ipu.org/election-summary/HTML/2317_08.htm"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_fatai_helu",
+          "display_name": "Fatai Helu",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Fatai Helu"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_dpfi",
+              "role_id": "to_dpfi_president",
+              "holder": {
+                "name": "Fatai Helu",
+                "attested_on": "2022-08-29",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "to_sc_helu_piukala_v_ec_20220829"
+                ],
+                "claim_ids": [
+                  "to_ptoa_president_helu_20220829"
+                ],
+                "note": "Recited in the present tense ('is the President of the party') in the background of the 29 August 2022 leave ruling, CV 55/2022 (TO-DPFI-07).",
+                "uncertainty": "A judicial background recital, probably drawn from the applicants' own filings, not a court finding; it carries the weight of party self-description relayed by the court. No selection date, term, constitution or successor is given. Kept separate from the Party leader role (to_dpfi_leader) because no constitution shows whether they are one office."
+              }
+            }
+          ],
+          "likeness_reference_ids": [],
+          "identity_review": [
+            {
+              "finding": "The reopened court ruling CV55/2022, paragraph 3, calls Fatai Helu President of PTOA and distinguishes executive member Paula Piveni Piukala. Retain Fatai as printed; do not merge with Futa Helu.",
+              "evidence": [
+                "to_sc_helu_piukala_v_ec_20220829"
+              ],
+              "limitation": "Judicial background recital of party self-description; President is not automatically synonymous with leader."
+            }
+          ],
+          "missing_records": [
+            "A public photograph or first-person visual record securely identifying the adult PTOA president Fatai Helu remains missing. The 2022 court record establishes the named party office only; do not substitute Futa Helu, the school student, another namesake or an invented historical face."
+          ],
+          "registry_candidate": {
+            "id": "to_fatai_helu",
+            "name": "Fatai Helu",
+            "sources": [
+              "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        },
+        {
+          "person_id": "to_tevita_lavemaau",
+          "display_name": "Tevita Lavemaau",
+          "identity_status": "new_person_proposal",
+          "observed_names": [
+            "Tevita Lavemaau"
+          ],
+          "observations": [
+            {
+              "organization_or_institution_id": "to_peoples_party",
+              "role_id": "to_peoples_party_society_secretary",
+              "holder": {
+                "name": "Tevita Lavemaau",
+                "attested_on": null,
+                "from": null,
+                "until": null,
+                "attested_period": {
+                  "from": "2022-04-19",
+                  "through": "2022-04-21"
+                },
+                "sources": [
+                  "to_sc_kiu_v_tuionetoa_20220429"
+                ],
+                "claim_ids": [
+                  "to_peoples_party_incorporated_society_2022"
+                ],
+                "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+                "uncertainty": "A society officer observation, not a Cabinet office or party leadership term."
+              }
+            }
+          ],
+          "likeness_reference_ids": [],
+          "identity_review": [
+            {
+              "finding": "The reopened court ruling CV75/2021, paragraphs 33-35, relays the society registration officer testimony naming Tevita Lavemaau Secretary of the People's Party incorporated society.",
+              "evidence": [
+                "to_sc_kiu_v_tuionetoa_20220429"
+              ],
+              "limitation": "Do not merge with witness/journalist Tapinga Lavemaau or with later minister Vika Sivoki Lavemaau."
+            }
+          ],
+          "missing_records": [
+            "The independently retained and identity-bridged 30 July 2020 Statistics Department photograph is documented in party-likeness-review.json; that file and the root own its authored-identity art route. No source-photo reuse license is supplied here."
+          ],
+          "registry_candidate": {
+            "id": "to_tevita_lavemaau",
+            "name": "Tevita Lavemaau",
+            "sources": [
+              "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement"
+            ]
+          },
+          "registry_candidate_status": "root_review_required"
+        }
+      ]
+    }
+  ],
+  "likeness_references": [
+    {
+      "id": "fatafehi-1971",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:HRH_Prince_Tu'ipelehake_(cropped).jpg",
+      "retrieved_at": "2026-10-01T11:49:30.369640+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fatafehi-1971.html",
+        "bytes": 123618,
+        "sha256": "926700664d5e4e945d8337edbce6fa0feacf22bd0384f608e5c112a2ad374ac3"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/HRH_Prince_Tu%27ipelehake_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fatafehi-1971.jpg",
+        "bytes": 93614,
+        "sha256": "0ae976e51b722c3f2e59955b0c19affb291d446609390860f519e3b4bf27d7b5"
+      },
+      "width": 662,
+      "height": 812,
+      "photograph_date": "1971-08-05",
+      "creator_or_credit": "Archives New Zealand, ACHU 19290 MISC30 8/26",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "The source event is 5 August 1971; 31 July 2015 is digitization metadata. Any 1990 age treatment must be declared an artistic interpretation.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "feleti-2008",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Feleti_Sevele_(crop).jpg",
+      "retrieved_at": "2026-10-01T11:49:31.545021+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\feleti-2008.html",
+        "bytes": 99491,
+        "sha256": "0e280ad250906080d618d8ac362acf7d1ed1cbc3e0f4d3fb8a07f589471bbd11"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Feleti_Sevele_%28crop%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\feleti-2008.jpg",
+        "bytes": 67685,
+        "sha256": "2448d5bf054d3af68876590a92a4f4a28ffe0ccabc43763368a7752768dddee2"
+      },
+      "width": 500,
+      "height": 625,
+      "photograph_date": "2008-01-22",
+      "creator_or_credit": "U.S. Navy, Mass Communication Specialist 2nd Class Elisia V. Gonzales",
+      "license": "public domain (US federal work)",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Commons identifies the original Navy source image 54724.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "tuivakano-2011",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Tuivakano_cropped.jpg",
+      "retrieved_at": "2026-10-01T11:49:32.622117+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuivakano-2011.html",
+        "bytes": 118621,
+        "sha256": "832d831d91a84fa1c506eb4243bf9a02e8076a2697b6e79fb8183a2b9fedd2ba"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Tuivakano_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuivakano-2011.jpg",
+        "bytes": 529428,
+        "sha256": "782d0eb778b12087bebbbf39ae96ca83cf9a3bef587ddd7b576d7075316551f4"
+      },
+      "width": 659,
+      "height": 1182,
+      "photograph_date": "2011-06-27",
+      "creator_or_credit": "United States Navy, Lt. Cmdr. Thomas Weiler; East Asia and Pacific Media Hub",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Date according to EXIF, as qualified on the Commons description.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "akilisi-2015",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Akilisi_Pohiva_April_2015.jpg",
+      "retrieved_at": "2026-10-01T11:49:33.946481+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\akilisi-2015.html",
+        "bytes": 125427,
+        "sha256": "99cd3b95d6b1d49350b3b5a267691524fdfc2dd3415719f68ae7a5196ced23f3"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Akilisi_Pohiva_April_2015.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\akilisi-2015.jpg",
+        "bytes": 249687,
+        "sha256": "77a155376b5a12081c3e2e930915bfbd871d8303c0658e8ee6b62e173a8d9871"
+      },
+      "width": 461,
+      "height": 641,
+      "photograph_date": "2015-04",
+      "creator_or_credit": "Department of Foreign Affairs and Trade website, www.dfat.gov.au",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Description says 17 April; EXIF says 2 April. Use month precision.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "tuionetoa-2019",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Tuionetoa_-_Peters_2019.jpg",
+      "retrieved_at": "2026-10-01T11:49:35.138598+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuionetoa-2019.html",
+        "bytes": 81763,
+        "sha256": "ea1973c90c0231144cab38e7184daa1808ac8c1a492396350c90e89f43ba04a3"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Tuionetoa_-_Peters_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuionetoa-2019.jpg",
+        "bytes": 55965,
+        "sha256": "6473e01a3856956ac2ea256a2c1698ed9a339349b64c8d8135e49d4a073aae70"
+      },
+      "width": 475,
+      "height": 480,
+      "photograph_date": "2019-12-05",
+      "creator_or_credit": "New Zealand Ministry of Foreign Affairs and Trade / New Zealand High Commission Nuku'alofa",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Photograph with Winston Peters; the intended subject is Pohiva Tuionetoa.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "sovaleni-2022",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Siaosi_Sovaleni_June_2022.jpg",
+      "retrieved_at": "2026-10-01T11:49:36.410667+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\sovaleni-2022.html",
+        "bytes": 129142,
+        "sha256": "368b4f8a238df6250ce736b7941b6c71cb8b1a6f82928d57af778a44337780b4"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Siaosi_Sovaleni_June_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\sovaleni-2022.jpg",
+        "bytes": 1322870,
+        "sha256": "6c8d017521cf1aa828f19c5c14a5a80d7986b7c8287195b54dedf77098dcc009"
+      },
+      "width": 1084,
+      "height": 1404,
+      "photograph_date": "2022-06-03",
+      "creator_or_credit": "Department of Foreign Affairs and Trade website, www.dfat.gov.au",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Penny Wong visit; intended subject Siaosi Sovaleni.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "eke-nzhc",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Aisake_Eke_NZHC_(cropped).jpg",
+      "retrieved_at": "2026-10-01T11:49:37.880087+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\eke-nzhc.html",
+        "bytes": 99408,
+        "sha256": "3620f36084314af730a40955d4a7bd91a25f2b56ae95d8e0d69721ae8c983b4c"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Aisake_Eke_NZHC_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\eke-nzhc.jpg",
+        "bytes": 55734,
+        "sha256": "f2103dd1af2c874ece22d99df5afce939f2970bc1627aa809dae1e67c0d1497f"
+      },
+      "width": 375,
+      "height": 500,
+      "photograph_date": "2025-02-10",
+      "creator_or_credit": "New Zealand High Commission Nuku'alofa",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Caption describes PM Aisake Eke arriving at a High Commission function; source is its official Facebook photograph.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "fakafanua-2013",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Fatafehi_Fakafanua.jpg",
+      "retrieved_at": "2026-10-01T11:49:39.006761+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fakafanua-2013.html",
+        "bytes": 116167,
+        "sha256": "e7375b80f7b0dc66dabadcd99cff894adf1e93634375b3e5bad39c67c99ee88e"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Fatafehi_Fakafanua.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fakafanua-2013.jpg",
+        "bytes": 371853,
+        "sha256": "4be13fe50b833ba4c2346e28f2e0ebbf0aeb0da53b4fe1edb6671d8313887b01"
+      },
+      "width": 864,
+      "height": 1116,
+      "photograph_date": "2013-06-15",
+      "creator_or_credit": "U.S. Navy, Mass Communication Specialist 2nd Class Carlos M. Vazquez II",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Caption identifies Speaker Fatafehi Fakafanua departing USS Pearl Harbor. Preserve the stated Commons license rather than infer a different grant.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "fakafanua-2026",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Fatafehi_Fakaf%C4%81nua_January_2026.jpg",
+      "retrieved_at": "2026-10-01T11:49:40.342658+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fakafanua-2026.html",
+        "bytes": 110844,
+        "sha256": "14c168a1be898cdf1808caaa2927e544ce06f3c3de5aebae7dc005c30fca77d6"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Fatafehi_Fakaf%C4%81nua_January_2026.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fakafanua-2026.jpg",
+        "bytes": 1806340,
+        "sha256": "b1ee419176939b3a906ac7e30d4af23101e705af55b82e43025bd7d381ed2df3"
+      },
+      "width": 1560,
+      "height": 2047,
+      "photograph_date": "2026-01-27",
+      "creator_or_credit": "Daniel Walding / Department of Foreign Affairs and Trade",
+      "license": "conflicting rights metadata",
+      "license_url": null,
+      "status": "hold_rights_conflict",
+      "limitation": "Commons says CC BY 4.0 and the EXIF copyright field names Creative Commons, but EXIF usage terms say All Rights Reserved/contact DFAT. Prefer the 2013 source until resolved.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "vaea-ca1960-held",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:ST%CA%BB_Vaea.jpg",
+      "retrieved_at": "2026-10-01T11:49:41.912858+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\vaea-ca1960-held.html",
+        "bytes": 106553,
+        "sha256": "382ad23d7ed9306c188d35005a6abc804481757f0c4a92952808eaff80c9ebe5"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/ST%CA%BB_Vaea.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\vaea-ca1960-held.jpg",
+        "bytes": 265914,
+        "sha256": "cdd9447e72615dd8c56fc024b9040a9bdeeeb723c028fcbdffc73a1d31d46328"
+      },
+      "width": 1779,
+      "height": 2393,
+      "photograph_date": "circa 1960",
+      "creator_or_credit": "Photographer unknown; Palace Office source; uploaded by Tau'olunga",
+      "license": "unverified CC BY-SA 2.5 claim",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "status": "hold_provenance_and_date",
+      "limitation": "Original upload comment says approximately 1960. The displayed 18 November 2010 date is an upload date. Uploader authority for the Palace Office photograph is not established.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "sika-2019",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Semisi_Sika_May_2019.jpg",
+      "retrieved_at": "2026-10-01T12:03:39.315992+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\sika-2019.html",
+        "bytes": 114908,
+        "sha256": "02f6c181a8b878acf4b0d26e1bfb63429e7f0ef6652c7018f46eeff742025c0f"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Semisi_Sika_May_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\sika-2019.jpg",
+        "bytes": 464732,
+        "sha256": "7311b748959bd01e163a12052bac5ff703ccc218227c7b0d2bb43a033e634ada"
+      },
+      "width": 832,
+      "height": 988,
+      "photograph_date": "2019-05-02",
+      "creator_or_credit": "US Embassy Suva / U.S. Navy",
+      "license": "public domain (US federal work)",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Caption explicitly identifies the Deputy Prime Minister Semisi Sika at the Navy visit.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "vaipulu-2023",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Samiu_Vaipulu_2023.jpg",
+      "retrieved_at": "2026-10-01T12:03:40.853859+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\vaipulu-2023.html",
+        "bytes": 123338,
+        "sha256": "038a1a292c897f92c3f54c4a99b8d6ffd417728703be06484c632c7de377f8ac"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Samiu_Vaipulu_2023.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\vaipulu-2023.jpg",
+        "bytes": 765619,
+        "sha256": "8e3b34628770054a12492f87c4d095758b766ae065ab2ddab60c10785d11c966"
+      },
+      "width": 778,
+      "height": 1024,
+      "photograph_date": "2023-05-10",
+      "creator_or_credit": "US Embassy Suva",
+      "license": "public domain (US federal work)",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Caption dates the US Embassy opening to 10 May 2023. EXIF gives 2019 and appears stale; use the dated event rather than EXIF. Commons notes Flickr no longer offers the prior license and relies on US government authorship.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "latu-2013",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Viliami_Uasike_Latu_(cropped).jpg",
+      "retrieved_at": "2026-10-01T12:03:42.430717+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\latu-2013.html",
+        "bytes": 118557,
+        "sha256": "b12c30ed0a5a9dadd4af542436c4ef7b3a33e050f95e9f3178863f5f22af5afc"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Viliami_Uasike_Latu_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\latu-2013.jpg",
+        "bytes": 720954,
+        "sha256": "cc1aa3a57333652b74940895af833b6583e44e5caee53ef8a1546b21b0519f90"
+      },
+      "width": 1240,
+      "height": 978,
+      "photograph_date": "2013-12",
+      "creator_or_credit": "World Trade Organization",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Caption says 3 December while EXIF says 4 December 2013; retain month precision. A 2026 age treatment is an artistic interpretation.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "tuihaangana-2019",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Lord_Tu%E2%80%98iha%E2%80%98angana_(cropped).jpg",
+      "retrieved_at": "2026-10-01T12:03:43.737951+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuihaangana-2019.html",
+        "bytes": 87702,
+        "sha256": "25c0561714974c61b05a4828a254fe59a75090bb2c3ec94bf164a7a53bd898da"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Lord_Tu%E2%80%98iha%E2%80%98angana_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuihaangana-2019.jpg",
+        "bytes": 11747,
+        "sha256": "9026aaae4a078c091eca68acf1b16b6725b9736b93bf377fc9381b3a1587c285"
+      },
+      "width": 220,
+      "height": 293,
+      "photograph_date": "2019-09-04",
+      "creator_or_credit": "Embassy of Japan in Tonga",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Embassy caption identifies Lord Tuihaangana; PIANGO 2024 and Assembly 2025 sources establish the recent personal-name/title bridge. Government of Japan Standard Terms of Use 2.0, compatible with CC BY 4.0. Small original, 220 by 293.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "lasike-2021",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Lord_Lasike_2021_(cropped).jpg",
+      "retrieved_at": "2026-10-01T12:03:44.663429+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\lasike-2021.html",
+        "bytes": 101734,
+        "sha256": "cd304873349cda847bc569ab020a04e14dbc2437842702d44b653b776a172fb1"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Lord_Lasike_2021_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\lasike-2021.jpg",
+        "bytes": 27692,
+        "sha256": "ca0ebabf9f8262edf83385cdf4e79bdcf945f688e89dd339c10611d2a5ab7171"
+      },
+      "width": 232,
+      "height": 278,
+      "photograph_date": "2021-09-08",
+      "creator_or_credit": "Embassy of Japan in Tonga",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Embassy caption identifies Lord Lasike; Land Court2015 personal-name/inherited-title testimony and Assembly2025 former-Speaker obituary provide the bounded bridge. Government of Japan Standard Terms of Use2.0, compatible with CC BY4.0. Small original,232 by278.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "maafu",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Lord_Ma%E2%80%99afu.jpg",
+      "retrieved_at": "2026-10-01T12:03:45.826250+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\maafu.html",
+        "bytes": 89715,
+        "sha256": "3f31c871912b0e77e78e31a76944825c8520e29393987a47c92d7c71c03f0ed1"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Lord_Ma%E2%80%99afu.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\maafu.jpg",
+        "bytes": 100551,
+        "sha256": "a9cc2ef5021a5d6f5b1133278cbd87a4ba31c55f3a383c6e535b226e797677f3"
+      },
+      "width": 366,
+      "height": 423,
+      "photograph_date": "2016-09-21",
+      "creator_or_credit": "Australian Embassy in Tonga / Department of Foreign Affairs and Trade website, www.dfat.gov.au",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "The named 21 September 2016 DFAT minister photograph matches the bounded incumbent established by official 2011 career biographies and PMO2021 death statement. CC BY 4.0 remains the source grant. Full legal name is unresolved separately; no hereditary succession date or other titleholder merger is inferred.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "lord-vaea-2020",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Lord_Vaea_2020.jpg",
+      "retrieved_at": "2026-10-01T12:03:47.043328+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\lord-vaea-2020.html",
+        "bytes": 91705,
+        "sha256": "607bbd7bebedbd08406ec0c19b33b2034ddfdaf7ea9ffa62b0e4a78da19d478c"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Lord_Vaea_2020.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\lord-vaea-2020.jpg",
+        "bytes": 101225,
+        "sha256": "c5b2447e6771deb415533b2ba4e3c8f279a58c59bcb78dc29142fcebd9f8edc8"
+      },
+      "width": 450,
+      "height": 423,
+      "photograph_date": "2020-01-19",
+      "creator_or_credit": "New Zealand Ministry of Foreign Affairs and Trade / New Zealand High Commission Nuku'alofa",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Caption explicitly identifies Alipate Tuivanuavou Vaea, Lord Vaea. Preserve distinction from his father Baron Vaea.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "tevita-tupou-2015",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Lord_Tevita_Tupou_and_Lady_Tevita_Tupou_(Cropped_1).jpg",
+      "retrieved_at": "2026-10-01T12:06:58.100415+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tevita-tupou-2015.html",
+        "bytes": 94965,
+        "sha256": "1b7cc221466680728ac0130afd7cadbf5b83c57d3cde30099c61716f8126d41c"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Lord_Tevita_Tupou_and_Lady_Tevita_Tupou_%28Cropped_1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tevita-tupou-2015.jpg",
+        "bytes": 224038,
+        "sha256": "d41771dd14d929dac88f2ab550ba576503d728e1b9eb4f4fe6a63f16b2594689"
+      },
+      "width": 854,
+      "height": 1314,
+      "photograph_date": "2015-05-28",
+      "creator_or_credit": "TongaTui",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Own photograph after the State Opening of Parliament, cropped by the source contributor. 2001 appearance would be an explicit artistic age interpretation.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "tuilakepa-2015",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Lord_Tu%E2%80%99ilakepa_and_Lord_Nuku_(Cropped_1).jpg",
+      "retrieved_at": "2026-10-01T12:06:59.361062+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuilakepa-2015.html",
+        "bytes": 92789,
+        "sha256": "2c1c2354d99465961d79d4630e9deeb5582d4b99ad181c664709bdb115093070"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Lord_Tu%E2%80%99ilakepa_and_Lord_Nuku_%28Cropped_1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\tuilakepa-2015.jpg",
+        "bytes": 113878,
+        "sha256": "3ef1e62f8cb6fdc937e2747f026b4886b9896825903587b3d439a205b2da88a0"
+      },
+      "width": 523,
+      "height": 882,
+      "photograph_date": "2015-07-24",
+      "creator_or_credit": "TongaTui",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Own-work photographer caption identifies Lord Tu'ilakepa. The retained first-person Dreaver account and2016 Land Court judgment provide the personal-name/title bridge; no title-succession date inferred.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "fusimalohi-2023",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Taniela_Fusimalohi_(cropped).jpg",
+      "retrieved_at": "2026-10-01T12:07:00.669171+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fusimalohi-2023.html",
+        "bytes": 89465,
+        "sha256": "50f30e7f7ea90934574683346745e0a05dd01eb3325d456174b8de454a91c073"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Taniela_Fusimalohi_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\fusimalohi-2023.jpg",
+        "bytes": 17987,
+        "sha256": "a22e32c79b3e4a739c8b84e9cff264c1bb7dfe1430cf114eaf097518daa622ab"
+      },
+      "width": 250,
+      "height": 300,
+      "photograph_date": "2023-08-25",
+      "creator_or_credit": "Embassy of Japan in Tonga",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Government of Japan Standard Terms of Use 2.0, compatible with CC BY 4.0. Caption identifies the Eua representative Taniela Fusimalohi. Small original, 250 by 300.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "vaea-courier-1996",
+      "source_page_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+      "retrieved_at": "2026-10-01T12:19:19.258652+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+        "bytes": 40503954,
+        "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/vaea-courier-1996.png",
+        "bytes": 3147959,
+        "sha256": "4f3ec96a325cc0b35530990154d112fd72fba4b30d56d4a22ac68732a6101fa7",
+        "url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+        "asset_kind": "full_page_render_from_original_pdf"
+      },
+      "width": 1984,
+      "height": 2807,
+      "photograph_date": "1996",
+      "date_precision": "publication_year; Vaea interview explicitly July 1996, exact photo date unstated",
+      "creator_or_credit": "The Courier / Commission of the European Communities",
+      "license": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+      "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+      "rights_evidence": {
+        "publication_notice_page": 1,
+        "publication_notice_pdf_page": 3,
+        "photo_credit": "The Courier",
+        "notice": "Reproduction authorised subject to indication of origin.",
+        "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+      },
+      "status": "usable_pending_visual_review",
+      "limitation": "PDF page 32, printed page 30. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+      "derivation": {
+        "operation": "read-only PDF page render",
+        "tool": "pdftoppm",
+        "dpi": 240,
+        "one_based_pdf_page": 32,
+        "source_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+          "bytes": 40503954,
+          "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+        }
+      },
+      "visual_inspection_by_this_reviewer": true
+    },
+    {
+      "id": "fuko-courier-1996",
+      "source_page_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+      "retrieved_at": "2026-10-01T12:19:19.258652+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+        "bytes": 40503954,
+        "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fuko-courier-1996.png",
+        "bytes": 3573222,
+        "sha256": "5038b585887dde2c33bc4cd6dfecdc48ce746c52e06427fafdb6591d70ed400e",
+        "url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+        "asset_kind": "full_page_render_from_original_pdf"
+      },
+      "width": 1984,
+      "height": 2807,
+      "photograph_date": "1996",
+      "date_precision": "publication_year; Vaea interview explicitly July 1996, exact photo date unstated",
+      "creator_or_credit": "The Courier / Commission of the European Communities",
+      "license": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+      "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+      "rights_evidence": {
+        "publication_notice_page": 1,
+        "publication_notice_pdf_page": 3,
+        "photo_credit": "The Courier",
+        "notice": "Reproduction authorised subject to indication of origin.",
+        "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+      },
+      "status": "usable_pending_visual_review",
+      "limitation": "PDF page 35, printed page 33. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+      "derivation": {
+        "operation": "read-only PDF page render",
+        "tool": "pdftoppm",
+        "dpi": 240,
+        "one_based_pdf_page": 35,
+        "source_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+          "bytes": 40503954,
+          "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+        }
+      },
+      "visual_inspection_by_this_reviewer": true
+    },
+    {
+      "id": "faotusia-2020",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+      "retrieved_at": "2026-10-01T12:25:18.336714+00:00",
+      "metadata_original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\faotusia-2020.html",
+        "bytes": 129621,
+        "sha256": "d743516628045cd18f8250c781bcdcaca28d07eaddf4a6efc7599ed0b64707ba"
+      },
+      "image_original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Sione_Vuna_Fa%27otusia%2C_February_2020_%28GPO035%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+        "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\faotusia-2020.jpg",
+        "bytes": 80612,
+        "sha256": "45f7862032eb74d06efa6fc7ba4fc7325a45cb189cbc078d7d7895c4f2b4d069"
+      },
+      "width": 418,
+      "height": 424,
+      "photograph_date": "2020-02-20",
+      "creator_or_credit": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "status": "usable_pending_visual_review",
+      "limitation": "Source contributor crop from the Nadi summit group photograph. Original group caption positions Deputy Prime Minister of Tonga Sione Vuna Faotusia second from the right. No new appointment date inferred.",
+      "visual_inspection_by_this_reviewer": false
+    },
+    {
+      "id": "cocker-nrbt-2014",
+      "source_page_url": "https://www.reservebank.to/data/docs/publications/ar/annual_report_2014_eng.pdf",
+      "retrieved_at": "2026-10-01T12:18:18.812529+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_nrbt_ar_2014.body",
+        "bytes": 1425398,
+        "sha256": "63c1179a6eb1f4cbdffc2a3653a0af703e7fa9fd6fbcdb68261eee34f8cde1e7"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/cocker-nrbt-2014-page9.png",
+        "bytes": 363802,
+        "sha256": "554009406f5e72d7827de6281f15c0111a5b7c9da7695da27d8d1f9991692e8d",
+        "asset_kind": "read_only_pdf_page_render"
+      },
+      "width": 1132,
+      "height": 1600,
+      "publication_date": "2014",
+      "photograph_date": null,
+      "date_precision": "publication or capture context only; exact photograph date unstated",
+      "creator_or_credit": "National Reserve Bank of Tonga; individual photographer uncredited",
+      "license": "Copyrighted or no open reuse grant identified; identity research only",
+      "license_url": null,
+      "status": "usable_for_identity_research_pending_visual_review",
+      "permitted_use": "authored_identity_research_only",
+      "source_image_may_ship": false,
+      "source_image_may_be_generation_input": false,
+      "locator": "PDF page 9, printed page 6; bottom-left portrait labelled Mr James Cecil Cocker",
+      "limitation": "The report labels the portrait Director (Nov 2013–May 2014). This is publication context, not a precise photograph or death date. Older appearance may be interpreted for his earlier deputy-PM observations. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+      "visual_inspection_by_this_reviewer": true,
+      "derivation": {
+        "operation": "read-only PDF page render",
+        "tool": "pdftoppm",
+        "one_based_pdf_page": 9,
+        "source_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_nrbt_ar_2014.body",
+          "bytes": 1425398,
+          "sha256": "63c1179a6eb1f4cbdffc2a3653a0af703e7fa9fd6fbcdb68261eee34f8cde1e7"
+        }
+      }
+    },
+    {
+      "id": "tangi-pgssc-2019",
+      "source_page_url": "https://www.pgssc.org/_files/ugd/d9a674_e7604efa800f4093a6f77ae3cb5d1baa.pdf",
+      "retrieved_at": "2026-10-01T12:37:53.001976+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_pgssc_tangi_bio_2019.body",
+        "bytes": 1188788,
+        "sha256": "481af6a8242b9c31813b89392be7b3ebb36afb0bcb2b562f34644dec7c0bf168"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/tangi-pgssc-2019-page21.png",
+        "bytes": 537548,
+        "sha256": "a016ab22bda0b81a57f92fe071547cdb52f0672a037836da46a5461e1f8c959b",
+        "asset_kind": "read_only_pdf_page_render"
+      },
+      "width": 1237,
+      "height": 1600,
+      "publication_date": "2019",
+      "photograph_date": null,
+      "date_precision": "publication or capture context only; exact photograph date unstated",
+      "creator_or_credit": "Program in Global Surgery and Social Change; individual photographer uncredited",
+      "license": "Copyrighted or no open reuse grant identified; identity research only",
+      "license_url": null,
+      "status": "usable_for_identity_research_pending_visual_review",
+      "permitted_use": "authored_identity_research_only",
+      "source_image_may_ship": false,
+      "source_image_may_be_generation_input": false,
+      "locator": "Dubai Participants 2019, PDF page 21, Lord Viliami Tangi biography",
+      "limitation": "Biography explicitly connects chief surgeon Lord Viliami Tangi to his former deputy premiership and health ministry. It supplies no exact photograph date; earlier-period age interpretation must be recorded. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+      "visual_inspection_by_this_reviewer": true,
+      "derivation": {
+        "operation": "read-only PDF page render",
+        "tool": "pdftoppm",
+        "one_based_pdf_page": 21,
+        "source_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_pgssc_tangi_bio_2019.body",
+          "bytes": 1188788,
+          "sha256": "481af6a8242b9c31813b89392be7b3ebb36afb0bcb2b562f34644dec7c0bf168"
+        }
+      }
+    },
+    {
+      "id": "langi-sopac-2010",
+      "source_page_url": "https://gsd.spc.int/sopac/docs/RIF/PS39_Final.pdf",
+      "retrieved_at": "2026-10-01T12:48:15.412629+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/sopac_proceedings_2010.body",
+        "bytes": 2639028,
+        "sha256": "3fe46e59992268fcd46ffb9854d379d63c9a1bd5501102b5b15cb7bf54bfbfe5"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/langi-sopac-page7.png",
+        "bytes": 1133466,
+        "sha256": "b8f0b0ef47b708947d7a98e047b00fd141372552612f99b6a1b76db4459536fe",
+        "asset_kind": "read_only_pdf_page_render"
+      },
+      "width": 1273,
+      "height": 1800,
+      "publication_date": "2010-12",
+      "photograph_date": null,
+      "date_precision": "publication or capture context only; exact photograph date unstated",
+      "creator_or_credit": "Pacific Islands Applied Geoscience Commission (SOPAC); individual photographer uncredited",
+      "license": "Copyrighted or no open reuse grant identified; identity research only",
+      "license_url": null,
+      "status": "usable_for_identity_research_pending_visual_review",
+      "permitted_use": "authored_identity_research_only",
+      "source_image_may_ship": false,
+      "source_image_may_be_generation_input": false,
+      "locator": "PDF page 7, printed page 5, lower-right Langi Kavaliku memorial portrait",
+      "limitation": "Publication identifies Dr Senipisi Langi Kavaliku as former Deputy Prime Minister and SOPAC advocacy-team leader until his December 2008 death. Photograph predates that death; no exact photo year is supplied. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+      "visual_inspection_by_this_reviewer": true,
+      "derivation": {
+        "operation": "read-only PDF page render",
+        "tool": "pdftoppm",
+        "one_based_pdf_page": 7,
+        "source_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/sopac_proceedings_2010.body",
+          "bytes": 2639028,
+          "sha256": "3fe46e59992268fcd46ffb9854d379d63c9a1bd5501102b5b15cb7bf54bfbfe5"
+        }
+      }
+    },
+    {
+      "id": "fusitua-2014-obituary",
+      "source_page_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+      "retrieved_at": "2026-10-01T12:01:54.754007+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_la_obituary_fusitua_20140505.body",
+        "bytes": 44098,
+        "sha256": "fcd9294121ef73e339461af46293199af0d5fb530af5ada128b749161c133392"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fusitua-2014-archive-photo.jpg",
+        "bytes": 4441,
+        "sha256": "0234eb264a30b081cac6a73e16e8a908f64d8e7badd1b250a6516f0d50f1f240",
+        "asset_kind": "retained_source_image",
+        "url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/images/news/formerfusitua.jpg",
+        "final_url": "https://web.archive.org/web/20211216174028id_/https://www.parliament.gov.to/images/news/formerfusitua.jpg"
+      },
+      "width": 136,
+      "height": 200,
+      "publication_date": "2014-05-05",
+      "photograph_date": null,
+      "date_precision": "publication or capture context only; exact photograph date unstated",
+      "creator_or_credit": "Legislative Assembly of Tonga; individual photographer uncredited",
+      "license": "Copyrighted or no open reuse grant identified; identity research only",
+      "license_url": null,
+      "status": "usable_for_identity_research_pending_visual_review",
+      "permitted_use": "authored_identity_research_only",
+      "source_image_may_ship": false,
+      "source_image_may_be_generation_input": false,
+      "locator": "Official obituary, linked images/news/formerfusitua.jpg",
+      "limitation": "The older former Speaker is expressly identified in the accompanying obituary, separately from his son. Image was preserved by Archive in December 2021; do not date the photograph to that capture. Small 136 by 200 original. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+      "visual_inspection_by_this_reviewer": true
+    },
+    {
+      "id": "veikune-2005-speaker",
+      "source_page_url": "https://web.archive.org/web/20070625041819id_/http://parliament.gov.to:80/speaker1.htm",
+      "retrieved_at": "2026-10-01T12:02:27.150915+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_la_speaker_page_2005.body",
+        "bytes": 4845,
+        "sha256": "99afe647480b9e51fa6cce9006b2c05b86459f8987d7859b822ac2e5d77beb5f"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/veikune-2005-archive-photo.jpg",
+        "bytes": 9439,
+        "sha256": "f811215bb05b7842001825a3082f5d997c1e7db71670a2a3cbb7967ecba8ea86",
+        "asset_kind": "retained_source_image",
+        "url": "https://web.archive.org/web/20070625041819id_/http://parliament.gov.to:80/serv011.jpg",
+        "final_url": "https://web.archive.org/web/20070730082059id_/http://parliament.gov.to/serv011.jpg"
+      },
+      "width": 256,
+      "height": 279,
+      "publication_date": "2005",
+      "photograph_date": null,
+      "date_precision": "publication or capture context only; exact photograph date unstated",
+      "creator_or_credit": "Legislative Assembly of Tonga; individual photographer uncredited",
+      "license": "Copyrighted or no open reuse grant identified; identity research only",
+      "license_url": null,
+      "status": "usable_for_identity_research_pending_visual_review",
+      "permitted_use": "authored_identity_research_only",
+      "source_image_may_ship": false,
+      "source_image_may_be_generation_input": false,
+      "locator": "Official 2005 Speaker profile, linked serv011.jpg",
+      "limitation": "The page describes the March 2005 appointment and the same man’s earlier Speakership; its portrait is the supported former holder. Image capture is 30 July 2007, not the photograph date. Small 256 by 279 original. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+      "visual_inspection_by_this_reviewer": true
+    },
+    {
+      "id": "poasi-tei-2021-ffa",
+      "source_page_url": "https://tunapacific.ffa.int/2021/06/14/tonga-launches-marine-atlas-and-meets-protection-promise/",
+      "retrieved_at": "2026-10-01T12:48:11.430914+00:00",
+      "metadata_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/to_ffa_poasi_tei_20210614.body",
+        "bytes": 348783,
+        "sha256": "e5f956594ffcaabc2b7ed0074a3588264633a31abb07caf4bb3cb24d6a2b5c09"
+      },
+      "image_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/poasi-tei-20210608.jpg",
+        "bytes": 71603,
+        "sha256": "04e4e843d661f759fc9a31748ba13cb5d8807f2ab07e577e9c0f2aee20dec10f",
+        "asset_kind": "retained_source_image",
+        "url": "https://i0.wp.com/www.tunapacific.org/wp-content/uploads/2021/06/Tonga-Poasi-Tei-minister-environent-world-oceans-day-photo-Iliesa-Tora-ed.jpg?resize=900%2C600&ssl=1",
+        "final_url": "https://i0.wp.com/www.tunapacific.org/wp-content/uploads/2021/06/Tonga-Poasi-Tei-minister-environent-world-oceans-day-photo-Iliesa-Tora-ed.jpg?resize=900%2C600&ssl=1"
+      },
+      "width": 900,
+      "height": 600,
+      "publication_date": "2021-06-14",
+      "photograph_date": "2021-06-08",
+      "date_precision": "source event day",
+      "creator_or_credit": "Iliesa Tora / TunaPacific, Pacific Islands Forum Fisheries Agency",
+      "license": "Copyrighted or no open reuse grant identified; identity research only",
+      "license_url": null,
+      "status": "usable_for_identity_research_pending_visual_review",
+      "permitted_use": "authored_identity_research_only",
+      "source_image_may_ship": false,
+      "source_image_may_be_generation_input": false,
+      "locator": "World Oceans Day article, individual lectern photograph captioned Minister Poasi Tei",
+      "limitation": "Caption identifies the minister speaking at Davina House, Nuku’alofa on World Oceans Day, June 8. Credit names Iliesa Tora. FFA footer states all rights reserved; this is a visual research reference only. Publicly available copyrighted photograph retained outside Git for identity research only. No source photograph is shipped, copied into game assets, or used as an image-generation input. Root may create an original authored-identity cartoon from observed facts using only the approved style anchor. No open license is claimed; final visual review remains root-owned.",
+      "visual_inspection_by_this_reviewer": true
+    }
+  ],
+  "party_coverage_gaps": [
+    {
+      "organization": "FIHRDM / HRDM / HRDMT",
+      "status": "leader_roster_unresolved",
+      "people_leads": [
+        "'Akilisi Pohiva",
+        "'Uliti Uata",
+        "Rev. Simote Vea"
+      ],
+      "missing_record": "Dated original constitution, party office list or election minutes for each separately identified organization and evidence of any renamed/continuing legal entity. Names are research leads only; no appointments are supplied."
+    },
+    {
+      "organization": "Democratic Party of the Friendly Islands / PTOA",
+      "status": "post_2014_leader_sequence_unresolved",
+      "people_leads": [
+        "Semisi Sika",
+        "Siaosi Pohiva",
+        "Teisa Pohiva-Cokanasiga"
+      ],
+      "missing_record": "Dated party selection/appointment records and constitution specifying President versus leader. MP election, family relationship and news descriptions do not independently supply the party office."
+    },
+    {
+      "organization": "People's Democratic Party",
+      "status": "ipu_month_observation_only",
+      "people_leads": [
+        "Tesina Fuko"
+      ],
+      "lead_url": "https://natlib.govt.nz/records/40929112",
+      "missing_record": "National Library NZ MS-Papers-12389-05 includes a copy of the PDP constitution and rules in the Ian Christopher Campbell papers. The underlying document was not digitized in the viewed catalogue. Need its text plus dated officer records and successors."
+    },
+    {
+      "organization": "Sustainable Nation-Building Party / Paati Langafonua Tu'uloa",
+      "status": "small_party_missing_from_accepted_holder_roles",
+      "people_leads": [
+        "Sione Fonua"
+      ],
+      "lead_url": "https://www.tongareview.com/Article.aspx?ID=3988",
+      "missing_record": "Original party launch/constitution and dated leadership records. A 2010 IFES election summary and news accounts are leads; a party press-release URL timed out. Do not confuse this lawyer with rugby players named Sione Fonua."
+    },
+    {
+      "organization": "Tonga Democratic Labour Party",
+      "status": "small_party_missing_from_accepted_holder_roles",
+      "people_leads": [
+        "Mele 'Amanaki"
+      ],
+      "missing_record": "Original party formation/leadership instrument and a dated officer list; distinguish party leadership from union leadership or an election candidacy. The Mele Teusivi name variant is not accepted here."
+    },
+    {
+      "organization": "Tonga People's Party / Paati 'a e Kakai",
+      "status": "offices_not_reconciled",
+      "people_leads": [
+        "Pohiva Tu'i'onetoa",
+        "Tevita Lavemaau"
+      ],
+      "missing_record": "Incorporated-society constitution, registration/annual returns and successor appointments; establish whether society President and political leader are the same office."
+    }
+  ],
+  "incidental_and_acting_names": [
+    {
+      "names": [
+        "Paula Piveni Piukala"
+      ],
+      "source_ids": [
+        "to_sc_helu_piukala_v_ec_20220829"
+      ],
+      "classification": "named_party_executive_not_required_leader",
+      "note": "The judicial background calls him an executive member and candidate. This does not establish party leadership."
+    },
+    {
+      "names": [
+        "Tapinga Lavemaau",
+        "Kelekolio Kiu"
+      ],
+      "source_ids": [
+        "to_sc_kiu_v_tuionetoa_20220429"
+      ],
+      "classification": "court_witness_or_litigant_not_required_office_cast"
+    },
+    {
+      "names": [
+        "Clive Edwards",
+        "Dr. Paunga"
+      ],
+      "classification": "acting_deputy_pm_claims_only",
+      "note": "Accepted role notes mention temporary acting service, not substantive holder observations. Exact acting claims should be reviewed if acting offices are included in gameplay."
+    },
+    {
+      "names": [
+        "Lord Tangi",
+        "Lord Tupou",
+        "Tu'iha'ateiho",
+        "Malupo",
+        "Lasike (1995)"
+      ],
+      "classification": "interim_or_acting_speaker_claims_only",
+      "note": "Keep separate from substantive Speaker holders. Do not merge titleholders across eras without evidence. The full accepted role claim_ids remain the discovery index."
+    },
+    {
+      "names": [
+        "HRH Crown Prince Tupouto'a 'Ulukalala",
+        "Lataifaingata'a Tangimana",
+        "Mo'ale 'Otunuku",
+        "Sevenitini Toumo'ua",
+        "Viliami Sisifa",
+        "Fane Fotu Fituafe"
+      ],
+      "source_ids": [
+        "to_cabinet_2026"
+      ],
+      "classification": "cabinet_list_context_not_named_holder_of_a_target_role",
+      "note": "The accepted Ministers role is collective with no holder rows. These are not excluded from the wider world cast; this bounded PM/party/Speaker/deputy inventory does not automatically create minister character requirements."
+    }
+  ],
+  "source_ledger": "docs/campaign-certification/C06/production/tonga/civilian-source-ledger.json"
+}

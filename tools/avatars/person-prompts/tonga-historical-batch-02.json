@@ -1,0 +1,723 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-02",
+  "nation": "Tonga",
+  "reviewed_at": "2026-10-01",
+  "registration_operator": "Codex",
+  "review_owner": "Codex root",
+  "human_approval_claimed": false,
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-04-jobs-batch02.json",
+  "jobs_sha256": "c4af55f47f8fd52e41394c7f6ce8dd7dead3ae3f80350d64c47d7fc09a8623f8",
+  "manifest_before_sha256": "61f4b60ca270b2d72beb4735f370a0692a57743ac48a578c967015891ae60f48",
+  "registry_sha256": "03da29a9f6eb889ce5755f6c3073d9c401fbf35e1057d577798955a7c52e6c6d",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/tonga/royal-identity-review.json": "dbf683eadb9bdf0d57447d773fda7befd54f7feecc39a1e5bb9dbe61c8f18e1c",
+    "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json": "057cab6c48117aaac1d7c7a00758d6693d6ca186fb7f453bab33e2d1e91bd20a"
+  },
+  "source_reference_records": {
+    "fuko-courier-1996": {
+      "record": {
+        "person_id": "to_tesina_fuko",
+        "kind": "observed_portrait",
+        "reference_id": "fuko-courier-1996",
+        "asset": "spheres-web/ui/person-portraits/references/tonga-fuko-courier-1996-reference-v1.png",
+        "sha256": "5038b585887dde2c33bc4cd6dfecdc48ce746c52e06427fafdb6591d70ed400e",
+        "bytes": 3573222,
+        "width": 1984,
+        "height": 2807,
+        "mode": "RGB",
+        "source_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+        "license": "European Commission reuse",
+        "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+        "creator": "The Courier / Commission of the European Communities",
+        "credit": "The Courier / Commission of the European Communities; 1996; Reproduction authorised subject to indication of origin; Commission document reuse policy. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "The Courier / Commission of the European Communities publication expressly authorises reproduction with indication of origin. Commission Decision 2011/833/EU is retained as the reuse-policy basis. No third-party photograph credit is printed for this image. Source, adaptation and age interpretation are acknowledged; no endorsement implied. PDF page 35, printed page 33. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+        "source_license_statement": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+        "depiction_date": "1996",
+        "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "source_metadata_sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08",
+        "publisher": "European Commission",
+        "reuse_notice": "Reproduction authorised subject to indication of origin.",
+        "third_party_material": false,
+        "rights_evidence": {
+          "publication_notice_page": 1,
+          "publication_notice_pdf_page": 3,
+          "photo_credit": "The Courier",
+          "notice": "Reproduction authorised subject to indication of origin.",
+          "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+        },
+        "derivation": {
+          "operation": "read-only PDF page render",
+          "tool": "pdftoppm",
+          "dpi": 240,
+          "one_based_pdf_page": 35,
+          "source_original": {
+            "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+            "bytes": 40503954,
+            "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+          }
+        }
+      },
+      "original_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fuko-courier-1996.png",
+      "retained_source_record": {
+        "id": "fuko-courier-1996",
+        "source_page_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+        "retrieved_at": "2026-10-01T12:19:19.258652+00:00",
+        "metadata_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+          "bytes": 40503954,
+          "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+        },
+        "image_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fuko-courier-1996.png",
+          "bytes": 3573222,
+          "sha256": "5038b585887dde2c33bc4cd6dfecdc48ce746c52e06427fafdb6591d70ed400e",
+          "url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+          "asset_kind": "full_page_render_from_original_pdf"
+        },
+        "width": 1984,
+        "height": 2807,
+        "photograph_date": "1996",
+        "date_precision": "publication_year; Vaea interview explicitly July 1996, exact photo date unstated",
+        "creator_or_credit": "The Courier / Commission of the European Communities",
+        "license": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+        "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+        "rights_evidence": {
+          "publication_notice_page": 1,
+          "publication_notice_pdf_page": 3,
+          "photo_credit": "The Courier",
+          "notice": "Reproduction authorised subject to indication of origin.",
+          "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+        },
+        "status": "usable_pending_visual_review",
+        "limitation": "PDF page 35, printed page 33. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+        "derivation": {
+          "operation": "read-only PDF page render",
+          "tool": "pdftoppm",
+          "dpi": 240,
+          "one_based_pdf_page": 35,
+          "source_original": {
+            "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+            "bytes": 40503954,
+            "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+          }
+        },
+        "visual_inspection_by_this_reviewer": true,
+        "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      }
+    },
+    "faotusia-2020": {
+      "record": {
+        "person_id": "to_sione_vuna_faotusia",
+        "kind": "observed_portrait",
+        "reference_id": "faotusia-2020",
+        "asset": "spheres-web/ui/person-portraits/references/tonga-faotusia-2020-reference-v1.jpg",
+        "sha256": "45f7862032eb74d06efa6fc7ba4fc7325a45cb189cbc078d7d7895c4f2b4d069",
+        "bytes": 80612,
+        "width": 418,
+        "height": 424,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "creator": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel",
+        "credit": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel; 2020-02-20; CC BY-SA 3.0. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY-SA 3.0. Source contributor crop from the Nadi summit group photograph. Original group caption positions Deputy Prime Minister of Tonga Sione Vuna Faotusia second from the right. No new appointment date inferred.",
+        "source_license_statement": "CC BY-SA 3.0",
+        "depiction_date": "2020-02-20",
+        "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+        "source_metadata_sha256": "d743516628045cd18f8250c781bcdcaca28d07eaddf4a6efc7599ed0b64707ba"
+      },
+      "original_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/faotusia-2020.jpg",
+      "retained_source_record": {
+        "id": "faotusia-2020",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+        "retrieved_at": "2026-10-01T12:25:18.336714+00:00",
+        "metadata_original": {
+          "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\faotusia-2020.html",
+          "bytes": 129621,
+          "sha256": "d743516628045cd18f8250c781bcdcaca28d07eaddf4a6efc7599ed0b64707ba"
+        },
+        "image_original": {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Sione_Vuna_Fa%27otusia%2C_February_2020_%28GPO035%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\faotusia-2020.jpg",
+          "bytes": 80612,
+          "sha256": "45f7862032eb74d06efa6fc7ba4fc7325a45cb189cbc078d7d7895c4f2b4d069"
+        },
+        "width": 418,
+        "height": 424,
+        "photograph_date": "2020-02-20",
+        "creator_or_credit": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "status": "usable_pending_visual_review",
+        "limitation": "Source contributor crop from the Nadi summit group photograph. Original group caption positions Deputy Prime Minister of Tonga Sione Vuna Faotusia second from the right. No new appointment date inferred.",
+        "visual_inspection_by_this_reviewer": false,
+        "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "tonga-tesina-fuko-cartoon-1996-v2",
+        "output": "exec-d2c1b83c-1d16-4e6e-a746-f16bd1d86a3c.png",
+        "person_id": "to_tesina_fuko",
+        "from": "1996-01-01",
+        "to": "2009-01-01",
+        "references": [
+          "fuko-courier-1996"
+        ],
+        "era_note": "Near-1996 adult appearance from The Courier no.160, printed page33 (PDF page35). Publication year1996; exact photo date unstated. Colour, full body and ordinary civilian clothing are artistic extensions. Used for the1996–2008 appearance era, including the2005 party observation; this is not an office tenure. V2 replaces rejectedv1 and keeps both hands visible against opaque teal.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-tesina-fuko-cartoon-1996-v2.png",
+        "sha256": "97a1099403892dbc6e861f36ba127bd1c1325f4ed8dc002d16ca754991901cb3",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-d2c1b83c-1d16-4e6e-a746-f16bd1d86a3c.png"
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text,logos,flags,extra people,photorealism,3D,chibi. Tesina (Teisina) Fuko around1996. SECONDreference full publication page supplies ONLY inset photograph near center-left for this individual's facialidentity, not page layout/text. Broad rounded face, dark warm brown skin, rounded nose, short dark tightly curled hair with grey temples, close full beard and moustache with grey chin, stocky adult build, alert thoughtful expression. Open-collar pale grey shirt with simple dark navy cardigan, dark trousers, brown shoes. Both arms hang at sides, hands fully visible, NO hand in pocket. Flat dark teal background evenly around figure; do not reproduce the black-and-white photo's black surround. Color and fullbody are artistic interpretations.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-tesina-fuko-cartoon-1996-v2.txt",
+      "prompt_file_sha256": "cffeeec61aae3241655a942c73a532b19e2e929d6d90f84162fe0d600355a0ae",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "role": "identity_reference",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fuko-courier-1996.png",
+          "person_id": "to_tesina_fuko",
+          "kind": "observed_portrait",
+          "reference_id": "fuko-courier-1996",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-fuko-courier-1996-reference-v1.png",
+          "sha256": "5038b585887dde2c33bc4cd6dfecdc48ce746c52e06427fafdb6591d70ed400e",
+          "bytes": 3573222,
+          "width": 1984,
+          "height": 2807,
+          "mode": "RGB",
+          "source_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+          "license": "European Commission reuse",
+          "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+          "creator": "The Courier / Commission of the European Communities",
+          "credit": "The Courier / Commission of the European Communities; 1996; Reproduction authorised subject to indication of origin; Commission document reuse policy. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "The Courier / Commission of the European Communities publication expressly authorises reproduction with indication of origin. Commission Decision 2011/833/EU is retained as the reuse-policy basis. No third-party photograph credit is printed for this image. Source, adaptation and age interpretation are acknowledged; no endorsement implied. PDF page 35, printed page 33. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+          "source_license_statement": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+          "depiction_date": "1996",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "source_metadata_sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08",
+          "publisher": "European Commission",
+          "reuse_notice": "Reproduction authorised subject to indication of origin.",
+          "third_party_material": false,
+          "rights_evidence": {
+            "publication_notice_page": 1,
+            "publication_notice_pdf_page": 3,
+            "photo_credit": "The Courier",
+            "notice": "Reproduction authorised subject to indication of origin.",
+            "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+          },
+          "derivation": {
+            "operation": "read-only PDF page render",
+            "tool": "pdftoppm",
+            "dpi": 240,
+            "one_based_pdf_page": 35,
+            "source_original": {
+              "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+              "bytes": 40503954,
+              "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+            }
+          }
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "97a1099403892dbc6e861f36ba127bd1c1325f4ed8dc002d16ca754991901cb3",
+        "bytes": 1612624,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "1996-01-01",
+        "to": "2009-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-tesina-fuko-cartoon-1996-v2.png",
+        "sha256": "97a1099403892dbc6e861f36ba127bd1c1325f4ed8dc002d16ca754991901cb3",
+        "bytes": 1612624,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+        "credit": "Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: The Courier / Commission of the European Communities; 1996; Reproduction authorised subject to indication of origin; Commission document reuse policy. Adapted for Spheres; no endorsement implied.",
+        "era_note": "Near-1996 adult appearance from The Courier no.160, printed page33 (PDF page35). Publication year1996; exact photo date unstated. Colour, full body and ordinary civilian clothing are artistic extensions. Used for the1996–2008 appearance era, including the2005 party observation; this is not an office tenure. V2 replaces rejectedv1 and keeps both hands visible against opaque teal.",
+        "identity_source": {
+          "person_id": "to_tesina_fuko",
+          "kind": "observed_portrait",
+          "reference_id": "fuko-courier-1996",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-fuko-courier-1996-reference-v1.png",
+          "sha256": "5038b585887dde2c33bc4cd6dfecdc48ce746c52e06427fafdb6591d70ed400e",
+          "bytes": 3573222,
+          "width": 1984,
+          "height": 2807,
+          "mode": "RGB",
+          "source_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+          "license": "European Commission reuse",
+          "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+          "creator": "The Courier / Commission of the European Communities",
+          "credit": "The Courier / Commission of the European Communities; 1996; Reproduction authorised subject to indication of origin; Commission document reuse policy. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "The Courier / Commission of the European Communities publication expressly authorises reproduction with indication of origin. Commission Decision 2011/833/EU is retained as the reuse-policy basis. No third-party photograph credit is printed for this image. Source, adaptation and age interpretation are acknowledged; no endorsement implied. PDF page 35, printed page 33. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+          "source_license_statement": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+          "depiction_date": "1996",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "source_metadata_sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08",
+          "publisher": "European Commission",
+          "reuse_notice": "Reproduction authorised subject to indication of origin.",
+          "third_party_material": false,
+          "rights_evidence": {
+            "publication_notice_page": 1,
+            "publication_notice_pdf_page": 3,
+            "photo_credit": "The Courier",
+            "notice": "Reproduction authorised subject to indication of origin.",
+            "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+          },
+          "derivation": {
+            "operation": "read-only PDF page render",
+            "tool": "pdftoppm",
+            "dpi": 240,
+            "one_based_pdf_page": 35,
+            "source_original": {
+              "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+              "bytes": 40503954,
+              "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+            }
+          }
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-tesina-fuko-cartoon-1996-v2.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-02.json, job tonga-tesina-fuko-cartoon-1996-v2.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-sione-faotusia-cartoon-2020-v1",
+        "output": "exec-c5f145c6-b7b1-4b3a-9ebd-fcb9d296f320.png",
+        "person_id": "to_sione_vuna_faotusia",
+        "from": "2018-01-01",
+        "to": "2021-09-01",
+        "references": [
+          "faotusia-2020"
+        ],
+        "era_note": "Mature adult likeness anchored to20February2020 GPO Israel photograph. Standing body and lower clothing are artistic extensions. Appearance stops before1September2021, when Parliament published his obituary; this is a death-by-publication upper bound, not an assertion that1September was his death date. No office eligibility is created.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-sione-faotusia-cartoon-2020-v1.png",
+        "sha256": "5b55ff129cec91f4a32d561fda93f2a56f58ac2041b08cd8696be85870cd3704",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-c5f145c6-b7b1-4b3a-9ebd-fcb9d296f320.png",
+        "life_bound_source": {
+          "url": "https://parliament.gov.to/en/media-centre/latest-news/the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-faotusia-peoples-representative-for-tongatapu-7",
+          "status": 200,
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/batch02/faotusia-parliament-obituary-20210901.html",
+          "retrieved_at": "2026-10-01T12:51:11.276060+00:00",
+          "sha256": "316e4c9de8aaa80c16f50342f6be5fa3888d9bc855650a1c55f6686332599499",
+          "bytes": 58123,
+          "headers": {
+            "Date": "Thu, 01 Oct 2026 12:51:10 GMT",
+            "Server": "Apache",
+            "x-frame-options": "SAMEORIGIN",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "cross-origin-opener-policy": "same-origin",
+            "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+            "content-security-policy-report-only": "frame-ancestors 'self'",
+            "Link": "<https://fonts.googleapis.com/>; rel=\"preconnect\"; crossorigin=\"anonymous\",<https://fonts.gstatic.com/>; rel=\"preconnect\"; crossorigin=\"anonymous\",<https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;700&display=swap>; rel=\"preload\"; as=\"style\"; crossorigin=\"anonymous\"",
+            "Expires": "Wed, 17 Aug 2005 00:00:00 GMT",
+            "Cache-Control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+            "Pragma": "no-cache",
+            "Set-Cookie": "0eeeeebc6443453b55ff149b1c65b4e8=b223e13d9ddffc05c2d958972847359b; path=/; secure; HttpOnly",
+            "X-Content-Type-Options": "nosniff",
+            "Upgrade": "h2,h2c",
+            "Connection": "Upgrade, Keep-Alive",
+            "Last-Modified": "Thu, 01 Oct 2026 12:51:10 GMT",
+            "Vary": "Accept-Encoding,User-Agent",
+            "Content-Encoding": "gzip",
+            "Keep-Alive": "timeout=5, max=75",
+            "Transfer-Encoding": "chunked",
+            "Content-Type": "text/html; charset=utf-8"
+          }
+        }
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text,logos,flags,extra people,photorealism,3D,chibi. Sione Vuna Fa'otusia around2020, mature elder. Match secondreference distinctive long oval brown face, large swept dark brown slightly wavy thick hair reaching ears, thick dark moustache and long pointed white-grey beard at chin, broad nose and strong brows, serious poised expression. Average-to-tall sturdy build, dark navy business suit, white shirt, narrow plain black tie, black shoes. Fullbody extended from torso source; both handsvisible. Preserve strong contrasting dark hair/moustache and white chin beard.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-sione-faotusia-cartoon-2020-v1.txt",
+      "prompt_file_sha256": "e1f39a9632871c434d46b8e7279da29e2c97933fa766b48bbb7399787f8b12cc",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "role": "identity_reference",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/faotusia-2020.jpg",
+          "person_id": "to_sione_vuna_faotusia",
+          "kind": "observed_portrait",
+          "reference_id": "faotusia-2020",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-faotusia-2020-reference-v1.jpg",
+          "sha256": "45f7862032eb74d06efa6fc7ba4fc7325a45cb189cbc078d7d7895c4f2b4d069",
+          "bytes": 80612,
+          "width": 418,
+          "height": 424,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+          "license": "CC BY-SA 3.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "creator": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel",
+          "credit": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel; 2020-02-20; CC BY-SA 3.0. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: CC BY-SA 3.0. Source contributor crop from the Nadi summit group photograph. Original group caption positions Deputy Prime Minister of Tonga Sione Vuna Faotusia second from the right. No new appointment date inferred.",
+          "source_license_statement": "CC BY-SA 3.0",
+          "depiction_date": "2020-02-20",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "source_metadata_sha256": "d743516628045cd18f8250c781bcdcaca28d07eaddf4a6efc7599ed0b64707ba"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "5b55ff129cec91f4a32d561fda93f2a56f58ac2041b08cd8696be85870cd3704",
+        "bytes": 1546938,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2018-01-01",
+        "to": "2021-09-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-sione-faotusia-cartoon-2020-v1.png",
+        "sha256": "5b55ff129cec91f4a32d561fda93f2a56f58ac2041b08cd8696be85870cd3704",
+        "bytes": 1546938,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+        "credit": "Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel; 2020-02-20; CC BY-SA 3.0. Adapted for Spheres; no endorsement implied.",
+        "era_note": "Mature adult likeness anchored to20February2020 GPO Israel photograph. Standing body and lower clothing are artistic extensions. Appearance stops before1September2021, when Parliament published his obituary; this is a death-by-publication upper bound, not an assertion that1September was his death date. No office eligibility is created.",
+        "identity_source": {
+          "person_id": "to_sione_vuna_faotusia",
+          "kind": "observed_portrait",
+          "reference_id": "faotusia-2020",
+          "asset": "spheres-web/ui/person-portraits/references/tonga-faotusia-2020-reference-v1.jpg",
+          "sha256": "45f7862032eb74d06efa6fc7ba4fc7325a45cb189cbc078d7d7895c4f2b4d069",
+          "bytes": 80612,
+          "width": 418,
+          "height": 424,
+          "mode": "RGB",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+          "license": "CC BY-SA 3.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "creator": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel",
+          "credit": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel; 2020-02-20; CC BY-SA 3.0. Adapted for Spheres; no endorsement implied.",
+          "rights_statement": "Retained source statement: CC BY-SA 3.0. Source contributor crop from the Nadi summit group photograph. Original group caption positions Deputy Prime Minister of Tonga Sione Vuna Faotusia second from the right. No new appointment date inferred.",
+          "source_license_statement": "CC BY-SA 3.0",
+          "depiction_date": "2020-02-20",
+          "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+          "source_metadata_sha256": "d743516628045cd18f8250c781bcdcaca28d07eaddf4a6efc7599ed0b64707ba"
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-sione-faotusia-cartoon-2020-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-02.json, job tonga-sione-faotusia-cartoon-2020-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed.",
+        "derivative_license": "CC BY-SA 3.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      },
+      "research_sources": [],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-tevita-lavemaau-cartoon-2020-v1",
+        "output": "exec-7fe5d115-969e-4336-84e9-3fc0d17922a9.png",
+        "person_id": "to_tevita_lavemaau",
+        "from": "2017-01-01",
+        "to": "2027-01-01",
+        "references": [],
+        "era_note": "Original authored-identity cartoon around2020, informed by factual facial traits observed separately in the official30July2020 public photograph. No photograph was supplied to image_gen; only the approved style anchor. The2017–2026 appearance window, ordinary clothing, full body and pose are artistic interpretations; no exact photograph for each year or continuing office is claimed.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-tevita-lavemaau-cartoon-2020-v1.png",
+        "sha256": "197098c6f91e38af0cd0cc29fcbe7c4b8458d65bcc5511d9f4642325b41ee85a",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-7fe5d115-969e-4336-84e9-3fc0d17922a9.png",
+        "identity_source": {
+          "person_id": "to_tevita_lavemaau",
+          "kind": "authored_identity",
+          "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+          "basis": "Exact court identity and role bridge; separately observed factual facial traits, original cartoon from text and approved style only."
+        },
+        "research_sources": [
+          {
+            "source_url": "https://tongastats.gov.to/ministerial-meeting-with-the-hon-tevita-lavemaau/",
+            "image_url": "https://tongastats.gov.to/wp-content/uploads/sites/7/2020/08/Minister-Hon.-Tevita-Lavemaau-scaled.jpg",
+            "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/lavemaau-statistics-2020.jpg",
+            "sha256": "2045ff7452f3ee725f73350d47694f5de5eaa79c3a5c9665cf074a083a59af1a",
+            "credit": "Tonga Statistics Department",
+            "creator": "Individual photographer not stated",
+            "photo_date": "2020-07-30",
+            "rights": "Copyright Tonga Statistics Department. No verified reuse grant; identity research only. Original not supplied to image_gen or copied into repository.",
+            "review_file": "docs/campaign-certification/C06/production/tonga/party-likeness-review.json"
+          }
+        ],
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Tonga Statistics Department public photograph,30July2020; source-photo rights remain unchanged. Research original is not supplied to image_gen or shipped as art; no endorsement implied."
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text,logos,flags,extra people,photorealism,3D,chibi. Draw the real Tongan statesman Tevita Lavemaau in an original authored-identity cartoon, around2020. Facial facts observed in a separately inspected official30July2020 public event photograph: mature man with a broad round-to-oval face, medium brown complexion, close very short grey hair with thinning receding crown, thick gently arched brows, broad nose, full lips, clean-shaven face, solid heavyset shoulders, serious attentive expression. Ordinary tailored navy blazer, pale blue shirt, subdued charcoal/silver diagonally striped tie, dark trousers and black shoes. Omit event flower garland and badges so this is a fresh ordinary civilian outfit. A modestly enlarged head for legibleavatar. No source photograph is supplied; do NOT reproduce a photo scene/composition. Use only named person's observed facial traits and the style reference; never borrow another politician's face.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-tevita-lavemaau-cartoon-2020-v1.txt",
+      "prompt_file_sha256": "f278d78d7db8fc656a6ea5228df600c79d94f825b0224eddba3dc4c0dea5e612",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "197098c6f91e38af0cd0cc29fcbe7c4b8458d65bcc5511d9f4642325b41ee85a",
+        "bytes": 1543116,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2017-01-01",
+        "to": "2027-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-tevita-lavemaau-cartoon-2020-v1.png",
+        "sha256": "197098c6f91e38af0cd0cc29fcbe7c4b8458d65bcc5511d9f4642325b41ee85a",
+        "bytes": 1543116,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Tonga Statistics Department public photograph,30July2020; source-photo rights remain unchanged. Research original is not supplied to image_gen or shipped as art; no endorsement implied.",
+        "era_note": "Original authored-identity cartoon around2020, informed by factual facial traits observed separately in the official30July2020 public photograph. No photograph was supplied to image_gen; only the approved style anchor. The2017–2026 appearance window, ordinary clothing, full body and pose are artistic interpretations; no exact photograph for each year or continuing office is claimed.",
+        "identity_source": {
+          "person_id": "to_tevita_lavemaau",
+          "kind": "authored_identity",
+          "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+          "basis": "Exact court identity and role bridge; separately observed factual facial traits, original cartoon from text and approved style only."
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-tevita-lavemaau-cartoon-2020-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-02.json, job tonga-tevita-lavemaau-cartoon-2020-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [
+        {
+          "source_url": "https://tongastats.gov.to/ministerial-meeting-with-the-hon-tevita-lavemaau/",
+          "image_url": "https://tongastats.gov.to/wp-content/uploads/sites/7/2020/08/Minister-Hon.-Tevita-Lavemaau-scaled.jpg",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/party-faces/lavemaau-statistics-2020.jpg",
+          "sha256": "2045ff7452f3ee725f73350d47694f5de5eaa79c3a5c9665cf074a083a59af1a",
+          "credit": "Tonga Statistics Department",
+          "creator": "Individual photographer not stated",
+          "photo_date": "2020-07-30",
+          "rights": "Copyright Tonga Statistics Department. No verified reuse grant; identity research only. Original not supplied to image_gen or copied into repository.",
+          "review_file": "docs/campaign-certification/C06/production/tonga/party-likeness-review.json"
+        }
+      ],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    },
+    {
+      "job": {
+        "stem": "tonga-fakafanua-cartoon-2026-v1",
+        "output": "exec-4f10482b-274d-45e5-ba9b-9e4e36fd53f4.png",
+        "person_id": "to_fatafehi_fakafanua",
+        "from": "2018-01-01",
+        "to": "2027-01-01",
+        "references": [],
+        "era_note": "Original authored-identity later-adult cartoon around2026, informed by factual facial traits separately observed in a27January2026 public portrait. Source has conflicting rights metadata and remains external. Only the approved style anchor was supplied to image_gen. The2018–2026 appearance, colour choices, ordinary outfit, standing body and pose are artistic interpretations. Nonoverlapping with the earlier2012–2017 appearance; no office tenure inferred.",
+        "visual_review": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/tonga-fakafanua-cartoon-2026-v1.png",
+        "sha256": "4f011462d0b369bf19c96ce8a81e54b666c2f89c1ac3bfd6eeffd9e2a6de1f31",
+        "width": 1024,
+        "height": 1536,
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-4f10482b-274d-45e5-ba9b-9e4e36fd53f4.png",
+        "identity_source": {
+          "person_id": "to_fatafehi_fakafanua",
+          "kind": "authored_identity",
+          "source_url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+          "basis": "Exact reviewed personal identity; separately observed factual facial traits, original cartoon from text and approved style only."
+        },
+        "research_sources": [
+          {
+            "source_url": "https://commons.wikimedia.org/wiki/File:Fatafehi_Fakaf%C4%81nua_January_2026.jpg",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Fatafehi_Fakaf%C4%81nua_January_2026.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+            "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fakafanua-2026.jpg",
+            "sha256": "b1ee419176939b3a906ac7e30d4af23101e705af55b82e43025bd7d381ed2df3",
+            "credit": "Daniel Walding / Department of Foreign Affairs and Trade",
+            "photo_date": "2026-01-27",
+            "rights": "Conflicting rights metadata: Commons CC BY4.0 versus EXIF All Rights Reserved/contactDFAT. No licence clearance claimed. Identity research only; original not supplied to image_gen or copied into repository.",
+            "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+          }
+        ],
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Daniel Walding / Department of Foreign Affairs and Trade public photograph,27January2026. Source has conflicting rights metadata; rights are unchanged. Research original is not supplied to image_gen or shipped as art; no endorsement implied."
+      },
+      "exact_prompt": "Create one original polished full-body 2D cartoon for Spheres, vertical1024x1536. FIRST reference is STYLE ONLY: bold dark clean outline, graphic cel shading, readable simplified expressive face, adult5.5-head proportions, quiet OPAQUE DARK TEAL background matching reference (NOT BLACK), gentle grounding shadow. Never copy its identity. Show entire head, both relaxed HANDS OUTSIDE POCKETS with fingers clearly visible at the thighs, and both shoes, generous margin. Slight three-quarter standing pose, dignified. No text,logos,flags,extra people,photorealism,3D,chibi. Draw real Tongan statesman Lord Fakafanua in an original authored-identity cartoon around2026,age40. Facial facts from separately inspected datedpublic portrait: broad rounded medium-brown face, thick black slightly wavy hair swept high and back with a few grey hairs at temples, large thin gold/champagne rounded-square glasses, full dense long black beard with conspicuous grey streaks around chin and lower sides, thick black moustache, broad nose, warm tooth-showing smile. Large tall substantial broad physique. Original ordinary navy blazer, ivory open-collar shirt (no tie), dark trousers and brown leather shoes; both hands visibly relaxed. No lapel pin. No source photograph is supplied, do NOT reproduce its framing or photographiclighting. Preserve named person's distinct factual features using only textualidentity and approvedstyleanchor.\n",
+      "prompt_record": "tools/avatars/person-prompts/tonga-fakafanua-cartoon-2026-v1.txt",
+      "prompt_file_sha256": "4ca13e107b5a6fc8bd29ae26c4e0f0a18f04f996f1bb81682e3a35b547513723",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "submitted_reference_inputs": [
+        {
+          "role": "style_only",
+          "submitted_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "input_order_basis": "Root confirmed job references are in exact submitted order after the Thatcher style anchor.",
+      "prompt_basis": "Root wrote each exact prompt TXT before the image_gen call and confirmed it matches the submitted prompt.",
+      "output_byte_identical": true,
+      "actual_output": {
+        "sha256": "4f011462d0b369bf19c96ce8a81e54b666c2f89c1ac3bfd6eeffd9e2a6de1f31",
+        "bytes": 1597820,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "manifest_record": {
+        "from": "2018-01-01",
+        "to": "2027-01-01",
+        "method": "generated",
+        "style": "cartoon",
+        "status": "illustrated-likeness",
+        "asset": "spheres-web/ui/person-portraits/tonga-fakafanua-cartoon-2026-v1.png",
+        "sha256": "4f011462d0b369bf19c96ce8a81e54b666c2f89c1ac3bfd6eeffd9e2a6de1f31",
+        "bytes": 1597820,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "composition": "full-body",
+        "background_mode": "opaque",
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-01",
+        "license": "generated",
+        "source_url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+        "credit": "Spheres original authored-identity cartoon generated with OpenAI image_gen from textual identity and the approved style anchor. Factual visual research: Daniel Walding / Department of Foreign Affairs and Trade public photograph,27January2026. Source has conflicting rights metadata; rights are unchanged. Research original is not supplied to image_gen or shipped as art; no endorsement implied.",
+        "era_note": "Original authored-identity later-adult cartoon around2026, informed by factual facial traits separately observed in a27January2026 public portrait. Source has conflicting rights metadata and remains external. Only the approved style anchor was supplied to image_gen. The2018–2026 appearance, colour choices, ordinary outfit, standing body and pose are artistic interpretations. Nonoverlapping with the earlier2012–2017 appearance; no office tenure inferred.",
+        "identity_source": {
+          "person_id": "to_fatafehi_fakafanua",
+          "kind": "authored_identity",
+          "source_url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+          "basis": "Exact reviewed personal identity; separately observed factual facial traits, original cartoon from text and approved style only."
+        },
+        "supplemental_identity_sources": [],
+        "prompt_record": "tools/avatars/person-prompts/tonga-fakafanua-cartoon-2026-v1.txt",
+        "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-02.json, job tonga-fakafanua-cartoon-2026-v1.",
+        "review": {
+          "identity": true,
+          "likeness": true,
+          "era": true,
+          "visual": true,
+          "reviewer": "Codex root: personally inspected source references and generated output; no human approval claimed",
+          "reviewed_at": "2026-10-01"
+        },
+        "visual_note": "Codex root personally inspected source identity research and generated result: recognizable individual face, complete head, hands and shoes visible, approved outlined cartoon style and opaque dark teal background. No human approval claimed."
+      },
+      "research_sources": [
+        {
+          "source_url": "https://commons.wikimedia.org/wiki/File:Fatafehi_Fakaf%C4%81nua_January_2026.jpg",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Fatafehi_Fakaf%C4%81nua_January_2026.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "local_path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/fakafanua-2026.jpg",
+          "sha256": "b1ee419176939b3a906ac7e30d4af23101e705af55b82e43025bd7d381ed2df3",
+          "credit": "Daniel Walding / Department of Foreign Affairs and Trade",
+          "photo_date": "2026-01-27",
+          "rights": "Conflicting rights metadata: Commons CC BY4.0 versus EXIF All Rights Reserved/contactDFAT. No licence clearance claimed. Identity research only; original not supplied to image_gen or copied into repository.",
+          "review_file": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json"
+        }
+      ],
+      "research_sources_supplied_to_generator": false,
+      "human_approval_claimed": false
+    }
+  ]
+}

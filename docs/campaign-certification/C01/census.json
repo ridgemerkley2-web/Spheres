@@ -47,7 +47,7 @@
       "partial": 53
     },
     "registered_components_or_name_phases": 20,
-    "historical_people": 590,
+    "historical_people": 620,
     "historical_terms": 393,
     "component_term_records": 65,
     "historical_term_kind": {
@@ -60,15 +60,18 @@
     "historical_executive_gameplay_grants": 93,
     "future_seat_policies": 2,
     "existing_lifecycle_records": 23,
-    "future_templates": 2556,
-    "historical_manifest_assets": 59,
-    "fictional_manifest_assets": 4,
+    "future_templates": 2560,
+    "future_party_templates": 2556,
+    "future_institutional_templates": 4,
+    "represented_future_institutions": 1,
+    "historical_manifest_assets": 100,
+    "fictional_manifest_assets": 8,
     "historical_art_snapshot_pending_jobs": 699,
-    "people_with_unknown_appearance_eligibility": 126,
+    "people_with_unknown_appearance_eligibility": 156,
     "exhaustive_country_censuses": 0,
     "unrepresented_organizations": null,
     "work_orders_by_phase": {
-      "fictional_editorial_review": 316,
+      "fictional_editorial_review": 317,
       "historical_cartoon_jobs": 180,
       "institution_and_office_roles": 160,
       "known_historical_chains": 150,
@@ -91,13 +94,13 @@
     },
     {
       "path": "spheres-sim/src/government.rs",
-      "bytes": 851150,
-      "sha256": "4b0b82dbdb111cfbc8350bcbdf0dc1ba85d23b07c1026ca5a58d2178dc283934"
+      "bytes": 851231,
+      "sha256": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9"
     },
     {
       "path": "spheres-sim/data/party_leaders.json",
-      "bytes": 1262625,
-      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494"
+      "bytes": 1282814,
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
     },
     {
       "path": "spheres-sim/data/party_executive_eligibility.json",
@@ -120,39 +123,44 @@
       "sha256": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176"
     },
     {
+      "path": "spheres-sim/data/tonga_institutional_leadership.json",
+      "bytes": 76513,
+      "sha256": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf"
+    },
+    {
       "path": "spheres-web/data/nation_figures.json",
       "bytes": 408800,
       "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962"
     },
     {
       "path": "spheres-web/data/future_candidates_2035.json",
-      "bytes": 3273947,
-      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492"
+      "bytes": 3278599,
+      "sha256": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd"
     },
     {
       "path": "spheres-web/data/person_portraits.json",
-      "bytes": 307745,
-      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176"
+      "bytes": 494659,
+      "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
     },
     {
       "path": "spheres-web/data/fictional_portraits.json",
-      "bytes": 7666,
-      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
+      "bytes": 17844,
+      "sha256": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea"
     },
     {
       "path": "spheres-web/data/leadership_production_2035.json",
-      "bytes": 5997885,
-      "sha256": "bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78"
+      "bytes": 6204564,
+      "sha256": "f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245"
     },
     {
       "path": "tools/avatars/leadership_production.py",
-      "bytes": 26837,
-      "sha256": "f05b765d013f697a773a2f1f4eea872e7114ba9233538d87d7f551700a1387af"
+      "bytes": 31715,
+      "sha256": "017fd31092a631e653ce6b6de15388ce7a09ce57bd4b1f9800628f77589a3346"
     },
     {
       "path": "tools/avatars/person_art_pipeline.py",
-      "bytes": 41580,
-      "sha256": "6afa236683c311ca9e70779ab4666063be18b12969286c8de5fe8b1556833947"
+      "bytes": 49544,
+      "sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab"
     },
     {
       "path": "tools/avatars/fictional_art_pipeline.py",
@@ -161,8 +169,8 @@
     },
     {
       "path": "tools/avatars/campaign_census.py",
-      "bytes": 19826,
-      "sha256": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b"
+      "bytes": 20563,
+      "sha256": "bc58557da5e898de1ef0d3fe904c4360cdc813655d84183de5d57bf293e7fe5d"
     }
   ],
   "acceptance_remaining": [
