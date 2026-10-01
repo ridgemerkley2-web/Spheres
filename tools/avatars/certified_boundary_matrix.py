@@ -585,8 +585,10 @@ class Production:
                 'Fictional window changed; review the frozen boundary first')
         self.candidates = {c['person_id']: c for c in future['candidates']}
         require(len(self.candidates) == len(future['candidates']), 'Duplicate fictional candidate identity')
+        self.institutional_opening = {}
         if (inputs.root / INSTITUTIONAL_SOURCE).is_file():
-            inputs.json(INSTITUTIONAL_SOURCE)  # Pin the exact catalogue used by the strict partition.
+            institution = inputs.json(INSTITUTIONAL_SOURCE)  # Pin the exact catalogue used by the strict partition.
+            self.institutional_opening = institution.get('opening', {})
             party_candidates, institutional_candidates = partition_future_candidates(inputs.root, future['candidates'])
         else:
             require(all(c.get('party') is not None and c.get('institution') is None for c in future['candidates']),
@@ -1667,12 +1669,24 @@ def campaign_date(world):
 
 
 def campaign_observation(production, world, identity):
-    """Mirror party_leadership::executive_id_with / campaign_view for one identity."""
+    """Mirror executive_person / campaign_view identity selection, not save validation."""
     rows = [r for r in (world.get('leadership') or []) if r.get('nation') == identity]
     office = rows[0] if rows else None
     book = world.get('party_leadership')
     rules = world.get('rules') or {}
     person = None
+    # executive_person resolves an exact inherited Tonga Crown link before the
+    # party book. A title, matching name or historical date alone never binds it.
+    inherited = (world.get('institutional_leadership') or {}).get('inherited_monarch')
+    emergent = (office or {}).get('emergent') or {}
+    if (identity == 'Tonga' and rules.get('historical_party_leadership') and inherited
+            and emergent.get('office') == 'King' and emergent.get('since') == inherited.get('since')
+            and production.institutional_opening.get('heir_name') is not None
+            and emergent.get('described') == production.institutional_opening['heir_name']
+            and inherited.get('person_id') in production.people):
+        person = inherited['person_id']
+        return {'person': person, 'name': emergent.get('name') or production.people[person]['name'],
+                'source': 'saved_inherited_crown'}
     # The enabled runtime checks the saved executive assignment before an
     # office row. In particular, an absent book must not trigger legacy art.
     if rules.get('historical_party_leadership') and book is not None:

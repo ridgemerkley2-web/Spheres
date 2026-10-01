@@ -666,6 +666,7 @@ class InstitutionalCandidates(FixtureTree):
         roles = ('peoples_representative', 'prime_minister', 'nonelected_minister', 'party_organizer')
         source = {'nation': 'Tonga', 'historical_reference_through': '2026-09-07',
                   'fictional_from': '2026-09-08', 'fictional_until_exclusive': '2036-01-01',
+                  'opening': {'heir_name': 'Synthetic Crown Heir'},
                   'future_candidates': []}
         rows = []
         for n, role in enumerate(roles):
@@ -682,6 +683,55 @@ class InstitutionalCandidates(FixtureTree):
         future['candidates'].extend(rows)
         write_tree(self.tmp, {matrix.INSTITUTIONAL_SOURCE: source, matrix.FUTURE: future})
         return future, rows
+
+    def crown_world(self):
+        return {'rules': {'historical_party_leadership': True},
+                'leadership': [{'nation': 'Tonga', 'name': None,
+                    'emergent': {'office': 'King', 'since': '2000-06-01',
+                                 'name': 'Campaign Crown', 'described': 'Synthetic Crown Heir'}}],
+                'party_leadership': {'executives': [], 'office_identities': []},
+                'institutional_leadership': {'inherited_monarch': {
+                    'person_id': 'p_new', 'since': '2000-06-01'}}}
+
+    def test_saved_inherited_crown_precedes_party_executive_and_binds_exact_person(self):
+        self.install_catalogue()
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        world = self.crown_world()
+        self.assertEqual(matrix.campaign_observation(production, world, 'Tonga'),
+                         {'person': 'p_new', 'name': 'Campaign Crown',
+                          'source': 'saved_inherited_crown'})
+        world['party_leadership']['executives'] = [
+            {'nation': 'Tonga', 'holder': {'person': 'p_old'}}]
+        self.assertEqual(matrix.campaign_observation(production, world, 'Tonga')['person'], 'p_new')
+
+    def test_inherited_crown_requires_exact_saved_context_not_title_or_name(self):
+        self.install_catalogue()
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        controls = ('missing_state', 'missing_link', 'missing_office', 'foreign', 'disabled',
+                    'wrong_office', 'wrong_since', 'wrong_description', 'unknown_person', 'fictional_person')
+        for control in controls:
+            with self.subTest(control=control):
+                world = self.crown_world()
+                identity = 'Tonga'
+                if control == 'missing_state':
+                    world['institutional_leadership'] = None
+                elif control == 'missing_link':
+                    world['institutional_leadership']['inherited_monarch'] = None
+                elif control == 'missing_office':
+                    world['leadership'] = []
+                elif control == 'foreign':
+                    identity = world['leadership'][0]['nation'] = 'Alpha'
+                elif control == 'disabled':
+                    world['rules']['historical_party_leadership'] = False
+                elif control.startswith('wrong_'):
+                    field, value = {'wrong_office': ('office', 'Prime Minister'),
+                                    'wrong_since': ('since', '2000-06-02'),
+                                    'wrong_description': ('described', 'Other Heir')}[control]
+                    world['leadership'][0]['emergent'][field] = value
+                else:
+                    world['institutional_leadership']['inherited_monarch']['person_id'] = (
+                        'unknown' if control == 'unknown_person' else 'fictional_tonga_fixture_0')
+                self.assertIsNone(matrix.campaign_observation(production, world, identity)['person'])
 
     def test_institutional_roles_are_separate_and_date_scope_does_not_appoint(self):
         _, rows = self.install_catalogue()
