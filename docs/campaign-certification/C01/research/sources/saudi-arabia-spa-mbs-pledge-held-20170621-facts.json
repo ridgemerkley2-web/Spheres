@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_mbs_pledge_held_20170621",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/16de759e7b",
+  "original_url": "https://www.spa.gov.sa/16de759e7b",
+  "portal_metadata": {
+    "uuid": "16de759e7b",
+    "locale": "ar",
+    "published_at_utc": "2017-06-21T22:30:28Z",
+    "date_hijri_field": "1438-09-27"
+  },
+  "title_as_published": "عام / أصحاب السمو الأمراء ومفتي عام المملكة وأصحاب الفضيلة العلماء والمعالي الوزراء والمواطنين يبايعون الأمير محمد بن سلمان ولياً للعهد",
+  "source_title": "عام / أصحاب السمو الأمراء ومفتي عام المملكة وأصحاب الفضيلة العلماء والمعالي الوزراء والمواطنين يبايعون الأمير محمد بن سلمان ولياً للعهد: the pledge to Mohammed bin Salman as Crown Prince (21 June 2017)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2017-06-21",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/16de759e7b",
+  "source_response_bytes": 2356,
+  "source_response_sha256": "f59c465ae43af836a1b9fbb4eb5770e99f0cf0e11ff0af42dc0c7f2f6b6e52d2",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "cf2ad72974eee96b7fec9542b484e3a89cafa51355caee1e592a1092436c6146",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:29:07Z and again at 2026-10-01T03:01:20Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2356 bytes, SHA-256 f59c465ae43af836a1b9fbb4eb5770e99f0cf0e11ff0af42dc0c7f2f6b6e52d2).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/16de759e7b loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Main item, filed at 01:30 Makkah time on 22 June 2017 under the 21 June 2017 date line, as CLAUDE-C01-06 kept the printed date line of A/224; it ends 'to follow'.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_mbs_pledge_held_20170621",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "pledge_held",
+      "attested_on": "2017-06-21",
+      "text": "SPA, date line Makkah 26 Ramadan 1438 / 21 June 2017: 'تلقى صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز المبايعة وليًا للعهد' from princes, the Grand Mufti, the Shura Chairman, scholars, ministers, officials and citizens, 'وذلك مساء اليوم في قصر الصفا بمكة المكرمة'.",
+      "locator": "Date line; first paragraph; trailer 01:30 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

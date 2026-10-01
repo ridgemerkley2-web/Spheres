@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_salman_cp_pledge_directive_20120618",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/8c7207b976",
+  "original_url": "https://www.spa.gov.sa/8c7207b976",
+  "portal_metadata": {
+    "uuid": "8c7207b976",
+    "locale": "ar",
+    "published_at_utc": "2012-06-19T00:06:51Z",
+    "date_hijri_field": "1433-07-29"
+  },
+  "title_as_published": "عام / سمو ولي العهد يوجه بأن يستقبل أمراء المناطق المواطنين لتلقي البيعة",
+  "source_title": "عام / سمو ولي العهد يوجه بأن يستقبل أمراء المناطق المواطنين لتلقي البيعة: the Crown Prince directs the regional emirs to receive the pledge (18 June 2012)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2012-06-18",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/8c7207b976",
+  "source_response_bytes": 2151,
+  "source_response_sha256": "2bf582b00d7e1235e8645fba089ac1ed411dba43d3baec1fd34d52a73ee61e8a",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "6444700e0d9864414b8605ed17df9c64a91fd8181b1098ffb83aa7d2ec752b71",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:37Z and again at 2026-10-01T03:01:03Z, 32 minutes later (Cloudflare HIT and REVALIDATED); both identical (2151 bytes, SHA-256 2bf582b00d7e1235e8645fba089ac1ed411dba43d3baec1fd34d52a73ee61e8a).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/8c7207b976 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item. Its portal published_at, 2012-06-19T00:06:51Z, is not a filing time: several SPA items of June 2012 carry 00:06 UTC on different days. The printed date line and trailer (23:38 Makkah time on 18 June 2012) are used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_salman_cp_obs_20120618",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-05",
+      "role_id": "sa_crown_prince",
+      "holder_name": "Salman bin Abdulaziz Al Saud",
+      "printed_name": "سلمان بن عبدالعزيز آل سعود",
+      "role_title": "ولي العهد — Crown Prince",
+      "event_kind": "attestation",
+      "attested_on": "2012-06-18",
+      "text": "SPA, date line Jeddah 28 Rajab 1433 / 18 June 2012: 'وجه صاحب السمو الملكي الأمير سلمان بن عبدالعزيز آل سعود ولي العهد نائب رئيس مجلس الوزراء وزير الدفاع' that the regional emirs receive the citizens' pledge on his behalf, in a cable to the Minister of Interior quoted in the item.",
+      "locator": "Date line; first and second paragraphs; trailer 23:38 (Makkah time)"
+    },
+    {
+      "claim_id": "sa_salman_cp_pledge_scheduled_20120618",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-05",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "pledge_scheduled",
+      "attested_on": "2012-06-18",
+      "text": "The item says that for the Riyadh region he would himself receive the pledge at Qasr al-Hukm in Riyadh 'يومي السبت والأحد 3 و 4/8/1433هـ بعد صلاة الظهر'.",
+      "locator": "Third paragraph"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

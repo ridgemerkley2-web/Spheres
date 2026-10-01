@@ -109,6 +109,18 @@ CROWN_PRINCE_HOLDERS = [
     ('Mohammed bin Nayef bin Abdulaziz Al Saud', '2015-04-29', '2017-06-21', ['sa_mbn_cp_a159', 'sa_mbn_relieved_20170621']),
     ('Mohammed bin Salman bin Abdulaziz Al Saud', '2017-06-21', None, ['sa_mbs_cp_selected_20170621']),
 ]
+# CLAUDE-C01-45 appends dated Saudi observations after these entries, in date order; the holders above are unchanged
+# (pinned in test_saudi_kings_crown_princes_c01_45.py).
+C01_45_KING_OBSERVATIONS = [
+    'sa_fahd_king_obs_19960101', 'sa_fahd_chairs_cabinet_19960212', 'sa_fahd_king_order_a193_20050731',
+    'sa_abdullah_king_order_a136_20061020', 'sa_abdullah_king_order_a145_20140520', 'sa_salman_king_order_a267_20150725',
+    'sa_salman_king_obs_20260904',
+]
+C01_45_CROWN_PRINCE_OBSERVATIONS = [
+    'sa_abdullah_cp_obs_19960101', 'sa_abdullah_cp_obs_20050730', 'sa_sultan_cp_obs_a175_20071029', 'sa_nayef_cp_obs_20111107',
+    'sa_salman_cp_obs_20120618', 'sa_salman_cp_obs_a145_20140520', 'sa_muqrin_cp_obs_20150428', 'sa_mbn_cp_obs_a267_20150725',
+    'sa_mbn_cp_obs_a128_20170225', 'sa_mbs_cp_obs_20260901',
+]
 # The existing 2022 claims, byte-identical to the base packet (reverified, not rewritten).
 BASE_PM_CLAIMS = [
     ('sa_mbs_pm_appointment', 'King Salman appointed Crown Prince Mohammed bin Salman prime minister on 27 September 2022, expressly excepting Article 56 of the Basic Law and related Cabinet-law provisions.'),
@@ -185,8 +197,8 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
 
     def test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited(self):
         ids = self.validate()
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (103, 158, 12, 10))
-        # The C01-06 sources end at position 32; only the 71 CLAUDE-C01-25 sources follow them.
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (121, 188, 12, 10))
+        # The C01-06 sources end at position 32; the 71 CLAUDE-C01-25 and 18 CLAUDE-C01-45 sources follow them.
         self.assertEqual([s['id'] for s in self.packet['sources'][32 - len(NEW_SOURCES):32]], NEW_SOURCES)
         self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']}, NEW_CLAIMS)
         cited = {cid for row in list(self.entries.values()) + list(self.roles.values()) for cid in row['claim_ids']}
@@ -267,9 +279,11 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
     def test_holders_are_event_dated_with_stated_ends_only(self):
         king, crown = self.roles['sa_king']['holder_claims'], self.roles['sa_crown_prince']['holder_claims']
         self.assertEqual([h if isinstance(h, str) else h['name'] for h in king],
-                         ['sa_salman_king_observation'] + [h[0] for h in KING_HOLDERS] + ['sa_salman_king_obs_20260813'])
+                         ['sa_salman_king_observation'] + [h[0] for h in KING_HOLDERS] + ['sa_salman_king_obs_20260813']
+                         + C01_45_KING_OBSERVATIONS)
         self.assertEqual([h if isinstance(h, str) else h['name'] for h in crown],
-                         ['sa_mbs_pm_appointment'] + [h[0] for h in CROWN_PRINCE_HOLDERS] + ['sa_mbs_cp_pm_obs_20260813'])
+                         ['sa_mbs_pm_appointment'] + [h[0] for h in CROWN_PRINCE_HOLDERS] + ['sa_mbs_cp_pm_obs_20260813']
+                         + C01_45_CROWN_PRINCE_OBSERVATIONS)
         for role_id, expected in (('sa_king', KING_HOLDERS), ('sa_crown_prince', CROWN_PRINCE_HOLDERS)):
             holders = self.dict_holders(role_id)
             self.assertEqual([(h['name'], h['attested_on'], h['until'], h['claim_ids']) for h in holders], expected)
@@ -446,7 +460,7 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
             self.assertIn(phrase, handoff)
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'SaudiArabia')
-        self.assertEqual((country['source_claims'], country['role_observations']), (158, 10))
+        self.assertEqual((country['source_claims'], country['role_observations']), (188, 10))
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         batches = [row for row in index['work_orders'] if row['nation'] == 'SaudiArabia']

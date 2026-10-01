@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_fahd_resumes_19960222",
+  "source_url": "https://web.archive.org/web/19991003024900id_/http://www.saudiembassy.net:80/press_release/96_spa/96_02.html",
+  "original_url": "http://www.saudiembassy.net:80/press_release/96_spa/96_02.html",
+  "archive_capture_utc": "1999-10-03T02:49:00Z",
+  "source_title": "King Fahd Expresses Appreciation to Crown Prince Abdullah (February 22, 1996), Internet Archive capture 19991003024900",
+  "accessed_date": "2026-09-30",
+  "published_date": "1996-02-22",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/19991003024900id_/http://www.saudiembassy.net:80/press_release/96_spa/96_02.html",
+  "source_response_bytes": 24905,
+  "source_response_sha256": "1b3bcaf97bdd44ceabaec4d9760f0e15bf18d065bbea79ba88c4d08bf8d80f8d",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T02:27:59Z and again at 2026-10-01T03:00:30Z, 32 minutes later; both identical (24905 bytes, SHA-256 1b3bcaf97bdd44ceabaec4d9760f0e15bf18d065bbea79ba88c4d08bf8d80f8d).",
+  "provenance_note": "Raw Internet Archive capture (id_) 19991003024900 of http://www.saudiembassy.net:80/press_release/96_spa/96_02.html, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent, no Accept-Encoding header). It was served without Content-Encoding, so the recorded identity is the body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Royal Embassy's February 1996 page (press_release/96_spa/). Only the February 13 cabinet item and the February 22 item on the end of the delegation are imported; the page's other items (the Crown Prince chairing the cabinet on 5 February, King Fahd's thanks of 17 February) are leads.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_fahd_chairs_cabinet_19960212",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-01",
+      "role_id": "sa_king",
+      "holder_name": "Fahd bin Abdulaziz Al Saud",
+      "printed_name": "Fahd Bin Abdul Aziz",
+      "role_title": "King (Custodian of the Two Holy Mosques)",
+      "event_kind": "attestation",
+      "attested_on": "1996-02-12",
+      "text": "Release dated February 13, 1996 on the Royal Embassy's February 1996 page: 'Custodian of the Two Holy Mosques King Fahd Bin Abdul Aziz yesterday evening chaired the regular weekly meeting of the Council of Ministers'.",
+      "locator": "February 1996 page; item 'COUNCIL OF MINISTERS MEETING', February 13, 1996, first sentence"
+    },
+    {
+      "claim_id": "sa_fahd_delegation_ended_19960221",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-02",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "delegation_ended",
+      "attested_on": "1996-02-21",
+      "text": "Item dated 'February 22' on the Royal Embassy's February 1996 page: King Fahd 'yesterday sent a message to Crown Prince Abdullah, Deputy Prime Minister and Commander of the National Guard', thanking him for his efforts 'while entrusted with running the affairs of state' and writing 'at the end of the validity of royal decree A-112 dated 11/30/95'; the Crown Prince's reply acknowledges 'your royal decree A-199 dated 02/21/96 with the message that your period of rest is ended'.",
+      "locator": "February 1996 page; item 'KING FAHD EXPRESSES APPRECIATION TO CROWN PRINCE ABDULLAH', February 22, paragraphs 1-3"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}
