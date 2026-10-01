@@ -104,31 +104,33 @@
      "production_party": 5,
      "executive": 1
     },
-    "cases": 885,
+    "cases": 924,
     "case_kinds": {
-     "attestation_day": 10,
-     "attestation_day_after": 10,
+     "attestation_day": 28,
+     "attestation_day_after": 28,
      "cutoff_day": 15,
      "cutoff_day_before": 15,
      "fictional_end_exclusive": 15,
      "fictional_last_day": 15,
      "fictional_start_day": 15,
      "future_2030": 15,
-     "handover_day_after": 29,
-     "handover_day_before": 29,
-     "handover_day_of": 29,
+     "handover_day_after": 30,
+     "handover_day_before": 30,
+     "handover_day_of": 30,
      "reference_start": 15,
      "reference_start_day_before": 15,
      "yearly": 690
     },
     "observations_by_acceptance": {
+     "accepted": 18,
      "pending": 24,
      "unattributed_intake": 5
     },
     "research_yearly_status": {
+     "bracketed": 1,
      "established": 3,
-     "uncertain": 123,
-     "unknown": 207
+     "uncertain": 155,
+     "unknown": 174
     },
     "production_party_yearly_status": {
      "unresearched": 185
@@ -149,8 +151,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 123 uncertain, 207 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: pending 24, unattributed_intake 5.",
+    "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 155 uncertain, 174 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 18, pending 24, unattributed_intake 5.",
     "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
     "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
     "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
@@ -1938,7 +1940,11 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_duma_faction_20211012_er_head#1"
+    "ru_duma_faction_20211012_er_head#1",
+    "ru_duma_faction_20211012_er_head#2",
+    "ru_duma_faction_20211012_er_head#3",
+    "ru_duma_faction_20211012_er_head#4",
+    "ru_duma_faction_20211012_er_head#5"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1976,11 +1982,19 @@
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_er_head#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_er_head#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_er_head#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_er_head#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_er_head#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1997,13 +2011,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 62,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 10
    }
   },
   {
@@ -2026,7 +2040,11 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_duma_faction_20211012_kprf_head#1"
+    "ru_duma_faction_20211012_kprf_head#1",
+    "ru_duma_faction_20211012_kprf_head#2",
+    "ru_duma_faction_20211012_kprf_head#3",
+    "ru_duma_faction_20211012_kprf_head#4",
+    "ru_duma_faction_20211012_kprf_head#5"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2064,11 +2082,19 @@
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_kprf_head#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_kprf_head#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_kprf_head#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_kprf_head#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_kprf_head#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2085,13 +2111,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 62,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 10
    }
   },
   {
@@ -2114,7 +2140,10 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_duma_faction_20211012_srzp_head#1"
+    "ru_duma_faction_20211012_srzp_head#1",
+    "ru_duma_faction_20211012_srzp_head#2",
+    "ru_duma_faction_20211012_srzp_head#3",
+    "ru_duma_faction_20211012_srzp_head#4"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2153,10 +2182,16 @@
     {"date":"2021-10-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_srzp_head#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_srzp_head#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_srzp_head#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_srzp_head#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2173,13 +2208,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 60,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 8
    }
   },
   {
@@ -2202,49 +2237,61 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_duma_faction_20211012_ldpr_head#1"
+    "ru_duma_faction_20211012_ldpr_head#1",
+    "ru_duma_faction_20211012_ldpr_head#2",
+    "ru_duma_faction_20211012_ldpr_head#3",
+    "ru_duma_faction_20211012_ldpr_head#4"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_ldpr_head#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-10-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-10-13","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_duma_faction_20211012_ldpr_head#2","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_ldpr_head#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-23","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["ru_duma_faction_20211012_ldpr_head#2","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["ru_duma_faction_20211012_ldpr_head#2","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-05","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["ru_duma_faction_20211012_ldpr_head#2","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-06","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["ru_duma_faction_20211012_ldpr_head#2","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-07","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_ldpr_head#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_ldpr_head#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2261,13 +2308,15 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 63,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "unknown": 37
+     "bracketed": 1,
+     "uncertain": 32,
+     "unknown": 4
     },
-    "boundary_cases": 0,
-    "attestation_cases": 2
+    "boundary_cases": 3,
+    "attestation_cases": 8
    }
   },
   {
@@ -2290,7 +2339,11 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_duma_faction_20211012_nl_head#1"
+    "ru_duma_faction_20211012_nl_head#1",
+    "ru_duma_faction_20211012_nl_head#2",
+    "ru_duma_faction_20211012_nl_head#3",
+    "ru_duma_faction_20211012_nl_head#4",
+    "ru_duma_faction_20211012_nl_head#5"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2328,11 +2381,19 @@
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_nl_head#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-10-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_nl_head#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_nl_head#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_nl_head#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-07-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_duma_faction_20211012_nl_head#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-07-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2349,13 +2410,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 62,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 10
    }
   },
   {
@@ -2817,6 +2878,94 @@
     "unattributed_intake": 1
    }
   },
+  "ru_duma_faction_20211012_er_head#2": {
+   "role": "research:ru_duma_faction_20211012_er_head",
+   "name": "Владимир Васильев",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-12-22",
+   "claim_ids": [
+    "ru_duma_news_53098_vasilyev_er_head_20211222"
+   ],
+   "note": "Observed on 2021-12-22: State Duma news item 53098 of that day names 'Руководитель фракции «Единая Россия» Владимир Васильев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53098_20211222"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_er_head#3": {
+   "role": "research:ru_duma_faction_20211012_er_head",
+   "name": "Владимир Васильев",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-04-06",
+   "claim_ids": [
+    "ru_duma_news_53988_vasilyev_er_head_20220406"
+   ],
+   "note": "Observed on 2022-04-06: State Duma news item 53988 of that day names 'Руководитель фракции «Единая Россия» Владимир Васильев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53988_20220406"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_er_head#4": {
+   "role": "research:ru_duma_faction_20211012_er_head",
+   "name": "Владимир Васильев",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-07-07",
+   "claim_ids": [
+    "ru_duma_news_54910_vasilyev_er_head_20220707"
+   ],
+   "note": "Observed on 2022-07-07: State Duma news item 54910 of that day names 'Руководитель фракции «Единая Россия» Владимир Васильев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_54910_20220707"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_er_head#5": {
+   "role": "research:ru_duma_faction_20211012_er_head",
+   "name": "Владимир Васильев",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-07-27",
+   "claim_ids": [
+    "ru_duma_news_63980_vasilyev_er_head_20260727"
+   ],
+   "note": "Observed on 2026-07-27: State Duma news item 63980 of that day names 'Во встрече приняли участие руководитель фракции «Единая Россия» Владимир Васильев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_63980_20260727"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "ru_duma_faction_20211012_kprf_head#1": {
    "role": "research:ru_duma_faction_20211012_kprf_head",
    "name": "Геннадий Зюганов",
@@ -2834,6 +2983,94 @@
    "packets": [],
    "source_classes": {
     "unattributed_intake": 1
+   }
+  },
+  "ru_duma_faction_20211012_kprf_head#2": {
+   "role": "research:ru_duma_faction_20211012_kprf_head",
+   "name": "Геннадий Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-12-22",
+   "claim_ids": [
+    "ru_duma_news_53098_zyuganov_kprf_head_20211222"
+   ],
+   "note": "Observed on 2021-12-22: State Duma news item 53098 of that day names 'Руководитель фракции КПРФ Геннадий Зюганов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53098_20211222"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_kprf_head#3": {
+   "role": "research:ru_duma_faction_20211012_kprf_head",
+   "name": "Геннадий Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-04-06",
+   "claim_ids": [
+    "ru_duma_news_53988_zyuganov_kprf_head_20220406"
+   ],
+   "note": "Observed on 2022-04-06: State Duma news item 53988 of that day names 'Руководитель фракции КПРФ Геннадий Зюганов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53988_20220406"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_kprf_head#4": {
+   "role": "research:ru_duma_faction_20211012_kprf_head",
+   "name": "Геннадий Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-07-07",
+   "claim_ids": [
+    "ru_duma_news_54910_zyuganov_kprf_head_20220707"
+   ],
+   "note": "Observed on 2022-07-07: State Duma news item 54910 of that day names 'Руководитель фракции КПРФ Геннадий Зюганов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_54910_20220707"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_kprf_head#5": {
+   "role": "research:ru_duma_faction_20211012_kprf_head",
+   "name": "Геннадий Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-07-27",
+   "claim_ids": [
+    "ru_duma_news_63980_zyuganov_kprf_head_20260727"
+   ],
+   "note": "Observed on 2026-07-27: State Duma news item 63980 of that day names 'руководитель фракции КПРФ Геннадий Зюганов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_63980_20260727"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "ru_duma_faction_20211012_ldpr_head#1": {
@@ -2855,6 +3092,74 @@
     "unattributed_intake": 1
    }
   },
+  "ru_duma_faction_20211012_ldpr_head#2": {
+   "role": "research:ru_duma_faction_20211012_ldpr_head",
+   "name": "Владимир Жириновский",
+   "from": null,
+   "until": "2022-04-06",
+   "attested_on": "2021-12-22",
+   "claim_ids": [
+    "ru_duma_news_53098_zhirinovsky_ldpr_head_20211222",
+    "ru_duma_news_53988_zhirinovsky_died_as_ldpr_head_20220406"
+   ],
+   "note": "Observed on 2021-12-22: State Duma news item 53098 of that day names 'Руководитель фракции ЛДПР Владимир Жириновский'. Until 2022-04-06: State Duma news item 53988 of that day, subtitled 'Руководитель фракции ЛДПР ушел из жизни после тяжелой и продолжительной болезни', quotes the faction's statement 'Сегодня после затяжной болезни скончался'.",
+   "uncertainty": "The end rests on the Duma's same-day report that the faction head died, with the day from the quoted 'Сегодня' resolved by the item's dateline; it is a death, not a successor's start (fallback: a death claim only and no `until`). The 13:10 item 53987 states no day of death and is a claim only. No start: the October 2021 selection is a claim. Слуцкий's acting service after the death is claims only.",
+   "sources": [
+    "ru_duma_news_53098_20211222",
+    "ru_duma_news_53988_20220406"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "ru_duma_faction_20211012_ldpr_head#3": {
+   "role": "research:ru_duma_faction_20211012_ldpr_head",
+   "name": "Леонид Слуцкий",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-07-07",
+   "claim_ids": [
+    "ru_duma_news_54910_slutsky_ldpr_head_20220707"
+   ],
+   "note": "Observed on 2022-07-07: State Duma news item 54910 of that day names 'Руководитель фракции ЛДПР Леонид Слуцкий'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_54910_20220707"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_ldpr_head#4": {
+   "role": "research:ru_duma_faction_20211012_ldpr_head",
+   "name": "Леонид Слуцкий",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-07-27",
+   "claim_ids": [
+    "ru_duma_news_63980_slutsky_ldpr_head_20260727"
+   ],
+   "note": "Observed on 2026-07-27: State Duma news item 63980 of that day names 'руководитель фракции ЛДПР Леонид Слуцкий'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_63980_20260727"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "ru_duma_faction_20211012_nl_head#1": {
    "role": "research:ru_duma_faction_20211012_nl_head",
    "name": "Алексей Нечаев",
@@ -2874,6 +3179,94 @@
     "unattributed_intake": 1
    }
   },
+  "ru_duma_faction_20211012_nl_head#2": {
+   "role": "research:ru_duma_faction_20211012_nl_head",
+   "name": "Алексей Нечаев",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-12-22",
+   "claim_ids": [
+    "ru_duma_news_53098_nechaev_nl_head_20211222"
+   ],
+   "note": "Observed on 2021-12-22: State Duma news item 53098 of that day names 'Руководитель фракции «Новые люди» Алексей Нечаев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53098_20211222"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_nl_head#3": {
+   "role": "research:ru_duma_faction_20211012_nl_head",
+   "name": "Алексей Нечаев",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-04-06",
+   "claim_ids": [
+    "ru_duma_news_53988_nechaev_nl_head_20220406"
+   ],
+   "note": "Observed on 2022-04-06: State Duma news item 53988 of that day names 'руководителя фракции «Новые люди» Алексея Нечаева'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53988_20220406"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_nl_head#4": {
+   "role": "research:ru_duma_faction_20211012_nl_head",
+   "name": "Алексей Нечаев",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-07-07",
+   "claim_ids": [
+    "ru_duma_news_54910_nechaev_nl_head_20220707"
+   ],
+   "note": "Observed on 2022-07-07: State Duma news item 54910 of that day names 'Руководитель фракции «Новые люди» Алексей Нечаев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_54910_20220707"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_nl_head#5": {
+   "role": "research:ru_duma_faction_20211012_nl_head",
+   "name": "Алексей Нечаев",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-07-27",
+   "claim_ids": [
+    "ru_duma_news_63980_nechaev_nl_head_20260727"
+   ],
+   "note": "Observed on 2026-07-27: State Duma news item 63980 of that day names 'и руководитель фракции «Новые люди» Алексей Нечаев'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_63980_20260727"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "ru_duma_faction_20211012_srzp_head#1": {
    "role": "research:ru_duma_faction_20211012_srzp_head",
    "name": "Сергей Миронов",
@@ -2891,6 +3284,72 @@
    "packets": [],
    "source_classes": {
     "unattributed_intake": 1
+   }
+  },
+  "ru_duma_faction_20211012_srzp_head#2": {
+   "role": "research:ru_duma_faction_20211012_srzp_head",
+   "name": "Сергей Миронов",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-04-06",
+   "claim_ids": [
+    "ru_duma_news_53988_mironov_srzp_head_20220406"
+   ],
+   "note": "Observed on 2022-04-06: State Duma news item 53988 of that day names 'Руководитель фракции «Справедливая Россия — За правду» Сергей Миронов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_53988_20220406"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_srzp_head#3": {
+   "role": "research:ru_duma_faction_20211012_srzp_head",
+   "name": "Сергей Миронов",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-07-07",
+   "claim_ids": [
+    "ru_duma_news_54910_mironov_srzp_head_20220707"
+   ],
+   "note": "Observed on 2022-07-07: State Duma news item 54910 of that day names 'Руководитель фракции «Справедливая Россия — За правду» Сергей Миронов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_54910_20220707"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_duma_faction_20211012_srzp_head#4": {
+   "role": "research:ru_duma_faction_20211012_srzp_head",
+   "name": "Сергей Миронов",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-07-27",
+   "claim_ids": [
+    "ru_duma_news_63980_mironov_srzp_head_20260727"
+   ],
+   "note": "Observed on 2026-07-27: State Duma news item 63980 of that day names 'руководитель фракции «Справедливая Россия» Сергей Миронов'.",
+   "uncertainty": "A dated in-office attestation by the State Duma's own website, dated by the item's dateline; no start, no end and no complete term. The faction elections and reported selections are claims only. No party office, committee office, identity link or game mapping is inferred.",
+   "sources": [
+    "ru_duma_news_63980_20260727"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-46"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "ru_government_chairman#1": {
