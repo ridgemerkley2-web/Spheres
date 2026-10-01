@@ -2342,14 +2342,14 @@
           "text": "Pravda No. 201 (26649) of Thursday 22 August 1991, report 'Курс на демократизацию общества': 'Представители руководства КПСС заявили 21 августа о приверженности курсу на демократическое обновление советского общества.' The Central Committee secretary 'А. Дзасохов' said that 'Секретариат выступает за проведение Пленума ЦК КПСС с участием Генерального секретаря ЦК М. С. Горбачева.'",
           "locator": "Page 2 (PDF p. 2): first column, report, paragraphs 1-2",
           "attested_on": "1991-08-21",
-          "uncertainty": "The paper's report of a Central Committee secretary's press conference of 21 August 1991: reported speech, kept as a claim; the General Secretary's latest holder observation rests on the Secretariat's own statement."
+          "uncertainty": "The paper's report of a Central Committee secretary's press conference of 21 August 1991: reported speech, kept as a claim; the General Secretary's latest holder observation rests on the Secretariat's own statement. The printed report is signed TASS; this is attributed reportage reprinted by the party newspaper, not a signed party resolution or verbatim conference transcript."
         },
         {
           "id": "su_pravda201_ivashko_deputy_general_secretary_flew_to_crimea_19910821",
           "text": "The same report of the press conference of 21 August 1991: 'Он отметил, что с самого начала попытки переворота представители Секретариата ЦК пытались связаться с ГКЧП и настаивали на проведении встречи с М. С. Горбачевым. Лишь сегодня их усилия увенчались успехом — заместитель Генерального секретаря ЦК В. Ивашко вылетел в Крым.'",
           "locator": "Page 2 (PDF p. 2): first column, report, paragraph 2",
           "attested_on": "1991-08-21",
-          "uncertainty": "The Central Committee's organ reporting a Central Committee secretary's words that name the exact office; 'сегодня' is 21 August 1991, the day the report states. Whether such a report attests the office is for the integrator; without it the latest observation is 13 July 1990 and the journal's masthead of 10 July 1991 remains a claim."
+          "uncertainty": "The Central Committee's organ reporting a Central Committee secretary's words that name the exact office; 'сегодня' is 21 August 1991, the day the report states. Whether such a report attests the office is for the integrator; without it the latest observation is 13 July 1990 and the journal's masthead of 10 July 1991 remains a claim. The printed report is signed TASS; this is attributed reportage reprinted by the party newspaper, not a signed party resolution or verbatim conference transcript."
         },
         {
           "id": "su_pravda201_secretariat_statement_names_general_secretary_19910822",
@@ -2359,12 +2359,12 @@
           "uncertainty": "The Secretariat's own statement in the Central Committee's organ; it states no date, so it is dated by the issue (22 August 1991). The latest reviewed record styling him in office before his resignation."
         }
       ],
-      "scope_note": "The Central Committee's organ of 22 August 1991, the last issue before its publication was interrupted. Imported: the Secretariat's statement (PDF p. 1), which bears no date of its own and is dated by the issue, and the paper's report of the Central Committee secretary's press conference of 21 August 1991 (PDF p. 2). Other items of the issue are not imported.",
+      "scope_note": "The Central Committee's organ of 22 August 1991, the last issue before its publication was interrupted. Imported: the Secretariat's statement (PDF p. 1), which bears no date of its own and is dated by the issue, and the TASS-attributed report of the Central Committee secretary's press conference of 21 August 1991, reprinted by Pravda (PDF p. 2). Other items of the issue are not imported.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no201-secretariat-statement-19910822-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 10008,
-        "sha256": "b26d9e4c5fee99548792893a7c5feffd753182985b89b4ece9b9cf31c83568df"
+        "bytes": 10088,
+        "sha256": "f54a272241f712704f77fbf7524a409e36ffecbe8f8e0c1bcb19369c35254ee5"
       }
     },
     {
@@ -2517,15 +2517,15 @@
           "text": "The same decree, point 3: 'Имущество КПСС и КП РСФСР на территории РСФСР передать в собственность государства.'",
           "locator": "Point 3",
           "attested_on": "1991-11-06",
-          "uncertainty": "A property transfer on the RSFSR's territory: an organization claim only."
+          "uncertainty": "A property transfer on the RSFSR's territory: an organization claim only. The later Constitutional Court qualification printed after point 3 is outside the 1991 observation; this claim records the original decree wording, not its present legal validity."
         }
       ],
-      "scope_note": "An RSFSR act about the Union party, filed in ussr.json as organization claims on su_cpsu; russia.json is not changed. Points 1 and 3 are imported. The page gives the current edition with the Constitutional Court's note of 30 November 1992 (after the period, not imported); the quoted wording is identical in the original edition on the official legal portal (original_edition_response).",
+      "scope_note": "An RSFSR act about the Union party, filed in ussr.json as organization claims on su_cpsu; russia.json is not changed. Points 1 and 3 are imported. The page gives the current edition with the Constitutional Court's notes on points 1 and 3 of 30 November 1992 (after the period, not imported); the quoted wording is identical in the original edition on the official legal portal (original_edition_response).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/ussr-kremlin-rsfsr-ukaz-169-19911106-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 7303,
-        "sha256": "f4bdb9eb5cb43b0d6fa102742f6c9189a83aa4fbae47234bedf1a03776658d94"
+        "bytes": 7330,
+        "sha256": "4ad954b2809db3f2b50ffa0cbba90e3005a04219ee1f32d97820e289b6f25447"
       }
     }
   ],
@@ -2769,7 +2769,7 @@
           "Obtain original CPSU congress election protocols, exact General Secretary and deputy terms, acting arrangements and party rules.",
           "The March constitutional wording does not dissolve the party. Reconstruct the 1991 suspension, resignation, property and dissolution records by jurisdiction.",
           "Reconcile original Russian personal and organization names before game mappings or portraits; CPSU and the RSFSR Communist Party are not automatically one identity.",
-          "SU-CPSU-01/02 (CLAUDE-C01-41): the General Secretary is attested on 5 February 1990, re-elected by the XXVIII Congress on 10 July 1990 (ballot Т. Г. Авалиани and М. С. Горбачев; result and protocol approval in the Congress's communique) and attested to 22 August 1991. The counting commission's protocol No. 2 with the vote figures is only in a transcription of the stenographic report on a private host (a lead); an official facsimile of the stenographic report was not obtained.",
+          "SU-CPSU-01/02 (CLAUDE-C01-41): the General Secretary is attested on 5 February 1990, re-elected by the XXVIII Congress on 10 July 1990 (ballot Т. Г. Авалиани and М. С. Горбачев; result and protocol approval in the Congress's communique) and attested on 22 August 1991. The counting commission's protocol No. 2 with the vote figures is only in a transcription of the stenographic report on a private host (a lead); an official facsimile of the stenographic report was not obtained.",
           "SU-CPSU-03 (CLAUDE-C01-41): the Deputy General Secretary was voted on 11 July 1990 and his election announced and approved on 12 July 1990; the biography dates it to 11 July. The Congress's rules creating the office (Устав КПСС of 13 July 1990) are procedure and were not imported. Observations of 13 July 1990 and 21 August 1991; no from or until.",
           "SU-CPSU-05 (CLAUDE-C01-41): the General Secretary's statement of 24 August 1991 laying down the office is known only from leads (a textbook reader citing Российская газета of 27 August 1991, the Gorbachev Foundation's chronicle); his own words of 26 August 1991 in the Supreme Soviet's stenogram state no day, so no until is set. The Deputy General Secretary's acting service after 24 August 1991, any Central Committee decision on it and the end of his office were not found in a primary record.",
           "SU-CPSU-06 (CLAUDE-C01-41): the party's property decree (24 August 1991), the Supreme Soviet's suspension of its activity (29 August 1991) and the RSFSR decree ending its activity on RSFSR territory (6 November 1991) are organization claims only; a deputy said on 3 September 1991 that the Central Committee had not decided to dissolve itself. No union-level dissolution or lifecycle end is established, and the RSFSR Communist Party (suspended by RSFSR decree No. 79 of 23 August 1991, a lead) is not the same identity."

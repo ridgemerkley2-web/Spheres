@@ -29,7 +29,7 @@ scope (C01, C06, S23, WC1 and CP1) remains open.
 | SU-CPSU-01 | The General Secretary in 1990 before the XXVIII Congress | **Accepted:** the Central Committee's communique on the plenum opened 5 Feb 1990 names "Генеральный секретарь ЦК КПСС М. С. Горбачев" as rapporteur (Pravda No. 37); holder `attested_on` 5 Feb 1990 |
 | SU-CPSU-02 | The XXVIII Congress election of the General Secretary | **Accepted:** the ballot (Т. Г. Авалиани and М. С. Горбачев), the vote, the result announced and the counting commission's protocol approved, all on 10 Jul 1990, and the elected General Secretary's address (Pravda No. 192); holder `attested_on` 10 Jul 1990; the biography's "вновь избран" is a claim. No `from`: a re-election, and no source states when a term took effect |
 | SU-CPSU-03 | The new office of Deputy General Secretary: election and first attestation | **Accepted:** the ballot (А. С. Дудырев, В. А. Ивашко, Е. К. Лигачев) and the vote, 11 Jul 1990 (Pravda No. 193); the result announced and the protocols approved, 12 Jul 1990, with the vote figures in the paper's own report and a biography dating the election to 11 Jul (Pravda No. 194); the Congress's programme commission, formed 13 Jul 1990, lists "Ивашко В. А. — заместитель Генерального секретаря ЦК КПСС" and "Горбачев М. С. — Генеральный секретарь ЦК КПСС" (Pravda No. 195); holder `attested_on` 13 Jul 1990. No `from` |
-| SU-CPSU-04 | The latest attestations before the office changed | **Accepted in part:** the Central Committee journal's editorial board names the deputy (signed to press 10 Jul 1991, a claim); the Secretariat's undated statement in Pravda of 22 Aug 1991 names the General Secretary (holder `attested_on` 22 Aug 1991); Pravda's report of a Central Committee secretary's press conference of 21 Aug 1991 names both (the deputy's holder `attested_on` 21 Aug 1991; ruling requested) |
+| SU-CPSU-04 | The latest attestations before the office changed | **Accepted in part:** the Central Committee journal's editorial board names the deputy (signed to press 10 Jul 1991, a claim); the Secretariat's undated statement in Pravda of 22 Aug 1991 names the General Secretary (holder `attested_on` 22 Aug 1991); a TASS report reprinted by Pravda names both at a Central Committee secretary's press conference on 21 Aug 1991 (the deputy's holder `attested_on` 21 Aug 1991; ruling requested) |
 | SU-CPSU-05 | The General Secretary's resignation and the deputy's acting service | **Accepted in part:** his own words in the Supreme Soviet on 26 Aug 1991 that he has laid down the duties (no day stated) and another deputy's reference on 3 Sep 1991 are claims; the statement of 24 Aug 1991 itself is known only from leads, so no `until`. The deputy's acting service after 24 Aug 1991 was not found in a primary record (leads only) |
 | SU-CPSU-06 | The party's suspension and end | **Accepted in part:** decree УП-2460 on the party's property (24 Aug 1991), the proposal of self-dissolution (26 Aug), the Supreme Soviet's suspension of the party's activity in the USSR (2371-I, 29 Aug), a deputy's statement that the Central Committee has not decided to dissolve itself (3 Sep) and the RSFSR decree ending its activity on RSFSR territory (No. 169, 6 Nov 1991) are organization claims only; no union-level dissolution or lifecycle end is established |
 
@@ -220,8 +220,8 @@ apart, and all 17 pairs (12 recorded responses, four live files and one original
   and the live static files (fixed Last-Modified) are byte-identical and attached as `live_file_response`.
 - The kremlin.ru capture (20260830202901) is always served gzip-encoded, even to a request without gzip; the extract records the
   served (gzip) identity, `source_response_content_encoding: gzip` and the decoded identity. Its base32 SHA-1 equals the CDX digest.
-  The live kremlin.ru did not answer from this environment. The page is the current edition, with the Constitutional Court's note
-  of 30 November 1992 after point 1; the original edition (pravo.gov.ru, `nd=102012989`, `rdk=0`, over HTTP because the portal's
+  The live kremlin.ru did not answer from this environment. The page is the current edition, with the Constitutional Court's notes
+  of 30 November 1992 after points 1 and 3; the original edition (pravo.gov.ru, `nd=102012989`, `rdk=0`, over HTTP because the portal's
   HTTPS origin timed out, as for CLAUDE-C01-26) is attached as `original_edition_response` and has the same wording for the quoted
   points and the signature block.
 - The scans carry OCR layers (Internet Archive tesseract for the stored files); they were used only to find passages. Every
@@ -296,7 +296,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   coverage item is appended. Role ids, titles and kinds, the organization's name, jurisdiction and lifecycle are unchanged.
 - **Existing tests updated** (pinned counts, exact sets and access dates only; none loosened): `test_ussr_research_s10h.py`: totals (7, 56, 131, 8) → (7, 68, 157, 8); the table-extract count 46 → 58; the PDF-page set adds the 11 scanned PDFs of this packet (`C01_41_PDF_SOURCES`); access dates add 2026-09-30, pinned to positions 56-67, with 2026-09-29 re-pinned to positions 40-55 (`[40:56]`); index source claims 131 → 157; the CPSU roles' source pin is re-expressed exactly: the S10.h source stays first in both roles and every later source is one of this packet's (`C01_41_SOURCES`). `test_ussr_government_supreme_soviet_c01_26.py`: packet totals (68, 157, 7, 8) and index figures (4, 8, 157, 7); its new-source list stays pinned to positions 10-39. `test_ussr_democratic_russia_soyuz_c01_35.py`: its new-source list is pinned to positions 40-55 (`[40:56]`), the packet totals become (68, 157, 7, 8), the source count 56 → 68 and the index figures (3, 4, 8, 157, 7); its holder guard keeps the same SHA-256 and now skips only holders resting on this packet's sources (`C01_41_SOURCES`), which the new test pins in full. `test_ussr_russia_transition_c01_05.py` is unchanged.
 - **Rulings requested.** (1) Internet Archive user uploads of Pravda and Известия ЦК КПСС as hosts (all five holders depend on
-  them). (2) Whether Pravda's report of a Central Committee secretary's press conference attests the deputy's office on 21 August
+  them). (2) Whether the TASS-attributed report of a Central Committee secretary's press conference reprinted by Pravda attests the deputy's office on 21 August
   1991. (3) Whether the General Secretary's own words of 26 August 1991, with the statement's date only in leads, should ever give
   `until` 1991-08-24 (this packet sets none). (4) Whether a re-election by the Congress on a stated day should give `from` (this
   packet follows the CLAUDE-C01-26 rule: an election is a claim, not a holder start).
@@ -328,3 +328,18 @@ python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 41
 ```
 
 Results are recorded in the handoff's Checks paragraph.
+
+## Independent review precision corrections (1 October 2026)
+
+The press-conference article on page 2 of Pravda No. 201 is explicitly signed TASS.
+It is attributed reportage of a named party officer, reprinted by the party organ;
+it is not a signed party statement or a verbatim conference transcript. The
+21 August deputy observation retains that limitation. The Kremlin edition
+contains later court qualifications after both points 1 and 3. Both original
+1991 clauses were separately checked on the legal portal; no present legal
+validity is asserted. A coverage phrase now says attested **on**, rather than
+**to**, 22 August, so it does not imply a continuous term.
+
+These corrections do not change claim dates, holder observations, office
+boundaries, historical source bytes or the unresolved Ivashkov identity. See
+[the independent review](../integrations/CLAUDE-C01-41/review-2026-10-01/README.md).
