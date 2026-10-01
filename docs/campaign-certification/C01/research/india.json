@@ -12054,7 +12054,7 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-pd-rally-18th-congress-20050417-facts.json",
         "bytes": 4596,
-        "sha256": "a72742f2f880472de1caa7991aeb886ecb135f61c6bb5cc5594ee10335d898fa"
+        "sha256": "afb9e4c2a7b9497654fc70374a7a59d3b4c1d7332154b03dcf56c66e22104a07"
       },
       "claims": [
         {
@@ -12073,7 +12073,7 @@
           "locator": {
             "item": "fourth to sixth paragraphs"
           },
-          "uncertainty": "Dates the holder observation: the party organ styles him general secretary acting at the meeting of 11 April 2005, a day its text prints; the earliest single-day party record adopted for him. No start: the report does not state the day of his election or of his assumption of the office."
+          "uncertainty": "An election claim, never a holder date and never a start: a 'newly elected' styling at the rally closing the 18th Congress, on the day of the election (ruling (a) of this packet's review, following CLAUDE-C01-27's 'Newly Elected President'). The report does not state the day of his election or of his assumption of the office."
         }
       ]
     },
@@ -12114,6 +12114,34 @@
       ]
     },
     {
+      "id": "in_cpim_gs_note_to_nic_20110910",
+      "title": "Communist Party of India (Marxist), 'Note to NIC Meeting' (cpim.org post 1411, published 10 September 2011), WordPress REST record",
+      "url": "https://cpim.org/wp-json/wp/v2/posts/1411",
+      "publisher": "Communist Party of India (Marxist) (cpim.org, the party website)",
+      "published_date": "2011-09-10",
+      "accessed_date": "2026-10-01",
+      "access_method": "party_website_rest_record_download_and_post_text_read",
+      "source_type": "primary_party_record_web",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party website's post 1411 (slug note-nic-meeting), published 10 September 2011 and last modified 28 June 2013, recorded as its WordPress REST record (wp-json/wp/v2/posts/1411) because the HTML page of the same post embeds a per-request cache timestamp. A release whose printed dateline, 'September 10, 2011', is its publication date, printing the note the General Secretary submitted to the National Integration Council 'today'; the later modification stamp is the site's 2013 migration and never an attestation date.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/india-cpim-gs-note-to-nic-20110910-facts.json",
+        "bytes": 3921,
+        "sha256": "5d53f7315d727e2cab8190c5365d1c883578797c854227307708dfcf639db2e7"
+      },
+      "claims": [
+        {
+          "id": "in_cpim_karat_gs_note_to_nic_20110910",
+          "text": "The party's release dated 'September 10, 2011' says 'We are herewith releasing the note submitted by Prakash Karat, General Secretary, Communist Party of India (Marxist) to the National Integration Council Meeting held in New Delhi today'.",
+          "attested_on": "2011-09-10",
+          "locator": {
+            "item": "dateline and first paragraph"
+          },
+          "uncertainty": "Dates the holder observation: the party styles him General Secretary as the author of a note submitted on the release's own dateline, 10 September 2011 ('today'), which agrees with the post's publication date; the earliest such party record found for him. No start: no record reviewed states the day he assumed the office; his 18th Congress election has no printed day, and the 'newly-elected general secretary' of 11 April 2005 is an election claim."
+        }
+      ]
+    },
+    {
       "id": "in_pd_20120415_rally_concludes_20th_congress",
       "title": "People's Democracy, Vol. XXXVI No. 15, 15 April 2012: N S Arjun, 'Massive Rally Concludes 20th Congress: A Sea of Red' (pd.cpim.org/2012/0415_pd/04152012_6.html), Internet Archive capture of 12 August 2012",
       "url": "https://web.archive.org/web/20120812040620id_/http://pd.cpim.org/2012/0415_pd/04152012_6.html",
@@ -12127,8 +12155,8 @@
       "scope_note": "The party's weekly organ, issue of 15 April 2012 (archived Last-Modified 14 April 2012), recorded as a raw Internet Archive capture of 12 August 2012. A report of the public meeting at Kozhikode on 9 April 2012 that concluded the 20th Congress; the day is printed in its text.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-pd-rally-20th-congress-20120415-facts.json",
-        "bytes": 3845,
-        "sha256": "8a6c80d1d9c4b0ce6a22e6d8d074836b67cc73b0905154ecad8224a74f626250"
+        "bytes": 3832,
+        "sha256": "2638429623a0777e3c19ab4c20697ba60f31c153565517d496606909cd8a2ce2"
       },
       "claims": [
         {
@@ -12138,7 +12166,7 @@
           "locator": {
             "item": "first and third paragraphs"
           },
-          "uncertainty": "A later attestation of a holder already observed (a re-election at the 20th Congress is not a new start); the only record of the 20th Congress election found, it does not state the day of the Central Committee's election."
+          "uncertainty": "An election claim, never a holder date and never a start: a 'newly elected' styling at the rally closing the 20th Congress records his re-election (ruling (a) of this packet's review, following CLAUDE-C01-27); the only record of the 20th Congress election found, it does not state the day of the Central Committee's election."
         }
       ]
     },
@@ -12157,7 +12185,7 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-pd-join-to-bring-forth-change-20150426-facts.json",
         "bytes": 5983,
-        "sha256": "e83a0a68a4317636ea2a9c5b18c4bac559cc4d96c6050a080bfac22b327349f2"
+        "sha256": "f46f4875ded6dfc9b7c6a0f45e619903021435d620e533b4431cd25e68043d6f"
       },
       "claims": [
         {
@@ -12185,7 +12213,7 @@
           "locator": {
             "item": "public meeting report, ninth paragraph; last paragraph for the day"
           },
-          "uncertainty": "An 'outgoing' styling is never an end: no record reviewed states the day he left the office, and his successor's election or observation on the same day is not used as his end."
+          "uncertainty": "An 'outgoing' styling is never an end: no record reviewed states the day he left the office, and his successor's election and 'newly elected' styling on the same day are not used as his end."
         },
         {
           "id": "in_pd_rally_newly_elected_gs_yechury_20150419",
@@ -12194,7 +12222,7 @@
           "locator": {
             "item": "public meeting report, tenth paragraph; last paragraph for the day"
           },
-          "uncertainty": "Dates the holder observation: the party organ styles him general secretary addressing the meeting of 19 April 2015, a day its text prints; the earliest single-day party record adopted for him. No start: no record reviewed states the day he assumed the office, and the election claim of the same day names nobody."
+          "uncertainty": "An election claim, never a holder date and never a start: a 'newly elected' styling at the rally closing the 21st Congress, on the day of the election (ruling (a) of this packet's review, following CLAUDE-C01-27's 'Newly Elected President'). The election claim of the same day names nobody, and no record reviewed states the day he assumed the office."
         }
       ]
     },
@@ -12223,6 +12251,34 @@
             "item": "list 'Polit Bureau Elected at the 21st Congress'"
           },
           "uncertainty": "A list describing the composition elected at the Congress, with no day of its own: it names the General Secretary elected, but a list is a claim, never a holder observation, and the issue's date is not the event's."
+        }
+      ]
+    },
+    {
+      "id": "in_cpim_gs_letter_to_naidu_20150508",
+      "title": "Communist Party of India (Marxist), 'Ambedkar Anniversary: Convene Parliament Session' (cpim.org post 4346, published 8 May 2015), WordPress REST record",
+      "url": "https://cpim.org/wp-json/wp/v2/posts/4346",
+      "publisher": "Communist Party of India (Marxist) (cpim.org, the party website)",
+      "published_date": "2015-05-08",
+      "accessed_date": "2026-10-01",
+      "access_method": "party_website_rest_record_download_and_post_text_read",
+      "source_type": "primary_party_record_web",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party website's post 4346 (slug ambedkar-anniversary-convene-parliament-session), published 8 May 2015 and last modified 15 May 2015, recorded as its WordPress REST record (wp-json/wp/v2/posts/4346) because the HTML page of the same post embeds a per-request cache timestamp. A release whose printed dateline, 'May 8, 2015', is its publication date, printing a letter of the General Secretary dated 'May 6, 2015' and signed with his party office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/india-cpim-gs-letter-to-naidu-20150508-facts.json",
+        "bytes": 3918,
+        "sha256": "d25fb8935815a22f676775182c64f537e966c3ccb190254b350d32b99ba5cea4"
+      },
+      "claims": [
+        {
+          "id": "in_cpim_yechury_gs_letter_to_naidu_20150506",
+          "text": "The party's release dated 'May 8, 2015' prints 'the text of the letter addressed to the Parliamentary Affairs Minister, Shri Venkaiah Naidu by CPI(M) General Secretary Sitaram Yechury'; the letter is dated 'May 6, 2015' and signed '(Sitaram Yechury) General Secretary'.",
+          "attested_on": "2015-05-06",
+          "locator": {
+            "item": "dateline and first paragraph; letter date and signature"
+          },
+          "uncertainty": "Dates the holder observation by the letter's own date, as written (CLAUDE-C01-35), as this packet dates Surjeet by his letter of 2 March 2004 rather than the issue of 7 March: he signs as General Secretary on 6 May 2015, and the release's dateline of 8 May 2015 styles him the same; the earliest such party record found for him. No start: no record reviewed states the day he assumed the office, and the 'Newly elected general secretary' of 19 April 2015 is an election claim."
         }
       ]
     },
@@ -13391,9 +13447,11 @@
             "in_pd_20050417_new_polit_bureau",
             "in_pd_20050417_rally_concludes_18th_congress",
             "in_pd_20050417_surjeet_break_the_impasse",
+            "in_cpim_gs_note_to_nic_20110910",
             "in_pd_20120415_rally_concludes_20th_congress",
             "in_pd_20150426_join_to_bring_forth_change",
             "in_pd_20150426_central_committee_elected_21st_congress",
+            "in_cpim_gs_letter_to_naidu_20150508",
             "in_cpim_22nd_congress_new_cc_elected_20180422",
             "in_cpim_23rd_congress_new_cc_elected_20220410",
             "in_cpim_pb_homage_yechury_20240912",
@@ -13413,12 +13471,14 @@
             "in_pd_rally_newly_elected_gs_karat_20050411",
             "in_pd_surjeet_general_secretary_since_1992_recalled",
             "in_pd_surjeet_says_karat_took_up_mantle_2005",
+            "in_cpim_karat_gs_note_to_nic_20110910",
             "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
             "in_pd_karat_gs_inaugurated_21st_congress_20150414",
             "in_pd_21st_congress_elected_general_secretary_20150419",
             "in_pd_rally_karat_outgoing_gs_20150419",
             "in_pd_rally_newly_elected_gs_yechury_20150419",
             "in_pd_pb_list_yechury_general_secretary_21st_congress",
+            "in_cpim_yechury_gs_letter_to_naidu_20150506",
             "in_cpim_cc_elected_yechury_gs_22nd_congress_20180422",
             "in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410",
             "in_cpim_pb_yechury_general_secretary_died_20240912",
@@ -13446,33 +13506,33 @@
             },
             {
               "name": "Prakash Karat",
-              "attested_on": "2005-04-11",
+              "attested_on": "2011-09-10",
               "from": null,
               "until": null,
               "sources": [
-                "in_pd_20050417_rally_concludes_18th_congress"
+                "in_cpim_gs_note_to_nic_20110910"
               ],
               "claim_ids": [
-                "in_pd_rally_newly_elected_gs_karat_20050411"
+                "in_cpim_karat_gs_note_to_nic_20110910"
               ],
-              "note": "Observed on 11 April 2005: People's Democracy of 17 April 2005 reports that at the public meeting in New Delhi on April 11 concluding the 18th Congress Surjeet 'was escorted to the podium by the newly-elected general secretary, Prakash Karat' (Internet Archive capture of the party organ).",
-              "uncertainty": "No start: the same issue says he 'has been unanimously elected' by the new Central Committee without a day. No end: he inaugurated the 21st Congress as 'general secretary of the CPI(M)' on 14 April 2015 and was 'the outgoing general secretary' on 19 April 2015; no record states the day he left the office, and his successor's election or observation is not used as his end. His interim coordinatorship of 2024-2025 is claims only and is not this office."
+              "note": "Observed on 10 September 2011: the party's release dated 'September 10, 2011' publishes 'the note submitted by Prakash Karat, General Secretary, Communist Party of India (Marxist) to the National Integration Council Meeting held in New Delhi today' (party website record); the earliest such party record found for him.",
+              "uncertainty": "No start: People's Democracy of 17 April 2005 says he 'has been unanimously elected' by the new Central Committee without a day, and its 'newly-elected general secretary' at the rally of 11 April 2005, like the 'newly elected general secretary' at Kozhikode on 9 April 2012, is an election claim, never a holder date or a start. No end: he inaugurated the 21st Congress as 'general secretary of the CPI(M)' on 14 April 2015 and was 'the outgoing general secretary' on 19 April 2015; no record states the day he left the office, and his successor's election is not used as his end. His interim coordinatorship of 2024-2025 is claims only and is not this office."
             },
             {
               "name": "Sitaram Yechury",
-              "attested_on": "2015-04-19",
+              "attested_on": "2015-05-06",
               "from": null,
               "until": "2024-09-12",
               "sources": [
-                "in_pd_20150426_join_to_bring_forth_change",
+                "in_cpim_gs_letter_to_naidu_20150508",
                 "in_cpim_pb_homage_yechury_20240912"
               ],
               "claim_ids": [
-                "in_pd_rally_newly_elected_gs_yechury_20150419",
+                "in_cpim_yechury_gs_letter_to_naidu_20150506",
                 "in_cpim_pb_yechury_general_secretary_died_20240912"
               ],
-              "note": "Observed on 19 April 2015: People's Democracy of 26 April 2015 reports that at the public meeting concluding the 21st Congress on April 19 the 'Newly elected general secretary, Sitaram Yechury, addressing the gathering' spoke (Internet Archive capture of the party organ). Until 12 September 2024: the Polit Bureau's statement records 'the passing away of Comrade Sitaram Yechury, General Secretary of the Party on September 12, 2024'.",
-              "uncertainty": "No start: the 21st Congress election of 19 April 2015 names nobody, the Polit Bureau list of the same issue has no day, and no record states the day he assumed the office. His re-elections at the 22nd (22 April 2018) and 23rd (10 April 2022) Congresses are claims, not new starts. The end is the day of death stated with the office in the party's own statement, the rule applied in CLAUDE-C01-34."
+              "note": "Observed on 6 May 2015: the party's release dated 'May 8, 2015' prints 'the text of the letter addressed to the Parliamentary Affairs Minister, Shri Venkaiah Naidu by CPI(M) General Secretary Sitaram Yechury', a letter dated 'May 6, 2015' and signed '(Sitaram Yechury) General Secretary' (party website record). Until 12 September 2024: the Polit Bureau's statement records 'the passing away of Comrade Sitaram Yechury, General Secretary of the Party on September 12, 2024'.",
+              "uncertainty": "No start: the 21st Congress election of 19 April 2015 names nobody, the Polit Bureau list of the same issue has no day, the 'Newly elected general secretary' at the rally of 19 April 2015 is an election claim, never a holder date or a start, and no record states the day he assumed the office. His re-elections at the 22nd (22 April 2018) and 23rd (10 April 2022) Congresses are claims, not new starts. The end is the day of death stated with the office in the party's own statement, the rule applied in CLAUDE-C01-34."
             },
             {
               "name": "M. A. Baby",
@@ -13489,7 +13549,7 @@
               "uncertainty": "No start: the party's post of 6 April 2025 says 'The Central Committee elected MA Baby as the General Secretary', an election claim dated by the post's dateline, and no record states the day he assumed the office. No end: he is styled General Secretary on 24 August 2026, and no vacancy, resignation or interim arrangement is recorded before the cutoff of 7 September 2026."
             }
           ],
-          "scope_note": "General Secretary of the Communist Party of India (Marxist), the party office, recorded on the CPI(M) recognition observation. CLAUDE-C01-40 keeps Party Congress and Central Committee elections (each Congress its own dated claim where a source gives the day), in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement as separate claims. A holder has a start only where a source states the day the office was assumed (none does), and an end only where a source states the day it ended (Sitaram Yechury, whose death on 12 September 2024 the Polit Bureau's statement records, naming the office); otherwise the holder is a dated observation (attested_on) from a same-day in-office attestation in the party's own records that names the holder and styles the office. An election recorded by the party is a claim, never a start; do not fill the interval between observations or infer an outgoing holder's last day from a successor's election or observation. The interim coordinator of the Polit Bureau and the Central Committee (Prakash Karat, from 29 September 2024 until the 24th Congress) is claims only, never a holder. Retrospective pages, biographies and lists are claims; site 'Last modified' stamps, post modification dates and archive capture dates are never attestation dates. Party office and state office stay separate: no in_prime_minister or in_presidency claim or source feeds this role and none of its claims feeds either institution, and in_inc_president, in_bjp_president and in_jd_president are untouched. The party constitution is not used."
+          "scope_note": "General Secretary of the Communist Party of India (Marxist), the party office, recorded on the CPI(M) recognition observation. CLAUDE-C01-40 keeps Party Congress and Central Committee elections (each Congress its own dated claim where a source gives the day), 'newly elected' stylings on or for an election, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement as separate claims. A holder has a start only where a source states the day the office was assumed (none does), and an end only where a source states the day it ended (Sitaram Yechury, whose death on 12 September 2024 the Polit Bureau's statement records, naming the office); otherwise the holder is a dated observation (attested_on) from a same-day in-office attestation in the party's own records that names the holder and styles the office. An election recorded by the party, even on its day, and a 'newly elected' styling on or for the election are claims, never a start or a holder date; do not fill the interval between observations or infer an outgoing holder's last day from a successor's election or observation. The interim coordinator of the Polit Bureau and the Central Committee (Prakash Karat, from 29 September 2024 until the 24th Congress) is claims only, never a holder. Retrospective pages, biographies and lists are claims; site 'Last modified' stamps, post modification dates and archive capture dates are never attestation dates. Party office and state office stay separate: no in_prime_minister or in_presidency claim or source feeds this role and none of its claims feeds either institution, and in_inc_president, in_bjp_president and in_jd_president are untouched. The party constitution is not used."
         }
       ],
       "sources": [
@@ -13501,9 +13561,11 @@
         "in_pd_20050417_new_polit_bureau",
         "in_pd_20050417_rally_concludes_18th_congress",
         "in_pd_20050417_surjeet_break_the_impasse",
+        "in_cpim_gs_note_to_nic_20110910",
         "in_pd_20120415_rally_concludes_20th_congress",
         "in_pd_20150426_join_to_bring_forth_change",
         "in_pd_20150426_central_committee_elected_21st_congress",
+        "in_cpim_gs_letter_to_naidu_20150508",
         "in_cpim_22nd_congress_new_cc_elected_20180422",
         "in_cpim_23rd_congress_new_cc_elected_20220410",
         "in_cpim_pb_homage_yechury_20240912",
@@ -13524,12 +13586,14 @@
         "in_pd_rally_newly_elected_gs_karat_20050411",
         "in_pd_surjeet_general_secretary_since_1992_recalled",
         "in_pd_surjeet_says_karat_took_up_mantle_2005",
+        "in_cpim_karat_gs_note_to_nic_20110910",
         "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
         "in_pd_karat_gs_inaugurated_21st_congress_20150414",
         "in_pd_21st_congress_elected_general_secretary_20150419",
         "in_pd_rally_karat_outgoing_gs_20150419",
         "in_pd_rally_newly_elected_gs_yechury_20150419",
         "in_pd_pb_list_yechury_general_secretary_21st_congress",
+        "in_cpim_yechury_gs_letter_to_naidu_20150506",
         "in_cpim_cc_elected_yechury_gs_22nd_congress_20180422",
         "in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410",
         "in_cpim_pb_yechury_general_secretary_died_20240912",
@@ -13546,7 +13610,7 @@
           "Reconcile exact organization identity, jurisdiction and name variants before mapping to the game.",
           "Research founding, splits, mergers, dissolution and separately dated party offices from 1990 through the fixed cutoff.",
           "Review later amendments and any identity or status qualifications; no current legal conclusion is drawn.",
-          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40): role in_cpm_general_secretary holds four holder observations from the party's website and its weekly organ People's Democracy (Harkishan Singh Surjeet 2004, Prakash Karat 2005, Sitaram Yechury 2015 with the stated end of 12 September 2024, M. A. Baby 2025) and no stated start. Still open: an in-office attestation of EMS Namboodiripad from 1 January 1990 to the 14th Congress (January 1992); the day and record of the Central Committee's elections at the 14th (1992), 15th (1995), 17th (2002), 18th (2005), 19th (2008) and 20th (2012) Congresses; and the days each General Secretary assumed and left the office where no source states them. The ECI recognition identity, unresearched lifecycle and empty game mapping of this observation are unchanged."
+          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40): role in_cpm_general_secretary holds four holder observations from the party's website and its weekly organ People's Democracy (Harkishan Singh Surjeet 2004, Prakash Karat 2011, Sitaram Yechury 2015 with the stated end of 12 September 2024, M. A. Baby 2025) and no stated start. Still open: an in-office attestation of EMS Namboodiripad from 1 January 1990 to the 14th Congress (January 1992); an in-office attestation of Prakash Karat from April 2005 to September 2011; the day and record of the Central Committee's elections at the 14th (1992), 15th (1995), 17th (2002), 18th (2005), 19th (2008) and 20th (2012) Congresses; and the days each General Secretary assumed and left the office where no source states them. The ECI recognition identity, unresearched lifecycle and empty game mapping of this observation are unchanged."
         ]
       }
     },
@@ -18720,7 +18784,7 @@
       "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
       "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
       "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted.",
-      "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 11 April 2005, Sitaram Yechury 19 April 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2015, 2018, 2022 and 2025 are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
+      "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 10 September 2011, Sitaram Yechury 6 May 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2012, 2015, 2018, 2022 and 2025, with the 'newly elected' stylings at the rallies closing the 2005, 2012 and 2015 Congresses, are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
     ]
   }
 }
