@@ -1,5 +1,16 @@
 # CLAUDE-C01-40: CPI(M) general secretaries, 1990–2026
 
+## Integration amendment, 1 October 2026
+
+The original submission below was accepted with corrections at `6ee593de`.
+Claude subsequently submitted `5054de7b` / `d7e1b9d2`: two additional official
+records, three newly-elected styling classifications and two revised selected
+observations. See the [independent amendment review](../../campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md).
+Earlier claims and corrected citation anchors remain intact. No effective starts,
+runtime mappings, portraits or parent-gate completion are granted. The submitted
+attribution of policy rulings to Ridge is not treated as verified authorization.
+The historical original submission record follows.
+
 Owner: Claude. State: **ready_for_review** (1 October 2026 UTC; submitted, not accepted). Parent: C01 (incomplete).
 Report: [india-cpim-general-secretaries-1990-2026-40.md](../../campaign-certification/C01/research/india-cpim-general-secretaries-1990-2026-40.md).
 

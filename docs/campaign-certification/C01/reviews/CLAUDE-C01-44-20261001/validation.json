@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-technical-validation/v1",
+  "submission": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
+  "tested_commit": "9955de17c16f3c13c0e042487b604fd8a5960433",
+  "tests_passed": 141,
+  "tests_failed": 0,
+  "runs": [
+    {
+      "command": "python -X utf8 -m unittest discover -s tools/avatars -p test_tonga*.py",
+      "exit_code": 0,
+      "finished_utc": "2026-10-01T04:02:03.5155532Z",
+      "tests": 101,
+      "log": "validation/tonga-01.log"
+    },
+    {
+      "command": "python -X utf8 -m unittest discover -s tools/avatars -p test_country_cast.py",
+      "exit_code": 0,
+      "finished_utc": "2026-10-01T04:02:29.6068472Z",
+      "tests": 31,
+      "log": "validation/country-cast-01.log"
+    },
+    {
+      "command": "python -X utf8 -m unittest discover -s tools/avatars -p test_campaign_research.py",
+      "exit_code": 0,
+      "finished_utc": "2026-10-01T04:03:13.7132326Z",
+      "tests": 9,
+      "log": "validation/campaign-research-01.log"
+    },
+    {
+      "command": "campaign_research.build() in memory; JSON written outside Git",
+      "exit_code": 0,
+      "finished_utc": "2026-10-01T04:03:14.5345682Z",
+      "tests": null,
+      "log": "validation/research-build-01.log"
+    }
+  ],
+  "native_run": false,
+  "full_avatar_run": false,
+  "generated_research_index_committed": false,
+  "historical_approval": false
+}

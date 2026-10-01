@@ -1,0 +1,47 @@
+{
+  "format": "spheres-s25-native-diagnostic/v1",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "diagnostic_only": true,
+  "qualification": false,
+  "s25_complete": false,
+  "campaign_pass": false,
+  "executable": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+  "binary_sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8",
+  "tool": "D:\\spheres-offload\\codex-next-20260928\\s25-crash-prep-raw-20261001\\procdump\\procdump64.exe",
+  "tool_sha256": "d1fc99ae304bd1d2bf28abeb62531da959e2431916194981b88c958fd713a8e6",
+  "request_source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\request.json",
+  "request_sha256": "283ffcbf56774b69abc6af7bdc1d561d7cbd9af0dbc868c331e7d85d6f3b746e",
+  "request": "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01\\request.json",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01",
+  "arguments": [
+    "-ma",
+    "-e",
+    "-n",
+    "1",
+    "-x",
+    "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01\\dumps",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+    "--exact",
+    "s25_stability_tests::s25_stability_cell",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "environment": {
+    "SPHERES_S25_OUT": "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01\\native",
+    "SPHERES_S25_REQUEST": "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01\\request.json"
+  },
+  "limits": {
+    "max_output_bytes": 137438953472,
+    "max_log_bytes": 67108864,
+    "poll_seconds": 2,
+    "max_hours": 12,
+    "available_commit_stop_bytes": 1073741824,
+    "max_dumps": 1,
+    "disk_floor_bytes": 3221225472,
+    "available_commit_start_bytes": 3221225472,
+    "dump_reserve_bytes": 68719476736
+  },
+  "source_line_symbols_available": false,
+  "coff_function_symbols_available": true
+}

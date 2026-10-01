@@ -74,8 +74,11 @@ COMMIT_PACKETS = {
     '4d88fd03': 'CLAUDE-C01-37',
     '9174c807': 'CLAUDE-C01-38',
     '5d5935c3': 'CLAUDE-C01-40',
+    '3c4a3abc': 'CLAUDE-C01-40',
     'f04ead94': 'CLAUDE-C01-41',
     'b74f4fa5': 'CLAUDE-C01-31',
+    'd23f0bf2': 'CLAUDE-C01-45',
+    '91a1dbe1': 'CLAUDE-C01-46',
 }
 
 EVIDENCE_CLASSES = {
@@ -129,6 +132,16 @@ IN_FLIGHT = {
                       'scope': 'CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping'},
     'CLAUDE-C01-41': {'case': 'USSR -> Russia', 'targets': ['party:USSR/su_cpsu'],
                       'scope': 'CPSU General Secretary and Deputy General Secretary, 1990-1991; bounded observations accepted, no runtime mapping'},
+    'CLAUDE-C01-42': {'case': 'Japan', 'targets': ['party:Japan/jp_jcp', 'role:jp_jcp_executive_committee_chair', 'role:jp_jcp_central_committee_chair', 'role:jp_dpfp_representative'],
+                      'scope': 'Research JCP chairs and DPFP representatives, 1990–2026; existing claim preserved, no accepted import'},
+    'CLAUDE-C01-43': {'case': 'Brazil', 'targets': ['party:Brazil/br_prn', 'party:Brazil/br_pds', 'role:br_agir_president'],
+                      'scope': 'Research PRN, PTC and Agir national presidents, 1990–2026; existing claim preserved, no accepted import'},
+    'CLAUDE-C01-44': {'case': 'Tonga', 'targets': ['role:to_dpfi_leader', 'role:to_dpfi_president', 'role:to_pdp_leader'],
+                      'scope': 'Research Tonga DPFI and PDP organization and leadership evidence; existing claim preserved, no accepted import'},
+    'CLAUDE-C01-45': {'case': 'SaudiArabia', 'targets': ['role:sa_king', 'role:sa_crown_prince', 'role:sa_succession_secretary'],
+                      'scope': 'Research Saudi royal offices and Allegiance Commission secretary; bounded observations accepted, no runtime mapping'},
+    'CLAUDE-C01-46': {'case': 'USSR -> Russia', 'targets': ['role:ru_duma_faction_20211012_er_head', 'role:ru_duma_faction_20211012_kprf_head', 'role:ru_duma_faction_20211012_ldpr_head', 'role:ru_duma_faction_20211012_nl_head', 'role:ru_duma_faction_20211012_srzp_head'],
+                      'scope': 'Research State Duma faction heads, 2021–2026; bounded observations accepted, no runtime mapping'},
     'CLAUDE-C01-SOURCE-05': {'case': 'USSR -> Russia', 'targets': [],
                              'scope': 'Source-review repair of one CLAUDE-C01-05 source (no coverage change)'},
     'CLAUDE-C01-SOURCE-06': {'case': 'SaudiArabia', 'targets': [],

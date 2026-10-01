@@ -1,0 +1,93 @@
+{
+  "format": "spheres-s25-crash-capture-preparation/v1",
+  "checked_utc": "2026-10-01T03:23:40.855889+00:00",
+  "base_revision": "d0c6676b347c16226d7c7db9371a36cd0a51ce92",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "native_campaign_launched": false,
+  "qualification": false,
+  "s25_complete": false,
+  "cause_determined": false,
+  "ready_for_review": true,
+  "full_source_symbolic_diagnosis_ready": false,
+  "external_evidence_root": "D:\\spheres-offload\\codex-next-20260928\\s25-crash-prep-raw-20261001",
+  "binary": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+    "bytes": 353201472,
+    "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+  },
+  "request": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\request.json",
+    "bytes": 183,
+    "sha256": "283ffcbf56774b69abc6af7bdc1d561d7cbd9af0dbc868c331e7d85d6f3b746e"
+  },
+  "tool": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\s25-crash-prep-raw-20261001\\procdump\\procdump64.exe",
+    "bytes": 741216,
+    "sha256": "d1fc99ae304bd1d2bf28abeb62531da959e2431916194981b88c958fd713a8e6"
+  },
+  "download": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\s25-crash-prep-raw-20261001\\Procdump.zip",
+    "bytes": 1255611,
+    "sha256": "68e057587b0fd654efa095f76d80d633c0e5c60ea26fd3e7c0011c076bb2d00c"
+  },
+  "official_url": "https://download.sysinternals.com/files/Procdump.zip",
+  "official_documentation": "https://learn.microsoft.com/en-us/sysinternals/downloads/procdump",
+  "tool_version": "12.01",
+  "source_git_blobs": {
+    "Cargo.toml": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e",
+    "spheres-web/src/s25_stability_tests.rs": "a67a8d4ae08500903fa338cfbf1862d9a7b71519",
+    "spheres-sim": "25296d3844032abf96462d3690070b190a374586"
+  },
+  "symbol_limits": {
+    "coff_entries": 85715,
+    "embedded_function_names": true,
+    "unwind_sections": true,
+    "debuginfo": 0,
+    "pdb_codeview_references": 0,
+    "dwarf_sections": 0,
+    "source_lines_and_locals": false,
+    "source_debug_companion_built": false
+  },
+  "owned_proof": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\s25-crash-prep-raw-20261001\\owned-proof-dumps\\python.exe_260930_200244.dmp",
+    "bytes": 40903229,
+    "sha256": "988384b82553b85847745e10d9b69794419deb70a6775b7af9179654aca5e39c"
+  },
+  "owned_pid": 42036,
+  "owned_thread": 39588,
+  "exception_code": "0xc0000005",
+  "exception_parameters": [
+    8,
+    1
+  ],
+  "selected_registry_comparison": {
+    "per_user_eula_before": "absent",
+    "per_user_eula_after": 1,
+    "AeDebug_and_LocalDumps_selected_values_unchanged": true,
+    "systemwide_debugger_install": false
+  },
+  "validation": {
+    "launcher_checks": 12,
+    "owned_dump_checks": 7,
+    "production_monitor_synthetic_cases": 5,
+    "earlier_failed_synthetic_runs_retained": 2,
+    "first_slow_PE_probe_stopped_and_retained": true
+  },
+  "launch_limits": {
+    "prior_japan_seconds": 25066.819691099983,
+    "prior_matrix_seconds": 52058.57260869999,
+    "max_hours": 12,
+    "original_disk_floor_bytes": 3221225472,
+    "full_dump_reserve_bytes": 68719476736,
+    "minimum_start_commit_bytes": 3221225472,
+    "minimum_running_commit_bytes": 1073741824
+  },
+  "remaining_conditions": [
+    "Independent review of launcher before explicit -Run.",
+    "Fresh native-workload coordination and resource preflight; observed background Git used two cores.",
+    "Matching source-line/local-variable symbols are unavailable for this original optimized executable.",
+    "No actual Japan diagnostic, dump analysis, root cause or qualification has been completed."
+  ],
+  "launcher_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+  "dump_inspector_sha256": "a1c8859eb53960ac108ed22f1c59acdd0504f93e71beb3bab01c54ca9337144f"
+}

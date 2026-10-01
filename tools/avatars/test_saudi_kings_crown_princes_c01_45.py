@@ -164,6 +164,9 @@ def kcp_invariants(packet, extracts):
             assert r['observation_id'] == ('sa_succession_commission' if role == 'sa_succession_secretary' else 'sa_crown')
         assert (ex['source_response_bytes'], ex['source_response_sha256']) == RESPONSES[sid], sid
         assert ex['source_url'] == src['url'] and ex['source_id'] == sid, sid
+        assert ex['scope_note'] == src['scope_note'], sid
+        for c in src['claims']:
+            assert rows[c['id']]['locator'] == c['locator'], c['id']
 
 
 class SaudiKingsCrownPrincesTests(unittest.TestCase):
@@ -215,7 +218,7 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
         self.assertEqual(names, {FAHD, ABD, SAL, SUL, NAY, MUQ, MBN, MBS, TUW})
         sec = self.roles['sa_succession_secretary']['holder_claims'][0]
         self.assertIn('no effective day', sec['uncertainty'])
-        self.assertIn('do not name the Commission', sec['uncertainty'])
+        self.assertIn('author-supplied leads, not independently reviewed evidence', sec['uncertainty'])
         self.assertIn("أمينا عاما لهيئة البيعة", self.claims['sa_tuwaijri_sg_appointed_a136_20061020']['text'])
         self.assertIn('Article 24', self.claims['sa_tuwaijri_sg_appointed_a136_20061020']['text'])
         self.assertIn("يعين الملك أمينا عاما للهيئة", self.claims['sa_allegiance_law_art24_secretary']['text'])
@@ -305,6 +308,20 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
                     if sid in DATELINE_KEPT:
                         self.assertIn('date line', src['scope_note'])
 
+    def test_metadata_disagreement_is_recorded_without_inventing_a_cause(self):
+        sid = 'sa_spa_salman_cp_pledge_directive_20120618'
+        source = self.sources[sid]
+        scope = source['scope_note']
+        doubt = self.claims['sa_salman_cp_obs_20120618']['uncertainty']
+        for text in (scope, doubt):
+            self.assertIn('cause is unknown', text)
+            self.assertNotIn('import artefact', text)
+        self.assertIn('2012-06-19T00:06:51Z', scope)
+        self.assertIn('18 June 2012', scope)
+        self.assertIn('23:38', scope)
+        self.assertEqual(source['published_date'], '2012-06-18')
+        self.assertEqual(self.claims['sa_salman_cp_obs_20120618']['attested_on'], '2012-06-18')
+
     def test_report_and_handoff_are_ready_for_review_and_close_nothing(self):
         handoff = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
         self.assertIn('State: **ready_for_review**', handoff)
@@ -366,9 +383,16 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
         def observation_on_pm(p, e):
             roles(p)['sa_pm']['holder_claims'].append('sa_mbs_cp_obs_20260901')
 
+        def source_extract_scope_drift(p, e):
+            e['sa_spa_order_a136_20061020']['scope_note'] += ' Continuous tenure established.'
+
+        def source_extract_locator_drift(p, e):
+            e['sa_spa_order_a136_20061020']['rows'][0]['locator'] = 'Unrelated order'
+
         for change in (muqrin_until_from_successor, pledge_as_observation, deputation_on_role, secretary_from_order_day,
                        existing_holder_rebased, observation_on_wrong_tenure, claim_text_drifts, relative_day_misresolved,
-                       response_identity_changed, observation_on_pm):
+                       response_identity_changed, observation_on_pm, source_extract_scope_drift,
+                       source_extract_locator_drift):
             with self.subTest(change=change.__name__):
                 with self.assertRaises((AssertionError, KeyError, StopIteration)):
                     kcp_invariants(*mutated(change))

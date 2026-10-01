@@ -1,0 +1,705 @@
+{
+  "format": "spheres-c01-source-review/v1",
+  "sources_reviewed": 18,
+  "sources_held": 0,
+  "sources": [
+    {
+      "source_id": "sa_embassy_fahd_delegates_19960101",
+      "url": "https://web.archive.org/web/20000930104650id_/http://www.saudiembassy.net:80/press_release/96_spa/96_01.html",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 62784,
+      "sha256": "383724bf0bb2b23e510f1f459862a4f761d904a51d0ab07ea11eb223617068f3",
+      "claim_ids": [
+        "sa_fahd_king_obs_19960101",
+        "sa_abdullah_cp_obs_19960101",
+        "sa_fahd_delegation_19960101"
+      ],
+      "reading_path": "attempt-01-archive/sa_embassy_fahd_delegates_19960101.reading.txt",
+      "review_method": "Independent English reading of cited sections in exact archive HTML; month-page context and relative days checked.",
+      "provenance_limit": "Saudi embassy authored text delivered by third-party Internet Archive; stated capture identity was reproduced. English release, not the Arabic decree."
+    },
+    {
+      "source_id": "sa_embassy_fahd_resumes_19960222",
+      "url": "https://web.archive.org/web/19991003024900id_/http://www.saudiembassy.net:80/press_release/96_spa/96_02.html",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 24905,
+      "sha256": "1b3bcaf97bdd44ceabaec4d9760f0e15bf18d065bbea79ba88c4d08bf8d80f8d",
+      "claim_ids": [
+        "sa_fahd_chairs_cabinet_19960212",
+        "sa_fahd_delegation_ended_19960221"
+      ],
+      "reading_path": "attempt-01-archive/sa_embassy_fahd_resumes_19960222.reading.txt",
+      "review_method": "Independent English reading of cited sections in exact archive HTML; month-page context and relative days checked.",
+      "provenance_limit": "Saudi embassy authored text delivered by third-party Internet Archive; stated capture identity was reproduced. English release, not the Arabic decree."
+    },
+    {
+      "source_id": "sa_spa_cp_abdullah_obs_20050730",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/835ced88fa",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2428,
+      "sha256": "538c33ba91ba710ae98dc41467a2f35574eab1d705de86f311b06727628aaf49",
+      "claim_ids": [
+        "sa_abdullah_cp_obs_20050730"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_cp_abdullah_obs_20050730.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_order_a193_20050731",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/3a405a0abd",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2869,
+      "sha256": "6f89b870a9461c4fc0acac7be1fea895f6201f73f6bbd9f0c6827dd07167be5b",
+      "claim_ids": [
+        "sa_fahd_king_order_a193_20050731",
+        "sa_a193_signed_on_behalf_20050731"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_order_a193_20050731.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_pledge_held_20050803",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/e45e90b20d",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2143,
+      "sha256": "1c0a88ea99f2da901121a14012499bc1a2bb3d7af0937e85c1b1e453e6c9efb4",
+      "claim_ids": [
+        "sa_citizen_pledge_held_20050803"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_pledge_held_20050803.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_order_a136_20061020",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/f9cb0a7263",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2420,
+      "sha256": "7c4a3614486727eebeb91ee83a6b50d8b64596ae9ba2b44153ab3860e560a4ac",
+      "claim_ids": [
+        "sa_tuwaijri_sg_appointed_a136_20061020",
+        "sa_abdullah_king_order_a136_20061020"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_order_a136_20061020.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_allegiance_law_art24_20061020",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/76a355d60b",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 1971,
+      "sha256": "79b60c3a2abfa239dca5cf73fa73dcdd663c8af23f7f022daf76cdf36ef89639",
+      "claim_ids": [
+        "sa_allegiance_law_art24_secretary"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_allegiance_law_art24_20061020.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_order_a175_20071029",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/869bc2b6be",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2647,
+      "sha256": "af1798d8e4db08fa31810590ea4add8f7dc002bdd1efc1e39da2953f0b75c47a",
+      "claim_ids": [
+        "sa_sultan_cp_obs_a175_20071029",
+        "sa_sultan_deputized_a175_20071029"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_order_a175_20071029.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_nayef_hajj_reception_20111107",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/c4d376ee3e",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2002,
+      "sha256": "13dc061370249299b21b43a5e4c74e3f42c5d4342b0243f2ee0cd278ebec0846",
+      "claim_ids": [
+        "sa_nayef_cp_obs_20111107"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_nayef_hajj_reception_20111107.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_salman_cp_pledge_directive_20120618",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/8c7207b976",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2151,
+      "sha256": "2bf582b00d7e1235e8645fba089ac1ed411dba43d3baec1fd34d52a73ee61e8a",
+      "claim_ids": [
+        "sa_salman_cp_obs_20120618",
+        "sa_salman_cp_pledge_scheduled_20120618"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_salman_cp_pledge_directive_20120618.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_order_a145_20140520",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/b913479674",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2518,
+      "sha256": "212b35ec541369eb2f4d4f30b8b5884db60eb45ed1d1af56f61a01b46ba68061",
+      "claim_ids": [
+        "sa_abdullah_king_order_a145_20140520",
+        "sa_salman_cp_obs_a145_20140520",
+        "sa_salman_deputized_a145_20140520"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_order_a145_20140520.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_pledge_held_20150123",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/7fbe706628",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2678,
+      "sha256": "d8d7885c13a4090690a3fd58a8016f18270d7e34585b693f8b5541624ea371d5",
+      "claim_ids": [
+        "sa_citizen_pledge_held_20150123"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_pledge_held_20150123.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_muqrin_cp_obs_20150428",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/71d56a9352",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2983,
+      "sha256": "b905fc2cb7901e3d72c7bcc186368369268c1ec4a0e3923f378d66281353f8bd",
+      "claim_ids": [
+        "sa_muqrin_cp_obs_20150428"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_muqrin_cp_obs_20150428.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_order_a267_20150725",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/2807a6725a",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2327,
+      "sha256": "1c718e8b83e7b5964a8417a673912b869eabb96955154b29da6eb1ec82aacad9",
+      "claim_ids": [
+        "sa_salman_king_order_a267_20150725",
+        "sa_mbn_cp_obs_a267_20150725",
+        "sa_mbn_deputized_a267_20150725"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_order_a267_20150725.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_order_a128_20170225",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/49f14049aa",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2487,
+      "sha256": "5df78e647ba99333432e856f0f14b8e10797b3e574b82b7607cbb3d53842f63c",
+      "claim_ids": [
+        "sa_mbn_cp_obs_a128_20170225",
+        "sa_mbn_deputized_a128_20170225"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_order_a128_20170225.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_mbs_pledge_held_20170621",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/16de759e7b",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 2356,
+      "sha256": "f59c465ae43af836a1b9fbb4eb5770e99f0cf0e11ff0af42dc0c7f2f6b6e52d2",
+      "claim_ids": [
+        "sa_mbs_pledge_held_20170621"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_mbs_pledge_held_20170621.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_mbs_cabinet_20260901",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2666035",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 12812,
+      "sha256": "069441cd3fe0f4f2ffb804c492f5e1f832fddd1b9d800a55768a66b51ba5ffc8",
+      "claim_ids": [
+        "sa_mbs_cp_obs_20260901"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_mbs_cabinet_20260901.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    },
+    {
+      "source_id": "sa_spa_king_order_judges_20260904",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2669204",
+      "decision": "original_retrieved_and_content_reviewed",
+      "bytes": 3328,
+      "sha256": "2a7fa39ac3bbb2c69f7f55692f226680701b3608b48898bcaae7c87e6dc26862",
+      "claim_ids": [
+        "sa_salman_king_obs_20260904"
+      ],
+      "reading_path": "attempt-01-spa/sa_spa_king_order_judges_20260904.reading.txt",
+      "review_method": "Independent Arabic reading of full data.content and date/title metadata in exact JSON.",
+      "provenance_limit": "Current SPA API response with publisher historical text/metadata; not an independently preserved contemporaneous capture."
+    }
+  ],
+  "external_artifacts": [
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_delegates_19960101.body",
+      "bytes": 62784,
+      "sha256": "383724bf0bb2b23e510f1f459862a4f761d904a51d0ab07ea11eb223617068f3"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_delegates_19960101.curl-result",
+      "bytes": 115,
+      "sha256": "9fccf4262fd63fd93f758be0b2150b363f349d4fae62fd92c6959b06c17ac179"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_delegates_19960101.headers",
+      "bytes": 1842,
+      "sha256": "335724c8e84f8fb87f3b38d66cfccefc5431fe36a82208a17f6c14cb498b34a4"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_delegates_19960101.reading.txt",
+      "bytes": 59384,
+      "sha256": "83462a1aec95922ccc49812dc3ab7306e14de3f080ca7acbf1117b782fc2f0c6"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_delegates_19960101.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_resumes_19960222.body",
+      "bytes": 24905,
+      "sha256": "1b3bcaf97bdd44ceabaec4d9760f0e15bf18d065bbea79ba88c4d08bf8d80f8d"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_resumes_19960222.curl-result",
+      "bytes": 115,
+      "sha256": "eb58c9a418f5ca17dd61837c52741c8a84d0990fbd9767aedf8bb157e7248f27"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_resumes_19960222.headers",
+      "bytes": 1886,
+      "sha256": "75e0382eb83c9b636e945e6505e2893f23aa13af941f36c48fe1af8e138d07ea"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_resumes_19960222.reading.txt",
+      "bytes": 22860,
+      "sha256": "7663e08114610387bf1bb796940014e70d56b0bd6bf8a131d77a393aa69d73e9"
+    },
+    {
+      "path": "attempt-01-archive/sa_embassy_fahd_resumes_19960222.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_cp_abdullah_obs_20050730.body",
+      "bytes": 2428,
+      "sha256": "538c33ba91ba710ae98dc41467a2f35574eab1d705de86f311b06727628aaf49"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_cp_abdullah_obs_20050730.curl-result",
+      "bytes": 58,
+      "sha256": "8be4b454cc30edcdbc0fb26e7f8dc5fd255cb60a3de56b6f66fa555c4e23e706"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_cp_abdullah_obs_20050730.headers",
+      "bytes": 1798,
+      "sha256": "4ae69331f925dbd44a2ab065013df40b5f52b86216dd8dc6426a6120c4f10fe1"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_cp_abdullah_obs_20050730.reading.txt",
+      "bytes": 1659,
+      "sha256": "c99ed6e80e8292aba38bd7ad26b8910f2c98667412f03be0f48114d3d7430ef1"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_cp_abdullah_obs_20050730.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a193_20050731.body",
+      "bytes": 2869,
+      "sha256": "6f89b870a9461c4fc0acac7be1fea895f6201f73f6bbd9f0c6827dd07167be5b"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a193_20050731.curl-result",
+      "bytes": 58,
+      "sha256": "4e33d46e654710fb808ed4b071cae3a1b0702b64997c14fe65c85adc2a491267"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a193_20050731.headers",
+      "bytes": 1800,
+      "sha256": "1f6acf653834f46c4a1a8f2bfa0eafc624d971ebc5034bf324944b37b7a7ffa8"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a193_20050731.reading.txt",
+      "bytes": 1978,
+      "sha256": "0133327b98655f9202e3cd6a4723f74a8d035a8aba4959a871c89438f080ef17"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a193_20050731.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20050803.body",
+      "bytes": 2143,
+      "sha256": "1c0a88ea99f2da901121a14012499bc1a2bb3d7af0937e85c1b1e453e6c9efb4"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20050803.curl-result",
+      "bytes": 58,
+      "sha256": "f1830bfaef1a695a3716c4858c640f79e6e9ce5b0311210d4f64b86693357e20"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20050803.headers",
+      "bytes": 1800,
+      "sha256": "b2faea65ab064492d29ce63a23711f7dd33959d2253bd066f3f602d692dea318"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20050803.reading.txt",
+      "bytes": 1360,
+      "sha256": "e94f042dd747e9b57b0f4a5e5bdd535b1dfc0ce76edd7fc89b36ad2351a37d91"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20050803.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a136_20061020.body",
+      "bytes": 2420,
+      "sha256": "7c4a3614486727eebeb91ee83a6b50d8b64596ae9ba2b44153ab3860e560a4ac"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a136_20061020.curl-result",
+      "bytes": 58,
+      "sha256": "3feebc2cb2b31638cdaa854da7f3598d70373e187a917d6149f96653dd9ca673"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a136_20061020.headers",
+      "bytes": 1798,
+      "sha256": "85e442657214f6efefd89b1240e82d2bcb2ce07398c0aa9541c6becd6c955991"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a136_20061020.reading.txt",
+      "bytes": 1475,
+      "sha256": "844ea4fd383cccd20f5a73ddccb364b61bb5d635554cc5cc6d73d42dd90687d3"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a136_20061020.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_allegiance_law_art24_20061020.body",
+      "bytes": 1971,
+      "sha256": "79b60c3a2abfa239dca5cf73fa73dcdd663c8af23f7f022daf76cdf36ef89639"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_allegiance_law_art24_20061020.curl-result",
+      "bytes": 58,
+      "sha256": "a17e1ef490028568fb4e188a84a863acf90283f88364d739997ddcaae1e07f35"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_allegiance_law_art24_20061020.headers",
+      "bytes": 1800,
+      "sha256": "e560648e26669aecd4ccfc96b9f577fe8ab977497ab3e915a54f029e63be792c"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_allegiance_law_art24_20061020.reading.txt",
+      "bytes": 1171,
+      "sha256": "d2ab2f09b25681776d9d2b01a08bf96a411ce0243478bd6f3cfd85ee3ff659b2"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_allegiance_law_art24_20061020.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a175_20071029.body",
+      "bytes": 2647,
+      "sha256": "af1798d8e4db08fa31810590ea4add8f7dc002bdd1efc1e39da2953f0b75c47a"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a175_20071029.curl-result",
+      "bytes": 58,
+      "sha256": "6ae7a3feb4cfbfe81f8ce98a1bb10ada90462ebb8fda3952b932d007f89a6736"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a175_20071029.headers",
+      "bytes": 1800,
+      "sha256": "b122eb936604d88827e454fc54cbd273ce4fcbdece053da607e498efb2aa15a3"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a175_20071029.reading.txt",
+      "bytes": 1662,
+      "sha256": "28a5e5f2858f8d0e31b7ac68df6a416feadac4abeb2c68ea51f8ea1b52e6d92c"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a175_20071029.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_nayef_hajj_reception_20111107.body",
+      "bytes": 2002,
+      "sha256": "13dc061370249299b21b43a5e4c74e3f42c5d4342b0243f2ee0cd278ebec0846"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_nayef_hajj_reception_20111107.curl-result",
+      "bytes": 58,
+      "sha256": "04ea1835a718fdd7b56b1a08d5125280fed53a4f38913b22bbcfba3109330dcd"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_nayef_hajj_reception_20111107.headers",
+      "bytes": 1800,
+      "sha256": "ec9b83875ff87702667b89b7be396990e7da64e5f8df09f872f7a12ba1a6a9a6"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_nayef_hajj_reception_20111107.reading.txt",
+      "bytes": 1086,
+      "sha256": "44e77a091accfbfab057283a7b718e3af56c41c31ce3de0e9105aad8be0e1b0d"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_nayef_hajj_reception_20111107.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_salman_cp_pledge_directive_20120618.body",
+      "bytes": 2151,
+      "sha256": "2bf582b00d7e1235e8645fba089ac1ed411dba43d3baec1fd34d52a73ee61e8a"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_salman_cp_pledge_directive_20120618.curl-result",
+      "bytes": 58,
+      "sha256": "f7cc94f691d47c83653409f9c757eb3e63d9a9e05c464cd441394e492595a934"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_salman_cp_pledge_directive_20120618.headers",
+      "bytes": 1800,
+      "sha256": "5b079be513502b448361381320d73c52cb5f633dbee04880ad01ce9a1be7f8bb"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_salman_cp_pledge_directive_20120618.reading.txt",
+      "bytes": 1243,
+      "sha256": "6444700e0d9864414b8605ed17df9c64a91fd8181b1098ffb83aa7d2ec752b71"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_salman_cp_pledge_directive_20120618.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a145_20140520.body",
+      "bytes": 2518,
+      "sha256": "212b35ec541369eb2f4d4f30b8b5884db60eb45ed1d1af56f61a01b46ba68061"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a145_20140520.curl-result",
+      "bytes": 58,
+      "sha256": "8f3bcb1a1c727bcf9ebaaddcbc736cc504af49656d7015e7e7bdbb010e88079e"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a145_20140520.headers",
+      "bytes": 1800,
+      "sha256": "1968ef9763895bcc5eea29ccfbdb01fec9b2ed018f2e43d0928b6ef76493f17a"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a145_20140520.reading.txt",
+      "bytes": 1423,
+      "sha256": "87040ace62b535d8230f703ced974cd14c45062db509e7dc299b8cf58f31578b"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a145_20140520.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20150123.body",
+      "bytes": 2678,
+      "sha256": "d8d7885c13a4090690a3fd58a8016f18270d7e34585b693f8b5541624ea371d5"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20150123.curl-result",
+      "bytes": 58,
+      "sha256": "1b2419148cbf1f8f8f267e395810308eb2e191224ccf6e4c2fc2dcfb34790b4e"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20150123.headers",
+      "bytes": 1800,
+      "sha256": "512a9057582bdff104b577401fde27b934ffff34bfc13921072c5bfe9a614c1f"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20150123.reading.txt",
+      "bytes": 1564,
+      "sha256": "1386fb8a40024cd2c1b43de197afb0702a3fb7caf693a8c3d1271e4f42e08b63"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_pledge_held_20150123.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_muqrin_cp_obs_20150428.body",
+      "bytes": 2983,
+      "sha256": "b905fc2cb7901e3d72c7bcc186368369268c1ec4a0e3923f378d66281353f8bd"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_muqrin_cp_obs_20150428.curl-result",
+      "bytes": 58,
+      "sha256": "c601ad5e3abee083907c2feb10bb135723d5ba5ab242b8fc36190c0c9335d4e3"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_muqrin_cp_obs_20150428.headers",
+      "bytes": 1796,
+      "sha256": "92ea12071d24c214fb12da462cfc58c2e90b04bd6393e3ebcfe336388ae1a834"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_muqrin_cp_obs_20150428.reading.txt",
+      "bytes": 1978,
+      "sha256": "b97e174f7f71fbe3657365e9c92e42531212faab51511183b2a4794a61380641"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_muqrin_cp_obs_20150428.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a267_20150725.body",
+      "bytes": 2327,
+      "sha256": "1c718e8b83e7b5964a8417a673912b869eabb96955154b29da6eb1ec82aacad9"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a267_20150725.curl-result",
+      "bytes": 58,
+      "sha256": "8df89238ce4685fb944bfd1e0bcfcdf2abd9c9b47e1e65c6abbfb75d65cdf37b"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a267_20150725.headers",
+      "bytes": 1800,
+      "sha256": "e5bfd0a241aef338bae4015ecc77a2cd76c36d366f663c9c028867d87e6aca97"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a267_20150725.reading.txt",
+      "bytes": 1376,
+      "sha256": "732841aa3346073be3ce12e05561e270709c38776a60f31fdf101e930fb87d13"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a267_20150725.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a128_20170225.body",
+      "bytes": 2487,
+      "sha256": "5df78e647ba99333432e856f0f14b8e10797b3e574b82b7607cbb3d53842f63c"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a128_20170225.curl-result",
+      "bytes": 58,
+      "sha256": "d3bc1928300615d88888e7ed3a996beada045555214d4cf5d41894b9e9cfc610"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a128_20170225.headers",
+      "bytes": 1794,
+      "sha256": "df7853ad6960e151c139bfcb0cb9ccb7472043ecc79934fbd841cfae7d8ebc12"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a128_20170225.reading.txt",
+      "bytes": 1368,
+      "sha256": "422e9a397e01ed7caf24f6d02474849e5e43400c19fc09da193453ee6c779ac4"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_order_a128_20170225.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_pledge_held_20170621.body",
+      "bytes": 2356,
+      "sha256": "f59c465ae43af836a1b9fbb4eb5770e99f0cf0e11ff0af42dc0c7f2f6b6e52d2"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_pledge_held_20170621.curl-result",
+      "bytes": 58,
+      "sha256": "3a50fba4f168a466f8676a9d8b25c22c6110b53c405fd1bfae4e8a019643bef5"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_pledge_held_20170621.headers",
+      "bytes": 1800,
+      "sha256": "7125a55594017c8361d3f7b85b75a1b626f4dbd78554518e145719de2e930d13"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_pledge_held_20170621.reading.txt",
+      "bytes": 1253,
+      "sha256": "dc3d02fdc54ca61e78bd0c284466631f057aead8f11d4534a1771957baeec01a"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_pledge_held_20170621.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_cabinet_20260901.body",
+      "bytes": 12812,
+      "sha256": "069441cd3fe0f4f2ffb804c492f5e1f832fddd1b9d800a55768a66b51ba5ffc8"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_cabinet_20260901.curl-result",
+      "bytes": 56,
+      "sha256": "ab44cd87adbdab114c9896b593565d75fa20085184b5a9fc382772f578f907be"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_cabinet_20260901.headers",
+      "bytes": 1800,
+      "sha256": "30b51d228b3bcaa2fb4ea7aaf7a3f7bbf0ed67a4722f00d1398b4c3f6cd9f9e6"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_cabinet_20260901.reading.txt",
+      "bytes": 8262,
+      "sha256": "2a1234b12fefb7ab52192e8d64094fcc254ad3a2de726efae4e7600e30a7187f"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_mbs_cabinet_20260901.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_king_order_judges_20260904.body",
+      "bytes": 3328,
+      "sha256": "2a7fa39ac3bbb2c69f7f55692f226680701b3608b48898bcaae7c87e6dc26862"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_king_order_judges_20260904.curl-result",
+      "bytes": 56,
+      "sha256": "ab746778ec1d5d61ecbdadf7a296709d6eebdcec191b96e21c0cee22a2776808"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_king_order_judges_20260904.headers",
+      "bytes": 1800,
+      "sha256": "1a411bd8ebc2766724ed1f95bca37fec91451de54eed8c98978d6ade3b1964cd"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_king_order_judges_20260904.reading.txt",
+      "bytes": 1579,
+      "sha256": "3503f4046203f03437ff1c012e8a0ac4d8ef129a506ff9fd4473386b32076ad4"
+    },
+    {
+      "path": "attempt-01-spa/sa_spa_king_order_judges_20260904.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

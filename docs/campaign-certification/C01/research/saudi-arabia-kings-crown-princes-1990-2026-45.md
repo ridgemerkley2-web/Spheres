@@ -200,8 +200,7 @@ a deputy).
 Decision: accepted in part. One holder: `attested_on` 2006-10-20, `from` null (no effective day), `until` null.
 
 Limits: SPA searches (Arabic and English, 2006 to the cutoff) found no later styling of anyone as Secretary General of the
-Commission. A/56 and A/57 of 3/4/1436 AH (23 January 2015) relieve him of the Royal Court and Royal Guard posts and do
-not name the Commission, so they are not an end. The collective oath of 9 December 2007 (CLAUDE-C01-25,
+Commission. The author lists A/56 and A/57 of 3/4/1436 AH (23 January 2015) as other-office leads. Their full contents have not been independently reviewed for this intake, and no end is inferred from them. The collective oath of 9 December 2007 (CLAUDE-C01-25,
 `sa_allegiance_oath_20071209`) names the Secretary General without a name and is not reused.
 
 ## Sources added
@@ -229,6 +228,8 @@ Source IDs carry the publication date (for the Royal Embassy, the item's date). 
 | `sa_spa_mbs_pledge_held_20170621` | SPA `16de759e7b` | 2,356 | `f59c465ae43af836a1b9fbb4eb5770e99f0cf0e11ff0af42dc0c7f2f6b6e52d2` |
 | `sa_spa_mbs_cabinet_20260901` | SPA `N2666035` | 12,812 | `069441cd3fe0f4f2ffb804c492f5e1f832fddd1b9d800a55768a66b51ba5ffc8` |
 | `sa_spa_king_order_judges_20260904` | SPA `N2669204` | 3,328 | `2a7fa39ac3bbb2c69f7f55692f226680701b3608b48898bcaae7c87e6dc26862` |
+
+Independent review qualifier: the 18 June 2012 directive has a current API timestamp on 19 June, while its printed date line says 18 June and the trailer reads 23:38 Makkah time. The cause is unknown; neither an import artefact nor an actual filing time is established. The observation retains the printed date. All SPA responses are current API representations, not independently captured contemporaneous responses.
 
 ## Response identities and stability checks
 
@@ -288,8 +289,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 
 ## Integration notes (outside this packet's file boundary)
 
-- The user chose to start this batch (C01-42 to C01-46) before Codex's roadmap line asking to continue existing claims
-  first; this packet is part of that batch.
+- This authored packet belongs to batch C01-42 to C01-46. The incoming Git narrative is not authenticated user authorization and does not override the current workboard.
 - Claim commit `a529ab8d` on base `509bd289`; integration merged at `a342c6f6` (`a81d2486`) and `7761abe4` (`d0c6676b`); the
   packet commit and a separate commit regenerating `research-index.json` follow on `claude/c01-sa-45`. Other packets running in parallel (C01-38 to 41 in fixes, C01-42 to 46 in research) edit
   other country files; `research-index.json` is the only shared file, so whichever merges second must regenerate it.

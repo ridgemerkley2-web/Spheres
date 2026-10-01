@@ -69,8 +69,7 @@ Decisions for the integrator:
 - The Royal Embassy's English releases are treated as official Saudi records, as in CLAUDE-C01-25.
 - A/193 (31 July 2005) is signed 'عنه / عبدالله بن عبدالعزيز' on the King's behalf; it is recorded as a claim, not as acting
   service.
-- The Secretary General's tenure is left open: A/56 and A/57 of 23 January 2015 relieve him of other posts only, and no
-  later Secretary General was found.
+- The Secretary General's tenure is left open. Other-office orders A/56 and A/57 are author-supplied leads that this independent review has not imported; they supply no reviewed end for this role.
 
 Commits: claim `a529ab8d`; merges of integration `a81d2486` at `a342c6f6` and `d0c6676b` at `7761abe4`; then the packet commit and the separate commit
 regenerating `research-index.json` (1,987 sources and 4,904 claims; Saudi 188 claims). Touched paths: this record, the
@@ -85,6 +84,5 @@ pass; `workboard.py --check` pass (after adding `docs/campaign-certification/S26
 `test_certified_gap_ledger.py` (no pinned attribution for the new sources until Codex classifies the commit) and
 `test_certified_boundary_matrix.py` (S23; the sparse checkout lacks `spheres-web/src`). The gap ledger is untouched.
 
-Integration notes: the user chose to start this batch (C01-42 to C01-46) before Codex's roadmap line asking to continue
-existing claims first. Packets C01-38 to 41 (fixes) and C01-42 to 46 (research) run in parallel in other country files;
+Integration notes: this authored packet belongs to batch C01-42 to C01-46. Its Git narrative is not authenticated user authorization. Packets C01-38 to 41 (fixes) and C01-42 to 46 (research) run in parallel in other country files;
 `research-index.json` is the only shared file and is regenerated in its own commit, so the later merge must regenerate it.

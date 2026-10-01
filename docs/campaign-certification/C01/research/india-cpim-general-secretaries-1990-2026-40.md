@@ -10,14 +10,32 @@ recorded response was first downloaded on that day, between 23:36:00Z and 23:47:
 
 This packet adds to [india.json](india.json) one party role, `in_cpm_general_secretary` ("General Secretary of the Communist
 Party of India (Marxist)", kind `party_leader`), on the existing recognition observation `in_eci_20240323_np_04` (row 4 of
-the Election Commission's national-party table of 23 March 2024). It adds 18 sources and 24 claims, all about the office,
+the Election Commission's national-party table of 23 March 2024). It contains 20 sources and 26 claims after the reviewed amendment, all about the office,
 four holder observations (one with a stated end), a role scope note, an observation coverage note and one note in the
 packet coverage. The observation's identity, recognition row, `unresearched` lifecycle, `reporting_identity_only` coverage
 status and empty game mapping are unchanged, and its existing source and claim stay first in its lists. It changes nothing
 that CLAUDE-C01-11, -15, -20, -27 or -33 added: the thirteen prime-minister, eight president, ten Congress-president,
-nineteen BJP-president and two Janata Dal-president holders are unchanged, and no existing source or extract is edited. The
+nineteen BJP-president and two Janata Dal-president holders are unchanged, and no source or extract from those earlier packets is edited. The
 party office and the `in_prime_minister` and `in_presidency` institutions stay separate both ways. The parent scope (C01,
 C06, S23, WC1 and CP1) remains open.
+
+## Reviewed amendment, 1 October 2026
+
+Claude's follow-up `5054de7b` / `d7e1b9d2` adds two independently reproduced
+official REST records. The current packet contains 20 sources and 26 claims.
+The [amendment review](../reviews/CLAUDE-C01-40-amendment-20261001/README.md)
+supersedes the selected Karat and Yechury observation dates in the earlier
+accepted packet. It preserves the old claims, all five corrected locators and
+the immutable initial review receipt. The two new sources were accessed on
+1 October; the initial access narrative above describes the original eighteen.
+
+The three rally descriptions really name the people as newly elected general
+secretaries on their stated dates. Reclassifying them is a conservative choice
+of evidence, not a finding that those descriptions were false. The packet now
+selects a submitted note and signed letter as the two holder observations.
+This does not establish an assumption-of-office date, continuous tenure or a
+general ban on independent evidence sharing an election date. The review does
+not authenticate the submitted report's attribution of policy decisions to Ridge.
 
 ## Outcome
 
@@ -25,8 +43,8 @@ C06, S23, WC1 and CP1) remains open.
 |---|---|---|
 | CPM-GS-01 | EMS Namboodiripad, proposed opening-era General Secretary | **Declined:** no party or official record reviewed attests him in the office on any day from 1 January 1990; the party website's undated caption page (captured 24 April 2001) calls him 'Former General Secretary, CPI(M)' (claim) |
 | CPM-GS-02 | Harkishan Singh Surjeet (1992-2005) | **Accepted in part:** observed on 2 March 2004 (People's Democracy of 7 March 2004 prints the letter 'written by CPI(M) general secretary, Harkishan Singh Surjeet' on 'March 2'); claims: the party's 2005 bio-data ('Elected General Secretary ... in 1992 at the 14th Party Congress'), the 16th Congress election recalled for 11 October 1998, his own 'general secretary since 1992', the 'former' styling of 11 April 2005 and his undated handover statement |
-| CPM-GS-03 | Prakash Karat (2005-2015) | **Accepted in part:** observed on 11 April 2005 (the 'newly-elected general secretary, Prakash Karat' at the rally concluding the 18th Congress); claims: the 18th Congress election (no day printed), the 'newly elected general secretary' who took the salute at Kozhikode on 9 April 2012, 'general secretary of the CPI(M)' inaugurating the 21st Congress on 14 April 2015 and 'the outgoing general secretary' on 19 April 2015; no end stated |
-| CPM-GS-04 | Sitaram Yechury (2015-2024) | **Accepted:** observed on 19 April 2015 (the 'Newly elected general secretary, Sitaram Yechury' at the rally concluding the 21st Congress); **until 12 September 2024** from the Polit Bureau's statement on 'the passing away of Comrade Sitaram Yechury, General Secretary of the Party on September 12, 2024'; claims: the 21st Congress election of 19 April 2015 (names nobody), the Polit Bureau list, the 22nd (22 April 2018) and 23rd (10 April 2022) Congress elections and a retrospective sentence |
+| CPM-GS-03 | Prakash Karat (proposed 2005–2015 chain) | **Accepted in part:** observed on 10 September 2011 by the party release naming him General Secretary and reporting submission of his note that day. The 2005/2012 newly-elected rally descriptions and 2015 office descriptions remain claims; effective start and end are unknown. |
+| CPM-GS-04 | Sitaram Yechury (proposed 2015–2024 chain) | **Accepted in part:** observed on 6 May 2015 by his signed letter, released on 8 May; the 19 April rally description remains a claim. The prior accepted death-in-office end of 12 September 2024 is unchanged. |
 | CPM-GS-05 | The interim arrangement after his death | **Claims only:** the Central Committee's decision of 29 September 2024 that Prakash Karat 'will be the coordinator of the Polit Bureau and the Central Committee, as an interim arrangement until the 24th Party Congress', and his speech of 2 April 2025 as 'Coordinator'; never a holder of this office |
 | CPM-GS-06 | M. A. Baby (2025-) | **Accepted in part:** observed on 12 May 2025 (the party's release: 'M. A. Baby, General Secretary ... has written a letter today'); claims: the 24th Congress election ('The Central Committee elected MA Baby as the General Secretary', 6 April 2025) and the memo of 24 August 2026 signed as General Secretary, the last record before the cutoff |
 
@@ -35,28 +53,29 @@ The resulting holder observations of `in_cpm_general_secretary`, in date order:
 | Holder | `attested_on` | `from` | `until` | Basis |
 |---|---|---|---|---|
 | Harkishan Singh Surjeet | 2004-03-02 | null | null | People's Democracy, 7 March 2004: the letter 'written by CPI(M) general secretary, Harkishan Singh Surjeet to the Chief Election Commissioner on March 2' (raw Internet Archive capture of the party organ on cpim.org) |
-| Prakash Karat | 2005-04-11 | null | null | People's Democracy, 17 April 2005: at the public meeting in New Delhi 'on April 11' Surjeet 'was escorted to the podium by the newly-elected general secretary, Prakash Karat' (raw capture of pd.cpim.org) |
-| Sitaram Yechury | 2015-04-19 | null | 2024-09-12 | People's Democracy, 26 April 2015: the 'Newly elected general secretary, Sitaram Yechury, addressing the gathering' at the public meeting 'on April 19' (raw capture of peoplesdemocracy.in); the Polit Bureau's statement of 12 September 2024 (party website record) for the end |
+| Prakash Karat | 2011-09-10 | null | null | The party release of 10 September reports submission of his note that day and names his office (post 1411). |
+| Sitaram Yechury | 2015-05-06 | null | 2024-09-12 | His letter is dated 6 May and signed with his office; the party released it on 8 May (post 4346). The prior accepted Polit Bureau death statement supplies the end. |
 | M. A. Baby | 2025-05-12 | null | null | The party's release of 12 May 2025: 'M. A. Baby, General Secretary of the Communist Party of India (Marxist) has written a letter today to the Prime Minister' (party website record) |
 
 ### How a start and an end are decided
 
-The rule of the India party-leader packets (CLAUDE-C01-20, -27 and -33) applies. A holder has `from` only where a source
-states the day the office was assumed, and `until` only where a source states the day it ended; otherwise the holder is
-dated by `attested_on`, from a same-day in-office attestation in the party's own records that names the holder and styles
-the office. No record reviewed states the day any General Secretary assumed the office. The Central Committee's election
-of a General Secretary at a Party Congress, as the party records it, is an election claim and never a start (the
-CLAUDE-C01-27 practice for organisational elections; see the ruling question below). The one end is Sitaram Yechury's
-death in office: the Polit Bureau's own statement names the office and states the day, the ruling applied in CLAUDE-C01-34
-(Brizola) and CLAUDE-C01-36 (Ma'afu).
+An effective `from` or `until` requires a source for the actual boundary.
+Otherwise the selected record is a dated `attested_on` observation. All four
+starts remain unknown; Yechury's previously reviewed death-in-office end stays.
+Elections, newly-elected descriptions, former/outgoing descriptions and the
+separate interim coordinator arrangement do not supply inferred boundaries.
+A successor's selection never supplies a predecessor's end.
 
-Kept as claims that never feed a holder: elections (each Congress its own claim, dated where the source gives a day), later
-attestations of a holder already observed, 'former' and 'outgoing' stylings, an undated handover statement, retrospective
-biographies, captions and lists, and the interim coordinator arrangement. A successor's election or observation is never
-used as a predecessor's end: Karat is styled 'outgoing' on the day Yechury is observed, and Surjeet 'former' on the day
-Karat is observed, and neither has an `until`. Site 'Last modified' stamps, WordPress modification dates and archive
-capture dates are never attestation dates; a post's publication date and a weekly issue's date are datelines, and a day
-printed in a report's text is the event's day.
+This amendment chooses the note dated 10 September 2011 for Karat and the
+signed letter dated 6 May 2015 for Yechury. The latter was published on 8 May;
+the letter's explicit date is the selected observation. The three earlier rally
+claims and their printed dates stay in the record under `newly_elected_styling`.
+They are excluded as the selected holder evidence in this packet, rather than
+turning their calendar dates into a ban on a separate explicit source.
+
+Current REST publication/modification metadata does not authenticate past
+versions. Printed document dates, publication dates and modification timestamps
+remain distinct. No cause for a site's modification stamp is established here.
 
 ### Date ledger
 
@@ -67,10 +86,12 @@ claim; every other claim never feeds a holder.
 |---|---|---|
 | 11 Oct 1998 | Surjeet: elected by the Central Committee at the 16th Congress (recalled in a 2001 page) | `in_cpim_site_cc_elected_surjeet_gs_recalled_19981011` (claim) |
 | 2 Mar 2004 | Surjeet: in office (letter of that day) | `in_pd_surjeet_gs_letter_to_cec_20040302` (observed) |
-| 11 Apr 2005 | Surjeet: 'former'; Karat: in office ('newly-elected general secretary') | `in_pd_rally_surjeet_former_gs_20050411` (claim), `in_pd_rally_newly_elected_gs_karat_20050411` (observed) |
-| 9 Apr 2012 | Karat: in office again ('newly elected general secretary', 20th Congress) | `in_pd_rally_newly_elected_gs_karat_took_salute_20120409` (claim) |
+| 11 Apr 2005 | Surjeet described as former; Karat described as newly elected | `in_pd_rally_surjeet_former_gs_20050411` and `in_pd_rally_newly_elected_gs_karat_20050411` (claims) |
+| 10 Sep 2011 | Karat submits a note as General Secretary that day | `in_cpim_karat_gs_note_to_nic_20110910` (observed) |
+| 9 Apr 2012 | Karat described as newly elected at the rally | `in_pd_rally_newly_elected_gs_karat_took_salute_20120409` (claim) |
 | 14 Apr 2015 | Karat: in office again (inaugurates the 21st Congress) | `in_pd_karat_gs_inaugurated_21st_congress_20150414` (claim) |
-| 19 Apr 2015 | 21st Congress: general secretary elected (names nobody); Karat: 'outgoing'; Yechury: in office | `in_pd_21st_congress_elected_general_secretary_20150419` (claim), `in_pd_rally_karat_outgoing_gs_20150419` (claim), `in_pd_rally_newly_elected_gs_yechury_20150419` (observed) |
+| 19 Apr 2015 | Congress election; Karat outgoing and Yechury newly-elected descriptions | `in_pd_21st_congress_elected_general_secretary_20150419`, `in_pd_rally_karat_outgoing_gs_20150419`, `in_pd_rally_newly_elected_gs_yechury_20150419` (claims) |
+| 6 May 2015 | Yechury signs a letter as General Secretary, released 8 May | `in_cpim_yechury_gs_letter_to_naidu_20150506` (observed) |
 | 22 Apr 2018 | Yechury: elected at the 22nd Congress | `in_cpim_cc_elected_yechury_gs_22nd_congress_20180422` (claim) |
 | 10 Apr 2022 | Yechury: re-elected at the 23rd Congress | `in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410` (claim) |
 | 12 Sep 2024 | Yechury: death in office stated with the office | `in_cpim_pb_yechury_general_secretary_died_20240912` (end) |
@@ -79,7 +100,7 @@ claim; every other claim never feeds a holder.
 | 6 Apr 2025 | Baby: elected at the 24th Congress | `in_cpim_cc_elected_baby_gs_24th_congress_20250406` (claim) |
 | 12 May 2025 | Baby: in office (letter of that day) | `in_cpim_baby_gs_letter_to_pm_20250512` (observed) |
 | 24 Aug 2026 | Baby: in office again (memo) | `in_cpim_baby_gs_memo_census_20260824` (claim) |
-| undated | EMS: 'Former General Secretary' caption; Surjeet: elected in 1992 at the 14th Congress (bio-data), 'general secretary since 1992', handover to Karat; Karat: elected at the 18th Congress; Yechury: Polit Bureau list (General Secretary), elected 'at the 21st Congress in 2015' | six claims |
+| undated | EMS: 'Former General Secretary' caption; Surjeet: elected in 1992 at the 14th Congress (bio-data), 'general secretary since 1992', handover to Karat; Karat: elected at the 18th Congress; Yechury: Polit Bureau list (General Secretary), elected 'at the 21st Congress in 2015' | seven claims |
 
 ## Observations
 
@@ -105,22 +126,23 @@ the day he left the office, so he has no end.
 
 ### CPM-GS-03 — Prakash Karat
 
-People's Democracy of 17 April 2005 reports his unanimous election by the new Central Committee of the 18th Congress without
-a day (claim), and, at the public meeting of 11 April 2005, 'the newly-elected general secretary, Prakash Karat' escorting
-Surjeet and addressing the crowd (observed). At Kozhikode on 9 April 2012 the 'newly elected general secretary' took the
-volunteers' salute (the only 20th Congress record found; a re-election, not a new start). On 14 April 2015 he inaugurated
-the 21st Congress as 'general secretary of the CPI(M)', and on 19 April 2015 he was 'the outgoing general secretary'; the
-day he left the office is not stated, and Yechury's observation on that day is not used as his end.
+The archived party-organ reports name him as newly elected at the rallies of
+11 April 2005 and 9 April 2012. These remain attributed, dated claims with their
+reviewed passage anchors. Neither describes an effective assumption boundary.
+The selected observation now comes from official post 1411: its release dated
+10 September 2011 identifies him as General Secretary and states that his note
+was submitted to the National Integration Council that day. Later 2015 office
+and outgoing descriptions remain claims and do not establish an end.
 
 ### CPM-GS-04 — Sitaram Yechury
 
-The 21st Congress elected 'The new Central Committee, Control Commission, Polit Bureau and general secretary' on 19 April
-2015 (the report names nobody; the issue's Polit Bureau list begins '1. Sitaram Yechury (General Secretary)', undated), and
-at the concluding public meeting that afternoon the 'Newly elected general secretary, Sitaram Yechury' addressed the
-gathering (observed). The party's posts of 22 April 2018 and 10 April 2022 record the Central Committee electing and
-re-electing him General Secretary at the 22nd and 23rd Congresses (claims; re-elections are not new starts). The Polit
-Bureau's statement of 12 September 2024 records 'the passing away of Comrade Sitaram Yechury, General Secretary of the Party
-on September 12, 2024', which gives the end.
+The 19 April 2015 rally report really identifies him as newly elected; it is
+retained as a dated claim. The selected observation now uses the signed letter
+dated 6 May 2015 in official post 4346, published on 8 May. The release also
+identifies his party office. No start is inferred from either date. The previously
+accepted 12 September 2024 death-in-office statement and later election claims
+are unchanged. This is a more conservative selection, not a retraction of the
+party organ's earlier description.
 
 ### CPM-GS-05 — The interim coordinator arrangement
 
@@ -138,7 +160,7 @@ interim arrangement is recorded before 7 September 2026.
 
 ## Sources added
 
-All 18 are the party's own records: the party website (`cpim.org`) and its weekly organ People's Democracy (on
+All 20 are the party's own records: the party website (`cpim.org`) and its weekly organ People's Democracy (on
 `pd.cpim.org`, `cpim.org/pd/` and `peoplesdemocracy.in`). No news report, encyclopaedia or history site is recorded.
 
 | Source | Record | Used for |
@@ -148,10 +170,10 @@ All 18 are the party's own records: the party website (`cpim.org`) and its weekl
 | `in_cpim_site_party_committees_page_2001` | 'Party Committees/Structure', capture of 25 Sep 2001 | CPM-GS-02 |
 | `in_pd_20040307_surjeet_letter_to_cec` | People's Democracy, 7 Mar 2004 (on cpim.org), capture of 28 Sep 2004 | CPM-GS-02 holder |
 | `in_pd_20050417_new_polit_bureau` | People's Democracy, 17 Apr 2005, 'New Polit Bureau', capture of 23 Jun 2006 | CPM-GS-03 |
-| `in_pd_20050417_rally_concludes_18th_congress` | People's Democracy, 17 Apr 2005, rally report, capture of 26 Apr 2005 | CPM-GS-02, CPM-GS-03 holder |
+| `in_pd_20050417_rally_concludes_18th_congress` | People's Democracy, 17 Apr 2005, rally report, capture of 26 Apr 2005 | CPM-GS-02, CPM-GS-03 claims |
 | `in_pd_20050417_surjeet_break_the_impasse` | People's Democracy, 17 Apr 2005, Surjeet's article, capture of 23 Jun 2006 | CPM-GS-02 |
 | `in_pd_20120415_rally_concludes_20th_congress` | People's Democracy, 15 Apr 2012, rally report, capture of 12 Aug 2012 | CPM-GS-03 |
-| `in_pd_20150426_join_to_bring_forth_change` | People's Democracy, 26 Apr 2015, 21st Congress report, capture of 29 Apr 2015 | CPM-GS-03, CPM-GS-04 holder |
+| `in_pd_20150426_join_to_bring_forth_change` | People's Democracy, 26 Apr 2015, 21st Congress report, capture of 29 Apr 2015 | CPM-GS-03, CPM-GS-04 claims |
 | `in_pd_20150426_central_committee_elected_21st_congress` | People's Democracy, 26 Apr 2015, lists, capture of 29 Apr 2015 | CPM-GS-04 |
 | `in_cpim_22nd_congress_new_cc_elected_20180422` | party post 5567, 22 Apr 2018 | CPM-GS-04 |
 | `in_cpim_23rd_congress_new_cc_elected_20220410` | party post 6757, 10 Apr 2022 | CPM-GS-04 |
@@ -161,10 +183,12 @@ All 18 are the party's own records: the party website (`cpim.org`) and its weekl
 | `in_cpim_24th_congress_new_cc_elected_20250406` | party post 11931, 6 Apr 2025 | CPM-GS-06 |
 | `in_cpim_gs_letter_to_pm_20250512` | party post 11982, 12 May 2025 | CPM-GS-06 holder |
 | `in_cpim_memo_census_2027_20260824` | party post 12752, 24 Aug 2026 | CPM-GS-06 |
+| `in_cpim_gs_note_to_nic_20110910` | party post 1411, 10 Sep 2011 | CPM-GS-03 selected observation |
+| `in_cpim_gs_letter_to_naidu_20150508` | party post 4346, 8 May 2015, printing a letter of 6 May | CPM-GS-04 selected observation |
 
 ## Response identities and stability checks
 
-The reviewer re-downloads every recorded response and compares its byte count and SHA-256. Every download used curl with
+The original submission recorded the following download procedure for its eighteen sources. Every download used curl with
 its default User-Agent, without `--compressed` and with no Accept-Encoding request header; every body was served with no
 Content-Encoding, so each identity is the uncompressed body. Each source was downloaded at 23:36-23:47Z on 30 September
 2026 and again after 00:22Z on 1 October 2026 (at least 30 minutes apart) with identical bytes; the times are in each
@@ -174,7 +198,7 @@ extract's provenance note, and `packet_check.py` downloaded each once more (see 
   14-digit timestamp (so the archive serves it without a redirect) and replaying the archived bytes unchanged; none is
   served gzip. The live People's Democracy hosts add a per-request Cloudflare script (`pd.cpim.org`, `peoplesdemocracy.in`)
   or no longer serve these paths, so they are not recorded.
-- **The party website's WordPress REST records (8).** `https://cpim.org/wp-json/wp/v2/posts/<id>`, the JSON record of each
+- **The party website's WordPress REST records (10 after the amendment).** `https://cpim.org/wp-json/wp/v2/posts/<id>`, the JSON record of each
   post (title, slug, publication and modification dates, body). The HTML page of every post ends with a LiteSpeed cache
   comment stamped with the request time, so two downloads a few seconds apart differ; the JSON record was identical across
   downloads. The current party record reports publication and modification dates before the cutoff (two older posts
@@ -183,8 +207,16 @@ extract's provenance note, and `packet_check.py` downloaded each once more (see 
   Acceptance is limited to the attributed statements and metadata now served; it does not authenticate every past
   revision or promote a post dateline into an effective term boundary.
 
+The two additional REST records were independently retrieved once each during
+this amendment review, matching the submitted original sizes and SHA-256 values.
+Their complete bodies were read; only the two office/date claims are accepted,
+not the unrelated political arguments. The first web-tool attempt at post 1411
+was inaccessible; the ordinary official-host curl request succeeded. No archival
+source was retried. Full originals remain outside Git in the review directory.
+
 ## Leads not imported
 
+- `https://cpim.org/wp-json/wp/v2/posts/597` is a submitted earlier-Karat lead only. Its content, dating and any reason for a metadata discrepancy were not reviewed in this amendment; it creates no holder record.
 - The party's release of 10 May 2025 (`https://cpim.org/wp-json/wp/v2/posts/11973`, 'A CPI(M) delegation consisting of
   General Secretary M.A. Baby ... met the three member Election Commission of India today'): two days earlier than the
   observation used, but it prints the name differently from the later records; a lead for the integrator.
@@ -233,6 +265,15 @@ changed.
 
 ## Integration notes (outside this packet's file boundary)
 
+The amended data contains two new sources and claims, three reclassified extract
+rows and two revised selected observations. Prior data outside this role,
+corrected citations, current REST limitations and all effective boundaries are
+preserved. The earlier author notes below describe the original submission;
+the current review receipt and queue govern acceptance. The instruction to
+continue existing claims first is unchanged.
+
+### Original submission notes (retained context)
+
 - **Batch order.** The user chose to start this batch of C01 research packets (CLAUDE-C01-38 to -41, running in parallel in
   other country files) before Codex's "continue existing claims first" roadmap line; the integrator may sequence them after
   the existing claims.
@@ -252,13 +293,12 @@ changed.
   until Codex classifies them; disclosed, not fixed; `docs/campaign-certification/C01/gap-ledger/` is untouched.
 - **S23 boundary matrix.** `tools/avatars/test_certified_boundary_matrix.py` needs `spheres-web/src`, which this sparse
   checkout lacks; Codex regenerates the matrix on integration (the India packet gains a role).
-- **Ruling questions.** (1) Whether a Central Committee election recorded by the party on its day (6 April 2025, 22 April
-  2018, 10 April 2022) should give `from`, since the CPI(M) has no separate assumption of charge; this packet keeps
-  elections as claims, as CLAUDE-C01-27 did. (2) Whether the party website's WordPress REST record of a post is acceptable
-  as the recorded identity where the HTML page differs per request. (3) Whether a 'newly elected general secretary' styling
-  at the rally that closes a Congress (11 April 2005, 19 April 2015) is an in-office attestation of that day, as used here.
+- **Evidence selection:** the independently reviewed amendment above replaces the original rally-based selection. It does not assert a user ruling.
 
 ## Checks
+
+The following table retains the original submission's test and download results. Current amendment checks are recorded in its separate review receipt.
+
 
 Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` on 1 October 2026 (UTC), before committing on base `02d2c5a2`, and
 rerun after merging integration `79ef97ec` (all results unchanged except the census check, below):

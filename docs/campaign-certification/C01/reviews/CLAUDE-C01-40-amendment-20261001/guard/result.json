@@ -1,0 +1,33 @@
+{
+  "checked_utc": "2026-10-01T02:56:34.269607+00:00",
+  "submission_revision": "5054de7bfa94eb884161da26a63869409f334fd5",
+  "input_test_blob_sha256": "fbd40945f8ad992a13e92daac108471c418ef5e230ddf57793672d9cf3c0d160",
+  "patch_sha256": "aa033934a6f48c56aba02ac292a1b445df02a83b9333115d7b6cd0cc3fc52408",
+  "runs": [
+    {
+      "label": "red-original-rules",
+      "tests": [
+        "test_styling_date_does_not_override_independently_cited_office_evidence"
+      ],
+      "tests_run": 1,
+      "failures": 3,
+      "errors": 0,
+      "passed": false,
+      "log_sha256": "62f4241e3795ea2f3dbf0218441f14b73621ddf804a4e7f10a75f67464612bfc"
+    },
+    {
+      "label": "green-claim-driven-rules",
+      "tests": [
+        "test_styling_date_does_not_override_independently_cited_office_evidence",
+        "test_holders_are_exactly_as_intended",
+        "test_mutations_are_rejected"
+      ],
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "passed": true,
+      "log_sha256": "e22a2209f400d2845609e1539189b293b2d2d90d542ecfbf5041f30101946cd3"
+    }
+  ],
+  "scope": "Synthetic in-memory generic-rule regression and unchanged exact-holder checks; no historical source validation or network/repository mutation."
+}

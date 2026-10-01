@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 1987,
-    "source_claims": 4904,
+    "sources": 1996,
+    "source_claims": 4933,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -198,7 +198,7 @@
       "organization_observations": 83,
       "institution_observations": 2,
       "role_observations": 6,
-      "source_claims": 623,
+      "source_claims": 625,
       "mapping_pending": 85,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -242,7 +242,7 @@
           "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted.",
-          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 11 April 2005, Sitaram Yechury 19 April 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2015, 2018, 2022 and 2025 are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
+          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 10 September 2011, Sitaram Yechury 6 May 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2012, 2015, 2018, 2022 and 2025, with the 'newly elected' stylings at the rallies closing the 2005, 2012 and 2015 Congresses, are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted. This amendment changes only the selected Karat and Yechury observation dates; all earlier styling claims remain preserved, without a blanket exclusion of independently supported same-day in-office attestations."
         ]
       }
     },
@@ -304,7 +304,7 @@
       "organization_observations": 14,
       "institution_observations": 7,
       "role_observations": 9,
-      "source_claims": 295,
+      "source_claims": 322,
       "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -345,7 +345,8 @@
           "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
           "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
           "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
-          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim."
+          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim.",
+          "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched."
         ]
       }
     },
@@ -2699,8 +2700,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1301518,
-      "sha256": "42d68ee487ff13718fae67488a9d28ecce1be1b586da878574568f5d6d139176"
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -2709,13 +2710,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 575140,
-      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
+      "bytes": 626569,
+      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 317009,
-      "sha256": "2d5618f7e729aa3e0fb5b43c14ab3bd056b5cf463aae03ca3f79ce6566561a4e"
+      "bytes": 317174,
+      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",

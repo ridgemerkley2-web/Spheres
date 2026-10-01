@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "5b6356f3d4ad3c60327158c14bead2c943d8fdfc",
+  "generated_from": "e1fe36e00fb3b7efd4f6e560eebf2617035ccfd2",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -2253,8 +2253,18 @@
         "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
+      "in_cpim_gs_letter_to_naidu_20150508": {
+        "commit": "3c4a3abc",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
       "in_cpim_gs_letter_to_pm_20250512": {
         "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_gs_note_to_nic_20110910": {
+        "commit": "3c4a3abc",
         "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
@@ -6007,6 +6017,41 @@
         "packet": "S10",
         "via": "extract_first_added"
       },
+      "ru_duma_news_52394_20211011": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
+      "ru_duma_news_53098_20211222": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
+      "ru_duma_news_53987_20220406": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
+      "ru_duma_news_53988_20220406": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
+      "ru_duma_news_54314_20220518": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
+      "ru_duma_news_54910_20220707": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
+      "ru_duma_news_63980_20260727": {
+        "commit": "91a1dbe1",
+        "packet": "CLAUDE-C01-46",
+        "via": "extract_first_added"
+      },
       "ru_duma_res_458_5_gd_20080508": {
         "commit": "9417dc93",
         "packet": "CLAUDE-C01-19",
@@ -6789,6 +6834,16 @@
         "packet": "S10",
         "via": "source_id_first_seen"
       },
+      "sa_embassy_fahd_delegates_19960101": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_fahd_resumes_19960222": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_embassy_humaid_appointed_20020207": {
         "commit": "61a3402d",
         "packet": "CLAUDE-C01-25",
@@ -6954,6 +7009,11 @@
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_allegiance_law_art24_20061020": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_allegiance_law_arts14_18_20061020": {
         "commit": "61a3402d",
         "packet": "CLAUDE-C01-25",
@@ -6967,6 +7027,11 @@
       "sa_spa_commission_oath_20071210": {
         "commit": "61a3402d",
         "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_cp_abdullah_obs_20050730": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
         "via": "extract_first_added"
       },
       "sa_spa_dateline_20090228": {
@@ -7014,6 +7079,11 @@
         "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
+      "sa_spa_king_order_judges_20260904": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_mbn_pledge_20170621_ar": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -7022,6 +7092,16 @@
       "sa_spa_mbn_pledge_20170621_en": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mbs_cabinet_20260901": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mbs_pledge_held_20170621": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
         "via": "extract_first_added"
       },
       "sa_spa_mishaal_chair_obs_20151219": {
@@ -7059,6 +7139,11 @@
         "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
+      "sa_spa_muqrin_cp_obs_20150428": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_nayef_cp_20111027": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -7067,6 +7152,11 @@
       "sa_spa_nayef_death_20120616": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_nayef_hajj_reception_20111107": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
         "via": "extract_first_added"
       },
       "sa_spa_ninth_term_opening_20240918": {
@@ -7104,9 +7194,24 @@
         "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
+      "sa_spa_order_a128_20170225": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a136_20061020": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_order_a13_20090214": {
         "commit": "61a3402d",
         "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a145_20140520": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
         "via": "extract_first_added"
       },
       "sa_spa_order_a159_20150429": {
@@ -7129,6 +7234,11 @@
         "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
+      "sa_spa_order_a175_20071029": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_order_a180_20071210": {
         "commit": "61a3402d",
         "packet": "CLAUDE-C01-25",
@@ -7144,6 +7254,11 @@
         "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
+      "sa_spa_order_a193_20050731": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_order_a255_20170621_ar": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -7152,6 +7267,11 @@
       "sa_spa_order_a255_20170621_en": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a267_20150725": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
         "via": "extract_first_added"
       },
       "sa_spa_order_a45_20130111": {
@@ -7204,6 +7324,16 @@
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_pledge_held_20050803": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
+      "sa_spa_pledge_held_20150123": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
+        "via": "extract_first_added"
+      },
       "sa_spa_pledge_held_20150429": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -7217,6 +7347,11 @@
       "sa_spa_salman_cp_20120618": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_salman_cp_pledge_directive_20120618": {
+        "commit": "d23f0bf2",
+        "packet": "CLAUDE-C01-45",
         "via": "extract_first_added"
       },
       "sa_spa_shura_chair_obs_20260906": {

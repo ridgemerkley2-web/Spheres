@@ -27,7 +27,12 @@ twelve latest holder observations remain held. One HTTP 429 stopped the only pas
 22 originals were not attempted. Review the added observation and proposed boundary
 before integration. No Russia or DA research is imported.
 
-The queue records 26 completed bounded Claude tasks and two held submissions.
+The queue now records 28 completed bounded Claude tasks: C01-45 Saudi and C01-46
+State Duma have separate accepted reviews. Tonga C01-44 is a third held submission:
+four of five originals and five of six organization claims were read; one PMO
+original/claim returned HTTP 429. No C01-44 data is imported. C01-43 Brazil is newly
+submitted and unreviewed; C01-42 Japan remains claimed. All five existing claims
+are registered; use the current handoff for exact tips and acceptance receipts.
 [Combined review and follow-up checks](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
 retain all earlier failures. Only two USSR test tightenings were adopted from the
 new France/USSR follow-ups; the 48 USSR tests and two before/after mutation checks

@@ -1,0 +1,139 @@
+{
+  "format": "spheres-c01-amendment-scope/v1",
+  "integration_base": "d0c6676b347c16226d7c7db9371a36cd0a51ce92",
+  "previous_submission": "54680e39910804b3864a3e973c452f2db2ac5e6f",
+  "incoming_tip": "d7e1b9d286f68b7864f2d014c49e42c4296e66e5",
+  "incoming_substantive_revision": "5054de7bfa94eb884161da26a63869409f334fd5",
+  "reviewed_source_commit": "3c4a3abcc59208ba0923705db0193964643b21f9",
+  "prior_locator_correction": "d21357db1ce9a689fb3098044437b8ea554e7109",
+  "reviewed_source_files": [
+    {
+      "path": "docs/campaign-certification/C01/research/india-cpim-general-secretaries-1990-2026-40.md",
+      "bytes": 28768,
+      "sha256": "328785f6fdad0814c74df160ce37db1327dc2ec0ac0dbad14d6aaff53132d14d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-cpim-gs-letter-to-naidu-20150508-facts.json",
+      "bytes": 3988,
+      "sha256": "71928e08175ae35ba3343116f50167c9d39e8eed4fe386d1e277efe00628f879"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-cpim-gs-note-to-nic-20110910-facts.json",
+      "bytes": 3895,
+      "sha256": "bf19653eba3d7cead4c39bd6575d21f4e6a2a6a92afc43c0b6b2973c9a3252b2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-pd-join-to-bring-forth-change-20150426-facts.json",
+      "bytes": 6103,
+      "sha256": "7b15b75a8319b6a6edd05534aeb1e577fea61ffccba497d41566d56e76bf4e0f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-pd-rally-18th-congress-20050417-facts.json",
+      "bytes": 4596,
+      "sha256": "afb9e4c2a7b9497654fc70374a7a59d3b4c1d7332154b03dcf56c66e22104a07"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-pd-rally-20th-congress-20120415-facts.json",
+      "bytes": 3942,
+      "sha256": "4b28b8f458e013fa44d14613774861adfc896b3ca4479c350fecdc1104f4c3e5"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-40.md",
+      "bytes": 8826,
+      "sha256": "ca409c9cc4d15a659cee79ddbda426d393591774987789fbb0a3a6025ab188aa"
+    },
+    {
+      "path": "tools/avatars/test_india_bjp_presidents_c01_27.py",
+      "bytes": 119960,
+      "sha256": "1a3fdb5956f180eba3c84a5771eb9c592eccd539d4ab75262f53ecd1cf23817e"
+    },
+    {
+      "path": "tools/avatars/test_india_cpim_general_secretaries_c01_40.py",
+      "bytes": 48584,
+      "sha256": "30283e198c87dc0321202cf34ffe9f8331ee515587e236a8cadb203fb3977e0d"
+    },
+    {
+      "path": "tools/avatars/test_india_inc_presidents_c01_20.py",
+      "bytes": 98070,
+      "sha256": "51948e985a111871fe80bc5d76ad93abaa7e840f9999b3d5d53e5fd3efd5ad30"
+    },
+    {
+      "path": "tools/avatars/test_india_janata_dal_presidents_c01_33.py",
+      "bytes": 73513,
+      "sha256": "33e378ae7826a2d843e0d9e2dcefe89161fe801472e420e2befb51792ec3f4f8"
+    },
+    {
+      "path": "tools/avatars/test_india_presidents_c01_15.py",
+      "bytes": 74960,
+      "sha256": "070960afc6e37b5a968915447657efecdf22194a8b043fa64257668df34dc13b"
+    },
+    {
+      "path": "tools/avatars/test_india_prime_ministers_c01_11.py",
+      "bytes": 82118,
+      "sha256": "ef4eee24b8acc582f56245b78b51495c7667d23dcc09bf880b54a4840a9f102a"
+    },
+    {
+      "path": "tools/avatars/test_india_research_s10e.py",
+      "bytes": 28765,
+      "sha256": "4ed6c534b232fd39dc7a9f5c0a5c363ac8e1843da1d67ed9cd822f01067f70a7"
+    }
+  ],
+  "country": "India",
+  "organization": "in_eci_20240323_np_04",
+  "role": "in_cpm_general_secretary",
+  "source_count_before": 315,
+  "source_count_after": 317,
+  "claim_count_before": 623,
+  "claim_count_after": 625,
+  "all623_prior_claim_texts_dates_locators_preserved": true,
+  "all312_other_source_objects_unchanged": true,
+  "all_non_cpim_organizations_and_all_institutions_unchanged": true,
+  "holder_count_before": 4,
+  "holder_count_after": 4,
+  "historical_cutoff_unchanged": "2026-09-07",
+  "selected_dates": {
+    "Prakash Karat": {
+      "before": "2005-04-11",
+      "after": "2011-09-10"
+    },
+    "Sitaram Yechury": {
+      "before": "2015-04-19",
+      "after": "2015-05-06"
+    }
+  },
+  "effective_starts_unchanged_all_null": true,
+  "effective_ends_unchanged": {
+    "Sitaram Yechury": "2024-09-12"
+  },
+  "new_sources": [
+    "in_cpim_gs_note_to_nic_20110910",
+    "in_cpim_gs_letter_to_naidu_20150508"
+  ],
+  "reclassified_claim_ids": [
+    "in_pd_rally_newly_elected_gs_karat_20050411",
+    "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
+    "in_pd_rally_newly_elected_gs_yechury_20150419"
+  ],
+  "qualification": "No C01, C06, S23, WC1 or CP1 closure; no runtime, party mapping, art or identity approval.",
+  "authority_limit": "The incoming Git narrative attributes this to a review ruling and Ridge. Neither attribution authenticates a user instruction. This review independently accepts a bounded conservative evidence-selection amendment, not that claimed authority.",
+  "local_work_checkpoint": "The first local structural assertion caught old extract locators being replaced by incoming array data. Before source commit, each existing extract was rebuilt from accepted HEAD with only event_kind changed; all five d21357db locator corrections are preserved. No defective intermediate data was committed.",
+  "validation_followup_commit": "a69a05ca6612e1c35bebcaa1e9ff76b759728629",
+  "validation_followup_files": [
+    {
+      "path": "tools/avatars/certified_gap_ledger.py",
+      "bytes": 70296,
+      "sha256": "bc6d6d00754f1b6b8f7f190322beb8365e01b605f891c3830666c5113fb9f131"
+    },
+    {
+      "path": "tools/avatars/test_certified_gap_ledger.py",
+      "bytes": 39924,
+      "sha256": "5eee01ea2e89335974770651f72dc0f968093e5f2371e721702e749a666987d1"
+    }
+  ],
+  "validation_followup_scope": "Attribution importer and fixture distinguish the 18 earlier C01-40 source origins from the two new source origins at 3c4a3abc. No historical data changed in this follow-up."
+}

@@ -3401,7 +3401,7 @@
           "text": "SPA, date line Jeddah 28 Rajab 1433 / 18 June 2012: 'وجه صاحب السمو الملكي الأمير سلمان بن عبدالعزيز آل سعود ولي العهد نائب رئيس مجلس الوزراء وزير الدفاع' that the regional emirs receive the citizens' pledge on his behalf, in a cable to the Minister of Interior quoted in the item.",
           "attested_on": "2012-06-18",
           "locator": "Date line; first and second paragraphs; trailer 23:38 (Makkah time)",
-          "uncertainty": "Styled Crown Prince on the day of Royal Order A/139 (sa_salman_cp_order_a139): a dated attestation only, not a from. The portal's published_at (00:06 UTC on 19 June 2012) is an import artefact; the trailer reads 23:38 Makkah time on 18 June."
+          "uncertainty": "Styled Crown Prince on the day of Royal Order A/139 (sa_salman_cp_order_a139): a dated attestation only, not a from. The current API timestamp is 00:06 UTC on 19 June 2012, while the printed date line is 18 June and its trailer reads 23:38 Makkah time. The discrepancy's cause is unknown; no import or migration explanation is established."
         },
         {
           "id": "sa_salman_cp_pledge_scheduled_20120618",
@@ -3411,11 +3411,11 @@
           "uncertainty": "A scheduled pledge: this source does not attest that it was held, and the Hijri days are not converted here."
         }
       ],
-      "scope_note": "A complete item. Its portal published_at, 2012-06-19T00:06:51Z, is not a filing time: several SPA items of June 2012 carry 00:06 UTC on different days. The printed date line and trailer (23:38 Makkah time on 18 June 2012) are used.",
+      "scope_note": "A complete item. The current API metadata published_at is 2012-06-19T00:06:51Z, while the printed date line is 18 June 2012 and the trailer is 23:38 Makkah time. The discrepancy's cause is unknown; neither import history nor actual filing time is established. The printed date line supplies the observation date.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json",
-        "bytes": 5045,
-        "sha256": "515d0572342c30fe1239873e0571b0358cf1d8d557c7d61c61a96ebe08560452",
+        "bytes": 5126,
+        "sha256": "d8cf1b0b817833a648042f342c14a2229dc0c78922477391e3ea85d916e33d74",
         "kind": "derived_factual_extract"
       }
     },
@@ -4741,10 +4741,10 @@
                 "sa_tuwaijri_sg_appointed_a136_20061020"
               ],
               "note": "Appointed Secretary General of the Allegiance Commission by Royal Order A/136 of 26/9/1427 AH, reproduced in the Royal Court statement SPA dated Makkah 28 Ramadan 1427 / 20 October 2006 (SA-KCP-09).",
-              "uncertainty": "The order states no effective day, so from is null and attested_on is the statement's day. No order relieving him of this post is recorded: Royal Orders A/56 and A/57 of 3/4/1436 AH (23 January 2015) relieve him of the Royal Court and Royal Guard posts and do not name the Commission, so until is null. No attestation of him in this post after 2006, and no later Secretary General, was found; continuity is not established."
+              "uncertainty": "The order states no effective day, so from is null and attested_on is the statement's day. No independently reviewed source in this packet establishes an end or a later holder, so until remains null. A/56 and A/57 concerning other offices are author-supplied leads, not independently reviewed evidence here; no conclusion about their full contents is adopted. Continuity after the 2006 observation is not established."
             }
           ],
-          "scope_note": "CLAUDE-C01-45. One holder, appointed by Royal Order A/136, which states no effective day, so from is null; no relief or end is stated, so until is null. Article 24 of the Allegiance Commission Law is procedure only. His Royal Court and Royal Guard offices (A/291 of 1426 AH, A/126, A/124, A/56 and A/57) are other offices and are never bound to this role."
+          "scope_note": "CLAUDE-C01-45. One holder appointed by Royal Order A/136, which states no effective day, so from is null. No reviewed source establishes relief or an end, so until is null. Article 24 is procedure only. Author-supplied leads concerning Royal Court and Royal Guard offices (A/291, A/126, A/124, A/56 and A/57) are not imported or used to bound this role."
         },
         {
           "id": "sa_succession_members",
@@ -4808,7 +4808,7 @@
           "Commission participation by order: A/224 (2011) states only that the Commission was notified; A/139 (2012) mentions none; A/159 (2015) states none for the Crown Prince selection; A/160 (2015) recites a great majority without a count; A/255 (2017) recites 31 of 34. No record published by the Commission was read, and the Gregorian date of the establishing Royal Order A/135 (26/9/1427 AH) was not verified.",
           "CLAUDE-C01-25 (SA-CHR-07 and 08): the Allegiance Commission Law (A/135 of 26/9/1427 AH), its executive regulations (A/164 of 26/9/1428 AH) and the forming order A/180 (29/11/1428 AH) were read only in SPA's transmissions; their Umm al-Qura and Bureau of Experts texts and the orders' Gregorian dates were not read, and A/180 states no effective day.",
           "CLAUDE-C01-25 (SA-CHR-09): no chairman of the Commission is attested after Prince Mishaal bin Abdulaziz's death on 3 May 2017. SPA searches to 7 September 2026 found none, Article 15 is not used to name one, and absence is not proven.",
-          "CLAUDE-C01-45 (SA-KCP-09): Royal Order A/136 of 26/9/1427 AH (SPA, 20 October 2006) appoints the Secretary General. No relief, successor or later attestation in the post is recorded to 7 September 2026; Royal Orders A/56 and A/57 of 23 January 2015, which relieve him of other posts, do not name the Commission."
+          "CLAUDE-C01-45 (SA-KCP-09): Royal Order A/136 of 26/9/1427 AH (SPA, 20 October 2006) appoints the Secretary General. No independently reviewed relief, successor or later attestation is recorded through 7 September 2026; author-supplied other-office leads A/56 and A/57 are not evidence for this role's end."
         ]
       }
     },

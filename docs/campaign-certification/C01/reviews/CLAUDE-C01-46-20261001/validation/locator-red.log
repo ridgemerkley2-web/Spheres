@@ -1,0 +1,20 @@
+test_death_locator_reaches_the_dated_faction_statement (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_death_locator_reaches_the_dated_faction_statement) ... FAIL
+
+======================================================================
+FAIL: test_death_locator_reaches_the_dated_faction_statement (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_death_locator_reaches_the_dated_faction_statement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-46-20261001\tools\avatars\test_russia_duma_faction_heads_c01_46.py", line 252, in test_death_locator_reaches_the_dated_faction_statement
+    self.assertEqual(record['locator'], 'Subtitle; body, paragraph 2')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Subtitle; body, paragraph 1' != 'Subtitle; body, paragraph 2'
+- Subtitle; body, paragraph 1
+?                           ^
++ Subtitle; body, paragraph 2
+?                           ^
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)

@@ -1,0 +1,10 @@
+{"utc":"2026-10-01T03:15:56.3166225Z","event":"prepared","data":{"synthetic":true,"mode":"captured-fault","campaign_launched":false}}
+{"utc":"2026-10-01T03:15:56.3265765Z","event":"monitor_started","data":{"pid":38060}}
+{"utc":"2026-10-01T03:15:56.4281587Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":"C:\\WINDOWS\\system32\\conhost.exe","name":"conhost.exe","pid":43656}}
+{"utc":"2026-10-01T03:15:56.4295968Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":null,"name":"python.exe","pid":34760}}
+{"utc":"2026-10-01T03:15:56.4310534Z","event":"resources","data":{"owned_children":[],"utc":"2026-10-01T03:15:56.4308567Z","volumes":[{"DeviceID":"C:","FreeSpace":107374182400},{"DeviceID":"D:","FreeSpace":214748364800}],"synthetic":true,"available_commit_bytes":8589934592}}
+{"utc":"2026-10-01T03:15:58.5498802Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":"C:\\WINDOWS\\system32\\conhost.exe","name":"conhost.exe","pid":43656}}
+{"utc":"2026-10-01T03:15:58.5787994Z","event":"owned_child","data":{"created":"2026-09-30T20:15:56.35594-07:00","parent_pid":38060,"path":"C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe","pid":34760}}
+{"utc":"2026-10-01T03:15:58.5846967Z","event":"resources","data":{"owned_children":[{"cpu_seconds":0.015625,"private_bytes":7512064,"working_set_bytes":12623872,"pid":34760}],"utc":"2026-10-01T03:15:58.5794140Z","volumes":[{"DeviceID":"C:","FreeSpace":107374182400},{"DeviceID":"D:","FreeSpace":214748364800}],"synthetic":true,"available_commit_bytes":8589934592}}
+{"utc":"2026-10-01T03:16:00.6968053Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":"C:\\WINDOWS\\system32\\conhost.exe","name":"conhost.exe","pid":43656}}
+{"utc":"2026-10-01T03:16:00.7070778Z","event":"resources","data":{"owned_children":[{"cpu_seconds":0.015625,"private_bytes":7942144,"working_set_bytes":30261248,"pid":34760}],"utc":"2026-10-01T03:16:00.7016983Z","volumes":[{"DeviceID":"C:","FreeSpace":107374182400},{"DeviceID":"D:","FreeSpace":214748364800}],"synthetic":true,"available_commit_bytes":8589934592}}

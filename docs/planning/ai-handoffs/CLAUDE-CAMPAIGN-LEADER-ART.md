@@ -73,7 +73,7 @@ These task closures are research/preparation results, not completed country cast
 | C01-31 | Komeito representatives and distinct organizational phases | **Accepted bounded intake.** All 31 originals, 64 claims and fifteen holder observations reviewed; no source holds remain. Exact submission `696937ba3d31280aab569cbd78418e9c3a0c6880`, first import `b74f4fa5`, [acceptance receipt `d4d3542b`](../../campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md). The conservative Takeya boundary correction, explicit Ota assumption, three locator repairs and earlier held evidence are preserved. |
 | C01-38 | French prime ministers, 2014–2026 | **Accepted bounded intake.** All 22 originals, 33 claims and twelve appointment observations reviewed. Same-day interval prose repaired. Effective terms remain unresolved. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-38/README.md); submitted `acf33f09a5d28cbc9bf9f539e152e9846a7bf395`. |
 | C01-39 | Democratic Alliance federal leaders, 2000–2026 | **Held; latest follow-up unaccepted.** Latest `b66f8c074431d7e1a8c9bfca228576c7d5134655` follows the reviewed submission `9cb02c20012a6e6314d7e64d52241609d566f738`. The [original receipt `d1818a48`](../../campaign-certification/C01/reviews/CLAUDE-C01-39/README.md) records 1/24 originals and 1/29 claims reviewed, with eleven submitted holder observations held. The follow-up has twelve added observations, all held; the same 23 originals and 28 claims remain unresolved. One request returned HTTP 429; 22 were not attempted. No DA research or isolated test repair is imported. |
-| C01-40 | CPI(M) general secretaries, 1990–2026 | **Accepted bounded intake.** All eighteen originals, 24 claims and four observations reviewed. Five locators and unsupported EMS prose repaired; the opening-holder gap remains. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-40/README.md); submitted `54680e39910804b3864a3e973c452f2db2ac5e6f`. |
+| C01-40 | CPI(M) general secretaries, 1990–2026 | **Accepted bounded intake with reviewed amendment.** The [initial review](../../campaign-certification/C01/integrations/CLAUDE-C01-40/README.md) retains eighteen originals and five locator repairs. The [amendment](../../campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md) independently checks two added originals and re-reads three rally descriptions: 20 sources, 26 claims, four observations, no new effective boundaries. Submitted `d7e1b9d286f68b7864f2d014c49e42c4296e66e5`; scoped import `3c4a3abc`. Current REST limitations and the opening-holder gap remain. |
 | C01-41 | CPSU General Secretary and Deputy General Secretary, 1990–1991 | **Accepted bounded intake.** Twelve originals, 26 claims and five observations reviewed; reportage and decree annotation scope clarified. Prior undated identity remains unreconciled. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-41/README.md); submitted `a989ddb4d67657236292a35443049554cc9b19e7`. |
 
 The [combined review](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
@@ -88,6 +88,23 @@ The combined review also records follow-ups on accepted France and USSR packets.
 tightenings were adopted; all 48 USSR tests pass, with two failing-before/passing-after
 mutation checks. Source and holder scope is unchanged. The additional France and
 USSR prose is not imported; the independent acceptance limits remain authoritative.
+
+The later 1 October review and branch check registered these existing claims.
+The queue now records 28 completed bounded Claude tasks, three source-held
+submissions, one additional unreviewed delivery and the remaining Japan claim.
+
+| Packet | Exact checked tip | Current decision |
+|---|---|---|
+| [C01-42](CLAUDE-C01-42.md) | `601078190e76bfa3ae578a6b467073620dff1ce6` | Claim only; preserve ownership and current accepted C01-31 corrections. |
+| [C01-43](CLAUDE-C01-43.md) | `68fb8f863398247ba1515a1ff3f413a444a6d7f5` | Newly submitted: 14 proposed originals / 21 claims. Not retrieved, reviewed or imported in this pass. |
+| [C01-44](CLAUDE-C01-44.md) | `206df90553337f4fbeb4ae34819cb2b01c6e8a21` | **Held**: 4/5 originals and 5/6 claims read, no new holders. PMO returned HTTP 429; one original/claim held. Receipt only, no data import. |
+| [C01-45](CLAUDE-C01-45.md) | `d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49` | **Accepted bounded intake**: 18 originals, 30 claims, 18 observations. First import `d23f0bf2`, correction `4a98bc10`, receipt `42046e51`. |
+| [C01-46](CLAUDE-C01-46.md) | `64fec76b8a61e7f65f0f98f7bf3a93699ea80d72` | **Accepted bounded intake**: 7 originals, 27 claims, 18 observations. First import `91a1dbe1`, correction `c1056321`, receipt `6f88cd1b`. C01-28 party research remains held. |
+
+The source pass is closed after Tonga’s rate-limit response. Preserve all failed
+attempts and resume only missing originals in a later permitted pass. No new
+research packet accepts a runtime identity, cartoon, whole country or parent gate.
+The ready Tonga cast and campaign-stability work remain the CP1 priorities.
 
 Continue existing claims without duplicating their ownership. Codex owns the
 remaining original-source/content reviews for C01-28 and C01-39. Both Archive
