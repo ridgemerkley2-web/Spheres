@@ -15,6 +15,9 @@ import campaign_research as research
 # CLAUDE-C01-31 appends the sources of a new party role, jp_komeito_representative, on the 公明党 observation after this
 # packet's; its exact sources and holders are pinned in its own test.
 import test_japan_komeito_representatives_c01_31 as komeito
+# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+# after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
 
 ORG_ID = 'jp_sangiin_pr_2025_10'
 ROLE = 'jp_sdp_chair'
@@ -852,7 +855,7 @@ class JapanSdpChairsTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
         order = [s['id'] for s in self.packet['sources']]
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
-        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], komeito.NEW_SOURCES)
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], komeito.NEW_SOURCES + jcp42.NEW_SOURCES)
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid in RESPONSES or sid.startswith('jp_sdp')])
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 7))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
@@ -994,9 +997,10 @@ class JapanSdpChairsTests(unittest.TestCase):
         self.assertTrue(unresolved[-1].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
         packet_unresolved = self.packet['coverage']['unresolved']
         self.assertEqual(sum('CLAUDE-C01-29' in u for u in packet_unresolved), 1)
-        self.assertTrue(packet_unresolved[-2].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
-        self.assertTrue(packet_unresolved[-3].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
-        self.assertTrue(packet_unresolved[-1].startswith('Komeito representatives 1990-2026 (CLAUDE-C01-31)'))
+        self.assertTrue(packet_unresolved[-3].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
+        self.assertTrue(packet_unresolved[-4].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
+        self.assertTrue(packet_unresolved[-2].startswith('Komeito representatives 1990-2026 (CLAUDE-C01-31)'))
+        self.assertTrue(packet_unresolved[-1].startswith('JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42)'))
 
     def test_retrospective_election_count_does_not_invent_additional_wins(self):
         claim = self.claims['jp_sdp_fukushima_tenure_record_2003_2013']

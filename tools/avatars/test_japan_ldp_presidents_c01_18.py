@@ -17,6 +17,9 @@ import test_japan_sdp_chairs_c01_29 as sdp
 # CLAUDE-C01-31 appends the sources of a new party role, jp_komeito_representative, after CLAUDE-C01-29's; its exact source
 # list is pinned in its own test.
 import test_japan_komeito_representatives_c01_31 as komeito
+# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+# after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
 
 ORG_ID = 'jp_sangiin_pr_2025_13'
 ROLE = 'jp_ldp_party_president'
@@ -1157,7 +1160,8 @@ class JapanLdpPresidentsTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
         order = [s['id'] for s in self.packet['sources']]
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
-        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], sdp.NEW_SOURCES + komeito.NEW_SOURCES)
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):],
+                         sdp.NEW_SOURCES + komeito.NEW_SOURCES + jcp42.NEW_SOURCES)
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid in RESPONSES])
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 7))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
@@ -1277,12 +1281,14 @@ class JapanLdpPresidentsTests(unittest.TestCase):
         self.assertTrue(unresolved[-1].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18)'))
         packet_unresolved = self.packet['coverage']['unresolved']
         self.assertEqual(sum('CLAUDE-C01-18' in u for u in packet_unresolved), 1)
-        # This packet's note is at index 10, after CLAUDE-C01-13's and followed only by CLAUDE-C01-29's and CLAUDE-C01-31's.
+        # This packet's note is at index 10, after CLAUDE-C01-13's and followed only by CLAUDE-C01-29's, CLAUDE-C01-31's and
+        # CLAUDE-C01-42's.
         self.assertTrue(packet_unresolved[10].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
         self.assertTrue(packet_unresolved[9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
-        self.assertEqual(len(packet_unresolved), 13)
+        self.assertEqual(len(packet_unresolved), 14)
         self.assertTrue(packet_unresolved[11].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29'))
         self.assertTrue(packet_unresolved[12].startswith('Komeito representatives 1990-2026 (CLAUDE-C01-31'))
+        self.assertTrue(packet_unresolved[13].startswith('JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42'))
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
         for sid in NEW_SOURCES:

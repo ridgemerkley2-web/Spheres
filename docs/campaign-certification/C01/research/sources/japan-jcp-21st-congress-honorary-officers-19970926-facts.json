@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_jcp_21st_congress_honorary_officers_19970926",
+  "source_url": "https://web.archive.org/web/20010718222059id_/http://www.jcp.or.jp/jcp/21taikai/21-veteran.html",
+  "original_url": "http://www.jcp.or.jp/jcp/21taikai/21-veteran.html",
+  "archive_capture_utc": "2001-07-18T22:20:59Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 5843,
+  "source_response_sha256": "ea7808aa4bba9d8dfe5d4dcdae31ff47f2509644d77b502a9c82b8d31118086d",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "OW36YMW4M53QFBGQXKSMEVYLKVXGVKKS",
+  "source_character_encoding": "Shift_JIS (decoded as cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20010718222059id_/http://www.jcp.or.jp/jcp/21taikai/21-veteran.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-07-18T22:20:59Z; that form replays the archived bytes unchanged. Researcher: first downloaded on 2026-10-01 (UTC) at 03:20:16Z. Downloaded again by this packet at 2026-10-01 04:07:29Z (UTC), 47 minutes after the first download, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Internet Archive sends gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party site's report, dated 26 September 1997, of the 21st Congress's approval of honorary officers and advisers.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_jcp_miyamoto_named_honorary_chair_19970926",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-02",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": null,
+      "role_title": "名誉議長 — honorary chair of the Central Committee (another office; claims only)",
+      "event_kind": "honorary_office_conferred",
+      "attested_on": "1997-09-26",
+      "text": "The party reports that on the 26th the 21st Congress unanimously approved, among others proposed by the Central Committee, one new honorary chair ('新しい名誉議長１人'), listed as '名誉議長　宮本顕治（８８）' under the new appointments ('〈新〉').",
+      "locator": {
+        "section": "date line, first paragraph and the 〈新〉 list"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the 日本共産党 Executive Committee chair (幹部会委員長) and Central Committee chair (中央委員会議長) and of the 国民民主党 representative (代表), for CLAUDE-C01-42 only, 1990-2026. Congress and plenum elections, in-office attestations, withdrawals, honorary offices, rule procedure, suspensions, acting service, the earlier 国民民主党 of 2018-2020 and its offices, and organization events stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the row names no holder of this office (an organization event, procedure, another office, acting service or an election that names nobody). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded; organization identities stay unresolved, and no row maps or merges the 国民民主党 of 2018-2020 with the 2025 election-list observation or any other organization."
+}

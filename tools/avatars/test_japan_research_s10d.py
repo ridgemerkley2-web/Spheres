@@ -12,7 +12,9 @@ import campaign_research as research
 # sources and 192 claims to the existing LDP presidency role, pinned in test_japan_ldp_presidents_c01_18.py; CLAUDE-C01-29
 # adds 54 sources and 111 claims for a new party role, jp_sdp_chair, on the 社会民主党 observation, pinned in
 # test_japan_sdp_chairs_c01_29.py; CLAUDE-C01-31 adds 31 sources and 64 claims for a new party role,
-# jp_komeito_representative, on the 公明党 observation, pinned in test_japan_komeito_representatives_c01_31.py.
+# jp_komeito_representative, on the 公明党 observation, pinned in test_japan_komeito_representatives_c01_31.py;
+# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) adds 32 sources and 50 claims to the existing 日本共産党 chair roles and the
+# 国民民主党 representative role, pinned in test_japan_jcp_dpfp_leaders_c01_42.py.
 ORIGINAL_SOURCES = ('jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218', 'jp_shugiin_group_definition',
                     'jp_ldp_ishiba_elected_2024', 'jp_ldp_takaichi_elected_2025', 'jp_jcp_chairs_2024',
                     'jp_dpfp_tamaki_elected_2026')
@@ -30,6 +32,8 @@ C01_29_SOURCE_COUNT = 54
 C01_29_CLAIM_COUNT = 111
 C01_31_SOURCE_COUNT = 31
 C01_31_CLAIM_COUNT = 64
+C01_42_SOURCE_COUNT = 32
+C01_42_CLAIM_COUNT = 50
 # The LDP presidency's holder observations: CLAUDE-C01-18's fourteen (1990-2009), then the original 2024 and 2025 ones.
 LDP_ATTESTED = ['1990-05-14', '1992-11-30', '1994-11-25', '1995-10-02', '1998-07-24', '1999-09-22', None, '2001-04-24',
                 '2001-08-10', '2003-09-20', '2006-09-20', '2007-09-23', '2008-09-22', '2009-09-28', '2024-09-27', '2025-10-04']
@@ -40,6 +44,11 @@ SDP_ATTESTED = ['1990-04-06', '1991-08-20', '1993-01-25', '1994-10-13', '1996-11
 KOMEITO_ATTESTED = ['1993-01-29', '1998-11-08', '2002-11-03', '2004-10-31', None, '2009-09-08', '2012-09-22',
                     '2014-09-21', '2016-09-17', '2018-09-30', '2020-09-27', '2022-09-25', '2024-09-28', '2024-11-09',
                     '2026-03-14']
+# The 日本共産党 chairs' and the 国民民主党 representative's holder observations: CLAUDE-C01-42's, then the original ones
+# (田村智子 and 志位和夫 on 18 January 2024, 玉木雄一郎 on 6 September 2026); every one is dated by attested_on.
+JCP_EXECUTIVE_ATTESTED = ['1994-07-19', '1997-09-26', '2000-11-20', '2001-05-29', '2004-01-17', '2006-01-14', '2010-01-16', '2014-01-18', '2017-01-18', '2020-01-18', '2024-01-18']
+JCP_CENTRAL_ATTESTED = ['1994-07-19', '1997-09-23', '2000-11-24', '2004-01-17', '2006-01-12', '2024-01-18']
+DPFP_ATTESTED = ['2020-10-26', '2020-12-23', '2023-09-05', '2025-03-04', '2026-09-06']
 
 
 class JapanDiscoveryTests(unittest.TestCase):
@@ -55,25 +64,30 @@ class JapanDiscoveryTests(unittest.TestCase):
         # 23 original observations plus the CLAUDE-C01-12 prime-ministership (119 sources, 174 claims, one role), extended by
         # CLAUDE-C01-13 (211 sources, 293 claims) and by CLAUDE-C01-18's LDP presidents (81 sources, 192 claims on the existing
         # party role), with no new entry, by CLAUDE-C01-29's SDP chairs (54 sources, 111 claims, one new party role) and by
-        # CLAUDE-C01-31's Komeito representatives (31 sources, 64 claims, one new party role).
+        # CLAUDE-C01-31's Komeito representatives (31 sources, 64 claims, one new party role), and by CLAUDE-C01-42's JCP chairs
+        # and DPFP representatives (32 sources, 50 claims on the three existing party roles).
         self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims']), len(ids['roles'])),
-                         (24, 503, 863, 7))
+                         (24, 535, 913, 7))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual([s['id'] for s in self.packet['sources']][:7], list(ORIGINAL_SOURCES))
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'] if s['id'] in ORIGINAL_SOURCES), 29)
         self.assertEqual(len(self.packet['sources']) - len(ORIGINAL_SOURCES),
                          C01_12_SOURCE_COUNT + C01_13_SOURCE_COUNT + C01_18_SOURCE_COUNT + C01_29_SOURCE_COUNT +
-                         C01_31_SOURCE_COUNT)
+                         C01_31_SOURCE_COUNT + C01_42_SOURCE_COUNT)
         self.assertEqual(len(ids['claims']) - 29,
-                         C01_12_CLAIM_COUNT + C01_13_CLAIM_COUNT + C01_18_CLAIM_COUNT + C01_29_CLAIM_COUNT + C01_31_CLAIM_COUNT)
+                         C01_12_CLAIM_COUNT + C01_13_CLAIM_COUNT + C01_18_CLAIM_COUNT + C01_29_CLAIM_COUNT + C01_31_CLAIM_COUNT +
+                         C01_42_CLAIM_COUNT)
         c01_18_start = 7 + C01_12_SOURCE_COUNT + C01_13_SOURCE_COUNT
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][c01_18_start:c01_18_start + C01_18_SOURCE_COUNT]),
                          C01_18_CLAIM_COUNT)
         c01_29_start = c01_18_start + C01_18_SOURCE_COUNT
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][c01_29_start:c01_29_start + C01_29_SOURCE_COUNT]),
                          C01_29_CLAIM_COUNT)
-        self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][c01_29_start + C01_29_SOURCE_COUNT:]),
+        c01_31_start = c01_29_start + C01_29_SOURCE_COUNT
+        self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][c01_31_start:c01_31_start + C01_31_SOURCE_COUNT]),
                          C01_31_CLAIM_COUNT)
+        self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][c01_31_start + C01_31_SOURCE_COUNT:]),
+                         C01_42_CLAIM_COUNT)
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][7:7 + C01_12_SOURCE_COUNT]), C01_12_CLAIM_COUNT)
         # Exactly the seven groups and one executive institution, the prime-ministership, with exactly one role.
         self.assertEqual([e['id'] for e in self.packet['institutions']], GROUP_IDS + ['jp_prime_minister'])
@@ -109,10 +123,14 @@ class JapanDiscoveryTests(unittest.TestCase):
         roles = {r['id']: r for o in self.packet['organizations'] for r in o['roles']}
         chairs = [roles['jp_jcp_executive_committee_chair'], roles['jp_jcp_central_committee_chair']]
         self.assertEqual([r['title'].split(' — ')[0] for r in chairs], ['幹部会委員長', '中央委員会議長'])
-        self.assertEqual([r['holder_claims'][0]['name'] for r in chairs], ['田村智子', '志位和夫'])
+        # The original intake's chairs stay the last holder of each title (CLAUDE-C01-42 adds earlier ones before them).
+        self.assertEqual([r['holder_claims'][-1]['name'] for r in chairs], ['田村智子', '志位和夫'])
+        self.assertEqual([[h['attested_on'] for h in r['holder_claims']] for r in chairs],
+                         [JCP_EXECUTIVE_ATTESTED, JCP_CENTRAL_ATTESTED])
+        self.assertEqual([h['attested_on'] for h in roles['jp_dpfp_representative']['holder_claims']], DPFP_ATTESTED)
         self.assertEqual({r['kind'] for r in roles.values()}, {'party_chair', 'party_leader'})
         holders = [h for r in roles.values() for h in r['holder_claims']]
-        self.assertEqual(len(holders), 50)
+        self.assertEqual(len(holders), 69)
         # The one party holder with an end is 福島瑞穂's 2012 observation, ended by her own words on 25 July 2013
         # (CLAUDE-C01-29); the stated starts are 福島瑞穂's own statement of 15 November 2003 (CLAUDE-C01-29), 森喜朗's
         # own statement of 5 April 2000 (CLAUDE-C01-18), and 太田昭宏's of 30 September 2006
@@ -126,12 +144,13 @@ class JapanDiscoveryTests(unittest.TestCase):
 
     def test_postcutoff_holder_cannot_enter_through_an_access_date(self):
         p = copy.deepcopy(self.packet)
-        tamaki = next(o for o in p['organizations'] if o['name'] == '国民民主党')['roles'][0]['holder_claims'][0]
+        tamaki = next(o for o in p['organizations'] if o['name'] == '国民民主党')['roles'][0]['holder_claims'][-1]
         self.assertEqual(tamaki['attested_on'], '2026-09-06')
         self.assertTrue(all(s['accessed_date'] == '2026-09-13' for s in p['sources'] if s['id'] in ORIGINAL_SOURCES))
         # CLAUDE-C01-12's sources were all accessed on 24 September 2026, CLAUDE-C01-13's on 24 or 25 September 2026 and
-        # CLAUDE-C01-18's on 25 September 2026, CLAUDE-C01-29's on 28 September 2026 and CLAUDE-C01-31's on 30 September
-        # 2026 (each pinned in its own test); no historical date comes from an access date.
+        # CLAUDE-C01-18's on 25 September 2026, CLAUDE-C01-29's on 28 September 2026, CLAUDE-C01-31's on 30 September
+        # 2026 and CLAUDE-C01-42's on 1 October 2026 (each pinned in its own test); no historical date comes from an access
+        # date.
         self.assertEqual({s['accessed_date'] for s in p['sources'][7:7 + C01_12_SOURCE_COUNT]}, {'2026-09-24'})
         self.assertEqual({s['accessed_date'] for s in p['sources'][7 + C01_12_SOURCE_COUNT:7 + C01_12_SOURCE_COUNT +
                                                                    C01_13_SOURCE_COUNT]}, {'2026-09-24', '2026-09-25'})
@@ -141,7 +160,10 @@ class JapanDiscoveryTests(unittest.TestCase):
         c01_29_start = c01_18_start + C01_18_SOURCE_COUNT
         self.assertEqual({s['accessed_date'] for s in p['sources'][c01_29_start:c01_29_start + C01_29_SOURCE_COUNT]},
                          {'2026-09-28'})
-        self.assertEqual({s['accessed_date'] for s in p['sources'][c01_29_start + C01_29_SOURCE_COUNT:]}, {'2026-09-30'})
+        c01_31_start = c01_29_start + C01_29_SOURCE_COUNT
+        self.assertEqual({s['accessed_date'] for s in p['sources'][c01_31_start:c01_31_start + C01_31_SOURCE_COUNT]},
+                         {'2026-09-30'})
+        self.assertEqual({s['accessed_date'] for s in p['sources'][c01_31_start + C01_31_SOURCE_COUNT:]}, {'2026-10-01'})
         tamaki['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
             self.validate(p)
@@ -158,10 +180,10 @@ class JapanDiscoveryTests(unittest.TestCase):
 
     def test_offline_factual_extracts_match_each_source_and_detect_byte_change(self):
         snapshots = [s for s in self.packet['sources'] if 'snapshot' in s]
-        # The two original extracts plus one derived extract per CLAUDE-C01-12, CLAUDE-C01-13, CLAUDE-C01-18, CLAUDE-C01-29
-        # and CLAUDE-C01-31 source.
+        # The two original extracts plus one derived extract per CLAUDE-C01-12, CLAUDE-C01-13, CLAUDE-C01-18, CLAUDE-C01-29,
+        # CLAUDE-C01-31 and CLAUDE-C01-42 source.
         self.assertEqual(len(snapshots), 2 + C01_12_SOURCE_COUNT + C01_13_SOURCE_COUNT + C01_18_SOURCE_COUNT +
-                         C01_29_SOURCE_COUNT + C01_31_SOURCE_COUNT)
+                         C01_29_SOURCE_COUNT + C01_31_SOURCE_COUNT + C01_42_SOURCE_COUNT)
         self.assertEqual([s['id'] for s in snapshots][:2], ['jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218'])
         for source in snapshots:
             data = json.loads((research.ROOT / source['snapshot']['path']).read_text(encoding='utf-8'))
