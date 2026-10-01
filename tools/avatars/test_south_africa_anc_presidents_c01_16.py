@@ -13,6 +13,7 @@ import campaign_research as research
 from test_south_africa_deputy_presidents_c01_21 import RESPONSES as C01_21_RESPONSES
 from test_south_africa_party_leaders_c01_30 import RESPONSES as C01_30_RESPONSES
 from test_south_africa_pac_presidents_c01_32 import RESPONSES as C01_32_RESPONSES
+from test_south_africa_da_federal_leaders_c01_39 import RESPONSES as C01_39_RESPONSES
 
 ANC_ID = 'za_iec_n2024_014'
 ROLE = 'za_anc_president'
@@ -436,10 +437,12 @@ class SouthAfricaAncPresidentsTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (54, 73))
         order = [s['id'] for s in self.packet['sources']]
         # CLAUDE-C01-21 appends its Deputy President sources after these, CLAUDE-C01-30 its ACDP, Freedom Front and IFP
-        # sources after those, and CLAUDE-C01-32 its PAC sources after those, each pinned in its own test.
+        # sources after those, CLAUDE-C01-32 its PAC sources after those, and CLAUDE-C01-39 its DA sources after those,
+        # each pinned in its own test.
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
         self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):],
-                         list(C01_21_RESPONSES) + list(C01_30_RESPONSES) + list(C01_32_RESPONSES))
+                         list(C01_21_RESPONSES) + list(C01_30_RESPONSES) + list(C01_32_RESPONSES)
+                         + list(C01_39_RESPONSES))
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith('za_anc')])
         # CLAUDE-C01-30 adds three party-leader roles (za_acdp_president, za_ff_leader, za_ifp_president) and CLAUDE-C01-32
         # one (za_pac_president).
@@ -737,7 +740,7 @@ class SouthAfricaAncPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (11, 471))
+        self.assertEqual((country['role_observations'], country['source_claims']), (11, 500))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'SouthAfrica'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

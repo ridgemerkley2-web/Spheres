@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_da_speech_local_elections_launch_20001014",
+  "source_url": "https://web.archive.org/web/20010501013646id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=1",
+  "original_url": "http://www.da.org.za/site/asp/ViewSpeech.asp?SpeechID=1",
+  "archive_capture_utc": "2001-05-01T01:36:46Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2000-10-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 15073,
+  "source_response_sha256": "532864af1aa95fd6df60f2ebcba862271835474ae23e13e240d6072785bdd922",
+  "source_response_sha1_base32": "CZYH6ITFCRTATBKHJN57OG7NISQPRN6N",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-30T23:46:07Z; downloaded again at 2026-10-01T00:17:46Z, at least 30 minutes after the first, with the same byte count and SHA-256 (15073 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the DA's original page, captured at 2001-05-01T01:36:46Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the DA's first www.da.org.za site is no longer served). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 1 May 2001 of a DA speech page with the fields \"Date 10/14/00\", \"Author Tony Leon MP\" and \"Position Leader of the Democratic Alliance\". Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_da_speech_leader_leon_20001014",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-03",
+      "role_id": "za_da_federal_leader",
+      "holder_name": "Tony Leon",
+      "role_title": "Federal Leader",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2000-10-14",
+      "text": "The DA speech page dated \"10/14/00\" gives \"Author Tony Leon MP\" and \"Position Leader of the Democratic Alliance\" for the launch of the DA's local elections campaign.",
+      "locator": {
+        "section": "Speech header fields (Date, Author, Position)"
+      }
+    }
+  ],
+  "bounded_scope": "DA Federal Leader observations for CLAUDE-C01-39 only (role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation). Claims about the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance are claims about organizations with no role (role_id null) and set no identity, predecessor link or lifecycle; elections, result publications, congress sessions, resignations, vacancies, interim service, tributes and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

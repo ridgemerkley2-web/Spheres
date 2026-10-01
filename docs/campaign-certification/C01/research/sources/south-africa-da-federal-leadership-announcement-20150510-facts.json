@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_da_federal_leadership_announcement_20150510",
+  "source_url": "https://web.archive.org/web/20150715172231id_/http://www.da.org.za/2015/05/announcement-of-da-federal-leadership/",
+  "original_url": "http://www.da.org.za/2015/05/announcement-of-da-federal-leadership/",
+  "archive_capture_utc": "2015-07-15T17:22:31Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2015-05-10",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 69610,
+  "source_response_sha256": "67a5d71e41832a91f8f2b4eb799b1805195f40dd82354a062ce67725d7dd6cd7",
+  "source_response_sha1_base32": "OBR5RMGBGBSKNITL6NGVVR3LYSI52N3C",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-30T23:41:10Z; downloaded again at 2026-10-01T00:20:46Z, at least 30 minutes after the first, with the same byte count and SHA-256 (69610 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the DA's original page, captured at 2015-07-15T17:22:31Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the archived capture fixes the bytes of a page the live site may still change). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 15 July 2015 of the DA news post dated \"May 10, 2015\". Offices other than the Leader on its list are not researched here. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_da_sixth_federal_congress_9_10_may_2015",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-06",
+      "role_id": "za_da_federal_leader",
+      "holder_name": null,
+      "role_title": "Federal Leader",
+      "event_kind": "congress_session_dates",
+      "attested_on": null,
+      "printed_range": "9 and 10 May 2015 (two-day congress)",
+      "text": "The post says \"The Democratic Alliance held its sixth Federal Congress this weekend, 9 and 10 May 2015, at the Boardwalk Convention Centre in Nelson Mandela Bay\".",
+      "locator": {
+        "section": "First paragraph"
+      }
+    },
+    {
+      "claim_id": "za_da_leader_maimane_elected_published_20150510",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-06",
+      "role_id": "za_da_federal_leader",
+      "holder_name": "Mmusi Maimane",
+      "role_title": "Federal Leader",
+      "event_kind": "result_publication",
+      "attested_on": "2015-05-10",
+      "text": "The post dated \"May 10, 2015\" lists, after \"The following people have been elected to the positions described above\", \"Leader Mr Mmusi Maimane MP\".",
+      "locator": {
+        "section": "Election results list",
+        "role_label": "Leader"
+      }
+    }
+  ],
+  "bounded_scope": "DA Federal Leader observations for CLAUDE-C01-39 only (role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation). Claims about the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance are claims about organizations with no role (role_id null) and set no identity, predecessor link or lifecycle; elections, result publications, congress sessions, resignations, vacancies, interim service, tributes and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

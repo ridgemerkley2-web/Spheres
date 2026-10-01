@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_da_dp_whos_who_page_1999",
+  "source_url": "https://web.archive.org/web/19990220054116id_/http://www.dp.org.za:80/whoswho.htm",
+  "original_url": "http://www.dp.org.za/whoswho.htm",
+  "archive_capture_utc": "1999-02-20T05:41:16Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25299,
+  "source_response_sha256": "164b275fb975d2162e9d56a513809f07171dc4d337457ccc56b0b03bb31c3bdc",
+  "source_response_sha1_base32": "DQFNKA7DAVDOGTFN664EAIDIZLP4NUUY",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-10-01T00:17:06Z; downloaded again at 2026-10-01T00:48:25Z, at least 30 minutes after the first, with the same byte count and SHA-256 (25299 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the Democratic Party's original page, captured at 1999-02-20T05:41:16Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.dp.org.za pages are no longer served). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 20 February 1999 of the DP website's \"Who's Who\" page; the page carries no date of its own. The capture of 2 December 1998 serves the same bytes under a different CDX digest and is not used. Biographies of another organization's office-bearers: its claims sit on the DEMOCRATIC ALLIANCE observation with no role. Other DP office-bearers on the page are not researched here. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_da_dp_whos_who_dp_leader_leon_1999",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-01",
+      "role_id": null,
+      "holder_name": "Tony Leon",
+      "role_title": "Leader of the Democratic Party",
+      "event_kind": "other_party_leader_continuation_attestation",
+      "attested_on": null,
+      "printed_range": "undated page (captured 20 February 1999)",
+      "text": "The DP's \"Who's Who\" page heads its first entry \"DP Leader; Spokesperson on Labour and the Presidency Tony Leon\".",
+      "locator": {
+        "section": "First entry heading"
+      }
+    },
+    {
+      "claim_id": "za_da_dp_whos_who_leon_elected_dp_leadership_1994",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-01",
+      "role_id": null,
+      "holder_name": "Tony Leon",
+      "role_title": "Leader of the Democratic Party",
+      "event_kind": "other_party_election_reference_retrospective",
+      "attested_on": null,
+      "printed_range": "1994 (year only, retrospective)",
+      "text": "The entry says \"In 1994 he was again elected to Parliament and then to the leadership of the DP\".",
+      "locator": {
+        "section": "First entry, career paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "DA Federal Leader observations for CLAUDE-C01-39 only (role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation). Claims about the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance are claims about organizations with no role (role_id null) and set no identity, predecessor link or lifecycle; elections, result publications, congress sessions, resignations, vacancies, interim service, tributes and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}
