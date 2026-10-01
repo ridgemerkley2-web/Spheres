@@ -20,7 +20,8 @@
     "roles": {
      "research": 7,
      "production_party": 8,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 1222,
     "case_kinds": {
@@ -74,6 +75,8 @@
     "people_without_bound_art_at_yearly_samples": 29,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 32,
+    "fictional_party_candidates": 32,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 4,
     "fictional_executive_authorized": 32,
     "research_roles_without_holder_observation": [],
@@ -90,7 +93,7 @@
     "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.",
-    "Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive.",
+    "Future: 32 party candidates and 0 institutional candidates, 4 with a served portrait, 32 authorized for a national executive.",
     "Portrait window extends past a recorded death: eiichi_nagasue."
    ]
   }

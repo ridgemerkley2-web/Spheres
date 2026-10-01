@@ -118,17 +118,17 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ## Coverage by country
 
-| Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
+| Case | Identity | Roles (research / party / executive / institutional fiction) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
-| France | France | 2 / 15 / 1 | 1103 | 0/74 | 197/555 | 23/198 |
-| Japan | Japan | 7 / 8 / 1 | 1222 | 9/259 | 151/296 | 15/151 |
-| India | India | 6 / 4 / 1 | 783 | 6/222 | 109/148 | 10/109 |
-| Brazil | Brazil | 6 / 6 / 1 | 881 | 20/222 | 99/222 | 7/100 |
-| SouthAfrica | SouthAfrica | 11 / 7 / 1 | 1190 | 4/407 | 151/259 | 13/151 |
-| Tonga | Tonga | 15 / 0 / 1 | 978 | 15/555 | none | none |
-| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 721 | 2/370 | none | none |
-| USSR -> Russia | USSR | 8 / 3 / 1 | 689 | 0/296 | 0/111 | none |
-| USSR -> Russia | Russia | 9 / 5 / 1 | 924 | 3/333 | 0/185 | none |
+| France | France | 2 / 15 / 1 / 0 | 1103 | 0/74 | 197/555 | 23/198 |
+| Japan | Japan | 7 / 8 / 1 / 0 | 1222 | 9/259 | 151/296 | 15/151 |
+| India | India | 6 / 4 / 1 / 0 | 783 | 6/222 | 109/148 | 10/109 |
+| Brazil | Brazil | 6 / 6 / 1 / 0 | 881 | 20/222 | 99/222 | 7/100 |
+| SouthAfrica | SouthAfrica | 11 / 7 / 1 / 0 | 1190 | 4/407 | 151/259 | 13/151 |
+| Tonga | Tonga | 15 / 0 / 1 / 4 | 1186 | 15/555 | none | none |
+| SaudiArabia | SaudiArabia | 10 / 0 / 1 / 0 | 721 | 2/370 | none | none |
+| USSR -> Russia | USSR | 8 / 3 / 1 / 0 | 689 | 0/296 | 0/111 | none |
+| USSR -> Russia | Russia | 9 / 5 / 1 / 0 | 924 | 3/333 | 0/185 | none |
 
 ## Headline findings
 
@@ -141,7 +141,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - The national executive office has no paired research role, so its historical chain is unresearched.
-- Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
+- Future: 60 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.
 
 ### Japan
 
@@ -152,7 +152,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.
-- Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive.
+- Future: 32 party candidates and 0 institutional candidates, 4 with a served portrait, 32 authorized for a national executive.
 - Portrait window extends past a recorded death: eiichi_nagasue.
 
 ### India
@@ -164,7 +164,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start executive V. P. Singh: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:in_pm): 6 of 37 yearly samples 1990-2026 identify a holder.
-- Future: 16 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
+- Future: 16 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.
 - Portrait window extends past a recorded death: rajiv_gandhi.
 - Registry terms with an unknown end stay "possible" through the cutoff: in_jd_v_p_singh_198810.
 
@@ -177,7 +177,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.
-- Future: 24 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
+- Future: 24 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.
 
 ### SouthAfrica
 
@@ -188,23 +188,25 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:za_state_president, research:za_president_election): 4 of 37 yearly samples 1990-2026 identify a holder.
-- Future: 28 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
+- Future: 28 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.
 - Portrait window extends past a recorded death: oliver_tambo, zephania_mothopeng.
 
 ### Tonga
 
 - Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 94 uncertain, 288 unknown and 148 unresearched.
 - Research holder observations by acceptance: accepted 40, unattributed_intake 10.
-- No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
-- Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
+- No simulation party rows: no production party leadership or fictional party successor pool exists for this identity.
+- Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 17 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:to_king): 6 of 37 yearly samples 1990-2026 identify a holder.
+- Future: 0 party candidates and 4 institutional candidates, 4 with a served portrait, 0 authorized for a national executive.
+- Institutional fiction has separate authored roles and date windows. It grants no party leadership or national-executive permission; appointment prerequisites remain runtime checks and the party organizer is reference-only.
 
 ### SaudiArabia
 
 - Research roles: 10 (6 with holder observations); 2 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 80 uncertain, 103 unknown and 148 unresearched.
 - Research holder observations by acceptance: accepted 51, pending 13, unattributed_intake 3.
-- No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
+- No simulation party rows: no production party leadership or fictional party successor pool exists for this identity.
 - Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:sa_king, research:sa_pm): 1 of 37 yearly samples 1990-2026 identify a holder.
@@ -221,7 +223,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.
-- Future: 12 fictional candidates, 0 with a served portrait, 12 authorized for a national executive.
+- Future: 12 party candidates and 0 institutional candidates, 0 with a served portrait, 12 authorized for a national executive.
 
 **Russia**
 
@@ -230,7 +232,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.
 - Successor identity: no executive or party assignment exists at the 1990 campaign start.
 - Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.
-- Future: 20 fictional candidates, 0 with a served portrait, 20 authorized for a national executive.
+- Future: 20 party candidates and 0 institutional candidates, 0 with a served portrait, 20 authorized for a national executive.
 
 ## Role coverage
 
@@ -317,7 +319,11 @@ established holders at those samples; for the executive they count the campaign-
 | SouthAfrica | `research:za_president_election` President of the Republic of South Africa | pending 9, unattributed_intake 1 | 4/0/9/10/14/0/0 | 12 | 18 | - |
 | SouthAfrica | `research:za_state_president` State President of the Republic of South Africa | pending 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | SouthAfrica | `research:za_deputy_president` Deputy President of the Republic of South Africa | pending 12 | 0/0/0/27/10/0/0 | 3 | 22 | - |
-| Tonga | `executive` King | accepted 3, unattributed_intake 1 | 6/0/0/31/0/0/0 | 6 | 2 | 1/37 |
+| Tonga | `executive` King | accepted 3, unattributed_intake 1 | 6/0/0/31/0/0/0 | 6 | 2 | 17/37 |
+| Tonga | `institution:tonga_civilian_institutions:peoples_representative` peoples representative | none | 0/0/0/0/0/0/37 | 0 | 0 | - |
+| Tonga | `institution:tonga_civilian_institutions:prime_minister` prime minister | none | 0/0/0/0/0/0/37 | 0 | 0 | - |
+| Tonga | `institution:tonga_civilian_institutions:nonelected_minister` nonelected minister | none | 0/0/0/0/0/0/37 | 0 | 0 | - |
+| Tonga | `institution:tonga_civilian_institutions:party_organizer` party organizer | none | 0/0/0/0/0/0/37 | 0 | 0 | - |
 | Tonga | `research:to_pdp_leader` Party leader | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
 | Tonga | `research:to_dpfi_leader` Party leader | accepted 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | Tonga | `research:to_dpfi_president` President of the party (PTOA) | accepted 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
@@ -374,9 +380,14 @@ established holders at those samples; for the executive they count the campaign-
 
 ## Asset checks
 
-31 bound or referenced portrait assets checked; 1 not fully available; 0 manifest assets are shared across people.
+36 bound or referenced portrait assets checked; 6 not fully available; 0 manifest assets are shared across people.
 
 - `spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png`: possible_wrong_person_binding
+- `spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png`: possible_wrong_person_binding
+- `spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png`: possible_wrong_person_binding
+- `spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png`: possible_wrong_person_binding
+- `spheres-web/ui/person-portraits/tonga-sitani-lolohea-fictional-2026-v1.png`: possible_wrong_person_binding
+- `spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png`: possible_wrong_person_binding
 
 ## Limitations
 
@@ -385,4 +396,5 @@ established holders at those samples; for the executive they count the campaign-
 - Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
 - Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
-- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02) do not change a packet's class.
+- Institutional fictional roles are a separate catalogue, not party successors or national-executive grants. Date eligibility does not evaluate a live campaign action; the party organizer remains reference-only.
+- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02, REVIEW-20261001-03) do not change a packet's class.

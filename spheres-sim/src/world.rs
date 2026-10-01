@@ -1124,6 +1124,9 @@ pub struct WorldState {
     /// 1990 office table and absent from legacy campaigns.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub party_leadership: Option<crate::party_leadership::CampaignLeadership>,
+    /// Explicit Tonga institutional events; absence preserves legacy saves.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub institutional_leadership: Option<crate::institutional_leadership::State>,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
     /// Event log for the current month (drained by UI)

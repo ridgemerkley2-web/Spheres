@@ -1,0 +1,14 @@
+{
+  "command": "cargo check --locked -j 1 -p spheres-sim",
+  "exit_code": 0,
+  "started_utc": "2026-10-01T12:21:05.2992710Z",
+  "finished_utc": "2026-10-01T12:21:47.3619532Z",
+  "stopped_for_resource_floor": false,
+  "min_available_commit_bytes": 4206346240,
+  "min_available_commit_gib": 3.917,
+  "sources_unchanged": true,
+  "source_diff": [],
+  "source_file_count": 301,
+  "background_diagnostic_present": true,
+  "scope": "One serial debug typecheck only. No native tests, web link, timing measurement or qualification result."
+}

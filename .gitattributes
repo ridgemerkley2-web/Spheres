@@ -52,6 +52,17 @@ tools/arsenal/vendor/model-viewer/model-viewer.min.js -text
 tools/arsenal/vendor/model-viewer/*LICENSE -text
 # Retain the submitted portrait prompt's recorded checksum on Windows checkout.
 tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt text eol=lf
+tools/avatars/person-prompts/tonga-*.txt text eol=lf
+# Tonga's production checks pin these source bytes across Windows and Linux.
+spheres-sim/src/company_save.rs text eol=lf
+spheres-sim/src/data/mod.rs text eol=lf
+spheres-sim/src/lib.rs text eol=lf
+spheres-sim/src/party_leadership.rs text eol=lf
+spheres-sim/src/world.rs text eol=lf
+spheres-web/src/main.rs text eol=lf
+spheres-web/src/person_portraits.rs text eol=lf
+spheres-web/ui/government-ui.css text eol=lf
+spheres-web/ui/index.html text eol=lf
 # These evidence Markdown files are byte-hashed beside the LF-only JSON receipts.
 docs/campaign-certification/S25/preparation/native-stability/evidence/** -text -whitespace
 docs/campaign-certification/S28/preparation/portable-release/evidence/** -text -whitespace

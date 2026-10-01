@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-04",
+  "date": "2026-10-01",
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-05-jobs-batch04.json",
+  "jobs_sha256": "cce30634fab1751ff36afcd885a8bb109874b301d5b5d6761e57a00edabe82d5",
+  "manifest_before_sha256": "591bc870e13b585c0d0bcd4d059c4a46b0f917330e1bcc80f5fc3c1fdf3ed25d",
+  "manifest_after_sha256": "669c3a8614410eb13779bb5c840ebdaea22df47ce83e8e7d6894475139e6a42b",
+  "prior_records_preserved": true,
+  "appended": [
+    {
+      "person_id": "to_lord_maafu_dpm_2017",
+      "asset": "spheres-web/ui/person-portraits/tonga-lord-maafu-cartoon-2016-v1.png",
+      "sha256": "fba344ab54557135a9a473859ce5efb6c33008fa8a9303f12c0d3dc3853416a7"
+    },
+    {
+      "person_id": "to_veikune_speaker_2001",
+      "asset": "spheres-web/ui/person-portraits/tonga-veikune-cartoon-2005-v1.png",
+      "sha256": "c72d49b506359a379614c5dfffaf486cf2c415a8fca2693b0b7f2ad0ba88d51b"
+    },
+    {
+      "person_id": "to_poasi_mataele_tei",
+      "asset": "spheres-web/ui/person-portraits/tonga-poasi-tei-cartoon-2021-v1.png",
+      "sha256": "20f3c866db1c5330286627d41a5ca15f4893b7dc352bd8fd9e8be80b559f43dc"
+    },
+    {
+      "person_id": "to_lord_lasike_speaker_2011",
+      "asset": "spheres-web/ui/person-portraits/tonga-lord-lasike-cartoon-2011-v1.png",
+      "sha256": "b2ff7eccee01de2d09d9cfe6ff56ae9deb27e30ded3b039077873df202bf73ab"
+    },
+    {
+      "person_id": "to_lord_tuilakepa_speaker_2008",
+      "asset": "spheres-web/ui/person-portraits/tonga-lord-tuilakepa-cartoon-2015-v1.png",
+      "sha256": "44de72d2449850efdc8e824294dfdd1287b82d4a9e2de65c5f01d454554a65c5"
+    }
+  ],
+  "copied_reference_images": [
+    {
+      "person_id": "to_lord_maafu_dpm_2017",
+      "kind": "observed_portrait",
+      "reference_id": "maafu",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-maafu-reference-v1.jpg",
+      "sha256": "a9cc2ef5021a5d6f5b1133278cbd87a4ba31c55f3a383c6e535b226e797677f3",
+      "bytes": 100551,
+      "width": 366,
+      "height": 423,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lord_Ma%E2%80%99afu.jpg",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": "Australian Embassy in Tonga / Department of Foreign Affairs and Trade website, www.dfat.gov.au",
+      "credit": "Australian Embassy in Tonga / Department of Foreign Affairs and Trade website, www.dfat.gov.au; 2016-09-21; CC BY 4.0. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY 4.0. The named 21 September 2016 DFAT minister photograph matches the bounded incumbent established by official 2011 career biographies and PMO2021 death statement. CC BY 4.0 remains the source grant. Full legal name is unresolved separately; no hereditary succession date or other titleholder merger is inferred.",
+      "source_license_statement": "CC BY 4.0",
+      "depiction_date": "2016-09-21",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "3f31c871912b0e77e78e31a76944825c8520e29393987a47c92d7c71c03f0ed1"
+    },
+    {
+      "person_id": "to_lord_lasike_speaker_2011",
+      "kind": "observed_portrait",
+      "reference_id": "lasike-2021",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-lasike-2021-reference-v1.jpg",
+      "sha256": "ca0ebabf9f8262edf83385cdf4e79bdcf945f688e89dd339c10611d2a5ab7171",
+      "bytes": 27692,
+      "width": 232,
+      "height": 278,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lord_Lasike_2021_(cropped).jpg",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": "Embassy of Japan in Tonga",
+      "credit": "Embassy of Japan in Tonga; 2021-09-08; CC BY 4.0. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY 4.0. Embassy caption identifies Lord Lasike; Land Court2015 personal-name/inherited-title testimony and Assembly2025 former-Speaker obituary provide the bounded bridge. Government of Japan Standard Terms of Use2.0, compatible with CC BY4.0. Small original,232 by278.",
+      "source_license_statement": "CC BY 4.0",
+      "depiction_date": "2021-09-08",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "cd304873349cda847bc569ab020a04e14dbc2437842702d44b653b776a172fb1"
+    },
+    {
+      "person_id": "to_lord_tuilakepa_speaker_2008",
+      "kind": "observed_portrait",
+      "reference_id": "tuilakepa-2015",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-tuilakepa-2015-reference-v1.jpg",
+      "sha256": "3ef1e62f8cb6fdc937e2747f026b4886b9896825903587b3d439a205b2da88a0",
+      "bytes": 113878,
+      "width": 523,
+      "height": 882,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lord_Tu%E2%80%99ilakepa_and_Lord_Nuku_(Cropped_1).jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "creator": "TongaTui",
+      "credit": "TongaTui; 2015-07-24; CC BY-SA 4.0. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY-SA 4.0. Own-work photographer caption identifies Lord Tu'ilakepa. The retained first-person Dreaver account and2016 Land Court judgment provide the personal-name/title bridge; no title-succession date inferred.",
+      "source_license_statement": "CC BY-SA 4.0",
+      "depiction_date": "2015-07-24",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "2c1c2354d99465961d79d4630e9deeb5582d4b99ad181c664709bdb115093070"
+    }
+  ],
+  "generation_record": "tools/avatars/person-prompts/tonga-historical-batch-04.json",
+  "generation_record_sha256": "ad3d8767c43c5470fdbd03820ed11afd996c095828b1e9596ff795e1555af139",
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "warning_count": 530,
+    "historical_people_with_art": 90,
+    "historical_images": 93,
+    "appended": 5,
+    "copied_reference_images": 3
+  },
+  "allowlist_rebuilt": false,
+  "production_board_rebuilt": false,
+  "rejected_studies_excluded": true
+}

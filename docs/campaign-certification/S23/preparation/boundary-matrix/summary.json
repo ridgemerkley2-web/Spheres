@@ -455,7 +455,8 @@
   "CLAUDE-C01-SOURCE-26",
   "ORDERED-2026-09-28",
   "REVIEW-2026-10-01",
-  "REVIEW-20261001-02"
+  "REVIEW-20261001-02",
+  "REVIEW-20261001-03"
  ],
  "executive_pairing": {
   "France": [],
@@ -490,6 +491,11 @@
  },
  "executive_pairing_basis": "Audit pairing by the office named in the 1990 executive row (or, for the successor Russia, the researched presidency). Comparison aid only; it is not an identity reconciliation, office mapping or research acceptance.",
  "census_outputs_consistent_with_registry": true,
+ "fictional_catalogue_counts": {
+  "party_candidates": 2556,
+  "institutional_candidates": 4,
+  "total_candidates": 2560
+ },
  "cases": [
   {
    "case": "France",
@@ -502,7 +508,8 @@
       "roles": {
        "research": 2,
        "production_party": 15,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 1103,
       "case_kinds": {
@@ -549,6 +556,8 @@
       "people_without_bound_art_at_yearly_samples": 34,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 60,
+      "fictional_party_candidates": 60,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 0,
       "research_roles_without_holder_observation": [],
@@ -563,7 +572,7 @@
       "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "The national executive office has no paired research role, so its historical chain is unresearched.",
-      "Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
+      "Future: 60 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive."
      ]
     }
    ]
@@ -579,7 +588,8 @@
       "roles": {
        "research": 7,
        "production_party": 8,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 1222,
       "case_kinds": {
@@ -633,6 +643,8 @@
       "people_without_bound_art_at_yearly_samples": 29,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 32,
+      "fictional_party_candidates": 32,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 4,
       "fictional_executive_authorized": 32,
       "research_roles_without_holder_observation": [],
@@ -649,7 +661,7 @@
       "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive.",
+      "Future: 32 party candidates and 0 institutional candidates, 4 with a served portrait, 32 authorized for a national executive.",
       "Portrait window extends past a recorded death: eiichi_nagasue."
      ]
     }
@@ -666,7 +678,8 @@
       "roles": {
        "research": 6,
        "production_party": 4,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 783,
       "case_kinds": {
@@ -715,6 +728,8 @@
       "people_without_bound_art_at_yearly_samples": 19,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 16,
+      "fictional_party_candidates": 16,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 0,
       "research_roles_without_holder_observation": [],
@@ -733,7 +748,7 @@
       "Campaign-start executive V. P. Singh: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:in_pm): 6 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 16 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.",
+      "Future: 16 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.",
       "Portrait window extends past a recorded death: rajiv_gandhi.",
       "Registry terms with an unknown end stay \"possible\" through the cutoff: in_jd_v_p_singh_198810."
      ]
@@ -751,7 +766,8 @@
       "roles": {
        "research": 6,
        "production_party": 6,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 881,
       "case_kinds": {
@@ -807,6 +823,8 @@
       "people_without_bound_art_at_yearly_samples": 20,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 24,
+      "fictional_party_candidates": 24,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 0,
       "research_roles_without_holder_observation": [],
@@ -821,7 +839,7 @@
       "Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 24 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
+      "Future: 24 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive."
      ]
     }
    ]
@@ -837,7 +855,8 @@
       "roles": {
        "research": 11,
        "production_party": 7,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 1190,
       "case_kinds": {
@@ -893,6 +912,8 @@
       "people_without_bound_art_at_yearly_samples": 13,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 28,
+      "fictional_party_candidates": 28,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 0,
       "research_roles_without_holder_observation": [],
@@ -910,7 +931,7 @@
       "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:za_state_president, research:za_president_election): 4 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 28 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.",
+      "Future: 28 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.",
       "Portrait window extends past a recorded death: oliver_tambo, zephania_mothopeng."
      ]
     }
@@ -927,9 +948,10 @@
       "roles": {
        "research": 15,
        "production_party": 0,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 4
       },
-      "cases": 978,
+      "cases": 1186,
       "case_kinds": {
        "attestation_day": 33,
        "attestation_day_after": 33,
@@ -939,18 +961,18 @@
        "attested_period_through_day_after": 5,
        "attested_period_through_day_before": 5,
        "attested_period_through_day_of": 5,
-       "cutoff_day": 16,
-       "cutoff_day_before": 16,
-       "fictional_end_exclusive": 16,
-       "fictional_last_day": 16,
-       "fictional_start_day": 16,
-       "future_2030": 16,
+       "cutoff_day": 20,
+       "cutoff_day_before": 20,
+       "fictional_end_exclusive": 20,
+       "fictional_last_day": 20,
+       "fictional_start_day": 20,
+       "future_2030": 20,
        "handover_day_after": 20,
        "handover_day_before": 20,
        "handover_day_of": 20,
-       "reference_start": 16,
-       "reference_start_day_before": 16,
-       "yearly": 736
+       "reference_start": 20,
+       "reference_start_day_before": 20,
+       "yearly": 920
       },
       "observations_by_acceptance": {
        "accepted": 40,
@@ -972,8 +994,10 @@
       },
       "people_without_bound_art_at_yearly_samples": 0,
       "unbound_yearly_samples_without_art_job": [],
-      "fictional_candidates": 0,
-      "fictional_candidates_with_portrait": 0,
+      "fictional_candidates": 4,
+      "fictional_party_candidates": 0,
+      "fictional_institutional_candidates": 4,
+      "fictional_candidates_with_portrait": 4,
       "fictional_executive_authorized": 0,
       "research_roles_without_holder_observation": [
        "to_ministers",
@@ -987,10 +1011,12 @@
      "headline": [
       "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 94 uncertain, 288 unknown and 148 unresearched.",
       "Research holder observations by acceptance: accepted 40, unattributed_intake 10.",
-      "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
-      "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
+      "No simulation party rows: no production party leadership or fictional party successor pool exists for this identity.",
+      "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 17 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
-      "Paired executive research (research:to_king): 6 of 37 yearly samples 1990-2026 identify a holder."
+      "Paired executive research (research:to_king): 6 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 0 party candidates and 4 institutional candidates, 4 with a served portrait, 0 authorized for a national executive.",
+      "Institutional fiction has separate authored roles and date windows. It grants no party leadership or national-executive permission; appointment prerequisites remain runtime checks and the party organizer is reference-only."
      ]
     }
    ]
@@ -1006,7 +1032,8 @@
       "roles": {
        "research": 10,
        "production_party": 0,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 721,
       "case_kinds": {
@@ -1048,6 +1075,8 @@
       "people_without_bound_art_at_yearly_samples": 0,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 0,
+      "fictional_party_candidates": 0,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 0,
       "research_roles_without_holder_observation": [
@@ -1062,7 +1091,7 @@
      "headline": [
       "Research roles: 10 (6 with holder observations); 2 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 80 uncertain, 103 unknown and 148 unresearched.",
       "Research holder observations by acceptance: accepted 51, pending 13, unattributed_intake 3.",
-      "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
+      "No simulation party rows: no production party leadership or fictional party successor pool exists for this identity.",
       "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:sa_king, research:sa_pm): 1 of 37 yearly samples 1990-2026 identify a holder."
@@ -1083,7 +1112,8 @@
       "roles": {
        "research": 8,
        "production_party": 3,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 689,
       "case_kinds": {
@@ -1128,6 +1158,8 @@
       "people_without_bound_art_at_yearly_samples": 0,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 12,
+      "fictional_party_candidates": 12,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 12,
       "research_roles_without_holder_observation": [
@@ -1143,7 +1175,7 @@
       "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 12 fictional candidates, 0 with a served portrait, 12 authorized for a national executive."
+      "Future: 12 party candidates and 0 institutional candidates, 0 with a served portrait, 12 authorized for a national executive."
      ]
     },
     {
@@ -1152,7 +1184,8 @@
       "roles": {
        "research": 9,
        "production_party": 5,
-       "executive": 1
+       "executive": 1,
+       "institutional_fiction": 0
       },
       "cases": 924,
       "case_kinds": {
@@ -1194,6 +1227,8 @@
       "people_without_bound_art_at_yearly_samples": 0,
       "unbound_yearly_samples_without_art_job": [],
       "fictional_candidates": 20,
+      "fictional_party_candidates": 20,
+      "fictional_institutional_candidates": 0,
       "fictional_candidates_with_portrait": 0,
       "fictional_executive_authorized": 20,
       "research_roles_without_holder_observation": [],
@@ -1206,7 +1241,7 @@
       "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
       "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
       "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 20 fictional candidates, 0 with a served portrait, 20 authorized for a national executive."
+      "Future: 20 party candidates and 0 institutional candidates, 0 with a served portrait, 20 authorized for a national executive."
      ]
     }
    ]
@@ -1673,6 +1708,91 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png",
+   "exists": true,
+   "bytes": 1792605,
+   "sha256": "c03c951a7dac9da406def5e322346cd164727e2c1447758e09bb73f7079e6d6c",
+   "manifest_sha256": [
+    "c03c951a7dac9da406def5e322346cd164727e2c1447758e09bb73f7079e6d6c"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_to_kalolo_matalehu"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": false,
+   "status": "possible_wrong_person_binding"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png",
+   "exists": true,
+   "bytes": 1834406,
+   "sha256": "f13ddcd9ad637c22c14803361d84de436e292556b3dfb4b49cf39d3fd007a2c5",
+   "manifest_sha256": [
+    "f13ddcd9ad637c22c14803361d84de436e292556b3dfb4b49cf39d3fd007a2c5"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_to_lesieli_fotu"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": false,
+   "status": "possible_wrong_person_binding"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png",
+   "exists": true,
+   "bytes": 1764753,
+   "sha256": "b057acab79696e7690f27cc2fa6886db5b7d71f73ed984a6334ee261093a16bd",
+   "manifest_sha256": [
+    "b057acab79696e7690f27cc2fa6886db5b7d71f73ed984a6334ee261093a16bd"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_to_pisila_tukuafu"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": false,
+   "status": "possible_wrong_person_binding"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/tonga-sitani-lolohea-fictional-2026-v1.png",
+   "exists": true,
+   "bytes": 1726489,
+   "sha256": "a8281ea3b8ac15b00aa899b5af63e6ce9a66933c77ba0b4578ecd596f1d81d7f",
+   "manifest_sha256": [
+    "a8281ea3b8ac15b00aa899b5af63e6ce9a66933c77ba0b4578ecd596f1d81d7f"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_to_sitani_lolohea"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": false,
+   "status": "possible_wrong_person_binding"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png",
+   "exists": true,
+   "bytes": 1665233,
+   "sha256": "4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa",
+   "manifest_sha256": [
+    "4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "taufaahau_tupou_iv"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": false,
+   "status": "possible_wrong_person_binding"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1476438,
@@ -1742,7 +1862,12 @@
   }
  ],
  "wrong_or_unavailable_assets": [
-  "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png"
+  "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+  "spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png",
+  "spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png",
+  "spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png",
+  "spheres-web/ui/person-portraits/tonga-sitani-lolohea-fictional-2026-v1.png",
+  "spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png"
  ],
  "assets_shared_across_people": [],
  "campaign_comparison": "The fresh campaign start is derived from production data and a runtime mirror, not observed through native execution. Divergent saved campaigns are exercised by test fixtures and by --campaign against a supplied save; a divergent incumbent is an expected outcome, never an error, and history never overwrites it.",
@@ -1753,15 +1878,15 @@
  "inputs": [
   {
    "path": "docs/campaign-certification/C01/census.json",
-   "bytes": 6105,
-   "sha256": "473fb44a5e07109f899bdab0df18f165d60802187fc01fc399b4e8ae966b8cd4",
+   "bytes": 6414,
+   "sha256": "8dc5242ed08a59d3dd71aafb9e02afabe45defb06cfa6e59719ac5667d9cf095",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "docs/campaign-certification/C01/countries.json",
-   "bytes": 89406,
-   "sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+   "bytes": 102317,
+   "sha256": "dabbeba53e8d8141a9df108075daf4bd882e48de7b8194570e9873e80f5b123c",
    "newline_normalized": true,
    "exists": true
   },
@@ -2327,8 +2452,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
-   "bytes": 554063,
-   "sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+   "bytes": 569775,
+   "sha256": "3d64e8cf9745206096fc0500970c9bcb2e5fa5afdf19e4d2e6da29dc64619db2",
    "newline_normalized": true,
    "exists": true
   },
@@ -2355,8 +2480,15 @@
   },
   {
    "path": "spheres-sim/data/party_leaders.json",
-   "bytes": 1262625,
-   "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+   "bytes": 1282814,
+   "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/data/tonga_institutional_leadership.json",
+   "bytes": 76513,
+   "sha256": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
    "newline_normalized": true,
    "exists": true
   },
@@ -2364,6 +2496,13 @@
    "path": "spheres-sim/src/clock.rs",
    "bytes": 6036,
    "sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/src/institutional_leadership.rs",
+   "bytes": 33934,
+   "sha256": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
    "newline_normalized": true,
    "exists": true
   },
@@ -2376,8 +2515,8 @@
   },
   {
    "path": "spheres-sim/src/party_leadership.rs",
-   "bytes": 100912,
-   "sha256": "c55bdce3a7e16ce82d4bcab14a55ff6cc3eda4e29e29417108bb931260948605",
+   "bytes": 101190,
+   "sha256": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
    "newline_normalized": true,
    "exists": true
   },
@@ -2390,22 +2529,22 @@
   },
   {
    "path": "spheres-web/data/fictional_portraits.json",
-   "bytes": 7666,
-   "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+   "bytes": 17844,
+   "sha256": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "spheres-web/data/future_candidates_2035.json",
-   "bytes": 3273947,
-   "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+   "bytes": 3278599,
+   "sha256": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "spheres-web/data/leadership_production_2035.json",
-   "bytes": 5997885,
-   "sha256": "bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78",
+   "bytes": 6204564,
+   "sha256": "f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245",
    "newline_normalized": true,
    "exists": true
   },
@@ -2418,22 +2557,22 @@
   },
   {
    "path": "spheres-web/data/person_portraits.json",
-   "bytes": 307745,
-   "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
+   "bytes": 494659,
+   "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "spheres-web/src/person_avatar_assets.rs",
-   "bytes": 8608,
-   "sha256": "dbe28d29a5b036329b381c241fe2f0ac08d266c6c5892af10145af66ca51a182",
+   "bytes": 15049,
+   "sha256": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "spheres-web/src/person_portraits.rs",
-   "bytes": 26112,
-   "sha256": "398bc6998b87b33425d3aedd30a98c93641bddc1decd12534880e7384ed7b900",
+   "bytes": 29796,
+   "sha256": "c698ebe2f759bf08491179d5caeebbd49292e4469b240dc358448f2e6146577d",
    "newline_normalized": true,
    "exists": true
   },
@@ -2627,6 +2766,41 @@
    "exists": true
   },
   {
+   "path": "spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png",
+   "bytes": 1792605,
+   "sha256": "c03c951a7dac9da406def5e322346cd164727e2c1447758e09bb73f7079e6d6c",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png",
+   "bytes": 1834406,
+   "sha256": "f13ddcd9ad637c22c14803361d84de436e292556b3dfb4b49cf39d3fd007a2c5",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png",
+   "bytes": 1764753,
+   "sha256": "b057acab79696e7690f27cc2fa6886db5b7d71f73ed984a6334ee261093a16bd",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/tonga-sitani-lolohea-fictional-2026-v1.png",
+   "bytes": 1726489,
+   "sha256": "a8281ea3b8ac15b00aa899b5af63e6ce9a66933c77ba0b4578ecd596f1d81d7f",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png",
+   "bytes": 1665233,
+   "sha256": "4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
    "path": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
    "bytes": 1476438,
    "sha256": "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d",
@@ -2656,8 +2830,15 @@
   },
   {
    "path": "tools/avatars/certified_boundary_matrix.py",
-   "bytes": 97239,
-   "sha256": "7f0f66cfbac03e5d0f5396258d8d0e5df7ab27cd752ed66df9a79ac9e375dab4",
+   "bytes": 102671,
+   "sha256": "b08dcf8dacf72f4346e650c118ce72437c4680bc4512be975543e00dcc63b661",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "tools/avatars/leadership_production.py",
+   "bytes": 31715,
+   "sha256": "017fd31092a631e653ce6b6de15388ce7a09ce57bd4b1f9800628f77589a3346",
    "newline_normalized": true,
    "exists": true
   }

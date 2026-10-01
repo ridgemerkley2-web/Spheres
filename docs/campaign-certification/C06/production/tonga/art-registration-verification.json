@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "date": "2026-10-01",
+  "operator": "Codex",
+  "human_approval_claimed": false,
+  "registered_historical_jobs": 41,
+  "batches": [
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-01-registration.json",
+      "sha256": "1baa06cc574cd2e08d7f0b2c67efaa21361e0855daa0d54c1fbaf2f1f4cdc46c",
+      "images": 21
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-02-registration.json",
+      "sha256": "5802ad61550ea695e594661301b76b69342431700587dcec49489abd89962d7c",
+      "images": 4
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-03-registration.json",
+      "sha256": "3c2f8e25350f2d6764198ec9cf755edc2e929ad79f2e8e4ddabf768924a45ca1",
+      "images": 4
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-04-registration.json",
+      "sha256": "1b3e297a44454a305725613966f4941cf5d0bb146681e1e1ac9673753e0502a4",
+      "images": 5
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-05-registration.json",
+      "sha256": "6acda68fb853e4206d0179ac0a848ac8edf7ef9ec3166453e5a6663e6880bf62",
+      "images": 4
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-06-registration.json",
+      "sha256": "cfedccf5fc2a4ae21ca67ef0044f6dbf8739d36e1a7be2d8ceefd85040f1e9d2",
+      "images": 2
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/tonga-historical-batch-07-registration.json",
+      "sha256": "452715308cdb982d3c369de411c95decbddc483195f43340149603d83a573235",
+      "images": 1
+    }
+  ],
+  "verification": {
+    "historical_valid": true,
+    "historical_errors": [],
+    "historical_images": 100,
+    "fictional_valid": true,
+    "fictional_errors": [],
+    "fictional_images": 8,
+    "gallery_http": 200,
+    "gallery_images": 46,
+    "gallery_image_failures": [],
+    "gallery_future_projection_labels": 2,
+    "gallery_explicit_fatai_gap": true,
+    "browser_visual_review": true,
+    "browser_limit": "Registration subagent browser unavailable; root performed the browser visual review.",
+    "browser_review_owner": "Codex root",
+    "browser_review_result": "Root reports all 47 cast cards correct (42 historical appearances, 4 fictional, 1 missing), all images load, filters work, 390-pixel image layout has no overflow; screenshots inspected. The singular identity wording was then corrected and page regenerated."
+  },
+  "historical_self_tests": {
+    "command": "py -3 -X utf8 tools/avatars/person_art_pipeline.py self-test",
+    "passed": 21,
+    "failed": 0
+  },
+  "fictional_self_tests": {
+    "command": "py -3 -X utf8 tools/avatars/fictional_art_pipeline.py self-test",
+    "passed": 7,
+    "failed": 0,
+    "note": "Passed earlier in this registration turn; fictional implementation and assets unchanged afterward."
+  },
+  "generated_outputs": {
+    "avatar_allowlist": "rebuilt and --check passed",
+    "leadership_production_board": "rebuilt and check passed",
+    "campaign_census": "rebuilt and --check passed"
+  },
+  "census_preserved": {
+    "party_rows": 624,
+    "future_party_templates": 2556,
+    "future_institutional_templates": 4
+  },
+  "gallery": {
+    "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/tonga-cast-review.html",
+    "url": "http://127.0.0.1:8796/tonga-cast-production-20261001/tonga-cast-review.html",
+    "sha256": "129643b79cbe2325a39d1ee3e2e4b344ae1f9b53e592e7e316a87fb06c4cee4a",
+    "historical_person_appearances": 42,
+    "fictional_successor_appearances": 4,
+    "historical_missing": [
+      "to_fatai_helu"
+    ],
+    "server_pid": 51660,
+    "saved_game_loaded": false,
+    "root_browser_evidence": [
+      {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/gallery-desktop.png",
+        "sha256": "596beea9eb24e88d88d8379d22306988ae6c0ab5d5c6c664f0f0911d4651e42f"
+      },
+      {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/gallery-fictional.png",
+        "sha256": "3ce761dc36d84e390a9507a0831d0f5167ec9c735fe68125710dc3694a9bbae3"
+      },
+      {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/gallery-mobile.png",
+        "sha256": "543c56ea3ff36379be3e429625948bfceb6eb739d8c5409af28f4971e9745c58"
+      },
+      {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/evidence/gallery-result.json",
+        "sha256": "02cb0e199e7888a7991eebff23fad3be91b0d1918f6a6b75fae0a8ce7d54c87d"
+      }
+    ]
+  },
+  "source_pins": {
+    "spheres-web/data/person_portraits.json": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+    "spheres-web/data/fictional_portraits.json": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+    "spheres-web/src/person_avatar_assets.rs": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+    "tools/avatars/person_art_pipeline.py": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab",
+    "spheres-web/data/leadership_production_2035.json": "f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245"
+  },
+  "native_build_or_launch_performed": false,
+  "notes": [
+    "All generated outputs are copied byte-identically; exact submitted prompts and ordered inputs are retained in each batch generation record.",
+    "Authored-identity research originals remain external and were not supplied to image_gen.",
+    "The future heir v2 correction records both generation stages and hashes; rejected v1 remains outside shipped assets.",
+    "King IV original 1990 record and window are unchanged; a separate later portrait was added.",
+    "Sovaleni one-day appearance extension has a separate review receipt; exact generation receipt and image bytes are unchanged.",
+    "No human acceptance, complete historical roster, exhaustive party census or native qualification is claimed."
+  ],
+  "git_diff_check": {
+    "exit_code": 0,
+    "whitespace_errors": false,
+    "line_ending_notices_only": true
+  }
+}

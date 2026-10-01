@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-05",
+  "date": "2026-10-01",
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-04-jobs-batch05.json",
+  "jobs_sha256": "f2035b5c8ee19ea599a8b2918d8b85e46d3072113257b4b66691aa203cafa43e",
+  "manifest_before_sha256": "669c3a8614410eb13779bb5c840ebdaea22df47ce83e8e7d6894475139e6a42b",
+  "manifest_after_sha256": "5141ea4fe13dbedfcbe158ed4a99b56cf85f7ee6b4006263fd5293a20926151a",
+  "prior_records_preserved": true,
+  "appended": [
+    {
+      "person_id": "taufaahau_tupou_iv",
+      "asset": "spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png",
+      "sha256": "4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa"
+    },
+    {
+      "person_id": "to_samiu_kuita_vaipulu",
+      "asset": "spheres-web/ui/person-portraits/tonga-samiu-vaipulu-cartoon-2011-v1.png",
+      "sha256": "c9a05d980fad8642152617e55a9189a6fb88bee03b97b054e121c9743e079d50"
+    },
+    {
+      "person_id": "to_viliami_uasike_latu",
+      "asset": "spheres-web/ui/person-portraits/tonga-viliami-latu-cartoon-2025-v1.png",
+      "sha256": "b1ac5bd89e23f2f9d9e5298097dcaeddc33f862ef48d94bca7d710c5ccced1bc"
+    },
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2012-v1.png",
+      "sha256": "a272d0831583e11e4da36b4b409615510a4be462b8755bbd8ff521f233997496"
+    }
+  ],
+  "copied_reference_images": [
+    {
+      "person_id": "taufaahau_tupou_iv",
+      "kind": "observed_portrait",
+      "reference_id": "taufaahau-tupou-iv-eth-1985",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-taufaahau-tupou-iv-eth-1985-reference-v1.jpg",
+      "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+      "bytes": 157903,
+      "width": 1280,
+      "height": 842,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "creator": "Comet Photo AG (Zurich) / ETH Library, Image Archive",
+      "credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.",
+      "rights_statement": "Retained source statement: CC BY-SA 4.0. Existing retained unchanged 1280-pixel JPEG preview of the ETH archival TIFF, not the full TIFF. Original 1990 generation and appearance window are preserved. Reuse is for a separately reviewed older artistic interpretation.",
+      "source_license_statement": "CC BY-SA 4.0",
+      "depiction_date": {
+        "kind": "year",
+        "value": "1985"
+      },
+      "source_review": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json",
+      "source_metadata_sha256": "10dcdbf5ec386d67134b285ef40e9d5dafa81e3aa55278def16df7e2c8e98d69"
+    },
+    {
+      "person_id": "to_samiu_kuita_vaipulu",
+      "kind": "observed_portrait",
+      "reference_id": "vaipulu-2023",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-vaipulu-2023-reference-v1.jpg",
+      "sha256": "8e3b34628770054a12492f87c4d095758b766ae065ab2ddab60c10785d11c966",
+      "bytes": 765619,
+      "width": 778,
+      "height": 1024,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Samiu_Vaipulu_2023.jpg",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "creator": "US Embassy Suva",
+      "credit": "US Embassy Suva; 2023-05-10; public domain (US federal work). Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: public domain (US federal work). Caption dates the US Embassy opening to 10 May 2023. EXIF gives 2019 and appears stale; use the dated event rather than EXIF. Commons notes Flickr no longer offers the prior license and relies on US government authorship.",
+      "source_license_statement": "public domain (US federal work)",
+      "depiction_date": "2023-05-10",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "038a1a292c897f92c3f54c4a99b8d6ffd417728703be06484c632c7de377f8ac"
+    },
+    {
+      "person_id": "to_viliami_uasike_latu",
+      "kind": "observed_portrait",
+      "reference_id": "latu-2013",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-latu-2013-reference-v1.jpg",
+      "sha256": "cc1aa3a57333652b74940895af833b6583e44e5caee53ef8a1546b21b0519f90",
+      "bytes": 720954,
+      "width": 1240,
+      "height": 978,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Viliami_Uasike_Latu_(cropped).jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "creator": "World Trade Organization",
+      "credit": "World Trade Organization; 2013-12; CC BY-SA 2.0. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY-SA 2.0. Caption says 3 December while EXIF says 4 December 2013; retain month precision. A 2026 age treatment is an artistic interpretation.",
+      "source_license_statement": "CC BY-SA 2.0",
+      "depiction_date": "2013-12",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "b12c30ed0a5a9dadd4af542436c4ef7b3a33e050f95e9f3178863f5f22af5afc"
+    },
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "kind": "observed_portrait",
+      "reference_id": "heir-2012",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-heir-2012-reference-v1.jpg",
+      "sha256": "00d6e8eadf525bc9644003f1f2eaa415d4bf2cede07efeede3cff07c933abac2",
+      "bytes": 5862912,
+      "width": 4320,
+      "height": 3240,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Crown_Prince_of_Tonga_(7739361506).jpg",
+      "license": "Open Government Licence v1.0",
+      "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+      "creator": "Foreign and Commonwealth Office, United Kingdom",
+      "credit": "UK Foreign and Commonwealth Office, Crown Prince of Tonga with Jeremy Browne, 8 August 2012, Open Government Licence v1.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: Open Government Licence v1.0. Contemporary 2012 Crown Prince reference and attestation by 8 August 2012; not evidence of the exact title vesting day. Commons records permission ticket 2013061310007371. Retained Commons permission states that the OGL v1.0 grant covers FCO-provided content and excludes third-party content; this is the FCO's own photograph. Permission ticket 2013061310007371.",
+      "source_license_statement": "Open Government Licence v1.0",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2012-08-08"
+      },
+      "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "source_metadata_sha256": "23044b80e1428ea6b03dfc05590c300c9fb04a4ee7bc668036d629ceccdf3aae",
+      "container_format": "MPO",
+      "reference_frame": 0,
+      "retained_frame_count": 2,
+      "original_source": "https://www.flickr.com/photos/foreignoffice/7739361506/",
+      "licensor": "Foreign and Commonwealth Office, United Kingdom",
+      "third_party_material": false
+    }
+  ],
+  "generation_record": "tools/avatars/person-prompts/tonga-historical-batch-05.json",
+  "generation_record_sha256": "6d8b1072f7e05cbaf6b4ab6e9dc43810b638f06d3bb179a4911d1a4528d95c32",
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "warning_count": 530,
+    "historical_people_with_art": 90,
+    "historical_images": 97,
+    "appended": 4,
+    "copied_reference_images": 4
+  },
+  "allowlist_rebuilt": false,
+  "production_board_rebuilt": false,
+  "rejected_studies_excluded": true
+}

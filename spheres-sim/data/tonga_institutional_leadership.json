@@ -1,0 +1,1342 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "historical_reference_through": "2026-09-07",
+  "fictional_from": "2026-09-08",
+  "fictional_until_exclusive": "2036-01-01",
+  "opening": {
+    "king_person_id": "taufaahau_tupou_iv",
+    "king_since": "1965-12-16",
+    "prime_minister_person_id": "fatafehi_tuipelehake",
+    "heir_person_id": "siaosi_taufaahau_manumataongo",
+    "heir_name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+    "heir_since": "1966-05-04"
+  },
+  "institution_sources": [
+    "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+    "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+    "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister"
+  ],
+  "gameplay_assumption": "Explicit reform enables a separate non-party Assembly model. Elections seat named civilian candidates and retain unnamed institutional seats; a player recommendation represents the Assembly majority recommendation and royal appointment as one disclosed arcade action. No election or reform is scheduled from history. The monarch and hereditary offices remain separate. This does not implement hereditary eligibility for invented people.",
+  "historical_bindings": [
+    {
+      "id": "to_cast_prime_minister_pm_94b4169750f3b44c",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "fatafehi_tuipelehake",
+      "holder": {
+        "name": "Fatafehi Tu'ipelehake",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "1990-01-01",
+          "through": "1990-12-31"
+        },
+        "sources": [
+          "to_pmo_former_pms_2026",
+          "to_pmo_former_pms_2015",
+          "to_mic_pm_list_2011",
+          "to_ipu_1990"
+        ],
+        "claim_ids": [
+          "to_pmo_former_pms_2026_tuipelehake",
+          "to_pmo_former_pms_2015_list",
+          "to_mic_pm_list_2011_list",
+          "to_ipu_1990_tuipelehake"
+        ],
+        "note": "Holder when the period opens (TO-PM90-01), at year precision. All three government lists give his premiership as 1965-1991; IPU's summary of the February 1990 election names him as Prime Minister in a present-tense sentence written in March 1990 or later (reference date unknown).",
+        "uncertainty": "Year precision only. attested_period is the calendar year 1990, which lies inside the 1965-1991 range printed by every cited list if that range is read as one continuous tenure; it is not an observation on any particular day, and no 1990 gazette, instrument or contemporaneous Tongan record naming him was found. No start or end is stated; the retirement month (August 1991) is IPU-only (to_ipu_1993_retirement_succession_199108) and is not used."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "1990-01-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_d9754707e5d43568",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_baron_vaea_pm_1992",
+      "holder": {
+        "name": "Baron Vaea",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "1992-01-01",
+          "through": "1998-12-31"
+        },
+        "sources": [
+          "to_pmo_former_pms_2026",
+          "to_pmo_former_pms_2015",
+          "to_mic_pm_list_2011",
+          "to_pmo_vaea_tribute_20090613",
+          "to_ipu_1993"
+        ],
+        "claim_ids": [
+          "to_pmo_former_pms_2026_vaea_lavaka",
+          "to_pmo_former_pms_2015_list",
+          "to_mic_pm_list_2011_list",
+          "to_pmo_vaea_tribute_appointment_undated",
+          "to_ipu_1993_retirement_succession_199108"
+        ],
+        "note": "Appointed Prime Minister by the Sovereign (PMO tribute, undated). The lists give 1991-2000 (current PMO list and 2011 MIC list) or 1991-1999 (2015 PMO list).",
+        "uncertainty": "Year precision only. attested_period covers the calendar years 1992-1998, which lie inside every cited list's range read as one continuous tenure; it is not a start, an end or an observation on any particular day. The appointment day is unstated (IPU gives August 1991 for the succession, month only), and the end year conflicts between the PMO lists (TO-PM90-02, TO-PM90-03)."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "1992-01-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_5658a2d7bb0abdaa",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "holder": {
+        "name": "Prince 'Ulukalala Lavaka Ata",
+        "attested_on": null,
+        "from": "2000-01-03",
+        "until": "2006-02-11",
+        "sources": [
+          "to_pmo_office_pm_2002",
+          "to_pmo_timeline_2000_en",
+          "to_pmo_20060213_resignation",
+          "to_pmo_20060213_resignation_to"
+        ],
+        "claim_ids": [
+          "to_pmo_lavaka_ata_commencement_20000103",
+          "to_pmo_timeline_lavaka_ata_appointed_200001",
+          "to_lavaka_ata_resignation_accepted_20060211",
+          "to_lavaka_ata_resignation_accepted_20060211_to"
+        ],
+        "note": "The start is the PMO's stated 'Commencement Date'. The end is the Prince Regent's acceptance on 11 February 2006 of his resignation (the Tongan release: retirement) from the premiership and all his portfolios.",
+        "uncertainty": "The appointment instrument was not seen, and the date of his resignation letter is not given; 11 February 2006 is the stated date of acceptance. The end of Baron Vaea's premiership is not inferred from this start."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2000-01-03",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_f4ce39609313d925",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_feleti_sevele",
+      "holder": {
+        "name": "Feleti Sevele",
+        "attested_on": "2006-04-07",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20060410_marist_remarks",
+          "to_pmo_20060413_psc"
+        ],
+        "claim_ids": [
+          "to_sevele_pm_20060407",
+          "to_sevele_acting_then_pm_20060413"
+        ],
+        "note": "Substantive Prime Minister, event-dated to 7 April 2006, the earliest contemporaneous PMO item found that styles him Prime Minister without 'Acting'; on 13 April the PMO refers to his tenure as 'Acting Prime Minister, and now Prime Minister'. His acting appointment of 11 February 2006 (to_sevele_acting_pm_appointed_20060211) is a separate claim on the role, not a holder.",
+        "uncertainty": "The substantive appointment day is not established: contemporaneous PMO usage brackets it between 23 March (styled Acting) and 7 April 2006, and the 30 March 2006 date is given only by a retrospective timeline (to_sevele_appointed_20060330). No instrument was seen. His leave-taking audience on 22 December 2010 (to_sevele_leave_audience_20101222) is not used as an end date."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2006-04-07",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_e95437f03eac013a",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "holder": {
+        "name": "Lord Tu'ivakano",
+        "attested_on": "2010-12-22",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_palace_20101222_appointment"
+        ],
+        "claim_ids": [
+          "to_tuivakano_royal_appointment_20101222"
+        ],
+        "note": "Received in audience at noon on 22 December 2010 at the Villa for his appointment to the office of Prime Minister ('The Kissing of Hands'), and received his Letter of Appointment. The Assembly's selection and its presentation to the King (to_tuivakano_assembly_result_presented_20101221) are separate claims.",
+        "uncertainty": "An appointment event with no stated effective date. The end is not stated: his description as 'former Prime Minister' on 29 December 2014 (to_pohiva_declared_pm_elect_pmo_20141229) is not used as an end."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2010-12-22",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_c0fbe8a781f3ef33",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "holder": {
+        "name": "Hon. Tu'ivakano",
+        "attested_on": "2003-04-08",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_legislative_assembly_page_20030408",
+          "to_la_home_2004",
+          "to_pmo_legislative_assembly_page_20041226"
+        ],
+        "claim_ids": [
+          "to_speaker_tuivakano_listed_20030408",
+          "to_speaker_tuivakano_listed_20040906",
+          "to_speaker_tuivakano_listed_20041226"
+        ],
+        "note": "Presented as Speaker by the government's Legislative Assembly page (revision of 8 April 2003), the Assembly's home page (captured 6 September 2004) and the government page's revision of 19 September 2004 (captured 26 December 2004).",
+        "uncertainty": "Event-dated to the earliest attestation after the two conflicting appointment dates, 'last week' in a statement of about 23 May 2002 (to_speaker_tuivakano_appointment_reported_20020523) and 1 July 2002 in the Assembly's later statements; neither is a start. No end is stated: he was replaced by Veikune's appointment of 22 March 2005 after becoming Minister of Works, but no source gives the day his Speakership ended, and none is inferred."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2003-04-08",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_681ed0888ac2f04b",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "holder": {
+        "name": "Lord Tu'ivakano",
+        "attested_on": "2015-02-24",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_speaker_china_20150224"
+        ],
+        "claim_ids": [
+          "to_speaker_tuivakano_styled_20150224"
+        ],
+        "note": "Styled Lord Speaker by the Assembly's news item of 24 February 2015. His election by the House on 29 December 2014 is recorded in the prime-minister packet (to_pohiva_declared_pm_elect_pmo_20141229), which this holder does not cite.",
+        "uncertainty": "No royal appointment or oath for this Assembly is dated by any source retrieved, so no start is stated. No end is stated either: the Speaker's release of 12 September 2017 already in the packet still names him Speaker. The Assembly's profile identifies him with the Hon. Tu'ivakano who was Speaker in 2002-2005, but that identity is not needed for this observation."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2015-02-24",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_cd4c1faf74a070af",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_samuela_akilisi_pohiva",
+      "holder": {
+        "name": "Samuela 'Akilisi Pohiva",
+        "attested_on": "2014-12-30",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20141230_appointment"
+        ],
+        "claim_ids": [
+          "to_pohiva_royal_appointment_20141230"
+        ],
+        "note": "Received in audience at 10:00 on 30 December 2014 at the Royal Palace for his appointment to the office of Prime Minister. The Assembly's selection on 29 December 2014 (to_pohiva_assembly_selection_20141229) is a separate claim.",
+        "uncertainty": "An appointment event with no stated effective date. His status after the 24 August 2017 dissolution is unresolved (TO-PM90-07): the PMO's later wording that he 'served as the 16th Prime Minister from 2015-2017' (to_pohiva_royal_appointment_20180102) is not used as an end, and no end of this appointment is inferred from his re-appointment effective 2 January 2018."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2014-12-30",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_6f439ecd1d277546",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_samuela_akilisi_pohiva",
+      "holder": {
+        "name": "Samuela 'Akilisi Pohiva",
+        "attested_on": null,
+        "from": "2018-01-02",
+        "until": null,
+        "sources": [
+          "to_pmo_20180104_appointment",
+          "to_pmo_20180122_cabinet"
+        ],
+        "claim_ids": [
+          "to_pohiva_royal_appointment_20180102",
+          "to_pohiva_appointment_repeated_20180122"
+        ],
+        "note": "Appointed under Clause 50A with effect from 2 January 2018, following the Assembly's re-selection on 18 December 2017 (to_pohiva_assembly_reselection_20171218). He took his oaths in the Assembly on 18 January 2018 (to_pohiva_oath_assembly_20180118). Both are separate claims.",
+        "uncertainty": "until is null. His death in September 2019 is recorded in claims (Gazette Extraordinary No. 28 of 16 September 2019; the PMO programme of 14 September places it on or before the 12th, Auckland date), but no record retrieved states the day, so no end is set (TO-PM90-08)."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2018-01-02",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_dpfi_dpfi_leader_d93aa1d1fa06b58d",
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_leader",
+      "person_id": "to_samuela_akilisi_pohiva",
+      "holder": "to_dpfi_pohiva_2010",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2010-11-25",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_dpfi_dpfi_leader_e2a92defb24e4453",
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_leader",
+      "person_id": "to_samuela_akilisi_pohiva",
+      "holder": {
+        "name": "'Akilisi Pohiva",
+        "attested_on": "2014-11-27",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_ipu_2014"
+        ],
+        "claim_ids": [
+          "to_ipu_2014_dpfi_pohiva_leader"
+        ],
+        "note": "IPU describes DPFI as led by Pohiva at the 27 November 2014 election and calls him the DPFI leader during the campaign (TO-DPFI-05).",
+        "uncertainty": "IPU-only: an interparliamentary summary, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a start, end or continuous term; it is not joined to the 2010 observation."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2014-11-27",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_d1d4f2b24b3def21",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_pohiva_tuionetoa",
+      "holder": {
+        "name": "Pohiva Tu'i'onetoa",
+        "attested_on": "2019-10-08",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pm_appointment_20191008"
+        ],
+        "claim_ids": [
+          "to_tuionetoa_royal_appointment_20191008"
+        ],
+        "uncertainty": "Royal appointment event only. The earlier Assembly recommendation is retained separately and is not a holder observation."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2019-10-08",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_peoples_party_peoples_party_leader_a92b3e5e88c0c012",
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_leader",
+      "person_id": "to_pohiva_tuionetoa",
+      "holder": {
+        "name": "Pohiva Tu'i'onetoa",
+        "attested_on": "2021-05-28",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_idcpc_dialogue_20210528"
+        ],
+        "claim_ids": [
+          "to_peoples_party_leader_20210528"
+        ],
+        "uncertainty": "Event-host title observation only; party appointment instrument and full leadership interval are unknown."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2021-05-28",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_peoples_party_peoples_party_society_president_aa2ddc76be06ff80",
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_president",
+      "person_id": "to_pohiva_tuionetoa",
+      "holder": {
+        "name": "Pohiva Tu'i'onetoa",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "2022-04-19",
+          "through": "2022-04-21"
+        },
+        "sources": [
+          "to_sc_kiu_v_tuionetoa_20220429"
+        ],
+        "claim_ids": [
+          "to_peoples_party_incorporated_society_2022"
+        ],
+        "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+        "uncertainty": "Not reconciled with the 'Leader' title. Whether Leader and society President are one office is unresolved."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2022-04-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_d3fb996e20a72101",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_siaosi_ofakivahafolau_sovaleni",
+      "holder": {
+        "name": "Siaosi 'Ofakivahafolau Sovaleni",
+        "attested_on": null,
+        "from": "2021-12-27",
+        "until": "2024-12-09",
+        "sources": [
+          "to_pmo_sovaleni_appointment_20211228",
+          "to_pmo_sovaleni_appointment_to_20211228",
+          "to_assembly_minutes_48_20241209"
+        ],
+        "claim_ids": [
+          "to_sovaleni_royal_appointment_en_20211227",
+          "to_sovaleni_royal_appointment_to_20211227",
+          "to_sovaleni_resignation_statement_20241209",
+          "to_palace_acceptance_letter_20241209"
+        ],
+        "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses. His resignation of 9 December 2024 ends the observation (TO-TR24-01); the 2024 Assembly records print 'Siaosi 'Ofa ki Vahafolau Sovaleni' and the Palace letter 'Hon. Hu'akavameiliku'.",
+        "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. The end is the resignation of 9 December 2024, stated in the House as effective immediately (1150-1200 transcript block) and accepted by the King the same day, during the recess before the Palace Office letter was read at 1400-1405; the date is exact to the day and the clock time of acceptance is not recorded. The end is attached to this holder as the resignation of the sitting Prime Minister, named Hu'akavameiliku in both the 2021 Tongan release and the Palace letter, not by matching spellings. No term length is inferred."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2021-12-27",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_36de4dc6dfa15a45",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_siaosi_ofakivahafolau_sovaleni",
+      "holder": {
+        "name": "Siaosi Sovaleni",
+        "attested_on": "2014-12-31",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20141231_new_cabinet",
+          "to_mic_20150212_sovaleni_profile",
+          "to_mic_20160907_renewable",
+          "to_mic_20170831_macbio"
+        ],
+        "claim_ids": [
+          "to_dpm_sovaleni_cabinet_list_20141231",
+          "to_dpm_sovaleni_profile_20150212",
+          "to_dpm_sovaleni_styled_20160904",
+          "to_dpm_sovaleni_styled_20170830"
+        ],
+        "note": "Listed as Deputy Prime Minister in the Pohiva Cabinet announced on 31 December 2014; attested to 30 August 2017 (TO-DPM-07). A separate observation from the to_pm holder \"Siaosi 'Ofakivahafolau Sovaleni\" of 2021-2024.",
+        "uncertainty": "No from: the release states only the Prime Minister-elect's recommendation and that the appointments 'will be effective as of 31st December, 2014' (to_dpm_sovaleni_appointment_recommended_20141231), and IPU's Cabinet date of 19 January 2015 conflicts. No until: the PMO states only that the Prime Minister recommended the revocation 'effective from 1st September, 2017' (to_dpm_sovaleni_revocation_recommended_20170901), and the royal endorsement it reports covers the new appointments; Lord Ma'afu's start is not used as an end."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2014-12-31",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_302e0a15ffb065f1",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_aisake_valu_eke",
+      "holder": {
+        "name": "'Aisake Valu Eke",
+        "attested_on": "2025-01-22",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_eke_appointment_20250122"
+        ],
+        "claim_ids": [
+          "to_eke_royal_appointment_20250122"
+        ],
+        "note": "Royal appointment under Clause 50A(1) at the Royal Palace on Wednesday 22 January 2025 (TO-TR24-04), read from Wayback captures of the removed PMO release; the live PMO release of 24 January 2025 calls him Prime Minister.",
+        "uncertainty": "An appointment event, recorded like the 2019 Tu'i'onetoa observation: the release states no separate 'with effect from' date, and no warrant signature, presentation or instrument number is recorded (TO-TR24-05). The 24 December 2024 Assembly selection, the 28 January 2025 Cabinet list and the 31 January 2025 oath are separate claims, not the start of office. No end or term is inferred; Lord Fakafanua's 18 December 2025 appointment does not supply one."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-01-22",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_36b35a9f29f89fe5",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_fatafehi_fakafanua",
+      "holder": "to_fakafanua_appointment",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_prime_minister_pm_a2e373ad4345a7de",
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "person_id": "to_fatafehi_fakafanua",
+      "holder": "to_fakafanua_august",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2026-08-03",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_0e24229e1e695782",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_fatafehi_fakafanua",
+      "holder": {
+        "name": "Lord Fakafanua",
+        "attested_on": "2012-07-19",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_20120723_new_speaker_starts",
+          "to_la_20120720_fakafanua_appointed",
+          "to_la_20130828_acting_speaker",
+          "to_la_20140815_speaker_judiciary"
+        ],
+        "claim_ids": [
+          "to_fakafanua_royal_appointment_20120719",
+          "to_fakafanua_royal_appointment_reported_20120720",
+          "to_fakafanua_starts_as_speaker_20120723",
+          "to_fakafanua_speaker_abroad_20130828",
+          "to_fakafanua_speaker_20140814"
+        ],
+        "note": "Elected 17-8 by the Assembly on 19 July 2012; the Assembly's item of 23 July dates his royal appointment to that day and its item of 20 July reports the appointment as done. He began presiding on 23 July 2012 and is attested as Speaker to 14 August 2014.",
+        "uncertainty": "An appointment day with no stated effective date, so it is event-dated through attested_on, as the prime-minister holders of CLAUDE-C01-08 are. The Assembly's Tongan item created at 17:23 on 19 July still called the appointment pending (to_fakafanua_royal_appointment_pending_20120719); the conservative alternative is 20 July 2012, when it was reported as done. 'Started in his new role ... this morning' (23 July) is not taken as from, because the same item dates the appointment earlier. No end is stated, and nothing is inferred from the 2014 election or from clause 61(2)(a)."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2012-07-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_2cda47948b11024c",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_fatafehi_fakafanua",
+      "holder": {
+        "name": "Lord Fakafanua",
+        "attested_on": "2018-03-05",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_speaker_gita_20180305"
+        ],
+        "claim_ids": [
+          "to_speaker_fakafanua_styled_20180305"
+        ],
+        "note": "Styled Speaker, addressing the first sitting held at the Tonga National Centre, in the Assembly's item of 5 March 2018. He took the oath as 'the Lord Speaker Fakafanua' on 18 January 2018 (to_speaker_fakafanua_sworn_news_20180118; the oath is not a start), and the Assembly's election of 18 December 2017 is recorded in the prime-minister packet (to_pohiva_assembly_reselection_20171218).",
+        "uncertainty": "No royal appointment for this Assembly is dated, so there is no start; no end is stated. This is a separate holder observation from the 2012-2014 one, and no continuity or gap between the two is asserted."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2018-03-05",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_fad30c9953a998e7",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_fatafehi_fakafanua",
+      "holder": {
+        "name": "Lord Fakafanua",
+        "attested_on": "2022-02-17",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_speaker_summit_20220217"
+        ],
+        "claim_ids": [
+          "to_speaker_fakafanua_styled_20220217"
+        ],
+        "note": "Styled Speaker in the Assembly's item of 17 February 2022, after the Assembly's election of December 2021 (to_speaker_fakafanua_assembly_election_20211215). Claims of the 2024-2025 transition packet style him Speaker on 9 and 10 December 2024 and 31 January 2025 (to_palace_acceptance_letter_20241209, to_pm_nominations_invited_20241210, to_eke_oath_20250131); this holder does not cite them.",
+        "uncertainty": "A separate holder observation for the Assembly elected in November 2021: no continuity with, or gap after, the 2017-2021 holder is asserted. No royal appointment for this Assembly is dated, so there is no start. No end is stated: 'Former Speaker' (16 December 2025) and Lord Vaea's succession (19 December 2025) are not end dates."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2022-02-17",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_2ecdbb68d9ec76a5",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_langi_kavaliku",
+      "holder": {
+        "name": "Langi Kavaliku",
+        "attested_on": "2000-11-06",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_news_in_brief_2001"
+        ],
+        "claim_ids": [
+          "to_dpm_kavaliku_listed_20001106"
+        ],
+        "note": "Styled Deputy Prime Minister in the PMO's index row dated 6 November 2000 for the release announcing his retirement (TO-DPM-02). The release prints 'Dr. S. Langi Kavaliku'.",
+        "uncertainty": "The only contemporaneous dated record of him in office found; the PMO's retrospective 'appointed the Deputy Prime Minister in 1991' is a separate claim and supplies no start. The retirement 'due ... commencing on the 11th November 2000' is an announcement, not a stated end, so no until is set; nothing is inferred from Tevita Poasi Tupou's appointment of 24 January 2001."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2000-11-06",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_1b989205002632b2",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_tevita_poasi_tupou",
+      "holder": {
+        "name": "Tevita Poasi Tupou",
+        "attested_on": null,
+        "from": "2001-01-24",
+        "until": "2001-09-28",
+        "sources": [
+          "to_pmo_20010124_pm_address",
+          "to_pmo_20010928_tupou_resignation_to"
+        ],
+        "claim_ids": [
+          "to_dpm_tupou_appointment_effective_20010124",
+          "to_dpm_tupou_resignation_accepted_20010928"
+        ],
+        "note": "Deputy Prime Minister, Attorney General and Minister of Justice from the royal consent in Privy Council 'with effect from 24th January, 2001' until his resignation at 4 p.m. on 28 September 2001, accepted that day by the Princess Regent (TO-DPM-03). The appointment list prints 'Hon. Tevita P. Tupou'.",
+        "uncertainty": "Both boundaries are days the sources state: the effective day of the consent and the day the resignation was made and accepted. The Tongan release's '9 months' and 'January 2001' are retrospective claims, not boundaries. Clive Edwards's acting deputy premiership from the same day is a claim only."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2001-01-24",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_a406a0ff4613b207",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_james_cecil_cocker",
+      "holder": {
+        "name": "James Cecil Cocker",
+        "attested_on": "2002-05-13",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20020514_acting_dpm_paunga",
+          "to_pmo_20020903_wssd_statement",
+          "to_pmo_20040909_confirmation_of_appointments",
+          "to_pmo_20060310_ub40_concert"
+        ],
+        "claim_ids": [
+          "to_dpm_cocker_abroad_20020513",
+          "to_dpm_cocker_wssd_statement_20020903",
+          "to_dpm_cocker_appointment_confirmed_20040824",
+          "to_dpm_cocker_styled_20060308"
+        ],
+        "note": "Styled Deputy Prime Minister, abroad on official duties, when Dr Paunga's acting appointment took effect on 13 May 2002; attested again on 3 September 2002, in the reshuffle confirmed with effect from 24 August 2004, and on 8 March 2006 (TO-DPM-04). The 2002 statement prints 'Hon. Cecil Cocker'.",
+        "uncertainty": "The day of his appointment as Deputy Prime Minister (after Tupou's resignation of 28 September 2001 and the acting service of 2001-2002) was not found, and the 2004 confirmation of a reshuffle is not a start. No end is stated; the retrospective 'In May 2006' appointment of his successor is not used as an end and none is inferred."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2002-05-13",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_ac50b1d1f0513080",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_viliami_tau_tangi",
+      "holder": {
+        "name": "Viliami Ta'u Tangi",
+        "attested_on": "2006-08-08",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20060809_common_sense",
+          "to_pmo_20090114_hauofa_funeral",
+          "to_pmo_20100624_throne_reply",
+          "to_mic_20101230_lord_tangi"
+        ],
+        "claim_ids": [
+          "to_dpm_tangi_styled_20060808",
+          "to_dpm_tangi_represents_government_20090114",
+          "to_dpm_tangi_throne_reply_20100624",
+          "to_dpm_tangi_styled_life_peer_20101230"
+        ],
+        "note": "Styled Deputy Prime Minister from 8 August 2006 to 30 December 2010, when he was made a life peer as Lord Tangi of Vaonukonuka (TO-DPM-05). Printed 'Dr. Viliami Tangi', 'Dr the Hon Viliami Ta'u Tangi' and 'Hon. Dr. Viliami Tau Tangi'.",
+        "uncertainty": "The appointment is known only as 'In May 2006' (retrospective, month only), so the holder is event-dated to the first dated styling. The PMO release of 9 June 2006 names the office but not the holder and is not cited. No end is stated; the change of government of December 2010 and the Cabinet that commenced on 4 January 2011 supply none. His acting premierships are claims on to_pm."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2006-08-08",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_40c05460c38d71cc",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_samiu_kuita_vaipulu",
+      "holder": {
+        "name": "Samiu Kuita Vaipulu",
+        "attested_on": null,
+        "from": "2011-01-04",
+        "until": null,
+        "sources": [
+          "to_mic_20110104_cabinet_named",
+          "to_mic_20110103_vaipulu_appointed",
+          "to_mic_20120213_foi_speech",
+          "to_mic_20140909_toloa"
+        ],
+        "claim_ids": [
+          "to_dpm_vaipulu_cabinet_commences_20110104",
+          "to_dpm_vaipulu_appointment_reported_20110103",
+          "to_dpm_vaipulu_styled_20120213",
+          "to_dpm_vaipulu_styled_20140905"
+        ],
+        "note": "Deputy Prime Minister, with Justice, Transport and Works, in the Cabinet that commenced on Tuesday 4 January 2011; attested to 5 September 2014 (TO-DPM-06). A separate observation from the existing 2024 holder 'Samiu Vaipulu'.",
+        "uncertainty": "The start is the stated day the Cabinet ministers commenced; the report of 3 January 2011 is not a start. No end is stated: CLAUDE-C01-08's styling of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited, and no end is inferred from the Cabinet effective 31 December 2014. His acting premierships are claims on to_pm."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2011-01-04",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_0e6ff152dc172166",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_semisi_kioa_lafu_sika",
+      "holder": {
+        "name": "Semisi Kioa Lafu Sika",
+        "attested_on": null,
+        "from": "2018-01-05",
+        "until": null,
+        "sources": [
+          "to_mic_20180122_cabinet_to",
+          "to_mic_20180615_dpm_gita",
+          "to_la_news_20181108_auditor"
+        ],
+        "claim_ids": [
+          "to_dpm_sika_appointment_effective_20180105",
+          "to_dpm_sika_styled_20180615",
+          "to_dpm_sika_styled_20181108"
+        ],
+        "note": "Appointed Deputy Prime Minister and Minister for Infrastructure and Tourism with effect from 5 January 2018; attested to 8 November 2018 (TO-DPM-08).",
+        "uncertainty": "No end is stated: the Assembly's retrospective 'Sanuali 2018 - Sepitema 2019' gives months only, and no end is inferred from Fa'otusia's appointment of 9 October 2019. CLAUDE-C01-08's records of his acting premiership in September 2019 are claims on to_pm and are not cited."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2018-01-05",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_96951a7034e97071",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_sione_vuna_faotusia",
+      "holder": {
+        "name": "Sione Vuna Fa'otusia",
+        "attested_on": null,
+        "from": "2019-10-09",
+        "until": null,
+        "sources": [
+          "to_pmo_20191010_new_cabinet",
+          "to_pmo_20200416_dpm_clarification"
+        ],
+        "claim_ids": [
+          "to_dpm_faotusia_appointment_effective_20191009",
+          "to_dpm_faotusia_styled_20200416"
+        ],
+        "note": "Appointed Deputy Prime Minister and Minister for Justice and Prison with effect from 9 October 2019; styled Deputy Prime Minister on 16 April 2020 (TO-DPM-09). Sworn in the Assembly on 28 October 2019 as 'Hon. Vuna Fa'otusia'.",
+        "uncertainty": "The oath is a separate claim and not a start. His resignation is known only as 'in 2020' (Assembly, retrospective) and 'Okatopa 2019 - 2020' (Assembly list), so no until is set."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2019-10-09",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_9f6a087f1208c9c8",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_poasi_mataele_tei",
+      "holder": {
+        "name": "Poasi Mataele Tei",
+        "attested_on": null,
+        "from": "2021-12-28",
+        "until": null,
+        "sources": [
+          "to_pmo_cabinet_20211229"
+        ],
+        "claim_ids": [
+          "to_sovaleni_cabinet_effective_20211228"
+        ],
+        "note": "Appointed Deputy Prime Minister, with MEIDECC and Public Enterprises, with effect from 28 December 2021 (TO-TR21-06).",
+        "uncertainty": "The start is the stated effective date of the ministerial appointments. The letter of appointment was presented and the oath taken on 29 December, recorded as a separate claim. No end date or term is inferred."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2021-12-28",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_c9a9e50b2090cd89",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_taniela_likuohihifo_fusimalohi",
+      "holder": {
+        "name": "Taniela Likuohihifo Fusimalohi",
+        "attested_on": null,
+        "from": "2025-01-28",
+        "until": null,
+        "sources": [
+          "to_pmo_eke_cabinet_20250128"
+        ],
+        "claim_ids": [
+          "to_eke_cabinet_effective_20250128"
+        ],
+        "note": "Appointed Deputy Prime Minister, with Infrastructure and MEIDECC, with effect from 28 January 2025 (TO-TR24-06). Name as printed in the PMO release; the Assembly minutes print 'Taniela Liku'ohihifo Fusimālohi'.",
+        "uncertainty": "The start is the stated effective date of the ministerial appointments. The letters of appointment were forecast for 30 January (unconfirmed) and the oath was taken in the Assembly on 31 January; both are separate claims. No end date or term is inferred."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-01-28",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_d90938e612678fb2",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_viliami_uasike_latu",
+      "holder": "to_cabinet_appointment",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-12-31",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_53c56d0115f3935d",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_fusitua_speaker_1996",
+      "holder": {
+        "name": "Fusitu'a",
+        "attested_on": "1996-11-14",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_tlr_2003",
+          "to_tlr_1997"
+        ],
+        "claim_ids": [
+          "to_speaker_warrant_fusitua_19960920",
+          "to_speaker_fusitua_interview_19961114",
+          "to_speaker_fusitua_material_times_19961114"
+        ],
+        "note": "Court records attest him as Speaker: the Court of Appeal quotes the Speaker's committal warrant of 20 September 1996, signed 'Fusitu'a / Chairman of the Legislative Assembly', and the Supreme Court found that when he was interviewed as the Speaker on 14 November 1996 he was 'at all material times the Speaker'. Event-dated to 14 November 1996, the day of that explicit finding.",
+        "uncertainty": "No appointment instrument, start or end was found. His appointment year is 1990, 1991 or 1995 in the Assembly's retrospectives (to_la_list_fusitua_1990_1998_20111130, to_la_obituary_fusitua_appointed_1991_20140505, to_la_archives_fusitua_1995_1998_20060327); none is a boundary, and the lists' 1998 end is not used. The courts name him only by his noble title."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "1996-11-14",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_022d07f475f4071c",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_lord_vaea_speaker_2025",
+      "holder": "to_speakers_appointment",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_00bc4376b9c6d833",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_lord_vaea_speaker_2025",
+      "holder": {
+        "name": "Lord Vaea",
+        "attested_on": "2026-05-19",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_la_news_china_visit_20260519"
+        ],
+        "claim_ids": [
+          "to_speaker_vaea_led_delegation_20260519"
+        ],
+        "note": "The latest official styling found before the cutoff: the Assembly's press release of 19 May 2026 says the delegation to China was led by the Speaker, Lord Vaea. His royal appointment effective 18 December 2025 is the existing string holder to_speakers_appointment, which stays first and unchanged; the Assembly's election (item of 16 December 2025) and his oath (22 January 2026) are separate claims.",
+        "uncertainty": "An attestation, not a term: no from or until. The Acting Speaker presiding on 18 August 2026 (to_acting_speaker_tuihaangana_20260818) is a claim only and neither names nor ends his Speakership."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2026-05-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_pdp_pdp_leader_14302f87f696b767",
+      "institution_id": "to_pdp",
+      "role_id": "to_pdp_leader",
+      "person_id": "to_tesina_fuko",
+      "holder": "to_pdp_split_fuko",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2005-04-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_dpfi_dpfi_president_c922784979330367",
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_president",
+      "person_id": "to_fatai_helu",
+      "holder": {
+        "name": "Fatai Helu",
+        "attested_on": "2022-08-29",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_sc_helu_piukala_v_ec_20220829"
+        ],
+        "claim_ids": [
+          "to_ptoa_president_helu_20220829"
+        ],
+        "note": "Recited in the present tense ('is the President of the party') in the background of the 29 August 2022 leave ruling, CV 55/2022 (TO-DPFI-07).",
+        "uncertainty": "A judicial background recital, probably drawn from the applicants' own filings, not a court finding; it carries the weight of party self-description relayed by the court. No selection date, term, constitution or successor is given. Kept separate from the Party leader role (to_dpfi_leader) because no constitution shows whether they are one office."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2022-08-29",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_peoples_party_peoples_party_society_secretary_77946462f443eb96",
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_secretary",
+      "person_id": "to_tevita_lavemaau",
+      "holder": {
+        "name": "Tevita Lavemaau",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "attested_period": {
+          "from": "2022-04-19",
+          "through": "2022-04-21"
+        },
+        "sources": [
+          "to_sc_kiu_v_tuionetoa_20220429"
+        ],
+        "claim_ids": [
+          "to_peoples_party_incorporated_society_2022"
+        ],
+        "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+        "uncertainty": "A society officer observation, not a Cabinet office or party leadership term."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2022-04-19",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_crown_king_d38e36d0c9b36af7",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "holder": "to_tupou_vi_2025",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_crown_king_141b845110e8e610",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "person_id": "taufaahau_tupou_iv",
+      "holder": {
+        "name": "Taufa'ahau Tupou IV",
+        "attested_on": null,
+        "from": null,
+        "until": "2006-09-11",
+        "sources": [
+          "to_act_income_tax_amend_1990",
+          "to_act_constitution_amend_1990",
+          "to_pmo_20060911_death_notice",
+          "to_pmo_20060911_proclamation"
+        ],
+        "claim_ids": [
+          "to_crown_assent_tupou_iv_19900712",
+          "to_crown_assent_tupou_iv_19900808",
+          "to_crown_tupou_iv_death_20060911",
+          "to_crown_gtv_devolution_proclamation_20060911"
+        ],
+        "note": "King when the period opens: dated royal assents of 12 July and 8 August 1990 (TO-CROWN-01). His reign ended with his death in Auckland at 00:34 on 11 September 2006, Tongan time (23:34 on 10 September, New Zealand time), as Gazette No. 20 records; Gazette No. 19 states that the Crown devolved by his decease (TO-CROWN-03, TO-CROWN-04).",
+        "uncertainty": "The start of the reign (1965) is outside the period and is not structured. The end is the Tongan calendar date of the death, to which the proclamation's devolution wording ties the transfer of the Crown; it is not taken from George Tupou V's proclamation or coronation. The State Funeral, burial and mourning are separate claims."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "reference_only": true,
+      "appearance_date": null,
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_crown_king_688fffc508eff322",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "holder": {
+        "name": "George Tupou V",
+        "attested_on": null,
+        "from": "2006-09-11",
+        "until": "2012-03-18",
+        "sources": [
+          "to_pmo_20060911_death_notice",
+          "to_pmo_20060911_proclamation",
+          "to_pmo_20060911_proclamation_to",
+          "to_gazette_ext_8_2012",
+          "to_gazette_ext_9_2012"
+        ],
+        "claim_ids": [
+          "to_crown_tupou_iv_death_20060911",
+          "to_crown_gtv_devolution_proclamation_20060911",
+          "to_crown_gtv_devolution_proclamation_to_20060911",
+          "to_crown_gtv_death_20120318",
+          "to_crown_tupou_vi_devolution_proclamation_20120319"
+        ],
+        "note": "Formerly Crown Prince Tupouto'a; Siaosi Tupou V in the Tongan texts. Accession by devolution of the Crown on the decease of Taufa'ahau Tupou IV at 00:34 on 11 September 2006, Tongan time (TO-CROWN-04); proclaimed King by Gazette No. 19 on the same Tongan day, as a separate event. Traditional installation (taumafa kava) on 30 July 2008 and coronation on 1 August 2008 (TO-CROWN-05). Died in Hong Kong at 20:58 on 18 March 2012, Tonga time (TO-CROWN-06).",
+        "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation, the traditional installation, the coronation or the coronation oath (which no source dates). The end is his death as Gazette Extraordinary No. 8 records it; Gazette Extraordinary No. 9 states that the Crown devolved by his decease. No accession time is stored."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2006-09-11",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_crown_king_b8f8782fa54a5ac9",
+      "institution_id": "to_crown",
+      "role_id": "to_king",
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "holder": {
+        "name": "Tupou VI",
+        "attested_on": null,
+        "from": "2012-03-18",
+        "until": null,
+        "sources": [
+          "to_gazette_ext_8_2012",
+          "to_gazette_ext_9_2012"
+        ],
+        "claim_ids": [
+          "to_crown_gtv_death_20120318",
+          "to_crown_tupou_vi_devolution_proclamation_20120319"
+        ],
+        "note": "Formerly Crown Prince Tupouto'a Lavaka, the former Prince 'Ulukalala Lavaka Ata, on whom the Crown Prince title was vested in September 2006. Accession by devolution of the Crown on the decease of George Tupou V at 20:58 on 18 March 2012, Tonga time; proclaimed King on 19 March 2012 as a separate event (TO-CROWN-07); crowned on 4 July 2015 (TO-CROWN-08).",
+        "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation or the coronation. No end is inferred: no source here records one before the 7 September 2026 cutoff, and the latest attestation in this packet is 18 December 2025 (to_tupou_vi_2025)."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2012-03-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_deputy_speaker_022d07f475f4071c",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_deputy_speaker",
+      "person_id": "to_lord_tuihaangana_deputy_speaker_2025",
+      "holder": "to_speakers_appointment",
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2025-12-18",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_a9e5f57f914386f3",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_lord_tuilakepa_speaker_2008",
+      "holder": {
+        "name": "Lord Tu'ilakepa",
+        "attested_on": "2008-06-02",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_20080602_speaker_reply",
+          "to_pmo_20100629_assembly_transcript"
+        ],
+        "claim_ids": [
+          "to_speaker_tuilakepa_reply_signed_20080602",
+          "to_speaker_tuilakepa_presides_20100629"
+        ],
+        "note": "Signed the Assembly's reply of 2 June 2008 to the Princess Regent's Speech from the Throne as 'Sea 'o e Fale Alea', and presided as Speaker on 29 June 2010 in a government-published transcript that addresses a petition to 'Lord Tu'ilakepa, 'Eiki Sea 'o e Fale Alea'.",
+        "uncertainty": "Event-dated to the reply, which prints only 'Tu'ilakepa'. No appointment instrument or release was found; the day 2 May 2008 appears only in IPU's 2008 summary, which the Crown packet holds and this holder does not cite. No end is stated, and the Interim Speaker of December 2010 (to_interim_speaker_tupou_styled_20101203) is not used as one."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2008-06-02",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_ba7922e4cbb61ef9",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_lord_lasike_speaker_2011",
+      "holder": {
+        "name": "Lord Lasike",
+        "attested_on": "2011-01-14",
+        "from": null,
+        "until": "2012-07-17",
+        "sources": [
+          "to_la_20110114_oaths",
+          "to_la_20110404_knesset_visit",
+          "to_sc_r_v_lasike_cr285_2011",
+          "to_la_20120717_speaker_revoked"
+        ],
+        "claim_ids": [
+          "to_lasike_speaker_administers_oaths_20110114",
+          "to_lasike_speaker_styled_20110404",
+          "to_lasike_testimony_speaker_cr285",
+          "to_lasike_speaker_appointment_revoked_20120717"
+        ],
+        "note": "Selected unopposed by the Assembly on 21 December 2010, with the royal appointment then still to come (claims, not a start). Event-dated to 14 January 2011, the first dated record of him acting as Speaker. The end is the King's revocation of his appointment under clause 61(2)(c), stated as effective immediately and conveyed by letter on 17 July 2012.",
+        "uncertainty": "The royal appointment day is unknown, so from stays null. until rests on the release's 'effective immediately' and the letter dated 17 July 2012; the instrument's own date is not printed. The conviction of 9 July 2012 and the loss of his seat are not used as the end. No identity is asserted with 'the Honourable Lasike' who acted as Speaker in 1995."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2011-01-14",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_437e490fd9398f1e",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_samiu_kuita_vaipulu",
+      "holder": {
+        "name": "Samiu Vaipulu",
+        "attested_on": "2024-12-09",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_assembly_minutes_48_20241209"
+        ],
+        "claim_ids": [
+          "to_deputy_pm_vaipulu_listed_20241209"
+        ],
+        "note": "Printed as 'Hon. Samiu Vaipulu', Deputy Prime Minister and Minister of Justice and Prisons, in the members' list of the minutes of 9 December 2024 (TO-TR24-02). The Assembly's 24 December 2024 roll and the PMO's 6 January 2025 announcement print 'Samiu Kuita Vaipulu'.",
+        "uncertainty": "A dated membership-list observation only; his appointment date and the end of his deputy premiership are unrecorded, and Poasi Mataele Tei's 2021 observation gains no end from it. By 31 January 2025 he is listed as the People's Representative for Vava'u 15, outside the Cabinet (to_vaipulu_peoples_rep_listed_20250131); that is an upper bound, not an end date. His acting premiership is recorded as claims on the Prime Minister's office, not as a holder observation."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2024-12-09",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_d7f1274bbab9da6a",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_lord_maafu_dpm_2017",
+      "holder": {
+        "name": "Lord Ma'afu",
+        "attested_on": null,
+        "from": "2017-09-01",
+        "until": null,
+        "sources": [
+          "to_pmo_20170906_ministerial_appointments"
+        ],
+        "claim_ids": [
+          "to_dpm_maafu_royal_endorsement_effective_20170901",
+          "to_dpm_maafu_endorsement_conveyed_20170905"
+        ],
+        "note": "Appointed Deputy Prime Minister by the King's endorsement under the Royal Sign Manual 'with effect from 1st September, 2017', conveyed to the PMO on 5 September 2017 (TO-DPM-08).",
+        "uncertainty": "No later attestation of this deputy premiership and no end was found; the Cabinet effective 5 January 2018, which names him Minister of Lands only, supplies none. His acting premiership from 1 September 2017 is a claim on to_pm. A separate observation from his 2020-2021 deputy premiership."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2017-09-01",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_cabinet_deputy_pm_778b56de3f6111e2",
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "person_id": "to_lord_maafu_dpm_2017",
+      "holder": {
+        "name": "Lord Ma'afu",
+        "attested_on": "2021-04-21",
+        "from": null,
+        "until": "2021-12-12",
+        "sources": [
+          "to_la_member_maafu_2021",
+          "to_pmo_20211213_maafu_death"
+        ],
+        "claim_ids": [
+          "to_dpm_maafu_member_page_20210421",
+          "to_dpm_maafu_styled_at_death_20211213",
+          "to_dpm_maafu_death_20211212"
+        ],
+        "note": "Deputy Prime Minister on the Assembly's member page as captured on 21 April 2021 and styled so by the PMO at his death in Auckland in the early hours of Sunday 12 December 2021 (TO-DPM-10).",
+        "uncertainty": "The start is known only as 'mei Tisema 2020' (Assembly list, month only), so the holder is event-dated to the capture; until is the stated day of his death in office. Who, if anyone, held or acted in the office from 12 to 27 December 2021 is unresolved, and Poasi Mataele Tei's start on 28 December 2021 is unchanged."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2021-04-21",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_df766e98fea45824",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_veikune_speaker_2001",
+      "holder": {
+        "name": "Hon. Veikune",
+        "attested_on": "2001-04-30",
+        "from": null,
+        "until": null,
+        "sources": [
+          "to_pmo_legislative_assembly_page_2001",
+          "to_pmo_legislative_assembly_page_20011214"
+        ],
+        "claim_ids": [
+          "to_speaker_veikune_listed_20010430",
+          "to_speaker_veikune_listed_20011214"
+        ],
+        "note": "First term. The government's Legislative Assembly page presented him as Speaker when captured on 30 April 2001 (last modified 19 February 2001) and in its revision of 14 December 2001.",
+        "uncertainty": "Event-dated to the first capture only; the roster could lag (a capture of August 2002, after his successor's appointment had been reported, still marked him Speaker). His appointment (1998 or 1999 in the Assembly's retrospectives) and the end of this term (2001 or 2002) are unresolved; no end is inferred from Tu'ivakano's 2002 appointment, which the government statement says 'succeeds the Hon. Veikune'."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2001-04-30",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    },
+    {
+      "id": "to_cast_legislative_assembly_speaker_54423726cbe0be83",
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "person_id": "to_veikune_speaker_2001",
+      "holder": {
+        "name": "Hon. Veikune",
+        "attested_on": "2005-03-22",
+        "from": null,
+        "until": "2006-01-25",
+        "sources": [
+          "to_la_speaker_page_2005",
+          "to_ipu_2005",
+          "to_pmo_20060209_veikune_directives"
+        ],
+        "claim_ids": [
+          "to_speaker_veikune_royal_appointment_20050322",
+          "to_ipu_2005_speaker_veikune_order_20050323",
+          "to_speaker_veikune_end_20060125",
+          "to_palace_confirms_veikune_speaker_end_20060203"
+        ],
+        "note": "Second term. The Assembly's Speaker page says King Taufa'ahau Tupou IV appointed him on 22 March 2005 (an appointment day, not a stated effective day, so no from). The PMO release of 9 February 2006 states that his position as Speaker ended on 25 January 2006, as the Acting Private Secretary to His Majesty confirmed on 3 February 2006.",
+        "uncertainty": "until is the stated end day. The appointment instrument was not seen, and IPU's 23 March 2005 statement is corroboration only. The Land Court's 2007 recital of his removal (to_speaker_veikune_removal_recited_20071213) gives no day and is not used."
+      },
+      "identity_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "reference_only": true,
+      "appearance_date": "2005-03-22",
+      "appearance_date_meaning": "Portrait reference context only; original observation precision and tenure uncertainty remain in holder."
+    }
+  ],
+  "future_candidates": [
+    {
+      "person": {
+        "id": "fictional_to_lesieli_fotu",
+        "name": "Lesieli Fotu",
+        "born": {
+          "kind": "year",
+          "value": "1984"
+        },
+        "sources": []
+      },
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "peoples_representative",
+      "source_draft": "draft_c04_to_01",
+      "appearance_seed": "8e79e5ffd099a2af",
+      "presentation": "female",
+      "fictional_biography": "An invented secondary-school science teacher from an outer-island village of Vava'u who later coordinated a women's handicraft and fisheries cooperative and a solar-lighting programme for remote households. In play she may register as an elector in a Vava'u constituency and stand, formally as an individual, when a general election or by-election occurs. She holds a people's seat only if she wins one in play.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "sources": [
+        "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+        "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1989/1989-0022/ElectoralAct_2.pdf"
+      ],
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes."
+    },
+    {
+      "person": {
+        "id": "fictional_to_sitani_lolohea",
+        "name": "Sitani Lolohea",
+        "born": {
+          "kind": "year",
+          "value": "1971"
+        },
+        "sources": []
+      },
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "prime_minister",
+      "source_draft": "draft_c04_to_02",
+      "appearance_seed": "e60d18f4dc6b11da",
+      "presentation": "male",
+      "fictional_biography": "An invented civil engineer who managed road and water-supply works across Tongatapu and later ran a small construction-safety training business. In play he may first win a Tongatapu people's seat at a general election or by-election. Only as a sitting elected representative could he be nominated, seconded by two other elected representatives, and recommended by a majority in a secret ballot for appointment as Prime Minister.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "sources": [
+        "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf"
+      ],
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes."
+    },
+    {
+      "person": {
+        "id": "fictional_to_pisila_tukuafu",
+        "name": "Pisila Tukuafu",
+        "born": {
+          "kind": "year",
+          "value": "1979"
+        },
+        "sources": []
+      },
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "nonelected_minister",
+      "source_draft": "draft_c04_to_03",
+      "appearance_seed": "deef67d61750bff5",
+      "presentation": "female",
+      "fictional_biography": "An invented public-finance specialist who managed budget-reform programmes for a regional development organisation in the Pacific and later taught public administration at a tertiary institute in Nuku'alofa. In play a Prime Minister could nominate her as one of the few Cabinet Ministers who are not elected representatives; she would take a ministry only after formal appointment by the King on that nomination. She would sit and vote in the Assembly, but not in a vote of no confidence, and would retain office until a constitutionally defined termination. After a general election she would remain a caretaker until her appointment is revoked or continued on the incoming Prime Minister's recommendation; the election date alone does not remove her.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "sources": [
+        "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf"
+      ],
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes."
+    },
+    {
+      "person": {
+        "id": "fictional_to_kalolo_matalehu",
+        "name": "Kalolo Matalehu",
+        "born": {
+          "kind": "year",
+          "value": "1976"
+        },
+        "sources": []
+      },
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "party_organizer",
+      "source_draft": "draft_c04_to_04",
+      "appearance_seed": "e521150d49923a7f",
+      "presentation": "male",
+      "fictional_biography": "An invented community-radio producer and youth rugby coach from a village in eastern Tongatapu who later managed a small printing and publishing cooperative. In play he may join a political organization such as the Democratic Party of the Friendly Islands (PTOA) after the fictional window opens and be chosen as its leader only under that organization's own rules, if its leadership falls vacant. Leading it would not give him a seat: he would still need to win a people's constituency as an individual candidate.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "sources": [
+        "https://www.businessregistries.gov.to/Documentation/TO/Consultation_Memo_Proposed_New_Incorporated_Societies_Act_July_21_2026.pdf"
+      ],
+      "restriction": "Reference only: PTOA officer rules and title equivalence remain unreviewed; no party office, seat, or executive permission."
+    }
+  ]
+}

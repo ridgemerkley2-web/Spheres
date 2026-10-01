@@ -1,4 +1,4 @@
-"""Bounded physical-file and exact-person checks for Tonga's 1990 illustration."""
+"""Physical-file, exact-person and era-boundary checks for Tonga's King IV art."""
 import copy
 import hashlib
 import unittest
@@ -26,10 +26,24 @@ class TupouPortraitChecks(unittest.TestCase):
         self.assertEqual((self.portrait['width'], self.portrait['height']), (1024, 1536))
 
     def test_conservative_half_open_appearance_window(self):
+        self.assertEqual((self.portrait['from'], self.portrait['to']),
+                         ('1990-01-01', '1991-01-01'))
         for date in ('1990-01-01', '1990-07-04', '1990-12-31'):
             with self.subTest(date=date):
-                self.assertIsNotNone(pipeline.select_portrait(self.scoped, self.person_id, date, pipeline.ROOT, self.known))
-        for date in ('1989-12-31', '1991-01-01', '2006-09-10', '2035-01-01'):
+                selected = pipeline.select_portrait(self.scoped, self.person_id, date, pipeline.ROOT, self.known)
+                self.assertIsNotNone(selected)
+                self.assertEqual(selected['asset'], self.portrait['asset'])
+                self.assertEqual(selected['sha256'], self.portrait['sha256'])
+        later_asset = 'spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png'
+        for date in ('1991-01-01', '1998-07-04', '2006-09-10'):
+            with self.subTest(date=date):
+                selected = pipeline.select_portrait(self.scoped, self.person_id, date, pipeline.ROOT, self.known)
+                self.assertIsNotNone(selected)
+                self.assertEqual(selected['asset'], later_asset)
+                self.assertNotEqual(selected['sha256'], self.portrait['sha256'])
+                self.assertEqual((selected['from'], selected['to']),
+                                 ('1991-01-01', '2006-09-11'))
+        for date in ('1989-12-31', '2006-09-11', '2035-01-01'):
             with self.subTest(date=date):
                 self.assertIsNone(pipeline.select_portrait(self.scoped, self.person_id, date, pipeline.ROOT, self.known))
 

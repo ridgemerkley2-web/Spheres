@@ -2,8 +2,9 @@
 """Validate the CLAUDE-C04-PREP-01 fictional successor proposals (France/Tonga).
 
 Proposal-only preparation for C04. This checker reads the draft dossiers and
-their source register, plus current repository contracts (read-only), and exits
-non-zero on any violation. It never writes, installs, renders or fetches.
+their source register against pinned pre-production inputs by default. Pass
+--live-inputs for the original current-repository compatibility check. Both
+modes exit non-zero on a violation and never write, install, render or fetch.
 
 What it enforces, per proposal:
   * explicit fictional labels on the person, name, biography and appearance brief;
@@ -26,7 +27,7 @@ What it enforces, per proposal:
 
 Usage:
   python -X utf8 tools/avatars/check_successor_proposals.py [--packet DIR]
-      [--root DIR] [--json] [--list-inputs]
+      [--root DIR] [--json] [--list-inputs] [--live-inputs]
 """
 from __future__ import annotations
 
@@ -39,6 +40,7 @@ import pathlib
 import re
 import sys
 import unicodedata
+from proposal_acceptance_inputs import Snapshot, live_scope
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 PACKET = pathlib.Path('docs/campaign-certification/C04/preparation/france-tonga')
@@ -181,10 +183,11 @@ def strings(obj):
 
 
 class Repo:
-    """Read-only view of the current repository contracts and research corpus."""
+    """Read-only repository view; explicit snapshot selects immutable inputs."""
 
-    def __init__(self, root: pathlib.Path):
+    def __init__(self, root: pathlib.Path, *, snapshot=None):
         self.root = pathlib.Path(root)
+        self.snapshot = snapshot
         self.inputs: list[dict] = []
         self.existing_ids: dict[str, str] = {}
         self.historical_ids: set[str] = set()
@@ -206,9 +209,14 @@ class Repo:
             self.nation_tokens.setdefault(nation, set()).update(norm(text).split())
 
     def _read(self, rel):
-        data = (self.root / rel).read_bytes()
+        data = self.snapshot.read(rel) if self.snapshot else (self.root / rel).read_bytes()
         self.inputs.append({'path': rel, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
         return data
+
+    def _paths(self, pattern):
+        if self.snapshot:
+            return [str(self.root / rel) for rel in self.snapshot.paths(pattern)]
+        return sorted(glob.glob(str(self.root / pattern)))
 
     def _json(self, rel):
         return json.loads(self._read(rel).decode('utf-8'))
@@ -283,7 +291,7 @@ class Repo:
         for person in roles['appearance_eligibility_research_backlog']:
             self._real(person['name'], 'roles-and-lifecycle.json backlog')
         texts = []
-        research = sorted(glob.glob(str(self.root / 'docs/campaign-certification/C01/research/*.json')))
+        research = self._paths('docs/campaign-certification/C01/research/*.json')
         for path in research:
             rel = pathlib.Path(path).relative_to(self.root).as_posix()
             packet = self._json(rel)
@@ -313,7 +321,7 @@ class Repo:
                             for holder in role.get('holder_claims', []):
                                 if isinstance(holder, dict) and holder.get('name'):
                                     self._add_hereditary(holder['name'])
-        for path in sorted(glob.glob(str(self.root / 'docs/campaign-certification/C01/research/*.md'))):
+        for path in self._paths('docs/campaign-certification/C01/research/*.md'):
             rel = pathlib.Path(path).relative_to(self.root).as_posix()
             text = self._read(rel).decode('utf-8')
             texts.append(text)
@@ -751,10 +759,13 @@ def main(argv=None):
     parser.add_argument('--packet', type=pathlib.Path, default=PACKET)
     parser.add_argument('--json', action='store_true', help='print a machine-readable report')
     parser.add_argument('--list-inputs', action='store_true', help='print SHA-256 of every input read')
+    parser.add_argument('--live-inputs', action='store_true',
+                        help='check current-name/ID compatibility instead of the pinned preparation baseline')
     args = parser.parse_args(argv)
     try:
         doc, sources = load_packet(args.root, args.packet)
-        repo = Repo(args.root)
+        snapshot = None if args.live_inputs else Snapshot(args.root)
+        repo = Repo(args.root, snapshot=snapshot)
     except (OSError, ValueError, KeyError) as exc:
         print(f'ERROR: cannot load inputs: {exc}', file=sys.stderr)
         return 2
@@ -768,8 +779,11 @@ def main(argv=None):
     if args.json:
         print(json.dumps({'pass': not errors, 'errors': [dict(zip(('code', 'path', 'message'), e)) for e in errors],
                           'proposals': len(doc.get('proposals', [])), 'packet_inputs': packet_inputs,
-                          'repository_inputs': repo.inputs}, indent=2, ensure_ascii=False))
+                          'repository_inputs': repo.inputs,
+                          'input_scope': snapshot.scope() if snapshot else live_scope()}, indent=2, ensure_ascii=False))
     else:
+        print('Input scope: ' + (f'immutable preparation baseline {snapshot.scope()["source_revision"]}; not live production'
+                                if snapshot else 'live repository compatibility; not production acceptance'))
         for code, path, message in errors:
             print(f'{code} {path}: {message}')
         counts = {}

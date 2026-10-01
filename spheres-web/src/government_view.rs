@@ -64,7 +64,7 @@ fn institution_name(w: &WorldState, id: NationId, pillar: Pillar) -> String {
 fn category(kind: &str) -> &'static str {
     match kind {
         "invite" | "expel" | "call_election" => "coalition",
-        "secure_pillar" => "institutions",
+        "secure_pillar" | "tonga_institutions" => "institutions",
         _ => "reform",
     }
 }
@@ -72,6 +72,9 @@ fn category(kind: &str) -> &'static str {
 fn action_key(a: &Value) -> String {
     let c = &a["command"];
     let kind = c["kind"].as_str().unwrap_or("unknown");
+    if kind == "tonga_institutions" {
+        return format!("tonga_institutions:{}", c["action"]);
+    }
     let target = ["party", "pillar", "bloc", "id"]
         .iter()
         .find_map(|key| c[*key].as_str());
@@ -88,6 +91,45 @@ fn action_index(actions: &[Value], kind: &str) -> Option<usize> {
 /// refusals and the political watch remain intact for every caller.
 pub(crate) fn enrich(w: &WorldState, id: NationId, value: &mut Value) {
     value["party_leadership"] = super::person_portraits::campaign_view(w, id);
+    if id == NationId::Tonga {
+        let institutions = &value["party_leadership"]["institutional_leadership"];
+        let mut extra = vec![
+            institutions["actions"]["reform"].clone(),
+            institutions["actions"]["hold_election"].clone(),
+        ];
+        extra.extend(
+            institutions["actions"]["vacancies"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .cloned(),
+        );
+        for c in institutions["future_preview"]
+            .as_array()
+            .into_iter()
+            .flatten()
+        {
+            extra.extend(c["actions"].as_array().into_iter().flatten().cloned());
+        }
+        if let Some(actions) = value["actions"].as_array_mut() {
+            for action in extra.into_iter().filter(|a| a["command"].is_object()) {
+                if actions.iter().any(|a| a["command"] == action["command"]) {
+                    continue;
+                }
+                let label = match action["command"]["action"]["type"].as_str() {
+                    Some("reform") => "Adopt the Assembly model",
+                    Some("hold_election") => "Hold an Assembly election",
+                    Some("recommend_prime_minister") => "Recommend and appoint the Prime Minister",
+                    Some("appoint_minister") => "Appoint a non-elected minister",
+                    _ => "Vacate the civilian office",
+                };
+                actions.push(json!({"kind":"tonga_institutions","label":label,
+                    "command":action["command"],"price":action["price_pc"],"refusal":action["refusal"],
+                    "affordable":w.nation_opt(id).is_some_and(|n|n.political_capital>=action["price_pc"].as_f64().unwrap_or(0.0)),
+                    "detail":"An explicit campaign action in Tonga's separate civilian institutions. Assembly recommendation and royal appointment are one disclosed arcade step; the monarch remains separate. No historical outcome is scheduled."}));
+            }
+        }
+    }
     if let Some(actions) = value["actions"].as_array_mut() {
         for action in actions {
             action["key"] = json!(action_key(action));
@@ -227,6 +269,38 @@ pub(crate) fn preview(w: &WorldState, id: NationId, command: &Value) -> Value {
     let price_pc = (before_n.political_capital - after_n.political_capital).max(0.0);
     let money_cost = (net_public_balance(before_n) - net_public_balance(after_n)).max(0.0);
     let mut changes = vec![];
+    if command["kind"] == "tonga_institutions" {
+        let before = spheres_sim::institutional_leadership::view(w, id);
+        let next = spheres_sim::institutional_leadership::view(&after, id);
+        let text = |v: &Value| {
+            v["prime_minister"]["person"]["name"]
+                .as_str()
+                .unwrap_or("Vacant")
+                .to_string()
+        };
+        add_change(
+            &mut changes,
+            "tonga_reform",
+            "Assembly model",
+            before["reformed"].to_string(),
+            next["reformed"].to_string(),
+            "A separate campaign institution; this is not a date-triggered historical reform.",
+        );
+        add_change(
+            &mut changes,
+            "tonga_pm",
+            "Prime Minister",
+            text(&before),
+            text(&next),
+            "A civilian government office, separate from the King.",
+        );
+        for (field, label) in [
+            ("people_representatives", "Named people's representatives"),
+            ("nonelected_ministers", "Non-elected Cabinet ministers"),
+        ] {
+            add_change(&mut changes,format!("tonga_{field}"),label,before[field].as_array().map_or(0,Vec::len).to_string(),next[field].as_array().map_or(0,Vec::len).to_string(),"The actual recorded appointments after this command; unnamed and hereditary seats remain institutional.");
+        }
+    }
     add_change(
         &mut changes,
         "political_capital",
@@ -372,6 +446,9 @@ pub(crate) fn preview(w: &WorldState, id: NationId, command: &Value) -> Value {
     }
     let kind = command["kind"].as_str().unwrap_or("");
     let mut warnings = vec![];
+    if kind == "tonga_institutions" {
+        warnings.push("Assembly recommendation and royal appointment are one arcade action. Elections seat the reviewed civilian pool; remaining seats stay institutional. The monarch is not replaced and no historical outcome is scheduled.".to_string());
+    }
     if kind == "secure_pillar" {
         warnings.push("This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward.".to_string());
     }
@@ -618,5 +695,46 @@ mod tests {
             .iter()
             .any(|s| s.as_str().unwrap().contains("nominal")));
         assert_eq!(spheres_sim::save(&w), saved);
+    }
+
+    #[test]
+    fn tonga_institution_reviews_are_exact_read_only_and_keep_the_crown() {
+        let mut w = world(NationId::Tonga, true);
+        spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();
+        w.nation_mut(NationId::Tonga).political_capital = 100.0;
+        let saved = spheres_sim::save(&w);
+        let command = json!({"kind":"tonga_institutions","action":{"type":"reform"}});
+        let result = preview(&w, NationId::Tonga, &command);
+        assert_eq!(result["valid"], true, "{result}");
+        assert_eq!(result["price_pc"], 35.0);
+        assert!(result["changes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|c| c["key"] == "tonga_reform"));
+        assert_eq!(spheres_sim::save(&w), saved);
+        let mut board = super::super::government_json(&w, NationId::Tonga);
+        let actions = board["actions"].clone();
+        enrich(&w, NationId::Tonga, &mut board);
+        assert_eq!(board["actions"], actions);
+        assert_eq!(
+            preview(
+                &w,
+                NationId::Tonga,
+                &json!({"kind":"tonga_institutions","action":{"type":"reform","person_id":"invented"}})
+            )["valid"],
+            false
+        );
+        assert_eq!(preview(&w, NationId::France, &command)["valid"], false);
+        let mut actual = w.clone();
+        spheres_sim::apply_command(
+            &mut actual,
+            &super::super::parse_command(&w, &command, NationId::Tonga).unwrap(),
+        )
+        .unwrap();
+        assert_eq!(
+            officeholder(&actual, NationId::Tonga),
+            officeholder(&w, NationId::Tonga)
+        );
     }
 }

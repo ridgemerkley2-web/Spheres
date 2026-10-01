@@ -1,0 +1,77 @@
+..........................................................................................F.......................................EF................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................FF.....................................................
+======================================================================
+ERROR: setUpClass (test_certified_boundary_matrix.RealCommittedOutput)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_certified_boundary_matrix.py", line 669, in setUpClass
+    cls.outputs = matrix.build()
+                  ~~~~~~~~~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_boundary_matrix.py", line 1384, in build
+    roles, observations = build_identity(production, assets, identity, packet, owners, packets,
+                          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                         alive_at_start=countries[identity]['start_1990'])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_boundary_matrix.py", line 1087, in build_identity
+    executive = executive_role(production, identity, research_by_key)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_boundary_matrix.py", line 956, in executive_role
+    authorized = sum(bool(c['executive_eligibility'].get('authorized')) for c in pool)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_boundary_matrix.py", line 956, in <genexpr>
+    authorized = sum(bool(c['executive_eligibility'].get('authorized')) for c in pool)
+                          ~^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'executive_eligibility'
+
+======================================================================
+FAIL: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_cartoon_review.py", line 544, in test_committed_export_is_current_deterministic_and_read_only
+    self.assertEqual(cr.stale(files, cr.ROOT), [], 'regenerate with: python -X utf8 tools/avatars/cartoon_review.py')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['docs/campaign-certification/C03/preparat[115 chars].md'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json'
+
++ []
+- ['docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json',
+-  'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md'] : regenerate with: python -X utf8 tools/avatars/cartoon_review.py
+
+======================================================================
+FAIL: test_committed_output_is_current (test_certified_gap_ledger.CheckedInLedger.test_committed_output_is_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_certified_gap_ledger.py", line 498, in test_committed_output_is_current
+    self.assertEqual(ledger.stale(self.files), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['docs/campaign-certification/C01/gap-ledger/ledger.json'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'docs/campaign-certification/C01/gap-ledger/ledger.json'
+
+- ['docs/campaign-certification/C01/gap-ledger/ledger.json']
++ []
+
+======================================================================
+FAIL: test_conservative_half_open_appearance_window (test_tupou_portrait_s10c.TupouPortraitChecks.test_conservative_half_open_appearance_window) (date='1991-01-01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_tupou_portrait_s10c.py", line 34, in test_conservative_half_open_appearance_window
+    self.assertIsNone(pipeline.select_portrait(self.scoped, self.person_id, date, pipeline.ROOT, self.known))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'from': '1991-01-01', 'to': '2006-09-11', 'method': 'generated', 'style': 'cartoon', 'status': 'illustrated-likeness', 'asset': 'spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png', 'sha256': '4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa', 'bytes': 1665233, 'width': 1024, 'height': 1536, 'mode': 'RGB', 'composition': 'full-body', 'background_mode': 'opaque', 'generator': 'OpenAI built-in image_gen', 'generated_at': '2026-10-01', 'license': 'generated', 'source_url': 'https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif', 'credit': 'Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.', 'era_note': 'Separate older appearance of King Taufaahau Tupou IV, artistically aged thirteen years forward from the documented 1985 ETH portrait to about 1998. The 1991–2006 appearance window is an artistic interpretation and ends at the reviewed 11 September 2006 succession boundary. It does not claim a newly found 1998 photo. The original 1990 artwork and its window are unchanged.', 'identity_source': {'person_id': 'taufaahau_tupou_iv', 'kind': 'observed_portrait', 'reference_id': 'taufaahau-tupou-iv-eth-1985', 'asset': 'spheres-web/ui/person-portraits/references/tonga-taufaahau-tupou-iv-eth-1985-reference-v1.jpg', 'sha256': 'f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92', 'bytes': 157903, 'width': 1280, 'height': 842, 'mode': 'RGB', 'source_url': 'https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif', 'license': 'CC BY-SA 4.0', 'license_url': 'https://creativecommons.org/licenses/by-sa/4.0/', 'creator': 'Comet Photo AG (Zurich) / ETH Library, Image Archive', 'credit': 'Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.', 'rights_statement': 'Retained source statement: CC BY-SA 4.0. Existing retained unchanged 1280-pixel JPEG preview of the ETH archival TIFF, not the full TIFF. Original 1990 generation and appearance window are preserved. Reuse is for a separately reviewed older artistic interpretation.', 'source_license_statement': 'CC BY-SA 4.0', 'depiction_date': {'kind': 'year', 'value': '1985'}, 'source_review': 'tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json', 'source_metadata_sha256': '10dcdbf5ec386d67134b285ef40e9d5dafa81e3aa55278def16df7e2c8e98d69'}, 'supplemental_identity_sources': [], 'prompt_record': 'tools/avatars/person-prompts/tonga-taufaahau-tupou-iv-cartoon-1998-v1.txt', 'generation_record': 'Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-05.json, job tonga-taufaahau-tupou-iv-cartoon-1998-v1.', 'review': {'identity': True, 'likeness': True, 'era': True, 'visual': True, 'reviewer': 'Codex root: personally inspected source references and generated output; no human approval claimed', 'reviewed_at': '2026-10-01'}, 'visual_note': 'Codex root personally inspected exact reference and generated result: distinct recognizable face, full body with hands and shoes visible, approved outlined cartoon style and opaque dark teal background. Explicit age interpretation reviewed; no human approval claimed.', 'derivative_license': 'CC BY-SA 4.0', 'derivative_license_url': 'https://creativecommons.org/licenses/by-sa/4.0/'} is not None
+
+======================================================================
+FAIL: test_conservative_half_open_appearance_window (test_tupou_portrait_s10c.TupouPortraitChecks.test_conservative_half_open_appearance_window) (date='2006-09-10')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_tupou_portrait_s10c.py", line 34, in test_conservative_half_open_appearance_window
+    self.assertIsNone(pipeline.select_portrait(self.scoped, self.person_id, date, pipeline.ROOT, self.known))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'from': '1991-01-01', 'to': '2006-09-11', 'method': 'generated', 'style': 'cartoon', 'status': 'illustrated-likeness', 'asset': 'spheres-web/ui/person-portraits/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png', 'sha256': '4f42d7b1838dd40dc61e84af5a83394de1f2dd631ccf16509c36e5d45dc9cffa', 'bytes': 1665233, 'width': 1024, 'height': 1536, 'mode': 'RGB', 'composition': 'full-body', 'background_mode': 'opaque', 'generator': 'OpenAI built-in image_gen', 'generated_at': '2026-10-01', 'license': 'generated', 'source_url': 'https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif', 'credit': 'Spheres original cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. References: Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.', 'era_note': 'Separate older appearance of King Taufaahau Tupou IV, artistically aged thirteen years forward from the documented 1985 ETH portrait to about 1998. The 1991–2006 appearance window is an artistic interpretation and ends at the reviewed 11 September 2006 succession boundary. It does not claim a newly found 1998 photo. The original 1990 artwork and its window are unchanged.', 'identity_source': {'person_id': 'taufaahau_tupou_iv', 'kind': 'observed_portrait', 'reference_id': 'taufaahau-tupou-iv-eth-1985', 'asset': 'spheres-web/ui/person-portraits/references/tonga-taufaahau-tupou-iv-eth-1985-reference-v1.jpg', 'sha256': 'f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92', 'bytes': 157903, 'width': 1280, 'height': 842, 'mode': 'RGB', 'source_url': 'https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif', 'license': 'CC BY-SA 4.0', 'license_url': 'https://creativecommons.org/licenses/by-sa/4.0/', 'creator': 'Comet Photo AG (Zurich) / ETH Library, Image Archive', 'credit': 'Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.', 'rights_statement': 'Retained source statement: CC BY-SA 4.0. Existing retained unchanged 1280-pixel JPEG preview of the ETH archival TIFF, not the full TIFF. Original 1990 generation and appearance window are preserved. Reuse is for a separately reviewed older artistic interpretation.', 'source_license_statement': 'CC BY-SA 4.0', 'depiction_date': {'kind': 'year', 'value': '1985'}, 'source_review': 'tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json', 'source_metadata_sha256': '10dcdbf5ec386d67134b285ef40e9d5dafa81e3aa55278def16df7e2c8e98d69'}, 'supplemental_identity_sources': [], 'prompt_record': 'tools/avatars/person-prompts/tonga-taufaahau-tupou-iv-cartoon-1998-v1.txt', 'generation_record': 'Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/tonga-historical-batch-05.json, job tonga-taufaahau-tupou-iv-cartoon-1998-v1.', 'review': {'identity': True, 'likeness': True, 'era': True, 'visual': True, 'reviewer': 'Codex root: personally inspected source references and generated output; no human approval claimed', 'reviewed_at': '2026-10-01'}, 'visual_note': 'Codex root personally inspected exact reference and generated result: distinct recognizable face, full body with hands and shoes visible, approved outlined cartoon style and opaque dark teal background. Explicit age interpretation reviewed; no human approval claimed.', 'derivative_license': 'CC BY-SA 4.0', 'derivative_license_url': 'https://creativecommons.org/licenses/by-sa/4.0/'} is not None
+
+----------------------------------------------------------------------
+Ran 745 tests in 170.233s
+
+FAILED (failures=4, errors=1)

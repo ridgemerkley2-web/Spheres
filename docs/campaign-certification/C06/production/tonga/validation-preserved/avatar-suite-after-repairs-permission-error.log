@@ -1,0 +1,17 @@
+........................................................................................................................................................................................................................................................................................................................................................................................................E........................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+ERROR: test_changed_legacy_json_and_new_receipt_share_lf_roundtrip_bytes (test_research_import_io.TransactionTests.test_changed_legacy_json_and_new_receipt_share_lf_roundtrip_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_research_import_io.py", line 41, in test_changed_legacy_json_and_new_receipt_share_lf_roundtrip_bytes
+    io.write_transaction([(path,value),(receipt,provenance)])
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\research_import_io.py", line 75, in write_transaction
+    os.replace(staged, path)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ridge\\AppData\\Local\\Temp\\tmphuqilrsx\\.people.json.import-y5rgmgtv.tmp' -> 'C:\\Users\\ridge\\AppData\\Local\\Temp\\tmphuqilrsx\\people.json'
+
+----------------------------------------------------------------------
+Ran 753 tests in 85.739s
+
+FAILED (errors=1)

@@ -54,13 +54,15 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 
 ## Claude's current work
 
-The [CP1 acceleration assignment](CP1-ACCELERATION.md) makes Tonga the next
-complete country cast. `CLAUDE-C06-TONGA-01` is ready to claim after the accepted
-Codex identity proposal: reuse King IV, source the two existing 1990 identities,
-and resolve the five later identity checks before completing Tonga's cast. This is an
-assignment, not a claim that Claude has begun production. C01-44 is now accepted
-bounded research; use its integrated evidence and preserve its unresolved identities. Do not let the Russia/DA
-archive holds prevent work on a ready Tonga batch.
+The user assigned Tonga production to Codex on 1 October. The stable task ID
+`CLAUDE-C06-TONGA-01` is retained, with owner Codex; do not claim a duplicate
+portrait batch. Follow the [production handoff](CODEX-C06-TONGA-PRODUCTION.md)
+and [country inventory](../../campaign-certification/C06/countries/tonga/README.md).
+All 50 accepted holder observations are linked to exact identities, while
+Fatai Helu's verified political likeness and the unresolved party/office chains
+remain explicit gaps. Claude can continue separately assigned research using
+the current queue. Preserve C01-44's accepted evidence, all original uncertainties
+and the historical cutoff; research acceptance does not establish country signoff.
 
 Updated 1 October 2026 against the live remote tips and completed independent
 reviews. The central queue contains 31 completed bounded Claude tasks and two

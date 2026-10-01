@@ -20,7 +20,8 @@
     "roles": {
      "research": 11,
      "production_party": 7,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 1190,
     "case_kinds": {
@@ -76,6 +77,8 @@
     "people_without_bound_art_at_yearly_samples": 13,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 28,
+    "fictional_party_candidates": 28,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 0,
     "fictional_executive_authorized": 0,
     "research_roles_without_holder_observation": [],
@@ -93,7 +96,7 @@
     "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:za_state_president, research:za_president_election): 4 of 37 yearly samples 1990-2026 identify a holder.",
-    "Future: 28 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.",
+    "Future: 28 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.",
     "Portrait window extends past a recorded death: oliver_tambo, zephania_mothopeng."
    ]
   }

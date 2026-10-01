@@ -20,7 +20,8 @@
     "roles": {
      "research": 2,
      "production_party": 15,
-     "executive": 1
+     "executive": 1,
+     "institutional_fiction": 0
     },
     "cases": 1103,
     "case_kinds": {
@@ -67,6 +68,8 @@
     "people_without_bound_art_at_yearly_samples": 34,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 60,
+    "fictional_party_candidates": 60,
+    "fictional_institutional_candidates": 0,
     "fictional_candidates_with_portrait": 0,
     "fictional_executive_authorized": 0,
     "research_roles_without_holder_observation": [],
@@ -81,7 +84,7 @@
     "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "The national executive office has no paired research role, so its historical chain is unresearched.",
-    "Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
+    "Future: 60 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive."
    ]
   }
  ],

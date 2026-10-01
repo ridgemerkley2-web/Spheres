@@ -1,0 +1,14 @@
+{
+  "command": "node external/run-unit-final.cjs (exact repo-discovered test list; --test-concurrency=1)",
+  "exit_code": 0,
+  "started_utc": "2026-10-01T13:19:15.2520683Z",
+  "finished_utc": "2026-10-01T13:25:36.3204005Z",
+  "stopped_for_resource_floor": false,
+  "min_available_commit_bytes": 3869769728,
+  "min_available_commit_gib": 3.604,
+  "sources_unchanged": true,
+  "source_diff": [],
+  "source_file_count": 650,
+  "background_diagnostic_present": true,
+  "scope": "Full UI unit runner with serial file concurrency; no full suite, web link, resource timing or qualification result."
+}

@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "records": [
+    {
+      "person_id": "fictional_to_lesieli_fotu",
+      "name": "Lesieli Fotu",
+      "appearance_seed": "8e79e5ffd099a2af",
+      "method": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "asset": "spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png",
+      "sha256": "f13ddcd9ad637c22c14803361d84de436e292556b3dfb4b49cf39d3fd007a2c5",
+      "bytes": 1834406,
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "original_generated_file": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-ee216291-a122-4ea9-9e52-31971903498f.png",
+      "prompt_record": "tools/avatars/person-prompts/tonga-lesieli-fotu-fictional-2026-v1.txt",
+      "exact_submitted_prompt": "Use case: stylized-concept. Asset: full-body 2D cartoon character for Spheres, portrait 1024x1536. Use the supplied Margaret Thatcher cartoon ONLY as a reference for strong ink outlines, graphic cel shading, adult proportions, centered full-body composition and quiet opaque dark teal background. Create a different, original fictional Tongan woman named Lesieli Fotu; do not copy Thatcher's face, hair, clothes, handbag or identity. She is a fictional civilian community organizer, about 46, a sturdy adult with warm medium-brown skin, a broad natural face, expressive dark eyes, thick black hair in a tidy low bun held by a modest carved comb. Friendly determined expression. Wear a tasteful bright teal-and-coral floral puletaha (matching modest blouse and ankle-length skirt), a finely woven kiekie waist ornament and flat dark sandals; hold a thin woven pandanus folder of meeting notes. Respectful believable Tongan clothing; no royal, chiefly or party insignia. Exactly one person, entire head, hands and both feet inside frame with comfortable margins, mild three-quarter standing pose facing viewer, about5.5-head adult proportions, simplified clear facial structure readable as a small avatar. Drawn cartoon, not photographic, not3D, not chibi, not caricature mockery. Quiet opaque deep teal backdrop and subtle contact shadow. Original invented identity, not a depiction of a real politician. No letters, caption, watermark, logo, crown, medals or weapons.",
+      "input_images": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "role": "Style/composition only; not identity or clothing",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "persistence": "Byte-identical copy of built-in PNG; no pixel editing or recompression.",
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "review": {
+        "design": true,
+        "visual": true,
+        "reviewer": "Codex",
+        "reviewed_at": "2026-10-01",
+        "observations": [
+          "Sturdy civilian woman, black low bun, coral/teal floral puletaha, woven folder, full body with both feet visible.",
+          "Distinct fictional identity; bold outlines/cel shading and opaque dark teal match the approved style. No text, royal regalia or party emblem."
+        ],
+        "human_approval_claimed": false
+      },
+      "runtime_status": "Awaiting integrated institutional catalogue and portrait registration; an image does not appoint an office holder."
+    },
+    {
+      "person_id": "fictional_to_sitani_lolohea",
+      "name": "Sitani Lolohea",
+      "appearance_seed": "e60d18f4dc6b11da",
+      "method": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "asset": "spheres-web/ui/person-portraits/tonga-sitani-lolohea-fictional-2026-v1.png",
+      "sha256": "a8281ea3b8ac15b00aa899b5af63e6ce9a66933c77ba0b4578ecd596f1d81d7f",
+      "bytes": 1726489,
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "original_generated_file": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-feff67f2-52e8-4c72-8ac7-0470b3db8033.png",
+      "prompt_record": "tools/avatars/person-prompts/tonga-sitani-lolohea-fictional-2026-v1.txt",
+      "exact_submitted_prompt": "Use case: stylized-concept. Asset: full-body2D cartoon for Spheres, portrait1024x1536. Supplied Margaret Thatcher cartoon is STYLE ONLY: retain its clean bold outlines, graphic cel shading, mild three-quarter standing pose, adult proportions and opaque dark teal background, but create an entirely different fictional identity. Original fictional Tongan man Sitani Lolohea, a civilian engineer about58, heavy-set with warm medium-brown skin, short greying tightly curled hair, a trimmed moustache, broad thoughtful face and rectangular reading glasses resting naturally on his forehead. Wear a white shirt, dark navy jacket, dark tupenu (traditional knee-to-mid-calf wrap skirt) and a finely woven ta'ovala at the waist, polished black sandals. Hold a small roll of engineering drawings under one arm. Steady thoughtful expression. No royal or chiefly insignia. Full body, about5.5-head adult proportions; entire head, hands and both feet inside frame with comfortable margins and a subtle ground shadow. Readable silhouette and simplified expressive face at small avatar size. Respectful believable Tongan civilian clothing. Do not copy Thatcher's face, blonde hair, clothing or handbag. This is an original invented person with no intended real-person likeness. Drawn cartoon, not photograph,3D,toy or chibi. Exactly one figure. No lettering, watermark, flag, crown, medals, weapons or invented regalia.",
+      "input_images": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "role": "Style/composition only; not identity or clothing",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "persistence": "Byte-identical copy of built-in PNG; no pixel editing or recompression.",
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "review": {
+        "design": true,
+        "visual": true,
+        "reviewer": "Codex",
+        "reviewed_at": "2026-10-01",
+        "observations": [
+          "Grey-haired civilian man, moustache, glasses on forehead, dark jacket/tupenu and woven taovala, rolled plans. One hand rests in pocket; complete body and feet are visible.",
+          "Distinct fictional identity; bold outlines/cel shading and opaque dark teal match the approved style. No text, royal regalia or party emblem."
+        ],
+        "human_approval_claimed": false
+      },
+      "runtime_status": "Awaiting integrated institutional catalogue and portrait registration; an image does not appoint an office holder."
+    },
+    {
+      "person_id": "fictional_to_pisila_tukuafu",
+      "name": "Pisila Tukuafu",
+      "appearance_seed": "deef67d61750bff5",
+      "method": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "asset": "spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png",
+      "sha256": "b057acab79696e7690f27cc2fa6886db5b7d71f73ed984a6334ee261093a16bd",
+      "bytes": 1764753,
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "original_generated_file": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-580a72e3-c048-48bd-b7d8-210bf8f961fd.png",
+      "prompt_record": "tools/avatars/person-prompts/tonga-pisila-tukuafu-fictional-2026-v1.txt",
+      "exact_submitted_prompt": "Use case: stylized-concept. Asset: full-body2D cartoon for Spheres, portrait1024x1536. Supplied Margaret Thatcher cartoon is STYLE ONLY: retain its clean bold outlines, graphic cel shading, mild three-quarter standing pose, adult proportions and opaque dark teal background, but create an entirely different fictional identity. Original fictional Tongan woman Pisila Tukuafu, a civilian public-finance specialist about50, slim adult build, warm medium-brown skin, oval face, dark expressive eyes, shoulder-length wavy black hair with a few natural silver streaks and oval glasses. Wear a navy puletaha (modest matching blouse and ankle-length skirt) with subtle white flower print and a woven kiekie at her waist, flat dark shoes. A slim dark laptop bag hangs naturally from one shoulder; keep hands visible. Crisp focused friendly expression. No royal or chiefly insignia. Full body, about5.5-head adult proportions; entire head, hands and both feet inside frame with comfortable margins and a subtle ground shadow. Readable silhouette and simplified expressive face at small avatar size. Respectful believable Tongan civilian clothing. Do not copy Thatcher's face, blonde hair, clothing or handbag. This is an original invented person with no intended real-person likeness. Drawn cartoon, not photograph,3D,toy or chibi. Exactly one figure. No lettering, watermark, flag, crown, medals, weapons or invented regalia.",
+      "input_images": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "role": "Style/composition only; not identity or clothing",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "persistence": "Byte-identical copy of built-in PNG; no pixel editing or recompression.",
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "review": {
+        "design": true,
+        "visual": true,
+        "reviewer": "Codex",
+        "reviewed_at": "2026-10-01",
+        "observations": [
+          "Slim civilian woman, dark wavy hair with silver streaks, oval glasses, navy floral puletaha and laptop bag; full body and hands/feet visible.",
+          "Distinct fictional identity; bold outlines/cel shading and opaque dark teal match the approved style. No text, royal regalia or party emblem."
+        ],
+        "human_approval_claimed": false
+      },
+      "runtime_status": "Awaiting integrated institutional catalogue and portrait registration; an image does not appoint an office holder."
+    },
+    {
+      "person_id": "fictional_to_kalolo_matalehu",
+      "name": "Kalolo Matalehu",
+      "appearance_seed": "e521150d49923a7f",
+      "method": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-01",
+      "asset": "spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png",
+      "sha256": "c03c951a7dac9da406def5e322346cd164727e2c1447758e09bb73f7079e6d6c",
+      "bytes": 1792605,
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "original_generated_file": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-a1d2f807-f113-46a3-9abe-7c762dfcec41.png",
+      "prompt_record": "tools/avatars/person-prompts/tonga-kalolo-matalehu-fictional-2026-v1.txt",
+      "exact_submitted_prompt": "Use case: stylized-concept. Asset: full-body2D cartoon for Spheres, portrait1024x1536. Supplied Margaret Thatcher cartoon is STYLE ONLY: retain its clean bold outlines, graphic cel shading, mild three-quarter standing pose, adult proportions and opaque dark teal background, but create an entirely different fictional identity. Original fictional Tongan man Kalolo Matalehu, a civilian community-radio producer about54, wiry adult build, warm medium-brown skin, shaved head, neat salt-and-pepper goatee, lively dark eyes and persuasive friendly expression. Wear a tasteful patterned island shirt, a simple woven ta'ovala at the waist over a dark tupenu wrap skirt, and dark sandals. A well-worn radio headset rests around his neck. No microphone in hand, no political logos, no royal or chiefly insignia. Full body, about5.5-head adult proportions; entire head, hands and both feet inside frame with comfortable margins and a subtle ground shadow. Readable silhouette and simplified expressive face at small avatar size. Respectful believable Tongan civilian clothing. Do not copy Thatcher's face, blonde hair, clothing or handbag. This is an original invented person with no intended real-person likeness. Drawn cartoon, not photograph,3D,toy or chibi. Exactly one figure. No lettering, watermark, flag, crown, medals, weapons or invented regalia.",
+      "input_images": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "role": "Style/composition only; not identity or clothing",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        }
+      ],
+      "persistence": "Byte-identical copy of built-in PNG; no pixel editing or recompression.",
+      "appearance_interval": {
+        "from": "2026-09-08",
+        "to": "2036-01-01",
+        "basis": "Authored fictional appearance across the declared candidate window, not a historical likeness."
+      },
+      "review": {
+        "design": true,
+        "visual": true,
+        "reviewer": "Codex",
+        "reviewed_at": "2026-10-01",
+        "observations": [
+          "Wiry civilian man, shaved head and grey goatee, red patterned shirt, taovala/tupenu and headphones; full body and both feet visible.",
+          "Distinct fictional identity; bold outlines/cel shading and opaque dark teal match the approved style. No text, royal regalia or party emblem."
+        ],
+        "human_approval_claimed": false
+      },
+      "runtime_status": "Awaiting integrated institutional catalogue and portrait registration; an image does not appoint an office holder."
+    }
+  ]
+}

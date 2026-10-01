@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-02",
+  "date": "2026-10-01",
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-04-jobs-batch02.json",
+  "jobs_sha256": "c4af55f47f8fd52e41394c7f6ce8dd7dead3ae3f80350d64c47d7fc09a8623f8",
+  "manifest_before_sha256": "61f4b60ca270b2d72beb4735f370a0692a57743ac48a578c967015891ae60f48",
+  "manifest_after_sha256": "542e5737eeb3dc05c43af2f0bd3354a320d098b1c6cb69f14b8e926a90a612cb",
+  "prior_records_preserved": true,
+  "appended": [
+    {
+      "person_id": "to_tesina_fuko",
+      "asset": "spheres-web/ui/person-portraits/tonga-tesina-fuko-cartoon-1996-v2.png",
+      "sha256": "97a1099403892dbc6e861f36ba127bd1c1325f4ed8dc002d16ca754991901cb3"
+    },
+    {
+      "person_id": "to_sione_vuna_faotusia",
+      "asset": "spheres-web/ui/person-portraits/tonga-sione-faotusia-cartoon-2020-v1.png",
+      "sha256": "5b55ff129cec91f4a32d561fda93f2a56f58ac2041b08cd8696be85870cd3704"
+    },
+    {
+      "person_id": "to_tevita_lavemaau",
+      "asset": "spheres-web/ui/person-portraits/tonga-tevita-lavemaau-cartoon-2020-v1.png",
+      "sha256": "197098c6f91e38af0cd0cc29fcbe7c4b8458d65bcc5511d9f4642325b41ee85a"
+    },
+    {
+      "person_id": "to_fatafehi_fakafanua",
+      "asset": "spheres-web/ui/person-portraits/tonga-fakafanua-cartoon-2026-v1.png",
+      "sha256": "4f011462d0b369bf19c96ce8a81e54b666c2f89c1ac3bfd6eeffd9e2a6de1f31"
+    }
+  ],
+  "copied_reference_images": [
+    {
+      "person_id": "to_tesina_fuko",
+      "kind": "observed_portrait",
+      "reference_id": "fuko-courier-1996",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-fuko-courier-1996-reference-v1.png",
+      "sha256": "5038b585887dde2c33bc4cd6dfecdc48ce746c52e06427fafdb6591d70ed400e",
+      "bytes": 3573222,
+      "width": 1984,
+      "height": 2807,
+      "mode": "RGB",
+      "source_url": "https://aei.pitt.edu/39203/1/Courier.160.pdf",
+      "license": "European Commission reuse",
+      "license_url": "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+      "creator": "The Courier / Commission of the European Communities",
+      "credit": "The Courier / Commission of the European Communities; 1996; Reproduction authorised subject to indication of origin; Commission document reuse policy. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "The Courier / Commission of the European Communities publication expressly authorises reproduction with indication of origin. Commission Decision 2011/833/EU is retained as the reuse-policy basis. No third-party photograph credit is printed for this image. Source, adaptation and age interpretation are acknowledged; no endorsement implied. PDF page 35, printed page 33. This file is a 240dpi full-page render with caption/context, not an untouched photograph file. Exact photograph day is unstated. Credit source and disclose artwork/age interpretation.",
+      "source_license_statement": "Reproduction authorised subject to indication of origin; Commission document reuse policy",
+      "depiction_date": "1996",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08",
+      "publisher": "European Commission",
+      "reuse_notice": "Reproduction authorised subject to indication of origin.",
+      "third_party_material": false,
+      "rights_evidence": {
+        "publication_notice_page": 1,
+        "publication_notice_pdf_page": 3,
+        "photo_credit": "The Courier",
+        "notice": "Reproduction authorised subject to indication of origin.",
+        "policy_context": "Commission Decision 2011/833/EU, Articles 2-4 and 6: published Commission documents, including visual content and parts, available for commercial/non-commercial reuse with source acknowledgement. No third-party credit printed for these photographs."
+      },
+      "derivation": {
+        "operation": "read-only PDF page render",
+        "tool": "pdftoppm",
+        "dpi": 240,
+        "one_based_pdf_page": 35,
+        "source_original": {
+          "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/eu_courier_160_1996.body",
+          "bytes": 40503954,
+          "sha256": "16e8d65057aed89fdd874d364b1303d9cef4aac875a23b0d1e995e7b72882c08"
+        }
+      }
+    },
+    {
+      "person_id": "to_sione_vuna_faotusia",
+      "kind": "observed_portrait",
+      "reference_id": "faotusia-2020",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-faotusia-2020-reference-v1.jpg",
+      "sha256": "45f7862032eb74d06efa6fc7ba4fc7325a45cb189cbc078d7d7895c4f2b4d069",
+      "bytes": 80612,
+      "width": 418,
+      "height": 424,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sione_Vuna_Fa'otusia%2C_February_2020_(GPO035)_(cropped).jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "creator": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel",
+      "credit": "Kobi Gideon / GPO Israel, courtesy of the Spokesperson unit of the President of Israel; 2020-02-20; CC BY-SA 3.0. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: CC BY-SA 3.0. Source contributor crop from the Nadi summit group photograph. Original group caption positions Deputy Prime Minister of Tonga Sione Vuna Faotusia second from the right. No new appointment date inferred.",
+      "source_license_statement": "CC BY-SA 3.0",
+      "depiction_date": "2020-02-20",
+      "source_review": "docs/campaign-certification/C06/production/tonga/civilian-identity-review.json",
+      "source_metadata_sha256": "d743516628045cd18f8250c781bcdcaca28d07eaddf4a6efc7599ed0b64707ba"
+    }
+  ],
+  "generation_record": "tools/avatars/person-prompts/tonga-historical-batch-02.json",
+  "generation_record_sha256": "2c64aaf6e9eca709aac8d7fbb17ff6c4ad4787aef7e4e52923196aef06f2c0e5",
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "warning_count": 537,
+    "historical_people_with_art": 81,
+    "historical_images": 84,
+    "appended": 4,
+    "copied_reference_images": 2
+  },
+  "allowlist_rebuilt": false,
+  "production_board_rebuilt": false,
+  "rejected_studies_excluded": true
+}

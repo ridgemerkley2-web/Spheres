@@ -57,6 +57,9 @@ pub(crate) fn decode_value(mut shape: Value) -> Result<WorldState, String> {
         shape
     };
     if !payload.is_object() { return Err("The saved campaign must be an object.".into()); }
+    if payload.get("institutional_leadership").is_some_and(|v| !v.is_null() && !v.is_object()) {
+        return Err("Institutional leadership must be a saved object or absent; sequence-shaped identities are not accepted.".into());
+    }
     // Serde also accepts sequences for defaulted structs. Military books have
     // object identities, so classify their outer shape before typed decoding.
     // The older empty object/null representation contains no ownership to migrate.

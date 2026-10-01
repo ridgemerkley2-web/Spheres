@@ -3581,6 +3581,25 @@
     "deliverable": "Separate party leader/chair, parliamentary leader, head of state/government and collective seats; source nomination/appointment and shared-office rules. Existing seed links and gameplay grants do not close historical office chains."
   },
   {
+    "id": "CF-Tonga-B001",
+    "nation": "Tonga",
+    "priority": "certified_first",
+    "phase": "fictional_editorial_review",
+    "status": "open",
+    "depends_on": [
+      "C01-Tonga-ORG-001",
+      "C01-Tonga-ROLE-001"
+    ],
+    "members": [
+      "fictional_to_kalolo_matalehu",
+      "fictional_to_lesieli_fotu",
+      "fictional_to_pisila_tukuafu",
+      "fictional_to_sitani_lolohea"
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "Review each exact fictional ID, authored biography/name/appearance, role eligibility, institution seats and organizational continuation. Prepare and visually review its physical fixed 2D cartoon; existing reviewed art may be reused within its documented window. A template is not an illustrated character."
+  },
+  {
     "id": "C01-SaudiArabia-ORG-001",
     "nation": "SaudiArabia",
     "priority": "certified_first",

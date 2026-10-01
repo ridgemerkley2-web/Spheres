@@ -618,16 +618,17 @@
     },
     {
       "id": "CLAUDE-C06-TONGA-01",
-      "owner": "Claude",
+      "owner": "Codex",
       "session": "C06",
-      "state": "queued",
+      "state": "in_progress",
       "priority": 1,
       "title": "Finish Tonga as the first complete certified-country cast",
-      "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "handoff": "docs/planning/ai-handoffs/CODEX-C06-TONGA-PRODUCTION.md",
       "depends_on": [
         "CODEX-C02-TO-01"
       ],
-      "next": "Queued production assignment, ready to claim after accepted CODEX-C02-TO-01: follow docs/campaign-certification/C06/preparation/tonga-cast-01/README.md. Reuse King IV; source two 1990 cartoons for exact existing Fatafehi/heir IDs, resolve five named later identity checks independently, and grow that first eight-person slice into the complete Tonga cast. Complete dated roles, parties, fictional successors and C06 country signoff. Preserve Claude C01-44 ownership and source gaps; no assignment implies production has begun."
+      "next": "Codex production has installed 50 exact historical observations for 32 people, a distinct later royal heir, dated full-body cartoon art and four fictional institutional candidates. Finish final art/source checks, native and production-browser validation, resolve Fatai Helu's missing verified likeness and remaining political chains before country signoff. Evidence: docs/campaign-certification/C06/countries/tonga/manifest.json. C06/S23/CP1 remain open.",
+      "branch": "codex/tonga-country-cast-20261001"
     },
     {
       "id": "CODEX-S25-JOURNAL-02",

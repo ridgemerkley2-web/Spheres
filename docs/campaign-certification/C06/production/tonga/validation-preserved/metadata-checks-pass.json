@@ -1,0 +1,133 @@
+{
+  "recorded_at": "2026-10-01T13:29:39.035666+00:00",
+  "checks": [
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "PASS: 44 canonical markers, each assigned once; handoffs and dependencies exist. No status is duplicated. 54 bounded tasks validated separately.\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-1.log",
+        "sha256": "cf7a708deb40945f526e1a9158df99c0ea8115617d47c436b54032de8bebf16e"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/build_person_avatar_assets.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "Reviewed avatar allowlist matches the manifest.\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-2.log",
+        "sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\n  \"nation_identities\": 160,\n  \"starting_nations\": 137,\n  \"successor_nations\": 23,\n  \"nations_with_simulation_parties\": 148,\n  \"nations_without_simulation_parties\": 12,\n  \"simulation_party_rows\": 624,\n  \"explicit_components\": 20,\n  \"parties_verified_history\": 0,\n  \"parties_partial_history\": 53,\n  \"parties_with_declared_history_gaps\": 623,\n  \"known_historical_people\": 620,\n  \"known_party_terms\": 393,\n  \"validated_cartoon_people\": 90,\n  \"validated_cartoon_assets\": 100,\n  \"validated_fictional_cartoon_people\": 8,\n  \"validated_fictional_cartoon_assets\": 8,\n  \"validated_cartoon_total_assets\": 108,\n  \"pending_historical_art_jobs\": 699,\n  \"people_without_researched_eligibility\": 156,\n  \"countries_with_complete_all_party_history\": 0,\n  \"images_generated_by_this_tool\": 0\n}\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-3.log",
+        "sha256": "59adfff8f0d5bce1843c08ec8557d7dfca6b203390dca1c6afdf53e9c9b24cf9"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\n  \"check\": true,\n  \"status\": \"partial_baseline_recorded_census_open\",\n  \"counts\": {\n    \"nation_identities\": 160,\n    \"starting_nations\": 137,\n    \"successor_nations\": 23,\n    \"represented_party_rows\": 624,\n    \"countries_with_party_rows\": 148,\n    \"countries_without_party_rows\": 12,\n    \"party_row_kind\": {\n      \"coalition\": 3,\n      \"party\": 50,\n      \"unknown\": 571\n    },\n    \"party_history_status\": {\n      \"gap\": 571,\n      \"partial\": 53\n    },\n    \"registered_components_or_name_phases\": 20,\n    \"historical_people\": 620,\n    \"historical_terms\": 393,\n    \"component_term_records\": 65,\n    \"historical_term_kind\": {\n      \"acting\": 44,\n      \"co_leader\": 38,\n      \"leader\": 311\n    },\n    \"executive_seed_observations\": 132,\n    \"institution_policy_records\": 12,\n    \"historical_executive_gameplay_grants\": 93,\n    \"future_seat_policies\": 2,\n    \"existing_lifecycle_records\": 23,\n    \"future_templates\": 2560,\n    \"future_party_templates\": 2556,\n    \"future_institutional_templates\": 4,\n    \"represented_future_institutions\": 1,\n    \"historical_manifest_assets\": 100,\n    \"fictional_manifest_assets\": 8,\n    \"historical_art_snapshot_pending_jobs\": 699,\n    \"people_with_unknown_appearance_eligibility\": 156,\n    \"exhaustive_country_censuses\": 0,\n    \"unrepresented_organizations\": null,\n    \"work_orders_by_phase\": {\n      \"fictional_editorial_review\": 317,\n      \"historical_cartoon_jobs\": 180,\n      \"institution_and_office_roles\": 160,\n      \"known_historical_chains\": 150,\n      \"organization_census\": 160\n    }\n  }\n}\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-4.log",
+        "sha256": "9db2cad4d80c8305ee4589f4411d58c88a799d87acdb149e3997d70d2112b587"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\"check\": true, \"country_packets\": 9, \"countries_without_new_discovery_packet\": 151, \"organization_observations\": 844, \"institution_observations\": 36, \"sources\": 2047, \"source_claims\": 5010, \"discovery_batches\": 93, \"exhaustive_country_censuses\": 0}\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-5.log",
+        "sha256": "2b62ecd9b95c77b891941ba269402760fdef021ac188d36a8064a364b464924a"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\n  \"check\": true,\n  \"totals\": {\n    \"cases\": 8,\n    \"represented_rows\": 35,\n    \"party_chains_with_unresolved_days\": 50,\n    \"research_roles\": 74,\n    \"research_roles_with_unresolved_days\": 65,\n    \"next_batches\": 13,\n    \"next_items\": 97\n  }\n}\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-6.log",
+        "sha256": "030157f759ca3c314a545daf4c5d9136e0cac632e6f28c0dedc87dce45d01ca9"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\"check\": true, \"status\": \"preparation_only_not_s23_acceptance\", \"cases\": {\"France\": 1103, \"Japan\": 1222, \"India\": 783, \"Brazil\": 881, \"SouthAfrica\": 1190, \"Tonga\": 1186, \"SaudiArabia\": 721, \"USSR -> Russia\": 1613}, \"total_cases\": 8699}\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-7.log",
+        "sha256": "3ce5bfc30922f29f62e7bae812ffdff88cc8a1be7c8a57d2dde59c39ccb721a4"
+      }
+    },
+    {
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\n \"check\": true,\n \"items\": {\n  \"historical\": 100,\n  \"fictional\": 8,\n  \"unregistered\": 5,\n  \"missing\": 406\n },\n \"findings_by_severity\": {\n  \"error\": 0,\n  \"warning\": 34,\n  \"notice\": 692\n },\n \"duplicate_groups_with_different_identities\": 0,\n \"visual_review_entries\": 8,\n \"approved_by_this_export\": 0\n}\n",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/metadata-final-check-8.log",
+        "sha256": "1a813cec4d94510f5c85f71c17646f76d0b63dce519a11b41dc0d5244ebacf45"
+      }
+    }
+  ]
+}

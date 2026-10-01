@@ -1,5 +1,5 @@
 {
-  "candidate_count": 2556,
+  "candidate_count": 2560,
   "candidates": [
     {
       "appearance_seed": "5ff784c9a0d917f5",
@@ -71700,9 +71700,73 @@
       "person_id": "fictional_v1_zimbabwe_zw_zum_main_04",
       "presentation": "male",
       "profile_id": "parliamentary_majoritarian"
+    },
+    {
+      "person_id": "fictional_to_lesieli_fotu",
+      "name": "Lesieli Fotu",
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "peoples_representative",
+      "appearance_seed": "8e79e5ffd099a2af",
+      "presentation": "female",
+      "fictional_biography": "An invented secondary-school science teacher from an outer-island village of Vava'u who later coordinated a women's handicraft and fisheries cooperative and a solar-lighting programme for remote households. In play she may register as an elector in a Vava'u constituency and stand, formally as an individual, when a general election or by-election occurs. She holds a people's seat only if she wins one in play.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes.",
+      "party": null,
+      "institution": "tonga_civilian_institutions",
+      "component": null
+    },
+    {
+      "person_id": "fictional_to_sitani_lolohea",
+      "name": "Sitani Lolohea",
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "prime_minister",
+      "appearance_seed": "e60d18f4dc6b11da",
+      "presentation": "male",
+      "fictional_biography": "An invented civil engineer who managed road and water-supply works across Tongatapu and later ran a small construction-safety training business. In play he may first win a Tongatapu people's seat at a general election or by-election. Only as a sitting elected representative could he be nominated, seconded by two other elected representatives, and recommended by a majority in a secret ballot for appointment as Prime Minister.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes.",
+      "party": null,
+      "institution": "tonga_civilian_institutions",
+      "component": null
+    },
+    {
+      "person_id": "fictional_to_pisila_tukuafu",
+      "name": "Pisila Tukuafu",
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "nonelected_minister",
+      "appearance_seed": "deef67d61750bff5",
+      "presentation": "female",
+      "fictional_biography": "An invented public-finance specialist who managed budget-reform programmes for a regional development organisation in the Pacific and later taught public administration at a tertiary institute in Nuku'alofa. In play a Prime Minister could nominate her as one of the few Cabinet Ministers who are not elected representatives; she would take a ministry only after formal appointment by the King on that nomination. She would sit and vote in the Assembly, but not in a vote of no confidence, and would retain office until a constitutionally defined termination. After a general election she would remain a caretaker until her appointment is revoked or continued on the incoming Prime Minister's recommendation; the election date alone does not remove her.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "restriction": "A gameplay institutional event is required; these invented people never replace an incumbent because a date passes.",
+      "party": null,
+      "institution": "tonga_civilian_institutions",
+      "component": null
+    },
+    {
+      "person_id": "fictional_to_kalolo_matalehu",
+      "name": "Kalolo Matalehu",
+      "nation": "Tonga",
+      "origin": "fictional_successor",
+      "role": "party_organizer",
+      "appearance_seed": "e521150d49923a7f",
+      "presentation": "male",
+      "fictional_biography": "An invented community-radio producer and youth rugby coach from a village in eastern Tongatapu who later managed a small printing and publishing cooperative. In play he may join a political organization such as the Democratic Party of the Friendly Islands (PTOA) after the fictional window opens and be chosen as its leader only under that organization's own rules, if its leadership falls vacant. Leading it would not give him a seat: he would still need to win a people's constituency as an individual candidate.",
+      "eligible_from": "2026-09-08",
+      "eligible_until_exclusive": "2036-01-01",
+      "restriction": "Reference only: PTOA officer rules and title equivalence remain unreviewed; no party office, seat, or executive permission.",
+      "party": null,
+      "institution": "tonga_civilian_institutions",
+      "component": null
     }
   ],
-  "country_count": 148,
+  "country_count": 149,
   "from": "2026-09-08",
   "future_leadership_seat_policy": {
     "from": "2026-09-08",
@@ -71755,5 +71819,6 @@
   "party_count": 624,
   "scope": "Current simulation party inventory; fictional character templates are not finished avatars or researched historical people.",
   "until_exclusive": "2036-01-01",
-  "version": 1
+  "version": 1,
+  "institutional_candidate_count": 4
 }

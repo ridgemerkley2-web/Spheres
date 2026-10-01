@@ -12,7 +12,7 @@ class TongaCastTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.original = cast.read(cast.ROOT / cast.DEFAULT)
-        cls.inputs = cast.load_inputs()
+        cls.inputs = cast.load_inputs(snapshot=cast.Snapshot(cast.ROOT))
 
     def setUp(self):
         self.proposal = deepcopy(self.original)

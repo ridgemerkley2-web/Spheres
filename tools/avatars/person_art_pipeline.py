@@ -36,8 +36,15 @@ ART_ROOTS = (
 )
 ID_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,119}\Z")
 HASH_RE = re.compile(r"[a-f0-9]{64}\Z")
+EC_REUSE_LICENSE = "European Commission reuse"
+EC_REUSE_POLICY_URL = "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng"
+EC_REUSE_NOTICE = "Reproduction authorised subject to indication of origin."
+OGL_V1_LICENSE = "Open Government Licence v1.0"
+OGL_V1_POLICY_URL = "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/"
 FREE_LICENSES = {
     "public domain", "pdm-1.0", "cc0", "cc0 1.0", "cc0-1.0",
+    EC_REUSE_LICENSE.lower(),
+    OGL_V1_LICENSE.lower(),
     *{f"cc by {v}" for v in ("1.0", "2.0", "2.5", "3.0", "4.0")},
     *{f"cc by-sa {v}" for v in ("1.0", "2.0", "2.5", "3.0", "4.0")},
     *{f"cc-by-{v}" for v in ("1.0", "2.0", "2.5", "3.0", "4.0")},
@@ -57,6 +64,38 @@ def web_url(value: Any) -> bool:
         return parsed.scheme in {"https", "http"} and bool(parsed.hostname) and not parsed.username and not parsed.password
     except ValueError:
         return False
+
+
+def approved_source_license(record: dict) -> bool:
+    """Keep the printed Commission grant distinct from CC and public domain.
+
+    This narrow route needs an explicit Commission publisher, its retained
+    publication notice, attribution and the exact reuse decision. A generic
+    government credit or a link to a policy is not sufficient.
+    """
+    license_name = str(record.get("license", "")).lower().strip()
+    if license_name not in FREE_LICENSES:
+        return False
+    if license_name == EC_REUSE_LICENSE.lower():
+        return (
+            record.get("license_url") == EC_REUSE_POLICY_URL
+            and record.get("publisher") == "European Commission"
+            and record.get("reuse_notice") == EC_REUSE_NOTICE
+            and nonempty(record.get("credit"))
+            and nonempty(record.get("rights_statement"))
+            and record.get("third_party_material") is False
+        )
+    if license_name == OGL_V1_LICENSE.lower():
+        # A source-specific grant and attribution are needed; a generic UK
+        # government URL does not establish that third-party material is free.
+        return (
+            record.get("license_url") == OGL_V1_POLICY_URL
+            and nonempty(record.get("licensor"))
+            and nonempty(record.get("credit"))
+            and nonempty(record.get("rights_statement"))
+            and record.get("third_party_material") is False
+        )
+    return True
 
 
 def iso_day(value: Any) -> date:
@@ -189,7 +228,15 @@ def validate_manifest(manifest: Any, repo_root: Path = ROOT, known_people: dict[
             from PIL import Image
             with Image.open(path) as image:
                 width, height = image.size
-                if image.format not in {"PNG", "WEBP", "JPEG"}:
+                mpo_reference = (
+                    image.format == "MPO" and record.get("kind") == "observed_portrait"
+                    and where.endswith(".identity_source")
+                    and path.suffix.lower() in {".jpg", ".jpeg"}
+                    and record.get("container_format") == "MPO"
+                    and type(record.get("reference_frame")) is int
+                    and record["reference_frame"] == 0
+                )
+                if image.format not in {"PNG", "WEBP", "JPEG"} and not mpo_reference:
                     raise ValueError("file is not a supported raster image")
                 image.verify()
             if min(width, height) <= 0:
@@ -262,7 +309,7 @@ def validate_manifest(manifest: Any, repo_root: Path = ROOT, known_people: dict[
                     for field in ("license", "credit"):
                         require_text(reference, field, at + ".identity_source")
                     require_url(reference, "license_url", at + ".identity_source")
-                    if str(reference.get("license", "")).lower().strip() not in FREE_LICENSES:
+                    if not approved_source_license(reference):
                         errors.append(f"{at}.identity_source.license: not an approved source license")
                 elif reference.get("kind") == "authored_identity":
                     if reference.get("source_url") not in (sources or []):
@@ -295,7 +342,7 @@ def validate_manifest(manifest: Any, repo_root: Path = ROOT, known_people: dict[
                 for field in ("creator", "license", "rights_statement"):
                     require_text(portrait, field, at)
                 require_url(portrait, "license_url", at)
-                if str(portrait.get("license", "")).lower().strip() not in FREE_LICENSES:
+                if not approved_source_license(portrait):
                     errors.append(f"{at}.license: not an approved archival license")
             elif method == "generated":
                 if portrait.get("generator") != BUILTIN_GENERATOR:
@@ -562,6 +609,26 @@ def self_test() -> int:
         def test_exact_file_and_identity(self):
             self.assertTrue(validate_manifest(base, ROOT, known)["valid"])
 
+        def test_mpo_original_is_only_an_explicit_primary_frame_reference(self):
+            value = deepcopy(base)
+            p = value["people"][person_id]["portraits"][0]
+            asset = "spheres-web/ui/person-portraits/references/tonga-heir-2012-reference-v1.jpg"
+            path = ROOT / asset
+            from PIL import Image
+            with Image.open(path) as image:
+                self.assertEqual(image.format, "MPO")
+                self.assertGreater(image.n_frames, 1)
+            p["identity_source"].update(asset=asset, sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+                                        container_format="MPO", reference_frame=0)
+            self.assertTrue(validate_manifest(value, ROOT, known)["valid"])
+            for change in ({"reference_frame": 1}, {"reference_frame": False}, {"container_format": "JPEG"}):
+                invalid = deepcopy(value)
+                invalid["people"][person_id]["portraits"][0]["identity_source"].update(change)
+                self.assertFalse(validate_manifest(invalid, ROOT, known)["valid"])
+            p.update(asset=asset, sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+                     container_format="MPO", reference_frame=0, kind="observed_portrait")
+            self.assertFalse(validate_manifest(value, ROOT, known)["valid"])
+
         def test_no_substitution_on_unknown_person_or_era(self):
             self.assertIsNotNone(select_portrait(base, person_id, "1990-01-01", ROOT, known))
             self.assertIsNone(select_portrait(base, person_id, "2000-01-01", ROOT, known))
@@ -606,6 +673,81 @@ def self_test() -> int:
         def test_archival_license_and_observation(self):
             self.reject(lambda p: p.update(license="CC BY-NC 4.0"))
             self.reject(lambda p: p["identity_source"].update(kind="authored_identity", source_url=identity_url))
+
+        def commission_fixture(self):
+            value = deepcopy(base)
+            p = value["people"][person_id]["portraits"][0]
+            grant = dict(license=EC_REUSE_LICENSE, license_url=EC_REUSE_POLICY_URL,
+                         publisher="European Commission", reuse_notice=EC_REUSE_NOTICE,
+                         third_party_material=False, credit="The Courier / European Commission",
+                         rights_statement="Synthetic fixture for the printed reproduction grant; source acknowledged.")
+            p.update(grant)
+            p["identity_source"].update(grant)
+            return value
+
+        def test_commission_reuse_requires_complete_specific_grant(self):
+            value = self.commission_fixture()
+            self.assertTrue(validate_manifest(value, ROOT, known)["valid"])
+            for field in ("license_url", "publisher", "reuse_notice", "credit", "rights_statement", "third_party_material"):
+                for location in ("archival", "identity_source"):
+                    with self.subTest(field=field, location=location):
+                        invalid = deepcopy(value)
+                        p = invalid["people"][person_id]["portraits"][0]
+                        record = p if location == "archival" else p["identity_source"]
+                        record.pop(field)
+                        result = validate_manifest(invalid, ROOT, known)
+                        self.assertFalse(result["valid"])
+                        self.assertFalse(result["ready"])
+
+        def test_commission_reuse_rejects_other_policy_or_third_party_work(self):
+            for changes in (
+                {"license_url": "https://example.org/reuse"},
+                {"license_url": EC_REUSE_POLICY_URL + "?unverified=1"},
+                {"publisher": "Another government"},
+                {"reuse_notice": "All rights reserved."},
+                {"third_party_material": True},
+                {"third_party_material": "false"},
+            ):
+                with self.subTest(changes=changes):
+                    value = self.commission_fixture()
+                    value["people"][person_id]["portraits"][0]["identity_source"].update(changes)
+                    self.assertFalse(validate_manifest(value, ROOT, known)["valid"])
+
+        def ogl_fixture(self):
+            value = deepcopy(base)
+            p = value["people"][person_id]["portraits"][0]
+            grant = dict(license=OGL_V1_LICENSE, license_url=OGL_V1_POLICY_URL,
+                         licensor="Foreign and Commonwealth Office, United Kingdom",
+                         third_party_material=False, credit="UK Foreign and Commonwealth Office; adapted, no endorsement implied.",
+                         rights_statement="Synthetic fixture for a source-specific OGL v1.0 grant.")
+            p.update(grant)
+            p["identity_source"].update(grant)
+            return value
+
+        def test_ogl_v1_requires_exact_grant_and_attribution(self):
+            value = self.ogl_fixture()
+            self.assertTrue(validate_manifest(value, ROOT, known)["valid"])
+            for field in ("license_url", "licensor", "credit", "rights_statement", "third_party_material"):
+                for location in ("archival", "identity_source"):
+                    with self.subTest(field=field, location=location):
+                        invalid = deepcopy(value)
+                        p = invalid["people"][person_id]["portraits"][0]
+                        record = p if location == "archival" else p["identity_source"]
+                        record.pop(field)
+                        self.assertFalse(validate_manifest(invalid, ROOT, known)["valid"])
+
+        def test_ogl_v1_rejects_wrong_version_and_third_party_material(self):
+            for changes in (
+                {"license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"},
+                {"license_url": "https://example.org/ogl"},
+                {"third_party_material": True},
+                {"third_party_material": "false"},
+                {"licensor": " "},
+            ):
+                with self.subTest(changes=changes):
+                    value = self.ogl_fixture()
+                    value["people"][person_id]["portraits"][0]["identity_source"].update(changes)
+                    self.assertFalse(validate_manifest(value, ROOT, known)["valid"])
 
         def test_generated_requires_builtin_and_actual_prompt(self):
             value = deepcopy(base)

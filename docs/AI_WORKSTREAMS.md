@@ -10,11 +10,15 @@ remain open. Canonical session status lives in
 ## CP1 execution priority
 
 The user authorized the [parallel CP1 plan](planning/ai-handoffs/CP1-ACCELERATION.md).
-Finish Tonga's full country cast first. Codex has completed its bounded identity
-proposal and runner journal repair; native crash diagnosis, quiet resource timing
-and political balance remain open. Five
-concrete tasks now cover Tonga identities, Claude's queued country production,
-journal repair, timing and [real-player recruitment](campaign-certification/S26/preparation/RECRUITMENT.md).
+Finish Tonga's full country cast first. At the user's request, Codex now owns
+Tonga production under the existing `CLAUDE-C06-TONGA-01` task. Its
+[production inventory](campaign-certification/C06/countries/tonga/README.md)
+records all 50 accepted holder observations, dated cartoon art and four fictional
+institutional candidates. Fatai Helu's verified likeness, historical political
+chains and final native/browser acceptance remain open. Native crash diagnosis,
+quiet resource timing, political balance and
+[real-player recruitment](campaign-certification/S26/preparation/RECRUITMENT.md)
+remain separate tasks.
 The unavailable Russia/DA sources stay separately tracked. Worldwide expansion
 and new systems remain after CP1; qualification criteria are unchanged.
 
@@ -22,7 +26,8 @@ and new systems remain after CP1; qualification criteria are unchanged.
 
 | Owner | Work | Next action |
 |---|---|---|
-| Claude | Historical research and cartoon production | The queue records 31 completed bounded Claude tasks. Japan C01-42, Brazil C01-43 and Tonga C01-44 are newly accepted research; only Russia C01-28 and DA C01-39 retain source holds. [Exact reviews and current art direction](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) remain separate from production. Claude’s ready `CLAUDE-C06-TONGA-01` assignment is still the content priority: reuse King IV, source two exact 1990 portraits, resolve five later identity checks, then complete the country cast. Research acceptance does not finish that cast. |
+| Claude | Historical research | The queue records 31 completed bounded Claude tasks. Japan C01-42, Brazil C01-43 and Tonga C01-44 are accepted research; Russia C01-28 and DA C01-39 retain source holds. Follow the [research handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) and queue. Tonga production is now owned by Codex; preserve its work and avoid a duplicate cast. |
+| Codex | Tonga cast (`CLAUDE-C06-TONGA-01`) | [Production handoff](planning/ai-handoffs/CODEX-C06-TONGA-PRODUCTION.md): 50 exact historical observations bind to 32 people, with a separate later heir and four fictional institutional candidates. Full-body cartoons and a separate Crown/premier interface are implemented. Final validation, Fatai Helu's likeness and the remaining political chains must close before country acceptance. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September terminal failure](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 abnormal exits, 16 not started; verifier failed. The [runner journal repair](campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md) is accepted with 105 tooling tests and one existing skip. Native access violations remain unexplained. The reviewed [Japan / seed 7 diagnostic](campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md) started at 03:26 UTC on 1 October with dump capture and resource guards; read its external terminal result for current status. No replacement full matrix or verifier has been launched. |
 | Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. The [timing/A1 follow-up](campaign-certification/S27/preparation/a1-followup-20261001/README.md) records a 0.0623 ms/month resource assertion pass; quiet confirmation is still pending because of background app Git scans. Residual concentration remains unresolved; retain all original limits. |
 | Claude / Codex review | Russia research (`CLAUDE-C01-28`) | [Resumed review](campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md): 65/68 originals, 133/137 claims and all 24 holder observations materially checked. Three originals and four claims remain held; no Russia research is imported. |

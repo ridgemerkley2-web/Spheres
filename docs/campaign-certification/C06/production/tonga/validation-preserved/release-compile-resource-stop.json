@@ -1,0 +1,14 @@
+{
+  "command": "cargo test --locked --release -j1 -p spheres-sim --lib institutional_leadership -- --test-threads=1",
+  "exit_code": -1,
+  "started_utc": "2026-10-01T12:30:09.3635095Z",
+  "finished_utc": "2026-10-01T12:31:12.1972619Z",
+  "stopped_for_resource_floor": true,
+  "min_available_commit_bytes": 3029938176,
+  "min_available_commit_gib": 2.822,
+  "sources_unchanged": true,
+  "source_diff": [],
+  "source_file_count": 301,
+  "background_diagnostic_present": true,
+  "scope": "One serial release build for focused institutional tests only; no full suite, web link, resource timing or qualification result."
+}

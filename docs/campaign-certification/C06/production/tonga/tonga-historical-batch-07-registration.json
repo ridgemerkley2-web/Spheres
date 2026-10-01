@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "batch": "tonga-historical-batch-07",
+  "date": "2026-10-01",
+  "jobs_snapshot": "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/historical-registration-01-jobs-batch07.json",
+  "jobs_sha256": "8e2aee6c7c293a4caacd46db560a467462e0a332a15297acf20cf9c4a4dac4f9",
+  "manifest_before_sha256": "282696c3d324d64bba0d37511d5ffedbffc79730e9d29b57b8e85cf1a99d99e2",
+  "manifest_after_sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+  "prior_records_preserved": true,
+  "appended": [
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "asset": "spheres-web/ui/person-portraits/tonga-crown-prince-tupoutoa-ulukalala-cartoon-2030-v2.png",
+      "sha256": "778bb6b836a14888e8d42dd1daca275afee5118d0e7a8050099c356b537ebc5a"
+    }
+  ],
+  "copied_reference_images": [
+    {
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985",
+      "kind": "observed_portrait",
+      "reference_id": "heir-2022",
+      "asset": "spheres-web/ui/person-portraits/references/tonga-heir-2022-reference-v1.jpg",
+      "sha256": "85cd63baa19269c6f43b08d52b0abe4f09b2dc3edd7ca589ed933367874d6ec2",
+      "bytes": 9952931,
+      "width": 5725,
+      "height": 3817,
+      "mode": "RGB",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wendy_Sherman_and_Tupouto%CA%BBa_%CA%BBUlukalala_2022.jpg",
+      "license": "Public domain",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-DOS",
+      "creator": "U.S. Embassy Suva / U.S. Department of State",
+      "credit": "U.S. Embassy Suva / U.S. Department of State, Wendy Sherman and Crown Prince Tupoutoʻa ʻUlukalala, 5 August 2022; public domain U.S. government photograph via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "rights_statement": "Retained source statement: Public domain in the United States: official U.S. Department of State work. Caption and EXIF support 5 August 2022. The upload comment’s 2023 year is a typo and is not used. Mark post-2026 age adjustments as fictional artistic interpretation.",
+      "source_license_statement": "Public domain in the United States: official U.S. Department of State work",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2022-08-05"
+      },
+      "source_review": "docs/campaign-certification/C06/production/tonga/royal-identity-review.json",
+      "source_metadata_sha256": "709e66655eeb654ef04899b1df98cdd5fa5a000174e3e3f0932bc156d7606b75",
+      "original_source": "https://www.flickr.com/photos/167418767@N06/52272084217"
+    }
+  ],
+  "generation_record": "tools/avatars/person-prompts/tonga-historical-batch-07.json",
+  "generation_record_sha256": "67e4c1659c18eb459e36330a87bd7bb0e918a975c2080d460c25e18f4de4d41a",
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "warning_count": 530,
+    "historical_people_with_art": 90,
+    "historical_images": 100,
+    "appended": 1,
+    "copied_reference_images": 1
+  },
+  "allowlist_rebuilt": false,
+  "production_board_rebuilt": false,
+  "rejected_studies_excluded": true
+}

@@ -48,7 +48,7 @@ fn exact_date(date: &str) -> bool {
 
 pub(crate) fn portrait(person_id: &str, date: &str) -> Value {
     if !exact_date(date) { return Value::Null; }
-    if party_leadership::fictional_person(person_id).is_some() {
+    if party_leadership::fictional_person(person_id).is_some() || spheres_sim::institutional_leadership::candidate(person_id).is_some() {
         return fictional_portrait_from(fictional_manifest(),person_id,date);
     }
     // Active presentation is illustrated art. Archived character models remain
@@ -70,14 +70,16 @@ pub(crate) fn portrait(person_id: &str, date: &str) -> Value {
 
 fn fictional_portrait_from(manifest: &Value, person_id: &str, date: &str) -> Value {
     if !exact_date(date) || date < "2026-09-08" || date >= "2036-01-01" { return Value::Null }
-    let Some(candidate) = party_leadership::fictional_person(person_id) else { return Value::Null };
+    let metadata=party_leadership::fictional_person(person_id).map(|c|(c.person.name.as_str(),c.appearance_seed.as_str()))
+        .or_else(||spheres_sim::institutional_leadership::candidate(person_id).map(|c|(c.person.name.as_str(),c.appearance_seed.as_str())));
+    let Some((candidate_name,appearance_seed))=metadata else {return Value::Null};
     let person = &manifest["people"][person_id];
-    if person["name"] != candidate.person.name.as_str() || person["appearance_seed"] != candidate.appearance_seed.as_str() { return Value::Null }
+    if person["name"] != candidate_name || person["appearance_seed"] != appearance_seed { return Value::Null }
     let Some(records) = person["portraits"].as_array() else { return Value::Null };
     let matches = records.iter().filter(|p| {
         p["design_source"]["kind"] == "authored_fiction"
             && p["design_source"]["person_id"] == person_id
-            && p["design_source"]["appearance_seed"] == candidate.appearance_seed.as_str()
+            && p["design_source"]["appearance_seed"] == appearance_seed
             && p["design_source"]["catalog"] == "spheres-web/data/future_candidates_2035.json"
             && p["style"] == "cartoon" && p["method"] == "generated" && p["status"] == "fictional-character"
             && p["review"]["design"] == true && p["review"]["visual"] == true
@@ -104,7 +106,7 @@ fn decorate_context(value: &mut Value, date: &str, future_preview: bool) {
             for (key,item) in obj.iter_mut() { decorate_context(item,date,future_preview || key == "future_preview"); }
             if let (Some(id), Some(_name)) = (obj.get("id").and_then(Value::as_str), obj.get("name").and_then(Value::as_str)) {
                 if party_leadership::person(id).is_some() {
-                    let is_future = future_preview && party_leadership::fictional_person(id).is_some();
+                    let is_future = future_preview && (party_leadership::fictional_person(id).is_some() || spheres_sim::institutional_leadership::candidate(id).is_some());
                     let mut art = portrait(id,if is_future { "2026-09-08" } else { date });
                     if is_future && !art.is_null() {
                         art["presentation_context"] = json!("fictional_future_preview");
@@ -166,6 +168,31 @@ pub(crate) fn campaign_view(w: &WorldState, nation: NationId) -> Value {
     }
     let date=value["date"].as_str().unwrap_or("").to_string();
     decorate(&mut value,&date);
+    value["institutional_leadership"]=institutional_view(w,nation);
+    value
+}
+
+pub(crate) fn institutional_view(w:&WorldState,nation:NationId)->Value {
+    let mut value=spheres_sim::institutional_leadership::view(w,nation);
+    if value.is_null() { return value; }
+    let date=value["date"].as_str().unwrap_or("").to_string();
+    decorate(&mut value,&date);
+    if let Some(bindings)=value["historical_bindings"].as_array_mut() {
+        for binding in bindings {
+            let id=binding["person_id"].as_str().unwrap_or("");
+            let mut person=party_leadership::person_view(id);
+            // A portrait reference date is display context, never a tenure.
+            let at=binding["appearance_date"].as_str()
+                .or_else(||binding["holder"]["attested_on"].as_str())
+                .or_else(||binding["holder"]["from"].as_str())
+                .or_else(||binding["holder"]["attested_period"]["from"].as_str());
+            let context=at.filter(|d|exact_date(d)).map(str::to_string);
+            if let Some(at)=context.as_deref() {decorate(&mut person,at);}
+            binding["person"]=person;
+            binding["portrait_reference_date"]=json!(context);
+            binding["portrait_date_is_tenure"]=json!(false);
+        }
+    }
     value
 }
 
@@ -283,7 +310,12 @@ mod tests {
         assert_eq!(art["source_license"],"CC BY-SA 4.0");
         assert_eq!(portrait("taufaahau_tupou_iv","1990-12-31"),art);
         assert!(portrait("taufaahau_tupou_iv","1989-12-31").is_null());
-        assert!(portrait("taufaahau_tupou_iv","1991-01-01").is_null());
+        let later=portrait("taufaahau_tupou_iv","1991-01-01");
+        assert_eq!(later["url"],"/art/people/tonga-taufaahau-tupou-iv-cartoon-1998-v1.png");
+        assert_eq!(later["from"],"1991-01-01");
+        assert_eq!(later["to"],"2006-09-11");
+        assert_eq!(portrait("taufaahau_tupou_iv","2006-09-10"),later);
+        assert!(portrait("taufaahau_tupou_iv","2006-09-11").is_null());
         assert!(portrait("Tonga","1990-01-01").is_null());
     }
     #[test]
@@ -358,8 +390,11 @@ mod tests {
     #[test]
     fn registered_fictional_art_only_decorates_explicit_future_previews_before_cutoff() {
         for (id,person) in fictional_manifest()["people"].as_object().unwrap() {
-            let candidate=party_leadership::fictional_person(id).expect("known fictional person");
-            assert_eq!(person["name"],candidate.person.name);
+            let (name,seed)=party_leadership::fictional_person(id).map(|c|(c.person.name.as_str(),c.appearance_seed.as_str()))
+                .or_else(||spheres_sim::institutional_leadership::candidate(id).map(|c|(c.person.name.as_str(),c.appearance_seed.as_str())))
+                .expect("known exact fictional party or institutional person");
+            assert_eq!(person["name"],name);
+            assert_eq!(person["appearance_seed"],seed);
             assert!(manifest()["people"].get(id).is_none(),"fiction must stay outside historical portrait records");
             for art in person["portraits"].as_array().unwrap() {
                 let first=art["from"].as_str().unwrap();
@@ -375,6 +410,27 @@ mod tests {
             if expected.is_null() { assert!(preview.is_null()); }
             else { assert_eq!(preview["url"],expected["url"]);assert_eq!(preview["presentation_context"],"fictional_future_preview");assert_eq!(preview["preview_date"],"2026-09-08"); }
         }
+    }
+    #[test]
+    fn tonga_institution_cards_keep_reference_civilian_and_crown_identities_separate() {
+        let mut w=spheres_sim::init::world_1990(spheres_sim::world::GameRules{
+            ideology_blocs:true,historical_party_leadership:true,daily_simulation:true,..Default::default()
+        });
+        party_leadership::ensure_all(&mut w);
+        let saved=spheres_sim::save(&w);
+        assert!(institutional_view(&w,NationId::France).is_null());
+        let cards=institutional_view(&w,NationId::Tonga);
+        assert_eq!(cards["prime_minister"]["person"]["id"],"fatafehi_tuipelehake");
+        assert_eq!(cards["prime_minister"]["opening_reference"],true);
+        assert!(cards["prime_minister"]["appointment"]["selected_on"].is_null());
+        assert_eq!(cards["future_preview"].as_array().unwrap().len(),4);
+        let restricted=cards["future_preview"].as_array().unwrap().iter().find(|c|c["person"]["id"]=="fictional_to_kalolo_matalehu").unwrap();
+        assert!(restricted["actions"].as_array().unwrap().is_empty());
+        assert_eq!(campaign_leader(&w,NationId::Tonga)["person_id"],"taufaahau_tupou_iv");
+        assert_eq!(spheres_sim::save(&w),saved);
+        spheres_sim::government::seat_office(&mut w,NationId::Tonga,&spheres_sim::government::Succession::Death);
+        assert_eq!(campaign_leader(&w,NationId::Tonga)["person_id"],"siaosi_taufaahau_manumataongo");
+        assert_eq!(campaign_leader(&w,NationId::Tonga)["office"],"King");
     }
     #[test]
     fn registered_cartoons_exist_and_have_source_and_visual_review() {
