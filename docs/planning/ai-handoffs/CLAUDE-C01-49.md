@@ -115,7 +115,7 @@ before committing): the research index regenerated and `--check` passes (2,053 s
 institution observations, 93 discovery batches); `campaign_census.py --check` passes; the USSR tests (57, 9 of them new) and the
 Russia tests (37) pass; the research tests (79) and the campaign tests (16) pass; the atlas Node check passes (11);
 `workboard.py --check` passes (44 markers; after adding `docs/campaign-certification/S26/` to the local sparse checkout); `git diff
---check` is clean. The new test's 16 mutations each fail on the rule they break. `packet_check.py 49`: recorded in the final commit of this record. Known failures outside these checks,
+--check` is clean. The new test's 16 mutations each fail on the rule they break. `packet_check.py 49` (head `558af167`, base `5ea4f8fc`): 18 files changed; 6 new sources, all 6 re-downloaded responses match their recorded byte counts and SHA-256; every check passes (PASS); it lists the re-expressed pinned-test lines for review (Russia C01-19 and C01-14: 1 each; C01-41: 2; C01-35: 2; C01-26: 6; S10.h: 4). Known failures outside these checks,
 not fixed: `test_certified_gap_ledger.py` reports "no pinned attribution" for this packet's sources until Codex classifies its
 commit; `test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, absent from the sparse checkout, and Codex regenerates
 the boundary matrix on integration.
