@@ -6,6 +6,8 @@ not stacked. Integration has since moved twice: `a81d2486` was merged at `a342c6
 (`codex/campaign-certification`) at `7761abe4`, both before the packet commit. Research, downloads and checks on 30 September 2026 (US Pacific; downloads on 1 October 2026 UTC). The
 historical cutoff stays **7 September 2026**.
 
+Checker-fix pass, 1 October 2026: integration `13367c99`, which already carries Codex's accepted review of this packet (`42046e51`), was merged at `a0ae4af7`; one pinned test was restored to an exact pin, and the rulings relayed in this pass are recorded under Integration notes.
+
 This packet reviews nine observations, SA-KCP-01 to SA-KCP-09, in [saudi-arabia.json](saudi-arabia.json). It adds Saudi
 primary attestations alongside the CLAUDE-C01-06 holders of `sa_king` and `sa_crown_prince` (institution `sa_crown`) and
 fills the empty role `sa_succession_secretary` (Secretary General) of `sa_succession_commission` with one holder. It adds
@@ -27,7 +29,7 @@ January and February 1996, the earliest Saudi releases online for the period. Fo
 |---|---|---|
 | SA-KCP-01 | King Fahd, 1990-2005, in Saudi records | **Accepted in part:** styled King in the Royal Embassy's release of the decree of 1 January 1996, chairing the cabinet on 12 February 1996, and issuing Royal Order A/193 of 25/6/1426 AH (31 July 2005), whose signature block reads 'فهد بن عبدالعزيز' then 'عنه / عبدالله بن عبدالعزيز'. Three observations after his holder; no Saudi record of 1990-1995 was found online |
 | SA-KCP-02 | The 1996 delegation of state affairs | **Accepted as claims only:** the decree of 1 January 1996 delegating the Crown Prince 'to undertake the affairs of the state'; its end, King Fahd's message of 21 February 1996 citing 'royal decree A-112 dated 11/30/95' and the reply citing 'A-199 dated 02/21/96'. Acting service, never a boundary |
-| SA-KCP-03 | Crown Prince Abdullah before August 2005 | **Accepted in part:** styled Crown Prince on 1 January 1996 and on 30 July 2005. Both observations predate his CLAUDE-C01-06 holder's `attested_on` (2005-08-01), which is kept; whether to re-date that holder is a ruling question |
+| SA-KCP-03 | Crown Prince Abdullah before August 2005 | **Accepted in part:** styled Crown Prince on 1 January 1996 and on 30 July 2005. Both observations predate his CLAUDE-C01-06 holder's `attested_on` (2005-08-01), which is kept; it stays unchanged under ruling (a) of the checker-fix pass, and any re-dating is Codex's decision |
 | SA-KCP-04 | King Abdullah's reign | **Accepted:** the citizens' pledge to him and to Crown Prince Sultan held at Qasr al-Hukm on 3 August 2005 (claim only; it resolves the CLAUDE-C01-06 scheduled pledge); styled King by A/136 (20 October 2006) and A/145 (20 May 2014) |
 | SA-KCP-05 | Crown Princes Sultan, Nayef and Salman | **Accepted:** Sultan in A/175 (29 October 2007, with a deputation); Nayef at the Hajj reception of 7 November 2011; Salman on 18 June 2012 (his directive on the pledge, with a scheduled pledge on 3-4/8/1433 AH) and in A/145 (20 May 2014, with a deputation) |
 | SA-KCP-06 | King Salman's accession pledge and Crown Prince Muqrin | **Accepted:** the citizens' pledge held after Isha on 23 January 2015 (claim only; it resolves the CLAUDE-C01-06 scheduled pledge); Muqrin styled Crown Prince on 28 April 2015, the day before A/159 |
@@ -302,14 +304,22 @@ These are proposals for the integrator. They are not created in `work-orders.jso
     `C01_45_CROWN_PRINCE_OBSERVATIONS`; one comment is updated.
   - `test_saudi_shura_allegiance_c01_25.py`: the same totals in two places; its source slice becomes
     `[BASE_SOURCES:-C01_45_SOURCES]` with an exact total; `C01_06_HOLDERS` gains the same appended observations;
-    `sa_succession_secretary` leaves `UNTOUCHED` for an exact pin of its new sources, claims and holder
-    (`C01_45_SECRETARY`); the coverage check pins the one CLAUDE-C01-45 item after the CLAUDE-C01-25 items
+    `sa_succession_secretary` leaves `UNTOUCHED` for an exact pin of its new sources, claims and holder as (name,
+    `attested_on`, `from`, `until`) (`C01_45_SECRETARY`; the checker-fix pass restored this exact form after a name-only pin); the coverage check pins the one CLAUDE-C01-45 item after the CLAUDE-C01-25 items
     (`LATER_UNRESOLVED`).
 - Known failures outside the suite: `test_certified_gap_ledger.py` reports no pinned attribution for a new packet until
   Codex classifies its commit; `test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, which the sparse
   checkout lacks. Neither is fixed here, and `docs/campaign-certification/C01/gap-ledger/` is untouched.
 - `campaign_census.py --check` passes (exit 0, `"check": true`) both at the merged base and with this packet, so there
   is no census failure to disclose; this packet does not touch `spheres-sim/src/government.rs` or `census.json`.
+- Checker-fix pass (1 October 2026). Rulings relayed to this pass by the C01 pipeline as decided by Ridge (the user). They are not authenticated in this record, and Codex may still decide otherwise.
+  - (a) The CLAUDE-C01-06 holders stay unchanged: King Fahd `attested_on` 1990-08-08 and Crown Prince Abdullah `attested_on` 2005-08-01. Abdullah's Saudi observations of 1 January 1996 and 30 July 2005, which predate that `attested_on`, stay appended after his holder, and King Fahd's holder still rests on the 1990 record rather than his first Saudi attestation (1 January 1996). Any re-basing of either holder is Codex's decision.
+  - (b) The Royal Embassy's 1996 English releases are official Saudi records, as in CLAUDE-C01-25.
+  - (c) A/193's signature 'عنه / عبدالله بن عبدالعزيز' stays a signature-on-behalf claim (`sa_a193_signed_on_behalf_20050731`), not acting service.
+  - (d) The Secretary General's tenure stays open (`until` null): A/56 and A/57 relieve Khalid bin Abdulaziz Al-Tuwaijri of other posts only. Codex's accepted review (`42046e51`) treats A/56 and A/57 as unreviewed author leads; the data keep Codex's wording, and no end is inferred either way.
+  - (e) The Secretary General's `attested_on` stays the Royal Court statement's dateline, 2006-10-20.
+  - (f) The English glosses inside quotations are acceptable; future edits may use the form 'صدر اليوم' (issued today).
+  - Merge: `codex/campaign-certification` had moved to `13367c99`, which already carries Codex's import (`d23f0bf2`), correction (`4a98bc10`) and accepted review (`42046e51`, merged at `e1fe36e0`) of this packet. It was merged at `a0ae4af7`. The report, `saudi-arabia.json`, the 20120618 extract, the handoff and `test_saudi_kings_crown_princes_c01_45.py` conflicted (add/add or content); each was resolved to the integration version, because `d23f0bf2` holds this branch's submitted blobs byte for byte and the integration versions differ only by Codex's later edits. `research-index.json` was regenerated and matches the integration copy (1,996 sources and 4,933 claims). No research input changed in this pass, so there is no index commit.
 
 ## Checks
 
@@ -339,3 +349,18 @@ checkout. Neither is fixed here.
 The new test's ten mutations (a successor-derived end, a ceremony as an observation, a deputation on a role, a from from
 an order day, a re-dated existing holder, an observation on the wrong tenure, drifting claim text, a misresolved
 'yesterday', a changed response identity and an observation on `sa_pm`) each fail.
+
+Checker-fix pass (1 October 2026), run after merging `13367c99` at `a0ae4af7`. Fix: `tools/avatars/test_saudi_shura_allegiance_c01_25.py`: the name-only pin of `sa_succession_secretary` is restored to an exact pin. `C01_45_SECRETARY` lists the holder as `('Khalid bin Abdulaziz Al-Tuwaijri', '2006-10-20', None, None)`, and `chair_invariants` compares `(h['name'], h['attested_on'], h['from'], h['until'])` for every `holder_claims` entry, so a string entry also fails. Moving `attested_on`, setting `from` or `until`, or appending an observation each fail.
+
+```text
+python -X utf8 tools/avatars/campaign_research.py --check    # pass: 1,996 sources, 4,933 claims
+python -X utf8 tools/avatars/campaign_census.py --check      # exit 0, "check": true
+python -X utf8 -m unittest discover -s tools/avatars -p "test_saudi*.py"         # 25 pass
+python -X utf8 -m unittest discover -s tools/avatars -p "test_*research*.py"     # 79 pass
+python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"      # 16 pass
+node --test tools/ui/check_leadership_research_review.cjs    # 11 pass
+python tools/planning/workboard.py --check                   # pass, 44 markers, 54 bounded tasks
+git diff --check                                             # clean
+```
+
+The known failures outside the suite are unchanged and not fixed. `packet_check.py 45 --base origin/codex/campaign-certification --no-fetch` runs after the push.

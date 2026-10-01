@@ -410,10 +410,10 @@ C01_06_HOLDERS['sa_crown_prince'] += [
     'sa_abdullah_cp_obs_19960101', 'sa_abdullah_cp_obs_20050730', 'sa_sultan_cp_obs_a175_20071029', 'sa_nayef_cp_obs_20111107',
     'sa_salman_cp_obs_20120618', 'sa_salman_cp_obs_a145_20140520', 'sa_muqrin_cp_obs_20150428', 'sa_mbn_cp_obs_a267_20150725',
     'sa_mbn_cp_obs_a128_20170225', 'sa_mbs_cp_obs_20260901']
-# CLAUDE-C01-45 fills sa_succession_secretary: (sources, claim_ids, holder names), exactly.
+# CLAUDE-C01-45 fills sa_succession_secretary: (sources, claim_ids, holders as (name, attested_on, from, until)), exactly.
 C01_45_SECRETARY = (['sa_boe_succession_law', 'sa_spa_order_a136_20061020', 'sa_spa_allegiance_law_art24_20061020'],
                     ['sa_succession_membership', 'sa_tuwaijri_sg_appointed_a136_20061020', 'sa_allegiance_law_art24_secretary'],
-                    ['Khalid bin Abdulaziz Al-Tuwaijri'])
+                    [('Khalid bin Abdulaziz Al-Tuwaijri', '2006-10-20', None, None)])
 C01_45_SOURCES = 18  # Appended after this packet's sources.
 LATER_UNRESOLVED = {'sa_shura': 0, 'sa_succession_commission': 1}  # CLAUDE-C01-45 items appended after this packet's.
 # Roles and entries this packet does not touch: (sources, claim_ids); their holder_claims stay as they were.
@@ -511,7 +511,7 @@ def chair_invariants(packet):
     for role_id, (sources, claim_ids) in UNTOUCHED.items():
         assert (roles[role_id]['sources'], roles[role_id]['claim_ids'], roles[role_id]['holder_claims']) == (sources, claim_ids, []), role_id
     sec = roles['sa_succession_secretary']
-    assert (sec['sources'], sec['claim_ids'], [h['name'] for h in sec['holder_claims']]) == C01_45_SECRETARY
+    assert (sec['sources'], sec['claim_ids'], [(h['name'], h['attested_on'], h['from'], h['until']) for h in sec['holder_claims']]) == C01_45_SECRETARY
 
 
 class SaudiShuraAllegianceChairTests(unittest.TestCase):
