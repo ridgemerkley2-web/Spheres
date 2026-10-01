@@ -1,0 +1,17 @@
+F
+======================================================================
+FAIL: test_denied_journal_flush_matches_equivalent_output_path (test_stability_matrix.JournalFailureTests.test_denied_journal_flush_matches_equivalent_output_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\campaign\test_stability_matrix.py", line 333, in test_denied_journal_flush_matches_equivalent_output_path
+    self.assert_denied_journal_flush(alias=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\campaign\test_stability_matrix.py", line 373, in assert_denied_journal_flush
+    with self.assertRaisesRegex(PermissionError, "injected journal flush denied"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.097s
+
+FAILED (failures=1)

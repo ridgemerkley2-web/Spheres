@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/campaign",
+    "-p",
+    "test_*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+  "exit_code": 0,
+  "started_at": "2026-10-01T14:23:15.581677+00:00",
+  "finished_at": "2026-10-01T14:23:38.622636+00:00",
+  "log_sha256": "362f3a9c2341de2bae61fd4c737ea5a91cf3eb5eec7752c2465ed7b025e48fc4"
+}

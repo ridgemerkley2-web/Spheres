@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_stability_matrix.JournalFailureTests.test_denied_journal_flush_matches_equivalent_output_path"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\tools\\campaign",
+  "exit_code": 1,
+  "started_at": "2026-10-01T14:22:35.067959+00:00",
+  "finished_at": "2026-10-01T14:22:35.371151+00:00",
+  "log_sha256": "7087077b096733152b23e311dae00d225e0f5e920f9220a0414f33f99ae26af7"
+}

@@ -1,0 +1,104 @@
+.........................................................................................EE.........................................F.............................................................................................................................................................................................................................................................................................................................................................................................................F.EE......................................................................................................................................................................
+======================================================================
+ERROR: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_cartoon_review.py", line 542, in test_committed_export_is_current_deterministic_and_read_only
+    files = cr.outputs(cr.ROOT)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\cartoon_review.py", line 1119, in outputs
+    export = build(root)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\cartoon_review.py", line 1004, in build
+    return Builder(Path(root)).build()
+           ~~~~~~~^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\cartoon_review.py", line 327, in __init__
+    raise SystemExit(f'Required input is missing: {rel}')
+SystemExit: Required input is missing: spheres-web/ui/display-art/manifest.json
+
+======================================================================
+ERROR: test_header_dimensions_match_pillow_on_repository_images (test_cartoon_review.Repository.test_header_dimensions_match_pillow_on_repository_images)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_cartoon_review.py", line 563, in test_header_dimensions_match_pillow_on_repository_images
+    export = json.loads(cr.outputs(cr.ROOT)[cr.EXPORT_JSON])
+                        ~~~~~~~~~~^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\cartoon_review.py", line 1119, in outputs
+    export = build(root)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\cartoon_review.py", line 1004, in build
+    return Builder(Path(root)).build()
+           ~~~~~~~^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\cartoon_review.py", line 327, in __init__
+    raise SystemExit(f'Required input is missing: {rel}')
+SystemExit: Required input is missing: spheres-web/ui/display-art/manifest.json
+
+======================================================================
+ERROR: test_violation_exits_non_zero (test_successor_proposals.CommandLineTests.test_violation_exits_non_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_successor_proposals.py", line 507, in test_violation_exits_non_zero
+    doc, sources = csp.load_packet(csp.ROOT, csp.PACKET)
+                   ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\check_successor_proposals.py", line 743, in load_packet
+    doc = json.loads((base / 'proposals.json').read_text(encoding='utf-8'))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined\\docs\\campaign-certification\\C04\\preparation\\france-tonga\\proposals.json'
+
+======================================================================
+ERROR: setUpClass (test_successor_proposals.ProposalPacketTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_successor_proposals.py", line 26, in setUpClass
+    cls.doc, cls.sources = csp.load_packet(csp.ROOT, csp.PACKET)
+                           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\check_successor_proposals.py", line 743, in load_packet
+    doc = json.loads((base / 'proposals.json').read_text(encoding='utf-8'))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined\\docs\\campaign-certification\\C04\\preparation\\france-tonga\\proposals.json'
+
+======================================================================
+FAIL: test_scope_is_preparation_and_covers_all_eight_cases (test_certified_boundary_matrix.RealCommittedOutput.test_scope_is_preparation_and_covers_all_eight_cases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_certified_boundary_matrix.py", line 688, in test_scope_is_preparation_and_covers_all_eight_cases
+    self.assertEqual({k for k, v in statuses.items() if v == 'accepted'},
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     {'01', '02', '03', '04', '07', '08', '23', '24', '25', '27', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '40', '41', '42', '43', '44', '45', '46'})
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'48'
+'51'
+'50'
+'49'
+'47'
+
+======================================================================
+FAIL: test_committed_packet_exits_zero (test_successor_proposals.CommandLineTests.test_committed_packet_exits_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_successor_proposals.py", line 503, in test_committed_packet_exits_zero
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : ERROR: cannot load inputs: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined\\docs\\campaign-certification\\C04\\preparation\\france-tonga\\proposals.json'
+
+
+----------------------------------------------------------------------
+Ran 699 tests in 73.271s
+
+FAILED (failures=2, errors=4)

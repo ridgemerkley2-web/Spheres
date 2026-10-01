@@ -1,0 +1,17 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/planning/workboard.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined",
+  "started_utc": "2026-10-01T14:42:06.398434+00:00",
+  "duration_seconds": 0.18,
+  "exit_code": 0,
+  "log": "workboard-check.log",
+  "bytes": 146,
+  "sha256": "1a3f687492e2d8e50b626e242c5b9d56180b7de41008d63ceb4bfecec0e2e613"
+}

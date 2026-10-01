@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_stability_matrix.JournalFailureTests"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\tools\\campaign",
+  "exit_code": 0,
+  "started_at": "2026-10-01T14:23:09.042849+00:00",
+  "finished_at": "2026-10-01T14:23:15.580799+00:00",
+  "log_sha256": "ac748d5bcd8cc499fb3fb860b0b26a4716b189b60f4d935ef9f1b2d0bcec3153"
+}

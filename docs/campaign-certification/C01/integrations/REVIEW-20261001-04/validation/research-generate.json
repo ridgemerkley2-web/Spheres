@@ -1,0 +1,16 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/campaign_research.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined",
+  "started_utc": "2026-10-01T14:37:45.291924+00:00",
+  "duration_seconds": 1.042,
+  "exit_code": 0,
+  "log": "research-generate.log",
+  "bytes": 252,
+  "sha256": "90f91f2425b9252da1b4e2ffabec580e61c322caf8daa06ca55cbd6f7dc61fef"
+}

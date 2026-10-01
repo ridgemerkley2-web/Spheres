@@ -1,0 +1,56 @@
+[
+  {
+    "command": [
+      "git",
+      "add",
+      "--",
+      "tools/campaign/test_stability_matrix.py"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-01T14:24:13.573331+00:00",
+    "finished_at": "2026-10-01T14:24:13.704634+00:00",
+    "log_path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\journal-fixture-evidence\\publish-0.log",
+    "log_sha256": "eeb0b85dffadd3d776dc11691edc9ef050b65a678f381026352319f4a668805c"
+  },
+  {
+    "command": [
+      "git",
+      "commit",
+      "-m",
+      "Match canonical journal paths in the failure fixture",
+      "--only",
+      "--",
+      "tools/campaign/test_stability_matrix.py"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-01T14:24:13.705543+00:00",
+    "finished_at": "2026-10-01T14:24:13.811526+00:00",
+    "log_path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\journal-fixture-evidence\\publish-1.log",
+    "log_sha256": "bb73e84044d91336609ab6088afbe4f919742aba614a05e9a9119bbbab147a6e"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-01T14:24:13.812788+00:00",
+    "finished_at": "2026-10-01T14:24:13.833621+00:00",
+    "log_path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\journal-fixture-evidence\\publish-2.log",
+    "log_sha256": "454ae8380930b6895f4c45c6257b9460005a0a2a703a61657283256956021ffc"
+  },
+  {
+    "command": [
+      "git",
+      "push",
+      "origin",
+      "HEAD:refs/heads/codex/tonga-country-cast-20261001"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-01T14:24:13.834507+00:00",
+    "finished_at": "2026-10-01T14:24:16.314148+00:00",
+    "log_path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\journal-fixture-evidence\\publish-3.log",
+    "log_sha256": "78e1b1949a82f6d2573bd6735ef61827afee1a8a9e9b70f32b2915ded9bdf570"
+  }
+]

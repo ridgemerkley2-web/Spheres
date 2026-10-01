@@ -1,0 +1,20 @@
+.............F.......................................................
+======================================================================
+FAIL: test_committed_pilot_passes (test_company_pilot.CompanyPilotTests.test_committed_pilot_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\planning\test_company_pilot.py", line 183, in test_committed_pilot_passes
+    self.assertEqual(found.items, [], 'the committed pilot must validate')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('schema', "sources.json unreadable: [Err[743 chars]g.')] != []
+
+First list contains 8 additional elements.
+First extra element 0:
+('schema', "sources.json unreadable: [Errno 2] No such file or directory: 'D:\\\\spheres-offload\\\\codex-next-20260928\\\\claude-review-20261001-04\\\\combined\\\\docs\\\\research\\\\company-pilot\\\\sources.json'")
+
+Diff is 841 characters long. Set self.maxDiff to None to see it. : the committed pilot must validate
+
+----------------------------------------------------------------------
+Ran 69 tests in 2.997s
+
+FAILED (failures=1)

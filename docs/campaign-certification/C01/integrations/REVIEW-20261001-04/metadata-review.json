@@ -1,0 +1,76 @@
+{
+  "status": "passed_scoped_metadata_checks",
+  "tasks": 59,
+  "completed_claude": 36,
+  "modified_old_tasks": [
+    "CLAUDE-C06-TONGA-01"
+  ],
+  "old_holds_unchanged": [
+    28,
+    39
+  ],
+  "canonical_pathway_and_assignments_unchanged": true,
+  "new_source_origins": {
+    "b94146eb": 24,
+    "72d3d80d": 19,
+    "8c891fd5": 6,
+    "fc0fad30": 15,
+    "90f7f54c": 16
+  },
+  "accepted_sources": 80,
+  "accepted_claims": 126,
+  "accepted_holder_observations": 41,
+  "submitted_holder_uses": 45,
+  "receipts": [
+    {
+      "task": "CLAUDE-C01-47",
+      "revision": "32eb9977f505217070a9d3ae74a8824a0b77e113",
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/README.md",
+      "sha256": "6a371f7989e6f9c1e7cf7bb05019b534bd878fd9545f36e7005f5eba31d0b52b"
+    },
+    {
+      "task": "CLAUDE-C01-48",
+      "revision": "ee884dfc5201b3652e274b33fc286db94693d1b0",
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-48-20261001/README.md",
+      "sha256": "a2bdc5ff094f43b41dc39fbacc26b689883cb4f96f64356e24135dd0f597ec47"
+    },
+    {
+      "task": "CLAUDE-C01-49",
+      "revision": "9ec1583a779b6978ca96e78797ae8faa5227f8bd",
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/README.md",
+      "sha256": "a076718a5fa7b4f94c483c9548fce576a9d57bae1634d76fa5f873994424953e"
+    },
+    {
+      "task": "CLAUDE-C01-50",
+      "revision": "6248bde6b68f543b8c814d4db5d49f41bccc6efc",
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md",
+      "sha256": "3d45ec8dc8e4ffbb6df307e9d88ba23b51e45f8f223f792dfa35985187d0587e"
+    },
+    {
+      "task": "CLAUDE-C01-51",
+      "revision": "1299cfd835dcb87e52ecfb48b999441ae45fe42d",
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md",
+      "sha256": "cf1603fa0d46bb369e0dd69acbe4b59131eabb6c9ab0a254640662f0bca57e4f"
+    }
+  ],
+  "changed_paths": [
+    "docs/AI_WORKSTREAMS.md",
+    "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+    "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+    "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+    "docs/planning/ai-task-queue.json",
+    "tools/avatars/certified_gap_ledger.py",
+    "tools/avatars/test_certified_gap_ledger.py"
+  ],
+  "fixture_tests": {
+    "command": "python -B -X utf8 -m unittest test_certified_gap_ledger.FixtureLedger test_certified_gap_ledger.CoverageUnits",
+    "pass": 25,
+    "fail": 0,
+    "elapsed_s": 2.778
+  },
+  "limits": [
+    "No central generator or checked-in-ledger tests run against France-only source tree.",
+    "Root must regenerate and validate combined source/art-free integration.",
+    "Tonga candidate remains isolated and unqualified."
+  ]
+}

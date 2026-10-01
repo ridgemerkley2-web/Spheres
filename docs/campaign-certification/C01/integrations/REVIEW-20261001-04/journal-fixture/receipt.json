@@ -1,0 +1,81 @@
+{
+  "status": "committed_and_pushed_candidate_only",
+  "base": "64627c824e9569598fa21c59ccf9b4a280df590c",
+  "commit": "328ff914f7be176047c698a0705587da0384ce5d",
+  "branch": "codex/tonga-country-cast-20261001",
+  "file": "tools/campaign/test_stability_matrix.py",
+  "git_blob_sha256": "c2a3c59519165f3b3baa4aad25a84568cf285507de51ae0bee57789c18d88839",
+  "reproduction": "Equivalent path spelling existing-directory/../new-run deterministically missed the raw Path.open comparison. The new test failed before canonicalization with expected PermissionError absent.",
+  "repair": "Resolve expected and opened journal paths; compare diagnostic record to canonical path. Native Popen mock raises AssertionError if invoked; assert_not_called runs in finally.",
+  "runtime_changed": false,
+  "research_or_manifests_changed": false,
+  "checks": {
+    "alias_red": {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "test_stability_matrix.JournalFailureTests.test_denied_journal_flush_matches_equivalent_output_path"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\tools\\campaign",
+      "exit_code": 1,
+      "started_at": "2026-10-01T14:22:35.067959+00:00",
+      "finished_at": "2026-10-01T14:22:35.371151+00:00",
+      "log_sha256": "7087077b096733152b23e311dae00d225e0f5e920f9220a0414f33f99ae26af7"
+    },
+    "journal_green": {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "test_stability_matrix.JournalFailureTests"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\tools\\campaign",
+      "exit_code": 0,
+      "started_at": "2026-10-01T14:23:09.042849+00:00",
+      "finished_at": "2026-10-01T14:23:15.580799+00:00",
+      "log_sha256": "ac748d5bcd8cc499fb3fb860b0b26a4716b189b60f4d935ef9f1b2d0bcec3153"
+    },
+    "campaign_suite": {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/campaign",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+      "exit_code": 0,
+      "started_at": "2026-10-01T14:23:15.581677+00:00",
+      "finished_at": "2026-10-01T14:23:38.622636+00:00",
+      "log_sha256": "362f3a9c2341de2bae61fd4c737ea5a91cf3eb5eec7752c2465ed7b025e48fc4"
+    },
+    "campaign_tests": 106,
+    "campaign_skipped": 1,
+    "journal_tests": 8,
+    "diff_check_exit": 0
+  },
+  "ci": {
+    "run_id": 36876063103,
+    "url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36876063103",
+    "observed_status": "in_progress",
+    "observed_at": "2026-10-01T14:25:16.456063+00:00"
+  },
+  "limitations": [
+    "No native build or campaign run.",
+    "CI did not log its raw-versus-canonical temporary path; short/long Windows path alias remains the inferred specific trigger, while equivalent-path mismatch is deterministically reproduced.",
+    "No full candidate verification or CI completion claimed."
+  ]
+}

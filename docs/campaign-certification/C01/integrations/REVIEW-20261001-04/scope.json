@@ -1,0 +1,38 @@
+{
+  "reviewed_revision": "8cd4d8c0ab4e52b69798554389905db1288f85cb",
+  "base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "remote_tips_unchanged": true,
+  "submitted": {
+    "CLAUDE-C01-47": "8226c419fb4c3c1aa0073800f8f3bf80d0663f71",
+    "CLAUDE-C01-48": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+    "CLAUDE-C01-49": "c601d991df0692a3426cf4967abb57d9edbfa56e",
+    "CLAUDE-C01-50": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+    "CLAUDE-C01-51": "2fe2b752e05125e204832f5cd1f60b4c640af28d"
+  },
+  "new_sources": 80,
+  "new_claims": 126,
+  "accepted_office_observations": 41,
+  "proposed_office_observations": 45,
+  "peer_review": {
+    "reviewer": "Codex /root/tonga_civilian_roster",
+    "revision": "ba490eb9bca18ca63301a0a38eabb3001e5812ef",
+    "research_report_supplement_pins": 91,
+    "automerged_test_files": 4,
+    "older_sources_claims_holders_lifecycles_mappings_preserved": true,
+    "no_runtime_or_asset_changes": true,
+    "ambiguous_pavlov_claim_has_no_holder_use": true,
+    "result": "no actionable defect"
+  },
+  "validation": {
+    "avatar_tests": 770,
+    "planning_tests": 69,
+    "ui_tests": 11,
+    "campaign_tooling_tests": 106,
+    "campaign_tooling_skips": 1,
+    "focused_metadata_tests": 65,
+    "independent_receipt_verifiers": 5
+  },
+  "canonical_qualification": false,
+  "native_build_or_campaign_run": false,
+  "remote_rechecked_date": "2026-10-01"
+}
