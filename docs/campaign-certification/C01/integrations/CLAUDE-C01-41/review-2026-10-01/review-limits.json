@@ -1,0 +1,33 @@
+{
+  "decision": "accept_bounded_research_intake_after_precision_corrections",
+  "reviewed_exact_claude_tip": "a989ddb4d67657236292a35443049554cc9b19e7",
+  "accepted_sources": 12,
+  "accepted_claims": 26,
+  "accepted_new_holder_observations": 5,
+  "held_sources": 0,
+  "held_claims": 0,
+  "held_new_holder_observations": 0,
+  "original_responses_bytes": 156365828,
+  "separate_original_edition_bytes": 30481,
+  "rulings": [
+    "Private scan hosts remain private; acceptance concerns attributed content in reproduced party/official publications, consistent with C01-35. No paper-original authentication.",
+    "The TASS report of a named party officer styles the deputy expressly; retain one dated attributed observation, not a signed party act.",
+    "No election or later resignation reference supplies from/until. No exact resignation day inferred.",
+    "The old Ivashkov observation remains unreconciled. Acting General Secretary service and union-level dissolution remain unestablished."
+  ],
+  "outside_scope": [
+    "Four submitted live SSSR.SU downloads and Claude paired-download timing were not repeated.",
+    "Internet Archive item metadata/uploader identity was not independently retrieved. Publication mastheads were visually checked.",
+    "No runtime, game mapping, portrait rights, exhaustive country coverage or C01/C06/S23/CP1 closure."
+  ],
+  "web_tool_attempts": [
+    {
+      "url": "https://archive.org/details/199037_9972",
+      "result": "Web open returned inaccessible; ordinary direct PDF curl succeeded exactly."
+    },
+    {
+      "url": "https://web.archive.org/web/20260830202901id_/http://kremlin.ru/acts/bank/385",
+      "result": "Web open returned inaccessible; ordinary direct original curl succeeded exactly."
+    }
+  ]
+}

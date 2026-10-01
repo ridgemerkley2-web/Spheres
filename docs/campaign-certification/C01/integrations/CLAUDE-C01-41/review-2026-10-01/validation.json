@@ -1,0 +1,169 @@
+[
+  {
+    "name": "index-before",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T01:00:11.530420+00:00",
+    "exit_code": 1,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\index-before.log"
+  },
+  {
+    "name": "index-generate",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py"
+    ],
+    "started_utc": "2026-10-01T01:00:17.072739+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\index-generate.log"
+  },
+  {
+    "name": "index-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T01:00:17.806058+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\index-check.log"
+  },
+  {
+    "name": "ussr",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_ussr*.py"
+    ],
+    "started_utc": "2026-10-01T01:00:18.490079+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\ussr.log"
+  },
+  {
+    "name": "russia",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_russia*.py"
+    ],
+    "started_utc": "2026-10-01T01:00:21.269926+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\russia.log"
+  },
+  {
+    "name": "research",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*research*.py"
+    ],
+    "started_utc": "2026-10-01T01:00:23.767372+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\research.log"
+  },
+  {
+    "name": "campaign",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "started_utc": "2026-10-01T01:00:30.238750+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\campaign.log"
+  },
+  {
+    "name": "census",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_census.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T01:00:31.661519+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\census.log"
+  },
+  {
+    "name": "atlas",
+    "command": [
+      "node",
+      "--test",
+      "tools/ui/check_leadership_research_review.cjs"
+    ],
+    "started_utc": "2026-10-01T01:00:31.932756+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\atlas.log"
+  },
+  {
+    "name": "workboard",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T01:00:32.305312+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\workboard.log"
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T01:00:32.443403+00:00",
+    "exit_code": 0,
+    "log": "docs\\campaign-certification\\C01\\integrations\\CLAUDE-C01-41\\review-2026-10-01\\logs\\diff.log"
+  }
+]
