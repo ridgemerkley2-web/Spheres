@@ -243,7 +243,14 @@
     const shown = all.filter(party => [party.party_name,party.party_id,party.identity_note,...rows(party.components).map(component => component.name),...rows(party.campaign).concat(rows(party.historical),rows(party.eligible),rows(party.uncertain_historical),isReference ? [] : futureEntries(party)).flatMap(entry => [entry.person?.name,entry.person?.native])].some(value => String(value || "").toLocaleLowerCase("en-US").includes(query)));
     return `${heading}${controls}${context}${futurePolicy(board,isReference)}${executivePolicy(board)}${!isReference && board.enabled === false ? '<p class="gov-ui-message">Historical party succession is off in this campaign. The cards show sourced historical references; they are not saved campaign appointments.</p>' : ""}<p class="gov-ui-result" role="status">${shown.length} of ${all.length} ${all.length === 1 ? "party" : "parties"} shown · ${esc(board.date || (isReference ? chosenDate : "Campaign date"))}${query ? ` · Search: “${esc(state.leadershipQuery)}”` : ""}</p>${shown.length ? `<div class="gov-ui-leadership-grid">${shown.map((party,index) => partyLeadershipCard(party,mode,board,index)).join("")}</div>` : `<div class="gov-ui-empty"><h3>${query ? "No matching parties or people" : "No party records supplied"}</h3><p>${query ? "Try a party name, component organization or leader." : "This reading contains no party catalogue. No identities have been inferred."}</p></div>`}`;
   }
-  const INSTITUTION_ROLES = {king:"King",to_king:"King",to_crown_prince:"Crown Prince",prime_minister:"Prime Minister",to_pm:"Prime Minister",peoples_representative:"People’s representative",nonelected_minister:"Non-elected minister",party_organizer:"Political organizer · reference only"};
+  const INSTITUTION_ROLES = {
+    king:"King",to_king:"King",to_crown_prince:"Crown Prince",prime_minister:"Prime Minister",to_pm:"Prime Minister",
+    to_deputy_pm:"Deputy Prime Minister",to_speaker:"Speaker",to_deputy_speaker:"Deputy Speaker",
+    to_dpfi_leader:"Democratic Party of the Friendly Islands · leader",to_dpfi_president:"Democratic Party of the Friendly Islands · president",
+    to_pdp_leader:"People’s Democratic Party · leader",to_peoples_party_leader:"People’s Party · leader",
+    to_peoples_party_society_president:"People’s Party society · president",to_peoples_party_society_secretary:"People’s Party society · secretary",
+    peoples_representative:"People’s representative",nonelected_minister:"Non-elected minister",party_organizer:"Political organizer · reference only"
+  };
   const institutionRole = role => INSTITUTION_ROLES[role] || String(role || "Institutional role").replaceAll("_", " ");
   function institutionalAction(view, data, state) {
     if (!view?.command || view.command.kind !== "tonga_institutions") return "";

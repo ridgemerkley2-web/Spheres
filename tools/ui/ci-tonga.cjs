@@ -69,6 +69,7 @@ async function main(){
     assert.equal(await historical.count(),b.historical_bindings.length);const missing=[];
     for(const [index,binding] of b.historical_bindings.entries()){
      const card=historical.nth(index);assert.equal(await card.getAttribute('data-gov-institution-person'),binding.person_id);
+     const roleLabel=(await card.locator('.gov-ui-kicker').innerText()).trim();assert(roleLabel);assert.doesNotMatch(roleLabel,/^TO(?:[\s_]|$)/i,'Historical office must have a readable label: '+binding.role_id);
      if(binding.person_id==='to_fatai_helu'){assert(!binding.person.portrait?.url);assert.equal(await card.locator('img').count(),0);missing.push(binding.person_id);continue;}
      assert(binding.person.portrait?.url,'Historical portrait missing for '+binding.person_id);await card.scrollIntoViewIfNeeded();const image=card.locator('img').first();await image.evaluate(img=>img.decode());
      assert.equal(await image.getAttribute('src'),binding.person.portrait.url);assert(await image.evaluate(img=>img.complete&&img.naturalWidth>0));
