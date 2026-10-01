@@ -59,6 +59,23 @@ evidence directory, with key logs and results copied unchanged into
 [validation-preserved](validation-preserved/). GitHub results are recorded separately as
 they become available; an unrun check is not a pass.
 
+## Final source follow-up
+
+A further review repaired the government portrait after an actual Crown
+succession: government and selector now resolve the same saved executive person.
+The regression checks the inherited identity, exact portrait, government payload
+and absence of save mutation. All 16 focused Tonga UI tests and 13 coverage tests
+pass after this change; the original full-suite receipts remain unchanged.
+
+`cargo check --locked -j 1 -p spheres-sim -p spheres-web --tests` passed on the
+final runtime sources with 438 recorded inputs unchanged and at least 4.127 GiB
+available commit throughout. The institutional catalogue exporter also passed
+its separate typecheck. Earlier typecheck attempts exposed omitted tracked
+artwork in the sparse checkout; those exact files were restored, and the original
+attempts are retained. Typechecking does not execute native tests or establish
+production-browser behavior. GitHub native execution remains pending, and the
+candidate has not yet been merged into the active integration playset.
+
 ## Acceptance remains open
 
 The [production manifest](../../countries/tonga/manifest.json) distinguishes

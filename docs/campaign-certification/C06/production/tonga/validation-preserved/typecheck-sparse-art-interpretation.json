@@ -1,0 +1,6 @@
+{
+  "prior_result": "check-final-04/result.json",
+  "native_tests_executed": false,
+  "passed": false,
+  "reason": "Process wrapper lost Cargo exit code; original stderr explicitly records web compilation failure from eight omitted tracked include files. Source test directories restored before attempt; component-art and terrain-tiles subsequently restored unchanged. Next wrapper retains the process handle and refuses null exit codes."
+}

@@ -1,0 +1,31 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-web v0.6.0 (D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\spheres-web)
+error: couldn't read `spheres-web\src\../ui/government-art/council-v1.png`: The system cannot find the path specified. (os error 3)
+   --> spheres-web\src\main.rs:167:39
+    |
+167 | const GOVERNMENT_COUNCIL_PNG: &[u8] = include_bytes!("../ui/government-art/council-v1.png");
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: could not compile `spheres-web` (bin "spheres-web" test) due to 1 previous error

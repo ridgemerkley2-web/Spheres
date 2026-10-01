@@ -1,0 +1,12 @@
+{
+  "reviewed_revision": "a725553c8af477d95d3625fb405f7e931a323556",
+  "base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "finding": "Inherited monarch resolved by selector but bypassed by government campaign_view executive payload",
+  "changed_path": "spheres-web/src/person_portraits.rs",
+  "sha256": "b7adb5ae232c2d8336c4a492bd922f7fef950990c3745ba227430adc3dee2dc6",
+  "command": "node --test tools/ui/check_tonga_institutions.cjs",
+  "exit_code": 0,
+  "native_regression_executed": false,
+  "status": "source repaired; focused frontend regression passed; native typecheck owned by parent",
+  "other_findings": []
+}

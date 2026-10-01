@@ -162,10 +162,10 @@ pub(crate) fn campaign_leader(w: &WorldState, nation: NationId) -> Value {
 
 pub(crate) fn campaign_view(w: &WorldState, nation: NationId) -> Value {
     let mut value = party_leadership::view(w,nation);
-    // Read-only support for original, explicitly linked executives in old saves.
-    if !w.rules.historical_party_leadership {
-        value["executive_person"]=campaign_person(w,nation).map(|p|json!(p)).unwrap_or(Value::Null);
-    }
+    // Use the same exact saved executive as the selector, including an inherited
+    // Crown identity that has no party-office assignment. Keep fiction metadata.
+    value["executive_person"]=campaign_person(w,nation)
+        .map(|p|party_leadership::person_view(&p.id)).unwrap_or(Value::Null);
     let date=value["date"].as_str().unwrap_or("").to_string();
     decorate(&mut value,&date);
     value["institutional_leadership"]=institutional_view(w,nation);
@@ -431,6 +431,14 @@ mod tests {
         spheres_sim::government::seat_office(&mut w,NationId::Tonga,&spheres_sim::government::Succession::Death);
         assert_eq!(campaign_leader(&w,NationId::Tonga)["person_id"],"siaosi_taufaahau_manumataongo");
         assert_eq!(campaign_leader(&w,NationId::Tonga)["office"],"King");
+        let after_succession=spheres_sim::save(&w);
+        let campaign=campaign_view(&w,NationId::Tonga);
+        assert_eq!(campaign["executive_person"]["id"],"siaosi_taufaahau_manumataongo");
+        assert_eq!(campaign["executive_person"]["portrait"]["url"],
+            "/art/people/tonga-george-tupou-v-cartoon-1990-v1.png");
+        let government=super::super::government_json(&w,NationId::Tonga);
+        assert_eq!(government["party_leadership"]["executive_person"],campaign["executive_person"]);
+        assert_eq!(spheres_sim::save(&w),after_succession);
     }
     #[test]
     fn registered_cartoons_exist_and_have_source_and_visual_review() {
