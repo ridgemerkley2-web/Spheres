@@ -1,0 +1,88 @@
+{
+  "tests_passed": 142,
+  "tests_failed": 0,
+  "runs": [
+    {
+      "name": "tonga",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tonga*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 16.889,
+      "log": "validation/tonga.log",
+      "log_bytes": 208,
+      "log_sha256": "28cacd21f621cd5a5a1d98c0b7b7e100a7dfe793d83557dd6a76b609d01d8719",
+      "tests": 102
+    },
+    {
+      "name": "country-cast",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_country_cast.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.81,
+      "log": "validation/country-cast.log",
+      "log_bytes": 135,
+      "log_sha256": "a9ed7509bb59cb01e2e1a4cdda7fa40db1b859b341df4cc7c67f6c103ea4e3f2",
+      "tests": 31
+    },
+    {
+      "name": "research",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign_research.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.303,
+      "log": "validation/research.log",
+      "log_bytes": 112,
+      "log_sha256": "b8d4880077fea9d997f23343062791db8bda59eaa66121cb78369397374feb3e",
+      "tests": 9
+    },
+    {
+      "name": "index-in-memory",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-c",
+        "import json,sys,pathlib; sys.path.insert(0,'tools/avatars'); import campaign_research; r=campaign_research.build(); print(json.dumps(r['counts'])); pathlib.Path(sys.argv[1]).write_text(json.dumps(r,indent=2,ensure_ascii=False)+'\\n',encoding='utf8')",
+        "D:\\spheres-offload\\codex-next-20260928\\c01-44-resumed-evidence-20261001\\candidate-research-index.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.715,
+      "log": "validation/index-in-memory.log",
+      "log_bytes": 236,
+      "log_sha256": "eb1c2ad1d0501a567c1ed167888ca9e66656d4d407be40dc65f73727e632bf0c",
+      "tests": null
+    }
+  ],
+  "native_or_full_avatar_run": false,
+  "generated_index_committed": false
+}

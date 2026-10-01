@@ -1,0 +1,1061 @@
+{
+  "base": "13367c99a6ee708e2324ce67f079e6c80148b854",
+  "submission": "6110064071a513d21bdcee7a8d2d081e90099359",
+  "previous_submission": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
+  "import_commit": "c19f86c0993e9adca5162dae4fec307235190844",
+  "correction_commit": "1102c64ade62342380a427f3cc19821a4fca244c",
+  "imported_paths": [
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-pga-award-news-20131214-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-pohiva-2016-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-ca-ac9-20150916-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-ptoa-reply-20200317-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-tlr-2014-pohiva-leader-20140117-facts.json",
+    "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+    "docs/campaign-certification/C01/research/tonga.json",
+    "docs/campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/submission-handoff.md",
+    "tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py",
+    "tools/avatars/test_tonga_research_s10g.py"
+  ],
+  "original_authored_paths": [
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-pga-award-news-20131214-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-pohiva-2016-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-ca-ac9-20150916-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-ptoa-reply-20200317-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-tlr-2014-pohiva-leader-20140117-facts.json",
+    "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+    "docs/campaign-certification/C01/research/tonga.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
+    "tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py",
+    "tools/avatars/test_tonga_research_s10g.py"
+  ],
+  "new_sources": 5,
+  "new_claims": 6,
+  "new_holders": 0,
+  "prior_sources": 207,
+  "prior_claims": 319,
+  "prior_extracts": [
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-act-constitution-19900808-facts.json",
+      "bytes": 1895,
+      "sha256": "a688d678dafbef86224b068a1d23a9073ee7143088b5ed691dd4ca6803408100"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-act-constitution-amendment-no2-20101124-facts.json",
+      "bytes": 7277,
+      "sha256": "8ab3c5f8c562443809daff64e63a75b61c8899992a8274c3bbf811f8809e2697"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-act-income-tax-19900712-facts.json",
+      "bytes": 2022,
+      "sha256": "583464fdaa8c99f88c51c985085771570f5e5cb801165a6ee5816c5a812e66a1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-act-income-tax-20060630-facts.json",
+      "bytes": 1993,
+      "sha256": "a65c28290c250fa19fddf32dd001a5117280d2c853ad1c8383ce9fa212738446"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-act-legislative-assembly-amendment-no2-20101124-facts.json",
+      "bytes": 5655,
+      "sha256": "0517ba9b6a5455061a7426ddfaf0552a4cb3fae6905f133c168d144fc65f1aa7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-act-public-enterprises-20061003-facts.json",
+      "bytes": 1941,
+      "sha256": "4871c91619af71d94e46223b2c384d31e9ec53d0fc82132ca378210c074ab91e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-acting-speaker-20130828-facts.json",
+      "bytes": 6726,
+      "sha256": "353e452c2ff6ca9b86744ef8e84ab472af0d34c9355584871923dbf89423ce04"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-acting-speaker-20130905-facts.json",
+      "bytes": 4059,
+      "sha256": "6ccbca5a0d3028a53e66c0b8fb524f8ccad4b1652592521082ca2d763a3de00e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-archives-page-20060327-facts.json",
+      "bytes": 5474,
+      "sha256": "3e166fd98fc9c26a6378a0f66b63bf6a19dd889ece413d9cd577922f1a00d2b1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-auditor-news-20181108-facts.json",
+      "bytes": 4278,
+      "sha256": "9fedeb4f921a1149c5bef346635271d4d3a126b66c54cd6cc54a4d51415a2b9f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-byelection-20191119-facts.json",
+      "bytes": 3146,
+      "sha256": "f73283e5f99fd4b31d362df066b9a36085bf959bed71f599aae8044858cf107e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-cabinet-oath-news-20191028-facts.json",
+      "bytes": 4105,
+      "sha256": "a7a101b7ad79fbd09106d8279349b8c02f2c35707b7b665ef3bf68e29c9fec65"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-eke-elected-news-20241224-facts.json",
+      "bytes": 2644,
+      "sha256": "612fcd33a26bb284415ed22aa95ece76ef90673adbbaec7721c1de1be3bae8a4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-faotusia-condolence-20210901-facts.json",
+      "bytes": 4391,
+      "sha256": "5131b0217ef0c1d88baa0d6c8b1df9e9abcd077152cd86ef018b8b2ae9473c87"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-fili-sea-20120719-facts.json",
+      "bytes": 5485,
+      "sha256": "a726efd356cf5b8d5fadf7e72c7117559b7ee77b590a87c8b88db0ec721272fc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-first-nomination-20241220-facts.json",
+      "bytes": 2307,
+      "sha256": "4ce3c28297eedd5f03363d9c0475a87a4dbb925435b46760c64cf9e301a2742c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-home-page-20040906-facts.json",
+      "bytes": 4143,
+      "sha256": "67046180bde73e7ed973d46a5f99d6cf6c5f1d49959037ffc2d20ad8aedb20b8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-interim-note-20101203-facts.json",
+      "bytes": 5544,
+      "sha256": "b0f4537f6f4be86bcf765ab948f326c3aa1d9a09beaed8d7f193d15f61d2e365"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-interim-speaker-20211122-facts.json",
+      "bytes": 2635,
+      "sha256": "6d8044d7243624b7dc6cc58a653f5878e1862e7049f9acab92da01ee013556f5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-knesset-visit-20110404-facts.json",
+      "bytes": 3963,
+      "sha256": "cd626fa067b14b3a259ea15415b65834dca88a8f37346201c48eac4ea396e8e1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-meeting-notice-20251212-facts.json",
+      "bytes": 4504,
+      "sha256": "0ae64b25e8654bdbca9eda66ce8da888919c7a20e0775bc426ab0886f786c0a4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-meeting-programme-20171215-facts.json",
+      "bytes": 2885,
+      "sha256": "c3b56c1ef1a1fc792db3f3634e4f7b91028c2d816b801a0c664bf01413efbfa6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-member-maafu-2021-facts.json",
+      "bytes": 4181,
+      "sha256": "01ddaef629792c0dba2517ba6f4378ddc5620b0b6fa2774271825ff7d74fdfed"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-ministers-oath-news-20260818-facts.json",
+      "bytes": 4851,
+      "sha256": "62cbdee0e66215ff5ea95b741c9cf6493f3ed02c0dc6d42556fa79f06f7bdca6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-ministers-page-20070326-facts.json",
+      "bytes": 5465,
+      "sha256": "8874f739ae8b0d9b8affc239757f7ac71eb63dede13cc2beadedff005386beae"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-01-20250131-facts.json",
+      "bytes": 4272,
+      "sha256": "746db9e1c86390bb566f6e085858751b0d4c0e116952a6b8b0ae62a0ebe6d4ca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-20180118-facts.json",
+      "bytes": 2577,
+      "sha256": "e457fed50cb35b311cc46b1ab207468423568e3456570d8dfd44ac6dccbb06bd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-20190912-facts.json",
+      "bytes": 2872,
+      "sha256": "447eeabc334b9d36679f2a9ade5e7adcaae719584183d71f897b88e041342e90"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-48-20241209-facts.json",
+      "bytes": 9224,
+      "sha256": "907ec9bc1f357fa8090218447b5b335cc7e435480e21878357670354e197d07b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-pm-election-20241224-facts.json",
+      "bytes": 6446,
+      "sha256": "99d8748a42949ba5594ce09bc90de49adfee60b243f48105cac08591ebc2e090"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-new-speaker-20120723-facts.json",
+      "bytes": 5213,
+      "sha256": "7ebae874d0603f7425ea23e9287e35b7634a3a77d8236332c73ff62a512b058f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-nominations-20141229-facts.json",
+      "bytes": 2413,
+      "sha256": "91597b79f6bfcd409286398829d6287fe90171a849816b6995ee187ddd98a8ef"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-20200511-facts.json",
+      "bytes": 3230,
+      "sha256": "54cc705c552c727df057c3f115bf7914d2322841c8b22fb30c2ee2e24ea35f1e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-news-20180118-facts.json",
+      "bytes": 4329,
+      "sha256": "17681631e2938fec4c4389eed17963c1153fb83bd404eb15e08b9bc31cf3f3a6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-news-20250203-facts.json",
+      "bytes": 2567,
+      "sha256": "77855e0f405a7c62c5d12f372f16b1765fddec029463b8402ac072eeaef0b45b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-sitting-notice-20250129-facts.json",
+      "bytes": 2264,
+      "sha256": "ce907d3379996f6adf81f6b82c79eb5e18da11d8929e888399fa9d032a4e6307"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oaths-20110114-facts.json",
+      "bytes": 4164,
+      "sha256": "5bbcb0ebcb7cde797ce4ad40c8833778caa5e6eeb2aa19c9db972b0c7445fb18"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-obituary-fusitua-20140505-facts.json",
+      "bytes": 4646,
+      "sha256": "45e09b392af79076020e409b598c8be4d9e3fe05826dc2ab3ad606c1b68b889a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-opening-news-20220111-facts.json",
+      "bytes": 4275,
+      "sha256": "b75a0cc2c0ce0225ecf194f383b8548f574515bb11cb9c8b19209fecbed4508c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-designate-news-20211215-facts.json",
+      "bytes": 5006,
+      "sha256": "7dfa46fd5c71c2b2b06f49a5633b010174455f205513ac5b7dc7d676eb44daaa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-designate-news-20251216-facts.json",
+      "bytes": 6265,
+      "sha256": "9762b2f3a08639d10fceb92449317f9985e4ff9ff5fc39831bb9ef2845d9dc2a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-elected-20141229-facts.json",
+      "bytes": 2637,
+      "sha256": "d413452c7dae44ff8ffb9d645428e7247860ee91955fb86067871d5515b9a80b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-meeting-20211213-facts.json",
+      "bytes": 2411,
+      "sha256": "fb923b27d01bfcf802ac882faa97958692cb0312a6acca405e8f95e5200c5564"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-20211201-facts.json",
+      "bytes": 2387,
+      "sha256": "7baa782b9e5131aa04b0667c09dd632fff779712590f5a13f3d7a3db791936e8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-20211214-facts.json",
+      "bytes": 2320,
+      "sha256": "12b90556f2b06c413c00dc3418932c911de8e35dac87307bb0fd27b756f6f044"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-open-20241210-facts.json",
+      "bytes": 2822,
+      "sha256": "9449eee88d7b234b682cf4acb5f1669c89d3b7057c70f253c7518bdb206a9f50"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-tuilakepa-20100915-facts.json",
+      "bytes": 4316,
+      "sha256": "c712902a0ace4d6ccc26901a885262f2127c497942012aabe9ceea96f5cbb754"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-tuivakano-20110203-facts.json",
+      "bytes": 4647,
+      "sha256": "30af8870bdbe097b21e259f2ab9ef732a70f6c987aa5887c4365e6c2f3b9fe0c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-report-to-king-20141229-facts.json",
+      "bytes": 2473,
+      "sha256": "55dcf6dd93b0104964a751be024be23cce505df4a91306da7f4e72211c48c760"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-resignation-news-20241209-facts.json",
+      "bytes": 2857,
+      "sha256": "36578548953b7e9b458c29037f730483d13683524064e55e55141d39cd47f112"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-sitting-notice-2011-facts.json",
+      "bytes": 4500,
+      "sha256": "013e78b784a23083de45149d7144a5531b7818aaf467a8b8b014464a38429dbe"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-appointed-20120720-facts.json",
+      "bytes": 5512,
+      "sha256": "d4183a93183cb59b4deaaba2321c1f5208026e3e20701e76e1f55a4aef9cd8c9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-appointment-to-20251219-facts.json",
+      "bytes": 5058,
+      "sha256": "b1e593ecc8b3edc40f1704fb45439dedcc3741e8aa61401d55f0a08bd11bec63"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-elected-20101221-facts.json",
+      "bytes": 4834,
+      "sha256": "b7908687c220a79a7cd773dbed3b4cfb15f119ef309b6a4331a5a74f0c83ca95"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-judiciary-20140815-facts.json",
+      "bytes": 4087,
+      "sha256": "3214ad429c2ad4f27b8bf059195e34260586c4de2c97729f51ad10d9e84fec9b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-news-20150224-facts.json",
+      "bytes": 4633,
+      "sha256": "da792168cf3ff6749de22229ce73f9292426f62d237f1095201f9346b48a13e8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-news-20180305-facts.json",
+      "bytes": 4395,
+      "sha256": "6cbe536cda9a9d87ed411b7f08b5e9f9b5a36b48e2879fef916f903e9501daf8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-news-20220217-facts.json",
+      "bytes": 4416,
+      "sha256": "81805b941d5263f06541075aa5dc95155ffce40d00cc47467c5972db1d1e809a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-news-20260519-facts.json",
+      "bytes": 4406,
+      "sha256": "d453966d9bd3dd073429a037a46c5f17627ab04ee20acc78a15b45a5df37cc1f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-oath-news-20260122-facts.json",
+      "bytes": 4822,
+      "sha256": "0f4c250159a8b8d4681c898a0ffc80d912c2abab072ec03fe0096be98cd87510"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-page-20070625-facts.json",
+      "bytes": 5282,
+      "sha256": "bf7bf1325e40650293281b177bd85698ef04b284281e268c531ec4dd37ce5272"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-release-20170912-facts.json",
+      "bytes": 2632,
+      "sha256": "89f0bdd3a8d1db83733ff62c32d812155e2df1d248851430fe3a9f0f4979fcb4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-revoked-20120717-facts.json",
+      "bytes": 5667,
+      "sha256": "bce27b7aef43196bfa8d58fb82df86bb01ddc2d8da67c287b1dba3bdbc735288"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speakers-list-20110203-facts.json",
+      "bytes": 4720,
+      "sha256": "c18c6807dfc1d22548d4b2220ae0b2f6903416e8ff1c9338a2d6daf25ea92b74"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speakers-list-20111130-facts.json",
+      "bytes": 11305,
+      "sha256": "2375b86cbdb96a446414cf6cb23b4cd3d63e707e432154197563a0363a08be3c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-special-sitting-20141209-facts.json",
+      "bytes": 2750,
+      "sha256": "ac2424a717358e21bd08215c17ebf32a5fa2aaac537b9e5861a9d633811f2ce8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-term-report-2017-2021-facts.json",
+      "bytes": 6163,
+      "sha256": "26b304ea810382f628a75f62b954b01545b668da238b3fce34b314db37ceb59e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-two-nominations-20241223-facts.json",
+      "bytes": 2399,
+      "sha256": "dffa18a4fce6479e04c932e5747afac45d946d8c22a1f3abb8f0155b3b082e98"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-vonc-notice-20241125-facts.json",
+      "bytes": 2697,
+      "sha256": "50240f643a03e203ab21042340206a060659013f98f98bd0975d664c038aef54"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ca-ac22-20230406-facts.json",
+      "bytes": 2723,
+      "sha256": "a2e91b1e4d857c7c3d05d3210550e92ba9970b6505b79198033166f2e1b3aaa0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-court-ac8-20220809-facts.json",
+      "bytes": 2815,
+      "sha256": "b2a8ebb81eb5e587c324f45500c7fcf6c7e94270f9e9cd628f631b0096fc3e49"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext14-20120330-facts.json",
+      "bytes": 1793,
+      "sha256": "2e46e26c856af8ebf68251392eda0f4f1cf1e0f4d9fe6686e5c3294512c8362a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext28-20190916-facts.json",
+      "bytes": 2818,
+      "sha256": "9b57521f62cb871de2f575c721a962d5b7f20af23c1d3bf126777c99a068659f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext8-20120319-facts.json",
+      "bytes": 2680,
+      "sha256": "66cb470eed549cc2c5619bf0e12130f85136bd059f18419cc9f39fba708d73d6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext9-20120319-facts.json",
+      "bytes": 2465,
+      "sha256": "e6d7eec7fa0e5c468c0ab21964cd5fc16d0b8133e48894aa729e357a6b356459"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-gse22-20241210-facts.json",
+      "bytes": 2533,
+      "sha256": "caba8d1f39c2da9a7ed5ccb47f4e5b62bc049a32fb218139fd04cdf5007d3040"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-supp14-20170825-facts.json",
+      "bytes": 2470,
+      "sha256": "392a199b88b66764bedfe7bab61d78e80d7917f5ef7b181f63b2b45c398168ba"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-supp4-20150625-facts.json",
+      "bytes": 1965,
+      "sha256": "0d70fcabf7750e37779c767f3dc910babe1789f53f93de7fe9acc0048f0e3c9a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-idcpc-dialogue-20210528-facts.json",
+      "bytes": 1922,
+      "sha256": "ffa3d561be514b81805dd64c3d87130904e165dabf3c7bd20f41831d60d18cda"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-iha-2008-facts.json",
+      "bytes": 1968,
+      "sha256": "1b6871a31c0167e633b07bfa39287d778723c169594a5ed0f723bfd92f9b7273"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-iha-2015-facts.json",
+      "bytes": 2104,
+      "sha256": "55388b9f5aa185d7195a22356afbf1963cde0e2ab0aa80a0b1778c8a042b2d46"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-1990-election-facts.json",
+      "bytes": 3090,
+      "sha256": "cb8fb091683e0079013d6130fc5deef7bcfeeb166a0b36e3343e3ab6d974d830"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-1993-election-facts.json",
+      "bytes": 3075,
+      "sha256": "8b745e011d230f9dd0b94e9681e1691c3d54d62441a558a2a7c22a829de141b7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2005-election-facts.json",
+      "bytes": 5255,
+      "sha256": "a22f9da01be5a040038c470d5b0754f7a4442db08e2eb8616e764ce70d8a4865"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2014-election-facts.json",
+      "bytes": 5950,
+      "sha256": "ab53c98de7ed418550eb78173fddf727974744c62e5f9c09070d009a7730da0d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2017-election-facts.json",
+      "bytes": 1949,
+      "sha256": "0efe15916d9bae924db1e9f18b0acaa49290e93a8bf18962da6de53c256dc337"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2021-election-facts.json",
+      "bytes": 3285,
+      "sha256": "fcbccaabc88aee97e19f2450b216cf2fb199f7330b2f197b1c9c5cfded413632"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2025-election-facts.json",
+      "bytes": 3497,
+      "sha256": "3a4b68e483f34145287558bea5c999fb5da1f32c863597eabece4a380ea841f9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mcctil-incsoc-20260721-facts.json",
+      "bytes": 2342,
+      "sha256": "434e857b383dd6e31d8a6b7982d9876ede829460bb7959f0f9a5c76b1f0f9882"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-itu-20151116-facts.json",
+      "bytes": 4425,
+      "sha256": "c4591a9d39cd1ee853b230b33f29180d7ed01aa9c7d50b02aa1d32859a234707"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-whales-20170404-facts.json",
+      "bytes": 4187,
+      "sha256": "61220f798758a00b6b09ca5e68b241f7a5ac3a55f5c9b919263071ab03f20e26"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-appointments-to-20180122-facts.json",
+      "bytes": 4602,
+      "sha256": "00c3d2183e7d105477c8aabb26744c73859df31c2bdda7f6f2805d8e2d00f5f2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-named-20110104-facts.json",
+      "bytes": 4515,
+      "sha256": "5d1dd4bb9366d0de444c34d4d9c91ede4bbff1235eb978c9d6e701d7c506f6f3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-deputy-pm-removal-20170907-facts.json",
+      "bytes": 3097,
+      "sha256": "20af90f175722725b17cd7f4fa47889d8971fe7d32ef70d7a3f9c435a535ca5b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-designate-20101221-facts.json",
+      "bytes": 3390,
+      "sha256": "aa4b81168832fe6b2a516b5be888cb5ba09f709fed84f3c95be6dc5c3d1db432"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-gita-survey-20180615-facts.json",
+      "bytes": 3917,
+      "sha256": "6be9374547862b793a09454f3a8e9bfa95a6c358956733b9ccadf23c8a8584b4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-macbio-20170831-facts.json",
+      "bytes": 4270,
+      "sha256": "b9aaa222f7259c33dfd75dc197e9b316ca4f95daf58e0647c7bf588901b4295e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-foi-speech-20120213-facts.json",
+      "bytes": 4225,
+      "sha256": "b1beeb7326b5cb4d221a90d87769eb5853125e6f70ccf76e45d1d956a52d85f2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-half-mast-20140619-facts.json",
+      "bytes": 4242,
+      "sha256": "4520331fda05eaf0e5a4443164510d096ddc20d16d4b51662fd78481d2423f2e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-interim-speaker-20171120-facts.json",
+      "bytes": 2440,
+      "sha256": "6ce787c8b40249f9d9939032d9579674d9dd563045c5b7721b6479211914e262"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-lord-tangi-20101230-facts.json",
+      "bytes": 5105,
+      "sha256": "c621abbe3265bafa8042d14d94c1ec2b0f4568e73569437c0a76d2bff7b60faa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-nominees-20101220-facts.json",
+      "bytes": 2655,
+      "sha256": "7081224c7e484a68f6c52b51b004257b1e35b658ad20ff2570908e8dd8edbb49"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-pm-list-2011-facts.json",
+      "bytes": 2572,
+      "sha256": "2760b633af8a55769caf2c871843d3eb92006d457c1dbfadc9fa505c1319ba46"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-pm-nominations-20171215-facts.json",
+      "bytes": 2452,
+      "sha256": "f74d14f5ea96dcfb271fe48ef9a26883de4631200ee4b037668f9143da663de6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-rti-speech-20130424-facts.json",
+      "bytes": 4256,
+      "sha256": "2a5c95cb7ca153484afa408c46f1db9bf6bda71da0d568b350da58a11f82509b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-selection-to-20171218-facts.json",
+      "bytes": 2843,
+      "sha256": "a0a8f2d3d88bd15ab5b70948331173afd61ca9045be8dfcd381c73fc05a720ca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-profile-20150212-facts.json",
+      "bytes": 4018,
+      "sha256": "5ac7d9d8becebf11af9117da3e70bc2db86fe59b142b9763d6b826963d39b207"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-renewable-20160907-facts.json",
+      "bytes": 4223,
+      "sha256": "b03bc304d7fd216415065a8f6741572a27d18540ba099a5398b66d35ad98db23"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-speaker-elected-20120719-facts.json",
+      "bytes": 5847,
+      "sha256": "5a74e52f2edd3d670c7b652ecc16e54c55705b0039a3349956a0d7dd8d9ff8bf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-toloa-rainforest-20140909-facts.json",
+      "bytes": 5026,
+      "sha256": "5d9ae407911b6eb04221f23f12116cfea465b65f4ffda5694dda2181cd1d2a93"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-vaipulu-appointed-20110103-facts.json",
+      "bytes": 4194,
+      "sha256": "1b72b5e13b9d5518790ebc4eb26913ef58e1b69e5d0df05cb6c425ce71b9a7b0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-nrbt-ar-2015-facts.json",
+      "bytes": 2132,
+      "sha256": "0c32c2ddeff0ca0a09bcdcb2ab267cde8ddbeb65da85aa967fd076da8d575120"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-palace-appointment-20101222-facts.json",
+      "bytes": 3275,
+      "sha256": "b6f4466796246f3103ad21e3152fc2f513b66d2855a3e4c5a418a3bef354e36e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-paunga-20020514-facts.json",
+      "bytes": 5048,
+      "sha256": "3a414c9121bc9defbf8e92f6c9eddda2e5d4cd9b99e9c7e01c88cf302f27caf8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-statement-20020111-facts.json",
+      "bytes": 4121,
+      "sha256": "4dd9fb522d813023dfdadc0812027d2ce46cfa7b43f0fa0e908e0db3ce69aa8d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20141230-facts.json",
+      "bytes": 2674,
+      "sha256": "afbbdc1f74ddde749d04310b1ff0da2de9b66764fdd9e16af1d18a549c0b0557"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20180104-facts.json",
+      "bytes": 2901,
+      "sha256": "ced1c1155cc88d588fb1005e6f5e725d78acca6e8dcf1596f3d185a66b5a870b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20191008-facts.json",
+      "bytes": 2389,
+      "sha256": "454108973d3f4abc9a9e48bcec2a41d61f8ba0df2f8cbca8768810e52e8c0f12"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20211228-facts.json",
+      "bytes": 4285,
+      "sha256": "01ed192cc9d0a2d7b99252b77f168c9635438404ce2f6cde269a47c30f84468f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20250122-facts.json",
+      "bytes": 4851,
+      "sha256": "efd0a8ce8d0514e883d61550057fcb1ff57d4104994ababb82b870fb6d80e5ed"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-to-20211228-facts.json",
+      "bytes": 3837,
+      "sha256": "17a55fc7503b06d1e25b6011613f5e018900df7dd2a7e1fb5ba59d4c27014915"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-assembly-debate-20100629-facts.json",
+      "bytes": 4718,
+      "sha256": "4ba3d954a3e9cabb14f316e4f485af0c28413abc4b64f81eef54fc96704fffb0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-assembly-page-20010430-facts.json",
+      "bytes": 4421,
+      "sha256": "8b23fd03fe76b2a387c11ccb2ed615a6f3131db19cb90ab49bf7bab6077f6155"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-assembly-page-20011214-facts.json",
+      "bytes": 4317,
+      "sha256": "30466b1ba70da314ee998eda81e28e07fbb5532a476f8e0eaabbe8ce2246c276"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-assembly-page-20030408-facts.json",
+      "bytes": 4312,
+      "sha256": "b9b094c8f07749b16e4d3e7ba5b97445963784e9eb83b5283664ab2b4c00acff"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-assembly-page-20041226-facts.json",
+      "bytes": 4379,
+      "sha256": "b7f9ecb7106c31afa4572d1a01c454bbc048d10a82098c862c33c260da5174fc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-australia-day-speech-2009-facts.json",
+      "bytes": 4461,
+      "sha256": "4cf10ac47c5b3b45575512050c0287a8022094236133d0c2d4e8920403cc8cd9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20180122-facts.json",
+      "bytes": 2730,
+      "sha256": "23208418f18a0688fd61d6b19a958023696d879a48234b4d83bfda869f129a93"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20211229-facts.json",
+      "bytes": 5239,
+      "sha256": "3e6c0c5feefd4f88535e20af7c62c9a025b926ce579a22a56afa6be918709a51"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20250128-facts.json",
+      "bytes": 4059,
+      "sha256": "20b5638db55809c00951d12361a826fe87d04c3925a8d12c24d45e1e54225ba1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-caretaker-announcement-20250106-facts.json",
+      "bytes": 4791,
+      "sha256": "c36419758dfa30fd93870758f4e475cc88c79d43a6d9e49b78b7841ccb4f9c23"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-common-sense-20060809-facts.json",
+      "bytes": 4141,
+      "sha256": "045759c6f1036295c0c08eb679b831f25a039df95bbd84fb9c47a617bb9b692f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-confirmation-of-appointments-20040909-facts.json",
+      "bytes": 4441,
+      "sha256": "2ec90d51d605dd57697371e0c733d7a1df706cce8a065cb4aa5e68827173bba9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-coronation-programme-2008-facts.json",
+      "bytes": 2932,
+      "sha256": "b20ba2ac85058b95fb25a8a1814bba173fafab7f17415d37272a391551a659cb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-crown-prince-20060928-facts.json",
+      "bytes": 2506,
+      "sha256": "e575022a504d7294246640d5baefd34b351bd9510ac09a235de6b9bc5c3d8068"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-dpm-clarification-to-20200416-facts.json",
+      "bytes": 4620,
+      "sha256": "ca7806a1480b8c66296e8b44d413b2c4ebab4bda8e827e9f1882cc92e2ad4e47"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-farewell-20060330-facts.json",
+      "bytes": 2315,
+      "sha256": "8aa186c3de6c8c2ec3271e4c5b7e81457eed245d3a475a7e5d2aa8b8932114ec"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-former-pms-2015-facts.json",
+      "bytes": 2384,
+      "sha256": "ae2c2a05168baa840666b456acbf50096790bce208230d93eae8af8ea162d0f5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-former-pms-2026-facts.json",
+      "bytes": 3355,
+      "sha256": "d45b9770c609dfa49ed0c25c29d44d541faffb79c9bcf5efd1b3b5d331035f5a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-funeral-holiday-20060914-facts.json",
+      "bytes": 2495,
+      "sha256": "ce389be0880a285a91d25a9f9d0c99c60ad87231ae3eaded7a9ec0773cc49c09"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-funeral-programme-20190914-facts.json",
+      "bytes": 3633,
+      "sha256": "07438a7905222bd1adb7b756434d7527d3879356845c3b547a27d0647c027620"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-gazette19-20060911-facts.json",
+      "bytes": 2977,
+      "sha256": "4d3090e65785f99481f5f3a54acf1c705a68e197416094e752e69b993c3e058b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-gazette19-to-20060911-facts.json",
+      "bytes": 2722,
+      "sha256": "763149373e8c9495a10d301eba6d2b4935f7dec813c7d10f54f9376c43df0141"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-gazette20-20060911-facts.json",
+      "bytes": 4228,
+      "sha256": "a8f723219f40a9d5f366cbb8169747adb5f91f6a4e7815941039a77ea5449eec"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-hauofa-funeral-20090114-facts.json",
+      "bytes": 4240,
+      "sha256": "d0c4762c4e6d0c8866aa5da468b5832d5e440d1bcbf3243915ff879cca3ea059"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-last-tribute-20060920-facts.json",
+      "bytes": 2417,
+      "sha256": "014d92f4ba0249b3c5d3e3fd75511451c6cf0aaea82dae7943d368503d1302a7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-luncheon-20080801-facts.json",
+      "bytes": 3054,
+      "sha256": "a6ed5808cea1504ed262b499e54789bfeeb3e213f9ce6ca034c6e0096e1f4879"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-maafu-death-20211213-facts.json",
+      "bytes": 5222,
+      "sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-marist-20060410-facts.json",
+      "bytes": 2421,
+      "sha256": "c730c6d02a553d42f9d99c5fed85dfab3eb5a09fd341bc832834b4ec9261655b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ministerial-appointments-20170906-facts.json",
+      "bytes": 7582,
+      "sha256": "e933586fd2eb6677174ddaae36c67240f91ab1baeb393ff9de244f03c09088a5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20141231-facts.json",
+      "bytes": 5324,
+      "sha256": "d79be539209873634eea4c0e55b786d4b1e58c46eca7f4718fb08ae5b3e4ee2f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20191010-facts.json",
+      "bytes": 4194,
+      "sha256": "0db6032975721cbcec0fdd2eeece2569285ba0d9e87b92f070810b3ff40fb42c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-news-in-brief-2001-facts.json",
+      "bytes": 4048,
+      "sha256": "04e42a6b9076c2b1087ee4d452c42f358e266108370494869dffb5fb3a2b8465"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-office-pm-2002-facts.json",
+      "bytes": 2444,
+      "sha256": "63745655216a029cd7754a215f2c6c54e67a98eacbba097e32713a0455463312"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pif-joint-release-20250124-facts.json",
+      "bytes": 3040,
+      "sha256": "1892ac95ca5af678acc0fc51e6317d4d11c5c3acadfb6f7dd7dbbc4cf8536aee"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-address-20010124-facts.json",
+      "bytes": 4319,
+      "sha256": "031c84e8b91004286679b6a7f0fc5d4c3ce9871f1d47a53e370b83d13d845ea8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-elect-20141229-facts.json",
+      "bytes": 2530,
+      "sha256": "b0318596e5a9dd9a7b190a752b6e88457e528d32a653599cb2e0a6e11be579bc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pohiva-statements-20060609-facts.json",
+      "bytes": 4334,
+      "sha256": "e3394a9da3daacb33841cd05e45122993765bcb58aab2ee350073b6d899faea7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pope-homage-20050411-facts.json",
+      "bytes": 4217,
+      "sha256": "a9b79e457aaf6997aed53b1e39a9d201508a3e818aff5a299589f37ce6ef8962"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-press-releases-2000-facts.json",
+      "bytes": 5078,
+      "sha256": "0577fcb12323084370070d24dc72643689c18f2b3a104fe2a3d73d6c61ff4216"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-profile-20080728-facts.json",
+      "bytes": 2922,
+      "sha256": "db87cbcfd8ae0316fc78edf488cb200d3d19cb51142987bff333a4e7dd9ede6d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-psc-20060413-facts.json",
+      "bytes": 2265,
+      "sha256": "3194d5f0a2aaf8326360bc6ed5658e77a0653af16aa9ff9ac44f1c0cfdd6d1e9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-public-notice-20190916-facts.json",
+      "bytes": 2362,
+      "sha256": "4c5df24a6061bce670a8977c972e4da686e478a3a8dfdc1a696f2f6a2ae7400c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-qsc-20060313-facts.json",
+      "bytes": 2259,
+      "sha256": "e9486680bf4b466ee2ddd1bc8569a87a55be2466684123196100eb48365a68c6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-resignation-20060213-facts.json",
+      "bytes": 3149,
+      "sha256": "c968480d59f266314ab2bbdb5c22d448b700e4fed01f9b30f9e546d9c0090e09"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-resignation-to-20060213-facts.json",
+      "bytes": 2997,
+      "sha256": "fe589484ff313b484049bec6ec5502de96f248d02fd20f2e65bb06474cb83d31"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-royal-visitors-20080801-facts.json",
+      "bytes": 2246,
+      "sha256": "9bb9ecdac6e44a169472cc696cc0d3e465f24d2031e8842913f31c0de010cec3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-speaker-appointment-20020523-facts.json",
+      "bytes": 4711,
+      "sha256": "e87df8e4bd9c68ce7667121fc0e079a28434abe473f50264c503b451661b568a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-speaker-directives-20060209-facts.json",
+      "bytes": 6127,
+      "sha256": "655bdc05aa0fef7beb686fd7bb886f4fea545a8be6bc28308474045189cc7d6f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-speaker-reply-20080602-facts.json",
+      "bytes": 4696,
+      "sha256": "b2098cf78347f3cd090869751768575b9fa5e550b6c310f61967e5c42cca6f97"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-succession-20060818-facts.json",
+      "bytes": 2525,
+      "sha256": "d2ebcbf3f09eac865d28f84c879145d5ffdb4376acf2d2c4592300ec942d7eda"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-taumafa-kava-20080730-facts.json",
+      "bytes": 3369,
+      "sha256": "ab4f3a4c9a96890a2dbf0f5458fa21f4c275d51ba6bd81e69630a2b12f5aa716"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-reply-dpm-20100624-facts.json",
+      "bytes": 4176,
+      "sha256": "30a86e79f6b5f342209198ed740683d4644cba57061865003e2df7d654d84e4d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-speech-20060601-facts.json",
+      "bytes": 2201,
+      "sha256": "3d1ee38a84465bdd78502b1d698f16bef46a256179aab8c99bb4a8bdab8fa2e0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-2000-facts.json",
+      "bytes": 2461,
+      "sha256": "4f90b40253d9416b3143faa85b8ba43544defc1fa08d44a22462f95c9886b68d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-2006-facts.json",
+      "bytes": 2828,
+      "sha256": "ec47a93c4f1e5eac8bb61a865095eaee22563c0533acb6a617fe1f4d89be1005"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-to-2000-facts.json",
+      "bytes": 2407,
+      "sha256": "13a2a1136bdaf21bebc481b99a68024e2470f3f062f302b387d9791cb2dc7c36"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-to-2006-facts.json",
+      "bytes": 2319,
+      "sha256": "4e3e446b17a054d52f853299d8c15f3b116015f175e6d06bc46e3d0567248818"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-tupou-resignation-to-20010928-facts.json",
+      "bytes": 6206,
+      "sha256": "da164bdb2c8fc838d2de31ba0efd43d7df04a11f114172fcf156c879f23c14b0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ub40-concert-20060310-facts.json",
+      "bytes": 4263,
+      "sha256": "9b75de8b75027206a03efa8b29f47aa3ddd17d8eec8bf4e2538bbdf1bc04dcff"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-vaea-tribute-20090613-facts.json",
+      "bytes": 3189,
+      "sha256": "cd59830fe2146b586c28a42fb1e933228089e7a9355c236846263ec196f57193"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-wssd-statement-20020903-facts.json",
+      "bytes": 4092,
+      "sha256": "82ebc2e56356ca6a84e275822e81b1b24dca6270d8bb7a135315e97f9f037f40"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-sc-cr285-20120709-facts.json",
+      "bytes": 4963,
+      "sha256": "0c1027fde34fcd5c6a8ad8e51f906afcfe260f6e83cb4ebf972b9ffa6760a110"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-sc-cv23-20211028-facts.json",
+      "bytes": 3081,
+      "sha256": "c800881aafb5214bd131152916498a0bc2b4da7d7a79984eb9b13107de9223d0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-sc-cv49-20260518-facts.json",
+      "bytes": 2863,
+      "sha256": "8b2c020f686cff31f984d4f4f45ca095ab7726127a67d7b4943ad380e7a9d876"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-sc-cv55-20220829-facts.json",
+      "bytes": 5889,
+      "sha256": "209580b46f65e7d37809e7ead13765500029cfcf180b65567c6e9911f9cda2b5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-sc-cv75-20220429-facts.json",
+      "bytes": 3945,
+      "sha256": "5f121f9e4f6d50fca049f96a07f29c414b8e192cb0047e75dc6b0f3fd234f71e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-tec-candidates-2025-facts.json",
+      "bytes": 2410,
+      "sha256": "c93af63a59351a913eb8e54728ec2a575863971c2318052d2a498e21887707c0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-tec-results-2025-facts.json",
+      "bytes": 4027,
+      "sha256": "b3f265a54c7e569011d4c94186e76d106a03a5aa43d932af693aaf1d28866c32"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-tlr-2006-regency-facts.json",
+      "bytes": 4009,
+      "sha256": "b20223f62769a0b9653660db57a0fc21db671e1a187ee22604f005eec7420094"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-tlr-speaker-1997-facts.json",
+      "bytes": 7204,
+      "sha256": "4868c9b2408cf8d0c56f3ca096ef54880ed3d72f392b86e779d52320e082ff6a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-tlr-speaker-2003-facts.json",
+      "bytes": 4429,
+      "sha256": "09c887ae5c26b514f9e78379a509c00cb2597a826b3926ef017c2ba8187e6bf7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-tlr-speaker-2007-facts.json",
+      "bytes": 4357,
+      "sha256": "73716a02bf7397ef92c326d268e08f5c588365af9c5a1696f7c6b5a5aa0079d9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-un-a61-pv1-20060912-facts.json",
+      "bytes": 2779,
+      "sha256": "9f156d70a2cacb22c8ebfed536cb2fa6da32959465e4dd6b47443024cf8f3d20"
+    }
+  ],
+  "other_country_blobs": [
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "git_blob": "3301b77114c1bec31018cdb8b86eefc7506e22ba",
+      "bytes": 1029474,
+      "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "git_blob": "56d85bdcc2c915e90f260190e3b8292fb7679300",
+      "bytes": 2224528,
+      "sha256": "03bd326b0acaddb96f33b71dad22e5f6ee906ec4649ce4de97fa2325e7a0f49e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "git_blob": "9a57159e82222f40fd0877306998697d8ccdf707",
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "git_blob": "4cf3185315d59dbf12f17051b4e57ce127fd2d48",
+      "bytes": 1716657,
+      "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "git_blob": "9b8785fe12955ea673e25ffe3d75d21f9b4da920",
+      "bytes": 626569,
+      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "git_blob": "aaf825c0036f39ac8cde3c9daec7e7d734285631",
+      "bytes": 317174,
+      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa.json",
+      "git_blob": "9c260672c5d6d2f70f8c772c3d72a7ac9414d8f6",
+      "bytes": 1007417,
+      "sha256": "51f21208527dc405f7ef4f321d292c688dfdb3628bf8c98c4031c90762faf2d6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "git_blob": "327dfa2b5924c358956b9c6f8171cc71ae795302",
+      "bytes": 360379,
+      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94"
+    }
+  ],
+  "original_response_identities_and_claim_prose_unchanged": true,
+  "registered_handoff_preserved": true,
+  "runtime_art_generated_or_central_files_modified": false
+}
