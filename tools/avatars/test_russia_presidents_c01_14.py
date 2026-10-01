@@ -770,7 +770,7 @@ class RussianPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (9, 295))  # with CLAUDE-C01-19
+        self.assertEqual((country['role_observations'], country['source_claims']), (9, 322))  # with CLAUDE-C01-19 and C01-46
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Russia'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

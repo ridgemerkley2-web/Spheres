@@ -1,0 +1,482 @@
+{
+  "format": "spheres-c01-independent-review-manifest/v1",
+  "reviewed_revision": "c1056321ec2330b7acb27510a5f7c1e3b4043d53",
+  "reviewed_git_inputs": [
+    {
+      "path": "docs/campaign-certification/C01/research/russia-duma-faction-heads-2021-2026-46.md",
+      "bytes": 27001,
+      "sha256": "908f7a4b8a8599c5abaa8f31c6ecd743f03153be5477d9d23a6da92f916e01bb",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "bytes": 626569,
+      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-52394-20211011-facts.json",
+      "bytes": 7097,
+      "sha256": "3c6b9e6f284c096222d017309adde032d629e6aa097b6933edd1056ea3128c3a",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-53098-20211222-facts.json",
+      "bytes": 6057,
+      "sha256": "63f43b45540caa09852935c5389c220806e0dcc88dce61168a3676fa0de45e46",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-53987-20220406-facts.json",
+      "bytes": 3996,
+      "sha256": "de41292af87e704b2a8e166a20026aeb17e74aa429a9d3d014df5061c9bfb12e",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-53988-20220406-facts.json",
+      "bytes": 7024,
+      "sha256": "01f85690031846e807a2c3b31f3895b25795ea9b12434c0bfaf0e158dcaca0b3",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-54314-20220518-facts.json",
+      "bytes": 4815,
+      "sha256": "43e0ccedf62d1315400017a413419d54f4b731d1edca1effbebd92031a1f13e9",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-54910-20220707-facts.json",
+      "bytes": 6647,
+      "sha256": "9101283b9b21a96fe4f843f688896eae117226ec278dce7ebe9dc63926c327a4",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-63980-20260727-facts.json",
+      "bytes": 6986,
+      "sha256": "2a2afd9c765adb99429fa4f051930e583b0705c8eaaacd37a0de4e34aedcba31",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-46.md",
+      "bytes": 8387,
+      "sha256": "985827361cb81d5c9f3c51115d5a0ef6ed8d348a1c757fae4575bfd5be25e93c",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_russia_duma_faction_heads_c01_46.py",
+      "bytes": 30127,
+      "sha256": "4b2398f85c9d71053b332dad119103e7ee6d25ca962f3cf8246323d19b46cfc7",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_russia_heads_of_government_c01_19.py",
+      "bytes": 100163,
+      "sha256": "d075808d5451e93b26b6f3058efb96720df6b9b8a1fd10ebf66d3b1206d7539f",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_russia_presidents_c01_14.py",
+      "bytes": 66833,
+      "sha256": "2b70f4901d3e5142a808f0309f06e373197f981b839574954980806268476ba9",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_russia_research_s10h.py",
+      "bytes": 16264,
+      "sha256": "627a31e8434bdbafbc2c88ce38850180225d1c391ae41ca69cbaa02b5eeada4a",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py",
+      "bytes": 69843,
+      "sha256": "2f02a714992ceb0c452454f9384d50984c54f94b713c8dad00f225f75a5d4ef2",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "bytes": 360379,
+      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_ussr_prior_holder_guard.py",
+      "bytes": 1605,
+      "sha256": "fe0f7b6e243d44547a2e30291f78da7c0788280c605e0e8d3da8c318e28f4ba3",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    },
+    {
+      "path": "tools/avatars/test_ussr_cpsu_general_secretary_c01_41.py",
+      "bytes": 44871,
+      "sha256": "1cb4d4e0aaab6e08a9f9cfe56af32617c50034893f6570b2f5e39be803e00a10",
+      "identity": "exact Git blob at reviewed revision; preserves cross-platform checkout semantics"
+    }
+  ],
+  "original_external_root": "D:\\spheres-offload\\codex-next-20260928\\c01-46-review-evidence-20261001",
+  "external_files": [
+    {
+      "path": "attempt-01/ru_duma_news_52394_20211011.body",
+      "bytes": 247852,
+      "sha256": "bea477cefb12a59e2b6c13f534b6248c717b2797823ebac3369eca322e4b1b88"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_52394_20211011.headers",
+      "bytes": 1668,
+      "sha256": "5336acca94303714f712e0dd2c2eeedc35ac1ccf71016dec134c0b6e61422249"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_52394_20211011.curl.stdout",
+      "bytes": 16945,
+      "sha256": "1eaa6770a521450300d433316fcb3f9e749725369ecd0e8f33965cfec090329a"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_52394_20211011.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_52394_20211011.decoded.html",
+      "bytes": 247852,
+      "sha256": "bea477cefb12a59e2b6c13f534b6248c717b2797823ebac3369eca322e4b1b88"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_52394_20211011.text.txt",
+      "bytes": 6568,
+      "sha256": "4b53f63c182ce7f88ab018470b2ffa4f5a0f6032a76f49977bda7e5dce0d7977"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53098_20211222.body",
+      "bytes": 245393,
+      "sha256": "5beb30c907d7fa7c019fb2ce3d79ebb97ef78e2ce4c2ad5ca81280a094590264"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53098_20211222.headers",
+      "bytes": 1799,
+      "sha256": "52c6e5055255ce62a8a841efbaca500ecd5bbfdd84aa2d81de9e2d63f7dcf7fa"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53098_20211222.curl.stdout",
+      "bytes": 16945,
+      "sha256": "ea2e16086752ede810fb3ef18aec5192e8943b96e85b066ae4bed490e89225a3"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53098_20211222.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53098_20211222.decoded.html",
+      "bytes": 245393,
+      "sha256": "5beb30c907d7fa7c019fb2ce3d79ebb97ef78e2ce4c2ad5ca81280a094590264"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53098_20211222.text.txt",
+      "bytes": 13269,
+      "sha256": "005bb02527f40d31dbc3a3ce503270e4ac5cde1e861a576fe3517f737bf41ec7"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53987_20220406.body",
+      "bytes": 225439,
+      "sha256": "3c4962730ce2199a54b1a25bad0328debbc482c897cbc12ac2aed06202f70197"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53987_20220406.headers",
+      "bytes": 1765,
+      "sha256": "2641969c1edbe9e8c16cad627a5fb78352c9ca8fd560487a328c9b7085e94f11"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53987_20220406.curl.stdout",
+      "bytes": 16945,
+      "sha256": "4f42bcf0f4db74af1e1785aefce3648872f50ff1915bb00ba7be2e38380a8d5e"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53987_20220406.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53987_20220406.decoded.html",
+      "bytes": 225439,
+      "sha256": "3c4962730ce2199a54b1a25bad0328debbc482c897cbc12ac2aed06202f70197"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53987_20220406.text.txt",
+      "bytes": 5825,
+      "sha256": "694028542cfaf03a9dc6306475f63b4857443994ed12b05b555866f46f5a5a61"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53988_20220406.body",
+      "bytes": 250245,
+      "sha256": "3cfc0a0403a6ba331e74c898428e5b4b923d7f5c26179e77cedcbbb7c9e7e7fc"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53988_20220406.headers",
+      "bytes": 1771,
+      "sha256": "7782eaca0bc836b12142dc0b4c0f8c0e4c3cb22c272565d8d7d3df0e498821e0"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53988_20220406.curl.stdout",
+      "bytes": 16945,
+      "sha256": "e27eac846c5865f37acee3b0c095fcb35803ecd66486a3ac11632b222460e79a"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53988_20220406.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53988_20220406.decoded.html",
+      "bytes": 250245,
+      "sha256": "3cfc0a0403a6ba331e74c898428e5b4b923d7f5c26179e77cedcbbb7c9e7e7fc"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_53988_20220406.text.txt",
+      "bytes": 13618,
+      "sha256": "0a318cb1a8d03320c7051e0a7d9630f893d1bd07381f1ed3975715ea778f9813"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54314_20220518.body",
+      "bytes": 232778,
+      "sha256": "3851ebdab4786543605f9d72ad7725fac50d8c111e4e05596db550429236b7e8"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54314_20220518.headers",
+      "bytes": 1751,
+      "sha256": "2d5d353774b3d42c07d319d366039cd9ed321c52f64597e245ce9a1fcfea2057"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54314_20220518.curl.stdout",
+      "bytes": 16945,
+      "sha256": "08e8d6d0eceaf1cf83a54c177eb84a49fe98cd6c479a5a5043c91b860dc0f87a"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54314_20220518.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54314_20220518.decoded.html",
+      "bytes": 232778,
+      "sha256": "3851ebdab4786543605f9d72ad7725fac50d8c111e4e05596db550429236b7e8"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54314_20220518.text.txt",
+      "bytes": 6756,
+      "sha256": "594275c34b80d2b6f5b644248225de98bb9ba2bffdbfd9cfb19ff94b5bc4a477"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54910_20220707.body",
+      "bytes": 313338,
+      "sha256": "450c2f367443bad74ea39e987fe4a77f92ec08ee90977bcd4f7ef8f16a5dc47c"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54910_20220707.headers",
+      "bytes": 1759,
+      "sha256": "ecb75e22ee261944795aba03dd155ce3fab364957b717fcc48a921251fac7c49"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54910_20220707.curl.stdout",
+      "bytes": 16945,
+      "sha256": "d9fea795a9799620a069ac157c6cf4fec846ee341ab2cc6f90a9c2b6ea08e521"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54910_20220707.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54910_20220707.decoded.html",
+      "bytes": 313338,
+      "sha256": "450c2f367443bad74ea39e987fe4a77f92ec08ee90977bcd4f7ef8f16a5dc47c"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_54910_20220707.text.txt",
+      "bytes": 20183,
+      "sha256": "ef19ac7cd4611442fd5255bccb5e8b386d824ace423bae96704b4b59b59381fe"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_63980_20260727.body",
+      "bytes": 53864,
+      "sha256": "e9f8fddf860ee5b707d59991b97407fc3c6096ccb085da026d59ba06bdfc3a4f"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_63980_20260727.headers",
+      "bytes": 1852,
+      "sha256": "43b7a6298417bff4e19cc5c8176f11f05492437fb79fa9a7e88a7ddb2fe8f897"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_63980_20260727.curl.stdout",
+      "bytes": 16943,
+      "sha256": "ce99130f823ff2e04d044385ef19e494f6fe178df15ff7450bb61ac1227e413a"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_63980_20260727.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_63980_20260727.decoded.html",
+      "bytes": 238068,
+      "sha256": "e8a6b66fa43a180ad4962ed2defcdb7ccb705a8a487ea0999537beee7168babf"
+    },
+    {
+      "path": "attempt-01/ru_duma_news_63980_20260727.text.txt",
+      "bytes": 6578,
+      "sha256": "dc38889c56a7fd09ad9ecb85f05fbfc1136f017ff800818cdb17ee6cc62384f1"
+    }
+  ],
+  "payload": [
+    {
+      "path": ".gitattributes",
+      "bytes": 41,
+      "sha256": "c5fc54ac134b741e91e09ccd555f673f6509846bd70a496ebf76470503c13238"
+    },
+    {
+      "path": "check-driver.py",
+      "bytes": 983,
+      "sha256": "73b1e7f62bcde2e8c2fa92542d1d16ac61f8d2f1f3c09e5e279e7c84a593d706"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 25348,
+      "sha256": "831c941214596811313f531c312556d5e9ec370b10733f9c1ade62146d3b7c6e"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 9851,
+      "sha256": "47dbe453344f646eea49e588b5ce37ab83a0f72181b2820e3e0deba9dc07a6c1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7303,
+      "sha256": "604b9f3de155b0d8d73525cfc2b4e5944c15933a388522cb13bc0337fba96aaa"
+    },
+    {
+      "path": "retrieve-originals.py",
+      "bytes": 4135,
+      "sha256": "b45cfccd4663b39b34e62e851ff2b710ffe2d86179c6ddf98d1dcb8768fe0e1a"
+    },
+    {
+      "path": "scope-review.json",
+      "bytes": 1735,
+      "sha256": "1f41a9b6ed5d12d78dce9ec263e2410c2a8f0c9f06b6d879dd3b8e81ca828fde"
+    },
+    {
+      "path": "source-attempts.json",
+      "bytes": 141384,
+      "sha256": "b82051a9b1dd1305fd30b6a4dbadaaf905cc01fd5110bb68492b7d880d57fefd"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 20237,
+      "sha256": "b0d626d7a511a3fdf1ee7932c09640486c1fa27aafc5e44226b49764ccfb2b90"
+    },
+    {
+      "path": "validation/diff-check.json",
+      "bytes": 495,
+      "sha256": "1ba08ba4c9684f2d87565de669bf8b19daf76e0e962e4596b3ee0d8376fbb705"
+    },
+    {
+      "path": "validation/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/locator-green.json",
+      "bytes": 750,
+      "sha256": "025ccdfd7f943d6e8e0c00fd359ca30dada9696051db0cd808092a4d78d68feb"
+    },
+    {
+      "path": "validation/locator-green.log",
+      "bytes": 289,
+      "sha256": "dee706a246153aeebb9db2e4afa6e4b99db55c5d5004be963444d5cac0306b8f"
+    },
+    {
+      "path": "validation/locator-red.json",
+      "bytes": 749,
+      "sha256": "4e0bc529db4977070f14a079963d1a9f39d25c76dd798677246732e0f04ca726"
+    },
+    {
+      "path": "validation/locator-red.log",
+      "bytes": 1222,
+      "sha256": "e06b879e94fc5f71eb104ac80750e3b7a87e869710b7f43345d6045cc6779257"
+    },
+    {
+      "path": "validation/receipt-verify.json",
+      "bytes": 666,
+      "sha256": "4eb9fdb394553f8a605a27ae2e1cc91fcfe69bc221e16aab4f974f4ce3d1ab6a"
+    },
+    {
+      "path": "validation/receipt-verify.log",
+      "bytes": 300,
+      "sha256": "e14511c7f28d605639d03a3d203d1844826ddd627e6e5b7dd88e48ff3fd8a935"
+    },
+    {
+      "path": "validation/research-check.json",
+      "bytes": 643,
+      "sha256": "bc7bc7fcd5e41fa3dc403c7fd48d93dff62fb3516f1a5e820704ddf46ab094af"
+    },
+    {
+      "path": "validation/research-check.log",
+      "bytes": 251,
+      "sha256": "54ef215b8be33ef3072f57d908ef8e8d6a63530226228d3e9d5bef96f4b43305"
+    },
+    {
+      "path": "validation/research-generate.json",
+      "bytes": 631,
+      "sha256": "de9728cd5ff248369f0bce8b64603979b9993db55094cd1962cb5a8a6f00debb"
+    },
+    {
+      "path": "validation/research-generate.log",
+      "bytes": 252,
+      "sha256": "58e5fe6286cb4d2813fbc21dac97ee440eb9c96ae25a14c9d2abee44d1921b10"
+    },
+    {
+      "path": "validation/research-tests.json",
+      "bytes": 713,
+      "sha256": "9122ef5d40054cd982922e80765e7b65881125db0995d09a4de44630c8954816"
+    },
+    {
+      "path": "validation/research-tests.log",
+      "bytes": 1496,
+      "sha256": "cf96b1d435dbd27d8d0ae4f14a58f813b40488088830ee65259bde6c65da75bf"
+    },
+    {
+      "path": "validation/russia.json",
+      "bytes": 695,
+      "sha256": "825b3687e3e8b9da8274d20bbf79a1fb544130ab37388c23827509860b685b5b"
+    },
+    {
+      "path": "validation/russia.log",
+      "bytes": 6696,
+      "sha256": "274d06f644ee08b8f93af986c876529e20777eabf40e4f29dab52858f19f73ff"
+    },
+    {
+      "path": "validation/ussr.json",
+      "bytes": 691,
+      "sha256": "be1c87318eb4845de95259a3c037d49c5deae5315a8c1ba3a9155d20cd074fd4"
+    },
+    {
+      "path": "validation/ussr.log",
+      "bytes": 8775,
+      "sha256": "071429209737b8f71a8807eea43c258c325bcaae5336e35b42618d13d56d098e"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3200,
+      "sha256": "21b850d1e654d0ff1f72fa777764fb8e686c4e9317f4d6c9ff33c39128196557"
+    }
+  ],
+  "decision": "accepted_bounded_research_intake",
+  "accepted": {
+    "originals": 7,
+    "claims": 27,
+    "holder_observations": 18
+  },
+  "held": {
+    "originals": 0,
+    "claims": 0,
+    "holder_observations": 0
+  },
+  "no_parent_gate_completion": true,
+  "integrity_verification_does_not_replace_material_content_review": true
+}

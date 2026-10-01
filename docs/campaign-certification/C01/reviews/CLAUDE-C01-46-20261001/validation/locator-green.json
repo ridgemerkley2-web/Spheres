@@ -1,0 +1,21 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_death_locator_reaches_the_dated_faction_statement",
+    "-v"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-46-20261001",
+  "started_utc": "2026-10-01T03:55:08.016646+00:00",
+  "finished_utc": "2026-10-01T03:55:08.166511+00:00",
+  "exit_code": 0,
+  "output": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\c01-46-review-evidence-20261001\\validation\\locator-green.log",
+    "bytes": 289,
+    "sha256": "dee706a246153aeebb9db2e4afa6e4b99db55c5d5004be963444d5cac0306b8f"
+  }
+}
