@@ -150,10 +150,14 @@
       "institution_id": "to_prime_minister",
       "role_id": "to_pm",
       "status": "unresolved",
-      "reason": "All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain remains open. Native appointment contracts and the Tonga production-browser journey passed independently; they do not supply missing historical evidence.",
+      "reason": "All 12 accepted PM observations remain installed. The separate 1 October event review adds reported 21 August 1991 retirement, 22 August appointment and 11 January 2000 leave evidence without installing effective boundaries. Vaea's 1999–2000 end and later acting/caretaker transitions remain unresolved. Native/browser acceptance is unchanged and does not supply missing history.",
       "accepted_holder_observation_count": 12,
       "installed_holder_reference_count": 12,
-      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate.",
+      "partial_evidence_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/pm-transition-review-20261001/review.json",
+        "sha256": "bb86ad2a278da43fdbad14af636ba0a57133703ef3e76770fc8bc4855e24aeee"
+      }
     },
     {
       "institution_id": "to_cabinet",

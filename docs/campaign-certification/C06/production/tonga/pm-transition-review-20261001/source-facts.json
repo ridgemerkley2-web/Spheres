@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "kind": "derived_factual_extracts",
+  "reviewed_at": "2026-10-01",
+  "sources": [
+    {
+      "id": "chogm99_vaea_biography",
+      "url": "https://web.archive.org/web/20041111083324id_/http://www.chogm99.org/who/countries/tongabio.htm",
+      "retained_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/1999-2000/chogm1999-tonga-biography.body",
+        "bytes": 2845,
+        "sha256": "1825a4a9a2aa44b2aa534f0afc6b65a1fda028a8a8b27e77eb89cfbc89ee9f27"
+      },
+      "publisher": "CHOGM99 conference website; biography author not named",
+      "http_status": 200,
+      "capture": "2004-11-11T08:33:24Z",
+      "published_date": null,
+      "original_last_modified_header": "2000-09-12T15:17:47Z",
+      "locator": "Heads of Government / Tonga / first biography paragraph",
+      "scope": "Retrospective biography dates Vaea appointment to 22 August 1991. It says he replaced Tu'ipelehake after an ill-health resignation; no separate commencement or predecessor resignation day.",
+      "provenance": "Archived same-host root self-identifies as official CHOGM site and links Commonwealth Secretariat. This establishes site self-description, not independent authorship. Neither the event year nor the HTTP Last-Modified header is claimed as the article publication date."
+    },
+    {
+      "id": "chogm99_site_root",
+      "url": "https://web.archive.org/web/20041212084156id_/http://www.chogm99.org/",
+      "retained_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/1991/chogm-site-root.body",
+        "bytes": 1601,
+        "sha256": "c10ab54011dccd613290d6ea6a5f44e8e3c9031605d07357d404af7df417d916"
+      },
+      "publisher": "CHOGM99 conference website",
+      "http_status": 200,
+      "requested_url": "https://web.archive.org/web/20041111083324id_/http://www.chogm99.org/",
+      "capture": "2004-12-12T08:41:56Z",
+      "locator": "HTML noframes fallback",
+      "scope": "Site self-identifies as official and links the Commonwealth Secretariat. The archive redirected normally to the later capture."
+    },
+    {
+      "id": "pim_tuipelehake_interview_199110",
+      "url": "https://pacificislandsmonthly.com/pdf/1991/1991-10-01-nla.obj-342969338.pdf",
+      "retained_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/1991/pim-1991-10-original-scan.body",
+        "bytes": 12883032,
+        "sha256": "210e6bfc5510e724cb98ba75b67cfd6a16e39042bca79abe6a8cbd4609a015d2"
+      },
+      "publisher": "Pacific Islands Monthly; interview by Pesi Fonua",
+      "http_status": 200,
+      "title": "Time to watch the manioke grow",
+      "issue": "Volume 61 number 10, October 1991",
+      "publication_precision": "month",
+      "locator": "Printed pages 14–15; PDF pages 15–16 (one-based)",
+      "library_page_identifiers": [
+        "nla.obj-342986794",
+        "nla.obj-342986920"
+      ],
+      "scope": "The introduction dates Tu'ipelehake retirement to 21 August and describes the interview as conducted on his first retired day. His answers confirm the retirement decision; the exact day comes from the reporter. A separate closing note names Vaea as the King's appointee without a day.",
+      "provenance": "Public reproduction of an NLA-labelled facsimile, not a successful NLA delivery. Both printed pages visually read by root; no OCR-only acceptance. NLA access challenge was not bypassed."
+    },
+    {
+      "id": "matangi_vaea_interview_2000",
+      "url": "https://matangitonga.to/2000/03/20/millennium-interview-tongas-retiring-prime-minister-baron-vaea-78",
+      "retained_original": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/1999-2000/vaea-retirement-interview-2000.body",
+        "bytes": 86727,
+        "sha256": "c46600bde49dcf0677226cd0a716f7a9713fb9b62ca469b0e79a7899f84f6f55"
+      },
+      "publisher": "Matangi Tonga; interview by Pesi Fonua",
+      "http_status": 200,
+      "title": "Millennium interview with Tonga's retiring Prime Minister, Baron Vaea (78)",
+      "interview_date": "2000-01-11",
+      "publication_date_shown": "2000-03-20",
+      "updated_date_shown": "2018-01-23",
+      "original_issue": "Matangi Tonga Magazine volume 15 number 1, March 2000",
+      "locator": "Introductory paragraphs, photograph captions and final retirement-plans question",
+      "scope": "The reporter dates royal resignation acceptance to 3 December 1999. Vaea himself says he is on leave until July, then intends private-sector work. The interview date is distinct from publication and update dates. No effective retirement day or end-of-leave day is stated.",
+      "provenance": "Original publisher's republication of its own interview. First-person statement is accepted only as an attributed self-report; the reporter's acceptance date remains an uncorroborated lead for an effective office boundary."
+    }
+  ],
+  "rights": "Factual paraphrases only. Original articles, scans and photographs remain external research material; no image reuse licence or new artwork is implied."
+}

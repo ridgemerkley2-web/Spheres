@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-01",
+  "person_id": "to_fatai_helu",
+  "decision": "unresolved_no_verified_likeness",
+  "independent_review": {
+    "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/helu/review.json",
+    "bytes": 7598,
+    "sha256": "cbab87cfd6b00d484013d333be342a91f66eedefc8b08f6129e0312d03c0a119"
+  },
+  "reused_identity": {
+    "claim_id": "to_ptoa_president_helu_20220829",
+    "record": "Supreme Court CV55/2022, page 1 paragraph 3"
+  },
+  "search_scope": {
+    "retained_search_batches": 7,
+    "retained_queries": 28,
+    "initial_additional_queries": [
+      "\"Helu\" \"Piukala\" photo PTOA",
+      "\"Fatai Helu\" interview",
+      "\"PTOA\" \"Palesiteni\" \"Helu\""
+    ],
+    "initial_results": "Read in tool response turn946 but raw result not separately persisted. They returned the already known court judgments, legal scholarship and unrelated homonyms. Initial call before context recovery produced truncated output and was repeated; no novel finding is claimed from unread output.",
+    "total_reviewed_queries": 31,
+    "note": "Some exact-name and party probes overlap earlier broad work; novelty is targeted court-report coverage, public publisher search and officer/interview caption variants. Negative results are bounded and do not prove an image does not exist."
+  },
+  "retrieval_outcomes": [
+    {
+      "url": "https://kanivatonga.co.nz/?s=Fatai+Helu",
+      "http_status": 200,
+      "meaning": "Publisher search explicitly returned no results; not proof that no likeness exists.",
+      "retained_body": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/helu/kaniva-search-response.body",
+        "bytes": 729048,
+        "sha256": "2b186c7914f60de5bb40b4992449bb87e7155a2b982d77fcdbeb9dc38cc34224"
+      }
+    },
+    {
+      "url": "https://matangitonga.to/tag/election?page=1",
+      "http_status": 403,
+      "meaning": "Original litigation coverage could not be inspected. No retry or bypass."
+    }
+  ],
+  "exclusions": [
+    "Futa Helu the philosopher",
+    "Fatai Helu the school pupil",
+    "Paula Piveni Piukala",
+    "Unrelated rugby and genealogy namesakes"
+  ],
+  "next_evidence": "Dated caption or identified interview explicitly connecting an adult likeness with this PTOA president.",
+  "new_art_or_identity_created": false
+}

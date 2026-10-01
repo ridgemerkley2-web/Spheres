@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "kind": "bounded_pm_transition_evidence_review",
+  "reviewed_at": "2026-10-01",
+  "reviewer": "Codex root, with independent 1991 and 1999–2000 source reviewers",
+  "base_revision": "100f970ddb01f24d85064f3c605c6112a47478f2",
+  "status": "accepted_bounded_event_review",
+  "institution_id": "to_prime_minister",
+  "role_id": "to_pm",
+  "historical_cutoff": "2026-09-07",
+  "source_facts": {
+    "path": "docs/campaign-certification/C06/production/tonga/pm-transition-review-20261001/source-facts.json",
+    "sha256": "53ce6987011adf36ef13208e18641e5ac072ddf24f2679526bdddb5dce50f233"
+  },
+  "events": [
+    {
+      "id": "to_pm_review_retirement_19910821",
+      "person_id": "fatafehi_tuipelehake",
+      "event": "reported_retirement",
+      "date": "1991-08-21",
+      "source_id": "pim_tuipelehake_interview_199110",
+      "decision": "accepted_reporter_attestation",
+      "meaning": "Contemporary interviewer supplies this day; the interviewee confirms retirement without independently saying the day.",
+      "effective_boundary": null,
+      "install_as_holder": false
+    },
+    {
+      "id": "to_pm_review_appointment_19910822",
+      "person_id": "to_baron_vaea_pm_1992",
+      "event": "appointment",
+      "date": "1991-08-22",
+      "source_id": "chogm99_vaea_biography",
+      "decision": "accepted_appointment_attestation",
+      "meaning": "Conference biography expressly dates appointment. No separate effective commencement is supplied.",
+      "effective_boundary": null,
+      "install_as_holder": false
+    },
+    {
+      "id": "to_pm_review_acceptance_lead_19991203",
+      "person_id": "to_baron_vaea_pm_1992",
+      "event": "reported_resignation_acceptance",
+      "date": "1999-12-03",
+      "source_id": "matangi_vaea_interview_2000",
+      "decision": "lead_not_effective_boundary",
+      "meaning": "Journalist's introduction, not a quoted royal instrument or an effective-date statement from Vaea.",
+      "effective_boundary": null,
+      "install_as_holder": false
+    },
+    {
+      "id": "to_pm_review_leave_statement_20000111",
+      "person_id": "to_baron_vaea_pm_1992",
+      "event": "self_reported_leave",
+      "date": "2000-01-11",
+      "source_id": "matangi_vaea_interview_2000",
+      "decision": "accepted_attributed_self_report",
+      "leave_end_month_as_stated": "July",
+      "meaning": "Vaea describes being on leave until July at his interview. This establishes neither continued premiership nor an exact July retirement day.",
+      "effective_boundary": null,
+      "install_as_holder": false
+    }
+  ],
+  "unchanged_source_pins": {
+    "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+    "spheres-sim/data/tonga_institutional_leadership.json": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+    "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+    "spheres-web/data/person_portraits.json": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+    "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+    "spheres-web/src/person_portraits.rs": "1cdb635ad2b9bf683cf166e8d11a36be8751a0c273308ca2651a7d9731e9e657",
+    "spheres-web/ui/government-ui.js": "c8bff0746bad3d2e2108646c1c63f4ab2cea6af9a37013e648899705409319ae"
+  },
+  "appearance_binding_checks": [
+    {
+      "person_id": "fatafehi_tuipelehake",
+      "reference_date": "1991-08-21",
+      "asset": "spheres-web/ui/person-portraits/tonga-fatafehi-tuipelehake-cartoon-1990-v1.png",
+      "sha256": "22dfd4931e69b09de10a8723213407aed93deaf3e9b2be536584c0fc82eec478",
+      "appearance_from": "1990-01-01",
+      "appearance_until_exclusive": "1992-01-01",
+      "meaning": "Existing registered appearance covers this reference date; not proof of office tenure or a newly exercised browser transition."
+    },
+    {
+      "person_id": "to_baron_vaea_pm_1992",
+      "reference_date": "1991-08-22",
+      "asset": "spheres-web/ui/person-portraits/tonga-baron-vaea-cartoon-1996-v1.png",
+      "sha256": "be38831fb5c969b65854f7fc7669da061d37a6cf647424b160a387e54715b4f4",
+      "appearance_from": "1991-01-01",
+      "appearance_until_exclusive": "2001-01-01",
+      "meaning": "Existing registered appearance covers this reference date; not proof of office tenure or a newly exercised browser transition."
+    },
+    {
+      "person_id": "to_baron_vaea_pm_1992",
+      "reference_date": "2000-01-11",
+      "asset": "spheres-web/ui/person-portraits/tonga-baron-vaea-cartoon-1996-v1.png",
+      "sha256": "be38831fb5c969b65854f7fc7669da061d37a6cf647424b160a387e54715b4f4",
+      "appearance_from": "1991-01-01",
+      "appearance_until_exclusive": "2001-01-01",
+      "meaning": "Existing registered appearance covers this reference date; not proof of office tenure or a newly exercised browser transition."
+    },
+    {
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "reference_date": "2000-01-03",
+      "asset": "spheres-web/ui/person-portraits/tonga-lavaka-ata-cartoon-2000-v2.png",
+      "sha256": "1e3fdf733cce5072f8625e29ad19685cbb87aa677e43aa0ea6caba93a48f20ec",
+      "appearance_from": "2000-01-01",
+      "appearance_until_exclusive": "2012-01-01",
+      "meaning": "Existing registered appearance covers this reference date; not proof of office tenure or a newly exercised browser transition."
+    }
+  ],
+  "original_holder_observations_preserved": 50,
+  "original_pm_observations_preserved": 12,
+  "native_or_browser_test_rerun": false,
+  "runtime_decision": "No effective dates, appointments, source catalogues, portraits or save behavior changed. These separately reviewed events supplement the original research record without rewriting its original uncertainty or promoting event dates into tenure. Existing native/browser receipts retain their original exact source pins.",
+  "limits": [
+    "1991 calendar events are better evidenced; effective office boundaries remain unaccepted.",
+    "1999 resignation acceptance, 2000 leave, final retirement and Lavaka commencement remain distinct.",
+    "Lavaka 2000-01-03–2006-02-11 accepted interval stays unchanged; no Vaea end inferred.",
+    "The PM chain and Tonga country cast remain open; fourteen requirements remain.",
+    "Country selector follows actual campaign Crown, not these civilian PM historical events.",
+    "No automatic historical succession, generated face or future office prediction added."
+  ],
+  "next_originals_needed": [
+    "A 1991 royal or government record distinguishing retirement effectiveness and Vaea commencement from appointment.",
+    "A 1999–2000 resignation/retirement instrument stating Vaea effective end; start of leave is insufficient.",
+    "Original substantive appointment and acting/caretaker boundaries in 2006, 2017, 2019, 2021 and 2024–25."
+  ]
+}

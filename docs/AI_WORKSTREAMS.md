@@ -20,6 +20,13 @@ remain separate tasks.
 The final Russia and DA reviews preserve all earlier source-access failures.
 Worldwide expansion and new systems remain after CP1; qualification criteria are unchanged.
 
+The [Tonga PM follow-up](campaign-certification/C06/production/tonga/pm-transition-review-20261001/README.md)
+adds reviewed 1991 appointment/retirement events and separates Vaea's 1999–2000
+resignation report from his leave statement. Four existing portrait/date mappings
+pass; no effective term boundaries or additional holder observations are installed.
+Fatai Helu's targeted likeness follow-up remains unresolved. All fourteen country
+requirements stay open; source findings do not count as completed role chains.
+
 ## Work happening now
 
 | Owner | Work | Next action |

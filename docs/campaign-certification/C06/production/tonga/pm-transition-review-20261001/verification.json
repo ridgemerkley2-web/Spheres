@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-01",
+  "status": "passed_bounded_evidence_and_integrity_checks",
+  "base_revision": "100f970ddb01f24d85064f3c605c6112a47478f2",
+  "country_complete": false,
+  "checks": [
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p test_tonga*.py",
+      "tests": 115,
+      "status": "passed",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/tonga-tests.log",
+        "bytes": 220,
+        "sha256": "b2a79760827f1797d4e27a1fa81378936225886f868f5f3708b81f1a4f90a5c0"
+      }
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/planning",
+      "tests": 69,
+      "status": "passed",
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/planning-tests.log",
+        "bytes": 173,
+        "sha256": "0c7e227ebf70522db8fe27a00292bea60664da2dae20cbc40962750140d58bb2"
+      }
+    },
+    {
+      "command": "python -B -X utf8 tools/avatars/tonga_cast_coverage.py",
+      "status": "valid_incomplete",
+      "errors": 0,
+      "open_requirements": 14,
+      "observations": 50,
+      "log": {
+        "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/coverage.json",
+        "bytes": 4435,
+        "sha256": "2edd28e32ffb2b9a347a687d8eff7590e77250b36d9982a16a2e9be066246522"
+      }
+    },
+    {
+      "command": "python -B -X utf8 tools/planning/workboard.py --check",
+      "status": "passed",
+      "canonical_markers": 44,
+      "bounded_tasks": 59
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    }
+  ],
+  "independent_material_review": {
+    "reviewer": "Codex subagent tonga_civilian_roster; separate from root integrator",
+    "decision": "No material defects. All four source originals, their declared bytes/hashes and provenance limits match; all four portrait/date checks uniquely select existing assets. The seven unchanged inputs match both current files and base Git objects. Fifty holders, including twelve PM observations, remain unchanged. Effective boundaries and fourteen open requirements remain explicit.",
+    "new_network_requests": 0,
+    "reviewer_edited_repo": false
+  },
+  "research_decisions_retained_externally": [
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/1991/1991-handover-review.json",
+      "bytes": 8201,
+      "sha256": "0c5e5fdf68177a7101d46bb89c835314e229ae03d6243816a6619a1e04f62519"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/1999-2000/boundary-review.json",
+      "bytes": 21693,
+      "sha256": "08791c218b3011438bb5bd8850c580b44582b2dafb4314480480f0ab358e13a5"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/tonga-pm-boundaries-20261001/helu/review.json",
+      "bytes": 7598,
+      "sha256": "cbab87cfd6b00d484013d333be342a91f66eedefc8b08f6129e0312d03c0a119"
+    }
+  ],
+  "reviewed_payloads": [
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/pm-transition-review-20261001/README.md",
+      "bytes": 3280,
+      "sha256": "149d5f50101f9afa8a05a6d6295c1431c5c2641036c5c5564d0166b395dd4d80"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/pm-transition-review-20261001/review.json",
+      "bytes": 6938,
+      "sha256": "bb86ad2a278da43fdbad14af636ba0a57133703ef3e76770fc8bc4855e24aeee"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/pm-transition-review-20261001/source-facts.json",
+      "bytes": 5137,
+      "sha256": "53ce6987011adf36ef13208e18641e5ac072ddf24f2679526bdddb5dce50f233"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/pm-transition-review-20261001/likeness-followup.json",
+      "bytes": 2365,
+      "sha256": "a9838d71acf11ceb1ab345a163b0a3befcc37a1478d0147673ab9f7d170d72b4"
+    }
+  ],
+  "source_originals_verified": 4,
+  "existing_portrait_date_mappings_verified": 4,
+  "unchanged_runtime_research_art_inputs_verified": 7,
+  "old_holder_and_acceptance_objects_preserved": true,
+  "native_or_browser_rerun": false,
+  "limitations": "Research review and metadata update only. No new historical office term, runtime transition, artwork, country completion, C06, S23 or CP1 qualification."
+}
