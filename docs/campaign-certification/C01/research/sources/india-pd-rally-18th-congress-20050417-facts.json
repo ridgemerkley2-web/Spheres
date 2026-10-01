@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pd_20050417_rally_concludes_18th_congress",
+  "source_url": "https://web.archive.org/web/20050426231814id_/http://pd.cpim.org:80/2005/0417/04172004_massive%20rally.htm",
+  "original_url": "http://pd.cpim.org/2005/0417/04172004_massive%20rally.htm",
+  "archive_capture_utc": "2005-04-26T23:18:14Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2005-04-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 15375,
+  "source_response_sha256": "2b9011d7fa502b8f5b92fe13863e63733b1174509e73ddbeab022621704aae2d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-04-26T23:18:14Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:46:47Z on 30 September 2026 and 00:23:14Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's weekly organ, issue of 17 April 2005 (archived Last-Modified 20 April 2005), recorded as a raw Internet Archive capture of 26 April 2005. A report of the public meeting in New Delhi on 11 April 2005 that concluded the 18th Congress; the day is printed in its text.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pd_rally_surjeet_former_gs_20050411",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-02",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Harkishan Singh Surjeet",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "former_styling",
+      "attested_on": "2005-04-11",
+      "text": "People's Democracy reports that the message to the public meeting in New Delhi 'on April 11' marking the conclusion of the 18th Congress was that of 'the former CPI(M) general secretary, Harkishan Singh Surjeet', who presided over the meeting.",
+      "locator": {
+        "item": "first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_karat_20050411",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-03",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Prakash Karat",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2005-04-11",
+      "text": "At the same public meeting of 11 April 2005, People's Democracy reports, Surjeet 'was escorted to the podium by the newly-elected general secretary, Prakash Karat', and later 'the newly elected general secretary, Prakash Karat was called on to address' the crowd.",
+      "locator": {
+        "item": "fourth to sixth paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

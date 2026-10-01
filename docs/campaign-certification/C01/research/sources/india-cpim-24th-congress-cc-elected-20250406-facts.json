@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_24th_congress_new_cc_elected_20250406",
+  "source_url": "https://cpim.org/wp-json/wp/v2/posts/11931",
+  "accessed_date": "2026-09-30",
+  "published_date": "2025-04-06",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 8686,
+  "source_response_sha256": "9626ab880c30d1387227a2d6ee0ee8e2d88a99beb4f1184797af74585508524e",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (cpim.org): the WordPress REST record of post 11931 (wp-json/wp/v2/posts/11931), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML page of the same post embeds a per-request cache timestamp, so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 23:36:14Z on 30 September 2026 and 00:22:25Z on 1 October 2026, the first and last 46 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's post 11931 (slug new-central-committee-elected-at-the-24th-congress), published 6 April 2025 and last modified the same day, recorded as its WordPress REST record (wp-json/wp/v2/posts/11931) because the HTML page of the same post embeds a per-request cache timestamp. Lists of the bodies elected at the 24th Congress; the post's publication date is its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_cc_elected_baby_gs_24th_congress_20250406",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-06",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "M. A. Baby",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "election_result",
+      "attested_on": "2025-04-06",
+      "text": "The party's post of 6 April 2025 lists the Central Committee elected at the 24th Congress and the 18-member Polit Bureau elected by the newly elected Central Committee, and says 'The Central Committee elected MA Baby as the General Secretary.'",
+      "locator": {
+        "item": "post body, after the Polit Bureau list"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

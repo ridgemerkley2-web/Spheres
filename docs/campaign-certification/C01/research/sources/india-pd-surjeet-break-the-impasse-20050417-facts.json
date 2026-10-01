@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pd_20050417_surjeet_break_the_impasse",
+  "source_url": "https://web.archive.org/web/20060623205104id_/http://pd.cpim.org:80/2005/0417/04172004_surjeet.htm",
+  "original_url": "http://pd.cpim.org/2005/0417/04172004_surjeet.htm",
+  "archive_capture_utc": "2006-06-23T20:51:04Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2005-04-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 24529,
+  "source_response_sha256": "e9ba6930441922a9d28ea7d5224736e8d7050628c09b1484cc58be64780bc7b7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-06-23T20:51:04Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:46:56Z on 30 September 2026 and 00:23:22Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's weekly organ, issue of 17 April 2005 (archived Last-Modified 22 October 2005), recorded as a raw Internet Archive capture of 23 June 2006. An article by Harkishan Singh Surjeet after the 18th Congress; its personal note recalls his service and the handover without a day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pd_surjeet_general_secretary_since_1992_recalled",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-02",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Harkishan Singh Surjeet",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "text": "In People's Democracy of 17 April 2005 Harkishan Singh Surjeet writes that he had asked the Central Committee to relieve him of responsibilities discharged 'first as a Polit Bureau member since 1953 and then as the general secretary since 1992'.",
+      "locator": {
+        "item": "section 'Here Is My Pledge!', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_pd_surjeet_says_karat_took_up_mantle_2005",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-02",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Harkishan Singh Surjeet",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "handover_statement",
+      "attested_on": null,
+      "text": "In the same article Surjeet writes that the Central Committee had 'half met my request': 'While Comrade Prakash Karat has taken up the mantle as the new general secretary, I was mandated to continue in the Polit Bureau'.",
+      "locator": {
+        "item": "section 'Here Is My Pledge!', third paragraph (handover statement)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

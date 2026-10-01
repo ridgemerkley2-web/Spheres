@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_18th_congress_site_surjeet_biodata_2005",
+  "source_url": "https://web.archive.org/web/20050414085223id_/http://www.cpim.org:80/18cong/lead/bio-hks.htm",
+  "original_url": "http://www.cpim.org/18cong/lead/bio-hks.htm",
+  "archive_capture_utc": "2005-04-14T08:52:23Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 10960,
+  "source_response_sha256": "7107de326e466360295b7425874d92f27bad9a7c8dd553c3b9e0320c3deedb19",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-04-14T08:52:23Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:45:59Z on 30 September 2026 and 00:22:48Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's 18th Congress leadership biography (archived Last-Modified 30 March 2005; the page's 'Last modified: March 30, 2005' is a site stamp, not an attestation date), recorded as a raw Internet Archive capture of 14 April 2005. A retrospective biography: its term statements are claims, never boundaries.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_biodata_surjeet_elected_gs_1992_14th_congress",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-02",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Harkishan Singh Surjeet",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "text": "The party's bio-data of Comrade Harkishan Singh Surjeet says he was 'Elected General Secretary of the Central Committee of the Communist Party of India (Marxist) in 1992 at the 14th Party Congress held at Madras' and 'Continues in this position till date'.",
+      "locator": {
+        "item": "last paragraph, final two sentences"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

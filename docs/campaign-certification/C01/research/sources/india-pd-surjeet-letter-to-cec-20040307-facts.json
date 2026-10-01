@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pd_20040307_surjeet_letter_to_cec",
+  "source_url": "https://web.archive.org/web/20040928103149id_/http://www.cpim.org:80/pd/2004/0307/03072004_surjeet%20letter.htm",
+  "original_url": "http://www.cpim.org/pd/2004/0307/03072004_surjeet%20letter.htm",
+  "archive_capture_utc": "2004-09-28T10:31:49Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2004-03-07",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 6512,
+  "source_response_sha256": "0ef848e878f9734c4918262ca0845ae1aaf705c636fea513579190832ec8f3b1",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-09-28T10:31:49Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:46:08Z on 30 September 2026 and 00:22:57Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's weekly organ, issue of 7 March 2004 (archived Last-Modified 7 March 2004), recorded as a raw Internet Archive capture of 28 September 2004. It prints the text of a letter and introduces it with the writer's party office and the letter's day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pd_surjeet_gs_letter_to_cec_20040302",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-02",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Harkishan Singh Surjeet",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2004-03-02",
+      "text": "People's Democracy of 7 March 2004 prints 'the text of the letter written by CPI(M) general secretary, Harkishan Singh Surjeet to the Chief Election Commissioner on March 2' about the replacement of the Principal Information Officer of the Press Information Bureau.",
+      "locator": {
+        "item": "introductory paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}
