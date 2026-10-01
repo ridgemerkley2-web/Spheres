@@ -9,8 +9,8 @@ Use `codex/campaign-certification`; the accepted research review was published a
 
 | Lane | Owner | Current deliverable | Review requirement |
 |---|---|---|---|
-| Tonga identities | Codex preparation; Claude country production | Bind the accepted Tonga evidence to exact proposed people and dated roles, disclose gaps, and identify the first 6–8 portrait candidates. | Independently check each identity and date. Observations without effective boundaries cannot be expanded into continuous terms. |
-| Tonga cartoons and country cast | Claude; Codex integration | Claim the reviewed people/appearance windows, produce the cartoons, integrate qualified roles and clearly fictional successors, then assemble the country signoff. | Exact person IDs, source and likeness evidence, physical assets, actual visual review and the C06 checklist. A research receipt or portrait batch alone does not finish Tonga. |
+| Tonga identities | Codex | Preserve the accepted preparation proposal while validating the separately developed production identities and dated roles. | Independently check each identity and date. Observations without effective boundaries cannot be expanded into continuous terms. |
+| Tonga cartoons and country cast | Codex; Claude research support by coordination | Validate the isolated `codex/tonga-country-cast-20261001` candidate, including portraits, institutional roles and fictional successors, before country signoff or integration. | Exact person IDs, source and likeness evidence, physical assets, actual visual review, native checks and the C06 checklist. The candidate is in progress, not live or qualified. |
 | Campaign reliability | Codex | Repair demonstrated runner/journal defects, preserve native crash evidence and establish a useful native diagnostic before another full run. | Actual failing regression followed by passing checks. The old 4-pass/4-abnormal/16-unstarted attempt remains failed. |
 | Political balance | Codex | Finish the standalone resource measurement and explain remaining A1 concentration using the retained evidence. Repair a demonstrated cause if one is found. | Preserve the original cohorts, thresholds and rejected urgent-response trial. A1 still needs its original gate to pass. |
 | Human playtests | Human participants; Codex facilitation support | Recruit five independent first-time players and reserve eight sessions using the existing S26 kit. | Actual people and observations; formal sessions wait for S24 and a pinned candidate. |
@@ -22,20 +22,23 @@ worldwide research batches as a substitute for completing a certified-country ca
 Existing Claude research claims are preserved, including C01-44's Tonga party
 research; the identity proposal must not overwrite that research branch.
 
-## Claude's next deliverable
+## Tonga production ownership
 
-Start with Tonga. Fetch current integration and use the accepted
-[Tonga proposal and eight portrait priorities](../../campaign-certification/C06/preparation/tonga-cast-01/README.md).
-The first deliverable reuses King IV and sources two missing 1990 portraits under
-existing IDs; the five later identity checks can proceed independently. Return one focused portrait batch with the
-exact person IDs and appearance intervals; do not create a national selector
-mascot. Follow [the campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md).
+The existing `CLAUDE-C06-TONGA-01` task has transferred to **Codex, in progress**;
+its stable ID is retained for traceability. Do not open a duplicate Claude claim.
+The [accepted Tonga proposal](../../campaign-certification/C06/preparation/tonga-cast-01/README.md)
+remains immutable preparation. The separate production candidate is
+`328ff914f7be176047c698a0705587da0384ce5d` on `codex/tonga-country-cast-20261001`.
+Its [CI run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36876063103)
+was still running at this registration checkpoint; no native pass or live-game
+availability is inferred. Finish candidate validation and country review before
+integration or C06 completion. Follow [the campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md).
 Unresolved party identities and historical dates remain explicit gaps.
 
-After that batch, complete the remaining Tonga role, party, succession, artwork
-and country-review requirements before choosing the next country cast. Parallel
-artwork may begin for another already-reviewed batch; it does not require all
-eight countries' research to finish first. The CP1 country scope remains France,
+Claude may support a specifically coordinated source or art repair, preserving
+exact person IDs and appearance intervals, without duplicating this production
+claim. Parallel artwork may begin for another already-reviewed batch; it does not
+require all eight countries' research to finish first. The CP1 country scope remains France,
 Japan, India, Brazil, South Africa, Tonga, Saudi Arabia and USSR → Russia.
 
 ## Avoid repeated work
@@ -67,8 +70,8 @@ is ready to copy. No invitations have been sent and no human result is assumed.
 `CODEX-C02-TO-01` is complete as a bounded proposal: eight priorities, three
 existing IDs, five reserved identities, ten exact observations and two explicit
 alias holds. The combined-tree checker and 31 focused tests pass. This unlocks
-Claude's queued production assignment; it does not install eight people or
-complete Tonga.
+the separate production work now owned by Codex; the proposal itself does not
+install eight people or complete Tonga.
 
 The [A1 follow-up](../../campaign-certification/S27/preparation/a1-followup-20261001/README.md)
 records a passing 0.0623 ms/month resource assertion and the blocked quiet

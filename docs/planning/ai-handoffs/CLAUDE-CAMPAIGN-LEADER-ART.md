@@ -54,16 +54,18 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 
 ## Claude's current work
 
-The [CP1 acceleration assignment](CP1-ACCELERATION.md) makes Tonga the next
-complete country cast. `CLAUDE-C06-TONGA-01` is ready to claim after the accepted
-Codex identity proposal: reuse King IV, source the two existing 1990 identities,
-and resolve the five later identity checks before completing Tonga's cast. This is an
-assignment, not a claim that Claude has begun production. C01-44 is now accepted
-bounded research; use its integrated evidence and preserve its unresolved identities. Do not let the Russia/DA
-archive holds prevent work on a ready Tonga batch.
+The [CP1 acceleration assignment](CP1-ACCELERATION.md) keeps Tonga as the first
+country-cast priority. Production task `CLAUDE-C06-TONGA-01` is now owned by
+**Codex, in progress**; the stable ID preserves its original assignment history.
+Candidate `328ff914` on `codex/tonga-country-cast-20261001` remains isolated,
+with CI run `36876063103` running at this registration checkpoint. It is not live,
+accepted or a completed country cast. Preserve the accepted identity proposal
+and C01-44 research; coordinate any Claude assistance with Codex before changing
+production identities, artwork or shared runtime. The Russia/DA source holds
+remain separate from this candidate's validation.
 
 Updated 1 October 2026 against the live remote tips and completed independent
-reviews. The central queue contains 31 completed bounded Claude tasks and two
+reviews. The central queue contains 36 completed bounded Claude tasks and two
 source-held submissions still awaiting acceptance: Russia C01-28 and DA C01-39.
 These task closures are research/preparation results, not completed country casts.
 
@@ -89,9 +91,10 @@ tightenings were adopted; all 48 USSR tests pass, with two failing-before/passin
 mutation checks. Source and holder scope is unchanged. The additional France and
 USSR prose is not imported; the independent acceptance limits remain authoritative.
 
-The next 1 October review completes the existing C01-42–46 claims as bounded
-research. The queue records 31 completed Claude tasks and two source-held
-submissions: Russia C01-28 and DA C01-39. The full Tonga cast remains queued and ready.
+The earlier 1 October review completed the existing C01-42–46 claims as bounded
+research. At that checkpoint, the queue recorded 31 completed Claude tasks and
+two source-held submissions: Russia C01-28 and DA C01-39. The production ownership
+and candidate status above supersede that checkpoint’s queued Tonga assignment.
 
 | Packet | Exact checked tip | Current decision |
 |---|---|---|
@@ -119,32 +122,54 @@ The table above pins accepted historical submissions, not these later unadopted
 changes. [Combined review and follow-up decisions](../../campaign-certification/C01/integrations/REVIEW-20261001-03/README.md)
 retain exact tips, raw deltas and evidence. No new original was requested for this triage.
 
+
+## C01-47–51 independent review
+
+The later 1 October intake adds **80 originals, 126 claims and 41 accepted holder
+observations** from 45 proposed uses. All material claims and proposed holder uses
+were read. Matching hashes and passing tests alone are not historical acceptance.
+The four withheld uses remain attributed facts rather than accepted officeholders.
+Earlier evidence, the fixed 7 September 2026 cutoff, and organization/game mapping
+uncertainty remain intact. Shared generated metadata is regenerated on the combined
+integration after the exact accepted source imports, not imported from packet tips.
+
+| Packet | Exact checked tip | Bounded decision and provenance |
+|---|---|---|
+| [C01-47](CLAUDE-C01-47.md) | `8226c419fb4c3c1aa0073800f8f3bf80d0663f71` | **Accepted bounded intake**: 24 originals, 47 claims, 13 observations. First import `b94146eb`; [review `32eb9977`](../../campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/README.md). Two date-precision repairs remove unsupported exact days for the 2017 relinquishment and 2025 ratification; one locator is corrected. All thirteen holder objects and earlier source records are preserved. The CNCCFP party observation remains unreconciled with game identities. |
+| [C01-48](CLAUDE-C01-48.md) | `bb0f86cded9fb0d196f32e385cbe7f30d3cecded` | **Accepted bounded intake**: 19 originals, 24 claims, 4 observations. First import `72d3d80d`; [review `ee884dfc`](../../campaign-certification/C01/reviews/CLAUDE-C01-48-20261001/README.md). The review restores earlier CPI(M) cutoff guards accidentally weakened by the new test branch and corrects one locator. Four holder objects remain unchanged, including the explicitly effective 27 April 2016 AAP start. Current REST representations retain their historical-capture limitation. |
+| [C01-49](CLAUDE-C01-49.md) | `c601d991df0692a3426cf4967abb57d9edbfa56e` | **Accepted bounded intake**: 6 originals, 17 claims, 4 observations. First import `8c891fd5`; [review `9ec1583a`](../../campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/README.md). Four Gorbachev Presidential observations are accepted, including the explicit 15 March 1990 oath/assumption. A fifth proposed observation from an ambiguous Premier signature block is withheld and remains claims-only. Competing authority assertions grant no acting holder or term break; partial-download and host-provenance limits are retained. |
+| [C01-50](CLAUDE-C01-50.md) | `8b1a3c975749087fc6ed4bf48c788386fdecfa39` | **Accepted bounded intake**: 15 originals, 18 claims, 11 observations. First import `fc0fad30`; [review `6248bde6`](../../campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md). Eleven holder uses survive: four named records and seven additional observations. Three meeting-only uses are withheld as institution events, and Fahd is anchored by explicit PM styling on 3 October 2004. Standing Council orders remain distinct from session chairing; no new effective tenure boundary is inferred. |
+| [C01-51](CLAUDE-C01-51.md) | `2fe2b752e05125e204832f5cd1f60b4c640af28d` | **Accepted bounded intake**: 16 originals, 20 claims, 9 observations. First import `90f7f54c`; [review `1299cfd8`](../../campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md). Nine observations retain no effective starts. The 3 October 1993 end records the decree-stated release, not constitutional legitimacy or an interval of active service. Postrename signatures do not extend entity lifetimes; competing September declarations remain claims-only. The report separates retained originals from an unverified broader author-reported portal sweep. |
+
+The queue has 59 bounded tasks and 36 completed Claude tasks. Russia C01-28 and
+DA C01-39 retain their exact held state; no missing-original retry or held research
+import is included. C01, C06, S23, S25, G5 and CP1 remain open. These receipts
+do not qualify the separate Codex Tonga production candidate.
+
 Continue existing claims without duplicating their ownership. Codex owns the
 remaining original-source/content reviews for C01-28 and C01-39. Both Archive
 passes stopped at HTTP 429 without a Retry-After header; preserve those responses
 and coordinate any future missing-only pass when normal service permits. Claude's
 next content sequence is:
 
-1. **Reconcile accepted Tonga research into game identities and dated roles.**
-   Submit a focused mapping proposal and validation for Codex review; accepted
-   research alone is not installed historical coverage.
-2. **Produce a reviewed Tonga cartoon batch of 6–8 actual campaign characters.**
-   Claim exact person IDs and appearance windows after identity reconciliation.
-   Prioritize the opening leader and government/party faces the player encounters.
-3. **Finish Tonga, then repeat country casts toward C06:** France, Japan, India, Brazil, South Africa,
-   Saudi Arabia and the USSR/Russia case. Resolve source and identity gaps, add
-   dated cartoons and clearly fictional successors, then obtain country signoff.
+1. **Support the existing Codex Tonga production claim only by coordination.**
+   Preserve the accepted source and identity proposals; validate or repair exact
+   requested evidence or artwork without duplicating candidate implementation.
+2. **Continue country casts toward C06 after Tonga's signoff:** France, Japan,
+   India, Brazil, South Africa, Saudi Arabia and the USSR/Russia case. Claim exact
+   reviewed identities and appearance windows before producing cartoons. Resolve
+   dated roles and clearly fictional successors, then obtain each country review.
    Worldwide expansion follows the first certified-country casts.
-4. **Resolve the held Russia and DA source gaps as a separate work lane.**
-   Preserve the reviewed content, unavailable and unattempted distinctions, and
-   every failed response. Review actual passages when the remaining originals
-   become accessible. Do not delay an independent ready country batch for these
-   holds. Repeated rate-limit retries do not establish available evidence.
-   Komeito is accepted; do not restart it or undo its conservative corrections.
+3. **Resolve the held Russia and DA source gaps as a separate work lane.**
+   Preserve unavailable and unattempted distinctions and every failed response.
+   Review actual passages when the remaining originals become accessible.
+   Repeated rate-limit retries do not establish available evidence. Komeito is
+   accepted; do not restart it or undo its conservative corrections.
 
-The source repairs are existing bounded queue records. Tonga now has a queued
-production assignment and an accepted Codex identity proposal; no Claude production
-claim or completed delivery is implied by that assignment.
+The source repairs are existing bounded queue records. Tonga's production task
+remains in progress under Codex; candidate validation does not imply integration,
+country acceptance or parent qualification.
+
 Query the queue and check live branches before claiming a batch. The six earlier
 expanded tool/preparation packets are already accepted; do not redo them. S19
 guidance is maintenance for reproduced defects. E05 company mechanics remain

@@ -13,7 +13,7 @@ The user authorized the [parallel CP1 plan](planning/ai-handoffs/CP1-ACCELERATIO
 Finish Tonga's full country cast first. Codex has completed its bounded identity
 proposal and runner journal repair; native crash diagnosis, quiet resource timing
 and political balance remain open. Five
-concrete tasks now cover Tonga identities, Claude's queued country production,
+concrete tasks now cover Tonga identities, Codex's in-progress country production,
 journal repair, timing and [real-player recruitment](campaign-certification/S26/preparation/RECRUITMENT.md).
 The unavailable Russia/DA sources stay separately tracked. Worldwide expansion
 and new systems remain after CP1; qualification criteria are unchanged.
@@ -22,7 +22,8 @@ and new systems remain after CP1; qualification criteria are unchanged.
 
 | Owner | Work | Next action |
 |---|---|---|
-| Claude | Historical research and cartoon production | The queue records 31 completed bounded Claude tasks. Japan C01-42, Brazil C01-43 and Tonga C01-44 are newly accepted research; only Russia C01-28 and DA C01-39 retain source holds. [Exact reviews and current art direction](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) remain separate from production. Claude’s ready `CLAUDE-C06-TONGA-01` assignment is still the content priority: reuse King IV, source two exact 1990 portraits, resolve five later identity checks, then complete the country cast. Research acceptance does not finish that cast. |
+| Claude / Codex review | Historical research | The queue records 36 completed bounded Claude tasks, including C01-47–51. The [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) pins accepted bounded intakes separately from Russia C01-28 and DA C01-39's source holds. Research acceptance does not install runtime identities, produce art or finish a country cast. |
+| Codex | Tonga country cast (`CLAUDE-C06-TONGA-01`, stable task ID) | **In progress**, transferred from the earlier Claude assignment. Isolated candidate `328ff914` on `codex/tonga-country-cast-20261001` includes a Windows journal-fixture repair; [CI run 36876063103](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36876063103) was still running at this registration checkpoint. Finish native validation and the C06 country review before integration. The candidate is not live or qualified; do not duplicate its ownership. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September terminal failure](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 abnormal exits, 16 not started; verifier failed. The [runner journal repair](campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md) is accepted with 105 tooling tests and one existing skip. Native access violations remain unexplained. The reviewed [Japan / seed 7 diagnostic](campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md) started at 03:26 UTC on 1 October with dump capture and resource guards; read its external terminal result for current status. No replacement full matrix or verifier has been launched. |
 | Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. The [timing/A1 follow-up](campaign-certification/S27/preparation/a1-followup-20261001/README.md) records a 0.0623 ms/month resource assertion pass; quiet confirmation is still pending because of background app Git scans. Residual concentration remains unresolved; retain all original limits. |
 | Claude / Codex review | Russia research (`CLAUDE-C01-28`) | [Resumed review](campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md): 65/68 originals, 133/137 claims and all 24 holder observations materially checked. Three originals and four claims remain held; no Russia research is imported. |
@@ -70,6 +71,17 @@ registered C01-42–46 claims as bounded research, without changing CP1 qualific
 [final combined review](campaign-certification/C01/integrations/REVIEW-20261001-03/README.md)
 also checks later Japan/Tonga follow-ups and excludes Brazil's proposed sixth
 observation pending office-identity evidence; the five accepted observations remain.
+
+The later 1 October pass accepts C01-47–51 as bounded research: **80 originals,
+126 claims and 41 holder observations**. One ambiguous USSR Premier observation
+and three Saudi meeting-only holder uses are withheld; their literal source facts
+remain claims. France's exact-day assumptions and one locator are corrected,
+and India's prior cutoff guards are restored. The [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md)
+pins all five submitted tips, first source imports and independent receipts.
+The queue now has 59 tasks, with 36 completed Claude tasks; all 44 canonical
+markers and the two older source holds are unchanged. These research intakes do
+not accept the separate Tonga runtime/art candidate or close C01, C06, S23, S25,
+G5 or CP1.
 
 ## Handoffs and evidence
 

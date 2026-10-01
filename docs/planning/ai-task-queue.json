@@ -618,16 +618,18 @@
     },
     {
       "id": "CLAUDE-C06-TONGA-01",
-      "owner": "Claude",
+      "owner": "Codex",
       "session": "C06",
-      "state": "queued",
+      "state": "in_progress",
       "priority": 1,
       "title": "Finish Tonga as the first complete certified-country cast",
       "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
       "depends_on": [
         "CODEX-C02-TO-01"
       ],
-      "next": "Queued production assignment, ready to claim after accepted CODEX-C02-TO-01: follow docs/campaign-certification/C06/preparation/tonga-cast-01/README.md. Reuse King IV; source two 1990 cartoons for exact existing Fatafehi/heir IDs, resolve five named later identity checks independently, and grow that first eight-person slice into the complete Tonga cast. Complete dated roles, parties, fictional successors and C06 country signoff. Preserve Claude C01-44 ownership and source gaps; no assignment implies production has begun."
+      "next": "Production ownership transferred to Codex; keep this stable task ID and do not create a duplicate Claude claim. Isolated candidate 328ff914 on codex/tonga-country-cast-20261001 includes the latest Windows journal fixture repair; CI run 36876063103 was still running at registration. Validate the production identities, dated institutional roles, portraits, fictional successors, save/API behavior and country checklist before integration or acceptance. The accepted preparation proposal remains separate and immutable. This candidate is not live or a completed country cast; C06, S23, S25, G5 and CP1 remain open.",
+      "branch": "codex/tonga-country-cast-20261001",
+      "submission_revision": "328ff914f7be176047c698a0705587da0384ce5d"
     },
     {
       "id": "CODEX-S25-JOURNAL-02",
@@ -740,6 +742,81 @@
       "next": "Accepted bounded intake: seven exact originals, twenty-seven claims and eighteen appended faction-office observations independently read. First import 91a1dbe1; correction c1056321 repairs one locator and narrows an omission inference. All 170 prior sources, 295 claims and five original faction holders remain intact. New observations have no effective starts; one directly supported death end is retained. C01-28 party research remains held and absent. No runtime, art or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-46-20261001/README.md.",
       "submission_revision": "64fec76b8a61e7f65f0f98f7bf3a93699ea80d72",
       "review_revision": "6f88cd1b9dd97d9c5839a85b1d8c2c7333649554"
+    },
+    {
+      "id": "CLAUDE-C01-47",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 34,
+      "title": "Research Socialist Party first secretaries, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-47.md",
+      "depends_on": [],
+      "branch": "claude/c01-fr-47",
+      "claim_revision": "6f657179bd5f42f6355fb539d4ab6ab562f6b09f",
+      "submission_revision": "8226c419fb4c3c1aa0073800f8f3bf80d0663f71",
+      "review_revision": "32eb9977f505217070a9d3ae74a8824a0b77e113",
+      "next": "Accepted bounded intake: 24 originals, 47 claims and 13 holder observations independently reviewed. First import b94146eb. Two date-precision repairs remove unsupported exact days for the 2017 relinquishment and 2025 ratification; one locator is corrected. All thirteen holder objects and earlier source records are preserved. The CNCCFP party observation remains unreconciled with game identities. No runtime, art, complete-country or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/README.md."
+    },
+    {
+      "id": "CLAUDE-C01-48",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 35,
+      "title": "Research BSP, AAP and NPP national leaders, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-48.md",
+      "depends_on": [],
+      "branch": "claude/c01-in-48",
+      "claim_revision": "e2623e3e69bb957e83228da3e48f486f7b3f31f3",
+      "submission_revision": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+      "review_revision": "ee884dfc5201b3652e274b33fc286db94693d1b0",
+      "next": "Accepted bounded intake: 19 originals, 24 claims and 4 holder observations independently reviewed. First import 72d3d80d. The review restores earlier CPI(M) cutoff guards accidentally weakened by the new test branch and corrects one locator. Four holder objects remain unchanged, including the explicitly effective 27 April 2016 AAP start. Current REST representations retain their historical-capture limitation. No runtime, art, complete-country or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-48-20261001/README.md."
+    },
+    {
+      "id": "CLAUDE-C01-49",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 36,
+      "title": "Research USSR heads of government and Presidential attestations, 1990–1991",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-49.md",
+      "depends_on": [],
+      "branch": "claude/c01-su-49",
+      "claim_revision": "b2ae720b8981d0211b84932e0ed35c7630a232c2",
+      "submission_revision": "c601d991df0692a3426cf4967abb57d9edbfa56e",
+      "review_revision": "9ec1583a779b6978ca96e78797ae8faa5227f8bd",
+      "next": "Accepted bounded intake: 6 originals, 17 claims and 4 holder observations independently reviewed. First import 8c891fd5. Four Gorbachev Presidential observations are accepted, including the explicit 15 March 1990 oath/assumption. A fifth proposed observation from an ambiguous Premier signature block is withheld and remains claims-only. Competing authority assertions grant no acting holder or term break; partial-download and host-provenance limits are retained. No runtime, art, complete-country or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/README.md."
+    },
+    {
+      "id": "CLAUDE-C01-50",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 37,
+      "title": "Research Saudi prime ministers, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-50.md",
+      "depends_on": [],
+      "branch": "claude/c01-sa-50",
+      "claim_revision": "04fccbca6dc5b7474c15afad96a0447361925ee1",
+      "submission_revision": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "review_revision": "6248bde6b68f543b8c814d4db5d49f41bccc6efc",
+      "next": "Accepted bounded intake: 15 originals, 18 claims and 11 holder observations independently reviewed. First import fc0fad30. Eleven holder uses survive: four named records and seven additional observations. Three meeting-only uses are withheld as institution events, and Fahd is anchored by explicit PM styling on 3 October 2004. Standing Council orders remain distinct from session chairing; no new effective tenure boundary is inferred. No runtime, art, complete-country or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md."
+    },
+    {
+      "id": "CLAUDE-C01-51",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 38,
+      "title": "Research RSFSR President and Vice-President, 1991–1993",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-51.md",
+      "depends_on": [],
+      "branch": "claude/c01-ru-51",
+      "claim_revision": "4b15a1d7bdf5c60d193deff87d35094b58f59411",
+      "submission_revision": "2fe2b752e05125e204832f5cd1f60b4c640af28d",
+      "next": "Accepted bounded intake: 16 originals and their 16 metadata cards, 20 claims and nine holder observations independently read. First import 90f7f54c. Nine observations retain no effective starts. The 3 October 1993 end records the decree-stated release, not constitutional legitimacy or an interval of active service. Postrename signatures do not extend entity lifetimes; competing September declarations remain claims-only. The report separates retained originals from an unverified broader author-reported portal sweep. Prior data and the held C01-28 party packet remain separate. No runtime, art, complete-country or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md.",
+      "review_revision": "1299cfd835dcb87e52ecfb48b999441ae45fe42d"
     }
   ]
 }

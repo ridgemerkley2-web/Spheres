@@ -507,7 +507,9 @@ class CheckedInLedger(unittest.TestCase):
                                          'CLAUDE-C01-34', 'CLAUDE-C01-35', 'CLAUDE-C01-36', 'CLAUDE-C01-37',
                                          'CLAUDE-C01-38', 'CLAUDE-C01-40', 'CLAUDE-C01-41', 'CLAUDE-C01-31',
                                          'CLAUDE-C01-45', 'CLAUDE-C01-46', 'CLAUDE-C01-42',
-                                         'CLAUDE-C01-43', 'CLAUDE-C01-44'})
+                                         'CLAUDE-C01-43', 'CLAUDE-C01-44',
+                                         'CLAUDE-C01-47', 'CLAUDE-C01-48', 'CLAUDE-C01-49',
+                                         'CLAUDE-C01-50', 'CLAUDE-C01-51'})
         self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
                             for row in completed.values()))
         self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
@@ -560,7 +562,10 @@ class CheckedInLedger(unittest.TestCase):
                     'CLAUDE-C01-41': ('f04ead94', 12),
                     'CLAUDE-C01-31': ('b74f4fa5', 31),
                     'CLAUDE-C01-45': ('d23f0bf2', 18), 'CLAUDE-C01-46': ('91a1dbe1', 7),
-                    'CLAUDE-C01-42': ('3cfbefc5', 32), 'CLAUDE-C01-43': ('0a6b571d', 14), 'CLAUDE-C01-44': ('c19f86c0', 5)}
+                    'CLAUDE-C01-42': ('3cfbefc5', 32), 'CLAUDE-C01-43': ('0a6b571d', 14), 'CLAUDE-C01-44': ('c19f86c0', 5),
+                    'CLAUDE-C01-47': ('b94146eb', 24), 'CLAUDE-C01-48': ('72d3d80d', 19),
+                    'CLAUDE-C01-49': ('8c891fd5', 6), 'CLAUDE-C01-50': ('fc0fad30', 15),
+                    'CLAUDE-C01-51': ('90f7f54c', 16)}
         for packet, (commit, count) in expected.items():
             rows = [row for sources in attribution['sources'].values() for row in sources.values() if row['packet'] == packet]
             self.assertEqual(len(rows), count)

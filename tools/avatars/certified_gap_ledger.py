@@ -82,6 +82,13 @@ COMMIT_PACKETS = {
     '3cfbefc5': 'CLAUDE-C01-42',
     '0a6b571d': 'CLAUDE-C01-43',
     'c19f86c0': 'CLAUDE-C01-44',
+    # Independent 1 October C01-47–51 imports; corrections and reviews retain
+    # separate commits and do not replace these first source origins.
+    'b94146eb': 'CLAUDE-C01-47',
+    '72d3d80d': 'CLAUDE-C01-48',
+    '8c891fd5': 'CLAUDE-C01-49',
+    'fc0fad30': 'CLAUDE-C01-50',
+    '90f7f54c': 'CLAUDE-C01-51',
 }
 
 EVIDENCE_CLASSES = {
@@ -145,6 +152,16 @@ IN_FLIGHT = {
                       'scope': 'Research Saudi royal offices and Allegiance Commission secretary; bounded observations accepted, no runtime mapping'},
     'CLAUDE-C01-46': {'case': 'USSR -> Russia', 'targets': ['role:ru_duma_faction_20211012_er_head', 'role:ru_duma_faction_20211012_kprf_head', 'role:ru_duma_faction_20211012_ldpr_head', 'role:ru_duma_faction_20211012_nl_head', 'role:ru_duma_faction_20211012_srzp_head'],
                       'scope': 'Research State Duma faction heads, 2021–2026; bounded observations accepted, no runtime mapping'},
+    'CLAUDE-C01-47': {'case': 'France', 'targets': ['party:France/fr_ps', 'role:fr_ps_first_secretary'],
+                      'scope': 'Socialist Party first-secretary observations, 1990–2026; bounded intake accepted with date-precision repairs, organization reconciliation and runtime mapping remain open'},
+    'CLAUDE-C01-48': {'case': 'India', 'targets': ['role:in_bsp_national_president', 'role:in_aap_national_convenor', 'role:in_npp_national_president'],
+                      'scope': 'BSP, AAP and NPP national leadership; bounded intake accepted, no complete party chronology or runtime mapping'},
+    'CLAUDE-C01-49': {'case': 'USSR -> Russia', 'targets': ['role:su_government_head', 'role:su_president'],
+                      'scope': 'USSR government and Presidential evidence, 1990–1991; four Presidential observations accepted, ambiguous Premier signature remains claims-only, no runtime mapping'},
+    'CLAUDE-C01-50': {'case': 'SaudiArabia', 'targets': ['role:sa_pm'],
+                      'scope': 'Saudi prime-minister evidence, 1990–2026; eleven observations accepted, three meeting-only holder uses withheld, no runtime mapping'},
+    'CLAUDE-C01-51': {'case': 'USSR -> Russia', 'targets': ['role:ru_rsfsr_president', 'role:ru_rsfsr_vice_president'],
+                      'scope': 'RSFSR President and Vice-President, 1991–1993; bounded observations accepted, competing authority claims remain claims-only, no runtime mapping'},
     'CLAUDE-C01-SOURCE-05': {'case': 'USSR -> Russia', 'targets': [],
                              'scope': 'Source-review repair of one CLAUDE-C01-05 source (no coverage change)'},
     'CLAUDE-C01-SOURCE-06': {'case': 'SaudiArabia', 'targets': [],

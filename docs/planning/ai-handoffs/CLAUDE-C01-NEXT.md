@@ -1,9 +1,10 @@
 # Claude — next bounded research tasks
 
 **Production priority, 1 October:** follow the [parallel CP1 assignment](CP1-ACCELERATION.md).
-Complete Tonga's country cast, starting with the reviewed identity and cartoon
-batch. Maintain existing research claims and recover held originals separately;
-unavailable Russia/DA sources do not block ready Tonga production. Do not expand
+Tonga production task `CLAUDE-C06-TONGA-01` is now owned by Codex and in progress
+on an isolated candidate; do not duplicate that claim. Coordinate any source or
+art support with Codex. Maintain existing research claims and recover held
+originals separately; unavailable Russia/DA sources do not block country work. Do not expand
 worldwide research at the expense of the eight certified-country casts.
 
 The [30 September campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md)
@@ -12,7 +13,7 @@ C01-31 packet and its scoped corrections; resolve the held Russia C01-28 and
 DA C01-39 source dependencies. National representative figures are retired from country selection.
 Use dated exact campaign identities.
 
-Current review update, 1 October 2026: C01-31/38/40/41 and C01-42–46 are
+Earlier review update, 1 October 2026: C01-31/38/40/41 and C01-42–46 are
 accepted **bounded research intakes**, including the separately reviewed India
 amendment. Japan42 adds 32 reviewed originals, Brazil43 adds 14, and Tonga44’s
 single missing original is now recovered: five originals/six organization claims,
@@ -20,7 +21,14 @@ zero new holders. Its initial HTTP 429 receipt stays immutable. Saudi45’s late
 follow-up tightens a date guard without changing history. All exact tips, source
 imports and review receipts are in the [current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md).
 
-The queue records **31 completed bounded Claude tasks and two held submissions**.
+The later C01-47–51 reviews accept **80 originals, 126 claims and 41 holder
+observations**. One ambiguous USSR Premier use and three Saudi meeting-only uses
+remain claims-only. France's date precision and locator repairs and India's
+restored prior cutoff guards are part of acceptance. Exact submitted tips, first
+imports and independent receipts are pinned in the [current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md).
+No research intake installs identities or qualifies the isolated Tonga candidate.
+
+The queue records **36 completed bounded Claude tasks and two held submissions**.
 Russia C01-28 still has three originals/four claims unresolved (65/68 originals,
 133/137 claims and all 24 observations checked). DA C01-39 still has 23 originals,
 28 claims and all twelve latest proposed observations unverified. Neither was
