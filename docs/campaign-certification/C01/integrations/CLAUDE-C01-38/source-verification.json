@@ -1,0 +1,442 @@
+{
+  "sources": [
+    {
+      "source_id": "fr_jorf_nomination_valls_20140331",
+      "url": "https://web.archive.org/web/20250401101344id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000028811098/",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 97353,
+      "actual_bytes": 97353,
+      "expected_sha256": "af417b523e6fbaf859c3721a23be1982e7b0fdba7213288e11a499810a3d4903",
+      "actual_sha256": "af417b523e6fbaf859c3721a23be1982e7b0fdba7213288e11a499810a3d4903",
+      "body_relative_path": "responses/fr_jorf_nomination_valls_20140331/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_valls_appointed_pm_20140331"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_cessation_valls_20140825",
+      "url": "https://web.archive.org/web/20160317061550id_/http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029401541",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 14083,
+      "actual_bytes": 14083,
+      "expected_sha256": "3f80f2659faf3cf93ee39b4995bf85b42fe84fc399051026863b5e309a829d81",
+      "actual_sha256": "3f80f2659faf3cf93ee39b4995bf85b42fe84fc399051026863b5e309a829d81",
+      "body_relative_path": "responses/fr_jorf_cessation_valls_20140825/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_valls_government_resignation_letter_20140825",
+        "fr_jorf_valls_functions_ended_20140825"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_valls_20140825",
+      "url": "https://web.archive.org/web/20200614082953id_/https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029401544",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 14013,
+      "actual_bytes": 14013,
+      "expected_sha256": "469ffc07bf47b488d2ab34812ae25cadae727ee87deb36e171b584d5f183ed85",
+      "actual_sha256": "469ffc07bf47b488d2ab34812ae25cadae727ee87deb36e171b584d5f183ed85",
+      "body_relative_path": "responses/fr_jorf_nomination_valls_20140825/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_valls_appointed_pm_20140825"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_cessation_valls_20161206",
+      "url": "https://web.archive.org/web/20240906195146id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033545005",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 96343,
+      "actual_bytes": 96343,
+      "expected_sha256": "54d623b86b40ef99cd8085e61bf5138b9ed8b5807a919d3d96f8c08793075092",
+      "actual_sha256": "54d623b86b40ef99cd8085e61bf5138b9ed8b5807a919d3d96f8c08793075092",
+      "body_relative_path": "responses/fr_jorf_cessation_valls_20161206/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_valls_government_resignation_letter_20161206",
+        "fr_jorf_valls_functions_ended_20161206"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_cazeneuve_20161206",
+      "url": "https://web.archive.org/web/20221102101154id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033545008",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 12977,
+      "actual_bytes": 12977,
+      "expected_sha256": "96e3d3bdf8cec9af7c3b82ea612d4b9c794b34948622de6bfee91646be0d716f",
+      "actual_sha256": "96e3d3bdf8cec9af7c3b82ea612d4b9c794b34948622de6bfee91646be0d716f",
+      "body_relative_path": "responses/fr_jorf_nomination_cazeneuve_20161206/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_cazeneuve_appointed_pm_20161206"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "decoded_response": {
+        "relative_path": "source-text-decoded/fr_jorf_nomination_cazeneuve_20161206.html",
+        "bytes": 87692,
+        "sha256": "a3db3895de84654270b257d6db4c6a5419f9c2f8a6ea310e09384ce218edd697"
+      }
+    },
+    {
+      "source_id": "fr_jorf_cessation_cazeneuve_20170510",
+      "url": "https://web.archive.org/web/20241205103833id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034674123",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 96449,
+      "actual_bytes": 96449,
+      "expected_sha256": "f6a550147079cc67bfcec2348012bf68e8fa8cb6efcf104f7cb9c9c335c38928",
+      "actual_sha256": "f6a550147079cc67bfcec2348012bf68e8fa8cb6efcf104f7cb9c9c335c38928",
+      "body_relative_path": "responses/fr_jorf_cessation_cazeneuve_20170510/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_cazeneuve_government_resignation_letter_20170510",
+        "fr_jorf_cazeneuve_functions_ended_20170510"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_philippe_20170515",
+      "url": "https://web.archive.org/web/20220321231409id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034719850",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 86327,
+      "actual_bytes": 86327,
+      "expected_sha256": "32ee9316e3f39e5fc01eed7ab0fd303d23f7a89d5f85e169b192f3f2cadecc6b",
+      "actual_sha256": "32ee9316e3f39e5fc01eed7ab0fd303d23f7a89d5f85e169b192f3f2cadecc6b",
+      "body_relative_path": "responses/fr_jorf_nomination_philippe_20170515/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_philippe_appointed_pm_20170515"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_cessation_philippe_20170619",
+      "url": "https://web.archive.org/web/20241111072049id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034968393",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 96167,
+      "actual_bytes": 96167,
+      "expected_sha256": "e7ddb2b69e5bca3d94064b86335abd364e1819455c529375248433ed80ece197",
+      "actual_sha256": "e7ddb2b69e5bca3d94064b86335abd364e1819455c529375248433ed80ece197",
+      "body_relative_path": "responses/fr_jorf_cessation_philippe_20170619/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_philippe_government_resignation_letter_20170619",
+        "fr_jorf_philippe_functions_ended_20170619"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_philippe_20170619",
+      "url": "https://web.archive.org/web/20240110213603id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034968396",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 14589,
+      "actual_bytes": 14589,
+      "expected_sha256": "3b6355eae43497b22615b422beec8ebe4af6f4f07935c3ef2387c0ba93140d95",
+      "actual_sha256": "3b6355eae43497b22615b422beec8ebe4af6f4f07935c3ef2387c0ba93140d95",
+      "body_relative_path": "responses/fr_jorf_nomination_philippe_20170619/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_philippe_appointed_pm_20170619"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "decoded_response": {
+        "relative_path": "source-text-decoded/fr_jorf_nomination_philippe_20170619.html",
+        "bytes": 94659,
+        "sha256": "6807e9ab771e8755d7a623b3c3c7d7ed1467fa0a5e09892bcc6e3211e013de3f"
+      }
+    },
+    {
+      "source_id": "fr_jorf_cessation_philippe_20200703",
+      "url": "https://web.archive.org/web/20240110213556id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042079114",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 17202,
+      "actual_bytes": 17202,
+      "expected_sha256": "8388ace1a15a0f2aa411a62fd8ebbf3b951935c45302382595ef72db259b785b",
+      "actual_sha256": "8388ace1a15a0f2aa411a62fd8ebbf3b951935c45302382595ef72db259b785b",
+      "body_relative_path": "responses/fr_jorf_cessation_philippe_20200703/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_philippe_government_resignation_letter_20200702",
+        "fr_jorf_philippe_functions_ended_20200703"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "decoded_response": {
+        "relative_path": "source-text-decoded/fr_jorf_cessation_philippe_20200703.html",
+        "bytes": 90450,
+        "sha256": "751b41d07dba38384b691d8874810600c5f1635cc1c4df0c9d7f2de88269f77c"
+      }
+    },
+    {
+      "source_id": "fr_jorf_nomination_castex_20200703",
+      "url": "https://web.archive.org/web/20241204221633id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042079117",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 96081,
+      "actual_bytes": 96081,
+      "expected_sha256": "9991cb10bddd832f38331c1d803a914dd6d7927244e1e14832e9798415f5f683",
+      "actual_sha256": "9991cb10bddd832f38331c1d803a914dd6d7927244e1e14832e9798415f5f683",
+      "body_relative_path": "responses/fr_jorf_nomination_castex_20200703/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_castex_appointed_pm_20200703"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_cessation_castex_20220516",
+      "url": "https://web.archive.org/web/20250123185209id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045802689",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 96124,
+      "actual_bytes": 96124,
+      "expected_sha256": "3cdc39bf9a6c4deda11e5d9e88bd5ae043009f6d77b04b6c17c33bffcc66924e",
+      "actual_sha256": "3cdc39bf9a6c4deda11e5d9e88bd5ae043009f6d77b04b6c17c33bffcc66924e",
+      "body_relative_path": "responses/fr_jorf_cessation_castex_20220516/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_castex_government_resignation_letter_20220516",
+        "fr_jorf_castex_functions_ended_20220516"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_borne_20220516",
+      "url": "https://web.archive.org/web/20241202161449id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045802692",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 100491,
+      "actual_bytes": 100491,
+      "expected_sha256": "b0278dd3e9c4e8bb74eac936535bf47b5b00e303615fcb058d5afab80c12146c",
+      "actual_sha256": "b0278dd3e9c4e8bb74eac936535bf47b5b00e303615fcb058d5afab80c12146c",
+      "body_relative_path": "responses/fr_jorf_nomination_borne_20220516/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_borne_appointed_pm_20220516"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_cessation_borne_20240109",
+      "url": "https://web.archive.org/web/20240110101925id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048898744",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 90564,
+      "actual_bytes": 90564,
+      "expected_sha256": "9ae7b26bb02bf94052688f64651d6b1eb7ee32703b16595bd8321967df6cac1e",
+      "actual_sha256": "9ae7b26bb02bf94052688f64651d6b1eb7ee32703b16595bd8321967df6cac1e",
+      "body_relative_path": "responses/fr_jorf_cessation_borne_20240109/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_borne_government_resignation_letter_20240108",
+        "fr_jorf_borne_functions_ended_20240109"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_attal_20240109",
+      "url": "https://web.archive.org/web/20240301021148id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048898747",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 95344,
+      "actual_bytes": 95344,
+      "expected_sha256": "553a022ad3c6cff7c5f835e67a6e93a0472582c81443cdc7c2753cb4b6905a6d",
+      "actual_sha256": "553a022ad3c6cff7c5f835e67a6e93a0472582c81443cdc7c2753cb4b6905a6d",
+      "body_relative_path": "responses/fr_jorf_nomination_attal_20240109/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_attal_appointed_pm_20240109"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_cessation_attal_20240716",
+      "url": "https://web.archive.org/web/20240829143727id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050000932",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 96301,
+      "actual_bytes": 96301,
+      "expected_sha256": "6dce5f1e87cf6c5a757d5fd1f478a303fcdf1de56f0d761cec04d6710c1b4975",
+      "actual_sha256": "6dce5f1e87cf6c5a757d5fd1f478a303fcdf1de56f0d761cec04d6710c1b4975",
+      "body_relative_path": "responses/fr_jorf_cessation_attal_20240716/3/body",
+      "selected_attempt": 3,
+      "claim_ids": [
+        "fr_jorf_attal_government_resignation_letter_20240708",
+        "fr_jorf_attal_functions_ended_20240716"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_barnier_20240905",
+      "url": "https://web.archive.org/web/20240912183250id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050185112",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 100390,
+      "actual_bytes": 100390,
+      "expected_sha256": "9a49893a6bf70dda0b494c486792673c4069e8e5c2510fe4fb834bd1703a2a0b",
+      "actual_sha256": "9a49893a6bf70dda0b494c486792673c4069e8e5c2510fe4fb834bd1703a2a0b",
+      "body_relative_path": "responses/fr_jorf_nomination_barnier_20240905/3/body",
+      "selected_attempt": 3,
+      "claim_ids": [
+        "fr_jorf_barnier_appointed_pm_20240905"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content"
+    },
+    {
+      "source_id": "fr_jorf_nomination_bayrou_20241213",
+      "url": "https://web.archive.org/web/20241226115851id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050774288",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 17546,
+      "actual_bytes": 17546,
+      "expected_sha256": "16b8582ae70e39de3ff419dc4c8384d00dd7ab033727136e614b00b1b94bc679",
+      "actual_sha256": "16b8582ae70e39de3ff419dc4c8384d00dd7ab033727136e614b00b1b94bc679",
+      "body_relative_path": "responses/fr_jorf_nomination_bayrou_20241213/3/body",
+      "selected_attempt": 3,
+      "claim_ids": [
+        "fr_jorf_bayrou_appointed_pm_20241213"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "decoded_response": {
+        "relative_path": "source-text-decoded/fr_jorf_nomination_bayrou_20241213.html",
+        "bytes": 100274,
+        "sha256": "9771019131a90ab400073aaa4c5ff2fcd4a2f69f0fd19444852ec5caa8b49b43"
+      }
+    },
+    {
+      "source_id": "fr_jorf_dila_opendata_20250910",
+      "url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20250910-005809.tar.gz",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 133987,
+      "actual_bytes": 133987,
+      "expected_sha256": "74892eb74e45ff28ddbbdd10dd13c1dc84bd0465134a0fdfe20ffb79f69036d9",
+      "actual_sha256": "74892eb74e45ff28ddbbdd10dd13c1dc84bd0465134a0fdfe20ffb79f69036d9",
+      "body_relative_path": "responses/fr_jorf_dila_opendata_20250910/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_bayrou_government_resignation_letter_20250909",
+        "fr_jorf_bayrou_functions_ended_20250909",
+        "fr_jorf_lecornu_appointed_pm_20250909"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "reviewed_members": [
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20250910/1/JORFARTI000052221930.xml",
+          "bytes": 1261,
+          "sha256": "71c90f4fc2fe5057f5d59cac4ed4f1b0fca976c8f80de95051f89f3083d1febc"
+        },
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20250910/1/JORFARTI000052221933.xml",
+          "bytes": 1131,
+          "sha256": "64a73d338eb9cd2666a48c47238d854247a47e4fd1708fcbb433be0317a27eb0"
+        },
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20250910/1/JORFTEXT000052221929.xml",
+          "bytes": 1614,
+          "sha256": "b2f36937b44ee467a8528dd3e4c9894c06409dba89440f3bdd63153d575025c3"
+        },
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20250910/1/JORFTEXT000052221932.xml",
+          "bytes": 1426,
+          "sha256": "bacd89b01e75276d15289c9c985962a5e22e6739f93703bb53186024cfb6b678"
+        }
+      ]
+    },
+    {
+      "source_id": "fr_jorf_dila_opendata_20251007",
+      "url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20251007-001919.tar.gz",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 54757,
+      "actual_bytes": 54757,
+      "expected_sha256": "a8b48bc2c874d4e1f96c392c5b1d8316d8caba8d865359b0758fa52b83cbd9cb",
+      "actual_sha256": "a8b48bc2c874d4e1f96c392c5b1d8316d8caba8d865359b0758fa52b83cbd9cb",
+      "body_relative_path": "responses/fr_jorf_dila_opendata_20251007/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_lecornu_government_resignation_letter_20251006",
+        "fr_jorf_lecornu_functions_ended_20251006"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "reviewed_members": [
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20251007/1/JORFARTI000052367031.xml",
+          "bytes": 1259,
+          "sha256": "6d2074d8b3ee515e7dec2943e94a7c5336a2d8ff603986f52b01c3ac82a16c40"
+        },
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20251007/1/JORFTEXT000052367030.xml",
+          "bytes": 1603,
+          "sha256": "9b47558e74c9ef84dde5e3e37ca8f8ebc2914f83efa57d1e4733bb8058461b3c"
+        }
+      ]
+    },
+    {
+      "source_id": "fr_jorf_dila_opendata_20251011",
+      "url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20251011-005544.tar.gz",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 102454,
+      "actual_bytes": 102454,
+      "expected_sha256": "31b5f8aa376205754ec39584da4d6bf31d209e35c40b3510b2f2a68baa480072",
+      "actual_sha256": "31b5f8aa376205754ec39584da4d6bf31d209e35c40b3510b2f2a68baa480072",
+      "body_relative_path": "responses/fr_jorf_dila_opendata_20251011/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_lecornu_appointed_pm_20251010"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "reviewed_members": [
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20251011/1/JORFARTI000052380520.xml",
+          "bytes": 1129,
+          "sha256": "a3b697cbeafa7de266e715efb285e3626be90d82ce5c28489d07d4910dae7b37"
+        },
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_20251011/1/JORFTEXT000052380519.xml",
+          "bytes": 1421,
+          "sha256": "71630ceba338665c35cbb4b17e168846cd699faa974c8c4990a7f93ff40f3df8"
+        }
+      ]
+    },
+    {
+      "source_id": "fr_jorf_dila_opendata_pm_signature_20260904",
+      "url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20260905-004620.tar.gz",
+      "http_status": 200,
+      "exact_recorded_response": true,
+      "expected_bytes": 126639,
+      "actual_bytes": 126639,
+      "expected_sha256": "edec7f27c7326f96effe331d76f3288195e0b210de8798472b0365b189d6ad1b",
+      "actual_sha256": "edec7f27c7326f96effe331d76f3288195e0b210de8798472b0365b189d6ad1b",
+      "body_relative_path": "responses/fr_jorf_dila_opendata_pm_signature_20260904/1/body",
+      "selected_attempt": 1,
+      "claim_ids": [
+        "fr_jorf_lecornu_signs_decree_as_pm_20260904"
+      ],
+      "content_review": "read_decree_metadata_and_cited_body_and_signature_content",
+      "reviewed_members": [
+        {
+          "relative_path": "responses/fr_jorf_dila_opendata_pm_signature_20260904/1/JORFTEXT000054796645.xml",
+          "bytes": 6382,
+          "sha256": "307a5c4bb33cabce685c58f39d62f1327cfba590f9594302ba3cfcc07d5fc1ce"
+        }
+      ]
+    }
+  ],
+  "originals_external": "D:\\spheres-offload\\codex-next-20260928\\c01-38-review-evidence-20261001",
+  "full_originals_in_git": false
+}

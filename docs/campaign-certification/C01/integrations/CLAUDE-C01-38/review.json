@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-independent-review/v1",
+  "reviewer": "Codex /root",
+  "reviewed_final_utc": "2026-10-01T01:06:26.337467+00:00",
+  "submission": "acf33f09a5d28cbc9bf9f539e152e9846a7bf395",
+  "integration_base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "first_source_import": "9174c8077e376c1dc3092a785d2be4d04c48bdfe",
+  "prose_repair_commit": "e4757a3da810bf9ec303c513565dee87a25fb156",
+  "recommendation": "accepted_bounded_source_observation_intake_after_prose_repair",
+  "sources_exact": 22,
+  "claims_read": 33,
+  "holders_checked": 12,
+  "people": 9,
+  "repair": "Removed a claimed longer interval between Bayrou cessation and Lecornu appointment: both instruments are dated 9 September 2025. No interval duration is inferred.",
+  "tests": {
+    "france": 28,
+    "importer": 10,
+    "research": 79,
+    "campaign": 16,
+    "atlas_node": 11,
+    "overlapping_test_executions": 144,
+    "all_passed": true
+  },
+  "preserved_failures": [
+    "Six curl connection failures across three sources; each subsequently retrieved exactly on its third attempt.",
+    "Initial review text preparation did not decode gzip HTML; raw bytes retained and final reading used decoded HTML.",
+    "Scope-audit helper initially used the wrong nested coverage key before checks ran; corrected helper completed successfully."
+  ],
+  "limits": [
+    "No independently established effective term boundaries.",
+    "Barnier cessation and current-affairs intervals are not established by this packet.",
+    "No runtime identity mapping, artwork rights or parent C01/C03/C06/S23/CP1 acceptance.",
+    "No human acceptance is asserted."
+  ],
+  "generated_index": "Regenerated for focused checks, excluded from packet commits; combined integration regenerates it.",
+  "external_evidence": "D:\\spheres-offload\\codex-next-20260928\\c01-38-review-evidence-20261001",
+  "full_source_bytes_in_git": false
+}

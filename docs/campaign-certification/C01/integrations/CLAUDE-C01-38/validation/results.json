@@ -1,0 +1,185 @@
+{
+  "source_revision": "e4757a3da810bf9ec303c513565dee87a25fb156",
+  "checked_at_utc": "2026-10-01T00:57:06.888111+00:00",
+  "commands": [
+    {
+      "name": "importer",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.176,
+      "log": "importer.log",
+      "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "name": "research-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py"
+      ],
+      "exit_code": 0,
+      "seconds": 4.839,
+      "log": "research-regenerate.log",
+      "sha256": "812a44810baa4fa65f71e8c99b3552025b0f702a69852369dbaa8ecebc1101f2"
+    },
+    {
+      "name": "research-check",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.646,
+      "log": "research-check.log",
+      "sha256": "30da6c6354da74ca4f666482b3ef5332afce370fd1e3a26b0ff740bdf65444bf"
+    },
+    {
+      "name": "census",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.359,
+      "log": "census.log",
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "name": "france",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_france*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 4.478,
+      "log": "france.log",
+      "sha256": "8c5b70ad85126f8452c91e43c76b21645e5519cb2a203ed4f6de523d485423ef"
+    },
+    {
+      "name": "importer-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_import_cnccfp_census.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.929,
+      "log": "importer-tests.log",
+      "sha256": "148e8b71cca14914c6deb97fe36b0ad20538fc02b5e783cbf68ea27286050fb9"
+    },
+    {
+      "name": "research-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 6.338,
+      "log": "research-tests.log",
+      "sha256": "3632fb4c3760627727353c3b24f8e5dc583b347c785c4dd43e3c52ab0278c4af"
+    },
+    {
+      "name": "campaign-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.333,
+      "log": "campaign-tests.log",
+      "sha256": "58ac4ea4f90d314b1b5b50e726b0ba917c1fecfcf68222bb9e31fd5f11825664"
+    },
+    {
+      "name": "atlas",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit_code": 0,
+      "seconds": 0.234,
+      "log": "atlas.log",
+      "sha256": "de652da9ca90e1e51f42421508970a5752f62c33e7638466bf969dffc5a58c96"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.085,
+      "log": "workboard.log",
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.034,
+      "log": "diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "passed": true
+}
