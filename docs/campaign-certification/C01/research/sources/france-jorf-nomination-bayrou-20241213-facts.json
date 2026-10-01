@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_nomination_bayrou_20241213",
+  "source_url": "https://web.archive.org/web/20241226115851id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050774288",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050774288",
+  "archive_capture_utc": "2024-12-26T11:58:51Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2024-12-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 17546,
+  "source_response_sha256": "16b8582ae70e39de3ff419dc4c8384d00dd7ab033727136e614b00b1b94bc679",
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 100274,
+  "decoded_response_sha256": "9771019131a90ab400073aaa4c5ff2fcd4a2f69f0fd19444852ec5caa8b49b43",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-12-26T11:58:51Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header); the Internet Archive nevertheless serves this capture with Content-Encoding: gzip (the stored response was compressed), so the recorded identity is the body as received, the gzip stream (17546 bytes), exactly what curl without --compressed saves. Decompressed, it is 100274 bytes, SHA-256 9771019131a90ab400073aaa4c5ff2fcd4a2f69f0fd19444852ec5caa8b49b43. No uncompressed capture of this text was found. This packet downloaded it at 2026-09-30 23:48Z and again at 2026-10-01 00:22Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 26 December 2024 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX2433983D); Légifrance itself refuses automated access (HTTP 403 on 30 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it. The Internet Archive serves this capture gzip-compressed even to a request without Accept-Encoding; the recorded identity is the compressed body as received, and the provenance note also gives the decompressed size and SHA-256.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_bayrou_appointed_pm_20241213",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-20",
+      "role_id": "fr_pm",
+      "holder_name": "François BAYROU",
+      "role_title": "Premier ministre",
+      "event_kind": "appointment_decree",
+      "attested_on": "2024-12-13",
+      "text": "A decree of 'Le Président de la République', 'Vu l'article 8 de la Constitution', published in JORF n°0295 of 14 December 2024 (NOR HRUX2433983D), decrees 'M. François BAYROU est nommé Premier ministre' and closes 'Fait le 13 décembre 2024.', signed 'Emmanuel Macron'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2433983D', 'JORF n°0295 du 14 décembre 2024 Texte n° 1'), the article appointing the Prime Minister and the signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-38 only (Premier ministre; the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff, the next batch after CLAUDE-C01-37). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister and a decree the Prime Minister signs stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}

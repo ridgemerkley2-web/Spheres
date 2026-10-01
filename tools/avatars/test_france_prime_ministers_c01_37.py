@@ -181,6 +181,8 @@ HOLDER_CLAIMS = [
 INSTITUTION, ROLE = 'fr_prime_minister', 'fr_pm'
 PRESIDENCY, PRESIDENT = 'fr_presidency', 'fr_president'
 C01_23_SOURCES = 49
+# CLAUDE-C01-38 appends the next batch (22 sources, its claims and twelve holder observations) after this packet's records.
+C01_38_SOURCES = 22
 ACCESSED = '2026-09-29'
 # Appointment-event claims, not effective start authority, by holder index.
 APPOINTMENT_BASIS = {2: 'fr_jorf_beregovoy_appointed_pm_19920402', 5: 'fr_jorf_juppe_appointed_pm_19951107',
@@ -253,8 +255,8 @@ def pm_invariants(packet):
     heads = [r['id'] for e in packet['organizations'] + packet['institutions'] for r in e['roles'] if r['kind'] == 'head_of_government']
     assert heads == [ROLE], 'no other head-of-government role'
     role = pm['roles'][0]
-    holders = role['holder_claims']
-    assert all(isinstance(h, dict) for h in holders)
+    assert all(isinstance(h, dict) for h in role['holder_claims'])
+    holders = role['holder_claims'][:len(HOLDERS)]  # this packet's batch comes first; CLAUDE-C01-38 appends after it
     assert [(h['name'], h['attested_on'], h['from'], h['until']) for h in holders] == HOLDERS
     assert [h['claim_ids'] for h in holders] == HOLDER_CLAIMS
     assert sorted({h['name'] for h in holders}, key=PEOPLE.index) == PEOPLE and len(PEOPLE) == 10, 'at most ten people'
@@ -291,8 +293,8 @@ def pm_invariants(packet):
         assert not set(r['claim_ids']) & new_claims and not set(r['sources']) & new_sources
         for h in r['holder_claims']:
             assert not set(h['claim_ids']) & new_claims
-    assert role['claim_ids'] == pm['claim_ids'] and set(role['claim_ids']) == new_claims
-    assert role['sources'] == pm['sources'] and set(role['sources']) == new_sources
+    assert role['claim_ids'] == pm['claim_ids'] and set(role['claim_ids'][:len(EVENTS)]) == new_claims
+    assert role['sources'] == pm['sources'] and set(role['sources'][:len(RESPONSES)]) == new_sources
 
 
 class FrancePrimeMinistersTests(unittest.TestCase):
@@ -331,15 +333,15 @@ class FrancePrimeMinistersTests(unittest.TestCase):
         self.assertEqual(list(self.supplement), ['sources', 'institutions', 'coverage_unresolved'])
         # CLAUDE-C01-23's 49 sources and its institution come first; this packet only appends.
         ids = [s['id'] for s in self.supplement['sources']]
-        self.assertEqual(len(ids), C01_23_SOURCES + len(NEW_SOURCES))
-        self.assertEqual(ids[C01_23_SOURCES:], NEW_SOURCES)
+        self.assertEqual(len(ids), C01_23_SOURCES + len(NEW_SOURCES) + C01_38_SOURCES)
+        self.assertEqual(ids[C01_23_SOURCES:C01_23_SOURCES + len(NEW_SOURCES)], NEW_SOURCES)
         self.assertFalse(set(ids[:C01_23_SOURCES]) & set(NEW_SOURCES))
         self.assertEqual([i['id'] for i in self.supplement['institutions']], [PRESIDENCY, INSTITUTION])
         self.assertEqual(self.packet['institutions'], self.supplement['institutions'])
         notes = self.supplement['coverage_unresolved']
-        self.assertEqual(len(notes), 2)
+        self.assertEqual(len(notes), 3)
         self.assertTrue(notes[0].startswith('CLAUDE-C01-23 adds') and notes[1].startswith('CLAUDE-C01-37 adds'))
-        self.assertEqual(self.packet['coverage']['unresolved'][-2:], notes)
+        self.assertEqual(self.packet['coverage']['unresolved'][-3:], notes)
         base = importer.build(self.csv, supplement=b'{"sources": [], "institutions": [], "coverage_unresolved": []}')
         self.assertEqual(self.packet['organizations'], base['organizations'])
         self.assertEqual(len(base['organizations']), 635)
@@ -347,7 +349,7 @@ class FrancePrimeMinistersTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (31, 48))
-        self.assertEqual([s['id'] for s in self.packet['sources']][-31:], NEW_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']][-31 - C01_38_SOURCES:-C01_38_SOURCES], NEW_SOURCES)
         self.assertEqual(len(ids['entries']), 637)
         self.assertEqual(ids['roles'], {PRESIDENT, ROLE})
         self.assertEqual(set(self.new_claims), set(EVENTS))
@@ -355,10 +357,10 @@ class FrancePrimeMinistersTests(unittest.TestCase):
         self.assertFalse(holder_claims & set(NEVER_HOLDER))
         self.assertEqual({self.rows[cid]['event_kind'] for cid in holder_claims}, HOLDER_KINDS)
         self.assertEqual({kind for _, kind, _ in EVENTS.values()}, NEVER_KINDS | HOLDER_KINDS)
-        self.assertEqual(self.pm['claim_ids'], self.new_claims)
-        self.assertEqual(self.role['claim_ids'], self.new_claims)
-        self.assertEqual(self.pm['sources'], NEW_SOURCES)
-        self.assertEqual(self.role['sources'], NEW_SOURCES)
+        self.assertEqual(self.pm['claim_ids'][:len(self.new_claims)], self.new_claims)
+        self.assertEqual(self.role['claim_ids'][:len(self.new_claims)], self.new_claims)
+        self.assertEqual(self.pm['sources'][:len(NEW_SOURCES)], NEW_SOURCES)
+        self.assertEqual(self.role['sources'][:len(NEW_SOURCES)], NEW_SOURCES)
         observations = re.findall(r'^### (FR-PM-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'FR-PM-{n:02d}' for n in range(1, 13)])
         # FR-PM-11 (current affairs, acting service) records an absence and FR-PM-12 the next batch; neither owns a row.
@@ -372,7 +374,7 @@ class FrancePrimeMinistersTests(unittest.TestCase):
 
     def test_holders_are_exactly_as_intended(self):
         pm_invariants(self.packet)
-        for holder in self.role['holder_claims']:
+        for holder in self.role['holder_claims'][:len(HOLDERS)]:
             self.assertTrue(holder['note'] and holder['uncertainty'], holder['name'])
             expected = []
             for cid in holder['claim_ids']:
@@ -568,7 +570,7 @@ class FrancePrimeMinistersTests(unittest.TestCase):
                 'fr_jorf_ayrault_appointed_pm_20120515')),
             ('holders reordered', lambda p: role(p)['holder_claims'].reverse()),
             ('holder removed', lambda p: role(p)['holder_claims'].pop(5)),
-            ('eleventh person added', lambda p: role(p)['holder_claims'].append(
+            ('eleventh person added', lambda p: role(p)['holder_claims'].insert(len(HOLDERS) - 1,
                 dict(copy.deepcopy(holder(p, 15)), name='Next Batch Holder'))),
             ('second head-of-government role', lambda p: p['organizations'][0]['roles'].append(
                 dict(copy.deepcopy(role(p)), id='fr_other'))),
