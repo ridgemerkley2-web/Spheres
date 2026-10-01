@@ -1,0 +1,697 @@
+[
+  {
+    "claim_id": "fr_ps_hollande_premier_secretaire_delegue_1997",
+    "source_id": "fr_ps_hebdo_023_19970606",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1997-06-06",
+    "accepted_attested_on": "1997-06-06",
+    "event_kind": "delegated_office",
+    "accepted_locator": {
+      "pdf_page_1_based": 2,
+      "item": "interview headed 'François Hollande, Premier secrétaire-délégué', first answer"
+    },
+    "assessment": "Page 2 distinguishes delegated responsibility for Hollande from Jospin retaining the full title until the next congress; future ratification is not an effective start. The issue date bounds the printed present-tense observation, not an unprinted Bureau meeting date.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_jospin_remains_premier_secretaire_19970606",
+    "source_id": "fr_ps_hebdo_023_19970606",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1997-06-06",
+    "accepted_attested_on": "1997-06-06",
+    "event_kind": "in_office_statement",
+    "accepted_locator": {
+      "pdf_page_1_based": 2,
+      "item": "same interview, first answer"
+    },
+    "assessment": "Page 2 distinguishes delegated responsibility for Hollande from Jospin retaining the full title until the next congress; future ratification is not an effective start. The issue date bounds the printed present-tense observation, not an unprinted Bureau meeting date.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_first_secretary_ballot_19971127",
+    "source_id": "fr_ps_hebdo_041_19971127",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1997-11-27",
+    "accepted_attested_on": "1997-11-27",
+    "event_kind": "members_vote_scheduled",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "'Bulletin de vote individuel', 'Election du Premier secrétaire national'"
+    },
+    "assessment": "Page 4 is a ballot and schedule for 27 November, with two candidates. It establishes a scheduled vote, not a winning officeholder.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_hollande_members_vote_result_1997",
+    "source_id": "fr_ps_hebdo_043_19971205",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1997-12-05",
+    "accepted_attested_on": "1997-12-05",
+    "event_kind": "members_vote_result",
+    "accepted_locator": {
+      "pdf_page_1_based": 11,
+      "item": "box 'Résultats des votes élection du Premier secrétaire'"
+    },
+    "assessment": "Page 11 prints the vote totals and a separate current secretariat list headed by Hollande. Page 2 repeats a November 25 communiqué; the accepted December 5 observation uses the dated issue/list, without inventing a November 25 effective start.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_hollande_styled_premier_secretaire_19971205",
+    "source_id": "fr_ps_hebdo_043_19971205",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1997-12-05",
+    "accepted_attested_on": "1997-12-05",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 2,
+      "item": "heading 'COMMUNIQUÉ DE FRANÇOIS HOLLANDE PREMIER SECRÉTAIRE DU PARTI SOCIALISTE'; PDF p. 11, list 'Secrétariat national (26 membres)'"
+    },
+    "assessment": "Page 11 prints the vote totals and a separate current secretariat list headed by Hollande. Page 2 repeats a November 25 communiqué; the accepted December 5 observation uses the dated issue/list, without inventing a November 25 effective start.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_hollande_farewell_20081119",
+    "source_id": "fr_ps_hebdo_508_20081129",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2008-11-19",
+    "accepted_attested_on": "2008-11-19",
+    "event_kind": "departure_farewell",
+    "accepted_locator": {
+      "pdf_page_1_based": 52,
+      "item": "portrait page 'Militant d'abord', opening sentence"
+    },
+    "assessment": "Pages 3, 6 and 9 separately support Aubry title, November 25 election/report and vote totals. Page 52 explicitly dates the Hollande farewell November 19, which is not an effective resignation boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_recolement_report_approved_20081125",
+    "source_id": "fr_ps_hebdo_508_20081129",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2008-11-25",
+    "accepted_attested_on": "2008-11-25",
+    "event_kind": "members_vote_result",
+    "accepted_locator": {
+      "pdf_page_1_based": 9,
+      "item": "closing paragraph of the congress dossier"
+    },
+    "assessment": "Pages 3, 6 and 9 separately support Aubry title, November 25 election/report and vote totals. Page 52 explicitly dates the Hollande farewell November 19, which is not an effective resignation boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_aubry_elected_20081125",
+    "source_id": "fr_ps_hebdo_508_20081129",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2008-11-25",
+    "accepted_attested_on": "2008-11-25",
+    "event_kind": "election_proclaimed_by_conseil_national",
+    "accepted_locator": {
+      "pdf_page_1_based": 6,
+      "item": "article 'Etre sur tous les terrains', first sentence"
+    },
+    "assessment": "Pages 3, 6 and 9 separately support Aubry title, November 25 election/report and vote totals. Page 52 explicitly dates the Hollande farewell November 19, which is not an effective resignation boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_aubry_styled_premiere_secretaire_20081129",
+    "source_id": "fr_ps_hebdo_508_20081129",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2008-11-29",
+    "accepted_attested_on": "2008-11-29",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 3,
+      "item": "table of contents, 'Actualités France'"
+    },
+    "assessment": "Pages 3, 6 and 9 separately support Aubry title, November 25 election/report and vote totals. Page 52 explicitly dates the Hollande farewell November 19, which is not an effective resignation boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_first_secretary_ballot_20121018",
+    "source_id": "fr_ps_hebdo_667_20121016",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2012-10-18",
+    "accepted_attested_on": "2012-10-18",
+    "event_kind": "members_vote_scheduled",
+    "accepted_locator": {
+      "pdf_page_1_based": 1,
+      "item": "front page banner and the candidates named under it"
+    },
+    "assessment": "The cover calls for an October 18 ballot before the Toulouse congress and names the two candidates. It does not establish election outcome or assumption of office.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_desir_at_jarnac_20130108",
+    "source_id": "fr_ps_hebdo_677_20130112",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2013-01-08",
+    "accepted_attested_on": "2013-01-08",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 3,
+      "item": "item on Jarnac, first paragraph"
+    },
+    "assessment": "Page 3 dates the Jarnac gathering January 8 and names Désir in the first-secretary role; the issue interval beginning January 12 is not substituted for this event day.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_cambadelis_elected_by_conseil_national_20140415",
+    "source_id": "fr_ps_hebdo_730_731_20140419",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2014-04-15",
+    "accepted_attested_on": "2014-04-15",
+    "event_kind": "election_by_conseil_national",
+    "accepted_locator": {
+      "pdf_page_1_based": 1,
+      "item": "front page caption; PDF p. 2, first paragraph of the report"
+    },
+    "assessment": "Pages 1–2 explicitly date the Cambadélis election April 15, give percentages and report Désir leaving for government; page 3 independently lists the current secretary. The projected next congress is not an end boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_desir_left_for_government_2014",
+    "source_id": "fr_ps_hebdo_730_731_20140419",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2014-04-19",
+    "accepted_attested_on": "2014-04-19",
+    "event_kind": "departure_reported",
+    "accepted_locator": {
+      "pdf_page_1_based": 2,
+      "item": "first paragraph of the report; PDF p. 3, note beside the secrétariat national"
+    },
+    "assessment": "Pages 1–2 explicitly date the Cambadélis election April 15, give percentages and report Désir leaving for government; page 3 independently lists the current secretary. The projected next congress is not an end boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_cambadelis_listed_premier_secretaire_20140419",
+    "source_id": "fr_ps_hebdo_730_731_20140419",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2014-04-19",
+    "accepted_attested_on": "2014-04-19",
+    "event_kind": "in_office_listing",
+    "accepted_locator": {
+      "pdf_page_1_based": 3,
+      "item": "'La composition du nouveau secrétariat national', first line"
+    },
+    "assessment": "Pages 1–2 explicitly date the Cambadélis election April 15, give percentages and report Désir leaving for government; page 3 independently lists the current secretary. The projected next congress is not an end boundary.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_cambadelis_cedes_place_2017",
+    "source_id": "fr_ps_hebdo_867_20170617",
+    "decision": "accepted_with_precision_correction",
+    "material_read": true,
+    "submitted_attested_on": "2017-06-17",
+    "accepted_attested_on": null,
+    "event_kind": "resignation_announced",
+    "accepted_locator": {
+      "pdf_page_1_based": 1,
+      "item": "front page report, paragraph after the quoted statement"
+    },
+    "assessment": "Page 1 gives an undated Cambadélis relinquishment announcement. Page 2 explicitly reports June 20, showing that the printed June 17–30 issue interval cannot establish June 17 as publication/announcement day. Corrected to null; June 20 arrangement retained.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_bureau_national_collegial_direction_20170620",
+    "source_id": "fr_ps_hebdo_867_20170617",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2017-06-20",
+    "accepted_attested_on": "2017-06-20",
+    "event_kind": "interim_arrangement",
+    "accepted_locator": {
+      "pdf_page_1_based": 2,
+      "item": "paragraph on the Bureau national"
+    },
+    "assessment": "Page 1 gives an undated Cambadélis relinquishment announcement. Page 2 explicitly reports June 20, showing that the printed June 17–30 issue interval cannot establish June 17 as publication/announcement day. Corrected to null; June 20 arrangement retained.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_cambadelis_former_premier_secretaire_20170624",
+    "source_id": "fr_ps_hebdo_868_869_20170701",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2017-06-24",
+    "accepted_attested_on": "2017-06-24",
+    "event_kind": "former_holder_reference",
+    "accepted_locator": {
+      "pdf_page_1_based": 1,
+      "item": "'SPÉCIAL CONSEIL NATIONAL du 24 juin 2017', first paragraphs"
+    },
+    "assessment": "The special issue is explicitly about the June 24 national council, styles Cambadélis former secretary and says the collective direction remains to be presented July 8. No invented individual interim leader or effective end.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_collegial_direction_pending_20170624",
+    "source_id": "fr_ps_hebdo_868_869_20170701",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2017-06-24",
+    "accepted_attested_on": "2017-06-24",
+    "event_kind": "interim_arrangement",
+    "accepted_locator": {
+      "pdf_page_1_based": 1,
+      "item": "same report, closing paragraphs"
+    },
+    "assessment": "The special issue is explicitly about the June 24 national council, styles Cambadélis former secretary and says the collective direction remains to be presented July 8. No invented individual interim leader or effective end.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_ratification_81e_congres_20250605",
+    "source_id": "fr_ps_site_congress_ratification_2025",
+    "decision": "accepted_with_precision_correction",
+    "material_read": true,
+    "submitted_attested_on": "2025-06-05",
+    "accepted_attested_on": null,
+    "event_kind": "members_vote_ratified",
+    "accepted_locator": {
+      "item": "communiqué text, first paragraph"
+    },
+    "assessment": "Decoded archived HTML confirms unanimous ratification and Faure result, but May 27 and June 5 are earlier votes. The page activity stamp June 14 is publication metadata, not the ratification day. Corrected attestation to null, preserving those vote dates.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_faure_closes_conseil_national_20230311",
+    "source_id": "fr_ps_site_conseil_national_20230311",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2023-03-11",
+    "accepted_attested_on": "2023-03-11",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "item": "first sentence of the page text"
+    },
+    "assessment": "Main text explicitly dates Faure closing the national council March 11, 2023 and calls him current first secretary; page publication metadata March 13 is not substituted.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_page_faure_elected_20180315_retrospective",
+    "source_id": "fr_ps_site_premier_secretaire_page_2026",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2018-03-15",
+    "accepted_attested_on": "2018-03-15",
+    "event_kind": "election_retrospective",
+    "accepted_locator": {
+      "item": "biography section 'Les débuts', paragraph after 'Lire la suite'"
+    },
+    "assessment": "Archived biography describes March 15, 2018 election and later congress re-elections. This retrospective differs from the contemporaneous orientation vote and March 29 ballot; retained as attributed claims only, with no new holder or end date.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_page_faure_reconduit_retrospective",
+    "source_id": "fr_ps_site_premier_secretaire_page_2026",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": null,
+    "accepted_attested_on": null,
+    "event_kind": "reelection_retrospective",
+    "accepted_locator": {
+      "item": "same paragraph, next sentence"
+    },
+    "assessment": "Archived biography describes March 15, 2018 election and later congress re-elections. This retrospective differs from the contemporaneous orientation vote and March 29 ballot; retained as attributed claims only, with no new holder or end date.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_faure_premier_secretaire_elu_20180329",
+    "source_id": "fr_ps_site_press_conference_2018",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2018-03-29",
+    "accepted_attested_on": "2018-03-29",
+    "event_kind": "members_vote_election",
+    "accepted_locator": {
+      "item": "page text"
+    },
+    "assessment": "Page explicitly places the press conference after the March 29 ballot and calls Faure elected secretary and Temal coordinator. This does not prove an effective assumption day; no holder row added.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_recolement_result_20230122",
+    "source_id": "fr_ps_site_recolement_20230122",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2023-01-22",
+    "accepted_attested_on": "2023-01-22",
+    "event_kind": "members_vote_result",
+    "accepted_locator": {
+      "item": "communiqué text"
+    },
+    "assessment": "Dated January 22 communiqué gives revised totals, explains commission closure and calls the result definitive. Treated as result evidence, separate from later in-office observation.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_members_vote_20230119",
+    "source_id": "fr_ps_site_reconduit_20230120",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2023-01-19",
+    "accepted_attested_on": "2023-01-19",
+    "event_kind": "members_vote_result",
+    "accepted_locator": {
+      "item": "communiqué text"
+    },
+    "assessment": "January 20 communiqué explicitly refers to January 19 voting and provisional figures, with definitive proclamation still expected at Marseille. No election-to-office boundary inferred.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_faure_signed_statement_20180709",
+    "source_id": "fr_ps_site_versailles_reaction_20180709",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2018-07-09",
+    "accepted_attested_on": "2018-07-09",
+    "event_kind": "in_office_signed_statement",
+    "accepted_locator": {
+      "item": "date and signature line under the title"
+    },
+    "assessment": "Statement has July 9, 2018 dateline and Faure signature with party secretary title separate from his parliamentary title. Supports party-office observation only.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_orientation_text_vote_20180315",
+    "source_id": "fr_ps_site_vote_20180316",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2018-03-15",
+    "accepted_attested_on": "2018-03-15",
+    "event_kind": "orientation_text_vote_result",
+    "accepted_locator": {
+      "item": "statement text, paragraphs 2 to 4"
+    },
+    "assessment": "March 16 statement reports the previous day orientation-text vote and percentages, and is signed by Temal as coordinator. It does not itself elect Faure to the office.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_temal_national_coordinator_20180316",
+    "source_id": "fr_ps_site_vote_20180316",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "2018-03-16",
+    "accepted_attested_on": "2018-03-16",
+    "event_kind": "interim_coordinator_styling",
+    "accepted_locator": {
+      "item": "date and signature line"
+    },
+    "assessment": "March 16 statement reports the previous day orientation-text vote and percentages, and is signed by Temal as coordinator. It does not itself elect Faure to the office.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_mauroy_reelected_by_comite_directeur_1990",
+    "source_id": "fr_ps_vendredi_054_19900324",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1990-03-24",
+    "accepted_attested_on": "1990-03-24",
+    "event_kind": "election_by_comite_directeur",
+    "accepted_locator": {
+      "pdf_page_1_based": 2,
+      "item": "headline 'LENDEMAIN DE CONGRES L'électrochoc de Rennes' and its standfirst"
+    },
+    "assessment": "Dated March 24 issue reports Mauroy re-election after the Rennes synthesis, and page 3 independently lists him as first secretary. Printed issue attestation is not the election effective day or an opening January 1 claim.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_mauroy_listed_premier_secretaire_19900324",
+    "source_id": "fr_ps_vendredi_054_19900324",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1990-03-24",
+    "accepted_attested_on": "1990-03-24",
+    "event_kind": "in_office_listing",
+    "accepted_locator": {
+      "pdf_page_1_based": 3,
+      "item": "list 'Secrétaires nationaux', first line"
+    },
+    "assessment": "Dated March 24 issue reports Mauroy re-election after the Rennes synthesis, and page 3 independently lists him as first secretary. Printed issue attestation is not the election effective day or an opening January 1 claim.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_mauroy_mandate_at_disposal_19920107",
+    "source_id": "fr_ps_vendredi_127_19920110",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1992-01-07",
+    "accepted_attested_on": "1992-01-07",
+    "event_kind": "mandate_placed_at_disposal",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "declaration 'Pierre Mauroy : J'ai le sentiment ... d'avoir aujourd'hui largement rempli ma mission', closing 'Déclaration devant le bureau exécutif, 7 janvier 1992.' (PDF p. 5)"
+    },
+    "assessment": "Pages 4–6 separate Mauroy January 7 declaration, recalled May 14, 1988 election, Fabius Thursday January 9 election, printed acceptance address and current title. Departure is reported without an effective end; January 10 is issue attestation for undated printed statements.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_mauroy_elected_19880514_retrospective",
+    "source_id": "fr_ps_vendredi_127_19920110",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1988-05-14",
+    "accepted_attested_on": "1988-05-14",
+    "event_kind": "election_retrospective",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "same declaration, second paragraph"
+    },
+    "assessment": "Pages 4–6 separate Mauroy January 7 declaration, recalled May 14, 1988 election, Fabius Thursday January 9 election, printed acceptance address and current title. Departure is reported without an effective end; January 10 is issue attestation for undated printed statements.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_fabius_elected_by_comite_directeur_19920109",
+    "source_id": "fr_ps_vendredi_127_19920110",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1992-01-09",
+    "accepted_attested_on": "1992-01-09",
+    "event_kind": "election_by_comite_directeur",
+    "accepted_locator": {
+      "pdf_page_1_based": 5,
+      "item": "article 'le Parti socialiste rassemblé', first paragraphs"
+    },
+    "assessment": "Pages 4–6 separate Mauroy January 7 declaration, recalled May 14, 1988 election, Fabius Thursday January 9 election, printed acceptance address and current title. Departure is reported without an effective end; January 10 is issue attestation for undated printed statements.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_fabius_acceptance_address_19920110",
+    "source_id": "fr_ps_vendredi_127_19920110",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1992-01-10",
+    "accepted_attested_on": "1992-01-10",
+    "event_kind": "acceptance_statement",
+    "accepted_locator": {
+      "pdf_page_1_based": 6,
+      "item": "address headed 'Je serai le premier secrétaire de tous', opening words"
+    },
+    "assessment": "Pages 4–6 separate Mauroy January 7 declaration, recalled May 14, 1988 election, Fabius Thursday January 9 election, printed acceptance address and current title. Departure is reported without an effective end; January 10 is issue attestation for undated printed statements.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_fabius_styled_premier_secretaire_19920110",
+    "source_id": "fr_ps_vendredi_127_19920110",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1992-01-10",
+    "accepted_attested_on": "1992-01-10",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "standfirst of the political section"
+    },
+    "assessment": "Pages 4–6 separate Mauroy January 7 declaration, recalled May 14, 1988 election, Fabius Thursday January 9 election, printed acceptance address and current title. Departure is reported without an effective end; January 10 is issue attestation for undated printed statements.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_mauroy_leaves_19920110",
+    "source_id": "fr_ps_vendredi_127_19920110",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1992-01-10",
+    "accepted_attested_on": "1992-01-10",
+    "event_kind": "departure_reported",
+    "accepted_locator": {
+      "pdf_page_1_based": 5,
+      "item": "article 'le Parti socialiste rassemblé', paragraph on the succession"
+    },
+    "assessment": "Pages 4–6 separate Mauroy January 7 declaration, recalled May 14, 1988 election, Fabius Thursday January 9 election, printed acceptance address and current title. Departure is reported without an effective end; January 10 is issue attestation for undated printed statements.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_fabius_resigned_comite_directeur_19930403",
+    "source_id": "fr_ps_vendredi_183_19930409",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1993-04-03",
+    "accepted_attested_on": "1993-04-03",
+    "event_kind": "resignation_reported",
+    "accepted_locator": {
+      "pdf_page_1_based": 5,
+      "item": "article 'élection d'une direction provisoire', standfirst and first paragraph"
+    },
+    "assessment": "Pages 4–5 explicitly distinguish the April 3 committee resignation report, April 6 installation communiqué and Rocard presidency of the provisional direction. Provisional role is not silently the first secretary role.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_direction_provisoire_installed_19930406",
+    "source_id": "fr_ps_vendredi_183_19930409",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1993-04-06",
+    "accepted_attested_on": "1993-04-06",
+    "event_kind": "provisional_direction_installed",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "communiqué 'Communiqué de la direction provisoire, mardi 6 avril 1993', opening sentence"
+    },
+    "assessment": "Pages 4–5 explicitly distinguish the April 3 committee resignation report, April 6 installation communiqué and Rocard presidency of the provisional direction. Provisional role is not silently the first secretary role.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_rocard_presides_direction_provisoire_19930406",
+    "source_id": "fr_ps_vendredi_183_19930409",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1993-04-06",
+    "accepted_attested_on": "1993-04-06",
+    "event_kind": "interim_presidency",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "article 'Etats généraux du Parti socialiste', second paragraph"
+    },
+    "assessment": "Pages 4–5 explicitly distinguish the April 3 committee resignation report, April 6 installation communiqué and Rocard presidency of the provisional direction. Provisional role is not silently the first secretary role.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_rocard_elected_by_congress_19931023",
+    "source_id": "fr_ps_vendredi_205_supplement_19931024",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1993-10-23",
+    "accepted_attested_on": "1993-10-23",
+    "event_kind": "election_by_congress",
+    "accepted_locator": {
+      "pdf_page_1_based": 13,
+      "item": "heading 'PREMIER PREMIER SECRETAIRE ELU PAR LE CONGRES' and the result box"
+    },
+    "assessment": "Page 13 prints Saturday election at 18:00 and exact counts in the Sunday October 24 issue, supporting October 23 by calendar. Rocard response is present, but retained narrow election-only claim gives no effective interval.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_rocard_in_office_19931112",
+    "source_id": "fr_ps_vendredi_207_19931112",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1993-11-12",
+    "accepted_attested_on": "1993-11-12",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 6,
+      "item": "boxed list 'SECRETARIAT NATIONAL' and the article beside it"
+    },
+    "assessment": "Page 6 roster and adjacent article identify Rocard as first secretary. November 12 is issue attestation; the article also discusses November 4, without converting it into an additional holder row.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_rocard_no_confidence_vote_19940619",
+    "source_id": "fr_ps_vendredi_234_19940624",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1994-06-19",
+    "accepted_attested_on": "1994-06-19",
+    "event_kind": "no_confidence_vote",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "article 'Henri Emmanuelli Premier secrétaire', second paragraph; PDF p. 7, paragraph on the procedure"
+    },
+    "assessment": "Pages 4 and 7 date June 19 no-confidence/election and describe resignation procedure. Page 8 uses Emmanuelli first-secretary title while discussing confirmation by a future congress; nearby commentary calls it provisional. Accepted only dated title observation, not permanent mandate or start/end.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_emmanuelli_elected_by_conseil_national_19940619",
+    "source_id": "fr_ps_vendredi_234_19940624",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1994-06-19",
+    "accepted_attested_on": "1994-06-19",
+    "event_kind": "election_by_conseil_national",
+    "accepted_locator": {
+      "pdf_page_1_based": 4,
+      "item": "article 'Henri Emmanuelli Premier secrétaire', first sentence"
+    },
+    "assessment": "Pages 4 and 7 date June 19 no-confidence/election and describe resignation procedure. Page 8 uses Emmanuelli first-secretary title while discussing confirmation by a future congress; nearby commentary calls it provisional. Accepted only dated title observation, not permanent mandate or start/end.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_emmanuelli_styled_premier_secretaire_19940624",
+    "source_id": "fr_ps_vendredi_234_19940624",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1994-06-24",
+    "accepted_attested_on": "1994-06-24",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 8,
+      "item": "paragraph on the planned congress"
+    },
+    "assessment": "Pages 4 and 7 date June 19 no-confidence/election and describe resignation procedure. Page 8 uses Emmanuelli first-secretary title while discussing confirmation by a future congress; nearby commentary calls it provisional. Accepted only dated title observation, not permanent mandate or start/end.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_jospin_members_vote_result_1995",
+    "source_id": "fr_ps_vendredi_261_19951020",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1995-10-20",
+    "accepted_attested_on": "1995-10-20",
+    "event_kind": "members_vote_result",
+    "accepted_locator": {
+      "pdf_page_1_based": 10,
+      "item": "box 'Résultats du vote', question n°1"
+    },
+    "assessment": "Pages 9–10 print Jospin roster and results separately. Page 14 lower-left FLNKS communiqué explicitly says Wednesday October 18 and closes October 18; adjacent October 17 labels belong to different items. Corrected locator only, retaining holder October 18.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_jospin_secretariat_national_1995",
+    "source_id": "fr_ps_vendredi_261_19951020",
+    "decision": "accepted_bounded_claim",
+    "material_read": true,
+    "submitted_attested_on": "1995-10-20",
+    "accepted_attested_on": "1995-10-20",
+    "event_kind": "in_office_listing",
+    "accepted_locator": {
+      "pdf_page_1_based": 9,
+      "item": "paragraph after the address and the list that follows"
+    },
+    "assessment": "Pages 9–10 print Jospin roster and results separately. Page 14 lower-left FLNKS communiqué explicitly says Wednesday October 18 and closes October 18; adjacent October 17 labels belong to different items. Corrected locator only, retaining holder October 18.",
+    "no_effective_boundary_inferred": true
+  },
+  {
+    "claim_id": "fr_ps_jospin_receives_flnks_19951018",
+    "source_id": "fr_ps_vendredi_261_19951020",
+    "decision": "accepted_with_precision_correction",
+    "material_read": true,
+    "submitted_attested_on": "1995-10-18",
+    "accepted_attested_on": "1995-10-18",
+    "event_kind": "in_office_styling",
+    "accepted_locator": {
+      "pdf_page_1_based": 14,
+      "item": "FLNKS delegation communiqué, lower-left column, dated '18 octobre'; not the adjacent '17 octobre' items"
+    },
+    "assessment": "Pages 9–10 print Jospin roster and results separately. Page 14 lower-left FLNKS communiqué explicitly says Wednesday October 18 and closes October 18; adjacent October 17 labels belong to different items. Corrected locator only, retaining holder October 18.",
+    "no_effective_boundary_inferred": true
+  }
+]
