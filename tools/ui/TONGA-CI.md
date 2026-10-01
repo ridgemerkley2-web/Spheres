@@ -46,6 +46,14 @@ passing run must be reviewed and pinned before changing the country's pending
 `production_browser` acceptance item. This harness does not provide likeness
 approval, all historical role chains, human signoff or CP1 qualification.
 
+The first Linux execution at `a86aee1b` passed ten institutional and three web
+tests, then exposed a harness mistake: the Institutions tab intentionally hides
+the compact hero's leader line. The repaired journey verifies the visible King
+and separate premier on Overview, then the visible Crown card on Institutions.
+It does not treat hidden markup as visible identity evidence. Result artifacts
+retain the opening/latest native government payload and current stage, including
+on failure; the original failed CI evidence remains unchanged.
+
 Local checks (no native build/server):
 
 ```
