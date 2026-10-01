@@ -28,7 +28,7 @@
     "spheres-web/src/person_avatar_assets.rs": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
     "spheres-web/src/person_portraits.rs": "1cdb635ad2b9bf683cf166e8d11a36be8751a0c273308ca2651a7d9731e9e657",
     "spheres-web/ui/government-ui.css": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
-    "spheres-web/ui/government-ui.js": "c34fb023f5bfc0618bc5a2ea0d2780c344763a56fc0020373dff6dba8b51a083",
+    "spheres-web/ui/government-ui.js": "c8bff0746bad3d2e2108646c1c63f4ab2cea6af9a37013e648899705409319ae",
     "spheres-web/ui/index.html": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
     "tools/avatars/tonga_cast_coverage.py": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b"
   },
@@ -3101,7 +3101,7 @@
     },
     "production_browser": {
       "status": "pending",
-      "reason": "The first real Tonga browser attempt failed on a hidden compact-header assertion; corrected visible-card checks await fresh CI. Native rules and portraits passed. Failed evidence is retained in ci-current-native-20261001."
+      "reason": "The Linux journey passed on d42bf94e. Final human-readable historical office labels require a fresh browser run; prior native and browser attempts remain preserved."
     },
     "save_compatibility": {
       "status": "passed",

@@ -1,0 +1,33 @@
+✔ Tonga oracle rejects a PM/Crown identity leak and mislabelled monarch (1.5142ms)
+✔ fiction boundary checks both inclusive endpoints and excludes adjacent days (0.7989ms)
+✔ Kalolo may not receive nested or flattened office commands (0.4301ms)
+✔ date-only fixtures fail if browsing has seated someone or invented appointment dates (0.158ms)
+✔ accepted appointments require distinct elected representatives, PM and minister (0.2181ms)
+✔ action selection rejects duplicates and distinguishes vacancy office (0.1837ms)
+✔ fixture manifest rejects swapped dates, duplicate cases, other source and path escape (0.4756ms)
+✔ archive equality preserves adjacent native u64 integers that JavaScript rounds together (0.174ms)
+✔ archive normalization changes only the final top-level native timestamp (0.1694ms)
+✔ Tonga gets its own accessible institutional tab; other governments keep their existing tabs (10.5528ms)
+✔ monarch remains the hero while opening Prime Minister has a separate portrait and explicit reference label (0.6061ms)
+✔ active civilian appointments retain supplied dates, identities and vacant-office commands (0.5095ms)
+✔ inactive Crown institutions do not relabel a changed regime head as King (0.4307ms)
+✔ unadopted Assembly seats are a proposed model, not historical campaign counts (0.9167ms)
+✔ all four fictional people use supplied portraits; Kalolo has no appointment controls (0.6392ms)
+✔ date availability never promises appointment and backend refusals remain visible (0.394ms)
+✔ foreign and pending views disable every institutional action (1.3788ms)
+✔ unknown command or nested-target mismatch does not create an action button (0.3564ms)
+✔ historical cards preserve uncertainty and appearance context without creating appointments (0.5701ms)
+✔ search filters both casts while leaving serving officials visible and data unchanged (0.4519ms)
+✔ institutional names, reasons, biographies and evidence are escaped; unsafe portraits and links are refused (0.3731ms)
+✔ nested command comparison ignores key order but preserves action type and exact person (0.0959ms)
+✔ institution control uses standard preview and confirmed command receipt with exact nested payload (2.5528ms)
+✔ host rejects a preview that changes only the nested person or action type (3.3153ms)
+✔ host accepts reordered nested command keys and never bypasses foreign, refused or pending guards (6.2301ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.7236

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_cartoon_review.Regeneration.test_tracked_optional_input_missing_aborts_without_writing_exports",
+    "test_cartoon_review.Regeneration.test_untracked_optional_inputs_remain_optional_in_git_fixture",
+    "-v"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-fix\\tools\\avatars",
+  "exit_code": 1
+}

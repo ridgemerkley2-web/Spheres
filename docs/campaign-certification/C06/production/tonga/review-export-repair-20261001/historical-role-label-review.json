@@ -1,0 +1,41 @@
+{
+  "revision": "c90756f27147e8aa44d4e6bb70dc61a280c3d949",
+  "paths": [
+    "spheres-web/ui/government-ui.js",
+    "tools/ui/ci-tonga.cjs"
+  ],
+  "research_sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+  "decisions": [
+    {
+      "roles": [
+        "to_deputy_pm",
+        "to_speaker",
+        "to_deputy_speaker"
+      ],
+      "decision": "Exact accepted office names preserved; Deputy roles not collapsed into principal offices."
+    },
+    {
+      "roles": [
+        "to_dpfi_leader",
+        "to_dpfi_president"
+      ],
+      "decision": "Accepted DPFI leader and party President remain distinct; full party name matches accepted institution name."
+    },
+    {
+      "roles": [
+        "to_pdp_leader"
+      ],
+      "decision": "People\u2019s Democratic Party kept separate from DPFI and Tonga People\u2019s Party."
+    },
+    {
+      "roles": [
+        "to_peoples_party_leader",
+        "to_peoples_party_society_president",
+        "to_peoples_party_society_secretary"
+      ],
+      "decision": "Party leader, incorporated-society president, and society secretary remain separately labelled. Existing holder notes retain trial-date and unresolved office equivalence limitations."
+    }
+  ],
+  "finding": "No actionable semantic mismatch in changed labels. Presentation only; IDs, original holder observations, dates and appointment authority unchanged.",
+  "validation": "Existing25focusedUItests pass; real browser TO-prefix assertion awaits next exact-source CI."
+}

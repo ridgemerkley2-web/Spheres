@@ -1,0 +1,22 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined",
+  "started_utc": "2026-10-01T16:24:56.539058+00:00",
+  "duration_seconds": 90.985,
+  "exit_code": 0,
+  "log": "restored-full-avatars.log",
+  "bytes": 913,
+  "sha256": "5b1a544a5f46dd6568b4f360e11d8f66cab38f99e1a8da0b9caab44c7235f3d1"
+}

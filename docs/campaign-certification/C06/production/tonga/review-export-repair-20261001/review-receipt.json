@@ -1,0 +1,138 @@
+{
+  "format": "cartoon-review-tracked-input-guard-review/v1",
+  "commit": "c179878fd76d80823689aef53da43f9958868375",
+  "base_revision": "d6380e16b4f5facb87ae72ca37ece45c223d2056",
+  "reported_failing_ci_revision": "d42bf94e090aac5adae8b7ddb44f7572c29b2e15",
+  "reported_ci_job": "110457201691",
+  "reported_ci_result": "805 avatar tests;804 pass,1 stale-export failure (reported by integration owner, not downloaded by this reviewer)",
+  "exporter_dependency_diff_between_ci_and_base": [],
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+    "scope": "Windows execution over exact LF Git-blob text inputs and Git-verified raw image bytes. This reproduces full Linux checkout inputs; it is not a claim of a Linux runtime test."
+  },
+  "cause": "The sparse Windows checkout omitted a tracked optional INPUT, docs/campaign-certification/S10/c/manifest.json. Builder skipped it. The regenerated committed exports therefore omitted its fingerprint and Tupou IV reviewed-style-reference metadata. Full CI included the file and correctly rejected both stale exports.",
+  "not_a_line_ending_failure": "JSON inputs and prompt hashes already normalize CRLF to LF; full Git-blob reproduction differs only when the S10.c input is present. No gitattributes change or OS exemption is needed.",
+  "proof": {
+    "full_inputs_stale": [
+      "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+      "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md"
+    ],
+    "one_missing_input_reproduces_committed_export": true,
+    "changed_json_paths": [
+      "/inputs",
+      "/style_references",
+      "/items/407/labels",
+      "/items/407/style_reference"
+    ],
+    "other_changed_top_level_keys": [],
+    "all_tracked_images_git_verified": 762,
+    "logical_image_bytes": 549303265,
+    "duplicated_image_data_bytes": 0,
+    "materialized_text_files": 246,
+    "large_S10_archives_materialized": false
+  },
+  "repair": "Before skipping an absent optional input, check the actual Git index. If tracked, fail with the exact missing path and materialization instruction; do not write exports. Truly untracked optional fixture inputs remain optional. Git-index inspection failures are reported rather than guessed away.",
+  "code_pins": [
+    {
+      "path": "tools/avatars/cartoon_review.py",
+      "bytes": 74243,
+      "sha256": "fc64c1ad233edd4f48469c471d09bb889283ffbe622a8c11dcfd8c216734b88e"
+    },
+    {
+      "path": "tools/avatars/test_cartoon_review.py",
+      "bytes": 40171,
+      "sha256": "a477ea0e7a4bf1ebbd2a83ed64f523bf368ec56c83dff3898883fbbc4dfdf6cb"
+    }
+  ],
+  "validation": [
+    {
+      "command_record": "before-guard-command.json",
+      "result": "Tracked-missing negative control failed against old implementation (SystemExit not raised); untracked-optional case passed."
+    },
+    {
+      "command_record": "after-guard-command.json",
+      "result": "All31 focused cartoon-review tests passed, including repository determinism/read-only, Pillow dimensions, both new cases and existing staleness/rights guards. Only disposable generated exports were refreshed for the repository test."
+    },
+    {
+      "result": "Removing the real tracked S10.c manifest after the guard returned exit1 and named the precise missing input; no export was generated."
+    },
+    {
+      "result": "git diff --cached --check passed. Commit contains exactly the tool and test file."
+    }
+  ],
+  "integration_steps": [
+    "Cherry-pick the two-file guard commit.",
+    "After any cherry-picks that reapply sparse rules, materialize only docs/campaign-certification/S10/c/manifest.json from the matching Git revision (not the whole S10/c directory).",
+    "Regenerate both C03 cartoon-review exports from complete inputs. The guard makes a future sparse omission explicit.",
+    "Run focused/full avatar validation on the integration candidate and retain the failed CI run as prior evidence."
+  ],
+  "limits": [
+    "No native build or run.",
+    "No original art, history claim, holder, manifest acceptance decision or review record changed.",
+    "No full10GB docs checkout. The762 images were hardlinked from source only after exact Git blob identity checks; exporter and tests only read them.",
+    "The isolated checkout has regenerated export files for verification; these are deliberately excluded from the commit so the integration owner regenerates against final inputs."
+  ],
+  "evidence": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\materialized-inputs.json",
+      "bytes": 323482,
+      "sha256": "e4076e88af600d24e5a2d1aa3ea42c8bf860881f2380ca89e2a53206f614bb53"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\reproduction.json",
+      "bytes": 8782,
+      "sha256": "513b6d40ce2d05860713f63045544536281a6ba0745944542de1b42729c48f03"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\export-markdown.diff",
+      "bytes": 1260,
+      "sha256": "d4f6100978185ba4f94201551e5f3e7b94655f39eb5dfbd8abaca875cc663f37"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\S10-c-manifest.gitblob.json",
+      "bytes": 46295,
+      "sha256": "5fd649dec574a7e3f1bfedf8c5ac2740fd9e4d19101ef8de354fea5e4462baa4"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\before-guard-command.json",
+      "bytes": 567,
+      "sha256": "14dadf61c684578160578c3916fe86b361c96c36d2d959e6a2863ae1bd4dbf1d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\before-guard.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\before-guard.stderr.txt",
+      "bytes": 1312,
+      "sha256": "75be681792766bdd3ffcf9ec9ed901b5b856acbb03e3088d7297388173331cb9"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\after-guard-command.json",
+      "bytes": 432,
+      "sha256": "e995da9db7b165ba6677a00ce7255db79512e1a659520d045e8083a6e7c95ac8"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\after-guard.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\after-guard.stderr.txt",
+      "bytes": 4936,
+      "sha256": "9e1b16a02caae99c19530a49c4b86a51b9ed38fca44f33f99a3d339502ad9813"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\real-omission-after-guard.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\cartoon-sparse-evidence\\real-omission-after-guard.stderr.txt",
+      "bytes": 166,
+      "sha256": "9a78cff31a0293c47effc28144fccb7c539697c134207281836d6cbff2540971"
+    }
+  ]
+}
