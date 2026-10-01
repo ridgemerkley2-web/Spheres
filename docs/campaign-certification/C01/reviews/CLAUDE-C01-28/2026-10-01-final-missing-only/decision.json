@@ -1,0 +1,34 @@
+{
+  "decision": "accepted_bounded_research",
+  "exact_submission": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
+  "reviewed_packet_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4",
+  "receipt_base_revision": "4aaf5f05b422485d32ce6687df3bc1c55b109547",
+  "counts": {
+    "originals_reviewed": 68,
+    "claims_materially_reviewed": 137,
+    "holder_observations_reviewed": 24,
+    "remaining_original_holds": 0,
+    "remaining_claim_holds": 0
+  },
+  "reuse": {
+    "prior_originals_rehashed": 65,
+    "prior_claim_reviews_reused": 133,
+    "prior_holder_reviews_reused": 24
+  },
+  "new_content_edits": false,
+  "new_test_edits": false,
+  "preserved_precision_repair_commit": "35ea76f65723f2213c893bf8338d1b146508dd0a",
+  "research_imported": false,
+  "generated_index_imported": false,
+  "runtime_or_art_changed": false,
+  "country_census_complete": false,
+  "c01_complete": false,
+  "g2_prerequisite_satisfied": false,
+  "canonical_qualification": false,
+  "limits": [
+    "Bounded source and claim acceptance only; no complete five-party chronology or legal-continuity certification.",
+    "Party office, parliamentary office, government office and organization identity stay separate.",
+    "All24 dated holder observations retain null from/until; recovered four claims create no holder.",
+    "Earlier chronology qualifiers, source-response versus Archive-index distinctions, missing-date disclosures and failed retrieval receipts remain preserved."
+  ]
+}

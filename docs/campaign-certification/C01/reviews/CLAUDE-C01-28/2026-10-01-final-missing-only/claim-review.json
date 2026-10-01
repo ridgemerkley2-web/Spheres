@@ -1,0 +1,52 @@
+{
+  "previously_materially_checked": 133,
+  "newly_materially_checked": 4,
+  "total_materially_checked": 137,
+  "held": 0,
+  "claims": [
+    {
+      "claim_id": "ru_dvr_politsovet_statement_signed_chairman_20001216",
+      "source_id": "ru_dvr_politsovet_statement_20001216",
+      "locator": "letterhead, number and date line; signature line",
+      "attested_on": "2000-12-16",
+      "event_kind": "bare_title_signature",
+      "status": "material_passages_checked",
+      "decision": "accepted_bounded_claim_unchanged",
+      "holder_use": false,
+      "finding": "Visually read the complete single PDF page. Party letterhead and Political Council heading, printed number 3-10/12, date 16.12.2000, and the bottom bare Chairman title beside E.Gaidar agree with the claim. The signature does not spell out party chairmanship, so bare_title_signature remains claim-only. No new officeholder date is accepted."
+    },
+    {
+      "claim_id": "ru_dvr_about_page_chairman_gaidar_2001",
+      "source_id": "ru_dvr_about_page_2001",
+      "locator": "fact box at the top",
+      "attested_on": null,
+      "event_kind": "undated_attestation",
+      "status": "material_passages_checked",
+      "decision": "accepted_bounded_claim_unchanged",
+      "holder_use": false,
+      "finding": "Read the Windows-1251 page and its top fact box. It explicitly names Gaidar Egor Timurovich as DVR party chairman, repeated in the narrative, but the page has no publication or effective-office date. The March 3 capture is not substituted for an event date; undated_attestation remains claim-only."
+    },
+    {
+      "claim_id": "ru_dvr_x_congress_self_dissolution_decision_2001",
+      "source_id": "ru_dvr_newspaper_demvybor_21_2001",
+      "locator": "section \"НОВОСТИ\", item \"Партия ДВР объявила о роспуске\"",
+      "attested_on": null,
+      "event_kind": "dissolution_decision",
+      "status": "material_passages_checked",
+      "decision": "accepted_bounded_claim_unchanged",
+      "holder_use": false,
+      "finding": "Read the No.21(253) masthead and complete news item immediately before the congress-speech section. It reports the extraordinary X congress on May19 and its decision for self-dissolution in connection with creating SPS. The item prints no year with May19. It is a reported decision, not evidence of completed legal dissolution or a holder end; structured date remains absent."
+    },
+    {
+      "claim_id": "ru_dvr_x_congress_gaidar_speech_dissolution_2001",
+      "source_id": "ru_dvr_newspaper_demvybor_21_2001",
+      "locator": "section \"НА X СЪЕЗДЕ ДВР\", speech",
+      "attested_on": null,
+      "event_kind": "dissolution_speech",
+      "status": "material_passages_checked",
+      "decision": "accepted_bounded_claim_unchanged",
+      "holder_use": false,
+      "finding": "Read the congress-section heading, Gaidar speaker heading, and the cited concluding passage in context through the next Nemtsov speaker heading. Gaidar says DVR is deciding to dissolve so its supporters can participate in the new political organization. This is a speech distinct from a congress resolution; no structured date, chairmanship boundary, legal continuity or completed dissolution is inferred."
+    }
+  ]
+}

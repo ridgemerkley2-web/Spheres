@@ -1,0 +1,58 @@
+[
+  {
+    "source_id": "ru_dvr_politsovet_statement_20001216",
+    "decision": "accepted_bounded_original_and_claims",
+    "url": "https://web.archive.org/web/20160827164330id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3887",
+    "original_response_bytes": 123226,
+    "original_response_sha256": "bb874c6be907c178703b2149c882521f35915daee84d2d96fb76b1c104230d20",
+    "original_response_sha1_base32": "LNKX2CZIBFNITBYF3HLWOZYJD5BISS4B",
+    "material_scope": "Complete PDF page visually reviewed",
+    "material_read": true,
+    "claim_ids": [
+      "ru_dvr_politsovet_statement_signed_chairman_20001216"
+    ],
+    "findings": [
+      "Visually read the complete single PDF page. Party letterhead and Political Council heading, printed number 3-10/12, date 16.12.2000, and the bottom bare Chairman title beside E.Gaidar agree with the claim. The signature does not spell out party chairmanship, so bare_title_signature remains claim-only. No new officeholder date is accepted."
+    ],
+    "source_authorship": "Party-authored document/site content, preserved by third-party archive; private hosting is distinct from authorship and does not independently authenticate the paper original.",
+    "rights": "Factual review only; no source image copying into Git, open license, likeness permission or portrait approval."
+  },
+  {
+    "source_id": "ru_dvr_about_page_2001",
+    "decision": "accepted_bounded_original_and_claims",
+    "url": "https://web.archive.org/web/20010303063231id_/http://www.dvr.ru:80/party.htm",
+    "original_response_bytes": 11695,
+    "original_response_sha256": "e631023bf841216b233277344f5e6bfe92fafaca9ac375fa111385d5404cb059",
+    "original_response_sha1_base32": "IMPUHI44WNNLYJU6IXJWEBA2BG6FWHN7",
+    "material_scope": "Complete HTML page and top fact box read",
+    "material_read": true,
+    "claim_ids": [
+      "ru_dvr_about_page_chairman_gaidar_2001"
+    ],
+    "findings": [
+      "Read the Windows-1251 page and its top fact box. It explicitly names Gaidar Egor Timurovich as DVR party chairman, repeated in the narrative, but the page has no publication or effective-office date. The March 3 capture is not substituted for an event date; undated_attestation remains claim-only."
+    ],
+    "source_authorship": "Party-authored document/site content, preserved by third-party archive; private hosting is distinct from authorship and does not independently authenticate the paper original.",
+    "rights": "Factual review only; no source image copying into Git, open license, likeness permission or portrait approval."
+  },
+  {
+    "source_id": "ru_dvr_newspaper_demvybor_21_2001",
+    "decision": "accepted_bounded_original_and_claims",
+    "url": "https://web.archive.org/web/20010607195936id_/http://www.dvr.ru:80/demvyb/index.htm",
+    "original_response_bytes": 99602,
+    "original_response_sha256": "1acc8f813aa35b243ce73fb89c131c325cee163ec369ef7e60cb40471e077fb6",
+    "original_response_sha1_base32": "L2ALXKHFJU4M7CBCEKSM2IAI5GA4332R",
+    "material_scope": "Masthead, full relevant news item, speaker headings and cited speech passage with surrounding context; not every unrelated newspaper item",
+    "material_read": true,
+    "claim_ids": [
+      "ru_dvr_x_congress_self_dissolution_decision_2001",
+      "ru_dvr_x_congress_gaidar_speech_dissolution_2001"
+    ],
+    "findings": [
+      "Read the No.21(253) masthead and complete news item immediately before the congress-speech section. It reports the extraordinary X congress on May19 and its decision for self-dissolution in connection with creating SPS. The item prints no year with May19. It is a reported decision, not evidence of completed legal dissolution or a holder end; structured date remains absent.",
+      "Read the congress-section heading, Gaidar speaker heading, and the cited concluding passage in context through the next Nemtsov speaker heading. Gaidar says DVR is deciding to dissolve so its supporters can participate in the new political organization. This is a speech distinct from a congress resolution; no structured date, chairmanship boundary, legal continuity or completed dissolution is inferred."
+    ],
+    "source_authorship": "Party-authored document/site content, preserved by third-party archive; private hosting is distinct from authorship and does not independently authenticate the paper original.",
+    "rights": "Factual review only; no source image copying into Git, open license, likeness permission or portrait approval."
+  }
+]

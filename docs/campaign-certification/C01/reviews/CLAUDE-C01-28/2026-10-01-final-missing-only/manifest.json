@@ -1,0 +1,80 @@
+{
+  "format": "spheres-c01-missing-only-completion-receipt/v1",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 47,
+      "sha256": "920781736b28385b1c3625f2a8a187763ea8facb06daa3f6bb319bee46182807"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 3264,
+      "sha256": "210686d3413222b06dfa91ad8ff954f54b681546f19438d1151d4663a887c9ef"
+    },
+    {
+      "path": "decision.json",
+      "bytes": 1462,
+      "sha256": "c379a89c8bfa1c8adb55cc3ba89942f9208db00c0cdd1662b535d923d60924cc"
+    },
+    {
+      "path": "import-provenance.json",
+      "bytes": 9111,
+      "sha256": "04484e61238112c633a3303859242089a7db4b2c45ec20ca371115c1bdba1cb9"
+    },
+    {
+      "path": "preservation-pins.json",
+      "bytes": 23127,
+      "sha256": "62171b501eb9cb96d9ac133fb50ef22c80f2be608b7e87cae87b50bdc96d638e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5440,
+      "sha256": "2dcf8c5da2779241dbff62f877f6f11772bb015e7c3811fc0dec556c9d3cf218"
+    },
+    {
+      "path": "recipes/retrieve_one.py",
+      "bytes": 2524,
+      "sha256": "c3712e00f7a9cae7616a5fc097eea3ab064f12096b6c73396839541edc4a1f0e"
+    },
+    {
+      "path": "recipes/run_checks.py",
+      "bytes": 1280,
+      "sha256": "9f8b72cfc15f3c4757b1ce4d83870a303832f7923e28e09cda1ea7ad312243ff"
+    },
+    {
+      "path": "retained-body-recheck.json",
+      "bytes": 20134,
+      "sha256": "b31703865769657f61cf07ecd0fb25eb5234f54ce418af7238b94098884a0f98"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 5867,
+      "sha256": "11c7e1fbb4bf2e5a1e94757c4cb87845e7ad8e9aae68847b8dc7dac9377f77ee"
+    },
+    {
+      "path": "russia-tests.log",
+      "bytes": 6987,
+      "sha256": "ebe40d2f1a189d776ec69fca760e1bdda86fddb09e4d7e8525450606c1cf788a"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 4526,
+      "sha256": "4adaea9230d09f8a4362e45c0b7ede450c741deef9460b5c8a67b743b0b765e2"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 790,
+      "sha256": "c611c6567d0b52663e491a8f01d5a5be05122149503208dfd07920b3830f6bba"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 4060,
+      "sha256": "2a579ef25e42e316c0662c1ee011f0d73893554a6c760a6e93348bba919af40b"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 563,
+      "sha256": "4eac08137d426e43666065c92cd6cfe5052a47dcf83c6d7be16946fb820341eb"
+    }
+  ]
+}

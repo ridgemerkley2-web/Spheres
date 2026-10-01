@@ -1,0 +1,25 @@
+{
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-28-20261001",
+  "revision": "6133f79b5b00126d4733453fe42839c1ca7390c4",
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_russia*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T15:04:57.580458+00:00",
+  "elapsed_seconds": 10.178,
+  "exit_code": 0,
+  "log": "russia-tests.log",
+  "log_bytes": 6987,
+  "log_sha256": "ebe40d2f1a189d776ec69fca760e1bdda86fddb09e4d7e8525450606c1cf788a",
+  "scope": "Unchanged isolated reviewed C01-28 packet; no new data edits; not the current combined integration test suite."
+}
