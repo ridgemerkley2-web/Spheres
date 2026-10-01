@@ -1,5 +1,11 @@
 # Claude — next bounded research tasks
 
+**Production priority, 1 October:** follow the [parallel CP1 assignment](CP1-ACCELERATION.md).
+Complete Tonga's country cast, starting with the reviewed identity and cartoon
+batch. Maintain existing research claims and recover held originals separately;
+unavailable Russia/DA sources do not block ready Tonga production. Do not expand
+worldwide research at the expense of the eight certified-country casts.
+
 The [30 September campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md)
 governs the transition from research to artwork. Preserve the accepted Komeito
 C01-31 packet and its scoped corrections; resolve the held Russia C01-28 and

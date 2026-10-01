@@ -1,0 +1,34 @@
+{
+  "started_utc": "2026-10-01T02:34:30.471777+00:00",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+  "head": "5b6356f3d4ad3c60327158c14bead2c943d8fdfc",
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "executable": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "bytes": 255320,
+    "sha256": "6a74478b20739a9c814dcdb465a68cdf384b43447910399e02776d66a2bd1635"
+  },
+  "input_pins": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\tools\\campaign\\stability_matrix.py",
+      "bytes": 86557,
+      "sha256": "d6c2931d891fb3f88bd2dfa2966bc5731a829f816506c3413d5913d26a9388f5"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\tools\\campaign\\test_stability_matrix.py",
+      "bytes": 71846,
+      "sha256": "f847a7a6ee0707811b22db6dc0555ba217f85032c009dfc90f599516b7cebcd0"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\docs\\campaign-certification\\S25\\preparation\\journal-diagnosis-20261001\\verify.py",
+      "bytes": 1872,
+      "sha256": "d2c9b7fb779dc4d125890927c107bec5602f92b856fb044016fd916ade029666"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001\\docs\\campaign-certification\\S25\\preparation\\journal-diagnosis-20261001\\manifest.json",
+      "bytes": 2614,
+      "sha256": "75c0dc8969a5602e7771f98dd17b867e868111a3a4c0d600c3214d4b19042ed6"
+    }
+  ],
+  "native_builds_or_campaigns": false
+}

@@ -1,0 +1,455 @@
+{
+  "created_utc": "2026-10-01T02:29:19.234383+00:00",
+  "status": "read_only_audit_no_deletion",
+  "scope": "Final candidate scope is exactly four incremental compiler directories in C:/Users/ridge/Spheres. All offload namespaces, D: and other worktrees are excluded.",
+  "size_basis": "Logical file bytes; actual reclaimed allocation may differ.",
+  "candidates": [
+    {
+      "path": "C:\\Users\\ridge\\Spheres\\target\\debug\\incremental",
+      "owning_repository": "C:\\Users\\ridge\\Spheres",
+      "bytes": 663008951,
+      "gib": 0.617475,
+      "file_count": 2178,
+      "directory_count": 31,
+      "extensions": [
+        ".bin",
+        ".lock",
+        ".o",
+        ".rmeta"
+      ],
+      "executable_files": 0,
+      "files_with_multiple_hardlinks": 0,
+      "oldest_file_modified_utc": "2026-09-01T00:35:57.381209+00:00",
+      "newest_file_modified_utc": "2026-09-01T20:48:16.701568+00:00",
+      "all_ancestors_checked": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target\\debug",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target\\debug\\incremental",
+          "reparse": false
+        }
+      ],
+      "reparse_points_within": [],
+      "enumeration_errors": [],
+      "tracked_check": {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\ridge\\Spheres",
+          "ls-files",
+          "--",
+          "target/debug/incremental"
+        ],
+        "exit_code": 0,
+        "tracked_paths": []
+      },
+      "active_usage": {
+        "matching_processes": [],
+        "cargo_or_rustc_processes": [],
+        "scope": "Point-in-time snapshot, not an open-handle audit. Recheck immediately before deletion."
+      },
+      "reason_regenerable": "Rust incremental compiler objects, metadata, work products and locks; rebuilt by Cargo. Parent debug profile, all executables and source remain untouched.",
+      "confidence": "high for cache-only removal after fresh active-use/reparse/tracked checks",
+      "recommendation": "candidate_incremental_only_not_deleted"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Spheres\\target-office\\debug\\incremental",
+      "owning_repository": "C:\\Users\\ridge\\Spheres",
+      "bytes": 3675103809,
+      "gib": 3.422707,
+      "file_count": 6127,
+      "directory_count": 114,
+      "extensions": [
+        ".bin",
+        ".lock",
+        ".o",
+        ".rmeta"
+      ],
+      "executable_files": 0,
+      "files_with_multiple_hardlinks": 0,
+      "oldest_file_modified_utc": "2026-09-08T20:08:01.155085+00:00",
+      "newest_file_modified_utc": "2026-09-08T20:28:05.454600+00:00",
+      "all_ancestors_checked": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office\\debug",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office\\debug\\incremental",
+          "reparse": false
+        }
+      ],
+      "reparse_points_within": [],
+      "enumeration_errors": [],
+      "tracked_check": {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\ridge\\Spheres",
+          "ls-files",
+          "--",
+          "target-office/debug/incremental"
+        ],
+        "exit_code": 0,
+        "tracked_paths": []
+      },
+      "active_usage": {
+        "matching_processes": [],
+        "cargo_or_rustc_processes": [],
+        "scope": "Point-in-time snapshot, not an open-handle audit. Recheck immediately before deletion."
+      },
+      "reason_regenerable": "Rust incremental compiler objects, metadata, work products and locks; rebuilt by Cargo. Parent debug profile, all executables and source remain untouched.",
+      "confidence": "high for cache-only removal after fresh active-use/reparse/tracked checks",
+      "recommendation": "candidate_incremental_only_not_deleted"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Spheres\\target-office-baseline\\debug\\incremental",
+      "owning_repository": "C:\\Users\\ridge\\Spheres",
+      "bytes": 411743001,
+      "gib": 0.383466,
+      "file_count": 260,
+      "directory_count": 3,
+      "extensions": [
+        ".bin",
+        ".lock",
+        ".o"
+      ],
+      "executable_files": 0,
+      "files_with_multiple_hardlinks": 0,
+      "oldest_file_modified_utc": "2026-09-08T20:14:59.946957+00:00",
+      "newest_file_modified_utc": "2026-09-08T20:15:56.425097+00:00",
+      "all_ancestors_checked": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office-baseline",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office-baseline\\debug",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office-baseline\\debug\\incremental",
+          "reparse": false
+        }
+      ],
+      "reparse_points_within": [],
+      "enumeration_errors": [],
+      "tracked_check": {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\ridge\\Spheres",
+          "ls-files",
+          "--",
+          "target-office-baseline/debug/incremental"
+        ],
+        "exit_code": 0,
+        "tracked_paths": []
+      },
+      "active_usage": {
+        "matching_processes": [],
+        "cargo_or_rustc_processes": [],
+        "scope": "Point-in-time snapshot, not an open-handle audit. Recheck immediately before deletion."
+      },
+      "reason_regenerable": "Rust incremental compiler objects, metadata, work products and locks; rebuilt by Cargo. Parent debug profile, all executables and source remain untouched.",
+      "confidence": "high for cache-only removal after fresh active-use/reparse/tracked checks",
+      "recommendation": "candidate_incremental_only_not_deleted"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Spheres\\target-office-sim\\debug\\incremental",
+      "owning_repository": "C:\\Users\\ridge\\Spheres",
+      "bytes": 1277815134,
+      "gib": 1.190058,
+      "file_count": 983,
+      "directory_count": 8,
+      "extensions": [
+        ".bin",
+        ".lock",
+        ".o",
+        ".rmeta"
+      ],
+      "executable_files": 0,
+      "files_with_multiple_hardlinks": 0,
+      "oldest_file_modified_utc": "2026-09-08T20:17:02.800690+00:00",
+      "newest_file_modified_utc": "2026-09-08T20:21:45.398686+00:00",
+      "all_ancestors_checked": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office-sim",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office-sim\\debug",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\Spheres\\target-office-sim\\debug\\incremental",
+          "reparse": false
+        }
+      ],
+      "reparse_points_within": [],
+      "enumeration_errors": [],
+      "tracked_check": {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\ridge\\Spheres",
+          "ls-files",
+          "--",
+          "target-office-sim/debug/incremental"
+        ],
+        "exit_code": 0,
+        "tracked_paths": []
+      },
+      "active_usage": {
+        "matching_processes": [],
+        "cargo_or_rustc_processes": [],
+        "scope": "Point-in-time snapshot, not an open-handle audit. Recheck immediately before deletion."
+      },
+      "reason_regenerable": "Rust incremental compiler objects, metadata, work products and locks; rebuilt by Cargo. Parent debug profile, all executables and source remain untouched.",
+      "confidence": "high for cache-only removal after fresh active-use/reparse/tracked checks",
+      "recommendation": "candidate_incremental_only_not_deleted"
+    }
+  ],
+  "excluded_after_fresh_check": [
+    {
+      "path": "C:\\Users\\ridge\\spheres-industry-rebuild\\target\\debug\\incremental",
+      "reason": "Ancestor or target became a reparse point; not traversed or a C: cleanup candidate",
+      "ancestors_checked_before_stop": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\spheres-industry-rebuild",
+          "reparse": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-industry-rebuild\\target-industry-rebuild\\debug\\incremental",
+      "reason": "Ancestor or target became a reparse point; not traversed or a C: cleanup candidate",
+      "ancestors_checked_before_stop": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\spheres-industry-rebuild",
+          "reparse": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-industry-rebuild\\target-rebuild\\debug\\incremental",
+      "reason": "Ancestor or target became a reparse point; not traversed or a C: cleanup candidate",
+      "ancestors_checked_before_stop": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\spheres-industry-rebuild",
+          "reparse": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-population-rebuild\\target\\debug\\incremental",
+      "reason": "Ancestor or target became a reparse point; not traversed or a C: cleanup candidate",
+      "ancestors_checked_before_stop": [
+        {
+          "path": "C:\\",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\spheres-population-rebuild",
+          "reparse": false
+        },
+        {
+          "path": "C:\\Users\\ridge\\spheres-population-rebuild\\target",
+          "reparse": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-war-overhaul\\target\\debug\\incremental",
+      "reason": "Excluded by root: active Claude offload_to_d.py PID47620 has this namespace scheduled; do not delete or move it."
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-war-overhaul\\target-campaign-supply\\debug\\incremental",
+      "reason": "Excluded by root: active Claude offload_to_d.py PID47620 has this namespace scheduled; do not delete or move it."
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-war-overhaul\\target-fiscal-ui\\debug\\incremental",
+      "reason": "Excluded by root: active Claude offload_to_d.py PID47620 has this namespace scheduled; do not delete or move it."
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-war-overhaul\\target-integration\\debug\\incremental",
+      "reason": "Excluded by root: active Claude offload_to_d.py PID47620 has this namespace scheduled; do not delete or move it."
+    },
+    {
+      "path": "C:\\Users\\ridge\\spheres-war-overhaul\\target-war-overhaul\\debug\\incremental",
+      "reason": "Excluded by root: active Claude offload_to_d.py PID47620 has this namespace scheduled; do not delete or move it."
+    }
+  ],
+  "total_candidate_bytes": 6027670895,
+  "total_candidate_gib": 5.613705976866186,
+  "process_snapshot": [
+    {
+      "ProcessId": 44020,
+      "ParentProcessId": 42560,
+      "Name": "spheres-web.exe",
+      "ExecutablePath": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an\\work\\artwork-preview\\spheres-web.exe",
+      "CommandLine": "\"C:\\Users\\ridge\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an\\work\\artwork-preview\\spheres-web.exe\" --port 7777 --no-open"
+    }
+  ],
+  "process_query": "Get-CimInstance Win32_Process | Where-Object { $_.Name -in @('cargo.exe','rustc.exe','spheres-web.exe','spheres-cli.exe','spheres.exe') -or $_.ExecutablePath -like '*spheres*' } | Select-Object ProcessId,ParentProcessId,Name,ExecutablePath,CommandLine | ConvertTo-Json -Depth 3",
+  "initial_snapshot_superseded": {
+    "candidate_count": 13,
+    "bytes": 18570919667,
+    "reason": "Four paths became junction-backed between the initial and final inventory; excluded from the fresh C: recommendation."
+  },
+  "protected": [
+    "All source, Git metadata, worktree roots, saves, raw historical responses, receipts and manifests",
+    "Every parent debug profile and executable",
+    "Every release profile, including political baseline/urgent builds",
+    "D:/spheres-offload/codex-next-20260928/cp1-a1-followup-20261001-target",
+    "D:/spheres-offload/codex-next-20260928/cp1-s25-repair-20261001",
+    "C:/Users/ridge/Documents/Codex/2026-09-30/referenced-chatgpt-conversation-this-is-an/work/artwork-preview/spheres-web.exe",
+    "C:/Users/ridge/spheres-military-development",
+    "C:/Users/ridge/spheres-industry-rebuild",
+    "C:/Users/ridge/spheres-population-rebuild/target",
+    "C:/Users/ridge/spheres-population-rebuild/target-population-release",
+    "C:/Users/ridge/spheres-population-baseline",
+    "C:/Users/ridge/spheres-industry-rebuild-qa",
+    "C:/Users/ridge/spheres-war-overhaul",
+    "All D:/spheres-offload paths; no D: deletion recommendation in this audit"
+  ],
+  "pre_deletion_requirements": [
+    "Resolve each exact target and verify it stays within its named owning repository",
+    "Reject any reparse point or changed target path",
+    "Repeat tracked-path and active-build/process checks",
+    "Delete only listed incremental directory if checks still pass; no parent/source/executable removal"
+  ],
+  "active_offload_exclusion": {
+    "reported_by": "root",
+    "process_id": 47620,
+    "script": "offload_to_d.py",
+    "namespaces": [
+      "C:/Users/ridge/spheres-military-development",
+      "C:/Users/ridge/spheres-industry-rebuild",
+      "C:/Users/ridge/spheres-population-rebuild/target",
+      "C:/Users/ridge/spheres-population-rebuild/target-population-release",
+      "C:/Users/ridge/spheres-population-baseline",
+      "C:/Users/ridge/spheres-industry-rebuild-qa",
+      "C:/Users/ridge/spheres-war-overhaul"
+    ],
+    "decision": "Leave every listed namespace untouched, including not-yet-moved war-overhaul. D: audit observations are not cleanup recommendations."
+  }
+}

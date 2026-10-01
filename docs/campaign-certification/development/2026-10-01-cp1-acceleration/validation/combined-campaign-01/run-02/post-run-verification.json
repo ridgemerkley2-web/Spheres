@@ -1,0 +1,13 @@
+{
+  "verified_utc": "2026-10-01T02:35:35.877858+00:00",
+  "passed": true,
+  "pins_rechecked": 11,
+  "source_inputs_unchanged": true,
+  "observed_summary": "Ran 105 tests in 26.246s; OK (skipped=1)",
+  "skip_lines": [
+    "test_scratch_symlink_is_rejected_before_any_delete (test_stability_matrix.ResourceExecutionTests.test_scratch_symlink_is_rejected_before_any_delete) ... skipped 'Host does not allow creation of directory symlinks'"
+  ],
+  "head_after": "5b6356f3d4ad3c60327158c14bead2c943d8fdfc",
+  "repository_edits": false,
+  "native_builds_or_campaigns": false
+}
