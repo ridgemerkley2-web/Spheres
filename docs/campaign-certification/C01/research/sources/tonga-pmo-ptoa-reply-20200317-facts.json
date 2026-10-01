@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20200317_ptoa_reply",
+  "source_url": "https://web.archive.org/web/20200703103038id_/https://pmo.gov.to/index.php/2020/03/18/ongoongo-tukuatu-ko-e-tali-a-e-ofisi-o-e-palemia-ki-he-ongoongo-tukuatu-a-e-paati-temokalati-otumotu-angaofa-ptoa/",
+  "original_url": "https://pmo.gov.to/index.php/2020/03/18/ongoongo-tukuatu-ko-e-tali-a-e-ofisi-o-e-palemia-ki-he-ongoongo-tukuatu-a-e-paati-temokalati-otumotu-angaofa-ptoa/",
+  "archive_capture_utc": "2020-07-03T10:30:38Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2020-03-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 74793,
+  "source_response_sha256": "082584197664175c38d1003b03384bbc6bb7ade06ba46f2cd6f7cbf3e2998d2d",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-10-01T02:50:00Z and again at 2026-10-01T03:22:01Z (UTC), 32 minutes later, from the same URL: both responses were 74793 bytes with SHA-256 082584197664175c38d1003b03384bbc6bb7ade06ba46f2cd6f7cbf3e2998d2d. The raw id_ form replays the stored capture rather than generating a page per request. The research download of 2026-10-01T02:48:39Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2020-07-03T10:30:38Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Tongan-language PMO release posted under the address date 18 March 2020 and dated in its opening line ''Aho 17 'o Ma'asi, 2020'; raw Internet Archive capture of 3 July 2020. It answers a PTOA press release point by point. Used only for its statement on PTOA's registration and legal status; the policy rebuttals, its statement about another party's registration and the sidebar are not imported. Tongan is quoted with straight apostrophes for the glottal stop; English renderings are this packet's reading.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (heading, dateline and body); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_pmo_ptoa_unregistered_statement_20200317",
+      "observation_id": "to_dpfi",
+      "review_observation": "TO-OPP-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": "none (party description; claims only, not placed on a role)",
+      "event_kind": "government_statement_on_legal_form",
+      "attested_on": "2020-03-17",
+      "text": "The Prime Minister's Office release of 17 March 2020, a reply to a press release of the Paati Temokalati 'Otumotu Anga'ofa (PTOA), states that the PTOA party has not yet registered as the law requires, up to that day ('oku te'eki ke lesisita 'a e Paati PTOA 'o fakatatau ki he tu'utu'uni 'a e LAO, 'o a'u ki he 'aho ni), and that it has no legal body and no constitution ('oku 'ikai ke 'i ai ha sino fakalao mo ha'anau Konisitutone).",
+      "locator": "Entry content: opening dateline paragraph ('('Aho 17 'o Ma'asi, 2020)') and the paragraph beginning 'Ko e me'a pango'",
+      "uncertainty": "The government's assertion in a political reply, not a registry search, registry certificate or court finding. It names no PTOA officer and does not say who issued the PTOA release, so it gives no holder. Party and state office stay separate: the release is a Prime Minister's Office statement about the party, not a party record."
+    }
+  ],
+  "bounded_scope": "Opposition party observations for CLAUDE-C01-44 only (organizations to_dpfi and to_pdp; roles to_dpfi_leader, to_dpfi_president and to_pdp_leader). Rows are claims only: no row is a holder observation, and a court recital, a description of legal form and a retrospective founding statement stay separate rows. Organization identities stay unresolved; a party name printed differently from an existing name is not mapped to it."
+}

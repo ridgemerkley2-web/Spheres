@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_tlr_2014_pohiva_v_tuivakano",
+  "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1552:2014_tlr",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_read",
+  "source_response_bytes": 1510292,
+  "source_response_sha256": "b302db6f8386835e807b31c657d55c3612121e5f04c17a107c3632fee542916e",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "not applicable (PDF generated from a word-processor file; text layer read)",
+  "fetch_recipe": "GET the recorded url exactly with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed); the server answers 200 with the PDF itself and no redirect, without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-10-01T02:36:44Z and again at 2026-10-01T03:13:21Z (UTC), 36 minutes later, from the same URL: both responses were 1510292 bytes with SHA-256 b302db6f8386835e807b31c657d55c3612121e5f04c17a107c3632fee542916e. The URL serves a stored PDF from the Attorney General's Office download manager, not a page generated per request. The research download of 2026-10-01T02:25:26Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Original PDF as served by the Attorney General's Office on the access date; it is a dated historical document and no content later than its own date is used. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "One judgment printed in the 2014 volume: Pohiva v Tu'ivakano & ors (Supreme Court, Scott CJ, AM 20/2013, 17 January 2014), an appeal against the discharge of private prosecutions. The volume's publication date is not printed (PDF metadata: created 9 November 2015). Used only for the present-tense description of the appellant's party office in paragraph [4]; the prosecution, its merits and the other judgments in the volume are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Born-digital PDF (no page images): the heading on PDF page 31 ([2014] Tonga LR 9) and paragraph [4] on PDF page 33 ([2014] Tonga LR 11) were read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "to_tlr_pohiva_leader_tonga_democratic_party_20140117",
+      "observation_id": "to_dpfi",
+      "review_observation": "TO-OPP-02",
+      "role_id": null,
+      "holder_name": "Mr Pohiva",
+      "role_title": "leader of the Tonga Democratic Party (as printed; claims only, not placed on a role)",
+      "event_kind": "court_recital_of_party_office",
+      "attested_on": "2014-01-17",
+      "text": "In Pohiva v Tu'ivakano & ors (Supreme Court, Scott CJ, AM 20/2013, 17 January 2014), paragraph [4] describes the appellant, Mr Pohiva, as the No.1 Peoples Representative for Tongatapu, first elected to Parliament in 1987, and states in the present tense: 'He is the leader of the Tonga Democratic Party.'",
+      "locator": "[2014] Tonga LR 9 (heading: Supreme Court, Nuku'alofa; Scott CJ; AM 20/2013; 17 January 2014) and 11 (paragraph [4]); PDF pages 31 and 33",
+      "uncertainty": "A judicial background recital in an appeal about private prosecutions, not a finding on party office and not a party or registry record; no selection, start or term is stated. The court's name 'Tonga Democratic Party' differs from 'Democratic Party of the Friendly Islands' and from every name already observed for to_dpfi, and no other name is given, so identity with to_dpfi is not established: the recital stays a claim and is not a to_dpfi_leader holder observation."
+    }
+  ],
+  "bounded_scope": "Opposition party observations for CLAUDE-C01-44 only (organizations to_dpfi and to_pdp; roles to_dpfi_leader, to_dpfi_president and to_pdp_leader). Rows are claims only: no row is a holder observation, and a court recital, a description of legal form and a retrospective founding statement stay separate rows. Organization identities stay unresolved; a party name printed differently from an existing name is not mapped to it."
+}

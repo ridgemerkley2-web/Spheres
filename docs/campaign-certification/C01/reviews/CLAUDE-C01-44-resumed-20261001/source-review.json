@@ -1,0 +1,148 @@
+{
+  "format": "spheres-c01-source-review/v1",
+  "decision": "accepted_bounded_intake",
+  "sources_reviewed": 5,
+  "sources_held": 0,
+  "rows": [
+    {
+      "source_id": "to_tlr_2014_pohiva_v_tuivakano",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1552:2014_tlr",
+      "http_status": 200,
+      "started_utc": "2026-10-01T03:52:29.023397+00:00",
+      "identity_matches": true,
+      "materially_read": true,
+      "decision": "supported_within_attributed_scope",
+      "classification": "Primary judicial background recital, claims only.",
+      "content_decision": "PDF 31 heading/judgment date17 January 2014 and PDF 33 paragraph 4 support the printed Tonga Democratic Party leader recital; alias and effective term unresolved.",
+      "retrieval": {
+        "path": "official-pdf/to_tlr_2014_pohiva_v_tuivakano.body",
+        "bytes": 1510292,
+        "sha256": "b302db6f8386835e807b31c657d55c3612121e5f04c17a107c3632fee542916e",
+        "root": "prior"
+      },
+      "expected": {
+        "bytes": 1510292,
+        "sha256": "b302db6f8386835e807b31c657d55c3612121e5f04c17a107c3632fee542916e"
+      },
+      "retry_after": null,
+      "claim_ids": [
+        "to_tlr_pohiva_leader_tonga_democratic_party_20140117"
+      ],
+      "accepted_for_integration": true,
+      "review_basis": "retained independent original reading from the immutable earlier receipt"
+    },
+    {
+      "source_id": "to_ca_psa_pohiva_v_kot_20150916",
+      "url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/32-ac-2015.html?download=1176:public-service-association-incorporated-pohiva-v-kingdom-of-tonga-ors-court-of-appeal-of-tonga-ac-9-15-moore-j-blanchard-j-hansen-j-tupou-j",
+      "http_status": 200,
+      "started_utc": "2026-10-01T03:52:31.162234+00:00",
+      "identity_matches": true,
+      "materially_read": true,
+      "decision": "supported_within_attributed_scope",
+      "classification": "Primary court record with distinct recital and litigant-argument scopes.",
+      "content_decision": "PDF 1 judgment date16 September 2015, PDF 3 paragraph 4 legal-form/capacity recital, PDF 21 paragraph 34 report of Tongasat argument; no factual party-funds finding or office.",
+      "retrieval": {
+        "path": "official-pdf/to_ca_psa_pohiva_v_kot_20150916.body",
+        "bytes": 2668960,
+        "sha256": "53307c4ec539ca82b3eb9fb9d6d5dced6f60c40816977a5a08fffefef314554b",
+        "root": "prior"
+      },
+      "expected": {
+        "bytes": 2668960,
+        "sha256": "53307c4ec539ca82b3eb9fb9d6d5dced6f60c40816977a5a08fffefef314554b"
+      },
+      "retry_after": null,
+      "claim_ids": [
+        "to_ca_fidp_unincorporated_body_20150916",
+        "to_ca_fidp_party_funds_argument_20150916"
+      ],
+      "accepted_for_integration": true,
+      "review_basis": "retained independent original reading from the immutable earlier receipt"
+    },
+    {
+      "source_id": "to_la_news_pga_award_20131214",
+      "url": "https://web.archive.org/web/20161027095552id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/230-akilisi-pohiva-presented-2013-defender-of-democracy-awards",
+      "http_status": 200,
+      "started_utc": "2026-10-01T03:53:58.613077+00:00",
+      "identity_matches": true,
+      "materially_read": true,
+      "decision": "supported_within_attributed_scope",
+      "classification": "Legislature-hosted third-party republication, claims only.",
+      "content_decision": "Article created 14 December 2013 attributes the cited passage and its source to PGA Forum; body gives September 2010 establishment. No office or exact day.",
+      "retrieval": {
+        "path": "archive/to_la_news_pga_award_20131214.body",
+        "bytes": 35057,
+        "sha256": "bcaa0769b9b25cd07350815a25f43b7d8cd67e669749b3dc2b9c451eb1918918",
+        "root": "prior"
+      },
+      "expected": {
+        "bytes": 35057,
+        "sha256": "bcaa0769b9b25cd07350815a25f43b7d8cd67e669749b3dc2b9c451eb1918918"
+      },
+      "retry_after": null,
+      "claim_ids": [
+        "to_la_pga_dpfi_established_sept2010"
+      ],
+      "accepted_for_integration": true,
+      "review_basis": "retained independent original reading from the immutable earlier receipt"
+    },
+    {
+      "source_id": "to_la_profile_pohiva_2016",
+      "url": "https://web.archive.org/web/20160304030700id_/http://parliament.gov.to/members-of-parliament/ministers/305-hon-samiuela-akilisi-pohiva",
+      "http_status": 200,
+      "started_utc": "2026-10-01T03:54:15.558746+00:00",
+      "identity_matches": true,
+      "materially_read": true,
+      "decision": "supported_within_attributed_scope",
+      "classification": "Primary legislature profile, retrospective year-level claim only.",
+      "content_decision": "Employment History body gives establishment in 2010; no founding day or leader-office evidence.",
+      "retrieval": {
+        "path": "archive/to_la_profile_pohiva_2016.body",
+        "bytes": 33380,
+        "sha256": "84404948cbd1e7983016bdc25d4b1ea6a8ee5eff5686b665b4dc7d4ee29399b1",
+        "root": "prior"
+      },
+      "expected": {
+        "bytes": 33380,
+        "sha256": "84404948cbd1e7983016bdc25d4b1ea6a8ee5eff5686b665b4dc7d4ee29399b1"
+      },
+      "retry_after": null,
+      "claim_ids": [
+        "to_la_profile_dpfi_established_2010"
+      ],
+      "accepted_for_integration": true,
+      "review_basis": "retained independent original reading from the immutable earlier receipt"
+    },
+    {
+      "source_id": "to_pmo_20200317_ptoa_reply",
+      "url": "https://web.archive.org/web/20200703103038id_/https://pmo.gov.to/index.php/2020/03/18/ongoongo-tukuatu-ko-e-tali-a-e-ofisi-o-e-palemia-ki-he-ongoongo-tukuatu-a-e-paati-temokalati-otumotu-angaofa-ptoa/",
+      "http_status": 200,
+      "started_utc": "2026-10-01T04:50:49.680908+00:00",
+      "identity_matches": true,
+      "materially_read": true,
+      "decision": "supported_within_attributed_scope",
+      "classification": "Primary government statement; attributed assertion only.",
+      "content_decision": "The printed entry dateline is 17 March 2020 (not the URL's March18). The paragraph beginning Ko e me'a pango expressly attributes to PMO the claims that PTOA had not registered up to that day as the law requires and had no legal body or constitution. The quoted Tongan matches the extract; the narrow English rendering is supported. This is a government rebuttal assertion, not an independent registry/legal-status finding. No PTOA officer, alias or term is established. The later paragraph about another party is outside intake.",
+      "retrieval": {
+        "root": "resumed",
+        "path": "to_pmo_20200317_ptoa_reply.body",
+        "bytes": 74793,
+        "sha256": "082584197664175c38d1003b03384bbc6bb7ade06ba46f2cd6f7cbf3e2998d2d"
+      },
+      "expected": {
+        "bytes": 74793,
+        "sha256": "082584197664175c38d1003b03384bbc6bb7ade06ba46f2cd6f7cbf3e2998d2d"
+      },
+      "retry_after": null,
+      "claim_ids": [
+        "to_pmo_ptoa_unregistered_statement_20200317"
+      ],
+      "accepted_for_integration": true,
+      "review_basis": "new missing-only exact response read by review agent and root",
+      "finished_utc": "2026-10-01T04:50:52.986945+00:00"
+    }
+  ],
+  "originals_retrieved_this_pass": 1,
+  "prior_reviews_reused": 4,
+  "prior_receipt": "../CLAUDE-C01-44-20261001/README.md"
+}

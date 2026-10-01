@@ -1,0 +1,69 @@
+{
+  "previous_submission": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
+  "submission": "6110064071a513d21bdcee7a8d2d081e90099359",
+  "changed_paths": [
+    "docs/campaign-certification/C01/research-index.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-pga-award-news-20131214-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-pohiva-2016-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-ca-ac9-20150916-facts.json",
+    "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+    "docs/campaign-certification/C01/research/tonga.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
+    "tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py"
+  ],
+  "extract_changes": [
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pga-award-news-20131214-facts.json",
+      "rows": [
+        {
+          "claim_id": "to_la_pga_dpfi_established_sept2010",
+          "changes": {
+            "holder_name": {
+              "before": "Samuela 'Akilisi Pohiva",
+              "after": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-ca-ac9-20150916-facts.json",
+      "rows": [
+        {
+          "claim_id": "to_ca_fidp_unincorporated_body_20150916",
+          "changes": {
+            "holder_name": {
+              "before": "Mr. Pohiva",
+              "after": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-pohiva-2016-facts.json",
+      "rows": [
+        {
+          "claim_id": "to_la_profile_dpfi_established_2010",
+          "changes": {
+            "holder_name": {
+              "before": "Hon. Samiuela 'Akilisi Pohiva",
+              "after": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "original_response_records_changed": false,
+  "claim_text_or_effective_boundaries_changed": false,
+  "name_guard_added": [
+    "Friendly Island Democratic Party",
+    "Friendly Island Democratic Party (FIDP)"
+  ],
+  "author_claimed_user_rulings_accepted_as_authorization": false,
+  "independent_disposition": "Conservative no-holder/no-alias/non-primary-republication limits supported by retained original content; reported user authorization not adopted.",
+  "new_visual_inspection_needed": false,
+  "reason": "Amendment only removes false holder-name hints; no original, quote, page, locator or claim changes.",
+  "old_held_receipt_modified": false
+}

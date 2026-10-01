@@ -1,0 +1,146 @@
+diff --git a/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md b/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md
+index e2a57873..498219fe 100644
+--- a/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md
++++ b/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md
+@@ -17,16 +17,17 @@ entry. The existing holders ('Akilisi Pohiva as leader, attested 27 November 201
+ Fatai Helu as President, attested 29 August 2022; the PDP string observation) are unchanged. The parent scope (C01, C06,
+ S23, WC1 and CP1) remains open.
+ 
+-No primary record found names a DPFI or PTOA leader, president or chair after 'Akilisi Pohiva, or any PDP officer: every
+-later name (a 2019-2020 successor, rival 2021 groups, a 2025 chair, the PDP's first president) comes only from news or
+-tertiary leads, listed below.
++No additional primary record found by this packet names a later DPFI or PTOA leader, president or chair, or any PDP
++officer. The existing primary 2022 Fatai Helu presidency observation remains unchanged. Other proposed names (a
++2019-2020 successor, rival 2021 groups, a 2025 chair, the PDP's first president) come only from news or tertiary leads,
++listed below.
+ 
+ ## Outcome
+ 
+ | ID | Question | Decision |
+ |---|---|---|
+ | TO-OPP-01 | When was DPFI founded, and does a founding record name its first leader? | **Unresolved:** the Assembly relays third-party text dating the founding to September 2010 and its member page gives 2010; both retrospective, neither names an office; `lifecycle.from` stays null |
+-| TO-OPP-02 | 'Akilisi Pohiva as DPFI leader, 2010-2019 | **Claims only:** a Supreme Court recital of 17 Jan 2014 calls him "the leader of the Tonga Democratic Party"; the name differs from DPFI, so no holder (ruling (a): stays a claim, routed to `C01-Tonga-OPP-005`); existing observations unchanged |
++| TO-OPP-02 | 'Akilisi Pohiva as DPFI leader, 2010-2019 | **Claims only:** a Supreme Court recital of 17 Jan 2014 calls him "the leader of the Tonga Democratic Party"; the name differs from DPFI, so no holder (review disposition (a): stays a claim, routed to `C01-Tonga-OPP-005`); existing observations unchanged |
+ | TO-OPP-03 | DPFI/PTOA legal form | **Claims only:** the Court of Appeal (16 Sep 2015) calls the Friendly Islands Democratic Party an unincorporated body; the PMO (17 Mar 2020) says PTOA had not registered and had no legal body or constitution; TO-DPFI-04 stays unresolved |
+ | TO-OPP-04 | Leader after Pohiva's death in September 2019, and the 2020-2021 groupings | **Unresolved:** no primary record names a leader, interim or acting leader; news leads only |
+ | TO-OPP-05 | President or chair after 2022 | **Unresolved:** beyond the existing Helu recital, a 2025 chair appears only in news |
+@@ -42,9 +43,11 @@ No holder is added to any of the three roles:
+ | `to_dpfi_president` | Fatai Helu (existing) | 2022-08-29 | null | null | CV 55/2022 recital, unchanged |
+ | `to_pdp_leader` | `to_pdp_split_fuko` (string, existing) | | | | IPU 2008, unchanged |
+ 
+-### Rulings (decided by Ridge)
++### Independent review dispositions
+ 
+-Recorded in the checker-fix round as decided by Ridge; Codex may still decide otherwise.
++The authored amendment attributed these choices to Ridge. That attribution is not independently verified or treated
++as user authorization. The source review independently supports the conservative dispositions below; it does not
++resolve the proposed identity reconciliation work order.
+ 
+ - **(a)** The Supreme Court recital in Pohiva v Tu'ivakano ("He is the leader of the Tonga Democratic Party") stays a
+   claim. The record does not name the organization as DPFI or PTOA, or by any name already observed for `to_dpfi`, so
+@@ -80,7 +83,7 @@ Evidence:
+   quotes the Parliamentarians for Global Action (PGA) forum website, which says that in September 2010 he established the
+   Democratic Party of the Friendly Islands with other Human Rights and Democracy Movement People's Representatives to contest
+   the 2010 elections. The item names the PGA website as its source, so the text is typed
+-  `legislature_republished_reference_text`: claims only, never holder evidence (ruling (c) accepts the type as non-primary,
++  `legislature_republished_reference_text`: claims only, never holder evidence (review disposition (c) accepts the type as non-primary,
+   never holder or organization evidence).
+ - Assembly member page, captured 4 March 2016 (`to_la_profile_dpfi_established_2010`): "Established the Democratic Party of
+   the Friendly Islands in 2010."
+@@ -97,7 +100,7 @@ paragraph [4] (`to_tlr_pohiva_leader_tonga_democratic_party_20140117`): "He is t
+ Decision: **claims only**. The recital is dated and present-tense, like the 2022 Helu recital that C01-04 used as a holder,
+ but it names a "Tonga Democratic Party", a name not otherwise observed for `to_dpfi`. Joining the names would resolve an
+ identity, which this packet does not do, so the recital is not a `to_dpfi_leader` holder and no name observation is added
+-(rulings (a) and (b), decided by Ridge: it stays a claim, routed to `C01-Tonga-OPP-005`). The existing observations of
++(review dispositions (a) and (b): it stays a claim, routed to `C01-Tonga-OPP-005`). The existing observations of
+ 2010 (string) and 27 November 2014 are unchanged; no continuous 2010-2019 term is inferred, and no start, end or death in
+ office is recorded for the party office.
+ 
+@@ -115,7 +118,7 @@ Evidence:
+ 
+ Decision: **claims only**. Neither is a registry record: the court describes how a claim was brought, and the PMO makes a
+ political assertion. TO-DPFI-04 stays unresolved. "Friendly Islands Democratic Party" differs in word order from DPFI and is
+-not mapped (ruling (b): no name observation; routed to `C01-Tonga-OPP-005`); suing for the party is not an office. The
++not mapped (review disposition (b): no name observation; routed to `C01-Tonga-OPP-005`); suing for the party is not an office. The
+ PMO release names no PTOA officer.
+ 
+ ### TO-OPP-04 — Leadership after September 2019
+@@ -252,7 +255,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+   describe the party on whose behalf Pohiva sued.
+ - `C01-Tonga-OPP-005`: a ruling on whether "Tonga Democratic Party" (2014), "Friendly Island Democratic Party" (FIDP;
+   Assembly news item of 16 September 2011, singular 'Island' as printed) and "Friendly Islands Democratic Party" (Court
+-  of Appeal AC 9/2015) name `to_dpfi`. Rulings (a) and (b) route the 2014 recital and these names here.
++  of Appeal AC 9/2015) name `to_dpfi`. Review dispositions (a) and (b) route the 2014 recital and these names here.
+ 
+ ## Integration notes (outside this packet's file boundary)
+ 
+@@ -277,8 +280,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+ - Existing text is not edited: no existing source, claim, extract, holder or coverage entry changes; the new claims and
+   sources are appended to `to_dpfi`, and coverage notes are appended to `to_dpfi`, `to_pdp` and the packet.
+ - New `source_type` value: `legislature_republished_reference_text`, the official-site counterpart of
+-  `party_republished_reference_text` (third-party text relayed on an Assembly page; claims only). Ruling (c), decided by
+-  Ridge, accepts it: non-primary, claims only, never holder or organization evidence. New `event_kind` values in
++  `party_republished_reference_text` (third-party text relayed on an Assembly page; claims only). Independent review disposition (c) accepts it: non-primary, claims only, never holder or organization evidence. New `event_kind` values in
+   the extracts: `retrospective_founding_statement`, `court_recital_of_party_office`, `court_description_of_legal_form` and
+   `government_statement_on_legal_form`.
+ - **Census:** `tools/avatars/campaign_census.py --check` passes on the claim base `509bd289` and on this branch after merging `efc88b85`:
+@@ -287,8 +289,8 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+ - **Checker-fix round:** `holder_name` is set to null in three extract rows (`to_la_pga_dpfi_established_sept2010`,
+   `to_la_profile_dpfi_established_2010`, `to_ca_fidp_unincorporated_body_20150916`), whose sources name no holder of any
+   office; their three snapshots in `tonga.json` and the pins in `test_tonga_dpfi_pdp_leaders_c01_44.py` are updated (the
+-  unmapped-name guard also covers ruling (b)'s singular 'Island' names). No claim text, source, holder or coverage entry
+-  changes. Rulings (a)-(c) are recorded above as decided by Ridge.
++  unmapped-name guard also covers review disposition (b)'s singular 'Island' names). No claim text, source, holder or coverage entry
++  changes. Conservative dispositions (a)-(c) are independently assessed above; no author-reported user ruling is assumed.
+ - **Integration branch moved (not merged):** `codex/campaign-certification` is at `13367c99`. It holds Codex's held partial
+   review of this packet (`214121f9`, receipt `reviews/CLAUDE-C01-44-20261001/`) and Codex's registration of this handoff
+   (`e7592644`). Merging it conflicts on `research-index.json` and, add/add, on `docs/planning/ai-handoffs/CLAUDE-C01-44.md`
+@@ -345,3 +347,12 @@ python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 44 --base o
+                                                              # run on the pushed fix head; summary returned to the pipeline
+ The two known failures above are unchanged in the fix round.
+ ```
++
++## Independent intake note — 1 October 2026
++
++The resumed review at [CLAUDE-C01-44-resumed-20261001](../reviews/CLAUDE-C01-44-resumed-20261001/README.md)
++recovered the missing PMO original and accepts five sources and six claims within their attributed scopes.
++The PMO statement remains a government assertion, not an objective legal-status finding. No holder, name mapping,
++effective boundary, runtime identity, portrait permission or campaign qualification is added. The earlier held
++review remains unchanged. The central registered handoff is preserved; the submitted handoff is an immutable
++review snapshot. Author validation totals above describe the submitted branch, not regenerated integration totals.
+diff --git a/tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py b/tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py
+index 7008bfb5..0ddaab29 100644
+--- a/tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py
++++ b/tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py
+@@ -13,7 +13,7 @@ import campaign_research as research
+ 
+ 
+ REPORT = research.RESEARCH / 'tonga-dpfi-pdp-leaders-1990-2026-44.md'
+-HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-44.md'
++HANDOFF = 'docs/campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/submission-handoff.md'
+ # Original response identity recorded in each extract: (bytes, sha256) of the body, in packet order.
+ RESPONSES = {
+     'to_la_news_pga_award_20131214': (35057, 'bcaa0769b9b25cd07350815a25f43b7d8cd67e669749b3dc2b9c451eb1918918'),
+@@ -51,7 +51,7 @@ CLAIMS = {
+ }
+ NEW_CLAIMS = list(CLAIMS)
+ # Party names printed by the new sources and the 2011 Assembly lead that differ from every name observed for to_dpfi:
+-# never mapped here (ruling (b), decided by Ridge; routed to the Tonga reconciliation work order).
++# No identity reconciliation is established by these sources; keep all four variants unmapped.
+ UNMAPPED_NAMES = ('Tonga Democratic Party', 'Friendly Islands Democratic Party', 'Friendly Island Democratic Party',
+                   'Friendly Island Democratic Party (FIDP)')
+ # The existing holders of the three roles in scope, unchanged by this packet.
+@@ -344,6 +344,13 @@ class TongaOppositionPartyTests(unittest.TestCase):
+         with self.assertRaisesRegex(ValueError, 'Source snapshot checksum mismatch'):
+             self.validate(packet)
+ 
++    def test_review_preserves_existing_primary_observation_and_does_not_infer_authority(self):
++        self.assertIn('existing primary 2022 Fatai Helu presidency observation remains unchanged', self.report)
++        self.assertIn('not independently verified or treated', self.report)
++        self.assertIn('as user authorization', self.report)
++        self.assertNotIn('decided by Ridge', self.report)
++        self.assertIn('government assertion, not an objective legal-status finding', self.report)
++
+     def test_submitted_report_and_handoff_close_no_parent_gate(self):
+         self.assertIn('ready_for_review', self.report)
+         table = self.section('Outcome')
