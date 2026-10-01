@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_mbs_cabinet_20260901",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/N2666035",
+  "original_url": "https://www.spa.gov.sa/N2666035",
+  "portal_metadata": {
+    "uuid": "N2666035",
+    "locale": "ar",
+    "published_at_utc": "2026-09-01T11:02:16Z",
+    "date_hijri_field": "1448-03-19"
+  },
+  "title_as_published": "سياسي / سمو ولي العهد يرأس جلسة مجلس الوزراء في جدة",
+  "source_title": "سياسي / سمو ولي العهد يرأس جلسة مجلس الوزراء في جدة: the Crown Prince chairs the Council of Ministers in Jeddah (1 September 2026)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2026-09-01",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/N2666035",
+  "source_response_bytes": 12812,
+  "source_response_sha256": "069441cd3fe0f4f2ffb804c492f5e1f832fddd1b9d800a55768a66b51ba5ffc8",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "018d9af93dfd035966761c71c597e8c65911e99c1429320db905b6e26228d6db",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:29:10Z and again at 2026-10-01T03:01:22Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (12812 bytes, SHA-256 069441cd3fe0f4f2ffb804c492f5e1f832fddd1b9d800a55768a66b51ba5ffc8).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/N2666035 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item; only its first paragraph is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_mbs_cp_obs_20260901",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-08",
+      "role_id": "sa_crown_prince",
+      "holder_name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+      "printed_name": "محمد بن سلمان بن عبدالعزيز آل سعود",
+      "role_title": "ولي العهد — Crown Prince",
+      "event_kind": "attestation",
+      "attested_on": "2026-09-01",
+      "text": "SPA, date line Jeddah 19 Rabi al-Awwal 1448 / 1 September 2026: 'رأس صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيس مجلس الوزراء' the session of the Council of Ministers held 'اليوم' (today) in Jeddah.",
+      "locator": "Date line; first paragraph; trailer 14:02 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

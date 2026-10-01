@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_fahd_delegates_19960101",
+  "source_url": "https://web.archive.org/web/20000930104650id_/http://www.saudiembassy.net:80/press_release/96_spa/96_01.html",
+  "original_url": "http://www.saudiembassy.net:80/press_release/96_spa/96_01.html",
+  "archive_capture_utc": "2000-09-30T10:46:50Z",
+  "source_title": "King Fahd Delegates Crown Prince to Undertake State's Affairs (January 1, 1996), Internet Archive capture 20000930104650",
+  "accessed_date": "2026-09-30",
+  "published_date": "1996-01-01",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20000930104650id_/http://www.saudiembassy.net:80/press_release/96_spa/96_01.html",
+  "source_response_bytes": 62784,
+  "source_response_sha256": "383724bf0bb2b23e510f1f459862a4f761d904a51d0ab07ea11eb223617068f3",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T02:27:53Z and again at 2026-10-01T03:00:23Z, 32 minutes later; both identical (62784 bytes, SHA-256 383724bf0bb2b23e510f1f459862a4f761d904a51d0ab07ea11eb223617068f3).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20000930104650 of http://www.saudiembassy.net:80/press_release/96_spa/96_01.html, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent, no Accept-Encoding header). It was served without Content-Encoding, so the recorded identity is the body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Royal Embassy of Saudi Arabia in Washington (Information Office) filed its January 1996 releases on one page under press_release/96_spa/; an official Saudi government publication in English, not the Arabic decree. Only the 1 January item on the delegation is imported; the page's other items, including the budget session chaired by the Crown Prince that day, are leads.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_fahd_king_obs_19960101",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-01",
+      "role_id": "sa_king",
+      "holder_name": "Fahd bin Abdulaziz Al Saud",
+      "printed_name": "Fahd Bin Abdulaziz",
+      "role_title": "King (Custodian of The Two Holy Mosques)",
+      "event_kind": "attestation",
+      "attested_on": "1996-01-01",
+      "text": "Release dated January 1, 1996 on the Royal Embassy's January 1996 page: 'The Custodian of The Two Holy Mosques King Fahd Bin Abdulaziz directed the following Royal Decree to Crown Prince His Royal Highness Prince Abdullah Bin Abdulziz, the deputy Premier and head of the National Guard'.",
+      "locator": "January 1996 page; item 'KING FAHD DELEGATES CROWN PRINCE TO UNDERTAKE STATE'S AFFAIRS', date line and first sentence"
+    },
+    {
+      "claim_id": "sa_abdullah_cp_obs_19960101",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-03",
+      "role_id": "sa_crown_prince",
+      "holder_name": "Abdullah bin Abdulaziz Al Saud",
+      "printed_name": "Abdullah Bin Abdulziz",
+      "role_title": "Crown Prince",
+      "event_kind": "attestation",
+      "attested_on": "1996-01-01",
+      "text": "The same release addresses the decree to 'Crown Prince His Royal Highness Prince Abdullah Bin Abdulziz, the deputy Premier and head of the National Guard' and prints his reply as from 'the Crown Prince, His Royal Highness Prince Abdullah Bin Abdul Aziz'.",
+      "locator": "January 1996 page; same item, first and second paragraphs"
+    },
+    {
+      "claim_id": "sa_fahd_delegation_19960101",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-02",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "delegation_of_state_affairs",
+      "attested_on": "1996-01-01",
+      "text": "The decree, 'after reviewing article 65 of the basic system of Government', says: 'we hereby delegate your Highness to undertake the affairs of the state while we enjoy rest and recuperation'; the Crown Prince's reply accepts the delegation 'to run the affairs of the state on your behalf'.",
+      "locator": "January 1996 page; same item, decree text and reply"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

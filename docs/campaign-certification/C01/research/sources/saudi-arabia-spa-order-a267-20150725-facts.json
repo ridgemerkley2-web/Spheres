@@ -1,0 +1,74 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a267_20150725",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/2807a6725a",
+  "original_url": "https://www.spa.gov.sa/2807a6725a",
+  "portal_metadata": {
+    "uuid": "2807a6725a",
+    "locale": "ar",
+    "published_at_utc": "2015-07-25T11:41:02Z",
+    "date_hijri_field": "1436-10-09"
+  },
+  "title_as_published": "عام / أمر ملكي بإنابة سمو ولي العهد في إدارة شؤون الدولة",
+  "source_title": "عام / أمر ملكي بإنابة سمو ولي العهد في إدارة شؤون الدولة: Royal Order A/267 deputizing the Crown Prince (25 July 2015)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2015-07-25",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/2807a6725a",
+  "source_response_bytes": 2327,
+  "source_response_sha256": "1c718e8b83e7b5964a8417a673912b869eabb96955154b29da6eb1ec82aacad9",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "732841aa3346073be3ce12e05561e270709c38776a60f31fdf101e930fb87d13",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:59Z and again at 2026-10-01T03:01:14Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2327 bytes, SHA-256 1c718e8b83e7b5964a8417a673912b869eabb96955154b29da6eb1ec82aacad9).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/2807a6725a loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_salman_king_order_a267_20150725",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-07",
+      "role_id": "sa_king",
+      "holder_name": "Salman bin Abdulaziz Al Saud",
+      "printed_name": "سلمان بن عبدالعزيز آل سعود",
+      "role_title": "الملك — King",
+      "event_kind": "attestation",
+      "attested_on": "2015-07-25",
+      "text": "SPA, date line Jeddah 9 Shawwal 1436 / 25 July 2015: Royal Order A/267 dated 9/10/1436 AH, issued 'today', opens 'نحن سلمان بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and is signed 'سلمان بن عبدالعزيز آل سعود'.",
+      "locator": "Date line; order number and date; preamble; signature; trailer 14:40 (Makkah time)"
+    },
+    {
+      "claim_id": "sa_mbn_cp_obs_a267_20150725",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-07",
+      "role_id": "sa_crown_prince",
+      "holder_name": "Mohammed bin Nayef bin Abdulaziz Al Saud",
+      "printed_name": "محمد بن نايف بن عبدالعزيز",
+      "role_title": "ولي العهد — Crown Prince",
+      "event_kind": "attestation",
+      "attested_on": "2015-07-25",
+      "text": "Royal Order A/267 names 'صاحب السمو الملكي الأمير محمد بن نايف بن عبدالعزيز ولي العهد'.",
+      "locator": "Royal Order A/267, operative paragraph"
+    },
+    {
+      "claim_id": "sa_mbn_deputized_a267_20150725",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "delegation_of_state_affairs",
+      "attested_on": "2015-07-25",
+      "text": "Citing Article 66 of the Basic Law and the King's intention to travel abroad 'هذا اليوم السبت التاسع من شهر شوال عام 1436 هـ حسب تقويم أم القرى ، الموافق 25 من شهر يوليه عام 2015 م', Royal Order A/267 deputizes the Crown Prince 'في إدارة شؤون الدولة ، ورعاية مصالح الشعب خلال فترة غيابنا عن المملكة'.",
+      "locator": "Royal Order A/267, operative paragraph"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

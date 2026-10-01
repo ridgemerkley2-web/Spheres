@@ -1,0 +1,14 @@
+...F....
+======================================================================
+FAIL: test_metadata_disagreement_is_recorded_without_inventing_a_cause (test_saudi_kings_crown_princes_c01_45.SaudiKingsCrownPrincesTests.test_metadata_disagreement_is_recorded_without_inventing_a_cause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-45-20261001\tools\avatars\test_saudi_kings_crown_princes_c01_45.py", line 317, in test_metadata_disagreement_is_recorded_without_inventing_a_cause
+    self.assertIn('cause is unknown', text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'cause is unknown' not found in 'A complete item. Its portal published_at, 2012-06-19T00:06:51Z, is not a filing time: several SPA items of June 2012 carry 00:06 UTC on different days. The printed date line and trailer (23:38 Makkah time on 18 June 2012) are used.'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.170s
+
+FAILED (failures=1)
