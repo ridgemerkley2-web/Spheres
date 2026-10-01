@@ -1,0 +1,23 @@
+{
+  "label": "meeting-guard-red",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_saudi_prime_ministers_c01_50.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+  "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+  "started_at": "2026-10-01T14:07:39.838986+00:00",
+  "finished_at": "2026-10-01T14:07:40.326979+00:00",
+  "exit_code": 1,
+  "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\meeting-guard-red.log",
+  "log_sha256": "244f54db579d13d1011b3e78bbfbf4cddcc67ff2ba68c47b2cc9b85fccbd81ad"
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "HEAD",
+    "--",
+    "docs/campaign-certification/C01/research-index.json",
+    "docs/campaign-certification/C01/research/saudi-arabia-prime-ministers-1990-2026-50.md",
+    "docs/campaign-certification/C01/research/saudi-arabia.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-50.md",
+    "tools/avatars/test_saudi_prime_ministers_c01_50.py",
+    "tools/avatars/test_saudi_executive_c01_06.py",
+    "tools/avatars/test_saudi_shura_allegiance_c01_25.py",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-cabinet-19960305-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-cabinet-20050425-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-cabinet-20121229-facts.json"
+  ],
+  "exit_code": 0,
+  "log_sha256": "859caf29011d9725de7a637e6d2509e893d08d15d2a6fdbcde7db53d4f01dafb"
+}

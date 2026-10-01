@@ -1,0 +1,279 @@
+{
+  "checks": [
+    {
+      "label": "baseline-saudi",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_saudi*.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:06:12.206476+00:00",
+      "finished_at": "2026-10-01T14:08:17.695906+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\baseline-saudi.log",
+      "log_sha256": "f5863194f4f0c3d7f194db6e341168f59e2d3609bc354bea57d681858bd30a7c"
+    },
+    {
+      "label": "meeting-guard-red",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_saudi_prime_ministers_c01_50.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:07:39.838986+00:00",
+      "finished_at": "2026-10-01T14:07:40.326979+00:00",
+      "exit_code": 1,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\meeting-guard-red.log",
+      "log_sha256": "244f54db579d13d1011b3e78bbfbf4cddcc67ff2ba68c47b2cc9b85fccbd81ad"
+    },
+    {
+      "label": "meeting-guard-green",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_saudi_prime_ministers_c01_50.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:09:53.462393+00:00",
+      "finished_at": "2026-10-01T14:09:53.805240+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\meeting-guard-green.log",
+      "log_sha256": "05f71b8962afd69753093461581bdaaf51769a76f97cdbec0ef69adf0baf9375"
+    },
+    {
+      "label": "saudi-final",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_saudi*.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:11:12.394292+00:00",
+      "finished_at": "2026-10-01T14:11:14.590750+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\saudi-final.log",
+      "log_sha256": "d2881070a172e2c8345a7619e45bd889e249200a4a80cc91fc3b79262a97d244"
+    },
+    {
+      "label": "research-all-final",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:12:18.578069+00:00",
+      "finished_at": "2026-10-01T14:12:27.041503+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\research-all-final.log",
+      "log_sha256": "dfe49dcf0c791f2c2a54e84eff10a5bb6a3e20ee3fd8e77a2e78fadc60c85adb"
+    },
+    {
+      "label": "campaign-final",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:11:12.388931+00:00",
+      "finished_at": "2026-10-01T14:11:14.512408+00:00",
+      "exit_code": 1,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\campaign-final.log",
+      "log_sha256": "afb8a65da405ccb5bc52614ced2b646daa3bb4cf45a4313c9bc87558382c8696"
+    },
+    {
+      "label": "campaign-final-restored",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:12:18.608349+00:00",
+      "finished_at": "2026-10-01T14:12:20.549022+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\campaign-final-restored.log",
+      "log_sha256": "5a4a070a403e35e2b015ebd5511f01c787642564b02033a106ee2b902957a23c"
+    },
+    {
+      "label": "index-check",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:11:12.391587+00:00",
+      "finished_at": "2026-10-01T14:11:13.341673+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\index-check.log",
+      "log_sha256": "62048f6773ea6210430f7066e3c434817d401e32fe160ac77e61a9331bb9828a"
+    },
+    {
+      "label": "census-check",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:11:12.391789+00:00",
+      "finished_at": "2026-10-01T14:11:13.300030+00:00",
+      "exit_code": 1,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\census-check.log",
+      "log_sha256": "57b7d9dc14e757a31207287dd21256fe59bb336a14da6784d45a01b1976bfca1"
+    },
+    {
+      "label": "census-check-restored",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:12:18.576987+00:00",
+      "finished_at": "2026-10-01T14:12:19.818620+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\census-check-restored.log",
+      "log_sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "label": "atlas-check",
+      "command": [
+        "node",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:11:12.393145+00:00",
+      "finished_at": "2026-10-01T14:11:13.199072+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\atlas-check.log",
+      "log_sha256": "c329e4a97d4fb192353d92181e00f1fdd6b21dad384332c8b5836463c9d1f351"
+    },
+    {
+      "label": "workboard-check",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+      "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+      "started_at": "2026-10-01T14:12:18.609636+00:00",
+      "finished_at": "2026-10-01T14:12:19.931473+00:00",
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\workboard-check.log",
+      "log_sha256": "cf7a708deb40945f526e1a9158df99c0ea8115617d47c436b54032de8bebf16e"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD",
+        "--",
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/saudi-arabia-prime-ministers-1990-2026-50.md",
+        "docs/campaign-certification/C01/research/saudi-arabia.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-50.md",
+        "tools/avatars/test_saudi_prime_ministers_c01_50.py",
+        "tools/avatars/test_saudi_executive_c01_06.py",
+        "tools/avatars/test_saudi_shura_allegiance_c01_25.py",
+        "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-cabinet-19960305-facts.json",
+        "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-cabinet-20050425-facts.json",
+        "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-cabinet-20121229-facts.json"
+      ],
+      "exit_code": 0,
+      "log_sha256": "859caf29011d9725de7a637e6d2509e893d08d15d2a6fdbcde7db53d4f01dafb"
+    }
+  ],
+  "limits": [
+    "No native build/run.",
+    "Atlas command itself exited 0 with 11 tests; logging wrapper afterward hit cp1252 output encoding error while printing checkmarks. Raw log and command result were already retained.",
+    "Initial census/campaign failure was missing exact HEAD sparse input nations.rs; exact nations.rs/government.rs restored and reruns passed.",
+    "The two red regression failures were intentional and preceded corrected JSON/classification.",
+    "Baseline 32-test run loaded original test modules before the new red-control file edit; final corrected suite has 34 tests."
+  ]
+}

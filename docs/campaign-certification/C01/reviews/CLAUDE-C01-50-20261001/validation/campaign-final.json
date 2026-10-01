@@ -1,0 +1,23 @@
+{
+  "label": "campaign-final",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_campaign*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+  "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+  "started_at": "2026-10-01T14:11:12.388931+00:00",
+  "finished_at": "2026-10-01T14:11:14.512408+00:00",
+  "exit_code": 1,
+  "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\campaign-final.log",
+  "log_sha256": "afb8a65da405ccb5bc52614ced2b646daa3bb4cf45a4313c9bc87558382c8696"
+}

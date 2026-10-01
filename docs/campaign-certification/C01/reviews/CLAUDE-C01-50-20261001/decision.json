@@ -1,0 +1,72 @@
+{
+  "format": "spheres-c01-independent-review/v1",
+  "base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "submitted_tip": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+  "authored_import": "fc0fad308357457b493d96ee8fb7cc0bf3e5fa93",
+  "review_correction": "74d740dd7b2d7d543a1abb3f8327d00254eb9cb0",
+  "scope": "Saudi Prime Minister role only; all new original passages and holder uses materially reviewed.",
+  "disposition": "Accept bounded research with explicit independent office-evidence corrections; not country or campaign qualification.",
+  "original_sources": 15,
+  "claims": 18,
+  "new_named_holders": 4,
+  "additional_holder_observations": 7,
+  "institution_only_claims": 7,
+  "unsupported_holder_uses_removed": [
+    "sa_fahd_pm_chairs_cabinet_19960304",
+    "sa_fahd_pm_chairs_cabinet_20050425",
+    "sa_abdullah_pm_chairs_cabinet_20121229"
+  ],
+  "retained_standing_institution_orders": [
+    "sa_abdullah_pm_order_a194_20050801",
+    "sa_abdullah_pm_order_a29_20070322",
+    "sa_salman_pm_order_a54_20150123",
+    "sa_salman_pm_order_a68_20150129",
+    "sa_salman_pm_order_a138_20181227"
+  ],
+  "authored_paths": [
+    "docs/campaign-certification/C01/research/saudi-arabia-prime-ministers-1990-2026-50.md",
+    "docs/campaign-certification/C01/research/saudi-arabia.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-cabinet-19960305-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-cabinet-20121229-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-cabinet-20050425-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-pm-styled-20041003-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-king-cabinet-20220927-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbs-cabinet-20221025-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbs-cabinet-20260616-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a138-20181227-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a194-20050801-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a29-20070322-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a54-20150123-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a61-20220927-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a68-20150129-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cabinet-20220517-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-uqn-order-a61-20221007-facts.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-50.md",
+    "tools/avatars/test_saudi_executive_c01_06.py",
+    "tools/avatars/test_saudi_kings_crown_princes_c01_45.py",
+    "tools/avatars/test_saudi_prime_ministers_c01_50.py",
+    "tools/avatars/test_saudi_shura_allegiance_c01_25.py"
+  ],
+  "correction_paths": [
+    "docs/campaign-certification/C01/research/saudi-arabia-prime-ministers-1990-2026-50.md",
+    "docs/campaign-certification/C01/research/saudi-arabia.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-50.md",
+    "tools/avatars/test_saudi_prime_ministers_c01_50.py",
+    "tools/avatars/test_saudi_executive_c01_06.py",
+    "tools/avatars/test_saudi_shura_allegiance_c01_25.py",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-cabinet-19960305-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-cabinet-20050425-facts.json",
+    "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-cabinet-20121229-facts.json"
+  ],
+  "excluded_shared_index": "docs/campaign-certification/C01/research-index.json",
+  "retained_originals_default": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence",
+  "tests_scope": "The exact reviewed research/test Git blobs match inputs tested in the isolated review. Generated index was temporarily rebuilt for those checks, preserved externally, then excluded from both imports. Combined integration must regenerate its own index.",
+  "earlier_tests_review": "Exact older source/count/holder guards retained; only explicit appended C01-50 expectations added. No weakening found. Correction changes exact new-holder arrays and adds negative meeting-only controls plus positive standing-order controls.",
+  "failed_attempts": "Intentional two-test red run, missing sparse nations.rs failures, and atlas logging-wrapper display encoding error are retained. Atlas child command itself exited zero; raw11testlogretained.",
+  "limits": [
+    "No source supports an early-1990s PM observation in this packet.",
+    "No initial tenure or death/successor boundary inferred; all four new from/until fields null.",
+    "Official born-digital text read; no scanned Gazette or facsimile claim.",
+    "No native, runtime installation, art, human or campaign qualification."
+  ]
+}

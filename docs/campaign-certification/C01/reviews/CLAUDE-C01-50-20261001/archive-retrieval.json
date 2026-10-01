@@ -1,0 +1,68 @@
+[
+  {
+    "source_id": "sa_embassy_fahd_cabinet_19960305",
+    "requested_url": "https://web.archive.org/web/20000930104631id_/http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+    "retrieved_at": "2026-10-01T14:04:27.500576+00:00",
+    "command": [
+      "curl.exe",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--max-time",
+      "55",
+      "--dump-header",
+      "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_embassy_fahd_cabinet_19960305.headers.txt",
+      "--output",
+      "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_embassy_fahd_cabinet_19960305.body",
+      "--write-out",
+      "%{http_code}|%{url_effective}",
+      "https://web.archive.org/web/20000930104631id_/http://www.saudiembassy.net:80/press_release/96_spa/96_03.html"
+    ],
+    "returncode": 0,
+    "response": "200|https://web.archive.org/web/20000930104631id_/http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+    "stderr": "",
+    "body": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_embassy_fahd_cabinet_19960305.body",
+      "bytes": 50505,
+      "sha256": "ba272c789a523bc36b0ba146d42da72e8790da3e91ce3dc6811baede74c0bf9f"
+    },
+    "headers": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_embassy_fahd_cabinet_19960305.headers.txt",
+      "bytes": 1840,
+      "sha256": "e2f6943ec15da2b67da26c8005f7ee617da41a78192567715f526e9a0c1aba52"
+    }
+  },
+  {
+    "source_id": "sa_uqn_order_a61_20221007",
+    "requested_url": "https://web.archive.org/web/20250429135455id_/https://www.uqn.gov.sa/details?p=20294",
+    "retrieved_at": "2026-10-01T14:04:42.941933+00:00",
+    "command": [
+      "curl.exe",
+      "--silent",
+      "--show-error",
+      "--location",
+      "--max-time",
+      "55",
+      "--dump-header",
+      "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_uqn_order_a61_20221007.headers.txt",
+      "--output",
+      "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_uqn_order_a61_20221007.body",
+      "--write-out",
+      "%{http_code}|%{url_effective}",
+      "https://web.archive.org/web/20250429135455id_/https://www.uqn.gov.sa/details?p=20294"
+    ],
+    "returncode": 0,
+    "response": "200|https://web.archive.org/web/20250429135455id_/https://www.uqn.gov.sa/details?p=20294",
+    "stderr": "",
+    "body": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_uqn_order_a61_20221007.body",
+      "bytes": 1701491,
+      "sha256": "6921275b222d715fba63e9730e7d516c99f2ab06091ea60d4b2211231e4c2561"
+    },
+    "headers": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\sa_uqn_order_a61_20221007.headers.txt",
+      "bytes": 2175,
+      "sha256": "2bb681b227d9ba3c9f6b2b5a722e71ee2a794ba5bffa5509c1cccde80b826ab5"
+    }
+  }
+]
