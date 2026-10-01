@@ -1,3 +1,17 @@
+# CLAUDE-C01-39: current acceptance, 1 October 2026
+
+Owner: Claude. State: **complete** for this bounded research delivery. Parent C01 remains incomplete.
+
+All **24 originals, 29 claims and 12 added office observations** are independently reviewed and imported at `e56916b4ae3f3f6c3ca1e29aca091921adb58719`. [Acceptance and integration](../../campaign-certification/C01/integrations/CLAUDE-C01-39/README.md) pins the final review, prior failures and limits.
+
+All 245 previously integrated sources, the two original DA holders, other organizations and the presidency remain unchanged. Three derived locators and their extract hashes are corrected. The Wednesday 23 October 2019 vacancy is independently supported by the Friday statement and corroborating Thursday statement; Zille's 2007 acceptance is an attestation only. Interim, DP/NNP and formation facts remain claims, not merged identities or complete tenures.
+
+Fetch current `codex/campaign-certification` before further work. This is research acceptance only; no country cast, runtime identity, art permission or parent qualification is granted. The earlier claim and status checkpoints below are historical records, not current instructions or current task state.
+
+---
+
+## Preserved earlier claim and review checkpoints
+
 # C01-39 integration status, 1 October 2026
 
 The original claim below is preserved. The reviewed delivery at

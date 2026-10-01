@@ -59,31 +59,34 @@ country-cast priority. Production task `CLAUDE-C06-TONGA-01` is owned by
 **Codex, in progress**. Its [integration receipt](../../campaign-certification/C06/production/tonga/integration-20261001/README.md)
 records the dated cartoon cast and institutional implementation. Preserve the
 accepted identity proposal and C01-44 research; coordinate before changing
-production identities, artwork or shared runtime. Fatai Helu's likeness, the
-remaining office/party chains and final country acceptance remain open.
-Russia and DA source reviews are separate from Tonga production.
+production identities, artwork or shared runtime. Fourteen requirements remain:
+Fatai Helu's likeness, eleven historical chains, final visual review and country
+signoff. The accepted Russia and DA research does not close Tonga production.
 
 Updated 1 October 2026 against the live remote tips and completed independent
-reviews. The central queue contains 36 completed bounded Claude tasks and two
-source-held submissions still awaiting acceptance: Russia C01-28 and DA C01-39.
+reviews. All **38 of 38 Claude-owned bounded tasks are complete**, with no
+delivered Claude task awaiting review. The [final combined review](../../campaign-certification/C01/integrations/REVIEW-20261001-06/README.md)
+records Russia C01-28 and DA C01-39 acceptance and all 17 remote-tip dispositions.
 These task closures are research/preparation results, not completed country casts.
+The stable `CLAUDE-C06-TONGA-01` ID is owned by Codex and remains in progress.
 
 | Packet | Scope | Current state / next action |
 |---|---|---|
-| C01-28 | Five Russian party-leader chains | **Held after resumed review.** 65/68 originals, 133/137 claims and all 24 holder observations are materially checked. Three originals / four claims remain unresolved; there are no remaining holder-row dependencies. [Review](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md); submission `03141c43c5663e35d21eebc631aaf5eec4e909aa`. No Russia research is imported. |
+| C01-28 | Five Russian party-leader chains | **Accepted bounded intake.** All 68 originals, 137 claims and 24 holder observations materially reviewed. [Final missing-only review](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md); exact submission `03141c43c5663e35d21eebc631aaf5eec4e909aa`. All prior response failures and review corrections remain; the scoped research is imported without full chronology or runtime mapping. |
 | C01-31 | Komeito representatives and distinct organizational phases | **Accepted bounded intake.** All 31 originals, 64 claims and fifteen holder observations reviewed; no source holds remain. Exact submission `696937ba3d31280aab569cbd78418e9c3a0c6880`, first import `b74f4fa5`, [acceptance receipt `d4d3542b`](../../campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md). The conservative Takeya boundary correction, explicit Ota assumption, three locator repairs and earlier held evidence are preserved. |
 | C01-38 | French prime ministers, 2014–2026 | **Accepted bounded intake.** All 22 originals, 33 claims and twelve appointment observations reviewed. Same-day interval prose repaired. Effective terms remain unresolved. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-38/README.md); submitted `acf33f09a5d28cbc9bf9f539e152e9846a7bf395`. |
-| C01-39 | Democratic Alliance federal leaders, 2000–2026 | **Held; latest follow-up unaccepted.** Latest `b66f8c074431d7e1a8c9bfca228576c7d5134655` follows the reviewed submission `9cb02c20012a6e6314d7e64d52241609d566f738`. The [original receipt `d1818a48`](../../campaign-certification/C01/reviews/CLAUDE-C01-39/README.md) records 1/24 originals and 1/29 claims reviewed, with eleven submitted holder observations held. The follow-up has twelve added observations, all held; the same 23 originals and 28 claims remain unresolved. One request returned HTTP 429; 22 were not attempted. No DA research or isolated test repair is imported. |
+| C01-39 | Democratic Alliance federal leaders, 2000–2026 | **Accepted bounded intake after resumed review.** All 24 originals, 29 claims and 12 proposed holder observations from latest `b66f8c074431d7e1a8c9bfca228576c7d5134655` materially reviewed; the corrected scoped research is imported. [Final receipt](../../campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md) governs accepted boundaries and corrections. The earlier `9cb02c20` eleven-observation held receipt, HTTP 429 and unattempted-source checkpoints remain immutable. |
 | C01-40 | CPI(M) general secretaries, 1990–2026 | **Accepted bounded intake with reviewed amendment.** The [initial review](../../campaign-certification/C01/integrations/CLAUDE-C01-40/README.md) retains eighteen originals and five locator repairs. The [amendment](../../campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md) independently checks two added originals and re-reads three rally descriptions: 20 sources, 26 claims, four observations, no new effective boundaries. Submitted `d7e1b9d286f68b7864f2d014c49e42c4296e66e5`; scoped import `3c4a3abc`. Current REST limitations and the opening-holder gap remain. |
 | C01-41 | CPSU General Secretary and Deputy General Secretary, 1990–1991 | **Accepted bounded intake.** Twelve originals, 26 claims and five observations reviewed; reportage and decree annotation scope clarified. Prior undated identity remains unreconciled. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-41/README.md); submitted `a989ddb4d67657236292a35443049554cc9b19e7`. |
 
-The [combined review](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
-separately records the latest DA triage. Correction `9e3d0b3c` adds a Zille 2007
-observation, proposes Maimane's effective end as 23 October 2019 and repairs a quote
-apostrophe while retaining the same 24 recorded original identities. This is not
-completed content review or acceptance; the earlier source receipt stays unchanged.
-Review the added observation and proposed boundary against the originals before
-integration. No second source pass was made.
+The [earlier combined review](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
+recorded DA follow-up triage before its missing originals were available. Correction
+`9e3d0b3c` proposed a Zille 2007 observation and Maimane's effective end as
+23 October 2019, and repaired a quote apostrophe while retaining the same 24
+original identities. At that checkpoint the new interpretation was unaccepted
+and no second source pass had been made. The [final review](../../campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md)
+supersedes that held status; the earlier receipt and proposed-boundary history
+remain unchanged.
 
 The combined review also records follow-ups on accepted France and USSR packets. Only two USSR test
 tightenings were adopted; all 48 USSR tests pass, with two failing-before/passing-after
@@ -101,11 +104,11 @@ and candidate status above supersede that checkpoint’s queued Tonga assignment
 | [C01-43](CLAUDE-C01-43.md) | `68fb8f863398247ba1515a1ff3f413a444a6d7f5` | **Accepted bounded intake**: 14 originals, 21 claims, 5 new holder observations. First import `0a6b571d`; [review `5a0fc340`](../../campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/README.md). |
 | [C01-44](CLAUDE-C01-44.md) | `6110064071a513d21bdcee7a8d2d081e90099359` | **Accepted bounded intake**: 5 originals, 6 claims, 0 new holder observations. First import `c19f86c0`; [review `43cafce6`](../../campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/README.md). |
 | [C01-45](CLAUDE-C01-45.md) | `5f083d7fff505189a01cc69aef2e13e1d70d8066` | **Accepted research preserved**: 18 originals, 30 claims, 18 observations. First import `d23f0bf2`, correction `4a98bc10`, historical receipt `42046e51`. [Follow-up](../../campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/README.md) adopts only a stronger date guard at `7aaf39e8`; extra reported user rulings are not imported. |
-| [C01-46](CLAUDE-C01-46.md) | `64fec76b8a61e7f65f0f98f7bf3a93699ea80d72` | **Accepted bounded intake**: 7 originals, 27 claims, 18 observations. First import `91a1dbe1`, correction `c1056321`, receipt `6f88cd1b`. C01-28 party research remains held. |
+| [C01-46](CLAUDE-C01-46.md) | `64fec76b8a61e7f65f0f98f7bf3a93699ea80d72` | **Accepted bounded intake**: 7 originals, 27 claims, 18 observations. First import `91a1dbe1`, correction `c1056321`, receipt `6f88cd1b`. C01-28 party research remained held at that review checkpoint. |
 
-The coordinated resumed pass retrieved only Tonga’s missing original, then the
-new Japan and Brazil originals, one request per URL. Earlier failed responses
-remain preserved; no Russia/DA source retries occurred. No research packet accepts
+That earlier coordinated pass retrieved only Tonga’s missing original, then
+the new Japan and Brazil originals, one request per URL. Earlier failed responses
+remain preserved; no Russia/DA source retries occurred in that pass. No research packet accepts
 a runtime identity, cartoon, whole country or parent gate. Tonga cast production
 and campaign-stability work remain the CP1 priorities.
 
@@ -140,16 +143,18 @@ integration after the exact accepted source imports, not imported from packet ti
 | [C01-50](CLAUDE-C01-50.md) | `8b1a3c975749087fc6ed4bf48c788386fdecfa39` | **Accepted bounded intake**: 15 originals, 18 claims, 11 observations. First import `fc0fad30`; [review `6248bde6`](../../campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md). Eleven holder uses survive: four named records and seven additional observations. Three meeting-only uses are withheld as institution events, and Fahd is anchored by explicit PM styling on 3 October 2004. Standing Council orders remain distinct from session chairing; no new effective tenure boundary is inferred. |
 | [C01-51](CLAUDE-C01-51.md) | `2fe2b752e05125e204832f5cd1f60b4c640af28d` | **Accepted bounded intake**: 16 originals, 20 claims, 9 observations. First import `90f7f54c`; [review `1299cfd8`](../../campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md). Nine observations retain no effective starts. The 3 October 1993 end records the decree-stated release, not constitutional legitimacy or an interval of active service. Postrename signatures do not extend entity lifetimes; competing September declarations remain claims-only. The report separates retained originals from an unverified broader author-reported portal sweep. |
 
-The queue has 59 bounded tasks and 36 completed Claude tasks. Russia C01-28 and
-DA C01-39 retain their exact held state; no missing-original retry or held research
-import is included. C01, C06, S23, S25, G5 and CP1 remain open. These receipts
-do not qualify the separate Codex Tonga production candidate.
+At the C01-47–51 checkpoint, the queue had 59 bounded tasks and 36 completed
+Claude tasks. Russia C01-28 and DA C01-39 still had source holds; no retry or
+held-research import was included in that pass. The final reviews above resolve
+those delivery holds. C01, C06, S23, S25, G5 and CP1 remain open; research
+acceptance does not qualify the separate Codex Tonga country cast.
 
-Continue existing claims without duplicating their ownership. Codex owns the
-remaining original-source/content reviews for C01-28 and C01-39. Both Archive
-passes stopped at HTTP 429 without a Retry-After header; preserve those responses
-and coordinate any future missing-only pass when normal service permits. Claude's
-next content sequence is:
+All currently delivered Claude-owned tasks have a final bounded disposition.
+Preserve the earlier HTTP 429 responses, unattempted-source records and subsequent
+recovery evidence; do not retry those old holds or erase failed checkpoints.
+Reviewed exclusions remain excluded, including Brazil's sixth proposed office
+observation, the ambiguous USSR Premier use and three Saudi meeting-only uses.
+Claude's next content sequence remains subject to coordinated assignment:
 
 1. **Support the existing Codex Tonga production claim only by coordination.**
    Preserve the accepted source and identity proposals; validate or repair exact
@@ -159,15 +164,9 @@ next content sequence is:
    reviewed identities and appearance windows before producing cartoons. Resolve
    dated roles and clearly fictional successors, then obtain each country review.
    Worldwide expansion follows the first certified-country casts.
-3. **Resolve the held Russia and DA source gaps as a separate work lane.**
-   Preserve unavailable and unattempted distinctions and every failed response.
-   Review actual passages when the remaining originals become accessible.
-   Repeated rate-limit retries do not establish available evidence. Komeito is
-   accepted; do not restart it or undo its conservative corrections.
-
-The source repairs are existing bounded queue records. Tonga's production task
-remains in progress under Codex; candidate validation does not imply integration,
-country acceptance or parent qualification.
+Tonga's integrated production task remains in progress under Codex. Research
+review, runtime integration and automated validation do not replace its remaining
+likeness, historical-chain, visual-review and country-acceptance requirements.
 
 Query the queue and check live branches before claiming a batch. The six earlier
 expanded tool/preparation packets are already accepted; do not redo them. S19

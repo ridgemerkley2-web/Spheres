@@ -497,39 +497,32 @@ class CheckedInLedger(unittest.TestCase):
     def test_committed_output_is_current(self):
         self.assertEqual(ledger.stale(self.files), [])
 
-    def test_real_cases_windows_and_in_flight_exclusions(self):
+    def test_real_cases_windows_and_completed_intakes(self):
         self.assertEqual([c['case'] for c in self.data['cases']], CASES)
         items = [i for b in self.data['next_batches'] for i in b['items']]
         entities = {i['entity'] for i in items}
         completed = {row['task']: row for row in self.data['completed_research_intakes']}
         self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25',
-                                         'CLAUDE-C01-27', 'CLAUDE-C01-29', 'CLAUDE-C01-30', 'CLAUDE-C01-32', 'CLAUDE-C01-33',
+                                         'CLAUDE-C01-27', 'CLAUDE-C01-28', 'CLAUDE-C01-29', 'CLAUDE-C01-30',
+                                         'CLAUDE-C01-32', 'CLAUDE-C01-33',
                                          'CLAUDE-C01-34', 'CLAUDE-C01-35', 'CLAUDE-C01-36', 'CLAUDE-C01-37',
-                                         'CLAUDE-C01-38', 'CLAUDE-C01-40', 'CLAUDE-C01-41', 'CLAUDE-C01-31',
+                                         'CLAUDE-C01-38', 'CLAUDE-C01-39', 'CLAUDE-C01-40', 'CLAUDE-C01-41',
+                                         'CLAUDE-C01-31',
                                          'CLAUDE-C01-45', 'CLAUDE-C01-46', 'CLAUDE-C01-42',
                                          'CLAUDE-C01-43', 'CLAUDE-C01-44',
                                          'CLAUDE-C01-47', 'CLAUDE-C01-48', 'CLAUDE-C01-49',
                                          'CLAUDE-C01-50', 'CLAUDE-C01-51'})
         self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
                             for row in completed.values()))
-        self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
-        claims = {row['task']: row for row in self.data['in_flight']}
-        expected_states = {'CLAUDE-C01-28': 'ready_for_review', 'CLAUDE-C01-39': 'ready_for_review'}
-        self.assertEqual({tid: row['state'] for tid, row in claims.items()}, expected_states)
+        self.assertEqual(self.data['in_flight'], [])
         chains = {row['id']: row for case in self.data['cases'] for row in case['party_chains']}
-        for tid, claim in claims.items():
-            self.assertEqual(claim['state'], expected_states[tid])
-            self.assertFalse(claims[tid]['accepted'])
-            for target in claim['targets']:
-                if target.startswith('party:'):
-                    entity = target.removeprefix('party:')
-                    self.assertEqual(chains[entity]['in_flight'], tid)
-                    self.assertNotIn(entity, entities)
+        self.assertTrue(all(chain['in_flight'] is None for chain in chains.values()))
         self.assertNotIn('institution:fr_prime_minister', entities)  # The institution now exists.
         self.assertIn(('France', 'fr_pm'), {(r['nation'], r['id']) for c in self.data['cases'] for r in c['research_roles']})
         self.assertIn(('Tonga', 'to_deputy_pm'), {(r['nation'], r['id']) for c in self.data['cases'] for r in c['research_roles']})
         self.assertTrue(all(len(b['items']) <= ledger.MAX_BATCH for b in self.data['next_batches']))
         roles = {(r['nation'], r['id']): r for c in self.data['cases'] for r in c['research_roles']}
+        self.assertTrue(all(role['in_flight'] is None for role in roles.values()))
         self.assertEqual(roles[('USSR', 'su_president')]['window']['until'], '1991-12-25')
         self.assertEqual(roles[('Russia', 'ru_president')]['window']['from'], '1991-12-25')
         for key in (('Tonga', 'to_deputy_pm'), ('France', 'fr_pm')):
@@ -555,6 +548,7 @@ class CheckedInLedger(unittest.TestCase):
         self.assertEqual(classes['CLAUDE-C01-03'], 'c01_accepted')
         expected = {'CLAUDE-C01-23': ('09b27c49', 49), 'CLAUDE-C01-24': ('6af1e942', 49),
                     'CLAUDE-C01-25': ('61a3402d', 71), 'CLAUDE-C01-27': ('644ce003', 74),
+                    'CLAUDE-C01-28': ('bd5a41d0', 68), 'CLAUDE-C01-39': ('e56916b4', 24),
                     'CLAUDE-C01-29': ('b2098862', 54), 'CLAUDE-C01-30': ('1b2c1ae2', 39), 'CLAUDE-C01-32': ('62f6be6c', 38),
                     'CLAUDE-C01-33': ('9d97caa9', 22), 'CLAUDE-C01-34': ('0eba7867', 76),
                     'CLAUDE-C01-35': ('e4e8d389', 16), 'CLAUDE-C01-36': ('364c6f6d', 39),

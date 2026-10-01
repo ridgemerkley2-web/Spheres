@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "ba490eb9bca18ca63301a0a38eabb3001e5812ef",
+  "generated_from": "bd5a41d0744487491d10eea283936f355a6b8123",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -6347,6 +6347,46 @@
       }
     },
     "Russia": {
+      "ru_apr_chairman_page_2008": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_history_note_2002": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_home_page_20081016": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_leadership_page_2004": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_release_new_chairman_20040526": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_release_plenum_20040531": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_release_xi_congress_20030910": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_apr_release_xii_congress_second_stage_20041012": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
       "ru_cec_ballot_order_20210816": {
         "commit": "233b1320",
         "packet": "S10",
@@ -6552,6 +6592,71 @@
         "packet": "CLAUDE-C01-19",
         "via": "extract_first_added"
       },
+      "ru_dvr_about_page_2001": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_congress_statement_1995": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_founding_congress_edition_1994": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_history_page_1998": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_ii_congress_decision_19950618": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_information_bulletin_1_1994": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_newspaper_demvybor_21_2001": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_politsovet_decision_19971216": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_politsovet_statement_20001216": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_statement_grozny_199412": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_supporters_protocol_19940519": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_v_congress_decision_19960921": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_dvr_v_congress_decisions_19960922": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
       "ru_fc_res_442sf_20111125": {
         "commit": "fb0dbc1c",
         "packet": "CLAUDE-C01-14",
@@ -6690,6 +6795,61 @@
       "ru_gov_res_923_19990810": {
         "commit": "9417dc93",
         "packet": "CLAUDE-C01-19",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_date_in_history_1993_20260213": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_i_plenum_notice_19970420": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_i_plenum_notice_20210424": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_i_plenum_notice_20250705": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_official_i_plenum_20250705": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_official_xix_second_stage_20260620": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_party_reference_20250912": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_v_congress_notice_19980523": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_xix_congress_notice_20250705": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_xviii_congress_notice_20210424": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_kprf_zyuganov_greeting_20260828": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
         "via": "extract_first_added"
       },
       "ru_kremlin_inauguration_broadcast_20040507": {
@@ -6875,6 +7035,76 @@
       "ru_ks_post_9p_19921130": {
         "commit": "fb0dbc1c",
         "packet": "CLAUDE-C01-14",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_citizenship_proposal_20260811": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_slutsky_congress_post_20251002": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_slutsky_elected_20220527": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_slutsky_reelected_20251002": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_supreme_council_recommendation_20220526": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_vote_day_20220527": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_xxxiv_congress_opens_20220527": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_news_zhirinovsky_death_20220406": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_newspaper_no04_20220330": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_newspaper_no05_20220506": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_newspaper_no06_07_20220627": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_newspaper_plenum_resolution_19961123": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_party_history_20100922": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_ldpr_party_history_2026": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
         "via": "extract_first_added"
       },
       "ru_pravo_sf_337sf_20031210": {
@@ -7310,6 +7540,116 @@
       "ru_vs_res_5781i_19930922": {
         "commit": "90f7f54c",
         "packet": "CLAUDE-C01-51",
+        "via": "extract_first_added"
+      },
+      "ru_vybor_rossii_bloc_programme_19931017": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_leadership_report_2004_2008": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_fsin_appeal_20231213": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_new_chairman_deputies_20151220": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_rybakov_appeal_20260819": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_rybakov_elected_20191215": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_rybakov_second_term_20231209": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_slabunova_elected_20151220": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_term_limit_20151219": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_xxi_congress_main_20191216": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_news_xxii_congress_main_20231211": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_charter_amendments_20040704": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_congress_schedule_20040703": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_new_leadership_20080622": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_party_transformation_20011222": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_xv_congress_decisions_20080626": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_yavlinsky_elected_20011223": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_press_yavlinsky_reelected_20040703": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_site_reference_1998": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_vi_congress_report_19980314": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_x_congress_chairman_speech_20011223": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
+        "via": "extract_first_added"
+      },
+      "ru_yabloko_x_congress_section_2001": {
+        "commit": "bd5a41d0",
+        "packet": "CLAUDE-C01-28",
         "via": "extract_first_added"
       }
     },
@@ -8311,6 +8651,56 @@
         "packet": "CLAUDE-C01-16",
         "via": "extract_first_added"
       },
+      "za_da_about_introduction_page_2001": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_closing_speech_congress_20180408": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_dp_party_info_page_2000": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_dp_speech_taalbeleid_19970522": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_dp_whos_who_page_1999": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_fedcouncil_chair_interim_election_20191025": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_fedcouncil_chair_leadership_vacancies_20191024": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_federal_leadership_announcement_20150510": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_fedex_statement_interim_leadership_20191123": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_finance_chair_statement_20191004": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
       "za_da_kzn_leader_20230403": {
         "commit": "233b1320",
         "packet": "S10",
@@ -8319,6 +8709,76 @@
       "za_da_leadership_20260412": {
         "commit": "233b1320",
         "packet": "S10",
+        "via": "extract_first_added"
+      },
+      "za_da_leadership_election_results_20201101": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_leon_former_leader_profile_2007": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_news_election_posters_20160425": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_news_puppet_allegations_20180407": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_press_release_nkandla_20121104": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_sa_today_provinces_20101015": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_speech_campaign_launch_deputy_leader_20001014": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_speech_growth_victory_20140509": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_speech_kzn_coalition_20001122": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_speech_local_elections_launch_20001014": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_statement_condolences_cope_20260304": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_statement_stellenbosch_visit_20210310": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_statement_thanks_steenhuisen_20260204": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
+        "via": "extract_first_added"
+      },
+      "za_da_zille_acceptance_speech_20070506": {
+        "commit": "e56916b4",
+        "packet": "CLAUDE-C01-39",
         "via": "extract_first_added"
       },
       "za_dfa_gcis_cabinet_statement_20050622": {

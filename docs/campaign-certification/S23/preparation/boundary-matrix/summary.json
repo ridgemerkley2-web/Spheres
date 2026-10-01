@@ -310,6 +310,14 @@
    "sources_listed": 74
   },
   {
+   "packet": "CLAUDE-C01-28",
+   "report": "docs/campaign-certification/C01/research/russia-party-leaders-1990-2026-28.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+   "reviewed_head": null,
+   "sources_listed": 68
+  },
+  {
    "packet": "CLAUDE-C01-29",
    "report": "docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md",
    "status": "accepted",
@@ -388,6 +396,14 @@
    "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
    "reviewed_head": null,
    "sources_listed": 22
+  },
+  {
+   "packet": "CLAUDE-C01-39",
+   "report": "docs/campaign-certification/C01/research/south-africa-da-federal-leaders-2000-2026-39.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+   "reviewed_head": null,
+   "sources_listed": 24
   },
   {
    "packet": "CLAUDE-C01-40",
@@ -497,7 +513,8 @@
   "REVIEW-2026-10-01",
   "REVIEW-20261001-02",
   "REVIEW-20261001-03",
-  "REVIEW-20261001-04"
+  "REVIEW-20261001-04",
+  "REVIEW-20261001-06"
  ],
  "executive_pairing": {
   "France": [],
@@ -900,10 +917,10 @@
        "executive": 1,
        "institutional_fiction": 0
       },
-      "cases": 1190,
+      "cases": 1216,
       "case_kinds": {
-       "attestation_day": 81,
-       "attestation_day_after": 81,
+       "attestation_day": 93,
+       "attestation_day_after": 93,
        "cutoff_day": 19,
        "cutoff_day_before": 19,
        "death_day_after": 1,
@@ -916,15 +933,15 @@
        "fictional_last_day": 19,
        "fictional_start_day": 19,
        "future_2030": 19,
-       "handover_day_after": 16,
-       "handover_day_before": 16,
-       "handover_day_of": 16,
+       "handover_day_after": 17,
+       "handover_day_before": 17,
+       "handover_day_of": 17,
        "reference_start": 19,
        "reference_start_day_before": 19,
        "yearly": 874
       },
       "observations_by_acceptance": {
-       "accepted": 36,
+       "accepted": 48,
        "pending": 32,
        "production_registry": 18,
        "unattributed_intake": 5
@@ -932,8 +949,8 @@
       "research_yearly_status": {
        "bracketed": 9,
        "established": 4,
-       "uncertain": 37,
-       "unknown": 357
+       "uncertain": 67,
+       "unknown": 327
       },
       "production_party_yearly_status": {
        "established": 151,
@@ -966,8 +983,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 357 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 36, pending 32, unattributed_intake 5.",
+      "Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 67 uncertain, 327 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 48, pending 32, unattributed_intake 5.",
       "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
       "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
       "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1228,30 +1245,30 @@
      "identity": "Russia",
      "statistics": {
       "roles": {
-       "research": 9,
+       "research": 14,
        "production_party": 5,
        "executive": 1,
        "institutional_fiction": 0
       },
-      "cases": 953,
+      "cases": 1260,
       "case_kinds": {
-       "attestation_day": 41,
-       "attestation_day_after": 41,
-       "cutoff_day": 15,
-       "cutoff_day_before": 15,
-       "fictional_end_exclusive": 15,
-       "fictional_last_day": 15,
-       "fictional_start_day": 15,
-       "future_2030": 15,
+       "attestation_day": 65,
+       "attestation_day_after": 65,
+       "cutoff_day": 20,
+       "cutoff_day_before": 20,
+       "fictional_end_exclusive": 20,
+       "fictional_last_day": 20,
+       "fictional_start_day": 20,
+       "future_2030": 20,
        "handover_day_after": 31,
        "handover_day_before": 31,
        "handover_day_of": 31,
-       "reference_start": 15,
-       "reference_start_day_before": 15,
-       "yearly": 690
+       "reference_start": 20,
+       "reference_start_day_before": 20,
+       "yearly": 920
       },
       "observations_by_acceptance": {
-       "accepted": 27,
+       "accepted": 51,
        "pending": 24,
        "unattributed_intake": 5
       },
@@ -1259,7 +1276,7 @@
        "bracketed": 1,
        "established": 3,
        "uncertain": 157,
-       "unknown": 172
+       "unknown": 357
       },
       "production_party_yearly_status": {
        "unresearched": 185
@@ -1282,8 +1299,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 172 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 27, pending 24, unattributed_intake 5.",
+      "Research roles: 14 (14 with holder observations); 3 of 518 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 357 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 51, pending 24, unattributed_intake 5.",
       "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
       "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
       "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
@@ -1925,7 +1942,7 @@
   {
    "path": "docs/campaign-certification/C01/census.json",
    "bytes": 6414,
-   "sha256": "8dc5242ed08a59d3dd71aafb9e02afabe45defb06cfa6e59719ac5667d9cf095",
+   "sha256": "fb613fa65d9e2c2750bc2f6bff3d8bacdaa24ed32bdb281459f8028c838ad0f5",
    "newline_normalized": true,
    "exists": true
   },
@@ -2000,6 +2017,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+   "bytes": 1181,
+   "sha256": "405d5691f6c1462a6bdf22047650be70318f8122f4105c54ab7789aebfc851c2",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
    "bytes": 1759,
    "sha256": "8adb8d1a92ccb5d4bdb86c5e9248efd156386168cbc494a94588e98ecddce262",
@@ -2066,6 +2090,13 @@
    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
    "bytes": 2374,
    "sha256": "371acf3914e4c96d673ab0f6f5e37cb0faf6abf27339c892a9e0cf74530eb433",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+   "bytes": 1216,
+   "sha256": "d8444bb641cd33541a1c6d49ce56c9781f656e2646ce34942ae6997aad7e982a",
    "newline_normalized": true,
    "exists": true
   },
@@ -2357,6 +2388,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/russia-party-leaders-1990-2026-28.md",
+   "bytes": 102375,
+   "sha256": "97acc37a3a34e0eda0b9b13a411b0750c02b5e23811aa79c34ab248390829619",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/russia-presidents-1991-2026-14.md",
    "bytes": 63150,
    "sha256": "4fd67be8aab5856e70f078548c7efa1bd27f9c1ab8a2837a746a6effd3622c47",
@@ -2372,8 +2410,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/russia.json",
-   "bytes": 680168,
-   "sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c",
+   "bytes": 910346,
+   "sha256": "ff3d166ec6b4b2b7406e48f6d55b907b632dfcb988350e5a307aeea4df5537e9",
    "newline_normalized": true,
    "exists": true
   },
@@ -2427,6 +2465,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/south-africa-da-federal-leaders-2000-2026-39.md",
+   "bytes": 46480,
+   "sha256": "ccc432f279d2937b173d8d6398d91afbc7e77d67a672aefb3f16a74b0244586a",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/south-africa-deputy-presidents-1994-2026-21.md",
    "bytes": 76200,
    "sha256": "bf7889dcb1fa4dc9d7fee2587262274e1c3870874d2b647444033d6a1360e054",
@@ -2449,8 +2494,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/south-africa.json",
-   "bytes": 1007417,
-   "sha256": "51f21208527dc405f7ef4f321d292c688dfdb3628bf8c98c4031c90762faf2d6",
+   "bytes": 1081585,
+   "sha256": "79664fc62be19ec17602f2524e595ac90f7a06cc7c8bea13047c285b7d09cb4b",
    "newline_normalized": true,
    "exists": true
   },
@@ -2660,7 +2705,7 @@
   {
    "path": "spheres-web/data/leadership_production_2035.json",
    "bytes": 6204564,
-   "sha256": "f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245",
+   "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4",
    "newline_normalized": true,
    "exists": true
   },

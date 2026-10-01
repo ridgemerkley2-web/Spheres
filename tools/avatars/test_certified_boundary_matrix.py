@@ -816,7 +816,7 @@ class RealCommittedOutput(unittest.TestCase):
         statuses = {p['packet'][-2:]: p['status'] for p in self.summary['packets']}
         self.assertEqual({k for k, v in statuses.items() if v == 'accepted'},
                          {'01', '02', '03', '04', '07', '08', '23', '24', '25', '27', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '40', '41', '42', '43', '44', '45', '46',
-                          '47', '48', '49', '50', '51'})
+                          '47', '48', '49', '50', '51', '28', '39'})
         self.assertEqual({k for k, v in statuses.items() if v == 'pending'},
                          {'05', '06', *(f'{n:02d}' for n in range(9, 23)), '26'})
         self.assertNotIn('unclassified_packet', statuses.values())

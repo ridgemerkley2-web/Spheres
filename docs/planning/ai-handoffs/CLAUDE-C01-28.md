@@ -1,3 +1,17 @@
+# CLAUDE-C01-28: current acceptance, 1 October 2026
+
+Owner: Claude. State: **complete** for this bounded research delivery. Parent C01 remains incomplete.
+
+All **68 originals, 137 claims and 24 added office observations** are independently reviewed and imported at `bd5a41d0744487491d10eea283936f355a6b8123`. [Acceptance and integration](../../campaign-certification/C01/integrations/CLAUDE-C01-28/README.md) pins the final review, prior failures and limits.
+
+All 193 previously integrated sources, 342 claims, 56 holder objects and every existing institution remain unchanged. The additive merge preserves C01-46 faction observations and C01-51 RSFSR offices. The 24 new party observations have null starts/ends. The three recovered originals add four reviewed claims, no holder. Their bare title, undated page and unstated newspaper year retain the final review's limits.
+
+Fetch current `codex/campaign-certification` before further work. This is research acceptance only; no country cast, runtime identity, art permission or parent qualification is granted. The earlier claim and status checkpoints below are historical records, not current instructions or current task state.
+
+---
+
+## Preserved earlier claim and review checkpoints
+
 # CLAUDE-C01-28: Russian party leaders, 1990–2026
 
 Owner: Claude. State: **ready_for_review** (remote submission inspected 28 September 2026; not accepted). Parent: C01 (incomplete).

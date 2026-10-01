@@ -238,16 +238,17 @@
       "id": "CLAUDE-C01-28",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 15,
       "title": "Research five Russian party-leader chains",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
       "depends_on": [],
       "branch": "claude/c01-ru-28",
       "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
-      "next": "Held after independent missing-only review: 65/68 originals, 133/137 claims and all 24 holder observations checked; three originals/four claims remain held, zero holder dependencies. Nine originals recovered before HTTP 429; stop preserved, two later URLs unattempted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md. Receipt only integrated; no unaccepted Russia research or runtime mappings. Resume remaining source access when normal service permits.",
+      "next": "Accepted bounded research after independent original review: 68 originals, 137 claims and 24 added holder observations. First source import bd5a41d0744487491d10eea283936f355a6b8123. All24 holder observations retain null from/until; five-party chronology, organization reconciliation and runtime mappings remain open. Earlier failed/unattempted checkpoints remain immutable. Evidence: docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md. No art, full country cast, C01/C06/S23/WC1/CP1 qualification.",
       "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
-      "review_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+      "review_revision": "de6b097e77378cf3c1192e4992c47ff631108ba6",
+      "source_import_revision": "bd5a41d0744487491d10eea283936f355a6b8123"
     },
     {
       "id": "CLAUDE-C01-29",
@@ -562,7 +563,7 @@
       "id": "CLAUDE-C01-39",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 26,
       "title": "Research Democratic Alliance federal leaders, 2000–2026",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
@@ -570,8 +571,9 @@
       "branch": "claude/c01-za-39",
       "claim_revision": "03cd0bb9bc6989e47e3da0ff1ca6373320daf30b",
       "submission_revision": "b66f8c074431d7e1a8c9bfca228576c7d5134655",
-      "next": "Held: independent review d1818a48 of 9cb02c20 checked one original/one claim; second request HTTP 429, 22 sources unattempted. Final-fetch follow-up b66f8c07 retains the same 24 source identities and 29 claims, adds a Zille observation and proposes a Maimane end; diff triage is recorded in the combined review. Thus 23 originals/28 claims and all 12 proposed new holder observations remain unverified. No latest-date ruling, data, test repair or index is imported. See docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md and the immutable initial held receipt. Resume missing original content when normal service permits.",
-      "review_revision": "d1818a48a1b117d408dafb49d7943d35f3f7c2da"
+      "next": "Accepted bounded research after independent original review: 24 originals, 29 claims and 12 added holder observations. First source import e56916b4ae3f3f6c3ca1e29aca091921adb58719. Three locators and immutable authored-handoff test binding corrected. Maimane end is the explicitly supported Wednesday vacancy, not a successor inference; Zille2007 remains day-only. Party/state identities and runtime mappings remain separate. Earlier failed/unattempted checkpoints remain immutable. Evidence: docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md. No art, full country cast, C01/C06/S23/WC1/CP1 qualification.",
+      "review_revision": "130beac1ade8cb16c9411bebc03a7573881e19bf",
+      "source_import_revision": "e56916b4ae3f3f6c3ca1e29aca091921adb58719"
     },
     {
       "id": "CLAUDE-C01-40",

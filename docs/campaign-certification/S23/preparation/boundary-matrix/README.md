@@ -98,6 +98,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-25 | accepted | 71 |
 | CLAUDE-C01-26 | pending | 30 |
 | CLAUDE-C01-27 | accepted | 74 |
+| CLAUDE-C01-28 | accepted | 68 |
 | CLAUDE-C01-29 | accepted | 54 |
 | CLAUDE-C01-30 | accepted | 39 |
 | CLAUDE-C01-31 | accepted | 31 |
@@ -108,6 +109,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-36 | accepted | 39 |
 | CLAUDE-C01-37 | accepted | 31 |
 | CLAUDE-C01-38 | accepted | 22 |
+| CLAUDE-C01-39 | accepted | 24 |
 | CLAUDE-C01-40 | accepted | 20 |
 | CLAUDE-C01-41 | accepted | 12 |
 | CLAUDE-C01-42 | accepted | 32 |
@@ -129,11 +131,11 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | Japan | Japan | 7 / 8 / 1 / 0 | 1222 | 9/259 | 151/296 | 15/151 |
 | India | India | 9 / 4 / 1 / 0 | 948 | 6/333 | 109/148 | 10/109 |
 | Brazil | Brazil | 6 / 6 / 1 / 0 | 881 | 20/222 | 99/222 | 7/100 |
-| SouthAfrica | SouthAfrica | 11 / 7 / 1 / 0 | 1190 | 4/407 | 151/259 | 13/151 |
+| SouthAfrica | SouthAfrica | 11 / 7 / 1 / 0 | 1216 | 4/407 | 151/259 | 13/151 |
 | Tonga | Tonga | 15 / 0 / 1 / 4 | 1186 | 15/555 | none | none |
 | SaudiArabia | SaudiArabia | 10 / 0 / 1 / 0 | 753 | 2/370 | none | none |
 | USSR -> Russia | USSR | 8 / 3 / 1 / 0 | 696 | 0/296 | 0/111 | none |
-| USSR -> Russia | Russia | 9 / 5 / 1 / 0 | 953 | 3/333 | 0/185 | none |
+| USSR -> Russia | Russia | 14 / 5 / 1 / 0 | 1260 | 3/518 | 0/185 | none |
 
 ## Headline findings
 
@@ -186,8 +188,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### SouthAfrica
 
-- Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 357 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 36, pending 32, unattributed_intake 5.
+- Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 67 uncertain, 327 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 48, pending 32, unattributed_intake 5.
 - Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.
 - Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).
 - Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
@@ -232,8 +234,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 **Russia**
 
-- Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 172 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 27, pending 24, unattributed_intake 5.
+- Research roles: 14 (14 with holder observations); 3 of 518 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 357 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 51, pending 24, unattributed_intake 5.
 - Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.
 - Successor identity: no executive or party assignment exists at the 1990 campaign start.
 - Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.
@@ -319,7 +321,7 @@ established holders at those samples; for the executive they count the campaign-
 | SouthAfrica | `party:za_acdp` African Christian Democratic Party | production_registry 1 | 33/0/0/0/0/0/4 | 0 | 0 | 0/33 |
 | SouthAfrica | `research:za_acdp_president` President of the African Christian Democratic Party | accepted 5 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | SouthAfrica | `research:za_anc_president` President of the African National Congress | pending 10 | 0/0/0/0/37/0/0 | 0 | 20 | - |
-| SouthAfrica | `research:za_da_federal_leader` Federal Leader | unattributed_intake 2 | 0/0/0/0/37/0/0 | 0 | 4 | - |
+| SouthAfrica | `research:za_da_federal_leader` Federal Leader | accepted 12, unattributed_intake 2 | 0/0/0/30/7/0/0 | 3 | 27 | - |
 | SouthAfrica | `research:za_da_federal_chair` Federal Chairperson | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | SouthAfrica | `research:za_da_council_chair` Chairperson of the Federal Council | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | SouthAfrica | `research:za_ifp_president` President of the Inkatha Freedom Party | accepted 8 | 0/0/0/0/37/0/0 | 0 | 16 | - |
@@ -377,6 +379,11 @@ established holders at those samples; for the executive they count the campaign-
 | Russia | `party:ru_kprf` Communist Party of the Russian Federation | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Russia | `party:ru_apr` Agrarian Party of Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Russia | `party:ru_yabloko` Yabloko | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Russia | `research:ru_kprf_chairman` Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF | accepted 3 | 0/0/0/0/37/0/0 | 0 | 6 | - |
+| Russia | `research:ru_ldpr_chairman` Председатель ЛДПР — Chairman of the LDPR | accepted 5 | 0/0/0/0/37/0/0 | 0 | 10 | - |
+| Russia | `research:ru_yabloko_chairman` Председатель партии «ЯБЛОКО» — Chairman of Yabloko | accepted 9 | 0/0/0/0/37/0/0 | 0 | 17 | - |
+| Russia | `research:ru_apr_chairman` Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia | accepted 3 | 0/0/0/0/37/0/0 | 0 | 6 | - |
+| Russia | `research:ru_dvr_chairman` Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia | accepted 4 | 0/0/0/0/37/0/0 | 0 | 8 | - |
 | Russia | `research:ru_duma_faction_20211012_er_head` Руководитель фракции — head of the parliamentary faction | accepted 4, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | Russia | `research:ru_duma_faction_20211012_kprf_head` Руководитель фракции — head of the parliamentary faction | accepted 4, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | Russia | `research:ru_duma_faction_20211012_srzp_head` Руководитель фракции — head of the parliamentary faction | accepted 3, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 8 | - |
@@ -406,4 +413,4 @@ established holders at those samples; for the executive they count the campaign-
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
 - Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
 - Institutional fictional roles are a separate catalogue, not party successors or national-executive grants. Date eligibility does not evaluate a live campaign action; the party organizer remains reference-only.
-- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02, REVIEW-20261001-03, REVIEW-20261001-04) do not change a packet's class.
+- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02, REVIEW-20261001-03, REVIEW-20261001-04, REVIEW-20261001-06) do not change a packet's class.

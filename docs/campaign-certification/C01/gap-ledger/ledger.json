@@ -26,7 +26,7 @@
     {
       "path": "docs/campaign-certification/C01/census.json",
       "bytes": 6414,
-      "sha256": "8dc5242ed08a59d3dd71aafb9e02afabe45defb06cfa6e59719ac5667d9cf095"
+      "sha256": "fb613fa65d9e2c2750bc2f6bff3d8bacdaa24ed32bdb281459f8028c838ad0f5"
     },
     {
       "path": "docs/campaign-certification/C01/countries.json",
@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 134707,
-      "sha256": "3e4b7251add124d9505d0a7f9a98d81f110b2cec4900ccca38c2e6226bc47564"
+      "bytes": 136463,
+      "sha256": "c16b30d74822d3d65f1abc9752d3752cdb1870511cfc71ad7514c429d32bc910"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 54956,
-      "sha256": "e16e352b18b8bac83d851f07b8db64463d6af8ff7389f2e6d3310bdc3274c935"
+      "bytes": 55081,
+      "sha256": "50273940e329b960a58f529dd1eb69ab74530a6d871c02f85e43bd28a5957ed1"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -91,8 +91,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 680168,
-      "sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c"
+      "bytes": 910346,
+      "sha256": "ff3d166ec6b4b2b7406e48f6d55b907b632dfcb988350e5a307aeea4df5537e9"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
@@ -101,8 +101,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
-      "bytes": 1007417,
-      "sha256": "51f21208527dc405f7ef4f321d292c688dfdb3628bf8c98c4031c90762faf2d6"
+      "bytes": 1081585,
+      "sha256": "79664fc62be19ec17602f2524e595ac90f7a06cc7c8bea13047c285b7d09cb4b"
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
@@ -169,6 +169,12 @@
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+      "bytes": 1181,
+      "sha256": "405d5691f6c1462a6bdf22047650be70318f8122f4105c54ab7789aebfc851c2",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
       "bytes": 1759,
       "sha256": "8adb8d1a92ccb5d4bdb86c5e9248efd156386168cbc494a94588e98ecddce262",
@@ -226,6 +232,12 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
       "bytes": 2374,
       "sha256": "371acf3914e4c96d673ab0f6f5e37cb0faf6abf27339c892a9e0cf74530eb433",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+      "bytes": 1216,
+      "sha256": "d8444bb641cd33541a1c6d49ce56c9781f656e2646ce34942ae6997aad7e982a",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -842,38 +854,10 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 331617,
-    "sha256": "87357248009e9669259b72143af0b0a49a40f9163ce12994fcc45d983be9b675"
+    "bytes": 346359,
+    "sha256": "0923fe09614b011f2a3b09fd9593b9c438302c5e6625fc0070994cf24ccad89e"
   },
-  "in_flight": [
-    {
-      "task": "CLAUDE-C01-28",
-      "state": "ready_for_review",
-      "branch": "claude/c01-ru-28",
-      "case": "USSR -> Russia",
-      "scope": "Five Russian party-leader chains; held on three originals/four claims after partial source review, no research import or accepted mapping",
-      "targets": [
-        "party:Russia/ru_kprf",
-        "party:Russia/ru_ldpr",
-        "party:Russia/ru_yabloko",
-        "party:Russia/ru_apr",
-        "party:Russia/ru_vybor"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-39",
-      "state": "ready_for_review",
-      "branch": "claude/c01-za-39",
-      "case": "SouthAfrica",
-      "scope": "Democratic Alliance federal leaders, 2000-2026; held on 23 unverified originals after rate limiting, no accepted research or runtime mapping",
-      "targets": [
-        "party:SouthAfrica/za_dp",
-        "role:za_da_federal_leader"
-      ],
-      "accepted": false
-    }
-  ],
+  "in_flight": [],
   "completed_source_repairs": [
     {
       "task": "CLAUDE-C01-SOURCE-05",
@@ -1592,6 +1576,24 @@
       "historical_period_complete": false
     },
     {
+      "task": "CLAUDE-C01-28",
+      "state": "complete",
+      "case": "USSR -> Russia",
+      "scope": "Five Russian party-leader chains; bounded observations accepted after complete original review, no full chronology or runtime mapping",
+      "integration_revision": "de6b097e77378cf3c1192e4992c47ff631108ba6",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+          "bytes": 1181,
+          "sha256": "405d5691f6c1462a6bdf22047650be70318f8122f4105c54ab7789aebfc851c2",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
       "task": "CLAUDE-C01-29",
       "state": "complete",
       "case": "Japan",
@@ -1765,6 +1767,24 @@
           "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
           "bytes": 2374,
           "sha256": "371acf3914e4c96d673ab0f6f5e37cb0faf6abf27339c892a9e0cf74530eb433",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-39",
+      "state": "complete",
+      "case": "SouthAfrica",
+      "scope": "Democratic Alliance federal leaders, 2000-2026; bounded observations accepted with locator corrections, no full chronology or runtime mapping",
+      "integration_revision": "130beac1ade8cb16c9411bebc03a7573881e19bf",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+          "bytes": 1216,
+          "sha256": "d8444bb641cd33541a1c6d49ce56c9781f656e2646ce34942ae6997aad7e982a",
           "hash_encoding": "UTF-8 text with LF line endings"
         }
       ],
@@ -18227,7 +18247,7 @@
         "research_roles": 11,
         "research_roles_unresolved": 11,
         "research_holders_by_evidence": {
-          "c01_accepted": 36,
+          "c01_accepted": 48,
           "c01_integrated_pending": 32,
           "s10_discovery_intake": 5
         },
@@ -18689,7 +18709,7 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": "CLAUDE-C01-39",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -19944,19 +19964,129 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13397,
+              "no_evidence": 13384,
               "attested_within_period": 0,
-              "attested_day": 2,
+              "attested_day": 15,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": "2023-04-03",
+            "first_evidence": "2000-10-14",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "2000-10-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-10-14",
+                "through": "2000-10-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "2000-10-15",
+                "through": "2000-11-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-11-22",
+                "through": "2000-11-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2000-11-23",
+                "through": "2007-05-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2007-05-06",
+                "through": "2007-05-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2007-05-07",
+                "through": "2010-10-14",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2010-10-15",
+                "through": "2010-10-15",
+                "status": "attested_day"
+              },
+              {
+                "from": "2010-10-16",
+                "through": "2012-11-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-11-04",
+                "through": "2012-11-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "2012-11-05",
+                "through": "2014-05-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-05-09",
+                "through": "2014-05-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-05-10",
+                "through": "2016-04-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-04-25",
+                "through": "2016-04-25",
+                "status": "attested_day"
+              },
+              {
+                "from": "2016-04-26",
+                "through": "2018-04-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-04-07",
+                "through": "2018-04-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-04-09",
+                "through": "2019-10-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-10-04",
+                "through": "2019-10-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-10-05",
+                "through": "2019-10-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-10-23",
+                "through": "2019-10-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-10-24",
+                "through": "2021-03-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-03-10",
+                "through": "2021-03-10",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-03-11",
                 "through": "2023-04-02",
                 "status": "no_evidence"
               },
@@ -19967,6 +20097,16 @@
               },
               {
                 "from": "2023-04-04",
+                "through": "2026-03-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-03-04",
+                "through": "2026-03-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-03-05",
                 "through": "2026-04-11",
                 "status": "no_evidence"
               },
@@ -19984,27 +20124,42 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
+                "through": "2000-10-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-11-23",
+                "through": "2007-05-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2007-05-07",
+                "through": "2010-10-14",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2010-10-16",
+                "through": "2012-11-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-05-10",
+                "through": "2016-04-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-04-26",
+                "through": "2018-04-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-03-11",
                 "through": "2023-04-02",
                 "status": "no_evidence"
               },
               {
-                "from": "2023-04-03",
-                "through": "2023-04-03",
-                "status": "attested_day"
-              },
-              {
                 "from": "2023-04-04",
-                "through": "2026-04-11",
-                "status": "no_evidence"
-              },
-              {
-                "from": "2026-04-12",
-                "through": "2026-04-12",
-                "status": "attested_day"
-              },
-              {
-                "from": "2026-04-13",
-                "through": "2026-09-07",
+                "through": "2026-03-03",
                 "status": "no_evidence"
               }
             ]
@@ -20012,6 +20167,203 @@
           "holders": [
             {
               "position": 0,
+              "name": "Tony Leon",
+              "attested_on": "2000-10-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Tony Leon",
+              "attested_on": "2000-11-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Helen Zille",
+              "attested_on": "2007-05-06",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Helen Zille",
+              "attested_on": "2010-10-15",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Helen Zille",
+              "attested_on": "2012-11-04",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Helen Zille",
+              "attested_on": "2014-05-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Mmusi Maimane",
+              "attested_on": "2016-04-25",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Mmusi Maimane",
+              "attested_on": "2018-04-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Mmusi Maimane",
+              "attested_on": "2018-04-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "Mmusi Maimane",
+              "attested_on": "2019-10-04",
+              "from": null,
+              "until": "2019-10-23",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "John Steenhuisen",
+              "attested_on": "2021-03-10",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
               "name": "John Steenhuisen",
               "attested_on": "2023-04-03",
               "from": null,
@@ -20029,7 +20381,25 @@
               ]
             },
             {
-              "position": 1,
+              "position": 12,
+              "name": "John Steenhuisen",
+              "attested_on": "2026-03-04",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-39"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 13,
               "name": "Geordin Hill-Lewis",
               "attested_on": "2026-04-12",
               "from": null,
@@ -20047,12 +20417,16 @@
               ]
             }
           ],
-          "source_count": 2,
+          "source_count": 21,
           "leads": [
             "https://kzn.da.org.za/2023/04/da-kzn-congratulates-john-steenhuisen-on-his-re-election-as-federal-leader",
-            "https://www-origin.da.org.za/2026/04/da-announces-leadership-election-results"
+            "https://www-origin.da.org.za/2026/04/da-announces-leadership-election-results",
+            "https://web.archive.org/web/20010501013646id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=1",
+            "https://web.archive.org/web/20010502012024id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=11",
+            "https://web.archive.org/web/20070518152213id_/http://www.da.org.za/DA/Site/Eng/News/Article.asp?ID=7578",
+            "https://web.archive.org/web/20070907071445id_/http://www.da.org.za:80/da/Site/Eng/People/Leadership/Tony.asp"
           ],
-          "in_flight": "CLAUDE-C01-39"
+          "in_flight": null
         },
         {
           "nation": "SouthAfrica",
@@ -27104,14 +27478,14 @@
         "represented_rows": 8,
         "components_or_name_phases": 0,
         "party_chains_unresolved": 8,
-        "documented_research_organizations": 17,
-        "documented_unmapped_organizations": 17,
-        "research_organizations_with_roles": 3,
+        "documented_research_organizations": 20,
+        "documented_unmapped_organizations": 20,
+        "research_organizations_with_roles": 8,
         "research_institutions": 11,
-        "research_roles": 17,
-        "research_roles_unresolved": 16,
+        "research_roles": 22,
+        "research_roles_unresolved": 21,
         "research_holders_by_evidence": {
-          "c01_accepted": 44,
+          "c01_accepted": 68,
           "c01_integrated_pending": 30,
           "s10_discovery_intake": 9
         },
@@ -27184,7 +27558,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": "CLAUDE-C01-28",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -27252,7 +27626,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": "CLAUDE-C01-28",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -27318,7 +27692,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": "CLAUDE-C01-28",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -27384,7 +27758,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": "CLAUDE-C01-28",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -27450,7 +27824,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": "CLAUDE-C01-28",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -28980,6 +29354,1123 @@
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102084027&page=1&rdk=0",
             "https://web.archive.org/web/20250718143642id_/https://snd.sssr.su/IV/III.pdf",
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010316&page=1&rdk=0"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Russia",
+          "category": "organizations",
+          "entity": "ru_duma_ballot_list_2021_01",
+          "entity_name": "Политическая партия «КОММУНИСТИЧЕСКАЯ ПАРТИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ»",
+          "id": "ru_kprf_chairman",
+          "title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13396,
+              "attested_within_period": 0,
+              "attested_day": 3,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1998-05-23",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1998-05-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-05-23",
+                "through": "1998-05-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-05-24",
+                "through": "2025-07-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-07-05",
+                "through": "2025-07-05",
+                "status": "attested_day"
+              },
+              {
+                "from": "2025-07-06",
+                "through": "2026-08-27",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-08-28",
+                "through": "2026-08-28",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-08-29",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1998-05-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-05-23",
+                "through": "1998-05-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-05-24",
+                "through": "2025-07-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-07-05",
+                "through": "2025-07-05",
+                "status": "attested_day"
+              },
+              {
+                "from": "2025-07-06",
+                "through": "2026-08-27",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-08-28",
+                "through": "2026-08-28",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-08-29",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Геннадий Андреевич Зюганов",
+              "attested_on": "1998-05-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Геннадий Андреевич Зюганов",
+              "attested_on": "2025-07-05",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Геннадий Андреевич Зюганов",
+              "attested_on": "2026-08-28",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 11,
+          "leads": [
+            "https://web.archive.org/web/20000306135653id_/http://www.kprf.ru:80/arhiv/plenum/1plenum.htm",
+            "https://web.archive.org/web/20000306152838id_/http://www.kprf.ru:80/arhiv/congr5/infsoob.htm",
+            "https://web.archive.org/web/20260727165041id_/https://kprf.ru/history/date/241272.html",
+            "https://web.archive.org/web/20250912215927id_/https://kprf.ru/party/",
+            "https://web.archive.org/web/20210426151642id_/https://kprf.ru/party-live/cknews/202177.html",
+            "https://web.archive.org/web/20210426152225id_/https://kprf.ru/party-live/cknews/202175.html"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Russia",
+          "category": "organizations",
+          "entity": "ru_duma_ballot_list_2021_03",
+          "entity_name": "Политическая партия ЛДПР – Либерально-демократическая партия России",
+          "id": "ru_ldpr_chairman",
+          "title": "Председатель ЛДПР — Chairman of the LDPR",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13394,
+              "attested_within_period": 0,
+              "attested_day": 5,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1996-11-23",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1996-11-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-11-23",
+                "through": "1996-11-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-11-24",
+                "through": "2022-03-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-03-30",
+                "through": "2022-03-30",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-03-31",
+                "through": "2022-05-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-05-27",
+                "through": "2022-05-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-05-28",
+                "through": "2025-10-01",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-10-02",
+                "through": "2025-10-02",
+                "status": "attested_day"
+              },
+              {
+                "from": "2025-10-03",
+                "through": "2026-08-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-08-11",
+                "through": "2026-08-11",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-08-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1996-11-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-11-23",
+                "through": "1996-11-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-11-24",
+                "through": "2022-03-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-03-30",
+                "through": "2022-03-30",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-03-31",
+                "through": "2022-05-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-05-28",
+                "through": "2025-10-01",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-10-03",
+                "through": "2026-08-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-08-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Владимир Вольфович Жириновский",
+              "attested_on": "1996-11-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Владимир Вольфович Жириновский",
+              "attested_on": "2022-03-30",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Леонид Эдуардович Слуцкий",
+              "attested_on": "2022-05-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Леонид Эдуардович Слуцкий",
+              "attested_on": "2025-10-02",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Леонид Эдуардович Слуцкий",
+              "attested_on": "2026-08-11",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 14,
+          "leads": [
+            "https://web.archive.org/web/19980207231628id_/http://www.ldpr.ru:80/book/ldpr_01_97.htm",
+            "https://web.archive.org/web/20101016073607id_/http://www.ldpr.ru:80/party/history",
+            "https://web.archive.org/web/20260216025055id_/https://ldpr.ru/party/history/",
+            "https://web.archive.org/web/20220801065115id_/https://hub.ldpr.ru/media/documents/a076ef48d5c253e3ca4e2d145168c52e4ebdd72a5068134ccd201b8c2356a210.pdf",
+            "https://web.archive.org/web/20251012234518id_/https://ldpr.ru/event/202499/",
+            "https://web.archive.org/web/20220731053447id_/https://hub.ldpr.ru/media/documents/f9bcc7681584bd9dbe1b82a8cf309149b81136ee5fd642764d286aedf725c6ff.pdf"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Russia",
+          "category": "organizations",
+          "entity": "ru_duma_ballot_list_2021_07",
+          "entity_name": "Политическая партия «Российская объединенная демократическая партия «ЯБЛОКО»",
+          "id": "ru_yabloko_chairman",
+          "title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13390,
+              "attested_within_period": 0,
+              "attested_day": 9,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1998-03-14",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1998-03-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-03-14",
+                "through": "1998-03-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-03-15",
+                "through": "2001-12-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-12-23",
+                "through": "2001-12-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-12-24",
+                "through": "2004-07-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-07-04",
+                "through": "2004-07-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-07-05",
+                "through": "2008-06-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-06-22",
+                "through": "2008-06-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-06-23",
+                "through": "2015-12-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2015-12-19",
+                "through": "2015-12-20",
+                "status": "attested_day"
+              },
+              {
+                "from": "2015-12-21",
+                "through": "2019-12-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-12-16",
+                "through": "2019-12-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-12-17",
+                "through": "2023-12-12",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-12-13",
+                "through": "2023-12-13",
+                "status": "attested_day"
+              },
+              {
+                "from": "2023-12-14",
+                "through": "2026-08-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-08-19",
+                "through": "2026-08-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-08-20",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1998-03-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-03-15",
+                "through": "2001-12-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-12-24",
+                "through": "2004-07-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-07-05",
+                "through": "2008-06-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-06-23",
+                "through": "2015-12-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2015-12-21",
+                "through": "2019-12-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-12-17",
+                "through": "2023-12-12",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-12-14",
+                "through": "2026-08-18",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Григорий Алексеевич Явлинский",
+              "attested_on": "1998-03-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Григорий Алексеевич Явлинский",
+              "attested_on": "2001-12-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Григорий Алексеевич Явлинский",
+              "attested_on": "2004-07-04",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Сергей Сергеевич Митрохин",
+              "attested_on": "2008-06-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Сергей Сергеевич Митрохин",
+              "attested_on": "2015-12-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Эмилия Эдгардовна Слабунова",
+              "attested_on": "2015-12-20",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Николай Игоревич Рыбаков",
+              "attested_on": "2019-12-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Николай Игоревич Рыбаков",
+              "attested_on": "2023-12-13",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Николай Игоревич Рыбаков",
+              "attested_on": "2026-08-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 21,
+          "leads": [
+            "https://web.archive.org/web/19980630062735id_/http://www.yabloko.ru:80/Union/gdy.html",
+            "https://web.archive.org/web/19980630062048id_/http://www.yabloko.ru:80/Press/980314.html",
+            "https://web.archive.org/web/20020123194510id_/http://www.yabloko.ru:80/Union/XCongress/index.html",
+            "https://web.archive.org/web/20020322235901id_/http://www.yabloko.ru:80/Press/2001/0112226.html",
+            "https://web.archive.org/web/20020620151948id_/http://www.yabloko.ru:80/Press/2001/011223.html",
+            "https://web.archive.org/web/20020323204010id_/http://www.yabloko.ru:80/Union/XCongress/1223yavl.html"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Russia",
+          "category": "organizations",
+          "entity": "ru_apr_party_self_record",
+          "entity_name": "Аграрная партия России",
+          "id": "ru_apr_chairman",
+          "title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13396,
+              "attested_within_period": 0,
+              "attested_day": 3,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "2003-09-09",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "2003-09-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2003-09-09",
+                "through": "2003-09-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2003-09-10",
+                "through": "2004-05-27",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-05-28",
+                "through": "2004-05-28",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-05-29",
+                "through": "2008-09-25",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-09-26",
+                "through": "2008-09-26",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-09-27",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "2003-09-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2003-09-09",
+                "through": "2003-09-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2003-09-10",
+                "through": "2004-05-27",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-05-28",
+                "through": "2004-05-28",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-05-29",
+                "through": "2008-09-25",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-09-26",
+                "through": "2008-09-26",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-09-27",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Михаил Иванович Лапшин",
+              "attested_on": "2003-09-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Владимир Николаевич Плотников",
+              "attested_on": "2004-05-28",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Владимир Николаевич Плотников",
+              "attested_on": "2008-09-26",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 8,
+          "leads": [
+            "https://web.archive.org/web/20021117045251id_/http://www.agroparty.ru:80/hist.htm",
+            "https://web.archive.org/web/20031022201803id_/http://www.agroparty.ru:80/releases/3/106/",
+            "https://web.archive.org/web/20040710080750id_/http://www.agroparty.ru:80/releases/3/178/",
+            "https://web.archive.org/web/20050523171303id_/http://agroparty.ru:80/releases/3/179/",
+            "https://web.archive.org/web/20040520161601id_/http://www.agroparty.ru:80/party/people.php?id=10",
+            "https://web.archive.org/web/20041124131828id_/http://www.agroparty.ru:80/releases/3/215/"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Russia",
+          "category": "organizations",
+          "entity": "ru_dvr_party_self_record",
+          "entity_name": "Демократический выбор России",
+          "id": "ru_dvr_chairman",
+          "title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13395,
+              "attested_within_period": 0,
+              "attested_day": 4,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1994-07-10",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1994-07-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1994-07-10",
+                "through": "1994-07-10",
+                "status": "attested_day"
+              },
+              {
+                "from": "1994-07-11",
+                "through": "1995-06-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-06-18",
+                "through": "1995-06-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "1995-06-19",
+                "through": "1996-09-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-09-22",
+                "through": "1996-09-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-09-23",
+                "through": "1997-12-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-12-16",
+                "through": "1997-12-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-12-17",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1994-07-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1994-07-10",
+                "through": "1994-07-10",
+                "status": "attested_day"
+              },
+              {
+                "from": "1994-07-11",
+                "through": "1995-06-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-06-18",
+                "through": "1995-06-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "1995-06-19",
+                "through": "1996-09-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-09-22",
+                "through": "1996-09-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-09-23",
+                "through": "1997-12-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-12-17",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Егор Тимурович Гайдар",
+              "attested_on": "1994-07-10",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Егор Тимурович Гайдар",
+              "attested_on": "1995-06-18",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Егор Тимурович Гайдар",
+              "attested_on": "1996-09-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Егор Тимурович Гайдар",
+              "attested_on": "1997-12-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-28"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 13,
+          "leads": [
+            "https://web.archive.org/web/20170823160756id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4791",
+            "https://web.archive.org/web/20160803131429id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4818",
+            "https://web.archive.org/web/20160813072102id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4816",
+            "https://web.archive.org/web/20160803121516id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3661",
+            "https://web.archive.org/web/20170823162628id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3734",
+            "https://web.archive.org/web/20151006140140id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3737"
           ],
           "in_flight": null
         },
@@ -31048,8 +32539,13 @@
         }
       ],
       "documented_organizations": {
-        "total": 17,
+        "total": 20,
         "with_roles": [
+          "ru_apr_party_self_record",
+          "ru_duma_ballot_list_2021_01",
+          "ru_duma_ballot_list_2021_03",
+          "ru_duma_ballot_list_2021_07",
+          "ru_dvr_party_self_record",
           "su_cpsu",
           "su_democratic_russia",
           "su_soyuz_deputies_group"
@@ -37391,6 +38887,89 @@
         {
           "item": "party_leader_chain",
           "nation": "SouthAfrica",
+          "entity": "SouthAfrica/za_dp",
+          "title": "Democratic Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13398,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-02",
+              "through": "1990-12-31",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "1991-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "denis_worrall",
+              "record": "za_dp_denis_worrall_198904",
+              "missing": [
+                "from (known only to month)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "wynand_malan",
+              "record": "za_dp_wynand_malan_198904",
+              "missing": [
+                "from (known only to month)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "zach_de_beer",
+              "record": "za_dp_zach_de_beer_198904",
+              "missing": [
+                "from (known only to month)",
+                "until (known only to year)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "year",
+                "value": "1990"
+              },
+              "until": {
+                "kind": "day",
+                "value": "2026-09-07"
+              },
+              "reason": "Source the sole-leader handover, Tony Leon, Helen Zille, Mmusi Maimane and John Steenhuisen terms separately; current title is not proof of all previous boundaries.",
+              "sources": [
+                "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf",
+                "https://www.da.org.za/why-the-da/history/",
+                "https://www.da.org.za/2026/04/da-announces-leadership-election-results"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+            "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf",
+            "https://www.da.org.za/why-the-da/history/",
+            "https://www.da.org.za/2026/04/da-announces-leadership-election-results"
+          ],
+          "related_work_orders": [
+            "CH-SouthAfrica-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "SouthAfrica",
           "entity": "SouthAfrica/za_acdp",
           "title": "African Christian Democratic Party",
           "role": "party leader (census term records)",
@@ -38296,7 +39875,15 @@
             "pinned": true
           },
           "first_evidence": "1994-05-10"
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-SouthAfrica-B002",
+      "case": "SouthAfrica",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "SouthAfrica",
@@ -38349,15 +39936,7 @@
           },
           "first_evidence": "2026-04-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-SouthAfrica-B002",
-      "case": "SouthAfrica",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "SouthAfrica",
@@ -38409,6 +39988,210 @@
             "pinned": false
           },
           "first_evidence": "2026-04-12",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "SouthAfrica",
+          "entity": "za_iec_n2024_027#za_da_federal_leader",
+          "title": "Federal Leader",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2000-10-13",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2000-11-23",
+              "through": "2007-05-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2007-05-07",
+              "through": "2010-10-14",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2010-10-16",
+              "through": "2012-11-03",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2014-05-10",
+              "through": "2016-04-24",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2016-04-26",
+              "through": "2018-04-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2021-03-11",
+              "through": "2023-04-02",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2023-04-04",
+              "through": "2026-03-03",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Tony Leon",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Tony Leon",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Helen Zille",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Helen Zille",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Helen Zille",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Helen Zille",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mmusi Maimane",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mmusi Maimane",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mmusi Maimane",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mmusi Maimane",
+              "record": 9,
+              "missing": [
+                "from"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "John Steenhuisen",
+              "record": 10,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "John Steenhuisen",
+              "record": 11,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "John Steenhuisen",
+              "record": 12,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Geordin Hill-Lewis",
+              "record": 13,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://kzn.da.org.za/2023/04/da-kzn-congratulates-john-steenhuisen-on-his-re-election-as-federal-leader",
+            "https://www-origin.da.org.za/2026/04/da-announces-leadership-election-results",
+            "https://web.archive.org/web/20010501013646id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=1",
+            "https://web.archive.org/web/20010502012024id_/http://www.da.org.za:80/site/asp/ViewSpeech.asp?SpeechID=11",
+            "https://web.archive.org/web/20070518152213id_/http://www.da.org.za/DA/Site/Eng/News/Article.asp?ID=7578",
+            "https://web.archive.org/web/20070907071445id_/http://www.da.org.za:80/da/Site/Eng/People/Leadership/Tony.asp"
+          ],
+          "related_work_orders": [
+            "C01-SouthAfrica-DISC-B003"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2000-10-14",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
@@ -40816,6 +42599,216 @@
       "items": [
         {
           "item": "party_leader_chain",
+          "nation": "Russia",
+          "entity": "Russia/ru_apr",
+          "title": "Agrarian Party of Russia",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
+              "sources": []
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia"
+          ],
+          "related_work_orders": [
+            "CH-Russia-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Russia",
+          "entity": "Russia/ru_kprf",
+          "title": "Communist Party of the Russian Federation",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
+              "sources": []
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://en.wikipedia.org/wiki/Communist_Party_of_the_Russian_Federation"
+          ],
+          "related_work_orders": [
+            "CH-Russia-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Russia",
+          "entity": "Russia/ru_ldpr",
+          "title": "Liberal Democratic Party of Russia",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
+              "sources": []
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "no existing lead in the pinned inputs; start from the institution's own primary records"
+          ],
+          "related_work_orders": [
+            "CH-Russia-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Russia",
+          "entity": "Russia/ru_vybor",
+          "title": "Russia's Choice",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
+              "sources": []
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "no existing lead in the pinned inputs; start from the institution's own primary records"
+          ],
+          "related_work_orders": [
+            "CH-Russia-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Russia",
+          "entity": "Russia/ru_yabloko",
+          "title": "Yabloko",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
+              "sources": []
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "no existing lead in the pinned inputs; start from the institution's own primary records"
+          ],
+          "related_work_orders": [
+            "CH-Russia-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
           "nation": "USSR",
           "entity": "USSR/su_cpsu",
           "title": "Communist Party of the Soviet Union",
@@ -41233,7 +43226,7 @@
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102038135&page=1&rdk=0"
           ],
           "related_work_orders": [
-            "C01-Russia-DISC-B002"
+            "C01-Russia-DISC-B003"
           ],
           "window": {
             "from": "1991-12-25",
@@ -41241,7 +43234,15 @@
             "pinned": true
           },
           "first_evidence": "1996-08-09"
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-USSR-Russia-B002",
+      "case": "USSR -> Russia",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "USSR",
@@ -41788,7 +43789,7 @@
             "https://web.archive.org/web/20220524092011id_/http://duma.gov.ru/news/54314/"
           ],
           "related_work_orders": [
-            "C01-Russia-DISC-B002"
+            "C01-Russia-DISC-B003"
           ],
           "window": {
             "from": "1990-01-01",
@@ -41797,15 +43798,7 @@
           },
           "first_evidence": "2021-10-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-USSR-Russia-B002",
-      "case": "USSR -> Russia",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Russia",
@@ -41920,7 +43913,7 @@
             "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "related_work_orders": [
-            "C01-Russia-DISC-B002"
+            "C01-Russia-DISC-B003"
           ],
           "window": {
             "from": "1990-01-01",
@@ -42129,7 +44122,7 @@
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012167&page=1&rdk=0"
           ],
           "related_work_orders": [
-            "C01-Russia-DISC-B002"
+            "C01-Russia-DISC-B003"
           ],
           "window": {
             "from": "1991-04-24",
@@ -42302,7 +44295,7 @@
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012046&page=1&rdk=0"
           ],
           "related_work_orders": [
-            "C01-Russia-DISC-B002"
+            "C01-Russia-DISC-B003"
           ],
           "window": {
             "from": "1991-04-24",
@@ -42310,6 +44303,613 @@
             "pinned": true
           },
           "first_evidence": "1991-07-10"
+        }
+      ]
+    },
+    {
+      "id": "GAP-USSR-Russia-B003",
+      "case": "USSR -> Russia",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
+        {
+          "item": "research_role_chain",
+          "nation": "Russia",
+          "entity": "ru_apr_party_self_record#ru_apr_chairman",
+          "title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2003-09-08",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2003-09-09",
+              "through": "2003-09-09",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2003-09-10",
+              "through": "2004-05-27",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2004-05-28",
+              "through": "2004-05-28",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2004-05-29",
+              "through": "2008-09-25",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2008-09-26",
+              "through": "2008-09-26",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2008-09-27",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Михаил Иванович Лапшин",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Николаевич Плотников",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Николаевич Плотников",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20021117045251id_/http://www.agroparty.ru:80/hist.htm",
+            "https://web.archive.org/web/20031022201803id_/http://www.agroparty.ru:80/releases/3/106/",
+            "https://web.archive.org/web/20040710080750id_/http://www.agroparty.ru:80/releases/3/178/",
+            "https://web.archive.org/web/20050523171303id_/http://agroparty.ru:80/releases/3/179/",
+            "https://web.archive.org/web/20040520161601id_/http://www.agroparty.ru:80/party/people.php?id=10",
+            "https://web.archive.org/web/20041124131828id_/http://www.agroparty.ru:80/releases/3/215/"
+          ],
+          "related_work_orders": [
+            "C01-Russia-DISC-B002"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2003-09-09",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Russia",
+          "entity": "ru_duma_ballot_list_2021_01#ru_kprf_chairman",
+          "title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1998-05-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1998-05-23",
+              "through": "1998-05-23",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1998-05-24",
+              "through": "2025-07-04",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2025-07-05",
+              "through": "2025-07-05",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2025-07-06",
+              "through": "2026-08-27",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-08-28",
+              "through": "2026-08-28",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2026-08-29",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Андреевич Зюганов",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Андреевич Зюганов",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Андреевич Зюганов",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20000306135653id_/http://www.kprf.ru:80/arhiv/plenum/1plenum.htm",
+            "https://web.archive.org/web/20000306152838id_/http://www.kprf.ru:80/arhiv/congr5/infsoob.htm",
+            "https://web.archive.org/web/20260727165041id_/https://kprf.ru/history/date/241272.html",
+            "https://web.archive.org/web/20250912215927id_/https://kprf.ru/party/",
+            "https://web.archive.org/web/20210426151642id_/https://kprf.ru/party-live/cknews/202177.html",
+            "https://web.archive.org/web/20210426152225id_/https://kprf.ru/party-live/cknews/202175.html"
+          ],
+          "related_work_orders": [
+            "C01-Russia-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1998-05-23",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Russia",
+          "entity": "ru_duma_ballot_list_2021_03#ru_ldpr_chairman",
+          "title": "Председатель ЛДПР — Chairman of the LDPR",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1996-11-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1996-11-23",
+              "through": "1996-11-23",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1996-11-24",
+              "through": "2022-03-29",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-03-30",
+              "through": "2022-03-30",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2022-03-31",
+              "through": "2022-05-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-05-28",
+              "through": "2025-10-01",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2025-10-03",
+              "through": "2026-08-10",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-08-12",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Вольфович Жириновский",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Вольфович Жириновский",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Леонид Эдуардович Слуцкий",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Леонид Эдуардович Слуцкий",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Леонид Эдуардович Слуцкий",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/19980207231628id_/http://www.ldpr.ru:80/book/ldpr_01_97.htm",
+            "https://web.archive.org/web/20101016073607id_/http://www.ldpr.ru:80/party/history",
+            "https://web.archive.org/web/20260216025055id_/https://ldpr.ru/party/history/",
+            "https://web.archive.org/web/20220801065115id_/https://hub.ldpr.ru/media/documents/a076ef48d5c253e3ca4e2d145168c52e4ebdd72a5068134ccd201b8c2356a210.pdf",
+            "https://web.archive.org/web/20251012234518id_/https://ldpr.ru/event/202499/",
+            "https://web.archive.org/web/20220731053447id_/https://hub.ldpr.ru/media/documents/f9bcc7681584bd9dbe1b82a8cf309149b81136ee5fd642764d286aedf725c6ff.pdf"
+          ],
+          "related_work_orders": [
+            "C01-Russia-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1996-11-23",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Russia",
+          "entity": "ru_duma_ballot_list_2021_07#ru_yabloko_chairman",
+          "title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1998-03-13",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1998-03-15",
+              "through": "2001-12-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2001-12-24",
+              "through": "2004-07-03",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2004-07-05",
+              "through": "2008-06-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2008-06-23",
+              "through": "2015-12-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2015-12-21",
+              "through": "2019-12-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2019-12-17",
+              "through": "2023-12-12",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2023-12-14",
+              "through": "2026-08-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Григорий Алексеевич Явлинский",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Григорий Алексеевич Явлинский",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Григорий Алексеевич Явлинский",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Сергей Сергеевич Митрохин",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Сергей Сергеевич Митрохин",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Эмилия Эдгардовна Слабунова",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Николай Игоревич Рыбаков",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Николай Игоревич Рыбаков",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Николай Игоревич Рыбаков",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/19980630062735id_/http://www.yabloko.ru:80/Union/gdy.html",
+            "https://web.archive.org/web/19980630062048id_/http://www.yabloko.ru:80/Press/980314.html",
+            "https://web.archive.org/web/20020123194510id_/http://www.yabloko.ru:80/Union/XCongress/index.html",
+            "https://web.archive.org/web/20020322235901id_/http://www.yabloko.ru:80/Press/2001/0112226.html",
+            "https://web.archive.org/web/20020620151948id_/http://www.yabloko.ru:80/Press/2001/011223.html",
+            "https://web.archive.org/web/20020323204010id_/http://www.yabloko.ru:80/Union/XCongress/1223yavl.html"
+          ],
+          "related_work_orders": [
+            "C01-Russia-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1998-03-14",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Russia",
+          "entity": "ru_dvr_party_self_record#ru_dvr_chairman",
+          "title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1994-07-09",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1994-07-10",
+              "through": "1994-07-10",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1994-07-11",
+              "through": "1995-06-17",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1995-06-18",
+              "through": "1995-06-18",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1995-06-19",
+              "through": "1996-09-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1996-09-22",
+              "through": "1996-09-22",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1996-09-23",
+              "through": "1997-12-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1997-12-17",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Егор Тимурович Гайдар",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Егор Тимурович Гайдар",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Егор Тимурович Гайдар",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Егор Тимурович Гайдар",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20170823160756id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4791",
+            "https://web.archive.org/web/20160803131429id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4818",
+            "https://web.archive.org/web/20160813072102id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4816",
+            "https://web.archive.org/web/20160803121516id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3661",
+            "https://web.archive.org/web/20170823162628id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3734",
+            "https://web.archive.org/web/20151006140140id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3737"
+          ],
+          "related_work_orders": [
+            "C01-Russia-DISC-B002"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1994-07-10",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
           "item": "research_role_chain",
@@ -42513,9 +45113,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 78,
-    "research_roles_with_unresolved_days": 69,
-    "next_batches": 13,
-    "next_items": 100
+    "research_roles": 83,
+    "research_roles_with_unresolved_days": 74,
+    "next_batches": 14,
+    "next_items": 112
   }
 }

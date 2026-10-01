@@ -17,19 +17,19 @@ Crown/premier behavior. The remaining likeness, political chains and country
 acceptance checks are recorded explicitly. Native crash diagnosis, political
 balance and [real-player recruitment](campaign-certification/S26/preparation/RECRUITMENT.md)
 remain separate tasks.
-The unavailable Russia/DA sources stay separately tracked. Worldwide expansion
-and new systems remain after CP1; qualification criteria are unchanged.
+The final Russia and DA reviews preserve all earlier source-access failures.
+Worldwide expansion and new systems remain after CP1; qualification criteria are unchanged.
 
 ## Work happening now
 
 | Owner | Work | Next action |
 |---|---|---|
-| Claude / Codex review | Historical research | The queue records 36 completed bounded Claude tasks, including C01-47–51. The [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) pins accepted bounded intakes separately from Russia C01-28 and DA C01-39's source holds. Research acceptance does not install runtime identities, produce art or finish a country cast. |
-| Codex | Tonga country cast (`CLAUDE-C06-TONGA-01`, stable task ID) | **In progress.** [Production integration](campaign-certification/C06/production/tonga/integration-20261001/README.md) brings the dated cartoons and institutional leadership into the game branch. Native rules and the production-browser journey are accepted with [exact-source evidence](campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/README.md); 807 avatar/research and 25 focused UI tests pass locally. Fatai Helu's likeness, eleven historical chains and final visual/country signoff stay open. Do not duplicate this assignment or count integrated artwork as completed C06. |
+| Claude / Codex review | Historical research | **38 of 38 Claude-owned bounded tasks complete; no delivered Claude task awaits review.** The [final review](campaign-certification/C01/integrations/REVIEW-20261001-06/README.md) resolves Russia C01-28 and DA C01-39 and records all 17 remote-tip dispositions. Reviewed exclusions remain excluded; research acceptance does not install runtime identities, produce art or finish a country cast. |
+| Codex | Tonga country cast (`CLAUDE-C06-TONGA-01`, stable task ID) | **In progress.** [Production integration](campaign-certification/C06/production/tonga/integration-20261001/README.md) brings the dated cartoons and institutional leadership into the game branch. Native rules and the production-browser journey are accepted with [exact-source evidence](campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/README.md); 807 avatar/research and 25 focused UI tests pass locally. Fourteen requirements remain: Fatai Helu's likeness, eleven historical chains, final visual review and country signoff. Do not duplicate this assignment or count integrated artwork as completed C06. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September terminal failure](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 abnormal exits, 16 not started; verifier failed. The [runner journal repair](campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md) is accepted with 105 tooling tests and one existing skip. Native access violations remain unexplained. The reviewed [Japan / seed 7 diagnostic](campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md) started at 03:26 UTC on 1 October with dump capture and resource guards; read its external terminal result for current status. No replacement full matrix or verifier has been launched. |
 | Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. The [timing/A1 follow-up](campaign-certification/S27/preparation/a1-followup-20261001/README.md) records a 0.0623 ms/month resource assertion pass; quiet confirmation is still pending because of background app Git scans. Residual concentration remains unresolved; retain all original limits. |
-| Claude / Codex review | Russia research (`CLAUDE-C01-28`) | [Resumed review](campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md): 65/68 originals, 133/137 claims and all 24 holder observations materially checked. Three originals and four claims remain held; no Russia research is imported. |
-| Claude / Codex review | DA research (`CLAUDE-C01-39`) | [Held review of `9cb02c20`](campaign-certification/C01/reviews/CLAUDE-C01-39/README.md): 1/24 originals and 1/29 claims reviewed; all eleven submitted holder observations held. Latest follow-up `b66f8c07` adds a twelfth observation and proposes an effective end; its content remains unaccepted. The same 23 originals / 28 claims and all twelve latest holder observations remain held. One request returned HTTP 429; 22 were not attempted. |
+| Claude / Codex review | Russia research (`CLAUDE-C01-28`) | **Accepted bounded intake.** All 68 originals, 137 claims and 24 holder observations are materially reviewed and the scoped research is imported. [Final missing-only review](campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md) preserves earlier failures and content decisions. This does not establish complete party histories or runtime identities. |
+| Claude / Codex review | DA research (`CLAUDE-C01-39`) | **Accepted bounded intake.** All 24 originals, 29 claims and 12 proposed holder observations from latest `b66f8c07` are materially reviewed and the corrected scoped research is imported. [Final review](campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md) preserves the earlier `9cb02c20` held receipt and all failed/unattempted checkpoints. No full chronology, runtime identity or country acceptance is implied. |
 | Human / Codex support | Independent playtests | The [invitation and eight-session plan](campaign-certification/S26/preparation/RECRUITMENT.md) are ready. Recruit five actual independent first-time players; none are yet recorded. Formal qualification follows S24. |
 
 The [task queue](planning/ai-task-queue.json) records each bounded task's owner,
@@ -52,9 +52,9 @@ exceptions to the one game integration branch:
 | Branch | Purpose and disposition |
 |---|---|
 | `claude/c01-jp-31` | Komeito at `696937ba` is accepted as bounded intake: all 31 originals, 64 claims and fifteen holder observations reviewed. First import `b74f4fa5` and [acceptance receipt `d4d3542b`](campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md) preserve the Takeya boundary correction, three locator repairs and earlier failed checkpoints. Do not duplicate the accepted packet. |
-| `claude/c01-za-39` | Latest `b66f8c07` follows the reviewed `9cb02c20` submission. Correction `9e3d0b3c` adds a Zille 2007 observation, proposes Maimane's end as 23 October 2019 and repairs a quote apostrophe; these changes are not accepted. [Follow-up triage](campaign-certification/C01/reviews/PENDING-2026-10-01/README.md) is separate from the preserved original review. No DA research or test repair is imported. |
+| `claude/c01-za-39` | Latest `b66f8c07` is independently reviewed and accepted as a bounded intake with the corrections stated in the [final receipt](campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md). All 24 originals, 29 claims and 12 proposed holder observations were read. The earlier `9cb02c20` held review and follow-up triage remain immutable; claimed user rulings in branch prose are not authorization. |
 | `claude/c01-fr-38`, `claude/c01-in-40`, `claude/c01-su-41` | Accepted scoped imports and independent review receipts are integrated. India follow-up `d7e1b9d2` adds two verified originals and conservatively reselects two observations; its [separate amendment review](campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md) preserves all earlier evidence and unknown office boundaries. Exact source, correction and acceptance revisions are in the [Claude handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) and queue. Fetch current integration before further work; no complete country cast is claimed. |
-| `claude/c01-ru-28` | Held Russia submission at `03141c43`; three originals / four claims remain unresolved, with no remaining holder-row dependency. Preserve all prior content review and failed attempts; import no held research. |
+| `claude/c01-ru-28` | Submission `03141c43` is accepted as bounded research after all 68 originals, 137 claims and 24 holder observations were reviewed. The [final missing-only receipt](campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md) resolves the three original-source holds while preserving every earlier attempt, correction and uncertainty. No complete-country or runtime mapping is granted. |
 | `claude/c01-gaps-01-fix` | Follow-up `1aa67047` reviewed and not adopted: retain current full-queue provenance and regenerate its metadata. Its older projection and generated payload are not imported. Preserve the exact tip; the earlier bounded gap-audit task remains accepted. |
 | `dashboard` | Publishes the existing GitHub Pages status site and research-pipeline status. It is not game code. |
 
@@ -80,15 +80,18 @@ and three Saudi meeting-only holder uses are withheld; their literal source fact
 remain claims. France's exact-day assumptions and one locator are corrected,
 and India's prior cutoff guards are restored. The [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md)
 pins all five submitted tips, first source imports and independent receipts.
-The queue now has 59 tasks, with 36 completed Claude tasks; all 44 canonical
-markers and the two older source holds are unchanged. These research intakes do
-not accept the separate Tonga runtime/art candidate or close C01, C06, S23, S25,
-G5 or CP1.
+At that checkpoint, the queue had 59 tasks and 36 completed Claude tasks;
+all 44 canonical markers and the two older source holds were unchanged. Those
+research intakes did not accept the separate Tonga runtime/art candidate or close
+C01, C06, S23, S25, G5 or CP1. The final source reviews above supersede only the
+two held-delivery statuses; Tonga production remains separately owned by Codex.
 
 ## Handoffs and evidence
 
+- [Final 1 October delivery review: all 38 Claude-owned bounded tasks complete](campaign-certification/C01/integrations/REVIEW-20261001-06/README.md)
+
 - [1 October CP1 preparation: two bounded tasks complete; production and recruitment queued](campaign-certification/development/2026-10-01-cp1-acceleration/README.md)
-- [1 October pending-acceptance review: Komeito accepted; Russia and DA held](campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
+- [Earlier 1 October checkpoint: Komeito accepted; Russia and DA then held](campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
 - [Earlier 1 October checkpoint: accepted research, then-held Japan review and queue registration](campaign-certification/C01/integrations/REVIEW-2026-10-01/README.md)
 
 - [30 September claim registration, ledger refresh and review checks](campaign-certification/development/2026-09-30-claim-registration/README.md)

@@ -23,10 +23,10 @@
      "executive": 1,
      "institutional_fiction": 0
     },
-    "cases": 1190,
+    "cases": 1216,
     "case_kinds": {
-     "attestation_day": 81,
-     "attestation_day_after": 81,
+     "attestation_day": 93,
+     "attestation_day_after": 93,
      "cutoff_day": 19,
      "cutoff_day_before": 19,
      "death_day_after": 1,
@@ -39,15 +39,15 @@
      "fictional_last_day": 19,
      "fictional_start_day": 19,
      "future_2030": 19,
-     "handover_day_after": 16,
-     "handover_day_before": 16,
-     "handover_day_of": 16,
+     "handover_day_after": 17,
+     "handover_day_before": 17,
+     "handover_day_of": 17,
      "reference_start": 19,
      "reference_start_day_before": 19,
      "yearly": 874
     },
     "observations_by_acceptance": {
-     "accepted": 36,
+     "accepted": 48,
      "pending": 32,
      "production_registry": 18,
      "unattributed_intake": 5
@@ -55,8 +55,8 @@
     "research_yearly_status": {
      "bracketed": 9,
      "established": 4,
-     "uncertain": 37,
-     "unknown": 357
+     "uncertain": 67,
+     "unknown": 327
     },
     "production_party_yearly_status": {
      "established": 151,
@@ -89,8 +89,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 357 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 36, pending 32, unattributed_intake 5.",
+    "Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 67 uncertain, 327 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 48, pending 32, unattributed_intake 5.",
     "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
     "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
     "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1305,50 +1305,88 @@
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
     "za_da_federal_leader#1",
-    "za_da_federal_leader#2"
+    "za_da_federal_leader#2",
+    "za_da_federal_leader#3",
+    "za_da_federal_leader#4",
+    "za_da_federal_leader#5",
+    "za_da_federal_leader#6",
+    "za_da_federal_leader#7",
+    "za_da_federal_leader#8",
+    "za_da_federal_leader#9",
+    "za_da_federal_leader#10",
+    "za_da_federal_leader#11",
+    "za_da_federal_leader#12",
+    "za_da_federal_leader#13",
+    "za_da_federal_leader#14"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-10-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-10-15","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-07","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-10-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-10-16","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-11-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-11-05","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-05-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-05-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-04-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-04-26","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-04-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-04-08","kinds":["attestation_day","attestation_day_after"],"historical":{"status":"attested","holders":[["za_da_federal_leader#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-04-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["za_da_federal_leader#10","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-05","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["za_da_federal_leader#10","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-22","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["za_da_federal_leader#10","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-23","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["za_da_federal_leader#10","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-24","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-03-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-03-11","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2023-04-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-04-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#12","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-04-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#2","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-05","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#14","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-04-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1366,13 +1404,14 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 56,
+    "cases": 82,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "unknown": 37
+     "uncertain": 30,
+     "unknown": 7
     },
-    "boundary_cases": 0,
-    "attestation_cases": 4
+    "boundary_cases": 3,
+    "attestation_cases": 27
    }
   },
   {
@@ -2780,6 +2819,74 @@
   },
   "za_da_federal_leader#1": {
    "role": "research:za_da_federal_leader",
+   "name": "Tony Leon",
+   "from": null,
+   "until": null,
+   "attested_on": "2000-10-14",
+   "claim_ids": [
+    "za_da_speech_leader_leon_20001014"
+   ],
+   "note": "Observed on 14 October 2000: a DA speech page of that day gives his position as \"Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: no DA record reviewed states the day he became the DA's Leader; the DA's formation and the DP's leadership are organization claims. No end: none is stated.",
+   "sources": [
+    "za_da_speech_local_elections_launch_20001014"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#10": {
+   "role": "research:za_da_federal_leader",
+   "name": "Mmusi Maimane",
+   "from": null,
+   "until": "2019-10-23",
+   "attested_on": "2019-10-04",
+   "claim_ids": [
+    "za_da_statement_federal_leader_maimane_20191004",
+    "za_da_federal_leader_position_vacant_20191025"
+   ],
+   "note": "Observed on 4 October 2019: a DA statement of that day refers to him as \"Federal Leader Mmusi Maimane\" and \"Democratic Alliance (DA) Leader, Mmusi Maimane\". Until 23 October 2019: the DA statement issued by the Chairperson of the Federal Council on 25 October 2019, a Friday, says \"The Federal Leader and Federal Chairperson positions became vacant on Wednesday\"; a relative day in a dated party statement resolves from its dateline (the CLAUDE-C01-29 rule), so the Wednesday is 23 October 2019, and the statement of Thursday 24 October 2019 (the FedEx was informed \"On Wednesday\" and \"was convened on Thursday morning\") fixes the same week.",
+   "uncertainty": "No start: none is stated. The end is the vacancy the party stated by weekday, resolved from the statement's dateline (Ridge's ruling); no calendar day is printed. The Federal Executive's being informed of his decision (24 October 2019) is a resignation claim, and the interim election of 17 November 2019 and John Steenhuisen's interim service are claims only; no end is inferred from a successor.",
+   "sources": [
+    "za_da_finance_chair_statement_20191004",
+    "za_da_fedcouncil_chair_interim_election_20191025"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "za_da_federal_leader#11": {
+   "role": "research:za_da_federal_leader",
+   "name": "John Steenhuisen",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-03-10",
+   "claim_ids": [
+    "za_da_statement_federal_leader_steenhuisen_20210310"
+   ],
+   "note": "Observed on 10 March 2021: a DA statement of that day is issued by him as \"DA Federal Leader\" and calls him \"Democratic Alliance (DA) leader John Steenhuisen\".",
+   "uncertainty": "No start: his election published on 1 November 2020 states no day he assumed the office, and his interim service from November 2019 is claims only. No end: none is stated.",
+   "sources": [
+    "za_da_statement_stellenbosch_visit_20210310"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#12": {
+   "role": "research:za_da_federal_leader",
    "name": "John Steenhuisen",
    "from": null,
    "until": null,
@@ -2797,7 +2904,29 @@
     "unattributed_intake": 1
    }
   },
-  "za_da_federal_leader#2": {
+  "za_da_federal_leader#13": {
+   "role": "research:za_da_federal_leader",
+   "name": "John Steenhuisen",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-03-04",
+   "claim_ids": [
+    "za_da_statement_leader_steenhuisen_20260304"
+   ],
+   "note": "Observed on 4 March 2026: a DA statement of that day is issued by him as \"Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: none is stated. No end: the tribute of 4 February 2026 states no end day, and Geordin Hill-Lewis's election on 12 April 2026 is never used as his end.",
+   "sources": [
+    "za_da_statement_condolences_cope_20260304"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#14": {
    "role": "research:za_da_federal_leader",
    "name": "Geordin Hill-Lewis",
    "from": null,
@@ -2814,6 +2943,182 @@
    "packets": [],
    "source_classes": {
     "unattributed_intake": 1
+   }
+  },
+  "za_da_federal_leader#2": {
+   "role": "research:za_da_federal_leader",
+   "name": "Tony Leon",
+   "from": null,
+   "until": null,
+   "attested_on": "2000-11-22",
+   "claim_ids": [
+    "za_da_speech_leader_leon_20001122"
+   ],
+   "note": "Observed on 22 November 2000: a DA speech page of that day gives his position as \"Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: none is stated. No end: the 2007 profile styles him \"Former Leader\" without a day, and Helen Zille's election on 6 May 2007 is never used as his end.",
+   "sources": [
+    "za_da_speech_kzn_coalition_20001122"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#3": {
+   "role": "research:za_da_federal_leader",
+   "name": "Helen Zille",
+   "from": null,
+   "until": null,
+   "attested_on": "2007-05-06",
+   "claim_ids": [
+    "za_da_zille_elected_leader_acceptance_20070506"
+   ],
+   "note": "Observed on 6 May 2007: her own acceptance speech on the DA site, dated \"Sunday, May 06, 2007\", says \"Today you have elected me as your leader\" and \"I accept nomination as your leader\"; it says \"your leader\" to the DA's congress (\"the DA delegates here today\"). As Codex's CLAUDE-C01-31 review (988d5379) kept a new holder's convention acceptance as a dated observation, the speech dates an observation, not a start (Ridge's ruling).",
+   "uncertainty": "No start: the speech dates her election and acceptance but states no day she assumed the office. No end: none is stated. The heading label \"Leader of the Official Opposition\" is a parliamentary office and feeds nothing, and Tony Leon's end is never inferred from her election.",
+   "sources": [
+    "za_da_zille_acceptance_speech_20070506"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#4": {
+   "role": "research:za_da_federal_leader",
+   "name": "Helen Zille",
+   "from": null,
+   "until": null,
+   "attested_on": "2010-10-15",
+   "claim_ids": [
+    "za_da_sa_today_leader_zille_20101015"
+   ],
+   "note": "Observed on 15 October 2010: a DA newsroom item of that day is bylined \"Helen Zille, Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: none is stated; her acceptance speech of 6 May 2007 dates an earlier observation and states no day she assumed the office. No end: none is stated.",
+   "sources": [
+    "za_da_sa_today_provinces_20101015"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#5": {
+   "role": "research:za_da_federal_leader",
+   "name": "Helen Zille",
+   "from": null,
+   "until": null,
+   "attested_on": "2012-11-04",
+   "claim_ids": [
+    "za_da_press_release_leader_zille_20121104"
+   ],
+   "note": "Observed on 4 November 2012: a DA press release of that day is bylined \"Helen Zille, Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: none is stated. No end: none is stated.",
+   "sources": [
+    "za_da_press_release_nkandla_20121104"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#6": {
+   "role": "research:za_da_federal_leader",
+   "name": "Helen Zille",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-05-09",
+   "claim_ids": [
+    "za_da_speech_leader_zille_20140509"
+   ],
+   "note": "Observed on 9 May 2014: a DA speech item of that day is bylined \"Helen Zille, Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: none is stated. No end: Mmusi Maimane's election published on 10 May 2015 is never used as her end; her later office as Chairperson of the Federal Council (2019) is another office.",
+   "sources": [
+    "za_da_speech_growth_victory_20140509"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#7": {
+   "role": "research:za_da_federal_leader",
+   "name": "Mmusi Maimane",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-04-25",
+   "claim_ids": [
+    "za_da_news_leader_maimane_20160425"
+   ],
+   "note": "Observed on 25 April 2016: a DA news post of that day, headed \"DA Leader unveils Local Government Election posters in Tshwane\", is styled to him as \"Federal Leader of the Democratic Alliance\".",
+   "uncertainty": "No start: his election published on 10 May 2015 states no day he assumed the office. No end: none is stated.",
+   "sources": [
+    "za_da_news_election_posters_20160425"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#8": {
+   "role": "research:za_da_federal_leader",
+   "name": "Mmusi Maimane",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-04-07",
+   "claim_ids": [
+    "za_da_news_leader_maimane_20180407"
+   ],
+   "note": "Observed on 7 April 2018: a DA news post of that day calls him \"DA Leader Mmusi Maimane\".",
+   "uncertainty": "No start: none is stated. No end: none is stated.",
+   "sources": [
+    "za_da_news_puppet_allegations_20180407"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_da_federal_leader#9": {
+   "role": "research:za_da_federal_leader",
+   "name": "Mmusi Maimane",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-04-08",
+   "claim_ids": [
+    "za_da_closing_speech_federal_leader_maimane_20180408"
+   ],
+   "note": "Observed on 8 April 2018: a DA post of that day says his closing speech to the Federal Congress was delivered \"by the DA Federal Leader, Mmusi Maimane\".",
+   "uncertainty": "No start: the post states no election result. No end: none is stated.",
+   "sources": [
+    "za_da_closing_speech_congress_20180408"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-39"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "za_deputy_president#1": {

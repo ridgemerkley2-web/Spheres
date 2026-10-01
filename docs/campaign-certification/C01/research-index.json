@@ -7,10 +7,10 @@
   "counts": {
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
-    "organization_observations": 844,
+    "organization_observations": 847,
     "institution_observations": 36,
-    "sources": 2127,
-    "source_claims": 5136,
+    "sources": 2219,
+    "source_claims": 5302,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -305,11 +305,11 @@
     {
       "nation": "Russia",
       "packet": "docs/campaign-certification/C01/research/russia.json",
-      "organization_observations": 14,
+      "organization_observations": 17,
       "institution_observations": 7,
-      "role_observations": 9,
-      "source_claims": 342,
-      "mapping_pending": 21,
+      "role_observations": 14,
+      "source_claims": 479,
+      "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -351,7 +351,8 @@
           "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
           "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim.",
           "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched.",
-          "CLAUDE-C01-51 extends ru_rsfsr_president and ru_rsfsr_vice_president with sixteen official-portal acts of 1991-1993 (twenty claims): four dated attestations of Борис Николаевич Ельцин signing as 'Президент РСФСР' (July 1991 to January 1992) and five of Александр Владимирович Руцкой as Vice-President (July 1991 to September 1993), the last ending on 3 October 1993 with decree 1576 (in force on signature, pending a ruling). The suspension of 1 September 1993 is a claim on the vice-presidency. The declared termination of Yeltsin's powers and the declared acting service of 21-22 September 1993, and the President's decree rejecting it, are five claims appended to ru_president, which gains no holder. The C01-05 and C01-14 holders, party offices and game mappings are untouched."
+          "CLAUDE-C01-51 extends ru_rsfsr_president and ru_rsfsr_vice_president with sixteen official-portal acts of 1991-1993 (twenty claims): four dated attestations of Борис Николаевич Ельцин signing as 'Президент РСФСР' (July 1991 to January 1992) and five of Александр Владимирович Руцкой as Vice-President (July 1991 to September 1993), the last ending on 3 October 1993 with decree 1576 (in force on signature, pending a ruling). The suspension of 1 September 1993 is a claim on the vice-presidency. The declared termination of Yeltsin's powers and the declared acting service of 21-22 September 1993, and the President's decree rejecting it, are five claims appended to ru_president, which gains no holder. The C01-05 and C01-14 holders, party offices and game mappings are untouched.",
+          "CLAUDE-C01-28 adds five party-leader roles: ru_kprf_chairman, ru_ldpr_chairman and ru_yabloko_chairman on the 2021 ballot-list observations 01, 03 and 07, and ru_apr_chairman and ru_dvr_chairman on two new organization observations made only from those parties' own records (ru_apr_party_self_record and ru_dvr_party_self_record), plus a third new observation, ru_vybor_rossii_bloc_1993, from the 1993 bloc's own programme, with no role. It records 24 holder observations of ten people from party records of 1994-2026 (retrospective party claims reach back to 1990), keeps congresses, elections, registrations, reorganisations, the 2022 death and interim, the 2008 accession and the 2001 dissolution as claims only, gives no holder a from or an until, and establishes no organization identity, lifecycle, game mapping, current roster, succession eligibility or artwork claim. The 2021 faction heads are unchanged."
         ]
       }
     },
@@ -392,7 +393,7 @@
       "organization_observations": 52,
       "institution_observations": 1,
       "role_observations": 11,
-      "source_claims": 471,
+      "source_claims": 500,
       "mapping_pending": 53,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -432,6 +433,7 @@
           "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
           "ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30, ZA-ACDP-01..05, ZA-FF-01..09, ZA-IFP-01..08): three party-leader roles, za_acdp_president, za_ff_leader and za_ifp_president, on the AFRICAN CHRISTIAN DEMOCRATIC PARTY, VRYHEIDSFRONT PLUS and INKATHA FREEDOM PARTY observations, with 22 holder observations of seven people (Kenneth Meshoe; Constand Viljoen, Pieter Mulder, Pieter Groenewald and Corné Mulder; Mangosuthu Buthelezi and Velenkosini Hlabisa) dated by the parties' own in-office attestations and no start or end. This packet conservatively retains in-office attestations rather than promoting the reviewed election, acceptance and retirement statements into exact term boundaries; dated IFP retirement statements, including the 24 August 2019 address and retrospective timeline, remain claims only. Elections, selections, acceptances, result publications, retirement and valedictory statements, the President Emeritus title, deaths and the parliamentary leader office are claims only. The founding, renaming and merger claims (December 1993; March 1994 and 27 September 2003; 14 or 10 July 1990) are organization claims that set no lifecycle or identity. Ministerial, parliamentary and legislature offices never feed the party roles, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
           "PAC Presidents 1990-2026 (CLAUDE-C01-32, ZA-PAC-01..11): the party office is a separate role, za_pac_president, on the PAN AFRICANIST CONGRESS OF AZANIA observation, with fourteen holder observations of six people (Stanley Mogoba, Letlapa Mphahlele, Alton Mphethi, Luthando Mbinda, Narius Moloto and Mzwanele Nyhontso) dated by PAC in-office attestations and one High Court judgment, and no start or end; six observations from the disputed years 2014-2021 are marked disputed and no dispute is resolved by inference. No record found states the day any President assumed or left the office; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings and congress sessions are claims only, and so are the claims of two PAC posts that republish news text without credit and of an undated statement whose page carries only an edit stamp. Zephania Mothopeng, Clarence Makwetu and Motsoko Pheko appear only in retrospective lists, election references and an undated manifesto. Constitution amendments are organization claims that set no lifecycle or identity. Parliamentary seats and ministerial office never feed the role, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
+          "DA Federal Leaders 2000-2026 (CLAUDE-C01-39, ZA-DA-01..10): the party office stays the existing role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation, now with fourteen holder observations of five people (twelve added from DA records, 2000-2026; the S10h observations of 2023 and 2026 unchanged); none has a stated start, and one (Mmusi Maimane, 2019) has an end, 23 October 2019, resolved from the dateline of the DA's vacancy statement of 25 October 2019. The Democratic Party (1989-2000) has no observation: its leaders and the DA's formation are claims only. Interim service, result publications and the resignation decision never feed a holder; party office and state office stay separate.",
           "Deputy Presidents 1994-2026 (CLAUDE-C01-21, ZA-DP-01..10): the Deputy President is a separate role, za_deputy_president, in za_presidency, with twelve holder observations from primary records; only Jacob Zuma's start (17 June 1999) is stated and no holder has a stated end. Announcements, appointments and their notices, scheduled oaths, releases, resignations and their stated effect, Assembly-seat events and retrospective lists are claims only; acting service as President is never a holder; the President's roles and the ANC's party office are unchanged, and no game identity or portrait permission is granted.",
           "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
         ]
@@ -2447,12 +2449,12 @@
         "ru_duma_ballot_list_2021_12",
         "ru_duma_ballot_list_2021_13",
         "ru_duma_ballot_list_2021_14",
+        "ru_apr_party_self_record",
+        "ru_vybor_rossii_bloc_1993",
+        "ru_dvr_party_self_record",
         "ru_duma_faction_20211012_er",
         "ru_duma_faction_20211012_kprf",
-        "ru_duma_faction_20211012_srzp",
-        "ru_duma_faction_20211012_ldpr",
-        "ru_duma_faction_20211012_nl",
-        "ru_rsfsr_presidency"
+        "ru_duma_faction_20211012_srzp"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2467,6 +2469,9 @@
         "C01-Russia-ROLE-001"
       ],
       "members": [
+        "ru_duma_faction_20211012_ldpr",
+        "ru_duma_faction_20211012_nl",
+        "ru_rsfsr_presidency",
         "ru_government"
       ],
       "maximum_reviewed_records": 10,
@@ -2717,8 +2722,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 680168,
-      "sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c"
+      "bytes": 910346,
+      "sha256": "ff3d166ec6b4b2b7406e48f6d55b907b632dfcb988350e5a307aeea4df5537e9"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
@@ -2727,8 +2732,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
-      "bytes": 1007417,
-      "sha256": "51f21208527dc405f7ef4f321d292c688dfdb3628bf8c98c4031c90762faf2d6"
+      "bytes": 1081585,
+      "sha256": "79664fc62be19ec17602f2524e595ac90f7a06cc7c8bea13047c285b7d09cb4b"
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",

@@ -89,6 +89,9 @@ COMMIT_PACKETS = {
     '8c891fd5': 'CLAUDE-C01-49',
     'fc0fad30': 'CLAUDE-C01-50',
     '90f7f54c': 'CLAUDE-C01-51',
+    # Final Russia/DA source imports, after all original-content holds resolved.
+    'bd5a41d0': 'CLAUDE-C01-28',
+    'e56916b4': 'CLAUDE-C01-39',
 }
 
 EVIDENCE_CLASSES = {
@@ -111,7 +114,7 @@ IN_FLIGHT = {
                       'scope': 'Bharatiya Janata Party presidents, 1990-2026'},
     'CLAUDE-C01-28': {'case': 'USSR -> Russia',
                       'targets': ['party:Russia/' + p for p in ('ru_kprf', 'ru_ldpr', 'ru_yabloko', 'ru_apr', 'ru_vybor')],
-                      'scope': 'Five Russian party-leader chains; held on three originals/four claims after partial source review, no research import or accepted mapping'},
+                      'scope': 'Five Russian party-leader chains; bounded observations accepted after complete original review, no full chronology or runtime mapping'},
     'CLAUDE-C01-29': {'case': 'Japan',
                       'targets': ['party:Japan/jp_jsp', 'party:Japan/jp_jsp/jp_jsp_1945', 'party:Japan/jp_jsp/jp_sdp_1996'],
                       'scope': 'Japan Socialist Party / Social Democratic Party chair observations; bounded intake accepted, no runtime mapping'},
@@ -137,7 +140,7 @@ IN_FLIGHT = {
     'CLAUDE-C01-38': {'case': 'France', 'targets': ['institution:fr_prime_minister'],
                       'scope': 'French prime ministers, 2014-2026; bounded observations accepted, no effective terms or runtime mapping'},
     'CLAUDE-C01-39': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_dp', 'role:za_da_federal_leader'],
-                      'scope': 'Democratic Alliance federal leaders, 2000-2026; held on 23 unverified originals after rate limiting, no accepted research or runtime mapping'},
+                      'scope': 'Democratic Alliance federal leaders, 2000-2026; bounded observations accepted with locator corrections, no full chronology or runtime mapping'},
     'CLAUDE-C01-40': {'case': 'India', 'targets': ['party:India/in_cpm'],
                       'scope': 'CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping'},
     'CLAUDE-C01-41': {'case': 'USSR -> Russia', 'targets': ['party:USSR/su_cpsu'],

@@ -107,30 +107,30 @@
    },
    "statistics": {
     "roles": {
-     "research": 9,
+     "research": 14,
      "production_party": 5,
      "executive": 1,
      "institutional_fiction": 0
     },
-    "cases": 953,
+    "cases": 1260,
     "case_kinds": {
-     "attestation_day": 41,
-     "attestation_day_after": 41,
-     "cutoff_day": 15,
-     "cutoff_day_before": 15,
-     "fictional_end_exclusive": 15,
-     "fictional_last_day": 15,
-     "fictional_start_day": 15,
-     "future_2030": 15,
+     "attestation_day": 65,
+     "attestation_day_after": 65,
+     "cutoff_day": 20,
+     "cutoff_day_before": 20,
+     "fictional_end_exclusive": 20,
+     "fictional_last_day": 20,
+     "fictional_start_day": 20,
+     "future_2030": 20,
      "handover_day_after": 31,
      "handover_day_before": 31,
      "handover_day_of": 31,
-     "reference_start": 15,
-     "reference_start_day_before": 15,
-     "yearly": 690
+     "reference_start": 20,
+     "reference_start_day_before": 20,
+     "yearly": 920
     },
     "observations_by_acceptance": {
-     "accepted": 27,
+     "accepted": 51,
      "pending": 24,
      "unattributed_intake": 5
     },
@@ -138,7 +138,7 @@
      "bracketed": 1,
      "established": 3,
      "uncertain": 157,
-     "unknown": 172
+     "unknown": 357
     },
     "production_party_yearly_status": {
      "unresearched": 185
@@ -161,8 +161,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 172 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 27, pending 24, unattributed_intake 5.",
+    "Research roles: 14 (14 with holder observations); 3 of 518 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 357 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 51, pending 24, unattributed_intake 5.",
     "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
     "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
     "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
@@ -1950,6 +1950,502 @@
    }
   },
   {
+   "key": "research:ru_kprf_chairman",
+   "identity": "Russia",
+   "family": "research_role",
+   "role_id": "ru_kprf_chairman",
+   "title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+   "kind": "party_leader",
+   "entry": {
+    "id": "ru_duma_ballot_list_2021_01",
+    "category": "organizations",
+    "name": "Политическая партия «КОММУНИСТИЧЕСКАЯ ПАРТИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ»",
+    "kind": "federal_election_ballot_party_list",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "ru_kprf_chairman#1",
+    "ru_kprf_chairman#2",
+    "ru_kprf_chairman#3"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-05-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_kprf_chairman#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-05-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-07-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_kprf_chairman#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-07-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_kprf_chairman#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-29","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 58,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 6
+   }
+  },
+  {
+   "key": "research:ru_ldpr_chairman",
+   "identity": "Russia",
+   "family": "research_role",
+   "role_id": "ru_ldpr_chairman",
+   "title": "Председатель ЛДПР — Chairman of the LDPR",
+   "kind": "party_leader",
+   "entry": {
+    "id": "ru_duma_ballot_list_2021_03",
+    "category": "organizations",
+    "name": "Политическая партия ЛДПР – Либерально-демократическая партия России",
+    "kind": "federal_election_ballot_party_list",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "ru_ldpr_chairman#1",
+    "ru_ldpr_chairman#2",
+    "ru_ldpr_chairman#3",
+    "ru_ldpr_chairman#4",
+    "ru_ldpr_chairman#5"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-11-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_ldpr_chairman#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-11-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-03-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_ldpr_chairman#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-03-31","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_ldpr_chairman#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-10-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_ldpr_chairman#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-10-03","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_ldpr_chairman#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-12","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 62,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 10
+   }
+  },
+  {
+   "key": "research:ru_yabloko_chairman",
+   "identity": "Russia",
+   "family": "research_role",
+   "role_id": "ru_yabloko_chairman",
+   "title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+   "kind": "party_leader",
+   "entry": {
+    "id": "ru_duma_ballot_list_2021_07",
+    "category": "organizations",
+    "name": "Политическая партия «Российская объединенная демократическая партия «ЯБЛОКО»",
+    "kind": "federal_election_ballot_party_list",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "ru_yabloko_chairman#1",
+    "ru_yabloko_chairman#2",
+    "ru_yabloko_chairman#3",
+    "ru_yabloko_chairman#4",
+    "ru_yabloko_chairman#5",
+    "ru_yabloko_chairman#6",
+    "ru_yabloko_chairman#7",
+    "ru_yabloko_chairman#8",
+    "ru_yabloko_chairman#9"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-03-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-03-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-12-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-12-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-07-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-07-05","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-06-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-06-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-12-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-12-20","kinds":["attestation_day","attestation_day_after"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-12-21","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-12-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-12-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-12-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-12-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_yabloko_chairman#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 69,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 17
+   }
+  },
+  {
+   "key": "research:ru_apr_chairman",
+   "identity": "Russia",
+   "family": "research_role",
+   "role_id": "ru_apr_chairman",
+   "title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+   "kind": "party_leader",
+   "entry": {
+    "id": "ru_apr_party_self_record",
+    "category": "organizations",
+    "name": "Аграрная партия России",
+    "kind": "political_party_self_record_observation",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "ru_apr_chairman#1",
+    "ru_apr_chairman#2",
+    "ru_apr_chairman#3"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-09-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_apr_chairman#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-09-10","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-05-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_apr_chairman#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-05-29","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-09-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_apr_chairman#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-09-27","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 58,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 6
+   }
+  },
+  {
+   "key": "research:ru_dvr_chairman",
+   "identity": "Russia",
+   "family": "research_role",
+   "role_id": "ru_dvr_chairman",
+   "title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+   "kind": "party_leader",
+   "entry": {
+    "id": "ru_dvr_party_self_record",
+    "category": "organizations",
+    "name": "Демократический выбор России",
+    "kind": "political_party_self_record_observation",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "ru_dvr_chairman#1",
+    "ru_dvr_chairman#2",
+    "ru_dvr_chairman#3",
+    "ru_dvr_chairman#4"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-07-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_dvr_chairman#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-07-11","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-06-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_dvr_chairman#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-06-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-09-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_dvr_chairman#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-09-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-12-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_dvr_chairman#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-12-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 60,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 8
+   }
+  },
+  {
    "key": "research:ru_duma_faction_20211012_er_head",
    "identity": "Russia",
    "family": "research_role",
@@ -2917,6 +3413,72 @@
   }
  ],
  "observations": {
+  "ru_apr_chairman#1": {
+   "role": "research:ru_apr_chairman",
+   "name": "Михаил Иванович Лапшин",
+   "from": null,
+   "until": null,
+   "attested_on": "2003-09-09",
+   "claim_ids": [
+    "ru_apr_xi_congress_lapshin_reports_as_chairman_20030909"
+   ],
+   "note": "Observed on 9 September 2003: the release on the XI extraordinary congress says it heard a report by \"председатель Аграрной партии Михаил Лапшин\".",
+   "uncertainty": "No start: his elections of 1993, 1994, 1999 and 2001, his remaining chairman in 1997 and the confirmation of his powers in 1998 rest on the party's undated historical note of 2002 (retrospective claims), and no contemporaneous congress record was found. No end: the release of 26 May 2004 calls the leadership he headed on 26 April 2004 \"старое руководство\", and Plotnikov's election of 28 April 2004 is a separate claim; neither states the day his office ended.",
+   "sources": [
+    "ru_apr_release_xi_congress_20030910"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_apr_chairman#2": {
+   "role": "research:ru_apr_chairman",
+   "name": "Владимир Николаевич Плотников",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-05-28",
+   "claim_ids": [
+    "ru_apr_plenum_plotnikov_reports_as_chairman_20040528"
+   ],
+   "note": "Observed on 28 May 2004: the release on the organisational plenum of the Central Council says \"На пленуме с докладом выступил Председатель Аграрной партии России Владимир Плотников\".",
+   "uncertainty": "No start: the XII congress's election of 28 April 2004 (226 votes to 185) states no assumption of office, and two newspaper reprints on the party site imply the congress met on 27 April (leads, not used). No end here: the 2008 attestation is a separate observation.",
+   "sources": [
+    "ru_apr_release_plenum_20040531"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_apr_chairman#3": {
+   "role": "research:ru_apr_chairman",
+   "name": "Владимир Николаевич Плотников",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-09-26",
+   "claim_ids": [
+    "ru_apr_plenum_plotnikov_reports_as_chairman_20080926"
+   ],
+   "note": "Observed on 26 September 2008: an item on the plenum of the Central Council says \"С докладом выступил Председатель Аграрной партии России В.Н.Плотников\".",
+   "uncertainty": "No end: the XV congress's decision of 10 October 2008 to reorganise the party by accession to \"ЕДИНАЯ РОССИЯ\" is an organization event, not the end of his office, and the completion of the accession was not documented.",
+   "sources": [
+    "ru_apr_home_page_20081016"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "ru_duma_faction_20211012_er_head#1": {
    "role": "research:ru_duma_faction_20211012_er_head",
    "name": "Владимир Васильев",
@@ -3410,6 +3972,95 @@
     "accepted": 1
    }
   },
+  "ru_dvr_chairman#1": {
+   "role": "research:ru_dvr_chairman",
+   "name": "Егор Тимурович Гайдар",
+   "from": null,
+   "until": null,
+   "attested_on": "1994-07-10",
+   "claim_ids": [
+    "ru_dvr_council_resolution_signed_by_chairman_19940710"
+   ],
+   "note": "Observed on 10 July 1994: the party Council's resolution on membership dues, adopted that day, is signed \"Председатель Партии Е.Гайдар\".",
+   "uncertainty": "No start: the founding congress of 12-13 June 1994 elected the Political Council he chaired, but no record states the day of the vote or of any assumption of office; the congress edition, the December 1994 statement and the 2001 information page are undated attestations. No end here: the 1995 attestation is a separate observation.",
+   "sources": [
+    "ru_dvr_information_bulletin_1_1994"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_dvr_chairman#2": {
+   "role": "research:ru_dvr_chairman",
+   "name": "Егор Тимурович Гайдар",
+   "from": null,
+   "until": null,
+   "attested_on": "1995-06-18",
+   "claim_ids": [
+    "ru_dvr_ii_congress_approves_chairman_work_19950618",
+    "ru_dvr_ii_congress_decision_signed_by_chairman_19950618"
+   ],
+   "note": "Observed on 18 June 1995: the II (extraordinary) congress's decision of that day approves the work of \"Председателя партии Е.Т.Гайдара\" and is signed \"Председатель партии ДВР Е.Т.ГАЙДАР\".",
+   "uncertainty": "No start or end: the congress statement printing both 17 and 18 June is an undated claim; no record states the day his office began or ended.",
+   "sources": [
+    "ru_dvr_ii_congress_decision_19950618"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_dvr_chairman#3": {
+   "role": "research:ru_dvr_chairman",
+   "name": "Егор Тимурович Гайдар",
+   "from": null,
+   "until": null,
+   "attested_on": "1996-09-22",
+   "claim_ids": [
+    "ru_dvr_v_congress_decision_signed_by_chairman_19960922"
+   ],
+   "note": "Observed on 22 September 1996: the V congress's decision of that day approving the counting commission's protocols is signed \"Председатель Партии Е.Т. Гайдар\".",
+   "uncertainty": "No start: the protocol of 21 September 1996 on the chairmanship ballot is approved but not printed, so neither the result nor an assumption of office is stated; the decision signed on 21 September is a continuation claim. No end.",
+   "sources": [
+    "ru_dvr_v_congress_decisions_19960922"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_dvr_chairman#4": {
+   "role": "research:ru_dvr_chairman",
+   "name": "Егор Тимурович Гайдар",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-12-16",
+   "claim_ids": [
+    "ru_dvr_politsovet_decision_signed_by_chairman_19971216"
+   ],
+   "note": "Observed on 16 December 1997: the Political Council's decision of that day is signed \"Председатель партии Е.Гайдар\".",
+   "uncertainty": "No end: the Political Council's statement of 16 December 2000 is signed only \"Председатель\" (a claim), and the X congress's decision on the party's self-dissolution (19 May, in an undated issue captured on 7 June 2001) is an organization event, not the end of his office; no record states the day his chairmanship ended.",
+   "sources": [
+    "ru_dvr_politsovet_decision_19971216"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "ru_government_chairman#1": {
    "role": "research:ru_government_chairman",
    "name": "Виктор Степанович Черномырдин",
@@ -3750,6 +4401,184 @@
    ],
    "source_classes": {
     "pending": 1
+   }
+  },
+  "ru_kprf_chairman#1": {
+   "role": "research:ru_kprf_chairman",
+   "name": "Геннадий Андреевич Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-05-23",
+   "claim_ids": [
+    "ru_kprf_v_congress_zyuganov_reports_as_chairman_19980523"
+   ],
+   "note": "Observed on 23 May 1998: the Central Committee ideology department's notice of the V (extraordinary) congress says the report on the first question was given by \"Председатель ЦК КПРФ Г.А.Зюганов\".",
+   "uncertainty": "No start: the Central Committee plenum's election of 20 April 1997 is a separate claim (an election, with no stated assumption of office), and his 1993 election as Chairman of the Central Executive Committee rests only on retrospective pages of 2025 and 2026; no party record of the reported 1995 change of title was found. No end: no reviewed record states one; the plenum re-elections of 24 April 2021 and 5 July 2025 are separate claims, not ends of this observation. Congresses and plenums between 1998 and 2021 are not reviewed.",
+   "sources": [
+    "ru_kprf_v_congress_notice_19980523"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_kprf_chairman#2": {
+   "role": "research:ru_kprf_chairman",
+   "name": "Геннадий Андреевич Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-07-05",
+   "claim_ids": [
+    "ru_kprf_i_plenum_chairman_closing_word_20250705"
+   ],
+   "note": "Observed on 5 July 2025: the press service's notice of the I Plenum of the Central Committee elected at the XIX congress says that, summing up, \"Председатель ЦК КПРФ призвал членов Центрального Комитета\" to coordinated work.",
+   "uncertainty": "No start: the plenum's election of the same day (\"Пленум избрал Председателем Центрального Комитета КПРФ Г.А. Зюганова\"; \"единогласно\" in the official-documents record) states no assumption of office, and the congress elected only the Central Committee. The XIX congress was not closed; its second stage of 20 June 2026 nominated Duma candidates and took no recorded leadership decision. No end.",
+   "sources": [
+    "ru_kprf_i_plenum_notice_20250705"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_kprf_chairman#3": {
+   "role": "research:ru_kprf_chairman",
+   "name": "Геннадий Андреевич Зюганов",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-28",
+   "claim_ids": [
+    "ru_kprf_zyuganov_chairman_greeting_20260828"
+   ],
+   "note": "Observed on 28 August 2026: party news bylined \"Геннадий Зюганов, Председатель ЦК КПРФ\" publishes the Chairman's Knowledge Day greeting.",
+   "uncertainty": "An attestation ten days before the cutoff, not a start, an end or a term; later party items before the cutoff had no usable capture. No acting chairman or vacancy appears in any reviewed record.",
+   "sources": [
+    "ru_kprf_zyuganov_greeting_20260828"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_ldpr_chairman#1": {
+   "role": "research:ru_ldpr_chairman",
+   "name": "Владимир Вольфович Жириновский",
+   "from": null,
+   "until": null,
+   "attested_on": "1996-11-23",
+   "claim_ids": [
+    "ru_ldpr_plenum_resolution_chairman_report_19961123"
+   ],
+   "note": "Observed on 23 November 1996: the extract of the Central Committee plenum's resolution reprinted in the party newspaper on the party site begins \"Обсудив доклад Председателя партии В.В. Жириновского\".",
+   "uncertainty": "No start: his elections as Chairman of the LDPSS (31 March 1990) and of the LDPR (III congress, 18-19 April 1992; IV congress, 24-25 April 1993) rest only on the party's retrospective timeline of 2010; no contemporaneous record of those congresses was found. No end here: the 2022 attestation is a separate observation.",
+   "sources": [
+    "ru_ldpr_newspaper_plenum_resolution_19961123"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_ldpr_chairman#2": {
+   "role": "research:ru_ldpr_chairman",
+   "name": "Владимир Вольфович Жириновский",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-03-30",
+   "claim_ids": [
+    "ru_ldpr_newspaper_chairman_zhirinovsky_contacts_20220330"
+   ],
+   "note": "Observed on 30 March 2022: the contacts block of party newspaper No. 04 (382)/2022, signed to press that day, lists \"Председатель ЛДПР Владимир Вольфович ЖИРИНОВСКИЙ\".",
+   "uncertainty": "No `until`: the party's news item of 6 April 2022 says \"Но сегодня его не стало и сегодня мы будем скорбеть…\", and its later timeline dates the death to that day, but a death is not stated in words as the end of the office. By the user's ruling of 28 September 2026 there is no `until`; if Codex decides at integration that a stated death day ends the office, ru_ldpr_news_zhirinovsky_died_today_20220406 alone would be the anchor. The interim issue of 6 May 2022 names no chairman and no acting chairman. Slutsky's election is not used as an end.",
+   "sources": [
+    "ru_ldpr_newspaper_no04_20220330"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_ldpr_chairman#3": {
+   "role": "research:ru_ldpr_chairman",
+   "name": "Леонид Эдуардович Слуцкий",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-05-27",
+   "claim_ids": [
+    "ru_ldpr_news_chairman_speaks_after_election_20220527"
+   ],
+   "note": "Observed on 27 May 2022: party news of that day reports his unanimous election by the XXXIV extraordinary congress and quotes him as \"Председатель партии\".",
+   "uncertainty": "No start: the Supreme Council's recommendation of 26 May, the vote of 27 May (\"Голосование за лидера партии прошло 27 мая\") and the election reports are separate claims, none stating an assumption of office. His acting headship of the Duma faction after the death is a faction post outside this role. The newspaper contacts of 27 June 2022 are a continuation claim. No end.",
+   "sources": [
+    "ru_ldpr_news_slutsky_elected_20220527"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_ldpr_chairman#4": {
+   "role": "research:ru_ldpr_chairman",
+   "name": "Леонид Эдуардович Слуцкий",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-10-02",
+   "claim_ids": [
+    "ru_ldpr_xxxvii_congress_chairman_presents_strategy_20251002",
+    "ru_ldpr_slutsky_post_signed_as_chairman_20251002"
+   ],
+   "note": "Observed on 2 October 2025: party news of the XXXVII congress says \"Председатель партии представил участникам съезда Стратегию развития ЛДПР до 2030 года\", and his post of that day is signed \"Председатель ЛДПР Леонид Слуцкий\".",
+   "uncertainty": "No start: the re-election at the XXXVII congress on 2 October 2025 is a separate claim that states no assumption of office, and the four-year term is prospective. No end.",
+   "sources": [
+    "ru_ldpr_news_slutsky_reelected_20251002",
+    "ru_ldpr_news_slutsky_congress_post_20251002"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "ru_ldpr_chairman#5": {
+   "role": "research:ru_ldpr_chairman",
+   "name": "Леонид Эдуардович Слуцкий",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-11",
+   "claim_ids": [
+    "ru_ldpr_slutsky_chairman_proposal_20260811"
+   ],
+   "note": "Observed on 11 August 2026: party news opens \"Председатель ЛДПР Леонид Слуцкий предложил\" a citizenship measure.",
+   "uncertainty": "An attestation 27 days before the cutoff, not a start, an end or a term. The XXXVIII (extraordinary) congress of 23 June 2026 is not reviewed: its archived pages are 403 captures and the live page is not byte-stable.",
+   "sources": [
+    "ru_ldpr_news_citizenship_proposal_20260811"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "ru_president#1": {
@@ -4168,6 +4997,206 @@
    ],
    "source_classes": {
     "accepted": 2
+   }
+  },
+  "ru_yabloko_chairman#1": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Григорий Алексеевич Явлинский",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-03-14",
+   "claim_ids": [
+    "ru_yabloko_yavlinsky_chairman_report_vi_congress_19980314"
+   ],
+   "note": "Observed on 14 March 1998: the association's release is headed as the report of its chairman, Григорий Явлинский, to the VI congress, dated 14.03.98.",
+   "uncertainty": "No start: his election as chairman of the movement at the founding congress of 5-6 January 1995 and the list entry \"с января 1995 г.\" rest on the association's undated reference page of about 1998 (retrospective claims); no contemporaneous 1995 record was found. No end here: the transformation into a party on 22 December 2001 is an organization event, and the 2001 attestation is a separate observation.",
+   "sources": [
+    "ru_yabloko_vi_congress_report_19980314"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#2": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Григорий Алексеевич Явлинский",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-12-23",
+   "claim_ids": [
+    "ru_yabloko_chairman_speech_page_20011223",
+    "ru_yabloko_x_congress_party_chairman_speech_20011223"
+   ],
+   "note": "Observed on 23 December 2001: his speech page is headed \"Выступление Председателя партии \"ЯБЛОКО\" Г.А. Явлинского\" and dated \"Москва, 23 декабря 2001 г., 12.00\"; the congress section lists the same speech.",
+   "uncertainty": "No start: his election as chairman of the new party on 23 December 2001 (472 delegates) is a separate claim that states no assumption of office, and its term \"до 31 декабря 2004 года\" is prospective, never an until. No end: the 2004 attestation is a separate observation.",
+   "sources": [
+    "ru_yabloko_x_congress_chairman_speech_20011223",
+    "ru_yabloko_x_congress_section_2001"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "ru_yabloko_chairman#3": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Григорий Алексеевич Явлинский",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-07-04",
+   "claim_ids": [
+    "ru_yabloko_yavlinsky_proposes_term_limit_on_his_post_20040704"
+   ],
+   "note": "Observed on 4 July 2004: the release on the XII congress's charter amendments says he proposed limiting \"пребывания на своем посту Председателя партии\" to two four-year terms.",
+   "uncertainty": "No start: the re-election reported under the dateline of 3 July 2004 (190 of 252 votes) gives no day for the vote, and the party's schedule set it for 1.00 on 4 July; neither states an assumption of office. The year-only title block and Bureau list of the 2008 report are claims only. No end: no party record states the day his office ended, and Mitrokhin's election is not used as one.",
+   "sources": [
+    "ru_yabloko_press_charter_amendments_20040704"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#4": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Сергей Сергеевич Митрохин",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-06-22",
+   "claim_ids": [
+    "ru_yabloko_mitrokhin_chairman_joins_political_committee_20080622"
+   ],
+   "note": "Observed on 22 June 2008: the release on the new leadership says \"Председатель партии Сергей Митрохин вошел в ПК по должности\".",
+   "uncertainty": "No start: the XV congress (21-22 June 2008) elected him with 75 votes, but no party record prints the day of the vote. Any re-election in 2011 or 2013 is not reviewed. No end here: the 2015 attestation is a separate observation.",
+   "sources": [
+    "ru_yabloko_press_new_leadership_20080622"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#5": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Сергей Сергеевич Митрохин",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-12-19",
+   "claim_ids": [
+    "ru_yabloko_mitrokhin_holds_chairmanship_20151219"
+   ],
+   "note": "Observed on 19 December 2015: the release on the chairman's term limit says \"Сергея Митрохин занимает пост председателя с 2008 года\" (as printed) and calls him the incumbent head.",
+   "uncertainty": "No start (the year 2008 is retrospective). No end: he did not stand at the XVIII congress, and the release of 20 December naming him \"действующий руководитель\" is a continuation claim; no party record states the day his office ended, and Slabunova's election is not used as one.",
+   "sources": [
+    "ru_yabloko_news_term_limit_20151219"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#6": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Эмилия Эдгардовна Слабунова",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-12-20",
+   "claim_ids": [
+    "ru_yabloko_slabunova_new_chairman_deputies_20151220"
+   ],
+   "note": "Observed on 20 December 2015: a release names the deputies of \"нового председателя партии «ЯБЛОКО» Эмилии Слабуновой\".",
+   "uncertainty": "No start: the release reporting that she \"стала новым председателем\" at the XVIII congress (19-20 December 2015) does not state the day of the vote. The 2019 page's \"на посту председателя партии в 2015-2019 гг.\" is retrospective. No end is stated, and Rybakov's election is not used as one.",
+   "sources": [
+    "ru_yabloko_news_new_chairman_deputies_20151220"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#7": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Николай Игоревич Рыбаков",
+   "from": null,
+   "until": null,
+   "attested_on": "2019-12-16",
+   "claim_ids": [
+    "ru_yabloko_rybakov_plans_as_chairman_20191216"
+   ],
+   "note": "Observed on 16 December 2019: the page on the XXI congress's main points refers to Rybakov's plans \"на посту председателя\".",
+   "uncertainty": "No start: the XXI congress (14-15 December 2019) voted \"около часа ночи\" on a day not printed, and the release of 15 December 2019 reporting that he \"стал четвертым председателем\" is an election report. No end.",
+   "sources": [
+    "ru_yabloko_news_xxi_congress_main_20191216"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#8": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Николай Игоревич Рыбаков",
+   "from": null,
+   "until": null,
+   "attested_on": "2023-12-13",
+   "claim_ids": [
+    "ru_yabloko_rybakov_chairman_appeal_20231213"
+   ],
+   "note": "Observed on 13 December 2023: a release says \"Председатель «Яблока» Николай Рыбаков просит руководителя ФСИН\" to ensure a prisoner's medical care.",
+   "uncertainty": "No start: the re-election reported on 9 December 2023 (59 votes, 55%) and the release of 11 December that he \"сохранил пост председателя\" are election reports that state no assumption of office, and before that vote he is \"действующий председатель\", a continuation claim. No end.",
+   "sources": [
+    "ru_yabloko_news_fsin_appeal_20231213"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_yabloko_chairman#9": {
+   "role": "research:ru_yabloko_chairman",
+   "name": "Николай Игоревич Рыбаков",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-19",
+   "claim_ids": [
+    "ru_yabloko_rybakov_chairman_appeal_20260819"
+   ],
+   "note": "Observed on 19 August 2026: a release opens \"Председатель партии «Яблоко» Николай Рыбаков обратился\" to the Minister of Internal Affairs.",
+   "uncertainty": "An attestation 19 days before the cutoff, not a start, an end or a term; no later party item captured before the cutoff was found.",
+   "sources": [
+    "ru_yabloko_news_rybakov_appeal_20260819"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-28"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "su_cpsu_deputy_general_secretary#1": {

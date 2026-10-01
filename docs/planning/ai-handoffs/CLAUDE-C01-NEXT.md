@@ -1,16 +1,17 @@
 # Claude — next bounded research tasks
 
 **Production priority, 1 October:** follow the [parallel CP1 assignment](CP1-ACCELERATION.md).
-Tonga production task `CLAUDE-C06-TONGA-01` is now owned by Codex and in progress
-on an isolated candidate; do not duplicate that claim. Coordinate any source or
-art support with Codex. Maintain existing research claims and recover held
-originals separately; unavailable Russia/DA sources do not block country work. Do not expand
-worldwide research at the expense of the eight certified-country casts.
+Tonga production task `CLAUDE-C06-TONGA-01` is owned by Codex and remains in progress
+after production integration; do not duplicate that claim. Fourteen requirements
+remain: Fatai Helu's likeness, eleven historical chains, final visual review and
+country signoff. Coordinate further source or art support with Codex. Do not
+expand worldwide research at the expense of the eight certified-country casts.
 
 The [30 September campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md)
 governs the transition from research to artwork. Preserve the accepted Komeito
-C01-31 packet and its scoped corrections; resolve the held Russia C01-28 and
-DA C01-39 source dependencies. National representative figures are retired from country selection.
+C01-31 packet and its scoped corrections. Russia C01-28 and DA C01-39 are now
+accepted bounded intakes after all original-source holds were resolved.
+National representative figures are retired from country selection.
 Use dated exact campaign identities.
 
 Earlier review update, 1 October 2026: C01-31/38/40/41 and C01-42–46 are
@@ -26,13 +27,13 @@ observations**. One ambiguous USSR Premier use and three Saudi meeting-only uses
 remain claims-only. France's date precision and locator repairs and India's
 restored prior cutoff guards are part of acceptance. Exact submitted tips, first
 imports and independent receipts are pinned in the [current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md).
-No research intake installs identities or qualifies the isolated Tonga candidate.
+No research intake installs identities or qualifies the Tonga country cast.
 
-The queue records **36 completed bounded Claude tasks and two held submissions**.
-Russia C01-28 still has three originals/four claims unresolved (65/68 originals,
-133/137 claims and all 24 observations checked). DA C01-39 still has 23 originals,
-28 claims and all twelve latest proposed observations unverified. Neither was
-retried in this pass. Preserve their original failures and later triage separately.
+The queue records **38 of 38 Claude-owned bounded tasks complete**, with no
+delivered Claude task awaiting review. The [final combined review](../../campaign-certification/C01/integrations/REVIEW-20261001-06/README.md)
+records Russia's 68 originals, 137 claims and 24 observations and DA's 24
+originals, 29 claims and twelve observations, their scoped imports and checks.
+Preserve the earlier held receipts, failed requests and excluded interpretations.
 Do not repeat accepted intake or widen research instead of finishing Tonga’s cast.
 
 The dated inventory below is earlier context; use the current handoff and
