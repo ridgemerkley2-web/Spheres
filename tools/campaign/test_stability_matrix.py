@@ -327,11 +327,25 @@ class JournalFailureTests(unittest.TestCase):
     """Exercise the observed lost-diagnostic path without running a campaign."""
 
     def test_denied_journal_flush_retains_operation_trace_and_never_starts_native(self):
+        self.assert_denied_journal_flush()
+
+    def test_denied_journal_flush_matches_equivalent_output_path(self):
+        self.assert_denied_journal_flush(alias=True)
+
+    def assert_denied_journal_flush(self, alias=False):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             binary = root / "synthetic-binary"
             binary.write_bytes(b"not executable; no native process permitted")
             out = root / "new-run"
+            if alias:
+                # Exercise resolution without requiring Windows 8.3 names or
+                # symlink privileges: this spelling names the same directory.
+                detour = root / "existing-directory"
+                detour.mkdir()
+                out = detour / ".." / "new-run"
+                self.assertNotEqual(out, out.resolve())
+            journal_path = (out / "journal.jsonl").resolve()
             real_open = Path.open
 
             class BrokenJournal:
@@ -352,18 +366,22 @@ class JournalFailureTests(unittest.TestCase):
 
             def opened(path, *args, **kwargs):
                 stream = real_open(path, *args, **kwargs)
-                return BrokenJournal(stream) if path == out / "journal.jsonl" else stream
+                return BrokenJournal(stream) if path.resolve() == journal_path else stream
 
-            with patch.object(Path, "open", opened), patch.object(matrix.subprocess, "Popen") as native:
-                with self.assertRaisesRegex(PermissionError, "injected journal flush denied"):
-                    matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out)
-            native.assert_not_called()
+            with patch.object(Path, "open", opened), patch.object(
+                    matrix.subprocess, "Popen",
+                    side_effect=AssertionError("Native launch forbidden in journal-flush fixture")) as native:
+                try:
+                    with self.assertRaisesRegex(PermissionError, "injected journal flush denied"):
+                        matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out)
+                finally:
+                    native.assert_not_called()
             record = matrix.read_json(out / "journal-failure.json")
             self.assertEqual(record["operation"], "flush")
             self.assertEqual(record["attempted_event"]["event"], "matrix_started")
             self.assertEqual(record["error"]["errno"], errno.EACCES)
             self.assertIn("injected journal flush denied", record["error"]["traceback"])
-            self.assertEqual(record["journal_path"], str(out / "journal.jsonl"))
+            self.assertEqual(record["journal_path"], str(journal_path))
             self.assertFalse(record["passed"])
             self.assertFalse(record["qualification"])
             self.assertFalse(record["s25_complete"])
