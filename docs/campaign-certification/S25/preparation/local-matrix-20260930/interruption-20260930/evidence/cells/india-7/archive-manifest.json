@@ -1,0 +1,26 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\india-7\\native\\resumed\\saves\\monthly.json",
+        "bytes": 126779381,
+        "sha256": "7810d744daaad66db3d6f8fea292b358faa7feb5abebcd712d23030d55208de4"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01\\cells\\india-7\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 23142357,
+        "sha256": "cea74892656e7740451b65d74393b3dbaeeca367a9088769c5c25739c60d079d"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 126779381,
+        "sha256": "7810d744daaad66db3d6f8fea292b358faa7feb5abebcd712d23030d55208de4"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": false,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

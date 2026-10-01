@@ -1,0 +1,32 @@
+{
+  "started_utc": "2026-09-30T09:03:11.605697+00:00",
+  "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "args": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+    "--binary",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+    "--revision",
+    "68ba0622ec709b78617aadd1f9198d18f532bb32",
+    "--plan",
+    "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\plan.json",
+    "--out",
+    "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01",
+    "--scratch-root",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\full-matrix-local-scratch-20260930-01",
+    "--compress-scratch",
+    "--jobs",
+    "4",
+    "--min-free-bytes",
+    "3221225472",
+    "--timeout-seconds",
+    "43200"
+  ],
+  "complete_new_plan": true,
+  "earlier_cells_reused": false,
+  "qualification": false,
+  "resource_note": "Four native processes, private NTFS-compressed SSD scratch and verified offload to D; 12-hour per-cell execution budget."
+}
