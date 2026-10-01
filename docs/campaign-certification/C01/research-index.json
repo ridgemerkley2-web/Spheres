@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 2047,
-    "source_claims": 5010,
+    "sources": 2063,
+    "source_claims": 5030,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -306,7 +306,7 @@
       "organization_observations": 14,
       "institution_observations": 7,
       "role_observations": 9,
-      "source_claims": 322,
+      "source_claims": 342,
       "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -348,7 +348,8 @@
           "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
           "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
           "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim.",
-          "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched."
+          "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched.",
+          "CLAUDE-C01-51 extends ru_rsfsr_president and ru_rsfsr_vice_president with sixteen official-portal acts of 1991-1993 (twenty claims): four dated attestations of Борис Николаевич Ельцин signing as 'Президент РСФСР' (July 1991 to January 1992) and five of Александр Владимирович Руцкой as Vice-President (July 1991 to September 1993), the last ending on 3 October 1993 with decree 1576 (in force on signature, pending a ruling). The suspension of 1 September 1993 is a claim on the vice-presidency. The declared termination of Yeltsin's powers and the declared acting service of 21-22 September 1993, and the President's decree rejecting it, are five claims appended to ru_president, which gains no holder. The C01-05 and C01-14 holders, party offices and game mappings are untouched."
         ]
       }
     },
@@ -2713,8 +2714,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 626569,
-      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9"
+      "bytes": 680168,
+      "sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
