@@ -92,8 +92,9 @@ Checks (1 October 2026 UTC, sparse worktree, after merging `codex/campaign-certi
 regenerated and `--check` passes (1,898 sources, 4,753 claims, 844 organization and 36 institution observations, 93 discovery
 batches); the USSR tests (46, 9 of them new) and the Russia tests (29) pass; the research tests (79) and the campaign tests (16)
 pass; the atlas Node check passes (11); `workboard.py --check` passes (44 markers); `git diff --check` on this packet's paths is
-clean. The new test's 19 mutations each fail on the rule they break. `packet_check.py 41` result: see the report's Checks
-paragraph and the integration notes. Known failures outside these checks, not fixed: `campaign_census.py --check` exits 1 on the
+clean. The new test's 19 mutations each fail on the rule they break. `packet_check.py 41` (head `befa7c36`, base `79ef97ec`):
+12 new sources, all 12 re-downloaded responses match their recorded byte counts and SHA-256; every check passes except
+`census --check` (below); it lists the re-expressed pinned-test lines for review. Known failures outside these checks, not fixed: `campaign_census.py --check` exits 1 on the
 integration head `79ef97ec` itself, because commits there (`ace1f233`, `434abd50`, `7c6f112c`) changed
 `spheres-sim/src/government.rs` without regenerating `census.json` (regenerating to a scratch directory shows that `census.json`'s
 record of that input is the only difference: 849,546 → 851,150 bytes, SHA-256 `3f846b4b…` → `4b0b82db…`; the other four outputs
