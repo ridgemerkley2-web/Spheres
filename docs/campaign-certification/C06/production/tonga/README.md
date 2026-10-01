@@ -5,9 +5,11 @@ Current integration: the cast and government implementation are pushed at
 [Crown identity chain](crown-chain-20261001/acceptance.json), records four
 [collective-body scope exceptions](collective-scope-20261001/README.md), and
 repairs King IV's historical portrait display context. Eleven personal/party
-chains and Fatai Helu's likeness remain unresolved. Current-source native and
-Tonga production-browser checks are pending; earlier receipts below describe
-their original tested versions.
+chains and Fatai Helu's likeness remain unresolved. Thirteen focused native
+checks passed on the repaired production inputs; the Tonga browser journey
+remains pending after a harness correction. See the
+[current receipt](ci-current-native-20261001/README.md); earlier receipts below
+describe their original tested versions.
 
 Codex has created 41 new historical appearance illustrations and four original
 fictional characters. Together with the existing King IV opening portrait, the

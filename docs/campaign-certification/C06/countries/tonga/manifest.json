@@ -3053,24 +3053,47 @@
   "fictional_party_office_grants": [],
   "checks": {
     "boundary_dates": {
-      "status": "pending",
-      "reason": "Previously passed on6829ecc7. Recheck on the new exact source after the display-only KingIV reference-date repair; original native receipt remains immutable.",
-      "previous_passed_receipt": {
-        "path": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json",
-        "sha256": "3709b531c96ec662bede49ed1af5128cb81445b8d6bc86dc4b3ac31e1223f8be"
-      }
+      "status": "passed",
+      "path": "docs/campaign-certification/C06/production/tonga/ci-current-native-20261001/receipt.json",
+      "sha256": "b8199d7b4980ba287bd0e9ce96621bab33402bc88fa76084341f10bfd1f67926",
+      "source_pins": {
+        "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+        "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+        "spheres-sim/data/tonga_institutional_leadership.json": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+        "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+        "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+        "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+        "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+        "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+        "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+        "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d"
+      },
+      "scope": "Runtime cutoff 7/8 September 2026, 2036 endpoint, and read-only/date-only non-appointment behavior. Does not certify all historical office boundaries or appearance intervals.",
+      "tested_revision": "a86aee1b0de5498ca30019c042f05e398dfc78a1",
+      "job_id": 110450051986
     },
     "country_signoff": {
       "status": "pending",
       "reason": "Historical/party-chain gaps, final art and required acceptance receipts remain open. No human country signoff is claimed."
     },
     "institutional_rules": {
-      "status": "pending",
-      "reason": "Previously passed on6829ecc7. Recheck on the new exact source after the display-only KingIV reference-date repair; original native receipt remains immutable.",
-      "previous_passed_receipt": {
-        "path": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json",
-        "sha256": "3709b531c96ec662bede49ed1af5128cb81445b8d6bc86dc4b3ac31e1223f8be"
-      }
+      "status": "passed",
+      "path": "docs/campaign-certification/C06/production/tonga/ci-current-native-20261001/receipt.json",
+      "sha256": "b8199d7b4980ba287bd0e9ce96621bab33402bc88fa76084341f10bfd1f67926",
+      "source_pins": {
+        "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+        "spheres-sim/data/tonga_institutional_leadership.json": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+        "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+        "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+        "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+        "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+        "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+        "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+        "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d"
+      },
+      "scope": "Explicit reform/election/recommendation/minister/vacancy actions, Crown separation, eligibility refusals, costs and caretaker rules; exact government and portrait identity payloads. Arcade recommendation abstraction remains disclosed.",
+      "tested_revision": "a86aee1b0de5498ca30019c042f05e398dfc78a1",
+      "job_id": 110450051986
     },
     "likeness_visual_review": {
       "status": "pending",
@@ -3078,15 +3101,26 @@
     },
     "production_browser": {
       "status": "pending",
-      "reason": "CI native browser at6829ecc7 passes a USA campaign; no Tonga institutional action/reload journey has been executed. This requirement remains open."
+      "reason": "The first real Tonga browser attempt failed on a hidden compact-header assertion; corrected visible-card checks await fresh CI. Native rules and portraits passed. Failed evidence is retained in ci-current-native-20261001."
     },
     "save_compatibility": {
-      "status": "pending",
-      "reason": "Previously passed on6829ecc7. Recheck on the new exact source after the display-only KingIV reference-date repair; original native receipt remains immutable.",
-      "previous_passed_receipt": {
-        "path": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json",
-        "sha256": "3709b531c96ec662bede49ed1af5128cb81445b8d6bc86dc4b3ac31e1223f8be"
-      }
+      "status": "passed",
+      "path": "docs/campaign-certification/C06/production/tonga/ci-current-native-20261001/receipt.json",
+      "sha256": "b8199d7b4980ba287bd0e9ce96621bab33402bc88fa76084341f10bfd1f67926",
+      "source_pins": {
+        "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+        "spheres-sim/data/tonga_institutional_leadership.json": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+        "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+        "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+        "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+        "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+        "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+        "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+        "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d"
+      },
+      "scope": "Institutional absence in legacy state, appointed-state roundtrip, exact inherited heir identity, and rejection of tampered/unjournalled appointments. No 46-year endurance claim.",
+      "tested_revision": "a86aee1b0de5498ca30019c042f05e398dfc78a1",
+      "job_id": 110450051986
     }
   },
   "open_requirements": {

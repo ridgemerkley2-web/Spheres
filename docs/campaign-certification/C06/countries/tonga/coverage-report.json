@@ -55,12 +55,9 @@
     "to_legislative_assembly/to_speaker: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.",
     "to_legislative_assembly/to_deputy_speaker: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.",
     "to_fatai_helu: no reviewed cartoon for 2022-08-29 through 2022-08-30 exclusive",
-    "Unfinished country acceptance check: boundary_dates",
     "Unfinished country acceptance check: country_signoff",
-    "Unfinished country acceptance check: institutional_rules",
     "Unfinished country acceptance check: likeness_visual_review",
-    "Unfinished country acceptance check: production_browser",
-    "Unfinished country acceptance check: save_compatibility"
+    "Unfinished country acceptance check: production_browser"
   ],
   "limit": "Coverage and receipt-integrity check only; no independent historical/visual review or parent milestone qualification.",
   "validation_context": {
@@ -68,7 +65,7 @@
     "recorded_at": "2026-10-01",
     "manifest": {
       "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
-      "sha256": "e13fa4888807ba669eca52a7a1e7ccae087e4f13d21ee690d1edde8d39c1769b"
+      "sha256": "85845c6c053036dd1cc23728d3df5630ea17fce85d042f2ae0e8b43d6c1e74a5"
     },
     "source_pins": {
       "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
@@ -119,10 +116,14 @@
         "sha256": "b89f517fdec11ba1be9fccd7d574e526ab94cf367737fa6c7e8f2bd1b1e6f71b"
       }
     ],
-    "acceptance_checks_executed": false,
-    "acceptance_check_scope": [],
+    "acceptance_checks_executed": true,
+    "acceptance_check_scope": [
+      "boundary_dates",
+      "save_compatibility",
+      "institutional_rules"
+    ],
     "all_acceptance_checks_executed": false,
-    "native_ci_receipt": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json",
+    "native_ci_receipt": "docs/campaign-certification/C06/production/tonga/ci-current-native-20261001/receipt.json",
     "collective_scope_receipt": {
       "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/adoption.json",
       "sha256": "2bbf483e1a84a0031c57d546a263df57279ea48201dca7a336de4246e99619ec"
@@ -131,6 +132,6 @@
       "path": "docs/campaign-certification/C06/production/tonga/crown-chain-20261001/acceptance.json",
       "sha256": "a35c9c2c97114830576a17f8d8b6d4e1f335e385d7218e10b3afeb789126ef04"
     },
-    "native_ci_receipt_limit": "Historical passed6829ecc7 receipt; current source recheck pending after display-context repair."
+    "native_ci_receipt_limit": "13 focused native checks passed; the separately retained browser attempt failed and is not accepted."
   }
 }

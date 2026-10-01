@@ -60,17 +60,21 @@ The preceding candidate `6829ecc75600c3fa11a2df8136f7c4a513c4941e` passed three
 native checks: runtime date limits, save compatibility and institutional rules.
 Its [immutable CI receipt](../../production/tonga/ci-acceptance-20261001/README.md)
 pins Linux job `110424971157`, which passed 2,006 workspace tests. Because the
-King IV display repair changes a pinned input, those checks are pending a fresh
-exact-source execution; the original successful evidence remains intact.
+King IV display repair changed a pinned input, those checks were re-executed.
+The [current native receipt](../../production/tonga/ci-current-native-20261001/README.md)
+records ten passing institutional tests and three passing government/portrait
+tests on `a86aee1b`, including the new display regression. The original successful
+evidence remains intact.
 
 The [current follow-up](../../production/tonga/acceptance-followup-20261001/README.md)
 records 805 passing avatar/research tests and the independent remaining-chain
 assessment. Dedicated Windows/Linux Tonga browser jobs exercise the actual
-government UI, portraits, explicit commands and save/reload. Their results are
-pending review. The existing generic USA browser does not satisfy this check.
+government UI, portraits, explicit commands and save/reload. The first browser
+attempt exposed a compact-header assertion mistake; the repaired harness awaits
+a fresh run. The existing generic USA browser does not satisfy this check.
 
 The current inventory therefore lists eleven historical chains, one missing
-likeness and six pending acceptance checks: 18 blockers. Final country likeness
+likeness and three pending acceptance checks: 15 blockers. Final country likeness
 review and country signoff remain separate from automated interface evidence.
 
 ## Reproduce the inventory check
@@ -103,6 +107,5 @@ Updating this status page cannot silently invalidate those review references.
 A missing display-context date could hide King IV’s existing historical
 cartoon. The [narrow repair](../../production/tonga/king-iv-display-fix-20261001/scope.json)
 uses the already accepted 12 July 1990 assent as appearance context without
-changing his reign record. The three native checks passed on the preceding
-candidate; their current-source recheck is pending alongside the new Tonga
-browser journey. The earlier receipts remain intact.
+changing his reign record. The current-source native recheck passed; the new
+Tonga browser journey remains pending. The earlier receipts remain intact.
