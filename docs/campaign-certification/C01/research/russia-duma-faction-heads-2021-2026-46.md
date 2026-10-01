@@ -35,7 +35,7 @@ observations follow in date order. No observation has a `from`.
 |---|---|---|---|---|
 | `…_er_head` | Владимир Васильев | 2021-12-22, 2022-04-06, 2022-07-07, 2026-07-27 | null | one attestation each (53098, 53988, 54910, 63980) |
 | `…_kprf_head` | Геннадий Зюганов | 2021-12-22, 2022-04-06, 2022-07-07, 2026-07-27 | null | one attestation each (53098, 53988, 54910, 63980) |
-| `…_srzp_head` | Сергей Миронов | 2022-04-06, 2022-07-07, 2026-07-27 | null | one attestation each (53988, 54910, 63980); he did not speak at the December 2021 sitting |
+| `…_srzp_head` | Сергей Миронов | 2022-04-06, 2022-07-07, 2026-07-27 | null | one attestation each (53988, 54910, 63980); the December item names Delyagin as the faction speaker and provides no Mironov attestation |
 | `…_ldpr_head` | Владимир Жириновский | 2021-12-22 | **2022-04-06** | `ru_duma_news_53098_zhirinovsky_ldpr_head_20211222`, `ru_duma_news_53988_zhirinovsky_died_as_ldpr_head_20220406` |
 | `…_ldpr_head` | Леонид Слуцкий | 2022-07-07, 2026-07-27 | null | one attestation each (54910, 63980) |
 | `…_nl_head` | Алексей Нечаев | 2021-12-22, 2022-04-06, 2022-07-07, 2026-07-27 | null | one attestation each (53098, 53988, 54910, 63980) |

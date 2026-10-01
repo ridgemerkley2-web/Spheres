@@ -5758,7 +5758,7 @@
         {
           "id": "ru_duma_news_53988_zhirinovsky_died_as_ldpr_head_20220406",
           "text": "A State Duma news item dated 6.04.2022, 15:58, is subtitled 'Руководитель фракции ЛДПР ушел из жизни после тяжелой и продолжительной болезни' and quotes the faction's statement: 'Сегодня после затяжной болезни скончался Председатель ЛДПР Владимир Вольфович Жириновский'.",
-          "locator": "Subtitle; body, paragraph 1",
+          "locator": "Subtitle; body, paragraph 2",
           "attested_on": "2022-04-06",
           "uncertainty": "The Duma's own subtitle names the faction office; the day comes from the quoted statement's 'Сегодня', resolved from the item's dateline, 6 April 2022 (the relative-day rule of C01-29 and C01-39). Gives Жириновский's `until` 6 April 2022 under the death rule (C01-34, C01-36); fallback: a death claim only and no `until`. The quoted statement's 'Председатель ЛДПР' is a party office and is not recorded here (party and parliamentary office stay separate)."
         },
@@ -5796,7 +5796,7 @@
         "path": "docs/campaign-certification/C01/research/sources/russia-duma-news-53988-20220406-facts.json",
         "kind": "derived_factual_extract",
         "bytes": 7024,
-        "sha256": "babe0f6b1c0a8368f626621819286954d85f2c94df7c6533c06f9b6a3e8dfcbe"
+        "sha256": "01f85690031846e807a2c3b31f3895b25795ea9b12434c0bfaf0e158dcaca0b3"
       }
     },
     {

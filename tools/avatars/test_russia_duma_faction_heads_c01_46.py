@@ -244,6 +244,15 @@ class RussianDumaFactionHeadsTests(unittest.TestCase):
         self.assertIn('fallback: a death claim only and no `until`', zhi['uncertainty'])
         self.assertIn("'Сегодня после затяжной болезни скончался'", zhi['note'])
 
+    def test_death_locator_reaches_the_dated_faction_statement(self):
+        # Original news 53988 starts with the colleagues' reaction. Its second
+        # article paragraph supplies 'Сегодня'; the subtitle supplies the office.
+        # Keep that distinction even if packet and extract repeat the same typo.
+        for record in (self.claims[DEATH], self.rows[DEATH]):
+            self.assertEqual(record['locator'], 'Subtitle; body, paragraph 2')
+            self.assertIn('Сегодня после затяжной болезни скончался', record['text'])
+            self.assertIn('Руководитель фракции ЛДПР', record['text'])
+
     def test_claim_only_events_never_date_a_holder(self):
         for cid in NEVER_HOLDER:
             claim = self.claims[cid]
