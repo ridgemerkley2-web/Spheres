@@ -1,10 +1,11 @@
 # JCP chairs and DPFP representatives 42: 日本共産党 幹部会委員長 and 中央委員会議長, 国民民主党 代表, 1990-2026
 
 Packet: **CLAUDE-C01-42**. State: **ready_for_review** (not complete).
-Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-jp-42`, claimed (`60107819`) stacked on the then-pending
-`claude/c01-jp-31` (CLAUDE-C01-31, Komeito representatives, merged with integration `509bd289` in `861cd268`); before the packet
-commits it was merged with integration `13367c99` (merge commit `c478d66e`), which had accepted CLAUDE-C01-31, so it now sits on
-the accepted CLAUDE-C01-31.
+Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-jp-42`, claimed (`60107819`) on the then-pending
+`claude/c01-jp-31` (CLAUDE-C01-31, Komeito representatives, merged with integration `509bd289` in `861cd268`). Base: integration
+`13367c99`. The packet is **no longer stacked**: Codex accepted CLAUDE-C01-31 into integration (`13367c99`), and that head was
+merged before the packet commits (merge commit `c478d66e`, confirmed: its tree equals `13367c99`). Checker fixes and Ridge's
+rulings of 1 October 2026 (UTC) are recorded under [Checker fixes](#checker-fixes) and [Decisions](#decisions).
 Research access: 1 October 2026 (UTC). The historical cutoff stays **7 September 2026**.
 
 This packet extends three existing party roles: `jp_jcp_executive_committee_chair` (幹部会委員長) and
@@ -218,7 +219,8 @@ and continues in the standing Presidium.
 Decision: accepted in part. 不破哲三 is observed as 議長 on 12 January 2006 (issue date) and 志位和夫 as 委員長 on 14 January 2006; the
 withdrawal is a claim, and no until is stored.
 
-Limits: no source states the day 不破哲三's office ended (see the ruling questions).
+Limits: no source states the day 不破哲三's office ended. Ridge's ruling (b) keeps the withdrawal a dated claim with no `until`
+(Codex's strict rule, review 1739eccb); the 24th Congress first-plenum communiqué (しんぶん赤旗, 15 January 2006) is listed as a lead.
 
 ### JCP-06 — 2010-2020: 志位和夫's re-elections
 
@@ -240,7 +242,8 @@ and their inaugural greetings.
 
 Decision: accepted in part, for claims only: an earlier organization with the same name and its co-representative office.
 
-Limits: whether the co-representative arrangement belongs to this role is a ruling question.
+Limits: under Ridge's ruling (a) the arrangement stays claims only; work order `C01-Japan-DPFP-002` is proposed to base the
+earlier party on its own record (this founding-convention page of 7 May 2018).
 
 ### DPFP-02 — 2018-2020: the earlier 国民民主党's representative and its dissolution
 
@@ -251,7 +254,8 @@ greeting.
 
 Decision: accepted in part, for claims only.
 
-Limits: none of these feeds `jp_dpfp_representative`; a ruling could add them to another role on a separate organization observation.
+Limits: none of these feeds `jp_dpfp_representative`; under Ridge's ruling (a) they stay claims only, and `C01-Japan-DPFP-002`
+is proposed to base the earlier party on its own record.
 
 ### DPFP-03 — September-December 2020: the new 国民民主党
 
@@ -311,12 +315,12 @@ imported, and the acting service's days are not stated.
 | `jp_jcp_28th_officers_20200118` | 中央委員会の機構と人事（第２８回党大会） | capture 2024-07-25 of www.jcp.or.jp |
 | `jp_jcp_28th_congress_closing_address_20200118` | 第２８回党大会での志位委員長の閉会あいさつ (しんぶん赤旗 2020年1月19日) | capture 2020-01-19 of www.jcp.or.jp |
 | `jp_dpfp_2018_founding_convention_20180507` | 国民民主党設立大会　綱領・規約・人事等を決定 | capture 2019-06-04 of www.dpfp.or.jp |
-| `jp_dpfp_2018_representative_elected_20180904` | 【臨時党大会】（３）玉木雄一郎新代表を選出「国民のための政治をともに作っていこう」 | capture 2018-09-05 of www.dpfp.or.jp |
+| `jp_dpfp_2018_representative_elected_20180904` | 【臨時党大会】（３）「国民のための政治をともに作っていこう」玉木新代表が就任あいさつ | capture 2018-09-05 of www.dpfp.or.jp |
 | `jp_dpfp_2018_representative_press_conference_20180904` | 玉木雄一郎代表就任記者会見２０１８年９月４日（火） | capture 2019-07-22 of www.dpfp.or.jp |
 | `jp_dpfp_2018_party_dissolved_20200911` | 党大会で国民民主党の解散を議決 | capture 2020-09-30 of www.dpfp.or.jp |
 | `jp_dpfp_founding_convention_20200915` | 国民民主党、再始動 | capture 2020-11-30 of new-kokumin.jp |
 | `jp_dpfp_tamaki_video_comment_20201026` | 【動画コメント】「コロナ対策、追加経済対策を臨時国会の中心的なテーマに」玉木代表 | capture 2020-11-30 of new-kokumin.jp |
-| `jp_dpfp_representative_election_20201218` | 【代表選】臨時党大会を開催 新代表決定 | capture 2020-12-18 of new-kokumin.jp |
+| `jp_dpfp_representative_election_20201218` | 【代表選】臨時党大会が開催 新代表決定 | capture 2020-12-18 of new-kokumin.jp |
 | `jp_dpfp_new_officers_20201223` | 国民民主党新役員体制 | capture 2020-12-23 of new-kokumin.jp |
 | `jp_dpfp_representative_election_20230902` | 【代表選】臨時党大会を開催、新代表を決定 | capture 2023-09-26 of new-kokumin.jp |
 | `jp_dpfp_representative_press_conference_20230905` | 国民民主党 代表定例会見（2023年9月5日） | capture 2023-09-26 of new-kokumin.jp |
@@ -398,6 +402,8 @@ recorded `url` exactly, with **no Accept-Encoding request header and no automati
 - The 2020 representative-election candidate profile (daihyo2020-tamaki-prof.pdf) and the party's history page (web_jcp/history),
   which repeat recorded facts.
 - Wikipedia, encyclopaedias, news sites and web search results, used for discovery only (including the congress dates).
+- The 24th Congress first-plenum communiqué (第１回中央委員会総会について, しんぶん赤旗, 15 January 2006), which may state the day
+  不破哲三's withdrawal as 中央委員会議長 took effect (Ridge's ruling (b)); not fetched or imported.
 - After the cutoff: nothing is recorded after 7 September 2026.
 
 ## Sources attempted
@@ -416,22 +422,25 @@ recorded `url` exactly, with **no Accept-Encoding request header and no automati
 
 | # | Decision | Reason |
 |---|---|---|
-| D1 | The 国民民主党 of 2018-2020 and its offices (共同代表, 代表) are claims only | The existing role scope note excludes earlier organizations with the same name; the party itself calls it 旧・国民民主党 and dissolved it before founding the new party |
+| D1 | The 国民民主党 of 2018-2020 and its offices (共同代表, 代表) are claims only | The existing role scope note excludes earlier organizations with the same name; the party itself calls it 旧・国民民主党 and dissolved it before founding the new party; Ridge's ruling (a) |
 | D2 | 不破哲三's 24 November 2000 acceptance gives `attested_on`, not `from` | Codex's review 988d5379 kept 竹谷とし子's comparable acceptance as a dated observation |
-| D3 | 不破哲三's January 2006 withdrawal gives no `until` | Neither the report nor the closing address prints the day the office ended |
-| D4 | 宮本議長 in the chair's own 1994 report and in the 1997 diary attests 中央委員会議長 | A party record naming him by the office's short title; the 1997 名誉議長 is kept as another office |
+| D3 | 不破哲三's January 2006 withdrawal gives no `until` | Neither the report nor the closing address prints the day the office ended; Ridge's ruling (b), under Codex's strict rule (review 1739eccb) |
+| D4 | 宮本議長 in the chair's own 1994 report and in the 1997 diary attests 中央委員会議長 | A party record naming him by the office's short title; the 1997 名誉議長 is kept as another office; Ridge's ruling (c) |
 | D5 | The 2006 opening address is dated by the issue date (12 January 2006) | The page prints no day for the address (CLAUDE-C01-29, CLAUDE-C01-31) |
 | D6 | The 2024 suspension and 古川元久's acting service are claims only | The pipeline's rule: acting or interim service is claims only; a suspension is not an end |
 
-Ruling questions for Codex:
+Ruling questions for Codex, decided by Ridge on 1 October 2026 (Codex may still decide otherwise):
 
-1. Should the 国民民主党 of May 2018 to September 2020 be a separate organization observation with its own representative role (共同代表
-   大塚耕平 and 玉木雄一郎 from 7 May 2018; 玉木雄一郎 代表, with the heading '臨時党大会で選出され代表に就任' of 4 September 2018), or stay
-   claims only?
-2. Does the new Central Committee's confirmation that '不破哲三議長が、議長の任をひく', reported in the closing address of 14 January 2006,
-   give `until` 2006-01-14 for 不破哲三's 中央委員会議長 observation?
-3. Is '宮本議長' in the Executive Committee chair's own 1994 report, styling him in the present while recalling a 1970 congress, enough
-   to date the 1994 observation, or should 宮本顕治's first observation be the 1997 diary's?
+- **(a)** The 国民民主党 of May 2018 to September 2020 stays claims only. Work order `C01-Japan-DPFP-002` is proposed to base it
+  on its own record, the founding-convention page of 7 May 2018 (`jp_dpfp_2018_founding_convention_20180507`).
+- **(b)** 不破哲三 gets no `until` for 2006: the closing address of 14 January 2006 reports the new Central Committee's confirmation
+  that he withdraws as chair ('議長の任をひく'), but no source states the day the withdrawal took effect (Codex's strict rule, review
+  1739eccb). It stays a dated claim, and the 24th Congress first-plenum communiqué (しんぶん赤旗, 15 January 2006) is listed as a lead.
+- **(c)** 宮本顕治's observation of 19 July 1994 stands: '宮本議長' in the Executive Committee chair's own report is the incumbent's
+  current short title.
+- **(d)** Merge commit `c478d66e` is confirmed: its tree equals integration `13367c99`.
+- **(e)** The packet is no longer stacked: Codex accepted CLAUDE-C01-31 into integration (`13367c99`); the header and the
+  integration notes say so.
 
 ## Suggested next work orders
 
@@ -439,22 +448,22 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 
 - `C01-Japan-JCP-002`: contemporaneous しんぶん赤旗 records of 1990-1996 (the 19th and 20th Congresses), through lawful access, to date
   both chairs when the period opens.
-- `C01-Japan-JCP-003`: first-plenum records naming the chair elected in 2006, 2010 and 2014, and the party's statement of when a chair's
-  office begins and ends.
-- `C01-Japan-DPFP-002`: the 国民民主党 of 2018-2020 as its own organization observation, if Codex rules for it.
+- `C01-Japan-JCP-003`: first-plenum records naming the chair elected in 2006, 2010 and 2014, beginning with the 24th Congress
+  first-plenum communiqué (しんぶん赤旗, 15 January 2006), and the party's statement of when a chair's office begins and ends.
+- `C01-Japan-DPFP-002`: base the 国民民主党 of 2018-2020 on its own record, the founding-convention page of 7 May 2018
+  (`jp_dpfp_2018_founding_convention_20180507`), as its own organization observation (Ridge's ruling (a)).
 - `C01-Japan-DPFP-003`: a contemporaneous party record of 古川元久's acting service (December 2024), as a claim.
 
 ## Integration notes (outside this packet's file boundary)
 
-- **Base and stack:** the claim commit `60107819` (the handoff only) sits on `861cd268`, the merge of integration `509bd289` into
-  the then-pending `claude/c01-jp-31` (CLAUDE-C01-31). Before the packet commits, integration had moved to `13367c99`, which
-  accepted CLAUDE-C01-31 with Codex's corrections and registered this claim; it was merged (merge commit `c478d66e`), and every
-  conflict, all in CLAUDE-C01-31's own files (`japan.json`, its report, test, four extracts and handoff, `research-index.json`, the
-  S10d test) or in Codex's registration of this record, was resolved by taking the integration copy unchanged, so the merged tree
-  equals `13367c99`. The pipeline's rule is to stop on any non-index conflict; none of these held content of this packet, and the
-  resolution, which follows the registration's 'refresh from current integration without undoing its corrections', is disclosed
-  for Codex to confirm. `claude/c01-jp-31` itself had not moved. This packet's two commits follow; CLAUDE-C01-31's accepted content
-  is unchanged, and its pins are re-expressed exactly. `packet_check.py 42` was run with `--base origin/codex/campaign-certification`.
+- **Base (no longer stacked):** the claim commit `60107819` (the handoff only) sits on `861cd268`, the merge of integration
+  `509bd289` into the then-pending `claude/c01-jp-31` (CLAUDE-C01-31). Codex then accepted CLAUDE-C01-31 into integration
+  (`13367c99`, which also registered this claim), so the packet is no longer stacked (ruling (e)). Before the packet commits that
+  head was merged (merge commit `c478d66e`); every conflict, all in CLAUDE-C01-31's own files (`japan.json`, its report, test, four
+  extracts and handoff, `research-index.json`, the S10d test) or in Codex's registration of this record, was resolved by taking the
+  integration copy unchanged, and the merge is confirmed (ruling (d)): its tree equals `13367c99`. This packet's commits follow;
+  CLAUDE-C01-31's accepted content is unchanged, and its pins are re-expressed exactly. `packet_check.py 42` is run with
+  `--base origin/codex/campaign-certification`.
 - **Order of work:** the user chose to start this batch of research packets before Codex's roadmap line
   'continue existing claims first'; this packet is one of that batch.
 - `japan.json` changes are additions only: 32 sources appended after CLAUDE-C01-31's; on `jp_sangiin_pr_2025_01` and
@@ -487,6 +496,39 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   sparse checkout lacks, so Codex lists the packet and regenerates
   `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration. `campaign_census.py --check` passes on this
   branch.
+
+## Checker fixes
+
+Applied on 1 October 2026 (UTC) after the independent check, in the commit 'Apply checker fixes to CLAUDE-C01-42'; integration
+had not moved (`13367c99`). Each text was checked against the recorded capture, re-downloaded with the recorded bytes and SHA-256.
+
+1. `jp_dpfp_2018_representative_elected_20180904`: title corrected to the capture's `<title>` and heading,
+   '【臨時党大会】（３）「国民のための政治をともに作っていこう」玉木新代表が就任あいさつ'.
+2. `jp_dpfp_representative_election_20201218`: title corrected to '【代表選】臨時党大会が開催 新代表決定' (が, as the capture prints it).
+3. `jp_dpfp_tamaki_in_office_20250304`: the claim text now names the record's three tags separately ('代表', '玉木雄一郎' and
+   '記者会見'), in `japan.json` and its extract; the extract's snapshot bytes and SHA-256 are updated.
+4. `jp_jcp_central_committee_chair` scope note: the clause on the plenums of 2006-2020 now says what the sources show: the 2006
+   personnel report records the decision to have no chair ('議長をおかずに'), the 2017 and 2020 first-plenum lists name no Central
+   Committee chair, and no first-plenum record naming the officers was found for 2010 or 2014.
+5. Ridge's rulings (a)-(e) are recorded under [Decisions](#decisions), with the lead and work order they name.
+
+The extracts carry no title field (the field set of CLAUDE-C01-31's extracts), so fixes 1 and 2 change `japan.json` and this
+report only; fix 3 changes one extract. No holder, date, source identity, claim id or count changes.
+
+Checks re-run on the fixed tree (1 October 2026, UTC):
+
+- `python -X utf8 tools/avatars/campaign_research.py` (regenerates `research-index.json`; only `japan.json`'s bytes and SHA-256
+  change, committed separately as 'Regenerate the C01 research index for CLAUDE-C01-42 checker fixes') and `--check`: pass (exit 0).
+- `python -X utf8 tools/avatars/campaign_census.py --check`: pass (exit 0).
+- `python -X utf8 -m unittest discover -s tools/avatars -p "test_japan*.py"`: 66 tests, OK.
+- `python -X utf8 -m unittest discover -s tools/avatars -p "test_*research*.py"`: 79 tests, OK.
+- `python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"`: 16 tests, OK.
+- `node --test tools/ui/check_leadership_research_review.cjs`: 11 pass, 0 fail.
+- `python tools/planning/workboard.py --check`: PASS (44 canonical markers, 54 bounded tasks).
+- `git diff --check`: clean.
+- `python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 42 --base origin/codex/campaign-certification --no-fetch`
+  runs after the push: no source identity was added or changed (two titles and one claim text only; the three affected captures
+  were re-downloaded for verification with the recorded bytes and SHA-256), so it does not re-download the 32 identities.
 
 ## Checks
 

@@ -23,11 +23,10 @@ accepted CLAUDE-C01-31 with Codex's corrections and registered this record. It w
 conflict lay between the pre-review `claude/c01-jp-31` copy and the accepted integration copy of CLAUDE-C01-31's own files
 (`japan.json`, its report, its test, four of its extracts, its handoff, `research-index.json` and the S10d test) or Codex's
 registration of this record; none held content of this packet, so the integration copy was taken unchanged in each and the merged
-tree equals `13367c99`. The pipeline's rule is to stop on any conflict other than the index; this resolution is disclosed for
-Codex to confirm, and it follows the registration's instruction to refresh from current integration without undoing its
-corrections. The packet therefore sits on the accepted CLAUDE-C01-31, and `packet_check.py 42` is run with
-`--base origin/codex/campaign-certification` (its default base, the merge base with `claude/c01-jp-31`, would count the whole
-integration merge as this packet's diff). Then the packet commit and the research-index commit on `claude/c01-jp-42`. Report:
+tree equals `13367c99`. Ridge confirmed this merge (ruling (d) below). The packet is **no longer stacked**: Codex accepted
+CLAUDE-C01-31 into integration (`13367c99`), which is the packet's base (ruling (e)), and `packet_check.py 42` is run with
+`--base origin/codex/campaign-certification`. Then the packet commit and the research-index commit on `claude/c01-jp-42`,
+followed by the checker-fix commit(s) under 'Checker fixes' below. Report:
 [japan-jcp-chairs-dpfp-representatives-1990-2026-42.md](../../campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md).
 
 The user chose to start this batch of research packets before Codex's roadmap line 'continue existing claims first'.
@@ -84,10 +83,17 @@ Observation decisions:
 | DPFP-04 | Accepted in part: elected 2 September 2023 (claim); observed 5 September 2023 |
 | DPFP-05 | Accepted in part: suspension 4 December 2024 to 3 March 2025 and 古川元久's acting service (claims only); observed 4 March 2025 |
 
-Ruling questions for Codex: (1) whether the 国民民主党 of 2018-2020 should become its own organization observation with a
-representative role (共同代表 from 7 May 2018; 代表 from 4 September 2018) or stay claims only; (2) whether the new Central Committee's
-confirmation that 不破哲三 steps down (議長の任をひく), reported in the closing address of 14 January 2006, gives `until` 2006-01-14;
-(3) whether '宮本議長' in the chair's own 1994 report suffices to date 宮本顕治's 1994 observation.
+Ruling questions for Codex, decided by Ridge on 1 October 2026 (Codex may still decide otherwise):
+
+- (a) The 国民民主党 of 2018-2020 stays claims only; work order `C01-Japan-DPFP-002` is proposed to base it on its own record (the
+  founding-convention page of 7 May 2018, `jp_dpfp_2018_founding_convention_20180507`).
+- (b) 不破哲三 gets no `until` for 2006: the closing address of 14 January 2006 reports the new Central Committee's confirmation that
+  he withdraws as chair, but no source states the day the withdrawal took effect (Codex's strict rule, review 1739eccb); it stays a
+  dated claim, and the 24th Congress first-plenum communiqué (しんぶん赤旗, 15 January 2006) is listed as a lead.
+- (c) 宮本顕治's observation of 19 July 1994 stands: '宮本議長' in the Executive Committee chair's own report is the incumbent's
+  current short title.
+- (d) Merge commit `c478d66e` is confirmed: its tree equals integration `13367c99`.
+- (e) The packet is no longer stacked: Codex accepted CLAUDE-C01-31 into integration (`13367c99`).
 
 Every recorded identity is a raw Internet Archive capture made before the cutoff, downloaded at least twice by this packet at least
 30 minutes apart with identical bytes and SHA-256 (curl's default User-Agent, no Accept-Encoding); the Internet Archive answered
@@ -117,5 +123,39 @@ Known failures outside the listed checks (not fixed): `tools/avatars/test_certif
   sparse checkout lacks, so Codex lists the packet and regenerates
   `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration. `campaign_census.py --check` passes on this
   branch.
+
+## Checker fixes
+
+Commit 'Apply checker fixes to CLAUDE-C01-42' on `7fc1d21b` (integration had not moved from `13367c99`), touching `japan.json`,
+the report, this handoff and one extract (`japan-dpfp-representative-press-conference-20250304-facts.json`):
+
+1. `jp_dpfp_2018_representative_elected_20180904` title: '【臨時党大会】（３）「国民のための政治をともに作っていこう」玉木新代表が就任あいさつ',
+   as the capture's `<title>` and heading print it (verified on a fresh download with the recorded bytes and SHA-256).
+2. `jp_dpfp_representative_election_20201218` title: '【代表選】臨時党大会が開催 新代表決定' (が; verified the same way).
+3. `jp_dpfp_tamaki_in_office_20250304` claim text, identical in `japan.json` and the extract: "The record of the representative's
+   regular press conference of 4 March 2025, tagged '代表', '玉木雄一郎' and '記者会見', has 玉木雄一郎 call it his return press
+   conference ('今日復帰会見ですので')." The extract's snapshot bytes and SHA-256 are updated.
+4. `jp_jcp_central_committee_chair` scope note: the clause on the plenums of 2006-2020 replaced by: the 2006 personnel report
+   records the decision to have no chair ('議長をおかずに') and the 2017 and 2020 first-plenum lists name no Central Committee chair;
+   no first-plenum record naming the officers was found for 2010 or 2014.
+5. Ridge's rulings (a)-(e) recorded here and in the report.
+
+The extracts carry no title field, so fixes 1 and 2 change `japan.json` and the report only. No holder, date, source identity,
+claim id or count changes; no pinned test changes.
+
+Checks re-run on the fixed tree (1 October 2026, UTC):
+
+- `python -X utf8 tools/avatars/campaign_research.py` (regenerates `research-index.json`; only `japan.json`'s bytes and SHA-256
+  change, committed separately as 'Regenerate the C01 research index for CLAUDE-C01-42 checker fixes') and `--check`: pass (exit 0).
+- `python -X utf8 tools/avatars/campaign_census.py --check`: pass (exit 0).
+- `python -X utf8 -m unittest discover -s tools/avatars -p "test_japan*.py"`: 66 tests, OK.
+- `python -X utf8 -m unittest discover -s tools/avatars -p "test_*research*.py"`: 79 tests, OK.
+- `python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"`: 16 tests, OK.
+- `node --test tools/ui/check_leadership_research_review.cjs`: 11 pass, 0 fail.
+- `python tools/planning/workboard.py --check`: PASS (44 canonical markers, 54 bounded tasks).
+- `git diff --check`: clean.
+- `python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 42 --base origin/codex/campaign-certification --no-fetch`
+  runs after the push: no source identity was added or changed (two titles and one claim text only; the three affected captures
+  were re-downloaded for verification with the recorded bytes and SHA-256), so it does not re-download the 32 identities.
 
 C01 and all parent gates stay open.
