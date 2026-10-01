@@ -13,7 +13,7 @@ import campaign_research as research
 
 
 REPORT = research.RESEARCH / 'tonga-dpfi-pdp-leaders-1990-2026-44.md'
-HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-44.md'
+HANDOFF = 'docs/campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/submission-handoff.md'
 # Original response identity recorded in each extract: (bytes, sha256) of the body, in packet order.
 RESPONSES = {
     'to_la_news_pga_award_20131214': (35057, 'bcaa0769b9b25cd07350815a25f43b7d8cd67e669749b3dc2b9c451eb1918918'),
@@ -51,7 +51,7 @@ CLAIMS = {
 }
 NEW_CLAIMS = list(CLAIMS)
 # Party names printed by the new sources and the 2011 Assembly lead that differ from every name observed for to_dpfi:
-# never mapped here (ruling (b), decided by Ridge; routed to the Tonga reconciliation work order).
+# No identity reconciliation is established by these sources; keep all four variants unmapped.
 UNMAPPED_NAMES = ('Tonga Democratic Party', 'Friendly Islands Democratic Party', 'Friendly Island Democratic Party',
                   'Friendly Island Democratic Party (FIDP)')
 # The existing holders of the three roles in scope, unchanged by this packet.
@@ -343,6 +343,13 @@ class TongaOppositionPartyTests(unittest.TestCase):
             {'sha256': '0' * 64}))
         with self.assertRaisesRegex(ValueError, 'Source snapshot checksum mismatch'):
             self.validate(packet)
+
+    def test_review_preserves_existing_primary_observation_and_does_not_infer_authority(self):
+        self.assertIn('existing primary 2022 Fatai Helu presidency observation remains unchanged', self.report)
+        self.assertIn('not independently verified or treated', self.report)
+        self.assertIn('as user authorization', self.report)
+        self.assertNotIn('decided by Ridge', self.report)
+        self.assertIn('government assertion, not an objective legal-status finding', self.report)
 
     def test_submitted_report_and_handoff_close_no_parent_gate(self):
         self.assertIn('ready_for_review', self.report)
