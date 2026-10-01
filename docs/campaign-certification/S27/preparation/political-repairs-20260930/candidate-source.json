@@ -1,0 +1,38 @@
+{
+  "commit": "434abd50c83bf2a5966e370d5f508743dbd6043c",
+  "sources": {
+    "Cargo.toml": {
+      "working_sha256": "e9a90fb5048c0cf6346509b3f3df195cd63222a1af351b17b62ea3d8cc6e5402",
+      "git_sha256": "bb53efb0c9ad7b1bb2387c5280fb4624a6142ee3519cf884d8a2e8ffbeb8d321"
+    },
+    "Cargo.lock": {
+      "working_sha256": "a66f8bc5cbe3f77bb60de7c880089e78ac70dd9147674944480c30192043c372",
+      "git_sha256": "7d232286affcc685b3c10ea6362968309fc441226a677662e6e14c872fb48a56"
+    },
+    "spheres-sim/Cargo.toml": {
+      "working_sha256": "51b62b1e1ec71d9a4fe7bed30e9992534a31f1a373340ebc910e19137972d748",
+      "git_sha256": "a0b0cf2b76db3643ef2deddab56de7abb0497c9dfac6949e9eb315dd360c1d54"
+    },
+    "spheres-sim/src/government.rs": {
+      "working_sha256": "3f719e94a32d9968578e9d842b8599fd52b8d97656881bf3f2a50495c8c8b4c4",
+      "git_sha256": "3f719e94a32d9968578e9d842b8599fd52b8d97656881bf3f2a50495c8c8b4c4"
+    },
+    "spheres-sim/src/government_opening_tests.rs": {
+      "working_sha256": "25a1fea16345f45ce54e15edbf40b3e136659150de2783975c252c8ddbcb1e6b",
+      "git_sha256": "18fb75fea9156148df956514365153bc8a887aefe948043108d6807f51ecebdc"
+    },
+    "spheres-sim/src/government_a1_observer.rs": {
+      "working_sha256": "70cdfdda3e2b6b9da624143cc50014383b4f2478cce1b80e0c3af1b775f63964",
+      "git_sha256": "56d451ab63b148c9798179d90c11da17333f7fccaf80880d3e7f988b04e77f5c"
+    },
+    "spheres-sim/src/stratagems.rs": {
+      "working_sha256": "c62b673f0278d8e8fba1dc37bf98adb613c0f9eb968513c4a8cb57e06b406637",
+      "git_sha256": "70cacdb59102e5d175313e18f8651f2a1757976839af0b28fc48539ca6b956dd"
+    },
+    "spheres-sim/tests/bloc_census.rs": {
+      "working_sha256": "d68e8e615aade63fc15a8f3b30d97036cc6b2762febaf262f91211772c5fb76e",
+      "git_sha256": "5f87457baf8d4f4d6a4258ea72edd4b348b18d1e7ed10c7b7be2998e837e1bb2"
+    }
+  },
+  "original_gate_unchanged": true
+}

@@ -1,0 +1,27 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\spheres-political-repair\spheres-sim)
+error[E0603]: struct `GameRules` is private
+  --> spheres-sim\tests\armed_institutions.rs:3:65
+   |
+ 3 | use spheres_sim::{government::{self, Pillar}, init::world_1990, GameRules, NationId};
+   |                                                                 ^^^^^^^^^ private struct
+   |
+note: the struct `GameRules` is defined here
+  --> spheres-sim\src\lib.rs:74:5
+   |
+74 | use world::*;
+   |     ^^^^^
+
+error[E0603]: struct `NationId` is private
+  --> spheres-sim\tests\armed_institutions.rs:3:76
+   |
+ 3 | use spheres_sim::{government::{self, Pillar}, init::world_1990, GameRules, NationId};
+   |                                                                            ^^^^^^^^ private struct
+   |
+note: the struct `NationId` is defined here
+  --> spheres-sim\src\lib.rs:74:5
+   |
+74 | use world::*;
+   |     ^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `spheres-sim` (test "armed_institutions") due to 2 previous errors
