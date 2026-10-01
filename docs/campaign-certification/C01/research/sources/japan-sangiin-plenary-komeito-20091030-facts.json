@@ -1,0 +1,71 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_komeito_diet_hc_plenary_20091030",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=117315254X00320091030&speechNumber=2&recordPacking=json",
+  "diet_record": {
+    "issueID": "117315254X00320091030",
+    "house": "参議院",
+    "meeting": "本会議",
+    "issue": "第3号",
+    "sitting_date": "2009-10-30",
+    "response": "speech 2",
+    "speeches_in_response": 1,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/117315254X00320091030"
+  },
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 29900,
+  "source_response_sha256": "cc5895a5f373b637bacaa401d8077c3c861dd128affeb81ea6a60f7571c4024b",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "QAENWEA5QLWHGHG26YMILIZ5QO3AT64T",
+  "source_character_encoding": "UTF-8 (JSON)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://kokkai.ndl.go.jp/api/speech?issueID=117315254X00320091030&speechNumber=2&recordPacking=json' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher: first downloaded on 2026-09-30 (UTC) at 21:56:52Z. Downloaded again by this packet at 2026-09-30 22:27:03Z and 2026-09-30 23:00:02Z (UTC), 32 minutes apart, and at 2026-09-30 23:01:26Z (cache-busting query), each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for speech 2 of the 参議院 本会議 第3号 (2009-10-30), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/117315254X00320091030. The printed page images, served through a JavaScript viewer, were not viewed. His own representative question; only his own statements of the party office are used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Diet minutes API JSON decoded and the cited speeches read in full; no page images viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_komeito_yamaguchi_selection_recalled_20090908",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-06",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "山口那津男",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "election_recalled_by_holder",
+      "attested_on": "2009-09-08",
+      "text": "In the House of Councillors plenary on 30 October 2009, 山口那津男 says that on 8 September he was chosen as 公明党's representative ('私は、去る九月八日、公明党の代表に選任されました').",
+      "locator": {
+        "issueID": "117315254X00320091030",
+        "speechOrder": [
+          2
+        ],
+        "speaker": "山口那津男"
+      }
+    },
+    {
+      "claim_id": "jp_komeito_yamaguchi_in_office_diet_20091030",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-06",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "山口那津男",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2009-10-30",
+      "text": "In the same speech 山口那津男 speaks of what he has done since taking office as representative until that day ('代表に就任して以来今日まで').",
+      "locator": {
+        "issueID": "117315254X00320091030",
+        "speechOrder": [
+          2
+        ],
+        "speaker": "山口那津男"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair (委員長) of 公明党 until its December 1994 division and of the representative (代表) of the 公明党 formed in November 1998, for CLAUDE-C01-31 only, 1990-2026. Convention and other party selections, recommendations, in-office attestations, resignation announcements, predecessor references, acting and interim arrangements (委員長代行 in 1994; the 代表代理 styled 代表 in 2026), other organizations' offices, the organizations' formation, division, merger, renaming and dissolution, and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (an organization event, another office, an acting or interim office). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 公明党, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, 中道改革連合 or any other party."
+}

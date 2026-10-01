@@ -17550,6 +17550,1264 @@
           "uncertainty": "Later attestation before the 7 September 2026 cutoff. A continuation: never a holder."
         }
       ]
+    },
+    {
+      "id": "jp_komeito_diet_hr_budget_19930129",
+      "title": "第126回国会 衆議院 予算委員会 第3号 (1993-01-29)",
+      "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=112605261X00319930129&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第3号 (1993-01-29), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112605261X00319930129. The printed page images, served through a JavaScript viewer, were not viewed. Recorded at meeting level because the party-officer identification (the Prime Minister's and a minister's replies to 市川書記長) and the statement naming the chair are in different speeches.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-komeito-19930129-facts.json",
+        "bytes": 5722,
+        "sha256": "0f07788ce42cf097138c36f47f55a61b4fa9b04f98878950362d505d56be0d95"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ishida_named_chair_by_secretary_general_19930129",
+          "text": "In the House of Representatives Budget Committee on 29 January 1993, 市川雄一, whom the same record identifies as the party's secretary-general (the Prime Minister answers '市川書記長も言われましたように' in speech 25 and a minister '市川書記長にお答えいたします' in speech 43), says '先日、二十五日、我が党の石田委員長の代表質問における借り上げ住宅の提案に対して' (speech 71): a party officer's same-day statement naming 石田 as the party's chair.",
+          "attested_on": "1993-01-29",
+          "locator": {
+            "issueID": "112605261X00319930129",
+            "speechOrder": [
+              25,
+              43,
+              71
+            ],
+            "speaker": "市川雄一 (71); 宮澤喜一 (25) and 船田元 (43) identify him as 市川書記長"
+          },
+          "uncertainty": "Dates the holder observation of 29 January 1993; not a start, because no source reviewed states the day office took effect. The first dated statement by a party officer naming him in the office found after 1 January 1990 (earlier records name him as chair only in the Prime Minister's and ministers' replies, or in remarks by members whom the records do not identify as party officers); not continuity from 1 January 1990."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_diet_hr_political_reform_19931105",
+      "title": "第128回国会 衆議院 政治改革に関する調査特別委員会 第15号 (1993-11-05), speech 117",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=112804573X01519931105&speechNumber=117&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 117 of the 衆議院 政治改革に関する調査特別委員会 第15号 (1993-11-05), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112804573X01519931105. The printed page images, served through a JavaScript viewer, were not viewed. His own answer as a minister; only the party-office wording is used, never the ministerial office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-political-reform-committee-komeito-19931105-facts.json",
+        "bytes": 5395,
+        "sha256": "c52a3af4e167824b36b518828c096263930982ca860259e0c13ee1c56faa5ed8"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ishida_assumption_recalled_may_1989",
+          "text": "Answering as 総務庁長官 in the House of Representatives special committee on political reform on 5 November 1993, 石田幸四郎 recalls that in May 1989 he took office as chair after 矢野前委員長 ('平成元年の五月に矢野前委員長の後を受けて委員長に就任をいたした').",
+          "locator": {
+            "issueID": "112804573X01519931105",
+            "speechOrder": [
+              117
+            ],
+            "speaker": "石田幸四郎 (石田国務大臣)"
+          },
+          "uncertainty": "His own recollection with a month only, of an event before the period: no structured date is stored and it is never a holder boundary. Party-office wording only; the ministerial office is excluded."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_diet_hc_budget_19940616",
+      "title": "第129回国会 参議院 予算委員会 第16号 (1994-06-16), speech 3",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=112915261X01619940616&speechNumber=3&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 3 of the 参議院 予算委員会 第16号 (1994-06-16), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112915261X01619940616. The printed page images, served through a JavaScript viewer, were not viewed. His own answer as a minister; only the party-office wording is used, never the ministerial office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-komeito-19940616-facts.json",
+        "bytes": 6095,
+        "sha256": "779b1b6f014ae7e15ef0a9f70f0ffcd1a1edddef879073972679a8f9df709c00"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ishida_still_chair_19940616",
+          "text": "Answering as 総務庁長官 in the House of Councillors Budget Committee on 16 June 1994, 石田幸四郎 says '私が委員長であることに変わりはありません' and that he speaks 'その委員長の立場において'.",
+          "attested_on": "1994-06-16",
+          "locator": {
+            "issueID": "112915261X01619940616",
+            "speechOrder": [
+              3
+            ],
+            "speaker": "石田幸四郎 (国務大臣)"
+          },
+          "uncertainty": "A later attestation of the observation of 29 January 1993 (continuation): never a holder. Party-office wording only; the ministerial office is excluded."
+        },
+        {
+          "id": "jp_komeito_acting_chair_in_place_19940616",
+          "text": "In the same answer he says that, devoting himself to the cabinet from the launch of the 羽田 government, he judged the chair's duties physically impossible, and '党には委員長代行を置きまして党の運営をいたしております'.",
+          "attested_on": "1994-06-16",
+          "locator": {
+            "issueID": "112915261X01619940616",
+            "speechOrder": [
+              3
+            ],
+            "speaker": "石田幸四郎 (国務大臣)"
+          },
+          "uncertainty": "Acting service is claims only, never a holder: the acting chair is not named and the day of the arrangement is not stated; the statement attests that it was in place on 16 June 1994. Not an end of 石田幸四郎's office, which he says continues."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_komei_representative_message_retrospective",
+      "title": "Komei Representative Message (公明, English page; captured 2 February 1998)",
+      "url": "https://web.archive.org/web/19980202152557id_/http://www.komei.or.jp:80/eng/daihyo2.htm",
+      "original_url": "http://www.komei.or.jp/eng/daihyo2.htm",
+      "publisher": "公明 (the organization of 1994-1998, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_retrospective",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "English page of 公明 (the organization of 1994-1998) on komei.or.jp: its representative's message and his personal history. Used only for claims about 公明 and its own office; 公明 is never merged with 公明党 or mapped.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-komei-representative-message-retrospective-19980202-facts.json",
+        "bytes": 5181,
+        "sha256": "578345af62c8e6be39b66243612549df304ec67a54920dae41b48aade53ff949"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_komei_formed_retrospective",
+          "text": "The 公明 home page's representative message says 'We formed Komei on December 5, 1994 as part of our ongoing effort to inherit the history and tradition of Komeito'.",
+          "locator": {
+            "section": "Komei Representative Message",
+            "paragraph": 2
+          },
+          "uncertainty": "Retrospective record of another organization (公明), written after the event: no structured date is stored and it is never a holder boundary. A claim about the organization only: 公明 is not merged with 公明党 or with this observation, and nothing is mapped."
+        },
+        {
+          "id": "jp_komeito_komei_representative_since_19941205_retrospective",
+          "text": "Its personal history of the representative, Tomio FUJII, lists 'Dec. 5, 1994- Representative of Komei'.",
+          "locator": {
+            "section": "Personal history"
+          },
+          "uncertainty": "Another organization's office (公明代表), claims only: never a holder of this role. Retrospective: no structured date is stored and it is never a boundary."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_history_2003_retrospective",
+      "title": "公明党　歴史 (新しい「公明党」の誕生と連立政権への参加; captured 6 February 2003)",
+      "url": "https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/",
+      "original_url": "http://www.komei.or.jp/about/history/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_history_retrospective",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party's history page (公明党 歴史) as captured on 6 February 2003: a narrative of the old 公明党 (旧公明党), its December 1994 division, 公明, 公明新党, 新進党, 新党平和 and 黎明クラブ, and the November 1998 merger. Retrospective: its claims carry no structured date and never set a holder boundary; they are claims about the organizations only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-history-2003-retrospective-20030206-facts.json",
+        "bytes": 9125,
+        "sha256": "3fda72261fcb348c01cfc0c956046248ed8cac6d799395bc7cfec342a920bff5"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_history_ishida_chair_in_cabinet_retrospective",
+          "text": "The party's history page says that 石田幸四郎委員長（当時） and three others from the old 公明党 joined the 細川 cabinet.",
+          "locator": {
+            "section": "旧公明党30年の歩み",
+            "paragraph": "＜自民党政権の転換の一翼も＞"
+          },
+          "uncertainty": "Retrospective reference to the office ('（当時）'): no structured date is stored and it is never a holder boundary. The cabinet posts are state office and are excluded."
+        },
+        {
+          "id": "jp_komeito_history_nfp_founded_retrospective",
+          "text": "It says that the 新進党 was founded on １９９４年１２月１０日 under the slogan 「たゆまざる改革、責任ある政治の実現」.",
+          "locator": {
+            "section": "新しい公明党の誕生",
+            "paragraph": "＜「公明」の発足と新進党結成へ参加＞"
+          },
+          "uncertainty": "A claim about another organization only (新進党): no structured date is stored, it is never a holder boundary, and nothing is merged or mapped."
+        },
+        {
+          "id": "jp_komeito_history_division_retrospective",
+          "text": "It says that, to join it, the old 公明党 held a national convention on １９９４年１２月５日, closed its thirty-year history and decided the party's dissolution ('党の解散'), the formation of 「公明」 centred on local members and some Councillors and the founding of 「公明新党」 centred on Diet members, which 'それぞれ同日に発足'; 「公明新党」 took part in founding the 新進党.",
+          "locator": {
+            "section": "新しい公明党の誕生",
+            "paragraph": "＜「公明」の発足と新進党結成へ参加＞"
+          },
+          "uncertainty": "Retrospective record of the division: no structured date is stored, it is never a holder boundary and never an end of 石田幸四郎's office (no source reviewed states the day his office ended). 公明, 公明新党 and 新進党 are separate organizations: never merged with 公明党 or with each other, never mapped."
+        },
+        {
+          "id": "jp_komeito_history_nfp_dissolved_retrospective",
+          "text": "It says that the 新進党 suddenly dissolved itself on １９９７年（平成９年）１２月２７日.",
+          "locator": {
+            "section": "新しい公明党の誕生",
+            "paragraph": "＜新進党の解党＞"
+          },
+          "uncertainty": "A claim about another organization only (新進党): no structured date is stored and it is never a holder boundary."
+        },
+        {
+          "id": "jp_komeito_history_reimei_heiwa_formed_retrospective",
+          "text": "It says that after the 新進党 dissolved, eighteen Councillors of the former 公明党 group formed 「黎明クラブ」 on the premise of joining 公明, most of the Representatives formed 「新党平和」, and three weeks later 「黎明クラブ」 merged with 「公明」.",
+          "locator": {
+            "section": "新しい公明党の誕生",
+            "paragraph": "＜「大衆とともに」の原点に戻り、新しい公明党の誕生＞"
+          },
+          "uncertainty": "Retrospective and undated (no day is printed for either formation or the merger): no structured date is stored and it is never a holder boundary. 黎明クラブ, 新党平和 and 公明 are separate organizations, never merged with 公明党 or mapped."
+        },
+        {
+          "id": "jp_komeito_history_reformation_retrospective",
+          "text": "It says that on １９９８年（平成１０年）１１月７日 「公明」 and 「新党平和」 merged and the new, present 「公明党」 was formed ('新しい現在の「公明党」が結成されました').",
+          "locator": {
+            "section": "新しい「公明党」の誕生と連立政権への参加",
+            "paragraph": 1
+          },
+          "uncertainty": "Retrospective record of the November 1998 merger: no structured date is stored and it is never a holder boundary. A claim about the organizations only: the old 公明党, 公明, 新党平和 and the 公明党 formed in 1998 are never merged into one identity, and nothing is mapped."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_founding_convention_report_19981108",
+      "title": "結成全国大会詳報 １９９８年１１月８日 公明新聞から (新しい「公明党」が船出)",
+      "url": "https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm",
+      "original_url": "http://www.komei.or.jp/topics/981107shoho.htm",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of the party organ 公明新聞's detailed report (issue of 8 November 1998) of the founding national convention of the new 公明党. The page does not print the convention's day.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-founding-convention-report-19981108-facts.json",
+        "bytes": 7136,
+        "sha256": "6d91a9b04d9985ca23de1a6a5e475f7b5f9220cf9b7ceff1dd719fa5d2ad9b3b"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_new_name_decided_19981024",
+          "text": "The report says the new-party preparatory office reported that 公明's expanded central committee formally decided the new party name 「公明党」 and its rules on 24 October ('十月二十四日の公明拡大中央委員会で新党名「公明党」と、規約を正式決定').",
+          "attested_on": "1998-10-24",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "A claim about the organization only (the year is taken from the page's date line, 8 November 1998): a decision of 公明, not a merger of identities; nothing is mapped. Never a holder boundary."
+        },
+        {
+          "id": "jp_komeito_merger_form_reported",
+          "text": "It says the new party was formed by 新党平和 dissolving and merging with 公明 as the surviving party ('新党平和が解散し、公明を存続政党として合流する形式').",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "A claim about the organizations only; the page does not print the convention's day (see the separate claim of 30 November 1998), so no structured date is stored. 新党平和, 公明 and 公明党 are never merged into one identity here, and nothing is mapped."
+        },
+        {
+          "id": "jp_komeito_kanzaki_convention_confidence",
+          "text": "It says the convention, choosing officers without a ballot (rule 20(2)), which under rule 20(3) needs the confidence of a majority of the delegates present, approved by a show of hands the headquarters officers proposed by the preparatory committee, among them 神崎代表 and 浜四津代表代行 ('神崎代表、浜四津代表代行…本部役員三十七名が挙手多数で信任された').",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "A selection by the convention, never a holder or a start; the page does not print the convention's day, so no structured date is stored. The 代表代行 is another office (claims only)."
+        },
+        {
+          "id": "jp_komeito_kanzaki_in_office_founding_report_19981108",
+          "text": "The party organ's report of 8 November 1998 names 神崎代表 giving the new officers' address after the vote, resolved to fulfil his duties with all his being ('全身全霊をもって職務を全うしていく決意').",
+          "attested_on": "1998-11-08",
+          "locator": {
+            "paragraph": 7
+          },
+          "uncertainty": "Dates the holder observation of 8 November 1998 by the report's own date line (the convention's day is not printed on the page); not a start, because no source reviewed states the day office took effect."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_diet_hr_plenary_19981130",
+      "title": "第144回国会 衆議院 本会議 第2号 (1998-11-30), speech 15",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=114405254X00219981130&speechNumber=15&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 15 of the 衆議院 本会議 第2号 (1998-11-30), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/114405254X00219981130. The printed page images, served through a JavaScript viewer, were not viewed. Used only for a claim about the organizations: the record identifies the speaker as speaking for the parliamentary group 公明党・改革クラブ, not as a party officer, so nothing here feeds the party office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-19981130-facts.json",
+        "bytes": 5432,
+        "sha256": "b9bd26b708c5119b8f8112e4f1fcb014c478f31f791ac32aa47c1fb5479de36c"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_merger_convention_recalled_19981107",
+          "text": "In the House of Representatives plenary on 30 November 1998, 神崎武法 says that at the 公明党 national convention of 7 November 新党平和 and 公明 merged and set sail as the new 公明党 ('去る十一月七日の公明党全国大会において、新党平和と公明が合流して、新しい公明党として船出いたしました').",
+          "attested_on": "1998-11-07",
+          "locator": {
+            "issueID": "114405254X00219981130",
+            "speechOrder": [
+              15
+            ],
+            "speaker": "神崎武法"
+          },
+          "uncertainty": "Dated by the day the statement gives (year from the sitting). A claim about the organizations only: 新党平和, 公明 and the 公明党 formed from them stay separate identities and nothing is mapped. The speaker is not identified as a party officer in the record, so the statement is never holder evidence."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_kanzaki_reappointed_20021103",
+      "title": "神崎代表、浜四津代表代行、冬柴幹事長を再任　中央幹事に新たに５氏　強靱な党めざし新執行部 (デイリーニュース, 2002年11月3日付)",
+      "url": "https://web.archive.org/web/20021123180520id_/http://www.komei.or.jp/about/03_03.htm",
+      "original_url": "http://www.komei.or.jp/about/03_03.htm",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's daily-news copy of a 公明新聞 report dated 3 November 2002 on the officers chosen at the fourth national convention. The page does not print the convention's day.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-reappointed-20021103-facts.json",
+        "bytes": 5343,
+        "sha256": "50b778fe4712e6c18d32131f49747479497afd5ce5150b95ffb6e621d91899de"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_kanzaki_sole_candidate_reelected_2002",
+          "text": "The report says the chair of the representative election administration committee reported that 神崎代表 was the only candidate, a selection without a ballot under rule 20(3) was put to the delegates, and the convention re-appointed 神崎武法代表 by the representative election ('代表選挙により神崎武法代表を再任').",
+          "locator": {
+            "paragraph": [
+              1,
+              4
+            ]
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; the page does not print the convention's day, so no structured date is stored."
+        },
+        {
+          "id": "jp_komeito_kanzaki_in_office_reappointed_20021103",
+          "text": "The report dated 3 November 2002 says the list of 35 new headquarters officers named by '新代表に再任された神崎代表' was announced and approved by the delegates.",
+          "attested_on": "2002-11-03",
+          "locator": {
+            "paragraph": 5
+          },
+          "uncertainty": "Dates the holder observation of 3 November 2002 by the report's own date line (the convention's day is not printed); not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_kanzaki_fourth_convention_address_20021103",
+      "title": "第４回党全国大会／神崎武法代表のあいさつ（全文） (2002年11月3日付)",
+      "url": "https://web.archive.org/web/20021123181318id_/http://www.komei.or.jp/about/03_07.htm",
+      "original_url": "http://www.komei.or.jp/about/03_07.htm",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of 神崎武法's address to the fourth national convention, as printed by 公明新聞 on 3 November 2002; the address's own day is not printed on the page.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fourth-convention-address-20021103-facts.json",
+        "bytes": 4610,
+        "sha256": "7b97c0f3f28a85342e504a1494f7771fb6584dbe425ede2a2133701e76ff852f"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_kanzaki_self_stated_continuing_20021103",
+          "text": "In his address, printed under the heading 神崎武法代表 on the page dated 3 November 2002, he says that by the delegates' confidence he will continue to bear the heavy duty of party representative ('代議員の皆さまのご信任により、引き続き党代表の重責を務めさせていただくことになりました').",
+          "attested_on": "2002-11-03",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Dates the holder observation of 3 November 2002 (the page's date line), with the report of the same date; his words say he continues after the convention's confidence but give no day, so they are not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_kanzaki_fifth_convention_address_20041101",
+      "title": "第５回党大会　神崎武法代表の挨拶（全文） (公明新聞：2004年11月1日)",
+      "url": "https://web.archive.org/web/20070624115054id_/http://www.komei.or.jp/news/2004/1101/1879.html",
+      "original_url": "http://www.komei.or.jp/news/2004/1101/1879.html",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of 神崎武法's address to the fifth national convention, printed by 公明新聞 on 1 November 2004; the page introduces it as the address of the representative re-elected at the convention of the 31st, the day before the page's date line (so 31 October 2004).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json",
+        "bytes": 5310,
+        "sha256": "8a5dbcd65332a2450909a0c371417c55405733f4984efd511b82f8be1e4c634d"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_kanzaki_reelected_20041031",
+          "text": "The page introduces the address of '３１日に開かれた党全国大会で再任された神崎武法代表'.",
+          "attested_on": "2004-10-31",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A re-election by the convention of 31 October 2004, never a holder or a start by itself; see the same-day in-office attestation."
+        },
+        {
+          "id": "jp_komeito_kanzaki_self_stated_again_20041031",
+          "text": "In the address, given at that convention, 神崎武法 says that by the delegates' confidence he will again bear the heavy duty of party representative ('代議員の皆さまのご信任により、再び党代表の重責を務めさせていただくことになりました').",
+          "attested_on": "2004-10-31",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Dates the holder observation of 31 October 2004 (his own statement of the office at the convention the page dates to the 31st); a statement of continuing (再び) after re-election, not read as a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_ota_sixth_convention_20061001",
+      "title": "「新しい公明党」が出発 (公明新聞：2006年10月1日)",
+      "url": "https://web.archive.org/web/20070623012014id_/http://www.komei.or.jp/news/2006/1001/7138.html",
+      "original_url": "http://www.komei.or.jp/news/2006/1001/7138.html",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 1 October 2006 of the sixth national convention of 30 September 2006 (the report and its caption print the 30th, the day before the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json",
+        "bytes": 5505,
+        "sha256": "ea2c0f312e5d85059cc4b396559e10d4bacc95fe6ec0955e9179096d9cfea814"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ota_selected_20060930",
+          "text": "The party organ reports that on the 30th 公明党 held its sixth national convention and elected 太田昭宏新代表: under rule 20, 太田幹事長代行, confirmed as the only candidate, received the confidence of all delegates present standing and was elected new representative ('出席代議員の起立総員による信任を受け、新代表に選出された').",
+          "attested_on": "2006-09-30",
+          "locator": {
+            "paragraph": [
+              1,
+              7
+            ]
+          },
+          "uncertainty": "A selection by the convention, never a holder or a start by itself; see the same-day in-office attestation. 幹事長代行 is another office."
+        },
+        {
+          "id": "jp_komeito_ota_in_office_convention_20060930",
+          "text": "It reports that 太田代表, elected in the representative election, rose to address the convention and declared his resolve ('代表選で選出された太田代表はあいさつに立ち').",
+          "attested_on": "2006-09-30",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Cited, with the statement of assumption, by the holder observation from 30 September 2006: a same-day party record naming him 代表 after the selection."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_ota_address_sixth_convention_20061001",
+      "title": "太田昭宏代表のあいさつ (全文) (公明新聞：2006年10月1日)",
+      "url": "https://web.archive.org/web/20070623011929id_/http://www.komei.or.jp/news/2006/1001/7143.html",
+      "original_url": "http://www.komei.or.jp/news/2006/1001/7143.html",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of 太田昭宏's address to the sixth national convention, printed by 公明新聞 on 1 October 2006; the page introduces it as the address of the representative elected at the convention of the 30th, the day before the page's date line (so 30 September 2006).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-address-sixth-convention-20061001-facts.json",
+        "bytes": 5599,
+        "sha256": "d2eed437ea94c669db0d487e57347c1e26b34ea8075c601d32203ba570e3f759"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ota_assumption_stated_20060930",
+          "text": "The page introduces '３０日の第６回公明党全国大会で選出された太田昭宏代表のあいさつ', which opens with his statement that at today's convention, having received the delegates' confidence, he has taken office as 公明党代表 ('本日の党大会において、全国の代議員の皆様のご信任を賜り、公明党代表に就任させていただきました太田昭宏でございます').",
+          "attested_on": "2006-09-30",
+          "locator": {
+            "paragraph": [
+              1,
+              2
+            ]
+          },
+          "uncertainty": "States the day office was assumed: his own first-person statement that he took office at 'today's' convention, which the page dates to the 30th (as CLAUDE-C01-18 read 森喜朗's 'ただ今…就任致すことになりました'). Not an end of 神崎武法's office, whose last day is not stated."
+        },
+        {
+          "id": "jp_komeito_kanzaki_former_four_terms_20060930",
+          "text": "In the same address he thanks '神崎武法前代表' for leading the party for four terms and eight years ('４期８年').",
+          "attested_on": "2006-09-30",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "A predecessor reference with a retrospective count of terms: never an until, and the day 神崎武法's office ended is not stated; the four terms are not individually dated by this record."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_diet_hr_plenary_20061003",
+      "title": "第165回国会 衆議院 本会議 第5号 (2006-10-03), speech 3",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=116505254X00520061003&speechNumber=3&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 3 of the 衆議院 本会議 第5号 (2006-10-03), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/116505254X00520061003. The printed page images, served through a JavaScript viewer, were not viewed. His own representative question; only his own statement of the party office is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20061003-facts.json",
+        "bytes": 5244,
+        "sha256": "5479a09d6bd938dc840e954e9c91c306b471f2f9ebff45b87ab131e7ed73f100"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ota_self_stated_representative_20061003",
+          "text": "Opening his representative question in the House of Representatives plenary on 3 October 2006, 太田昭宏 introduces himself as having recently taken office as 公明党's representative ('このたび、公明党の代表に就任いたしました太田昭宏です').",
+          "attested_on": "2006-10-03",
+          "locator": {
+            "issueID": "116505254X00520061003",
+            "speechOrder": [
+              3
+            ],
+            "speaker": "太田昭宏"
+          },
+          "uncertainty": "A later attestation of the observation from 30 September 2006 (his own statement of the party office; 就任 without a day is not a start): never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+      "title": "臨時全国代表者会議でのあいさつ（要旨） (公明新聞：2009年9月9日付)",
+      "url": "https://web.archive.org/web/20110711232815id_/http://www.komei.or.jp/news/detail/20090909_1731",
+      "original_url": "http://www.komei.or.jp/news/detail/20090909_1731",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of 山口那津男's address to the extraordinary national meeting of representatives, printed by 公明新聞 on 9 September 2009; the page introduces it as the address of the new representative chosen at the meeting of the 8th (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-selection-greeting-20090909-facts.json",
+        "bytes": 6212,
+        "sha256": "21c58e0b1cc3aa51ffa69e911baff6d1d322fd3dcc9f5e09c02f5bb05211c398"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_selected_20090908",
+          "text": "The page introduces the address of '8日の公明党臨時全国代表者会議で選出された山口那津男・新代表', who says that having just received the delegates' confidence he has been chosen as 公明党代表 ('ただいま皆さまの信任を賜り、公明党代表に選出されました').",
+          "attested_on": "2009-09-08",
+          "locator": {
+            "paragraph": [
+              1,
+              2
+            ]
+          },
+          "uncertainty": "A selection by the extraordinary national meeting of representatives (選出, an election): never a holder or a start by itself; see the same-day in-office attestation."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_greeting_20090908",
+          "text": "The address, headed 山口那津男　代表, continues 'as new representative' ('新代表として') and offers a greeting on taking office ('代表就任にあたり、一言、ごあいさつを申し上げます').",
+          "attested_on": "2009-09-08",
+          "locator": {
+            "paragraph": [
+              2,
+              4
+            ]
+          },
+          "uncertainty": "Dates the holder observation of 8 September 2009: the party's record of the new representative's address at the meeting of the 8th; a greeting on taking office (就任にあたり) gives no day of taking effect beyond the meeting, so it is not read as a start."
+        },
+        {
+          "id": "jp_komeito_ota_former_20090908",
+          "text": "In the same address he thanks '太田前代表' and the former secretary-general for steering the party for three years.",
+          "attested_on": "2009-09-08",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "A predecessor reference: never an until; the day 太田昭宏's office ended is not stated."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_diet_hc_plenary_20091030",
+      "title": "第173回国会 参議院 本会議 第3号 (2009-10-30), speech 2",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=117315254X00320091030&speechNumber=2&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 2 of the 参議院 本会議 第3号 (2009-10-30), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/117315254X00320091030. The printed page images, served through a JavaScript viewer, were not viewed. His own representative question; only his own statements of the party office are used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-komeito-20091030-facts.json",
+        "bytes": 6006,
+        "sha256": "68e205938db895ed6b799f58e2b1c7a50e78241285854ad2d15b4d085a240e6a"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_selection_recalled_20090908",
+          "text": "In the House of Councillors plenary on 30 October 2009, 山口那津男 says that on 8 September he was chosen as 公明党's representative ('私は、去る九月八日、公明党の代表に選任されました').",
+          "attested_on": "2009-09-08",
+          "locator": {
+            "issueID": "117315254X00320091030",
+            "speechOrder": [
+              2
+            ],
+            "speaker": "山口那津男"
+          },
+          "uncertainty": "His own recollection of his selection, dated by the day it gives (year from the sitting): an election (選任), never a holder or a start."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_diet_20091030",
+          "text": "In the same speech 山口那津男 speaks of what he has done since taking office as representative until that day ('代表に就任して以来今日まで').",
+          "attested_on": "2009-10-30",
+          "locator": {
+            "issueID": "117315254X00320091030",
+            "speechOrder": [
+              2
+            ],
+            "speaker": "山口那津男"
+          },
+          "uncertainty": "A later attestation of the observation of 8 September 2009 (his own statement of the party office on that day): never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_ninth_convention_20120923",
+      "title": "日本再建の先頭に　党全国大会 (公明新聞：2012年9月23日付)",
+      "url": "https://web.archive.org/web/20130107011050id_/http://www.komei.or.jp/news/detail/20120923_9170",
+      "original_url": "http://www.komei.or.jp/news/detail/20120923_9170",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 23 September 2012 of the ninth national convention of 22 September 2012 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-ninth-convention-20120923-facts.json",
+        "bytes": 5219,
+        "sha256": "c436bc203ea3048331c0900fd2292b8f02cbb496b515e3e44d088c399664c3a7"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_reelected_20120922",
+          "text": "The party organ reports that on the 22nd 公明党 held its ninth national convention and set out on its advance led by the re-elected 山口那津男代表 ('第9回全国大会を開き、再任された山口那津男代表を先頭に').",
+          "attested_on": "2012-09-22",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; see the same-day in-office attestation. The manner of the vote and the new term's first day are not stated on this page."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_convention_20120922",
+          "text": "It reports that 山口代表, re-elected as party representative, rose to address the convention ('党代表に再任され、あいさつに立った山口代表は').",
+          "attested_on": "2012-09-22",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Dates the holder observation of 22 September 2012: a same-day party record naming him 代表 after the re-election; not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_tenth_convention_20140922",
+      "title": "「次の50年」へ勇躍前進　山口代表を再任　党全国大会 (公明新聞：2014年9月22日（月）付)",
+      "url": "https://web.archive.org/web/20140924161639id_/https://www.komei.or.jp/news/detail/20140922_14981",
+      "original_url": "https://www.komei.or.jp/news/detail/20140922_14981",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 22 September 2014 of the 10th national convention of 21 September 2014 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-tenth-convention-20140922-facts.json",
+        "bytes": 5295,
+        "sha256": "f9ec19ea8fb504534c5189e1c9d235f48f59f63c2987e4ae47f54b11f6af8534"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_reelected_20140921",
+          "text": "The party organ reports that at the 10th national convention on the 21st, the representative election being held under rule 17(3) with 山口代表 confirmed as the only candidate, he won the confidence of all delegates present standing and was re-elected ('山口代表が出席代議員の起立総員で信任を得て再任').",
+          "attested_on": "2014-09-21",
+          "locator": {
+            "paragraph": [
+              1,
+              5
+            ]
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; see the same-day in-office attestation. The new two-year term's first day is not stated."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_convention_20140921",
+          "text": "It reports that after his re-election 山口代表 named the new officers ('山口代表は新役員を指名し').",
+          "attested_on": "2014-09-21",
+          "locator": {
+            "paragraph": 5
+          },
+          "uncertainty": "Dates the holder observation of 21 September 2014: a same-day party record naming him 代表 after the re-election; not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_eleventh_convention_20160918",
+      "title": "公明、党大会で決意新たに出発　山口代表を再任 (公明新聞：2016年9月18日（日）付)",
+      "url": "https://web.archive.org/web/20190722002155id_/https://www.komei.or.jp/news/detail/20160918_21355",
+      "original_url": "https://www.komei.or.jp/news/detail/20160918_21355",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 18 September 2016 of the 11th national convention of 17 September 2016 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-eleventh-convention-20160918-facts.json",
+        "bytes": 5334,
+        "sha256": "51dbd517acdbb4eed788ef853e93bd6928d5eb90ebfcd3c403424a2ae862174f"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_reelected_20160917",
+          "text": "The party organ reports that at the 11th national convention on the 17th, the representative election being held under rule 17(3) with 山口代表 confirmed as the only candidate, he won the confidence of all delegates present standing and was re-elected ('山口代表が出席代議員の起立総員で信任を得て再任').",
+          "attested_on": "2016-09-17",
+          "locator": {
+            "paragraph": [
+              1,
+              4
+            ]
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; see the same-day in-office attestation. The new two-year term's first day is not stated."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_convention_20160917",
+          "text": "It reports that at the convention the re-elected 山口那津男代表 addressed the delegates ('党代表に再任された山口那津男代表は').",
+          "attested_on": "2016-09-17",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 17 September 2016: a same-day party record naming him 代表 after the re-election; not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_twelfth_convention_20181001",
+      "title": "“新時代”切り開く　公明、党大会で結束し出発　山口代表再任、幹事長に斉藤氏 (ニュース, 2018年10月1日)",
+      "url": "https://web.archive.org/web/20190722004140id_/https://www.komei.or.jp/komeinews/p12118/",
+      "original_url": "https://www.komei.or.jp/komeinews/p12118/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 1 October 2018 of the 12th national convention of 30 September 2018 (the report prints the 30th, the day before the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-twelfth-convention-20181001-facts.json",
+        "bytes": 5432,
+        "sha256": "59808c93051ca1b3ddee99e2d6c805519b7ea1bee8aa31b28895a97298390521"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_reelected_20180930",
+          "text": "The party organ reports that at the 12th national convention on the 30th, the representative election being held under rule 17(3) with 山口代表 confirmed as the only candidate, he won the confidence of all delegates present standing and was re-elected ('山口代表が出席代議員の起立総員で信任を得て再任').",
+          "attested_on": "2018-09-30",
+          "locator": {
+            "paragraph": [
+              1,
+              4
+            ]
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; see the same-day in-office attestation. The new two-year term's first day is not stated."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_convention_20180930",
+          "text": "It reports that at the convention the re-elected 山口那津男代表 said the new two-year term would be a crucial test ('党代表に再任された山口那津男代表は、「新たな任期の2年間は、日本の未来を切り開く正念場だ').",
+          "attested_on": "2018-09-30",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 30 September 2018: a same-day party record naming him 代表 after the re-election; not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_thirteenth_convention_20200928",
+      "title": "希望と安心の新時代へ　山口代表再任、幹事長に石井氏、政調会長に竹内（譲）氏 (ニュース, 2020年9月28日)",
+      "url": "https://web.archive.org/web/20201027010306id_/https://www.komei.or.jp/komeinews/p122128/",
+      "original_url": "https://www.komei.or.jp/komeinews/p122128/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 28 September 2020 of the 13th national convention of 27 September 2020 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-thirteenth-convention-20200928-facts.json",
+        "bytes": 5312,
+        "sha256": "14e1e699ef115a6a1d27dc4b784b7bc05e224c1d899da435e741741ad83f18ff"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_reelected_20200927",
+          "text": "The party organ reports that at the 13th national convention on the 27th, the representative election being held under rule 17(3) with 山口代表 confirmed as the only candidate, he won the confidence of all delegates present standing and was re-elected ('山口代表が出席代議員の起立総員で信任を得て再任').",
+          "attested_on": "2020-09-27",
+          "locator": {
+            "paragraph": [
+              1,
+              6
+            ]
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; see the same-day in-office attestation. The new two-year term's first day is not stated."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_convention_20200927",
+          "text": "It reports that at the convention the re-elected 山口那津男代表 addressed the delegates ('党代表に再任された山口那津男代表は').",
+          "attested_on": "2020-09-27",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 27 September 2020: a same-day party record naming him 代表 after the re-election; not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_yamaguchi_fourteenth_convention_20220926",
+      "title": "結党60年へ勇躍前進　山口代表再任、政調会長に高木氏 (ニュース, 2022年9月26日)",
+      "url": "https://web.archive.org/web/20220928122912id_/https://www.komei.or.jp/komeinews/p258623/",
+      "original_url": "https://www.komei.or.jp/komeinews/p258623/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 26 September 2022 of the 14th national convention of 25 September 2022 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-fourteenth-convention-20220926-facts.json",
+        "bytes": 5312,
+        "sha256": "f18c4884bea4ce674d85b2a6dd5478f9ade218b8fc7ced28f8c22021dc3dff24"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_yamaguchi_reelected_20220925",
+          "text": "The party organ reports that at the 14th national convention on the 25th, the representative election being held under rule 17(3) with 山口代表 confirmed as the only candidate, he won the confidence of all delegates present standing and was re-elected ('山口代表が出席代議員の起立総員で信任を得て再任').",
+          "attested_on": "2022-09-25",
+          "locator": {
+            "paragraph": [
+              1,
+              5
+            ]
+          },
+          "uncertainty": "A re-election by the convention, never a holder or a start by itself; see the same-day in-office attestation. The new two-year term's first day is not stated."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_in_office_convention_20220925",
+          "text": "It reports that at the convention the re-elected 山口那津男代表 addressed the delegates ('党代表に再任された山口那津男代表は').",
+          "attested_on": "2022-09-25",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 25 September 2022: a same-day party record naming him 代表 after the re-election; not a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_ishii_new_representative_interview_20240930",
+      "title": "立党精神貫き衆望担う　石井啓一　新代表に聞く (ニュース, 2024年9月30日)",
+      "url": "https://web.archive.org/web/20240930045917id_/https://www.komei.or.jp/komeinews/p370918/",
+      "original_url": "https://www.komei.or.jp/komeinews/p370918/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 interview dated 30 September 2024 with the new representative after the 15th national convention of 28 September 2024; the convention's day is printed as the 28th (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-new-representative-interview-20240930-facts.json",
+        "bytes": 6223,
+        "sha256": "d6c2f7dcf2438a9a99b44f6e50692bad2d7acca470c92685bd563393325fe902"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ishii_in_office_convention_20240928",
+          "text": "The party organ reports that on the 28th 公明党 held its 15th national convention in Tokyo and that the new executive led by 石井啓一代表 was launched ('公明党は28日、結党60年の節目を刻む第15回全国大会を都内で開き、石井啓一代表ら新執行部が発足しました').",
+          "attested_on": "2024-09-28",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 28 September 2024: a same-day party record naming him 代表 after the convention; the launch of the executive (発足) is not read as the day office took effect (no first-person statement of assumption was found), so it is not a start."
+        },
+        {
+          "id": "jp_komeito_ishii_appointment_recalled",
+          "text": "In the interview 石井啓一 says he received the appointment as party representative as the successor of 山口那津男前代表 ('山口那津男前代表の後任として党代表を拝命しました').",
+          "locator": {
+            "section": "就任の抱負",
+            "paragraph": 1
+          },
+          "uncertainty": "His own recollection of his selection, without a day (the interview's day is not printed): no structured date is stored; never a holder or a start."
+        },
+        {
+          "id": "jp_komeito_yamaguchi_former_eight_terms_recalled",
+          "text": "In the same answer he describes his predecessor as '8期15年にわたり党の発展をリードされた山口那津男前代表'.",
+          "locator": {
+            "section": "就任の抱負",
+            "paragraph": 1
+          },
+          "uncertainty": "A predecessor reference with a retrospective count of terms (8期15年), undated: no structured date is stored; never an until and never a holder boundary. The eight terms are not individually dated by this record."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_ishii_resignation_intent_20241101",
+      "title": "党再建へ体制　速やかに　衆院選の結果受け　石井代表が辞意表明 (ニュース, 2024年11月1日)",
+      "url": "https://web.archive.org/web/20241106194128id_/https://www.komei.or.jp/komeinews/p377233/",
+      "original_url": "https://www.komei.or.jp/komeinews/p377233/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 article dated 1 November 2024 on the central executive committee of 31 October 2024 (the article prints the 31st, the day before the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-resignation-intent-20241101-facts.json",
+        "bytes": 4655,
+        "sha256": "2d4f6614b4acfcc9b5448d08f575e6f2397743077e0e2132dc9451b59a833d2f"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_ishii_resignation_intent_20241031",
+          "text": "The party organ reports that 公明党の石井啓一代表, greeting the 中央幹事会 on the morning of the 31st, said the general-election result was entirely his responsibility as party representative and expressed his intention to resign ('代表を辞任する意向を表明した').",
+          "attested_on": "2024-10-31",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "An announced resignation intention (辞意表明), not an end: no source reviewed states the day his office ended. Never an until; no end is inferred from the successor's selection of 9 November 2024."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_saito_recommended_20241108",
+      "title": "新代表に斉藤氏推薦　中央幹事会　交渉能力、行動力に期待 (ニュース, 2024年11月8日)",
+      "url": "https://web.archive.org/web/20241108042912id_/https://www.komei.or.jp/komeinews/p378432/",
+      "original_url": "https://www.komei.or.jp/komeinews/p378432/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 article dated 8 November 2024 on the central executive committee of 7 November 2024 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json",
+        "bytes": 4821,
+        "sha256": "dfce61c197d6f29287fd4e93d9d9fb2df2385f700177d600beea00e991e94cb6"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_saito_recommended_20241107",
+          "text": "The party organ reports that on the 7th the 中央幹事会 decided to recommend 斉藤鉄夫副代表 as the candidate to succeed 石井啓一代表, who had announced his resignation mid-term, and that under the party rules he would be elected if he won the confidence of a majority of the delegates at the extraordinary national convention on the 9th ('石井啓一代表の後任に、国土交通相の斉藤鉄夫副代表（衆院議員）を候補者として推薦することを決定した').",
+          "attested_on": "2024-11-07",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A recommendation of the candidate and a plan for the convention: never a holder or a start. His ministerial office (国土交通相) is state office and is excluded. It still calls 石井啓一 代表 on 7 November 2024; his announced resignation is not an end."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_saito_extraordinary_convention_20241110",
+      "title": "反転攻勢へ全党一丸　公明、臨時党大会で新出発　斉藤代表、竹谷代表代行が就任 (ニュース, 2024年11月10日)",
+      "url": "https://web.archive.org/web/20241111013606id_/https://www.komei.or.jp/komeinews/p378912/",
+      "original_url": "https://www.komei.or.jp/komeinews/p378912/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 10 November 2024 of the extraordinary national convention of 9 November 2024 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-extraordinary-convention-20241110-facts.json",
+        "bytes": 6171,
+        "sha256": "71405d4efb7d7a08b1f9509c49796d874f8ef713bbd6e23f091a188873a84c31"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_saito_convention_selection_20241109",
+          "text": "The party organ reports that on the afternoon of the 9th 公明党 held an extraordinary national convention and elected 斉藤鉄夫氏 new representative as the successor of 石井啓一代表, the delegates' confidence being given by a show of all hands on the 中央幹事会's recommendation under rule 17-4 ('出席代議員の挙手総員による信任を得て斉藤新代表を選出した').",
+          "attested_on": "2024-11-09",
+          "locator": {
+            "paragraph": [
+              1,
+              3
+            ]
+          },
+          "uncertainty": "A selection by the convention, never a holder or a start by itself; see the same-day in-office attestation."
+        },
+        {
+          "id": "jp_komeito_saito_in_office_convention_20241109",
+          "text": "It reports that in his address to the convention 斉藤代表 recalled that 公明党 would mark sixty years since its founding on the 17th and said the party wanted to make a new start ('あいさつで斉藤代表は').",
+          "attested_on": "2024-11-09",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "Dates the holder observation of 9 November 2024: a same-day party record naming him 代表 after the selection; not a start, because no source reviewed states the day office took effect (his printed address says he has been chosen, '選んでいただきました', which is an election)."
+        },
+        {
+          "id": "jp_komeito_ishii_former_20241110",
+          "text": "It says the convention was held because '石井前代表が党代表の辞任を表明した'.",
+          "attested_on": "2024-11-10",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "A predecessor reference in the report dated 10 November 2024 (the page's date line): never an until; the day his office ended is not stated."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_diet_hr_plenary_20241203",
+      "title": "第216回国会 衆議院 本会議 第4号 (2024-12-03), speech 10",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=121605254X00420241203&speechNumber=10&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 10 of the 衆議院 本会議 第4号 (2024-12-03), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/121605254X00420241203. The printed page images, served through a JavaScript viewer, were not viewed. His own representative question; only his own statement of the party office is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20241203-facts.json",
+        "bytes": 5162,
+        "sha256": "de55ed498946993d4ed80184c3a91b502aa4cd99220e00a4a9f2d118327ec22a"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_saito_in_office_diet_20241203",
+          "text": "In the House of Representatives plenary on 3 December 2024, 斉藤鉄夫 says he will work for a world without nuclear weapons as a member elected from Hiroshima 'そして党の代表として'.",
+          "attested_on": "2024-12-03",
+          "locator": {
+            "issueID": "121605254X00420241203",
+            "speechOrder": [
+              10
+            ],
+            "speaker": "斉藤鉄夫"
+          },
+          "uncertainty": "A later attestation of the observation of 9 November 2024 (his own statement of the party office): never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_takeya_interim_20260123",
+      "title": "公明党代表に竹谷氏　斉藤氏の「中道」参画受け　中央幹事会 (ニュース, 2026年1月23日)",
+      "url": "https://web.archive.org/web/20260128043946id_/https://www.komei.or.jp/komeinews/p502472/",
+      "original_url": "https://www.komei.or.jp/komeinews/p502472/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 article dated 23 January 2026 on the central executive committee (中央幹事会) of 22 January 2026. Its year and month come from the page's date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-interim-20260123-facts.json",
+        "bytes": 6228,
+        "sha256": "264aa204890a0a29bb5dca5f6fe7a6fb66ca3fa9121d8c1637a52ce053bd67b6"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_takeya_interim_approved_20260122",
+          "text": "The party organ reports that at the 中央幹事会 on the morning of the 22nd, following 斉藤鉄夫前代表's joining the new party 「中道改革連合」, the party approved under its rules the appointment of 竹谷とし子氏 as 代表代理 ('竹谷とし子氏を代表代理とする人事を承認した').",
+          "attested_on": "2026-01-22",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "An interim appointment under the party rules (代表代理): claims only, never a holder or a start of this office. The day is the 22nd of the month of the page's date line."
+        },
+        {
+          "id": "jp_komeito_interim_styled_representative_decided_20260122",
+          "text": "It adds that the party decided that until a national convention elects a new representative the 代表代理 is called 「代表」, which is why 公明新聞 prints 「代表」 ('党全国大会で新たに代表が選出されるまでの間、代表代理を「代表」と呼称する方針を決定').",
+          "attested_on": "2026-01-22",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A decision on the interim office's style, not an election: the title 「代表」 used for 竹谷とし子 from 22 January 2026 to the national convention is interim service (claims only), never a holder or a start."
+        },
+        {
+          "id": "jp_komeito_saito_former_20260122",
+          "text": "It reports that at the committee 斉藤前代表 thanked those who had supported him through more than fifty years with 公明党.",
+          "attested_on": "2026-01-22",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Calls him 前代表 on 22 January 2026 after his joining 中道改革連合; the day his office ended is not stated, so this is never an until, and no end is inferred from the interim appointment."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_chudo_founding_convention_20260125",
+      "title": "“中道改革連合が結党大会”  生活者ファースト貫く (ニュース, 2026年1月25日)",
+      "url": "https://web.archive.org/web/20260129004916id_/https://www.komei.or.jp/komeinews/p504963/",
+      "original_url": "https://www.komei.or.jp/komeinews/p504963/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's report dated 25 January 2026 of the founding convention of 中道改革連合 on 22 January 2026. Used only for claims about that other organization, its office and the interim title; its year and month come from the page's date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-chudo-founding-convention-20260125-facts.json",
+        "bytes": 6013,
+        "sha256": "e2f629ffd23dab757ac8e86ea6609fabf0bd44f09388ca903b52bf960d19bda5"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_chudo_founded_20260122",
+          "text": "The party organ reports that the founding convention of the new party 「中道改革連合」 (略称「中道」) was held in the Diet on the 22nd ('「中道改革連合」（略称＝「中道」）の結党大会が22日').",
+          "attested_on": "2026-01-22",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A claim about another organization only (中道改革連合): it is not merged with 公明党 or this observation and nothing is mapped; the lower-house parliamentary group 中道改革連合・無所属 is a separate institution observation, never linked here."
+        },
+        {
+          "id": "jp_komeito_saito_chudo_co_representative_20260122",
+          "text": "It reports that 斉藤鉄夫 and 野田佳彦 took office as its co-representatives ('共同代表には斉藤鉄夫、野田佳彦両衆院議員が就任').",
+          "attested_on": "2026-01-22",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Another organization's office (中道改革連合共同代表), claims only: never a holder of this role and never an end of his 公明党 office, whose end day is not stated."
+        },
+        {
+          "id": "jp_komeito_takeya_styled_representative_20260122",
+          "text": "It says that 竹谷とし子氏 took office as 公明党代表 the same day ('同日、公明党代表に就任した竹谷とし子氏').",
+          "attested_on": "2026-01-22",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "The party organ's interim style: its report of 23 January 2026 says the 中央幹事会 appointed her 代表代理 and that the 代表代理 is called 「代表」 until a national convention elects a representative, so this 就任 is interim service (claims only), never a holder or a start."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_takeya_recommended_20260312",
+      "title": "新代表に竹谷氏を推薦　求心力、政策実現力に期待　中央幹事会 (ニュース, 2026年3月12日)",
+      "url": "https://web.archive.org/web/20260312230500id_/https://www.komei.or.jp/komeinews/p506732/",
+      "original_url": "https://www.komei.or.jp/komeinews/p506732/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 article dated 12 March 2026 on the central executive committee of 11 March 2026. Its year and month come from the page's date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-recommended-20260312-facts.json",
+        "bytes": 4735,
+        "sha256": "2a9e5330987938ea2d118621d81801594ade730f5686a2d6b4160e9be2748954"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_takeya_recommended_20260311",
+          "text": "The party organ reports that on the 11th the 中央幹事会, following 斉藤鉄夫前代表's joining 中道改革連合, decided to recommend 竹谷とし子代表代理 as the candidate to succeed him, and that under the party rules she would be elected new representative if she won the confidence of a majority of the delegates at the extraordinary national convention to be held on the 14th ('後任に竹谷とし子代表代理を候補者として推薦することを決定した').",
+          "attested_on": "2026-03-11",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A recommendation of the candidate and a plan for the convention: never a holder or a start. It calls her 代表代理 on 11 March 2026 (interim office, claims only)."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_takeya_address_20260315",
+      "title": "竹谷代表あいさつ　公明党　臨時全国大会　党代表の決意 (ニュース, 2026年3月15日)",
+      "url": "https://web.archive.org/web/20260317063320id_/https://www.komei.or.jp/komeinews/p506835/",
+      "original_url": "https://www.komei.or.jp/komeinews/p506835/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 article dated 15 March 2026 printing 竹谷とし子's address to the extraordinary national convention; the photograph caption dates the address to the 14th (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json",
+        "bytes": 4729,
+        "sha256": "d519a3157427a1492f2fd490ee5645cec6c7b49d716505737bffda4ba2af5ca4"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_takeya_assumption_stated_20260314",
+          "text": "The printed address, captioned 'あいさつする竹谷代表＝14日　公明会館', opens with her statement that, having just now received the delegates' confidence, she takes on the great duty of 公明党代表 ('ただいま皆さまのご信任を賜り、公明党代表の大任を担わせていただくことになりました').",
+          "attested_on": "2026-03-14",
+          "locator": {
+            "paragraph": 1,
+            "caption": "あいさつする竹谷代表＝14日　公明会館"
+          },
+          "uncertainty": "States the day office was assumed: her own first-person statement, on the occasion the caption dates to 14 March 2026, that she takes up the office now (as CLAUDE-C01-18 read 森喜朗's 'ただ今…就任致すことになりました'). It ends her interim service as 代表代理 by implication only; no end of that interim office is recorded."
+        }
+      ]
+    },
+    {
+      "id": "jp_komeito_takeya_extraordinary_convention_20260315",
+      "title": "生活者、平和守り抜く　公明、臨時党大会で竹谷代表選出 (ニュース, 2026年3月15日)",
+      "url": "https://web.archive.org/web/20260318121519id_/https://www.komei.or.jp/komeinews/p506839/",
+      "original_url": "https://www.komei.or.jp/komeinews/p506839/",
+      "publisher": "Komeito (公明党, www.komei.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-30",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party site's copy of a 公明新聞 report dated 15 March 2026 of the extraordinary national convention of 14 March 2026 (month and year from the page's date line).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-extraordinary-convention-20260315-facts.json",
+        "bytes": 6108,
+        "sha256": "853c49f2a65c1a3c285df2c3190912610f7b66598dcd1181515f5622e94ce287"
+      },
+      "claims": [
+        {
+          "id": "jp_komeito_takeya_convention_selection_20260314",
+          "text": "The party organ reports that on the afternoon of the 14th 公明党 held an extraordinary national convention and elected 竹谷とし子氏 new representative, the delegates' confidence being given by a show of all hands on the 中央幹事会's recommendation under rule 17-4 ('出席代議員の挙手総員による信任を得て竹谷新代表が選出された').",
+          "attested_on": "2026-03-14",
+          "locator": {
+            "paragraph": [
+              1,
+              3
+            ]
+          },
+          "uncertainty": "A selection by the convention, never a holder or a start by itself; the start is her own statement of the same day."
+        },
+        {
+          "id": "jp_komeito_takeya_in_office_convention_20260314",
+          "text": "It reports that at the convention 竹谷代表 declared her resolve ('席上、竹谷代表は').",
+          "attested_on": "2026-03-14",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Cited, with the statement of assumption, by the holder observation from 14 March 2026: a same-day party record naming her 代表 after the selection."
+        },
+        {
+          "id": "jp_komeito_vacancy_recalled_january_2026",
+          "text": "It says the convention was held because in January 斉藤鉄夫前代表 joined 中道改革連合 and the representative's office fell vacant in mid-term ('今年1月に斉藤鉄夫前代表が中道改革連合に参画し、代表が任期途中に欠けたことを受け').",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Month only (January 2026): no structured date is stored, and it is never an until; no source reviewed states the day 斉藤鉄夫's office ended."
+        }
+      ]
     }
   ],
   "organizations": [
@@ -19571,12 +20829,431 @@
         "until": null,
         "note": "Participation at one election does not establish organization birth, dissolution or continuity."
       },
-      "roles": [],
+      "roles": [
+        {
+          "id": "jp_komeito_representative",
+          "title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+          "kind": "party_leader",
+          "sources": [
+            "jp_komeito_diet_hr_budget_19930129",
+            "jp_komeito_diet_hr_political_reform_19931105",
+            "jp_komeito_diet_hc_budget_19940616",
+            "jp_komeito_komei_representative_message_retrospective",
+            "jp_komeito_history_2003_retrospective",
+            "jp_komeito_founding_convention_report_19981108",
+            "jp_komeito_diet_hr_plenary_19981130",
+            "jp_komeito_kanzaki_reappointed_20021103",
+            "jp_komeito_kanzaki_fourth_convention_address_20021103",
+            "jp_komeito_kanzaki_fifth_convention_address_20041101",
+            "jp_komeito_ota_sixth_convention_20061001",
+            "jp_komeito_ota_address_sixth_convention_20061001",
+            "jp_komeito_diet_hr_plenary_20061003",
+            "jp_komeito_yamaguchi_selection_greeting_20090909",
+            "jp_komeito_diet_hc_plenary_20091030",
+            "jp_komeito_yamaguchi_ninth_convention_20120923",
+            "jp_komeito_yamaguchi_tenth_convention_20140922",
+            "jp_komeito_yamaguchi_eleventh_convention_20160918",
+            "jp_komeito_yamaguchi_twelfth_convention_20181001",
+            "jp_komeito_yamaguchi_thirteenth_convention_20200928",
+            "jp_komeito_yamaguchi_fourteenth_convention_20220926",
+            "jp_komeito_ishii_new_representative_interview_20240930",
+            "jp_komeito_ishii_resignation_intent_20241101",
+            "jp_komeito_saito_recommended_20241108",
+            "jp_komeito_saito_extraordinary_convention_20241110",
+            "jp_komeito_diet_hr_plenary_20241203",
+            "jp_komeito_takeya_interim_20260123",
+            "jp_komeito_chudo_founding_convention_20260125",
+            "jp_komeito_takeya_recommended_20260312",
+            "jp_komeito_takeya_address_20260315",
+            "jp_komeito_takeya_extraordinary_convention_20260315"
+          ],
+          "claim_ids": [
+            "jp_komeito_ishida_named_chair_by_secretary_general_19930129",
+            "jp_komeito_ishida_assumption_recalled_may_1989",
+            "jp_komeito_ishida_still_chair_19940616",
+            "jp_komeito_acting_chair_in_place_19940616",
+            "jp_komeito_komei_formed_retrospective",
+            "jp_komeito_komei_representative_since_19941205_retrospective",
+            "jp_komeito_history_ishida_chair_in_cabinet_retrospective",
+            "jp_komeito_history_nfp_founded_retrospective",
+            "jp_komeito_history_division_retrospective",
+            "jp_komeito_history_nfp_dissolved_retrospective",
+            "jp_komeito_history_reimei_heiwa_formed_retrospective",
+            "jp_komeito_history_reformation_retrospective",
+            "jp_komeito_new_name_decided_19981024",
+            "jp_komeito_merger_form_reported",
+            "jp_komeito_kanzaki_convention_confidence",
+            "jp_komeito_kanzaki_in_office_founding_report_19981108",
+            "jp_komeito_merger_convention_recalled_19981107",
+            "jp_komeito_kanzaki_sole_candidate_reelected_2002",
+            "jp_komeito_kanzaki_in_office_reappointed_20021103",
+            "jp_komeito_kanzaki_self_stated_continuing_20021103",
+            "jp_komeito_kanzaki_reelected_20041031",
+            "jp_komeito_kanzaki_self_stated_again_20041031",
+            "jp_komeito_ota_selected_20060930",
+            "jp_komeito_ota_in_office_convention_20060930",
+            "jp_komeito_ota_assumption_stated_20060930",
+            "jp_komeito_kanzaki_former_four_terms_20060930",
+            "jp_komeito_ota_self_stated_representative_20061003",
+            "jp_komeito_yamaguchi_selected_20090908",
+            "jp_komeito_yamaguchi_in_office_greeting_20090908",
+            "jp_komeito_ota_former_20090908",
+            "jp_komeito_yamaguchi_selection_recalled_20090908",
+            "jp_komeito_yamaguchi_in_office_diet_20091030",
+            "jp_komeito_yamaguchi_reelected_20120922",
+            "jp_komeito_yamaguchi_in_office_convention_20120922",
+            "jp_komeito_yamaguchi_reelected_20140921",
+            "jp_komeito_yamaguchi_in_office_convention_20140921",
+            "jp_komeito_yamaguchi_reelected_20160917",
+            "jp_komeito_yamaguchi_in_office_convention_20160917",
+            "jp_komeito_yamaguchi_reelected_20180930",
+            "jp_komeito_yamaguchi_in_office_convention_20180930",
+            "jp_komeito_yamaguchi_reelected_20200927",
+            "jp_komeito_yamaguchi_in_office_convention_20200927",
+            "jp_komeito_yamaguchi_reelected_20220925",
+            "jp_komeito_yamaguchi_in_office_convention_20220925",
+            "jp_komeito_ishii_in_office_convention_20240928",
+            "jp_komeito_ishii_appointment_recalled",
+            "jp_komeito_yamaguchi_former_eight_terms_recalled",
+            "jp_komeito_ishii_resignation_intent_20241031",
+            "jp_komeito_saito_recommended_20241107",
+            "jp_komeito_saito_convention_selection_20241109",
+            "jp_komeito_saito_in_office_convention_20241109",
+            "jp_komeito_ishii_former_20241110",
+            "jp_komeito_saito_in_office_diet_20241203",
+            "jp_komeito_takeya_interim_approved_20260122",
+            "jp_komeito_interim_styled_representative_decided_20260122",
+            "jp_komeito_saito_former_20260122",
+            "jp_komeito_chudo_founded_20260122",
+            "jp_komeito_saito_chudo_co_representative_20260122",
+            "jp_komeito_takeya_styled_representative_20260122",
+            "jp_komeito_takeya_recommended_20260311",
+            "jp_komeito_takeya_assumption_stated_20260314",
+            "jp_komeito_takeya_convention_selection_20260314",
+            "jp_komeito_takeya_in_office_convention_20260314",
+            "jp_komeito_vacancy_recalled_january_2026"
+          ],
+          "holder_claims": [
+            {
+              "name": "石田幸四郎",
+              "attested_on": "1993-01-29",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_diet_hr_budget_19930129"
+              ],
+              "claim_ids": [
+                "jp_komeito_ishida_named_chair_by_secretary_general_19930129"
+              ],
+              "note": "Observed on 29 January 1993: the party secretary-general 市川雄一's statement in the House of Representatives Budget Committee naming '我が党の石田委員長', the first dated statement by a party officer naming him in the office found after 1 January 1990. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his May 1989 assumption is his own month-only recollection; the day his office ended at the December 1994 division is not stated (the party histories are retrospective), and the 1994 acting chair (委員長代行) is a claim only; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "神崎武法",
+              "attested_on": "1998-11-08",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_founding_convention_report_19981108"
+              ],
+              "claim_ids": [
+                "jp_komeito_kanzaki_in_office_founding_report_19981108"
+              ],
+              "note": "Observed on 8 November 1998: the party organ's report (公明新聞, 8 November 1998) of the founding national convention of the new 公明党, naming 神崎代表 in the new officers' address after the convention's vote of confidence. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the convention's day is printed only by his own Diet statement of 30 November 1998 (7 November), which is a claim about the organizations; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "神崎武法",
+              "attested_on": "2002-11-03",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_kanzaki_reappointed_20021103",
+                "jp_komeito_kanzaki_fourth_convention_address_20021103"
+              ],
+              "claim_ids": [
+                "jp_komeito_kanzaki_in_office_reappointed_20021103",
+                "jp_komeito_kanzaki_self_stated_continuing_20021103"
+              ],
+              "note": "Observed on 3 November 2002: the party's report dated 3 November 2002 naming '新代表に再任された神崎代表' after the fourth national convention, with his own address of the same date line saying he continues as party representative by the delegates' confidence. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the convention's day is not printed on these pages; the 2000 re-election was not found; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "神崎武法",
+              "attested_on": "2004-10-31",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_kanzaki_fifth_convention_address_20041101"
+              ],
+              "claim_ids": [
+                "jp_komeito_kanzaki_self_stated_again_20041031"
+              ],
+              "note": "Observed on 31 October 2004: his own address to the fifth national convention, which the party organ introduces as given by the representative re-elected at the convention of the 31st, saying that by the delegates' confidence he will again bear the heavy duty of party representative. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim, and a statement of continuing (再び) is not read as a start; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "太田昭宏",
+              "attested_on": null,
+              "from": "2006-09-30",
+              "until": null,
+              "sources": [
+                "jp_komeito_ota_sixth_convention_20061001",
+                "jp_komeito_ota_address_sixth_convention_20061001"
+              ],
+              "claim_ids": [
+                "jp_komeito_ota_in_office_convention_20060930",
+                "jp_komeito_ota_assumption_stated_20060930"
+              ],
+              "note": "From 30 September 2006: his own address to the sixth national convention, which the party organ introduces as given at the convention of the 30th, saying that at today's convention he has taken office as 公明党代表 ('本日の党大会において…公明党代表に就任させていただきました'), with the party organ's same-day report naming 太田代表 after his election. Not a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No end is stated for this observation: his 2008 re-election was not found, and no source reviewed states the day his office ended in 2009; the convention's selection, 神崎武法前代表 and his own Diet statement of 3 October 2006 are claims, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2009-09-08",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_selection_greeting_20090909"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_greeting_20090908"
+              ],
+              "note": "Observed on 8 September 2009: the party organ's copy (9 September 2009) of the address of the new representative chosen at the extraordinary national meeting of representatives of the 8th, headed 山口那津男　代表; his own Diet statement of 30 October 2009 is a continuation. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his address says he has been chosen (選出, an election) and greets the meeting on taking office without a separate day; his 2010 re-election was not found; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2012-09-22",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_ninth_convention_20120923"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_convention_20120922"
+              ],
+              "note": "Observed on 22 September 2012: the party organ's report of the ninth national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2014-09-21",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_tenth_convention_20140922"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_convention_20140921"
+              ],
+              "note": "Observed on 21 September 2014: the party organ's report of the 10th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2016-09-17",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_eleventh_convention_20160918"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_convention_20160917"
+              ],
+              "note": "Observed on 17 September 2016: the party organ's report of the 11th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2018-09-30",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_twelfth_convention_20181001"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_convention_20180930"
+              ],
+              "note": "Observed on 30 September 2018: the party organ's report of the 12th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2020-09-27",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_thirteenth_convention_20200928"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_convention_20200927"
+              ],
+              "note": "Observed on 27 September 2020: the party organ's report of the 13th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "山口那津男",
+              "attested_on": "2022-09-25",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_yamaguchi_fourteenth_convention_20220926"
+              ],
+              "claim_ids": [
+                "jp_komeito_yamaguchi_in_office_convention_20220925"
+              ],
+              "note": "Observed on 25 September 2022: the party organ's report of the 14th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "石井啓一",
+              "attested_on": "2024-09-28",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_ishii_new_representative_interview_20240930"
+              ],
+              "claim_ids": [
+                "jp_komeito_ishii_in_office_convention_20240928"
+              ],
+              "note": "Observed on 28 September 2024: the party organ's report that on the 28th the 15th national convention launched the new executive led by '石井啓一代表'. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his resignation intention announced on 31 October 2024 and the predecessor reference of 10 November 2024 do not state the day his office ended; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "斉藤鉄夫",
+              "attested_on": "2024-11-09",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_komeito_saito_extraordinary_convention_20241110"
+              ],
+              "claim_ids": [
+                "jp_komeito_saito_in_office_convention_20241109"
+              ],
+              "note": "Observed on 9 November 2024: the party organ's report of the extraordinary national convention of the 9th naming 斉藤代表 in his address after the delegates' confidence (his printed address says he has been chosen, an election, not a start). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; he is called 前代表 on 22 January 2026 after joining 中道改革連合, whose co-representative office is another organization's (claims only), and the March 2026 report says the office fell vacant in January 2026 (month only), so no end is stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+            },
+            {
+              "name": "竹谷とし子",
+              "attested_on": null,
+              "from": "2026-03-14",
+              "until": null,
+              "sources": [
+                "jp_komeito_takeya_address_20260315",
+                "jp_komeito_takeya_extraordinary_convention_20260315"
+              ],
+              "claim_ids": [
+                "jp_komeito_takeya_assumption_stated_20260314",
+                "jp_komeito_takeya_in_office_convention_20260314"
+              ],
+              "note": "From 14 March 2026: her own address to the extraordinary national convention, captioned 'あいさつする竹谷代表＝14日', saying that having just now received the delegates' confidence she takes on the great duty of 公明党代表 ('ただいま皆さまのご信任を賜り、公明党代表の大任を担わせていただくことになりました'), with the party organ's same-day report naming 竹谷代表 after her election. As with CLAUDE-C01-18's reading of 森喜朗's statement, the start rests on her statement of acceptance ('ただいま…ご信任を賜り') and the captioned day; the integrator may instead read it as a same-day attestation, in which case the day is unchanged and the holder keeps attested_on with from null. Not a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No end is stated to the cutoff. From 22 January to 14 March 2026 she served as 代表代理, which the party decided to call 「代表」 until a national convention elected a representative: that interim service, the 中央幹事会's approval, the styled 就任 of 22 January and the recommendation of 11 March 2026 are claims only, never a holder or a start."
+            }
+          ],
+          "scope_note": "CLAUDE-C01-31 adds this role, following the office named in its handoff: the chair (委員長, formally 中央執行委員長) of 公明党 until its division of December 1994, and the representative (代表) of the 公明党 formed by the merger of 公明 and 新党平和 in November 1998. The December 1994 division into 公明 and 公明新党, the 新進党, 新党平和, 黎明クラブ, the November 1998 merger and the January 2026 founding of 中道改革連合 are claims about the organizations only: they are never merged into one identity with this observation or with each other, never mapped to a game party, and give the organization no lifecycle; their offices (公明代表, 中道改革連合共同代表) are other offices, claims only. Fifteen holder observations, one per selection found, are dated by a party officer's same-day statement or the leader's own statement of the office in the Diet minutes, or by a same-day party record; only 太田昭宏 (30 September 2006) and 竹谷とし子 (14 March 2026), each by his or her own statement at the convention of taking up the office that day, have a stated start, and no holder has a stated end. Convention selections and re-elections, recommendations, announced resignations, predecessor references (前代表), continuation attestations, the 1994 acting chair (委員長代行), the 代表代理 styled 代表 of 22 January to 14 March 2026 and retrospective records are claims that never feed a holder; party rules are procedure only, never a date. Do not infer an outgoing leader's last day from a successor's selection, and never read the prime-ministership (jp_pm), a ministerial office, a parliamentary group or another party's office into this office, or the reverse."
+        }
+      ],
       "sources": [
-        "jp_tokyo_pr_2025"
+        "jp_tokyo_pr_2025",
+        "jp_komeito_diet_hr_budget_19930129",
+        "jp_komeito_diet_hr_political_reform_19931105",
+        "jp_komeito_diet_hc_budget_19940616",
+        "jp_komeito_komei_representative_message_retrospective",
+        "jp_komeito_history_2003_retrospective",
+        "jp_komeito_founding_convention_report_19981108",
+        "jp_komeito_diet_hr_plenary_19981130",
+        "jp_komeito_kanzaki_reappointed_20021103",
+        "jp_komeito_kanzaki_fourth_convention_address_20021103",
+        "jp_komeito_kanzaki_fifth_convention_address_20041101",
+        "jp_komeito_ota_sixth_convention_20061001",
+        "jp_komeito_ota_address_sixth_convention_20061001",
+        "jp_komeito_diet_hr_plenary_20061003",
+        "jp_komeito_yamaguchi_selection_greeting_20090909",
+        "jp_komeito_diet_hc_plenary_20091030",
+        "jp_komeito_yamaguchi_ninth_convention_20120923",
+        "jp_komeito_yamaguchi_tenth_convention_20140922",
+        "jp_komeito_yamaguchi_eleventh_convention_20160918",
+        "jp_komeito_yamaguchi_twelfth_convention_20181001",
+        "jp_komeito_yamaguchi_thirteenth_convention_20200928",
+        "jp_komeito_yamaguchi_fourteenth_convention_20220926",
+        "jp_komeito_ishii_new_representative_interview_20240930",
+        "jp_komeito_ishii_resignation_intent_20241101",
+        "jp_komeito_saito_recommended_20241108",
+        "jp_komeito_saito_extraordinary_convention_20241110",
+        "jp_komeito_diet_hr_plenary_20241203",
+        "jp_komeito_takeya_interim_20260123",
+        "jp_komeito_chudo_founding_convention_20260125",
+        "jp_komeito_takeya_recommended_20260312",
+        "jp_komeito_takeya_address_20260315",
+        "jp_komeito_takeya_extraordinary_convention_20260315"
       ],
       "claim_ids": [
-        "jp_pr2025_submission_15"
+        "jp_pr2025_submission_15",
+        "jp_komeito_ishida_named_chair_by_secretary_general_19930129",
+        "jp_komeito_ishida_assumption_recalled_may_1989",
+        "jp_komeito_ishida_still_chair_19940616",
+        "jp_komeito_acting_chair_in_place_19940616",
+        "jp_komeito_komei_formed_retrospective",
+        "jp_komeito_komei_representative_since_19941205_retrospective",
+        "jp_komeito_history_ishida_chair_in_cabinet_retrospective",
+        "jp_komeito_history_nfp_founded_retrospective",
+        "jp_komeito_history_division_retrospective",
+        "jp_komeito_history_nfp_dissolved_retrospective",
+        "jp_komeito_history_reimei_heiwa_formed_retrospective",
+        "jp_komeito_history_reformation_retrospective",
+        "jp_komeito_new_name_decided_19981024",
+        "jp_komeito_merger_form_reported",
+        "jp_komeito_kanzaki_convention_confidence",
+        "jp_komeito_kanzaki_in_office_founding_report_19981108",
+        "jp_komeito_merger_convention_recalled_19981107",
+        "jp_komeito_kanzaki_sole_candidate_reelected_2002",
+        "jp_komeito_kanzaki_in_office_reappointed_20021103",
+        "jp_komeito_kanzaki_self_stated_continuing_20021103",
+        "jp_komeito_kanzaki_reelected_20041031",
+        "jp_komeito_kanzaki_self_stated_again_20041031",
+        "jp_komeito_ota_selected_20060930",
+        "jp_komeito_ota_in_office_convention_20060930",
+        "jp_komeito_ota_assumption_stated_20060930",
+        "jp_komeito_kanzaki_former_four_terms_20060930",
+        "jp_komeito_ota_self_stated_representative_20061003",
+        "jp_komeito_yamaguchi_selected_20090908",
+        "jp_komeito_yamaguchi_in_office_greeting_20090908",
+        "jp_komeito_ota_former_20090908",
+        "jp_komeito_yamaguchi_selection_recalled_20090908",
+        "jp_komeito_yamaguchi_in_office_diet_20091030",
+        "jp_komeito_yamaguchi_reelected_20120922",
+        "jp_komeito_yamaguchi_in_office_convention_20120922",
+        "jp_komeito_yamaguchi_reelected_20140921",
+        "jp_komeito_yamaguchi_in_office_convention_20140921",
+        "jp_komeito_yamaguchi_reelected_20160917",
+        "jp_komeito_yamaguchi_in_office_convention_20160917",
+        "jp_komeito_yamaguchi_reelected_20180930",
+        "jp_komeito_yamaguchi_in_office_convention_20180930",
+        "jp_komeito_yamaguchi_reelected_20200927",
+        "jp_komeito_yamaguchi_in_office_convention_20200927",
+        "jp_komeito_yamaguchi_reelected_20220925",
+        "jp_komeito_yamaguchi_in_office_convention_20220925",
+        "jp_komeito_ishii_in_office_convention_20240928",
+        "jp_komeito_ishii_appointment_recalled",
+        "jp_komeito_yamaguchi_former_eight_terms_recalled",
+        "jp_komeito_ishii_resignation_intent_20241031",
+        "jp_komeito_saito_recommended_20241107",
+        "jp_komeito_saito_convention_selection_20241109",
+        "jp_komeito_saito_in_office_convention_20241109",
+        "jp_komeito_ishii_former_20241110",
+        "jp_komeito_saito_in_office_diet_20241203",
+        "jp_komeito_takeya_interim_approved_20260122",
+        "jp_komeito_interim_styled_representative_decided_20260122",
+        "jp_komeito_saito_former_20260122",
+        "jp_komeito_chudo_founded_20260122",
+        "jp_komeito_saito_chudo_co_representative_20260122",
+        "jp_komeito_takeya_styled_representative_20260122",
+        "jp_komeito_takeya_recommended_20260311",
+        "jp_komeito_takeya_assumption_stated_20260314",
+        "jp_komeito_takeya_convention_selection_20260314",
+        "jp_komeito_takeya_in_office_convention_20260314",
+        "jp_komeito_vacancy_recalled_january_2026"
       ],
       "coverage": {
         "status": "partial",
@@ -19587,7 +21264,8 @@
         "unresolved": [
           "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
           "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
-          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification.",
+          "Komeito representatives 1990-2026 (CLAUDE-C01-31): jp_komeito_representative has fifteen holder observations of seven people (石田幸四郎, 神崎武法, 太田昭宏, 山口那津男, 石井啓一, 斉藤鉄夫, 竹谷とし子). Still open: contemporaneous party records of 1990-1994 (石田幸四郎's holder rests on one party officer's Diet statement, 書記長 市川雄一's of 29 January 1993; his own later Diet statements are continuation claims) and of the December 1994 division, which is recorded only retrospectively; the day each leader's office ended (none is stated, including 石田幸四郎's at the division and 斉藤鉄夫's in January 2026); the conventions of 2000, 2008 and 2010, which were not found; and the relation between this election-list observation, the old 公明党, 公明, 新党平和 and 中道改革連合, which stays unresolved."
         ]
       }
     },
@@ -22132,7 +23810,8 @@
       "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted.",
       "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2014 appointments (the Official Gazette of 2006-2017 is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership.",
       "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
-      "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office."
+      "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office.",
+      "Komeito representatives 1990-2026 (CLAUDE-C01-31): the 公明党 observation gains its first party role, jp_komeito_representative (委員長 to 1994, then 代表), with fifteen holder observations from 石田幸四郎 (1993) to 竹谷とし子 (2026); only 太田昭宏 (30 September 2006) and 竹谷とし子 (14 March 2026) have a stated start, and no holder has a stated end. The 1994 division, the organizations of 1994-1998, the 1998 merger and 中道改革連合 are organization claims, never a merge or mapping; the 1994 acting chair and the 2026 代表代理 are claims only. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous records of 1990-1994, several conventions and every end of office."
     ]
   }
 }

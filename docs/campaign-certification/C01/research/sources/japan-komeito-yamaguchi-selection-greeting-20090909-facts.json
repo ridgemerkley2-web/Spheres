@@ -1,0 +1,75 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+  "source_url": "https://web.archive.org/web/20110711232815id_/http://www.komei.or.jp/news/detail/20090909_1731",
+  "original_url": "http://www.komei.or.jp/news/detail/20090909_1731",
+  "archive_capture_utc": "2011-07-11T23:28:15Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 36772,
+  "source_response_sha256": "5eff44f27ff8aec3d93adfcc31bcc0619f70c479c09de18ac5e28ede35d42c46",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "NLRSOOIW5ZMTQE4J4W44WRED3363WNTF",
+  "source_character_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20110711232815id_/http://www.komei.or.jp/news/detail/20090909_1731' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-07-11T23:28:15Z; that form replays the archived bytes unchanged. Researcher: first downloaded on 2026-09-30 (UTC) at 22:20:53Z. Downloaded again by this packet at 2026-09-30 22:27:00Z and 2026-09-30 22:59:58Z (UTC), 32 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party site's copy of 山口那津男's address to the extraordinary national meeting of representatives, printed by 公明新聞 on 9 September 2009; the page introduces it as the address of the new representative chosen at the meeting of the 8th (month and year from the page's date line).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_komeito_yamaguchi_selected_20090908",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-06",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "山口那津男",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "national_representatives_meeting_selection",
+      "attested_on": "2009-09-08",
+      "text": "The page introduces the address of '8日の公明党臨時全国代表者会議で選出された山口那津男・新代表', who says that having just received the delegates' confidence he has been chosen as 公明党代表 ('ただいま皆さまの信任を賜り、公明党代表に選出されました').",
+      "locator": {
+        "paragraph": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "claim_id": "jp_komeito_yamaguchi_in_office_greeting_20090908",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-06",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "山口那津男",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2009-09-08",
+      "text": "The address, headed 山口那津男　代表, continues 'as new representative' ('新代表として') and offers a greeting on taking office ('代表就任にあたり、一言、ごあいさつを申し上げます').",
+      "locator": {
+        "paragraph": [
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "claim_id": "jp_komeito_ota_former_20090908",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-05",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "太田昭宏",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "predecessor_referred_to_as_former",
+      "attested_on": "2009-09-08",
+      "text": "In the same address he thanks '太田前代表' and the former secretary-general for steering the party for three years.",
+      "locator": {
+        "paragraph": 3
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair (委員長) of 公明党 until its December 1994 division and of the representative (代表) of the 公明党 formed in November 1998, for CLAUDE-C01-31 only, 1990-2026. Convention and other party selections, recommendations, in-office attestations, resignation announcements, predecessor references, acting and interim arrangements (委員長代行 in 1994; the 代表代理 styled 代表 in 2026), other organizations' offices, the organizations' formation, division, merger, renaming and dissolution, and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (an organization event, another office, an acting or interim office). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 公明党, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, 中道改革連合 or any other party."
+}

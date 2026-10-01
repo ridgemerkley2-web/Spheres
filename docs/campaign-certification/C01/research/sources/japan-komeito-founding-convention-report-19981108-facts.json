@@ -1,0 +1,83 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_komeito_founding_convention_report_19981108",
+  "source_url": "https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm",
+  "original_url": "http://www.komei.or.jp/topics/981107shoho.htm",
+  "archive_capture_utc": "1999-10-04T17:02:54Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 9379,
+  "source_response_sha256": "7addfc837f4ad2e12ab6f09d1ed68c6c9958b7ef985f5732e8f03fadbe0a1334",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "BQ3OWHK2PRJFGTSIBJEFT4UTUTCMVZLG",
+  "source_character_encoding": "Shift_JIS (cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 1999-10-04T17:02:54Z; that form replays the archived bytes unchanged. The CDX digest of this capture (6TGM2OYPYZRXTIJ4AL7HK45A2V2PMZE3) differs from the base32 SHA-1 of the served bytes; the served bytes were identical on every download. Researcher: first downloaded on 2026-09-30 (UTC) at 21:48:24Z. Downloaded again by this packet at 2026-09-30 22:26:29Z and 2026-09-30 22:59:29Z (UTC), 33 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party site's copy of the party organ 公明新聞's detailed report (issue of 8 November 1998) of the founding national convention of the new 公明党. The page does not print the convention's day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_komeito_new_name_decided_19981024",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-03",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "organization_renaming_decided",
+      "attested_on": "1998-10-24",
+      "text": "The report says the new-party preparatory office reported that 公明's expanded central committee formally decided the new party name 「公明党」 and its rules on 24 October ('十月二十四日の公明拡大中央委員会で新党名「公明党」と、規約を正式決定').",
+      "locator": {
+        "paragraph": 2
+      }
+    },
+    {
+      "claim_id": "jp_komeito_merger_form_reported",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-03",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "organization_merger",
+      "attested_on": null,
+      "text": "It says the new party was formed by 新党平和 dissolving and merging with 公明 as the surviving party ('新党平和が解散し、公明を存続政党として合流する形式').",
+      "locator": {
+        "paragraph": 2
+      }
+    },
+    {
+      "claim_id": "jp_komeito_kanzaki_convention_confidence",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-03",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "神崎武法",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "convention_selection",
+      "attested_on": null,
+      "text": "It says the convention, choosing officers without a ballot (rule 20(2)), which under rule 20(3) needs the confidence of a majority of the delegates present, approved by a show of hands the headquarters officers proposed by the preparatory committee, among them 神崎代表 and 浜四津代表代行 ('神崎代表、浜四津代表代行…本部役員三十七名が挙手多数で信任された').",
+      "locator": {
+        "paragraph": 4
+      }
+    },
+    {
+      "claim_id": "jp_komeito_kanzaki_in_office_founding_report_19981108",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-03",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "神崎武法",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1998-11-08",
+      "text": "The party organ's report of 8 November 1998 names 神崎代表 giving the new officers' address after the vote, resolved to fulfil his duties with all his being ('全身全霊をもって職務を全うしていく決意').",
+      "locator": {
+        "paragraph": 7
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair (委員長) of 公明党 until its December 1994 division and of the representative (代表) of the 公明党 formed in November 1998, for CLAUDE-C01-31 only, 1990-2026. Convention and other party selections, recommendations, in-office attestations, resignation announcements, predecessor references, acting and interim arrangements (委員長代行 in 1994; the 代表代理 styled 代表 in 2026), other organizations' offices, the organizations' formation, division, merger, renaming and dissolution, and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (an organization event, another office, an acting or interim office). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 公明党, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, 中道改革連合 or any other party."
+}

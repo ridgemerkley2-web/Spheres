@@ -12,6 +12,9 @@ import unittest
 from urllib.parse import urlsplit
 
 import campaign_research as research
+# CLAUDE-C01-31 appends the sources of a new party role, jp_komeito_representative, on the 公明党 observation after this
+# packet's; its exact sources and holders are pinned in its own test.
+import test_japan_komeito_representatives_c01_31 as komeito
 
 ORG_ID = 'jp_sangiin_pr_2025_10'
 ROLE = 'jp_sdp_chair'
@@ -724,7 +727,7 @@ def sdp_rules(packet, rows):
     # No organization or institution is added, and no other role changes identity.
     assert len(packet['organizations']) == 16 and [i['id'] for i in packet['institutions']] == GROUPS + ['jp_prime_minister']
     assert sorted(r['id'] for e in packet['organizations'] + packet['institutions'] for r in e['roles']) == sorted(
-        EARLIER_ROLES + [ROLE]), 'one new role, nothing else'
+        EARLIER_ROLES + [ROLE] + [komeito.ROLE]), 'one new role, and only CLAUDE-C01-31\'s after it'
     assert all(not e['represented_party_ids'] for e in packet['organizations'] + packet['institutions'])
     holders = role['holder_claims']
     previous = ''
@@ -848,9 +851,10 @@ class JapanSdpChairsTests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
         order = [s['id'] for s in self.packet['sources']]
-        self.assertEqual(order[EARLIER_SOURCE_COUNT:], NEW_SOURCES)
+        self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], komeito.NEW_SOURCES)
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid in RESPONSES or sid.startswith('jp_sdp')])
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 6))
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 7))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual(self.new_claims, NEW_CLAIMS)
         self.assertEqual(set(EVENTS), set(self.rows))
@@ -990,8 +994,9 @@ class JapanSdpChairsTests(unittest.TestCase):
         self.assertTrue(unresolved[-1].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
         packet_unresolved = self.packet['coverage']['unresolved']
         self.assertEqual(sum('CLAUDE-C01-29' in u for u in packet_unresolved), 1)
-        self.assertTrue(packet_unresolved[-1].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
-        self.assertTrue(packet_unresolved[-2].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
+        self.assertTrue(packet_unresolved[-2].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29)'))
+        self.assertTrue(packet_unresolved[-3].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
+        self.assertTrue(packet_unresolved[-1].startswith('Komeito representatives 1990-2026 (CLAUDE-C01-31)'))
 
     def test_retrospective_election_count_does_not_invent_additional_wins(self):
         claim = self.claims['jp_sdp_fukushima_tenure_record_2003_2013']
@@ -1293,7 +1298,7 @@ class JapanSdpChairsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Japan')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (8, 6))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (8, 7))
         self.assertFalse(index['c01_complete'])
 
 
