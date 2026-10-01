@@ -1,0 +1,146 @@
+{
+  "scope": "Russia C01-28 integration fixture reconciliation only",
+  "head_at_receipt": "e56916b4ae3f3f6c3ca1e29aca091921adb58719",
+  "modified_files": [
+    {
+      "path": "tools/avatars/test_russia_heads_of_government_c01_19.py",
+      "before": {
+        "bytes": 102017,
+        "sha256": "690c82bdf8c49fe7aa2e295396c6ae7c07438501c30f5a0521e3cb83575f76e9"
+      },
+      "after": {
+        "bytes": 102019,
+        "sha256": "c2590968f38503782f7794323dcda0508f92e4d6feaa1677d532e4cf58b2b2af"
+      }
+    },
+    {
+      "path": "tools/avatars/test_russia_presidents_c01_14.py",
+      "before": {
+        "bytes": 69408,
+        "sha256": "040ea13fbdf584f5b4aca3ab27116b6b8e901d354149a3c65c3765004279abda"
+      },
+      "after": {
+        "bytes": 69410,
+        "sha256": "bb70902971101ee0aed82a0a1c520ac315a33a5fd4d5c82426c4889f4bd1794c"
+      }
+    },
+    {
+      "path": "tools/avatars/test_russia_research_s10h.py",
+      "before": {
+        "bytes": 16916,
+        "sha256": "a96e46cb6ca2ed6d4928e3128ec73aa2c665300f3e26f1b6e3397d742db6f5bc"
+      },
+      "after": {
+        "bytes": 21450,
+        "sha256": "82adac6d9e6f0d9b7075a7cd51fc2856798505f8e5d8aa7b86fb01fb1b4f167f"
+      }
+    },
+    {
+      "path": "tools/avatars/test_russia_duma_faction_heads_c01_46.py",
+      "before": {
+        "bytes": 30787,
+        "sha256": "df65eecff61474e2f02149d94115b39cad00e7b696915e7cd1ec5bd4cad0cb6e"
+      },
+      "after": {
+        "bytes": 30789,
+        "sha256": "c2e98071b4671b891c23c4b7d7f4d585d65bf6fb473dd44cce071bc33c30e696"
+      }
+    },
+    {
+      "path": "tools/avatars/test_russia_rsfsr_presidency_c01_51.py",
+      "before": {
+        "bytes": 33684,
+        "sha256": "54868132f19adaafa77fe35f39a082073620d278e3352cc2a67c7dc343719318"
+      },
+      "after": {
+        "bytes": 33689,
+        "sha256": "ed4f905bf4ab60a265e44c6be94a746d498a33849c588dd190d9f30109a4028d"
+      }
+    },
+    {
+      "path": "tools/avatars/test_russia_party_leaders_c01_28.py",
+      "before": {
+        "bytes": 82756,
+        "sha256": "41ae649bfe85937ac9e8ba0e61fc81c9b64b06063229ec6b5025bf944c2f324c"
+      },
+      "after": {
+        "bytes": 84191,
+        "sha256": "864a7158a79fbb75f93510895e8d304d613b55821d8c16b479140cf7546324e4"
+      }
+    },
+    {
+      "path": "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py",
+      "before": {
+        "bytes": 74332,
+        "sha256": "f544244f05aab01a782cd55845ad7ea397b27e8bee5f1ce6a0bcaff46fc09954"
+      },
+      "after": {
+        "bytes": 75957,
+        "sha256": "1790272fa100c4180b56f972a887783fe3945d5814e681f5346e4b8a30c8b215"
+      }
+    }
+  ],
+  "source_json_edits": false,
+  "handoff_edits": false,
+  "generated_metadata_edits": false,
+  "commit_created": false,
+  "focused_results": {
+    "initial_russia": {
+      "tests": 54,
+      "failures": 17
+    },
+    "initial_ussr": {
+      "tests": 58,
+      "failures": 2
+    },
+    "final_russia": {
+      "tests": 54,
+      "failures": 0
+    },
+    "final_ussr": {
+      "tests": 59,
+      "failures": 0
+    }
+  },
+  "original_three_russia_scope_hashes_unchanged": {
+    "RUSSIA_HOLDERS_SHA256": "8575fda3b3069ed498377c3b66df29822c33a47cd4c7ead9fe07e30f7edc27cd",
+    "RUSSIA_C01_46_HOLDERS_SHA256": "53ccf3386cd78083590fadb0308dffaba70af2783d119f36a217d689f3ed592b",
+    "RUSSIA_C01_51_HOLDERS_SHA256": "ddaef72d048d3263646aadcb07daef7d7eddd82f2d637b3ddc4b0545d0403672"
+  },
+  "negative_controls": "Four individual hash guards each produce exactly one failing mutation test when disabled only in memory. Removing exact C01-46 faction guard produces two failures (lost later holder and erased death end). Enabled guards pass. No repository bytes changed by proof.",
+  "evidence": {
+    "initial-test_russia.log": {
+      "bytes": 30856,
+      "sha256": "ab6f27143937b32aea9e13f98a70cd8ffe397a889382be5682cdd76aa24380f8"
+    },
+    "initial-test_ussr.log": {
+      "bytes": 12629,
+      "sha256": "5ac7d9ad25517ca8108ef6abc725373e77ee28eaa82bb013a45952680254ef95"
+    },
+    "reconciled-test_russia.log": {
+      "bytes": 9525,
+      "sha256": "83ce1d5bc528c3750b51bed412a96fae7fd452c2e91b4c7fd12ba3a874d1b89f"
+    },
+    "reconciled-test_ussr.log": {
+      "bytes": 10753,
+      "sha256": "20f36398f808b4f8b6c79736bf5ae479bfc361bcc0b85b0a813694dd0977e78e"
+    },
+    "initial-commands.json": {
+      "bytes": 1025,
+      "sha256": "c691ae59c39bf9cc1e29ee3ff1928fba382217f87c83dcc9e102552b6a3e8049"
+    },
+    "reconciled-commands.json": {
+      "bytes": 1031,
+      "sha256": "4cafe638ce40a52b9aff8987d8b89afe18c9ef571129f701cd05e9a47e914b93"
+    },
+    "guard-proof.json": {
+      "bytes": 2601,
+      "sha256": "27142aa4fa1a2489c5c46ce01c3a4a8e33bcc27222afffd63f83320f7f68448f"
+    }
+  },
+  "diff_check_exit_code": 0,
+  "limits": [
+    "Python research/test validation only; no native build, runtime grant, new source retrieval, historical interval inference, or qualification.",
+    "Original report readiness is preserved; current completed review decision is separately asserted as bounded acceptance with all country and qualification gates false."
+  ]
+}

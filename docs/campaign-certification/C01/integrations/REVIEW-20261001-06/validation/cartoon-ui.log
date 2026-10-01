@@ -1,0 +1,16 @@
+✔ collection, country, label and search filters keep missing, fictional and unknown items distinct (3.3935ms)
+✔ era and date filters use half-open intervals; invalid and undated items are not dated (0.4209ms)
+✔ keyboard grid movement clamps inside the visible sheet (0.1297ms)
+✔ paths and links stay inside the repository and never become script or credential URLs (1.2663ms)
+✔ input verification compares exact bytes and fails closed (3.9363ms)
+✔ explicit LF text scope survives CRLF, preserves other bytes and rejects content changes (0.8799ms)
+✔ the committed export keeps automated findings apart from approval and labels every collection (5.2607ms)
+﹣ real reviewer in a headless browser (0.0722ms) # set SPHERES_BROWSER_CHANNEL=chrome (and NODE_PATH to a Playwright 1.58.2 install) to drive the real reviewer
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 147.4617

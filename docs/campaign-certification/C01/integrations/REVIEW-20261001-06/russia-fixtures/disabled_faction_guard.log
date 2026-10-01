@@ -1,0 +1,26 @@
+test_mutations_are_rejected (external_disabled_faction_guard.RussianPartyLeadersTests.test_mutations_are_rejected) ... 
+  test_mutations_are_rejected (external_disabled_faction_guard.RussianPartyLeadersTests.test_mutations_are_rejected) (label='later faction observation removed') ... FAIL
+  test_mutations_are_rejected (external_disabled_faction_guard.RussianPartyLeadersTests.test_mutations_are_rejected) (label='faction death end erased') ... FAIL
+
+======================================================================
+FAIL: test_mutations_are_rejected (external_disabled_faction_guard.RussianPartyLeadersTests.test_mutations_are_rejected) (label='later faction observation removed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 921, in test_mutations_are_rejected
+    with self.subTest(label=label), self.assertRaises((AssertionError, KeyError, IndexError, StopIteration)):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'AssertionError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>) not raised
+
+======================================================================
+FAIL: test_mutations_are_rejected (external_disabled_faction_guard.RussianPartyLeadersTests.test_mutations_are_rejected) (label='faction death end erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 921, in test_mutations_are_rejected
+    with self.subTest(label=label), self.assertRaises((AssertionError, KeyError, IndexError, StopIteration)):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'AssertionError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>) not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.433s
+
+FAILED (failures=2)

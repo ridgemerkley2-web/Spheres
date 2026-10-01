@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_certified_gap_ledger.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "checked_at": "2026-10-01T17:22:08.111433+00:00",
+  "test_sha256": "5e9051e6526ffcb8b4d20991d51dbf5db1bb172fea8be463482695d444fff71b",
+  "russia_first_source_commit": "bd5a41d0744487491d10eea283936f355a6b8123",
+  "da_first_source_commit": "e56916b4ae3f3f6c3ca1e29aca091921adb58719",
+  "fixture_and_coverage_classes_unchanged": true
+}

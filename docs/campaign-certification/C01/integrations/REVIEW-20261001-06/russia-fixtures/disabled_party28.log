@@ -1,0 +1,16 @@
+test_russia_holder_scope_hashes_each_reject_changed_observations (external_disabled_party28.UssrGovernmentSupremeSovietTests.test_russia_holder_scope_hashes_each_reject_changed_observations) ... 
+  test_russia_holder_scope_hashes_each_reject_changed_observations (external_disabled_party28.UssrGovernmentSupremeSovietTests.test_russia_holder_scope_hashes_each_reject_changed_observations) (role='ru_kprf_chairman') ... FAIL
+
+======================================================================
+FAIL: test_russia_holder_scope_hashes_each_reject_changed_observations (external_disabled_party28.UssrGovernmentSupremeSovietTests.test_russia_holder_scope_hashes_each_reject_changed_observations) (role='ru_kprf_chairman')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_ussr_government_supreme_soviet_c01_26.py", line 834, in test_russia_holder_scope_hashes_each_reject_changed_observations
+    with self.subTest(role=role_id), self.assertRaises(AssertionError):
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: AssertionError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+FAILED (failures=1)

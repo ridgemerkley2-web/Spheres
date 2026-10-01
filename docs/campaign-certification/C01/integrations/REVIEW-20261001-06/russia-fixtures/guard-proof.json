@@ -1,0 +1,79 @@
+[
+  {
+    "name": "partition_guards_enabled",
+    "source": "test_ussr_government_supreme_soviet_c01_26.py",
+    "source_sha256": "1790272fa100c4180b56f972a887783fe3945d5814e681f5346e4b8a30c8b215",
+    "disabled_fragment": null,
+    "tests_run": 1,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "repository_files_changed": false
+  },
+  {
+    "name": "disabled_original",
+    "source": "test_ussr_government_supreme_soviet_c01_26.py",
+    "source_sha256": "1790272fa100c4180b56f972a887783fe3945d5814e681f5346e4b8a30c8b215",
+    "disabled_fragment": "hexdigest() == RUSSIA_HOLDERS_SHA256",
+    "tests_run": 1,
+    "failures": 1,
+    "errors": 0,
+    "successful": false,
+    "repository_files_changed": false
+  },
+  {
+    "name": "disabled_faction46",
+    "source": "test_ussr_government_supreme_soviet_c01_26.py",
+    "source_sha256": "1790272fa100c4180b56f972a887783fe3945d5814e681f5346e4b8a30c8b215",
+    "disabled_fragment": "hexdigest() == RUSSIA_C01_46_HOLDERS_SHA256",
+    "tests_run": 1,
+    "failures": 1,
+    "errors": 0,
+    "successful": false,
+    "repository_files_changed": false
+  },
+  {
+    "name": "disabled_presidency51",
+    "source": "test_ussr_government_supreme_soviet_c01_26.py",
+    "source_sha256": "1790272fa100c4180b56f972a887783fe3945d5814e681f5346e4b8a30c8b215",
+    "disabled_fragment": "hexdigest() == RUSSIA_C01_51_HOLDERS_SHA256",
+    "tests_run": 1,
+    "failures": 1,
+    "errors": 0,
+    "successful": false,
+    "repository_files_changed": false
+  },
+  {
+    "name": "disabled_party28",
+    "source": "test_ussr_government_supreme_soviet_c01_26.py",
+    "source_sha256": "1790272fa100c4180b56f972a887783fe3945d5814e681f5346e4b8a30c8b215",
+    "disabled_fragment": "hexdigest() == RUSSIA_C01_28_HOLDERS_SHA256",
+    "tests_run": 1,
+    "failures": 1,
+    "errors": 0,
+    "successful": false,
+    "repository_files_changed": false
+  },
+  {
+    "name": "faction_guard_enabled",
+    "source": "test_russia_party_leaders_c01_28.py",
+    "source_sha256": "864a7158a79fbb75f93510895e8d304d613b55821d8c16b479140cf7546324e4",
+    "disabled_fragment": null,
+    "tests_run": 1,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "repository_files_changed": false
+  },
+  {
+    "name": "disabled_faction_guard",
+    "source": "test_russia_party_leaders_c01_28.py",
+    "source_sha256": "864a7158a79fbb75f93510895e8d304d613b55821d8c16b479140cf7546324e4",
+    "disabled_fragment": "    faction_review.invariants(russia)",
+    "tests_run": 1,
+    "failures": 2,
+    "errors": 0,
+    "successful": false,
+    "repository_files_changed": false
+  }
+]

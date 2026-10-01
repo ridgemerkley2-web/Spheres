@@ -1,0 +1,305 @@
+test_claim_only_events_never_date_a_holder (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_claim_only_events_never_date_a_holder) ... ok
+test_death_locator_reaches_the_dated_faction_statement (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_death_locator_reaches_the_dated_faction_statement) ... ok
+test_extracts_match_the_packet_and_their_snapshots (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_extracts_match_the_packet_and_their_snapshots) ... ok
+test_holders_are_exactly_as_intended (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_new_records_are_bounded_and_every_claim_is_classified) ... FAIL
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... FAIL
+test_response_identities_are_pinned_raw_captures (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_response_identities_are_pinned_raw_captures) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_new_records_are_bounded_and_every_claim_is_classified) ... FAIL
+test_packet_formatting_is_preserved (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_packet_formatting_is_preserved) ... ok
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... FAIL
+test_secondary_leads_and_volatile_urls_stay_out_of_the_packet (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_secondary_leads_and_volatile_urls_stay_out_of_the_packet) ... ok
+test_separation_from_the_presidency_and_the_ussr_packet (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_separation_from_the_presidency_and_the_ussr_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_the_one_edited_existing_extract_is_bounded (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_the_one_edited_existing_extract_is_bounded) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_holders_are_exactly_as_intended) ... FAIL
+test_mutations_are_rejected (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_mutations_are_rejected) ... FAIL
+test_new_organization_observations_are_unmapped_primary_records (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_new_organization_observations_are_unmapped_primary_records) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_new_records_are_bounded_and_every_claim_is_classified) ... FAIL
+test_no_start_or_end_is_stated_or_inferred (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_no_start_or_end_is_stated_or_inferred) ... ok
+test_packet_formatting_is_preserved (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_packet_formatting_is_preserved) ... ok
+test_party_and_state_offices_stay_separate (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_party_and_state_offices_stay_separate) ... FAIL
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... FAIL
+test_secondary_leads_and_volatile_urls_stay_out_of_the_packet (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_secondary_leads_and_volatile_urls_stay_out_of_the_packet) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_russia_presidents_c01_14.RussianPresidentsTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_russia_presidents_c01_14.RussianPresidentsTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_russia_presidents_c01_14.RussianPresidentsTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_russia_presidents_c01_14.RussianPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified) ... FAIL
+test_packet_formatting_is_preserved (test_russia_presidents_c01_14.RussianPresidentsTests.test_packet_formatting_is_preserved) ... ok
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_presidents_c01_14.RussianPresidentsTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... FAIL
+test_secondary_leads_and_volatile_urls_stay_out_of_the_packet (test_russia_presidents_c01_14.RussianPresidentsTests.test_secondary_leads_and_volatile_urls_stay_out_of_the_packet) ... ok
+test_separation_from_the_c01_05_roles_and_the_ussr_packet (test_russia_presidents_c01_14.RussianPresidentsTests.test_separation_from_the_c01_05_roles_and_the_ussr_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_russia_presidents_c01_14.RussianPresidentsTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_complete_ballot_order_preserves_exact_printed_identity_labels (test_russia_research_s10h.RussiaDiscoveryTests.test_complete_ballot_order_preserves_exact_printed_identity_labels) ... ok
+test_downloaded_pdf_hash_is_distinct_from_the_derived_factual_extract (test_russia_research_s10h.RussiaDiscoveryTests.test_downloaded_pdf_hash_is_distinct_from_the_derived_factual_extract) ... ok
+test_faction_membership_is_not_silently_changed_into_party_election_seats (test_russia_research_s10h.RussiaDiscoveryTests.test_faction_membership_is_not_silently_changed_into_party_election_seats) ... ok
+test_indexed_duma_text_never_claims_a_downloaded_original_response (test_russia_research_s10h.RussiaDiscoveryTests.test_indexed_duma_text_never_claims_a_downloaded_original_response) ... ok
+test_intake_build_produces_only_open_discovery_batches (test_russia_research_s10h.RussiaDiscoveryTests.test_intake_build_produces_only_open_discovery_batches) ... FAIL
+test_only_parliamentary_offices_are_attested_without_invented_starts (test_russia_research_s10h.RussiaDiscoveryTests.test_only_parliamentary_offices_are_attested_without_invented_starts) ... FAIL
+test_partial_intake_has_fourteen_lists_and_five_distinct_institutions (test_russia_research_s10h.RussiaDiscoveryTests.test_partial_intake_has_fourteen_lists_and_five_distinct_institutions) ... FAIL
+test_resolution_observation_never_becomes_election_or_publication_day (test_russia_research_s10h.RussiaDiscoveryTests.test_resolution_observation_never_becomes_election_or_publication_day) ... ok
+test_sources_and_claims_reconcile_with_factual_snapshots (test_russia_research_s10h.RussiaDiscoveryTests.test_sources_and_claims_reconcile_with_factual_snapshots) ... FAIL
+test_unknown_identities_do_not_merge_factions_parties_or_predecessor_states (test_russia_research_s10h.RussiaDiscoveryTests.test_unknown_identities_do_not_merge_factions_parties_or_predecessor_states) ... ok
+test_claim_only_events_never_date_a_holder (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_claim_only_events_never_date_a_holder) ... ok
+test_extracts_match_the_packet_and_their_snapshots (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_extracts_match_the_packet_and_their_snapshots) ... ok
+test_holders_are_exactly_as_intended (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_new_records_are_bounded_and_every_claim_is_classified) ... FAIL
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... FAIL
+test_response_identities_are_pinned (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_response_identities_are_pinned) ... ok
+
+======================================================================
+FAIL: test_new_records_are_bounded_and_every_claim_is_classified (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_duma_faction_heads_c01_46.py", line 210, in test_new_records_are_bounded_and_every_claim_is_classified
+    self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (261, 479, 24, 14) != (193, 342, 21, 9)
+
+First differing element 0:
+261
+193
+
+- (261, 479, 24, 14)
++ (193, 342, 21, 9)
+
+======================================================================
+FAIL: test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_duma_faction_heads_c01_46.RussianDumaFactionHeadsTests.test_report_and_handoff_are_ready_for_review_and_close_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_duma_faction_heads_c01_46.py", line 338, in test_report_and_handoff_are_ready_for_review_and_close_nothing
+    self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))  # with CLAUDE-C01-51
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (14, 479, 24) != (9, 342, 21)
+
+First differing element 0:
+14
+9
+
+- (14, 479, 24)
++ (9, 342, 21)
+
+======================================================================
+FAIL: test_new_records_are_bounded_and_every_claim_is_classified (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_heads_of_government_c01_19.py", line 695, in test_new_records_are_bounded_and_every_claim_is_classified
+    self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))  # with C01-51
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (261, 479, 24, 14) != (193, 342, 21, 9)
+
+First differing element 0:
+261
+193
+
+- (261, 479, 24, 14)
++ (193, 342, 21, 9)
+
+======================================================================
+FAIL: test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_heads_of_government_c01_19.RussianHeadsOfGovernmentTests.test_report_and_handoff_are_ready_for_review_and_close_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_heads_of_government_c01_19.py", line 1087, in test_report_and_handoff_are_ready_for_review_and_close_nothing
+    self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))  # with CLAUDE-C01-46 and C01-51
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (14, 479, 24) != (9, 342, 21)
+
+First differing element 0:
+14
+9
+
+- (14, 479, 24)
++ (9, 342, 21)
+
+======================================================================
+FAIL: test_holders_are_exactly_as_intended (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_holders_are_exactly_as_intended)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 654, in test_holders_are_exactly_as_intended
+    party_invariants(self.packet, self.ussr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 579, in party_invariants
+    assert role['kind'] == 'parliamentary_leader' and [h['name'] for h in role['holder_claims']] == [name], rid
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ru_duma_faction_20211012_er_head
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_mutations_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 914, in test_mutations_are_rejected
+    party_invariants(self.packet, self.ussr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 579, in party_invariants
+    assert role['kind'] == 'parliamentary_leader' and [h['name'] for h in role['holder_claims']] == [name], rid
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ru_duma_faction_20211012_er_head
+
+======================================================================
+FAIL: test_new_records_are_bounded_and_every_claim_is_classified (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 628, in test_new_records_are_bounded_and_every_claim_is_classified
+    self.assertEqual([s['id'] for s in self.packet['sources'][EARLIER_SOURCE_COUNT:]], NEW_SOURCES)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['ru_duma_news_52394_20211011', 'ru_duma_news_[3374 chars]001'] != ['ru_kprf_i_plenum_notice_19970420', 'ru_kprf_[2698 chars]001']
+
+First differing element 0:
+'ru_duma_news_52394_20211011'
+'ru_kprf_i_plenum_notice_19970420'
+
+First list contains 23 additional elements.
+First extra element 68:
+'ru_yabloko_news_rybakov_appeal_20260819'
+
+Diff is 3747 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_party_and_state_offices_stay_separate (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_party_and_state_offices_stay_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 779, in test_party_and_state_offices_stay_separate
+    party_invariants(self.packet, self.ussr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 579, in party_invariants
+    assert role['kind'] == 'parliamentary_leader' and [h['name'] for h in role['holder_claims']] == [name], rid
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ru_duma_faction_20211012_er_head
+
+======================================================================
+FAIL: test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_party_leaders_c01_28.RussianPartyLeadersTests.test_report_and_handoff_are_ready_for_review_and_close_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_party_leaders_c01_28.py", line 944, in test_report_and_handoff_are_ready_for_review_and_close_nothing
+    self.assertIn(text, handoff)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 'pending Codex acceptance' not found in "# CLAUDE-C01-28: Russian party leaders, 1990–2026\n\nOwner: Claude. State: **ready_for_review** (remote submission inspected 28 September 2026; not accepted). Parent: C01 (incomplete).\n\nOrigin: the first five items of the gap ledger's batch `GAP-USSR-Russia-B001`\n(`docs/campaign-certification/C01/gap-ledger/ledger.md`), claimed on the user's 28 September 2026 instruction to\ncontinue development. The five simulation party rows `Russia/ru_kprf`, `Russia/ru_ldpr`, `Russia/ru_yabloko`,\n`Russia/ru_apr` and `Russia/ru_vybor` have no leader term at all in the census. No pending packet or repair edits\n`russia.json` (SOURCE-26 edits `ussr.json` only). Pending Codex acceptance; not registered in the task queue.\n\nBranch: `claude/c01-ru-28`. Base: `846df479` (current `codex/campaign-certification`); not stacked on a pending\npacket. Claim commit: this record's first commit on the branch.\n\n## Bounded deliverable\n\nResearch the national party leader chain (chairman, leader or party head, as each party's own charter names the\noffice) of five parties from 1 January 1990, or the party's founding, to the 7 September 2026 cutoff — at most ten\npeople in total across the five chains:\n\n1. The Communist Party of the Russian Federation: its founding or restoration congress and each chairman.\n2. The Liberal Democratic Party of Russia: its registration, each chairman and the 2022 change after the\n   chairman's death.\n3. Yabloko: each chairman from the party's founding.\n4. The Agrarian Party of Russia: each chairman, and its 2008 merger into another party only as source-stated facts.\n5. Russia's Choice: the 1993 electoral bloc and its successor party (Democratic Choice of Russia) only as far as\n   the sources tie the name to the game row; each leader.\n\nAdd a party-leader role to the existing 2021 ballot-list organization observation where one exists\n(`ru_duma_ballot_list_2021_01` KPRF, `_03` LDPR, `_07` Yabloko); for the Agrarian Party and Russia's Choice add a\nnew organization observation only from a primary record of that organization. Organization identities, lifecycles\nand game mappings stay unresolved; a name match is never a game mapping. Keep congress elections, assumption of\noffice, acting or interim leadership, resignation, death and merger as distinct dated claims. Acting leaders are\nclaims only. Never infer an end from a successor's start. Give a holder `from` or `until` only where a source states\nthe day; otherwise record `attested_on`. Party office stays separate from state office: no presidency, government\nor Duma-faction claim may feed a party role, and the existing faction heads do not change.\n\nPrimary sources are required: each party's own records (official sites and their archived pages, congress\nresolutions), the Ministry of Justice's party registry, the Central Election Commission and official gazettes.\nNews, encyclopaedias and history sites are leads only. The historical cutoff stays 7 September 2026.\n\n## Allowed files and checks\n\nAllowed files:\n\n- this record;\n- a new `docs/campaign-certification/C01/research/russia-party-leaders-1990-2026-28.md`;\n- `docs/campaign-certification/C01/research/russia.json` and specifically related new\n  `docs/campaign-certification/C01/research/sources/russia-*-facts.json` extracts;\n- focused tests under `tools/avatars/`: a new `test_russia_party_leaders_c01_28.py`, and pinned counts or exact sets in\n  `test_russia_research_s10h.py`, `test_ussr_russia_transition_c01_05.py`, `test_russia_presidents_c01_14.py` and\n  `test_russia_heads_of_government_c01_19.py` updated to the new totals (none loosened).\n\nPut generated `research-index.json` changes in a separate commit. Do not change the gap ledger, shared UI, the\nroadmap, game data or other country packets.\n\nChecks: research-index `--check`; `campaign_census.py --check`; the Russia/USSR, research and campaign Python tests\n(census included); the atlas Node check; `workboard.py --check`; `git diff --check`.\n\nMark the packet `ready_for_review` when done. C01 and all parent gates stay open.\n\n## Integration claim registration — 28 September 2026\n\nCodex mirrored this existing claim into the central queue after S22. The original\nclaim above remains in progress; no research content or historical acceptance\nwas imported. Inspected remote head: `2c4d5bd7`. Do not duplicate this work.\n\n## Remote submission inventory — 28 September 2026\n\nThe preceding claim-registration paragraph records the earlier claim state. The\nremote handoff now declares ready_for_review at\n`16153784875006149a68e69c5e83b925e51ca294`, with original claim\n`2c4d5bd725b84161fd742adec75febc6241b8c92` preserved. Codex inspected that\n[remote handoff](https://github.com/ridgemerkley2-web/Spheres/blob/16153784875006149a68e69c5e83b925e51ca294/docs/planning/ai-handoffs/CLAUDE-C01-28.md)\nfor inventory only. Its source/test claims are not independently accepted; no\nresearch files, mappings, history or art were imported by this update.\n"
+
+======================================================================
+FAIL: test_new_records_are_bounded_and_every_claim_is_classified (test_russia_presidents_c01_14.RussianPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_presidents_c01_14.py", line 471, in test_new_records_are_bounded_and_every_claim_is_classified
+    self.assertEqual((len(ids['entries']), len(ids['roles'])), (21, 9))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (24, 14) != (21, 9)
+
+First differing element 0:
+24
+21
+
+- (24, 14)
++ (21, 9)
+
+======================================================================
+FAIL: test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_presidents_c01_14.RussianPresidentsTests.test_report_and_handoff_are_ready_for_review_and_close_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_presidents_c01_14.py", line 790, in test_report_and_handoff_are_ready_for_review_and_close_nothing
+    self.assertEqual((country['role_observations'], country['source_claims']), (9, 342))  # with CLAUDE-C01-19, C01-46 and C01-51
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (14, 479) != (9, 342)
+
+First differing element 0:
+14
+9
+
+- (14, 479)
++ (9, 342)
+
+======================================================================
+FAIL: test_intake_build_produces_only_open_discovery_batches (test_russia_research_s10h.RussiaDiscoveryTests.test_intake_build_produces_only_open_discovery_batches)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_research_s10h.py", line 223, in test_intake_build_produces_only_open_discovery_batches
+    self.assertEqual(country['mapping_pending'], 21)  # CLAUDE-C01-19 added ru_government, with no party mapping
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 24 != 21
+
+======================================================================
+FAIL: test_only_parliamentary_offices_are_attested_without_invented_starts (test_russia_research_s10h.RussiaDiscoveryTests.test_only_parliamentary_offices_are_attested_without_invented_starts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_research_s10h.py", line 132, in test_only_parliamentary_offices_are_attested_without_invented_starts
+    self.assertTrue(all(not entry['roles'] for entry in self.packet['organizations']))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_partial_intake_has_fourteen_lists_and_five_distinct_institutions (test_russia_research_s10h.RussiaDiscoveryTests.test_partial_intake_has_fourteen_lists_and_five_distinct_institutions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_research_s10h.py", line 41, in test_partial_intake_has_fourteen_lists_and_five_distinct_institutions
+    self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (21, 193, 342, 9))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (24, 261, 479, 14) != (21, 193, 342, 9)
+
+First differing element 0:
+24
+21
+
+- (24, 261, 479, 14)
++ (21, 193, 342, 9)
+
+======================================================================
+FAIL: test_sources_and_claims_reconcile_with_factual_snapshots (test_russia_research_s10h.RussiaDiscoveryTests.test_sources_and_claims_reconcile_with_factual_snapshots)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_research_s10h.py", line 177, in test_sources_and_claims_reconcile_with_factual_snapshots
+    self.assertEqual((len(c01_05), len(c01_14), len(c01_19), len(c01_46), len(c01_51)), (13, 53, 102, 7, 16))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (13, 53, 102, 7, 84) != (13, 53, 102, 7, 16)
+
+First differing element 4:
+84
+16
+
+- (13, 53, 102, 7, 84)
+?                  ^^
+
++ (13, 53, 102, 7, 16)
+?                  ^^
+
+
+======================================================================
+FAIL: test_new_records_are_bounded_and_every_claim_is_classified (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_rsfsr_presidency_c01_51.py", line 247, in test_new_records_are_bounded_and_every_claim_is_classified
+    self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (261, 479, 24, 14) != (193, 342, 21, 9)
+
+First differing element 0:
+261
+193
+
+- (261, 479, 24, 14)
++ (193, 342, 21, 9)
+
+======================================================================
+FAIL: test_report_and_handoff_are_ready_for_review_and_close_nothing (test_russia_rsfsr_presidency_c01_51.RussianRsfsrPresidencyTests.test_report_and_handoff_are_ready_for_review_and_close_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_russia_rsfsr_presidency_c01_51.py", line 374, in test_report_and_handoff_are_ready_for_review_and_close_nothing
+    self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (14, 479, 24) != (9, 342, 21)
+
+First differing element 0:
+14
+9
+
+- (14, 479, 24)
++ (9, 342, 21)
+
+----------------------------------------------------------------------
+Ran 54 tests in 7.740s
+
+FAILED (failures=17)

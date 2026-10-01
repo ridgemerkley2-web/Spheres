@@ -1,0 +1,523 @@
+{
+  "target": "8bdef26839d075073bb9a0734136bfd9b5850fd5",
+  "reviewed_packet": "6133f79b5b00126d4733453fe42839c1ca7390c4",
+  "authored_base": "b6d5c9a8cd9c4487ed4680bb4bf2e4dc11afc23f",
+  "before_sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c",
+  "after_sha256": "ff3d166ec6b4b2b7406e48f6d55b907b632dfcb988350e5a307aeea4df5537e9",
+  "counts": {
+    "sources": 261,
+    "claims": 479,
+    "organizations": 17,
+    "institutions": 7,
+    "roles": 14,
+    "holders": 80
+  },
+  "preserved_existing_sources": 193,
+  "preserved_existing_claims": 342,
+  "preserved_existing_holders": 56,
+  "all_existing_institutions_unchanged": true,
+  "new_organizations": [
+    "ru_apr_party_self_record",
+    "ru_vybor_rossii_bloc_1993",
+    "ru_dvr_party_self_record"
+  ],
+  "extended_ballot_organizations": [
+    "ru_duma_ballot_list_2021_01",
+    "ru_duma_ballot_list_2021_03",
+    "ru_duma_ballot_list_2021_07"
+  ],
+  "new_source_ids": [
+    "ru_kprf_i_plenum_notice_19970420",
+    "ru_kprf_v_congress_notice_19980523",
+    "ru_kprf_date_in_history_1993_20260213",
+    "ru_kprf_party_reference_20250912",
+    "ru_kprf_xviii_congress_notice_20210424",
+    "ru_kprf_i_plenum_notice_20210424",
+    "ru_kprf_xix_congress_notice_20250705",
+    "ru_kprf_i_plenum_notice_20250705",
+    "ru_kprf_official_i_plenum_20250705",
+    "ru_kprf_zyuganov_greeting_20260828",
+    "ru_kprf_official_xix_second_stage_20260620",
+    "ru_ldpr_newspaper_plenum_resolution_19961123",
+    "ru_ldpr_party_history_20100922",
+    "ru_ldpr_party_history_2026",
+    "ru_ldpr_newspaper_no04_20220330",
+    "ru_ldpr_news_zhirinovsky_death_20220406",
+    "ru_ldpr_newspaper_no05_20220506",
+    "ru_ldpr_news_supreme_council_recommendation_20220526",
+    "ru_ldpr_news_xxxiv_congress_opens_20220527",
+    "ru_ldpr_news_slutsky_elected_20220527",
+    "ru_ldpr_news_vote_day_20220527",
+    "ru_ldpr_newspaper_no06_07_20220627",
+    "ru_ldpr_news_slutsky_reelected_20251002",
+    "ru_ldpr_news_slutsky_congress_post_20251002",
+    "ru_ldpr_news_citizenship_proposal_20260811",
+    "ru_yabloko_site_reference_1998",
+    "ru_yabloko_vi_congress_report_19980314",
+    "ru_yabloko_x_congress_section_2001",
+    "ru_yabloko_press_party_transformation_20011222",
+    "ru_yabloko_press_yavlinsky_elected_20011223",
+    "ru_yabloko_x_congress_chairman_speech_20011223",
+    "ru_yabloko_press_congress_schedule_20040703",
+    "ru_yabloko_press_yavlinsky_reelected_20040703",
+    "ru_yabloko_press_charter_amendments_20040704",
+    "ru_yabloko_leadership_report_2004_2008",
+    "ru_yabloko_press_new_leadership_20080622",
+    "ru_yabloko_press_xv_congress_decisions_20080626",
+    "ru_yabloko_news_term_limit_20151219",
+    "ru_yabloko_news_slabunova_elected_20151220",
+    "ru_yabloko_news_new_chairman_deputies_20151220",
+    "ru_yabloko_news_rybakov_elected_20191215",
+    "ru_yabloko_news_xxi_congress_main_20191216",
+    "ru_yabloko_news_rybakov_second_term_20231209",
+    "ru_yabloko_news_xxii_congress_main_20231211",
+    "ru_yabloko_news_fsin_appeal_20231213",
+    "ru_yabloko_news_rybakov_appeal_20260819",
+    "ru_apr_history_note_2002",
+    "ru_apr_release_xi_congress_20030910",
+    "ru_apr_release_new_chairman_20040526",
+    "ru_apr_release_plenum_20040531",
+    "ru_apr_leadership_page_2004",
+    "ru_apr_release_xii_congress_second_stage_20041012",
+    "ru_apr_chairman_page_2008",
+    "ru_apr_home_page_20081016",
+    "ru_vybor_rossii_bloc_programme_19931017",
+    "ru_dvr_supporters_protocol_19940519",
+    "ru_dvr_founding_congress_edition_1994",
+    "ru_dvr_information_bulletin_1_1994",
+    "ru_dvr_statement_grozny_199412",
+    "ru_dvr_congress_statement_1995",
+    "ru_dvr_ii_congress_decision_19950618",
+    "ru_dvr_v_congress_decision_19960921",
+    "ru_dvr_v_congress_decisions_19960922",
+    "ru_dvr_politsovet_decision_19971216",
+    "ru_dvr_history_page_1998",
+    "ru_dvr_politsovet_statement_20001216",
+    "ru_dvr_about_page_2001",
+    "ru_dvr_newspaper_demvybor_21_2001"
+  ],
+  "materialized_files": [
+    {
+      "path": "docs/campaign-certification/C01/research/russia-party-leaders-1990-2026-28.md",
+      "bytes": 102375,
+      "sha256": "97acc37a3a34e0eda0b9b13a411b0750c02b5e23811aa79c34ab248390829619",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-chairman-page-20080630-facts.json",
+      "bytes": 4507,
+      "sha256": "12c6420a52b1d2412ffefaf8ccc9ad1b4e47b554eb607aebc8376dd20f059a60",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-history-note-20021117-facts.json",
+      "bytes": 13534,
+      "sha256": "d83a9149096f25e04247b972891a8f19656d5eaf28e132e47e0f8e2fbeb6d6fd",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-home-page-20081016-facts.json",
+      "bytes": 6670,
+      "sha256": "fc6a71f0355e2cae335f9794da22648a156921900b9e6f33afdb90ec3f2d3699",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-leadership-page-20040520-facts.json",
+      "bytes": 3699,
+      "sha256": "54fd20d0d8eb7f74a36a3305f937661756dbc78e5f8728b780841d16f1286c36",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-new-chairman-release-20040526-facts.json",
+      "bytes": 4727,
+      "sha256": "1340632705602e67237c93a7ccd1c26113ca94604c596d4e44dcb965c7aa32c1",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-plenum-release-20040531-facts.json",
+      "bytes": 3833,
+      "sha256": "de768d450f3e0e5e30a7b5148a30bebfdc7f4208b4616a5a9814400c3b062b82",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-xi-congress-release-20030910-facts.json",
+      "bytes": 4289,
+      "sha256": "1388893228792b9a5d1fd6c3117eaa9bcead502dacd263c4c6136180eac4493f",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-apr-xii-congress-second-stage-20041012-facts.json",
+      "bytes": 4635,
+      "sha256": "5c2898a601150d66bf0065d37d882d0598488db09820eac38d942776749e592d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-about-page-20010303-facts.json",
+      "bytes": 3689,
+      "sha256": "9e81c28ce39dafcd1dcbc1c63e0c0636facd70824094904eaaa3de26c0fbdbd8",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-congress-statement-19950618-facts.json",
+      "bytes": 4801,
+      "sha256": "07706fc1c1b3d3d45d621539d1c9be492061c38d46a67250c9d43757bb8379da",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-founding-congress-edition-19940612-facts.json",
+      "bytes": 6091,
+      "sha256": "b44e987b27c882c7accfba0cef35e6b165c08086e292be5364a42f674e0d5b41",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-history-page-19980627-facts.json",
+      "bytes": 7715,
+      "sha256": "7e70ff85f1b0a5096dd8fc174dcf3fa36d96289009c4d0e74128c1be3f7a83be",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-ii-congress-decision-19950618-facts.json",
+      "bytes": 5598,
+      "sha256": "22d7ae12179170e690bf43f94409faa5a58fe4859914b465795939da6813c0e2",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-information-bulletin-1-19940710-facts.json",
+      "bytes": 5548,
+      "sha256": "962856922863651dc138ee588d97c1beea9d960feb915020caf44f4736e8ad03",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-newspaper-demvybor-21-20010607-facts.json",
+      "bytes": 4994,
+      "sha256": "65091efd5b340fe56ae77646608daf55345587b149f3a9c974bf15d2b374cf55",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-politsovet-decision-19971216-facts.json",
+      "bytes": 3968,
+      "sha256": "b618ebb6827afc96bdc3d086e9bb4fb77fdb48d7ca6b4da9be018d673dfbdbcf",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-politsovet-statement-20001216-facts.json",
+      "bytes": 4660,
+      "sha256": "819354ae4c78313e5ce428ac245fb23d82b5247b6d3b05c5a4ba4845fffc930f",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-statement-grozny-19941211-facts.json",
+      "bytes": 4555,
+      "sha256": "e6b41a849f3418dba7fa29e195a6931421e6d9c7ba3e0490cf11b2226f9f0468",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-supporters-protocol-19940519-facts.json",
+      "bytes": 5092,
+      "sha256": "5d6bd627d01f1e32fbe1f09dbf39886696a2ca5c8c74d80d1562f299b7182454",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-v-congress-decision-19960921-facts.json",
+      "bytes": 4911,
+      "sha256": "598b84ef03b84770090ad405f296c75131b504b5683d49c96435704b4c93686c",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-dvr-v-congress-decisions-19960922-facts.json",
+      "bytes": 5806,
+      "sha256": "422a13b36b4281a0199c8032de9acbd739e425e28f21606936e0037ba22c6541",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-date-in-history-1993-20260213-facts.json",
+      "bytes": 6688,
+      "sha256": "a08b6c884860ce41e67c0d0927b9405fe8652a7747f5d1a9332d18dff48a7f62",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-i-plenum-notice-19970420-facts.json",
+      "bytes": 3879,
+      "sha256": "a92678e7ee22fa5d906b14ec6c2c95d7b69ad2426b8866221cc5f01966f0e25a",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-i-plenum-notice-20210424-facts.json",
+      "bytes": 4075,
+      "sha256": "600bb1dbf61dda61ba399a10203b48c6629f5246bcf4e4138ce07d9afc69f70d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-i-plenum-notice-20250705-facts.json",
+      "bytes": 4848,
+      "sha256": "e20b2b3e7784c252f8f279b1adb41938204228e1824ecc36d1e22374ef2e0442",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-official-i-plenum-20250705-facts.json",
+      "bytes": 4088,
+      "sha256": "675650ca9a4e4176141f5bed6ef2020cd8570b5f76f61f023782d1d62680831d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-party-reference-20250912-facts.json",
+      "bytes": 5063,
+      "sha256": "fc65c77980f9207d2ba2fe62163f6c3ad186aed5e646a1bdd3ff4180ebfc7348",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-v-congress-notice-19980523-facts.json",
+      "bytes": 4682,
+      "sha256": "4c1c9f349a584b599c753d723611d99a6c6f843a1124d3927e6786ef4575a150",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-xix-congress-notice-20250705-facts.json",
+      "bytes": 4678,
+      "sha256": "8dd9edb904cc78d1c70b199abde284bf58a6e8035baec72c61726c7b83516288",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-xix-second-stage-20260620-facts.json",
+      "bytes": 3969,
+      "sha256": "70c824fc2d22352c89c49390f4640deb07a60b6937bec2acdb9ddedcea2978c0",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-xviii-congress-notice-20210424-facts.json",
+      "bytes": 4742,
+      "sha256": "7b217d53383c5f83f46774ca254a23f4a674ed5b00d2d3e93b888a42e6312ceb",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-kprf-zyuganov-greeting-20260828-facts.json",
+      "bytes": 3906,
+      "sha256": "ef6f2d2361b4c32d645bed729bac3e1761f72ead91dd910c5a4b0cad26bb6c67",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-citizenship-proposal-20260811-facts.json",
+      "bytes": 4049,
+      "sha256": "716b7a2cce16caa59c4bd9b10a2c53fe814f9ead987ef9ce3fa0a0ae1fdee7d2",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-news-congress-opens-20220527-facts.json",
+      "bytes": 3804,
+      "sha256": "d9bae0afd86008526648674260c4df9b571c8280666a10df1ae0f8e489d3a6ac",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-news-death-20220406-facts.json",
+      "bytes": 3999,
+      "sha256": "1fea4cf624b8f0eda20a32dab2706f063b7b53e7ec6703e42a8a0afe4a93c86f",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-news-slutsky-elected-20220527-facts.json",
+      "bytes": 4709,
+      "sha256": "0fc888b2093c7aa115f3c89ca9b646f2c691a11045dcab43ad9e401c695f7371",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-news-supreme-council-20220526-facts.json",
+      "bytes": 4909,
+      "sha256": "7689274dd8949bf8b9910819813bb8b801d6bcc9071167fadef62889825401d4",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-news-vote-day-20220527-facts.json",
+      "bytes": 3955,
+      "sha256": "184fe4c64e658a5938dd4b69c7ab6294962cc1c1af1ed6dc228e003f943f7aca",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-newspaper-no04-20220330-facts.json",
+      "bytes": 4538,
+      "sha256": "d05b1eecc92cbc3d381d68109a7438d12d61985dee0ea86f8cbcd3912155d43d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-newspaper-no05-20220506-facts.json",
+      "bytes": 4407,
+      "sha256": "ddb5b30bde9196d0ae7465ac2b8a582b819e41a76507c530bdf16e5fa6b8910a",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-newspaper-no06-07-20220627-facts.json",
+      "bytes": 6338,
+      "sha256": "9e9f50249c991de39aacf8c8b7bdf21f92cdbaa6bc73d250f69eeaf874b1b8bb",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-party-history-20100922-facts.json",
+      "bytes": 7347,
+      "sha256": "6fa793a0a0545863d1e951712fecd32db67b0152824eab1fb999edc3103e415d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-party-history-20260216-facts.json",
+      "bytes": 4621,
+      "sha256": "44869d8cf86b1cb641241ae8460050b22c1bfa631358a956d89e468e645a1a91",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-plenum-resolution-19961123-facts.json",
+      "bytes": 4270,
+      "sha256": "403fe199c77366ab8b2ce1d9917b4978f809eaa59c37396f7e55b5fb463ed21b",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-slutsky-congress-post-20251002-facts.json",
+      "bytes": 4688,
+      "sha256": "863046b2b7db966d904a079c486376cf922142207d7ef3dd9e6b5bba84b89e85",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-slutsky-reelected-20251002-facts.json",
+      "bytes": 4849,
+      "sha256": "7bc5fd320c7bcae1e6df9ef039ddb049438369e202b9fb14a2248cf17179c1b7",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-vybor-rossii-bloc-programme-19931017-facts.json",
+      "bytes": 4643,
+      "sha256": "10d7299266693cfc50f6d0ba23ce1ea9f852b418d31c8c3ed8f7696316d3d42a",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-association-reference-19980630-facts.json",
+      "bytes": 7962,
+      "sha256": "994074d0f71e1ad1cb0a77a21d290db58b77206cb5a80a0b2c27d35debef3dc9",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-charter-amendments-20040704-facts.json",
+      "bytes": 4611,
+      "sha256": "dce7e22e8185cdaef9183b9a6621be7e523fb26695c60a60afba3d1198f4da0d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-congress-schedule-20040703-facts.json",
+      "bytes": 3626,
+      "sha256": "2ce41879927ac324499d5354db82648beec1ef5b5e8ff89936bd919338042aee",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-fsin-appeal-20231213-facts.json",
+      "bytes": 3827,
+      "sha256": "73118465df5202b586e9b8abcbb8dae875318224b9d4143bd7792cb04100d738",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-leadership-report-20111112-facts.json",
+      "bytes": 5860,
+      "sha256": "e3bf65e1a5661270f481e09701f7e793f53dee56a0b33c4703d82dbbb9647c27",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-new-chairman-deputies-20151220-facts.json",
+      "bytes": 3896,
+      "sha256": "9af888a65957c249234b3d70bf12ed8ca544c7c2d6a1a27a5dfadfb2e49394b3",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-new-leadership-20080622-facts.json",
+      "bytes": 3533,
+      "sha256": "7fa7e63035cfd470521a18198606bd21c2c97eae890340a6482ba4c00374d2a3",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-party-transformation-20011222-facts.json",
+      "bytes": 3668,
+      "sha256": "f8aaef3a54d230b57aae8f38de745b082f3f93813de11f592b263bac75508f9a",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-rybakov-appeal-20260819-facts.json",
+      "bytes": 3897,
+      "sha256": "c84dc7cbe273c44a0799c2f398d372de1cde885cb8118883e629d88f4d807f4d",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-rybakov-elected-20191215-facts.json",
+      "bytes": 3758,
+      "sha256": "efa33cd2ada4488888852954f3adc45beb0e4e17e9602a9beb7691377c13c28e",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-rybakov-second-term-20231209-facts.json",
+      "bytes": 4557,
+      "sha256": "081a274e3ff77bec3f6994948058ca712c1713eb7fe0fb5a9c5160d16d1f14b8",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-slabunova-elected-20151220-facts.json",
+      "bytes": 5231,
+      "sha256": "01fcd45d26fda924dc21222e4286b33b0259510ebd165d0491ad25d5fbdc1748",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-term-limit-20151219-facts.json",
+      "bytes": 4831,
+      "sha256": "8bb187eb950dd51bb31c3fce8e445a82d8ea8a13205c4794c7397508c07cec7f",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-vi-congress-report-19980314-facts.json",
+      "bytes": 4088,
+      "sha256": "acbb713ab42408f22c358100c8860b75f677baef95a2695ce376ee5aa7a90bc1",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-x-congress-chairman-speech-20011223-facts.json",
+      "bytes": 3717,
+      "sha256": "5ce6d0ef9dbe3f3a27809076887964b396db63373deeb1b6db8b2aab5b0f90c6",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-x-congress-section-20020123-facts.json",
+      "bytes": 5376,
+      "sha256": "e867b83f8f60bbfba454c448bae80db5c53bc828d1114d66cb27eb02b881e6b4",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-xv-congress-decisions-20080626-facts.json",
+      "bytes": 4214,
+      "sha256": "3b1d0d0e2a2a0bf658aef109c9ae3b36538cabd12b28aaae9e53b04bf7b33409",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-xxi-congress-main-20191216-facts.json",
+      "bytes": 5907,
+      "sha256": "d7b522bc565f8b698a4e095eb37c5c70a3a9c82b652da6be8922cd71784f76f2",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-xxii-congress-main-20231211-facts.json",
+      "bytes": 3621,
+      "sha256": "c0e1eda96c8094b1e329dd18d86bbc03e9ed62f455972a4b8a01995e3cfca0b5",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-yavlinsky-elected-20011223-facts.json",
+      "bytes": 3751,
+      "sha256": "d443b6553fd14c94e4bfe6b7e6415ba7fd7e511229321c4856c6dbfa51a35851",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-yavlinsky-reelected-20040703-facts.json",
+      "bytes": 3810,
+      "sha256": "c74f98166e73202899a6187ee94a9131389404f2b10e56504e8ed6bb1f6fbac0",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "path": "tools/avatars/test_russia_party_leaders_c01_28.py",
+      "bytes": 82756,
+      "sha256": "41ae649bfe85937ac9e8ba0e61fc81c9b64b06063229ec6b5025bf944c2f324c",
+      "source_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    }
+  ],
+  "runtime_or_art_changes": false,
+  "country_or_canonical_completion": false
+}

@@ -1,0 +1,1082 @@
+{
+  "format": "spheres-final-scope-docs-audit/v1",
+  "checked_at": "2026-10-01T17:28:23.827932+00:00",
+  "baseline": "8bdef26839d075073bb9a0734136bfd9b5850fd5",
+  "checkout_head": "bd5a41d0744487491d10eea283936f355a6b8123",
+  "root": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined",
+  "source_imports": {
+    "russia": "bd5a41d0744487491d10eea283936f355a6b8123",
+    "south_africa": "e56916b4ae3f3f6c3ca1e29aca091921adb58719"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Production metadata changes exactly2provenance hashes to actual already-integrated source",
+      "passed": true,
+      "detail": [
+        {
+          "path": "/future/institutional_source_sha256",
+          "old": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+          "new": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3"
+        },
+        {
+          "path": "/input_hashes/spheres-sim/data/tonga_institutional_leadership.json",
+          "old": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+          "new": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3"
+        }
+      ]
+    },
+    {
+      "name": "Institutional source itself unchanged from8bdef baseline",
+      "passed": true,
+      "detail": {
+        "source_sha256": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+        "source_bytes": 76630,
+        "origin_display_fix": "47c3adfe"
+      }
+    },
+    {
+      "name": "Production characters counts policies and appearance jobs unchanged",
+      "passed": true,
+      "detail": {
+        "nation_identities": 160,
+        "starting_nations": 137,
+        "successor_nations": 23,
+        "nations_with_simulation_parties": 148,
+        "nations_without_simulation_parties": 12,
+        "simulation_party_rows": 624,
+        "explicit_components": 20,
+        "parties_verified_history": 0,
+        "parties_partial_history": 53,
+        "parties_with_declared_history_gaps": 623,
+        "known_historical_people": 620,
+        "known_party_terms": 393,
+        "validated_cartoon_people": 90,
+        "validated_cartoon_assets": 100,
+        "validated_fictional_cartoon_people": 8,
+        "validated_fictional_cartoon_assets": 8,
+        "validated_cartoon_total_assets": 108,
+        "pending_historical_art_jobs": 699,
+        "people_without_researched_eligibility": 156,
+        "countries_with_complete_all_party_history": 0,
+        "images_generated_by_this_tool": 0
+      }
+    },
+    {
+      "name": "Census changes only3source provenance fields; all counts and completion flags unchanged",
+      "passed": true,
+      "detail": [
+        {
+          "path": "/source_files/7/bytes",
+          "old": 76513,
+          "new": 76630
+        },
+        {
+          "path": "/source_files/7/sha256",
+          "old": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+          "new": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3"
+        },
+        {
+          "path": "/source_files/12/sha256",
+          "old": "f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245",
+          "new": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+        }
+      ]
+    },
+    {
+      "name": "Cartoon inventory changes one production provenance hash only",
+      "passed": true,
+      "detail": [
+        {
+          "path": "/inputs/4/sha256",
+          "old": "f0222d3a1aaa259e2dcd16d9f6da3d50abfe5aca332c3da7e91b28a08dfa8245",
+          "new": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+        }
+      ]
+    },
+    {
+      "name": "Boundary preparation flags and fictional cast counts unchanged",
+      "passed": true,
+      "detail": {
+        "status": "preparation_only_not_s23_acceptance",
+        "s23_complete": false,
+        "c06_complete": false,
+        "fictional_catalogue_counts": {
+          "party_candidates": 2556,
+          "institutional_candidates": 4,
+          "total_candidates": 2560
+        }
+      }
+    },
+    {
+      "name": "Only the two bounded research tasks close;38Claude-owned complete andCodexTonga unchanged",
+      "passed": true,
+      "detail": {
+        "changed_tasks": [
+          "CLAUDE-C01-28",
+          "CLAUDE-C01-39"
+        ],
+        "queue_total": 59,
+        "tonga": {
+          "id": "CLAUDE-C06-TONGA-01",
+          "owner": "Codex",
+          "session": "C06",
+          "state": "in_progress",
+          "priority": 1,
+          "title": "Finish Tonga as the first complete certified-country cast",
+          "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+          "depends_on": [
+            "CODEX-C02-TO-01"
+          ],
+          "next": "46 illustrations and 50 exact historical observations are integrated with separate Crown/premier behavior. Focused native rules and final-source production-browser checks are accepted; 807 full avatar/research and 25 focused UI tests pass locally. Fourteen requirements remain: eleven historical chains, Fatai Helu verified likeness, final visual review and country signoff. Follow docs/campaign-certification/C06/production/tonga/REMAINING-WORK.md. Preserve uncertain office boundaries and event-driven succession. C06/S23/CP1 remain open.",
+          "branch": "codex/tonga-country-cast-20261001",
+          "submission_revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e"
+        }
+      }
+    },
+    {
+      "name": "Canonical44marker register and workstream qualifications unchanged",
+      "passed": true,
+      "detail": [
+        "docs/planning/campaign-pathway.json",
+        "docs/planning/ai-workstreams.json"
+      ]
+    },
+    {
+      "name": "Only runtime-tree exception is production metadata; no behavior or art changes",
+      "passed": true,
+      "detail": [
+        "spheres-web/data/leadership_production_2035.json"
+      ]
+    },
+    {
+      "name": "All local links in current/changed docs resolve to actual or tracked files",
+      "passed": true,
+      "detail": {
+        "links_checked": 94,
+        "missing": []
+      }
+    },
+    {
+      "name": "Linked active next-task handoff has no superseded source-hold instructions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Current completion is explicitly bounded and14Tonga requirements remain",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "doc_input_pins": [
+    {
+      "path": "docs/AI_WORKSTREAMS.md",
+      "sha256": "cb05f60be44413b3bf2a85945e0a285dd4f61eff263ed148cca99b2c539d83be",
+      "bytes": 12403
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "sha256": "048875eeaae680835e418587d2bd1c5697fd445ff481b83cb520c9d5edc9b5a0",
+      "bytes": 17673
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+      "sha256": "ab0b15360b9a17090e42a584efca9f804724464ce1399b50a66a87e147250515",
+      "bytes": 6188
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+      "sha256": "fc32eb20090fcf34065834077bf4d0cef5872a511ec84f07ab302ffbc91376d3",
+      "bytes": 6899
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "sha256": "5f59b5447e52f20326c53ef15fdd1567f384e79a774d3c284acbcd85501d15a3",
+      "bytes": 10014
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+      "sha256": "405d5691f6c1462a6bdf22047650be70318f8122f4105c54ab7789aebfc851c2",
+      "bytes": 1181
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+      "sha256": "d8444bb641cd33541a1c6d49ce56c9781f656e2646ce34942ae6997aad7e982a",
+      "bytes": 1216
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "sha256": "a474e108b8cff72380a1de2bfb978a51b947bf1610a6562f1e95b70d0ff3ddf0",
+      "bytes": 473
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/README.md",
+      "sha256": "6fecfcfa51dbc346de6d5253db9bface72ce667bfe75e676c90f61e6cc8568b9",
+      "bytes": 39537
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.md",
+      "sha256": "466efa6b2c760e1e94261cee1330220f3fb1362937358c0b5a1c99e2e21ee876",
+      "bytes": 110694
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md",
+      "sha256": "ef4a25a53d5fd2eb67d1b27603648a2431160d5ed86bd2fb09a265257c3f16dc",
+      "bytes": 21389
+    }
+  ],
+  "local_links": [
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 5,
+      "target": "../ROADMAP.md",
+      "resolved": "ROADMAP.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 8,
+      "target": "planning/campaign-pathway.json",
+      "resolved": "docs/planning/campaign-pathway.json",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 12,
+      "target": "planning/ai-handoffs/CP1-ACCELERATION.md",
+      "resolved": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 14,
+      "target": "campaign-certification/C06/production/tonga/integration-20261001/README.md",
+      "resolved": "docs/campaign-certification/C06/production/tonga/integration-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 18,
+      "target": "campaign-certification/S26/preparation/RECRUITMENT.md",
+      "resolved": "docs/campaign-certification/S26/preparation/RECRUITMENT.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 27,
+      "target": "campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 28,
+      "target": "campaign-certification/C06/production/tonga/integration-20261001/README.md",
+      "resolved": "docs/campaign-certification/C06/production/tonga/integration-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 28,
+      "target": "campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/README.md",
+      "resolved": "docs/campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 29,
+      "target": "campaign-certification/S25/preparation/local-matrix-20260930/README.md",
+      "resolved": "docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 29,
+      "target": "campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md",
+      "resolved": "docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 29,
+      "target": "campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md",
+      "resolved": "docs/campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 30,
+      "target": "campaign-certification/S27/preparation/political-repairs-20260930/README.md",
+      "resolved": "docs/campaign-certification/S27/preparation/political-repairs-20260930/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 30,
+      "target": "campaign-certification/S27/preparation/a1-followup-20261001/README.md",
+      "resolved": "docs/campaign-certification/S27/preparation/a1-followup-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 31,
+      "target": "campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 32,
+      "target": "campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 33,
+      "target": "campaign-certification/S26/preparation/RECRUITMENT.md",
+      "resolved": "docs/campaign-certification/S26/preparation/RECRUITMENT.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 35,
+      "target": "planning/ai-task-queue.json",
+      "resolved": "docs/planning/ai-task-queue.json",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 36,
+      "target": "planning/ai-workstreams.json",
+      "resolved": "docs/planning/ai-workstreams.json",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 54,
+      "target": "campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 55,
+      "target": "campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 56,
+      "target": "campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 56,
+      "target": "planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 57,
+      "target": "campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 62,
+      "target": "archive/branches-2026-09-30.json",
+      "resolved": "docs/archive/branches-2026-09-30.json",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 70,
+      "target": "planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 73,
+      "target": "campaign-certification/C01/integrations/REVIEW-20261001-03/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 81,
+      "target": "planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 91,
+      "target": "campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 93,
+      "target": "campaign-certification/development/2026-10-01-cp1-acceleration/README.md",
+      "resolved": "docs/campaign-certification/development/2026-10-01-cp1-acceleration/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 94,
+      "target": "campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 95,
+      "target": "campaign-certification/C01/integrations/REVIEW-2026-10-01/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-2026-10-01/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 97,
+      "target": "campaign-certification/development/2026-09-30-claim-registration/README.md",
+      "resolved": "docs/campaign-certification/development/2026-09-30-claim-registration/README.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 98,
+      "target": "planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 99,
+      "target": "planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 100,
+      "target": "planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "resolved": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 101,
+      "target": "planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "resolved": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 102,
+      "target": "CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "resolved": "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/AI_WORKSTREAMS.md",
+      "line": 103,
+      "target": "archive/2026-09-30/AI_WORKSTREAMS.md",
+      "resolved": "docs/archive/2026-09-30/AI_WORKSTREAMS.md",
+      "exists_or_tracked": true,
+      "materialized": false,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 53,
+      "target": "CODEX-C03-OPENING-01.md",
+      "resolved": "docs/planning/ai-handoffs/CODEX-C03-OPENING-01.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 57,
+      "target": "CP1-ACCELERATION.md",
+      "resolved": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 59,
+      "target": "../../campaign-certification/C06/production/tonga/integration-20261001/README.md",
+      "resolved": "docs/campaign-certification/C06/production/tonga/integration-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 68,
+      "target": "../../campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 75,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 76,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 77,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 78,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 79,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-40/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 79,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 80,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 82,
+      "target": "../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 87,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 103,
+      "target": "CLAUDE-C01-42.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 103,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-42-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-42-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 104,
+      "target": "CLAUDE-C01-43.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-43.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 104,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 105,
+      "target": "CLAUDE-C01-44.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 105,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 106,
+      "target": "CLAUDE-C01-45.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-45.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 106,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 107,
+      "target": "CLAUDE-C01-46.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-46.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 124,
+      "target": "../../campaign-certification/C01/integrations/REVIEW-20261001-03/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 140,
+      "target": "CLAUDE-C01-47.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-47.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 140,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 141,
+      "target": "CLAUDE-C01-48.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-48.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 141,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-48-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-48-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 142,
+      "target": "CLAUDE-C01-49.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-49.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 142,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 143,
+      "target": "CLAUDE-C01-50.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-50.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 143,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 144,
+      "target": "CLAUDE-C01-51.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-C01-51.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "line": 144,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+      "line": 5,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+      "line": 5,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+      "line": 21,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-39/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+      "line": 35,
+      "target": "../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 3,
+      "target": "CP1-ACCELERATION.md",
+      "resolved": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 10,
+      "target": "CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 23,
+      "target": "CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 29,
+      "target": "CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 33,
+      "target": "../../campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 54,
+      "target": "../../campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 59,
+      "target": "CLAUDE-EXPANDED-NEXT.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 83,
+      "target": "../../campaign-certification/verification/evidence/2026-09-27-claude-integration/premerge-source-identity-sample.json",
+      "resolved": "docs/campaign-certification/verification/evidence/2026-09-27-claude-integration/premerge-source-identity-sample.json",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 101,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 101,
+      "target": "../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 102,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 103,
+      "target": "../../campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 108,
+      "target": "CODEX-NEXT-ENGINEERING.md#separate-remote-inventory--bounded-reviews-outside-the-eight-task-order",
+      "resolved": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "line": 122,
+      "target": "CLAUDE-EXPANDED-NEXT.md",
+      "resolved": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+      "line": 3,
+      "target": "../../reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-final-missing-only/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/campaign-certification/C01/integrations/CLAUDE-C01-28/README.md",
+      "line": 7,
+      "target": "../REVIEW-20261001-06/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+      "line": 3,
+      "target": "../../reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "resolved": "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    },
+    {
+      "document": "docs/campaign-certification/C01/integrations/CLAUDE-C01-39/README.md",
+      "line": 7,
+      "target": "../REVIEW-20261001-06/README.md",
+      "resolved": "docs/campaign-certification/C01/integrations/REVIEW-20261001-06/README.md",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": false
+    },
+    {
+      "document": "docs/campaign-certification/S23/preparation/boundary-matrix/README.md",
+      "line": 9,
+      "target": "summary.json",
+      "resolved": "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+      "exists_or_tracked": true,
+      "materialized": true,
+      "tracked": true
+    }
+  ],
+  "review_notes": [
+    "Earlier composition-audit.json predates the explicit2field production provenance refresh and remains preserved.",
+    "Current-doc38/38closure concerns Claude-owned bounded deliveries, not worldwide research or all historical claims.",
+    "Old held/intake paragraphs remain explicitly labelled historical; source failures and excluded interpretations stay preserved.",
+    "No repository file edits, source requests, native execution or test suites were performed."
+  ]
+}

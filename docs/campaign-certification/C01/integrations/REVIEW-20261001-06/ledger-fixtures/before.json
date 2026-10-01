@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_certified_gap_ledger.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "checked_at": "2026-10-01T17:19:11.573586+00:00",
+  "test_sha256": "eab782fc59b8112bb6ca3ebb65e3c994f0269c97edf09f02f291789a448479f5"
+}

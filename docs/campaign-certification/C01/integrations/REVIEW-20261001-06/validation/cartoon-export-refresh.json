@@ -1,0 +1,16 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/cartoon_review.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\combined",
+  "started_utc": "2026-10-01T17:21:36.336581+00:00",
+  "duration_seconds": 0.687,
+  "exit_code": 0,
+  "log": "cartoon-export-refresh.log",
+  "bytes": 318,
+  "sha256": "ace6ca0778146c9ad9829b9547ef697aa22f19207aed81f2e90a9925ebd45c19"
+}
