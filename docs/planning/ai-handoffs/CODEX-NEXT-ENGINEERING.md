@@ -91,6 +91,22 @@ regime-opening decisions on the already-used seed before proposing a policy
 change; a separate civilian–military dispute still requires a justified contract.
 No additional native run or gameplay repair is claimed; A1 remains blocked.
 
+The [30 September repair attempt](../../campaign-certification/S27/preparation/political-repairs-20260930/README.md)
+extends the observer with 252 exact monthly comparisons and establishes two
+defects: the negotiation AI hides a hostile armed institution inside a loyal
+mean, and the institution walk updates Sudan's first Army entry twice while
+freezing its second. Both are corrected on `7c6f112c`, with actual failing
+regressions followed by passing controls. Full ordinary native verification
+passes 1,990 tests; UI coverage passes after unchanged sparse fixtures are
+restored; the release build passes. Standalone absolute timing remains pending
+while another task performs heavy native verification. The original political
+checks still fail A1 (7.5 coups / 0.571429 share), with A2–A10 and attribution
+passing. A separately declared urgent-response policy is rejected: A1 remains
+failed and A2 regresses to 6/12. Its exact patch and failures are retained, not
+integrated. No acceptance change, reserved cohort or wider scan was used. Next
+finish uncontended timing and review residual concentration against a justified
+causal contract; do not rescue the rejected policy with country exceptions.
+
 ## 2. Startup: CODEX-S24-STARTUP-01
 
 Reuse `tools/campaign/worldwide_preflight.py`; do not rebuild the earlier work

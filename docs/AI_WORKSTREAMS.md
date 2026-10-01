@@ -13,7 +13,7 @@ remain open. Canonical session status lives in
 |---|---|---|
 | Claude | Historical research and cartoon production | Continue existing claims; reconcile accepted Tonga research into dated identities, then a reviewed 6–8-cartoon batch. Repeat country batches toward C06. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September snapshot](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 running, 16 queued. Collect the existing run and dependent verifier's final results. Full-matrix pass remains pending. |
-| Codex | Political calibration (`CODEX-S27-A1-01`) | [Route-exposure investigation](campaign-certification/S27/preparation/a1-route-exposure-20260930/README.md) complete; A1 still blocked. Next trace actual regime-opening decisions. Keep the original gate and limits. |
+| Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. Next complete standalone timing and review residual concentration; retain all original limits. |
 | Claude / Codex review | Russia research (`CLAUDE-C01-28`) | Twelve unavailable originals still hold 24 claims and four holder observations. Preserve the accessible-content review; import no unaccepted Russia research. |
 | Human / Codex support | Independent playtests | Prepare S26's participant and task protocol; formal qualification follows S24. |
 
