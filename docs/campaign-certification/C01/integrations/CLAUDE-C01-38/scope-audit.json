@@ -1,0 +1,205 @@
+{
+  "base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "submission": "acf33f09a5d28cbc9bf9f539e152e9846a7bf395",
+  "import": "9174c807",
+  "prior_packet_reconstructed_exactly_after_removing_only_declared_additions": true,
+  "prior_sources_identical": 88,
+  "financial_organizations_identical": 635,
+  "presidency_identical": true,
+  "previous_pm_holder_observations_identical": 16,
+  "new_sources": 22,
+  "new_claims": 33,
+  "new_holder_observations": [
+    {
+      "name": "Manuel Valls",
+      "attested_on": "2014-03-31",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_valls_20140331",
+        "fr_jorf_cessation_valls_20140825"
+      ],
+      "claim_ids": [
+        "fr_jorf_valls_appointed_pm_20140331",
+        "fr_jorf_valls_functions_ended_20140825"
+      ],
+      "note": "Observed on 2014-03-31: the signed instrument names Manuel Valls as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2014-08-25 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Manuel Valls",
+      "attested_on": "2014-08-25",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_valls_20140825",
+        "fr_jorf_cessation_valls_20161206"
+      ],
+      "claim_ids": [
+        "fr_jorf_valls_appointed_pm_20140825",
+        "fr_jorf_valls_functions_ended_20161206"
+      ],
+      "note": "Observed on 2014-08-25: the signed instrument names Manuel Valls as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2016-12-06 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Bernard Cazeneuve",
+      "attested_on": "2016-12-06",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_cazeneuve_20161206",
+        "fr_jorf_cessation_cazeneuve_20170510"
+      ],
+      "claim_ids": [
+        "fr_jorf_cazeneuve_appointed_pm_20161206",
+        "fr_jorf_cazeneuve_functions_ended_20170510"
+      ],
+      "note": "Observed on 2016-12-06: the signed instrument names Bernard Cazeneuve as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2017-05-10 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Edouard Philippe",
+      "attested_on": "2017-05-15",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_philippe_20170515",
+        "fr_jorf_cessation_philippe_20170619"
+      ],
+      "claim_ids": [
+        "fr_jorf_philippe_appointed_pm_20170515",
+        "fr_jorf_philippe_functions_ended_20170619"
+      ],
+      "note": "Observed on 2017-05-15: the signed instrument names Edouard Philippe as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2017-06-19 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Edouard Philippe",
+      "attested_on": "2017-06-19",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_philippe_20170619",
+        "fr_jorf_cessation_philippe_20200703"
+      ],
+      "claim_ids": [
+        "fr_jorf_philippe_appointed_pm_20170619",
+        "fr_jorf_philippe_functions_ended_20200703"
+      ],
+      "note": "Observed on 2017-06-19: the signed instrument names Edouard Philippe as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2020-07-03 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Jean Castex",
+      "attested_on": "2020-07-03",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_castex_20200703",
+        "fr_jorf_cessation_castex_20220516"
+      ],
+      "claim_ids": [
+        "fr_jorf_castex_appointed_pm_20200703",
+        "fr_jorf_castex_functions_ended_20220516"
+      ],
+      "note": "Observed on 2020-07-03: the signed instrument names Jean Castex as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2022-05-16 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Elisabeth Borne",
+      "attested_on": "2022-05-16",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_borne_20220516",
+        "fr_jorf_cessation_borne_20240109"
+      ],
+      "claim_ids": [
+        "fr_jorf_borne_appointed_pm_20220516",
+        "fr_jorf_borne_functions_ended_20240109"
+      ],
+      "note": "Observed on 2022-05-16: the signed instrument names Elisabeth Borne as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2024-01-09 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Gabriel Attal",
+      "attested_on": "2024-01-09",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_attal_20240109",
+        "fr_jorf_cessation_attal_20240716"
+      ],
+      "claim_ids": [
+        "fr_jorf_attal_appointed_pm_20240109",
+        "fr_jorf_attal_functions_ended_20240716"
+      ],
+      "note": "Observed on 2024-01-09: the signed instrument names Gabriel Attal as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2024-07-16 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Michel Barnier",
+      "attested_on": "2024-09-05",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_barnier_20240905"
+      ],
+      "claim_ids": [
+        "fr_jorf_barnier_appointed_pm_20240905"
+      ],
+      "note": "Observed on 2024-09-05: the signed instrument names Michel Barnier as Premier ministre. This records the appointment instrument, not an independently established effective start. The instrument ending his Government's functions (the decree of 5 December 2024, JORFTEXT000050748889) was not retrieved; no end is recorded.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "François Bayrou",
+      "attested_on": "2024-12-13",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_bayrou_20241213",
+        "fr_jorf_dila_opendata_20250910"
+      ],
+      "claim_ids": [
+        "fr_jorf_bayrou_appointed_pm_20241213",
+        "fr_jorf_bayrou_functions_ended_20250909"
+      ],
+      "note": "Observed on 2024-12-13: the signed instrument names François Bayrou as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2025-09-09 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Sébastien Lecornu",
+      "attested_on": "2025-09-09",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_dila_opendata_20250910",
+        "fr_jorf_dila_opendata_20251007"
+      ],
+      "claim_ids": [
+        "fr_jorf_lecornu_appointed_pm_20250909",
+        "fr_jorf_lecornu_functions_ended_20251006"
+      ],
+      "note": "Observed on 2025-09-09: the signed instrument names Sébastien Lecornu as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2025-10-06 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Sébastien Lecornu",
+      "attested_on": "2025-10-10",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_dila_opendata_20251011",
+        "fr_jorf_dila_opendata_pm_signature_20260904"
+      ],
+      "claim_ids": [
+        "fr_jorf_lecornu_appointed_pm_20251010",
+        "fr_jorf_lecornu_signs_decree_as_pm_20260904"
+      ],
+      "note": "Observed on 2025-10-10: the signed instrument names Sébastien Lecornu as Premier ministre. This records the appointment instrument, not an independently established effective start. A decree of 4 September 2026 that he signs as Premier ministre is retained among the cited claims; it attests him in office that day, three days before the cutoff, and supplies no end. No instrument ending this appointment was found before the cutoff.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    }
+  ],
+  "runtime_changed": false
+}

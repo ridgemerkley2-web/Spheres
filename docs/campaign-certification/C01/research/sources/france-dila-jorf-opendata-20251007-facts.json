@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_dila_opendata_20251007",
+  "source_url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20251007-001919.tar.gz",
+  "accessed_date": "2026-09-30",
+  "published_date": "2025-10-07",
+  "access_method": "downloaded_official_open_data_archive_and_xml_member_read",
+  "source_response_bytes": 54757,
+  "source_response_sha256": "a8b48bc2c874d4e1f96c392c5b1d8316d8caba8d865359b0758fa52b83cbd9cb",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default headers (no Accept-Encoding header), and the response had no Content-Encoding. This packet downloaded it at 2026-09-30 23:21Z and again at 2026-10-01 00:22Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A daily Journal officiel open-data export, a static file in DILA's open-data directory (Last-Modified Mon, 06 Oct 2025 22:19:26 GMT; ETag \"d5e5-64084d82ba166\"); the .tar.gz is the file itself, not a Content-Encoding. The record read: 20251007-001919/jorf/global/texte/version/JORF/TEXT/00/00/52/36/70/JORFTEXT000052367030.xml (1603 bytes, SHA-256 9b47558e74c9ef84dde5e3e37ca8f8ebc2914f83efa57d1e4733bb8058461b3c), the TEXTE_VERSION record of JORFTEXT000052367030 (NOR HRUX2527269D), and its article 1 member 20251007-001919/jorf/global/article/JORF/ARTI/00/00/52/36/70/JORFARTI000052367031.xml (1259 bytes, SHA-256 6d2074d8b3ee515e7dec2943e94a7c5336a2d8ff603986f52b01c3ac82a16c40). The DATES_EFFET element of the record read is empty. Retention caveat: on 30 September 2026 the directory listed daily files back to 13 July 2025, so daily exports appear to be removed after about fourteen months; this file may be removed around late December 2026, so re-verify it before then. Légifrance itself refuses automated access (HTTP 403 on 30 September 2026), which was not bypassed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Structured XML records read directly (metadata, visas, article 1 and signature block); no rendering needed."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_lecornu_government_resignation_letter_20251006",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-21",
+      "role_id": "fr_pm",
+      "holder_name": "Sébastien LECORNU",
+      "role_title": "Premier ministre",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2025-10-06",
+      "text": "The decree ending the Government's functions (NOR HRUX2527269D, JORFTEXT000052367030) cites in its visas 'la lettre, remise le 6 octobre 2025, par laquelle le Premier ministre a présenté au Président de la République la démission du Gouvernement'.",
+      "locator": {
+        "archive_member": "20251007-001919/jorf/global/texte/version/JORF/TEXT/00/00/52/36/70/JORFTEXT000052367030.xml",
+        "item": "DATE_TEXTE 2025-10-06; ORIGINE_PUBLI 'JORF n°0235 du 7 octobre 2025'; NUM_SEQUENCE 1; VISAS (second visa)"
+      }
+    },
+    {
+      "claim_id": "fr_jorf_lecornu_functions_ended_20251006",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-21",
+      "role_id": "fr_pm",
+      "holder_name": "Sébastien LECORNU",
+      "role_title": "Premier ministre",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2025-10-06",
+      "text": "The decree ending the Government's functions, published in JORF n°0235 of 7 October 2025 (NOR HRUX2527269D, JORFTEXT000052367030; 'Vu la Constitution, notamment les articles 8 et 50'), decrees 'Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. Sébastien LECORNU, Premier ministre, et des autres membres du Gouvernement' and closes 'Fait le 6 octobre 2025.', signed 'Emmanuel Macron'.",
+      "locator": {
+        "archive_member": "20251007-001919/jorf/global/texte/version/JORF/TEXT/00/00/52/36/70/JORFTEXT000052367030.xml",
+        "article_member": "20251007-001919/jorf/global/article/JORF/ARTI/00/00/52/36/70/JORFARTI000052367031.xml",
+        "item": "DATE_TEXTE 2025-10-06; ORIGINE_PUBLI 'JORF n°0235 du 7 octobre 2025'; NUM_SEQUENCE 1; VISAS; article 1; SIGNATAIRES"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-38 only (Premier ministre; the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff, the next batch after CLAUDE-C01-37). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister and a decree the Prime Minister signs stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}

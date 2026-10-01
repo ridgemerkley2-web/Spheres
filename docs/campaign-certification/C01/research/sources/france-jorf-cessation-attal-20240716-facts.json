@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_cessation_attal_20240716",
+  "source_url": "https://web.archive.org/web/20240829143727id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050000932",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050000932",
+  "archive_capture_utc": "2024-08-29T14:37:27Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2024-07-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 96301,
+  "source_response_sha256": "6dce5f1e87cf6c5a757d5fd1f478a303fcdf1de56f0d761cec04d6710c1b4975",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-08-29T14:37:27Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding, so the recorded identity is the body as received. This packet downloaded it at 2026-09-30 23:47Z and again at 2026-10-01 00:22Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 29 August 2024 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX2420108D); Légifrance itself refuses automated access (HTTP 403 on 30 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_attal_government_resignation_letter_20240708",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-18",
+      "role_id": "fr_pm",
+      "holder_name": "Gabriel ATTAL",
+      "role_title": "Premier ministre",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2024-07-08",
+      "text": "The decree ending the Government's functions (NOR HRUX2420108D) cites in its visas 'la lettre, en date du 8 juillet 2024, par laquelle le Premier ministre a présenté au Président de la République la démission du Gouvernement'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2420108D', 'JORF n°0169 du 17 juillet 2024 Texte n° 1') and the second visa"
+      }
+    },
+    {
+      "claim_id": "fr_jorf_attal_functions_ended_20240716",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-18",
+      "role_id": "fr_pm",
+      "holder_name": "Gabriel ATTAL",
+      "role_title": "Premier ministre",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2024-07-16",
+      "text": "The decree ending the Government's functions, published in JORF n°0169 of 17 July 2024 (NOR HRUX2420108D), decrees 'Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. Gabriel ATTAL, Premier ministre, et des autres membres du Gouvernement' and closes 'Fait le 16 juillet 2024.', signed 'Emmanuel Macron'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2420108D', 'JORF n°0169 du 17 juillet 2024 Texte n° 1'), article 1 and the signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-38 only (Premier ministre; the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff, the next batch after CLAUDE-C01-37). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister and a decree the Prime Minister signs stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}
