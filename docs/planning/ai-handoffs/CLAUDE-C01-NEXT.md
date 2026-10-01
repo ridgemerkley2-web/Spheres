@@ -1,19 +1,46 @@
 # Claude — next bounded research tasks
 
+**Production priority, 1 October:** follow the [parallel CP1 assignment](CP1-ACCELERATION.md).
+Complete Tonga's country cast, starting with the reviewed identity and cartoon
+batch. Maintain existing research claims and recover held originals separately;
+unavailable Russia/DA sources do not block ready Tonga production. Do not expand
+worldwide research at the expense of the eight certified-country casts.
+
 The [30 September campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md)
-governs the transition from research to artwork. Preserve the delivered Komeito
-C01-31 packet and address review findings; resolve the held Russia C01-28
-evidence. National representative figures are retired from country selection.
+governs the transition from research to artwork. Preserve the accepted Komeito
+C01-31 packet and its scoped corrections; resolve the held Russia C01-28 and
+DA C01-39 source dependencies. National representative figures are retired from country selection.
 Use dated exact campaign identities.
 
-Current review update, 1 October 2026: C01-38/40/41 are accepted **bounded research
-intakes**, with source, locator, prose and attribution limits in their independent
-receipts. C01-31 is held on seven originals / fourteen claims / five dependent
-holder observations, with its conservative Takeya correction preserved but no
-Japan research imported. C01-39 has now delivered at `9cb02c20` and awaits source
-content review. The queue records all four new packets. The dated inventory below
-remains earlier context; use the [current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md)
-and machine-readable queue for current action and exact revisions.
+Current review update, 1 October 2026: C01-31/38/40/41 are accepted **bounded research
+intakes**. Komeito now has all 31 originals, 64 claims and fifteen holder observations
+reviewed; import `b74f4fa5` and [receipt `d4d3542b`](../../campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md)
+preserve the conservative Takeya boundary and locator corrections. Russia remains
+held at 65/68 originals and 133/137 claims; all 24 holder observations have been
+materially checked, leaving three originals / four claims. The preserved DA review
+of `9cb02c20` covers one original / one claim and held all eleven submitted holder
+observations. Latest follow-up `b66f8c07` adds a Zille 2007 observation, proposes
+Maimane's effective end as 23 October 2019 and repairs a quote apostrophe in
+`9e3d0b3c`. These changes are triaged, not accepted or fully content-reviewed. The
+same 24 original identities are recorded; 23 remain unverified, 28 claims and all
+twelve latest holder observations remain held. One HTTP 429 stopped the only pass;
+22 originals were not attempted. Review the added observation and proposed boundary
+before integration. No Russia or DA research is imported.
+
+The queue now records 28 completed bounded Claude tasks: C01-45 Saudi and C01-46
+State Duma have separate accepted reviews. Tonga C01-44 is a third held submission:
+four of five originals and five of six organization claims were read; one PMO
+original/claim returned HTTP 429. No C01-44 data is imported. C01-43 Brazil is newly
+submitted and unreviewed; C01-42 Japan remains claimed. All five existing claims
+are registered; use the current handoff for exact tips and acceptance receipts.
+[Combined review and follow-up checks](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
+retain all earlier failures. Only two USSR test tightenings were adopted from the
+new France/USSR follow-ups; the 48 USSR tests and two before/after mutation checks
+pass without changing source scope. Coordinate further missing-only source review
+when normal service permits; no additional Archive requests belong to this pass.
+The dated inventory below remains earlier context; use the
+[current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md) and machine-readable queue for current
+action and exact revisions.
 
 Updated 28 September 2026. Fetch the latest `codex/campaign-certification`; runtime
 checkpoint `2cb1da4a` follows the original assignment base `474df63e`.
@@ -74,7 +101,7 @@ retain disclosed limitations and propose further bounded review separately.
 | C01-24 | `claude/c01-to-24` | Tongan Speakers, 1990–2026 |
 | C01-25 | `claude/c01-sa-25` | Saudi Shura Council / Allegiance Commission chairs |
 | C01-27 | `claude/c01-in-27` | BJP presidents, 1990–2026 |
-| C01-28 | `claude/c01-ru-28` | Five Russian party-leader chains; latest follow-up `03141c43`, review held. The [available-content addendum](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md) at `031bd0e37e24526dcb3f42449002a31c5b03f654` checks 113/137 claims and 20/24 holder observations. Twenty-four claims, four holder observations and twelve unavailable originals remain held; no new Russia research imported. |
+| C01-28 | `claude/c01-ru-28` | Five Russian party-leader chains; latest follow-up `03141c43`, review held. The [1 October resumed review](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md) checks 65/68 originals, 133/137 claims and all 24 holder observations. Three originals / four claims remain held, with no holder-row dependency. The [30 September addendum](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md) and its earlier holds remain historical evidence. No Russia research is imported. |
 | C01-29 | `claude/c01-jp-29` | Japan Socialist / Social Democratic Party chairs; submitted `3b304785`, accepted as bounded intake at `dc65b510` after all 54 originals and 111 claims were reviewed. [Acceptance](../../campaign-certification/C01/integrations/CLAUDE-C01-29/README.md) preserves the earlier held checkpoint. |
 | C01-30 | `claude/c01-za-30` | ACDP, Freedom Front and IFP party leaders; submitted `cb0f1153`, accepted as bounded intake at `68ba0622`. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-30/README.md). |
 

@@ -1,0 +1,22 @@
+E
+======================================================================
+ERROR: test_denied_journal_flush_retains_operation_trace_and_never_starts_native (test_stability_matrix.JournalFailureTests.test_denied_journal_flush_retains_operation_trace_and_never_starts_native)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\cp1-s25-repair-20261001\tools\campaign\test_stability_matrix.py", line 361, in test_denied_journal_flush_retains_operation_trace_and_never_starts_native
+    record = matrix.read_json(out / "journal-failure.json")
+  File "D:\spheres-offload\codex-next-20260928\cp1-s25-repair-20261001\tools\campaign\stability_matrix.py", line 116, in read_json
+    return parse_json(Path(path).read_bytes())
+                      ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\ridge\\AppData\\Local\\Temp\\tmpdm2j1gtk\\new-run\\journal-failure.json'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.026s
+
+FAILED (errors=1)

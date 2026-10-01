@@ -1,0 +1,58 @@
+{
+  "status": "passed_bounded_integration_checks",
+  "reviewed_source_commit": "3c4a3abcc59208ba0923705db0193964643b21f9",
+  "validation_followup_commit": "a69a05ca6612e1c35bebcaa1e9ff76b759728629",
+  "validation_state": "Source amendment plus exact attribution follow-up files and locally regenerated metadata. The later receipt/queue commit is not asserted tested by these earlier commands.",
+  "known_results": [
+    {
+      "receipt": "india.json",
+      "tests": 74,
+      "failures": 1,
+      "exit_code": 1,
+      "meaning": "Initial India run retained one wording-sensitive note-prefix failure."
+    },
+    {
+      "receipt": "india-fixed.json",
+      "tests": 74,
+      "failures": 0,
+      "exit_code": 0,
+      "meaning": "74 India tests passed after prose-prefix adjustment; structured data unchanged. Included within the 672-test avatar suite."
+    },
+    {
+      "receipt": "avatars.json",
+      "tests": 672,
+      "failures": 1,
+      "exit_code": 1,
+      "meaning": "Initial full suite failed the old 18-source attribution fixture after two source additions; preserved without relabeling."
+    },
+    {
+      "receipt": "avatars-fixed.json",
+      "tests": 672,
+      "failures": 0,
+      "exit_code": 0,
+      "meaning": "Final full avatar suite passed after exact old18/new2 attribution correction. Not summed with overlapping 74 India tests."
+    },
+    {
+      "receipt": "ui.json",
+      "tests": 11,
+      "failures": 0,
+      "exit_code": 0,
+      "meaning": "Leadership research review UI checks passed."
+    },
+    {
+      "receipt": "metadata.json",
+      "checks": 4,
+      "exit_code": 0,
+      "meaning": "Locally regenerated research index, census, gap ledger and boundary matrix all passed their check modes."
+    },
+    {
+      "receipt": "workboard.json",
+      "checks": 1,
+      "exit_code": 0,
+      "meaning": "Workboard validation passed for 49 tasks and 44 roadmap markers."
+    }
+  ],
+  "historical_acceptance_scope": "Two additional source originals/claims and the conservative observation selection with three retained rally reclassifications. No other packet is included.",
+  "later_integration_work": "Root will commit this receipt, update the queue review revision, regenerate queue-dependent output and record any later checks separately.",
+  "native_or_parent_qualification_claimed": false
+}

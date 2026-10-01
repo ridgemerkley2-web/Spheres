@@ -1,0 +1,140 @@
+{
+  "format": "spheres-review-receipt-manifest/v1",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 67,
+      "sha256": "7356d9b100031d7bbfad23b4c8ce13b14cc17bdfcc4254d8df85fac5108d8049"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 12774,
+      "sha256": "2387dc4b7351053fee25a743d734f4d29f4a3836f4299c73f054c45ac81097b2"
+    },
+    {
+      "path": "correction.patch",
+      "bytes": 18271,
+      "sha256": "167d86b35926662d177a58bf6ec3ebc071cccbdc8ee84b0a38da5ab1f7429f06"
+    },
+    {
+      "path": "decision.json",
+      "bytes": 780,
+      "sha256": "90391d186f3f0b51bd5296745d60b616143f13df00826d52b7256fce0eb4dad2"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 8361,
+      "sha256": "924689676321bd8041b87d451d849c2cdb68c5159784c7fa19d146a114a9b654"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6851,
+      "sha256": "7337fa6e5526231c81b2a4a11ed79ab5d7ad553b1aed0592ebf791dcf129f05f"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 21029,
+      "sha256": "d91aa99a0233aa69e85491ca87e2a53faaea338ec4c48a780d680fb8f50fd241"
+    },
+    {
+      "path": "scope-review.json",
+      "bytes": 8844,
+      "sha256": "6cbe7a3d8f6137012c9350552179fe2194b1ece1f08220ca850eda7b786ab200"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 30746,
+      "sha256": "f863e7ca7f6c884d9413f49eb9b3df02be287c0aa50d3751b3ec73d53badac17"
+    },
+    {
+      "path": "validation/campaign-tests.json",
+      "bytes": 579,
+      "sha256": "e0bc8f9f6994174af0901ca678fc234979c5d443548b83af436fce9f88713586"
+    },
+    {
+      "path": "validation/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "ba2cd14bde450d8f7ea3d6b77e6a391f45558b0efa84245a7145c3a819465a2e"
+    },
+    {
+      "path": "validation/census-check.json",
+      "bytes": 520,
+      "sha256": "f2bf711fa078f2d4f5b0ec63d1b69f94e3112b316ae854f5d5642ea013a76908"
+    },
+    {
+      "path": "validation/census-check.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "validation/metadata-cause-red.json",
+      "bytes": 607,
+      "sha256": "6fe4646eae3069e04fc5c4b453964f4d2101a29c047c6898799acf80f6c94bb5"
+    },
+    {
+      "path": "validation/metadata-cause-red.log",
+      "bytes": 1094,
+      "sha256": "efcefa0724e14ba1037c9e963890af6b945450039f0e4587336249f1d6ba5684"
+    },
+    {
+      "path": "validation/research-index-check.json",
+      "bytes": 529,
+      "sha256": "7177622f3dbb45aba13a0d40416c16a39126002b282195f831aaa102bd6ff076"
+    },
+    {
+      "path": "validation/research-index-check.log",
+      "bytes": 251,
+      "sha256": "ad1fd5a6ac0fb7db686ace9193fe5c6635871728ce083e5d006e310341c00c34"
+    },
+    {
+      "path": "validation/research-index-regenerate.json",
+      "bytes": 518,
+      "sha256": "d90144c9082f0b9e4a54203460e100b2d25e927c09e4de6ab8cf324b99d0c3e9"
+    },
+    {
+      "path": "validation/research-index-regenerate.log",
+      "bytes": 252,
+      "sha256": "e639c076d9573e1602731641e5468040df64bf870755d5adb4c54d6db547292f"
+    },
+    {
+      "path": "validation/research-tests.json",
+      "bytes": 580,
+      "sha256": "235ecc2f5521dc15d36d5290ce0b519d386851db10bec9ef45dc762cc73bbc87"
+    },
+    {
+      "path": "validation/research-tests.log",
+      "bytes": 183,
+      "sha256": "86e6681dd442e8663579e810aab39ff42e55740d63103ba5557c0748894f093e"
+    },
+    {
+      "path": "validation/saudi-green.json",
+      "bytes": 573,
+      "sha256": "d25fee56859c265169ea35eb400e66b80163c65fa14caf5303712ce8c60644a6"
+    },
+    {
+      "path": "validation/saudi-green.log",
+      "bytes": 129,
+      "sha256": "3be8b6a4838e3b41bfdaaa8cbedada84588164793bdfb1f34413a3d95915b790"
+    },
+    {
+      "path": "validation/status.json",
+      "bytes": 909,
+      "sha256": "d6efdd7ee89e05ef6cffca0dd8c011cff558f2cf04a10e36bc56532c7a4a9544"
+    },
+    {
+      "path": "validation/ui-tests.json",
+      "bytes": 445,
+      "sha256": "a572816f35aca3279cc1a6563e9e1083ddb5f523321762297b023775e05b360d"
+    },
+    {
+      "path": "validation/ui-tests.log",
+      "bytes": 1123,
+      "sha256": "c8fe0d930507fee7f75007dfea75b0034faee0bc64289753ada9ce0f4000c976"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 6425,
+      "sha256": "193edd36abcfbaa5da14ea62d7bc507c4106f43840aa3d10765ee7f425baf42e"
+    }
+  ]
+}

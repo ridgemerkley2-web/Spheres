@@ -1,0 +1,86 @@
+{
+  "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+  "bytes": 353201472,
+  "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8",
+  "machine": "0x8664",
+  "coff_symbols": 85715,
+  "sections": [
+    {
+      "name": ".text",
+      "virtual_size": 22685864,
+      "rva": 4096,
+      "bytes": 22686208,
+      "offset": 1024
+    },
+    {
+      "name": ".data",
+      "virtual_size": 84896,
+      "rva": 22691840,
+      "bytes": 84992,
+      "offset": 22687232
+    },
+    {
+      "name": ".rdata",
+      "virtual_size": 316998272,
+      "rva": 22777856,
+      "bytes": 316998656,
+      "offset": 22772224
+    },
+    {
+      "name": ".pdata",
+      "virtual_size": 346440,
+      "rva": 339779584,
+      "bytes": 346624,
+      "offset": 339770880
+    },
+    {
+      "name": ".xdata",
+      "virtual_size": 1498848,
+      "rva": 340127744,
+      "bytes": 1499136,
+      "offset": 340117504
+    },
+    {
+      "name": ".bss",
+      "virtual_size": 608,
+      "rva": 341626880,
+      "bytes": 0,
+      "offset": 0
+    },
+    {
+      "name": ".idata",
+      "virtual_size": 7564,
+      "rva": 341630976,
+      "bytes": 7680,
+      "offset": 341616640
+    },
+    {
+      "name": ".tls",
+      "virtual_size": 16,
+      "rva": 341639168,
+      "bytes": 512,
+      "offset": 341624320
+    },
+    {
+      "name": ".reloc",
+      "virtual_size": 170556,
+      "rva": 341643264,
+      "bytes": 171008,
+      "offset": 341624832
+    }
+  ],
+  "debug_entries": [],
+  "selected_symbols": [
+    {
+      "name": "_RNvNtCsbBf441PkR4C_11spheres_web19s25_stability_testss_18s25_stability_cell",
+      "section": 1,
+      "value": 4615600
+    },
+    {
+      "name": "_RNvYNCNvNtCsbBf441PkR4C_11spheres_web19s25_stability_tests18s25_stability_cell0INtNtNtCsg7k5df709B6_4core3ops8function6FnOnceuE9call_onceB8_",
+      "section": 1,
+      "value": 5533264
+    }
+  ],
+  "contains_compiled_revision": true
+}

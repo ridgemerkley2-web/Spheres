@@ -1,0 +1,17 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/campaign_census.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+  "started_utc": "2026-10-01T04:07:56.809693+00:00",
+  "duration_seconds": 0.229,
+  "exit_code": 0,
+  "log": "census-check.log",
+  "bytes": 1462,
+  "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+}

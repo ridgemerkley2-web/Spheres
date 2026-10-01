@@ -245,9 +245,9 @@
       "depends_on": [],
       "branch": "claude/c01-ru-28",
       "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
-      "next": "Independent review remains held on original-source access. The unchanged initial receipt records 56/68 exact originals and twelve unavailable originals. Addendum 031bd0e3 completes all accessible content: 113/137 claims and 20/24 holder observations checked; 24 claims and four observations remain held. No accessible claim remains deferred. Two narrow uncertainty repairs are retained only on the unmerged review branch at 35ea76f6; 39 Russia tests and refreshed index pass there. No new Russia research is imported or accepted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-09-30-available-content/README.md. No historical or parent closure.",
+      "next": "Held after independent missing-only review: 65/68 originals, 133/137 claims and all 24 holder observations checked; three originals/four claims remain held, zero holder dependencies. Nine originals recovered before HTTP 429; stop preserved, two later URLs unattempted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md. Receipt only integrated; no unaccepted Russia research or runtime mappings. Resume remaining source access when normal service permits.",
       "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
-      "review_revision": "031bd0e37e24526dcb3f42449002a31c5b03f654"
+      "review_revision": "6133f79b5b00126d4733453fe42839c1ca7390c4"
     },
     {
       "id": "CLAUDE-C01-29",
@@ -349,7 +349,7 @@
       "title": "Repair the unchanged A1 political calibration gate",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
       "depends_on": [],
-      "next": "Two demonstrated political defects are corrected on 7c6f112c: the AI recognizes an individual live armed threat, and each recorded institution receives one loyalty update. Actual red/green regressions and 1,990 passing ordinary native tests are retained; UI coverage and release build pass. A1 still fails under its original limits (median 7.5 coups; top-three share 0.571429); A2-A10 and attribution pass. The separate urgent-response policy is rejected because A1 remains failed and A2 regresses to 6/12. Next complete uncontended resource timing, then review residual concentration against a justified causal contract; do not add post hoc country exceptions or alter acceptance limits. Evidence: docs/campaign-certification/S27/preparation/political-repairs-20260930/README.md. Reserved cohorts and the frozen S25 matrix are unchanged; S27/CP1 remain unqualified."
+      "next": "The two accepted correctness fixes remain; the 1 October follow-up reproduces median 7.5 coups and 4/7 concentration, still failing the unchanged A1 gate. A source-pinned resource assertion passes at 0.0623 ms/month; quiet confirmation remains blocked by app Git scans. No new causal implementation defect was found. The evidence includes an unimplemented civilian-authority-dispute contract for design review, not an adopted trigger or predicted gate pass. Preserve the rejected urgent policy, original cohorts/thresholds and all prior failures. Evidence: docs/campaign-certification/S27/preparation/a1-followup-20261001/README.md."
     },
     {
       "id": "CODEX-S24-STARTUP-01",
@@ -386,7 +386,7 @@
       "depends_on": [
         "CODEX-S25-SUCCESSION-01"
       ],
-      "next": "The frozen 68ba0622 full attempt stopped at 2026-09-30 23:30:51 UTC: 4 independently revalidated passes, 4 abnormal native exits and 16 cases not started. Japan/7 and India/7 have Windows crash records; Japan/42 and India/1990 exited 1. Launcher exit 120 produced no matrix aggregate or closing journal event. The dependent verifier failed with PermissionError before retained verification began. All original evidence is preserved; 41 prior metadata pins, 44 newly retained files and four decoded checkpoint archives were rechecked. Diagnose native crashes and lost journal writes before declaring a fresh complete attempt; do not relabel incomplete checkpoints or reuse selected old cells. Evidence: docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/README.md. No replacement run or verifier launched; this attempt monitor is paused. Full-matrix acceptance and canonical S25 remain open."
+      "next": "The frozen 68ba0622 full attempt stopped with 4 independently revalidated passes, 4 abnormal exits and 16 unstarted cells; original evidence and verifier failure are preserved. The runner journal repair is accepted, but the native crash cause remains unresolved. A separate single-case Japan/seed7 diagnostic started on 1 October 2026 at 03:26 UTC using the exact frozen executable/request, through 2035-12-31, with reviewed ProcDump capture and resource guards. Startup receipt: docs/campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md. Its running snapshot is time-bounded; inspect the external terminal result and any complete owned-process dump before diagnosis. Original debuginfo0 limits source-line analysis. No replacement matrix or verifier launched; the old attempt monitor remains paused. Do not reuse selected old cells or count this diagnostic as S25 qualification. Full-matrix acceptance and canonical S25 remain open."
     },
     {
       "id": "CODEX-C01-23-REVIEW",
@@ -532,16 +532,16 @@
       "id": "CLAUDE-C01-31",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 24,
       "title": "Research Komeito representatives and distinct organizational phases",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
       "depends_on": [],
       "branch": "claude/c01-jp-31",
       "claim_revision": "52b23d5961ea13355ab1e3edd497be0920b6bea6",
-      "next": "Review held: 24 of 31 original responses reproduced and 50 of 64 claims read; seven originals, fourteen claims and five holder dependencies remain unresolved. Supply accessible original evidence and reconcile Takeya convention acceptance with the conservative boundary correction 988d5379. Only the held-review receipt is integrated; no C01-31 research or runtime mapping is accepted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-31/. Preserve the available-content review and failed requests.",
+      "next": "Accepted bounded research intake after all 31 originals, 64 claims and 15 holder observations reviewed. Seven source holds resolved; three passage locators repaired and conservative Takeya attestation preserved. First source import b74f4fa565429b63052d94cc8ec10337b0b573ed; acceptance pointer docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md. Earlier held receipt remains unchanged. No full chronology, organization equivalence, runtime mapping, portrait or parent C01/C06/S23/CP1 closure.",
       "submission_revision": "696937ba3d31280aab569cbd78418e9c3a0c6880",
-      "review_revision": "d3b4e6daede2bc9fc571a88de1b0ba1049505b70"
+      "review_revision": "d4d3542b2c7750a83d27564f99cc0428536c8852"
     },
     {
       "id": "CLAUDE-C01-38",
@@ -569,8 +569,9 @@
       "depends_on": [],
       "branch": "claude/c01-za-39",
       "claim_revision": "03cd0bb9bc6989e47e3da0ff1ca6373320daf30b",
-      "submission_revision": "9cb02c20012a6e6314d7e64d52241609d566f738",
-      "next": "Newly delivered at 9cb02c20012a6e6314d7e64d52241609d566f738. Authored handoff reports 24 new sources, 29 claims and eleven holder observations; Codex content review is pending. Register and preserve the existing claim. No DA research, acceptance, runtime mapping or art is imported by this registration."
+      "submission_revision": "b66f8c074431d7e1a8c9bfca228576c7d5134655",
+      "next": "Held: independent review d1818a48 of 9cb02c20 checked one original/one claim; second request HTTP 429, 22 sources unattempted. Final-fetch follow-up b66f8c07 retains the same 24 source identities and 29 claims, adds a Zille observation and proposes a Maimane end; diff triage is recorded in the combined review. Thus 23 originals/28 claims and all 12 proposed new holder observations remain unverified. No latest-date ruling, data, test repair or index is imported. See docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md and the immutable initial held receipt. Resume missing original content when normal service permits.",
+      "review_revision": "d1818a48a1b117d408dafb49d7943d35f3f7c2da"
     },
     {
       "id": "CLAUDE-C01-40",
@@ -583,9 +584,9 @@
       "depends_on": [],
       "branch": "claude/c01-in-40",
       "claim_revision": "c152e35e3cf184a6d7cbde87236a43d8c924fc86",
-      "submission_revision": "54680e39910804b3864a3e973c452f2db2ac5e6f",
-      "next": "Accepted bounded intake after independent reading of 18 exact originals, 24 claims and four holder observations. Source import 5d5935c3; correction d21357db repairs five locators and removes unsupported EMS opening prose. Current party REST-record limits and the unestablished opening-holder record remain explicit. No complete chronology, runtime mapping, art or parent gate acceptance. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md.",
-      "review_revision": "6ee593de6bb6a0c9fe5ae8ec5000d268421f485b"
+      "submission_revision": "d7e1b9d286f68b7864f2d014c49e42c4296e66e5",
+      "next": "Accepted bounded intake with reviewed amendment: initial eighteen-original review remains immutable; two additional exact originals and three retained rally reports independently checked. C01-40 now has 20 sources, 26 claims and four observations. Amendment source commit 3c4a3abc preserves all prior claim text/dates/locators and selects Karat 2011-09-10 and Yechury 2015-05-06 without effective starts or new ends. Current REST limitations and opening-holder gaps remain. No runtime, art, full chronology or parent qualification. Evidence: docs/campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md.",
+      "review_revision": "53b8a0ebf8b2683acb0b64de0e6cfbea7e946ff4"
     },
     {
       "id": "CLAUDE-C01-41",
@@ -601,6 +602,141 @@
       "submission_revision": "a989ddb4d67657236292a35443049554cc9b19e7",
       "next": "Accepted bounded intake after independent review of 12 exact originals plus a legal-portal original edition, 26 claims and five holder observations. Source import f04ead94; correction cc57b876 qualifies TASS reportage and annotations on both decree points. Eighteen cited PDF pages and source-cover/context views read. Existing undated Ivashkov identity remains unreconciled. No complete chronology, runtime mapping, art or parent gate acceptance. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md.",
       "review_revision": "01faa02352365382a5a325f76c9fdf9472cffec0"
+    },
+    {
+      "id": "CODEX-C02-TO-01",
+      "owner": "Codex",
+      "session": "C02",
+      "state": "complete",
+      "priority": 1,
+      "title": "Prepare reviewed Tonga identity bindings and the first portrait batch",
+      "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "depends_on": [],
+      "branch": "codex/cp1-tonga-identities-20261001",
+      "next": "Accepted bounded proposal and validator: eight portrait priorities, three exact opening IDs, five reserved identities, ten preserved observations and two explicitly held royal aliases. Independent combined-tree checker and 31 focused tests pass. Reuse the King cartoon; Claude can source Fatafehi and the existing named heir now, then resolve the five specified identity checks. See docs/campaign-certification/C06/preparation/tonga-cast-01/README.md. No runtime, artwork, full C02 or country completion.",
+      "review_revision": "1876f2dc78f8ebbb232dc55a370f25767ea2f811"
+    },
+    {
+      "id": "CLAUDE-C06-TONGA-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "queued",
+      "priority": 1,
+      "title": "Finish Tonga as the first complete certified-country cast",
+      "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "depends_on": [
+        "CODEX-C02-TO-01"
+      ],
+      "next": "Queued production assignment, ready to claim after accepted CODEX-C02-TO-01: follow docs/campaign-certification/C06/preparation/tonga-cast-01/README.md. Reuse King IV; source two 1990 cartoons for exact existing Fatafehi/heir IDs, resolve five named later identity checks independently, and grow that first eight-person slice into the complete Tonga cast. Complete dated roles, parties, fictional successors and C06 country signoff. Preserve Claude C01-44 ownership and source gaps; no assignment implies production has begun."
+    },
+    {
+      "id": "CODEX-S25-JOURNAL-02",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "complete",
+      "priority": 1,
+      "title": "Preserve campaign failures when the runner journal fails",
+      "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "depends_on": [],
+      "branch": "codex/cp1-s25-repair-20261001",
+      "next": "Accepted bounded runner repair at 5b6356f3: preserve failed journal operations and tracebacks, attempt every owned child stop, retain cleanup failures and prevent a successful result after close failure. Seven focused regressions and complete campaign tooling discovery (105 tests, one existing skip) pass; retained evidence pins pass. See docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md. The frozen dependent verifier is unchanged, native access-violation causes remain unresolved, and the failed matrix/S25/CP1 remain open.",
+      "review_revision": "5b6356f3d4ad3c60327158c14bead2c943d8fdfc"
+    },
+    {
+      "id": "CODEX-S27-TIMING-01",
+      "owner": "Codex",
+      "session": "S27",
+      "state": "blocked",
+      "priority": 1,
+      "title": "Complete the outstanding isolated resource timing measurement",
+      "handoff": "docs/planning/ai-handoffs/CP1-ACCELERATION.md",
+      "depends_on": [],
+      "branch": "codex/cp1-a1-followup-20261001",
+      "next": "Fresh source-pinned release build and one exact resource assertion pass at 0.0623 ms/month below 0.15; the aspirational 0.05 target is not met. App Git scans prevented a single declared 45-second quiet confirmation window, so no second benchmark ran and uncontended verification remains pending. Preserve the passed reading and environment; use the same binary after background scans finish. Evidence: docs/campaign-certification/S27/preparation/a1-followup-20261001/README.md. A1/S27/CP1 remain open.",
+      "review_revision": "41aeb36c9d898a26a45ac2e36f320c295533fab7"
+    },
+    {
+      "id": "HUMAN-S26-RECRUIT-01",
+      "owner": "Human",
+      "session": "S26",
+      "state": "queued",
+      "priority": 1,
+      "title": "Recruit five first-time players and arrange eight playtest sessions",
+      "handoff": "docs/campaign-certification/S26/preparation/RECRUITMENT.md",
+      "depends_on": [],
+      "next": "Use the prepared invitation and eight-slot plan; collect real eligibility and availability privately. No invitations or observations are assumed. Formal sessions wait for S24, a pinned build and locked five-person first-attempt cohort. Current local study has zero participants and sessions."
+    },
+    {
+      "id": "CLAUDE-C01-42",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 29,
+      "title": "Research JCP chairs and DPFP representatives, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
+      "depends_on": [],
+      "branch": "claude/c01-jp-42",
+      "claim_revision": "601078190e76bfa3ae578a6b467073620dff1ce6",
+      "next": "Existing Claude claim only. Preserve its three Japanese party-office targets and old holder records. C01-31 is now accepted; refresh from current integration without undoing its corrections. No C01-42 delivery or acceptance is recorded."
+    },
+    {
+      "id": "CLAUDE-C01-43",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 30,
+      "title": "Research PRN, PTC and Agir national presidents, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-43.md",
+      "depends_on": [],
+      "branch": "claude/c01-br-43",
+      "claim_revision": "6e6a9d06cf7c6a2e0f46f16d13119ab8bc822d39",
+      "next": "New delivery at 68fb8f86: fourteen proposed originals and twenty-one claims, with five Daniel Tourinho observations. Independently review all original content, renaming/office scope and preservation before import. No source retrieval or historical acceptance in this pass; Archive retrieval closed after a different packet returned HTTP 429. Preserve PDS claims-only limits and unavailable SGIP evidence.",
+      "submission_revision": "68fb8f863398247ba1515a1ff3f413a444a6d7f5"
+    },
+    {
+      "id": "CLAUDE-C01-44",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 31,
+      "title": "Research Tonga DPFI and PDP organization and leadership evidence",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
+      "depends_on": [],
+      "branch": "claude/c01-to-44",
+      "claim_revision": "fdb71175e6a2f251c6e51361187068c0141cac9f",
+      "next": "Held after partial independent review: four of five originals and five of six organization claims materially checked. The PMO original returned HTTP 429 on its only request; its one claim remains unread. Zero new holder observations. Preserve the failed response and accepted older Tonga evidence. No packet data or isolated prose correction imported. Missing-only recovery can resume when normal service permits. See docs/campaign-certification/C01/reviews/CLAUDE-C01-44-20261001/README.md. The separate full Tonga cast assignment stays ready.",
+      "submission_revision": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
+      "review_revision": "214121f96bb36110653ce14cfcebb2223dca62fe"
+    },
+    {
+      "id": "CLAUDE-C01-45",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 32,
+      "title": "Research Saudi royal offices and Allegiance Commission secretary",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-45.md",
+      "depends_on": [],
+      "branch": "claude/c01-sa-45",
+      "claim_revision": "a529ab8dfdbe9473ff0536ebbf836599a8567500",
+      "next": "Accepted bounded intake: eighteen exact originals, thirty claims and eighteen new observations independently read. First import d23f0bf2; correction 4a98bc10 removes an unsupported explanation for portal metadata and qualifies unreviewed leads. All 103 prior sources, 158 claims and old holder objects remain intact. No new effective boundaries, runtime, art, full chronology or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/README.md.",
+      "submission_revision": "d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49",
+      "review_revision": "42046e519da389b713fd40f28a38a23e5b495936"
+    },
+    {
+      "id": "CLAUDE-C01-46",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 33,
+      "title": "Research State Duma faction heads, 2021–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-46.md",
+      "depends_on": [],
+      "branch": "claude/c01-ru-46",
+      "claim_revision": "3ee3357f55a26a4587a62e56c0cc4c62110e54df",
+      "next": "Accepted bounded intake: seven exact originals, twenty-seven claims and eighteen appended faction-office observations independently read. First import 91a1dbe1; correction c1056321 repairs one locator and narrows an omission inference. All 170 prior sources, 295 claims and five original faction holders remain intact. New observations have no effective starts; one directly supported death end is retained. C01-28 party research remains held and absent. No runtime, art or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-46-20261001/README.md.",
+      "submission_revision": "64fec76b8a61e7f65f0f98f7bf3a93699ea80d72",
+      "review_revision": "6f88cd1b9dd97d9c5839a85b1d8c2c7333649554"
     }
   ]
 }

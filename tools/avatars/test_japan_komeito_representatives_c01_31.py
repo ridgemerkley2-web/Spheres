@@ -269,7 +269,7 @@ EVENTS = {
     'jp_komeito_saito_chudo_co_representative_20260122': ('2026-01-22', 'other_office_attestation', 'KOMEITO-09'),
     'jp_komeito_takeya_styled_representative_20260122': ('2026-01-22', 'interim_representative_styled', 'KOMEITO-10'),
     'jp_komeito_takeya_recommended_20260311': ('2026-03-11', 'candidate_recommended', 'KOMEITO-10'),
-    'jp_komeito_takeya_assumption_stated_20260314': ('2026-03-14', 'assumption_stated', 'KOMEITO-10'),
+    'jp_komeito_takeya_assumption_stated_20260314': ('2026-03-14', 'in_office_attestation', 'KOMEITO-10'),
     'jp_komeito_takeya_convention_selection_20260314': ('2026-03-14', 'convention_selection', 'KOMEITO-10'),
     'jp_komeito_takeya_in_office_convention_20260314': ('2026-03-14', 'in_office_attestation', 'KOMEITO-10'),
     'jp_komeito_vacancy_recalled_january_2026': (None, 'office_vacancy_recalled', 'KOMEITO-09'),
@@ -369,7 +369,7 @@ HOLDERS = [
     ('山口那津男', '2022-09-25', None, None),
     ('石井啓一', '2024-09-28', None, None),
     ('斉藤鉄夫', '2024-11-09', None, None),
-    ('竹谷とし子', None, '2026-03-14', None),
+    ('竹谷とし子', '2026-03-14', None, None),
 ]
 HOLDER_CLAIMS = [
     ['jp_komeito_ishida_named_chair_by_secretary_general_19930129'],
@@ -388,9 +388,9 @@ HOLDER_CLAIMS = [
     ['jp_komeito_saito_in_office_convention_20241109'],
     ['jp_komeito_takeya_assumption_stated_20260314', 'jp_komeito_takeya_in_office_convention_20260314'],
 ]
-STARTS = [('太田昭宏', '2006-09-30'), ('竹谷とし子', '2026-03-14')]
+STARTS = [('太田昭宏', '2006-09-30')]
 ENDS = []
-START_CLAIMS = ['jp_komeito_ota_assumption_stated_20060930', 'jp_komeito_takeya_assumption_stated_20260314']
+START_CLAIMS = ['jp_komeito_ota_assumption_stated_20060930']
 END_CLAIMS = []
 REVIEW = ['KOMEITO-01', 'KOMEITO-02', 'KOMEITO-03', 'KOMEITO-04', 'KOMEITO-05', 'KOMEITO-06', 'KOMEITO-07', 'KOMEITO-08', 'KOMEITO-09', 'KOMEITO-10']
 HOLDER_REVIEW = ['KOMEITO-01', 'KOMEITO-03', 'KOMEITO-04', 'KOMEITO-04', 'KOMEITO-05', 'KOMEITO-06', 'KOMEITO-06',
@@ -447,7 +447,7 @@ TRANSITIONS = {
     '2022-09-25': ['convention_selection', 'in_office_attestation'],
     '2024-11-09': ['convention_selection', 'in_office_attestation'],
     '2026-01-22': ['interim_representative_designated', 'interim_representative_styled', 'interim_title_decided', 'organization_formed', 'other_office_attestation', 'predecessor_referred_to_as_former'],
-    '2026-03-14': ['assumption_stated', 'convention_selection', 'in_office_attestation'],
+    '2026-03-14': ['convention_selection', 'in_office_attestation'],
 }
 # Secondary sources and leads that must never be a source URL here.
 LEAD_URL_MARKERS = ('wikipedia', 'britannica', 'kotobank', 'nikkei', 'asahi.com', 'yomiuri', 'mainichi', 'nhk.or.jp',
@@ -686,6 +686,20 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
         for cid in HOLDER_CLAIM_SET:
             self.assertNotRegex(self.claims[cid]['text'], r'内閣総理大臣に(任命|指名)|首班指名|組閣|大臣に任命', cid)
 
+    def test_takeya_acceptance_does_not_infer_an_effective_start(self):
+        holder, = [h for h in self.role['holder_claims'] if h['name'] == '竹谷とし子']
+        self.assertIsNone(holder['from'])
+        self.assertEqual(holder['attested_on'], '2026-03-14')
+        cid = 'jp_komeito_takeya_assumption_stated_20260314'
+        self.assertIn('ただいま皆さまのご信任を賜り', self.claims[cid]['text'])
+        self.assertEqual(self.rows[cid]['event_kind'], 'in_office_attestation')
+        mutated = copy.deepcopy(self.packet)
+        role = next(o for o in mutated['organizations'] if o['id'] == ORG_ID)['roles'][0]
+        candidate, = [h for h in role['holder_claims'] if h['name'] == '竹谷とし子']
+        candidate.update(attested_on=None, **{'from': '2026-03-14'})
+        with self.assertRaises(AssertionError):
+            komeito_rules(mutated, self.rows)
+
     def test_starts_ends_and_claims_that_never_feed_a_holder(self):
         claims, rows = self.claims, self.rows
         for day, expected in TRANSITIONS.items():
@@ -723,7 +737,7 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
         self.assertIn('代表代理', claims['jp_komeito_takeya_interim_approved_20260122']['text'])
         self.assertIn('「代表」と呼称', claims['jp_komeito_interim_styled_representative_decided_20260122']['text'])
         takeya = [h for h in self.role['holder_claims'] if h['name'] == '竹谷とし子']
-        self.assertEqual([(h['attested_on'], h['from']) for h in takeya], [(None, '2026-03-14')])
+        self.assertEqual([(h['attested_on'], h['from']) for h in takeya], [('2026-03-14', None)])
         # Organization events: the 1994 division, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, the 1998 merger and 中道改革連合
         # are claims only; each is kept apart and none is merged or mapped.
         org_text = ' '.join(claims[cid]['text'] for cid in ORGANIZATION + RETROSPECTIVE)
@@ -810,6 +824,22 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
             self.assertIn('(cache-busting query)', self.extracts[sid]['provenance_note'], sid)
             for row in self.extracts[sid]['rows']:
                 self.assertIn('speaker', row['locator'], row['claim_id'])
+
+    def test_recovered_source_locators_cover_the_claimed_passages(self):
+        # Checked against the returned article bodies: the guest greeting precedes Kanzaki's
+        # continuation; Ota's report mixes p/br blocks; Saito's condition is in the next paragraph.
+        expected = {
+            'jp_komeito_kanzaki_self_stated_again_20041031': {'paragraph': 3},
+            'jp_komeito_ota_selected_20060930': {
+                'section': 'newsbody',
+                'passage_starts': ['「新しい公明党」が勇躍スタート', 'これに先立ち、代表選出が行われ']},
+            'jp_komeito_saito_recommended_20241107': {'paragraph': [1, 2]},
+        }
+        claims = {c['id']: c for source in self.packet['sources'] for c in source['claims']}
+        for cid, locator in expected.items():
+            with self.subTest(claim=cid):
+                self.assertEqual(claims[cid]['locator'], locator)
+                self.assertEqual(self.rows[cid]['locator'], locator)
 
     def test_response_identities_are_reproducible_urls(self):
         for sid in NEW_SOURCES:
@@ -928,7 +958,7 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
             ('convention date used as a start (石井)', lambda p: holder(p, ishii).update({'from': '2024-09-28', 'attested_on': None})),
             ('recommendation cited as a start (竹谷)',
              cite(takeya, 'jp_komeito_takeya_recommended_20260311')),
-            ('stated start dropped (竹谷)', lambda p: holder(p, takeya).update({'from': None, 'attested_on': '2026-03-14'})),
+            ('acceptance promoted to effective start (竹谷)', lambda p: holder(p, takeya).update({'from': '2026-03-14', 'attested_on': None})),
             ('election claim cited by a holder (斉藤)', cite(saito, 'jp_komeito_saito_convention_selection_20241109')),
             ('retrospective record cited by a holder (石田)',
              cite(ishida, 'jp_komeito_history_ishida_chair_in_cabinet_retrospective')),

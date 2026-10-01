@@ -1,0 +1,162 @@
+[
+  {
+    "name": "planning-tests",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/planning",
+      "-p",
+      "test*.py",
+      "-v"
+    ],
+    "started_utc": "2026-10-01T02:34:29.931848+00:00",
+    "finished_utc": "2026-10-01T02:34:39.869484+00:00",
+    "exit_code": 0,
+    "log": "planning-tests.log",
+    "bytes": 8707,
+    "sha256": "83fd5b90782324a9bb36072e189a0e3f87d1a5395a11f4f8c25e5bc5f84d1b77"
+  },
+  {
+    "name": "ledger-boundary-tests",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_certified_*.py",
+      "-v"
+    ],
+    "started_utc": "2026-10-01T02:34:42.169078+00:00",
+    "finished_utc": "2026-10-01T02:34:50.997178+00:00",
+    "exit_code": 0,
+    "log": "ledger-boundary-tests.log",
+    "bytes": 11547,
+    "sha256": "b38dc41e5a435af6ee3fa32d8a998048246280f8359b3ba4ddcb64c887653c9f"
+  },
+  {
+    "name": "workboard-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T02:34:52.352817+00:00",
+    "finished_utc": "2026-10-01T02:34:54.600061+00:00",
+    "exit_code": 0,
+    "log": "workboard-check.log",
+    "bytes": 146,
+    "sha256": "11861502dbb6c9dd475c05bc3f7f48d12382e1ddddab9e786eee5a7835ab9a44"
+  },
+  {
+    "name": "research-index-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T02:34:55.430659+00:00",
+    "finished_utc": "2026-10-01T02:42:54.180437+00:00",
+    "exit_code": 0,
+    "log": "research-index-check.log",
+    "bytes": 251,
+    "sha256": "47586deee2828ff84432400bf1e61653253cc3eeedb27fcd9afc4c8bfdaab983"
+  },
+  {
+    "name": "gap-ledger-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_gap_ledger.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T02:42:54.285183+00:00",
+    "finished_utc": "2026-10-01T02:42:55.942715+00:00",
+    "exit_code": 0,
+    "log": "gap-ledger-check.log",
+    "bytes": 258,
+    "sha256": "3a41a201dd474bb50906158e855f57cf5cbda91bdabb89e704821cf4be2ebdc4"
+  },
+  {
+    "name": "boundary-matrix-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_boundary_matrix.py",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T02:42:55.980849+00:00",
+    "finished_utc": "2026-10-01T02:42:56.550601+00:00",
+    "exit_code": 0,
+    "log": "boundary-matrix-check.log",
+    "bytes": 237,
+    "sha256": "18aacdf719014af92c8507dd86e0aa889a489193e7cc345024fb46352c80554e"
+  },
+  {
+    "name": "country-cast-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/check_country_cast.py"
+    ],
+    "started_utc": "2026-10-01T02:42:56.591724+00:00",
+    "finished_utc": "2026-10-01T02:42:56.747387+00:00",
+    "exit_code": 0,
+    "log": "country-cast-check.log",
+    "bytes": 1508,
+    "sha256": "690c5d10c3895a11cc5b93a8a2ab4071402a89d011c16c3c2d8bd508a5540b30"
+  },
+  {
+    "name": "a1-receipt-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "docs/campaign-certification/S27/preparation/a1-followup-20261001/verify.py"
+    ],
+    "started_utc": "2026-10-01T02:42:56.792136+00:00",
+    "finished_utc": "2026-10-01T02:42:57.108953+00:00",
+    "exit_code": 0,
+    "log": "a1-receipt-check.log",
+    "bytes": 263,
+    "sha256": "750cfefb5d13ec65c30b04d7afaaf13bf225fc6114834301e21cc5a74af0511a"
+  },
+  {
+    "name": "whitespace-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "started_utc": "2026-10-01T02:42:57.153112+00:00",
+    "finished_utc": "2026-10-01T02:42:57.421547+00:00",
+    "exit_code": 0,
+    "log": "whitespace-check.log",
+    "bytes": 648,
+    "sha256": "a1bb6aa292e8102ee9916919e47b6457cd1fa282beb2b80de0d34c3ef7c57952"
+  }
+]

@@ -67,6 +67,7 @@ import subprocess
 import sys
 import time
 import threading
+import traceback
 
 TEST_NAME = "s25_stability_tests::s25_stability_cell"
 COUNTRIES = ("France", "Japan", "India", "Brazil", "SouthAfrica", "Tonga", "SaudiArabia", "USSR")
@@ -125,6 +126,77 @@ def write_new(path, data):
 
 def write_json_new(path, value):
     write_new(path, json_bytes(value))
+
+
+class DurableJournal:
+    """Fail closed, retaining the first failed operation outside its broken handle.
+
+    A diagnostic is not a replacement journal event or a successful verdict.
+    Callers serialize append operations using their existing journal lock.
+    """
+
+    def __init__(self, path):
+        self.path = Path(path)
+        self.stream = None
+        self.failure = None
+        self.last_event = None
+
+    def record_failure(self, error, operation, *, closing=False):
+        record = {
+            "format": "spheres-stability-journal-failure/v1", "utc": utc_now(),
+            "journal_path": str(self.path), "operation": operation,
+            "attempted_event": self.last_event,
+            "error": {"type": type(error).__name__, "message": str(error),
+                      "errno": error.errno, "winerror": getattr(error, "winerror", None),
+                      "filename": error.filename,
+                      "traceback": "".join(traceback.format_exception(error))},
+            "passed": False, "qualification": False, "s25_complete": False,
+            "scope": "Diagnostic only; no missing journal event or campaign result is reconstructed.",
+        }
+        name = "journal-close-failure.json" if closing else "journal-failure.json"
+        try:
+            # A fresh exclusive handle can preserve the error even when the
+            # long-lived journal handle is unusable. Never overwrite a receipt.
+            write_json_new(self.path.with_name(name), record)
+        except OSError as retention_error:
+            error.add_note(f"Could not retain {name}: {type(retention_error).__name__}: {retention_error}")
+
+    def __enter__(self):
+        try:
+            self.stream = self.path.open("xb")
+        except OSError as error:
+            self.record_failure(error, "open")
+            raise
+        return self
+
+    def append(self, value):
+        if self.failure is not None:
+            raise OSError("Journal already failed; no further append is permitted") from self.failure
+        data = json.dumps(value, ensure_ascii=False, allow_nan=False).encode() + b"\n"
+        self.last_event = value
+        operation = "write"
+        try:
+            self.stream.write(data)
+            operation = "flush"
+            self.stream.flush()
+            operation = "fsync"
+            os.fsync(self.stream.fileno())
+        except OSError as error:
+            self.failure = error
+            self.record_failure(error, operation)
+            raise
+
+    def __exit__(self, exc_type, error, tb):
+        try:
+            self.stream.close()
+        except OSError as close_error:
+            self.record_failure(close_error, "close", closing=True)
+            if error is None:
+                raise
+            # Preserve the primary failure; a second error while closing the
+            # same stream must not hide its operation or traceback.
+            error.add_note(f"Journal close also failed: {type(close_error).__name__}: {close_error}")
+        return False
 
 
 def hash_stream(stream):
@@ -1007,12 +1079,19 @@ def run_matrix(binary, revision, plan_path, out, timeout=None, jobs=1, *, scratc
         except OSError:
             return None
 
-    with (out / "journal.jsonl").open("xb") as events:
+    with DurableJournal(out / "journal.jsonl") as events:
         def journal(value):
-            with journal_lock:
-                events.write(json.dumps({"utc": utc_now(), **value}, ensure_ascii=False, allow_nan=False).encode() + b"\n")
-                events.flush()
-                os.fsync(events.fileno())
+            try:
+                with journal_lock:
+                    events.append({"utc": utc_now(), **value})
+            except OSError as error:
+                # A background storage guard can be the first failed writer.
+                # Stop its owned processes too, rather than leaving the main
+                # coordinator waiting for campaigns with a broken evidence log.
+                # Release journal_lock before acquiring launch_lock.
+                stopped.set()
+                halt_children(error)
+                raise
 
         def check_binary():
             if binary_pin() != initial_pin:
@@ -1036,17 +1115,35 @@ def run_matrix(binary, revision, plan_path, out, timeout=None, jobs=1, *, scratc
                 return False
             return True
 
-        def halt_children():
+        def halt_children(primary_error=None):
             # Only processes created by this run are killed. The lock closes
             # the race with a worker registering a just-created process.
             with launch_lock:
                 stopped.set()
-                owned = list(children.values())
-            for process in owned:
+                owned = list(children.items())
+            for identity, process in owned:
                 try:
                     process.kill()
                 except ProcessLookupError:
                     pass
+                except OSError as error:
+                    # Attempt every owned child even if one OS termination is
+                    # refused. Keep cleanup failure separate from the original
+                    # journal failure, without writing to the failed journal.
+                    record = {"format": "spheres-stability-child-stop-failure/v1", "utc": utc_now(),
+                              "cell": identity, "pid": getattr(process, "pid", None),
+                              "error": {"type": type(error).__name__, "message": str(error),
+                                        "errno": error.errno, "winerror": getattr(error, "winerror", None),
+                                        "traceback": "".join(traceback.format_exception(error))},
+                              "passed": False, "qualification": False, "s25_complete": False,
+                              "scope": "Termination was attempted, not confirmed; inspect this owned process."}
+                    try:
+                        write_json_new(out / f"child-stop-failure-{identity}.json", record)
+                    except OSError as retention_error:
+                        error.add_note(f"Could not retain child-stop failure: {retention_error}")
+                    original = primary_error or events.failure
+                    if original is not None:
+                        original.add_note(f"Could not stop owned cell {identity}: {error}")
 
         def prepare(cell):
             cell_root = (scratch or out) / "cells" / cell["id"]

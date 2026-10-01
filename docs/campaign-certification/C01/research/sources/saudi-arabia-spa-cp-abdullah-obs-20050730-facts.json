@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_cp_abdullah_obs_20050730",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/835ced88fa",
+  "original_url": "https://www.spa.gov.sa/835ced88fa",
+  "portal_metadata": {
+    "uuid": "835ced88fa",
+    "locale": "ar",
+    "published_at_utc": "2005-07-30T14:28:24Z",
+    "date_hijri_field": "1426-06-24"
+  },
+  "title_as_published": "سياسي / سمو ولي العهد يستقبل السفير الروسي",
+  "source_title": "سياسي / سمو ولي العهد يستقبل السفير الروسي: the Crown Prince receives the Russian ambassador (30 July 2005)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2005-07-30",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/835ced88fa",
+  "source_response_bytes": 2428,
+  "source_response_sha256": "538c33ba91ba710ae98dc41467a2f35574eab1d705de86f311b06727628aaf49",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "c99ed6e80e8292aba38bd7ad26b8910f2c98667412f03be0f48114d3d7430ef1",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:08Z and again at 2026-10-01T03:00:36Z, 32 minutes later (Cloudflare HIT and REVALIDATED); both identical (2428 bytes, SHA-256 538c33ba91ba710ae98dc41467a2f35574eab1d705de86f311b06727628aaf49).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/835ced88fa loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item (it ends // انتهى //).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_abdullah_cp_obs_20050730",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-03",
+      "role_id": "sa_crown_prince",
+      "holder_name": "Abdullah bin Abdulaziz Al Saud",
+      "printed_name": "عبدالله بن عبدالعزيز",
+      "role_title": "ولي العهد — Crown Prince",
+      "event_kind": "attestation",
+      "attested_on": "2005-07-30",
+      "text": "SPA, date line Riyadh 24 Jumada II 1426 / 30 July 2005: 'استقبل صاحب السمو الملكي الأمير عبدالله بن عبدالعزيز ولي العهد نائب رئيس مجلس الوزراء رئيس الحرس الوطني' the Russian ambassador, on the end of his posting, in his office at the Royal Court in al-Yamamah Palace 'اليوم' (today).",
+      "locator": "Date line; first paragraph; trailer 1729 (17:29 Makkah time)"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

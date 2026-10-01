@@ -962,7 +962,7 @@ C01_33_COUNTS = (22, 41)
 # test pins them. This packet's assertions are unchanged for its own records.
 C01_40_ORG = 'in_eci_20240323_np_04'
 C01_40_ROLE = 'in_cpm_general_secretary'
-C01_40_COUNTS = (18, 24)
+C01_40_COUNTS = (20, 26)
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-27.md'
 
 

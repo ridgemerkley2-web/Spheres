@@ -1,0 +1,28 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--lib",
+    "--no-run",
+    "-j",
+    "2"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001",
+  "target": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001-target",
+  "exit_code": 0,
+  "elapsed_seconds": 201.85899999999674,
+  "log_sha256": "ab8a158195ec0174f54f319de448566f3bda915adb9fe19f5cf8ec8c4f2adbbe",
+  "preflight_sha256": "8eff86f08df4cac486375784aca11068b4c816c8a2af281c2deced88e7eee55b",
+  "binaries": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "bytes": 49799863,
+      "sha256": "988e8062ef5b680fd489f50c77797ee729e90b9e8b6f462ab525e16b9e3b95bf"
+    }
+  ],
+  "source_pins_unchanged": true
+}

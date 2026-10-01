@@ -79,8 +79,8 @@ role are unchanged. Holders, in order: 石田幸四郎 observed 29 January 1993 
 November 2002 and 31 October 2004 (re-elections); 太田昭宏 from 30 September 2006 (his own address: 本日の党大会において…公明党代表に就任
 させていただきました); 山口那津男 observed 8 September 2009 (selection by the national meeting of representatives) and at the
 conventions of 22 September 2012, 21 September 2014, 17 September 2016, 30 September 2018, 27 September 2020 and 25 September 2022;
-石井啓一 observed 28 September 2024; 斉藤鉄夫 observed 9 November 2024; 竹谷とし子 from 14 March 2026 (her own address: ただいま…公明党
-代表の大任を担わせていただくことになりました). Only 太田昭宏 and 竹谷とし子 have a stated start; no holder has a stated end. The 1994 acting
+石井啓一 observed 28 September 2024; 斉藤鉄夫 observed 9 November 2024; 竹谷とし子 observed on 14 March 2026 (her own address: ただいま…公明党
+代表の大任を担わせていただくことになりました). Only 太田昭宏 has a stated start; the reviewed 竹谷 statement does not separately state an effective assumption date; no holder has a stated end. The 1994 acting
 chair (委員長代行), the 代表代理 styled 「代表」 of 22 January to 14 March 2026, other organizations' offices (公明代表, 中道改革連合共同代表),
 selections, recommendations, resignation announcements, predecessor references, continuations and retrospective records are claims
 only. The December 1994 division, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, the November 1998 merger and 中道改革連合 are claims about
@@ -99,11 +99,10 @@ Observation decisions:
 | KOMEITO-07 | Accepted in part: 山口那津男 re-elected and observed 2014, 2016, 2018, 2020 and 2022; no end |
 | KOMEITO-08 | Accepted in part: 石井啓一 observed 28 September 2024; resignation intention 31 October 2024 (not an end) |
 | KOMEITO-09 | Accepted in part: 斉藤鉄夫 recommended 7 November, elected and observed 9 November 2024; 中道改革連合 founded 22 January 2026 (organization claim; his co-representative office is another office); called 前代表 22 January 2026; no end |
-| KOMEITO-10 | Accepted in part: 竹谷とし子 代表代理 styled 「代表」 from 22 January 2026 (claims only); recommended 11 March; elected and from 14 March 2026 |
+| KOMEITO-10 | Accepted in part: 竹谷とし子 代表代理 styled 「代表」 from 22 January 2026 (claims only); recommended 11 March; elected and observed on 14 March 2026, without an inferred effective start |
 
 Decisions (the report's table gives each): the interim 代表代理 is claims only (the pipeline's ruling on party-labelled interim
-periods); a new holder's own first-person statement of taking office on a printed day is a start (太田昭宏, 竹谷とし子, as
-CLAUDE-C01-18 read 森喜朗's), while statements of being chosen or of continuing after a re-election are not; the 1998 and 2002
+periods); 太田昭宏's explicit statement of having taken office at that day's convention supports a start; 竹谷とし子's acceptance of confidence and duty supports a dated attestation, while statements of being chosen or of continuing after a re-election are not; the 1998 and 2002
 holders are dated by the page's date line because the pages print no convention day; 神崎武法's Diet statement of 30 November 1998
 is used only for the organization claim (the record identifies him only as speaking for his group). Every recorded identity was
 downloaded by the researcher on 30 September 2026 (21:40Z-22:31Z) and again by this packet at 22:26:11Z-22:28:03Z and 22:59:10Z-23:01:04Z
@@ -127,3 +126,7 @@ jp_komeito_diet_hr_budget_19930129 (Japan) has no pinned attribution' until Code
 `COMMIT_PACKETS`; `tools/avatars/test_certified_boundary_matrix.py` (S23) errors with 'Required input is missing:
 spheres-web/src/person_avatar_assets.rs' in this sparse checkout, so Codex lists the packet and regenerates
 `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration. The gap ledger was not touched.
+
+## Independent review checkpoint — 1 October 2026
+
+Held, not accepted: 24 of 31 original responses were independently reproduced and inspected; seven remain unavailable after connection failures and rate limiting. Fifty claims are supported in their bounded scope; fourteen claims and five holder rows retain missing-original dependencies. The original author's internal 'Accepted in part' labels above do not grant integration acceptance. Takeya's proposed 14 March 2026 effective start was conservatively replaced by a same-day attestation; all original response hashes, quoted wording, claim IDs and event dates remain preserved. See [the complete review](../../campaign-certification/C01/reviews/CLAUDE-C01-31/README.md). C01/C06/S23/CP1 remain open.

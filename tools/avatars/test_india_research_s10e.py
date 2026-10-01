@@ -55,12 +55,12 @@ C01_33_SOURCE_COUNT = 22
 C01_33_ORGANIZATION = 'in_eci_19980110_np_06'
 C01_33_ROLE = 'in_jd_president'
 # CLAUDE-C01-40 sources: the Communist Party of India (Marxist)'s own website (cpim.org, WordPress REST records of
-# posts) and raw Internet Archive captures of the party website and of its weekly organ People's Democracy, all
-# accessed on 2026-09-30; their rows belong to one party role on the CPI(M) recognition observation, which otherwise
+# posts) and raw Internet Archive captures of the party website and of its weekly organ People's Democracy,
+# accessed on 2026-09-30 and, for the two records added by the checker fixes, 2026-10-01; their rows belong to one party role on the CPI(M) recognition observation, which otherwise
 # keeps its identity, lifecycle and empty game mapping.
 C01_40_HOSTS = {'cpim.org', 'web.archive.org'}
-C01_40_ACCESS_DATES = {'2026-09-30'}
-C01_40_SOURCE_COUNT = 18
+C01_40_ACCESS_DATES = {'2026-09-30', '2026-10-01'}
+C01_40_SOURCE_COUNT = 20
 C01_40_ORGANIZATION = 'in_eci_20240323_np_04'
 C01_40_ROLE = 'in_cpm_general_secretary'
 
@@ -85,8 +85,8 @@ class IndiaDiscoveryTests(unittest.TestCase):
         # party role on the Bharatiya Janata Party recognition observation (74 sources, 167 claims). CLAUDE-C01-33 adds one
         # organization observation, the Janata Dal recognition row of 10 January 1998, with one party role (22 sources, 41
         # claims). CLAUDE-C01-40 adds no entry, only one party role on the Communist Party of India (Marxist) recognition
-        # observation (18 sources, 24 claims).
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (85, 315, 623, 6))
+        # observation (20 sources, 26 claims).
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (85, 317, 625, 6))
         self.assertEqual(len(self.packet['organizations']), 83)
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'] if s['id'] in ORIGINAL_SOURCES), 82)
         coverage = self.packet['coverage']
@@ -228,6 +228,7 @@ class IndiaDiscoveryTests(unittest.TestCase):
                          {'www.ceo.kerala.gov.in'} | C01_11_HOSTS | C01_15_HOSTS | C01_20_HOSTS | C01_27_HOSTS
                          | C01_33_HOSTS | C01_40_HOSTS)
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources'] if s['id'] in c01_40}, C01_40_HOSTS)
+        self.assertEqual({s['accessed_date'] for s in self.packet['sources'] if s['id'] in c01_40}, C01_40_ACCESS_DATES)
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources'] if s['id'] in c01_33}, C01_33_HOSTS)
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources'] if s['id'] in c01_15}, C01_15_HOSTS)
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources'] if s['id'] in c01_20}, C01_20_HOSTS)

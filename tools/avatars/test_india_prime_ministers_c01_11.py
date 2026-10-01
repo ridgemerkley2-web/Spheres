@@ -417,7 +417,7 @@ C01_33_COUNTS = (22, 41)
 # test pins them. This packet's assertions are unchanged for its own records.
 C01_40_ORGANIZATION = 'in_eci_20240323_np_04'
 C01_40_ROLE = 'in_cpm_general_secretary'
-C01_40_COUNTS = (18, 24)
+C01_40_COUNTS = (20, 26)
 
 # Exact holder observations of in_pm: (name, attested_on, from, until), in chronological order.
 HOLDERS = [

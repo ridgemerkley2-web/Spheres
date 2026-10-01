@@ -1,0 +1,51 @@
+{
+  "base": "229df2105f1ca46bc55873ea4ab0ada63255ced3",
+  "submission": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
+  "old_source_count": 207,
+  "old_claim_count": 319,
+  "new_sources": 5,
+  "new_claims": 6,
+  "old_sources_and_claims_equal": true,
+  "all_old_roles_and_holders_equal": true,
+  "existing_snapshot_paths_checked": 194,
+  "existing_snapshot_changes": [],
+  "allowed_org_appends": [
+    {
+      "entry": "to_pdp",
+      "key": "coverage.unresolved",
+      "append_count": 2
+    },
+    {
+      "entry": "to_dpfi",
+      "key": "claim_ids",
+      "append_count": 6
+    },
+    {
+      "entry": "to_dpfi",
+      "key": "sources",
+      "append_count": 5
+    },
+    {
+      "entry": "to_dpfi",
+      "key": "coverage.unresolved",
+      "append_count": 5
+    }
+  ],
+  "packet_coverage_notes_appended": 1,
+  "import_commit": "087b92eadc162d6ae465a10273a6b9e52ebed92d",
+  "correction_commit": "9955de17c16f3c13c0e042487b604fd8a5960433",
+  "imported_paths": [
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-pga-award-news-20131214-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-pohiva-2016-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-ca-ac9-20150916-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-ptoa-reply-20200317-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-tlr-2014-pohiva-leader-20140117-facts.json",
+    "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+    "docs/campaign-certification/C01/research/tonga.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
+    "tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py",
+    "tools/avatars/test_tonga_research_s10g.py"
+  ],
+  "receipt_only_authorized": true,
+  "accepted_for_integration": false
+}

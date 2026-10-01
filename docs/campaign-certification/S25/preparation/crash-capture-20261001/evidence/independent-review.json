@@ -1,0 +1,13 @@
+{
+  "reviewer": "/root/retire_selector_review",
+  "decision": "READY within bounded prior review scope",
+  "launcher_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+  "checks": [
+    "five exact source hash scenario receipts",
+    "journal-independent cleanup discovery",
+    "all remaining target PID lists empty",
+    "all monitors exited",
+    "original errors retained"
+  ],
+  "native_campaign_launched": false
+}

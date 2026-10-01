@@ -1,0 +1,7 @@
+{"event":"prepared","data":{"mode":"journal-fault","synthetic":true,"campaign_launched":false},"utc":"2026-10-01T03:22:26.1818857Z"}
+{"event":"monitor_started","data":{"pid":49524},"utc":"2026-10-01T03:22:26.1887074Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"conhost.exe","pid":28328,"path":"C:\\WINDOWS\\system32\\conhost.exe"},"utc":"2026-10-01T03:22:26.2841204Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"python.exe","pid":52448,"path":null},"utc":"2026-10-01T03:22:26.2855322Z"}
+{"event":"resources","data":{"owned_children":[],"synthetic":true,"available_commit_bytes":8589934592,"utc":"2026-10-01T03:22:26.2866188Z","volumes":[{"FreeSpace":107374182400,"DeviceID":"C:"},{"FreeSpace":214748364800,"DeviceID":"D:"}]},"utc":"2026-10-01T03:22:26.2867175Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"conhost.exe","pid":28328,"path":"C:\\WINDOWS\\system32\\conhost.exe"},"utc":"2026-10-01T03:22:28.3954187Z"}
+{"event":"owned_child","data":{"created":"2026-09-30T20:22:26.216161-07:00","pid":52448,"path":"C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe","parent_pid":49524},"utc":"2026-10-01T03:22:28.3965505Z"}

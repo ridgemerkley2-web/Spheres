@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 127697,
-      "sha256": "f2ce8e4f0de988958422221459f4ea180b1fd5e46c34db5704ba232dd2c6dd56"
+      "bytes": 129567,
+      "sha256": "e9aed9ad8a9dfa59507f4c23cfaf5a105f42db88d2f813e5bb8d1e28b6736a6f"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 37778,
-      "sha256": "a2b0b27b613bd0e7c27ba9aa6e9afbb19bc394f8ae817fa313632e099ec1f4d8"
+      "bytes": 46673,
+      "sha256": "5d7d301d65846ae425e610734a85a35068a6b13ee570763d3599d3f5089e02fc"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -81,23 +81,23 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1301518,
-      "sha256": "42d68ee487ff13718fae67488a9d28ecce1be1b586da878574568f5d6d139176"
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 1590799,
-      "sha256": "7aae60165858f216411adae3836cf98355ce867a834521e72c3a13427efeff06"
+      "bytes": 1716657,
+      "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 575140,
-      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
+      "bytes": 626569,
+      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 266372,
-      "sha256": "1b53b184753b95cd85670362220a57c5ca0151a5577e5a46af784487aa6afd2b"
+      "bytes": 317174,
+      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
@@ -181,6 +181,12 @@
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+      "bytes": 1271,
+      "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md",
       "bytes": 6927,
       "sha256": "e0d8901edcf739b52d2d915d0687d5d5385cf33edac80a9b122caee310aa2afd",
@@ -232,6 +238,18 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
       "bytes": 1556,
       "sha256": "210c512749291702751f9d1184108673cdceb2cda5d99b4927a6a7baa026d650",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-45/README.md",
+      "bytes": 1320,
+      "sha256": "6d4c4c4a82c3d2bc3214ea04fcac2a21b4ee0714da8610b3e05af871e3ffd127",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-46/README.md",
+      "bytes": 865,
+      "sha256": "a4aae43d414ba307b56612915df2c0edef61b84076b7c00060126d1a165010c0",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -776,8 +794,8 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 301860,
-    "sha256": "3adaab4393f3d161f88371bfe915b5a1676cc00c0c2a32651e8267ff512c6fe4"
+    "bytes": 311136,
+    "sha256": "7a3b3b4be11fad215fa7f5ddc376f660fb439e497d3a49ff085509665c3af7c4"
   },
   "in_flight": [
     {
@@ -785,7 +803,7 @@
       "state": "ready_for_review",
       "branch": "claude/c01-ru-28",
       "case": "USSR -> Russia",
-      "scope": "Five Russian party-leader chains; submitted for review, no accepted mapping",
+      "scope": "Five Russian party-leader chains; held on three originals/four claims after partial source review, no research import or accepted mapping",
       "targets": [
         "party:Russia/ru_kprf",
         "party:Russia/ru_ldpr",
@@ -796,27 +814,54 @@
       "accepted": false
     },
     {
-      "task": "CLAUDE-C01-31",
-      "state": "ready_for_review",
-      "branch": "claude/c01-jp-31",
-      "case": "Japan",
-      "scope": "Komeito representatives and distinct 1994/1998 organizations; review held on seven originals and fourteen claims, no accepted research or runtime mapping",
-      "targets": [
-        "party:Japan/jp_komeito",
-        "party:Japan/jp_komeito/jp_komei_1994",
-        "party:Japan/jp_komeito/jp_komeito_1998"
-      ],
-      "accepted": false
-    },
-    {
       "task": "CLAUDE-C01-39",
       "state": "ready_for_review",
       "branch": "claude/c01-za-39",
       "case": "SouthAfrica",
-      "scope": "Democratic Alliance federal leaders, 2000-2026; submitted for review, no accepted research or runtime mapping",
+      "scope": "Democratic Alliance federal leaders, 2000-2026; held on 23 unverified originals after rate limiting, no accepted research or runtime mapping",
       "targets": [
         "party:SouthAfrica/za_dp",
         "role:za_da_federal_leader"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-42",
+      "state": "claimed",
+      "branch": "claude/c01-jp-42",
+      "case": "Japan",
+      "scope": "Research JCP chairs and DPFP representatives, 1990–2026; existing claim preserved, no accepted import",
+      "targets": [
+        "party:Japan/jp_jcp",
+        "role:jp_jcp_executive_committee_chair",
+        "role:jp_jcp_central_committee_chair",
+        "role:jp_dpfp_representative"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-43",
+      "state": "ready_for_review",
+      "branch": "claude/c01-br-43",
+      "case": "Brazil",
+      "scope": "Research PRN, PTC and Agir national presidents, 1990–2026; existing claim preserved, no accepted import",
+      "targets": [
+        "party:Brazil/br_prn",
+        "party:Brazil/br_pds",
+        "role:br_agir_president"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-44",
+      "state": "ready_for_review",
+      "branch": "claude/c01-to-44",
+      "case": "Tonga",
+      "scope": "Research Tonga DPFI and PDP organization and leadership evidence; existing claim preserved, no accepted import",
+      "targets": [
+        "role:to_dpfi_leader",
+        "role:to_dpfi_president",
+        "role:to_pdp_leader"
       ],
       "accepted": false
     }
@@ -1575,6 +1620,24 @@
       "historical_period_complete": false
     },
     {
+      "task": "CLAUDE-C01-31",
+      "state": "complete",
+      "case": "Japan",
+      "scope": "Komeito representatives and distinct 1994/1998 organizations; bounded observations accepted after original-source recovery, no runtime mapping",
+      "integration_revision": "d4d3542b2c7750a83d27564f99cc0428536c8852",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+          "bytes": 1271,
+          "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
       "task": "CLAUDE-C01-32",
       "state": "complete",
       "case": "SouthAfrica",
@@ -1705,7 +1768,7 @@
       "state": "complete",
       "case": "India",
       "scope": "CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping",
-      "integration_revision": "6ee593de6bb6a0c9fe5ae8ec5000d268421f485b",
+      "integration_revision": "53b8a0ebf8b2683acb0b64de0e6cfbea7e946ff4",
       "evidence_class": "c01_accepted",
       "evidence": [
         {
@@ -1730,6 +1793,42 @@
           "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
           "bytes": 1556,
           "sha256": "210c512749291702751f9d1184108673cdceb2cda5d99b4927a6a7baa026d650",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-45",
+      "state": "complete",
+      "case": "SaudiArabia",
+      "scope": "Research Saudi royal offices and Allegiance Commission secretary; bounded observations accepted, no runtime mapping",
+      "integration_revision": "42046e519da389b713fd40f28a38a23e5b495936",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-45/README.md",
+          "bytes": 1320,
+          "sha256": "6d4c4c4a82c3d2bc3214ea04fcac2a21b4ee0714da8610b3e05af871e3ffd127",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-46",
+      "state": "complete",
+      "case": "USSR -> Russia",
+      "scope": "Research State Duma faction heads, 2021–2026; bounded observations accepted, no runtime mapping",
+      "integration_revision": "6f88cd1b9dd97d9c5839a85b1d8c2c7333649554",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-46/README.md",
+          "bytes": 865,
+          "sha256": "a4aae43d414ba307b56612915df2c0edef61b84076b7c00060126d1a165010c0",
           "hash_encoding": "UTF-8 text with LF line endings"
         }
       ],
@@ -5921,12 +6020,12 @@
         "party_chains_unresolved": 9,
         "documented_research_organizations": 16,
         "documented_unmapped_organizations": 16,
-        "research_organizations_with_roles": 4,
+        "research_organizations_with_roles": 5,
         "research_institutions": 8,
-        "research_roles": 6,
-        "research_roles_unresolved": 6,
+        "research_roles": 7,
+        "research_roles_unresolved": 7,
         "research_holders_by_evidence": {
-          "c01_accepted": 16,
+          "c01_accepted": 31,
           "c01_integrated_pending": 44,
           "s10_discovery_intake": 5
         },
@@ -6242,7 +6341,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-42",
           "uncertain_research_candidates": []
         },
         {
@@ -6846,7 +6945,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-31",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -6961,7 +7060,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-31",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -7204,7 +7303,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-31",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -7613,7 +7712,7 @@
           "leads": [
             "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-42"
         },
         {
           "nation": "Japan",
@@ -7704,7 +7803,7 @@
           "leads": [
             "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-42"
         },
         {
           "nation": "Japan",
@@ -7795,7 +7894,7 @@
           "leads": [
             "https://new-kokumin.jp/news/business/20260906_2"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-42"
         },
         {
           "nation": "Japan",
@@ -8698,6 +8797,413 @@
         },
         {
           "nation": "Japan",
+          "category": "organizations",
+          "entity": "jp_sangiin_pr_2025_15",
+          "entity_name": "公明党",
+          "id": "jp_komeito_representative",
+          "title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 6112,
+              "attested_within_period": 0,
+              "attested_day": 4,
+              "open_end": 7283,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1993-01-29",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1993-01-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1993-01-29",
+                "through": "1993-01-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "1993-01-30",
+                "through": "1998-11-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-11-08",
+                "through": "1998-11-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-11-09",
+                "through": "2002-11-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-11-03",
+                "through": "2002-11-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2002-11-04",
+                "through": "2004-10-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-10-31",
+                "through": "2004-10-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-11-01",
+                "through": "2006-09-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-09-30",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1993-01-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1993-01-29",
+                "through": "1993-01-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "1993-01-30",
+                "through": "1998-11-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-11-08",
+                "through": "1998-11-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-11-09",
+                "through": "2002-11-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-11-04",
+                "through": "2004-10-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-11-01",
+                "through": "2006-09-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-09-30",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "石田幸四郎",
+              "attested_on": "1993-01-29",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "神崎武法",
+              "attested_on": "1998-11-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "神崎武法",
+              "attested_on": "2002-11-03",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "神崎武法",
+              "attested_on": "2004-10-31",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "太田昭宏",
+              "attested_on": null,
+              "from": "2006-09-30",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "山口那津男",
+              "attested_on": "2009-09-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "山口那津男",
+              "attested_on": "2012-09-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "山口那津男",
+              "attested_on": "2014-09-21",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "山口那津男",
+              "attested_on": "2016-09-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "山口那津男",
+              "attested_on": "2018-09-30",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "山口那津男",
+              "attested_on": "2020-09-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": "山口那津男",
+              "attested_on": "2022-09-25",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 12,
+              "name": "石井啓一",
+              "attested_on": "2024-09-28",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 13,
+              "name": "斉藤鉄夫",
+              "attested_on": "2024-11-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 14,
+              "name": "竹谷とし子",
+              "attested_on": "2026-03-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 31,
+          "leads": [
+            "https://kokkai.ndl.go.jp/api/meeting?issueID=112605261X00319930129&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112804573X01519931105&speechNumber=117&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112915261X01619940616&speechNumber=3&recordPacking=json",
+            "https://web.archive.org/web/19980202152557id_/http://www.komei.or.jp:80/eng/daihyo2.htm",
+            "https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/",
+            "https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Japan",
           "category": "institutions",
           "entity": "jp_prime_minister",
           "entity_name": "Prime Minister of Japan (office)",
@@ -9375,7 +9881,8 @@
           "jp_sangiin_pr_2025_01",
           "jp_sangiin_pr_2025_07",
           "jp_sangiin_pr_2025_10",
-          "jp_sangiin_pr_2025_13"
+          "jp_sangiin_pr_2025_13",
+          "jp_sangiin_pr_2025_15"
         ],
         "discovery_work_orders": [
           "C01-Japan-DISC-B001",
@@ -11443,26 +11950,26 @@
               },
               {
                 "from": "2004-03-03",
-                "through": "2005-04-10",
+                "through": "2011-09-09",
                 "status": "no_evidence"
               },
               {
-                "from": "2005-04-11",
-                "through": "2005-04-11",
+                "from": "2011-09-10",
+                "through": "2011-09-10",
                 "status": "attested_day"
               },
               {
-                "from": "2005-04-12",
-                "through": "2015-04-18",
+                "from": "2011-09-11",
+                "through": "2015-05-05",
                 "status": "no_evidence"
               },
               {
-                "from": "2015-04-19",
-                "through": "2015-04-19",
+                "from": "2015-05-06",
+                "through": "2015-05-06",
                 "status": "attested_day"
               },
               {
-                "from": "2015-04-20",
+                "from": "2015-05-07",
                 "through": "2024-09-11",
                 "status": "no_evidence"
               },
@@ -11500,21 +12007,21 @@
               },
               {
                 "from": "2004-03-03",
-                "through": "2005-04-10",
+                "through": "2011-09-09",
                 "status": "no_evidence"
               },
               {
-                "from": "2005-04-11",
-                "through": "2005-04-11",
+                "from": "2011-09-10",
+                "through": "2011-09-10",
                 "status": "attested_day"
               },
               {
-                "from": "2005-04-12",
-                "through": "2015-04-18",
+                "from": "2011-09-11",
+                "through": "2015-05-05",
                 "status": "no_evidence"
               },
               {
-                "from": "2015-04-20",
+                "from": "2015-05-07",
                 "through": "2024-09-11",
                 "status": "no_evidence"
               },
@@ -11552,7 +12059,7 @@
             {
               "position": 1,
               "name": "Prakash Karat",
-              "attested_on": "2005-04-11",
+              "attested_on": "2011-09-10",
               "from": null,
               "until": null,
               "attested_period": null,
@@ -11570,7 +12077,7 @@
             {
               "position": 2,
               "name": "Sitaram Yechury",
-              "attested_on": "2015-04-19",
+              "attested_on": "2015-05-06",
               "from": null,
               "until": "2024-09-12",
               "attested_period": null,
@@ -11603,7 +12110,7 @@
               ]
             }
           ],
-          "source_count": 18,
+          "source_count": 20,
           "leads": [
             "https://web.archive.org/web/20010424181354id_/http://cpim.org:80/ems~2.htm",
             "https://web.archive.org/web/20050414085223id_/http://www.cpim.org:80/18cong/lead/bio-hks.htm",
@@ -13166,7 +13673,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-43",
           "uncertain_research_candidates": []
         },
         {
@@ -13884,7 +14391,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-43",
           "uncertain_research_candidates": []
         },
         {
@@ -20216,7 +20723,7 @@
           "leads": [
             "https://data.ipu.org/election-summary/HTML/2317_08.htm"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-44"
         },
         {
           "nation": "Tonga",
@@ -20328,7 +20835,7 @@
             "https://data.ipu.org/election-summary/HTML/2317_10.htm",
             "https://data.ipu.org/election-summary/HTML/2317_14.htm"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-44"
         },
         {
           "nation": "Tonga",
@@ -20422,7 +20929,7 @@
           "leads": [
             "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-44"
         },
         {
           "nation": "Tonga",
@@ -22445,7 +22952,7 @@
         "research_roles": 10,
         "research_roles_unresolved": 6,
         "research_holders_by_evidence": {
-          "c01_accepted": 33,
+          "c01_accepted": 51,
           "c01_integrated_pending": 16
         },
         "seed_executive_observations": 1,
@@ -22645,9 +23152,128 @@
               "missing_fields": [
                 "holder identity and dates (claim-only observation)"
               ]
+            },
+            {
+              "position": 5,
+              "name": null,
+              "claim": "sa_fahd_king_obs_19960101",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 6,
+              "name": null,
+              "claim": "sa_fahd_chairs_cabinet_19960212",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 7,
+              "name": null,
+              "claim": "sa_fahd_king_order_a193_20050731",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 8,
+              "name": null,
+              "claim": "sa_abdullah_king_order_a136_20061020",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 9,
+              "name": null,
+              "claim": "sa_abdullah_king_order_a145_20140520",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 10,
+              "name": null,
+              "claim": "sa_salman_king_order_a267_20150725",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 11,
+              "name": null,
+              "claim": "sa_salman_king_obs_20260904",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
             }
           ],
-          "source_count": 11,
+          "source_count": 18,
           "leads": [
             "https://laws.boe.gov.sa/Files/Download/?attId=ed4842e1-9543-40b9-973b-ada200d4ed10",
             "https://www.spa.gov.sa/2387811",
@@ -22973,9 +23599,179 @@
               "missing_fields": [
                 "holder identity and dates (claim-only observation)"
               ]
+            },
+            {
+              "position": 9,
+              "name": null,
+              "claim": "sa_abdullah_cp_obs_19960101",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 10,
+              "name": null,
+              "claim": "sa_abdullah_cp_obs_20050730",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 11,
+              "name": null,
+              "claim": "sa_sultan_cp_obs_a175_20071029",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 12,
+              "name": null,
+              "claim": "sa_nayef_cp_obs_20111107",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 13,
+              "name": null,
+              "claim": "sa_salman_cp_obs_20120618",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 14,
+              "name": null,
+              "claim": "sa_salman_cp_obs_a145_20140520",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 15,
+              "name": null,
+              "claim": "sa_muqrin_cp_obs_20150428",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 16,
+              "name": null,
+              "claim": "sa_mbn_cp_obs_a267_20150725",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 17,
+              "name": null,
+              "claim": "sa_mbn_cp_obs_a128_20170225",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 18,
+              "name": null,
+              "claim": "sa_mbs_cp_obs_20260901",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
             }
           ],
-          "source_count": 18,
+          "source_count": 28,
           "leads": [
             "https://www.spa.gov.sa/2387811",
             "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377",
@@ -23989,19 +24785,29 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13399,
+              "no_evidence": 13398,
               "attested_within_period": 0,
-              "attested_day": 0,
+              "attested_day": 1,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": null,
+            "first_evidence": "2006-10-20",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "2006-10-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-10-20",
+                "through": "2006-10-20",
+                "status": "attested_day"
+              },
+              {
+                "from": "2006-10-21",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -24009,15 +24815,46 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
+                "through": "2006-10-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-10-20",
+                "through": "2006-10-20",
+                "status": "attested_day"
+              },
+              {
+                "from": "2006-10-21",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
             ]
           },
-          "holders": [],
-          "source_count": 1,
+          "holders": [
+            {
+              "position": 0,
+              "name": "Khalid bin Abdulaziz Al-Tuwaijri",
+              "attested_on": "2006-10-20",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-45"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 3,
           "leads": [
-            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377"
+            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377",
+            "https://portalapi.spa.gov.sa/api/v1/news/f9cb0a7263",
+            "https://portalapi.spa.gov.sa/api/v1/news/76a355d60b"
           ],
           "in_flight": null
         },
@@ -24219,7 +25056,7 @@
         "research_roles": 17,
         "research_roles_unresolved": 16,
         "research_holders_by_evidence": {
-          "c01_accepted": 13,
+          "c01_accepted": 31,
           "c01_integrated_pending": 30,
           "s10_discovery_intake": 9
         },
@@ -26059,9 +26896,9 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13394,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 5,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
@@ -26082,6 +26919,46 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-06",
+                "through": "2022-04-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-07",
+                "through": "2022-07-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-27",
+                "through": "2026-07-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26099,6 +26976,31 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26122,11 +27024,88 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Владимир Васильев",
+              "attested_on": "2021-12-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Владимир Васильев",
+              "attested_on": "2022-04-06",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Владимир Васильев",
+              "attested_on": "2022-07-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Владимир Васильев",
+              "attested_on": "2026-07-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 1,
+          "source_count": 6,
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "in_flight": null
         },
@@ -26150,9 +27129,9 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13394,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 5,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
@@ -26173,6 +27152,46 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-06",
+                "through": "2022-04-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-07",
+                "through": "2022-07-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-27",
+                "through": "2026-07-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26190,6 +27209,31 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26213,11 +27257,88 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Геннадий Зюганов",
+              "attested_on": "2021-12-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Геннадий Зюганов",
+              "attested_on": "2022-04-06",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Геннадий Зюганов",
+              "attested_on": "2022-07-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Геннадий Зюганов",
+              "attested_on": "2026-07-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 1,
+          "source_count": 6,
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "in_flight": null
         },
@@ -26241,9 +27362,9 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13395,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 4,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
@@ -26264,6 +27385,36 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-06",
+                "through": "2022-04-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-07",
+                "through": "2022-07-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-27",
+                "through": "2026-07-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26281,6 +27432,31 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-06",
+                "through": "2022-04-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-07",
+                "through": "2022-07-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26304,11 +27480,69 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Сергей Миронов",
+              "attested_on": "2022-04-06",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Сергей Миронов",
+              "attested_on": "2022-07-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Сергей Миронов",
+              "attested_on": "2026-07-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 1,
+          "source_count": 5,
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "in_flight": null
         },
@@ -26332,9 +27566,9 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13394,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 5,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
@@ -26355,6 +27589,46 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-06",
+                "through": "2022-04-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-07",
+                "through": "2022-07-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-27",
+                "through": "2026-07-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26372,6 +27646,31 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26395,11 +27694,69 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Владимир Жириновский",
+              "attested_on": "2021-12-22",
+              "from": null,
+              "until": "2022-04-06",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Леонид Слуцкий",
+              "attested_on": "2022-07-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Леонид Слуцкий",
+              "attested_on": "2026-07-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 1,
+          "source_count": 8,
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407135620id_/http://duma.gov.ru/news/53987/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220524092011id_/http://duma.gov.ru/news/54314/"
           ],
           "in_flight": null
         },
@@ -26423,9 +27780,9 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13394,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 5,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
@@ -26446,6 +27803,46 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-06",
+                "through": "2022-04-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-07",
+                "through": "2022-07-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-27",
+                "through": "2026-07-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26463,6 +27860,31 @@
               },
               {
                 "from": "2021-10-13",
+                "through": "2021-12-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-22",
+                "through": "2021-12-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-12-23",
+                "through": "2022-04-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-04-07",
+                "through": "2022-07-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-07-08",
+                "through": "2026-07-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-07-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -26486,11 +27908,88 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Алексей Нечаев",
+              "attested_on": "2021-12-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Алексей Нечаев",
+              "attested_on": "2022-04-06",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Алексей Нечаев",
+              "attested_on": "2022-07-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Алексей Нечаев",
+              "attested_on": "2026-07-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-46"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 1,
+          "source_count": 6,
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "in_flight": null
         },
@@ -29392,72 +30891,52 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_jcp",
-          "title": "Japanese Communist Party",
+          "entity": "Japan/jp_komeito",
+          "title": "Komeito",
           "role": "party leader (census term records)",
           "priority": 0,
-          "unresolved_days": 991,
+          "unresolved_days": 13399,
           "missing_fields": [
             {
               "field": "holder",
-              "from": "2000-11-02",
-              "through": "2000-11-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2024-01-19",
+              "from": "1990-01-01",
               "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "kazuo_shii",
-              "record": "jp_jcp_kazuo_shii_200011",
-              "missing": [
-                "from (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tetsuzo_fuwa",
-              "record": "jp_jcp_tetsuzo_fuwa_1989",
-              "missing": [
-                "from (known only to year)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tomoko_tamura",
-              "record": "jp_jcp_tomoko_tamura_20240118",
-              "missing": [
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
+              "current_status": "no_evidence"
             }
           ],
           "declared_gaps": [
             {
               "from": {
-                "kind": "month",
-                "value": "2000-11"
+                "kind": "day",
+                "value": "1994-12-05"
               },
               "until": {
-                "kind": "month",
-                "value": "2000-12"
+                "kind": "day",
+                "value": "1998-11-07"
               },
-              "reason": "The exact November 2000 handover day needs primary confirmation. Month precision leaves unresolved days rather than inventing a precise boundary.",
+              "reason": "Local Komei chronology is included, but the national New Komei and New Peace Party branches have unverified terms. Do not substitute New Frontier leaders for Komei leaders.",
               "sources": [
-                "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+                "https://www.komei.or.jp/about/history/"
+              ]
+            },
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Early appointment precision and party membership outside the leadership windows need further review.",
+              "sources": [
+                "https://www.jnpc.or.jp/archive/conferences/20132/report"
               ]
             }
           ],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://www.jnpc.or.jp/archive/conferences/20132/report",
-            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
-            "https://www.jcp.or.jp/web_senkyo/2542/",
-            "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+            "https://www.komei.or.jp/about/history/",
+            "https://www.jnpc.or.jp/archive/conferences/20132/report"
           ],
           "related_work_orders": [
             "CH-Japan-B001"
@@ -29466,7 +30945,13 @@
             "from": "1990-01-01",
             "until": "2026-09-07",
             "pinned": false
-          }
+          },
+          "components_with_terms": [
+            "Japan/jp_komeito/jp_komei_1994 (2 terms)",
+            "Japan/jp_komeito/jp_komeito_1964 (1 terms)",
+            "Japan/jp_komeito/jp_komeito_1998 (7 terms)"
+          ],
+          "note": "Leadership recorded on components or name phases does not fill this parent chain; check whether the parent office is separate from the components listed."
         },
         {
           "item": "party_leader_chain",
@@ -30015,6 +31500,45 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
+          "entity": "Japan/jp_komeito/jp_komeito_1998",
+          "title": "Komeito (reconstituted in 1998)",
+          "role": "party leader (census term records)",
+          "priority": 3,
+          "unresolved_days": 177,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "2026-03-15",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "toshiko_takeya",
+              "record": "jp_komeito_toshiko_takeya_20260314",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "related_work_orders": [
+            "CH-Japan-B001"
+          ],
+          "window": {
+            "from": "1998-11-07",
+            "until": "2026-09-07",
+            "pinned": true
+          },
+          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Japan",
           "entity": "Japan/jp_jsp/jp_jsp_1945",
           "title": "Japan Socialist Party",
           "role": "party leader (census term records)",
@@ -30090,172 +31614,59 @@
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
         },
         {
-          "item": "research_role_chain",
+          "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "jp_sangiin_pr_2025_01#jp_jcp_central_committee_chair",
-          "title": "中央委員会議長 — Central Committee chair",
-          "role": "party_chair",
-          "priority": 4,
-          "unresolved_days": 13399,
+          "entity": "Japan/jp_komeito/jp_komei_1994",
+          "title": "Komei (local assembly and House of Councillors organization)",
+          "role": "party leader (census term records)",
+          "priority": 3,
+          "unresolved_days": 55,
           "missing_fields": [
             {
               "field": "holder",
-              "from": "1990-01-01",
-              "through": "2024-01-17",
-              "current_status": "no_evidence"
+              "from": "1994-12-05",
+              "through": "1994-12-30",
+              "current_status": "boundary_imprecise"
             },
             {
               "field": "holder",
-              "from": "2024-01-18",
-              "through": "2024-01-18",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "2024-01-19",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
+              "from": "1998-01-02",
+              "through": "1998-01-30",
+              "current_status": "boundary_imprecise"
             },
             {
               "field": "dates",
-              "holder": "志位和夫",
-              "record": 0,
+              "holder": "tomio_fujii",
+              "record": "jp_komeito_tomio_fujii_199412",
               "missing": [
-                "from",
-                "until"
+                "from (known only to month)",
+                "until (known only to month)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "toshiko_hamayotsu",
+              "record": "jp_komeito_toshiko_hamayotsu_199801",
+              "missing": [
+                "from (known only to month)"
               ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
+            "https://www.komei.or.jp/about/history/"
           ],
           "related_work_orders": [
-            "C01-Japan-DISC-B001"
+            "CH-Japan-B001"
           ],
           "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
+            "from": "1994-12-05",
+            "until": "1998-11-07",
+            "pinned": true
           },
-          "first_evidence": "2024-01-18",
-          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
         },
-        {
-          "item": "research_role_chain",
-          "nation": "Japan",
-          "entity": "jp_sangiin_pr_2025_01#jp_jcp_executive_committee_chair",
-          "title": "幹部会委員長 — Executive Committee chair",
-          "role": "party_chair",
-          "priority": 4,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2024-01-17",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2024-01-18",
-              "through": "2024-01-18",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "2024-01-19",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "dates",
-              "holder": "田村智子",
-              "record": 0,
-              "missing": [
-                "from",
-                "until"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
-          ],
-          "related_work_orders": [
-            "C01-Japan-DISC-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "first_evidence": "2024-01-18",
-          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
-        {
-          "item": "research_role_chain",
-          "nation": "Japan",
-          "entity": "jp_sangiin_pr_2025_07#jp_dpfp_representative",
-          "title": "代表 — party representative",
-          "role": "party_leader",
-          "priority": 4,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-05",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2026-09-06",
-              "through": "2026-09-06",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "2026-09-07",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "dates",
-              "holder": "玉木雄一郎",
-              "record": 0,
-              "missing": [
-                "from",
-                "until"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://new-kokumin.jp/news/business/20260906_2"
-          ],
-          "related_work_orders": [
-            "C01-Japan-DISC-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "first_evidence": "2026-09-06",
-          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Japan-B002",
-      "case": "Japan",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -30476,7 +31887,15 @@
           },
           "first_evidence": "1990-04-06",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-Japan-B002",
+      "case": "Japan",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -30697,6 +32116,219 @@
             "pinned": false
           },
           "first_evidence": "1990-05-14",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Japan",
+          "entity": "jp_sangiin_pr_2025_15#jp_komeito_representative",
+          "title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1993-01-28",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1993-01-29",
+              "through": "1993-01-29",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1993-01-30",
+              "through": "1998-11-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1998-11-08",
+              "through": "1998-11-08",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1998-11-09",
+              "through": "2002-11-02",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2002-11-04",
+              "through": "2004-10-30",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2004-11-01",
+              "through": "2006-09-29",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2006-09-30",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "石田幸四郎",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "神崎武法",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "神崎武法",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "神崎武法",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "太田昭宏",
+              "record": 4,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 9,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 10,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 11,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "石井啓一",
+              "record": 12,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "斉藤鉄夫",
+              "record": 13,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "竹谷とし子",
+              "record": 14,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://kokkai.ndl.go.jp/api/meeting?issueID=112605261X00319930129&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112804573X01519931105&speechNumber=117&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112915261X01619940616&speechNumber=3&recordPacking=json",
+            "https://web.archive.org/web/19980202152557id_/http://www.komei.or.jp:80/eng/daihyo2.htm",
+            "https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/",
+            "https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm"
+          ],
+          "related_work_orders": [
+            "C01-Japan-DISC-B002"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1993-01-29",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         }
       ]
@@ -31633,68 +33265,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Brazil",
-          "entity": "Brazil/br_prn",
-          "title": "National Reconstruction Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-07-04",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2026-07-05",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "daniel_sampaio_tourinho",
-              "record": "br_prn_daniel_sampaio_tourinho_20260705",
-              "missing": [
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2026-07-05"
-              },
-              "reason": "Tourinho is explicitly national president in the February 2, 1990 newspaper report of party broadcast. Exact appointment and uninterrupted PRN/PTC/AGIR tenure have not been proven.",
-              "sources": [
-                "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
-                "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
-            "https://agir36.org.br/category/destaques/",
-            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-          ],
-          "related_work_orders": [
-            "CH-Brazil-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Brazil",
           "entity": "Brazil/br_pfl",
           "title": "Liberal Front Party",
           "role": "party leader (census term records)",
@@ -32209,68 +33779,6 @@
             "from": "1990-01-01",
             "until": "2026-09-07",
             "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Brazil",
-          "entity": "Brazil/br_pds",
-          "title": "Democratic Social Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 1216,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "1993-04-30",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "month",
-                "value": "1993-04"
-              },
-              "reason": "January 1990 party presidency unresolved. Jarbas Passarinho was on leave in November 1989; Maluf is explicitly party president in March 1992. Do not backdate either from candidacy or a later observation.",
-              "sources": [
-                "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
-                "https://hemeroteca-pdf.bn.gov.br/761036/per761036_1989_22490.pdf"
-              ]
-            },
-            {
-              "from": {
-                "kind": "month",
-                "value": "1993-04"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2026-09-07"
-              },
-              "reason": "PDS no longer exists under its historical identity after merger; successor organization chain not ingested.",
-              "sources": [
-                "https://atlas.fgv.br/verbete/6099"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://atlas.fgv.br/verbete/6099",
-            "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
-            "https://hemeroteca-pdf.bn.gov.br/761036/per761036_1989_22490.pdf"
-          ],
-          "related_work_orders": [
-            "CH-Brazil-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "1993-04-30",
-            "pinned": true
           }
         },
         {
@@ -34704,160 +36212,6 @@
         {
           "item": "research_role_chain",
           "nation": "Tonga",
-          "entity": "to_dpfi#to_dpfi_leader",
-          "title": "Party leader",
-          "role": "party_leader",
-          "priority": 4,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2014-11-26",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2014-11-27",
-              "through": "2014-11-27",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "2014-11-28",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "dates",
-              "holder": "to_dpfi_pohiva_2010",
-              "record": "to_dpfi_pohiva_2010",
-              "missing": [
-                "holder identity and dates (claim-only observation)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "'Akilisi Pohiva",
-              "record": 1,
-              "missing": [
-                "from",
-                "until"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://data.ipu.org/election-summary/HTML/2317_10.htm",
-            "https://data.ipu.org/election-summary/HTML/2317_14.htm"
-          ],
-          "related_work_orders": [
-            "C01-Tonga-DISC-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "first_evidence": "2014-11-27",
-          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
-        {
-          "item": "research_role_chain",
-          "nation": "Tonga",
-          "entity": "to_dpfi#to_dpfi_president",
-          "title": "President of the party (PTOA)",
-          "role": "other",
-          "priority": 4,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2022-08-28",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2022-08-29",
-              "through": "2022-08-29",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "2022-08-30",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "dates",
-              "holder": "Fatai Helu",
-              "record": 0,
-              "missing": [
-                "from",
-                "until"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling"
-          ],
-          "related_work_orders": [
-            "C01-Tonga-DISC-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "first_evidence": "2022-08-29",
-          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
-        {
-          "item": "research_role_chain",
-          "nation": "Tonga",
-          "entity": "to_pdp#to_pdp_leader",
-          "title": "Party leader",
-          "role": "party_leader",
-          "priority": 4,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "dates",
-              "holder": "to_pdp_split_fuko",
-              "record": "to_pdp_split_fuko",
-              "missing": [
-                "holder identity and dates (claim-only observation)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://data.ipu.org/election-summary/HTML/2317_08.htm"
-          ],
-          "related_work_orders": [
-            "C01-Tonga-DISC-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "first_evidence": null
-        },
-        {
-          "item": "research_role_chain",
-          "nation": "Tonga",
           "entity": "to_peoples_party#to_peoples_party_leader",
           "title": "Leader",
           "role": "party_leader",
@@ -34960,15 +36314,7 @@
           },
           "first_evidence": "2022-04-19",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Tonga-B002",
-      "case": "Tonga",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Tonga",
@@ -35119,6 +36465,62 @@
               "field": "dates",
               "holder": "sa_salman_king_obs_20260813",
               "record": "sa_salman_king_obs_20260813",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_fahd_king_obs_19960101",
+              "record": "sa_fahd_king_obs_19960101",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_fahd_chairs_cabinet_19960212",
+              "record": "sa_fahd_chairs_cabinet_19960212",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_fahd_king_order_a193_20050731",
+              "record": "sa_fahd_king_order_a193_20050731",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_abdullah_king_order_a136_20061020",
+              "record": "sa_abdullah_king_order_a136_20061020",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_abdullah_king_order_a145_20140520",
+              "record": "sa_abdullah_king_order_a145_20140520",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_king_order_a267_20150725",
+              "record": "sa_salman_king_order_a267_20150725",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_king_obs_20260904",
+              "record": "sa_salman_king_obs_20260904",
               "missing": [
                 "holder identity and dates (claim-only observation)"
               ]
@@ -35321,6 +36723,86 @@
               "field": "dates",
               "holder": "sa_mbs_cp_pm_obs_20260813",
               "record": "sa_mbs_cp_pm_obs_20260813",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_abdullah_cp_obs_19960101",
+              "record": "sa_abdullah_cp_obs_19960101",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_abdullah_cp_obs_20050730",
+              "record": "sa_abdullah_cp_obs_20050730",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_sultan_cp_obs_a175_20071029",
+              "record": "sa_sultan_cp_obs_a175_20071029",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_nayef_cp_obs_20111107",
+              "record": "sa_nayef_cp_obs_20111107",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_cp_obs_20120618",
+              "record": "sa_salman_cp_obs_20120618",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_cp_obs_a145_20140520",
+              "record": "sa_salman_cp_obs_a145_20140520",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_muqrin_cp_obs_20150428",
+              "record": "sa_muqrin_cp_obs_20150428",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mbn_cp_obs_a267_20150725",
+              "record": "sa_mbn_cp_obs_a267_20150725",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mbn_cp_obs_a128_20170225",
+              "record": "sa_mbn_cp_obs_a128_20170225",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mbs_cp_obs_20260901",
+              "record": "sa_mbs_cp_obs_20260901",
               "missing": [
                 "holder identity and dates (claim-only observation)"
               ]
@@ -35763,14 +37245,37 @@
             {
               "field": "holder",
               "from": "1990-01-01",
+              "through": "2006-10-19",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2006-10-20",
+              "through": "2006-10-20",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2006-10-21",
               "through": "2026-09-07",
               "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Khalid bin Abdulaziz Al-Tuwaijri",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377"
+            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377",
+            "https://portalapi.spa.gov.sa/api/v1/news/f9cb0a7263",
+            "https://portalapi.spa.gov.sa/api/v1/news/76a355d60b"
           ],
           "related_work_orders": [
             "C01-SaudiArabia-DISC-B002"
@@ -35780,7 +37285,8 @@
             "until": "2026-09-07",
             "pinned": false
           },
-          "first_evidence": null
+          "first_evidence": "2006-10-20",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         }
       ]
     },
@@ -36412,6 +37918,36 @@
             {
               "field": "holder",
               "from": "2021-10-13",
+              "through": "2021-12-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-22",
+              "through": "2021-12-22",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-23",
+              "through": "2022-04-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-04-07",
+              "through": "2022-07-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-07-08",
+              "through": "2026-07-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-07-28",
               "through": "2026-09-07",
               "current_status": "no_evidence"
             },
@@ -36423,12 +37959,53 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Васильев",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Васильев",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Васильев",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Васильев",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "related_work_orders": [
             "C01-Russia-DISC-B002"
@@ -36465,6 +38042,36 @@
             {
               "field": "holder",
               "from": "2021-10-13",
+              "through": "2021-12-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-22",
+              "through": "2021-12-22",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-23",
+              "through": "2022-04-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-04-07",
+              "through": "2022-07-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-07-08",
+              "through": "2026-07-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-07-28",
               "through": "2026-09-07",
               "current_status": "no_evidence"
             },
@@ -36476,12 +38083,53 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Зюганов",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Зюганов",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Зюганов",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Геннадий Зюганов",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "related_work_orders": [
             "C01-Russia-DISC-B002"
@@ -36518,6 +38166,36 @@
             {
               "field": "holder",
               "from": "2021-10-13",
+              "through": "2021-12-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-22",
+              "through": "2021-12-22",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-23",
+              "through": "2022-04-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-04-07",
+              "through": "2022-07-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-07-08",
+              "through": "2026-07-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-07-28",
               "through": "2026-09-07",
               "current_status": "no_evidence"
             },
@@ -36529,12 +38207,43 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Владимир Жириновский",
+              "record": 1,
+              "missing": [
+                "from"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Леонид Слуцкий",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Леонид Слуцкий",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407135620id_/http://duma.gov.ru/news/53987/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220524092011id_/http://duma.gov.ru/news/54314/"
           ],
           "related_work_orders": [
             "C01-Russia-DISC-B002"
@@ -36579,6 +38288,36 @@
             {
               "field": "holder",
               "from": "2021-10-13",
+              "through": "2021-12-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-22",
+              "through": "2021-12-22",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2021-12-23",
+              "through": "2022-04-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-04-07",
+              "through": "2022-07-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-07-08",
+              "through": "2026-07-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-07-28",
               "through": "2026-09-07",
               "current_status": "no_evidence"
             },
@@ -36590,12 +38329,53 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Алексей Нечаев",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Алексей Нечаев",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Алексей Нечаев",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Алексей Нечаев",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "related_work_orders": [
             "C01-Russia-DISC-B002"
@@ -36632,6 +38412,36 @@
             {
               "field": "holder",
               "from": "2021-10-13",
+              "through": "2022-04-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-04-06",
+              "through": "2022-04-06",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2022-04-07",
+              "through": "2022-07-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-07-07",
+              "through": "2022-07-07",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2022-07-08",
+              "through": "2026-07-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-07-28",
               "through": "2026-09-07",
               "current_status": "no_evidence"
             },
@@ -36643,12 +38453,43 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Сергей Миронов",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Сергей Миронов",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Сергей Миронов",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
           "uncertain_research_candidates": [],
           "leads": [
-            "https://duma.gov.ru/news/52404/"
+            "https://duma.gov.ru/news/52404/",
+            "https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/",
+            "https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/",
+            "https://web.archive.org/web/20220710204413id_/http://duma.gov.ru/news/54910/",
+            "https://web.archive.org/web/20260728062748id_/http://duma.gov.ru/news/63980/"
           ],
           "related_work_orders": [
             "C01-Russia-DISC-B002"
@@ -37049,9 +38890,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 72,
-    "research_roles_with_unresolved_days": 63,
-    "next_batches": 13,
-    "next_items": 92
+    "research_roles": 73,
+    "research_roles_with_unresolved_days": 64,
+    "next_batches": 12,
+    "next_items": 87
   }
 }

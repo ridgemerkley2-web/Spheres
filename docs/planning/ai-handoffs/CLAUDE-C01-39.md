@@ -1,14 +1,35 @@
 # C01-39 integration status, 1 October 2026
 
-The original claim below is preserved. The latest delivery is **ready_for_review**
-at `9cb02c20012a6e6314d7e64d52241609d566f738`; independent Codex source/content
-review is pending. The task is now registered in `docs/planning/ai-task-queue.json`.
-Only this claim/status record is integrated. No South Africa research or tests
-from the new packet are imported or accepted yet.
+The original claim below is preserved. The reviewed delivery at
+`9cb02c20012a6e6314d7e64d52241609d566f738` is **held after independent source/content review**.
+The latest delivery `b66f8c074431d7e1a8c9bfca228576c7d5134655` remains **ready_for_review**,
+with the same source-access hold after a separate diff triage.
+The [review receipt](../../campaign-certification/C01/reviews/CLAUDE-C01-39/README.md)
+at `d1818a48a1b117d408dafb49d7943d35f3f7c2da` records one exact original and one
+independently read claim. The second request returned HTTP 429; 22 sources were
+not attempted after stopping. Thus 23 originals, 28 claims and all eleven new
+holder observations remain held. These are not 23 failed requests.
+
+The accessible 24 October 2019 statement supports the reported resignation and
+vacancy context; no numeric effective end was installed. The next-day source
+remains unread. A final fetch found correction `9e3d0b3c` and index tip `b66f8c07`:
+the source identity inventory remains unchanged, but the proposal adds Zille's
+2007 acceptance observation, sets a Maimane end of 23 October 2019 and corrects a
+quote's apostrophe. The latest scope is twelve added holder observations, all
+unverified. The 23-source / 28-claim hold persists. The changes and claims of
+separate user rulings are not accepted solely from authored prose. See the
+[combined review](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
+for the exact delta. Resume missing original content when normal service permits.
+
+Only this registration and the held review receipt are integrated. No South Africa
+research or tests from the new packet are imported or accepted. Its isolated
+technical checks passed, with the initial handoff-binding failure and narrow repair
+preserved. The task queue records the latest submission and the earlier independently reviewed
+revision; the earlier receipt continues to refer only to `9cb02c20`.
 
 See the [authored delivery and reported checks](https://github.com/ridgemerkley2-web/Spheres/blob/9cb02c20012a6e6314d7e64d52241609d566f738/docs/planning/ai-handoffs/CLAUDE-C01-39.md).
 It reports 24 new sources, 29 claims and eleven added holder observations; those
-counts are submission scope, not an independent historical acceptance.
+counts are submission scope, not a full independent historical acceptance.
 
 ---
 

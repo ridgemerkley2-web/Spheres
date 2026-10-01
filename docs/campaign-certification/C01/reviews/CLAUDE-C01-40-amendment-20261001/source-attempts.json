@@ -1,0 +1,76 @@
+[
+  {
+    "post": "1411",
+    "url": "https://cpim.org/wp-json/wp/v2/posts/1411",
+    "command": [
+      "curl.exe",
+      "--location",
+      "--silent",
+      "--show-error",
+      "--max-time",
+      "40",
+      "--dump-header",
+      "D:\\spheres-offload\\codex-next-20260928\\c01-40-amendment-evidence-20261001\\1411.headers.txt",
+      "--output",
+      "D:\\spheres-offload\\codex-next-20260928\\c01-40-amendment-evidence-20261001\\1411.original.json",
+      "--write-out",
+      "%{http_code}",
+      "https://cpim.org/wp-json/wp/v2/posts/1411"
+    ],
+    "started_utc": "2026-10-01T02:52:15.009505+00:00",
+    "finished_utc": "2026-10-01T02:52:15.958504+00:00",
+    "exit_code": 0,
+    "http_status": "200",
+    "bytes": 12336,
+    "sha256": "dc2e86ccc93d9da313f9f1d44061d7d29857bd9424930b54c654fa9a785dfad2",
+    "expected_bytes": 12336,
+    "expected_sha256": "dc2e86ccc93d9da313f9f1d44061d7d29857bd9424930b54c654fa9a785dfad2",
+    "exact_identity_match": true,
+    "publisher_metadata": {
+      "id": 1411,
+      "date": "2011-09-10T14:41:53",
+      "modified": "2013-06-28T15:50:10",
+      "slug": "note-nic-meeting",
+      "title": {
+        "rendered": "Note to NIC Meeting"
+      }
+    }
+  },
+  {
+    "post": "4346",
+    "url": "https://cpim.org/wp-json/wp/v2/posts/4346",
+    "command": [
+      "curl.exe",
+      "--location",
+      "--silent",
+      "--show-error",
+      "--max-time",
+      "40",
+      "--dump-header",
+      "D:\\spheres-offload\\codex-next-20260928\\c01-40-amendment-evidence-20261001\\4346.headers.txt",
+      "--output",
+      "D:\\spheres-offload\\codex-next-20260928\\c01-40-amendment-evidence-20261001\\4346.original.json",
+      "--write-out",
+      "%{http_code}",
+      "https://cpim.org/wp-json/wp/v2/posts/4346"
+    ],
+    "started_utc": "2026-10-01T02:52:16.190201+00:00",
+    "finished_utc": "2026-10-01T02:52:16.894659+00:00",
+    "exit_code": 0,
+    "http_status": "200",
+    "bytes": 5790,
+    "sha256": "8d48f4e16cae84c2e03fbb491e8dccb10be0e9cdd83125d984d76ad362a4c36e",
+    "expected_bytes": 5790,
+    "expected_sha256": "8d48f4e16cae84c2e03fbb491e8dccb10be0e9cdd83125d984d76ad362a4c36e",
+    "exact_identity_match": true,
+    "publisher_metadata": {
+      "id": 4346,
+      "date": "2015-05-08T12:13:22",
+      "modified": "2015-05-15T10:21:19",
+      "slug": "ambedkar-anniversary-convene-parliament-session",
+      "title": {
+        "rendered": "Ambedkar Anniversary: Convene Parliament Session"
+      }
+    }
+  }
+]

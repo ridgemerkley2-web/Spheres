@@ -1,0 +1,87 @@
+{
+  "checked": 20,
+  "failed": 0,
+  "first_packaging_check": "Before manifest creation, its forward reference was absent; manifest now created and all20 links rechecked.",
+  "links": [
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/preparation.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/pe-inspection.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/frozen-build-artifact.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/current-ntdll.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/tool-signatures.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/registry-before.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/registry-after.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/owned_fault.py",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/owned-proof-readable.txt",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/final-dump-checks/owned-dump-inspection.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/launch-japan-diagnostic.ps1",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/environment-before.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/resource-sample.json",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/synthetic-final/monitor-checks.log",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/check-launcher.ps1",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/check-monitor.ps1",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/check_dump.py",
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/S25/preparation/crash-capture-20261001/manifest.json",
+      "exists": true
+    }
+  ]
+}

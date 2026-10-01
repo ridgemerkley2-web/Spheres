@@ -1,0 +1,31 @@
+[
+  {
+    "name": "playtest-tool",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/playtests",
+      "-p",
+      "test_*.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "workboard",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0
+  }
+]

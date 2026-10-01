@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "recommendation": "accept_bounded_research_with_corrections",
+  "generated_at": "2026-10-01T01:36:22.613782+00:00",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "assemble_review.py",
+      "bytes": 12345,
+      "sha256": "3f41f32262123d29adf4fdf6c0073ed69d70bfd9f11f10e02c44e382d8cb5278"
+    },
+    {
+      "path": "attempts.jsonl",
+      "bytes": 133798,
+      "sha256": "800f4385041fb391c6dbff3568d3b833d530cc89aa47e65044e51e7af5269590"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 52612,
+      "sha256": "acf9ef5c850c57c95025c4ddde80a4c8a508886cfe20ab5700f540e35fefbccb"
+    },
+    {
+      "path": "decision.json",
+      "bytes": 1054,
+      "sha256": "8e48520f443a515594a648262a5603ae91f98fcfd48b7086870d80b9999673ce"
+    },
+    {
+      "path": "decode_missing.py",
+      "bytes": 2148,
+      "sha256": "0ae70a7ec0ba6d5130b00689e145926ff3de761e37580fa93424bef4afb5a6a8"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 40961,
+      "sha256": "1473ba8a236a8a9a23c63c79a930ff4a85ee003ab222c923b3b1eaface243357"
+    },
+    {
+      "path": "jp_komeito_ishii_new_representative_interview_20240930.headers.txt",
+      "bytes": 2207,
+      "sha256": "6d21443869d02944e269b503423590e2d200f0d7fd1ba75061b3c66158e999f8"
+    },
+    {
+      "path": "jp_komeito_ishii_resignation_intent_20241101.headers.txt",
+      "bytes": 2207,
+      "sha256": "91888a2bd0b2b8261b79a6fbe831491d84dfd9a379f6af4d0355f044390b6628"
+    },
+    {
+      "path": "jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 1726,
+      "sha256": "9abbc36aee354de5a6dde319d5b632018b28b7d0050a2cae4ed8c86954b9f00f"
+    },
+    {
+      "path": "jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 1726,
+      "sha256": "c2f2f6ec542f37fc77cc7eacb4206afb1204de685ddffe26c18d412a2355d433"
+    },
+    {
+      "path": "jp_komeito_saito_recommended_20241108.headers.txt",
+      "bytes": 2204,
+      "sha256": "2a9d02060d0e85417424ccf7eab465511886053ca3ba67a6cc1ae943bee3d776"
+    },
+    {
+      "path": "jp_komeito_yamaguchi_ninth_convention_20120923.headers.txt",
+      "bytes": 2133,
+      "sha256": "0fd4c22d8988859b0654221cdfe8372e2388afbd4cb838ae6b76d235abd117cc"
+    },
+    {
+      "path": "jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 1991,
+      "sha256": "58e8db80cba5ca3fe8d26a799b4b94bb07fefbfe26491df5ace5db7ab5407304"
+    },
+    {
+      "path": "locator-correction.patch",
+      "bytes": 9632,
+      "sha256": "2000615e6e8faf9e466d2937955b0dd40b080b55042985c06ac7c7934facf5dc"
+    },
+    {
+      "path": "readable-manifest.json",
+      "bytes": 4762,
+      "sha256": "e917d35df158c69ddfee4102fe249c268dc8f3edf1183797f5699359e8663b9b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7143,
+      "sha256": "faab3cf31c9806c73f2f397e57a25144995c7e9597a8688c8cd441bc5364e80a"
+    },
+    {
+      "path": "record_command.py",
+      "bytes": 1153,
+      "sha256": "614962d24220fd3684d51dc1d89923b8d2a2827ee8cc00984adae34be9a260ce"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 140711,
+      "sha256": "a60ee6c932685eb5571ecf4b3d0f866a9b5fe4b98d604ff27ffb8d2b7f182129"
+    },
+    {
+      "path": "retrieve_missing.py",
+      "bytes": 4305,
+      "sha256": "224bec3ddd380b96fc8f12524b513c426c98bb97ab3f8db53afca9a3d8e19e12"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 41483,
+      "sha256": "a6ddcefd4de4ce2a32211087c11755c47baee17965f518085fce9b7bd3e670a8"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 56322,
+      "sha256": "09d675859c1d0e0390b49b2a55c5bc8d1fe0c5afa1695b285891aa32d7fce585"
+    },
+    {
+      "path": "validation/atlas-tests.json",
+      "bytes": 367,
+      "sha256": "aa68281e05d0eb74b42926403397a34fbe557cbb623d623cd9ce2d8fea3bbede"
+    },
+    {
+      "path": "validation/atlas-tests.log",
+      "bytes": 1123,
+      "sha256": "e2b3947652fbc4fc59d4332dff97d4f59dcac70ee70b26f48376a7140c127953"
+    },
+    {
+      "path": "validation/campaign-tests.json",
+      "bytes": 456,
+      "sha256": "a5480a6bdd95329ee71d60c652c765acfa27471b22acb785abc0df83a18448c9"
+    },
+    {
+      "path": "validation/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "97e2245778e26dcc71e5d99c83a00e733b86f4ecac89aea57ad9bb9d9804d508"
+    },
+    {
+      "path": "validation/census-check.json",
+      "bytes": 394,
+      "sha256": "7f9c66176bfe145bb89c6f2735ecd290d83260d40fdc36e7a38bcc48314a1255"
+    },
+    {
+      "path": "validation/census-check.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "validation/correction-patch-check.json",
+      "bytes": 471,
+      "sha256": "5eaebd3116916a240a293d76701ca880bdef891b89076cb756e946a1d9e8caab"
+    },
+    {
+      "path": "validation/correction-patch-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/diff-check.json",
+      "bytes": 324,
+      "sha256": "c000ec574af4fcf329cdc42ed9fceeed6f235975a92452b982847dfc9701361a"
+    },
+    {
+      "path": "validation/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/index-check.json",
+      "bytes": 394,
+      "sha256": "bf8179ede5236f7d5883cc7961e4ad2065ba852dd33be7e43e93a8efb4028b9d"
+    },
+    {
+      "path": "validation/index-check.log",
+      "bytes": 251,
+      "sha256": "da2a6c0355c98e6c3cd35f765841de0126abaf29975ad6bf9cf2525f0ab51181"
+    },
+    {
+      "path": "validation/index-regenerate.json",
+      "bytes": 388,
+      "sha256": "ebe589edcf251417d461d189d1c0737e1c8b0172d4d6d9632f63b850fab4d1f9"
+    },
+    {
+      "path": "validation/index-regenerate.log",
+      "bytes": 252,
+      "sha256": "476c3b403c09901a34af25cec1fa734512c32f2c88543323685cdc22994085bc"
+    },
+    {
+      "path": "validation/japan-corrected.json",
+      "bytes": 455,
+      "sha256": "4c8e8831196a6831a0caa98f1ffdae1d6b47c71299edb9bca4621246b8be8d72"
+    },
+    {
+      "path": "validation/japan-corrected.log",
+      "bytes": 161,
+      "sha256": "58087d0ccaa6c99d9c822e1cb443322992f270fce091e5de035cb14f2150ab7d"
+    },
+    {
+      "path": "validation/locator-red.json",
+      "bytes": 554,
+      "sha256": "e9dec33cc3229452ce52d4b0e79c84523615e8835ab38299c55d229586416cdb"
+    },
+    {
+      "path": "validation/locator-red.log",
+      "bytes": 2899,
+      "sha256": "e2650e0df469d84efe62428ea44840ce44712777dca3152caaf51c2643c09201"
+    },
+    {
+      "path": "validation/research-tests.json",
+      "bytes": 457,
+      "sha256": "eeaba855b20c782cfac0823bca4acad2f5a9be97b3b7f2e25e9f04066f72763c"
+    },
+    {
+      "path": "validation/research-tests.log",
+      "bytes": 183,
+      "sha256": "14beea97c8c2ee00650fbe00945a927f36c8e7a01cac8ebc5957342fa6551ef9"
+    },
+    {
+      "path": "validation/workboard-check.json",
+      "bytes": 395,
+      "sha256": "4f947e8e692423b286da10c293ceb5f75c544cdffc4cc46483cc47a41e01be73"
+    },
+    {
+      "path": "validation/workboard-check.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 4014,
+      "sha256": "b6f714edb68bd06fc50950c3575cafb73ec247e69e25d2aa8bc8250f0616fa10"
+    }
+  ]
+}

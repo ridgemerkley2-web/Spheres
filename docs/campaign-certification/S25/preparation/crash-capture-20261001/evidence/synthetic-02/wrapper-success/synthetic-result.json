@@ -1,0 +1,19 @@
+{
+  "dump_count": 0,
+  "primary": {
+    "type": "System.Management.Automation.RuntimeException",
+    "message": "Unexpected monitor child 46524; refusing unrelated process control",
+    "status": "running",
+    "stack": "at Discover-OwnedChild, <No file>: line 4\r\nat <ScriptBlock>, <No file>: line 12\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 49\r\nat <ScriptBlock>, <No file>: line 2"
+  },
+  "production_core_sha256": "2ef8cbfd5e18b8399dce77d7186d03fb5144f7cad365e99397fcca1454b8b8ca",
+  "mode": "success",
+  "monitor_exited": true,
+  "cleanup": [
+    "System.Management.Automation.RuntimeException: Unexpected monitor child 46524; refusing unrelated process control"
+  ],
+  "status": "diagnostic_failed_or_resource_halted",
+  "native_created_output": false,
+  "owned": [],
+  "monitor_exit": -1
+}

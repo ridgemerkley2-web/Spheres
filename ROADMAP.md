@@ -1,6 +1,6 @@
 # Development roadmap
 
-**Updated 30 September 2026 · Development branch: `codex/campaign-certification`.**
+**Updated 1 October 2026 · Development branch: `codex/campaign-certification`.**
 
 The first target is **CP1: a verified campaign from 1 January 1990 through
 31 December 2035**, covering France, Japan, India, Brazil, South Africa, Tonga,
@@ -11,6 +11,12 @@ player journey are accepted through G4. G5 and CP1 are not yet earned.
 These are milestone counts, not a percentage of remaining effort.
 
 ## Next actions
+
+[The parallel CP1 plan](docs/planning/ai-handoffs/CP1-ACCELERATION.md) is now
+active: Tonga identity preparation and the first complete country cast, campaign
+journal/crash repair, isolated resource timing and political diagnosis, and
+recruitment for real-player testing. Source-access holds do not stop independent
+country production. Existing qualification requirements remain unchanged.
 
 | Priority | Owner | Action | Completion requirement |
 |---|---|---|---|
@@ -45,7 +51,7 @@ Full acceptance criteria and source-specific evidence remain in the
   separately tracked milestone.
 - **Campaign endurance:** the `68ba0622` attempt stopped at 23:30 UTC on
   30 September: 4 revalidated passes, 4 abnormal exits and 16 not started.
-  Its verifier also failed; no full-matrix pass is claimed. [Failure evidence and next action](docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md).
+  Its verifier also failed; no full-matrix pass is claimed. The [runner journal repair and native diagnostic plan](docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md) are accepted as preparation; native crash causes remain open. [Original failed attempt](docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md).
 - **Political balance:** two defects are corrected: the AI recognizes an individual armed threat, and each recorded armed institution receives one loyalty update. A1 still fails; a further urgent-response trial was rejected after A2 also failed. [Repairs, validation and remaining blocker](docs/campaign-certification/S27/preparation/political-repairs-20260930/README.md).
 - **Human usability:** automated browser tests do not satisfy S26.
 - **Final qualification:** worldwide startup, recovery, succession and packaging

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_ussr*.py",
+    "-v"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-46-20261001",
+  "started_utc": "2026-10-01T03:56:12.258265+00:00",
+  "finished_utc": "2026-10-01T03:56:15.606068+00:00",
+  "exit_code": 0,
+  "output": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\c01-46-review-evidence-20261001\\validation\\ussr.log",
+    "bytes": 8775,
+    "sha256": "071429209737b8f71a8807eea43c258c325bcaae5336e35b42618d13d56d098e"
+  }
+}

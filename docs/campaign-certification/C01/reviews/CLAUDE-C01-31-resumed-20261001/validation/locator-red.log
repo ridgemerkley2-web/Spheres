@@ -1,0 +1,45 @@
+FFF
+======================================================================
+FAIL: test_recovered_source_locators_cover_the_claimed_passages (test_japan_komeito_representatives_c01_31.JapanKomeitoRepresentativesTests.test_recovered_source_locators_cover_the_claimed_passages) (claim='jp_komeito_kanzaki_self_stated_again_20041031')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-31-20261001\tools\avatars\test_japan_komeito_representatives_c01_31.py", line 841, in test_recovered_source_locators_cover_the_claimed_passages
+    self.assertEqual(claims[cid]['locator'], locator)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'paragraph': 2} != {'paragraph': 3}
+- {'paragraph': 2}
+?               ^
+
++ {'paragraph': 3}
+?               ^
+
+
+======================================================================
+FAIL: test_recovered_source_locators_cover_the_claimed_passages (test_japan_komeito_representatives_c01_31.JapanKomeitoRepresentativesTests.test_recovered_source_locators_cover_the_claimed_passages) (claim='jp_komeito_ota_selected_20060930')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-31-20261001\tools\avatars\test_japan_komeito_representatives_c01_31.py", line 841, in test_recovered_source_locators_cover_the_claimed_passages
+    self.assertEqual(claims[cid]['locator'], locator)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'paragraph': [1, 7]} != {'section': 'newsbody', 'passage_starts': [[33 chars]われ']}
+- {'paragraph': [1, 7]}
++ {'passage_starts': ['「新しい公明党」が勇躍スタート', 'これに先立ち、代表選出が行われ'],
++  'section': 'newsbody'}
+
+======================================================================
+FAIL: test_recovered_source_locators_cover_the_claimed_passages (test_japan_komeito_representatives_c01_31.JapanKomeitoRepresentativesTests.test_recovered_source_locators_cover_the_claimed_passages) (claim='jp_komeito_saito_recommended_20241107')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-31-20261001\tools\avatars\test_japan_komeito_representatives_c01_31.py", line 841, in test_recovered_source_locators_cover_the_claimed_passages
+    self.assertEqual(claims[cid]['locator'], locator)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'paragraph': 1} != {'paragraph': [1, 2]}
+- {'paragraph': 1}
++ {'paragraph': [1, 2]}
+?               + ++++
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.218s
+
+FAILED (failures=3)

@@ -39,7 +39,7 @@ SDP_ATTESTED = ['1990-04-06', '1991-08-20', '1993-01-25', '1994-10-13', '1996-11
 # The Komeito representative's holder observations (CLAUDE-C01-31): attested_on, None for holders dated by a stated start.
 KOMEITO_ATTESTED = ['1993-01-29', '1998-11-08', '2002-11-03', '2004-10-31', None, '2009-09-08', '2012-09-22',
                     '2014-09-21', '2016-09-17', '2018-09-30', '2020-09-27', '2022-09-25', '2024-09-28', '2024-11-09',
-                    None]
+                    '2026-03-14']
 
 
 class JapanDiscoveryTests(unittest.TestCase):
@@ -115,11 +115,11 @@ class JapanDiscoveryTests(unittest.TestCase):
         self.assertEqual(len(holders), 50)
         # The one party holder with an end is 福島瑞穂's 2012 observation, ended by her own words on 25 July 2013
         # (CLAUDE-C01-29); the stated starts are 福島瑞穂's own statement of 15 November 2003 (CLAUDE-C01-29), 森喜朗's
-        # own statement of 5 April 2000 (CLAUDE-C01-18), and 太田昭宏's of 30 September 2006 and 竹谷とし子's of 14 March
-        # 2026 (CLAUDE-C01-31). No other party holder has a start or an end.
+        # own statement of 5 April 2000 (CLAUDE-C01-18), and 太田昭宏's of 30 September 2006
+        # (CLAUDE-C01-31); 竹谷とし子's acceptance is a same-day attestation. No other party holder has a start or an end.
         self.assertEqual([(h['name'], h['until']) for h in holders if h['until']], [('福島瑞穂', '2013-07-25')])
         self.assertEqual([(h['name'], h['from']) for h in holders if h['from']],
-                         [('福島瑞穂', '2003-11-15'), ('森喜朗', '2000-04-05'), ('太田昭宏', '2006-09-30'), ('竹谷とし子', '2026-03-14')])
+                         [('福島瑞穂', '2003-11-15'), ('森喜朗', '2000-04-05'), ('太田昭宏', '2006-09-30')])
         self.assertEqual([h['attested_on'] for h in roles['jp_ldp_party_president']['holder_claims']], LDP_ATTESTED)
         self.assertEqual([h['attested_on'] for h in roles['jp_sdp_chair']['holder_claims']], SDP_ATTESTED)
         self.assertEqual([h['attested_on'] for h in roles['jp_komeito_representative']['holder_claims']], KOMEITO_ATTESTED)

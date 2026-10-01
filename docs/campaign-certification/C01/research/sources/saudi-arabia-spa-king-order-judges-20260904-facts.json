@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_king_order_judges_20260904",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/N2669204",
+  "original_url": "https://www.spa.gov.sa/N2669204",
+  "portal_metadata": {
+    "uuid": "N2669204",
+    "locale": "ar",
+    "published_at_utc": "2026-09-04T19:07:57Z",
+    "date_hijri_field": "1448-03-22"
+  },
+  "title_as_published": "عام / خادم الحرمين الشريفين يصدر أمرًا ملكيًا بترقية وتعيين 34 قاضيًا بديوان المظالم",
+  "source_title": "عام / خادم الحرمين الشريفين يصدر أمرًا ملكيًا بترقية وتعيين 34 قاضيًا بديوان المظالم: the King issues a royal order promoting and appointing 34 judges (4 September 2026)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2026-09-04",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/N2669204",
+  "source_response_bytes": 3328,
+  "source_response_sha256": "2a7fa39ac3bbb2c69f7f55692f226680701b3608b48898bcaae7c87e6dc26862",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "9df27023d0faaa4151b5587a621ac47524a73ba4ec7b15a20778d7ccbbd9243d",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:29:13Z and again at 2026-10-01T03:01:25Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (3328 bytes, SHA-256 2a7fa39ac3bbb2c69f7f55692f226680701b3608b48898bcaae7c87e6dc26862).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/N2669204 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_salman_king_obs_20260904",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-08",
+      "role_id": "sa_king",
+      "holder_name": "Salman bin Abdulaziz Al Saud",
+      "printed_name": "سلمان بن عبدالعزيز آل سعود",
+      "role_title": "الملك — King",
+      "event_kind": "attestation",
+      "attested_on": "2026-09-04",
+      "text": "SPA, date line Riyadh 22 Rabi al-Awwal 1448 / 4 September 2026: 'أصدر خادم الحرمين الشريفين الملك سلمان بن عبدالعزيز آل سعود -حفظه الله- أمرًا ملكيًا' promoting and appointing 34 judges of the Board of Grievances.",
+      "locator": "Date line; first paragraph; trailer 22:07 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}
