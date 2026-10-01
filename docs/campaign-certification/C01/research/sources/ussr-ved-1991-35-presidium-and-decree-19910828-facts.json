@@ -1,0 +1,116 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ved_1991_35_president",
+  "source_url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+  "original_url": "https://vedomosti.sssr.su/1991/35.pdf",
+  "archive_capture_utc": "2021-12-04T06:59:55Z",
+  "source_title": "Ведомости Съезда народных депутатов СССР и Верховного Совета СССР, 1991, No. 35 (28 August 1991), scanned issue, Internet Archive capture 20211204065955; recorded for the Presidency",
+  "accessed_date": "2026-10-01",
+  "published_date": "1991-08-28",
+  "document_date": "1991-08-28",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+  "source_response_bytes": 618372,
+  "source_response_sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://vedomosti.sssr.su/1991/35.pdf",
+    "bytes": 618372,
+    "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+    "last_modified": "Sun, 01 Jan 2017 02:07:33 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "This packet: downloaded at 2026-10-01T12:03:15Z and again at 2026-10-01T12:37:06Z (33 minutes later) with plain curl 8.16.0 (curl's own User-Agent, no Accept-Encoding header, no cookies, no cache-busting query, no redirect followed); identical 618,372 bytes and SHA-256; the attached response also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest XBOY76DZ7UUFTRYS3MXBR444NT5FPJMC.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+      "downloaded_at": [
+        "2026-10-01T12:03:15Z",
+        "2026-10-01T12:37:06Z"
+      ],
+      "bytes": 618372,
+      "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://vedomosti.sssr.su/1991/35.pdf",
+      "downloaded_at": [
+        "2026-10-01T12:03:21Z",
+        "2026-10-01T12:37:12Z"
+      ],
+      "bytes": 618372,
+      "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://vedomosti.sssr.su/1991/35.pdf, captured at 2021-12-04T06:59:55Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The same bytes as su_ved_1991_35 (CLAUDE-C01-26) and su_ved_1991_35_cpsu (CLAUDE-C01-41), recorded under a new ID so that their extracts stay unchanged. Imported: points 1 and 2 of the Presidium's resolution 2352-I of 21 August 1991 (art. 1001) and the signature and date block of decree УП-2443 of 22 August 1991 (art. 1008), for the President's role.",
+  "edition_and_host": {
+    "edition": "Ведомости, 1991, № 35; art. 1001 on printed p. 1420 (PDF p. 14); art. 1008 on printed p. 1423 (PDF p. 17).",
+    "host": "SSSR.SU portal (snd.sssr.su, vedomosti.sssr.su, izvestija.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      14,
+      17
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited passage was rendered from the recorded bytes with PyMuPDF (100-260 dpi crops) and read from the page image; the PDF's text layer (OCR), where present, was used only to find passages. Headings, signature and date blocks, mastheads and quotations were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_ved35p_presidium_2352i_removal_unlawful_19910821",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-03",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "М. С. Горбачев",
+        "А. ЛУКЬЯНОВ"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'Президента СССР'",
+      "event_kind": "removal_declared_unlawful",
+      "attested_on": "1991-08-21",
+      "text": "Resolution of the Presidium of the Supreme Soviet of the USSR 'О неотложных мерах по восстановлению конституционного порядка в стране' (art. 1001), point 1: 'Считать незаконным фактическое отстранение Президента СССР М. С. Горбачева от исполнения его конституционных обязанностей и передачу их Вице-президенту.' Signed 'Председатель Верховного Совета СССР А. ЛУКЬЯНОВ'; 'Москва, Кремль 21 августа 1991 г. № 2352—I'.",
+      "locator": "Art. 1001, point 1 and signature and date block, printed p. 1420 (PDF p. 14)"
+    },
+    {
+      "claim_id": "su_ved35p_presidium_2352i_vice_president_acts_19910821",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-03",
+      "role_id": "su_president",
+      "holder_name": null,
+      "persons_named": [
+        "Г. И. Янаев"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "event_kind": "acting_acts_revocation_demanded",
+      "attested_on": "1991-08-21",
+      "text": "Point 2 of the same resolution: 'Потребовать от Вице-президента Г. И. Янаева немедленной отмены его указов и основанных на них постановлений о чрезвычайном положении как юридически недействительных с момента их подписания.'",
+      "locator": "Art. 1001, point 2, printed p. 1420 (PDF p. 14)"
+    },
+    {
+      "claim_id": "su_ved35p_up2443_president_signs_19910822",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-03",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "М. ГОРБАЧЕВ",
+        "Павлов В. С."
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'Президент Союза Советских Социалистических Республик'",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-08-22",
+      "text": "Decree 'Об освобождении Павлова В. С. от обязанностей Премьер-министра СССР' (art. 1008) is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 22 августа 1991 г. № УП—2443.'",
+      "locator": "Art. 1008, signature and date block, printed p. 1423 (PDF p. 17)"
+    }
+  ],
+  "bounded_scope": "USSR President and head-of-government observations for CLAUDE-C01-49 only. Ballot, election result, election resolution, oath, declared assumption of office, appointment approval, stylings, acting-service and transfer-of-powers claims, a legislative body's declaration and in-office signatures stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, russia.json and the simulation's party rows are outside this extract."
+}

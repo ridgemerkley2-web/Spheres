@@ -196,6 +196,11 @@ HOLDER_CLAIMS = {
     'su_government_head': [['su_sprsfsr_60_ryzhkov_signs_as_chairman_19900112'], ['su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124'], ['su_km_943r_pavlov_signs_as_premier_19910819']],
     'su_supreme_soviet_chair': [['su_garf_1362i_lukyanov_signs_as_chairman_19900315'], ['su_lukyanov_signs_presidium_2353i_2354i_19910822']],
 }
+# CLAUDE-C01-49 appended observations to su_president and su_government_head resting only on its own sources (pinned in
+# test_ussr_government_president_c01_49); its oath observation is the one holder with a from.
+C01_49_SOURCES = {'su_snd3_steno_vol3_president', 'su_pravda_no13_19910115', 'su_pravda_no20_19910123', 'su_izv_197_19910820',
+                  'su_ved_1991_35_president', 'su_ved_1991_41_president'}
+C01_49_OATH_CLAIMS = ['su_snd3p_gorbachev_oath_19900315', 'su_snd3p_assumption_of_office_declared_19900315']
 # The CLAUDE-C01-05 su_president holders, unchanged.
 PRESIDENT_HOLDERS = [
     ('Mikhail Gorbachev', '1990-03-20', None, None, ['su_gorbachev_president_letter_19900320']),
@@ -351,8 +356,9 @@ def c26_invariants(ussr, russia):
     assert kinds['head_of_state'] == ['ru_president', PRES_ROLE]
     roles = roles_of(ussr)
     # The CLAUDE-C01-05 presidency holders and the existing chair holder are unchanged; every Russia holder is unchanged.
-    got = [(h['name'], h['attested_on'], h['from'], h['until'], h['claim_ids']) for h in roles[PRES_ROLE][1]['holder_claims']]
+    got = [(h['name'], h['attested_on'], h['from'], h['until'], h['claim_ids']) for h in roles[PRES_ROLE][1]['holder_claims'][:2]]
     assert got == PRESIDENT_HOLDERS, got
+    assert all(h['sources'] and set(h['sources']) <= C01_49_SOURCES for h in roles[PRES_ROLE][1]['holder_claims'][2:])
     got = [(h['name'], h.get('attested_on'), h['from'], h['until'], h['claim_ids']) for h in roles[SS_ROLE][1]['holder_claims'][:1]]
     assert got == [('Mikhail Gorbachev (signature: M. Gorbachev)', '1990-03-14', None, None, ['su_gorbachev_chair_signature_19900314'])], got
     # CLAUDE-C01-46 appended faction-head observations that cite only its own claims (ru_duma_news_*); every holder
@@ -370,10 +376,10 @@ def c26_invariants(ussr, russia):
     # Exact holders on the two roles, in chronological order; each rests on its own claim, dated that day; no from, no until.
     for role_id in (GOV_ROLE, SS_ROLE):
         role = roles[role_id][1]
-        holders = role['holder_claims'][1:] if role_id == SS_ROLE else role['holder_claims']
+        holders = role['holder_claims'][1:] if role_id == SS_ROLE else role['holder_claims'][:3]
         assert [(h['name'], h['attested_on'], h['from'], h['until']) for h in holders] == HOLDERS[role_id], role_id
         assert [h['claim_ids'] for h in holders] == HOLDER_CLAIMS[role_id], role_id
-        days = [h['attested_on'] for h in role['holder_claims']]
+        days = [h['attested_on'] for h in (role['holder_claims'] if role_id == SS_ROLE else holders)]
         assert days == sorted(days), role_id
         for h in holders:
             assert h['from'] is None and h['until'] is None, h['name']
@@ -388,9 +394,13 @@ def c26_invariants(ussr, russia):
     expected = {GOV_ROLE: [], SS_ROLE: [], PRES_ROLE: [], GOV: [], SS: []}
     for cid, (_, _, _, role_id, inst) in EVENTS.items():
         expected[role_id or inst].append(cid)
-    assert roles[GOV_ROLE][1]['claim_ids'] == expected[GOV_ROLE]
+    # CLAUDE-C01-49 appended role claims of its own sources after these (pinned in its own test).
+    assert all(h['sources'] and set(h['sources']) <= C01_49_SOURCES for h in roles[GOV_ROLE][1]['holder_claims'][3:])
+    assert roles[GOV_ROLE][1]['claim_ids'][:len(expected[GOV_ROLE])] == expected[GOV_ROLE]
+    assert all(owner[c] in C01_49_SOURCES for c in roles[GOV_ROLE][1]['claim_ids'][len(expected[GOV_ROLE]):])
     assert roles[SS_ROLE][1]['claim_ids'][1:] == expected[SS_ROLE]
-    assert roles[PRES_ROLE][1]['claim_ids'][7:] == expected[PRES_ROLE]
+    assert roles[PRES_ROLE][1]['claim_ids'][7:7 + len(expected[PRES_ROLE])] == expected[PRES_ROLE]
+    assert all(owner[c] in C01_49_SOURCES for c in roles[PRES_ROLE][1]['claim_ids'][7 + len(expected[PRES_ROLE]):])
     assert gov['claim_ids'] == expected[GOV]
     assert insts[SS]['claim_ids'][2:] == expected[SS]
     for packet in (russia, ussr):
@@ -411,7 +421,10 @@ def c26_invariants(ussr, russia):
         assert claims[cid]['attested_on'] in NEVER_BOUNDARY, cid
     for rid in (GOV_ROLE, SS_ROLE, PRES_ROLE):
         for h in roles[rid][1]['holder_claims']:
-            assert not {h['from'], h['until']} & NEVER_BOUNDARY, (rid, h['name'])
+            # CLAUDE-C01-49's oath observation starts on 15 March 1990 from its own oath and declared-assumption claims (pinned
+            # in its test), not from the election resolution dated that day; only its until meets this guard.
+            days = {h['until']} if (rid == PRES_ROLE and h['claim_ids'] == C01_49_OATH_CLAIMS) else {h['from'], h['until']}
+            assert not days & NEVER_BOUNDARY, (rid, h['name'])
     # Distinct events stay distinct and in order.
     for earlier, later in (('su_ukaz_up2443_pavlov_released_19910822', 'su_vs_2366i_agrees_to_pavlov_release_19910828'),
                            ('su_ss_res_2361i_presidium_removal_reference_19910822', 'su_ss_res_2361i_approves_presidium_removal_19910826'),
@@ -455,7 +468,8 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         # CLAUDE-C01-35 appended 16 sources after these 30 (positions 40-55), pinned in test_ussr_democratic_russia_soyuz_c01_35,
         # and CLAUDE-C01-41 12 more (positions 56-67), pinned in test_ussr_cpsu_general_secretary_c01_41.
         self.assertEqual([s['id'] for s in self.packet['sources'][10:40]], NEW_SOURCES)
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (68, 157, 7, 8))
+        # CLAUDE-C01-49 then appended 6 sources and 17 claims (positions 68-73).
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (74, 174, 7, 8))
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         dates = [self.sources[sid]['document_date'] for sid in NEW_SOURCES]
         self.assertEqual(dates, sorted(dates))
@@ -473,7 +487,7 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         c26_invariants(self.packet, self.russia)
         for role_id in (GOV_ROLE, SS_ROLE):
             holders = self.roles[role_id][1]['holder_claims']
-            for h in (holders[1:] if role_id == SS_ROLE else holders):
+            for h in (holders[1:] if role_id == SS_ROLE else holders[:3]):
                 self.assertTrue(h['note'] and h['uncertainty'], h['name'])
                 self.assertRegex(h['uncertainty'], r'(from is null|no until|No until|no end is set)', h['name'])
                 for cid in h['claim_ids']:
@@ -512,7 +526,11 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
     def test_starts_and_ends_only_where_a_source_states_one(self):
         for rid in (GOV_ROLE, SS_ROLE, PRES_ROLE):
             for h in self.roles[rid][1]['holder_claims']:
-                self.assertIsNone(h['from'], (rid, h['name']))
+                # The one exception is CLAUDE-C01-49's oath observation, from 15 March 1990 (pinned in its own test).
+                if rid == PRES_ROLE and h['claim_ids'] == C01_49_OATH_CLAIMS:
+                    self.assertEqual(h['from'], '1990-03-15')
+                else:
+                    self.assertIsNone(h['from'], (rid, h['name']))
                 self.assertIsNone(h['until'], (rid, h['name']))
         for cid in TEMPTING_ENDS:
             self.assertRegex(self.claims[cid]['uncertainty'],
@@ -531,12 +549,14 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         self.assertIn('not acting service as Chairman', chair['scope_note'])
         self.assertIn('creates no Chairman of the Supreme Soviet', chair['scope_note'])
         self.assertEqual([u.split(':')[0] for u in self.gov['coverage']['unresolved']],
-                         ['SU-GOV-01', 'SU-GOV-03', 'SU-GOV-04', 'SU-GOV-05', 'SU-GOV-06', 'SU-GOV-07', 'SU-GOV-10', 'Hosting'])
+                         ['SU-GOV-01', 'SU-GOV-03', 'SU-GOV-04', 'SU-GOV-05', 'SU-GOV-06', 'SU-GOV-07', 'SU-GOV-10', 'Hosting',
+                          'SU-GOV-11 (CLAUDE-C01-49)', 'SU-GOV-12 (CLAUDE-C01-49)'])
         ss = next(e for e in self.packet['institutions'] if e['id'] == SS)
         self.assertEqual([u.split(':')[0] for u in ss['coverage']['unresolved'][-4:]], ['SU-GOV-02', 'SU-GOV-08', 'SU-GOV-09', 'SU-GOV-10'])
         self.assertEqual(sum('CLAUDE-C01-26' in u for u in self.packet['coverage']['unresolved']), 1)
         pres = next(e for e in self.packet['institutions'] if e['id'] == 'su_presidency')
-        self.assertTrue(pres['coverage']['unresolved'][-1].startswith('CLAUDE-C01-26: '))
+        # CLAUDE-C01-49 appended three items after it.
+        self.assertTrue(pres['coverage']['unresolved'][-4].startswith('CLAUDE-C01-26: '))
         # Constitution and statute texts carry procedure kinds only.
         for cid in ('su_rada_1861i_cabinet_chapter_19901226', 'su_rada_1861i_supreme_soviet_chair_provisions_19901226',
                     'su_law_1861i_premier_appointment_release_procedure_19901226', 'su_law_1861i_no_confidence_procedure_19901226',
@@ -802,9 +822,9 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         # With CLAUDE-C01-35's two organizations and two roles (36 claims), none mapped, and CLAUDE-C01-41's 26 claims on the
-        # existing su_cpsu roles.
+        # existing su_cpsu roles, and CLAUDE-C01-49's 17 claims on su_president and su_government_head.
         self.assertEqual((country['institution_observations'], country['role_observations'], country['source_claims'],
-                          country['mapping_pending']), (4, 8, 157, 7))
+                          country['mapping_pending']), (4, 8, 174, 7))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'USSR'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

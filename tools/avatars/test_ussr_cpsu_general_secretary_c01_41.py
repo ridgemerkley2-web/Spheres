@@ -35,7 +35,12 @@ NEW_SOURCES = [
 ]
 FIRST = 56
 COUNTS = (12, 26)
-TOTALS = (68, 157, 7, 8)
+# CLAUDE-C01-49 later appended 6 sources and 17 claims (positions 68-73) to su_president and su_government_head.
+TOTALS = (74, 174, 7, 8)
+# Its holders rest only on these sources (pinned in test_ussr_government_president_c01_49) and are left out of the
+# other-holders digest, which still covers every holder present at the integration base.
+C01_49_SOURCES = {'su_snd3_steno_vol3_president', 'su_pravda_no13_19910115', 'su_pravda_no20_19910123', 'su_izv_197_19910820',
+                  'su_ved_1991_35_president', 'su_ved_1991_41_president'}
 FILES = {
     'su_pravda_no37_19900206': 'ussr-pravda-no37-cc-plenum-19900206-facts.json',
     'su_pravda_no192_19900711': 'ussr-pravda-no192-general-secretary-election-19900711-facts.json',
@@ -273,9 +278,10 @@ def roles_of(packet):
     return {r['id']: (e, r) for g in ('organizations', 'institutions') for e in packet[g] for r in e['roles']}
 
 
-def holder_digest(packet, skip_roles):
+def holder_digest(packet, skip_roles, appended=frozenset()):
     rows = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until'], h['sources'], h['claim_ids'])
-                       for h in r['holder_claims'] if isinstance(h, dict)])
+                       for h in r['holder_claims']
+                       if isinstance(h, dict) and not (h['sources'] and set(h['sources']) <= appended)])
             for g in ('organizations', 'institutions') for e in packet[g] for r in e['roles'] if r['id'] not in skip_roles]
     return hashlib.sha256(json.dumps(rows, ensure_ascii=False).encode('utf-8')).hexdigest()
 
@@ -298,7 +304,7 @@ def c41_invariants(ussr, russia):
         assert roles[role_id][1]['holder_claims'][0] == base, role_id
     assert 'Ivashkov (source spelling; identity reconciliation pending)' in roles[DGS][1]['holder_claims'][0]['name']
     # Every other USSR role and holder is unchanged.
-    assert holder_digest(ussr, {GS, DGS}) == OTHER_HOLDERS_SHA256
+    assert holder_digest(ussr, {GS, DGS}, C01_49_SOURCES) == OTHER_HOLDERS_SHA256
     # Each new holder rests on one in-office claim of its own role, dated that day, with no from and no until (rules first,
     # so a mutation meets the rule it breaks; the exact lists are compared at the end).
     for role_id in HOLDERS:
@@ -402,7 +408,7 @@ class UssrCpsuGeneralSecretaryTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(EVENTS)), COUNTS)
-        self.assertEqual([s['id'] for s in self.packet['sources'][FIRST:]], NEW_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources'][FIRST:FIRST + len(NEW_SOURCES)]], NEW_SOURCES)
         self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), TOTALS)
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         dates = [self.sources[sid]['document_date'] for sid in NEW_SOURCES]

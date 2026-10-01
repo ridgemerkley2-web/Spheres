@@ -1,0 +1,148 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd3_steno_vol3_president",
+  "source_url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+  "original_url": "https://snd.sssr.su/III/III.pdf",
+  "archive_capture_utc": "2024-09-03T21:09:42Z",
+  "source_title": "Внеочередной третий Съезд народных депутатов СССР, 12-15 марта 1990 г. Стенографический отчет. Том III (seventh sitting, 15 March 1990: the election result, the oath and the assumption of office of the President of the USSR), scanned volume, Internet Archive capture 20240903210942; recorded for the Presidency",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1990-03-15",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+  "source_response_bytes": 12922126,
+  "source_response_sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/III/III.pdf",
+    "bytes": 12922126,
+    "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+    "last_modified": "Mon, 20 May 2024 23:35:08 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "This packet: downloaded at 2026-10-01T12:01:50Z and again at 2026-10-01T12:35:32Z (33 minutes later) with plain curl 8.16.0 (curl's own User-Agent, no Accept-Encoding header, no cookies, no cache-busting query, no redirect followed); identical 12,922,126 bytes and SHA-256; the attached response also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest 32FRDYNMC4T2XBM2SR3D5UMOLJ3KGRHJ.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+      "downloaded_at": [
+        "2026-10-01T12:01:50Z",
+        "2026-10-01T12:35:32Z"
+      ],
+      "bytes": 12922126,
+      "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://snd.sssr.su/III/III.pdf",
+      "downloaded_at": [
+        "2026-10-01T12:02:08Z",
+        "2026-10-01T12:35:54Z"
+      ],
+      "bytes": 12922126,
+      "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/III/III.pdf, captured at 2024-09-03T21:09:42Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The same bytes as su_snd3_steno_vol3 (CLAUDE-C01-35), recorded under a new ID so that its extract stays unchanged. Imported from the seventh sitting of 15 March 1990 (printed pp. 54-56): the presiding officer's reference to the previous day's ballot, the counting commission's report of the result, the approval of its protocol and the adoption of the election resolution, the oath, and the presiding officer's declaration that Михаил Сергеевич Горбачев had assumed the office of President. The new President's address that follows is not imported.",
+  "edition_and_host": {
+    "edition": "Внеочередной третий съезд народных депутатов СССР, 12-15 марта 1990 г. Стенографический отчет. Том III. Издание Верховного Совета СССР, Москва, 1990; 340 PDF pages, printed p. N on PDF p. N + 2 for the cited pages (seventh sitting heading on printed p. 54, PDF p. 56).",
+    "host": "SSSR.SU portal (snd.sssr.su, vedomosti.sssr.su, izvestija.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      56,
+      57,
+      58
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited passage was rendered from the recorded bytes with PyMuPDF (100-260 dpi crops) and read from the page image; the PDF's text layer (OCR), where present, was used only to find passages. Headings, signature and date blocks, mastheads and quotations were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd3p_president_ballot_held_19900314",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-01",
+      "role_id": "su_president",
+      "holder_name": null,
+      "persons_named": [
+        "А. И. Лукьянов"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "event_kind": "secret_ballot_held",
+      "attested_on": "1990-03-14",
+      "text": "At the seventh sitting of the Congress of People's Deputies of the USSR ('Кремлевский Дворец съездов. 15 марта 1990 года. 10 часов утра'; 'Председательствует Первый заместитель Председателя Верховного Совета СССР А. И. Лукьянов'), the presiding officer says: 'Как вы знаете, вчера состоялось голосование по кандидатуре на пост Президента СССР.'",
+      "locator": "Seventh sitting: heading and opening, printed p. 54 (PDF p. 56)"
+    },
+    {
+      "claim_id": "su_snd3p_president_vote_result_19900315",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-01",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "Осипьян Ю. А.",
+        "Горбачев Михаил Сергеевич"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'Президентом СССР избран'",
+      "event_kind": "election_result_announced",
+      "attested_on": "1990-03-15",
+      "text": "The chairman of the Congress's counting commission, 'Осипьян Ю. А.', reports the secret ballot for President of the USSR, in which 'была внесена кандидатура товарища Горбачева Михаила Сергеевича': of 2245 people's deputies, 2000 received ballots; 1878 ballots were found, 54 of them invalid; 'за кандидата в Президенты — 1329 голосов, против — 495 голосов. Таким образом, сообщаю Съезду, что на основании подсчета голосов Президентом СССР избран товарищ Горбачев Михаил Сергеевич.'",
+      "locator": "Seventh sitting, printed pp. 54-55 (PDF pp. 56-57)"
+    },
+    {
+      "claim_id": "su_snd3p_protocol_approved_resolution_adopted_19900315",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-01",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "Горбачев Михаил Сергеевич"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'Избрать Президентом'",
+      "event_kind": "election_resolution_adopted",
+      "attested_on": "1990-03-15",
+      "text": "The Congress approves the counting commission's protocol ('Таким образом, протокол Счетной комиссии утвержден'; 'Проголосовало «за»' 1822, 'Проголосовало «против»' 47, 'Воздержалось' 35) and, 'По итогам тайного голосования', adopts the resolution '«Съезд народных депутатов СССР постановляет: Избрать Президентом Союза Советских Социалистических Республик товарища Горбачева Михаила Сергеевича»'.",
+      "locator": "Seventh sitting, printed pp. 55-56 (PDF pp. 57-58)"
+    },
+    {
+      "claim_id": "su_snd3p_gorbachev_oath_19900315",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-01",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "Горбачев М. С."
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'обязанности Президента СССР'",
+      "event_kind": "oath_of_office",
+      "attested_on": "1990-03-15",
+      "text": "The presiding officer: 'В соответствии с Конституцией при вступлении в должность Президент СССР приносит Присягу на Съезде народных депутатов СССР. Присяга приносится на утвержденной Съездом Конституции СССР.' Then 'Горбачев М. С.': 'Торжественно клянусь верно служить народам нашей страны, строго следовать Конституции СССР, гарантировать права и свободы граждан, добросовестно выполнять возложенные на меня высокие обязанности Президента СССР.'",
+      "locator": "Seventh sitting, printed p. 56 (PDF p. 58)"
+    },
+    {
+      "claim_id": "su_snd3p_assumption_of_office_declared_19900315",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-01",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "Михаил Сергеевич Горбачев"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'вступил в должность Президента Союза Советских Социалистических Республик'",
+      "event_kind": "assumption_of_office",
+      "attested_on": "1990-03-15",
+      "text": "Immediately after the oath the presiding officer declares: 'Товарищи депутаты, таким образом, Михаил Сергеевич Горбачев вступил в должность Президента Союза Советских Социалистических Республик.' The next speaker line reads 'Горбачев М. С., Президент СССР.'",
+      "locator": "Seventh sitting, printed p. 56 (PDF p. 58)"
+    }
+  ],
+  "bounded_scope": "USSR President and head-of-government observations for CLAUDE-C01-49 only. Ballot, election result, election resolution, oath, declared assumption of office, appointment approval, stylings, acting-service and transfer-of-powers claims, a legislative body's declaration and in-office signatures stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, russia.json and the simulation's party rows are outside this extract."
+}

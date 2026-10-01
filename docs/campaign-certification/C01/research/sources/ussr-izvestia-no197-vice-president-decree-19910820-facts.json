@@ -1,0 +1,116 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_izv_197_19910820",
+  "source_url": "https://izvestija.sssr.su/1991/197.pdf",
+  "source_title": "Известия Советов народных депутатов СССР, № 197 (23463), Вторник, 20 августа 1991 года (union edition): Указ вице-президента СССР, Заявление советского руководства and Обращение к главам государств и правительств и генеральному секретарю ООН (18 August 1991); page-image scan, live static file",
+  "accessed_date": "2026-10-01",
+  "published_date": "1991-08-20",
+  "document_date": "1991-08-20",
+  "access_method": "scanned_facsimile_downloaded_over_https",
+  "source_response_url": "https://izvestija.sssr.su/1991/197.pdf",
+  "source_response_bytes": 39761395,
+  "source_response_sha256": "ddb564e7447c86f66a51e9591104aba840af13aef90689bf96178c7e63e45e4d",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "source_response_last_modified": "Fri, 02 Dec 2016 01:36:05 GMT",
+  "stability_check": "This packet: downloaded at 2026-10-01T12:02:58Z and again at 2026-10-01T12:36:50Z (33 minutes later) with plain curl 8.16.0 (curl's own User-Agent, no Accept-Encoding header, no cookies, no cache-busting query, no redirect followed); identical 39,761,395 bytes and SHA-256. The host serves the file as a static file with a fixed Last-Modified (Fri, 02 Dec 2016 01:36:05 GMT); the Internet Archive's CDX index holds no capture of this URL.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://izvestija.sssr.su/1991/197.pdf",
+      "downloaded_at": [
+        "2026-10-01T12:02:58Z",
+        "2026-10-01T12:36:50Z"
+      ],
+      "bytes": 39761395,
+      "sha256": "ddb564e7447c86f66a51e9591104aba840af13aef90689bf96178c7e63e45e4d",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "The live static file https://izvestija.sssr.su/1991/197.pdf on the non-official SSSR.SU host, requested without an Accept-Encoding header and served without Content-Encoding. No Internet Archive capture exists, so the live file is the recorded identity; its Last-Modified date (2016) precedes the 7 September 2026 cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The union edition of Izvestia No. 197, dated 20 August 1991, printing the documents issued in the name of the Vice-President and the 'Soviet leadership' on 18 August 1991. Imported as claims only: the Vice-President's decree on assuming the President's duties, the opening of the statement of the 'Soviet leadership', the statement's listing of the Premier among the members of the State Committee for the State of Emergency, and the acting styling under the appeal to heads of state. No Internet Archive capture of this file exists; the recorded identity is the live static file (fixed Last-Modified 2 December 2016). The scan has no text layer; every passage was read from the page image.",
+  "edition_and_host": {
+    "edition": "Известия Советов народных депутатов СССР, № 197 (23463), Вторник, 20 августа 1991 года, '[Союзный выпуск]' in the host's index (masthead, PDF p. 1); 8 PDF pages, printed page N on PDF page N; every cited passage is on page 1.",
+    "host": "SSSR.SU portal (snd.sssr.su, vedomosti.sssr.su, izvestija.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited passage was rendered from the recorded bytes with PyMuPDF (100-260 dpi crops) and read from the page image; the PDF's text layer (OCR), where present, was used only to find passages. Headings, signature and date blocks, mastheads and quotations were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_izv197_vice_president_decree_assumes_duties_19910818",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-03",
+      "role_id": "su_president",
+      "holder_name": null,
+      "persons_named": [
+        "Г. И. ЯНАЕВ",
+        "Горбачев Михаил Сергеевич"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'вступил в исполнение обязанностей Президента СССР'",
+      "event_kind": "acting_service_claimed",
+      "attested_on": "1991-08-18",
+      "text": "Izvestia No. 197 (23463) of Tuesday 20 August 1991 prints 'УКАЗ ВИЦЕ-ПРЕЗИДЕНТА СССР': 'В связи с невозможностью по состоянию здоровья исполнения Горбачевым Михаилом Сергеевичем своих обязанностей Президента СССР на основании статьи 127(7) Конституции СССР вступил в исполнение обязанностей Президента СССР с 19 августа 1991 года.' Signed 'Вице-президент СССР Г. И. ЯНАЕВ'; dated '18 августа 1991 года'.",
+      "locator": "Page 1 (PDF p. 1): upper centre column, decree"
+    },
+    {
+      "claim_id": "su_izv197_leadership_statement_powers_passed_19910818",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-03",
+      "role_id": "su_president",
+      "holder_name": null,
+      "persons_named": [
+        "Горбачев Михаил Сергеевич",
+        "Янаев Геннадий Иванович",
+        "Г. ЯНАЕВ",
+        "В. ПАВЛОВ",
+        "О. БАКЛАНОВ"
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "event_kind": "powers_transfer_claimed",
+      "attested_on": "1991-08-18",
+      "text": "The same page prints 'ЗАЯВЛЕНИЕ СОВЕТСКОГО РУКОВОДСТВА', opening: 'В связи с невозможностью по состоянию здоровья исполнения Горбачевым Михаилом Сергеевичем обязанностей Президента СССР и переходом в соответствии со статьей 127(7) Конституции СССР полномочий Президента Союза ССР к Вице-Президенту СССР Янаеву Геннадию Ивановичу'; signed 'Г. ЯНАЕВ', 'В. ПАВЛОВ', 'О. БАКЛАНОВ' and dated '18 августа 1991 года'.",
+      "locator": "Page 1 (PDF p. 1): centre column, statement, first paragraph and signature block"
+    },
+    {
+      "claim_id": "su_izv197_statement_lists_pavlov_as_premier_19910818",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-12",
+      "role_id": "su_government_head",
+      "holder_name": "Валентин Сергеевич Павлов",
+      "persons_named": [
+        "Павлов В. С."
+      ],
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "role_title_as_printed": "'Премьер-Министр СССР'",
+      "event_kind": "styling_in_signed_statement",
+      "attested_on": "1991-08-18",
+      "text": "Point 3 of the same statement forms the 'Государственный комитет по чрезвычайному положению в СССР (ГКЧП СССР)' and lists among its members 'Павлов В. С. — Премьер-Министр СССР'; the statement is co-signed 'В. ПАВЛОВ'.",
+      "locator": "Page 1 (PDF p. 1): statement, point 3"
+    },
+    {
+      "claim_id": "su_izv197_acting_president_styling_19910818",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-PRES-03",
+      "role_id": "su_president",
+      "holder_name": null,
+      "persons_named": [
+        "Г. ЯНАЕВ",
+        "Янаев Г. И."
+      ],
+      "role_title": "Президент СССР — President of the USSR",
+      "role_title_as_printed": "'И. о. Президента СССР'",
+      "event_kind": "acting_styling_claimed",
+      "attested_on": "1991-08-18",
+      "text": "The same page prints the 'Обращение к главам государств и правительств и генеральному секретарю ООН', signed 'И. о. Президента СССР Г. ЯНАЕВ' and dated '18 августа 1991 года'; point 3 of the statement likewise lists 'Янаев Г. И. — и. о. Президента СССР'.",
+      "locator": "Page 1 (PDF p. 1): appeal, signature and date block; statement, point 3"
+    }
+  ],
+  "bounded_scope": "USSR President and head-of-government observations for CLAUDE-C01-49 only. Ballot, election result, election resolution, oath, declared assumption of office, appointment approval, stylings, acting-service and transfer-of-powers claims, a legislative body's declaration and in-office signatures stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, russia.json and the simulation's party rows are outside this extract."
+}
