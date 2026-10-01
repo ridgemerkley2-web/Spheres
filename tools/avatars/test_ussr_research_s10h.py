@@ -82,10 +82,14 @@ class UssrDiscoveryTests(unittest.TestCase):
         delegates, = self.entries['su_congress_peoples_deputies']['roles']
         self.assertEqual((general['kind'], deputy['kind'], president['kind'], chair['kind'], delegates['kind']),
                          ('party_leader', 'other', 'head_of_state', 'institutional_office', 'collective_seat'))
-        # The S10.h source stays first in both CPSU roles; CLAUDE-C01-41 appended only its own sources after it.
-        self.assertEqual(general['sources'][:1], ['su_japan_diplomatic_bluebook_1990'])
-        self.assertEqual(deputy['sources'][:1], general['sources'][:1])
-        self.assertLessEqual(set(general['sources'][1:]) | set(deputy['sources'][1:]), C01_41_SOURCES)
+        # The S10.h source stays first in both CPSU roles; CLAUDE-C01-41 appended its own sources after it, in order.
+        self.assertEqual(general['sources'], ['su_japan_diplomatic_bluebook_1990', 'su_pravda_no37_19900206',
+                                              'su_pravda_no192_19900711', 'su_pravda_no193_19900712', 'su_pravda_no195_19900714',
+                                              'su_pravda_no201_19910822', 'su_vs_bulletin1_cpsu_19910826',
+                                              'su_snd5_bulletin3_cpsu_19910903'])
+        self.assertEqual(deputy['sources'], ['su_japan_diplomatic_bluebook_1990', 'su_pravda_no193_19900712',
+                                             'su_pravda_no194_19900713', 'su_pravda_no195_19900714', 'su_izv_tsk_1991_08',
+                                             'su_pravda_no201_19910822'])
         self.assertEqual(chair['holder_claims'][0]['claim_ids'], ['su_gorbachev_chair_signature_19900314'])
         self.assertEqual(president['holder_claims'][0]['claim_ids'], ['su_gorbachev_president_letter_19900320'])
         self.assertEqual(delegates['holder_claims'], [])
