@@ -1,0 +1,105 @@
+{
+  "scope": "Additive observed resource assertion pass, pending uncontended measurement and residual diagnosis; no runtime or gate changes",
+  "payloads": [
+    {
+      "path": ".gitattributes",
+      "bytes": 72,
+      "sha256": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f"
+    },
+    {
+      "path": "analyze_existing.py",
+      "bytes": 7533,
+      "sha256": "03fa58d5ae1e58d80f5afbf123dcc4a567fa74ed6320a94d5fe19485180da207"
+    },
+    {
+      "path": "build-02/build-preflight.json",
+      "bytes": 100247,
+      "sha256": "8eff86f08df4cac486375784aca11068b4c816c8a2af281c2deced88e7eee55b"
+    },
+    {
+      "path": "build-02/build-result.json",
+      "bytes": 900,
+      "sha256": "c7c7bd6267a7cb8e64b57e72b7f9197dc1673b7fb510ff97bb3415802eabdc13"
+    },
+    {
+      "path": "build-02/build.log",
+      "bytes": 654,
+      "sha256": "ab8a158195ec0174f54f319de448566f3bda915adb9fe19f5cf8ec8c4f2adbbe"
+    },
+    {
+      "path": "build-preflight.json",
+      "bytes": 100247,
+      "sha256": "41bb991d14c56f8572af49c49b1b34d38008dde27ee5ef6a703363f8e2489dd9"
+    },
+    {
+      "path": "build-result.json",
+      "bytes": 635,
+      "sha256": "5b6dd1ce95931f1b8f0056c6f77cf54d0fe3d394899268e83117191267765eaf"
+    },
+    {
+      "path": "build.log",
+      "bytes": 518,
+      "sha256": "5e7fa46ad7cff0f50c27057b00fc6c49b71e61daf45fb3f26b515a880895a809"
+    },
+    {
+      "path": "confirm_quiet.ps1",
+      "bytes": 1247,
+      "sha256": "585dc57caa32c5bae737970b41d06cb0bacc23f850da6fab7d307c0996f6138a"
+    },
+    {
+      "path": "confirmation-window.json",
+      "bytes": 427,
+      "sha256": "e2ca7f8584640500e8b2635295e45a438195531be9a19790f24a9cdb29ea6c97"
+    },
+    {
+      "path": "existing-analysis.json",
+      "bytes": 123543,
+      "sha256": "177eca485ef35fef3585449740a867dc5b823d76966773d8c063d8f2ccaec8b6"
+    },
+    {
+      "path": "mechanism-proposal.md",
+      "bytes": 6159,
+      "sha256": "a01872c8a9340364ea29a9ef5be3ef96f96b354a0860861514b5452ab6b1b885"
+    },
+    {
+      "path": "mechanism-witnesses.json",
+      "bytes": 169122,
+      "sha256": "c43de1e656bd202fdf87aa9f780795c98945fd3662e119504ce2241a4a63e9d9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5453,
+      "sha256": "b9f71760083214bd6d88b00f369043ddc9b033a261c6eb1479fb380815cb0e12"
+    },
+    {
+      "path": "record_build.py",
+      "bytes": 3312,
+      "sha256": "331b751b0014380a51c5e211ae049a8408d2157633463515f6ee8a7606518faa"
+    },
+    {
+      "path": "record_timing.py",
+      "bytes": 3622,
+      "sha256": "5f1a463e569c0fe3de66a49123d38d08f6ef006bffcdde0141ab325136b00a36"
+    },
+    {
+      "path": "resource-timing-result.json",
+      "bytes": 1283,
+      "sha256": "81d42ae3c67e41da90c5be5af08a2f5f5d323f6de4bb0393da2ee247f33867dc"
+    },
+    {
+      "path": "resource-timing.log",
+      "bytes": 841,
+      "sha256": "f5569c67c8cf4bd25c4fced10fabd58c2ba2c580b473347cdec02ce56699996e"
+    },
+    {
+      "path": "timing-environment.json",
+      "bytes": 61116,
+      "sha256": "7d220dd39084c06b180f67ca77a7417ddbf2d4b1bd14f4cb88f5063fde0beb40"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3062,
+      "sha256": "46c6d50616c2684e8b724f680a893d566533ecdac7b1909305c6dc76e5aa3a82"
+    }
+  ]
+}
