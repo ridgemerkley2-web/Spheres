@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_site_versailles_reaction_20180709",
+  "source_url": "https://web.archive.org/web/20180710122030id_/http://www.parti-socialiste.fr/reaction-dolivier-faure-suite-congres-de-versailles-lautosatisfecit-demmanuel-macron/",
+  "original_url": "http://www.parti-socialiste.fr/reaction-dolivier-faure-suite-congres-de-versailles-lautosatisfecit-demmanuel-macron/",
+  "archive_capture_utc": "2018-07-10T12:20:30Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2018-07-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 120083,
+  "source_response_sha256": "57fc330c3a2dd0d05a9ebb454c2b1752bb90f7ecd4b1d56f468e13c64133f963",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2018-07-10T12:20:30Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the HTML as received. This packet downloaded it at 2026-10-01 12:28Z and again at 2026-10-01 13:04Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 10 July 2018 of a statement on the party's website, dated 9 July 2018 on the page. Only its date and signature line are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_faure_signed_statement_20180709",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-11",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Olivier Faure",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_signed_statement",
+      "attested_on": "2018-07-09",
+      "text": "The statement is dated '09 juillet 2018' and signed 'Olivier FAURE Premier secrétaire du Parti socialiste et Député de la 11ème circonscription de Seine-et-Marne (77)'.",
+      "locator": {
+        "item": "date and signature line under the title"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

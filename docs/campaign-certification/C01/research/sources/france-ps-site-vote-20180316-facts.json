@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_site_vote_20180316",
+  "source_url": "https://web.archive.org/web/20180409042650id_/http://www.parti-socialiste.fr/vote-adherentes-adherents-parti-socialiste-mobilisation-importante-dit-lespoir-resultat-clair-oblige/",
+  "original_url": "http://www.parti-socialiste.fr/vote-adherentes-adherents-parti-socialiste-mobilisation-importante-dit-lespoir-resultat-clair-oblige/",
+  "archive_capture_utc": "2018-04-09T04:26:50Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2018-03-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 121043,
+  "source_response_sha256": "c85090e7a8fea249996bb22adbb5d3541a26fdf0fddb5496a879ab11bb0a4eee",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2018-04-09T04:26:50Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the HTML as received. This packet downloaded it at 2026-10-01 12:25Z and again at 2026-10-01 13:04Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 9 April 2018 of a statement on the party's website, dated 16 March 2018 on the page and signed by its national coordinator. Only the statement text is imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_orientation_text_vote_20180315",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-11",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": null,
+      "role_title": "Premier secrétaire",
+      "event_kind": "orientation_text_vote_result",
+      "attested_on": "2018-03-15",
+      "text": "The statement reports that on 'Le scrutin du 15 mars' 37 014 members voted and that the orientation text 'Socialistes, le chemin de la renaissance' led by Olivier Faure came first 'avec 48,56 % des suffrages exprimés'.",
+      "locator": {
+        "item": "statement text, paragraphs 2 to 4"
+      }
+    },
+    {
+      "claim_id": "fr_ps_temal_national_coordinator_20180316",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-10",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": null,
+      "role_title": "Premier secrétaire",
+      "event_kind": "interim_coordinator_styling",
+      "attested_on": "2018-03-16",
+      "text": "The statement is dated '16 mars 2018' and signed 'Rachid TEMAL Coordinateur national du Parti socialiste'.",
+      "locator": {
+        "item": "date and signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

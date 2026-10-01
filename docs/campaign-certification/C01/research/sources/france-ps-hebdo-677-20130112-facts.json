@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_hebdo_677_20130112",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/21578/image/11571/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "2013-01-12",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 588055,
+  "source_response_sha256": "5bfd603f651640cdc6ec8aefdaf61e8753c887873d77867f3c12065334390371",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 21578,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcec3536f164969bc7fa163e8087d3/1/1",
+    "stored_file": "depot/presse/hds/hds_677_n.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 21578 (stored file depot/presse/hds/hds_677_n.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"a1ca60764b6cec1e2336749081e45ecd\"; Content-Disposition: attachment; filename=depot-presse-hds-hds-677-n.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:26Z and again at 2026-10-01 13:03Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "L'Hebdo des socialistes n°677, dated 12 to 18 January 2013 on its first page. Only the item on the visit to Jarnac on 8 January 2013 (PDF p. 3) is imported. An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_desir_at_jarnac_20130108",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-08",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Harlem Désir",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_styling",
+      "attested_on": "2013-01-08",
+      "text": "The issue reports that the socialists went to Jarnac 'en ce 8 janvier' and that 'Harlem Désir, Premier secrétaire du PS, était entouré d'une délégation'.",
+      "locator": {
+        "pdf_page_1_based": 3,
+        "item": "item on Jarnac, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

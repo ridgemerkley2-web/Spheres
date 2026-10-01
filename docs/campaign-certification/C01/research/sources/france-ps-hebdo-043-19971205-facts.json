@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_hebdo_043_19971205",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/14552/image/7344/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "1997-12-05",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 5233445,
+  "source_response_sha256": "5a91eac0fd9dd62527d410ae2587e2a5fd4df7c0247c264bb3d1972da6e2a428",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 14552,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcec2a605b6788a2b4fa163e8087d3/1/1",
+    "stored_file": "depot/presse/hds/hds_043_p_ocr.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 14552 (stored file depot/presse/hds/hds_043_p_ocr.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"db04aa5964d4b37ab599440146d8189b\"; Content-Disposition: attachment; filename=depot-presse-hds-hds-043-p-ocr.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:23Z and again at 2026-10-01 13:03Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "L'Hebdo des socialistes n°43, dated 5 December 1997 on its pages. Imported: a communiqué headed with François Hollande's title (PDF p. 2) and the page on the new secrétariat national with the result of the election of the Premier secrétaire (PDF p. 11). An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_hollande_members_vote_result_1997",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-06",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "François Hollande",
+      "role_title": "Premier secrétaire",
+      "event_kind": "members_vote_result",
+      "attested_on": "1997-12-05",
+      "text": "The issue prints the 'Résultats des votes élection du Premier secrétaire': participation 75,21 %, 'F. Hollande : 73 489 voix soit 91,18%' and 'J.·L. Mélenchon : 7 113 voix soit 8,82%'.",
+      "locator": {
+        "pdf_page_1_based": 11,
+        "item": "box 'Résultats des votes élection du Premier secrétaire'"
+      }
+    },
+    {
+      "claim_id": "fr_ps_hollande_styled_premier_secretaire_19971205",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-06",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "François Hollande",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_styling",
+      "attested_on": "1997-12-05",
+      "text": "The issue prints a 'COMMUNIQUÉ DE FRANÇOIS HOLLANDE PREMIER SECRÉTAIRE DU PARTI SOCIALISTE' (its text speaks of 'cette journée du 25 novembre') and lists François Hollande first in the new 'Secrétariat national (26 membres)'.",
+      "locator": {
+        "pdf_page_1_based": 2,
+        "item": "heading 'COMMUNIQUÉ DE FRANÇOIS HOLLANDE PREMIER SECRÉTAIRE DU PARTI SOCIALISTE'; PDF p. 11, list 'Secrétariat national (26 membres)'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

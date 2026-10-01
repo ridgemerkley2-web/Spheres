@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_site_conseil_national_20230311",
+  "source_url": "https://web.archive.org/web/20230313182432id_/https://www.parti-socialiste.fr/conseil_national_du_11_mars_2023_le_discours_du_premier_secretaire",
+  "original_url": "https://www.parti-socialiste.fr/conseil_national_du_11_mars_2023_le_discours_du_premier_secretaire",
+  "archive_capture_utc": "2023-03-13T18:24:32Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 54412,
+  "source_response_sha256": "4a59851ea5e027235976ee0737c88129a3e3b449d47cd075df1479e36b9d640a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2023-03-13T18:24:32Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the HTML as received. This packet downloaded it at 2026-10-01 12:26Z and again at 2026-10-01 13:05Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 13 March 2023 of a page on the party's website. Its text states the day of the event (Saturday 11 March 2023); the site's publication stamp is not used as a date. Only the page's first sentence is imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_faure_closes_conseil_national_20230311",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-11",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Olivier Faure",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_styling",
+      "attested_on": "2023-03-11",
+      "text": "The page reads: 'Samedi 11 mars 2023, notre Premier secrétaire Olivier Faure s'est exprimé en clôture du Conseil national.'",
+      "locator": {
+        "item": "first sentence of the page text"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

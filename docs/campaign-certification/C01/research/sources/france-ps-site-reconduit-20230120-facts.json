@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_site_reconduit_20230120",
+  "source_url": "https://web.archive.org/web/20230120083422id_/https://www.parti-socialiste.fr/olivier_faure_reconduit_a_la_tete_du_parti_socialiste",
+  "original_url": "https://www.parti-socialiste.fr/olivier_faure_reconduit_a_la_tete_du_parti_socialiste",
+  "archive_capture_utc": "2023-01-20T08:34:22Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2023-01-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 53341,
+  "source_response_sha256": "5f434b90ab670588983ba4b23feeecb6b9b6ab7539ec42b0da5b81b3d58715d3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2023-01-20T08:34:22Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the HTML as received. This packet downloaded it at 2026-10-01 12:25Z and again at 2026-10-01 13:04Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 20 January 2023 of a communiqué on the party's website, dated Friday 20 January 2023 on the page. Only the communiqué text is imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_members_vote_20230119",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-11",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Olivier Faure",
+      "role_title": "Premier secrétaire",
+      "event_kind": "members_vote_result",
+      "attested_on": "2023-01-19",
+      "text": "The communiqué reports that on 'Jeudi 19 janvier, les militants étaient appelés à choisir leur Premier secrétaire': Olivier Faure obtained 12 076 votes (50,83 %) and Nicolas Mayer-Rossignol 11 683 (49,17 %); 'Les militants ont donc reconduit Olivier Faure à la tête du Parti socialiste', the definitive results to be proclaimed after the delegates' vote at the Marseille congress of 27, 28 and 29 January 2023.",
+      "locator": {
+        "item": "communiqué text"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

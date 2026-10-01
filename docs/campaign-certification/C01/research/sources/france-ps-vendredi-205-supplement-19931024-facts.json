@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_vendredi_205_supplement_19931024",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/5821/image/3381/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "1993-10-24",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 14336813,
+  "source_response_sha256": "bf1a45d245e0393074edea012c5d77fc41728c26ee93d3dc5695f44661c13f06",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 5821,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcea8ebb486a9ea252fa163e8087d3/1/1",
+    "stored_file": "depot/presse/vendredi/vendredi_205supp.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 5821 (stored file depot/presse/vendredi/vendredi_205supp.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"1179c8f0010de8cf3d4c73afaf557ee2\"; Content-Disposition: attachment; filename=depot-presse-vendredi-vendredi-205supp.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:04Z and again at 2026-10-01 13:02Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Congress edition of Vendredi (supplement to n°205, second section), dated Sunday 24 October 1993 on its pages, during the Le Bourget congress. Only the result of the election of the Premier secrétaire by the congress (PDF p. 13) is imported. 'Samedi' resolves from the dateline to 23 October 1993. An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_rocard_elected_by_congress_19931023",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-03",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Michel Rocard",
+      "role_title": "Premier secrétaire",
+      "event_kind": "election_by_congress",
+      "attested_on": "1993-10-23",
+      "text": "The congress edition dated Sunday 24 October 1993, under 'Premier premier secrétaire élu par le congrès', reports that at 18:00 on 'samedi' André Laignel gave the result of the first secret-ballot election of the premier secrétaire: 638 registered, 587 voting, 112 blank or void, 'Michel Rocard : 475 voix, soit 80,92% des suffrages'; in an issue dated Sunday 24 October 1993, 'samedi' is 23 October 1993.",
+      "locator": {
+        "pdf_page_1_based": 13,
+        "item": "heading 'PREMIER PREMIER SECRETAIRE ELU PAR LE CONGRES' and the result box"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}
