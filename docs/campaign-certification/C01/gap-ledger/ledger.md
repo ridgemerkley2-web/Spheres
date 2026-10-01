@@ -47,7 +47,7 @@ These completed reviews are no longer pending work. Their remaining coverage gap
 | CLAUDE-C01-36 | Tonga | `c29f17093b9b34bcef90b25ae53d349fe36330a7` | Tongan deputy prime ministers, 1990-2026; bounded observations accepted, no runtime mapping |
 | CLAUDE-C01-37 | France | `ed36670ef6125257bfa9e178c93049a303e0eb37` | French prime ministers, 1990-2026; bounded observations accepted, no runtime mapping |
 | CLAUDE-C01-38 | France | `fa48313b4218a8ad787ea33e126c8db4e64f0987` | French prime ministers, 2014-2026; bounded observations accepted, no effective terms or runtime mapping |
-| CLAUDE-C01-40 | India | `6ee593de6bb6a0c9fe5ae8ec5000d268421f485b` | CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping |
+| CLAUDE-C01-40 | India | `53b8a0ebf8b2683acb0b64de0e6cfbea7e946ff4` | CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping |
 | CLAUDE-C01-41 | USSR -> Russia | `01faa02352365382a5a325f76c9fdf9472cffec0` | CPSU General Secretary and Deputy General Secretary, 1990-1991; bounded observations accepted, no runtime mapping |
 
 ## Completed source repairs (bounded acceptance only)

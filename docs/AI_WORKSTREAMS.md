@@ -50,7 +50,7 @@ exceptions to the one game integration branch:
 |---|---|
 | `claude/c01-jp-31` | Komeito at `696937ba` is accepted as bounded intake: all 31 originals, 64 claims and fifteen holder observations reviewed. First import `b74f4fa5` and [acceptance receipt `d4d3542b`](campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md) preserve the Takeya boundary correction, three locator repairs and earlier failed checkpoints. Do not duplicate the accepted packet. |
 | `claude/c01-za-39` | Latest `b66f8c07` follows the reviewed `9cb02c20` submission. Correction `9e3d0b3c` adds a Zille 2007 observation, proposes Maimane's end as 23 October 2019 and repairs a quote apostrophe; these changes are not accepted. [Follow-up triage](campaign-certification/C01/reviews/PENDING-2026-10-01/README.md) is separate from the preserved original review. No DA research or test repair is imported. |
-| `claude/c01-fr-38`, `claude/c01-in-40`, `claude/c01-su-41` | Accepted scoped imports and independent review receipts are integrated. Exact source, correction and acceptance revisions are in the [Claude handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) and queue. Fetch current integration before further work; no complete country cast is claimed. |
+| `claude/c01-fr-38`, `claude/c01-in-40`, `claude/c01-su-41` | Accepted scoped imports and independent review receipts are integrated. India follow-up `d7e1b9d2` adds two verified originals and conservatively reselects two observations; its [separate amendment review](campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md) preserves all earlier evidence and unknown office boundaries. Exact source, correction and acceptance revisions are in the [Claude handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) and queue. Fetch current integration before further work; no complete country cast is claimed. |
 | `claude/c01-ru-28` | Held Russia submission at `03141c43`; three originals / four claims remain unresolved, with no remaining holder-row dependency. Preserve all prior content review and failed attempts; import no held research. |
 | `claude/c01-gaps-01-fix` | Follow-up `1aa67047` reviewed and not adopted: retain current full-queue provenance and regenerate its metadata. Its older projection and generated payload are not imported. Preserve the exact tip; the earlier bounded gap-audit task remains accepted. |
 | `dashboard` | Publishes the existing GitHub Pages status site and research-pipeline status. It is not game code. |
@@ -59,6 +59,12 @@ The original 145-branch inventory, recovery tags and ancestor comparisons are in
 [the branch archive](archive/branches-2026-09-30.json). Archived branches are not
 all literal Git merges: reviewed/cherry-picked work and older experiments retain
 their exact tips without being imported into the game again.
+
+A later 1 October fetch also found C01-45 at `d7db2cbc`, a new Saudi research
+submission awaiting independent review. C01-42, C01-43, C01-44 and C01-46
+remain claimed, without completed deliveries at their checked tips. Preserve
+these Claude branches and ownership; the [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md)
+records their exact revisions. None is imported or counted as accepted here.
 
 ## Handoffs and evidence
 
