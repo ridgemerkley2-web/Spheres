@@ -1,0 +1,2148 @@
+{
+  "version": 1,
+  "nation": "Brazil",
+  "reviewed_at": "2026-10-01",
+  "historical_cutoff": "2026-09-07",
+  "historical_window_start": "1990-01-01",
+  "status": "identity_and_coverage_review_proposal",
+  "task": "CLAUDE-C06-BRAZIL-01",
+  "branch": "claude/c06-br-01",
+  "base": "2fd186d6",
+  "claim_commit": "473f234a",
+  "scope": "Brazil cast batch 1: the five registry people with accepted C01 holder observations (C01-34 MDB and PDT national presidents, C01-43 PRN/PTC/Agir national presidents), in seven requested appearance windows. Six windows (four people) are prepared, each with one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Daniel Tourinho is excluded because no qualifying likeness reference exists. There is no reserve. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+  "prepared_by": "Claude: one preparation agent and one independent verification agent per requested window (seven windows, five people), assembled and mechanically corrected by Claude on 2026-10-01. This is not human review, not Codex review and not user approval.",
+  "authority": {
+    "runtime_installation": false,
+    "office_eligibility": false,
+    "continuous_terms": false,
+    "art_approval": false,
+    "human_acceptance": false,
+    "country_completion": false
+  },
+  "accepted_research": {
+    "path": "docs/campaign-certification/C01/research/brazil.json",
+    "sha256": "a5331b1826ffa3fd02833ac05f5055b9e1852c00800766f9efc27b603ef689a6",
+    "packets_used": [
+      "C01-34",
+      "C01-43"
+    ],
+    "evidence_class": {
+      "source": {
+        "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+        "sha256": "a7b3c1f1924394743cfebfc1fc7cac7ee24970f40451616273f91aafa374962b"
+      },
+      "note": "completed_research_intakes classes CLAUDE-C01-34 (integration ec8cb88b) and CLAUDE-C01-43 (integration 5a0fc340) as c01_accepted. Brazil's C01-10 presidents, C01-17 vice-presidents and C01-22 PT presidents are c01_integrated_pending and are not used as a basis."
+    },
+    "receipts": [
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-34/README.md",
+        "sha256": "bcda1daef7a2e4ba9af252b38361542ea6a58b663dde7fd219e5bd2e3b56b044",
+        "packet": "C01-34"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-34/manifest.json",
+        "sha256": "4f24587378e9600af2d39fa90158de2b7ea6f32617bed7b35d676ec4e4f49787",
+        "packet": "C01-34"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-34/review.json",
+        "sha256": "979cd6ae8056e99480b5919a36b1e9331c56e1350b5664c7dc7b0cd38f735637",
+        "packet": "C01-34"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-43/README.md",
+        "sha256": "5ea442b89992c5dee10a3a5daedcd9f77a5ccc2bc6d71fe847a7cc63cea7f201",
+        "packet": "C01-43"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/README.md",
+        "sha256": "73a18fc689371f94b12d3dbe62d5a777daae0a92253f9c4cdcda43f8c827facb",
+        "packet": "C01-43"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/manifest.json",
+        "sha256": "5049cc20e193d66856c414505046a6f610f5e2dca4c78e1eee84aec5fa006d80",
+        "packet": "C01-43"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/holder-review.json",
+        "sha256": "a43eef088ca9b35b756eaa3c054637d102085bc8f8648d592240655f39f820d5",
+        "packet": "C01-43"
+      }
+    ]
+  },
+  "registry_inputs": {
+    "party_leaders": {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+    },
+    "person_portraits": {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+    },
+    "leadership_production": {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+    },
+    "person_art_pipeline": {
+      "path": "tools/avatars/person_art_pipeline.py",
+      "sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab"
+    },
+    "style_anchor": {
+      "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+      "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "use": "STYLE ONLY"
+    },
+    "pipeline_jobs_inventory": {
+      "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/br-cast/jobs.json",
+      "path": "D:/spheres-scratch/br-cast/jobs.json",
+      "bytes": 767375,
+      "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+      "job_version": "person-cartoon-v4",
+      "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+      "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+      "window_scoped_job_files": [
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-2001-09-09-2010-06-15.json",
+          "bytes": 731297,
+          "sha256": "c2d46cc9697761fb30b587c2e1d82f1c2f875554d85f912fe5330d2eea7c8268"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-2010-06-15-2019-01-01.json",
+          "bytes": 731878,
+          "sha256": "41a9b58bfaa84013143ec62e7091ac94cfd8b30b9103792dbcdc72ecab8dc81f"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-2019-10-06-2026-09-08.json",
+          "bytes": 720738,
+          "sha256": "bc28a666cc84608c706691c21459fe02437f6e6d1423ac7e1d9bfa4b7ee486d3"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-1995-01-01-2004-06-21.json",
+          "bytes": 734829,
+          "sha256": "3e09ee66fee390ab7aa1ea242e905677db4326d47b505e553b955db4f40dee1b"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-2004-06-30-2015-01-01.json",
+          "bytes": 740370,
+          "sha256": "064893ac2d48063bd07e409a91f49b1b331b2ef5401321195b8c695103d7cfd2"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-2015-01-01-2026-09-08.json",
+          "bytes": 728772,
+          "sha256": "c378657e38510954e4e1c87d1e496edd36f521252e191c5b4bb6aabb91813037"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/window-jobs/jobs-2014-05-16-2026-09-08.json",
+          "bytes": 733667,
+          "sha256": "80c12398cd86e63746d8d7118a6aaf68bd63b262256679852a3b0775bafae78c"
+        }
+      ],
+      "window_scoped_command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from <from> --to <to> --out <file>",
+      "residual_job_ids": {
+        "path": "D:/spheres-scratch/br-cast/assemble/residual-jobs.json",
+        "bytes": 2402,
+        "sha256": "277ca2ca07ab753a8ab6e934d30b9458ee79ac92601646036303530ceaffd437",
+        "content": "Residual job IDs computed with the pipeline's own build_jobs (assemble/residuals.py)"
+      }
+    }
+  },
+  "rules": [
+    "All holder dictionaries below are copied exactly from accepted C01 research (docs/campaign-certification/C01/research/brazil.json, packets C01-34 and C01-43). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+    "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, convention, leave, return or death report beyond what the accepted holder dictionary itself states (Brizola's until 2004-06-21 is the only accepted end).",
+    "Requested windows are appearance intervals from the CLAUDE-C06-BRAZIL-01 handoff table with exclusive ends. Where a bound comes from party_leaders.json, leadership production, the cutoff, a batch split or unaccepted C01 research rather than accepted research, the person entry says so.",
+    "Real history stops at 2026-09-07; every window in this batch ends on or before 2026-09-08 (exclusive).",
+    "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, trousers, shoes, completion of a hidden crown) is declared in the prompt and here.",
+    "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly. Ported licences such as 'CC BY 3.0 br', NC/ND terms, agency or press photos, TV stills and unversioned grants are rejected. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled; crops happen at registration.",
+    "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+    "Each review batch contains at most ten people.",
+    "HTTP response header captures that contain the client IP address or GeoIP cookies are never copied, cited, hashed or committed.",
+    "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
+    "Ages use the registry birth dates in party_leaders.json (Temer 1940-09-23, Baleia Rossi 1972-06-09, Lupi 1957-03-16, Brizola 1922-11-22, which conflicts with other sources). Birth dates are not accepted C01 research."
+  ],
+  "coverage": {
+    "people_count": 5,
+    "primary_people": 4,
+    "portrait_jobs": 6,
+    "reserve_people": 0,
+    "excluded_people": 1,
+    "holder_observation_count": 17,
+    "holder_observation_count_by_role": {
+      "br_mdb_president": 5,
+      "br_pdt_president": 7,
+      "br_agir_president": 5
+    },
+    "holder_observations_in_prepared_windows": 12,
+    "holder_observations_of_excluded_people": 5,
+    "likeness_reference_count": 6,
+    "distinct_reference_images": 5,
+    "usable_likeness_reference_count": 6,
+    "research_only_likeness_reference_count": 0,
+    "references_inside_requested_window": [
+      "michel-temer-2009",
+      "michel-temer-2017",
+      "baleia-rossi-2021",
+      "leonel-brizola-1998",
+      "carlos-lupi-2009",
+      "carlos-lupi-2023"
+    ],
+    "references_with_limited_date_evidence": [
+      "michel-temer-2017",
+      "leonel-brizola-1998"
+    ],
+    "leadership_production_cartoon_jobs_closed_by_primary_people": 14,
+    "leadership_production_cartoon_jobs_left_open": [
+      "cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"
+    ],
+    "all_historical_officeholders_established": false,
+    "continuous_terms_established": false,
+    "all_likenesses_ready": false,
+    "rendered_portraits": 0
+  },
+  "batches": [
+    {
+      "id": "BR-CAST-B01",
+      "render_request": "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md",
+      "people": [
+        {
+          "person_id": "michel_temer",
+          "display_name": "Michel Temer",
+          "registry_name": "Michel Temer",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "1 of 2",
+          "observed_names": [
+            "Michel Temer"
+          ],
+          "requested_window": {
+            "from": "2001-09-09",
+            "to": "2010-06-15",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-34 MDB holder observation attested 2003-07-02 (brazil.json /organizations/0/roles/0/holder_claims/0), with from and until null. The bounds follow registry terms br_pmdb_michel_temer_20010909 (2001-09-09 to 2009-03-10) and br_pmdb_michel_temer_20100127 (2010-01-27 to 2010-06-15) in party_leaders.json, which are not accepted C01 research; they are also the leadership-production job boundaries. The window spans the registry's acting term of Íris de Araújo (br_pmdb_iris_de_araujo_20090310, 2009-03-10 to 2010-01-27) as appearance only; Temer was then President of the Chamber of Deputies. The window is an appearance interval, not a tenure."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_01",
+              "role_id": "br_mdb_president",
+              "holder": {
+                "name": "Michel Temer",
+                "attested_on": "2003-07-02",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_mdb_nota_oficial_roriz_20030702"
+                ],
+                "claim_ids": [
+                  "br_mdb_temer_signs_official_note_as_presidente_20030702"
+                ],
+                "note": "Observed on 2 July 2003: an official note of the national executive headed 'Brasília, 02 de julho de 2003' is signed 'Michel Temer Presidente do PMDB'.",
+                "uncertainty": "No start: the start of his mandate ('Mandato 09/09/2001') is known only from the party's retrospective list, and the earliest party styling (a vote of 'terça-feira (04/12)', year not printed) has no structured date. No end: his leave of 10 March 2009, with Iris de Araújo's interim service, is a claim, and the executive of 11 March 2007 is known only from an undated roster."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/0/roles/0/holder_claims/0"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "br_pmdb_michel_temer_20010909",
+            "br_pmdb_michel_temer_20100127"
+          ],
+          "registry_terms_spanned_as_appearance_only": [
+            "br_pmdb_iris_de_araujo_20090310 (another person's acting term)"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "michel_temer-4a7a936add8d",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "michel_temer-0a0870c78f13",
+                "from": "2001-09-09",
+                "to": "2010-06-15",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2001-09-09",
+                "id": "michel_temer-bdfe55175b97",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2019-01-01",
+                "to": "2027-01-01",
+                "id": "michel_temer-cdffc09f0892",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "pipeline_residual_note": "After both Temer windows (2001-09-09 to 2019-01-01) are registered.",
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:michel_temer:2001-09-09:2005-01-01:v1",
+              "cartoon:michel_temer:2005-01-01:2009-03-10:v1",
+              "cartoon:michel_temer:2010-01-27:2010-06-15:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "michel-temer-2009"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt",
+            "sha256": "677621155322535fa13553350720014499f550e9b21d6affee9faf2b196d2a76",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "53d9114be83d7e4559e0a263428c33d192cf9287d795bf0f5e259c148070241d",
+            "git_blob": "40ccd899c95b16e989f2c4087adb3fdf4f5c0e56",
+            "lines": 9,
+            "bytes": 4038,
+            "encoding": "UTF-8, no BOM, LF"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 11 November 2009 photograph lies inside the window; Temer is the silver-haired man standing at the right, named in the Commons description ('presidente da Câmara Michel Temer') and in the embedded caption.",
+              "evidence": [
+                "michel-temer-2009"
+              ]
+            },
+            {
+              "finding": "At assembly the reference was switched from the preparer's 11 March 2009 Prince Charles photograph, a strict right profile, to the near-frontal J. Batista / Câmara dos Deputados photograph, as the verifier preferred. The bytes are the ones already pinned for Carlos Lupi's 2009 reference; the repository copy michel-temer-2009-reference-v1.jpg was untracked and has been replaced, so the reference stays v1.",
+              "evidence": [
+                "michel-temer-2009",
+                "carlos-lupi-2009"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per requested window)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The record and prompt called the 11 March 2009 Charles photograph a three-quarter profile; at full resolution it is a strict right profile seen slightly from behind, so the eyes, brows and mouth cannot be read.",
+                "disposition": "Fixed by the verifier's preferred route: the qualifying in-window, near-frontal J. Batista photograph (11 November 2009, 'CC BY 3.0') is now the primary reference, copied byte-identical (sha256 ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8) from the original the Lupi window-1 preparer downloaded; its metadata and file page were copied, not re-fetched, into refs/michel_temer/w1-jbatista/. The assembler viewed it at full resolution. The prompt's Image 2, clothing, composition and background lines were rewritten and the age gap recomputed (69 in the photograph; about 8 years 2 months after the window starts and 7 months before it ends); the prompt is re-pinned. The Charles photograph is kept as a recorded fallback with its pose corrected."
+              },
+              {
+                "problem": "The shirt in the Charles photograph was described as plain white; it has fine pale blue or lavender pinstripes.",
+                "disposition": "Moot for the prompt, which now follows the J. Batista photograph (plain white shirt, plain deep burgundy tie, light gray three-button suit, checked by the assembler at full resolution). The Charles candidate's record states the pinstripes."
+              },
+              {
+                "problem": "'The man at the far left' was ambiguous in the Charles photograph.",
+                "disposition": "Moot: the new prompt identifies him as the silver-haired man standing at the right in the light gray suit and burgundy tie, and names Carlos Lupi (centre, diploma folder) and Dagoberto Nogueira Filho (left)."
+              },
+              {
+                "problem": "The rejected-candidates ledger omitted after-window files listed in the preparer's own Category:Michel Temer in 2010 listing.",
+                "disposition": "Fixed: the 41 'Brasília - DF (4796...)' files of 13 July 2010 (CC BY-SA 2.0), 'Mesa diretora câmara 01.jpg' (CC BY 3.0, 2010-12-15) and 'Dilma com prefeitos do Estado de SP (4763536541).jpg' (CC BY-SA 2.0, 2010-07-05) are listed with the reason 'after the window'. The assembler confirmed them in work/cat2010.json. The 13 July 2010 set is recorded for the 2010-2019 window as an optional early-window candidate."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted holder observation gives Temer a start or end; the window bounds are registry and leadership-production boundaries."
+          ],
+          "open_items_for_codex": [
+            "Optional: michel-temer-2009-reference-v1.jpg is byte-identical to carlos-lupi-2009-reference-v1.jpg (one three-person photograph). Keep both per-person paths, as the naming rule asks, or point both registrations at one file; the bytes and sha256 are the same either way."
+          ]
+        },
+        {
+          "person_id": "michel_temer",
+          "display_name": "Michel Temer",
+          "registry_name": "Michel Temer",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "2 of 2",
+          "observed_names": [
+            "Michel Temer"
+          ],
+          "requested_window": {
+            "from": "2010-06-15",
+            "to": "2019-01-01",
+            "to_exclusive": true,
+            "window_status": "needs_codex_agreement",
+            "basis": "C01-34 MDB holder observation attested 2016-03-29 (brazil.json /organizations/0/roles/0/holder_claims/1, claim br_mdb_temer_styled_presidente_nacional_20160329), with from and until null. The start continues from the first Temer window. The exclusive end 2019-01-01 is the next presidency's stated start in C01-10 (merged, historical acceptance pending), used only as an appearance boundary. His vice-president and president observations (C01-10, C01-17) are not accepted and are not cited as the basis. No leadership-production cartoon job exists for this window. The window is an appearance interval, not a tenure, and needs Codex agreement."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_01",
+              "role_id": "br_mdb_president",
+              "holder": {
+                "name": "Michel Temer",
+                "attested_on": "2016-03-29",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_mdb_rompe_alianca_20160329"
+                ],
+                "claim_ids": [
+                  "br_mdb_temer_styled_presidente_nacional_20160329"
+                ],
+                "note": "Observed on 29 March 2016: a PMDB item of that day styles 'O vice-presidente da República e presidente nacional do PMDB, Michel Temer'.",
+                "uncertainty": "No start: the re-election of 12 March 2016 is never a start, and the day he resumed after the leave of 2010 is unresolved (the retrospective list says 14 January 2014, and a party item of 14 May 2014 styles Valdir Raupp national president). The TSE registry lists him under the office 'PRESIDENTE LICENCIADO' with a registered exercise of 16/07/2014-05/04/2016, a period of his own that ends on the day the party reports his leave, so the label may record his status after that day; a registry claim, never a boundary. No end: he took leave on 5 April 2016 and stayed the President on leave ('licenciado') in the party's roster captured in January 2019; Baleia Rossi's election of 6 October 2019 is not used as his end. The Vice-Presidency of the Republic named in the same sentence is a state office (br_presidency) and never feeds this role."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/0/roles/0/holder_claims/1"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "michel_temer-4a7a936add8d",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "michel_temer-555b84955d80",
+                "from": "2010-06-15",
+                "to": "2019-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2001-09-09",
+                "id": "michel_temer-bdfe55175b97",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2019-01-01",
+                "to": "2027-01-01",
+                "id": "michel_temer-cdffc09f0892",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "pipeline_residual_note": "After both Temer windows (2001-09-09 to 2019-01-01) are registered.",
+            "leadership_production_cartoon_jobs_closed": []
+          },
+          "likeness_reference_ids": [
+            "michel-temer-2017"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/michel-temer-cartoon-2010-v1.txt",
+            "sha256": "d3bfc1cbdb8723577ae3da80e38e74e05c94c5c8f6fb79341d5a2aaacfa9c5c0",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "2ff1dbd260c257c7d58c7fdbf28e20a20f8c5b1caa7c170c89c4e1582e729c58",
+            "git_blob": "a5131e748407d14d6bed42057fc3f450e0873659",
+            "lines": 9,
+            "bytes": 3503,
+            "encoding": "UTF-8, no BOM, LF"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The official portrait (made in May 2017; Commons date 17 May 2017) lies inside the window; Temer is alone in frame.",
+              "evidence": [
+                "michel-temer-2017"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per requested window)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The record said Commons' date 2017-05-17 13:27:52 came from an EXIF DateTimeDigitized field. The JPEG has no EXIF DateTimeOriginal or DateTimeDigitized; the value is XMP xmp:CreateDate 2017-05-17T16:27:52-03:00, which the XMP history records as a Photoshop document-creation event (an edit time), and Commons' 13:27:52 is three hours off the embedded local time. Independent month evidence (Gazeta do Povo, 9 November 2017: made in May in the Palácio da Alvorada library) was missing.",
+                "disposition": "Fixed in the record only: date_precision is rewritten, depiction_date is month 2017-05 with candidate day 2017-05-17 from metadata, and the Gazeta do Povo article is in the source ledger as date corroboration (cited by the verifier; not fetched by the assembler). The assembler confirmed the XMP CreateDate, the 'created' history event and the absence of EXIF capture dates from the pinned bytes. The prompt's 'dated 17 May 2017 on Wikimedia Commons' and the age figures stay valid to within a month; no re-download and no prompt change."
+              }
+            ]
+          },
+          "missing_records": [
+            "No leadership-production cartoon job exists for this window.",
+            "No accepted observation gives a start or end; the end comes from C01-10, which is merged but not accepted."
+          ],
+          "open_items_for_codex": [
+            "Agree or amend the window 2010-06-15 to 2019-01-01 (start continues from window 1; end from C01-10, acceptance pending).",
+            "Optional: the window is long (ages 69 to 78) and the reference is from May 2017. If Codex wants an early (vice-presidential) look, split the window and prepare a second reference from the 41 'Brasília - DF (4796...)' photographs of 13 July 2010 (Dilma Rousseff Flickr stream, 'CC BY-SA 2.0', 3506x2336-2338), 28 days after the window start. Not prepared here."
+          ]
+        },
+        {
+          "person_id": "baleia_rossi",
+          "display_name": "Baleia Rossi",
+          "registry_name": "Baleia Rossi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "1 of 1",
+          "observed_names": [
+            "Baleia Rossi"
+          ],
+          "requested_window": {
+            "from": "2019-10-06",
+            "to": "2026-09-08",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-34 MDB holder observations attested 2019-10-17, 2025-07-16 and 2026-06-07 (brazil.json /organizations/0/roles/0/holder_claims/2-4), each with from and until null. The start is registry term br_pmdb_baleia_rossi_20191006 (party_leaders.json, not accepted C01 research), which is also the first leadership-production job boundary. The exclusive end 2026-09-08 is the day after the 7 September 2026 cutoff. The window is an appearance interval, not a tenure."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_01",
+              "role_id": "br_mdb_president",
+              "holder": {
+                "name": "Baleia Rossi",
+                "attested_on": "2019-10-17",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_mdb_baleia_reune_executiva_20191017"
+                ],
+                "claim_ids": [
+                  "br_mdb_baleia_styled_novo_presidente_20191017"
+                ],
+                "note": "Observed on 17 October 2019: an MDB item of that day says 'O novo presidente do MDB, deputado Baleia Rossi (SP) reuniu ontem em Brasília' the new executive's officers.",
+                "uncertainty": "No start: the election of 6 October 2019 is never a start and no posse day is printed; the registry exercise period from 6 October 2019 is a claim. The extension of 23 February 2021 and the re-election of 5 October 2023 are claims."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/0/roles/0/holder_claims/2"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_01",
+              "role_id": "br_mdb_president",
+              "holder": {
+                "name": "Baleia Rossi",
+                "attested_on": "2025-07-16",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_mdb_ata_executiva_20250716"
+                ],
+                "claim_ids": [
+                  "br_mdb_baleia_opens_executive_meeting_as_presidente_nacional_20250716"
+                ],
+                "note": "Observed on 16 July 2025: the signed minutes of the national executive record that 'o Presidente Nacional do Partido e Deputado Federal Baleia Rossi (MDB-SP) iniciou a reunião'.",
+                "uncertainty": "No start: the re-election of 5 October 2023 is never a start. The same meeting extended the executive and directorate to 15 May 2027 (prospective). No end is recorded."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/0/roles/0/holder_claims/3"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_01",
+              "role_id": "br_mdb_president",
+              "holder": {
+                "name": "Baleia Rossi",
+                "attested_on": "2026-06-07",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_mdb_executiva_convocada_df_20260608"
+                ],
+                "claim_ids": [
+                  "br_mdb_baleia_signs_decision_as_presidente_nacional_20260607"
+                ],
+                "note": "Observed on 7 June 2026: a decision reproduced by the MDB's item of 8 June 2026 closes 'Brasília, 7 de junho de 2026. Baleia Rossi Presidente Nacional do MDB'.",
+                "uncertainty": "The latest signed act of its own day found before the cutoff; the later stylings of 8 and 15 June 2026 are continuation claims, and no MDB article captured after late July 2026 is in the archive index. The stylings of 30 March, 8 June and 15 June 2026 are continuation claims. No end is recorded."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/0/roles/0/holder_claims/4"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "br_pmdb_baleia_rossi_20191006"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "baleia_rossi-438d8a547750",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "baleia_rossi-86cb96c29aa9",
+                "from": "2019-10-06",
+                "to": "2026-09-08",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2019-10-06",
+                "id": "baleia_rossi-c18677f5e0a9",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2026-09-08",
+                "to": "2027-01-01",
+                "id": "baleia_rossi-515127485137",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:baleia_rossi:2019-10-06:2020-01-01:v1",
+              "cartoon:baleia_rossi:2020-01-01:2025-01-01:v1",
+              "cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "baleia-rossi-2021"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/baleia-rossi-cartoon-2019-v1.txt",
+            "sha256": "d1a0008ac591682d64e3aa4dfbd378e2789446181cde9f32486c8a203f77a8e4",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "70fae18d4a903f77c71eb6a82b6e44685307b04836bae18b31126c651e5091d5",
+            "git_blob": "cd1962142229660c79b9ab3cfc0b7de7956d740d",
+            "lines": 9,
+            "bytes": 3444,
+            "encoding": "UTF-8, no BOM, LF"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 8 December 2021 photograph lies inside the window; he is alone in the Commons crop, and the preparer matched him against the Câmara official photograph of April 2019, an MDB group photograph of June 2023 and the 2026 TSE candidate photograph (research-only thumbnails).",
+              "evidence": [
+                "baleia-rossi-2021"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per requested window)",
+            "initial_verdict_ok": true,
+            "problems_and_dispositions": []
+          },
+          "missing_records": [],
+          "open_items_for_codex": []
+        },
+        {
+          "person_id": "leonel_brizola",
+          "display_name": "Leonel Brizola",
+          "registry_name": "Leonel Brizola",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "1 of 1",
+          "observed_names": [
+            "Leonel Brizola"
+          ],
+          "requested_window": {
+            "from": "1995-01-01",
+            "to": "2004-06-21",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-34 PDT holder observations attested 1997-04-11, 1999-08-26 and 2004-06-02 (brazil.json /organizations/1/roles/0/holder_claims/0-2); the last has until 2004-06-21, the party's same-day report of his death in office. The start 1995-01-01 is where his existing 1990-01-01 to 1995-01-01 art ends (person_portraits.json, unchanged). The exclusive end equals that accepted until, which also matches registry term br_pdt_leonel_brizola_1980. The window is an appearance interval, not a tenure."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Leonel Brizola",
+                "attested_on": "1997-04-11",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_home_19970411"
+                ],
+                "claim_ids": [
+                  "br_pdt_brizola_presidente_nacional_home_19970411"
+                ],
+                "note": "Observed on 11 April 1997: the PDT home page updated that day says 'o presidente nacional Leonel Brizola acompanhou todas as intervenções'.",
+                "uncertainty": "No start: no contemporaneous day-dated PDT record of 1990-1996 was found (the archived site begins in December 1996), and the party's 2019 history ties his 'recondução' at the convention of 26 April 1992 to the death of Doutel de Andrade on 7 January 1991, so who held the office on 1 January 1990 is open. No end for this observation; the November 1996 styling is dated only by its month."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/0"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Leonel Brizola",
+                "attested_on": "1999-08-26",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_marcha_speech_19990826"
+                ],
+                "claim_ids": [
+                  "br_pdt_brizola_styled_presidente_do_pdt_19990826"
+                ],
+                "note": "Observed on 26 August 1999: a PDT press item of that day says 'O presidente do PDT, Leonel Brizola, encerrou seu discurso'.",
+                "uncertainty": "No start: the IX Convenção Nacional of 19 April 1999 that re-elected him is known only from the party's 2019 history (a retrospective claim). No end for this observation."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/1"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Leonel Brizola",
+                "attested_on": "2004-06-02",
+                "from": null,
+                "until": "2004-06-21",
+                "sources": [
+                  "br_pdt_salario_minimo_20040602",
+                  "br_pdt_home_20040621"
+                ],
+                "claim_ids": [
+                  "br_pdt_brizola_meets_caucuses_as_presidente_nacional_20040602",
+                  "br_pdt_brizola_dies_as_presidente_nacional_20040621"
+                ],
+                "note": "Observed on 2 June 2004: a PDT item of that day says 'Decisão se deu em reunião das bancadas com o Presidente Nacional do Partido, Leonel Brizola (Brasilia - 02/06/04)'. Until 21 June 2004: the PDT home page updated at 22h15m that day reports that 'O presidente nacional do PDT' Leonel de Moura Brizola 'faleceu ás 21h29m'.",
+                "uncertainty": "The end rests on the party's same-day statement that its national President died in office; it is a death, not a successor's start (fallback: a death claim only and no until). The day comes from the page's printed update line (Monday 21/06/04, 22h15m) with 'esta noite' (that evening); the same item misdates his admission to the clinic ('segunda-feira, 20/06', a Sunday) without affecting the day of death. The Curitiba report of 22 June 2004 (21:20, 'ontem') is a claim, and his Tijolaço column printed '06.05.2004' is an undated claim because its own text places it in early June 2004. No start: the convention of March 2003 appears in the 2004 profile of Carlos Lupi (month only) and in the party's 2019 history (21 March 2003, retrospective); neither says that Brizola was re-elected there, and neither is a start."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/2"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "br_pdt_leonel_brizola_1980"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "leonel_brizola-cbbd6332435f",
+                "from": "1995-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "leonel_brizola-fa7af2b7d699",
+                "from": "1995-01-01",
+                "to": "2004-06-21",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "2004-06-21",
+                "to": "2027-01-01",
+                "id": "leonel_brizola-a07f461811a0",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open",
+                "note": "Starts on the day he died, so it is an artifact of the default 1990-2027 inventory, not an appearance gap."
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:leonel_brizola:1995-01-01:2000-01-01:v1",
+              "cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "leonel-brizola-1998"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/leonel-brizola-cartoon-1995-v1.txt",
+            "sha256": "3170bb3479c8e23145ab28da573898cc0342c3f5c065475d8f9216f5339dc90d",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "49f2cbe4e1e8a84ff966a86cd77e1c249c8e0a25f81aaf57df7615b8608374db",
+            "git_blob": "b2000a0ecc2943ce9ef5c335f40e10563000f601",
+            "lines": 9,
+            "bytes": 3741,
+            "encoding": "UTF-8, no BOM, LF"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID and his existing 1990-1995 portrait. The 19 September 1998 photograph lies near the middle of the window; he is the large figure at the right, in side profile under a gaucho hat.",
+              "evidence": [
+                "leonel-brizola-1998",
+                "spheres-web/data/person_portraits.json people.leonel_brizola"
+              ]
+            },
+            {
+              "finding": "Registry birth date conflict, registry not edited: party_leaders.json gives 1922-11-22 (matching only the PDT 'Líderes Históricos' page); the Chamber of Deputies open data (deputado 131041) and Wikidata Q1395356 (refs BnF, SNAC) give 1922-01-22. The prompt states ages that hold for both dates.",
+              "evidence": [
+                "leonel-brizola-1998 birth_date_evidence"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per requested window)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "Prompt line 5 asked for curly gray hair 'over the ears and collar', which would cover the large ears that the same line asks to preserve; both photographs show the ears uncovered.",
+                "disposition": "Fixed: the phrase now reads 'thick, curly gray hair at the sides and back, behind the ears and down to the collar, leaving the large ears uncovered'. The file stays LF; its LF sha256, CRLF-checkout sha256 and git blob are re-pinned (they were ebeacdc5..., 38aa9495... and 176c7750...)."
+              },
+              {
+                "problem": "The flat job list did not say that leonel_brizola-cbbd6332435f is the default-inventory job (1995-01-01 to 2027-01-01), closed only in part.",
+                "disposition": "Fixed: jobs are labelled as in the France model. Window-scoped leonel_brizola-fa7af2b7d699 closes exactly; the default-inventory job is partly closed; the residual leonel_brizola-a07f461811a0 (2004-06-21 to 2027-01-01) stays open and is noted as a pipeline artifact starting on the day he died."
+              }
+            ]
+          },
+          "missing_records": [],
+          "open_items_for_codex": [
+            "Rule on the registry birth date (1922-01-22 in the Chamber of Deputies open data and Wikidata, 1922-11-22 in party_leaders.json). This task does not edit the registry; the prompt's ages hold for both.",
+            "The byte-identical reference carries the photographer's own embedded IPTC contact fields (a work phone number and e-mail), which Commons already publishes in the same file. Committing the copy republishes them; stripping them would break byte identity. Accept, or substitute a decision of your own before integration.",
+            "Accept the 7.66 MB reference file size."
+          ]
+        },
+        {
+          "person_id": "carlos_lupi",
+          "display_name": "Carlos Lupi",
+          "registry_name": "Carlos Lupi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "1 of 2",
+          "observed_names": [
+            "Carlos Lupi"
+          ],
+          "requested_window": {
+            "from": "2004-06-30",
+            "to": "2015-01-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-34 PDT holder observation attested 2007-02-09 (brazil.json /organizations/1/roles/0/holder_claims/3), with from and until null. The window is an appearance interval, not a tenure. Its start 2004-06-30 comes from the leadership-production job boundaries and the month-precision registry term br_pdt_carlos_lupi_200406 (party_leaders.json, not accepted C01 research); the accepted record's own uncertainty note says his service from June 2004 to his election of 21 March 2005 is claims only. The exclusive end 2015-01-01 is the batch split with the second Lupi window (an existing leadership-production boundary, chosen for his change in appearance), not a research boundary."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2007-02-09",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_edital_convencao_20070209"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_signs_resolution_001_07_as_presidente_nacional_20070209"
+                ],
+                "note": "Observed on 9 February 2007: Resolução nº 001/07 of that day closes 'CARLOS LUPI Presidente Nacional'.",
+                "uncertainty": "Lupi's first holder observation: his service from June 2004 to his election of 21 March 2005, which the party's 2019 history calls interim, is claims only (the stylings of 6 July 2004, the roster captured 22 July 2004 and the edital of 28 February 2005). No start: the convention of 21 March 2005 (re-election) is never a start, and the re-election of 9 March 2007 is known only from the party's 2019 history. No end: his leave, which the 2019 history dates 12 March 2008 and a news reprint (a lead) to 7 March 2008 or earlier, is a claim; the day he resumed after the 2009 convention is not found."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/3"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "br_pdt_carlos_lupi_200406"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "carlos_lupi-1a8bd5270f54",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "carlos_lupi-45b22e501a80",
+                "from": "2004-06-30",
+                "to": "2015-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2004-06-30",
+                "id": "carlos_lupi-e664a94b9464",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2026-09-08",
+                "to": "2027-01-01",
+                "id": "carlos_lupi-7035d40937f6",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "pipeline_residual_note": "After both Lupi windows (2004-06-30 to 2026-09-08) are registered.",
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:carlos_lupi:2004-06-30:2005-01-01:v1",
+              "cartoon:carlos_lupi:2005-01-01:2010-01-01:v1",
+              "cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "carlos-lupi-2009"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt",
+            "sha256": "0c57b3987daa007d9bfb103b4269499a80f359b923b42e1eb6fd4a273c00cf56",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "bc2368fa94260f83635ba057b3fc479e58e010d0d2cb51137639e359d1f99f87",
+            "git_blob": "8739a723a6ff84281f1b657021013d17d2100a60",
+            "lines": 9,
+            "bytes": 3594,
+            "encoding": "UTF-8, no BOM, LF"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 11 November 2009 photograph lies near the middle of the window; Lupi is the central man holding a diploma that names 'Carlos Roberto Lupi'.",
+              "evidence": [
+                "carlos-lupi-2009"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per requested window)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The preparer's record cited no accepted C01 research, no requested_window.basis and no registry_terms_not_c01_research.",
+                "disposition": "Fixed: observations copies brazil.json /organizations/1/roles/0/holder_claims/3 exactly (brazil.json sha256 a5331b1826ffa3fd02833ac05f5055b9e1852c00800766f9efc27b603ef689a6); requested_window.basis states the appearance interval, the leadership-production and registry origin of the start, the claims-only 2004-2005 interim service and the batch-split end; br_pdt_carlos_lupi_200406 is listed under registry_terms_not_c01_research."
+              },
+              {
+                "problem": "The face width was given as about 200 px; a row scan of the original gives about 150-165 px.",
+                "disposition": "Fixed: the reference record says about 160 px."
+              },
+              {
+                "problem": "carlos_lupi-1a8bd5270f54 (default inventory, 1990-01-01 to 2027-01-01) was listed beside the window jobs as if it fell inside the window.",
+                "disposition": "Fixed: jobs are labelled window-scoped (carlos_lupi-45b22e501a80, exact), default inventory (partly closed) and leadership-production cartoon jobs (historical_art_jobs[81..83])."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted observation gives a start or end; the 2004-06 to 2005-03 interim service is claims only."
+          ],
+          "open_items_for_codex": [
+            "Agree the window start 2004-06-30, which rests on leadership production and the month-precision registry term rather than accepted C01 research."
+          ]
+        },
+        {
+          "person_id": "carlos_lupi",
+          "display_name": "Carlos Lupi",
+          "registry_name": "Carlos Lupi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "2 of 2",
+          "observed_names": [
+            "Carlos Lupi"
+          ],
+          "requested_window": {
+            "from": "2015-01-01",
+            "to": "2026-09-08",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-34 PDT holder observations attested 2021-12-21, 2025-05-21 and 2026-09-04 (brazil.json /organizations/1/roles/0/holder_claims/4-6), each with from and until null. The start 2015-01-01 is the batch split with the first Lupi window (an existing leadership-production boundary), not a research boundary. The exclusive end 2026-09-08 is the day after the 7 September 2026 cutoff; registry term br_pdt_carlos_lupi_200406 (not accepted C01 research) is open. The window is an appearance interval, not a tenure."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2021-12-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_convencao_hibrida_20211221"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_signs_normative_resolution_003_2021_20211221"
+                ],
+                "note": "Observed on 21 December 2021: a PDT item of that day says that 'A resolução normativa 003/2021 é assinada pelo presidente nacional da legenda, Carlos Lupi.'",
+                "uncertainty": "The archived text is the post's revision of 4 January 2022, and the signed communiqué of 10 January 2022 (a continuation claim) is also a revised post. No start: his re-elections of 18 March 2017 and 18 March 2019 and the registry periods of the SGIP are claims; no contemporaneous day-dated PDT record of 2011-2016 was found. No end: the convention of 21 January 2022 printed no result in the records found, and his leave of 2023 is a claim."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/4"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2025-05-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_lupi_retorna_20250521"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_styled_presidente_nacional_20250521"
+                ],
+                "note": "Observed on 21 May 2025: the PDT item of that day, reporting his return decided 'nesta terça-feira (20)', attributes his statement to 'o presidente nacional do PDT'.",
+                "uncertainty": "No start: the executive's decision of 20 May 2025 is a return from leave, not a stated day of resumption. The styling sits in the report of the return and introduces a statement on the decisions of the meeting of 20 May; if Codex treats it like a styling on the day of an election, the resumed service is observed first on 4 September 2026 (the styling of 19 August 2026, whose event day carries a weekday slip, stays a continuation claim). André Figueiredo's service as 'presidente em exercício' from 2 February 2023 is a claim only and never a holder."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/5"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2026-09-04",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_eleicoes_2026_20260904"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_styled_presidente_nacional_20260904"
+                ],
+                "note": "Observed on 4 September 2026: a PDT item of that day says 'O presidente nacional do PDT, Carlos Lupi, reforça o papel estratégico do partido'.",
+                "uncertainty": "A second observation of the service resumed in May 2025, three days before the cutoff; the styling of 19 August 2026 is a continuation claim. No end is recorded."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/6"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "br_pdt_carlos_lupi_200406"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "carlos_lupi-1a8bd5270f54",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "carlos_lupi-7293a9e06d87",
+                "from": "2015-01-01",
+                "to": "2026-09-08",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2004-06-30",
+                "id": "carlos_lupi-e664a94b9464",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2026-09-08",
+                "to": "2027-01-01",
+                "id": "carlos_lupi-7035d40937f6",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "pipeline_residual_note": "After both Lupi windows (2004-06-30 to 2026-09-08) are registered.",
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1",
+              "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
+              "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "carlos-lupi-2023"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v1.txt",
+            "sha256": "04a38571bc903f152d9b43952956fca94c88451bcbe0378ab0ae71fef4b41aa8",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "5a9a4653164518544b5b4dae74733fef1d5cdb9cd55f4ca9a051f42ce681f3af",
+            "git_blob": "a8908c94889cb1f9f6faedcfe5a44648245980fa",
+            "lines": 9,
+            "bytes": 3910,
+            "encoding": "UTF-8, no BOM, LF"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 24 October 2023 photograph lies late in the window; Lupi is alone in the Commons crop, and Commons structured data depicts Carlos Lupi (Q9697177).",
+              "evidence": [
+                "carlos-lupi-2023"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per requested window)",
+            "initial_verdict_ok": true,
+            "problems_and_dispositions": []
+          },
+          "missing_records": [],
+          "open_items_for_codex": [
+            "Optional: the photograph is from late in a long window (ages 57 to 69); in 2015 his hair and beard were still mostly dark. The prompt keeps the 2023 gray look and says so. Codex may split the window at 2020-01-01 (an existing leadership-production boundary) with a 2015 Agência Senado CC BY 2.0 reference; that split is not prepared."
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded_people": [
+    {
+      "person_id": "daniel_sampaio_tourinho",
+      "display_name": "Daniel Tourinho",
+      "registry_name": "Daniel Sampaio Tourinho",
+      "identity_status": "existing_identity",
+      "batch_role": "excluded",
+      "observed_names": [
+        "Daniel Tourinho"
+      ],
+      "requested_window": {
+        "from": "2014-05-16",
+        "to": "2026-09-08",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-43 Agir (PRN/PTC/Agir) holder observations attested 2014-05-16, 2018-07-25, 2020-08-07, 2021-07-23 and 2022-11-11 (brazil.json /organizations/6/roles/0/holder_claims/0-4), each with from and until null. The window runs from the first accepted observation to the day after the cutoff and contains registry term br_prn_daniel_sampaio_tourinho_20260705 (not accepted C01 research)."
+      },
+      "observations": [
+        {
+          "organization_or_institution_id": "br_tse_fefc_2024_party_07",
+          "role_id": "br_agir_president",
+          "holder": {
+            "name": "Daniel Tourinho",
+            "attested_on": "2014-05-16",
+            "from": null,
+            "until": null,
+            "sources": [
+              "br_agir_ptc_apoio_aecio_20140516"
+            ],
+            "claim_ids": [
+              "br_agir_ptc_tourinho_styled_presidente_nacional_20140516"
+            ],
+            "note": "Observed on 16 May 2014: a PTC site item of that day says 'O Presidente Nacional do PTC, Daniel Tourinho, confirmando o apoio à candidatura do senador Aécio Neves à Presidência da República.'",
+            "uncertainty": "No start: no contemporaneous dated party record of 1990-2013 naming the office was found; the PRN era rests on claims (the court's register and glossary, a registry history republished by the party and an undated 2007 roster). The item prints no event day, so its own date dates the observation. No end."
+          },
+          "research_locations": {
+            "docs/campaign-certification/C01/research/brazil.json": "/organizations/6/roles/0/holder_claims/0"
+          }
+        },
+        {
+          "organization_or_institution_id": "br_tse_fefc_2024_party_07",
+          "role_id": "br_agir_president",
+          "holder": {
+            "name": "Daniel Tourinho",
+            "attested_on": "2018-07-25",
+            "from": null,
+            "until": null,
+            "sources": [
+              "br_agir_ptc_resolucao_02_2018_20180725"
+            ],
+            "claim_ids": [
+              "br_agir_ptc_tourinho_signs_resolution_02_2018_20180725"
+            ],
+            "note": "Observed on 25 July 2018: Resolução nº 02/2018 closes 'Brasília, 25 de Julho de 2018.' over 'Daniel Sampaio Tourinho Presidente Nacional PTC'.",
+            "uncertainty": "No start: the convention of 25 July 2015 elected a new executive without the item naming its President, and the convention convoked for 28 July 2018 has no result on record. The minutes of 3 July 2018 and the convocation of 19 July 2018 style him only 'Presidente' and 'Presidente do Diretório Nacional' and are claims. No end."
+          },
+          "research_locations": {
+            "docs/campaign-certification/C01/research/brazil.json": "/organizations/6/roles/0/holder_claims/1"
+          }
+        },
+        {
+          "organization_or_institution_id": "br_tse_fefc_2024_party_07",
+          "role_id": "br_agir_president",
+          "holder": {
+            "name": "Daniel Tourinho",
+            "attested_on": "2020-08-07",
+            "from": null,
+            "until": null,
+            "sources": [
+              "br_agir_ptc_resolucao_001_2020_20200807"
+            ],
+            "claim_ids": [
+              "br_agir_ptc_tourinho_signs_resolution_001_2020_20200807"
+            ],
+            "note": "Observed on 7 August 2020: Resolução nº 001/2020 closes 'Rio de Janeiro, 07 de Agosto de 2020. Daniel Sampaio Tourinho Presidente Nacional do PTC'.",
+            "uncertainty": "No start and no end; the item reproducing the resolution is dated 20 August 2020, and the observation takes the resolution's own signature day."
+          },
+          "research_locations": {
+            "docs/campaign-certification/C01/research/brazil.json": "/organizations/6/roles/0/holder_claims/2"
+          }
+        },
+        {
+          "organization_or_institution_id": "br_tse_fefc_2024_party_07",
+          "role_id": "br_agir_president",
+          "holder": {
+            "name": "Daniel Tourinho",
+            "attested_on": "2021-07-23",
+            "from": null,
+            "until": null,
+            "sources": [
+              "br_agir_ptc_comunicado_20210723"
+            ],
+            "claim_ids": [
+              "br_agir_ptc_tourinho_signs_communique_20210723"
+            ],
+            "note": "Observed on 23 July 2021: a PTC communiqué closes 'Brasília, 23 de julho de 2021 Daniel Tourinho Presidente Nacional'.",
+            "uncertainty": "No start and no end. Seven weeks earlier the party announced its new name (1 June 2021); the court approved it on 31 March 2022, and the office is recorded as one office across the names only as the court's register keeps one registration (RPP nº 51-91.1989)."
+          },
+          "research_locations": {
+            "docs/campaign-certification/C01/research/brazil.json": "/organizations/6/roles/0/holder_claims/3"
+          }
+        },
+        {
+          "organization_or_institution_id": "br_tse_fefc_2024_party_07",
+          "role_id": "br_agir_president",
+          "holder": {
+            "name": "Daniel Tourinho",
+            "attested_on": "2022-11-11",
+            "from": null,
+            "until": null,
+            "sources": [
+              "br_agir_executiva_resolucao_01_2022_20221111"
+            ],
+            "claim_ids": [
+              "br_agir_tourinho_styled_presidente_nacional_20221111"
+            ],
+            "note": "Observed on 11 November 2022: an Agir item of that day names 'Daniel Tourinho (Presidente Nacional)' and 'o Pres Nacional Daniel Tourinho'.",
+            "uncertainty": "The last dated observation: no dated party record of 2023-2026 naming the national office was found (an undated 2024 styling as 'presidente do partido' and the court's live list captured 2 August 2026 are claims). No end is recorded."
+          },
+          "research_locations": {
+            "docs/campaign-certification/C01/research/brazil.json": "/organizations/6/roles/0/holder_claims/4"
+          }
+        }
+      ],
+      "registry_terms_not_c01_research": [
+        "br_prn_daniel_sampaio_tourinho_20260705"
+      ],
+      "jobs_left_open": {
+        "pipeline_default_inventory": [
+          {
+            "id": "daniel_sampaio_tourinho-c02873ad7899",
+            "from": "1990-01-01",
+            "to": "2027-01-01",
+            "status": "needs_source_and_visual_review"
+          }
+        ],
+        "pipeline_window_scoped": [
+          {
+            "id": "daniel_sampaio_tourinho-fde53fa22842",
+            "from": "2014-05-16",
+            "to": "2026-09-08",
+            "status": "needs_source_and_visual_review"
+          }
+        ],
+        "leadership_production_cartoon_jobs": [
+          "cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"
+        ]
+      },
+      "reason": "No qualifying likeness reference. No dated photograph of him with a licence string that matches FREE_LICENSES was found on Wikimedia Commons, Wikidata or pt.wikipedia, and no free institutional photograph names him. The one photograph identified, his TSE 2010 candidate photo, is not on Commons; the TSE portal grants it under an unversioned 'Creative Commons Attribution' licence, so no exact FREE_LICENSES string can be recorded for this file; and it is 161x225 greyscale, from 2010 or earlier (before the window). The batch rejects TSE thumbnails of that size for Temer and Baleia Rossi too. No reference was copied and no prompt was written; no face is invented and nobody substitutes for him.",
+      "files_in_repository": [],
+      "search_summary": [
+        "Commons full-text File search for the exact phrase 'Daniel Tourinho': 0 hits. All 105 hits of 'Tourinho filetype:bitmap' were read; none depicts him. 'Tourinho PTC' and 'Tourinho PRN': 0 hits; 'Tourinho Agir' and 'Tourinho Collor': PDFs only.",
+        "Category:Agir (Brazil) holds only logos; Category:Members of the Agir (Brazil), Category:Partido Trabalhista Cristão, and the Agir and PTC TSE-portrait categories hold nothing of him.",
+        "Wikidata Q27999225 and Q115926988 (both 'Daniel Tourinho', born 1947-05-11) have no P18 image; the pt.wikipedia article has no infobox image.",
+        "No Agência Senado, Palácio do Planalto, Câmara or TSE Flickr photograph naming him was found; Agência Brasil material would be 'CC BY 3.0 br' (ported) in any case."
+      ],
+      "rejected_candidates": [
+        "TSE candidate photograph, 2010 RJ federal deputy run (SQ_CANDIDATO 190000002113, ballot name DANIEL TOURINHO, number 3636, PTC, born 11/05/1947 in Jequie BA): RJ190000002113_div.jpg in https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2010/fotos/foto_cand2010_RJ_div.zip, 9,054 bytes, sha256 ec62135cb7864175a6d0e04c668bf6c03b49a4ab5b1ac93905562aab5c06e9da, 161x225 greyscale (reported by the independent verifier, who range-read the entry; not downloaded by the assembler). The 2018 RJ run (SQ_CANDIDATO 190000614945, INAPTO) carries the same photograph re-encoded (FRJ190000614945_div.jpg, 8,294 bytes, sha256 ba1869c84704cf76d4dc908f6770d0a3e70c6901350cf739ea69d952ffd459d8), so the photograph dates from 2010 or earlier. Rejected: the TSE portal's CKAN metadata for candidatos-2010 and candidatos-2018 gives license_id 'cc-by', title 'Creative Commons Attribution', URL http://www.opendefinition.org/licenses/cc-by, with no version; the file is not on Commons, so the 'licence exactly as Commons states it' rule cannot be met (Commons' {{TSE-Dados-Abertos}} template reads the same portal's files as 'CC BY 4.0'); it is also 161x225 greyscale and before the window. Needs a Codex licence ruling before any later use.",
+        "Commons File:PJAgirPRN.jpg, File:PJJuventude.jpg and its crop (CC BY-SA 4.0, 'Jingles Raros', from YouTube): party logos, not photographs.",
+        "Commons TSE candidate portraits of other Tourinhos (Pedro Tourinho 2020 and 2024, Beto Tourinho 2020, Euma Tourinho 2024), File:BA10187 div RodolphoTourinho 2006.jpg, and Agência Senado photos of Emmanuel Zagury Tourinho and Saul Tourinho Leal: different people.",
+        "Flickr account 'dantourinho' (realname 'Daniel Tourinho', joined 2008): 116 public photos, all personal family snapshots from 2009 under Flickr licence 0 (All Rights Reserved), and nothing ties the account to the politician. Not a free licence; personal account. (The preparer had wrongly said the account had no public photos.)",
+        "Press and party-site photos (Congresso em Foco 2016, A Tribuna RJ, Agenda do Poder, PTC and Agir sites): not freely licensed, or press/agency photos.",
+        "Any photograph captioned only 'Daniel Tourinho' from before mid-2019 may show his son, also Daniel Tourinho, PTC president in Rio de Janeiro state, who died in June 2019."
+      ],
+      "verification": {
+        "verifier": "independent Claude verification agent (per requested window)",
+        "preparer_ok": false,
+        "initial_verdict_ok": false,
+        "problems_and_dispositions": [
+          {
+            "problem": "The preparer said his last candidacy was renounced in 2002, before TSE portraits begin in 2004. The preparer's own pt.wikipedia snapshot (ptwiki_page.json) says he ran for federal deputy in RJ in 2010 (7,519 votes) and in 2018 (ruled inapt), and TSE open data holds his candidate photograph for both runs.",
+            "disposition": "Withdrawn: the 'TSE portraits begin in 2004' rejection is removed, and the TSE 2010 photograph is evaluated and listed in rejected_candidates. The assembler confirmed the 2010 and 2018 runs in ptwiki_page.json (sha256 2583c7c5...)."
+          },
+          {
+            "problem": "The TSE photograph's licence needs an explicit ruling: the portal's grant is unversioned 'cc-by' and the file is not on Commons.",
+            "disposition": "Verifier option (b) applied: rejected with exactly that reason, ok=false kept; the licence question is an open item for Codex."
+          },
+          {
+            "problem": "The preparer said the Flickr account 'dantourinho' had no public photos; it has 116, all All Rights Reserved.",
+            "disposition": "Fixed in rejected_candidates."
+          },
+          {
+            "problem": "Only federal and state TSE years (2006, 2010, 2014, 2018, 2022) were checked; municipal years 2012, 2016, 2020 and 2024 were not, and a municipal run could give a photograph inside the window.",
+            "disposition": "Not mechanical; recorded as an open item. The assembler made no new downloads."
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/daniel_sampaio_tourinho/search1.json",
+          "bytes": 7232,
+          "sha256": "76cdc05e4f41d78d1714fc9621d9924c70d39b4f199a9c5977bd6f55d06e6bd1",
+          "content": "Commons search results (preparer)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/daniel_sampaio_tourinho/wd_search.json",
+          "bytes": 841,
+          "sha256": "afcfe16a0cfd3e39e9e27550dd6dc086df664af947aa8d9a1d26316dedbca2e4",
+          "content": "Wikidata search (preparer)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/daniel_sampaio_tourinho/wd_entities.json",
+          "bytes": 11428,
+          "sha256": "09a23b5f6009b3abfb5fb228dd0dc3813b9671674bffc49d99b4d908091d5ac2",
+          "content": "Wikidata entities Q27999225 and Q115926988 (preparer)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/daniel_sampaio_tourinho/ptwiki_search.json",
+          "bytes": 7785,
+          "sha256": "767257f4c7590f61589e8cda96eaf01d52e37572aa798da620b8744dd38f2ec7",
+          "content": "pt.wikipedia search (preparer)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/daniel_sampaio_tourinho/ptwiki_page.json",
+          "bytes": 16803,
+          "sha256": "2583c7c5ce56af6886730fd3eda2a773c20976027084bbd47430f7e77aac6c24",
+          "content": "pt.wikipedia 'Daniel Tourinho' wikitext (revision 72635606 of 2026-07-16 per the verifier): 2010 and 2018 federal deputy runs"
+        }
+      ],
+      "open_items_for_codex": [
+        "Rule whether the TSE portal's unversioned 'cc-by' grant may be recorded as 'CC BY 4.0' (as Commons' TSE-Dados-Abertos template reads it) for a candidate photograph that is not on Commons. If yes, a later batch can prepare the TSE 2010 photograph with a declared age gap (taken at an unknown age of at most 63; he is 67 to 79 in the window) and a declared lack of colour and body.",
+        "Optional before that: search TSE consulta_cand 2012, 2016, 2020 and 2024 for DANIEL SAMPAIO TOURINHO, born 11/05/1947, for a newer candidate photograph closer to the window.",
+        "Otherwise leave him without a portrait; the pipeline forbids an authored identity for archival art."
+      ]
+    }
+  ],
+  "likeness_references": [
+    {
+      "id": "michel-temer-2009",
+      "person_id": "michel_temer",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Dagoberto_Nogueira_Filho,_Carlos_Lupi_e_Michel_Temer.jpg",
+      "commons_title": "File:Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg",
+      "publisher_source_url": "https://www.camara.leg.br/internet/bancoimagem/banco/2009/11/20091111205446_20091111jbpn53.jpg (as cited on Commons; not fetched)",
+      "retrieved_at": "2026-10-01T22:40:21Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/api-imageinfo-dagoberto-lupi-temer-2009.json",
+        "bytes": 5716,
+        "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+        "retrieved_at": "2026-10-01T22:44:39Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/filepage-dagoberto-lupi-temer-2009.html",
+        "bytes": 118556,
+        "sha256": "450f162acf43b4072c2d7f8d444c7b6878116d704f92585f2530b986ec128bd3",
+        "retrieved_at": "2026-10-01T22:40:43Z"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/michel-temer-2009-camara-jbatista-original.jpg",
+        "bytes": 1315244,
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Dagoberto_Nogueira_Filho%2C_Carlos_Lupi_e_Michel_Temer.jpg",
+        "commons_sha1": "f962121d2fdeb6cafd4f7a804e8a59d8a64b7eb5"
+      },
+      "local_copy_note": "The original bytes, API metadata and file page were downloaded once by the Carlos Lupi window-1 preparer into refs/carlos_lupi/ and copied locally, unchanged, into refs/michel_temer/w1-jbatista/ by the assembler; nothing was fetched twice.",
+      "asset": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+      "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+      "bytes": 1315244,
+      "width": 2000,
+      "height": 1312,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "identical_bytes_to": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+      "photograph_date": "2009-11-11",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2009-11-11"
+      },
+      "date_precision": "Exact day: EXIF DateTimeOriginal 2009:11:11 17:52:29 (Nikon D2Xs); the embedded caption gives '11.11.2009 foto JBatista'; the diploma Lupi holds reads 'Brasília, 11 de novembro de 2009'; Commons DateTimeOriginal 2009-11-11 17:52:29.",
+      "creator": "J. Batista (Câmara dos Deputados photographer; Commons Artist 'J. Batista/Câmara dos Deputados')",
+      "credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "source_license_statement": "Commons: 'This media was produced by Chamber of Deputies of Brazil and was licensed as Creative Commons BY', quoting the Chamber's image bank, which says images may be used freely 'de acordo com a licença Creative Commons BY', with credit 'Nome do Fotógrafo/Câmara dos Deputados'. Commons applies Creative Commons Attribution 3.0 Unported (extmetadata LicenseShortName exactly 'CC BY 3.0'; UsageTerms 'Creative Commons Attribution 3.0'; License 'cc-by-3.0'; AttributionRequired true).",
+      "rights_statement": "Retained source statement: CC BY 3.0 as Commons states it, with attribution 'J. Batista/Câmara dos Deputados'. An institutional photograph from the Chamber of Deputies' image bank (Banco de Imagens da Câmara dos Deputados), not an agency or press photograph and not a ported licence. The copied bytes are the only Commons revision (uploaded 2019-05-30T22:19:46Z by Pássaro do Sol), unchanged; the EXIF lists Adobe Photoshop CS3 from the Chamber's own 2009 processing.",
+      "people_in_frame": "Temer is the silver-haired man standing at the right, his face turned slightly to his left in a three-quarter view, with a closed-lip faint smile; light gray single-breasted three-button suit, plain white shirt, plain deep burgundy tie; both hands held together in front of his waist in a presenting gesture toward Lupi. The Commons description names him ('presidente da Câmara Michel Temer'), as does the embedded caption ('Dep. Michel temer'), and the file is in Category:Michel Temer in 2009. Carlos Lupi (centre, holding an open green diploma folder) and Dagoberto Nogueira Filho (left) are also in frame, with a seated audience, flags, ceiling spotlights and the Salão Negro hall; the prompt excludes all of them. The frame ends at about his upper thighs.",
+      "age_gap_note": "Born 1940-09-23 (registry birth date). He is 69 in the photograph of 11 November 2009, which lies inside the window 2001-09-09 to 2010-06-15 (exclusive end): about 8 years 2 months after its start (age 60) and about 7 months before its end (69 on the last covered day). The prompt asks for a trim man of about 65 (the window's midpoint age), a little younger than the photograph, with slightly softer lines and the gray hair a touch darker, keeping the same swept-back hairline, dark brows and lean face. The darker-hair adjustment rests on the CC BY 2.0 photographs of 7 April 1999 (Michel Temer e Dalai Lama, Câmara archive via the Michel Temer Flickr stream), which show the same swept-back hair in a darker medium gray; they are before the window and are not render inputs. Artistic extensions, declared in the prompt: the standing full figure, the hands apart and relaxed (in the photograph they are held together in a presenting gesture), the trousers below the jacket hem and the shoes.",
+      "limitation": "A three-person ceremony photograph with flash lighting; Temer's head is about 170 px tall in the 2000x1312 frame and turned slightly to his left. The same bytes serve as Carlos Lupi's 2009 reference.",
+      "rejected_candidates": [
+        "File:11-03-2009 - Congresso Nacional - Michel Temer, Príncipe Charles, de Gales Duquesa da Cornualha Camila Parker-Bowles (11824556866).jpg (Laycer Tomaz, Michel Temer Flickr stream, 2009-03-11, 'CC BY 2.0', 8858x5906, upsampled from the camera's 4752x3168): qualifies and is inside the window, and was the preparer's first choice (original pinned below). Superseded at assembly: at full resolution Temer is a strict right profile seen slightly from behind, smiling broadly while shaking Prince Charles's hand, so his eyes, brows and mouth cannot be read. He wears a dark charcoal suit, a white shirt with fine pale blue pinstripes and a plain deep burgundy tie. Kept as a fallback alternate.",
+        "File:Michel Temer (3x4).jpeg and File:Michel Temer.jpeg (Rose Brasil/ABr, 2004-12-07): licence 'CC BY 3.0 br', ported, not in FREE_LICENSES.",
+        "File:Michel Temer (2008).jpg (José Cruz/ABr, 2008-10-29): 'CC BY 3.0 br', ported.",
+        "Agência Brasil 2009-2010 files, all 'CC BY 3.0 br' (ported): File:Michel Temer 01.jpg (2009-02-03); File:CNI 71 anos - Lula e Temer.JPG (2009-08-12); File:Marcha para Jesus.jpg and its crop (2009); the 'Prince Charles and Camilla visited Brazil 2009' series (2009-03-11); File:Lideres partidarios.jpg (2010-03-02); File:Temer Convenção PMDB 2010.jpg (2010-06-12); File:Dilma Lula Temer Convenção PT.jpg and File:Dilma Rousseff Michel Temer.png (2010-06-13).",
+        "File:2004 MICHEL TEMER CANDIDATO VICE-PREFEITO SP SAO PAULO TSE (71072 01320).jpg (TSE open data, CC BY 4.0, year 2004): licence qualifies, but 161x225, greyscale, year-only, no named photographer; too small for a likeness reference.",
+        "File:Deputado Michel Temer.JPG (Geltimarino II, 2009-02-02): GFDL only, not in FREE_LICENSES; 703x498.",
+        "File:VPTemer VCZimbres.JPG (CC BY-SA 3.0, dated 2010-01-31): no machine-readable author, and its caption calls him Vice-President, an office he took only on 1 January 2011, so the date is unreliable.",
+        "File:Campanha Rio 2016 - 02-10-2009.jpg (Ricardo Stuckert/Câmara dos Deputados, 2009-10-02, CC BY 3.0): qualifies and is frontal; not chosen because of a V-sign gesture and four people.",
+        "File:Centenário de Tancredo Neves.jpg (Luiz Cruvinel/Câmara dos Deputados, 2010-03-03, CC BY 3.0): qualifies; a crowded three-quarter group shot with camera equipment in frame.",
+        "File:Hillary (4993740315).jpg (Jane de Araújo/Agência Senado, 2010-03-03, CC BY 2.0): qualifies; seated, small, in profile at the right of a five-person row.",
+        "File:Aécio Neves - Eleição da Presidência da Câmara dos Deputados - 14 02 2001 (8361474543).jpg (CC BY 2.0, 2001-02-14): seven months before the window; 748x499 group photo.",
+        "File:Michel Temer e Dalai Lama (cropped).jpg and siblings 1, 2, 3 (Câmara archive, CC BY 2.0, 1999-04-07): qualify but are about 2.4 years before the window; consulted only for the hair-tone age note.",
+        "File:Foto de época de Michel Temer disponibilizado pela assessoria (1)-(5) (ASCOM-VPR, CC BY 2.0): undated.",
+        "The 41 'File:Brasília - DF (4796...).jpg' photographs (Artist 'Dilma Rousseff from Brasil' Flickr, 'CC BY-SA 2.0', 3506x2336-2338, Commons date 2010-07-13): after the window (2010-06-15 exclusive), 28 days after its end; recorded for the 2010-2019 window as an optional early-window candidate.",
+        "File:Dilma com prefeitos do Estado de SP (4763536541).jpg (CC BY-SA 2.0, 2010-07-05, 595x305): after the window and small.",
+        "File:Mesa diretora câmara 01.jpg (Câmara dos Deputados, CC BY 3.0, 2010-12-15, 2000x1312): after the window.",
+        "File:Michel Temer, Lula e Dilma em 2010.jpg (CC BY 2.0, 2010-10-31) and all official portraits (2016 onward): after the window."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "The assembler (Claude) viewed the full image and temporary enlarged views of Temer's face, collar and hands made in the session scratchpad and deleted afterwards; nothing was written to the refs or the repository."
+    },
+    {
+      "id": "michel-temer-2017",
+      "person_id": "michel_temer",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+      "commons_title": "File:Presidente Michel Temer - Foto Oficial Original.jpg",
+      "upstream_source": "https://flickr.com/photos/52454189@N07/24439184568 (Michel Temer - Fotos livres, com o crédito; posted 2017-11-10)",
+      "retrieved_at": "2026-10-01T22:37:32Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/commons-api-imageinfo-Presidente_Michel_Temer_-_Foto_Oficial_Original.json",
+        "bytes": 2547,
+        "sha256": "480634796a66fee9c1be40fb1bb53bb53956a1b2c6eab9ea571010e430e222ef"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/fp-foto-oficial-original.html",
+        "bytes": 113361,
+        "sha256": "875be898b78e6dc6166a7edd78c153c8adec602175f246a2746eac3795c4b853"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/flickr-24439184568-extract.json",
+          "bytes": 746,
+          "sha256": "06af1b3df0224b49f97dd16875f8ef86a2a1c9e3daf5f7ef6bd14a58b8773ad9",
+          "content": "Extracted Flickr fields only (title 'Foto Oficial do Presidente da República', licence https://creativecommons.org/licenses/by/2.0/, dateTaken 2017-11-09 19:16:48, an edit time; datePosted 2017-11-10T14:34:05Z). The Flickr page body was not kept because it embeds a viewer-geolocation country code."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+        "bytes": 2242245,
+        "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+        "commons_sha1": "eee3234f90c19a2fb74cd1c83f4db898ab5e9bbf"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+      "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+      "bytes": 2242245,
+      "width": 5906,
+      "height": 7087,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "photograph_date": "2017-05 (Commons gives 17 May 2017, from file metadata)",
+      "depiction_date": {
+        "kind": "month",
+        "value": "2017-05",
+        "candidate_days": [
+          "2017-05-17"
+        ],
+        "candidate_days_basis": "file metadata only (XMP CreateDate, a Photoshop document-creation time)"
+      },
+      "date_precision": "Commons date 17 May 2017, 13:27:52 (UploadWizard fill from file metadata). The embedded source is XMP xmp:CreateDate 2017-05-17T16:27:52-03:00, which the XMP history records as a Photoshop document-creation event ('created', Adobe Photoshop CC (Macintosh)) with two ancestor documents, so it is not a camera capture time; Commons' 13:27:52 is three hours off the embedded local time. There is no EXIF DateTimeOriginal or DateTimeDigitized (the Exif IFD holds only ExifVersion, ColorSpace and the pixel dimensions). Flickr dateTaken 2017-11-09 19:16:48 equals the EXIF IFD0 DateTime and XMP ModifyDate (an edit time). Gazeta do Povo (9 November 2017) independently says the portrait was made in May 2017 in the library of the Palácio da Alvorada by Beto Barata; Agência Brasil, Exame and Correio Braziliense (9-10 November 2017) confirm Beto Barata and the library but give no date. Month confirmed (2017-05); day 17 from metadata only.",
+      "creator": "Beto Barata/PR",
+      "credit": "Beto Barata/PR, 'Presidente Michel Temer - Foto Oficial Original.jpg' (official portrait 'Foto Oficial do Presidente da República', made in May 2017; dated 17 May 2017 on Commons), Michel Temer Flickr stream photo 24439184568, CC BY 2.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_license_statement": "Commons: originally posted to Flickr by 'Michel Temer - Fotos livres, com o crédito' (https://flickr.com/photos/52454189@N07/24439184568); reviewed on 12 November 2017 by FlickreviewR 2 and confirmed to be licensed under the terms of the cc-by-2.0. extmetadata LicenseShortName 'CC BY 2.0', License 'cc-by-2.0', LicenseUrl https://creativecommons.org/licenses/by/2.0.",
+      "rights_statement": "Retained source statement: CC BY 2.0 (generic), attribution 'Beto Barata/PR'. An official Presidency photographer's portrait published on the office's own Flickr stream, not a wire or press-agency photo. Bytes copied unchanged.",
+      "people_in_frame": "Temer alone, standing, framed to about mid-thigh, facing the camera with a faint closed-mouth smile. Silver-gray hair combed straight back; dark gray-brown brows. Near-black navy suit, white shirt, navy tie with thin pale gold diagonal stripes. His right hand is in his trouser pocket; his left hand rests on a dark wooden desk and wears a wedding ring. A Brazilian flag stands at left, bookshelves of red-bound volumes are behind him, and a white print border surrounds the photograph; the prompt excludes the flag, shelves, desk and border. No sash or insignia.",
+      "age_gap_note": "Born 1940-09-23 (registry birth date). The photograph (May 2017; Commons 17 May) falls inside the window 2010-06-15 to 2019-01-01 (exclusive): about 6 years 11 months after its start and about 1 year 7 months before its last day (2018-12-31), to within a month. He is 76 in the photograph and 69 to 78 across the window, whose midpoint is in September 2014 (age 73 to 74). The prompt asks for a trim man of about 74, very slightly younger than the photograph, with the same silver swept-back hair, dark brows and lean face. The standing body below mid-thigh, both visible hands and the shoes are declared artistic extensions.",
+      "limitation": "One photograph from late in the window. A 2010-2013 vice-presidential look (for example darker or fuller hair around 2010) is not separately evidenced; see the open item on an optional split.",
+      "rejected_candidates": [
+        "File:Michel Temer (foto oficial).jpg, File:Michel Temer (foto oficial) (3x4).jpg, File:Michel Temer (foto oficial) (3x4 cropped).jpg, File:Michel Temer (foto oficial) (cropped 2).jpg, File:Presidente Michel Temer (foto oficial) - cortada.jpg, File:Presidente Michel Temer - Foto Oficial Original (3x4).jpg and File:Presidente Michel Temer - Foto Oficial Original (cropped 3).jpg: Commons crops of the chosen original; the uncropped original bytes are used, and any crop happens at registration.",
+        "File:Michel Temer (foto oficial) em preto e branco.jpg: black-and-white derivative of the same photograph; the colour original was preferred.",
+        "Agência Brasil files: usual licence 'CC BY 3.0 br', ported, not in FREE_LICENSES; individual pages not opened once a qualifying in-window solo photograph was found.",
+        "Not used: the 41 'File:Brasília - DF (4796...).jpg' photographs of 13 July 2010 (Dilma Rousseff Flickr stream, 'CC BY-SA 2.0', 3506x2336-2338), 28 days after this window starts, found by the window-1 verifier. They qualify on licence and could serve an early-window reference if Codex splits this window; not evaluated individually."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "baleia-rossi-2021",
+      "person_id": "baleia_rossi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:08-12-2021_Lan%C3%A7amento_da_pr%C3%A9-candidatura_de_Simone_Tebet_%C3%A0_Presid%C3%AAncia_da_Rep%C3%BAblica_(519)_(cropped).jpg",
+      "commons_title": "File:08-12-2021 Lançamento da pré-candidatura de Simone Tebet à Presidência da República (519) (cropped).jpg",
+      "retrieved_at": "2026-10-01T22:45:08Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-baleia-rossi-2021-cropped-and-parent.json",
+        "bytes": 8602,
+        "sha256": "b2b55f61b1a975c3b3ff3e20cb1d5545167b07331404b70eb79a64abcd27d00f"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-file-page-baleia-rossi-2021-12-08-cropped.html",
+        "bytes": 116960,
+        "sha256": "ab78e48cd75aee135f8e1e42cd95dbdd2342229febb306e1aaf6de5af15a7d92"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-category-baleia-rossi-imageinfo.json",
+          "bytes": 83387,
+          "sha256": "7d38827a6fed539b6bea6e3f6649495257c1e283d3efa9d1f3c1ec25a0401de8",
+          "content": "Commons API extmetadata for Category:Baleia Rossi (candidate survey)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-category-baleia-rossi-in-2022-imageinfo.json",
+          "bytes": 134457,
+          "sha256": "5757c69787da10c01f8632d453c535eae433dc157cc5b7f105c16629b9cb22bf",
+          "content": "Commons API extmetadata for Category:Baleia Rossi in 2022"
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/Baleia_Rossi_2021-12-08_cropped.original.jpg",
+        "bytes": 2079037,
+        "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/08-12-2021_Lan%C3%A7amento_da_pr%C3%A9-candidatura_de_Simone_Tebet_%C3%A0_Presid%C3%AAncia_da_Rep%C3%BAblica_%28519%29_%28cropped%29.jpg",
+        "commons_sha1": "53f671643dcb88e8396d90ccb3e345078b07acc4"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+      "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+      "bytes": 2079037,
+      "width": 1514,
+      "height": 2017,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "photograph_date": "2021-12-08",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2021-12-08"
+      },
+      "date_precision": "Exact day. Commons Date '2021-12-08 12:04:15'; embedded EXIF DateTimeOriginal 2021:12:08 12:04:15 with OffsetTimeOriginal -03:00 (Nikon D7500); the Flickr title also gives 08-12-2021.",
+      "creator": "MDB Nacional (party Flickr account pmdbnacional, 87134755@N04); the individual photographer is not named on Flickr, Commons or in the embedded EXIF/XMP",
+      "credit": "MDB Nacional, '08-12-2021 Lançamento da pré-candidatura de Simone Tebet à Presidência da República' (Flickr 51735864101), 8 December 2021, CC BY 2.0, via Wikimedia Commons; Commons crop '... (519) (cropped).jpg' by Commons user Przelijpdahl (CropTool, 18 January 2023). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_license_statement": "Commons LicenseShortName 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0' (file page: 'Creative Commons Attribution 2.0 Generic'); template {{cc-by-2.0}}. The parent carries {{FlickreviewR|status=passed|author=MDB Nacional|reviewlicense=cc-by-2.0|reviewdate=2022-02-28 19:42:36}}.",
+      "rights_statement": "Retained source statement: CC BY 2.0 (generic), attribution 'MDB Nacional'. The chosen file is a derivative crop (54% horizontally, 59% vertically) that Commons user Przelijpdahl made on 2023-01-18 with CropTool from the FlickreviewR-passed parent uploaded by Luiz79 on 2022-02-28 (3286x4929, sha1 01dfbce0ace515bb9c33a7cf3b725684341e1d10); the crop page carries no review of its own. The copied bytes are the crop's, unchanged. The party's own photo stream, not a news agency or press photo.",
+      "people_in_frame": "Baleia Rossi alone, head and shoulders, speaking at a microphone (right edge); warm-lit wall and a potted palm behind. The prompt excludes the microphones and background and draws him with lips closed.",
+      "identity_check": "Same man as the Câmara dos Deputados official photograph of 8 April 2019 (Michel Jesus), the labelled MDB Nacional group photograph of 21 June 2023 and the TSE 2026 candidate photograph (research-only thumbnails crosscheck-*.jpg, not shipped). The crop is the infobox image of the pt.wikipedia article 'Baleia Rossi' and is in Category:Baleia Rossi.",
+      "age_gap_note": "Born 1972-06-09 (registry birth date). He is 49 in the photograph of 8 December 2021 and about 47 to 54 across the window (2019-10-06 to 2026-09-08 exclusive). The photograph falls inside the window, about 2 years 2 months after its start and about 4 years 9 months before its end; the prompt asks for a man of about 50. Research-only cross-checks from April 2019, June 2023 and 2026 show the same hairstyle and face, with slightly more gray at the temples by 2026. Chest-up photograph: the standing body, trousers, shoes and both hands are artistic extensions; the open-collar shirt without a tie follows the reference.",
+      "limitation": "Photographer not individually named (credited to the MDB Nacional stream); a derivative Commons crop of a FlickreviewR-passed upload.",
+      "rejected_candidates": [
+        "File:Baleia Rossi (MDB - SP).jpg, (cropped).jpg and (cropped 2).jpg (Michel Jesus / Câmara dos Deputados, 2019-04-08, 'CC BY 3.0'): about six months before the window; research-only identity cross-check.",
+        "File:Baleia Rossi (PMDB-SP).jpg (Gustavo Lima / Câmara dos Deputados, 2015-08-12, CC BY 3.0): about four years before the window.",
+        "File:Deputado Baleia Rossi (13388586424).jpg (PMDB Nacional, 2014-03-24, CC BY 2.0, 540x960): five years before the window, low resolution.",
+        "CMMPV committee files (Senado Federal Flickr, March-April 2015, CC BY 2.0; nine files): before the window, group shots.",
+        "File:Ministro da Cultura recebe deputado Baleia Rossi (PMDB-SP) (Ministério da Cultura, 2015-11-25, CC BY 2.0; three files): before the window, two-person meeting.",
+        "File:2004 BALEIA CANDIDATO PREFEITO SP RIBEIRAO PRETO TSE (69698 00070).jpg (TSE, 2004, CC BY 4.0, 161x225): fifteen years before the window and too small.",
+        "File:2026 BALEIA ROSSI CANDIDATO DEPUTADO FEDERAL SP (250002533647).jpg (TSE, 2026 year only, CC BY 4.0, 161x225): in the window but far too small; late-window cross-check only.",
+        "File:Left to right- Helder Barbalho, Baleia Rossi, Alceu Moreira together in 2023 (52992242395).jpg (MDB Nacional, 2023-06-21, CC BY 2.0): qualifies and is in the window, but a three-person group photo; cross-check and possible alternate.",
+        "Sessão solene de posse do ministro Nunes Marques na Presidência do TSE - 12.05.2026 (TSE Flickr, Commons 'Public domain'; three files): in the window but large ceremony group photos; not evaluated individually.",
+        "Category:Baleia Rossi in 2022 (Convenção MDB Nacional 2022 and about 55 Simone Tebet campaign files, Luiz Cervi / MDB Nacional, July-August 2022, CC BY 2.0): event photos with other people; not evaluated individually.",
+        "File:08-12-2021 ... (519).jpg (MDB Nacional, CC BY 2.0, 3286x4929): the uncropped parent of the chosen crop; provenance.",
+        "File:Baleia Rossi (MDB) firma.jpg (public domain, 2018): a signature, not a photograph.",
+        "Photographs of his aides Miro Romano and Nelson Gonçalves (2014): not of him.",
+        "Agência Brasil photographs ('CC BY 3.0 br'): ported, not in FREE_LICENSES; none needed."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "leonel-brizola-1998",
+      "person_id": "leonel_brizola",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Leonel_Brizola_em_Palmeira_das_Miss%C3%B5es.jpg",
+      "commons_title": "File:Leonel Brizola em Palmeira das Missões.jpg",
+      "retrieved_at": "2026-10-01T23:32:12Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-api-imageinfo-Leonel_Brizola_em_Palmeira_das_Missoes.json",
+        "bytes": 5269,
+        "sha256": "975e4ad580bab34033ec6c1cc920943d08601c121fbd82936244004d819feb58",
+        "retrieved_at": "2026-10-01T22:48:07Z",
+        "note": "Contains the photographer's embedded IPTC contact fields as Commons publishes them; kept outside Git."
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-file-page-Leonel_Brizola_em_Palmeira_das_Missoes.html",
+        "bytes": 86990,
+        "sha256": "41e3dd17825485888b339263f5f5c9693bcc98b302cc44bafb9a1d30392c67e2",
+        "retrieved_at": "2026-10-01T22:48:28Z"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/leonel-brizola-1998-sergio-neglia-palmeira-das-missoes-original.jpg",
+        "bytes": 7660996,
+        "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Leonel_Brizola_em_Palmeira_das_Miss%C3%B5es.jpg",
+        "commons_sha1": "e3ece8f09fd76ac6e948eeb518c089580e8c8b76"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+      "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+      "bytes": 7660996,
+      "width": 2959,
+      "height": 1941,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "photograph_date": "1998-09-19",
+      "depiction_date": {
+        "kind": "day",
+        "value": "1998-09-19",
+        "basis": "uploader-photographer's Commons statement; no embedded capture date"
+      },
+      "date_precision": "The Commons description (the uploader-photographer's statement) and structured-data inception give 19 September 1998, an election rally of the 'União do Povo Muda Brasil' coalition in Palmeira das Missões, Rio Grande do Sul, during the 1998 campaign. The embedded EXIF has no capture date: its DateTime 2014-01-09 is the Lightroom 4.4 processing date, and the Commons upload is 2021-08-18. The 1998 campaign context is consistent.",
+      "creator": "Sérgio Neglia",
+      "credit": "Sérgio Neglia (embedded credit '© Serginho Neglia'), 'Leonel Brizola em Palmeira das Missões.jpg', 19 September 1998, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source_license_statement": "Commons: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons Attribution-Share Alike 4.0 International' (self-published, cross-wiki upload from pt.wikipedia by User:Sérgio Neglia, 2021-08-18). Embedded IPTC Credit '© Serginho Neglia', Artist and Copyright '©Serginho Neglia'. The uploader matches the embedded photographer credit; there is no agency credit. Used in the pt.wikipedia Leonel Brizola article.",
+      "rights_statement": "Retained source statement: CC BY-SA 4.0, attribution 'Sérgio Neglia'. The photographer's own work. The byte-identical copy also carries his embedded IPTC contact fields (a work phone number and e-mail), which Commons publishes in the same file; they are not quoted here.",
+      "people_in_frame": "Brizola is the large figure at the right, in side profile facing left, wearing a wide-brimmed olive-brown gaucho hat with a braided chin cord and a red poncho with black trim over a white collar and a dark navy jacket sleeve, holding a microphone. Behind him: a rally crowd, red, yellow and white flags, placards, balloons, a street, buildings and partly legible shop signs; the prompt excludes all of these.",
+      "birth_date_evidence": [
+        {
+          "source": "Chamber of Deputies open data, https://dadosabertos.camara.leg.br/api/v2/deputados/131041",
+          "value": "1922-01-22",
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/search/camara-deputado-131041.json",
+          "bytes": 904,
+          "sha256": "79753f2ea304ea082a39ef8e8fc2aa9abcde968a6f27a2b85bab40cb65ed4362",
+          "retrieved_at": "2026-10-01T22:35:33Z"
+        },
+        {
+          "source": "Wikidata wbgetclaims Q1395356 P569 (refs BnF 11938524s, SNAC w65f2dgv)",
+          "value": "1922-01-22",
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/search/wikidata-Q1395356-P569.json",
+          "bytes": 2205,
+          "sha256": "2c31785fd22210f1f1a6dc8aa8bf04c361f0610bd5ec11aca10385e39137902d"
+        },
+        {
+          "source": "PDT, https://pdt.org.br/index.php/o-pdt/lideres-historicos/ (the registry's own source)",
+          "value": "22/11/1922",
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/search/pdt-lideres-historicos.html",
+          "bytes": 84713,
+          "sha256": "f16a34704e60645cf495c796d408b16c6451d1f50152d9f34685f4a1bf621ca9"
+        }
+      ],
+      "age_gap_note": "No gap: the photograph (19 September 1998) falls inside the window, about 3 years 8 months after it starts (1995-01-01) and about 5 years 9 months before its last day (2004-06-20), close to the window midpoint (1999-09-26). Birth date sources disagree (see birth_date_evidence): on 22 January 1922 he is 72 at the window start, 76 in the photograph and 82 at the end; on the registry's 22 November 1922 he is 72, 75 and 81. The prompt asks for a man in his mid-seventies, as in the photograph, and states '72 when this appearance begins and 81 or 82 when it ends'. The reference is a side profile and the hat hides his forehead and crown, so the receding swept-back crown is a declared artistic completion; a research-only 1280 px thumbnail of the rejected 2002 photograph (File:Niemeyer e Brizola.jpg) was viewed to confirm the bareheaded swept-back gray hair and uncovered ears. It is not shipped and not a generation input. The suit, white shirt, burgundy tie and standing body are artistic; the white collar and dark sleeve follow the photograph.",
+      "limitation": "The only qualifying in-window photograph is a side profile under a gaucho hat; the forehead and crown are an artistic completion. The date rests on the photographer's own statement. The file is 7.66 MB (2959x1941) and carries the photographer's embedded IPTC contact fields.",
+      "research_only_thumbnails_not_shipped": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/search/research-thumb-1280.jpg",
+          "bytes": 322200,
+          "sha256": "8ef48ae11ebf7b18c02b61376076eee0bb72f3af28169ce3e7853503a424ff7a",
+          "content": "1280 px Commons thumbnail of the chosen photograph, fetched while originals were throttled"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/search/research-thumb-niemeyer-1280.jpg",
+          "bytes": 179136,
+          "sha256": "20f9006ba11ce545515269d1a6f297e2b0872b8207d5249963747d5e5c8a6e9c",
+          "content": "rejected 2002 Ag. O Dia photograph; hair and ear confirmation only"
+        }
+      ],
+      "rejected_candidates": [
+        "File:Niemeyer e Brizola.jpg (28 Aug 2002, CC BY-SA 2.0 via Flickr affotojornalismo): the embedded IPTC caption credits 'Andréa Farias/Ag. O Dia', so it is a press-agency photo; Oscar Niemeyer is co-subject. Research thumbnail only.",
+        "File:Leonel Brizola.jpg (Ana Nascimento/ABr, 2 Dec 2003): 'CC BY 3.0 br', ported.",
+        "File:Velório de Leonel Brizola no Palácio Guanabara.jpg (Daniel Ramalho/EBC, 22 Jun 2004): 'CC BY 3.0 br', ported; a funeral, after the window.",
+        "File:Brizola.jpg and File:Brizola (cropped).jpg (Agência Brasil, c.1984): 'CC BY 3.0 br', ported; a decade before the window.",
+        "File:Leonel Brizola e Ciro Simoni.png (Sérgio Neglia, CC BY-SA 4.0): no capture date (Canva export; the Commons date is the 2021 upload); two people.",
+        "File:Dilma Rousseff Leonel Brizola.png (CC BY-SA 2.0, Dilma Rousseff Flickr 'Biografia'): undated, two people, 588x390.",
+        "File:Leonel Brizola.png (CC BY 3.0, Fundação Leonel Brizola YouTube): video still, undated.",
+        "'Fotos Antigas RS' Flickr set: licence string 'PDM-owner' is not 'PDM-1.0'; undated or 1950s-1989.",
+        "RapCrespo 2026 'own work' uploads (Brizola e Lula.jpg; Brizola, Rio de Janeiro..jpg; Leonel Brizola e Darcy Ribeiro (PDT).jpg; Foto histórica de Lula, com Brizola, Darcy Ribeiro e Mário Soares..jpg; Alceu Collares em discurso com Brizola.jpg): undated historic photos with doubtful own-work claims.",
+        "File:Brizola em Maringá.jpg (CC BY 4.0, unknown author, from maringahistorica.com.br): undated, website source, several people.",
+        "File:Leonel de Moura Brizola.png (Loberos, 2025): not a dated photograph.",
+        "Public-domain archival photos (Arquivo Nacional/Correio da Manhã 1961, 1959 official portrait, PDT 1989 campaign, 1964 items): decades before the window.",
+        "File:Estúdio do Roda Viva - 2 (2507976207).jpg (CC BY 2.0): TV studio interior; Brizola not depicted."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_preparer": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "carlos-lupi-2009",
+      "person_id": "carlos_lupi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Dagoberto_Nogueira_Filho,_Carlos_Lupi_e_Michel_Temer.jpg",
+      "commons_title": "File:Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg",
+      "publisher_source_url": "https://www.camara.leg.br/internet/bancoimagem/banco/2009/11/20091111205446_20091111jbpn53.jpg (as cited on Commons; not fetched)",
+      "retrieved_at": "2026-10-01T22:40:21Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-imageinfo-dagoberto-lupi-temer-2009.json",
+        "bytes": 5716,
+        "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+        "retrieved_at": "2026-10-01T22:44:39Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/filepage-dagoberto-lupi-temer-2009.html",
+        "bytes": 118556,
+        "sha256": "450f162acf43b4072c2d7f8d444c7b6878116d704f92585f2530b986ec128bd3",
+        "retrieved_at": "2026-10-01T22:40:43Z"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-category-imageinfo.json",
+          "bytes": 61881,
+          "sha256": "76da74244d0631ccc4cd3b1508abc6046433b6938eefafac46b0cdaeee9966bf",
+          "content": "Commons API imageinfo/extmetadata for all 31 files in Category:Carlos Lupi"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/search-category-carlos-lupi.json",
+          "bytes": 3170,
+          "sha256": "02ad0c159be7102c925590f0c30604470e0336e5907fded848e8a7df456c3ea7",
+          "content": "Category:Carlos Lupi member list"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/search-carlos-lupi-files.json",
+          "bytes": 59723,
+          "sha256": "5a0c77d2dc0911310514c4d35f040b0f6fdfef5c1ded451e1a1294070f214bc1",
+          "content": "Commons full-text file search 'Carlos Lupi' (169 hits, complete)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-imageinfo-search-extras.json",
+          "bytes": 20212,
+          "sha256": "a25514186efcf56d7fd7e1346a6190ea87a9444cc7b2962bf33c4e278b38f818",
+          "content": "imageinfo for the extracted crops, Conceição Rabha 03-05, a 2023 own-work file and a Senado file"
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/carlos-lupi-2009-camara-jbatista-original.jpg",
+        "bytes": 1315244,
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Dagoberto_Nogueira_Filho%2C_Carlos_Lupi_e_Michel_Temer.jpg",
+        "commons_sha1": "f962121d2fdeb6cafd4f7a804e8a59d8a64b7eb5"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+      "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+      "bytes": 1315244,
+      "width": 2000,
+      "height": 1312,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "identical_bytes_to": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+      "photograph_date": "2009-11-11",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2009-11-11"
+      },
+      "date_precision": "Exact day: EXIF DateTimeOriginal 2009:11:11 17:52:29 (Nikon D2Xs); the embedded caption gives '11.11.2009 foto JBatista'; the diploma Lupi holds reads 'Brasília, 11 de novembro de 2009'; Commons DateTimeOriginal 2009-11-11 17:52:29.",
+      "creator": "J. Batista (Câmara dos Deputados photographer; Commons Artist 'J. Batista/Câmara dos Deputados')",
+      "credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "source_license_statement": "Commons: 'This media was produced by Chamber of Deputies of Brazil and was licensed as Creative Commons BY', quoting the Chamber's image bank, which says images may be used freely 'de acordo com a licença Creative Commons BY', with credit 'Nome do Fotógrafo/Câmara dos Deputados'. Commons applies Creative Commons Attribution 3.0 Unported (extmetadata LicenseShortName exactly 'CC BY 3.0'; UsageTerms 'Creative Commons Attribution 3.0'; License 'cc-by-3.0'; AttributionRequired true).",
+      "rights_statement": "Retained source statement: CC BY 3.0 as Commons states it, with attribution 'J. Batista/Câmara dos Deputados'. An institutional photograph from the Chamber of Deputies' image bank (Banco de Imagens da Câmara dos Deputados), not an agency or press photograph and not a ported licence. The copied bytes are the only Commons revision (uploaded 2019-05-30T22:19:46Z by Pássaro do Sol), unchanged; the EXIF lists Adobe Photoshop CS3 from the Chamber's own 2009 processing.",
+      "people_in_frame": "Carlos Lupi, centre: frontal, smiling, near-black charcoal suit, white shirt, golden-yellow tie, small round lapel pin, holding an open green diploma folder that names him ('Carlos Roberto Lupi'). Dagoberto Nogueira Filho is at left and Michel Temer at right (light gray suit, burgundy tie). A seated audience, flags, ceiling spotlights and the Salão Negro hall are also in frame. The frame runs to about his upper thighs, and both of his hands hold the folder.",
+      "age_gap_note": "Born 1957-03-16 (registry birth date). He is 52 (52 years 7 months) in the photograph of 11 November 2009, inside the window: about 5 years 4 months after its start of 2004-06-30 (age 47) and about 5 years 2 months before its exclusive end of 2015-01-01 (57 on the last covered day). No age adjustment is requested; the prompt asks for a man of about 52. Artistic extensions, declared in the prompt: the free hands (both hold the folder in the photograph), the legs below the upper thighs, the trousers and the shoes. Suit, shirt and tie colours come from the photograph; the lapel pin and the diploma are omitted.",
+      "limitation": "A three-person ceremony photograph rather than a solo portrait. Lupi's face is frontal and sharp, about 160 px wide (a row scan gives about 150-165 px). Flash lighting gives some forehead shine. The same bytes serve as Michel Temer's 2009 reference.",
+      "rejected_candidates": [
+        "File:Carlos Lupi.JPG (Gervásio Baptista/ABr, 2008-05-21, 1804x2464, a solo portrait inside the window): 'CC BY 3.0 br' (https://creativecommons.org/licenses/by/3.0/br/deed.en), ported, not in FREE_LICENSES.",
+        "File:Posse Ministros Dilma 2011.jpg (Agência Brasil, 2011-01-01): 'CC BY 3.0 br', ported; large group photograph.",
+        "File:Conceição Rabha 02.jpg / 03.jpg (Marcelo Matos, 2011-07-08, 1000x750) and crops 04.jpg (160x304) and 05.jpg (184x333): 'CC BY 3.0 br', ported; event photographs and tiny crops.",
+        "File:Oscar Fernandes with his Brazilian counterpart, Mr. Carlos Lupi ... .jpg (PIB India, June 2008): 'GODL-India', a government open licence not on the list; two people.",
+        "Two .webm news videos on the Ethics Commission recommendation: TV/video news material.",
+        "File:Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer (cropped).jpg (272x362, CC BY 3.0, crop uploaded 2023): too small; the full original is used. File:Dagoberto Nogueira Filho em novembro de 2009.jpg (280x402): a crop of Dagoberto.",
+        "Senado Federal Flickr files, CC BY 2.0, April-August 2015 (Visitas.Visitantes, Entrevistas Diversas, Plenário do Congresso, Presidência do Senado): after this window; for the second Lupi window.",
+        "File:Carlos Lupi. CAS - Comissão de Assuntos Sociais.jpg and its crop (Geraldo Magela/Agência Senado, CC BY 2.0, 2023-10-24): far after this window (used for the second window).",
+        "File:Lupi.png (CC BY-SA 4.0, 2018-05-01), File:Carlos Lupi (PDT).png (CC BY-SA 4.0, 2025-04-11), File:Carlos Lupi, atual presidente nacional do PDT..jpg (RapCrespo, CC BY-SA 4.0): after the window; own-work provenance unverified.",
+        "Lula Oficial and Palácio do Planalto files of 2022-2026 and the 87 CPMI INSS 2025 files: far after the window, mostly group scenes.",
+        "File:Roberto Saturnino (...) (6 files) and File:PDT flag.jpg, File:André Figueiredo (cropped).jpg: not photographs of Lupi."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_preparer": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "The assembler viewed the full image while preparing the Temer 2009 reference from the same bytes."
+    },
+    {
+      "id": "carlos-lupi-2023",
+      "person_id": "carlos_lupi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Carlos_Lupi._CAS_-_Comiss%C3%A3o_de_Assuntos_Sociais_(cropped).jpg",
+      "commons_title": "File:Carlos Lupi. CAS - Comissão de Assuntos Sociais (cropped).jpg",
+      "upstream_source": "https://www.flickr.com/photos/agenciasenado/53282670483/ (Senado Federal Flickr stream)",
+      "retrieved_at": "2026-10-01T22:36:49Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/api-imageinfo-carlos-lupi-cas-cropped.json",
+        "bytes": 3021,
+        "sha256": "42ebd71728c34853dd934818b040d3dc8aff9d4979aa2d4fb0d82d695104c107",
+        "retrieved_at": "2026-10-01T22:38:18Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/filepage-carlos-lupi-cas-cropped.html",
+        "bytes": 96385,
+        "sha256": "b4382661ee87e509ad71fb68ee0516737b8965dc97b2dfcd0ce2da3950a3c88b",
+        "retrieved_at": "2026-10-01T22:38:25Z"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/filepage-carlos-lupi-cas-parent.html",
+          "bytes": 135595,
+          "sha256": "a0a61a4eb4ec0c653f7d61847ed9fd5ab0ba106273df5b5abf248ff929434cbb",
+          "retrieved_at": "2026-10-01T22:38:33Z",
+          "content": "Commons file page of the parent (3854x2569): FlickreviewR 2 confirmed cc-by-2.0 on 30 January 2024; EXIF Nikon D5, DateTimeOriginal 24 October 2023 10:32, Author Geraldo Magela, copyright holder Senado Federal do Brasil."
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/cat-imageinfo.json",
+          "bytes": 66655,
+          "sha256": "da921b5a795afe39796e5f4d3253631efde6f8b4a20ad7e724804f55b1c759f5",
+          "content": "Commons API extmetadata for Category:Carlos Lupi (candidate survey)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/subcat-inauguration-imageinfo.json",
+          "bytes": 9171,
+          "sha256": "2d026c03254771b564ec53918ed7870e8b1dd3f26dccaa868be4f5f2ef74b470",
+          "content": "Category:Inauguration of Carlos Lupi as minister of Lula (3rd)"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/search-imageinfo.json",
+          "bytes": 187386,
+          "sha256": "3213190356e97512fff5a0f373c670577659866c2935d9ac9367451b95fd010b",
+          "content": "Commons file search 'Carlos Lupi', results 1-100"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/search-imageinfo-p2.json",
+          "bytes": 140873,
+          "sha256": "04dee47db2ec407b5177c778fdf3e08ea246a90768c3fcd051010730e54dd9ea",
+          "content": "Commons file search 'Carlos Lupi', results 101-169"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-entrevistas-diversas-16685325693-20150428.jpg",
+          "bytes": 130079,
+          "sha256": "317a2a08b7894ae24506c0c5909e59bb7ece922df4c31cd6a2e2cb5620ea6a04",
+          "content": "comparison thumbnail only (Agência Senado, 28 April 2015): dark hair and beard"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-posse-52625793002-20230101.jpg",
+          "bytes": 200066,
+          "sha256": "6a3f1a58d77058558fa7a7cb8a50a52e5a17be3952878673b940ddc1a1b4327e",
+          "content": "comparison thumbnail only (Palácio do Planalto, 1 January 2023): salt-and-pepper hair, graying beard"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-cpmi-inss-54775979604-20250908.jpg",
+          "bytes": 115221,
+          "sha256": "a6f88bc71358933e97b12222569b1b95c96d6b6adc40c943b7b476da1fe5f1dc",
+          "content": "CPMI INSS 8 September 2025 frame described as Lupi's hearing; it shows another man; not used"
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/carlos-lupi-2023-agencia-senado-cas-cropped-original.jpg",
+        "bytes": 687212,
+        "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Carlos_Lupi._CAS_-_Comiss%C3%A3o_de_Assuntos_Sociais_%28cropped%29.jpg",
+        "commons_sha1": "6a0702dfa83288b6daa517b867ba9909bf5b35e0"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+      "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+      "bytes": 687212,
+      "width": 1545,
+      "height": 2064,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "photograph_date": "2023-10-24",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2023-10-24"
+      },
+      "date_precision": "Day. Commons gives 24 October 2023, 10:32:56; the parent's EXIF DateTimeOriginal is 24 October 2023 10:32 (Nikon D5). The crop itself carries no EXIF.",
+      "creator": "Geraldo Magela / Agência Senado",
+      "credit": "Geraldo Magela/Agência Senado, 'Carlos Lupi. CAS - Comissão de Assuntos Sociais (cropped).jpg', 24 October 2023, CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 53282670483; licence confirmed by FlickreviewR 2 on 30 January 2024 on the parent file); crop uploaded by Commons user Rodolfo Matias on 30 January 2024. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_license_statement": "Commons extmetadata LicenseShortName exactly 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0', LicenseUrl https://creativecommons.org/licenses/by/2.0; file page: 'Creative Commons Attribution 2.0 Generic'. Generic, not ported.",
+      "rights_statement": "Copyright holder Senado Federal do Brasil (parent EXIF); published by Agência Senado, the Senate's institutional news service, on the Senado Federal Flickr stream under CC BY 2.0 Generic; FlickreviewR 2 confirmed cc-by-2.0 on the parent. The crop page has no review template of its own because the same uploader sent it from the same Flickr URL five minutes after the parent. Bytes copied unchanged from the crop's only revision.",
+      "people_in_frame": "Lupi alone, chest-up, speaking at the Senate Social Affairs Committee (CAS) as Minister of Social Security, mouth open mid-speech, both hands raised with index fingers pointing; a microphone crosses his beard; gray geometric wall panels behind; a blurred white object at the lower-left corner; a small round blue lapel pin. The prompt excludes all of these and asks for a closed-mouth smile and a neutral pose.",
+      "age_gap_note": "Born 1957-03-16 (registry birth date). He is 66 in the photograph of 24 October 2023. The window 2015-01-01 to 2026-09-08 (exclusive) covers ages 57 to 69; the photograph lies inside it, about 8 years 10 months after it begins and about 2 years 10 months before it ends, roughly three years after its midpoint (about November 2020). Two of the three accepted observations (2025-05-21, 2026-09-04) are within three years of it. Comparison photographs (not references) show the look changed within the window: Agência Senado, 28 April 2015: dark, mostly black slicked-back hair and dark beard; Palácio do Planalto, 1 January 2023: salt-and-pepper hair and graying beard. The prompt keeps the 2023 gray hair and beard for the whole window, asks for about 64 to 66, and declares that the darker early-window look is not shown.",
+      "limitation": "Late-window reference for a long window; crop without EXIF (date from the parent).",
+      "rejected_candidates": [
+        "File:Carlos Lupi (PDT).png (CC BY-SA 4.0, 'Own work', dated 2025-04-11): 604x797, the exact dimensions of the Commons crop of Palácio do Planalto 52625793002; probably an official photograph re-uploaded as own work.",
+        "File:Lupi.png (CC BY-SA 4.0, 'Own work' by Luis Moreira, dated 2018-05-01, 801x801 PNG): own-work claim and date unverifiable.",
+        "File:Carlos Lupi, atual presidente nacional do PDT..jpg (RapCrespo, CC BY-SA 4.0, 'Brasília, 2023', no source): year-only, unverified provenance.",
+        "File:01.01.2023 - Posse de Carlos Lupi ... (52625793002) (cropped).jpg: licence string CC BY-SA 2.0 conflicts with the parent's CC BY 2.0.",
+        "File:01.01.2023 - Posse de Carlos Lupi ... (52625793002, 52626307001, 52625792937, 52626744060) (Palácio do Planalto, CC BY 2.0): Lupi shares the frame with President Lula, and the title date differs from the metadata date 2023-01-03; possible alternate.",
+        "2015 Agência Senado / Senado Federal files (CC BY 2.0; 28 April, 4 May and 18 August 2015): qualifying and inside the window but at its very start, in crowded scenes; alternates for a possible 2015-2019 split.",
+        "File:29.12.2022- Lula anuncia novos Ministros e Ministras (52594315131, 52594739115) (Lula Oficial, CC BY-SA 4.0): Lula in frame; DateTimeOriginal 2022-05-23 conflicts with the title.",
+        "File:14.03.2023 - Reunião com Ministros series (CC BY 2.0): group meeting.",
+        "CPMI - INSS 2025 series (Agência Senado, CC BY-SA 4.0): the frame inspected (54775979604), described as Lupi's hearing, shows another man; descriptions unreliable.",
+        "20.07.2026 - Convenção Nacional do PDT series (Lula Oficial, CC BY-SA 4.0): centred on President Lula; not inspected.",
+        "File:Carlos Lupi.JPG (2008), File:Posse Ministros Dilma 2011.jpg, File:Conceição Rabha 02-05.jpg: 'CC BY 3.0 br' (ported) and before the window.",
+        "File:Oscar Fernandes ... Carlos Lupi ... (2008): 'GODL-India', not on the list, before the window.",
+        "File:Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg (2009, CC BY 3.0): before this window (used for the first window)."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    }
+  ],
+  "source_ledger": {
+    "evidence_directory": "D:/spheres-scratch/br-cast/refs",
+    "status": "original_retention_ledger",
+    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+    "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+    "downloads": [
+      {
+        "reference_id": "michel-temer-2009",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/michel-temer-2009-camara-jbatista-original.jpg",
+          "bytes": 1315244,
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Dagoberto_Nogueira_Filho%2C_Carlos_Lupi_e_Michel_Temer.jpg",
+          "commons_sha1": "f962121d2fdeb6cafd4f7a804e8a59d8a64b7eb5"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/api-imageinfo-dagoberto-lupi-temer-2009.json",
+          "bytes": 5716,
+          "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+          "retrieved_at": "2026-10-01T22:44:39Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/filepage-dagoberto-lupi-temer-2009.html",
+          "bytes": 118556,
+          "sha256": "450f162acf43b4072c2d7f8d444c7b6878116d704f92585f2530b986ec128bd3",
+          "retrieved_at": "2026-10-01T22:40:43Z"
+        }
+      },
+      {
+        "reference_id": "michel-temer-2017",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+          "bytes": 2242245,
+          "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+          "commons_sha1": "eee3234f90c19a2fb74cd1c83f4db898ab5e9bbf"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/commons-api-imageinfo-Presidente_Michel_Temer_-_Foto_Oficial_Original.json",
+          "bytes": 2547,
+          "sha256": "480634796a66fee9c1be40fb1bb53bb53956a1b2c6eab9ea571010e430e222ef"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/fp-foto-oficial-original.html",
+          "bytes": 113361,
+          "sha256": "875be898b78e6dc6166a7edd78c153c8adec602175f246a2746eac3795c4b853"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/flickr-24439184568-extract.json",
+            "bytes": 746,
+            "sha256": "06af1b3df0224b49f97dd16875f8ef86a2a1c9e3daf5f7ef6bd14a58b8773ad9",
+            "content": "Extracted Flickr fields only (title 'Foto Oficial do Presidente da República', licence https://creativecommons.org/licenses/by/2.0/, dateTaken 2017-11-09 19:16:48, an edit time; datePosted 2017-11-10T14:34:05Z). The Flickr page body was not kept because it embeds a viewer-geolocation country code."
+          }
+        ]
+      },
+      {
+        "reference_id": "baleia-rossi-2021",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/Baleia_Rossi_2021-12-08_cropped.original.jpg",
+          "bytes": 2079037,
+          "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/08-12-2021_Lan%C3%A7amento_da_pr%C3%A9-candidatura_de_Simone_Tebet_%C3%A0_Presid%C3%AAncia_da_Rep%C3%BAblica_%28519%29_%28cropped%29.jpg",
+          "commons_sha1": "53f671643dcb88e8396d90ccb3e345078b07acc4"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-baleia-rossi-2021-cropped-and-parent.json",
+          "bytes": 8602,
+          "sha256": "b2b55f61b1a975c3b3ff3e20cb1d5545167b07331404b70eb79a64abcd27d00f"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-file-page-baleia-rossi-2021-12-08-cropped.html",
+          "bytes": 116960,
+          "sha256": "ab78e48cd75aee135f8e1e42cd95dbdd2342229febb306e1aaf6de5af15a7d92"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-category-baleia-rossi-imageinfo.json",
+            "bytes": 83387,
+            "sha256": "7d38827a6fed539b6bea6e3f6649495257c1e283d3efa9d1f3c1ec25a0401de8",
+            "content": "Commons API extmetadata for Category:Baleia Rossi (candidate survey)"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-category-baleia-rossi-in-2022-imageinfo.json",
+            "bytes": 134457,
+            "sha256": "5757c69787da10c01f8632d453c535eae433dc157cc5b7f105c16629b9cb22bf",
+            "content": "Commons API extmetadata for Category:Baleia Rossi in 2022"
+          }
+        ]
+      },
+      {
+        "reference_id": "leonel-brizola-1998",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/leonel-brizola-1998-sergio-neglia-palmeira-das-missoes-original.jpg",
+          "bytes": 7660996,
+          "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Leonel_Brizola_em_Palmeira_das_Miss%C3%B5es.jpg",
+          "commons_sha1": "e3ece8f09fd76ac6e948eeb518c089580e8c8b76"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-api-imageinfo-Leonel_Brizola_em_Palmeira_das_Missoes.json",
+          "bytes": 5269,
+          "sha256": "975e4ad580bab34033ec6c1cc920943d08601c121fbd82936244004d819feb58",
+          "retrieved_at": "2026-10-01T22:48:07Z",
+          "note": "Contains the photographer's embedded IPTC contact fields as Commons publishes them; kept outside Git."
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-file-page-Leonel_Brizola_em_Palmeira_das_Missoes.html",
+          "bytes": 86990,
+          "sha256": "41e3dd17825485888b339263f5f5c9693bcc98b302cc44bafb9a1d30392c67e2",
+          "retrieved_at": "2026-10-01T22:48:28Z"
+        }
+      },
+      {
+        "reference_id": "carlos-lupi-2009",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/carlos-lupi-2009-camara-jbatista-original.jpg",
+          "bytes": 1315244,
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Dagoberto_Nogueira_Filho%2C_Carlos_Lupi_e_Michel_Temer.jpg",
+          "commons_sha1": "f962121d2fdeb6cafd4f7a804e8a59d8a64b7eb5"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-imageinfo-dagoberto-lupi-temer-2009.json",
+          "bytes": 5716,
+          "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+          "retrieved_at": "2026-10-01T22:44:39Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/filepage-dagoberto-lupi-temer-2009.html",
+          "bytes": 118556,
+          "sha256": "450f162acf43b4072c2d7f8d444c7b6878116d704f92585f2530b986ec128bd3",
+          "retrieved_at": "2026-10-01T22:40:43Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-category-imageinfo.json",
+            "bytes": 61881,
+            "sha256": "76da74244d0631ccc4cd3b1508abc6046433b6938eefafac46b0cdaeee9966bf",
+            "content": "Commons API imageinfo/extmetadata for all 31 files in Category:Carlos Lupi"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/search-category-carlos-lupi.json",
+            "bytes": 3170,
+            "sha256": "02ad0c159be7102c925590f0c30604470e0336e5907fded848e8a7df456c3ea7",
+            "content": "Category:Carlos Lupi member list"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/search-carlos-lupi-files.json",
+            "bytes": 59723,
+            "sha256": "5a0c77d2dc0911310514c4d35f040b0f6fdfef5c1ded451e1a1294070f214bc1",
+            "content": "Commons full-text file search 'Carlos Lupi' (169 hits, complete)"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-imageinfo-search-extras.json",
+            "bytes": 20212,
+            "sha256": "a25514186efcf56d7fd7e1346a6190ea87a9444cc7b2962bf33c4e278b38f818",
+            "content": "imageinfo for the extracted crops, Conceição Rabha 03-05, a 2023 own-work file and a Senado file"
+          }
+        ]
+      },
+      {
+        "reference_id": "carlos-lupi-2023",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/carlos-lupi-2023-agencia-senado-cas-cropped-original.jpg",
+          "bytes": 687212,
+          "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Carlos_Lupi._CAS_-_Comiss%C3%A3o_de_Assuntos_Sociais_%28cropped%29.jpg",
+          "commons_sha1": "6a0702dfa83288b6daa517b867ba9909bf5b35e0"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/api-imageinfo-carlos-lupi-cas-cropped.json",
+          "bytes": 3021,
+          "sha256": "42ebd71728c34853dd934818b040d3dc8aff9d4979aa2d4fb0d82d695104c107",
+          "retrieved_at": "2026-10-01T22:38:18Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/filepage-carlos-lupi-cas-cropped.html",
+          "bytes": 96385,
+          "sha256": "b4382661ee87e509ad71fb68ee0516737b8965dc97b2dfcd0ce2da3950a3c88b",
+          "retrieved_at": "2026-10-01T22:38:25Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/filepage-carlos-lupi-cas-parent.html",
+            "bytes": 135595,
+            "sha256": "a0a61a4eb4ec0c653f7d61847ed9fd5ab0ba106273df5b5abf248ff929434cbb",
+            "retrieved_at": "2026-10-01T22:38:33Z",
+            "content": "Commons file page of the parent (3854x2569): FlickreviewR 2 confirmed cc-by-2.0 on 30 January 2024; EXIF Nikon D5, DateTimeOriginal 24 October 2023 10:32, Author Geraldo Magela, copyright holder Senado Federal do Brasil."
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/cat-imageinfo.json",
+            "bytes": 66655,
+            "sha256": "da921b5a795afe39796e5f4d3253631efde6f8b4a20ad7e724804f55b1c759f5",
+            "content": "Commons API extmetadata for Category:Carlos Lupi (candidate survey)"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/subcat-inauguration-imageinfo.json",
+            "bytes": 9171,
+            "sha256": "2d026c03254771b564ec53918ed7870e8b1dd3f26dccaa868be4f5f2ef74b470",
+            "content": "Category:Inauguration of Carlos Lupi as minister of Lula (3rd)"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/search-imageinfo.json",
+            "bytes": 187386,
+            "sha256": "3213190356e97512fff5a0f373c670577659866c2935d9ac9367451b95fd010b",
+            "content": "Commons file search 'Carlos Lupi', results 1-100"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/search-imageinfo-p2.json",
+            "bytes": 140873,
+            "sha256": "04dee47db2ec407b5177c778fdf3e08ea246a90768c3fcd051010730e54dd9ea",
+            "content": "Commons file search 'Carlos Lupi', results 101-169"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-entrevistas-diversas-16685325693-20150428.jpg",
+            "bytes": 130079,
+            "sha256": "317a2a08b7894ae24506c0c5909e59bb7ece922df4c31cd6a2e2cb5620ea6a04",
+            "content": "comparison thumbnail only (Agência Senado, 28 April 2015): dark hair and beard"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-posse-52625793002-20230101.jpg",
+            "bytes": 200066,
+            "sha256": "6a3f1a58d77058558fa7a7cb8a50a52e5a17be3952878673b940ddc1a1b4327e",
+            "content": "comparison thumbnail only (Palácio do Planalto, 1 January 2023): salt-and-pepper hair, graying beard"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-cpmi-inss-54775979604-20250908.jpg",
+            "bytes": 115221,
+            "sha256": "a6f88bc71358933e97b12222569b1b95c96d6b6adc40c943b7b476da1fe5f1dc",
+            "content": "CPMI INSS 8 September 2025 frame described as Lupi's hearing; it shows another man; not used"
+          }
+        ]
+      }
+    ],
+    "superseded_reference_kept_outside_git": {
+      "reference": "Michel Temer, 11 March 2009, Laycer Tomaz (Prince Charles visit), CC BY 2.0",
+      "image": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/michel-temer-2009-congresso-charles-11824556866-original.jpg",
+        "bytes": 6115852,
+        "sha256": "99a83588b01636240f4ff8d28d66f5366481d348d90a8ad870c1ff381fadbbcb",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/11-03-2009_-_Congresso_Nacional_-_Michel_Temer%2C_Pr%C3%ADncipe_Charles%2C_de_Gales_Duquesa_da_Cornualha_Camila_Parker-Bowles_%2811824556866%29.jpg",
+        "commons_sha1": "eeee5497dc7a18cc51b15e2e93ad4e96f22fa616"
+      },
+      "metadata": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/commons-api-temer-2009-congresso-charles-11824556866.json",
+        "bytes": 4625,
+        "sha256": "60c4dca139765dabc1322412c83c6acc6cd58151ac817e330f5cc00dbb411f0e"
+      },
+      "file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/commons-file-page-temer-2009-congresso-charles-11824556866.html",
+        "bytes": 137675,
+        "sha256": "5e156b8d88852d54ddd9f1d5d3393cb2f9bd55459e6268742d6dfbb7bd3abc02"
+      },
+      "candidate_listing": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/work/cat2010.json",
+        "bytes": 63041,
+        "sha256": "c6f46220673aa733694857e020ab878aa2b31ceb67379faa8a650b9bf27ef4d8",
+        "content": "Category:Michel Temer in 2010 with extmetadata (51 files), used for the after-window additions"
+      },
+      "note": "The preparer's first Temer 2009 copy (this file) was untracked and has been removed from the worktree; it is not committed."
+    },
+    "date_corroboration": [
+      {
+        "reference_id": "michel-temer-2017",
+        "url": "https://www.gazetadopovo.com.br/politica/republica/apos-criticas-planalto-divulga-novo-retrato-oficial-do-presidente-michel-temer-a3h98fatj9fe1z6v5kozk4dk8/",
+        "publisher": "Gazeta do Povo",
+        "published": "2017-11-09",
+        "content": "Says the new official portrait by Beto Barata was made in May in the library of the Palácio da Alvorada.",
+        "retrieval": "Cited by the independent verifier; not fetched or stored by the assembler (press page, cited for the date only)."
+      }
+    ],
+    "access_limits": [
+      "Wikimedia Commons and upload.wikimedia.org returned HTTP 429 repeatedly during preparation (an IP shared with parallel batch agents). Requests were made one at a time with back-offs of 20 to 360 seconds; nothing was bypassed.",
+      "TSE DivulgaCandContas (Akamai 'Access Denied') and tse.jus.br news pages (HTTP 403) refused automated access to the Tourinho preparer; neither block was bypassed.",
+      "The Brizola preparer stopped an orphaned copy of its own download helper (both processes started by that preparer); no other process was touched.",
+      "The assembler made no network request; the Temer 2009 reference was copied locally from the Lupi window-1 preparer's download."
+    ],
+    "not_listed": "No HTTP response-header capture was kept by any preparer; the Flickr page body for the Temer 2017 photograph was discarded because it embeds a viewer-geolocation country code (only extracted fields are kept). Search scratch files, preview thumbnails viewed for selection (refs/michel_temer/work/preview/) and helper scripts are not ledgered individually; research-only thumbnails that informed a prompt are cited with their sha256 on the reference."
+  }
+}
