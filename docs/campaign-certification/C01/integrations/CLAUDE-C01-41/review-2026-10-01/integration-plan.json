@@ -1,0 +1,31 @@
+{
+  "base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "reviewed_claude_tip": "a989ddb4d67657236292a35443049554cc9b19e7",
+  "scoped_import": "f04ead949211279473d5fcb5a408b49af5a944d1",
+  "correction": "cc57b876dfe01b5802dc00c6c891ee879a433c99",
+  "authored_paths": [
+    "docs/campaign-certification/C01/research/sources/ussr-izvestia-tsk-kpss-1991-08-masthead-19910710-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-kremlin-rsfsr-ukaz-169-19911106-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-pravda-no192-general-secretary-election-19900711-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-pravda-no193-deputy-nominations-19900712-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-pravda-no194-deputy-election-19900713-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-pravda-no195-program-commission-19900714-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-pravda-no201-secretariat-statement-19910822-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-pravda-no37-cc-plenum-19900206-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-snd5-bulletin3-cpsu-19910903-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin1-cpsu-19910826-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-ved-1991-35-cpsu-property-19910828-facts.json",
+    "docs/campaign-certification/C01/research/sources/ussr-ved-1991-36-cpsu-suspension-19910904-facts.json",
+    "docs/campaign-certification/C01/research/ussr-cpsu-general-secretary-1990-1991-41.md",
+    "docs/campaign-certification/C01/research/ussr.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-41.md",
+    "tools/avatars/test_ussr_cpsu_general_secretary_c01_41.py",
+    "tools/avatars/test_ussr_democratic_russia_soyuz_c01_35.py",
+    "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py",
+    "tools/avatars/test_ussr_research_s10h.py"
+  ],
+  "exclude_generated": [
+    "docs/campaign-certification/C01/research-index.json"
+  ],
+  "integration": "Preserve import and correction history; integrate this receipt; root owns canonical task registration, combined generated artifacts, attribution and acceptance wrapper."
+}

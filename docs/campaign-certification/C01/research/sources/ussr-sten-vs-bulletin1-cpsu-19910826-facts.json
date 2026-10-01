@@ -1,0 +1,99 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_vs_bulletin1_cpsu_19910826",
+  "source_url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/1.pdf",
+  "original_url": "https://sten.vs.sssr.su/12/6/1.pdf",
+  "archive_capture_utc": "2025-07-18T14:36:07Z",
+  "source_title": "Верховный Совет СССР, внеочередная сессия: Бюллетень No. 1 совместного заседания Совета Союза и Совета Национальностей, 26 августа 1991 г. (stenographic bulletin, morning sitting), scanned facsimile, Internet Archive capture 20250718143607; recorded for the CPSU",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "document_date": "1991-08-26",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/1.pdf",
+  "source_response_bytes": 2252696,
+  "source_response_sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://sten.vs.sssr.su/12/6/1.pdf",
+    "bytes": 2252696,
+    "sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+    "last_modified": "Thu, 17 Mar 2016 04:33:11 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "This packet: downloaded at 2026-09-30T23:37:09Z and again at 2026-10-01T00:20:37Z (43 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query, no redirect followed); identical 2,252,696 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest ZCGGKKXUWMPIIQHDCKF2ITXG5FHRLVFA.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/1.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:09Z",
+        "2026-10-01T00:20:37Z"
+      ],
+      "bytes": 2252696,
+      "sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://sten.vs.sssr.su/12/6/1.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:11Z",
+        "2026-10-01T00:20:39Z"
+      ],
+      "bytes": 2252696,
+      "sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.vs.sssr.su/12/6/1.pdf, captured at 2025-07-18T14:36:07Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The same bytes as su_sten_vs_bulletin1_19910826 (CLAUDE-C01-26) and su_vs_bulletin1_soyuz_19910826 (CLAUDE-C01-35), recorded under a new ID as a pre-cutoff raw capture so that their extracts stay unchanged. Only the President's report (printed pp. 31-34) is imported: his own words that he has laid down the duties of General Secretary and proposed the Central Committee's self-dissolution. They state no day.",
+  "edition_and_host": {
+    "edition": "Верховный Совет СССР, внеочередная сессия, Бюллетень № 1, 26 августа 1991 г.; printed p. N on PDF p. N for the cited pages.",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su, vedomosti.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      31,
+      32,
+      34
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; headings, speaker lines, quotations and signature blocks were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_vs26_gorbachev_laid_down_general_secretary_duties_19910826",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-05",
+      "role_id": "su_cpsu_general_secretary",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "Горбачев М. С."
+      ],
+      "role_title": "Генеральный секретарь ЦК КПСС — General Secretary of the CPSU Central Committee",
+      "role_title_as_printed": "'обязанности Генерального секретаря ЦК КПСС'",
+      "event_kind": "resignation_stated_by_holder",
+      "attested_on": "1991-08-26",
+      "text": "In his report to the joint sitting of 26 August 1991 (speaker line 'Горбачев М. С., Президент СССР.', printed p. 31) he says: 'Вы знакомы с моим заявлением, в котором я сложил с себя обязанности Генерального секретаря ЦК КПСС и предложил Центральному Комитету партии самораспуститься.' (printed p. 32) and later 'Поэтому, как вы уже знаете, я сложил с себя обязанности Генерального секретаря и предложил ЦК принять решение о самороспуске.' (printed p. 34).",
+      "locator": "Printed pp. 31, 32 and 34 (PDF pp. 31, 32, 34): speaker line and two passages of the President's report"
+    },
+    {
+      "claim_id": "su_vs26_gorbachev_proposed_cc_self_dissolution_19910826",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-06",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Горбачев М. С."
+      ],
+      "role_title": null,
+      "event_kind": "self_dissolution_proposed",
+      "attested_on": "1991-08-26",
+      "text": "The same report: he 'предложил Центральному Комитету партии самораспуститься' (printed p. 32) and 'предложил ЦК принять решение о самороспуске' (printed p. 34).",
+      "locator": "Printed pp. 32 and 34 (PDF pp. 32, 34)"
+    }
+  ],
+  "bounded_scope": "CPSU General Secretary and Deputy General Secretary observations for CLAUDE-C01-41 only. Nomination and ballot, vote, election result, biographical election dates, vote figures, in-office attestations, resignation statements and references, acting service and the party's property, suspension and termination records stay separate rows; holder boundaries are decided in the packet, not by any row. State offices, the RSFSR Communist Party, russia.json and the simulation's party rows are outside this extract."
+}

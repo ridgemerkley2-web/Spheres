@@ -1,0 +1,17 @@
+{
+  "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012989&page=1&rdk=0",
+  "started_utc": "2026-10-01T00:56:10.775359+00:00",
+  "curl_exit": 0,
+  "status": "200",
+  "stderr": "",
+  "bytes": 30481,
+  "sha256": "1c2da3eef0bc1df06504b652ec4232b33a080eaab4ba7a3a952da30372508a3b",
+  "path": "D:\\spheres-offload\\codex-next-20260928\\c01-41-originals\\su_pravo_169_original.html",
+  "expected": {
+    "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012989&page=1&rdk=0",
+    "bytes": 30481,
+    "sha256": "1c2da3eef0bc1df06504b652ec4232b33a080eaab4ba7a3a952da30372508a3b",
+    "encoding": "windows-1251 HTML",
+    "note": "The original edition (rdk=0) of the same decree on the official legal portal (pravo.gov.ru, nd=102012989), downloaded over HTTP because the portal's HTTPS origin timed out from this environment (as for CLAUDE-C01-26); its wording of points 1 and 3 and the signature block is identical to the recorded page, which adds the Constitutional Court's note."
+  }
+}

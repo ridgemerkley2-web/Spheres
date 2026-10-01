@@ -1,0 +1,80 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_izv_tsk_1991_08",
+  "source_url": "https://ia903108.us.archive.org/13/items/B-001-036-100-ALL/B-001-036-100-03.pdf",
+  "stored_file": {
+    "item": "https://archive.org/details/B-001-036-100-ALL",
+    "identifier": "B-001-036-100-ALL",
+    "file": "B-001-036-100-03.pdf",
+    "canonical_download_url": "https://archive.org/download/B-001-036-100-ALL/B-001-036-100-03.pdf",
+    "storage_node_url": "https://ia903108.us.archive.org/13/items/B-001-036-100-ALL/B-001-036-100-03.pdf",
+    "archive_org_file_size": 107500579,
+    "archive_org_file_sha1": "042e2fb92b9821f1b4d647a66bd69342eab6c28f",
+    "archive_org_file_md5": "001fa42409013acaa73c7f8e2f0f1bd5",
+    "uploader": "a private Internet Archive account (its address is not recorded here)",
+    "item_added": "2021-09-20 10:39:55",
+    "collections": [
+      "nicolai-woodenko-library",
+      "patron-library-collection"
+    ],
+    "ocr_layer": "tesseract 5.0.0-beta-20210815"
+  },
+  "source_title": "Известия ЦК КПСС, информационный ежемесячный журнал, № 8 (319), август 1991 (signed to press 10.07.91): editorial board; page-image scan, Internet Archive stored file",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "document_date": "1991-07-10",
+  "access_method": "internet_archive_stored_file",
+  "source_response_url": "https://ia903108.us.archive.org/13/items/B-001-036-100-ALL/B-001-036-100-03.pdf",
+  "source_response_bytes": 107500579,
+  "source_response_sha256": "3cacb753dff04582732f7dc09ca3210ed46f2c80b4d6764b96e8929063424141",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-09-30T23:48:39Z and again at 2026-10-01T00:20:36Z (31 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query, no redirect followed); identical 107,500,579 bytes and SHA-256. The SHA-1 of the recorded bytes equals the file SHA-1 in the item's metadata (042e2fb92b9821f1b4d647a66bd69342eab6c28f). archive.org's canonical download URL answers with a redirect to a storage node that varies between requests (observed: two nodes); the recorded URL is the item's primary storage node, which serves the file directly.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://ia903108.us.archive.org/13/items/B-001-036-100-ALL/B-001-036-100-03.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:48:39Z",
+        "2026-10-01T00:20:36Z"
+      ],
+      "bytes": 107500579,
+      "sha256": "3cacb753dff04582732f7dc09ca3210ed46f2c80b4d6764b96e8929063424141",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Stored file 'B-001-036-100-03.pdf' of the Internet Archive item B-001-036-100-ALL (added 2021-09-20 10:39:55 by a private uploader, before the 7 September 2026 cutoff), a page-image scan with an OCR layer; requested with 'Accept-Encoding: identity' and served without Content-Encoding. If the storage node changes, the canonical download URL (stored_file) redirects to the same file, whose identity the item's recorded SHA-1 and size confirm. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The Central Committee's monthly, issue 8 (319) dated August 1991 and signed to press on 10 July 1991, a page-image scan in an Internet Archive item. Only the editorial board's first entry (PDF p. 5) and the imprint (PDF p. 228) are imported; it is dated by its imprint, the only day it states. The chronicle of June 1991 and the other contents are not imported.",
+  "edition_and_host": {
+    "edition": "Известия ЦК КПСС, 8 (319), август 1991 (PDF p. 5); imprint 'Сдано в набор 18.06.—05.07.91. Подписано к печати 10.07.91.' (PDF p. 228); 233 PDF pages, the covers included.",
+    "host": "Internet Archive item uploaded by a private user (uploader and date in stored_file); the Internet Archive is not the publisher and the scan's origin is not documented. The recorded identity is the stored PDF, byte-identical to the file SHA-1 and size in the item's metadata."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5,
+      228
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited passage was rendered from the recorded PDF with PyMuPDF (110-220 dpi crops) and read from the page image; the PDF's OCR text layer (Internet Archive tesseract) was used only to find passages. The issue line and imprint were read from the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_izv_tsk_1991_08_board_deputy_general_secretary_19910710",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-04",
+      "role_id": "su_cpsu_deputy_general_secretary",
+      "holder_name": "Владимир Антонович Ивашко",
+      "persons_named": [
+        "В. А. ИВАШКО"
+      ],
+      "role_title": "Заместитель Генерального секретаря ЦК КПСС — Deputy General Secretary of the CPSU Central Committee",
+      "role_title_as_printed": "'заместитель Генерального секретаря ЦК КПСС'",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-07-10",
+      "text": "Известия ЦК КПСС, '8 (319) август 1991': 'Редакционный совет журнала: В. А. ИВАШКО, заместитель Генерального секретаря ЦК КПСС' (first entry); imprint 'Сдано в набор 18.06.—05.07.91. Подписано к печати 10.07.91.'",
+      "locator": "PDF p. 5: issue line and editorial board; PDF p. 228: imprint"
+    }
+  ],
+  "bounded_scope": "CPSU General Secretary and Deputy General Secretary observations for CLAUDE-C01-41 only. Nomination and ballot, vote, election result, biographical election dates, vote figures, in-office attestations, resignation statements and references, acting service and the party's property, suspension and termination records stay separate rows; holder boundaries are decided in the packet, not by any row. State offices, the RSFSR Communist Party, russia.json and the simulation's party rows are outside this extract."
+}
