@@ -1,0 +1,17 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/certified_gap_ledger.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+  "started_utc": "2026-10-01T05:27:37.864766+00:00",
+  "duration_seconds": 1.087,
+  "exit_code": 0,
+  "log": "final-gap-check.log",
+  "bytes": 258,
+  "sha256": "030157f759ca3c314a545daf4c5d9136e0cac632e6f28c0dedc87dce45d01ca9"
+}

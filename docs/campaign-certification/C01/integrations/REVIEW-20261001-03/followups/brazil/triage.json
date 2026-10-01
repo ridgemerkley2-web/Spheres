@@ -1,0 +1,167 @@
+{
+  "scope": "Read-only follow-up triage; no network, tests, checkout, import or source edits.",
+  "accepted_submission": "68fb8f863398247ba1515a1ff3f413a444a6d7f5",
+  "accepted_review": "5a0fc340b2cf1291d8825747d5a68afcd3337fee",
+  "accepted_correction": "878a48bcaea12a3ef89037a7dfb2028297fea3c6",
+  "current_integration": "e36af2862b192ef45de6b2c1e0f3f37676cadc1a",
+  "new_tip": "8e3a72d3db3c2def743a22bd258d715ab4630040",
+  "authored_followup": "86dca023c6a94a6f09f0df3ef3cfc2bc2b0d72bf",
+  "integration_merge": "7a002dbe9809a41d3a07b233485f1751e7fad400",
+  "authored_paths": [
+    "docs/campaign-certification/C01/research/brazil-prn-ptc-agir-presidents-1990-2026-43.md",
+    "docs/campaign-certification/C01/research/brazil.json",
+    "docs/campaign-certification/C01/research/sources/brazil-ptc-edital-convocacao-20180719-facts.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-43.md",
+    "tools/avatars/test_brazil_party_presidents_c01_34.py",
+    "tools/avatars/test_brazil_prn_agir_presidents_c01_43.py"
+  ],
+  "tip_only_path": "docs/campaign-certification/C01/research-index.json",
+  "new_originals": 0,
+  "original_pin_checks": [
+    {
+      "source_id": "br_agir_tse_partidos_registrados_capt20260802",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_tse_glossario_partidos_capt20230325",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_historia_partido_capt20071011",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_comissao_executiva_capt20071020",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_apoio_aecio_20140516",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_convencao_aracaju_20150728",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_ata_executiva_20180703",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_edital_convencao_20180719",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_resolucao_02_2018_20180725",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_resolucao_001_2020_20200807",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_agora_agir36_20210601",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_ptc_comunicado_20210723",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_executiva_resolucao_01_2022_20221111",
+      "original_response_pin_unchanged": true
+    },
+    {
+      "source_id": "br_agir_plenaria_nacional_capt20240301",
+      "original_response_pin_unchanged": true
+    }
+  ],
+  "source_count": 262,
+  "claim_count": 556,
+  "previous_selected_observations": 5,
+  "proposed_selected_observations": 6,
+  "added_holder": {
+    "name": "Daniel Tourinho",
+    "attested_on": "2018-07-19",
+    "from": null,
+    "until": null,
+    "sources": [
+      "br_agir_ptc_edital_convencao_20180719"
+    ],
+    "claim_ids": [
+      "br_agir_ptc_tourinho_convokes_convention_20180719"
+    ],
+    "note": "Observed on 19 July 2018: the PTC's 'EDITAL DE CONVOCAÇÃO', signed 'Brasília DF, 19 de Julho de 2018' by 'Daniel Sampaio Tourinho' as 'Presidente do Diretório Nacional - PTC', convokes the national convention of 28 July 2018.",
+    "uncertainty": "A signed act attests the office (the C01-37/C01-38 signature rule), so the convocation dates an observation on its signature day only: no start and no end. The convention it convokes for 28 July 2018 is prospective and its result was not found; it is never a boundary."
+  },
+  "changed_extract": {
+    "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-edital-convocacao-20180719-facts.json",
+    "change": "event_kind signed_as_directorate_president to in_office_attestation; claim text/date/locator/original pin unchanged",
+    "new_snapshot_bytes": 4866,
+    "new_snapshot_sha256": "93bdd1bead4e97bfd2f22ac4ebc3ab4168e454a0ea0c15c4030b07e67347355b"
+  },
+  "content_assessment": {
+    "source_id": "br_agir_ptc_edital_convencao_20180719",
+    "claim_id": "br_agir_ptc_tourinho_convokes_convention_20180719",
+    "original_pdf_and_page_already_read": true,
+    "printed_title": "Presidente do Diretório Nacional - PTC",
+    "signature_date": "2018-07-19",
+    "prospective_convention_date": "2018-07-28",
+    "what_is_supported": "Tourinho signed as President of the PTC National Directorate on19July2018; this attests that printed office on that day. It is not a result of the announced convention or a tenure boundary.",
+    "same_office_identity": "Not established by the submitted/retained notice alone. The target br_agir_president is defined as the national presidency across PRN/PTC/Agir. A general signed-act rule proves attestation of the printed title, not equivalence between organizational offices. The separately signed25July national-presidency document concerns the same person but does not itself establish constitutional-office identity.",
+    "needed_for_promotion": "An independently reviewed party statute or explicit party record linking the National Directorate presidency to this national-president role, or a separately justified role-scope amendment preserving the exact office distinction.",
+    "user_ruling_claim": "Not independently verified; no instruction or acceptance inferred from author assertions."
+  },
+  "preservation": {
+    "old_248_sources_535_claims_unchanged": true,
+    "new_14_originals_unchanged": true,
+    "no_new_claim_ids": true,
+    "incoming_changes_prior_July25_holder_uncertainty": true,
+    "other_existing_holder_core_fields_unchanged": true
+  },
+  "regression_risks": [
+    "Whole-file replacement restores generic NEVER_HOLDER_DATE veto, removes its fixture-only placement and deletes accepted three-case regression. This branch predates the independent correction; do not interpret the divergent file as evidence of deliberate removal.",
+    "July25 holder uncertainty newly says President of the meeting; source does not establish merely meeting chair. Existing reviewed narrative narrowing must survive.",
+    "Three accepted claim-uncertainty corrections are absent from the older upstream branch; do not overwrite them.",
+    "Claimed Ridge rulings in handoff/report do not supply independent authorization."
+  ],
+  "useful_narrow_changes": [
+    "Report dating paragraph correctly distinguishes16May item with no event day from11November article that reports10November meeting but also has present-tense11November office styling. Current report still overgeneralizes both as printing no event day; adopt that prose clarification independently.",
+    "Test C01-34 comment updates three to four party offices, matching its already-existing assertion; cosmetic only.",
+    "Outcome no elected President named wording duplicates the already accepted no newly elected President identified clarification."
+  ],
+  "disposition": "Do not import the follow-up wholesale or generated index. Retain accepted five observations and21claims. Hold/exclude only proposed sixth-holder promotion pending same-office justification; keep the genuine Directorate-President claim and exact signature date. A narrow independent report clarification is justified without new history, requests or tests.",
+  "files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-followup-triage-20261001\\accepted-to-followup.diff",
+      "bytes": 64155,
+      "sha256": "90be48954185bd46816438838de13c3b818b99a810002724090e4cfcdf7ac9ec"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-followup-triage-20261001\\authored-change.diff",
+      "bytes": 58008,
+      "sha256": "060203188b67f07677e369ddddf846c3bb35ecfbe22b93b957de97f5903bfa5a"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-followup-triage-20261001\\tip-index-only.diff",
+      "bytes": 5637,
+      "sha256": "43f5512d02def848f9ff483a2db590c8d4f958c0b3a130196b63869620b756f8"
+    }
+  ],
+  "retained_evidence": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_edital_convencao_20180719.body",
+      "bytes": 322372,
+      "sha256": "fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_edital_convencao_20180719.decoded.pdf",
+      "bytes": 322372,
+      "sha256": "fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_edital_convencao_20180719.page1.png",
+      "bytes": 1120192,
+      "sha256": "8e947369dab9e687c0ce320056e70614251aad18dce760dbc74675d87d88255d"
+    }
+  ]
+}

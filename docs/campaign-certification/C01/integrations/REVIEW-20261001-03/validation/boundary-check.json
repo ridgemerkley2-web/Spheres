@@ -1,0 +1,17 @@
+{
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/avatar-ci-clean-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/certified_boundary_matrix.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+  "started_utc": "2026-10-01T05:17:04.332765+00:00",
+  "duration_seconds": 0.466,
+  "exit_code": 0,
+  "log": "boundary-check.log",
+  "bytes": 237,
+  "sha256": "b3e8eeac20b1ebd9339bf39c7c4f72bd510b4141a1470a7682039e60382e079a"
+}

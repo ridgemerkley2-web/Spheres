@@ -1,0 +1,202 @@
+diff --git a/docs/campaign-certification/C01/research-index.json b/docs/campaign-certification/C01/research-index.json
+index 311029fe..75d1b659 100644
+--- a/docs/campaign-certification/C01/research-index.json
++++ b/docs/campaign-certification/C01/research-index.json
+@@ -295,7 +295,7 @@
+           "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
+           "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office.",
+           "Komeito representatives 1990-2026 (CLAUDE-C01-31): the 公明党 observation gains its first party role, jp_komeito_representative (委員長 to 1994, then 代表), with fifteen holder observations from 石田幸四郎 (1993) to 竹谷とし子 (2026); only 太田昭宏 (30 September 2006) has a stated start; 竹谷とし子 is attested on 14 March 2026 with no effective start inferred, and no holder has a stated end. The 1994 division, the organizations of 1994-1998, the 1998 merger and 中道改革連合 are organization claims, never a merge or mapping; the 1994 acting chair and the 2026 代表代理 are claims only. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous records of 1990-1994, several conventions and every end of office.",
+-          "JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42): the 日本共産党 roles gain fifteen holder observations (ten of 幹部会委員長, five of 中央委員会議長) and jp_dpfp_representative four, each dated by a party record or the party organ; none has a stated start or end, and the 国民民主党 of 2018-2020 is kept as an earlier organization with the same name (claims only). Still open: party records of 1990-1993, the days offices began and ended, and the ruling questions listed in the packet report."
++          "JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42): the 日本共産党 roles gain fifteen holder observations (ten of 幹部会委員長, five of 中央委員会議長) and jp_dpfp_representative four, each dated by a party record or the party organ; none has a stated start or end, and the 国民民主党 of 2018-2020 is kept as an earlier organization with the same name (claims only). Still open: party records of 1990-1993, the days offices began and ended, and the work orders proposed in the packet report (Ridge's rulings (a)-(e) of 1 October 2026 are recorded there)."
+         ]
+       }
+     },
+@@ -2706,8 +2706,8 @@
+     },
+     {
+       "path": "docs/campaign-certification/C01/research/japan.json",
+-      "bytes": 1828719,
+-      "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435"
++      "bytes": 1829010,
++      "sha256": "a7640264bc94aa94e884a605b0475467839019b398bf8603bdc86fc3dc766aae"
+     },
+     {
+       "path": "docs/campaign-certification/C01/research/russia.json",
+diff --git a/docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md b/docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md
+index 36d00476..3da6a7e0 100644
+--- a/docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md
++++ b/docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md
+@@ -560,3 +560,5 @@ Run on the packet tree before committing (1 October 2026, UTC):
+ - `python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 42 --base origin/codex/campaign-certification` runs
+   after the push (it needs a clean, pushed head) and re-downloads all 32 identities a third time; its summary is returned with
+   this handoff.
++
++Second checker pass (1 October 2026): the research file's ruling wording now states rulings (a) and (b) as decided (six places in japan.json), and the comments in the six earlier Japan tests and this packet's test no longer call it stacked (it is based on integration since CLAUDE-C01-31 was accepted). Comments and wording only; no assertion, holder, claim or source changed.
+diff --git a/docs/campaign-certification/C01/research/japan.json b/docs/campaign-certification/C01/research/japan.json
+index 99b5c5ca..a424d56b 100644
+--- a/docs/campaign-certification/C01/research/japan.json
++++ b/docs/campaign-certification/C01/research/japan.json
+@@ -19312,7 +19312,7 @@
+           "locator": {
+             "section": "passage on the new Central Committee"
+           },
+-          "uncertainty": "A confirmed withdrawal, never an until here: the address does not state the day the office ended (the plenum's day is not printed), so no end is stored; whether it may give until 2006-01-14 is a ruling question."
++          "uncertainty": "A confirmed withdrawal, never an until here: the address does not state the day the office ended (the plenum's day is not printed), so no end is stored; under Ridge's ruling (b) of 1 October 2026 it gives no until (no source states the day the withdrawal took effect; Codex's strict rule, review 1739eccb)."
+         }
+       ]
+     },
+@@ -19524,7 +19524,7 @@
+           "locator": {
+             "section": "■党代表の人事提案"
+           },
+-          "uncertainty": "Another organization's office (共同代表 of the 国民民主党 of 2018-2020), claims only: never a holder of this office; whether the co-representatives should be read as this role's holders is a ruling question."
++          "uncertainty": "Another organization's office (共同代表 of the 国民民主党 of 2018-2020), claims only: never a holder of this office; under Ridge's ruling (a) of 1 October 2026 the co-representatives stay claims only (work order C01-Japan-DPFP-002 proposed)."
+         },
+         {
+           "id": "jp_dpfp_2018_co_representatives_inaugural_greetings_20180507",
+@@ -19600,7 +19600,7 @@
+           "locator": {
+             "section": "heading, date line and the opening statement"
+           },
+-          "uncertainty": "Another organization's office (代表 of the 国民民主党 of 2018-2020), claims only: never a holder or a start of this office, although the record states the assumption on the day; the ruling question asks whether that party's 代表 belongs to this role."
++          "uncertainty": "Another organization's office (代表 of the 国民民主党 of 2018-2020), claims only: never a holder or a start of this office, although the record states the assumption on the day; under Ridge's ruling (a) of 1 October 2026 that party's 代表 stays claims only (work order C01-Japan-DPFP-002 proposed)."
+         }
+       ]
+     },
+@@ -20227,7 +20227,7 @@
+                 "jp_jcp_fuwa_central_chair_self_stated_20060112"
+               ],
+               "note": "Observed on 12 January 2006, the issue date, because the page prints no day: the party organ's text of the 24th Congress opening address, in which he introduces himself as 日本共産党中央委員会議長. Not a start, a continuous term, a biography or a likeness authorization.",
+-              "uncertainty": "No start or end is stated by any source reviewed; his withdrawal from the office, approved by the standing Presidium at the end of December 2005, reported in the issue of 15 January 2006 and said in the closing address of 14 January 2006 to have been confirmed by the new Central Committee, is a claim only: no source reviewed states the day the office ended (whether the confirmation gives until 2006-01-14 is a ruling question). The first plenums of 2006, 2017 and 2020 are recorded electing principal officers without a Central Committee chair."
++              "uncertainty": "No start or end is stated by any source reviewed; his withdrawal from the office, approved by the standing Presidium at the end of December 2005, reported in the issue of 15 January 2006 and said in the closing address of 14 January 2006 to have been confirmed by the new Central Committee, is a claim only: no source reviewed states the day the office ended (under Ridge's ruling (b) of 1 October 2026 the confirmation gives no until). The first plenums of 2006, 2017 and 2020 are recorded electing principal officers without a Central Committee chair."
+             },
+             {
+               "name": "志位和夫",
+@@ -20693,7 +20693,7 @@
+           "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+           "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+           "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification.",
+-          "DPFP representatives 2020-2026 (CLAUDE-C01-42): jp_dpfp_representative has five holder observations of 玉木雄一郎 (four from 26 October 2020 and the existing 6 September 2026). Still open: whether the 国民民主党 of May 2018 to September 2020 (旧・国民民主党) and its co-representative and representative offices relate to this observation (claims only here); the day the office began in September 2020 or after each election; a contemporaneous party record of the acting arrangement of December 2024; and the relation to the parliamentary group 国民民主党・無所属クラブ, which stays unresolved."
++          "DPFP representatives 2020-2026 (CLAUDE-C01-42): jp_dpfp_representative has five holder observations of 玉木雄一郎 (four from 26 October 2020 and the existing 6 September 2026). Still open: the 国民民主党 of May 2018 to September 2020 (旧・国民民主党) as its own organization observation (its offices stay claims only here under Ridge's ruling (a) of 1 October 2026; work order C01-Japan-DPFP-002 proposed); the day the office began in September 2020 or after each election; a contemporaneous party record of the acting arrangement of December 2024; and the relation to the parliamentary group 国民民主党・無所属クラブ, which stays unresolved."
+         ]
+       }
+     },
+@@ -25344,7 +25344,7 @@
+       "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
+       "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office.",
+       "Komeito representatives 1990-2026 (CLAUDE-C01-31): the 公明党 observation gains its first party role, jp_komeito_representative (委員長 to 1994, then 代表), with fifteen holder observations from 石田幸四郎 (1993) to 竹谷とし子 (2026); only 太田昭宏 (30 September 2006) has a stated start; 竹谷とし子 is attested on 14 March 2026 with no effective start inferred, and no holder has a stated end. The 1994 division, the organizations of 1994-1998, the 1998 merger and 中道改革連合 are organization claims, never a merge or mapping; the 1994 acting chair and the 2026 代表代理 are claims only. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous records of 1990-1994, several conventions and every end of office.",
+-      "JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42): the 日本共産党 roles gain fifteen holder observations (ten of 幹部会委員長, five of 中央委員会議長) and jp_dpfp_representative four, each dated by a party record or the party organ; none has a stated start or end, and the 国民民主党 of 2018-2020 is kept as an earlier organization with the same name (claims only). Still open: party records of 1990-1993, the days offices began and ended, and the ruling questions listed in the packet report."
++      "JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42): the 日本共産党 roles gain fifteen holder observations (ten of 幹部会委員長, five of 中央委員会議長) and jp_dpfp_representative four, each dated by a party record or the party organ; none has a stated start or end, and the 国民民主党 of 2018-2020 is kept as an earlier organization with the same name (claims only). Still open: party records of 1990-1993, the days offices began and ended, and the work orders proposed in the packet report (Ridge's rulings (a)-(e) of 1 October 2026 are recorded there)."
+     ]
+   }
+ }
+diff --git a/docs/planning/ai-handoffs/CLAUDE-C01-42.md b/docs/planning/ai-handoffs/CLAUDE-C01-42.md
+index 48cf9ab6..650bac8e 100644
+--- a/docs/planning/ai-handoffs/CLAUDE-C01-42.md
++++ b/docs/planning/ai-handoffs/CLAUDE-C01-42.md
+@@ -159,3 +159,5 @@ Checks re-run on the fixed tree (1 October 2026, UTC):
+   were re-downloaded for verification with the recorded bytes and SHA-256), so it does not re-download the 32 identities.
+ 
+ C01 and all parent gates stay open.
++
++Second checker pass (1 October 2026): the research file's ruling wording now states rulings (a) and (b) as decided (six places in japan.json), and the comments in the six earlier Japan tests and this packet's test no longer call it stacked (it is based on integration since CLAUDE-C01-31 was accepted). Comments and wording only; no assertion, holder, claim or source changed.
+diff --git a/tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py b/tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py
+index 61d2e2e3..7fd7dc9f 100644
+--- a/tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py
++++ b/tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py
+@@ -23,7 +23,7 @@ T_EXEC = '幹部会委員長 — Executive Committee chair'
+ T_CENTRAL = '中央委員会議長 — Central Committee chair'
+ T_DPFP = '代表 — party representative'
+ 
+-# The packet's sources before this packet (CLAUDE-C01-31, the stacked base, ends at 503).
++# The packet's sources before this packet (CLAUDE-C01-31, accepted into integration 13367c99, ends at 503).
+ EARLIER_SOURCE_COUNT = 503
+ 
+ GROUPS = ['jp_shugiin_group_20260218_011',
+@@ -760,7 +760,7 @@ class JapanJcpDpfpLeadersTests(unittest.TestCase):
+         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
+         order = [s['id'] for s in self.packet['sources']]
+         self.assertEqual(order[EARLIER_SOURCE_COUNT:], NEW_SOURCES)
+-        # CLAUDE-C01-31's 31 Komeito sources, the stacked base, end exactly where this packet's begin.
++        # CLAUDE-C01-31's 31 Komeito sources, accepted into integration, end exactly where this packet's begin.
+         self.assertTrue(all(sid.startswith('jp_komeito_') for sid in order[EARLIER_SOURCE_COUNT - 31:EARLIER_SOURCE_COUNT]))
+         self.assertFalse(order[EARLIER_SOURCE_COUNT - 32].startswith('jp_komeito_'))
+         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid in RESPONSES])
+diff --git a/tools/avatars/test_japan_komeito_representatives_c01_31.py b/tools/avatars/test_japan_komeito_representatives_c01_31.py
+index 59d4bc62..b757da79 100644
+--- a/tools/avatars/test_japan_komeito_representatives_c01_31.py
++++ b/tools/avatars/test_japan_komeito_representatives_c01_31.py
+@@ -12,7 +12,7 @@ import unittest
+ from urllib.parse import urlsplit
+ 
+ import campaign_research as research
+-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
++# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+ # after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+ import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
+ 
+diff --git a/tools/avatars/test_japan_ldp_presidents_c01_18.py b/tools/avatars/test_japan_ldp_presidents_c01_18.py
+index 8f40c182..8b76b5a7 100644
+--- a/tools/avatars/test_japan_ldp_presidents_c01_18.py
++++ b/tools/avatars/test_japan_ldp_presidents_c01_18.py
+@@ -17,7 +17,7 @@ import test_japan_sdp_chairs_c01_29 as sdp
+ # CLAUDE-C01-31 appends the sources of a new party role, jp_komeito_representative, after CLAUDE-C01-29's; its exact source
+ # list is pinned in its own test.
+ import test_japan_komeito_representatives_c01_31 as komeito
+-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
++# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+ # after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+ import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
+ 
+diff --git a/tools/avatars/test_japan_prime_ministers_c01_12.py b/tools/avatars/test_japan_prime_ministers_c01_12.py
+index beb79f39..d78ad6d0 100644
+--- a/tools/avatars/test_japan_prime_ministers_c01_12.py
++++ b/tools/avatars/test_japan_prime_ministers_c01_12.py
+@@ -21,7 +21,7 @@ import test_japan_sdp_chairs_c01_29 as sdp
+ # CLAUDE-C01-31 adds sources for a new party role, jp_komeito_representative, only; its exact source list is pinned in its own
+ # test and appended after CLAUDE-C01-29's below.
+ import test_japan_komeito_representatives_c01_31 as komeito
+-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
++# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+ # after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+ import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
+ 
+diff --git a/tools/avatars/test_japan_prime_ministers_c01_13.py b/tools/avatars/test_japan_prime_ministers_c01_13.py
+index 4ddafbeb..215b3439 100644
+--- a/tools/avatars/test_japan_prime_ministers_c01_13.py
++++ b/tools/avatars/test_japan_prime_ministers_c01_13.py
+@@ -18,7 +18,7 @@ import test_japan_sdp_chairs_c01_29 as sdp
+ # CLAUDE-C01-31 adds sources for a new party role, jp_komeito_representative, only, after CLAUDE-C01-29's; its exact sources
+ # and holders are pinned in its own test.
+ import test_japan_komeito_representatives_c01_31 as komeito
+-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
++# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+ # after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+ import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
+ 
+diff --git a/tools/avatars/test_japan_research_s10d.py b/tools/avatars/test_japan_research_s10d.py
+index 60ecd80d..8c4fe668 100644
+--- a/tools/avatars/test_japan_research_s10d.py
++++ b/tools/avatars/test_japan_research_s10d.py
+@@ -13,7 +13,7 @@ import campaign_research as research
+ # adds 54 sources and 111 claims for a new party role, jp_sdp_chair, on the 社会民主党 observation, pinned in
+ # test_japan_sdp_chairs_c01_29.py; CLAUDE-C01-31 adds 31 sources and 64 claims for a new party role,
+ # jp_komeito_representative, on the 公明党 observation, pinned in test_japan_komeito_representatives_c01_31.py;
+-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) adds 32 sources and 50 claims to the existing 日本共産党 chair roles and the
++# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) adds 32 sources and 50 claims to the existing 日本共産党 chair roles and the
+ # 国民民主党 representative role, pinned in test_japan_jcp_dpfp_leaders_c01_42.py.
+ ORIGINAL_SOURCES = ('jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218', 'jp_shugiin_group_definition',
+                     'jp_ldp_ishiba_elected_2024', 'jp_ldp_takaichi_elected_2025', 'jp_jcp_chairs_2024',
+diff --git a/tools/avatars/test_japan_sdp_chairs_c01_29.py b/tools/avatars/test_japan_sdp_chairs_c01_29.py
+index de76646d..2d097c34 100644
+--- a/tools/avatars/test_japan_sdp_chairs_c01_29.py
++++ b/tools/avatars/test_japan_sdp_chairs_c01_29.py
+@@ -15,7 +15,7 @@ import campaign_research as research
+ # CLAUDE-C01-31 appends the sources of a new party role, jp_komeito_representative, on the 公明党 observation after this
+ # packet's; its exact sources and holders are pinned in its own test.
+ import test_japan_komeito_representatives_c01_31 as komeito
+-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
++# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+ # after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+ import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
+ 

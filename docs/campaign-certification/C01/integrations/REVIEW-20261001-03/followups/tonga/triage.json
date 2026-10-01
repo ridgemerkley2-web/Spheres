@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-followup-triage/v1",
+  "packet": "CLAUDE-C01-44",
+  "reviewed_submission": "6110064071a513d21bdcee7a8d2d081e90099359",
+  "followup_submission": "e788b4eec5b1eb241a9649cb32401f61bad50953",
+  "integration_compared": "e36af286",
+  "changed_paths": [
+    "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+    "docs/planning/ai-handoffs/CLAUDE-C01-44.md"
+  ],
+  "changed_commits": [
+    "9a04ac33",
+    "e788b4ee"
+  ],
+  "tonga_json_sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+  "tonga_data_identical_between_reviewed_followup_and_integration": true,
+  "source_extracts_original_identities_claims_holders_tests_runtime_art_unchanged": true,
+  "duplicate_correction": {
+    "original": "9955de17c16f3c13c0e042487b604fd8a5960433",
+    "followup": "9a04ac33",
+    "stable_patch_id": "89311bf96f19165252fa0dbc629db7712013bcbd",
+    "paragraph_already_in_integration": true
+  },
+  "remaining_delta": "Two author-history sentences acknowledge that the previously omitted Helu prose correction was cherry-picked.",
+  "disposition": "reviewed_duplicate_followup_no_import",
+  "acceptance_change": false,
+  "new_defect_to_adopt": false,
+  "author_reported_user_rulings_adopted": false,
+  "preserve": "Current integration independent-disposition wording, registered handoff and resumed acceptance receipt; retain exact new tip as reviewed.",
+  "network_requests": 0,
+  "tests_run": 0,
+  "repository_edits": 0,
+  "raw_delta": {
+    "path": "old-to-new.patch",
+    "bytes": 3368,
+    "sha256": "700afb480ae38b65047277a27f2d74f417e0a578fda036de1a3f0170f6ff0de5"
+  }
+}

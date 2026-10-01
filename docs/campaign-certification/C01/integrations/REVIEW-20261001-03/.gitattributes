@@ -1,0 +1,5 @@
+* -text whitespace=cr-at-eol
+*.log -whitespace
+*.patch -whitespace
+*.diff -whitespace
+delta.txt -whitespace

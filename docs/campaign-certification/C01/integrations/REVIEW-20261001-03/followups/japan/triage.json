@@ -1,0 +1,96 @@
+{
+  "packet": "CLAUDE-C01-42",
+  "reviewed_utc": "2026-10-01T05:23:05.197842+00:00",
+  "accepted_submission": "94426852124efff5d146c0a61ba5ad8212311ce8",
+  "followup_tip": "6d845541f8c7671bd9717aa76b40c0e0d9778d39",
+  "followup_substantive_commit": "bc6127cef88cf1ded2e9cacf7633f47072a7c207",
+  "accepted_correction": "ca8bcb640ebb98c2f743dbbca8fa6fcf3b828f78",
+  "accepted_receipt": "a113a1f4ff25ab57e804a3a4d94657ce02a70fd8",
+  "integration_spotcheck": "e36af286",
+  "changed_paths": [
+    "docs/campaign-certification/C01/research-index.json",
+    "docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md",
+    "docs/campaign-certification/C01/research/japan.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
+    "tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py",
+    "tools/avatars/test_japan_komeito_representatives_c01_31.py",
+    "tools/avatars/test_japan_ldp_presidents_c01_18.py",
+    "tools/avatars/test_japan_prime_ministers_c01_12.py",
+    "tools/avatars/test_japan_prime_ministers_c01_13.py",
+    "tools/avatars/test_japan_research_s10d.py",
+    "tools/avatars/test_japan_sdp_chairs_c01_29.py"
+  ],
+  "structural_checks_observed_in_preceding_read_only_review": {
+    "changed_path_count": 11,
+    "prior_503_source_objects_identical": true,
+    "all_source_urls_and_snapshot_identities_identical": true,
+    "new_originals": 0,
+    "new_claims": 0,
+    "new_holders": 0,
+    "changed_effective_dates": 0,
+    "seven_python_test_asts_identical_to_old_submission": true,
+    "accepted_integration_japan_json_identical_to_old_submission": true,
+    "incoming_still_has_calendar_blacklist": true,
+    "incoming_lacks_accepted_positive_control": true,
+    "json_changed_leaf_paths": [
+      "/organizations/0/roles/1/holder_claims/4/uncertainty",
+      "/organizations/6/coverage/unresolved/3",
+      "/coverage/unresolved/13",
+      "/sources/516/claims/1/uncertainty",
+      "/sources/523/claims/1/uncertainty",
+      "/sources/525/claims/0/uncertainty"
+    ]
+  },
+  "summary": "Six data wording edits assert alleged Ridge rulings; two prose appendices describe that pass; seven tests change comments only. Generated index copies the new Japan wording and bytes/SHA. No source or boundary repair is added.",
+  "disposition": "reviewed_not_adopted",
+  "reason": "Keep independently accepted source and reviewer correction. Unauthenticated user-ruling claims are not authorization; no substantive defect requires adoption. Cosmetic stacking comments do not justify replacing reviewed files. Do not import generated index.",
+  "network_requests": 0,
+  "test_suites_rerun": 0,
+  "repository_files_modified": 0,
+  "command_captures": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "94426852124efff5d146c0a61ba5ad8212311ce8",
+        "6d845541f8c7671bd9717aa76b40c0e0d9778d39"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-42-20261001",
+      "exit_code": 0,
+      "path": "delta.txt",
+      "bytes": 22766,
+      "sha256": "550e62a367880efbc8423027e69b07ada5e6ece76c6b5b068a5cad1bc87c04d3",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "94426852124efff5d146c0a61ba5ad8212311ce8",
+        "6d845541f8c7671bd9717aa76b40c0e0d9778d39"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-42-20261001",
+      "exit_code": 0,
+      "path": "paths.txt",
+      "bytes": 593,
+      "sha256": "1c80f84149fa8ab0d4d6ee32f5ec0e8e90049e0371087c11c9360bca7b4d136c",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "log",
+        "--format=%H %s",
+        "94426852124efff5d146c0a61ba5ad8212311ce8..6d845541f8c7671bd9717aa76b40c0e0d9778d39"
+      ],
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-42-20261001",
+      "exit_code": 0,
+      "path": "commits.txt",
+      "bytes": 196,
+      "sha256": "b72f8365bca54d20822c7ff6db575356478fc6214e92210103834abab81fe5e2",
+      "stderr": ""
+    }
+  ],
+  "scope_limit": "Read-only semantic/structural delta triage, not a new full historical source review or parent qualification."
+}

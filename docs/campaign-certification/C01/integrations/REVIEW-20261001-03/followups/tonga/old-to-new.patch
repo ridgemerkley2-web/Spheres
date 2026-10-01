@@ -1,0 +1,40 @@
+diff --git a/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md b/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md
+index e2a57873..b26708dd 100644
+--- a/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md
++++ b/docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md
+@@ -17,9 +17,10 @@ entry. The existing holders ('Akilisi Pohiva as leader, attested 27 November 201
+ Fatai Helu as President, attested 29 August 2022; the PDP string observation) are unchanged. The parent scope (C01, C06,
+ S23, WC1 and CP1) remains open.
+ 
+-No primary record found names a DPFI or PTOA leader, president or chair after 'Akilisi Pohiva, or any PDP officer: every
+-later name (a 2019-2020 successor, rival 2021 groups, a 2025 chair, the PDP's first president) comes only from news or
+-tertiary leads, listed below.
++No additional primary record found by this packet names a later DPFI or PTOA leader, president or chair, or any PDP
++officer. The existing primary 2022 Fatai Helu presidency observation remains unchanged. Other proposed names (a
++2019-2020 successor, rival 2021 groups, a 2025 chair, the PDP's first president) come only from news or tertiary leads,
++listed below.
+ 
+ ## Outcome
+ 
+@@ -294,7 +295,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+   (`e7592644`). Merging it conflicts on `research-index.json` and, add/add, on `docs/planning/ai-handoffs/CLAUDE-C01-44.md`
+   (Codex's registration record at the same path), so it is not merged in the fix round and the conflict is reported for a
+   decision. The review's prose correction (`9955de17` on `codex/review-c01-44-20261001`, the paragraph on later primary
+-  records and the 2022 Helu presidency) is outside this round's fix list and is not applied here.
++  records and the 2022 Helu presidency) is applied on this branch by a cherry-pick of that commit.
+ - **Known failures outside this packet (disclosed, not fixed):**
+   - `tools/avatars/test_certified_gap_ledger.py` errors on this packet's new sources ("no pinned attribution") until Codex
+     classifies the packet's commit in `COMMIT_PACKETS` at integration.
+diff --git a/docs/planning/ai-handoffs/CLAUDE-C01-44.md b/docs/planning/ai-handoffs/CLAUDE-C01-44.md
+index 73745705..a9a0d403 100644
+--- a/docs/planning/ai-handoffs/CLAUDE-C01-44.md
++++ b/docs/planning/ai-handoffs/CLAUDE-C01-44.md
+@@ -121,7 +121,7 @@ packet (`214121f9`; receipt `docs/campaign-certification/C01/reviews/CLAUDE-C01-
+ the PMO original unread after HTTP 429, zero new holders) and Codex's registration of this record (`e7592644`). Merging it
+ conflicts on `research-index.json` and, add/add, on this file (Codex's registration record at the same path), so the
+ branch was **not merged** in this round; the conflict is reported for a decision. The review's prose correction
+-(`9955de17` on `codex/review-c01-44-20261001`) is outside this round's fix list and is not applied here.
++(`9955de17` on `codex/review-c01-44-20261001`) is applied on this branch by a cherry-pick of that commit.
+ 
+ Checks on the fix tree (full lines in the report): research-index `--check` pass; `campaign_census.py --check` pass (no
+ census failure to disclose); Tonga tests 101 pass; research tests 79 pass; campaign tests 16 pass; `test_country_cast.py`
