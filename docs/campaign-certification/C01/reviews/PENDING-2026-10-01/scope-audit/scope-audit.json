@@ -1,0 +1,295 @@
+{
+  "decision": "pass",
+  "issues": [],
+  "base": "509bd2890f71850c97215d304ff16b757c7d49c2",
+  "head": "c58ee025da50dfac164fc839b3fc021c39d483fe",
+  "method": "Offline effective-working-tree Git blob comparisons, structured append removal, queue commit resolution and local-link audit. No native builds or network access.",
+  "japan_counts": {
+    "prior_sources": 472,
+    "prior_claims": 799,
+    "new_sources": 31,
+    "new_claims": 64,
+    "new_holders": 15
+  },
+  "japan_prior_packet_restored_exactly": true,
+  "accepted_japan_blobs_match": true,
+  "accepted_japan_research_path_count": 33,
+  "other_country_git_blob_comparisons": [
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "base_blob": "3301b77114c1bec31018cdb8b86eefc7506e22ba",
+      "current_blob": "3301b77114c1bec31018cdb8b86eefc7506e22ba",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "base_blob": "56d85bdcc2c915e90f260190e3b8292fb7679300",
+      "current_blob": "56d85bdcc2c915e90f260190e3b8292fb7679300",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "base_blob": "e0c4cc1da659c382cc7288a750486ec1379f102c",
+      "current_blob": "e0c4cc1da659c382cc7288a750486ec1379f102c",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "base_blob": "3fd14747b53b1e8a9c9e3e06fb8719795cb5f646",
+      "current_blob": "3fd14747b53b1e8a9c9e3e06fb8719795cb5f646",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "base_blob": "6ce54604ac4da2a887fe74efdd7163abf65d2b65",
+      "current_blob": "6ce54604ac4da2a887fe74efdd7163abf65d2b65",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa.json",
+      "base_blob": "9c260672c5d6d2f70f8c772c3d72a7ac9414d8f6",
+      "current_blob": "9c260672c5d6d2f70f8c772c3d72a7ac9414d8f6",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "base_blob": "0d5250587a30cdfc6a8b5694edc1c81bd8c4853c",
+      "current_blob": "0d5250587a30cdfc6a8b5694edc1c81bd8c4853c",
+      "unchanged": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "base_blob": "327dfa2b5924c358956b9c6f8171cc71ae795302",
+      "current_blob": "327dfa2b5924c358956b9c6f8171cc71ae795302",
+      "unchanged": true
+    }
+  ],
+  "prior_source_extracts": {
+    "count": 1909,
+    "comparison_sha256": "923cbf25e7252fbbaded09a60de6f4de25af88295547907fe63eb6acb5dda301",
+    "changed": []
+  },
+  "held_country_data_imported": false,
+  "new_research_paths": [
+    "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-chudo-founding-convention-20260125-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-founding-convention-report-19981108-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-history-2003-retrospective-20030206-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-new-representative-interview-20240930-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-resignation-intent-20241101-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fourth-convention-address-20021103-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-reappointed-20021103-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-komei-representative-message-retrospective-19980202-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-ota-address-sixth-convention-20061001-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-saito-extraordinary-convention-20241110-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-extraordinary-convention-20260315-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-interim-20260123-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-recommended-20260312-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-eleventh-convention-20160918-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-fourteenth-convention-20220926-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-ninth-convention-20120923-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-selection-greeting-20090909-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-tenth-convention-20140922-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-thirteenth-convention-20200928-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-twelfth-convention-20181001-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-komeito-19940616-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-komeito-20091030-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-komeito-19930129-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-19981130-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20061003-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20241203-facts.json",
+    "docs/campaign-certification/C01/research/sources/japan-shugiin-political-reform-committee-komeito-19931105-facts.json"
+  ],
+  "unexpected_non_documentation_paths": [],
+  "allowed_tool_changes": [
+    "tools/avatars/certified_gap_ledger.py",
+    "tools/avatars/test_certified_boundary_matrix.py",
+    "tools/avatars/test_certified_gap_ledger.py",
+    "tools/avatars/test_japan_komeito_representatives_c01_31.py",
+    "tools/avatars/test_japan_ldp_presidents_c01_18.py",
+    "tools/avatars/test_japan_prime_ministers_c01_12.py",
+    "tools/avatars/test_japan_prime_ministers_c01_13.py",
+    "tools/avatars/test_japan_research_s10d.py",
+    "tools/avatars/test_japan_sdp_chairs_c01_29.py",
+    "tools/avatars/test_ussr_democratic_russia_soyuz_c01_35.py",
+    "tools/avatars/test_ussr_prior_holder_guard.py",
+    "tools/avatars/test_ussr_research_s10h.py"
+  ],
+  "runtime_or_asset_changes": [],
+  "claude_queue_states": {
+    "complete": 26,
+    "ready_for_review": 2
+  },
+  "held_tasks": [
+    "CLAUDE-C01-28",
+    "CLAUDE-C01-39"
+  ],
+  "queue_review_commit_pins": [
+    {
+      "task": "CLAUDE-C01-SOURCE-17",
+      "pin": "1c5f129f",
+      "commit": "1c5f129faae0579703ceefb12ae49b435be8e6dc"
+    },
+    {
+      "task": "CLAUDE-C01-SOURCE-26",
+      "pin": "1c5f129f",
+      "commit": "1c5f129faae0579703ceefb12ae49b435be8e6dc"
+    },
+    {
+      "task": "CLAUDE-C01-23",
+      "pin": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "commit": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "task": "CLAUDE-C01-24",
+      "pin": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "commit": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "task": "CLAUDE-C01-25",
+      "pin": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "commit": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "task": "CLAUDE-C01-27",
+      "pin": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "commit": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "task": "CLAUDE-C03-REVIEW-01",
+      "pin": "ae3610b4",
+      "commit": "ae3610b413542211163ea16c75eefd12cfb5dbe3"
+    },
+    {
+      "task": "CLAUDE-C04-PREP-01",
+      "pin": "99f8a3bc",
+      "commit": "99f8a3bc657a78afc039257912ecb610537f54f8"
+    },
+    {
+      "task": "CLAUDE-S23-MATRIX-01",
+      "pin": "36740f8b",
+      "commit": "36740f8bdf6f3e6033bae14c24be108d708a353b"
+    },
+    {
+      "task": "CLAUDE-S24-SUCCESSORS-01",
+      "pin": "32135770",
+      "commit": "321357702e9bea0ac6b01c29b46a9edb9178237a"
+    },
+    {
+      "task": "CLAUDE-E05-RESEARCH-01",
+      "pin": "8c2b3e1d",
+      "commit": "8c2b3e1d235c1dfea223e5e7e4d27641ce6775b2"
+    },
+    {
+      "task": "CLAUDE-C01-28",
+      "pin": "6133f79b5b00126d4733453fe42839c1ca7390c4",
+      "commit": "6133f79b5b00126d4733453fe42839c1ca7390c4"
+    },
+    {
+      "task": "CLAUDE-C01-29",
+      "pin": "dc65b5100cbce2dac447e08987235566376fcd14",
+      "commit": "dc65b5100cbce2dac447e08987235566376fcd14"
+    },
+    {
+      "task": "CLAUDE-C01-30",
+      "pin": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+      "commit": "68ba0622ec709b78617aadd1f9198d18f532bb32"
+    },
+    {
+      "task": "CLAUDE-C01-32",
+      "pin": "7f4d8812de15ffeb5dac802188825a8e12f0ee1a",
+      "commit": "7f4d8812de15ffeb5dac802188825a8e12f0ee1a"
+    },
+    {
+      "task": "CLAUDE-C01-33",
+      "pin": "7cf358866d1bb017b76018042b592301e574bb31",
+      "commit": "7cf358866d1bb017b76018042b592301e574bb31"
+    },
+    {
+      "task": "CLAUDE-C01-34",
+      "pin": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789",
+      "commit": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789"
+    },
+    {
+      "task": "CLAUDE-C01-35",
+      "pin": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789",
+      "commit": "ec8cb88b97f1774f4a9c65f202cc6bc6143d5789"
+    },
+    {
+      "task": "CLAUDE-C01-36",
+      "pin": "c29f17093b9b34bcef90b25ae53d349fe36330a7",
+      "commit": "c29f17093b9b34bcef90b25ae53d349fe36330a7"
+    },
+    {
+      "task": "CLAUDE-C01-37",
+      "pin": "ed36670ef6125257bfa9e178c93049a303e0eb37",
+      "commit": "ed36670ef6125257bfa9e178c93049a303e0eb37"
+    },
+    {
+      "task": "CLAUDE-C01-31",
+      "pin": "d4d3542b2c7750a83d27564f99cc0428536c8852",
+      "commit": "d4d3542b2c7750a83d27564f99cc0428536c8852"
+    },
+    {
+      "task": "CLAUDE-C01-38",
+      "pin": "fa48313b4218a8ad787ea33e126c8db4e64f0987",
+      "commit": "fa48313b4218a8ad787ea33e126c8db4e64f0987"
+    },
+    {
+      "task": "CLAUDE-C01-39",
+      "pin": "d1818a48a1b117d408dafb49d7943d35f3f7c2da",
+      "commit": "d1818a48a1b117d408dafb49d7943d35f3f7c2da"
+    },
+    {
+      "task": "CLAUDE-C01-40",
+      "pin": "6ee593de6bb6a0c9fe5ae8ec5000d268421f485b",
+      "commit": "6ee593de6bb6a0c9fe5ae8ec5000d268421f485b"
+    },
+    {
+      "task": "CLAUDE-C01-41",
+      "pin": "01faa02352365382a5a325f76c9fdf9472cffec0",
+      "commit": "01faa02352365382a5a325f76c9fdf9472cffec0"
+    }
+  ],
+  "current_document_pins": [
+    {
+      "path": "CLAUDE.md",
+      "sha256": "18d9db83a1f0ca3a76aaf769624795c6bdf43c2c7bc24d1da84b2cc70ecef57e"
+    },
+    {
+      "path": "docs/AI_WORKSTREAMS.md",
+      "sha256": "5b7006ec0efd67d9f733737345412ca9594cdb23da6ff42aa466188dfc742abb"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "sha256": "4b7ce8427a553859614d0b940a0ef1ba1d55f34999a68c26cda6e5ba5634921a"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "sha256": "dcc00c3c3987e1723ce629497e71ed3664adcd3dfbb9d701df21f2b73cb3d940"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+      "sha256": "357e241f37c11980a638bf93269b666a5a993cd22faa68eaa7e813aca4fa4d07"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+      "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/PENDING-2026-10-01/README.md",
+      "sha256": "8661e1da46f9d4361048c220b1d2e1866ec40e1eac486e146e1aff4777975084"
+    }
+  ],
+  "local_links": {
+    "checked": 64,
+    "broken": []
+  },
+  "manual_semantic_review": "Current workboard and three central guides distinguish accepted Komeito bounded research from held Russia/DA, retain old DA receipt scope and latest twelve-holder follow-up, and preserve actual dated campaign identity, fixed cartoon style, historical cutoff and fictional-successor limits. No runtime, portrait or parent qualification is claimed.",
+  "new_da_followup_triage": "newtip-triage.json",
+  "limits": "Source content acceptance belongs to the immutable independent receipts; this audit proves integration scope and publication consistency only. Documentation hashes pin this working-tree checkpoint; later edits require rerun."
+}

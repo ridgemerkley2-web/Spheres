@@ -1,0 +1,23 @@
+{
+  "status": "confirmation_not_run",
+  "reason": "App background Git scans persisted through bounded45-second wait",
+  "checked_utc": "2026-10-01T02:10:41.2053419Z",
+  "remaining_git": [
+    {
+      "Id": 36144,
+      "CPU": 9.0
+    },
+    {
+      "Id": 41096,
+      "CPU": 0.015625
+    },
+    {
+      "Id": 48472,
+      "CPU": 2.421875
+    },
+    {
+      "Id": 51652,
+      "CPU": 0.015625
+    }
+  ]
+}

@@ -283,7 +283,7 @@ REPORT = research.RESEARCH / 'india-janata-dal-presidents-1990-2026-33.md'
 # pins them. This packet's assertions are unchanged for its own records.
 C01_40_ORG = 'in_eci_20240323_np_04'
 C01_40_ROLE = 'in_cpm_general_secretary'
-C01_40_COUNTS = (18, 24)
+C01_40_COUNTS = (20, 26)
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-33.md'
 
 

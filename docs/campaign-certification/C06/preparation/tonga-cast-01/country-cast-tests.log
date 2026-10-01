@@ -1,0 +1,36 @@
+test_accepted_art_window_cannot_be_widened (test_country_cast.TongaCastTests.test_accepted_art_window_cannot_be_widened) ... ok
+test_acting_sevele_cannot_become_substantive_start (test_country_cast.TongaCastTests.test_acting_sevele_cannot_become_substantive_start) ... ok
+test_additive_unrelated_research_does_not_force_reapproval (test_country_cast.TongaCastTests.test_additive_unrelated_research_does_not_force_reapproval) ... ok
+test_alias_bridge_text_is_pinned (test_country_cast.TongaCastTests.test_alias_bridge_text_is_pinned) ... ok
+test_alias_needs_a_concrete_hold_reason (test_country_cast.TongaCastTests.test_alias_needs_a_concrete_hold_reason) ... ok
+test_aliases_cannot_be_promoted_to_existing_identity_or_new_identity (test_country_cast.TongaCastTests.test_aliases_cannot_be_promoted_to_existing_identity_or_new_identity) ... ok
+test_changed_review_receipt_is_rejected (test_country_cast.TongaCastTests.test_changed_review_receipt_is_rejected) ... ok
+test_check_does_not_mutate_any_inputs (test_country_cast.TongaCastTests.test_check_does_not_mutate_any_inputs) ... ok
+test_current_proposal_has_exact_bounded_scope (test_country_cast.TongaCastTests.test_current_proposal_has_exact_bounded_scope) ... ok
+test_cutoff_and_future_art_are_not_extended (test_country_cast.TongaCastTests.test_cutoff_and_future_art_are_not_extended) ... ok
+test_death_by_date_cannot_be_used_as_exact_end (test_country_cast.TongaCastTests.test_death_by_date_cannot_be_used_as_exact_end) ... ok
+test_existing_saved_name_cannot_be_rewritten (test_country_cast.TongaCastTests.test_existing_saved_name_cannot_be_rewritten) ... ok
+test_held_heir_alias_cannot_enter_source_enrichment_payload (test_country_cast.TongaCastTests.test_held_heir_alias_cannot_enter_source_enrichment_payload) ... ok
+test_idempotent_source_preview (test_country_cast.TongaCastTests.test_idempotent_source_preview) ... ok
+test_inherited_title_cannot_be_bound_to_a_different_named_holder (test_country_cast.TongaCastTests.test_inherited_title_cannot_be_bound_to_a_different_named_holder) ... ok
+test_invented_precise_opening_pm_start_is_rejected (test_country_cast.TongaCastTests.test_invented_precise_opening_pm_start_is_rejected) ... ok
+test_later_person_cannot_be_implicitly_imported (test_country_cast.TongaCastTests.test_later_person_cannot_be_implicitly_imported) ... ok
+test_later_person_cannot_duplicate_an_existing_name_under_new_id (test_country_cast.TongaCastTests.test_later_person_cannot_duplicate_an_existing_name_under_new_id) ... ok
+test_missing_art_cannot_be_marked_as_reuse (test_country_cast.TongaCastTests.test_missing_art_cannot_be_marked_as_reuse) ... ok
+test_no_country_acceptance_from_proposal_check (test_country_cast.TongaCastTests.test_no_country_acceptance_from_proposal_check) ... ok
+test_office_and_party_authority_cannot_be_claimed (test_country_cast.TongaCastTests.test_office_and_party_authority_cannot_be_claimed) ... ok
+test_old_opening_record_is_not_silently_rebased (test_country_cast.TongaCastTests.test_old_opening_record_is_not_silently_rebased) ... ok
+test_pohiva_two_observations_cannot_be_joined (test_country_cast.TongaCastTests.test_pohiva_two_observations_cannot_be_joined) ... ok
+test_primary_link_cannot_be_changed_to_secondary_pm (test_country_cast.TongaCastTests.test_primary_link_cannot_be_changed_to_secondary_pm) ... ok
+test_receipt_pins_survive_platform_newline_conversion (test_country_cast.TongaCastTests.test_receipt_pins_survive_platform_newline_conversion) ... ok
+test_review_path_cannot_escape_repository (test_country_cast.TongaCastTests.test_review_path_cannot_escape_repository) ... ok
+test_secondary_pm_cannot_be_given_primary_slot (test_country_cast.TongaCastTests.test_secondary_pm_cannot_be_given_primary_slot) ... ok
+test_source_enrichment_preview_preserves_existing_facts_and_every_role (test_country_cast.TongaCastTests.test_source_enrichment_preview_preserves_existing_facts_and_every_role) ... ok
+test_source_pin_detects_changed_claim_text_or_url (test_country_cast.TongaCastTests.test_source_pin_detects_changed_claim_text_or_url) ... ok
+test_uninstalled_identity_cannot_be_marked_ready_for_art (test_country_cast.TongaCastTests.test_uninstalled_identity_cannot_be_marked_ready_for_art) ... ok
+test_year_window_cannot_be_silently_widened (test_country_cast.TongaCastTests.test_year_window_cannot_be_silently_widened) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.581s
+
+OK

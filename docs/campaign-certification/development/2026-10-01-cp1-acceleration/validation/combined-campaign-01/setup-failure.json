@@ -1,0 +1,12 @@
+{
+  "recorded_utc": "2026-10-01T02:33:06.136921+00:00",
+  "stage": "input pinning before any test command",
+  "error_type": "FileNotFoundError",
+  "errno": 2,
+  "missing_path": "D:/spheres-offload/codex-next-20260928/claude-review-integration-20261001/tools/campaign/stability_matrix.py",
+  "observed_tool_process_exit_code": 1,
+  "source": "The setup wrapper exception was observed directly in exec tool output; no raw redirected log existed before input pinning.",
+  "tests_started": false,
+  "repository_edits": false,
+  "native_builds_or_campaigns": false
+}

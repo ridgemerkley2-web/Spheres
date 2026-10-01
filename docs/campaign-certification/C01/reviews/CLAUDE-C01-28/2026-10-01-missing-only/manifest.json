@@ -1,0 +1,136 @@
+{
+  "format": "spheres-c01-research-review-receipt/v1",
+  "reviewer": "Codex",
+  "agent": "/root/retire_selector_review",
+  "decision": "held_pending_original_source_access",
+  "submitted_tip": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
+  "isolated_review_base": "0dec078f747575f12eb851b15dc97602e2a06bfe",
+  "new_source_content_reviews": 9,
+  "new_claim_content_reviews": 20,
+  "new_holder_content_reviews": 4,
+  "cumulative_sources_reproduced": 65,
+  "cumulative_claims_materially_checked": 133,
+  "cumulative_holders_materially_checked": 24,
+  "held_original_sources": 3,
+  "held_claims": 4,
+  "held_holder_dependencies": 0,
+  "new_research_changes": false,
+  "original_bodies_external": true,
+  "payloads": [
+    {
+      "path": ".gitattributes",
+      "bytes": 21,
+      "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 10050,
+      "sha256": "b52856dcda5b1f961746eaf5ed72703e6f1a70a9b78c0afa7518e5d8b6d23fef"
+    },
+    {
+      "path": "headers/ru_dvr_congress_statement_1995.headers",
+      "bytes": 1872,
+      "sha256": "1054ef989c9eb8838d2228d9c7bfa8c6c8e2baf80ad22322c1fdb6b635e51173"
+    },
+    {
+      "path": "headers/ru_dvr_history_page_1998.headers",
+      "bytes": 1667,
+      "sha256": "67770dd4be00bf2a61152612679b5ce2e3efba4d186eafdd088c71d37b56d589"
+    },
+    {
+      "path": "headers/ru_dvr_ii_congress_decision_19950618.headers",
+      "bytes": 1876,
+      "sha256": "6224437ff7f58dc9173c6db576786b48fbf5e41433aca579d26affca125b303f"
+    },
+    {
+      "path": "headers/ru_dvr_politsovet_decision_19971216.headers",
+      "bytes": 1699,
+      "sha256": "3bb4eb180c8987df2aa0992047f24daa118c2248f54c91488b4572c52142b8a3"
+    },
+    {
+      "path": "headers/ru_dvr_politsovet_statement_20001216.headers",
+      "bytes": 363,
+      "sha256": "4bc9df890c05efb5550833b3b847630501802d9c6b5f9bd61cac9762ba9cc40a"
+    },
+    {
+      "path": "headers/ru_dvr_v_congress_decision_19960921.headers",
+      "bytes": 1876,
+      "sha256": "aef83485106060587fb1a7d773ac2ee3f6685fdc90ebb398e19a1db0f1d228d3"
+    },
+    {
+      "path": "headers/ru_dvr_v_congress_decisions_19960922.headers",
+      "bytes": 1872,
+      "sha256": "545a60d71f6be2d448787ba9ee742033c6b2d990fe112d56b63aff22891dcc5b"
+    },
+    {
+      "path": "headers/ru_yabloko_news_slabunova_elected_20151220.headers",
+      "bytes": 2024,
+      "sha256": "d84d07e01f30cb0ba8d092bbd34dfe4550f044555d164a6fe218c445d5e5db09"
+    },
+    {
+      "path": "headers/ru_yabloko_news_term_limit_20151219.headers",
+      "bytes": 2016,
+      "sha256": "66b1835d05ae041512fab8b1da3225ef8847b27fda371c73e4abfc51ea54815e"
+    },
+    {
+      "path": "headers/ru_yabloko_press_xv_congress_decisions_20080626.headers",
+      "bytes": 1735,
+      "sha256": "c3bbeafb7eb6f111a31444959405dc1f282cabb38c27a3f618fcdcb25a20ab93"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 3750,
+      "sha256": "763661ddce059e639d41459bcd4df0edc962fb46bb67719fd288cb4024733bdd"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 10269,
+      "sha256": "de0c13b26105fa62020ac4d798cd0e96462cfc6327076d67729ce0f4af8af6c1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7122,
+      "sha256": "fe3ee83614ef501a7386fcb546670d712a13c1f4e3a67dde7a9ad4b64a6f197e"
+    },
+    {
+      "path": "recipes/extract-render.py",
+      "bytes": 2187,
+      "sha256": "91ab3d9012b6c483176c7bdb420ca971dad7d554d2e4b98365e713db7b0c23e0"
+    },
+    {
+      "path": "recipes/retrieve-missing.py",
+      "bytes": 2735,
+      "sha256": "dd492a32044741c3ceaf1b9a66833878e4ca43d3b9e7683570933059d8b1977a"
+    },
+    {
+      "path": "remaining-holds.json",
+      "bytes": 2955,
+      "sha256": "7083f2a11bb3835e9b23f7722a34f0806b33ce2f8dfd88574222c4e856ca1b62"
+    },
+    {
+      "path": "retained-body-recheck.json",
+      "bytes": 17654,
+      "sha256": "bfae8d1631b2b0b64771dcec3fa941462fb153063166c393269896762de17810"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 13088,
+      "sha256": "76b25ed7101ca97cecd2ae1a4c90d9337d958972ee227c8cec4f352a97e0b701"
+    },
+    {
+      "path": "source-content-review.json",
+      "bytes": 9387,
+      "sha256": "4586a85c6f847c26d7642788099e11f1039fb8d575b709156d380c69397f26e7"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 2075,
+      "sha256": "1573dba2dc4a28e3eb134349b5a4bc26fd42f2e8801d1d458e1bc4b54d16ff1c"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2911,
+      "sha256": "d91fe925289deb9033fd3574f18ce61f5f47c53f76e9924f164ec2ab47d1b249"
+    }
+  ]
+}

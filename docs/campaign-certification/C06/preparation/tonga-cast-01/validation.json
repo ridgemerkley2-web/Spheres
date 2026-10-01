@@ -1,0 +1,142 @@
+{
+  "task": "CODEX-C02-TO-01",
+  "status": "bounded_proposal_verified_not_installed",
+  "base_revision": "c58ee025da50dfac164fc839b3fc021c39d483fe",
+  "created_utc": "2026-10-01T02:12:47.101943+00:00",
+  "runs": [
+    {
+      "name": "proposal-check",
+      "command": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe -X utf8 tools/avatars/check_country_cast.py",
+      "started_utc": "2026-10-01T02:12:25.930502+00:00",
+      "exit_code": 0,
+      "log": "docs/campaign-certification/C06/preparation/tonga-cast-01/proposal-check.log"
+    },
+    {
+      "name": "country-cast-tests",
+      "command": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe -X utf8 -m unittest discover -s tools/avatars -p test_country_cast.py -v",
+      "started_utc": "2026-10-01T02:12:35.057658+00:00",
+      "exit_code": 0,
+      "log": "docs/campaign-certification/C06/preparation/tonga-cast-01/country-cast-tests.log"
+    },
+    {
+      "name": "people-import-tests",
+      "command": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe -X utf8 tools/avatars/import_historical_people.py --self-test",
+      "started_utc": "2026-10-01T02:12:36.417852+00:00",
+      "exit_code": 0,
+      "log": "docs/campaign-certification/C06/preparation/tonga-cast-01/people-import-tests.log"
+    },
+    {
+      "name": "diff-check",
+      "command": "git diff --check",
+      "started_utc": "2026-10-01T02:12:38.418629+00:00",
+      "exit_code": 0,
+      "log": "docs/campaign-certification/C06/preparation/tonga-cast-01/diff-check.log"
+    }
+  ],
+  "summary": {
+    "status": "valid_proposal_only",
+    "nation": "Tonga",
+    "existing_opening_identity_references": 3,
+    "reserved_uninstalled_person_ids": 5,
+    "exact_research_holder_observations": 10,
+    "held_alias_associations": 2,
+    "existing_portraits_reused": 1,
+    "portrait_requests_needing_reference_and_review": 7,
+    "people_only_preview": {
+      "people": [
+        {
+          "id": "taufaahau_tupou_iv",
+          "name": "Taufa'ahau Tupou IV",
+          "sources": [
+            "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+            "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+            "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+            "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml"
+          ]
+        },
+        {
+          "id": "fatafehi_tuipelehake",
+          "name": "Prince Fatafehi Tu'ipelehake",
+          "sources": [
+            "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+            "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/"
+          ]
+        }
+      ]
+    },
+    "runtime_records_changed": 0,
+    "party_terms_added": 0,
+    "office_links_added": 0,
+    "art_created_or_approved": 0,
+    "country_completed": false
+  },
+  "test_counts": {
+    "country_cast": 31,
+    "people_importer_self_test": 5
+  },
+  "protected_input_bytes_unchanged": true,
+  "protected_inputs": [
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 637522,
+      "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853"
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "bytes": 1262625,
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494"
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "bytes": 117104,
+      "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008"
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "bytes": 307745,
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176"
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "bytes": 86656,
+      "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d"
+    }
+  ],
+  "tested_source_files": [
+    {
+      "path": "tools/avatars/check_country_cast.py",
+      "bytes": 12953,
+      "sha256": "90e46319f5b298022274426545c197301d894187e2f4e9df8b827b07221762b6"
+    },
+    {
+      "path": "tools/avatars/test_country_cast.py",
+      "bytes": 10213,
+      "sha256": "8d6db1a17e7a3dcb66d2480179bf9c54f1da30a100bfd69cc4bb3fafb78f56a7"
+    },
+    {
+      "path": "docs/campaign-certification/C06/preparation/tonga-cast-01/proposal.json",
+      "bytes": 47920,
+      "sha256": "5e0d0044eadb2d89293b5dbbee64f799ba31f2579d29918157fce273a3625ce9"
+    }
+  ],
+  "scope_limits": [
+    "No new historical research or source response verification",
+    "No runtime, saved game, original research or portrait changes",
+    "No independent approval of reserved identities, alias bridges, art or country completion",
+    "Full native/UI/browser suites not run: this is a read-only proposal/tool change, not a game implementation"
+  ],
+  "existing_claude_claim": {
+    "branch": "claude/c01-to-44",
+    "tip": "fdb71175e6a2f251c6e51361187068c0141cac9f",
+    "scope": "DPFI/PDP research only, no game mappings",
+    "checked_via": "existing local/remote Git refs; no network fetch"
+  },
+  "readme_links_checked": [
+    "proposal.json",
+    "people-only-preview.json",
+    "../../../../planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+    "../../../C01/integrations/CLAUDE-C01-04-07/README.md",
+    "../../../C01/integrations/CLAUDE-C01-08/README.md",
+    "validation.json"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_gs_letter_to_naidu_20150508",
+  "source_url": "https://cpim.org/wp-json/wp/v2/posts/4346",
+  "accessed_date": "2026-10-01",
+  "published_date": "2015-05-08",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 5790,
+  "source_response_sha256": "8d48f4e16cae84c2e03fbb491e8dccb10be0e9cdd83125d984d76ad362a4c36e",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (cpim.org): the WordPress REST record of post 4346 (wp-json/wp/v2/posts/4346), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML page of the same post embeds a per-request cache timestamp, so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 01:22:55Z on 1 October 2026 and 01:55:49Z on 1 October 2026, the first and last 32 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Current WordPress REST representation of cpim.org post 4346 (slug ambedkar-anniversary-convene-parliament-session). Its metadata reports publication on 8 May 2015 and modification on 15 May 2015; no cause for the modification is established. The body carries an 8 May release dateline and reproduces a letter dated 6 May 2015, signed by Sitaram Yechury as General Secretary. The letter date supplies the selected office observation; release and modification dates remain distinct. This current REST response is not an independently retrieved historical capture of the 2015 page.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_yechury_gs_letter_to_naidu_20150506",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-04",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Sitaram Yechury",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2015-05-06",
+      "text": "An 8 May 2015 CPI(M) release reproduces a letter to Parliamentary Affairs Minister Venkaiah Naidu dated 6 May. Sitaram Yechury signs it as General Secretary, the same office used to introduce him in the release.",
+      "locator": {
+        "item": "dateline and first paragraph; letter date and signature"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

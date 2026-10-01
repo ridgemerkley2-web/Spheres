@@ -1,0 +1,470 @@
+...........................Verified france-1990
+Verified france-7
+Verified france-42
+Verified japan-1990
+Verified japan-7
+Verified japan-42
+Verified india-1990
+Verified india-7
+Verified brazil-1990
+Verified brazil-7
+Verified brazil-42
+Verified southafrica-1990
+Verified southafrica-7
+Verified southafrica-42
+Verified tonga-1990
+Verified tonga-7
+Verified tonga-42
+Verified saudiarabia-1990
+Verified saudiarabia-7
+Verified saudiarabia-42
+Verified ussr-1990
+Verified ussr-7
+Verified ussr-42
+...Verified france-1990
+Verified france-7
+Verified france-42
+Verified japan-1990
+Verified japan-7
+Verified japan-42
+Verified india-1990
+Verified india-7
+Verified india-42
+Verified brazil-1990
+Verified brazil-7
+Verified brazil-42
+Verified southafrica-1990
+Verified southafrica-7
+Verified southafrica-42
+Verified tonga-1990
+Verified tonga-7
+Verified tonga-42
+Verified saudiarabia-1990
+Verified saudiarabia-7
+Verified saudiarabia-42
+Verified ussr-1990
+Verified ussr-7
+Verified ussr-42
+.....Verified france-1990
+Verified france-7
+Verified france-42
+Verified japan-1990
+Verified japan-7
+Verified japan-42
+Verified india-1990
+Verified india-7
+Verified india-42
+Verified brazil-1990
+Verified brazil-7
+Verified brazil-42
+Verified southafrica-1990
+Verified southafrica-7
+Verified southafrica-42
+Verified tonga-1990
+Verified tonga-7
+Verified tonga-42
+Verified saudiarabia-1990
+Verified saudiarabia-7
+Verified saudiarabia-42
+Verified ussr-1990
+Verified ussr-7
+Verified ussr-42
+..........Stability runner refused: InvalidEvidence: Verification cannot be combined with native execution arguments
+...........................................s...Stability runner refused: InvalidEvidence: Verification cannot be combined with native execution arguments
+Stability runner refused: InvalidEvidence: --restore requires --verify
+........{
+  "passed": true,
+  "only_cell": null,
+  "selected_cell_passed": null,
+  "coverage": {},
+  "output": "D:\\spheres-offload\\codex-next-20260928\\cp1-s25-repair-20261001\\new-output"
+}
+{
+  "passed": true,
+  "only_cell": null,
+  "selected_cell_passed": null,
+  "coverage": {},
+  "output": "D:\\spheres-offload\\codex-next-20260928\\cp1-s25-repair-20261001\\new-output"
+}
+{
+  "format": "spheres-stability-retained-verification/v1",
+  "integrity_verified": true,
+  "native_reexecuted": false,
+  "source": "C:\\Users\\ridge\\AppData\\Local\\Temp\\tmpajnahfsx\\run",
+  "recorded_origin": "C:/Users/ridge/AppData/Local/Temp/tmpajnahfsx/run",
+  "candidate_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "frozen_harness_sha256": "29ac05bdba12d126fadf75c9e6e312352e503665ed3738640e5eaf5225685011",
+  "verifier": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\cp1-s25-repair-20261001\\tools\\campaign\\stability_matrix.py",
+    "bytes": 85173,
+    "sha256": "29ac05bdba12d126fadf75c9e6e312352e503665ed3738640e5eaf5225685011"
+  },
+  "binary_reexecuted_or_rebuilt": false,
+  "passed": false,
+  "coverage": {
+    "declared": 24,
+    "attempted": 1,
+    "passed": 1,
+    "failed": [],
+    "missing_requested": [
+      "brazil-1990",
+      "brazil-42",
+      "brazil-7",
+      "france-1990",
+      "france-42",
+      "france-7",
+      "india-1990",
+      "india-42",
+      "india-7",
+      "japan-1990",
+      "japan-42",
+      "japan-7",
+      "saudiarabia-1990",
+      "saudiarabia-42",
+      "saudiarabia-7",
+      "southafrica-1990",
+      "southafrica-42",
+      "southafrica-7",
+      "tonga-1990",
+      "tonga-42",
+      "tonga-7",
+      "ussr-1990",
+      "ussr-7"
+    ],
+    "requested_plan_passed": false,
+    "pilot_passed": false,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "cells": [
+    {
+      "id": "ussr-42",
+      "passed": true,
+      "files_verified": 10,
+      "archives_verified": 4
+    }
+  ],
+  "files_verified": 16,
+  "archives_verified": 4,
+  "qualification": false,
+  "s25_complete": false,
+  "only_cell": "ussr-42",
+  "batch_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "selected_cell_passed": true
+}
+{
+  "format": "spheres-stability-retained-verification/v1",
+  "integrity_verified": true,
+  "native_reexecuted": false,
+  "source": "C:\\Users\\ridge\\AppData\\Local\\Temp\\tmp3hwnvqc1\\run",
+  "recorded_origin": "C:/Users/ridge/AppData/Local/Temp/tmp3hwnvqc1/run",
+  "candidate_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "frozen_harness_sha256": "29ac05bdba12d126fadf75c9e6e312352e503665ed3738640e5eaf5225685011",
+  "verifier": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\cp1-s25-repair-20261001\\tools\\campaign\\stability_matrix.py",
+    "bytes": 85173,
+    "sha256": "29ac05bdba12d126fadf75c9e6e312352e503665ed3738640e5eaf5225685011"
+  },
+  "binary_reexecuted_or_rebuilt": false,
+  "passed": false,
+  "coverage": {
+    "declared": 24,
+    "attempted": 1,
+    "passed": 0,
+    "failed": [
+      "france-1990"
+    ],
+    "missing_requested": [
+      "brazil-1990",
+      "brazil-42",
+      "brazil-7",
+      "france-42",
+      "france-7",
+      "india-1990",
+      "india-42",
+      "india-7",
+      "japan-1990",
+      "japan-42",
+      "japan-7",
+      "saudiarabia-1990",
+      "saudiarabia-42",
+      "saudiarabia-7",
+      "southafrica-1990",
+      "southafrica-42",
+      "southafrica-7",
+      "tonga-1990",
+      "tonga-42",
+      "tonga-7",
+      "ussr-1990",
+      "ussr-42",
+      "ussr-7"
+    ],
+    "requested_plan_passed": false,
+    "pilot_passed": false,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "cells": [
+    {
+      "id": "france-1990",
+      "passed": false,
+      "files_verified": 10,
+      "archives_verified": 4
+    }
+  ],
+  "files_verified": 16,
+  "archives_verified": 4,
+  "qualification": false,
+  "s25_complete": false,
+  "only_cell": "france-1990",
+  "batch_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "selected_cell_passed": false
+}.....
+----------------------------------------------------------------------
+Ran 105 tests in 25.101s
+
+OK (skipped=1)
+

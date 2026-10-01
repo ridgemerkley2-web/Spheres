@@ -1,0 +1,199 @@
+{
+  "format": "spheres-c01-amendment-source-review/v1",
+  "new_originals": 2,
+  "retained_originals_reread": 3,
+  "originals_unavailable": 0,
+  "sources": [
+    {
+      "source_id": "in_cpim_gs_note_to_nic_20110910",
+      "url": "https://cpim.org/wp-json/wp/v2/posts/1411",
+      "original_group": "new_originals",
+      "original_path": "1411.original.json",
+      "bytes": 12336,
+      "sha256": "dc2e86ccc93d9da313f9f1d44061d7d29857bd9424930b54c654fa9a785dfad2",
+      "claim_ids": [
+        "in_cpim_karat_gs_note_to_nic_20110910"
+      ],
+      "decision": "exact_original_reproduced_and_new_office_statement_reviewed",
+      "reviewers": [
+        "Codex /root (retrieval and complete original-body reading)",
+        "Codex /root/selector_leader_api (identity rehash and dated-office content review)"
+      ],
+      "publisher_metadata": {
+        "id": 1411,
+        "date": "2011-09-10T14:41:53",
+        "modified": "2013-06-28T15:50:10",
+        "slug": "note-nic-meeting"
+      },
+      "limits": "Current WordPress REST representation of cpim.org post 1411 (slug note-nic-meeting). Its metadata reports publication on 10 September 2011 and modification on 28 June 2013; the cause of the modification is unknown. The body carries a 10 September 2011 release dateline and identifies Prakash Karat as General Secretary submitting a note to that day's National Integration Council meeting. The modification timestamp is metadata, not an office attestation. This current REST response is not an independently retrieved historical capture of the 2011 page."
+    },
+    {
+      "source_id": "in_cpim_gs_letter_to_naidu_20150508",
+      "url": "https://cpim.org/wp-json/wp/v2/posts/4346",
+      "original_group": "new_originals",
+      "original_path": "4346.original.json",
+      "bytes": 5790,
+      "sha256": "8d48f4e16cae84c2e03fbb491e8dccb10be0e9cdd83125d984d76ad362a4c36e",
+      "claim_ids": [
+        "in_cpim_yechury_gs_letter_to_naidu_20150506"
+      ],
+      "decision": "exact_original_reproduced_and_new_office_statement_reviewed",
+      "reviewers": [
+        "Codex /root (retrieval and complete original-body reading)",
+        "Codex /root/selector_leader_api (identity rehash and dated-office content review)"
+      ],
+      "publisher_metadata": {
+        "id": 4346,
+        "date": "2015-05-08T12:13:22",
+        "modified": "2015-05-15T10:21:19",
+        "slug": "ambedkar-anniversary-convene-parliament-session"
+      },
+      "limits": "Current WordPress REST representation of cpim.org post 4346 (slug ambedkar-anniversary-convene-parliament-session). Its metadata reports publication on 8 May 2015 and modification on 15 May 2015; no cause for the modification is established. The body carries an 8 May release dateline and reproduces a letter dated 6 May 2015, signed by Sitaram Yechury as General Secretary. The letter date supplies the selected office observation; release and modification dates remain distinct. This current REST response is not an independently retrieved historical capture of the 2015 page."
+    },
+    {
+      "source_id": "in_pd_20050417_rally_concludes_18th_congress",
+      "url": "https://web.archive.org/web/20050426231814id_/http://pd.cpim.org:80/2005/0417/04172004_massive%20rally.htm",
+      "original_group": "prior_originals",
+      "original_path": "attempt-01/in_pd_20050417_rally_concludes_18th_congress.body",
+      "bytes": 15375,
+      "sha256": "2b9011d7fa502b8f5b92fe13863e63733b1174509e73ddbeab022621704aae2d",
+      "claim_ids": [
+        "in_pd_rally_surjeet_former_gs_20050411",
+        "in_pd_rally_newly_elected_gs_karat_20050411"
+      ],
+      "decision": "retained_exact_original_reread_no_new_network_request",
+      "reviewers": [
+        "Codex /root/retire_selector_review (raw HTML reread after body and reading-aid hash checks)",
+        "Codex /root/selector_leader_api (retained body rehash and material passage review)"
+      ],
+      "provenance": "Party-authored primary report delivered through third-party Internet Archive; source dates differ from capture dates.",
+      "limits": "The source really contains the dated office styling. Reclassification is a conservative evidence-selection choice, not proof the earlier office styling was false. No effective assumption or predecessor end is stated."
+    },
+    {
+      "source_id": "in_pd_20120415_rally_concludes_20th_congress",
+      "url": "https://web.archive.org/web/20120812040620id_/http://pd.cpim.org/2012/0415_pd/04152012_6.html",
+      "original_group": "prior_originals",
+      "original_path": "attempt-01/in_pd_20120415_rally_concludes_20th_congress.body",
+      "bytes": 699954,
+      "sha256": "e537657ed6c2ea4152fde11b3a1781304a46fe4da99c995e8fe05d315883df8f",
+      "claim_ids": [
+        "in_pd_rally_newly_elected_gs_karat_took_salute_20120409"
+      ],
+      "decision": "retained_exact_original_reread_no_new_network_request",
+      "reviewers": [
+        "Codex /root/retire_selector_review (raw HTML reread after body and reading-aid hash checks)",
+        "Codex /root/selector_leader_api (retained body rehash and material passage review)"
+      ],
+      "provenance": "Party-authored primary report delivered through third-party Internet Archive; source dates differ from capture dates.",
+      "limits": "The source really contains the dated office styling. Reclassification is a conservative evidence-selection choice, not proof the earlier office styling was false. No effective assumption or predecessor end is stated."
+    },
+    {
+      "source_id": "in_pd_20150426_join_to_bring_forth_change",
+      "url": "https://web.archive.org/web/20150429172939id_/http://peoplesdemocracy.in:80/2015/0426_pd/join-bring-forth-change",
+      "original_group": "prior_originals",
+      "original_path": "attempt-01/in_pd_20150426_join_to_bring_forth_change.body",
+      "bytes": 54802,
+      "sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842",
+      "claim_ids": [
+        "in_pd_karat_gs_inaugurated_21st_congress_20150414",
+        "in_pd_21st_congress_elected_general_secretary_20150419",
+        "in_pd_rally_karat_outgoing_gs_20150419",
+        "in_pd_rally_newly_elected_gs_yechury_20150419"
+      ],
+      "decision": "retained_exact_original_reread_no_new_network_request",
+      "reviewers": [
+        "Codex /root/retire_selector_review (raw HTML reread after body and reading-aid hash checks)",
+        "Codex /root/selector_leader_api (retained body rehash and material passage review)"
+      ],
+      "provenance": "Party-authored primary report delivered through third-party Internet Archive; source dates differ from capture dates.",
+      "limits": "The source really contains the dated office styling. Reclassification is a conservative evidence-selection choice, not proof the earlier office styling was false. No effective assumption or predecessor end is stated."
+    }
+  ],
+  "external_artifacts": [
+    {
+      "group": "new_originals",
+      "path": "1411.original.json",
+      "bytes": 12336,
+      "sha256": "dc2e86ccc93d9da313f9f1d44061d7d29857bd9424930b54c654fa9a785dfad2"
+    },
+    {
+      "group": "new_originals",
+      "path": "1411.reading.txt",
+      "bytes": 8852,
+      "sha256": "0e394bed0460d61d191b918ad7bb42655f1f1264540e74b42d797e6af7ab1845"
+    },
+    {
+      "group": "new_originals",
+      "path": "1411.headers.txt",
+      "bytes": 516,
+      "sha256": "5b21802f670703f420d092f745e4e5528624372609c4ba0a46d894f1ffe50c04"
+    },
+    {
+      "group": "new_originals",
+      "path": "1411.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "group": "new_originals",
+      "path": "4346.original.json",
+      "bytes": 5790,
+      "sha256": "8d48f4e16cae84c2e03fbb491e8dccb10be0e9cdd83125d984d76ad362a4c36e"
+    },
+    {
+      "group": "new_originals",
+      "path": "4346.reading.txt",
+      "bytes": 2490,
+      "sha256": "3873101918e6c5c70441e51db019db0e64229cbf4da15616448c1ab5ed93e024"
+    },
+    {
+      "group": "new_originals",
+      "path": "4346.headers.txt",
+      "bytes": 547,
+      "sha256": "b4d191975a8a7314352abb7ca1648f68463780cc08efcc9cbb8b4314a3a8d24f"
+    },
+    {
+      "group": "new_originals",
+      "path": "4346.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "group": "prior_originals",
+      "path": "attempt-01/in_pd_20050417_rally_concludes_18th_congress.body",
+      "bytes": 15375,
+      "sha256": "2b9011d7fa502b8f5b92fe13863e63733b1174509e73ddbeab022621704aae2d"
+    },
+    {
+      "group": "prior_originals",
+      "path": "attempt-01/in_pd_20050417_rally_concludes_18th_congress.text.txt",
+      "bytes": 11088,
+      "sha256": "6ae96076d057b3b480962be44ec0a101ae0656aa10cb41d540fc4c35b6e35e2e"
+    },
+    {
+      "group": "prior_originals",
+      "path": "attempt-01/in_pd_20120415_rally_concludes_20th_congress.body",
+      "bytes": 699954,
+      "sha256": "e537657ed6c2ea4152fde11b3a1781304a46fe4da99c995e8fe05d315883df8f"
+    },
+    {
+      "group": "prior_originals",
+      "path": "attempt-01/in_pd_20120415_rally_concludes_20th_congress.text.txt",
+      "bytes": 12110,
+      "sha256": "9d75fbd3864ead34850d8667434a45f0d74ec839da4cadbd92552cf3ca62ed15"
+    },
+    {
+      "group": "prior_originals",
+      "path": "attempt-01/in_pd_20150426_join_to_bring_forth_change.body",
+      "bytes": 54802,
+      "sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842"
+    },
+    {
+      "group": "prior_originals",
+      "path": "attempt-01/in_pd_20150426_join_to_bring_forth_change.text.txt",
+      "bytes": 16136,
+      "sha256": "32ad16c756e6e533d3943794b77f69ed6480ea1b73dbe41f8eb0f5c52f3ca1df"
+    }
+  ],
+  "limits": "Only two new originals and three retained rally originals are reviewed in this amendment. The other previously accepted originals rely on the immutable prior receipt; no fresh full18-source review is claimed."
+}

@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "7d029f1dc1b84d68426620fa7d0b9fccadfef53e",
+  "generated_from": "3c4a3abcc59208ba0923705db0193964643b21f9",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -2253,8 +2253,18 @@
         "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
+      "in_cpim_gs_letter_to_naidu_20150508": {
+        "commit": "3c4a3abc",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
       "in_cpim_gs_letter_to_pm_20250512": {
         "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_gs_note_to_nic_20110910": {
+        "commit": "3c4a3abc",
         "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
@@ -4408,6 +4418,161 @@
       "jp_kantei_takaichi_recovery_hq_20260904": {
         "commit": "68e406b3",
         "packet": "CLAUDE-C01-13",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_chudo_founding_convention_20260125": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hc_budget_19940616": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hc_plenary_20091030": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hr_budget_19930129": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hr_plenary_19981130": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hr_plenary_20061003": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hr_plenary_20241203": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_diet_hr_political_reform_19931105": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_founding_convention_report_19981108": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_history_2003_retrospective": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_ishii_new_representative_interview_20240930": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_ishii_resignation_intent_20241101": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_kanzaki_fifth_convention_address_20041101": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_kanzaki_fourth_convention_address_20021103": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_kanzaki_reappointed_20021103": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_komei_representative_message_retrospective": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_ota_address_sixth_convention_20061001": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_ota_sixth_convention_20061001": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_saito_extraordinary_convention_20241110": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_saito_recommended_20241108": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_takeya_address_20260315": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_takeya_extraordinary_convention_20260315": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_takeya_interim_20260123": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_takeya_recommended_20260312": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_eleventh_convention_20160918": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_fourteenth_convention_20220926": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_ninth_convention_20120923": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_selection_greeting_20090909": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_tenth_convention_20140922": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_thirteenth_convention_20200928": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
+        "via": "extract_first_added"
+      },
+      "jp_komeito_yamaguchi_twelfth_convention_20181001": {
+        "commit": "b74f4fa5",
+        "packet": "CLAUDE-C01-31",
         "via": "extract_first_added"
       },
       "jp_kunaicho_photo_20050921": {

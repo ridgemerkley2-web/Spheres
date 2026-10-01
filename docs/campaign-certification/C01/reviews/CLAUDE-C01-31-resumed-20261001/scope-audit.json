@@ -1,0 +1,861 @@
+{
+  "reviewed_source": "aed12059c63545c3e6d6c5cacaa696a8db53c918",
+  "prior_checkpoint": "d3b4e6daede2bc9fc571a88de1b0ba1049505b70",
+  "authored_import": "b74f4fa565429b63052d94cc8ec10337b0b573ed",
+  "base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "current_integration_japan_equals_base": true,
+  "earlier_sources_preserved": 472,
+  "earlier_claims_preserved": 799,
+  "earlier_packet_restored_exactly_by_removing_declared_appends": true,
+  "claim_ids_texts_dates_original_response_identities_preserved": true,
+  "new_locator_changes": {
+    "jp_komeito_kanzaki_self_stated_again_20041031": {
+      "before": {
+        "paragraph": 2
+      },
+      "after": {
+        "paragraph": 3
+      }
+    },
+    "jp_komeito_ota_selected_20060930": {
+      "before": {
+        "paragraph": [
+          1,
+          7
+        ]
+      },
+      "after": {
+        "section": "newsbody",
+        "passage_starts": [
+          "「新しい公明党」が勇躍スタート",
+          "これに先立ち、代表選出が行われ"
+        ]
+      }
+    },
+    "jp_komeito_saito_recommended_20241107": {
+      "before": {
+        "paragraph": 1
+      },
+      "after": {
+        "paragraph": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  "authored_reviewed_paths": [
+    {
+      "path": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+      "bytes": 51375,
+      "sha256": "39b160a15605edd33d9c3dd1a160170645010eb804b6d1d4cea5bcf9e5c62dc5",
+      "git_blob": "53d2191a1c90960e6dff7fca8de26b11159985c0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "bytes": 1716657,
+      "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3",
+      "git_blob": "4cf3185315d59dbf12f17051b4e57ce127fd2d48"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-chudo-founding-convention-20260125-facts.json",
+      "bytes": 6013,
+      "sha256": "e2f629ffd23dab757ac8e86ea6609fabf0bd44f09388ca903b52bf960d19bda5",
+      "git_blob": "50ddccf624fe46cd8a68f1e8361d5e807c5cff66"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-founding-convention-report-19981108-facts.json",
+      "bytes": 7136,
+      "sha256": "6d91a9b04d9985ca23de1a6a5e475f7b5f9220cf9b7ceff1dd719fa5d2ad9b3b",
+      "git_blob": "77df474a15ae75a0c4ced12d3e4d3faf310478e5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-history-2003-retrospective-20030206-facts.json",
+      "bytes": 9125,
+      "sha256": "3fda72261fcb348c01cfc0c956046248ed8cac6d799395bc7cfec342a920bff5",
+      "git_blob": "c08d531aa3e697f50340459f71e1c2683b471f2d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-new-representative-interview-20240930-facts.json",
+      "bytes": 6223,
+      "sha256": "d6c2f7dcf2438a9a99b44f6e50692bad2d7acca470c92685bd563393325fe902",
+      "git_blob": "d89931b3c770806d478694ecb2c18c4d93429142"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-resignation-intent-20241101-facts.json",
+      "bytes": 4655,
+      "sha256": "2d4f6614b4acfcc9b5448d08f575e6f2397743077e0e2132dc9451b59a833d2f",
+      "git_blob": "38c78629b6f3ade52f079743d28c06ab68fd3223"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json",
+      "bytes": 5310,
+      "sha256": "94fe8a2b39c3294e8f1b014615d09bb151c83c236e84fe1e0dd1d3863a681c9b",
+      "git_blob": "6064333f0686bbfb4dfc08a71f466a0ce8a9d9dc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fourth-convention-address-20021103-facts.json",
+      "bytes": 4610,
+      "sha256": "7b97c0f3f28a85342e504a1494f7771fb6584dbe425ede2a2133701e76ff852f",
+      "git_blob": "f1f2dd43926a090a9910d0c5c4513ac748a05f23"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-reappointed-20021103-facts.json",
+      "bytes": 5343,
+      "sha256": "50b778fe4712e6c18d32131f49747479497afd5ce5150b95ffb6e621d91899de",
+      "git_blob": "0947167583b72227fc4605bdd22a9b5a9a891aa5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-komei-representative-message-retrospective-19980202-facts.json",
+      "bytes": 5181,
+      "sha256": "578345af62c8e6be39b66243612549df304ec67a54920dae41b48aade53ff949",
+      "git_blob": "3484d7ab89d6eb2ea75a33f938822a6e5c711326"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-address-sixth-convention-20061001-facts.json",
+      "bytes": 5599,
+      "sha256": "d2eed437ea94c669db0d487e57347c1e26b34ea8075c601d32203ba570e3f759",
+      "git_blob": "3780f511e34677aeb54aad15fdd61e186b83a9ec"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json",
+      "bytes": 5633,
+      "sha256": "eb775c25d2eb00c398051e33387d36ebc9605aec55c98739e242af15ada522c4",
+      "git_blob": "f9eefda16974d739ff2c051238787d77850fdae5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-extraordinary-convention-20241110-facts.json",
+      "bytes": 6171,
+      "sha256": "71405d4efb7d7a08b1f9509c49796d874f8ef713bbd6e23f091a188873a84c31",
+      "git_blob": "aa7bbb56c9a1348ecb8eb27667e6c4367278a59b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json",
+      "bytes": 4856,
+      "sha256": "a618ceecc81a8154b34cc8fbb0dfd661b72f68bdbd0fdcf6af1a9cd4e7651439",
+      "git_blob": "00d2a6ad1bdc3c85b6affa7bacd2edcb9759c84e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json",
+      "bytes": 4733,
+      "sha256": "b37d76b8543015051b29398d9f22263fb1b1673eda920f67ec9517da4b840ac5",
+      "git_blob": "77e44de792f229fdc7ecf49dc04b602627cf0727"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-extraordinary-convention-20260315-facts.json",
+      "bytes": 6108,
+      "sha256": "853c49f2a65c1a3c285df2c3190912610f7b66598dcd1181515f5622e94ce287",
+      "git_blob": "e61195327202794272d7994907b440b49017724b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-interim-20260123-facts.json",
+      "bytes": 6228,
+      "sha256": "264aa204890a0a29bb5dca5f6fe7a6fb66ca3fa9121d8c1637a52ce053bd67b6",
+      "git_blob": "37e42998ea68d5db3602d9b2a07fa9226085818b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-recommended-20260312-facts.json",
+      "bytes": 4735,
+      "sha256": "2a9e5330987938ea2d118621d81801594ade730f5686a2d6b4160e9be2748954",
+      "git_blob": "d9ec0f16fff40d48f41fb303f63a944ef1a40e36"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-eleventh-convention-20160918-facts.json",
+      "bytes": 5334,
+      "sha256": "51dbd517acdbb4eed788ef853e93bd6928d5eb90ebfcd3c403424a2ae862174f",
+      "git_blob": "40174c0ac3b86183f67a7f75b4f978f036b08c26"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-fourteenth-convention-20220926-facts.json",
+      "bytes": 5312,
+      "sha256": "f18c4884bea4ce674d85b2a6dd5478f9ade218b8fc7ced28f8c22021dc3dff24",
+      "git_blob": "33420be09b0b15a2fe60cd4ee28959c088dafe72"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-ninth-convention-20120923-facts.json",
+      "bytes": 5219,
+      "sha256": "c436bc203ea3048331c0900fd2292b8f02cbb496b515e3e44d088c399664c3a7",
+      "git_blob": "6fdc2b555ed529c61ccc5f1122e23179aab0d8b8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-selection-greeting-20090909-facts.json",
+      "bytes": 6212,
+      "sha256": "21c58e0b1cc3aa51ffa69e911baff6d1d322fd3dcc9f5e09c02f5bb05211c398",
+      "git_blob": "98f02f2d675325711ff3e5f39f6d8d1d47d0b46b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-tenth-convention-20140922-facts.json",
+      "bytes": 5295,
+      "sha256": "f9ec19ea8fb504534c5189e1c9d235f48f59f63c2987e4ae47f54b11f6af8534",
+      "git_blob": "b1db6a4423981125a1812c4c1e9c535d1e344e7d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-thirteenth-convention-20200928-facts.json",
+      "bytes": 5312,
+      "sha256": "14e1e699ef115a6a1d27dc4b784b7bc05e224c1d899da435e741741ad83f18ff",
+      "git_blob": "0113c5120cb91d4dda31522ce92f62cddc244f75"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-twelfth-convention-20181001-facts.json",
+      "bytes": 5432,
+      "sha256": "59808c93051ca1b3ddee99e2d6c805519b7ea1bee8aa31b28895a97298390521",
+      "git_blob": "7ae619c9c45d162b69c51c84a7cecbf16c50c49d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-komeito-19940616-facts.json",
+      "bytes": 6095,
+      "sha256": "779b1b6f014ae7e15ef0a9f70f0ffcd1a1edddef879073972679a8f9df709c00",
+      "git_blob": "0250593444c11d10859d649590e3f10d52c32d8b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-komeito-20091030-facts.json",
+      "bytes": 6006,
+      "sha256": "68e205938db895ed6b799f58e2b1c7a50e78241285854ad2d15b4d085a240e6a",
+      "git_blob": "9bd6e7e7d8ead6c0cac90a4199e98445619bce7b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-komeito-19930129-facts.json",
+      "bytes": 5722,
+      "sha256": "0f07788ce42cf097138c36f47f55a61b4fa9b04f98878950362d505d56be0d95",
+      "git_blob": "cef0f10fb2350a07d8244cc62b797607a4e620f6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-19981130-facts.json",
+      "bytes": 5432,
+      "sha256": "b9bd26b708c5119b8f8112e4f1fcb014c478f31f791ac32aa47c1fb5479de36c",
+      "git_blob": "01310784dbc697cadb3dc8945f0b7c59df20b03c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20061003-facts.json",
+      "bytes": 5244,
+      "sha256": "5479a09d6bd938dc840e954e9c91c306b471f2f9ebff45b87ab131e7ed73f100",
+      "git_blob": "97053870f20079502efe288e9fbc62acf4ebc6d2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20241203-facts.json",
+      "bytes": 5162,
+      "sha256": "de55ed498946993d4ed80184c3a91b502aa4cd99220e00a4a9f2d118327ec22a",
+      "git_blob": "fbf5ab1d2251793696ebd65f71ea83951b9c4c58"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-political-reform-committee-komeito-19931105-facts.json",
+      "bytes": 5395,
+      "sha256": "c52a3af4e167824b36b518828c096263930982ca860259e0c13ee1c56faa5ed8",
+      "git_blob": "f5e94d3dd13d7e846b649d1a3be3655609e13665"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
+      "bytes": 13594,
+      "sha256": "f5dafaec7306d9a3c7f86cba0f6151f7e5f512db791a29bb51279ef35fcea357",
+      "git_blob": "46d96e24aa19e2c200e14e34733014b03768008b"
+    },
+    {
+      "path": "tools/avatars/test_japan_komeito_representatives_c01_31.py",
+      "bytes": 76511,
+      "sha256": "d17f3277d145b8746768c21d72f76f336eee16e2f6f01dab3e2f29322a6cd4f8",
+      "git_blob": "729268aa1503ed0e8bd2dcc25a52af8d3313cd33"
+    },
+    {
+      "path": "tools/avatars/test_japan_ldp_presidents_c01_18.py",
+      "bytes": 121282,
+      "sha256": "56c026411c272da67371fe984eeff810c1bcc5098246f2357270d42fa5f35949",
+      "git_blob": "c13779c22ed9603e25944df103989e051f8fd45f"
+    },
+    {
+      "path": "tools/avatars/test_japan_prime_ministers_c01_12.py",
+      "bytes": 99741,
+      "sha256": "f8e9b24e11c0fd31c01b52c9587848a9d8c5d8058818feaa74e4ced39faa4171",
+      "git_blob": "584978e21f1ecc5d989a2d5b57bee6c2235a5e59"
+    },
+    {
+      "path": "tools/avatars/test_japan_prime_ministers_c01_13.py",
+      "bytes": 176849,
+      "sha256": "460f5e6f3c55fd73ed36c7d04b9734f82395a7cb09e865be9deb059bd2bccf12",
+      "git_blob": "639c15c3dad9deb385cf0f5a893b9415da584bcf"
+    },
+    {
+      "path": "tools/avatars/test_japan_research_s10d.py",
+      "bytes": 14733,
+      "sha256": "34242be370d3109234bca3355d4c009813fbbebe7dd446f287064f2b10e485aa",
+      "git_blob": "5fefd110e0687a90c82ce9fa266fd6d96e0cc99f"
+    },
+    {
+      "path": "tools/avatars/test_japan_sdp_chairs_c01_29.py",
+      "bytes": 97652,
+      "sha256": "fcc5e7fa267f8d3fa77246b1786d392bacce283254f8fb3581eacdc92227b893",
+      "git_blob": "119a77fb09d3e1a88928d7edc5a529e626e9e8c4"
+    }
+  ],
+  "preserved_prior_receipt": [
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/.gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae",
+      "git_blob": "bd2de00cda30e433943ceb23971ade38d5a3fc86"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/assemble_receipt.py",
+      "bytes": 16553,
+      "sha256": "9ff04d13810dd37fa8bfb7684aa3de4950309681c92d1ef446df468f54528a7f",
+      "git_blob": "72946d6a9151a8d0c34d688787efd1a86c39e783"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/claim-review.json",
+      "bytes": 48573,
+      "sha256": "01fc48d57e71e43949c82cd676aec3c111695554e794eb1fd48fd3032459b671",
+      "git_blob": "072ab917c2f726039ccc2b5c2f72b93e0f914419"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/decode_sources.py",
+      "bytes": 3688,
+      "sha256": "ef02ca8d82444490c145cb92e7bfe0688f60cd04dad212dbc8d2f2fb81ddc467",
+      "git_blob": "c3b98b31ed9750cc01bf4bfdb59f79a801761b9a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/header-provenance.json",
+      "bytes": 27084,
+      "sha256": "6cee3ee1d67051414d21ad59e5fdc718f709ea514bbd042aa91369ef0c5d00da",
+      "git_blob": "64f8b621c3b3ccf289ae4a89232725dc6d69eec2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/held-dependencies.json",
+      "bytes": 2757,
+      "sha256": "745949c534ecc88c0b0ad1ba06c296f0ce0be0fff10ea92eace621f11df6e123",
+      "git_blob": "9c98bacf843c6d5203ed6cbfd30fddd8d8830561"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/holder-review.json",
+      "bytes": 38666,
+      "sha256": "a8341d6952d41ec5ccd11a4ba2479191776d54125896a466683ed1859c7ed4a9",
+      "git_blob": "dc099259ef01b53ba99a5a7b52d820132e0aee66"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/manifest.json",
+      "bytes": 17603,
+      "sha256": "79bebc696e437c1a121197d97238d38f34aa42d34a9c48bbbbe8f9122caa3eb4",
+      "git_blob": "26f28ca135e3727a57dae599025228a9f718a021"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/README.md",
+      "bytes": 9166,
+      "sha256": "242ccd093a420e32e44c86380b6f6c587cde420b1b4ee5440ded5a7c30af528e",
+      "git_blob": "5c1ebec9d7e49f2cbbe917a52b319c51f93c8345"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/record_command.py",
+      "bytes": 1153,
+      "sha256": "614962d24220fd3684d51dc1d89923b8d2a2827ee8cc00984adae34be9a260ce",
+      "git_blob": "ccf284bcdf7d4233f4f6e61381c67f8350ef58b0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/attempts.jsonl",
+      "bytes": 343596,
+      "sha256": "f8b737cd74374b631edc7eb6c2c03d7a0d821aaa6b824a766403bf4fbe2ed782",
+      "git_blob": "5a47eb4d112b587aa390210832334ebd423caefc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_chudo_founding_convention_20260125.headers.txt",
+      "bytes": 2207,
+      "sha256": "bd3990bd22e0e280b7b6c8a7386c8c3edffdf4bcbe0f61e4b224a869c672b7ee",
+      "git_blob": "105f5e42a59a13d577758213f652d44c572a7395"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hc_budget_19940616.headers.txt",
+      "bytes": 915,
+      "sha256": "cb5ed40ef48d717f4271dab0755520d0dbaa454a2c8fb2a2b733799f30233da9",
+      "git_blob": "e6c86a3c940e0a93b4d4f957cbfa307f2b1db518"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hc_plenary_20091030.headers.txt",
+      "bytes": 916,
+      "sha256": "6ec1a3bd14df7ce8e4c1695cde6347b5a9904f39f5f683a93ad2f4e69f583e84",
+      "git_blob": "cd83dae0abbe79c4f0be2ae8d927bd2636a3210d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hr_budget_19930129.headers.txt",
+      "bytes": 917,
+      "sha256": "558e0829ff3dabac367c60af8582c11e83b6654a7a5f1f5a01b9b388599b675b",
+      "git_blob": "3ad6043a9539352e4b2626243477cbe2063d8fc0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hr_plenary_19981130.headers.txt",
+      "bytes": 916,
+      "sha256": "42327d42f0dd7f310218544d6d2df04616a5aaac88a072dd727cd245bc2e58e8",
+      "git_blob": "0f9d67e7a1b569e54d62ea7b1a771306883a4306"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hr_plenary_20061003.headers.txt",
+      "bytes": 916,
+      "sha256": "9acea94dc7705343482aba099fbe5efa542d6bc56fe263cdd393ed22d3ed3de5",
+      "git_blob": "7ccca792e3eeb3635e1e60df4377510cee85ee77"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hr_plenary_20241203.headers.txt",
+      "bytes": 916,
+      "sha256": "3f966655ea56b5814a832c357a28b18eae3283931c85d9137e7e9781dc03e993",
+      "git_blob": "a2651013fe4b67af433557b0cb955c7449b6efdb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_diet_hr_political_reform_19931105.headers.txt",
+      "bytes": 915,
+      "sha256": "91be42e491f521b25769bee97cd8f50c6f61fb0e0d3906dc2f837ebfbd60783a",
+      "git_blob": "bfd09ca2ee603fbe14fa21c7c07d9a1a24f22fb5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_founding_convention_report_19981108.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_history_2003_retrospective.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_ishii_new_representative_interview_20240930.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_ishii_resignation_intent_20241101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_kanzaki_fourth_convention_address_20021103.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_kanzaki_reappointed_20021103.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_komei_representative_message_retrospective.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_ota_address_sixth_convention_20061001.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_saito_extraordinary_convention_20241110.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_saito_recommended_20241108.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_takeya_address_20260315.headers.txt",
+      "bytes": 2206,
+      "sha256": "d828a3179d650c497cde78d03fb973b1ec0221907af0b412b5775d3d632304ac",
+      "git_blob": "97876c21e84d9ae18338ec037d7f317d0f4a2a90"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_takeya_extraordinary_convention_20260315.headers.txt",
+      "bytes": 2206,
+      "sha256": "2fddb573f435069df3d4bb9286ef2b15afbd9ad9ec64cd5d96294412a8b554fc",
+      "git_blob": "bb8beed755b988f6dd4599557bbf89575ff123f1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_takeya_interim_20260123.headers.txt",
+      "bytes": 2205,
+      "sha256": "c7afbdc601fea429a1ad16effa9fae218a6ac28c82f759831481db6f1d21b433",
+      "git_blob": "b23cf6d8e781d0c2d567a0c3533466c98e666f94"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_takeya_recommended_20260312.headers.txt",
+      "bytes": 2192,
+      "sha256": "9024b392a9fd92351e38d64946a0259618e564b4e8fcd49302d2ac9d5e48d512",
+      "git_blob": "8285824e2b8b4b4b77799783c816341c0b0f1643"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_eleventh_convention_20160918.headers.txt",
+      "bytes": 2346,
+      "sha256": "c452384582f0ca5532d272c466cb09a3f70bc908b24f722faf513c30eb8c3672",
+      "git_blob": "d8f92edcc255dc1aa12a8db37632352561043003"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_fourteenth_convention_20220926.headers.txt",
+      "bytes": 2179,
+      "sha256": "88c40fcfd59bcd4f88b28674a86bda124f6ef6436582cc4a27fad632f4338d82",
+      "git_blob": "cb49ef5dd43680af38da073a16a20e97e0babb7d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_ninth_convention_20120923.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_tenth_convention_20140922.headers.txt",
+      "bytes": 2090,
+      "sha256": "ae1e92c329d84d55986339d8aa4f4e45fb86b47f98d666ed028c04a5c5cc2a09",
+      "git_blob": "08e7c76a1f789a91b9fda0d3df170d05a2351978"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_thirteenth_convention_20200928.headers.txt",
+      "bytes": 2206,
+      "sha256": "07ea6dfb88c49ad8a18ddd2e250fe5126be5da05a46d399212524135d93a06c0",
+      "git_blob": "b2bc512e8e7ac5e4c9fe1775ce485e6e16afce8a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/jp_komeito_yamaguchi_twelfth_convention_20181001.headers.txt",
+      "bytes": 2267,
+      "sha256": "a6c81742a2f23b47bace0662590fbfae847607280f78cc35673f093bd030a597",
+      "git_blob": "0a150f91a18762a7b3b113bdddf4f3e459acea44"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-01/retrieval.json",
+      "bytes": 372165,
+      "sha256": "86e6a9a22299ab44f9bb5cd12d2df1e29c00887a291313228091c138e3860c82",
+      "git_blob": "6f5224d02ac7a8bbf5b3264430a64c77e57102e6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/attempts.jsonl",
+      "bytes": 217347,
+      "sha256": "92bd2d3310b3cebf7fd67d541d574ab79893d0988d2d3a585bf94ebcbca22566",
+      "git_blob": "7d191a73178d9288296dbc7f81fa2371aea67d76"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_founding_convention_report_19981108.headers.txt",
+      "bytes": 363,
+      "sha256": "f77fa882ffc430a164b978fff66376ebbec25d19f3ed646ccec8c864cf1ceab4",
+      "git_blob": "4d15c3eb190e0bfb3752ce9daf57670136100106"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_history_2003_retrospective.headers.txt",
+      "bytes": 1897,
+      "sha256": "6afaaa3b6ba71026ab517ca2160522f6d567a08a1d07096af5dd2a3e4e3cbc16",
+      "git_blob": "4eecb4eaf0b3c49d2ad50e760584990e1e355d25"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_ishii_new_representative_interview_20240930.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_ishii_resignation_intent_20241101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 363,
+      "sha256": "d3196a640d4c45bf3e89942fa2023f6c9d5e63b2f3b6a860c0c7842b96a5b809",
+      "git_blob": "aa2c1c0499c2eeca1b03dc5c926d608222ecdb3c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_kanzaki_fourth_convention_address_20021103.headers.txt",
+      "bytes": 363,
+      "sha256": "2dcbdbca83b0cfb601e53103b16c8afad93ede2ab3c6f6b311640eb784c8607d",
+      "git_blob": "f73db6f7b8c5a7248c051c35ae0e35ba2d783ed3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_kanzaki_reappointed_20021103.headers.txt",
+      "bytes": 363,
+      "sha256": "8858af7ec9a11215e2729080b680671429f5f2721085cbb225635f9f39b1703e",
+      "git_blob": "3b9580517ee9d3936ef58409c4ef225641003beb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_komei_representative_message_retrospective.headers.txt",
+      "bytes": 1751,
+      "sha256": "f1ea052f64855e7cea60821547a7155bcf494e6554121c48be584208fb34c18e",
+      "git_blob": "3141ad4507b4c30e421ece9c1d2be41def78bae5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_ota_address_sixth_convention_20061001.headers.txt",
+      "bytes": 363,
+      "sha256": "a7a3de25e62bd4c2d72ebeee7b9cd979ece761fc53a61fa4ae28ae4295a701b6",
+      "git_blob": "fb885ef4f14cba04d40c5b3844d65c4ff59072fe"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 363,
+      "sha256": "d3196a640d4c45bf3e89942fa2023f6c9d5e63b2f3b6a860c0c7842b96a5b809",
+      "git_blob": "aa2c1c0499c2eeca1b03dc5c926d608222ecdb3c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_saito_extraordinary_convention_20241110.headers.txt",
+      "bytes": 2205,
+      "sha256": "c7fe01922c96fbfe7c82b373763d4804111c4c7c20c7eda0d78ef4207beb6cea",
+      "git_blob": "439bd1b3dfe5fd6c5c83aa5fbb06c1908efa7e90"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_saito_recommended_20241108.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_yamaguchi_ninth_convention_20120923.headers.txt",
+      "bytes": 363,
+      "sha256": "2aa9a79a835f9439c7c7e77496840cb22b0289eea80acae409c17eed344aec3a",
+      "git_blob": "cf34405ca6a04463c5c458b6121d247ae4490417"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 363,
+      "sha256": "8577c89c2944a3ccbd5d75e7681c8726e2c32839dbd1f730349a299597fb5221",
+      "git_blob": "2a0d61ee96efb4d07d2bb6a9f66a9de08a52be5a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-02/retrieval.json",
+      "bytes": 231436,
+      "sha256": "70fcef1f2ab5d99e5786137e5b5d69bbeb010437cb054b224900d8eac802f2e2",
+      "git_blob": "40076defea96f4c078c1f1abcaf4f42526e987d1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/attempts.jsonl",
+      "bytes": 101236,
+      "sha256": "e1c02cc5a61c75cd14c345af28cf074f3d5812bde1d90ab6f5cb56818c37c4d5",
+      "git_blob": "91e9da476d746b1a09811ace218258734879480c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_founding_convention_report_19981108.headers.txt",
+      "bytes": 1864,
+      "sha256": "720ea735d4ea573889a10aa39f1912b28d3b04c2d55a36f70cbd034a80917205",
+      "git_blob": "e95efe6be7191d5d2ec6b16573516086a34181f4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_kanzaki_fourth_convention_address_20021103.headers.txt",
+      "bytes": 1793,
+      "sha256": "44ebf0ef8253d5645f95f9d5f639144f27e1f31b927a3c8b17f3d3fa33c04fe5",
+      "git_blob": "0e78c9c6ebf8ad4a1f9cba20b9f3f5e91c989a25"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_kanzaki_reappointed_20021103.headers.txt",
+      "bytes": 1790,
+      "sha256": "2a42a283544798636192d09b86fd6b62348964f8be1f1fb24665a587daf81b0b",
+      "git_blob": "c2d6801ba959be170fef76607af91a7f0ccfd75f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_ota_address_sixth_convention_20061001.headers.txt",
+      "bytes": 1726,
+      "sha256": "06e2131ca9f1a45f9d1813053af3e242af441056d057513d263250c07b90ccec",
+      "git_blob": "80b39e7ae515ecfc5da72daa0870068d68992f00"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 363,
+      "sha256": "39081b23cb410c8485140779afbfa11467b191a89cff240eada7e853403d1d0f",
+      "git_blob": "40f5e81f219e10afe020d53ff948a30e53f6b8bc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieval-03/retrieval.json",
+      "bytes": 109499,
+      "sha256": "b69ccb3de370b8c9fc03bfe4845cf73c62d5bf2d38d2787d9276477d8a30406c",
+      "git_blob": "b2034898dadef5a84d364d15ddf59f01d85fd682"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/retrieve_sources.py",
+      "bytes": 4412,
+      "sha256": "611e24202ac534e624a9740c2db9f0b5d5cb6c5a95d2d1dd33b080a79e29cf02",
+      "git_blob": "08c33c7a5581571c12e0b2aea8559ea2ca26fd6e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/scope-audit.json",
+      "bytes": 21798,
+      "sha256": "3f15877e369a3bf5d21eb9cf7d8a1e2515c20edf38349b204b95f4946edd9aed",
+      "git_blob": "264b89c88020eb652e363afc3bbc2b79b567be85"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/source-verification.json",
+      "bytes": 47755,
+      "sha256": "c7d0f947cd1ee8eb5a5b186eec9781a74aa30b01d4c0e61334cd51abd8e640f1",
+      "git_blob": "efe63f2080a5638f66f7b3873592a5cdeef80d46"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/takeya-correction.patch",
+      "bytes": 40345,
+      "sha256": "287efb22325f2c522daef314a98d7069a70c577be266bb11d04b17ec904a25c3",
+      "git_blob": "4e5da9927e273cc8466c5a95909706e5f067db87"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/atlas-tests.json",
+      "bytes": 367,
+      "sha256": "d71aaf164f1601497f7e734088f635fadfddaece144c0f054a195fa1c0b9d7e7",
+      "git_blob": "f2441ac7753391a5c3381def7fda36c67671e8f2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/atlas-tests.log",
+      "bytes": 1121,
+      "sha256": "3172e559d935e72b43ef2b81cfcfd9a4d907fd797cefd2ab76cee450ae009e31",
+      "git_blob": "fec087cda4d0ff79590ebd3dd8a2809cb37d3d52"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/campaign-tests.json",
+      "bytes": 456,
+      "sha256": "1ed8a92343ad109217f38227c171d88d2dbd2bc63ec22db85f1c1b3c7e8aa3b3",
+      "git_blob": "a6910f450324a8ba2d79ea419aa57683bcd72519"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "5f3c01c12ff427ca04ebbadd9ce5ae2723b3304117d7bd83068145e61816bec8",
+      "git_blob": "e8dfd8160b0374249c1d381c1e043c96b3063d48"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/census-check.json",
+      "bytes": 394,
+      "sha256": "995d042a4108a99a32bf5c463691c3e319001a12227e39a6627dc8fe86a3ff02",
+      "git_blob": "9fab46e319715d89f406d95ae7148bb01fa01a42"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/census-check.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb",
+      "git_blob": "cce95b94e32952a90fc5eab36496b2ffc0e5cd2e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/correction-patch-check.json",
+      "bytes": 453,
+      "sha256": "0b90e78e047faa3fe91f737298e2a3a2162731ad821cd1659eaffecc15fa35c0",
+      "git_blob": "c54b40c7a2119ac28e8c0d83a31057f4304965fa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/correction-patch-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/diff-check.json",
+      "bytes": 324,
+      "sha256": "b83f6399e3df6971df2e92a76f4f19de5ae9f236fa931c077f2fb4783a1034c7",
+      "git_blob": "7ac733de61fe0569001d8fdda789419adff9705a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/index-check.json",
+      "bytes": 394,
+      "sha256": "8e50d2fa713f3e783c9fa8223613810e9e55b6b2c16386ecd28ee1e75e0b79ae",
+      "git_blob": "6249e1adbb115735ed01983f8aa440ba138cc474"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/index-check.log",
+      "bytes": 251,
+      "sha256": "da2a6c0355c98e6c3cd35f765841de0126abaf29975ad6bf9cf2525f0ab51181",
+      "git_blob": "fd94cc4f3f69e07dfc6d7c43a8ef5d9951cb9fb9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/index-regenerate.json",
+      "bytes": 388,
+      "sha256": "dfc59124419cce66b6d0e95ab49c888f143929e30eb45764c6d11d4a9564f0e6",
+      "git_blob": "2057899a112ce04ce1715c05d919d655136f7b1f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/index-regenerate.log",
+      "bytes": 252,
+      "sha256": "476c3b403c09901a34af25cec1fa734512c32f2c88543323685cdc22994085bc",
+      "git_blob": "cb79fa968a3366c3839cda1552d3235145b7aac6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/japan-corrected-01.json",
+      "bytes": 461,
+      "sha256": "8061f1afb19442b54b1ef5b272a0ee3190c4cd159b01f31eb62ef2ebcb7e2fd0",
+      "git_blob": "822d6b4488bda167bcbe74076f27df370abf8d8c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/japan-corrected-01.log",
+      "bytes": 160,
+      "sha256": "c1d6c0bcb011da058c4e6fcca4c8ee075da693385c7fe3194b95ae741cfd9922",
+      "git_blob": "e5848c79e1adf4c8e8b6327ea3133c8b8248c177"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/research-tests.json",
+      "bytes": 457,
+      "sha256": "ad3cd56f4c09b879dd660dbd22c544a146e6185caf450215ea50d0c3890764e5",
+      "git_blob": "04b53db53e398f41685aa5de3137e6e08a1c95b6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/research-tests.log",
+      "bytes": 183,
+      "sha256": "db9f5024110d58f7fe829714a8467c18dbe75a2aad81462fc9df6bccb3bf40cc",
+      "git_blob": "b3a430ec89fd50b90bcb6705d2caf228f9d59f69"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/takeya-red.json",
+      "bytes": 517,
+      "sha256": "6f0a48642c51caa0d3f1dc08bca1494373e329ff41e8ef5c27a1bd3bb01b771e",
+      "git_blob": "b4946b2186426f31b38c23647f5344f4f09c39ea"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/takeya-red.log",
+      "bytes": 822,
+      "sha256": "4b623244424456b128a8133bd2cc33bc6899b615ea6a56ec8e34bf667624987d",
+      "git_blob": "0b1e2d0a6597fbf67687882e6620fc4c18aa2a71"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/workboard-check.json",
+      "bytes": 395,
+      "sha256": "6620ec541a4261abdf3692969e61e0d6cd204eb7e601adc7e56b92042f243629",
+      "git_blob": "71b44a1630c520647994e9c1d0d5d7abeea7bf3b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/validation/workboard-check.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6",
+      "git_blob": "a0602d8560f25cf53be9e6e554302977eff72d64"
+    },
+    {
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31/verify_receipt.py",
+      "bytes": 3262,
+      "sha256": "b160128e99d392eef78bbf62870c4050bc46b8f84292548e9cf43a2004a44a03",
+      "git_blob": "009e6bd2297c41c541f0f9d0a7b19dcf69e95141"
+    }
+  ]
+}

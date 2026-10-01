@@ -18,35 +18,35 @@
    },
    "statistics": {
     "roles": {
-     "research": 6,
+     "research": 7,
      "production_party": 8,
      "executive": 1
     },
-    "cases": 1101,
+    "cases": 1184,
     "case_kinds": {
-     "attestation_day": 49,
-     "attestation_day_after": 49,
-     "cutoff_day": 15,
-     "cutoff_day_before": 15,
+     "attestation_day": 63,
+     "attestation_day_after": 63,
+     "cutoff_day": 16,
+     "cutoff_day_before": 16,
      "dissolution_day_after": 3,
      "dissolution_day_before": 3,
      "dissolution_day_of": 3,
-     "fictional_end_exclusive": 15,
-     "fictional_last_day": 15,
-     "fictional_start_day": 15,
+     "fictional_end_exclusive": 16,
+     "fictional_last_day": 16,
+     "fictional_start_day": 16,
      "founding_day_after": 2,
      "founding_day_before": 2,
      "founding_day_of": 2,
-     "future_2030": 15,
-     "handover_day_after": 74,
-     "handover_day_before": 74,
-     "handover_day_of": 74,
-     "reference_start": 15,
-     "reference_start_day_before": 15,
-     "yearly": 690
+     "future_2030": 16,
+     "handover_day_after": 75,
+     "handover_day_before": 75,
+     "handover_day_of": 75,
+     "reference_start": 16,
+     "reference_start_day_before": 16,
+     "yearly": 736
     },
     "observations_by_acceptance": {
-     "accepted": 16,
+     "accepted": 31,
      "pending": 44,
      "production_registry": 42,
      "unattributed_intake": 5
@@ -54,8 +54,8 @@
     "research_yearly_status": {
      "bracketed": 1,
      "established": 9,
-     "uncertain": 83,
-     "unknown": 129
+     "uncertain": 103,
+     "unknown": 146
     },
     "production_party_yearly_status": {
      "established": 151,
@@ -83,8 +83,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 6 (6 with holder observations); 9 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 83 uncertain, 129 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 16, pending 44, unattributed_intake 5.",
+    "Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 31, pending 44, unattributed_intake 5.",
     "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
     "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
     "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1869,6 +1869,138 @@
    }
   },
   {
+   "key": "research:jp_komeito_representative",
+   "identity": "Japan",
+   "family": "research_role",
+   "role_id": "jp_komeito_representative",
+   "title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+   "kind": "party_leader",
+   "entry": {
+    "id": "jp_sangiin_pr_2025_15",
+    "category": "organizations",
+    "name": "公明党",
+    "kind": "electoral_list_political_party_or_other_political_organization",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "jp_komeito_representative#1",
+    "jp_komeito_representative#2",
+    "jp_komeito_representative#3",
+    "jp_komeito_representative#4",
+    "jp_komeito_representative#5",
+    "jp_komeito_representative#6",
+    "jp_komeito_representative#7",
+    "jp_komeito_representative#8",
+    "jp_komeito_representative#9",
+    "jp_komeito_representative#10",
+    "jp_komeito_representative#11",
+    "jp_komeito_representative#12",
+    "jp_komeito_representative#13",
+    "jp_komeito_representative#14",
+    "jp_komeito_representative#15"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-30","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-11-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-11-09","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-11-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-11-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-10-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-11-01","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-09-29","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-09-30","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["jp_komeito_representative#5","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-10-01","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-09-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-09-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-09-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-09-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-09-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-09-22","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-09-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-09-18","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-09-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-10-01","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-09-28","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-26","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-29","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-11-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#14","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-11-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_komeito_representative#15","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-15","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["jp_komeito_representative#5","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 83,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "uncertain": 20,
+     "unknown": 17
+    },
+    "boundary_cases": 3,
+    "attestation_cases": 28
+   }
+  },
+  {
    "key": "research:jp_pm",
    "identity": "Japan",
    "family": "research_role",
@@ -2690,6 +2822,342 @@
    "acceptance": "production_registry",
    "executive_grant": "parliamentary_government_contender",
    "appearance_backlog": false
+  },
+  "jp_komeito_representative#1": {
+   "role": "research:jp_komeito_representative",
+   "name": "石田幸四郎",
+   "from": null,
+   "until": null,
+   "attested_on": "1993-01-29",
+   "claim_ids": [
+    "jp_komeito_ishida_named_chair_by_secretary_general_19930129"
+   ],
+   "note": "Observed on 29 January 1993: the party secretary-general 市川雄一's statement in the House of Representatives Budget Committee naming '我が党の石田委員長', the first dated statement by a party officer naming him in the office found after 1 January 1990. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his May 1989 assumption is his own month-only recollection; the day his office ended at the December 1994 division is not stated (the party histories are retrospective), and the 1994 acting chair (委員長代行) is a claim only; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_diet_hr_budget_19930129"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#10": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-09-30",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_convention_20180930"
+   ],
+   "note": "Observed on 30 September 2018: the party organ's report of the 12th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_twelfth_convention_20181001"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#11": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-09-27",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_convention_20200927"
+   ],
+   "note": "Observed on 27 September 2020: the party organ's report of the 13th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_thirteenth_convention_20200928"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#12": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-09-25",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_convention_20220925"
+   ],
+   "note": "Observed on 25 September 2022: the party organ's report of the 14th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_fourteenth_convention_20220926"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#13": {
+   "role": "research:jp_komeito_representative",
+   "name": "石井啓一",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-09-28",
+   "claim_ids": [
+    "jp_komeito_ishii_in_office_convention_20240928"
+   ],
+   "note": "Observed on 28 September 2024: the party organ's report that on the 28th the 15th national convention launched the new executive led by '石井啓一代表'. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his resignation intention announced on 31 October 2024 and the predecessor reference of 10 November 2024 do not state the day his office ended; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_ishii_new_representative_interview_20240930"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#14": {
+   "role": "research:jp_komeito_representative",
+   "name": "斉藤鉄夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-11-09",
+   "claim_ids": [
+    "jp_komeito_saito_in_office_convention_20241109"
+   ],
+   "note": "Observed on 9 November 2024: the party organ's report of the extraordinary national convention of the 9th naming 斉藤代表 in his address after the delegates' confidence (his printed address says he has been chosen, an election, not a start). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; he is called 前代表 on 22 January 2026 after joining 中道改革連合, whose co-representative office is another organization's (claims only), and the March 2026 report says the office fell vacant in January 2026 (month only), so no end is stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_saito_extraordinary_convention_20241110"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#15": {
+   "role": "research:jp_komeito_representative",
+   "name": "竹谷とし子",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-03-14",
+   "claim_ids": [
+    "jp_komeito_takeya_assumption_stated_20260314",
+    "jp_komeito_takeya_in_office_convention_20260314"
+   ],
+   "note": "Observed on 14 March 2026: her own address to the extraordinary national convention, captioned 'あいさつする竹谷代表＝14日', accepts the delegates' confidence and the duty of 公明党代表. The party organ's convention report also names 竹谷代表 after her election. These support the dated office observation; they do not separately state the effective day the substantive office began. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated independently of the convention acceptance. The submitted from value of 14 March 2026 is preserved in the review's boundary record, but the reviewed holder uses attested_on on that same day. From 22 January until the national convention she served as 代表代理 styled 「代表」; that interim arrangement, its appointment and the 11 March recommendation remain claims only. No outgoing end or interim-office end is inferred.",
+   "sources": [
+    "jp_komeito_takeya_address_20260315",
+    "jp_komeito_takeya_extraordinary_convention_20260315"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "jp_komeito_representative#2": {
+   "role": "research:jp_komeito_representative",
+   "name": "神崎武法",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-11-08",
+   "claim_ids": [
+    "jp_komeito_kanzaki_in_office_founding_report_19981108"
+   ],
+   "note": "Observed on 8 November 1998: the party organ's report (公明新聞, 8 November 1998) of the founding national convention of the new 公明党, naming 神崎代表 in the new officers' address after the convention's vote of confidence. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the convention's day is printed only by his own Diet statement of 30 November 1998 (7 November), which is a claim about the organizations; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_founding_convention_report_19981108"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#3": {
+   "role": "research:jp_komeito_representative",
+   "name": "神崎武法",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-11-03",
+   "claim_ids": [
+    "jp_komeito_kanzaki_in_office_reappointed_20021103",
+    "jp_komeito_kanzaki_self_stated_continuing_20021103"
+   ],
+   "note": "Observed on 3 November 2002: the party's report dated 3 November 2002 naming '新代表に再任された神崎代表' after the fourth national convention, with his own address of the same date line saying he continues as party representative by the delegates' confidence. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the convention's day is not printed on these pages; the 2000 re-election was not found; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_kanzaki_reappointed_20021103",
+    "jp_komeito_kanzaki_fourth_convention_address_20021103"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "jp_komeito_representative#4": {
+   "role": "research:jp_komeito_representative",
+   "name": "神崎武法",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-10-31",
+   "claim_ids": [
+    "jp_komeito_kanzaki_self_stated_again_20041031"
+   ],
+   "note": "Observed on 31 October 2004: his own address to the fifth national convention, which the party organ introduces as given by the representative re-elected at the convention of the 31st, saying that by the delegates' confidence he will again bear the heavy duty of party representative. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim, and a statement of continuing (再び) is not read as a start; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_kanzaki_fifth_convention_address_20041101"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#5": {
+   "role": "research:jp_komeito_representative",
+   "name": "太田昭宏",
+   "from": "2006-09-30",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "jp_komeito_ota_in_office_convention_20060930",
+    "jp_komeito_ota_assumption_stated_20060930"
+   ],
+   "note": "From 30 September 2006: his own address to the sixth national convention, which the party organ introduces as given at the convention of the 30th, saying that at today's convention he has taken office as 公明党代表 ('本日の党大会において…公明党代表に就任させていただきました'), with the party organ's same-day report naming 太田代表 after his election. Not a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No end is stated for this observation: his 2008 re-election was not found, and no source reviewed states the day his office ended in 2009; the convention's selection, 神崎武法前代表 and his own Diet statement of 3 October 2006 are claims, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_ota_sixth_convention_20061001",
+    "jp_komeito_ota_address_sixth_convention_20061001"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "jp_komeito_representative#6": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2009-09-08",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_greeting_20090908"
+   ],
+   "note": "Observed on 8 September 2009: the party organ's copy (9 September 2009) of the address of the new representative chosen at the extraordinary national meeting of representatives of the 8th, headed 山口那津男　代表; his own Diet statement of 30 October 2009 is a continuation. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his address says he has been chosen (選出, an election) and greets the meeting on taking office without a separate day; his 2010 re-election was not found; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_selection_greeting_20090909"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#7": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2012-09-22",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_convention_20120922"
+   ],
+   "note": "Observed on 22 September 2012: the party organ's report of the ninth national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_ninth_convention_20120923"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#8": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-09-21",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_convention_20140921"
+   ],
+   "note": "Observed on 21 September 2014: the party organ's report of the 10th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_tenth_convention_20140922"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_komeito_representative#9": {
+   "role": "research:jp_komeito_representative",
+   "name": "山口那津男",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-09-17",
+   "claim_ids": [
+    "jp_komeito_yamaguchi_in_office_convention_20160917"
+   ],
+   "note": "Observed on 17 September 2016: the party organ's report of the 11th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection.",
+   "sources": [
+    "jp_komeito_yamaguchi_eleventh_convention_20160918"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-31"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
   },
   "jp_komeito_takenori_kanzaki_19981107": {
    "role": "party:jp_komeito/jp_komeito_1998",

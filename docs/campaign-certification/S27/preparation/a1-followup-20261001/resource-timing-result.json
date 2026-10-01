@@ -1,0 +1,32 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--lib",
+    "tests::the_resource_pass_stays_under_budget",
+    "--",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001",
+  "cargo_target_dir": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001-target",
+  "started_utc": "2026-10-01T02:05:46.854020+00:00",
+  "finished_utc": "2026-10-01T02:05:55.874653+00:00",
+  "elapsed_seconds": 9.01600000000326,
+  "exit_code": 0,
+  "binary_before": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+    "bytes": 49799863,
+    "sha256": "988e8062ef5b680fd489f50c77797ee729e90b9e8b6f462ab525e16b9e3b95bf"
+  },
+  "binary_sha256_after": "988e8062ef5b680fd489f50c77797ee729e90b9e8b6f462ab525e16b9e3b95bf",
+  "log_sha256": "f5569c67c8cf4bd25c4fced10fabd58c2ba2c580b473347cdec02ce56699996e",
+  "environment_sha256": "7d220dd39084c06b180f67ca77a7417ddbf2d4b1bd14f4cb88f5063fde0beb40",
+  "qualification": "One standalone existing resource timing test only; no A1/outcome/CP1 acceptance.",
+  "binary_unchanged": true
+}

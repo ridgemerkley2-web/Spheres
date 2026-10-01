@@ -1,0 +1,2192 @@
+{
+  "head": "a81d2486b6ae064131dfb8594bbec252412e7f5a",
+  "accepted_runtime": "7c6f112cbfb7e1ae02e70dcc2986da66f425aa49",
+  "sim_tree": "e40ea34de1ab2b07ae0b5d6cefc188d733bca05a",
+  "accepted_sim_tree": "e40ea34de1ab2b07ae0b5d6cefc188d733bca05a",
+  "cargo_target_dir": "D:\\spheres-offload\\codex-next-20260928\\cp1-a1-followup-20261001-target",
+  "free_bytes": {
+    "C": 5022973952,
+    "D": 824078090240
+  },
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)\nbinary: rustc\ncommit-hash: 88d9e12ae178fab0fb5cc050a94da85685d449ea\ncommit-date: 2026-08-18\nhost: x86_64-pc-windows-gnu\nrelease: 1.98.0\nLLVM version: 22.1.8\n",
+  "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)\n",
+  "recorded_utc": "2026-10-01T01:59:51.812118+00:00",
+  "source_pins": [
+    {
+      "path": "Cargo.lock",
+      "git_blob": "4004d4796cd617d9f821203d7c815d4106fecef1",
+      "working_sha256": "a66f8bc5cbe3f77bb60de7c880089e78ac70dd9147674944480c30192043c372"
+    },
+    {
+      "path": "Cargo.toml",
+      "git_blob": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e",
+      "working_sha256": "e9a90fb5048c0cf6346509b3f3df195cd63222a1af351b17b62ea3d8cc6e5402"
+    },
+    {
+      "path": "docs/research/australia-identity-ingestion.json",
+      "git_blob": "587e0aee175c0405be4b257f531236ba98f4fcbb",
+      "working_sha256": "f3e1a83a77cde081d5d537e4cc55160ebedc0971721ba0194fb9a9d64993b94e"
+    },
+    {
+      "path": "docs/research/australia-party-leaders-1990-2026-notes.md",
+      "git_blob": "e2acd55a99dd377bc2bfdcae7eb878c4284b4191",
+      "working_sha256": "a7198ff47dbb9d5b4e5356fdcc34e03b185a650ae456ebbac414726854a5d854"
+    },
+    {
+      "path": "docs/research/australia-party-leaders-1990-2026.json",
+      "git_blob": "a919fdb673635dfe39eca79bd042c68765f411a4",
+      "working_sha256": "9e8f0da889a38ee5f4d32b6cc7d1fd956da3b5e347f50cfc793fbdab3f823306"
+    },
+    {
+      "path": "docs/research/australia-party-terms-ingestion.json",
+      "git_blob": "46073e1df53bb23ed96492351ae4a8ff6fc22a74",
+      "working_sha256": "ddccf74b5bda7448591c649dcdca4fb4f6da132afb37fcb4269e2dcaad4d80ce"
+    },
+    {
+      "path": "docs/research/brazil-identity-ingestion.json",
+      "git_blob": "bb6ed59b420d2fd6f657052dff028eb3e6b94282",
+      "working_sha256": "400ad224d033f78d5a4ad7dc29b47d33daa3e48ad7368f6dadd837c22ee1fe4b"
+    },
+    {
+      "path": "docs/research/brazil-party-leaders-1990-2026.json",
+      "git_blob": "7f7a16c17a6b7c64b3f1449c7c8e1140d5e12572",
+      "working_sha256": "77c98535f9ce8ca6e66ecc95d21522fafa57f7023a70279e2cda29e32b8e2383"
+    },
+    {
+      "path": "docs/research/brazil-party-leaders-1990-2026.md",
+      "git_blob": "6819687b8f45d27d80760d09d07af3317d13554a",
+      "working_sha256": "10d757e3cbb90a6d29f7e739be8896ab37079deebd2fc7c8b549a5210fca8527"
+    },
+    {
+      "path": "docs/research/brazil-party-terms-ingestion.json",
+      "git_blob": "85a5b1e4ceea7b7c2127e4b88d2a4f20ad06c6c8",
+      "working_sha256": "b35e874119b134d6b8c8ecb5fd88fc53c9c7930ca9ab7994b7900a8674a2e4eb"
+    },
+    {
+      "path": "docs/research/brazil-south-africa-portrait-references.json",
+      "git_blob": "1e894b1f7c58e4a02af729b9be5094accf1837e5",
+      "working_sha256": "73416bf70c94af2f50ad8b17f46673cdfe8d2d050d967bfd961fe144b1f670b5"
+    },
+    {
+      "path": "docs/research/brazil-south-africa-portrait-references.md",
+      "git_blob": "8b540525acd3f17df1ebd1cbc51711e789794c7d",
+      "working_sha256": "25ce9c349bf72f8508fac672798bcc1ce194bd1675decb5301dc494777f1ee6b"
+    },
+    {
+      "path": "docs/research/canada-identity-ingestion.json",
+      "git_blob": "7232f808b74197063d0f4ef8a6a9c039cea88278",
+      "working_sha256": "067ec1f2f754ea89eefd6fc829b37d52790b2852d5d821cfd44e2d242add8670"
+    },
+    {
+      "path": "docs/research/canada-mclaughlin-continuity-correction.json",
+      "git_blob": "f7d1d54f71124b61e70a86a3ed8ce897bc626cff",
+      "working_sha256": "3d85f868ef7fc5ac9e14313157aa0779607e562c16c242087a95472b20e86e77"
+    },
+    {
+      "path": "docs/research/canada-mulroney-prose-correction.json",
+      "git_blob": "02b75590a13b89b2da9a31099d641db748e46338",
+      "working_sha256": "b9d60d0fc7dd5aded00985e8571371328f8e996aae51a97998827d572533ac6d"
+    },
+    {
+      "path": "docs/research/canada-party-leaders-1990-2026-notes.md",
+      "git_blob": "d4b057959251ecc951ae021affc7b025c77eed9d",
+      "working_sha256": "78ef29277ccb51ff8f354af3364629feb9c346f51feabdcf6e747d9934cacea6"
+    },
+    {
+      "path": "docs/research/canada-party-leaders-1990-2026.json",
+      "git_blob": "3fff28ce582c1a9a349c7e85cd63887299ab2988",
+      "working_sha256": "be635b8f32be9a6df9903c768b3f9cbbfe19f47d3af5f50a61fe25e7621b283c"
+    },
+    {
+      "path": "docs/research/canada-party-terms-ingestion.json",
+      "git_blob": "0dd2f890873cbb1955f64f8899ce4a108843cfc9",
+      "working_sha256": "9460e25bb357cfdc9eb9f7c53e20695845e78c989654ecb50e6733136a1d7a70"
+    },
+    {
+      "path": "docs/research/canada-preston-manning-portrait-audit-2026-09-07.json",
+      "git_blob": "5f009383b9528a88851f5f2df51ef3f3d72c99d9",
+      "working_sha256": "8604b3c91a6eaa7fa6e3f17b0138bf5ebc932887291acacd731252c952c5a909"
+    },
+    {
+      "path": "docs/research/canada-registration-lifecycle-correction.json",
+      "git_blob": "707e3ce301ece0ba207f1ee7df0ab7cf0f0804ba",
+      "working_sha256": "1fdf55df41ff0ce65013656d50ae3331c534d2d08efe31ab3e16985a3da4bc7c"
+    },
+    {
+      "path": "docs/research/china-identity-ingestion.json",
+      "git_blob": "e48ad879fb0a650c1ed5e78d0f215237be6476e9",
+      "working_sha256": "8edaff4b95604de56849101db06ee7cf8bb8162693d312e709120b8dfd5a40a6"
+    },
+    {
+      "path": "docs/research/china-party-leaders-1990-2026.json",
+      "git_blob": "de248eef700234d79faa9d856d55de2acd941e7b",
+      "working_sha256": "6eaaffe9d5a2ecda242d8173dc951bff63f7736ed8ab6a30e7017304141b1af9"
+    },
+    {
+      "path": "docs/research/china-party-leaders-1990-2026.md",
+      "git_blob": "f3d998b6dd93ecd76a299cec72c748c1d556d06d",
+      "working_sha256": "8fab7788dbca66034b3a1d25578fce89bbf3590c639ca4f00df3c202ec321289"
+    },
+    {
+      "path": "docs/research/china-party-terms-ingestion.json",
+      "git_blob": "0e6366716f8cc05bfbe9e49f78790a68b5750980",
+      "working_sha256": "b285072beabed94a5bebd93cd34e352778218c3da345ecd5f641b9f80ca9f984"
+    },
+    {
+      "path": "docs/research/company-pilot/README.md",
+      "git_blob": "ac2c607567e8abd252fd6eda67c9a57c8effc3f0",
+      "working_sha256": "0bc90eac89b474d8741da4c11b751921087b61aeb924b3f3e7d2e5e2efa33253"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_dassault_aviation.json",
+      "git_blob": "a87feecca4fb0c09474b1e459936f05026fcaa9c",
+      "working_sha256": "6685c374dffae4e1d41219ed2e19852db2558195fd0cfea53b8cb8bd3aa95d9d"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_knds_france.json",
+      "git_blob": "4842c8b9dd911bb7108ae353e0e4b2569810de59",
+      "working_sha256": "5cdd427464666273c63aa668d61df71d87828577bb70c7821e8c9365ce734fa2"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_naval_group.json",
+      "git_blob": "9a372f36ab86a35705512f669b653795306a0d56",
+      "working_sha256": "3dbe51f4463be8227382bac6afbfa817d25e44a958ce83ad754e2165199e7f3a"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_renault.json",
+      "git_blob": "27212ac6d2a20c76c03a72027019f103c27f143b",
+      "working_sha256": "e0a26fb99eeafbb0090d8a1291c51d28c121e4c6b0313c8a076aaeac32889877"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_kawasaki_heavy_industries.json",
+      "git_blob": "e56bd3e1b8bcba5434b32d4099f71e8ff4bd9b6b",
+      "working_sha256": "4756191a8fffc224afe05da3a8f7e88936061502b095f086b8e1b1e0879ca102"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_komatsu.json",
+      "git_blob": "3c9709cfa6500c60707f3df0d7d9b6e50ee731cd",
+      "working_sha256": "e0e8845681c2424d588615f3031607aa9de6a7e9e6f24bdc4311962a1fa711e3"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_mitsubishi_heavy_industries.json",
+      "git_blob": "dd92a6bbba08b81b3f34bed84c4579b2a560c7ab",
+      "working_sha256": "8c23989dee91c68db7c567ceb83f1056f0aa3e2f7226d65a3f898e839ba81866"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_toyota_motor.json",
+      "git_blob": "bdbb872cd0530dc37e8b72fa376e62d7bcb7354f",
+      "working_sha256": "4a758de976c7f7944a213a3a89689a24aca87a240f022eb7d7ac786c4b845ac0"
+    },
+    {
+      "path": "docs/research/company-pilot/sources.json",
+      "git_blob": "ed5dd86d42222dc92f701db179ff41437266c19d",
+      "working_sha256": "bedd7163b245d062a7dfc2c558bd19daf05333e7abc074a5c36a42840e2422d6"
+    },
+    {
+      "path": "docs/research/executive-person-identity-import.json",
+      "git_blob": "60975391b772fc6867e4dc49e608bfe5c82f850a",
+      "working_sha256": "b1bd0673b224e43fa964cdfa814ad27e4fdb57c41788063babd7a13178723fd2"
+    },
+    {
+      "path": "docs/research/france-identity-ingestion.json",
+      "git_blob": "55267828d8fd3ecc566aff93d4d3bcb2db49b893",
+      "working_sha256": "9038131f9af6bfa84a85d8dd8e13fc55e164d4def06f40ebeb452812532f05c7"
+    },
+    {
+      "path": "docs/research/france-party-leaders-1990-2026-notes.md",
+      "git_blob": "818aff2836e4a4b4f0d46b5949091f4c074c309e",
+      "working_sha256": "561b91993f063e2db3c269411e9120d24efa982a8f3c31016c0846f7293e3135"
+    },
+    {
+      "path": "docs/research/france-party-leaders-1990-2026.json",
+      "git_blob": "b9bfe1feea058e19d195e8b39b50f4cefe85cc21",
+      "working_sha256": "8c5d6b1932c98d81f86dcff27c9582803cd44b5f76c57207bd3ea195e279cd2a"
+    },
+    {
+      "path": "docs/research/france-party-terms-ingestion.json",
+      "git_blob": "a86823d342665ed91d2df49d5e22721242f9e75b",
+      "working_sha256": "58408195bf3465f16c22c60361d848400391c40be2b4ea2239599946f4ef80ac"
+    },
+    {
+      "path": "docs/research/germany-identity-ingestion.json",
+      "git_blob": "f188d4340a50acdf406f18aa0022455a2741c34f",
+      "working_sha256": "559fcff0f21c38997668280f18e3a305c8c77d10a2d4d455a978939e5e7d3ea0"
+    },
+    {
+      "path": "docs/research/germany-party-leaders-1990-2026-notes.md",
+      "git_blob": "b79e35b780edffb31f02e539cd29c519100e7129",
+      "working_sha256": "1889dbe22ff661de75ff45fe9139dcfa68c0e02885364c988431ac058a7339c3"
+    },
+    {
+      "path": "docs/research/germany-party-leaders-1990-2026.json",
+      "git_blob": "e93be2b8dfee3a534c7f6791f03150a054a76cbc",
+      "working_sha256": "23b61cd435c001c8d36f4acdc80fe10ec095396a1a1cfc4181c49bd81764e9a4"
+    },
+    {
+      "path": "docs/research/germany-party-terms-ingestion.json",
+      "git_blob": "4c902d9b024cf21981b5650fea15bb229fc2fd88",
+      "working_sha256": "66643d578a8cf503ec9f9d4f4661f271b7195b6a2123a751116132cf05b65dda"
+    },
+    {
+      "path": "docs/research/india-identity-ingestion.json",
+      "git_blob": "2e7942a29ffadac85dada13ff602646c81c7ea6a",
+      "working_sha256": "0b9d9e60d95d189b9d2b1eee37c9569e0e747fe88593d784fff227f893dfe93d"
+    },
+    {
+      "path": "docs/research/india-party-leaders-1990-2026.json",
+      "git_blob": "27ee8a43491fd92ff128e48146eb21efd4e38baf",
+      "working_sha256": "77566a887e37beb613fc4d175ffe7f54a7915cc12269952a23d118a09c4ff0e2"
+    },
+    {
+      "path": "docs/research/india-party-leaders-1990-2026.md",
+      "git_blob": "30480eb935afed22c2060b2db44a9bf5123cbc29",
+      "working_sha256": "951a3a2450bfb4262d6646302c026fa66c25f448c440f8deb7789ff4bfe66468"
+    },
+    {
+      "path": "docs/research/india-party-terms-ingestion.json",
+      "git_blob": "4889f59459df3bdf85ca1d55d44d9fdfa1a72d31",
+      "working_sha256": "7a79443633045810a63a063c8e75bb84c8129a661e419e75cd0d76947fac30aa"
+    },
+    {
+      "path": "docs/research/italy-identity-ingestion.json",
+      "git_blob": "13cc50172ba16cd5ee3d3caf4697263208b583d5",
+      "working_sha256": "ca3f981d2f86aa1db217bae5dd54462ef9eb55d1cff7218dc891fe06082c760d"
+    },
+    {
+      "path": "docs/research/italy-party-leaders-1990-2026-notes.md",
+      "git_blob": "a8d2137f809d1b56bc8b2b4a30efd3ffe43b8919",
+      "working_sha256": "0a6542000bccd0f71f886c5ef7184c4aa27d5faa2e293a35d0ed18fed53bcfe2"
+    },
+    {
+      "path": "docs/research/italy-party-leaders-1990-2026.json",
+      "git_blob": "493eaaab98ddb1d617055f4aec1a88ac71cddd20",
+      "working_sha256": "7d4966448430e62d2b52999456bae14853592b8a25b60287cca2a6e216b6a0ee"
+    },
+    {
+      "path": "docs/research/italy-party-terms-ingestion.json",
+      "git_blob": "1dfe899b7e70e998a6934840084b608b56f4d3af",
+      "working_sha256": "25d1e0dc4dfe7bcefca11bff632a2bf96eac6a4fa9527770edf58bfeeb60fc95"
+    },
+    {
+      "path": "docs/research/japan-party-leaders-1990-2026-notes.md",
+      "git_blob": "4d1638b6480d7ed882acaf6dd1d192dc2806b456",
+      "working_sha256": "917ff7911497f01d39d92c211e7103790bb2f163d2c851f37732dca831783de4"
+    },
+    {
+      "path": "docs/research/japan-party-leaders-1990-2026.json",
+      "git_blob": "dd0969aa375147c69bf5022da301b83743a08df9",
+      "working_sha256": "f5af6b40fbffc33f66364f279bde96c121e8dac700162170ed3ccd07fccc7fb6"
+    },
+    {
+      "path": "docs/research/japan-starter-portrait-audit.md",
+      "git_blob": "733da82a841f64934d5b13de9546d001ad2e4b9a",
+      "working_sha256": "cc64635f4dcbdbc50ad8abd6f418dbd98ed095521dc6f0343c4f0e08815fbd6c"
+    },
+    {
+      "path": "docs/research/leadership-save-static-validation.json",
+      "git_blob": "6bf484d27e909c683d7be0fa644df7aa9ded3df6",
+      "working_sha256": "7caf7c6a74e44661243b0856d1b2fe5412af18f7c7434b9e2f816433aca1c274"
+    },
+    {
+      "path": "docs/research/party-leaders-uk-1990-2026.json",
+      "git_blob": "e5ee2a0bcb49b460a40828a91fe0bbb462a32550",
+      "working_sha256": "069acadd8e6b7ffe37f72efcf3630db911be820f1366e6a1619a948c44541efb"
+    },
+    {
+      "path": "docs/research/publication-line-ending-normalization.json",
+      "git_blob": "3759de40c4836ef125b0dcc1ea5589d4b0789341",
+      "working_sha256": "33eaacb5d617867fe845042b40fd8fb2d0ccaa5c5136b30d93c853bb79a3db02"
+    },
+    {
+      "path": "docs/research/south-africa-identity-ingestion.json",
+      "git_blob": "336208c718a2e31834f97d740f71da3cdc665125",
+      "working_sha256": "b7ce6a796a1059e50bd11b500b168f06ca90f0588792f05b3cfb40ba17ce0a3b"
+    },
+    {
+      "path": "docs/research/south-africa-nnp-lifecycle-correction.json",
+      "git_blob": "7315522e817e1729ae4f3dd3ff336df2fc2104eb",
+      "working_sha256": "5d5043a1f0206b292e8718b9d64a7d4279f0a66dd7c7be6d20ee75c158cb1e40"
+    },
+    {
+      "path": "docs/research/south-africa-party-leaders-1990-2026.json",
+      "git_blob": "047d827a3c7244903aab2f5d28bec4f81b1c75b1",
+      "working_sha256": "738cb59147431e49fd84076f6915a3ce20af8990a11b4cbdf2b283980945449e"
+    },
+    {
+      "path": "docs/research/south-africa-party-leaders-1990-2026.md",
+      "git_blob": "ca62b6f83767b63c37349eccde605dfb9f0622a0",
+      "working_sha256": "7b70dbf9ce5320cce99aa27a4a51aec263012e5dabf41daf7aded30cf131b09a"
+    },
+    {
+      "path": "docs/research/south-africa-party-terms-ingestion.json",
+      "git_blob": "57f8ba5d81d7a187fba2ef951eb527a7da32a51b",
+      "working_sha256": "774f8ece5a4bd55bc93824caea1016d2721feacb82cc6e9c89db1f85826d1cda"
+    },
+    {
+      "path": "docs/research/usa-party-roles-1990-starter-notes.md",
+      "git_blob": "a2a0f5c61c647b6971b596803ca13f53cc35ef57",
+      "working_sha256": "24c1468ad5809382caf20eb44330a55b6ea79d16f567af0c69cfc4641f7a67c6"
+    },
+    {
+      "path": "docs/research/usa-party-roles-1990-starter.json",
+      "git_blob": "2fa622a3cf32bf5c687a81e9b19c518d44a372a6",
+      "working_sha256": "fcffa319ceaf08fb76563e2151defde3da298ec42ba301af4ae4ad1dd320ba7a"
+    },
+    {
+      "path": "docs/research/usa-party-roles-ingestion-review.json",
+      "git_blob": "d3a738100f149df88b5b7120eda65afdfe7ba10d",
+      "working_sha256": "cda084f5bc7415935c4feba9de0f151efd9fd83c3f739f9f7f2427dd5d5ed979"
+    },
+    {
+      "path": "docs/research/usa-party-terms-ingestion.json",
+      "git_blob": "bcf2e5f9738c5725310c5eeea3dd4823208ac8e7",
+      "working_sha256": "4aa7986683c4952c357e4e70c88cf1a833f4fb2d31d47878149d989d565ecedc"
+    },
+    {
+      "path": "docs/research/world-leadership-batch-validation.json",
+      "git_blob": "35064b5f9c0ce4a961566e29a979eaa1edf6f7db",
+      "working_sha256": "e794e5e39ec3d6149db453b7db9b22b87710bed000dde880d59297ae0a2a2420"
+    },
+    {
+      "path": "spheres-sim/Cargo.toml",
+      "git_blob": "cfcba2828e50db0dc27cf63e552a9059f2e5d4b0",
+      "working_sha256": "51b62b1e1ec71d9a4fe7bed30e9992534a31f1a373340ebc910e19137972d748"
+    },
+    {
+      "path": "spheres-sim/data/armed_security_1990.json",
+      "git_blob": "101fded6e8d3f7650c527d253c0b0b77cfb8a6c0",
+      "working_sha256": "7fa6c2fd1ddb0737d0f35faa1ab1d24d7e08c249ae0a7fa2a8a1f837ead535cf"
+    },
+    {
+      "path": "spheres-sim/data/army_authority_1989.json",
+      "git_blob": "090dfe291c0439b2f02df522b6e6bdc8caea1db4",
+      "working_sha256": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38"
+    },
+    {
+      "path": "spheres-sim/data/army_institution_coverage_1990.json",
+      "git_blob": "7290f6b2a572ea89f9be53cb9bed05dbe9d13ca9",
+      "working_sha256": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52"
+    },
+    {
+      "path": "spheres-sim/data/army_institutions_1990.json",
+      "git_blob": "ea6f53cd679d7c8103753183d0502aa6e880c784",
+      "working_sha256": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af"
+    },
+    {
+      "path": "spheres-sim/data/districts.json",
+      "git_blob": "cd2431093e00b00142953f7b158a0f1b81cb808a",
+      "working_sha256": "b6b1a88c891ccc4fa02f877cc73786d96bf81ea4269ecd8915a6759fac480f46"
+    },
+    {
+      "path": "spheres-sim/data/future_party_continuation.json",
+      "git_blob": "f3f8caa392b7a207edeaf696d7b7a01cf87107b1",
+      "working_sha256": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership.json",
+      "git_blob": "6e7c9027a07d95e6e3e50bbd7fe3a02d832782be",
+      "working_sha256": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership_seats.json",
+      "git_blob": "17c6efa249f467af0e5f6ebdf663bdc7ac6b2437",
+      "working_sha256": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08"
+    },
+    {
+      "path": "spheres-sim/data/industry_1990.json",
+      "git_blob": "898ce9bc4044a56c5902e0334f78c243d94cf525",
+      "working_sha256": "66864f3785f8a021625796c0471206f0e30c80fc5fa36023425c53efe1b5a748"
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "git_blob": "9ce16bf06a5aa91b8a51b3c401f2e11081df4744",
+      "working_sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008"
+    },
+    {
+      "path": "spheres-sim/data/logistics_network.json",
+      "git_blob": "684dcc41d44804c8f11a80ec8f0a835bcd2069de",
+      "working_sha256": "fa988d8abd12fe8bb1c967c7041bc486f0a37731afb90ac8e891e4c9769af4ff"
+    },
+    {
+      "path": "spheres-sim/data/movements_1990.json",
+      "git_blob": "3091fdb6a4908830134a2fbe047e96f8d5f25a87",
+      "working_sha256": "00e488f071c2457104eea18afb5975a81c80b53d505af97557187ca119cef279"
+    },
+    {
+      "path": "spheres-sim/data/nations/afghanistan.json",
+      "git_blob": "b1ad88dcbde23db6b5cc0a4195bcc11c43e8b9f8",
+      "working_sha256": "3123b2051015d2dfdc5ecbf1c9d42bfd19e9ba6b141ec118212a8ff5ab4daef3"
+    },
+    {
+      "path": "spheres-sim/data/nations/albania.json",
+      "git_blob": "d0f43a45602268ecb473970241d79d3181d85c01",
+      "working_sha256": "f378b6c9269f4a91b579f24a3f2ff6d1754b0f54d36e8252ce770469d4502460"
+    },
+    {
+      "path": "spheres-sim/data/nations/algeria.json",
+      "git_blob": "f9d5bf77806c552d3d887388346ae29afc9c9de9",
+      "working_sha256": "6650991dfadef79f600756fb756eecb4a6d2359fa89b6400cc52cbc29d6eaa68"
+    },
+    {
+      "path": "spheres-sim/data/nations/angola.json",
+      "git_blob": "bcf860f40e4a16027e70f62842941c892c094f2d",
+      "working_sha256": "bb182a2d8614ec8c204398be0f6b2f19f660eb1a1a4e2a8515715b08b0f6e0ad"
+    },
+    {
+      "path": "spheres-sim/data/nations/argentina.json",
+      "git_blob": "32224ae4374ab32b2fdfe7e77bc09d12cd0901d4",
+      "working_sha256": "01fb73457b42aa8dc650c3e85f2457d503c174eadd8d2b9daedb09416c2d5604"
+    },
+    {
+      "path": "spheres-sim/data/nations/australia.json",
+      "git_blob": "5e7ef428b48cfb68d4849b2727580cfa2c6f8e49",
+      "working_sha256": "0b8f64e0825a07ed62f3750fbda0a12df2813bdf8a61587385a0e2af88751f1c"
+    },
+    {
+      "path": "spheres-sim/data/nations/austria.json",
+      "git_blob": "b78fb726b406513b9809ee27a574bfb033b82009",
+      "working_sha256": "61b5ee3b6cc9410417dba257246539d667950167da46af9e7930101dc2fca9f6"
+    },
+    {
+      "path": "spheres-sim/data/nations/bahamas.json",
+      "git_blob": "e1e30c8f3c6908b464a89431ded3935113239806",
+      "working_sha256": "12d59bf40e48d7f3b9abf6ea4d261c5f1a8ef86fb8b3f5f249e66bcc6221d575"
+    },
+    {
+      "path": "spheres-sim/data/nations/bahrain.json",
+      "git_blob": "30311f1b886a9569b5187f3cbcfcca9d4b53f342",
+      "working_sha256": "94f14cb9fb493351d66285bfd4faa872a2a4819c576f62e349ae8c177b15c184"
+    },
+    {
+      "path": "spheres-sim/data/nations/bangladesh.json",
+      "git_blob": "c52bd7ea03ef033922df3b4cd972b3c6135de057",
+      "working_sha256": "8cd26d7b911c5157abecca467e357c6726ddac3db7bdf8113dff2754f056bfdc"
+    },
+    {
+      "path": "spheres-sim/data/nations/belgium.json",
+      "git_blob": "e638e4877a249d008678bf77f3dc8f07561bf99d",
+      "working_sha256": "e473684ec2a176239d8c70d9f70370585bf0b865d64bbfd39694c436f596b67d"
+    },
+    {
+      "path": "spheres-sim/data/nations/belize.json",
+      "git_blob": "525d5e724ffd1b3a346be293b39e648ebda4d63c",
+      "working_sha256": "3e9f080dc51cdb83c2e9795259ac5ebcd4fe476c7d0e282b0eae228f6dc215c1"
+    },
+    {
+      "path": "spheres-sim/data/nations/bhutan.json",
+      "git_blob": "a2edcae6ed7e7aa64f37166fb43c44c861afb8cf",
+      "working_sha256": "017dc2b21f06a3e22b71c70d2fac8263f18840a0de3190a96557041cf80e5b2b"
+    },
+    {
+      "path": "spheres-sim/data/nations/bolivia.json",
+      "git_blob": "e9e190d9b29b845f1ab30a61ca03c03b947cc0b7",
+      "working_sha256": "3b8aed0476fe5f3fd131f1d05e99b359b967dd13133b2f14eca95e5491607cb3"
+    },
+    {
+      "path": "spheres-sim/data/nations/botswana.json",
+      "git_blob": "cce7292bb4adaa5c1911af559d43969ac67a2e46",
+      "working_sha256": "b3d66528d8144e9afeb0a5d59dcd7b610bf0acbcce53e982f05e51e1b4b6715d"
+    },
+    {
+      "path": "spheres-sim/data/nations/brazil.json",
+      "git_blob": "64e1e5c8b9e7d63be1cea86035e32393a9db842d",
+      "working_sha256": "357bc6ce0764ce62051ecf7f02748275bce3f060b339647acbdd57b2c8569dd7"
+    },
+    {
+      "path": "spheres-sim/data/nations/brunei.json",
+      "git_blob": "e12b279629fd360d4ef8d2a5a1a2071dedcc3b9b",
+      "working_sha256": "b0bc557bed511580aa16dc99b6be26b002880e2542d1257fc702ccf79075bd72"
+    },
+    {
+      "path": "spheres-sim/data/nations/bulgaria.json",
+      "git_blob": "1e19231dd364c4c127c84cb3c51e3d34b7da21ec",
+      "working_sha256": "1b126c3bfeb4858d7ba44c8e37d1ae3a15c2d00a213394105b271b6b2574a8f8"
+    },
+    {
+      "path": "spheres-sim/data/nations/cambodia.json",
+      "git_blob": "cedab23e6ac8040901804c700ad8d590bebfbaad",
+      "working_sha256": "ee65b180d95941ce0d8162ee6b539545f5f5d43b4fecb970a00611092b498c47"
+    },
+    {
+      "path": "spheres-sim/data/nations/cameroon.json",
+      "git_blob": "5a198c38f17cc88bfbef7e1b96a2638fce41c261",
+      "working_sha256": "ada9d309eda90b64e08a284aebd859918d809805f9731ef7371b9bd4ba702b6d"
+    },
+    {
+      "path": "spheres-sim/data/nations/canada.json",
+      "git_blob": "00f8a67b12621c4bd3d609a1d746426af6ed9058",
+      "working_sha256": "24c6ebbba0eaf52e5c694ef771fe1f99d28acf11c138e5e378f3723aaae02e64"
+    },
+    {
+      "path": "spheres-sim/data/nations/capeverde.json",
+      "git_blob": "bff25411f68e9390d64976c0f10289c0a5e0fc60",
+      "working_sha256": "bed7e9612d7f9aacdd825997996096f1f66293b1a9000c6b4ff73598a5a0c93e"
+    },
+    {
+      "path": "spheres-sim/data/nations/centralafricanrepublic.json",
+      "git_blob": "4657563464f71f4921aff83173529b521acb53fe",
+      "working_sha256": "c1fca002383dc26e03b207c84291b9de47d31b11e2eb28f454a3f3e8e2fe0e70"
+    },
+    {
+      "path": "spheres-sim/data/nations/chad.json",
+      "git_blob": "10a8de689c1a47974a1f67f99e249e9e430c7d3b",
+      "working_sha256": "7b61869245c5a5f9d4a17d22e37401536a824ea42962826ecf73c454b7fbc59f"
+    },
+    {
+      "path": "spheres-sim/data/nations/chile.json",
+      "git_blob": "70153366724f346894b88a7cd2820f68017503e8",
+      "working_sha256": "e08628997480f4f0e6bd84f4d5fac7312db378b73ef315fe9daa5498e5404aad"
+    },
+    {
+      "path": "spheres-sim/data/nations/china.json",
+      "git_blob": "f8a73071b92c0255a7c42fb7fbc4bd4cfb262d24",
+      "working_sha256": "decfa145261d10a777ea42aa2193895862bcd0186ae9f48c32641edc197e6ac2"
+    },
+    {
+      "path": "spheres-sim/data/nations/colombia.json",
+      "git_blob": "a1fc1d3b8f5bdffdae73a375f427d303c6270ae7",
+      "working_sha256": "e0146962595f4dffec0845098a83bcf63a3921b15821b25ba4b6dd60632a8013"
+    },
+    {
+      "path": "spheres-sim/data/nations/comoros.json",
+      "git_blob": "39d6add3b174e4ce5ce378d9765f1386bd64cd86",
+      "working_sha256": "994163f050726614d0d76f19305c8650f74ee4d9a72a184ca907a0fcf86db0a6"
+    },
+    {
+      "path": "spheres-sim/data/nations/congo.json",
+      "git_blob": "2350eecc156bb1b26790cd8cdc2caa2ee81a51a3",
+      "working_sha256": "e8fbc8b66f65be522acbbbb0208afc17bfd8e7a3fe335701cda29b499713c17b"
+    },
+    {
+      "path": "spheres-sim/data/nations/costarica.json",
+      "git_blob": "e39fb3e010fa9ab3d6ec1b3f396e4571a36810d4",
+      "working_sha256": "ba60402c746ee87778689ae4ceb2bf60b694a82e881af736051248de52377d0d"
+    },
+    {
+      "path": "spheres-sim/data/nations/cuba.json",
+      "git_blob": "d89b1ec2b1bbe5e74eb177ca9e175a790263cf05",
+      "working_sha256": "68efd7aebde2847fad9735d4553e1d05ba00811c296513a774a4b69e563a60c5"
+    },
+    {
+      "path": "spheres-sim/data/nations/cyprus.json",
+      "git_blob": "ea6445114325b4aa3b807aa6e1f8592bd007ebff",
+      "working_sha256": "8718de4c63c8a4bd8f68fef237a2c56d5de2981358e569a9afc915d98ec04722"
+    },
+    {
+      "path": "spheres-sim/data/nations/czechoslovakia.json",
+      "git_blob": "467f2b5668b41e7db8459c76e31c43f525b7fb7a",
+      "working_sha256": "109d2b7f87a9fdf54f87f7f29372ac00b73694dec470db172ab590b85f6902f9"
+    },
+    {
+      "path": "spheres-sim/data/nations/denmark.json",
+      "git_blob": "7314cc456b9a21dedc5c24b8a2ce44e8c37b2326",
+      "working_sha256": "993018e10713ccde6d181d26d7349a85425fb89fc1133c2f4eda5c38635013f6"
+    },
+    {
+      "path": "spheres-sim/data/nations/dominicanrepublic.json",
+      "git_blob": "1a3b589498b09b4e7b9def4b1fd8071f40744f02",
+      "working_sha256": "1216140a42cc423adf808b41f15bbebf3f8930187ab6f7ec8ee65d9d0e3fdb0a"
+    },
+    {
+      "path": "spheres-sim/data/nations/ecuador.json",
+      "git_blob": "59446115c6e5913fd45782500733275bf3652060",
+      "working_sha256": "16f8b6ed4ff9d8f741e3382441ca6309b32e73d91d0c9a321d8acce87b28cfa4"
+    },
+    {
+      "path": "spheres-sim/data/nations/egypt.json",
+      "git_blob": "60b9d8a320a500a5430ec5b842e610b3cd822153",
+      "working_sha256": "76b311247a0b368f02c7ed345c5af93f1544940f2aa070daade2e99bf20a9c68"
+    },
+    {
+      "path": "spheres-sim/data/nations/elsalvador.json",
+      "git_blob": "ff5519bb492184899b55f79ef794999b062be074",
+      "working_sha256": "5da05559d7b2aa1ab89c90ff06f9211dde85c6ae496f185343d768acb913ef4d"
+    },
+    {
+      "path": "spheres-sim/data/nations/equatorialguinea.json",
+      "git_blob": "5a1a72ce73116445b9187df3417f35c3432d203e",
+      "working_sha256": "4e91711af4544950770ad13867a739eec25b20be8cf6ae50ebf9ad806e7e2593"
+    },
+    {
+      "path": "spheres-sim/data/nations/ethiopia.json",
+      "git_blob": "d89c574bc799604851aecb507316a421308d9bd3",
+      "working_sha256": "3311be638f94a7fbcd661f3f9abd5a5a0dca7226feb1a90023b87a89f0a9086a"
+    },
+    {
+      "path": "spheres-sim/data/nations/fiji.json",
+      "git_blob": "ece8586bd7f450e8571eef123521f87fc87066a7",
+      "working_sha256": "305d2a1319173fa50e9f6981ad419261ae21046ce4bf8f6554c33b75eacdd5b6"
+    },
+    {
+      "path": "spheres-sim/data/nations/finland.json",
+      "git_blob": "3d08b03ce2014e5622e8d086e68617c8f40f9745",
+      "working_sha256": "305b92b2cb73e024825a49c2ce9995adb54d90784771e608ce8ab4b08b535eaf"
+    },
+    {
+      "path": "spheres-sim/data/nations/france.json",
+      "git_blob": "10b73d4d8d243905986521c9353d9a534b9d7c9f",
+      "working_sha256": "0fddbc44e01060b8d8345909cc04cfcf34a53adf15c04dd432b192944f0c106f"
+    },
+    {
+      "path": "spheres-sim/data/nations/gabon.json",
+      "git_blob": "99d637392406ef740e3fdb130b9b6e8a700283d9",
+      "working_sha256": "132923c240b6addbf989dd1608954b757cedeb423641622aab72c5ac307d0473"
+    },
+    {
+      "path": "spheres-sim/data/nations/germany.json",
+      "git_blob": "7aaa18d4bf499d171a89adca4f8335dc7aeef44b",
+      "working_sha256": "6563a080eb1357c3947bf34f5cbfd018ee5f1b6e096a529bf7ea09fce94c770b"
+    },
+    {
+      "path": "spheres-sim/data/nations/ghana.json",
+      "git_blob": "185c1c6961e521ada811c03bce7256012f3f693c",
+      "working_sha256": "9134b91568c5d7a3805e480d80aef123da19d8ab9bd9c491745ab130bb178852"
+    },
+    {
+      "path": "spheres-sim/data/nations/greece.json",
+      "git_blob": "ed8f8c857de851a2e20a4e2ecd46ca368bbe3991",
+      "working_sha256": "fc11a2326a45d589dfea35425324ce01d27c0a9ece4dec4e9765e51887f1a076"
+    },
+    {
+      "path": "spheres-sim/data/nations/guatemala.json",
+      "git_blob": "a3d0c6e49e0df718eb25f67e4e656047594cab45",
+      "working_sha256": "03f5ca99ad1294f77ee4f559f700ce36d1a08cd7211f8c3a8465b37d788ac276"
+    },
+    {
+      "path": "spheres-sim/data/nations/guyana.json",
+      "git_blob": "02a1c2761831982fae4896325e4354721dc818d3",
+      "working_sha256": "d29047cb158043fada9c66830744328a80471cdc59fc775be688b0c03e00d19f"
+    },
+    {
+      "path": "spheres-sim/data/nations/haiti.json",
+      "git_blob": "417da9353c41690e3f9fbaecc60da001311c6885",
+      "working_sha256": "79574190acd950919897e3f4f00a087938d583ff39f777bb681dcbf8ebdbd112"
+    },
+    {
+      "path": "spheres-sim/data/nations/honduras.json",
+      "git_blob": "2da4cf09da16afb3714003f1b6de8f9d9be7897a",
+      "working_sha256": "d3a53e0cbedb0e09903f772de96181ae354ca81c5b7a15e4466fa15126733605"
+    },
+    {
+      "path": "spheres-sim/data/nations/hungary.json",
+      "git_blob": "5ae06a0e129ba12b46c863d01f37954f6503e7c7",
+      "working_sha256": "72120b2737f5a6a34a6c85df1cf68eacd95493af0338f8f9b64d8a3b1e60aefa"
+    },
+    {
+      "path": "spheres-sim/data/nations/iceland.json",
+      "git_blob": "909417bbd82d1a59f41d198d783ebdfac32c63be",
+      "working_sha256": "a7c170a68e3bfbc0e3ef4f5d437d209008d2193bbe7e70a68eebdc3811997a76"
+    },
+    {
+      "path": "spheres-sim/data/nations/india.json",
+      "git_blob": "6e92fe8c75a98d5858cab5fd7a4585b87961f11c",
+      "working_sha256": "9117846df3d18a850aa120a4e597b4a9cbf4fce7bb9ed604a9acd198b9af8ebf"
+    },
+    {
+      "path": "spheres-sim/data/nations/indonesia.json",
+      "git_blob": "405766d4e951deec532c157fd645d2870b9c94bf",
+      "working_sha256": "75a4ae4cc6218880a6ce38b61fca42255a2942b9f54f3249669efb29b4819f44"
+    },
+    {
+      "path": "spheres-sim/data/nations/iran.json",
+      "git_blob": "ef8ac870f16ec5a53ae0af84b86cbfd21b365f84",
+      "working_sha256": "01d24c4f752f04557eaf65da1feaa7b3c2ea81879f1076b86eef672924b97ed7"
+    },
+    {
+      "path": "spheres-sim/data/nations/iraq.json",
+      "git_blob": "9c2e9bf8045bf0b5adb2ede092e04aed784e7cf1",
+      "working_sha256": "996f80730efa1596350d35fb637ec8098ff72fe6b4f4040b3ba9b1ccb2c2b2bd"
+    },
+    {
+      "path": "spheres-sim/data/nations/ireland.json",
+      "git_blob": "57a7a129b070ec1fc12ee44ce91ca50004adf4ee",
+      "working_sha256": "791b81655caeeabf6c91c5d49c8c800190b77e9df5001fe5c4c6d27db7b251e8"
+    },
+    {
+      "path": "spheres-sim/data/nations/israel.json",
+      "git_blob": "77669caf41639b766b02b665f442b3f82d1f6bca",
+      "working_sha256": "475e5449fe355ccfa55e96f4b012252b2c15e18bba324acc27e4db40c97658e0"
+    },
+    {
+      "path": "spheres-sim/data/nations/italy.json",
+      "git_blob": "6b5aea98d59baf866fb83fe037986daf6d759d46",
+      "working_sha256": "5dcb198188b586b57cd4205210cc7410146b1df195d64b4a4584612b233ca076"
+    },
+    {
+      "path": "spheres-sim/data/nations/jamaica.json",
+      "git_blob": "69a9ac7f3848288fd8d48efa52ed21219df89e5c",
+      "working_sha256": "92193932517410f29a43ad653b4be5d167d35ddaf869b8b04800b6f05b876764"
+    },
+    {
+      "path": "spheres-sim/data/nations/japan.json",
+      "git_blob": "1fb3dc729b74fc3d8155cfc25394594632c61256",
+      "working_sha256": "02d3f2afbf5dff48abed9e86929e3fdd9708d0770e9dd3a0c06b262f1d6a5a5a"
+    },
+    {
+      "path": "spheres-sim/data/nations/jordan.json",
+      "git_blob": "4e9b3ee774c8574b458f2b04baa3c750062d04ae",
+      "working_sha256": "593d41523bc22a090d1690ec025eeb7b204d49da1c479c7b1d33527610e68ea0"
+    },
+    {
+      "path": "spheres-sim/data/nations/kenya.json",
+      "git_blob": "2cc10476b78989edee8f39e3e6ad30782517878d",
+      "working_sha256": "d197bfee00a147216441d80107e2b460eb0765fc7f271b79d9c08e6bdf8c90cc"
+    },
+    {
+      "path": "spheres-sim/data/nations/kuwait.json",
+      "git_blob": "055072562c9c73676e478824408bb9415de9df21",
+      "working_sha256": "dd75789e24e0b5115dd0a5e7b6983fd80d978c0a631352fc0baa970aac75ae16"
+    },
+    {
+      "path": "spheres-sim/data/nations/laos.json",
+      "git_blob": "e7d7bc72328ebaaadabf0d03d3eecf413ae04dbd",
+      "working_sha256": "fab1cb0454679146ea3f8f21a0a0af7c81743bc29ccb1f28ce1db34dd0cdb19c"
+    },
+    {
+      "path": "spheres-sim/data/nations/lebanon.json",
+      "git_blob": "b3514ab0dbc7429b6630118ad36a241d5f7f3669",
+      "working_sha256": "8ba94b293eabd96445bfe54684914b321f7827a098b170697225b52da0403235"
+    },
+    {
+      "path": "spheres-sim/data/nations/lesotho.json",
+      "git_blob": "f4bec3d7bef62a84bf9fa1d77850f216dd249b07",
+      "working_sha256": "10d1b6bac439b0dca2886e96db45d169315ab074d13c3de456f80f7710ff747d"
+    },
+    {
+      "path": "spheres-sim/data/nations/libya.json",
+      "git_blob": "4df7ce9f70717c8c742219856fea0a9842c46215",
+      "working_sha256": "b7d96764d1e24979d8132ba07d5ed9be72b24cdcc7643ac16ddadea3088d1159"
+    },
+    {
+      "path": "spheres-sim/data/nations/luxembourg.json",
+      "git_blob": "1f51d206471030002a336a82d1e78ebe88af7f5a",
+      "working_sha256": "c6b820bfcc9f8f5115ce90b78aa8e4de13a0f9059c9ea69db4d6e5f407d24a81"
+    },
+    {
+      "path": "spheres-sim/data/nations/madagascar.json",
+      "git_blob": "a446aae2e71950922165d3825ce7d57c6d99b6d5",
+      "working_sha256": "014089ec8599b39b7b08bc875b4cc1db176f722e448f5b21514908ae1dbad176"
+    },
+    {
+      "path": "spheres-sim/data/nations/malawi.json",
+      "git_blob": "9b8b4d1cd810fbc26a654fd69426a37a8b47ef35",
+      "working_sha256": "566d2038e8946ec4d384a1f99a90f93a5f3620c56ca555cdb438dd26c00b17f0"
+    },
+    {
+      "path": "spheres-sim/data/nations/malaysia.json",
+      "git_blob": "8c9d44ef1e8e1fccecb1e500163ecdbfd17472e5",
+      "working_sha256": "6f3606bad3fbfc9d0b9a65b8eec4cab21ae1be377a88026f7ab810b4effbdb5b"
+    },
+    {
+      "path": "spheres-sim/data/nations/maldives.json",
+      "git_blob": "ebdc4ad400d77edcc189e7dd9ae7a125dd82c284",
+      "working_sha256": "5e90f02131fa2ea9dc445746cd4bfcb86cdc36347d54883e6417442431f0817f"
+    },
+    {
+      "path": "spheres-sim/data/nations/malta.json",
+      "git_blob": "89bdf95438c4bec012d25f60fd419cfde59ce0ad",
+      "working_sha256": "9bbcc171de10757b6ed1c4e7fe18eb866fe90c97b2c0fc198a89a0d2a4793d95"
+    },
+    {
+      "path": "spheres-sim/data/nations/mauritius.json",
+      "git_blob": "ec06fcd28e0789aee2dc9c6609aa45047516fa43",
+      "working_sha256": "db7d17c0c6e414a7b67dec257f5d00f9ee942b0622b9f8ed8fd73d4f0bd8e223"
+    },
+    {
+      "path": "spheres-sim/data/nations/mexico.json",
+      "git_blob": "c9e1a3d2b3602cd6424b78b423d1308c522a15c1",
+      "working_sha256": "6b3d1b4e3fe1de3ab158ac2123e131f08d1ad8c7b53c4882a26928e8903b7454"
+    },
+    {
+      "path": "spheres-sim/data/nations/mongolia.json",
+      "git_blob": "81b14366e4960b2e7a2bdfa7d4917048caf69758",
+      "working_sha256": "d6b1e2928a6292837dc9996c99abf9d28b86d98b1e097cf4fdea182122bf90c9"
+    },
+    {
+      "path": "spheres-sim/data/nations/morocco.json",
+      "git_blob": "7d8341b027f874a39e68275074d6399167caee0f",
+      "working_sha256": "766834f21880cfd024492825e27030d6234abd775ec72a33f245e5349f9050a3"
+    },
+    {
+      "path": "spheres-sim/data/nations/mozambique.json",
+      "git_blob": "7e8dc510ab4d671525c997c9a63ee5d0af0ea661",
+      "working_sha256": "d2e605a1d6bd155f9c5d81f804b24c5b5d5006fb93b2ceda068ae0fb8b540907"
+    },
+    {
+      "path": "spheres-sim/data/nations/myanmar.json",
+      "git_blob": "00f51a347b2e4aed8d0555d7f075da5502e1e0d5",
+      "working_sha256": "c8f1d5ed00d0dbbf3635cacd70525bb20a0f557cae839d879c093860abeaf4db"
+    },
+    {
+      "path": "spheres-sim/data/nations/nepal.json",
+      "git_blob": "6fe530793aa438789f38fdefb9ea9262fa010679",
+      "working_sha256": "3237a94a7652af0642e0938dc9de3c04657d04729bee1177c39ed676ba516ece"
+    },
+    {
+      "path": "spheres-sim/data/nations/netherlands.json",
+      "git_blob": "455be97950635e17a2b769d870c5816dea3f7c35",
+      "working_sha256": "290465d8e48061514f751db738996aa266f152848bf61e8999a3f75926b2f2c1"
+    },
+    {
+      "path": "spheres-sim/data/nations/newzealand.json",
+      "git_blob": "3d0ca3bf7b91fd4b6c717a1146a9a4b3fa580173",
+      "working_sha256": "411c706ab9185be8c0b9bed440538a1434b54bfc67967294025e112e91799763"
+    },
+    {
+      "path": "spheres-sim/data/nations/nicaragua.json",
+      "git_blob": "7b5149e779f977b869f0ae607789b8f5c7e49ad6",
+      "working_sha256": "fd413fbb364a1627681da8d19308a71c8563c2cdddc13fa99273dd03c28d7c31"
+    },
+    {
+      "path": "spheres-sim/data/nations/nigeria.json",
+      "git_blob": "8bcf636e1e2f75a5f10f43d1eeccf29a83ddad0e",
+      "working_sha256": "700d7a6282af3a6d6b7335c59915d7133f42376cf6acb5256393b6d879ef0307"
+    },
+    {
+      "path": "spheres-sim/data/nations/northkorea.json",
+      "git_blob": "d9c9e373eea5b8880e4a2ef4e04e3ec7b98a16b4",
+      "working_sha256": "345e0be5a555e18e9ab34f42f7443894526724c250cc7ecc2436d238b314a1f8"
+    },
+    {
+      "path": "spheres-sim/data/nations/norway.json",
+      "git_blob": "d6cfc720f9c4c9bd96d98450b61ffabe997173d0",
+      "working_sha256": "4273be3f5afa1c9c54216be4855a5c858f396d4f66fc8c77c2b72b7ce1b7f133"
+    },
+    {
+      "path": "spheres-sim/data/nations/oman.json",
+      "git_blob": "8c6173451d4a04a4aa0fb74154f646906c4b5a1b",
+      "working_sha256": "9594777781ea7ce6ffc03d57c0b5c46769e2ca7bf76408817582549f677f65b8"
+    },
+    {
+      "path": "spheres-sim/data/nations/pakistan.json",
+      "git_blob": "ae78da97f8efdcc4e388ea379335ce9cb492449f",
+      "working_sha256": "c593a6379aff75fa8f7ff64d446532235f40d2923711fdf500dda529b8715d27"
+    },
+    {
+      "path": "spheres-sim/data/nations/panama.json",
+      "git_blob": "84eb2552a7891ca9b6fd1431e89abc35b550f09c",
+      "working_sha256": "f2b8c58b0517413351f5255d055fffe1cb677dea8aebbe4033cc03c72c706958"
+    },
+    {
+      "path": "spheres-sim/data/nations/papuanewguinea.json",
+      "git_blob": "3042b3fd8aa4d9463e599cfef70e60bb4560f472",
+      "working_sha256": "ad0ba65b22aa2a128f3d1c531a5998b378529dece2b7c32624a52e3aab40af93"
+    },
+    {
+      "path": "spheres-sim/data/nations/paraguay.json",
+      "git_blob": "321fe1012927a3b741343079337de42d3a8ccc5a",
+      "working_sha256": "efb7eee854743e8f4455f75cc4f08c2cbc8ac92068514db818f16ffc60ccea3a"
+    },
+    {
+      "path": "spheres-sim/data/nations/peru.json",
+      "git_blob": "970c9b81f87a78bc5f3234430132e323366083c9",
+      "working_sha256": "e2cc9e2bf9ac2ac0170ab948d397db487bf7d43ff3b55aeb5e7288c0f808e619"
+    },
+    {
+      "path": "spheres-sim/data/nations/philippines.json",
+      "git_blob": "aba4a1628131f10194ddd52f0a5695a715259751",
+      "working_sha256": "70c537e62f6bd7860794360a6b2cdaf5c2b40131ff5e5bd293c155c40ac985fc"
+    },
+    {
+      "path": "spheres-sim/data/nations/poland.json",
+      "git_blob": "c7b76b3c7fedaaf5a259b0ec8c51dfa9c2371a5a",
+      "working_sha256": "0e6b6f2f93cb74c76408b63abb6a1fd7e49b2ca6e2a8008ef4daf798e3d1957e"
+    },
+    {
+      "path": "spheres-sim/data/nations/portugal.json",
+      "git_blob": "effe55610f078be6d3a218ef2529a7221b780d61",
+      "working_sha256": "f49006a7f19e6152d2a1e00a25f46c5b14cd5a4ecd291da74500470dfb7d5006"
+    },
+    {
+      "path": "spheres-sim/data/nations/qatar.json",
+      "git_blob": "2bb7db31c8a2e25abe6468920661a9919effb66f",
+      "working_sha256": "72bb38cdf9cc635f422d6eef48bfd7e2222ef276948f6538fe0aa9c39f90a652"
+    },
+    {
+      "path": "spheres-sim/data/nations/romania.json",
+      "git_blob": "eb5525e47e9b0fc32ac5282f5e7eb4faa3d2c9af",
+      "working_sha256": "54597f88d37dc704af6c0dc916f8fe6fc2e43a558c17bcc703e7ec4fd87aba83"
+    },
+    {
+      "path": "spheres-sim/data/nations/samoa.json",
+      "git_blob": "63833b792b47126a2f4df9262821c08e1d17e28f",
+      "working_sha256": "c06b07cc352b4d757d29d8f62fbf132ba8f5a0f1259545ece1acaa4d2994334f"
+    },
+    {
+      "path": "spheres-sim/data/nations/saotome.json",
+      "git_blob": "651fdda4092d3a97bbdd8c735f56ded1c477335b",
+      "working_sha256": "6173964a8bf5f50d9ff38ba0a441621975764f8b115ca63e736f6bf11bd66b16"
+    },
+    {
+      "path": "spheres-sim/data/nations/saudiarabia.json",
+      "git_blob": "1d00c40b8785deab0a4a606d81dd52eacd6bdc70",
+      "working_sha256": "b418637f6384520ed00b6f5fb2ad2be838d64a16d19a5c5ffba111dffb9e7325"
+    },
+    {
+      "path": "spheres-sim/data/nations/senegal.json",
+      "git_blob": "2c0b6e6a0dbda43f44e674196a4994035404dba1",
+      "working_sha256": "85ef8b14e24138781dd865ff8f4e82c3ccda6aba378f022813e2c305b873cb42"
+    },
+    {
+      "path": "spheres-sim/data/nations/seychelles.json",
+      "git_blob": "a651c76f82865de805e07b31964073d85395679e",
+      "working_sha256": "c21bbfdbe0b1c17d53cfa359556daa77394130af6c95aaf1ede0e99e996b9bc0"
+    },
+    {
+      "path": "spheres-sim/data/nations/singapore.json",
+      "git_blob": "8adf750c0b8d48cd25dba59d68676992b647df74",
+      "working_sha256": "7800050f45e94d1f818ef2162970f8f120cf498e4bdf78fad4513e3c50e59d6a"
+    },
+    {
+      "path": "spheres-sim/data/nations/solomonislands.json",
+      "git_blob": "1e7c2d72003ec2105b31dbdc7d5b1e75f9315883",
+      "working_sha256": "70b79049ee0191e4f9f9b93da9c75124da591908a51d3134ed25c4149bc69661"
+    },
+    {
+      "path": "spheres-sim/data/nations/southafrica.json",
+      "git_blob": "fcef8114f17ed0e69f6958fcc96de4a21f298b3e",
+      "working_sha256": "9cc555db54bf0318381c901ace3f73ef19ae9d4d972fe270e401d1302a677b27"
+    },
+    {
+      "path": "spheres-sim/data/nations/southkorea.json",
+      "git_blob": "40b422565b41e95c508bd73f2af4b33b84d099a0",
+      "working_sha256": "0b3fa0ab5053efa1dbf0148ae3095dde8cd81d3f6c042e7c876598025bb2fa90"
+    },
+    {
+      "path": "spheres-sim/data/nations/spain.json",
+      "git_blob": "a86dcc312bb3dd5cf829e23e5af5c42c70851976",
+      "working_sha256": "7caa63f288e1d84ae5e69f5d0ae7f4de389f7cead86c18b975fc9015d0efbe47"
+    },
+    {
+      "path": "spheres-sim/data/nations/srilanka.json",
+      "git_blob": "e69cd4346097368ef8b2ebaad9a3baca03850f5e",
+      "working_sha256": "2ff60977c1a5b4d4f9ea449db7002bdb9e4c99d994dd1248754b1bea78a8090f"
+    },
+    {
+      "path": "spheres-sim/data/nations/sudan.json",
+      "git_blob": "793ded3b44648dc50d8405612bd777326bb967ee",
+      "working_sha256": "790ed2b8bdb91dae45615d3f9940668188997847652f1f221895ea8cab231fea"
+    },
+    {
+      "path": "spheres-sim/data/nations/suriname.json",
+      "git_blob": "0ae4ef44a07fb3038bf7a69ecb231fc1fea01d51",
+      "working_sha256": "1e0534fffb820fc641338ade35ce6a87a4f948672d0cd9930d99afd2f36ca80a"
+    },
+    {
+      "path": "spheres-sim/data/nations/swaziland.json",
+      "git_blob": "820fa91d45eaad5f54f0f6968b4e4c84f62429d0",
+      "working_sha256": "29b6b61ada62248ccb329e7ad8294ae5d5a90e68153187573aea289766546fa7"
+    },
+    {
+      "path": "spheres-sim/data/nations/sweden.json",
+      "git_blob": "a51fc2768bd768e3d7bf156859c91e45e627c4aa",
+      "working_sha256": "51a36ea58ebfbe3b62e0a341632fe6cab9ff74b93d70922d9d24c8ed9a0da546"
+    },
+    {
+      "path": "spheres-sim/data/nations/switzerland.json",
+      "git_blob": "465fef5b8eacbe63774d87bff97bc74f0663fba9",
+      "working_sha256": "1ee2fd6c4a4af510239acac5704250be4ea5a8273383fa7a8accf5571d9ec2db"
+    },
+    {
+      "path": "spheres-sim/data/nations/syria.json",
+      "git_blob": "c86d96d0a02031a6e2615f01055f025bb8a64790",
+      "working_sha256": "f3709b74f02525e1b47c74bf83d268c9d5b6a3c3820d9419fafbbb4b226e1ba9"
+    },
+    {
+      "path": "spheres-sim/data/nations/taiwan.json",
+      "git_blob": "944bcc914c74d80d9df6eb2904d40e6733864403",
+      "working_sha256": "1daadd0cfbdd2373375d22b565908f01ba7f4c4e52ae86f30524d67842620aee"
+    },
+    {
+      "path": "spheres-sim/data/nations/tanzania.json",
+      "git_blob": "df44a850fd4463edbd57f76d4daaea37cf156cf9",
+      "working_sha256": "eac79b129f1e09cb3cf118d93501e2e191b73fb81ca74878df1fdce3fa392084"
+    },
+    {
+      "path": "spheres-sim/data/nations/thailand.json",
+      "git_blob": "658ec0200e1e9454cf3d22aebae09728fea29ef1",
+      "working_sha256": "3c3b925c07f3c8e34e8a2dfd0f050e23a053315b8d76eaa26eda999dd5fe5598"
+    },
+    {
+      "path": "spheres-sim/data/nations/tonga.json",
+      "git_blob": "ed1a32e6a07114689ff8d25fe87d56138f33c0a9",
+      "working_sha256": "5a76aa017229fb7d50853e76c9e9b907cf747579892fa918f0b6f6b67cf6c4b5"
+    },
+    {
+      "path": "spheres-sim/data/nations/trinidadtobago.json",
+      "git_blob": "885e530ca7e8468e5cf5a2ec172a195924066535",
+      "working_sha256": "9e4acf8e608dba5c4bbcc9dee6b1bfc5886e53bf8a60e0c44cf6f659d451ef4c"
+    },
+    {
+      "path": "spheres-sim/data/nations/tunisia.json",
+      "git_blob": "4628a73a6b57fab7ff24b30d514ce640cf531e00",
+      "working_sha256": "3adc297fce2cbe2b686063c8594bb0818d7be9ebd892d846e53c5bca8ab4e0c4"
+    },
+    {
+      "path": "spheres-sim/data/nations/turkey.json",
+      "git_blob": "0e98cf2ef8e2e234a59a4cf084192f87fdb00be6",
+      "working_sha256": "d5f7571d05813d187cf4ad237c854224131c1eb7daf49f2acf2aa3047333369a"
+    },
+    {
+      "path": "spheres-sim/data/nations/uae.json",
+      "git_blob": "daae852b3da2883f10835f26d5e14c5803c9b170",
+      "working_sha256": "977193d0398fe941b17b50fc4c336acf96058c8dfd33fe96867cc81f98b268f9"
+    },
+    {
+      "path": "spheres-sim/data/nations/uganda.json",
+      "git_blob": "e43d77c0e18045752b9defa8d56288e81df55577",
+      "working_sha256": "8396533ab79e09dfbfb6c6f4985771650851da9abdb64ab24765e3387305abe2"
+    },
+    {
+      "path": "spheres-sim/data/nations/uk.json",
+      "git_blob": "7ffe6c045a3e9f064ad7504554daa86db1451f1d",
+      "working_sha256": "b9fba870d9f22053ea91a3a24a3360630558e2db260e3fd0cc1f92de02ace0e1"
+    },
+    {
+      "path": "spheres-sim/data/nations/uruguay.json",
+      "git_blob": "c29c483afc0026e4f9aa9feec3cbf157e360f138",
+      "working_sha256": "330b6c40272752936791e414fd516fe3a004af44b949c475f8387db94220862f"
+    },
+    {
+      "path": "spheres-sim/data/nations/usa.json",
+      "git_blob": "133162838ebee69e9fbf7ead536c91082c35c4ff",
+      "working_sha256": "5aafdf69359d937cd990304758d58414db6b77497fa0a051985ea2deb2db4e23"
+    },
+    {
+      "path": "spheres-sim/data/nations/ussr.json",
+      "git_blob": "5b3e16953b300ace3f8f26295334bca075beab59",
+      "working_sha256": "f65b359c38191198fa0e7c29bda39873e413d0b88c4aa9dbfe87090103d34fa2"
+    },
+    {
+      "path": "spheres-sim/data/nations/vanuatu.json",
+      "git_blob": "91574f5a640c37593fde255d075be5a3bb1d2e7e",
+      "working_sha256": "13b4ff41b921465fd279ebef5913a47b8d257742d4c90facc45c2d99e2a316dc"
+    },
+    {
+      "path": "spheres-sim/data/nations/venezuela.json",
+      "git_blob": "0f0753755e2519b1215a3fa489f7e60b2524eb0d",
+      "working_sha256": "a60034ca05ab0165dda8a29fd71d8e659be2b98d1bbfc714c0fc753dbcd94f51"
+    },
+    {
+      "path": "spheres-sim/data/nations/vietnam.json",
+      "git_blob": "0ccd59c7b767c63fd5955f46f988e585a52e0856",
+      "working_sha256": "9a612d943eaf838e1c4bb05e190e5c41c08d5ba2fbe15fbf0bb707780b1de5c9"
+    },
+    {
+      "path": "spheres-sim/data/nations/yemen.json",
+      "git_blob": "58a023ede0b01ff208e92c0c86006002274d4282",
+      "working_sha256": "df4645f6d01c2a21702b59f8e770b3cc81a13539912c1df640d57c25aaac6955"
+    },
+    {
+      "path": "spheres-sim/data/nations/yugoslavia.json",
+      "git_blob": "63ec2985a473d93c90397ebbe137668411eed629",
+      "working_sha256": "e144e3728a7c8dee03823c6246e2c0065cbd45ca54c2e7b52245ce6bad6a6510"
+    },
+    {
+      "path": "spheres-sim/data/nations/zaire.json",
+      "git_blob": "6309385e714a829e960c31675cef7ec7f9ba73dc",
+      "working_sha256": "5ade65b31284695a2cfc065543d4475d703d795ddd0c7f3b10ff114c441c2c41"
+    },
+    {
+      "path": "spheres-sim/data/nations/zambia.json",
+      "git_blob": "5ca894af26d4be72b4efbe17daa23cff29acd6eb",
+      "working_sha256": "5d5dc130d9c47f8871960851d9efdac7ab6106df50d0ac07397d6f4b3d6b3e31"
+    },
+    {
+      "path": "spheres-sim/data/nations/zimbabwe.json",
+      "git_blob": "2cfcc58baee246444fe6ec46a350ec7646e8713e",
+      "working_sha256": "ba9c1e9944d37c616b8a18f781b65130ee2963cf83300491c88570d1b53460e2"
+    },
+    {
+      "path": "spheres-sim/data/opening_mandates_1990.json",
+      "git_blob": "e2ec1c61f61c53654ca3e8c7569664be2fc4bd85",
+      "working_sha256": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384"
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "git_blob": "2baf8893d4aa361cbcc83085a3fde5ea1edf09ee",
+      "working_sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d"
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "git_blob": "071f7249915b7747e28caa09460c9bec00225768",
+      "working_sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494"
+    },
+    {
+      "path": "spheres-sim/data/population_1990.json",
+      "git_blob": "e54c0c0b13e426d0b6a6e51015eb32eea8e350eb",
+      "working_sha256": "d13754425fe45b03fc79e18e44d2945f109a172cce97935729566a8dfec0ef6e"
+    },
+    {
+      "path": "spheres-sim/data/relations_1990.json",
+      "git_blob": "9a2bb89c06e73b0bc2e3081c450bc4acefb0af08",
+      "working_sha256": "4831266c72220da62a7bb172ee889a04d18236817cf9b6cd0929a327ee48bb13"
+    },
+    {
+      "path": "spheres-sim/data/resources_1990.json",
+      "git_blob": "6722eb1e6eada4267e126d2c43a667c904610a1f",
+      "working_sha256": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073"
+    },
+    {
+      "path": "spheres-sim/data/sectors_1990.json",
+      "git_blob": "ce495a87044689a3c87295cc4b60f93eb639ef4b",
+      "working_sha256": "6173ac1563ebd1312704491fc42461d25a4410b9f6e37c060620ac70938809ce"
+    },
+    {
+      "path": "spheres-sim/examples/audit_leadership_save_upgrade.rs",
+      "git_blob": "52bb5c684b08518dd8f2830d4cfc6f270088ae71",
+      "working_sha256": "ad46010881333b240e2500642475437841fd052e7097914dd680f3e2ca536a88"
+    },
+    {
+      "path": "spheres-sim/examples/daily_calibration.rs",
+      "git_blob": "701cad0df1fe96f7a2cdf4fd74d702ba4ef6c051",
+      "working_sha256": "59ed992080f74da4955a18f753b507d144f971ba00a36c2e1a7c7f168d889158"
+    },
+    {
+      "path": "spheres-sim/examples/economic_competition_census.rs",
+      "git_blob": "e53109951484feff00d6486030116ee44fe1b415",
+      "working_sha256": "310f263ce1ec1558da46bc249ac084c61ebfd91ecaa563d5aff8dd9b4653694f"
+    },
+    {
+      "path": "spheres-sim/examples/economic_competition_profile.rs",
+      "git_blob": "00ad152a175408f68291cae3f015792948a4c6bd",
+      "working_sha256": "a55e93b274bedfb6f609d90fc218c0775dbbc301b147129bbb199355f3dbc162"
+    },
+    {
+      "path": "spheres-sim/examples/export_future_leadership.rs",
+      "git_blob": "c8e96bd8036ca4ff099299ef061d3b386131ac7f",
+      "working_sha256": "b40de7869ea159a181a68314a0eecb3fbc03644f20f40abc1d244bba0d4e6669"
+    },
+    {
+      "path": "spheres-sim/examples/export_party_leadership_views.rs",
+      "git_blob": "0f1271d54787592ed5eb93527c07d18a776c9faf",
+      "working_sha256": "0b43242ff78e594599c9225e42a4cfcb8579dceee7a99dec33595de3a44b0c24"
+    },
+    {
+      "path": "spheres-sim/examples/materials_census.rs",
+      "git_blob": "45be97ae0f5fb8e0e8b7379e490d00efddf4621d",
+      "working_sha256": "3a05792cfa6150eeb76e2e3b359c50f24485c9277632617d90a1249acf949079"
+    },
+    {
+      "path": "spheres-sim/examples/materials_profile.rs",
+      "git_blob": "dda836c567a74620c6ce2d7402901865ff0e6d95",
+      "working_sha256": "2f41a19d3584739700cd56c05af5950889387374b3766be3e1ccf38262297579"
+    },
+    {
+      "path": "spheres-sim/src/agency.rs",
+      "git_blob": "93be1147d3cae955c932b581b600b2028da63347",
+      "working_sha256": "e9a10a7dc2f7faedc3afdcc1e2c007793bc611430b7bce9b6c4bee023e754bcc"
+    },
+    {
+      "path": "spheres-sim/src/air_support_command_tests.rs",
+      "git_blob": "22e377fef624bc3e7ca81f5a9c62a9a127323084",
+      "working_sha256": "d384f0599c02d15d7f6a079b65b97ba78879e3dbbce78a2cc338b66379159ec0"
+    },
+    {
+      "path": "spheres-sim/src/airbase_distance_tests.rs",
+      "git_blob": "418b47951e2598a9c5e4cf8becf27db5a5de4c78",
+      "working_sha256": "69ea790d60ea37ab1869b5fd9299d8da43ae3af50bb8537fc1464a0c73ffe111"
+    },
+    {
+      "path": "spheres-sim/src/airbases.rs",
+      "git_blob": "d7bb29a0ca4aa8fd15bb49f5f58213a9c79f20da",
+      "working_sha256": "19a8b14c63ef98f150b3d29de1047b966051d9d55cad9d44f992745f82c5d794"
+    },
+    {
+      "path": "spheres-sim/src/airbases_tests.rs",
+      "git_blob": "37bba2158e85102f44eb29ea78ce14267e0d14d9",
+      "working_sha256": "ff045cb459b3446afb040dfcaad4480f3be40e3a00d3d90c1a2bea90dffbd5e0"
+    },
+    {
+      "path": "spheres-sim/src/airmissions.rs",
+      "git_blob": "28d0a5fda3f99dbaee8f803ffdf49eae639736b0",
+      "working_sha256": "a3a7e787577100c9087143f3007f706f7dc0bff3b9b1c039058bcadf21eac3fa"
+    },
+    {
+      "path": "spheres-sim/src/airmissions_defense_tests.rs",
+      "git_blob": "b9ddf3cda90bbd753175cc8315618d604fad8439",
+      "working_sha256": "39202a34880a7750abf2889ca65ee24714f508147e50f401e825cbb1bc017117"
+    },
+    {
+      "path": "spheres-sim/src/airmissions_tests.rs",
+      "git_blob": "19d99d082207e25000dc8cb4918d654c98751920",
+      "working_sha256": "15e56aafcb28d9bfe45e70398c0280dc25ac0691a26982f98bca39d8039df572"
+    },
+    {
+      "path": "spheres-sim/src/armed_security.rs",
+      "git_blob": "0fbb3873727d9c60539fdcb0e7a0bf5f2b4d66b8",
+      "working_sha256": "0674765a34250b5c5acbe22075ae6d077d2ca5f5154d7f62cd9dc430e1b36fb1"
+    },
+    {
+      "path": "spheres-sim/src/army_authority.rs",
+      "git_blob": "f2e9122fd1166f49ebf5e7dc73fc751489a73293",
+      "working_sha256": "6db045f4dba03175e4f6dca6a51f099ef1964c13b3fc0cde7982a988fda1b12e"
+    },
+    {
+      "path": "spheres-sim/src/army_institutions.rs",
+      "git_blob": "017d185f8c1f15ccc26b7ade0931674188c2e644",
+      "working_sha256": "a2017c071d6fd0ce653cd7e264c49b96131d812d0d21708f152ac1868c056ee0"
+    },
+    {
+      "path": "spheres-sim/src/arsenal.rs",
+      "git_blob": "47a38b6323133894b345565cdba7b4f54400bf71",
+      "working_sha256": "7087fa9c1ad090c89308a753dd3464894e93a9f920ef3653421f9edb070f74ef"
+    },
+    {
+      "path": "spheres-sim/src/aviation.rs",
+      "git_blob": "1fd41982af972b314645660a7527f944e5bf0071",
+      "working_sha256": "f6d47f223fb14b9340c1617c22b2a5c6969378b0ecddf708d77646e8ebfb8947"
+    },
+    {
+      "path": "spheres-sim/src/aviation_tests.rs",
+      "git_blob": "ab6c8cdf9299fbd799cdafc4667b5e0a1f814aaf",
+      "working_sha256": "c2817ee2cf0bef843db7ace645bb598601a184ada1fc6fd362d49df6409140d5"
+    },
+    {
+      "path": "spheres-sim/src/blocs.rs",
+      "git_blob": "d486c4278569a5241f50781b00f08aa61ff6f0f8",
+      "working_sha256": "3cfcc5d96630c76affa4cfd05cc051bd857d59d833e931a62ac398649042c999"
+    },
+    {
+      "path": "spheres-sim/src/campaign.rs",
+      "git_blob": "fd4830f18dfc7acc36999930f50d7f3a93072664",
+      "working_sha256": "a4291db78230708d783fcc66e608bf7205bf77713f1eb0c0cdaedefa2929c397"
+    },
+    {
+      "path": "spheres-sim/src/campaign_aims.rs",
+      "git_blob": "9c0c0433f8b0cfc047bcb25f6c7e2f62df3f571e",
+      "working_sha256": "120b8d59f9e97c11ed66c8b842c3cf16c57ba396a5d88b979d65721c4835f8ae"
+    },
+    {
+      "path": "spheres-sim/src/campaign_peace.rs",
+      "git_blob": "9174af7063da4273beef40deff4a8722b471623e",
+      "working_sha256": "b18551e016aababe00a09ab28901f0b9332f51ba7bf39f9b8dba4f85f2abdcd5"
+    },
+    {
+      "path": "spheres-sim/src/campaign_supply.rs",
+      "git_blob": "ad739a7edce611ed9a044be3654b574a53837454",
+      "working_sha256": "0856ef74be9da7f30ae498c19c95b266d529464fa24379f1e41905b828afe857"
+    },
+    {
+      "path": "spheres-sim/src/campaign_supply_deployment_capacity_tests.rs",
+      "git_blob": "be38d71dd6d7ae18068700c463d2672eeacf466e",
+      "working_sha256": "218f16503496d13b287cbacf2ef62b05c39d12534313711f5f28152be05ba7d6"
+    },
+    {
+      "path": "spheres-sim/src/campaign_supply_permission_tests.rs",
+      "git_blob": "20d6e8b1a0ea5b2e89243fd5ab0ba3f13d238f6c",
+      "working_sha256": "8bb75f6dc032cd71a589c97663fb2ce7d6f2f0021df58f2999003f949c2489f8"
+    },
+    {
+      "path": "spheres-sim/src/clock.rs",
+      "git_blob": "2bf95814c15da0c48ba31c74d2958286735148a5",
+      "working_sha256": "e55402a749a84d8cd35a664cd97c74a49acf1e7756887f90194d4e207d098aa8"
+    },
+    {
+      "path": "spheres-sim/src/commerce.rs",
+      "git_blob": "05567d742413ff1019add0897860cd2230f44cf6",
+      "working_sha256": "3ef26c83c15882dfedd66b19a95bf0ee4acf018ad5115b30078df8f2c0264ad2"
+    },
+    {
+      "path": "spheres-sim/src/commitment.rs",
+      "git_blob": "a7e5300b6ee58fe84881e44eeb452e290266b27e",
+      "working_sha256": "82044fb753194f9fd021a628a30eb0f862c2bec22081b6daedb05cf58dcef620"
+    },
+    {
+      "path": "spheres-sim/src/companies.rs",
+      "git_blob": "fbb7d21514e55f1a952ce8d96185397867f64739",
+      "working_sha256": "c8ab36b345037159e1179b254b698e753576d0aa2d9455adf2629ab75fc91882"
+    },
+    {
+      "path": "spheres-sim/src/companies_ammunition.rs",
+      "git_blob": "5cbd13084dddb8bfb07c3cf8a6807ccd23044484",
+      "working_sha256": "534a36faf5ac13df4dd4c45277c1a4c8d9a5c74524d7d89d3615f25ef70b3b89"
+    },
+    {
+      "path": "spheres-sim/src/companies_imports.rs",
+      "git_blob": "9263a5a4a95ff18e13108c0000f5e471cdbdd86b",
+      "working_sha256": "415ea9a735ebc7c0e7169937345deb74f26e8b813632c31cbe354bf02e9e32b5"
+    },
+    {
+      "path": "spheres-sim/src/companies_refits.rs",
+      "git_blob": "d964e9417cfc63df2f09a59939f36acc4c9e0056",
+      "working_sha256": "4487c7611713e9e2ee1bd03e10cf346454f2b68b2dbf4272a7e653acdb4b13c7"
+    },
+    {
+      "path": "spheres-sim/src/companies_stock_target_tests.rs",
+      "git_blob": "ce96e8915e443b5f7cea23e88a3a66c15195e6ee",
+      "working_sha256": "25a87989f31d5376b722a3c76882f983929d64a4959eab13ed92915b0936235a"
+    },
+    {
+      "path": "spheres-sim/src/company_network.rs",
+      "git_blob": "a5ec65d34b0288b13e6062332ae3b128d4083d57",
+      "working_sha256": "71d7ac227c5cbf5b6d2acde835235ff672c0e7e1ffa9a88221a691157360cbb7"
+    },
+    {
+      "path": "spheres-sim/src/company_save.rs",
+      "git_blob": "0f6e100cbf1f9468fe8d867104056b7ec32c83c1",
+      "working_sha256": "ef6e8d806dfedc19d84914e17600f0570da6860ca728554e6b6b7e6e6741f545"
+    },
+    {
+      "path": "spheres-sim/src/connected_economy.rs",
+      "git_blob": "1357360701545b948ef9358b5d88dea805195b57",
+      "working_sha256": "817a8ffa6ae47e0afaadf260d82d194109b541cc9a1ba1ee94f01abe6b7709a8"
+    },
+    {
+      "path": "spheres-sim/src/construction_preview.rs",
+      "git_blob": "ae0e63464e1b0e8ed3875ab5aa36ce4305bc5e56",
+      "working_sha256": "0c8cd90a449f6ed432c83e2e59c761ae217da3f0b99fd479e71dd3ec0bbe5e5c"
+    },
+    {
+      "path": "spheres-sim/src/construction_suggestions.rs",
+      "git_blob": "4f7e5da3b887453588ba598852c3b613c04c83c5",
+      "working_sha256": "d21c605d215a0d709cd5ccc8a45964f247007eecf8a778a18cdc7c72002f095b"
+    },
+    {
+      "path": "spheres-sim/src/control.rs",
+      "git_blob": "16a4d5e288840a6acb10fe381f236d85813d1b11",
+      "working_sha256": "6cbd099e538c5539d19c54cd21be278660c71b7beb0904e991bc5d98dcd40235"
+    },
+    {
+      "path": "spheres-sim/src/data/embedded.rs",
+      "git_blob": "f428416bd09c4e2cb64d428cea1c41d2360f2e3e",
+      "working_sha256": "32b5c732955b6684e5b806c9fc0053450855dbd425b4edf77ea9da14348797da"
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "git_blob": "15232ebfeda331616db5051e1d68144b457634ed",
+      "working_sha256": "b41babe89825f9d71fe32dc74be06310f792f8ea3e4dfb63c06aaf23801ec861"
+    },
+    {
+      "path": "spheres-sim/src/data/movements.rs",
+      "git_blob": "26d7a6b7207e1a198421f7b76a6680a3f24569db",
+      "working_sha256": "79615840eab7e479409581648ecf89eb38886b0f36ebeee500c01a9ab19b06e7"
+    },
+    {
+      "path": "spheres-sim/src/districts.rs",
+      "git_blob": "15ec601926ee3fcd5d4454da823dc8f948b27b2d",
+      "working_sha256": "e4c43706944dca7469d58284cdec9885c3f8600412085bc6ed8f02372b7968c3"
+    },
+    {
+      "path": "spheres-sim/src/domination.rs",
+      "git_blob": "cfa1a17a5a6bae3c27ba830603bf35561711f95e",
+      "working_sha256": "4ce280a85a2836cee48c22027d454951c1dc14f327fc85da4f5e268e784c15c1"
+    },
+    {
+      "path": "spheres-sim/src/dyads.rs",
+      "git_blob": "4e004c4f2d53660269e2ad3cd101bc34753c2b67",
+      "working_sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b"
+    },
+    {
+      "path": "spheres-sim/src/economic_ai.rs",
+      "git_blob": "ec768fdd8f326f2828da270d03e63f5246ee3f24",
+      "working_sha256": "d20f23fa84e3bfe140bba638d19096364edfb905862897d33f3c28e496917ea2"
+    },
+    {
+      "path": "spheres-sim/src/economic_ai_mine_tests.rs",
+      "git_blob": "bcc95c45517b1eba509b66fd0b6999cc08c588bb",
+      "working_sha256": "14388a2c536378db421309151aeffa50737be9be3569677a0483a42c2c72cc41"
+    },
+    {
+      "path": "spheres-sim/src/economy.rs",
+      "git_blob": "2be65ccfcf1cb0515b3ee3c92691e0fb79d2ddbb",
+      "working_sha256": "9c62d57dc2357caf77b370ecfe2666dc1adc34154046c255ee6a9acd095325bd"
+    },
+    {
+      "path": "spheres-sim/src/equipment.rs",
+      "git_blob": "2d528f2c8c9e5ce6dd58d3b8c9fdd0897375694e",
+      "working_sha256": "d16c3390ceaaf1aa84b90cb85f7471e28e2acd57605a29537bd47f7dd7cb03a0"
+    },
+    {
+      "path": "spheres-sim/src/equipment_air_support.rs",
+      "git_blob": "c01858ad538fa5dfcdc58a4abdef67373f1abff6",
+      "working_sha256": "4b2bad5b5ef1e686883e817479f7779adbbd07850beab4ad7a3ecb74b0fc3fe5"
+    },
+    {
+      "path": "spheres-sim/src/equipment_air_support_tests.rs",
+      "git_blob": "1aa8f4bbf51eb48cfb8b61bb59872137d37ce7c6",
+      "working_sha256": "a2c6412c5690c16e44497a1a71612dbc66ca8be5e8109b1bf5a8f1f406b188e5"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_operations.rs",
+      "git_blob": "703d22905ef2c62b3182b731980e8c358a026a7f",
+      "working_sha256": "44d321f63754f952d87fb3e458e3340e8054e98781d4e6b215262ea696126025"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_production.rs",
+      "git_blob": "608a1fe5ce162a4c853d3dbf0d7be0e26722121c",
+      "working_sha256": "6f2757d425de1e1bccd9bb688161c407db144e0f148b32b8cf0b20862aa06a3c"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_reserves.rs",
+      "git_blob": "c654ad831c09f966b2c0dbc8a386e9f8fe6381a5",
+      "working_sha256": "fad8ba33ad6391cee8ecd9bd09312bd1f2f94fff5293da2055db845040684b98"
+    },
+    {
+      "path": "spheres-sim/src/equipment_aviation.rs",
+      "git_blob": "b3eb895ad8620c575ea3a476b2cbc9c883b90967",
+      "working_sha256": "94cdab5900548c65fd71e65ef45aebb80a46aa2b868580bb435b760606aed960"
+    },
+    {
+      "path": "spheres-sim/src/equipment_fighter_tests.rs",
+      "git_blob": "9bcd65eb2d5ecb83c86d3a54ce3df47cc700772d",
+      "working_sha256": "3138967d0788239b8d6c2bcdbcf018ccd848214eb4b7abdb16abd2c0d5027777"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground.rs",
+      "git_blob": "5a240f3400f91fde5df1a8ae78f09fb989df8a1b",
+      "working_sha256": "b2ea4b2016bed4f9b247c730bb1c2b81294a84ec0968a4e64e89993ca39a0489"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_readiness_tests.rs",
+      "git_blob": "3f63dbe50d4b0ea8d20a9e43ff0035a57a96f6e0",
+      "working_sha256": "683ef487d78454158f5d144cc8267f4784e40b3abdf62d4c13dfa06077812392"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_receipt.rs",
+      "git_blob": "a807e970f91bd240a70be3aafd61f5bf8304d5f5",
+      "working_sha256": "92bf65bce20e48ab448c9e5c67451d0dbbbd9b6e4bf029023d112fb2f9b0e293"
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_receipt_tests.rs",
+      "git_blob": "902325eb037543cd6f7c0925cc39a61abc9573f4",
+      "working_sha256": "dc73495cf2cfd2bb147e70df988db0e4c8cbf63d3535e8ed239187ed21360f18"
+    },
+    {
+      "path": "spheres-sim/src/equipment_maintenance.rs",
+      "git_blob": "cdb3d9bf14146381e19f5cea89212b8b4317447f",
+      "working_sha256": "a0203c2e831f8e09e7ff7f745fcaa6a87f802fca60e284d8c5f20af8f2d46db1"
+    },
+    {
+      "path": "spheres-sim/src/equipment_replenishment.rs",
+      "git_blob": "bfc5481dce4d080ff6219e0e42c8cc0c799e7841",
+      "working_sha256": "368a80d72cbe6e821d8b3a9d17d771e54338696473638fbb61241945b8a1ef7f"
+    },
+    {
+      "path": "spheres-sim/src/equipment_service.rs",
+      "git_blob": "c6f459d8a5c31355f79060712b908c7363cd600a",
+      "working_sha256": "a578c3fde6123b37fafd392c0d6613d4ba8a3edbf673283f0f6b97f0d69d5e5d"
+    },
+    {
+      "path": "spheres-sim/src/equipment_specs.rs",
+      "git_blob": "4e3733d29f1f245b533d935cbb144847616ff21e",
+      "working_sha256": "2d98f0593232cc505d9612285f909bf4b3fdc1750474c8ee7aec5aff76cdc3f7"
+    },
+    {
+      "path": "spheres-sim/src/equipment_supply.rs",
+      "git_blob": "a7e711cd5ac5781263a080c6032911c3f4480b18",
+      "working_sha256": "637364b58ab3d741934d67a3cdd210da7b922b95b3a970dc6b1e502160efea75"
+    },
+    {
+      "path": "spheres-sim/src/equipment_supply_automation.rs",
+      "git_blob": "4930048805b39c69e1689cef598e9608018f3d2e",
+      "working_sha256": "cd02926b5abe4ad033de9106508b5e22386bf8619657a2ed4009b83ddb8cc77c"
+    },
+    {
+      "path": "spheres-sim/src/equipment_targets.rs",
+      "git_blob": "1d4b798ed0a496835730877f35a316dfd922161c",
+      "working_sha256": "88423af0fa1217b4650fbd9be8f95ed28453cddab85932f6040fcb03fca2f7d0"
+    },
+    {
+      "path": "spheres-sim/src/exact.rs",
+      "git_blob": "5852f343a6aaf40c8208f75993d10075d66f9d02",
+      "working_sha256": "857247bfe0f3b14f568bec6618fdcfcb0285b40b970c2eeb7c7ab15aecaf94d7"
+    },
+    {
+      "path": "spheres-sim/src/fiscal_journal.rs",
+      "git_blob": "797a95cc3153af379e4e9c1884d6971b976badd6",
+      "working_sha256": "33423898650b94ffd91529abe0ec2664582cd87ad95427e507b8086e4d4ea9c3"
+    },
+    {
+      "path": "spheres-sim/src/fiscal_preview.rs",
+      "git_blob": "b06ce45e62fb58fcbccc5149b3cf4076411e7c62",
+      "working_sha256": "bf08117db3501f225d210295a9ede1f47c0bbe4cefadfd75bc452cce8b132ca5"
+    },
+    {
+      "path": "spheres-sim/src/fiscal_recovery.rs",
+      "git_blob": "a9edaad013a017f0cc24a0418cc12f78a704506b",
+      "working_sha256": "36940aa69b7af9b0fb676bdaea711576ecc7d0d6b486a3b616910192e0bd970e"
+    },
+    {
+      "path": "spheres-sim/src/fiscal_recovery_ai.rs",
+      "git_blob": "94d4c34e83f88fd437fde7dedbb12c10dc2a0549",
+      "working_sha256": "3d70610bfdc21cdd19fbd3dc4854cef8b5947feb0385e16ecfe7f765f2e2932f"
+    },
+    {
+      "path": "spheres-sim/src/freight_routing.rs",
+      "git_blob": "fb3f3ac98c013c8c36aaea459fe2cf19b8496dcb",
+      "working_sha256": "607ebbe3517a09435f791022662ee2f8b28204c3532b6770a8aed2a21a6f517d"
+    },
+    {
+      "path": "spheres-sim/src/front.rs",
+      "git_blob": "8c6a5cc265db82432d58bcf2bc919c532d5e9f43",
+      "working_sha256": "ca5d2973a976dec041183ce936aaf9cf937fe7defc8dd99fd5c4f275add923bc"
+    },
+    {
+      "path": "spheres-sim/src/gdp_projects.rs",
+      "git_blob": "3da2cc01e4579f4515a8a4601c3228745f288bb1",
+      "working_sha256": "2530846fa5fe3c5f0bbfef7863d3a4c28cf26c222dda83d9021c0dfc00c551aa"
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "git_blob": "e27b036cd6002b94455c35d4651028a4dae7e14b",
+      "working_sha256": "4b0b82dbdb111cfbc8350bcbdf0dc1ba85d23b07c1026ca5a58d2178dc283934"
+    },
+    {
+      "path": "spheres-sim/src/government_a1_observer.rs",
+      "git_blob": "1eee2713a8550118b330ec4df447bc2a07f32933",
+      "working_sha256": "70cdfdda3e2b6b9da624143cc50014383b4f2478cce1b80e0c3af1b775f63964"
+    },
+    {
+      "path": "spheres-sim/src/government_opening_tests.rs",
+      "git_blob": "caad7fab3a5074261f4b5311acb8f160c0d177f8",
+      "working_sha256": "25a1fea16345f45ce54e15edbf40b3e136659150de2783975c252c8ddbcb1e6b"
+    },
+    {
+      "path": "spheres-sim/src/industrial_modules.rs",
+      "git_blob": "5ce2c8ac294e8010fbbbea7ceec81e243907e903",
+      "working_sha256": "190cf457866b7216b7d15b5a18c9f76cdb67f4a4d60ac5ff4aba61a4ad6f6514"
+    },
+    {
+      "path": "spheres-sim/src/industry.rs",
+      "git_blob": "b5efe136631b740e761323c38f39031b9391c7fd",
+      "working_sha256": "86b617ff00b898e0bc7d817fba7a6c733b569e3ce9093d017f994047445bdd34"
+    },
+    {
+      "path": "spheres-sim/src/industry_energy_scope_tests.rs",
+      "git_blob": "99862e4a5d9cecb01f1a16a409ebea5e45c75d3f",
+      "working_sha256": "06fd4847c9251787c37199fa68b3d25a823e7612f0e74312577d897e6c5f2dc3"
+    },
+    {
+      "path": "spheres-sim/src/industry_operations.rs",
+      "git_blob": "f118920a74b418e00f22bc192fb307756e12cf57",
+      "working_sha256": "d7fea512a0911ace08f128a5ece840ff4ceb6c5d9fef899857978b5b634356f1"
+    },
+    {
+      "path": "spheres-sim/src/industry_operations_snapshot_tests.rs",
+      "git_blob": "90cfc536f145e9b166f5e89e9dcb6ea7b76abb0e",
+      "working_sha256": "2d54d0ae1adbea85b654b65794ee2c73fb8bf64cd317acb2e06bb344dc90c86b"
+    },
+    {
+      "path": "spheres-sim/src/industry_planning.rs",
+      "git_blob": "37bb5b08211874afa4af8ba4cd660438f853791a",
+      "working_sha256": "d49176e4b0a8c81387f241aefb6d97371980ed0c3abe5c2a7c37195e36ec7a36"
+    },
+    {
+      "path": "spheres-sim/src/init.rs",
+      "git_blob": "1eb55ea51eecc36938374284c38c2f89134888d2",
+      "working_sha256": "46ec558f0124baceb108bffcde4cabe5b078a35c9891cc7994206a720b87000c"
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "git_blob": "2bd8a66094d1a0d3698d41b92dfa12d95143fd6c",
+      "working_sha256": "c30354ba571448ce3c9dc4fb3f5dfd7cb1b4f13752074ebd003ed4da351a1b3c"
+    },
+    {
+      "path": "spheres-sim/src/logistics.rs",
+      "git_blob": "7d5e5aadea9cb0146a1a904e79dab935af4a89d6",
+      "working_sha256": "67d042b9e3a3d37994e1393f742704f0c92808f42dc16dcea6d5efff08d20757"
+    },
+    {
+      "path": "spheres-sim/src/logistics_arrival_access_tests.rs",
+      "git_blob": "f33bd280a75ef54853639db1169a120da68ea4f7",
+      "working_sha256": "fd18b66b91be510cbbf02192b0a0d5e0075f28ff9d6c84d8aaf34e3c3991869f"
+    },
+    {
+      "path": "spheres-sim/src/logistics_arrival_payload_tests.rs",
+      "git_blob": "2839b33e177f9a4c840202f821e67300b50917d3",
+      "working_sha256": "d72bfe23b7de38ebb3c23dfe8532a9a8a6a997ed7a08b248e58cc7e55f5873f3"
+    },
+    {
+      "path": "spheres-sim/src/logistics_contract_dispatch_tests.rs",
+      "git_blob": "3666ae43cdb8f3b3d281d31a543840a0beaeb4c2",
+      "working_sha256": "0d54c20255526c56194c16fb5c0d2cc7958ffc2d04d909bd4444e1ed1aa7b1eb"
+    },
+    {
+      "path": "spheres-sim/src/logistics_terminal_assembly_tests.rs",
+      "git_blob": "bbd8da827e7999991e6f9123e0c64c868971a2b0",
+      "working_sha256": "0fba1a1a0aff2cd1ba16ada70b08bac8a09cd3191561c408461b7b75a4e101f2"
+    },
+    {
+      "path": "spheres-sim/src/logistics_tree.rs",
+      "git_blob": "3056e44b364b5a527c031591261a8baf9860b44a",
+      "working_sha256": "87b4c64aec106632045f03c09c178cee9ebaf5ce8c6607c82ec0db8989c76bac"
+    },
+    {
+      "path": "spheres-sim/src/manufacturing.rs",
+      "git_blob": "76791d8d3d564100c80f62ea89cecd6daa944bf0",
+      "working_sha256": "55cbfd6f426e01a335d90aab51abf7bb3079a2b9cfb7f7807aab8163d112bae8"
+    },
+    {
+      "path": "spheres-sim/src/materials.rs",
+      "git_blob": "4dc90bedfa87337d0175226082dcec6a1bb392ce",
+      "working_sha256": "a627bc8cd83ae70dea936666c0438471a7141598925c6c0c9cda6b91dcf68311"
+    },
+    {
+      "path": "spheres-sim/src/military_ai.rs",
+      "git_blob": "11a19eb1c0c20c303c0aafd70911d1e6c32a0b9a",
+      "working_sha256": "cf0748fa8903b134eaa31e85c6b7b74e676993b9a59494b629da7dfd3cd05b3b"
+    },
+    {
+      "path": "spheres-sim/src/military_ai_tests.rs",
+      "git_blob": "ac17b084bd739f02a26baec4871b5ea59407e5c8",
+      "working_sha256": "75c5a12491d614652961b5b1c6626f57f60c346b1094fa99d193831b84179a4e"
+    },
+    {
+      "path": "spheres-sim/src/military_empty_import_tests.rs",
+      "git_blob": "be46439df70fbb7a3b693ae970be7cd8b9085645",
+      "working_sha256": "e4dd4f2a8aec9d875db86cd735571f157c6dfa33db9dcd553a271c2d9808e17e"
+    },
+    {
+      "path": "spheres-sim/src/military_ground_offer_tests.rs",
+      "git_blob": "d2e303636e4c6edb61165efca2ab7b7f7dcd63b2",
+      "working_sha256": "456d08e47c781b09d9137b93cbbb9ed90286c4c42379d36e994258dc9f80bef9"
+    },
+    {
+      "path": "spheres-sim/src/military_import_command_tests.rs",
+      "git_blob": "3251a0dbcfe2b3043a8c526e5d94645d90e5d46b",
+      "working_sha256": "3444568e520980bc5784896dcb63de7ffa77892a3c0f408226c70aefbafd399f"
+    },
+    {
+      "path": "spheres-sim/src/ministries.rs",
+      "git_blob": "ea1aadb4a5cf5acfd1fdd1a1a1c1f9a1f79d0aaa",
+      "working_sha256": "ba1addf09de4c57c2a90af601fc5e197350bea27c5b3834f1849e5693853c573"
+    },
+    {
+      "path": "spheres-sim/src/nations.rs",
+      "git_blob": "daee3858344b42a46ae5724b867b19065162a0fe",
+      "working_sha256": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08"
+    },
+    {
+      "path": "spheres-sim/src/opening_mandates.rs",
+      "git_blob": "d2edf379e6803dac9caf09313f09930fb3c50108",
+      "working_sha256": "4cfba20d1042d0d6f070e871f4f1d5bd78982caf47d1c74fab417adfe45c59f6"
+    },
+    {
+      "path": "spheres-sim/src/operational_warfare.rs",
+      "git_blob": "73bd8ba47ccbbdbf231def3b62c562ced7718c11",
+      "working_sha256": "a205df1a5c6e4547ef091f779e7505b341819edaa101b373f388e6b3bc168c5c"
+    },
+    {
+      "path": "spheres-sim/src/operations.rs",
+      "git_blob": "1a03eaca5061aaae8986a9d7bf224c4026340277",
+      "working_sha256": "2a3f2157bb4f47448938a9da1562efd1dae33f60ed6a22c5ec5e9d69be179830"
+    },
+    {
+      "path": "spheres-sim/src/operations_aviation_loss_tests.rs",
+      "git_blob": "4ae6b3b2dd12d120d5818567fe0049368f6bacde",
+      "working_sha256": "198f69c0872e40a636740921e4cd01abae21d7975cc1c27d526f0f359c1f55a5"
+    },
+    {
+      "path": "spheres-sim/src/operations_campaign_ammo_tests.rs",
+      "git_blob": "337be502892e8074278bc2135dd428f2206013c4",
+      "working_sha256": "513bbdf4f71e395fba9f1cf1a6c033b350f8b2708f48ac8b6b129deaf75c1c10"
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility.rs",
+      "git_blob": "9ecae2490cf7526dd9bf411918e1688dbfbe81ce",
+      "working_sha256": "11c19e785ba40357b24130d0c1cf4fbad190375b8874eed7dd81a3bcbebada54"
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility_tests.rs",
+      "git_blob": "1ff0cfee04e026885b12970d222259ab7d6c94f5",
+      "working_sha256": "3d6ba3896f618195a80f3141e0beb5e78d0de7bf607f0c6d1363671804110de5"
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "git_blob": "337fc518267919a36371046cf31040e7b38a69c9",
+      "working_sha256": "6e4dfcd0916c33dccc0f4b8933e935f2186d946018bd46534c317a2e827f9612"
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_future.rs",
+      "git_blob": "6d8896cb9243eaab1be452536a43680c650310cf",
+      "working_sha256": "d07d30d3981b77eed153d36516477f917c08b14602e03c393409f523696b0f62"
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_seats.rs",
+      "git_blob": "6b5231dfd8694788e46c786f317961d343872033",
+      "working_sha256": "6cbaa0e279862c4496b5d499d60b72d6ecf5153233038c6f60dfc87f55c304fa"
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_seats_tests.rs",
+      "git_blob": "4ad323fab69bd8c2fe84db3d100740a5d6ad5a92",
+      "working_sha256": "96c8654444f8e8eb6e5d3d8432700f6730006c833281af0404b301f65c5aa4b4"
+    },
+    {
+      "path": "spheres-sim/src/politics.rs",
+      "git_blob": "ae16760b1158a9ead254b0d7e07c6606c7b6883d",
+      "working_sha256": "929b1a80eb0f97bb2d56de7485f1cf99c676eb802b4f7ddb3c517489958f4341"
+    },
+    {
+      "path": "spheres-sim/src/population.rs",
+      "git_blob": "c876c502b131a705f27f1db321e7e57b3670b997",
+      "working_sha256": "3ad5a30ca8079e8cbe4f6e9164fd32d7292eb78c7edc18141afa59ba9425e84a"
+    },
+    {
+      "path": "spheres-sim/src/population_course_merge_tests.rs",
+      "git_blob": "ca75ea1b3a6b714d4180e5166ce93cc9cb9a7002",
+      "working_sha256": "b2953eedf8e7efc557d53b82d83244d5d5d14f5c256db35a2408139f3c62e2ca"
+    },
+    {
+      "path": "spheres-sim/src/production.rs",
+      "git_blob": "10c994ccf44079e0cd4291d5d053f3b38cf5dd4b",
+      "working_sha256": "b62c698fd4e8895a281c96ad9ff35a4ed010bc478407e7eb1e0d0153c8c7e560"
+    },
+    {
+      "path": "spheres-sim/src/programs.rs",
+      "git_blob": "8ffc79951998570cc2b34dafae499d18bb1d9b77",
+      "working_sha256": "f976d7d6f0e82282d8090affb44d62c1a8029d4e14c6c3d8ac8744de76186d75"
+    },
+    {
+      "path": "spheres-sim/src/province_economy.rs",
+      "git_blob": "0c8c08bd4f9039ab72b389a717800fcc099f3103",
+      "working_sha256": "e5800af61f60d9e6ea5796269f6cf2cc696f309e2579cde9d71cedf3100b256d"
+    },
+    {
+      "path": "spheres-sim/src/resource_dependency_tests.rs",
+      "git_blob": "fdba5fd3cec35e932eeb89286983a1aa5b98385a",
+      "working_sha256": "9287bd1bd0540d6df2c22910b30a0ff8e81ee947fe477dceb68df0acd097f755"
+    },
+    {
+      "path": "spheres-sim/src/resource_purchase_route_tests.rs",
+      "git_blob": "9f2326ceca4388647566c8a2d033eec869952a1f",
+      "working_sha256": "0cec8fc59f0f30f085050f5a651fe6bf39abf0bfa57b2f32c17df3164db8c62a"
+    },
+    {
+      "path": "spheres-sim/src/resource_replenishment.rs",
+      "git_blob": "9d63eedc4cacad06f8c493e51e8ea1505907884e",
+      "working_sha256": "453ffdc7b673708780d4c72b31430cbc43cec4642aad3e9d001b3fa12e231927"
+    },
+    {
+      "path": "spheres-sim/src/resources.rs",
+      "git_blob": "9f2f719edbf68891038731098c150265321ccba2",
+      "working_sha256": "bfae31dae52554f76be1c9254ac5d4d756ec90ac4e1f77fe3975a443abf16afa"
+    },
+    {
+      "path": "spheres-sim/src/sector_contractors.rs",
+      "git_blob": "1ef8ebeaaf2f260a70e11e4e29c7c8b3bb183cf4",
+      "working_sha256": "76699a170f26d6c1f208746d632d259f476250f3e8080e60b070582c97d5f8d2"
+    },
+    {
+      "path": "spheres-sim/src/sector_profiles.rs",
+      "git_blob": "5a53f18dd653395401e8d867f3f7db38aef36e28",
+      "working_sha256": "f95e1792f0987ee74230b4e262ba9dca7de49ade0b4a0832b64de6fee317a95d"
+    },
+    {
+      "path": "spheres-sim/src/sovereignty.rs",
+      "git_blob": "138aab116eb646b06759b007bc4a35807decdf81",
+      "working_sha256": "9ddd0a45389a6d9dab8c8ac527af4c77adb02b0079c13cd23be8f279754a5a2e"
+    },
+    {
+      "path": "spheres-sim/src/sovereignty_candidate_tests.rs",
+      "git_blob": "dbf65de09e84349744b0309c39d6d99923b60f1a",
+      "working_sha256": "ceffd92ac75de002df95abeea30da1fbba915be82e507080efca648f6af080f5"
+    },
+    {
+      "path": "spheres-sim/src/starting_industry.rs",
+      "git_blob": "7e42ec6dab9ac799ae292e916a5501103d65a3d9",
+      "working_sha256": "6b58be88977e3966dfdfed605dadfc3e3d00663a330dbc4bb9f08649fe8c841e"
+    },
+    {
+      "path": "spheres-sim/src/statecraft.rs",
+      "git_blob": "0e08f259a302c2d757a76db70c94d4bff772a36e",
+      "working_sha256": "512e5e1096106a6ed85b53c0af7526ccdfbf34c3689c3218d0afbb1f231a0dfc"
+    },
+    {
+      "path": "spheres-sim/src/stratagems.rs",
+      "git_blob": "e1e2b59d3849149c556cbaf9c6040e47834584dd",
+      "working_sha256": "c62b673f0278d8e8fba1dc37bf98adb613c0f9eb968513c4a8cb57e06b406637"
+    },
+    {
+      "path": "spheres-sim/src/stratagems/tests.rs",
+      "git_blob": "c82649b025dfe2805ce80ff9c0c0e17455c30fb5",
+      "working_sha256": "b37db0227760b0ed4010e46d799f938670aa4aadb35021891c73a98d5a205781"
+    },
+    {
+      "path": "spheres-sim/src/supplier_catalogue.rs",
+      "git_blob": "116c4a7496aa5949aa38edd9ce9d982268f57f10",
+      "working_sha256": "6d36135568b4330acf3e17b21248ceb293b94f9978a9ec887dea9adef390c535"
+    },
+    {
+      "path": "spheres-sim/src/supplier_operations.rs",
+      "git_blob": "a3d975dbf0f26e1cc846ccb4314603a3ab2120e7",
+      "working_sha256": "8ee37543bd5678ce2c94f4abc80d8516b592c182aacbb216c38561713d79ed91"
+    },
+    {
+      "path": "spheres-sim/src/tech/aerospace.rs",
+      "git_blob": "d24e030c5f789ff12f8f71cbabdaf9d6bf2d01eb",
+      "working_sha256": "babb832508ffa56b619808d60c2f3603f5ae07c55edd3bcebf8a5dcf1d851ee4"
+    },
+    {
+      "path": "spheres-sim/src/tech/agriculture.rs",
+      "git_blob": "029a13c9ae98540a07d6508123d7da829c8b13f4",
+      "working_sha256": "f859b68e1af9ee9e501d363c70ddcf924a57512b1a44b89799f615a0fb5dc4ea"
+    },
+    {
+      "path": "spheres-sim/src/tech/biotech.rs",
+      "git_blob": "8243623ad66e3da73744b8bb4367e4f39aee6a4f",
+      "working_sha256": "6a80ab4833ccb385bebe93b6469d0a37b1cf472d7f6f4ec63c93abc10815119f"
+    },
+    {
+      "path": "spheres-sim/src/tech/communications.rs",
+      "git_blob": "a678978f3984adf73e07965c1eb939836df38b7a",
+      "working_sha256": "63abcdc78849a0b2588ef4360f7c4dda25cf989fae0e4892645bdade4adab649"
+    },
+    {
+      "path": "spheres-sim/src/tech/computing.rs",
+      "git_blob": "a37ce3bb8c6f072e73b79c4a4b3146311cef1b0b",
+      "working_sha256": "380e3414a3ed07de8c507e55fef7531e7d05e2a7d42a937fbd5b41c54d068a58"
+    },
+    {
+      "path": "spheres-sim/src/tech/energy.rs",
+      "git_blob": "f936a9ed2fd9f89446cf301a5a0fb25081f2dcd0",
+      "working_sha256": "ebf118e67b9234e2cf4aa08de5ef5ae747b4b85625aceff44f8bdeeeda440e8c"
+    },
+    {
+      "path": "spheres-sim/src/tech/materials.rs",
+      "git_blob": "c741e9fae894dbaf4a551a656dfc979c71a76536",
+      "working_sha256": "370cce605f42cfee57980e130daef731c28612fdbb189d8d6b52935e1799b2ad"
+    },
+    {
+      "path": "spheres-sim/src/tech/mod.rs",
+      "git_blob": "8cab964feed96c0da0f65c21f933646a6fa84eda",
+      "working_sha256": "0d0bbeece438cc3a88d273c11fa52c812669250e64d792d81a145dc13dd135ca"
+    },
+    {
+      "path": "spheres-sim/src/tech/transport.rs",
+      "git_blob": "f0af97a7a5dde88243357ae024d83a92d964e9ba",
+      "working_sha256": "54d2732e02791d47b749073c534c6a7d72f0ffa22220ac6a4c23cdd726668b84"
+    },
+    {
+      "path": "spheres-sim/src/theatre.rs",
+      "git_blob": "bcae2e81a4975b5c9f26e8f13436f33276b2a787",
+      "working_sha256": "db99759b02c78c8638e4c827bc1528b5adbf02b2b06f7d332ae05c67d698b971"
+    },
+    {
+      "path": "spheres-sim/src/war.rs",
+      "git_blob": "c618fac5705d681d2c3ff9147d5629766547d128",
+      "working_sha256": "c76f0ea6ad339c9c2e9a4259455283d9568944cf8121eeb93b1fd15efbe11788"
+    },
+    {
+      "path": "spheres-sim/src/world.rs",
+      "git_blob": "9ad0a61ba8f6248cac5ea7c12aede834f08ae945",
+      "working_sha256": "b83d0a5d33526824082f2b1446a8f843fc4ed85f90a25d76d5256231b9c9c354"
+    },
+    {
+      "path": "spheres-sim/tests/agency.rs",
+      "git_blob": "4eeaff8b88d797b4ace21878d2a247ebfbe6dd50",
+      "working_sha256": "765399a968dfea6b95430f48a90cbc7cf3e0b6e7a401344d4b139e0969cc9806"
+    },
+    {
+      "path": "spheres-sim/tests/ammunition_reserves.rs",
+      "git_blob": "80a0dabb832bf9993d6d164aa8f83ed95df74b40",
+      "working_sha256": "5caa54f60fea2fa759326c7fd92f59f8ceb1b4eb64b2faf35f5a3064cb63988e"
+    },
+    {
+      "path": "spheres-sim/tests/armed_institutions.rs",
+      "git_blob": "2c872188a766b3d64ceded47fd265c18315f40dd",
+      "working_sha256": "b6287758aee9a2c72c86cbab486c2b6308937439acc14ac9e17833c1779322d4"
+    },
+    {
+      "path": "spheres-sim/tests/aviation_ammunition.rs",
+      "git_blob": "313998e666ff23789a5dfd7bf8e5ee5a5a2bf6c1",
+      "working_sha256": "883c138b753264800389a8a4ce1e6624664951d7c945ef1860b318be73b45770"
+    },
+    {
+      "path": "spheres-sim/tests/bloc_census.rs",
+      "git_blob": "dfd72ea40e2ca1bdc8456d045f385f5aef250475",
+      "working_sha256": "d68e8e615aade63fc15a8f3b30d97036cc6b2762febaf262f91211772c5fb76e"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_aims.rs",
+      "git_blob": "f6d60a34ef0c9a33d407d3c764067a4fcfd46b08",
+      "working_sha256": "b396ed6b9624594627efd77b7691c2ef632ef0de458e10b5a5a72a2770e9b233"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_identity.rs",
+      "git_blob": "b86517efc848be88067edc0ac980627ccf1a09ba",
+      "working_sha256": "9bd7e5bf1e012ef1859c9811abef30883bca7ee585e46bb4b10b011305ecd01d"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_movement_audit.rs",
+      "git_blob": "494c8e95223b2079dd70b9f47b935bae82922188",
+      "working_sha256": "e2a268ff46887fca25c7ae9de145c429fb3e0eaca5e83b2bfc3bb3116bd53a8a"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_operations.rs",
+      "git_blob": "4abff5e3e04b815449a4bb7029ed11ec0e3020bf",
+      "working_sha256": "d8edcc2808cf492776b3a3e6891b157230d0fd0f7f42c29791ff29c08e4fa1d8"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_peace.rs",
+      "git_blob": "69c819d49d1f2cfde0b8d653b02e6968662e0e36",
+      "working_sha256": "315b2cf560a1a334c4cafa6394e79d497203ffb0e2a30174db296040f66728be"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_peace_audit.rs",
+      "git_blob": "f793d7cbe59f9fb108c092026a2f8f27ec6fa02c",
+      "working_sha256": "0c983d4f68f7498a6b8aa7d19fa5239b3cb414527b0cd23805762703a9bbcdec"
+    },
+    {
+      "path": "spheres-sim/tests/campaign_population.rs",
+      "git_blob": "488f82d53039f39c7050bf7b3a8e63076c428e30",
+      "working_sha256": "86219ba3bb8109bea0b096f1631fe68dd3fcd657c2035736aa0f258607ee4e95"
+    },
+    {
+      "path": "spheres-sim/tests/capital_damage_audit.rs",
+      "git_blob": "0734ce7aa7fd0580211b3b5aad5a682a18e1c7b5",
+      "working_sha256": "b1af60a3dd0d97b463bbb3b5ac7919457a2213ec7528a1ce5f6c25581323b946"
+    },
+    {
+      "path": "spheres-sim/tests/companies_integration.rs",
+      "git_blob": "09ce6b70b590e60beeccbb89edb8caf2ad15c5c5",
+      "working_sha256": "cc63db72e67ad52c0c1a3a32416e9ca8eb0b50ffc0e4a29187ca1e5f306978df"
+    },
+    {
+      "path": "spheres-sim/tests/company_ammunition.rs",
+      "git_blob": "ee6f81d6073cef7f3e2611fd6ca27fdd6c1f0b26",
+      "working_sha256": "87d23b1df8ad82aa2ec8390b33a728aaf7e7c8f6d500cadc50039667704399be"
+    },
+    {
+      "path": "spheres-sim/tests/company_refits.rs",
+      "git_blob": "47a4263d8fc40c19cc323af0fed18f82a1141a5b",
+      "working_sha256": "5e316dd315eb03c6867a76a5e4ee457aa3dc8c811b26d7066037e9e77f0c0fd4"
+    },
+    {
+      "path": "spheres-sim/tests/daily.rs",
+      "git_blob": "8e3067991901aceae5811046e43ce29f3151e8e9",
+      "working_sha256": "ccb53b42d1992a845e7e97a2c548303a63e8bb43c7ca43139e2725b33ae0903a"
+    },
+    {
+      "path": "spheres-sim/tests/daily_balance.rs",
+      "git_blob": "2287684bd9d8b61dfa67708c175cb84ec94867b4",
+      "working_sha256": "b24b990698ebbc0129e5a73b5b8cdb0f754c2fd1b31e6d289b9043e04f41134b"
+    },
+    {
+      "path": "spheres-sim/tests/economic_ai_supply.rs",
+      "git_blob": "42dc5cd1fda01ae3003c60c9a28fea32ae7351b1",
+      "working_sha256": "30822e5ad84a0c6fe56abd877fa5eb7f3b82352530890eaf7bbed4645b644c05"
+    },
+    {
+      "path": "spheres-sim/tests/economic_competition.rs",
+      "git_blob": "1a550a004bf812d0c0db799d31d69266e369f456",
+      "working_sha256": "87aa3d41f1f6de89d6378b77f3e3a3898711f83ed49086b253354cd3570ae5f3"
+    },
+    {
+      "path": "spheres-sim/tests/economic_sovereignty.rs",
+      "git_blob": "e993aa1c90b585a73fd179feb5c032b998b0813e",
+      "working_sha256": "c46841bd7bddaa4ce88c9f27e84346b91ac17351838e281a06044f5332766aa8"
+    },
+    {
+      "path": "spheres-sim/tests/economic_sphere_intervention.rs",
+      "git_blob": "6ae8e81f7cf574338556b85d1997ce6bc60c568b",
+      "working_sha256": "e192dd5ea42cd8021bd2011d0e9658ce7357156eaa6e0308b6c6457ddee5cc65"
+    },
+    {
+      "path": "spheres-sim/tests/endowment_channel_probe.rs",
+      "git_blob": "76653930d6c6eca2c527460a28e1dc4bc17c7c35",
+      "working_sha256": "a03f238a509723feef27ea00ea3185553568e9d0c026756049e079b0746e3e4b"
+    },
+    {
+      "path": "spheres-sim/tests/endowment_margin_probe.rs",
+      "git_blob": "41fe87e86d19d1d4f1ef1b118342982c52326dfa",
+      "working_sha256": "2cd541714e65aba0e3b14fddf4753e7e3fcaff9223c13892f857f513d6db62de"
+    },
+    {
+      "path": "spheres-sim/tests/equipment_integration.rs",
+      "git_blob": "231dda27fafd80d132c9f072cfd7c79c44c60171",
+      "working_sha256": "60abf91570cda243801d42d184278383c96182f1dfe84ade74d437dc23b68ba7"
+    },
+    {
+      "path": "spheres-sim/tests/equipment_supply_automation.rs",
+      "git_blob": "13f812cc4490b83943555ccdd38f9a3f5fbce07a",
+      "working_sha256": "3e233bea26c5fa9ad63ea5019da0a12920a1599b1f82094e5e32193ed7d5287a"
+    },
+    {
+      "path": "spheres-sim/tests/ground_equipment_integration.rs",
+      "git_blob": "8a985296fa7da06144673e372576c3d7786530eb",
+      "working_sha256": "cb6f3b22f0fd9fadeea0a9ed7cc6dc2404d66c98414f0d75d0f1a25c5c581e31"
+    },
+    {
+      "path": "spheres-sim/tests/growth_decomposition.rs",
+      "git_blob": "d1c2bbf218779daa48e2ac95a68b7fed0ed79846",
+      "working_sha256": "9bf072a79e95d12400fdf2669899a9bf391389d12588e740edb9c9b70ff0810d"
+    },
+    {
+      "path": "spheres-sim/tests/industry_planning.rs",
+      "git_blob": "5a7f7b3abc4c8b435e4424c94dbec6081202bc8d",
+      "working_sha256": "f8dc4e1963034c6c10599d646d80d40632486aab7356e398446c09702ac628b0"
+    },
+    {
+      "path": "spheres-sim/tests/materials.rs",
+      "git_blob": "271127930aaa588148e37619679fb1783b3bea31",
+      "working_sha256": "fe2128711992be00584cbe65f1a2fd6437cc6093ca31e58ebb9e9fcfc3ecf07c"
+    },
+    {
+      "path": "spheres-sim/tests/materials_accounting.rs",
+      "git_blob": "2e42ac84d322619af09dfe797903b9349b2fe474",
+      "working_sha256": "9780f75d98d2a438913d69ab3d0789b52d8f94234ec7834f13cbd73cb466c06b"
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_bootstrap.rs",
+      "git_blob": "7def283cd59c970d8c3698e24eb220ec11977823",
+      "working_sha256": "f713e479cb754e19ad1e4fcd32959f8b9be879fe6ec7ecd612dddf7a1cbd88cf"
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_timing.rs",
+      "git_blob": "effab30e351b83c2ab7bbf5a2f79aff4e0946c65",
+      "working_sha256": "be2c8cc21e4fbdd87f7573f1b3d2f888cf5d02dd2506435f5d7a3ccb84c0ee5b"
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_warehouse.rs",
+      "git_blob": "0aa56529a4d73a4caf7f41e51741d7573bc9fb42",
+      "working_sha256": "7293f1e012fdfab28fdd10187f5191303f2c91219fddd23bc4a07895f3e68c47"
+    },
+    {
+      "path": "spheres-sim/tests/materials_planning.rs",
+      "git_blob": "1a5c92d07fd15742d617eec16f5d7928324d9476",
+      "working_sha256": "b0cc23f246aec14b368fdb321c842125f124f55198109445406c74d1f47557ad"
+    },
+    {
+      "path": "spheres-sim/tests/military_operations.rs",
+      "git_blob": "f058a251cf11c5c9282ed5feb6f15653cc1ce41a",
+      "working_sha256": "a82d3ea2cca6ff6dcde5772293ed45214174a84d6c4c51308d98d384d3d16d22"
+    },
+    {
+      "path": "spheres-sim/tests/ministries.rs",
+      "git_blob": "62cf98ae4ccbd9f40d56f4ec045a3f0aae8c2e0f",
+      "working_sha256": "8999b3e853908e5ae1510b60f5a88acc1f7c0a5237f18380e2f7d6e5304fe787"
+    },
+    {
+      "path": "spheres-sim/tests/research.rs",
+      "git_blob": "7812be3c9a5a5ab12d23aa682fee92031ddd5599",
+      "working_sha256": "7625ec4420bba83f062245c32fead9bfba6c286c123deda3c134ca62c2792ef5"
+    },
+    {
+      "path": "spheres-sim/tests/research_centers.rs",
+      "git_blob": "0a52219332bfc54daf51024a5ef5351561199811",
+      "working_sha256": "353f3f3ba3381dc42c660f85489a56b0f148b687b2bf4ff38ef0ad9dcc32b7a3"
+    },
+    {
+      "path": "spheres-sim/tests/s02_entitlements.rs",
+      "git_blob": "e8532247be609749aa122d98a19067481fb431bc",
+      "working_sha256": "b188db629b3f938626d3561ada3ecbaa4fa912246fcfabd8ec367e5c9329d3aa"
+    },
+    {
+      "path": "spheres-sim/tests/s02_fiscal.rs",
+      "git_blob": "e1b7fbf9d706220b79dad995c148f6a067abefb7",
+      "working_sha256": "57c0578973b3129421cc0eb0ad8fb0af7383912aceee52519e5bbaefd4e6bc1a"
+    },
+    {
+      "path": "spheres-sim/tests/s02_industry.rs",
+      "git_blob": "16544892f36be1eac598307f88aee9b6208cb47b",
+      "working_sha256": "a6d6623d0f1e061b9408d8eabc2d711ee0d730eee02c58483e46371282897b2e"
+    },
+    {
+      "path": "spheres-sim/tests/s02_integration.rs",
+      "git_blob": "5cb02709e2d9b1b04bd8eb465215310a3c6cae5d",
+      "working_sha256": "f32541eb2e5b122ef0db58e96c5aea92289369ade0c516e0694b993ec1a0e1c8"
+    },
+    {
+      "path": "spheres-sim/tests/s02_population.rs",
+      "git_blob": "ef2e9db07360ad32de7510133e3ff582c7c9346a",
+      "working_sha256": "6a6497470c5effafad63d78d35af34e5d69e4781aaf9740141a1b999de4b37e2"
+    },
+    {
+      "path": "spheres-sim/tests/s02_succession.rs",
+      "git_blob": "37997a41151587b74da068bd0de028cc0aa2a666",
+      "working_sha256": "9cc5b9f190466339754082ee7b0d08d76905d22098fdffdf3330648067d6ce9b"
+    },
+    {
+      "path": "spheres-sim/tests/s03_integration.rs",
+      "git_blob": "f2251784e3e45f7b3e4c5a83bc8ebcea80a0084b",
+      "working_sha256": "38745747de54d6ba2e97b6f71b202cc526eaabcaa0727cebad2e08aa62c7e452"
+    },
+    {
+      "path": "spheres-sim/tests/s03_supplier_operations.rs",
+      "git_blob": "091569c478c16bead128e7e39e49f17b9469dda1",
+      "working_sha256": "f075bd8928a223b34e3c78ff169e9d5be44904587e13a35f234e126b4028f0de"
+    },
+    {
+      "path": "spheres-sim/tests/s04_integration.rs",
+      "git_blob": "c1eb8c2922643e1b4432a11cbd8ae7ef4179a319",
+      "working_sha256": "af32e6c97a039b1f96f239741a7c2f81152c583a72e0b6a69fa6bf9417502ab8"
+    },
+    {
+      "path": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "git_blob": "3aeb3ca1a37fd40d52ae5859acc7242fedc23bdb",
+      "working_sha256": "44cddd4cece11e64fa24c6f4e7aaa15cd58b4324312bb94aff76898b826fa545"
+    },
+    {
+      "path": "spheres-sim/tests/s05_master_fiscal.rs",
+      "git_blob": "f2ac8b38148fc101e0e1048421b169c203ac717e",
+      "working_sha256": "b7558563d6e80534a63e59284a30ad53327c6fffad239c2105e4ef1aa0fc5c4a"
+    },
+    {
+      "path": "spheres-sim/tests/s06_money_journal.rs",
+      "git_blob": "3556ec0f5f24e8c7199bd3a7f6150c6b4cd6cb86",
+      "working_sha256": "1e980fa4dfe252d66f51d78d3c2e1f8822f5a96ee0cefbd11527c1c4c87053d1"
+    },
+    {
+      "path": "spheres-sim/tests/s07_construction_operations.rs",
+      "git_blob": "fa2a1610398331af600a02fc3f276bc8625a2ef8",
+      "working_sha256": "7cf8a564295f6c8d2b8309c9e7717d1638914c49a9e414e048eb2a81675faac5"
+    },
+    {
+      "path": "spheres-sim/tests/s08_supplier_catalogue.rs",
+      "git_blob": "b9dd20fda9fef74bbf9e74407123b8861b635a8b",
+      "working_sha256": "3441b8602366d370190aed43a19fc2dffe0c371efc83c826691052b28e9b4188"
+    },
+    {
+      "path": "spheres-sim/tests/s08_supplier_lifecycle.rs",
+      "git_blob": "8d62aa567585e49789b1ae1f4e921b8793407bb0",
+      "working_sha256": "cf6a7873fb7152c0a73edaf846257cd8c6773554bef66228f7da4bd9fec98d4c"
+    },
+    {
+      "path": "spheres-sim/tests/sample_size_audit.rs",
+      "git_blob": "15d82295201505347443d6ca172c6a14c011753c",
+      "working_sha256": "6661d5c7d853cf0924904bebbde49ba8539b29533d7a523f558c8f8632e7d48f"
+    },
+    {
+      "path": "spheres-sim/tests/sector_profiles.rs",
+      "git_blob": "50383f435a59521d0c25aada9af0a699898a3950",
+      "working_sha256": "ec68075b858f166be1b56476140c644a51208f79c5e87e00bfce1cf8fe9b5973"
+    },
+    {
+      "path": "spheres-sim/tests/small_country_modules.rs",
+      "git_blob": "ce73b2317e9cc0442355a1e7f6b393f9792b0367",
+      "working_sha256": "ce7f279a261b0091baa8c31d0f4d5d6ca5c85395c169d978fd250e3ea2a16d3c"
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry.rs",
+      "git_blob": "5fdc8a1a6674c818929f73f25ad2ebf6a6660322",
+      "working_sha256": "8b56370c324d3068a7949cc1c99477ca1fc451e4896e90902b9c893b6f8b114a"
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry_planning.rs",
+      "git_blob": "009e2ed5337e07cacc44ee86490ba5b11a11ba9f",
+      "working_sha256": "9705422aac43a544772c4d171dd1cc044a687b0df6cffec8d923c78690fa6a99"
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry_priority.rs",
+      "git_blob": "2cfd41fd80b1ae7ce3090e0b2c4e7e3ec2b2cfba",
+      "working_sha256": "c6004251554c17c1ac947ed4401b818cd61541cc9c466e702cf755281793b91a"
+    },
+    {
+      "path": "spheres-sim/tests/strategic_raw_supply.rs",
+      "git_blob": "679e9929e550905a39e9117357016ba0c55317a3",
+      "working_sha256": "df0678b118364c8f4c746dce2096da11fcd000d4954735e61202c8a9cfb2b73f"
+    },
+    {
+      "path": "spheres-sim/tests/treasury.rs",
+      "git_blob": "03ddfafe8732b5895149b7b5dfe374aa803700a9",
+      "working_sha256": "6e8353adb8307ec75eb853f38ca29ade22c41f0d478858b4ed90b5b6460a8993"
+    },
+    {
+      "path": "spheres-web/data/district_population.json",
+      "git_blob": "ab2b60dfa74a10b90ec75f35a6c4f4b849f9e106",
+      "working_sha256": "1f0a1884e5bf720aab3c65cedee84a6a4f7d347fdf6c86fefe24acb1a6f65547"
+    }
+  ],
+  "reason_for_fresh_build": "The previous final library-test executable was not pinned in the original frozen-binary manifest. A new isolated build removes that provenance ambiguity."
+}

@@ -54,41 +54,82 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 
 ## Claude's current work
 
+The [CP1 acceleration assignment](CP1-ACCELERATION.md) makes Tonga the next
+complete country cast. `CLAUDE-C06-TONGA-01` is ready to claim after the accepted
+Codex identity proposal: reuse King IV, source the two existing 1990 identities,
+and resolve the five later identity checks before completing Tonga's cast. This is an
+assignment, not a claim that Claude has begun production. Keep current C01-44
+party research isolated and preserve its ownership. Do not let the Russia/DA
+archive holds prevent work on a ready Tonga batch.
+
 Updated 1 October 2026 against the live remote tips and completed independent
-reviews. The central queue now records all four new packets. It contains 25
-completed bounded Claude tasks and three submissions still awaiting acceptance.
+reviews. The central queue records all four new packets. It contains 26
+completed bounded Claude tasks and two submissions still awaiting acceptance.
 These task closures are research/preparation results, not completed country casts.
 
 | Packet | Scope | Current state / next action |
 |---|---|---|
-| C01-28 | Five Russian party-leader chains | **Held.** Twelve missing originals hold 24 claims and four holder observations. Latest submission `03141c43c5663e35d21eebc631aaf5eec4e909aa`; resume the existing source repair. |
-| C01-31 | Komeito representatives and distinct organizational phases | **Held after partial review.** At `696937ba3d31280aab569cbd78418e9c3a0c6880`, 24/31 originals and 50/64 claims were reviewed. Supply seven missing originals; fourteen claims and five holder dependencies remain held. Apply the conservative Takeya boundary correction preserved in the [review receipt](../../campaign-certification/C01/reviews/CLAUDE-C01-31/README.md). No new Japan research is imported. |
+| C01-28 | Five Russian party-leader chains | **Held after resumed review.** 65/68 originals, 133/137 claims and all 24 holder observations are materially checked. Three originals / four claims remain unresolved; there are no remaining holder-row dependencies. [Review](../../campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md); submission `03141c43c5663e35d21eebc631aaf5eec4e909aa`. No Russia research is imported. |
+| C01-31 | Komeito representatives and distinct organizational phases | **Accepted bounded intake.** All 31 originals, 64 claims and fifteen holder observations reviewed; no source holds remain. Exact submission `696937ba3d31280aab569cbd78418e9c3a0c6880`, first import `b74f4fa5`, [acceptance receipt `d4d3542b`](../../campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md). The conservative Takeya boundary correction, explicit Ota assumption, three locator repairs and earlier held evidence are preserved. |
 | C01-38 | French prime ministers, 2014–2026 | **Accepted bounded intake.** All 22 originals, 33 claims and twelve appointment observations reviewed. Same-day interval prose repaired. Effective terms remain unresolved. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-38/README.md); submitted `acf33f09a5d28cbc9bf9f539e152e9846a7bf395`. |
-| C01-39 | Democratic Alliance federal leaders, 2000–2026 | **Newly delivered; review pending.** `claude/c01-za-39` at `9cb02c20012a6e6314d7e64d52241609d566f738`. Scope triage confirms 24 new sources, 29 claims and eleven added dated observations, preserving prior South Africa data. Original-source content has not yet been independently reviewed. [Registered handoff](CLAUDE-C01-39.md). |
-| C01-40 | CPI(M) general secretaries, 1990–2026 | **Accepted bounded intake.** All eighteen originals, 24 claims and four observations reviewed. Five locators and unsupported EMS prose repaired; the opening-holder gap remains. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-40/README.md); submitted `54680e39910804b3864a3e973c452f2db2ac5e6f`. |
+| C01-39 | Democratic Alliance federal leaders, 2000–2026 | **Held; latest follow-up unaccepted.** Latest `b66f8c074431d7e1a8c9bfca228576c7d5134655` follows the reviewed submission `9cb02c20012a6e6314d7e64d52241609d566f738`. The [original receipt `d1818a48`](../../campaign-certification/C01/reviews/CLAUDE-C01-39/README.md) records 1/24 originals and 1/29 claims reviewed, with eleven submitted holder observations held. The follow-up has twelve added observations, all held; the same 23 originals and 28 claims remain unresolved. One request returned HTTP 429; 22 were not attempted. No DA research or isolated test repair is imported. |
+| C01-40 | CPI(M) general secretaries, 1990–2026 | **Accepted bounded intake with reviewed amendment.** The [initial review](../../campaign-certification/C01/integrations/CLAUDE-C01-40/README.md) retains eighteen originals and five locator repairs. The [amendment](../../campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md) independently checks two added originals and re-reads three rally descriptions: 20 sources, 26 claims, four observations, no new effective boundaries. Submitted `d7e1b9d286f68b7864f2d014c49e42c4296e66e5`; scoped import `3c4a3abc`. Current REST limitations and the opening-holder gap remain. |
 | C01-41 | CPSU General Secretary and Deputy General Secretary, 1990–1991 | **Accepted bounded intake.** Twelve originals, 26 claims and five observations reviewed; reportage and decree annotation scope clarified. Prior undated identity remains unreconciled. [Review](../../campaign-certification/C01/integrations/CLAUDE-C01-41/README.md); submitted `a989ddb4d67657236292a35443049554cc9b19e7`. |
 
-Continue existing claims without duplicating their ownership. Codex owns the
-independent review of C01-39 and the remaining source-access dependencies in
-C01-28/31. Claude's next content sequence is:
+The [combined review](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
+separately records the latest DA triage. Correction `9e3d0b3c` adds a Zille 2007
+observation, proposes Maimane's effective end as 23 October 2019 and repairs a quote
+apostrophe while retaining the same 24 recorded original identities. This is not
+completed content review or acceptance; the earlier source receipt stays unchanged.
+Review the added observation and proposed boundary against the originals before
+integration. No second source pass was made.
 
-1. **Resolve the held Russia and Komeito source gaps.** Supply accessible original
-   evidence, preserve reviewed accessible content and every failed attempt, and
-   address the recorded boundary correction. Repeated rate-limit retries are not
-   a substitute for available evidence.
-2. **Reconcile accepted Tonga research into game identities and dated roles.**
+The combined review also records follow-ups on accepted France and USSR packets. Only two USSR test
+tightenings were adopted; all 48 USSR tests pass, with two failing-before/passing-after
+mutation checks. Source and holder scope is unchanged. The additional France and
+USSR prose is not imported; the independent acceptance limits remain authoritative.
+
+The later 1 October fetch found these additional Claude branches. They are
+separate from the 26 accepted tasks above and have not been imported or accepted:
+
+| Packet | Exact checked tip | Delivery state |
+|---|---|---|
+| C01-42 (`claude/c01-jp-42`) | `601078190e76bfa3ae578a6b467073620dff1ce6` | Claim only; preserve ownership. |
+| C01-43 (`claude/c01-br-43`) | `6e6a9d06cf7c6a2e0f46f16d13119ab8bc822d39` | Claim only; preserve ownership. |
+| C01-44 (`claude/c01-to-44`) | `fdb71175e6a2f251c6e51361187068c0141cac9f` | Claim only; preserve Tonga research ownership alongside the separate cast assignment. |
+| C01-45 (`claude/c01-sa-45`) | `d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49` | Newly submitted: source commit `af2d16bf`, eighteen proposed sources and thirty claims. Original content and proposed office observations await independent review; the submitted generated index is not imported. |
+| C01-46 (`claude/c01-ru-46`) | `3ee3357f55a26a4587a62e56c0cc4c62110e54df` | Claim only; preserve ownership. |
+
+This inventory is not queue acceptance, a new assignment or a reason to delay
+the ready Tonga cast and campaign-stability work. Review the Saudi delivery in
+an isolated source-review task before any import.
+
+Continue existing claims without duplicating their ownership. Codex owns the
+remaining original-source/content reviews for C01-28 and C01-39. Both Archive
+passes stopped at HTTP 429 without a Retry-After header; preserve those responses
+and coordinate any future missing-only pass when normal service permits. Claude's
+next content sequence is:
+
+1. **Reconcile accepted Tonga research into game identities and dated roles.**
    Submit a focused mapping proposal and validation for Codex review; accepted
    research alone is not installed historical coverage.
-3. **Produce a reviewed Tonga cartoon batch of 6–8 actual campaign characters.**
+2. **Produce a reviewed Tonga cartoon batch of 6–8 actual campaign characters.**
    Claim exact person IDs and appearance windows after identity reconciliation.
    Prioritize the opening leader and government/party faces the player encounters.
-4. **Repeat country casts toward C06:** France, Japan, India, Brazil, South Africa,
+3. **Finish Tonga, then repeat country casts toward C06:** France, Japan, India, Brazil, South Africa,
    Saudi Arabia and the USSR/Russia case. Resolve source and identity gaps, add
    dated cartoons and clearly fictional successors, then obtain country signoff.
    Worldwide expansion follows the first certified-country casts.
+4. **Resolve the held Russia and DA source gaps as a separate work lane.**
+   Preserve the reviewed content, unavailable and unattempted distinctions, and
+   every failed response. Review actual passages when the remaining originals
+   become accessible. Do not delay an independent ready country batch for these
+   holds. Repeated rate-limit retries do not establish available evidence.
+   Komeito is accepted; do not restart it or undo its conservative corrections.
 
-The source repairs are existing bounded queue records. The Tonga and country-cast
-steps describe the next production sequence, not newly claimed or delivered work.
+The source repairs are existing bounded queue records. Tonga now has a queued
+production assignment and an active Codex identity proposal; no Claude production
+claim or completed delivery is implied by that assignment.
 Query the queue and check live branches before claiming a batch. The six earlier
 expanded tool/preparation packets are already accepted; do not redo them. S19
 guidance is maintenance for reproduced defects. E05 company mechanics remain
