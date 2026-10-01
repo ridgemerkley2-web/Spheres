@@ -1,0 +1,100 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd5_bulletin3_cpsu_19910903",
+  "source_url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+  "original_url": "https://snd.sssr.su/V/3.pdf",
+  "archive_capture_utc": "2024-09-01T23:43:07Z",
+  "source_title": "Внеочередной пятый Съезд народных депутатов СССР. Бюллетень No. 3, 3 сентября 1991 г. (stenographic bulletin), scanned facsimile, Internet Archive capture 20240901234307; recorded for the CPSU",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "document_date": "1991-09-03",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+  "source_response_bytes": 2146995,
+  "source_response_sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/V/3.pdf",
+    "bytes": 2146995,
+    "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+    "last_modified": "Mon, 03 Jun 2024 23:27:10 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "This packet: downloaded at 2026-09-30T23:37:18Z and again at 2026-10-01T00:20:45Z (43 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query, no redirect followed); identical 2,146,995 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest XM6CNRB3DIYJ3KWYI6MRT53TBO4WUOEJ.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:18Z",
+        "2026-10-01T00:20:45Z"
+      ],
+      "bytes": 2146995,
+      "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://snd.sssr.su/V/3.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:20Z",
+        "2026-10-01T00:20:47Z"
+      ],
+      "bytes": 2146995,
+      "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/V/3.pdf, captured at 2024-09-01T23:43:07Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The same bytes as su_snd5_bulletin3_19910903 (CLAUDE-C01-35), recorded under a new ID so that its extract stays unchanged. Only Р. А. Медведев's speech (printed pp. 11-12) is imported: another deputy's reference to the General Secretary's resignation and his statement that the Central Committee has not decided to dissolve itself. Claims only.",
+  "edition_and_host": {
+    "edition": "Внеочередной пятый Съезд народных депутатов СССР. Бюллетень № 3, 3 сентября 1991 г.; printed p. N on PDF p. N for the cited pages.",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su, vedomosti.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      11,
+      12
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; headings, speaker lines, quotations and signature blocks were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd5_medvedev_refers_to_general_secretary_resignation_19910903",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-05",
+      "role_id": "su_cpsu_general_secretary",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "persons_named": [
+        "Медведев Р. А.",
+        "Горбачев"
+      ],
+      "role_title": "Генеральный секретарь ЦК КПСС — General Secretary of the CPSU Central Committee",
+      "role_title_as_printed": "'отставка товарища Горбачева с поста Генерального секретаря ЦК КПСС'",
+      "event_kind": "resignation_referenced_by_another_deputy",
+      "attested_on": "1991-09-03",
+      "text": "At the Fifth Congress on 3 September 1991 the deputy 'Медведев Р. А., член Комитета Верховного Совета СССР по законодательству и правопорядку', speaking 'по поручению группы депутатов-коммунистов', says: 'Шоком стали для многих и отставка товарища Горбачева с поста Генерального секретаря ЦК КПСС, и его призыв к роспуску Центрального Комитета'.",
+      "locator": "Printed p. 11 (PDF p. 11): speaker line and speech, right column"
+    },
+    {
+      "claim_id": "su_snd5_medvedev_cc_never_decided_self_dissolution_19910903",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-06",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Медведев Р. А.",
+        "Б. Н. Ельцин"
+      ],
+      "role_title": null,
+      "event_kind": "self_dissolution_not_adopted_statement",
+      "attested_on": "1991-09-03",
+      "text": "The same speech: the call to dissolve the Central Committee is a dissolution 'который в постановлении Б. Н. Ельцина назван уже состоявшимся. Заявляю здесь, что Центральный Комитет никогда не принимал (и я надеюсь не примет) решение о самороспуске.'",
+      "locator": "Printed pp. 11-12 (PDF pp. 11-12)"
+    }
+  ],
+  "bounded_scope": "CPSU General Secretary and Deputy General Secretary observations for CLAUDE-C01-41 only. Nomination and ballot, vote, election result, biographical election dates, vote figures, in-office attestations, resignation statements and references, acting service and the party's property, suspension and termination records stay separate rows; holder boundaries are decided in the packet, not by any row. State offices, the RSFSR Communist Party, russia.json and the simulation's party rows are outside this extract."
+}
