@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 2047,
-    "source_claims": 5010,
+    "sources": 2053,
+    "source_claims": 5027,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -479,7 +479,7 @@
       "organization_observations": 3,
       "institution_observations": 4,
       "role_observations": 8,
-      "source_claims": 157,
+      "source_claims": 174,
       "mapping_pending": 7,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -501,7 +501,8 @@
           "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
           "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until.",
           "CLAUDE-C01-35 adds two organizations: su_democratic_russia (the Democratic Russia movement, with the co-leadership role su_dr_co_chair) and su_soyuz_deputies_group (the Soyuz group of USSR people's deputies, with the co-leadership role su_soyuz_co_chair). It reviews their leaders from 1 January 1990 to 25 December 1991 (SU-DR-01 to 05, SU-SOYUZ-01 to 05) from Congress and Supreme Soviet stenograms and archival facsimiles of the movement's own papers and of the RSFSR President's office. Co-chairs are recorded as co-leadership, one person per observation; no holder has a from or an until. Neither organization is mapped to a simulation party row, and the RSFSR deputies' faction of the same name and the later organizations called «Союз» remain unreviewed.",
-          "CLAUDE-C01-41 dates the existing su_cpsu roles su_cpsu_general_secretary and su_cpsu_deputy_general_secretary from the party's own records (Pravda, the Central Committee's organ, and Известия ЦК КПСС, as Internet Archive stored files) and official Union records (the Supreme Soviet's and Congress's stenographic bulletins and Ведомости on the SSSR.SU host) and an RSFSR decree: three observations of Михаил Сергеевич Горбачев (5 February 1990, 10 July 1990, 22 August 1991) and two of Владимир Антонович Ивашко (13 July 1990, 21 August 1991), attested_on only, beside the unchanged S10.h month observations; 12 sources and 26 claims. The General Secretary's statement of 24 August 1991, the deputy's acting service and the party's dissolution remain unresolved; the suspension (29 August 1991) and the RSFSR decree (6 November 1991) are organization claims only."
+          "CLAUDE-C01-41 dates the existing su_cpsu roles su_cpsu_general_secretary and su_cpsu_deputy_general_secretary from the party's own records (Pravda, the Central Committee's organ, and Известия ЦК КПСС, as Internet Archive stored files) and official Union records (the Supreme Soviet's and Congress's stenographic bulletins and Ведомости on the SSSR.SU host) and an RSFSR decree: three observations of Михаил Сергеевич Горбачев (5 February 1990, 10 July 1990, 22 August 1991) and two of Владимир Антонович Ивашко (13 July 1990, 21 August 1991), attested_on only, beside the unchanged S10.h month observations; 12 sources and 26 claims. The General Secretary's statement of 24 August 1991, the deputy's acting service and the party's dissolution remain unresolved; the suspension (29 August 1991) and the RSFSR decree (6 November 1991) are organization claims only.",
+          "CLAUDE-C01-49 dates the existing roles su_president and su_government_head from Soviet records (the Third Congress's stenographic report, Ведомости and Известия on the SSSR.SU host, and Pravda scans on private Internet Archive uploads): Михаил Сергеевич Горбачев as President from 15 March 1990 (oath and declared assumption of office) and attested_on 22 January, 22 August and 5 October 1991; Валентин Сергеевич Павлов as Premier attested_on 22 January 1991; 6 sources and 17 claims. The existing holders keep their places unchanged. The Vice-President's acting claim of August 1991 is claims only; the 25 December 1991 statement and any acting Premier after 22 August 1991 remain unresolved, and no holder has an until."
         ]
       }
     }
@@ -2733,8 +2734,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 360379,
-      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94"
+      "bytes": 400550,
+      "sha256": "c9cf2aea456866df29e36d647dc3b3809dbf9260cbc7d08aabe700e0afc1edcd"
     },
     {
       "path": "tools/avatars/campaign_research.py",
