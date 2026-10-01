@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_mbs_cabinet_20221025",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/f64ac0108eh",
+  "original_url": "https://www.spa.gov.sa/f64ac0108eh",
+  "portal_metadata": {
+    "uuid": "f64ac0108eh",
+    "locale": "ar",
+    "published_at_utc": "2022-10-25T17:40:11Z",
+    "date_hijri_field": "1444-03-29"
+  },
+  "title_as_published": "سياسي / سمو ولي العهد يرأس جلسة مجلس الوزراء",
+  "source_title": "سياسي / سمو ولي العهد يرأس جلسة مجلس الوزراء: the Crown Prince and Prime Minister chairs the Council of Ministers (25 October 2022)",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-10-25",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/f64ac0108eh",
+  "source_response_bytes": 14747,
+  "source_response_sha256": "3ccd440aad4bca3517039f7b6d4d5c75f085d637e2b5377f7e0c31097928e596",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "3cb949242e1cd0fe1da9ec47730da3ab31d5feabfd0cf7b32aee5607b570a774",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T11:49:26Z and again at 2026-10-01T12:29:44Z, 40 minutes later (Cloudflare HIT and REVALIDATED); both identical (14747 bytes, SHA-256 3ccd440aad4bca3517039f7b6d4d5c75f085d637e2b5377f7e0c31097928e596).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/f64ac0108eh loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item; only its first paragraph is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_mbs_pm_chairs_cabinet_20221025",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-04",
+      "role_id": "sa_pm",
+      "holder_name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+      "printed_name": "محمد بن سلمان بن عبدالعزيز آل سعود",
+      "role_title": "رئيس مجلس الوزراء — Prime Minister",
+      "event_kind": "attestation",
+      "attested_on": "2022-10-25",
+      "text": "SPA, date line Riyadh 29 Rabi al-Awwal 1444 / 25 October 2022: 'رأس صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيس مجلس الوزراء ــ حفظه الله ـ، الجلسة التي عقدها مجلس الوزراء، اليوم الثلاثاء، في قصر اليمامة بمدينة الرياض.'",
+      "locator": "Date line; first paragraph; trailer 20:40 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+}

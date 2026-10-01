@@ -410,11 +410,23 @@ C01_06_HOLDERS['sa_crown_prince'] += [
     'sa_abdullah_cp_obs_19960101', 'sa_abdullah_cp_obs_20050730', 'sa_sultan_cp_obs_a175_20071029', 'sa_nayef_cp_obs_20111107',
     'sa_salman_cp_obs_20120618', 'sa_salman_cp_obs_a145_20140520', 'sa_muqrin_cp_obs_20150428', 'sa_mbn_cp_obs_a267_20150725',
     'sa_mbn_cp_obs_a128_20170225', 'sa_mbs_cp_obs_20260901']
+# CLAUDE-C01-50 appends four sa_pm holders, each followed by its dated observations (pinned in
+# test_saudi_prime_ministers_c01_50.py).
+C01_06_HOLDERS['sa_pm'] += [
+    ('Fahd bin Abdulaziz Al Saud', '1996-03-04', None, None), 'sa_fahd_pm_styled_20041003', 'sa_fahd_pm_chairs_cabinet_20050425',
+    ('Abdullah bin Abdulaziz Al Saud', '2005-08-01', None, None), 'sa_abdullah_pm_order_a29_20070322',
+    'sa_abdullah_pm_chairs_cabinet_20121229',
+    ('Salman bin Abdulaziz Al Saud', '2015-01-23', None, None), 'sa_salman_pm_order_a68_20150129',
+    'sa_salman_pm_order_a138_20181227', 'sa_salman_pm_chairs_cabinet_20220517',
+    ('Mohammed bin Salman bin Abdulaziz Al Saud', '2022-09-27', None, None), 'sa_mbs_pm_order_a62_20220927',
+    'sa_mbs_pm_chairs_cabinet_20221025', 'sa_mbs_pm_chairs_cabinet_20260616',
+]
 # CLAUDE-C01-45 fills sa_succession_secretary: (sources, claim_ids, holders as (name, attested_on, from, until)), exactly.
 C01_45_SECRETARY = (['sa_boe_succession_law', 'sa_spa_order_a136_20061020', 'sa_spa_allegiance_law_art24_20061020'],
                     ['sa_succession_membership', 'sa_tuwaijri_sg_appointed_a136_20061020', 'sa_allegiance_law_art24_secretary'],
                     [('Khalid bin Abdulaziz Al-Tuwaijri', '2006-10-20', None, None)])
 C01_45_SOURCES = 18  # Appended after this packet's sources.
+C01_50_SOURCES = 15  # Appended after the CLAUDE-C01-45 sources.
 LATER_UNRESOLVED = {'sa_shura': 0, 'sa_succession_commission': 1}  # CLAUDE-C01-45 items appended after this packet's.
 # Roles and entries this packet does not touch: (sources, claim_ids); their holder_claims stay as they were.
 UNTOUCHED = {
@@ -540,9 +552,9 @@ class SaudiShuraAllegianceChairTests(unittest.TestCase):
     def test_new_records_are_bounded_appended_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (71, 110))
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (121, 188, 12, 10))
-        self.assertEqual([s['id'] for s in self.packet['sources'][BASE_SOURCES:-C01_45_SOURCES]], NEW_SOURCES)
-        self.assertEqual(len(self.packet['sources']), BASE_SOURCES + len(NEW_SOURCES) + C01_45_SOURCES)
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (136, 206, 12, 10))
+        self.assertEqual([s['id'] for s in self.packet['sources'][BASE_SOURCES:-(C01_45_SOURCES + C01_50_SOURCES)]], NEW_SOURCES)
+        self.assertEqual(len(self.packet['sources']), BASE_SOURCES + len(NEW_SOURCES) + C01_45_SOURCES + C01_50_SOURCES)
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         self.assertEqual({v[1] for v in EVENTS.values()}, HOLDER_KINDS | NEVER_HOLDER_KINDS)
         self.assertFalse(HOLDER_KINDS & NEVER_HOLDER_KINDS)
@@ -955,7 +967,7 @@ class SaudiShuraAllegianceChairTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SaudiArabia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['source_claims'], country['role_observations'], country['mapping_pending']), (188, 10, 12))
+        self.assertEqual((country['source_claims'], country['role_observations'], country['mapping_pending']), (206, 10, 12))
         self.assertEqual([w['status'] for w in index['work_orders'] if w['nation'] == 'SaudiArabia'], ['open', 'open'])
         self.assertFalse(index['c01_complete'])
 

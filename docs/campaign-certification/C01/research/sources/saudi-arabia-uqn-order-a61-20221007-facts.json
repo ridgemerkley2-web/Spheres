@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_uqn_order_a61_20221007",
+  "source_url": "https://web.archive.org/web/20250429135455id_/https://www.uqn.gov.sa/details?p=20294",
+  "original_url": "https://www.uqn.gov.sa/details?p=20294",
+  "archive_capture_utc": "2025-04-29T13:54:55Z",
+  "source_title": "يكون ولي العهد الأمير محمد بن سلمان رئيساً لمجلس الوزراء, Umm al-Qura website (royal orders, 7 October 2022), Internet Archive capture 20250429135455",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-10-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250429135455id_/https://www.uqn.gov.sa/details?p=20294",
+  "source_response_bytes": 1701491,
+  "source_response_sha256": "6921275b222d715fba63e9730e7d516c99f2ab06091ea60d4b2211231e4c2561",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T11:49:19Z and again at 2026-10-01T12:29:36Z, 40 minutes later; both identical (1701491 bytes, SHA-256 6921275b222d715fba63e9730e7d516c99f2ab06091ea60d4b2211231e4c2561).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20250429135455 of https://www.uqn.gov.sa/details?p=20294, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent, no Accept-Encoding header). It was served without Content-Encoding, so the recorded identity is the body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A pre-cutoff raw capture of the Umm al-Qura website's royal-orders page for A/61, recorded instead of the live page, whose responses embed a request time and a CSRF token. Not a scanned gazette issue; no issue number or page is printed, and the page credits no agency.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_uqn_a61_published_20221007",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-04",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "gazette_publication",
+      "attested_on": "2022-10-07",
+      "text": "Umm al-Qura's page 'يكون ولي العهد الأمير محمد بن سلمان رئيساً لمجلس الوزراء', dated '1444-3-11 الموافق 2022-10-07', prints 'أمر ملكي رقم (أ/61) وتاريخ 01 /03/ 1444هـ' with items First to Third as in the SPA text, item First naming 'محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء'.",
+      "locator": "Headline; item date; order number and date; items First to Third"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+}
