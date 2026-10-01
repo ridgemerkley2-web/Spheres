@@ -1,0 +1,206 @@
+{
+  "format": "spheres-c01-scoped-review/v1",
+  "integration_base": "229df2105f1ca46bc55873ea4ab0ada63255ced3",
+  "claim_commit": "a529ab8dfdbe9473ff0536ebbf836599a8567500",
+  "incoming_tip": "d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49",
+  "incoming_substantive_commit": "af2d16bff55717de4c16684831ebf15b3264f72a",
+  "first_source_import": "d23f0bf2f9f38eab169a5e92b0ebdea88a7e0b32",
+  "corrective_commit": "4a98bc10f372bc98ce957847966b67730ae87585",
+  "reviewed_files": [
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md",
+      "bytes": 31362,
+      "sha256": "cf8bfd3dd1a5d7549f34249a4f56a5531d264a219ea4c1034ea7c380068e61e3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "bytes": 317174,
+      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-delegates-19960101-facts.json",
+      "bytes": 5371,
+      "sha256": "602776746ba84dd44cefa0af3f6d7611e412ce6f1c048427a37a347bb09283b4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-resumes-19960222-facts.json",
+      "bytes": 4706,
+      "sha256": "fc9c235848f800c6251919931eab7ff90144e04f7d1adaab341b5e7bb1538f3c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-allegiance-law-art24-20061020-facts.json",
+      "bytes": 4430,
+      "sha256": "d7da1d3914037c4ad9cf1bbad69a1a59a5b7808db4486bfd7b5a8f2602df8145"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-cp-abdullah-obs-20050730-facts.json",
+      "bytes": 4180,
+      "sha256": "d75d81c42f7ba32731e03613100ebc3d1756f1349e29a480c9c087c9b60811cf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-king-order-judges-20260904-facts.json",
+      "bytes": 4212,
+      "sha256": "f3052ca77875cb6724efbc395f65c0b93d9d6f1e98039a83548534e3aa8510d1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbs-cabinet-20260901-facts.json",
+      "bytes": 4186,
+      "sha256": "df7c76639feffaa08f557a9e9bca31540a682fb715835a30b560ec199f0f5604"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbs-pledge-held-20170621-facts.json",
+      "bytes": 4510,
+      "sha256": "5d331bfae7aa14a4dbb96774e32b9cdad726ae5e5d2151a8d54d9929223b0af7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-muqrin-cp-obs-20150428-facts.json",
+      "bytes": 4177,
+      "sha256": "aadcfd834cb8e7e17a612252c598d7f8ee1d9830c6fbed70fe300e1e4e70ce7f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-nayef-hajj-reception-20111107-facts.json",
+      "bytes": 4383,
+      "sha256": "641bd83b28762ff09914dfb2b986f448bd65865d5a9bba34234a98fd4535c2c7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a128-20170225-facts.json",
+      "bytes": 5221,
+      "sha256": "7941fb8101c85831f19872af10736b112b6d734646482daafe9db5942b719a9a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a136-20061020-facts.json",
+      "bytes": 5285,
+      "sha256": "e3a519ed2743b06c43ea066546af755791c081a751f3151faca5f02c86eec525"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a145-20140520-facts.json",
+      "bytes": 5611,
+      "sha256": "3fb784ec629f4ff8812d268c08509656927736a8984991c086853c2e87fbb16e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a175-20071029-facts.json",
+      "bytes": 5212,
+      "sha256": "e8e05c2a97d69858b138a5eb05b92943689ba69bdd03dfe385e33db60ea99b9d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a193-20050731-facts.json",
+      "bytes": 4868,
+      "sha256": "40f8318f107d298f7c349f539f358807c71ad599f5a51d6fabe263ae2d965620"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a267-20150725-facts.json",
+      "bytes": 5590,
+      "sha256": "1368e79ddf273d21df042e72f78506a70a30499340146c00279167c0d2e300e6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-pledge-held-20050803-facts.json",
+      "bytes": 4503,
+      "sha256": "cda4ce70a0645724f39ebaf8f4d98e96b774fcb22e6d45fb0c6864bbe92acac7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-pledge-held-20150123-facts.json",
+      "bytes": 5109,
+      "sha256": "6512ee89ff65813d82324d34745fcbf07e40fcd6b7ad7c8f7d6a164abf6b7fe0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json",
+      "bytes": 5126,
+      "sha256": "d8cf1b0b817833a648042f342c14a2229dc0c78922477391e3ea85d916e33d74"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-45.md",
+      "bytes": 8004,
+      "sha256": "bfc8ced21d1be08cacba3dc9dadbfb77709deba50992202a69ba2f906d2b5ffb"
+    },
+    {
+      "path": "tools/avatars/test_saudi_executive_c01_06.py",
+      "bytes": 32735,
+      "sha256": "c08e2aacff9f4449ce6de12c7d51aea06dd01d4526d85b0fe735831cc5cae440"
+    },
+    {
+      "path": "tools/avatars/test_saudi_kings_crown_princes_c01_45.py",
+      "bytes": 28897,
+      "sha256": "fa900c567cc05138e2771ea0e8397abfb7673f80f18233830791ccc93e0b9c43"
+    },
+    {
+      "path": "tools/avatars/test_saudi_shura_allegiance_c01_25.py",
+      "bytes": 75310,
+      "sha256": "6de03e12141ad98b13e81c9df5cb5f8fd8c511e23aa2f24b56591903994de239"
+    }
+  ],
+  "new_source_ids": [
+    "sa_embassy_fahd_delegates_19960101",
+    "sa_embassy_fahd_resumes_19960222",
+    "sa_spa_cp_abdullah_obs_20050730",
+    "sa_spa_order_a193_20050731",
+    "sa_spa_pledge_held_20050803",
+    "sa_spa_order_a136_20061020",
+    "sa_spa_allegiance_law_art24_20061020",
+    "sa_spa_order_a175_20071029",
+    "sa_spa_nayef_hajj_reception_20111107",
+    "sa_spa_salman_cp_pledge_directive_20120618",
+    "sa_spa_order_a145_20140520",
+    "sa_spa_pledge_held_20150123",
+    "sa_spa_muqrin_cp_obs_20150428",
+    "sa_spa_order_a267_20150725",
+    "sa_spa_order_a128_20170225",
+    "sa_spa_mbs_pledge_held_20170621",
+    "sa_spa_mbs_cabinet_20260901",
+    "sa_spa_king_order_judges_20260904"
+  ],
+  "new_claim_ids": [
+    "sa_fahd_king_obs_19960101",
+    "sa_abdullah_cp_obs_19960101",
+    "sa_fahd_delegation_19960101",
+    "sa_fahd_chairs_cabinet_19960212",
+    "sa_fahd_delegation_ended_19960221",
+    "sa_abdullah_cp_obs_20050730",
+    "sa_fahd_king_order_a193_20050731",
+    "sa_a193_signed_on_behalf_20050731",
+    "sa_citizen_pledge_held_20050803",
+    "sa_tuwaijri_sg_appointed_a136_20061020",
+    "sa_abdullah_king_order_a136_20061020",
+    "sa_allegiance_law_art24_secretary",
+    "sa_sultan_cp_obs_a175_20071029",
+    "sa_sultan_deputized_a175_20071029",
+    "sa_nayef_cp_obs_20111107",
+    "sa_salman_cp_obs_20120618",
+    "sa_salman_cp_pledge_scheduled_20120618",
+    "sa_abdullah_king_order_a145_20140520",
+    "sa_salman_cp_obs_a145_20140520",
+    "sa_salman_deputized_a145_20140520",
+    "sa_citizen_pledge_held_20150123",
+    "sa_muqrin_cp_obs_20150428",
+    "sa_salman_king_order_a267_20150725",
+    "sa_mbn_cp_obs_a267_20150725",
+    "sa_mbn_deputized_a267_20150725",
+    "sa_mbn_cp_obs_a128_20170225",
+    "sa_mbn_deputized_a128_20170225",
+    "sa_mbs_pledge_held_20170621",
+    "sa_mbs_cp_obs_20260901",
+    "sa_salman_king_obs_20260904"
+  ],
+  "country": "SaudiArabia",
+  "source_counts": {
+    "before": 103,
+    "after": 121
+  },
+  "claim_counts": {
+    "before": 158,
+    "after": 188
+  },
+  "prior103_source_objects_unchanged": true,
+  "prior158_claims_unchanged": true,
+  "all_prior_holder_objects_and_boundaries_unchanged": true,
+  "all_organizations_unchanged": true,
+  "all_other_roles_unchanged": true,
+  "research_cutoff": "2026-09-07",
+  "institution_changes": [
+    "sa_crown: additive sources, claims, holder observations and unresolved coverage",
+    "sa_succession_commission: additive secretary sources, claims and holder; bounded qualifiers"
+  ],
+  "no_runtime_or_art_changes": true,
+  "generated_index_excluded": true,
+  "initial_import_checkpoint": "The no-commit cherry-pick stopped on a modify/delete conflict for the absent claim handoff. Added the exact submitted handoff as an authored path before committing; no unrelated files imported.",
+  "later_integration": "Parent regenerates source attribution, gap ledger, boundary matrix and combined index after acceptance; this receipt does not certify those future changes."
+}

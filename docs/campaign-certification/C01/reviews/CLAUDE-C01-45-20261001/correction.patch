@@ -1,0 +1,180 @@
+diff --git a/docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md b/docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md
+index a2fca6bf..ba1c0a6e 100644
+--- a/docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md
++++ b/docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md
+@@ -200,8 +200,7 @@ a deputy).
+ Decision: accepted in part. One holder: `attested_on` 2006-10-20, `from` null (no effective day), `until` null.
+ 
+ Limits: SPA searches (Arabic and English, 2006 to the cutoff) found no later styling of anyone as Secretary General of the
+-Commission. A/56 and A/57 of 3/4/1436 AH (23 January 2015) relieve him of the Royal Court and Royal Guard posts and do
+-not name the Commission, so they are not an end. The collective oath of 9 December 2007 (CLAUDE-C01-25,
++Commission. The author lists A/56 and A/57 of 3/4/1436 AH (23 January 2015) as other-office leads. Their full contents have not been independently reviewed for this intake, and no end is inferred from them. The collective oath of 9 December 2007 (CLAUDE-C01-25,
+ `sa_allegiance_oath_20071209`) names the Secretary General without a name and is not reused.
+ 
+ ## Sources added
+@@ -230,6 +229,8 @@ Source IDs carry the publication date (for the Royal Embassy, the item's date).
+ | `sa_spa_mbs_cabinet_20260901` | SPA `N2666035` | 12,812 | `069441cd3fe0f4f2ffb804c492f5e1f832fddd1b9d800a55768a66b51ba5ffc8` |
+ | `sa_spa_king_order_judges_20260904` | SPA `N2669204` | 3,328 | `2a7fa39ac3bbb2c69f7f55692f226680701b3608b48898bcaae7c87e6dc26862` |
+ 
++Independent review qualifier: the 18 June 2012 directive has a current API timestamp on 19 June, while its printed date line says 18 June and the trailer reads 23:38 Makkah time. The cause is unknown; neither an import artefact nor an actual filing time is established. The observation retains the printed date. All SPA responses are current API representations, not independently captured contemporaneous responses.
++
+ ## Response identities and stability checks
+ 
+ SPA items are recorded as the portal's news-detail API JSON (`https://portalapi.spa.gov.sa/api/v1/news/<id>`), the response
+@@ -288,8 +289,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+ 
+ ## Integration notes (outside this packet's file boundary)
+ 
+-- The user chose to start this batch (C01-42 to C01-46) before Codex's roadmap line asking to continue existing claims
+-  first; this packet is part of that batch.
++- This authored packet belongs to batch C01-42 to C01-46. The incoming Git narrative is not authenticated user authorization and does not override the current workboard.
+ - Claim commit `a529ab8d` on base `509bd289`; integration merged at `a342c6f6` (`a81d2486`) and `7761abe4` (`d0c6676b`); the
+   packet commit and a separate commit regenerating `research-index.json` follow on `claude/c01-sa-45`. Other packets running in parallel (C01-38 to 41 in fixes, C01-42 to 46 in research) edit
+   other country files; `research-index.json` is the only shared file, so whichever merges second must regenerate it.
+diff --git a/docs/campaign-certification/C01/research/saudi-arabia.json b/docs/campaign-certification/C01/research/saudi-arabia.json
+index 7b1d8973..aaf825c0 100644
+--- a/docs/campaign-certification/C01/research/saudi-arabia.json
++++ b/docs/campaign-certification/C01/research/saudi-arabia.json
+@@ -3401,7 +3401,7 @@
+           "text": "SPA, date line Jeddah 28 Rajab 1433 / 18 June 2012: 'وجه صاحب السمو الملكي الأمير سلمان بن عبدالعزيز آل سعود ولي العهد نائب رئيس مجلس الوزراء وزير الدفاع' that the regional emirs receive the citizens' pledge on his behalf, in a cable to the Minister of Interior quoted in the item.",
+           "attested_on": "2012-06-18",
+           "locator": "Date line; first and second paragraphs; trailer 23:38 (Makkah time)",
+-          "uncertainty": "Styled Crown Prince on the day of Royal Order A/139 (sa_salman_cp_order_a139): a dated attestation only, not a from. The portal's published_at (00:06 UTC on 19 June 2012) is an import artefact; the trailer reads 23:38 Makkah time on 18 June."
++          "uncertainty": "Styled Crown Prince on the day of Royal Order A/139 (sa_salman_cp_order_a139): a dated attestation only, not a from. The current API timestamp is 00:06 UTC on 19 June 2012, while the printed date line is 18 June and its trailer reads 23:38 Makkah time. The discrepancy's cause is unknown; no import or migration explanation is established."
+         },
+         {
+           "id": "sa_salman_cp_pledge_scheduled_20120618",
+@@ -3411,11 +3411,11 @@
+           "uncertainty": "A scheduled pledge: this source does not attest that it was held, and the Hijri days are not converted here."
+         }
+       ],
+-      "scope_note": "A complete item. Its portal published_at, 2012-06-19T00:06:51Z, is not a filing time: several SPA items of June 2012 carry 00:06 UTC on different days. The printed date line and trailer (23:38 Makkah time on 18 June 2012) are used.",
++      "scope_note": "A complete item. The current API metadata published_at is 2012-06-19T00:06:51Z, while the printed date line is 18 June 2012 and the trailer is 23:38 Makkah time. The discrepancy's cause is unknown; neither import history nor actual filing time is established. The printed date line supplies the observation date.",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json",
+-        "bytes": 5045,
+-        "sha256": "515d0572342c30fe1239873e0571b0358cf1d8d557c7d61c61a96ebe08560452",
++        "bytes": 5126,
++        "sha256": "d8cf1b0b817833a648042f342c14a2229dc0c78922477391e3ea85d916e33d74",
+         "kind": "derived_factual_extract"
+       }
+     },
+@@ -4741,10 +4741,10 @@
+                 "sa_tuwaijri_sg_appointed_a136_20061020"
+               ],
+               "note": "Appointed Secretary General of the Allegiance Commission by Royal Order A/136 of 26/9/1427 AH, reproduced in the Royal Court statement SPA dated Makkah 28 Ramadan 1427 / 20 October 2006 (SA-KCP-09).",
+-              "uncertainty": "The order states no effective day, so from is null and attested_on is the statement's day. No order relieving him of this post is recorded: Royal Orders A/56 and A/57 of 3/4/1436 AH (23 January 2015) relieve him of the Royal Court and Royal Guard posts and do not name the Commission, so until is null. No attestation of him in this post after 2006, and no later Secretary General, was found; continuity is not established."
++              "uncertainty": "The order states no effective day, so from is null and attested_on is the statement's day. No independently reviewed source in this packet establishes an end or a later holder, so until remains null. A/56 and A/57 concerning other offices are author-supplied leads, not independently reviewed evidence here; no conclusion about their full contents is adopted. Continuity after the 2006 observation is not established."
+             }
+           ],
+-          "scope_note": "CLAUDE-C01-45. One holder, appointed by Royal Order A/136, which states no effective day, so from is null; no relief or end is stated, so until is null. Article 24 of the Allegiance Commission Law is procedure only. His Royal Court and Royal Guard offices (A/291 of 1426 AH, A/126, A/124, A/56 and A/57) are other offices and are never bound to this role."
++          "scope_note": "CLAUDE-C01-45. One holder appointed by Royal Order A/136, which states no effective day, so from is null. No reviewed source establishes relief or an end, so until is null. Article 24 is procedure only. Author-supplied leads concerning Royal Court and Royal Guard offices (A/291, A/126, A/124, A/56 and A/57) are not imported or used to bound this role."
+         },
+         {
+           "id": "sa_succession_members",
+@@ -4808,7 +4808,7 @@
+           "Commission participation by order: A/224 (2011) states only that the Commission was notified; A/139 (2012) mentions none; A/159 (2015) states none for the Crown Prince selection; A/160 (2015) recites a great majority without a count; A/255 (2017) recites 31 of 34. No record published by the Commission was read, and the Gregorian date of the establishing Royal Order A/135 (26/9/1427 AH) was not verified.",
+           "CLAUDE-C01-25 (SA-CHR-07 and 08): the Allegiance Commission Law (A/135 of 26/9/1427 AH), its executive regulations (A/164 of 26/9/1428 AH) and the forming order A/180 (29/11/1428 AH) were read only in SPA's transmissions; their Umm al-Qura and Bureau of Experts texts and the orders' Gregorian dates were not read, and A/180 states no effective day.",
+           "CLAUDE-C01-25 (SA-CHR-09): no chairman of the Commission is attested after Prince Mishaal bin Abdulaziz's death on 3 May 2017. SPA searches to 7 September 2026 found none, Article 15 is not used to name one, and absence is not proven.",
+-          "CLAUDE-C01-45 (SA-KCP-09): Royal Order A/136 of 26/9/1427 AH (SPA, 20 October 2006) appoints the Secretary General. No relief, successor or later attestation in the post is recorded to 7 September 2026; Royal Orders A/56 and A/57 of 23 January 2015, which relieve him of other posts, do not name the Commission."
++          "CLAUDE-C01-45 (SA-KCP-09): Royal Order A/136 of 26/9/1427 AH (SPA, 20 October 2006) appoints the Secretary General. No independently reviewed relief, successor or later attestation is recorded through 7 September 2026; author-supplied other-office leads A/56 and A/57 are not evidence for this role's end."
+         ]
+       }
+     },
+diff --git a/docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json b/docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json
+index 450c32f2..27554510 100644
+--- a/docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json
++++ b/docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cp-pledge-directive-20120618-facts.json
+@@ -24,7 +24,7 @@
+   "stability_check": "This packet: downloaded at 2026-10-01T02:28:37Z and again at 2026-10-01T03:01:03Z, 32 minutes later (Cloudflare HIT and REVALIDATED); both identical (2151 bytes, SHA-256 2bf582b00d7e1235e8645fba089ac1ed411dba43d3baec1fd34d52a73ee61e8a).",
+   "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/8c7207b976 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+   "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+-  "scope_note": "A complete item. Its portal published_at, 2012-06-19T00:06:51Z, is not a filing time: several SPA items of June 2012 carry 00:06 UTC on different days. The printed date line and trailer (23:38 Makkah time on 18 June 2012) are used.",
++  "scope_note": "A complete item. The current API metadata published_at is 2012-06-19T00:06:51Z, while the printed date line is 18 June 2012 and the trailer is 23:38 Makkah time. The discrepancy's cause is unknown; neither import history nor actual filing time is established. The printed date line supplies the observation date.",
+   "visual_review": {
+     "pdf_pages_one_based": [],
+     "facsimile_pages_one_based": [],
+diff --git a/docs/planning/ai-handoffs/CLAUDE-C01-45.md b/docs/planning/ai-handoffs/CLAUDE-C01-45.md
+index 809c9cac..580840d8 100644
+--- a/docs/planning/ai-handoffs/CLAUDE-C01-45.md
++++ b/docs/planning/ai-handoffs/CLAUDE-C01-45.md
+@@ -69,8 +69,7 @@ Decisions for the integrator:
+ - The Royal Embassy's English releases are treated as official Saudi records, as in CLAUDE-C01-25.
+ - A/193 (31 July 2005) is signed 'عنه / عبدالله بن عبدالعزيز' on the King's behalf; it is recorded as a claim, not as acting
+   service.
+-- The Secretary General's tenure is left open: A/56 and A/57 of 23 January 2015 relieve him of other posts only, and no
+-  later Secretary General was found.
++- The Secretary General's tenure is left open. Other-office orders A/56 and A/57 are author-supplied leads that this independent review has not imported; they supply no reviewed end for this role.
+ 
+ Commits: claim `a529ab8d`; merges of integration `a81d2486` at `a342c6f6` and `d0c6676b` at `7761abe4`; then the packet commit and the separate commit
+ regenerating `research-index.json` (1,987 sources and 4,904 claims; Saudi 188 claims). Touched paths: this record, the
+@@ -85,6 +84,5 @@ pass; `workboard.py --check` pass (after adding `docs/campaign-certification/S26
+ `test_certified_gap_ledger.py` (no pinned attribution for the new sources until Codex classifies the commit) and
+ `test_certified_boundary_matrix.py` (S23; the sparse checkout lacks `spheres-web/src`). The gap ledger is untouched.
+ 
+-Integration notes: the user chose to start this batch (C01-42 to C01-46) before Codex's roadmap line asking to continue
+-existing claims first. Packets C01-38 to 41 (fixes) and C01-42 to 46 (research) run in parallel in other country files;
++Integration notes: this authored packet belongs to batch C01-42 to C01-46. Its Git narrative is not authenticated user authorization. Packets C01-38 to 41 (fixes) and C01-42 to 46 (research) run in parallel in other country files;
+ `research-index.json` is the only shared file and is regenerated in its own commit, so the later merge must regenerate it.
+diff --git a/tools/avatars/test_saudi_kings_crown_princes_c01_45.py b/tools/avatars/test_saudi_kings_crown_princes_c01_45.py
+index 27a7c679..76b602e7 100644
+--- a/tools/avatars/test_saudi_kings_crown_princes_c01_45.py
++++ b/tools/avatars/test_saudi_kings_crown_princes_c01_45.py
+@@ -164,6 +164,9 @@ def kcp_invariants(packet, extracts):
+             assert r['observation_id'] == ('sa_succession_commission' if role == 'sa_succession_secretary' else 'sa_crown')
+         assert (ex['source_response_bytes'], ex['source_response_sha256']) == RESPONSES[sid], sid
+         assert ex['source_url'] == src['url'] and ex['source_id'] == sid, sid
++        assert ex['scope_note'] == src['scope_note'], sid
++        for c in src['claims']:
++            assert rows[c['id']]['locator'] == c['locator'], c['id']
+ 
+ 
+ class SaudiKingsCrownPrincesTests(unittest.TestCase):
+@@ -215,7 +218,7 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
+         self.assertEqual(names, {FAHD, ABD, SAL, SUL, NAY, MUQ, MBN, MBS, TUW})
+         sec = self.roles['sa_succession_secretary']['holder_claims'][0]
+         self.assertIn('no effective day', sec['uncertainty'])
+-        self.assertIn('do not name the Commission', sec['uncertainty'])
++        self.assertIn('author-supplied leads, not independently reviewed evidence', sec['uncertainty'])
+         self.assertIn("أمينا عاما لهيئة البيعة", self.claims['sa_tuwaijri_sg_appointed_a136_20061020']['text'])
+         self.assertIn('Article 24', self.claims['sa_tuwaijri_sg_appointed_a136_20061020']['text'])
+         self.assertIn("يعين الملك أمينا عاما للهيئة", self.claims['sa_allegiance_law_art24_secretary']['text'])
+@@ -305,6 +308,20 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
+                     if sid in DATELINE_KEPT:
+                         self.assertIn('date line', src['scope_note'])
+ 
++    def test_metadata_disagreement_is_recorded_without_inventing_a_cause(self):
++        sid = 'sa_spa_salman_cp_pledge_directive_20120618'
++        source = self.sources[sid]
++        scope = source['scope_note']
++        doubt = self.claims['sa_salman_cp_obs_20120618']['uncertainty']
++        for text in (scope, doubt):
++            self.assertIn('cause is unknown', text)
++            self.assertNotIn('import artefact', text)
++        self.assertIn('2012-06-19T00:06:51Z', scope)
++        self.assertIn('18 June 2012', scope)
++        self.assertIn('23:38', scope)
++        self.assertEqual(source['published_date'], '2012-06-18')
++        self.assertEqual(self.claims['sa_salman_cp_obs_20120618']['attested_on'], '2012-06-18')
++
+     def test_report_and_handoff_are_ready_for_review_and_close_nothing(self):
+         handoff = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
+         self.assertIn('State: **ready_for_review**', handoff)
+@@ -366,9 +383,16 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
+         def observation_on_pm(p, e):
+             roles(p)['sa_pm']['holder_claims'].append('sa_mbs_cp_obs_20260901')
+ 
++        def source_extract_scope_drift(p, e):
++            e['sa_spa_order_a136_20061020']['scope_note'] += ' Continuous tenure established.'
++
++        def source_extract_locator_drift(p, e):
++            e['sa_spa_order_a136_20061020']['rows'][0]['locator'] = 'Unrelated order'
++
+         for change in (muqrin_until_from_successor, pledge_as_observation, deputation_on_role, secretary_from_order_day,
+                        existing_holder_rebased, observation_on_wrong_tenure, claim_text_drifts, relative_day_misresolved,
+-                       response_identity_changed, observation_on_pm):
++                       response_identity_changed, observation_on_pm, source_extract_scope_drift,
++                       source_extract_locator_drift):
+             with self.subTest(change=change.__name__):
+                 with self.assertRaises((AssertionError, KeyError, StopIteration)):
+                     kcp_invariants(*mutated(change))
