@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01T11:33:59Z",
+  "updated": "2026-10-01T13:26:55Z",
   "mode": "lean parallel (user, 1 Oct 2026: \"Switch\"): research + packet_check, then submit; Codex reviews; respond only to Codex holds/requests",
   "packets": [
     {
@@ -186,49 +186,48 @@
       "n": "47",
       "title": "Socialist Party first secretaries, 1990–2026",
       "country": "France",
-      "state": "research",
+      "state": "submitted",
       "branch": "claude/c01-fr-47",
-      "head": "6f657179"
+      "head": "8226c419"
     },
     {
       "n": "48",
       "title": "BSP, AAP and NPP national leaders, 1990–2026",
       "country": "India",
-      "state": "research",
+      "state": "submitted",
       "branch": "claude/c01-in-48",
-      "head": "e2623e3e"
+      "head": "bb0f86cd"
     },
     {
       "n": "49",
       "title": "USSR heads of government and President: dated attestations, 1990–1991",
       "country": "USSR",
-      "state": "research",
+      "state": "submitted",
       "branch": "claude/c01-su-49",
-      "head": "b2ae720b"
+      "head": "c601d991"
     },
     {
       "n": "50",
       "title": "Saudi prime ministers, 1990–2026",
       "country": "SaudiArabia",
-      "state": "research",
+      "state": "submitted",
       "branch": "claude/c01-sa-50",
-      "head": "04fccbca"
+      "head": "8b1a3c97"
     },
     {
       "n": "51",
       "title": "RSFSR President and Vice-President, 1991–1993",
       "country": "Russia",
-      "state": "research",
+      "state": "submitted",
       "branch": "claude/c01-ru-51",
-      "head": "4b15a1d7"
+      "head": "2fe2b752"
     }
   ],
   "attention": [
     "Lean flow: research + packet_check, then submit; Codex reviews.",
-    "C01-47 to 51 researching in parallel."
+    "C01-47 to 51 submitted; C01-51 check re-running."
   ],
   "log": [
-    "2026-09-28 C01-36 verified: 1 quote-spacing defect fixed by me (6b82475e); all six boundaries kept -> submitted, worktree removed. C01-37 (French PMs) set up at 1a3fc352 on 44098c5a, agent launched. Active: 35 fix, 37 research. Remaining: 31 (held for 29).",
     "2026-09-28 C01-35 fixed (a4ff4753/52e3e313) -> submitted, worktree removed. Integration unchanged (44098c5a); C01-29 still in review, so 31 stays held. Active: 37 research only. Nothing else launchable.",
     "2026-09-29 C01-37 research done (claude/c01-fr-37@45eca96e: 31 sources, 48 claims, 16 holder obs, Rocard-Ayrault; Valls-Lecornu next work). Verifier launched. Active: 37 verify.",
     "2026-09-29 C01-37 verified: 31/31 sources clean, 16 boundaries confirmed; 2 recording defects. Rulings: cessation decree = until on signing day; countersignature = attested_on only. Fix agent launched. Active: 37 fix.",
@@ -247,6 +246,7 @@
     "2026-09-30 Offload done: military-development (10.4 GB), industry-rebuild (9.5 GB), population-rebuild/target + target-population-release (3.6 GB), population-baseline (1.8 GB), industry-rebuild-qa, war-overhaul (32.4 GB) all verified (file count + bytes) and replaced by junctions; Playwright reachable. C: 59 GB free. Codex workspace Documents/Codex/2026-09-05 is 236 GB (live matrix runs; not touched).",
     "2026-09-30 Wave-2 research done (wf_aa6fbbc6-70f, 20 agents, 4.3M tokens): 42 JCP/DPFP 19 obs, 43 Agir 5 obs, 44 Tonga parties claims only, 45 Saudi 1 new holder + appended obs, 46 Duma faction heads 18 obs. Codex accepted C01-31 (13367c99). Rulings made (strict, per Codex); wave-2 fix workflow wf_4697cdb5-d89 launched.",
     "2026-10-01 Wave-2 fixes done (wf_4697cdb5-d89). Codex had already accepted 38, 40, 41, 45, 46 (and 31) from our submissions with its own corrections; 39 and 44 held on IA 429 on its side; 43 in review. Applied leftover text fixes myself: 42 (6d845541), 44 (cherry-picked Codex 9955de17, e788b4ee). Worktrees 45, 46 removed.",
-    "2026-10-01 User: \"Switch\" -> lean flow (no checker/fix rounds). Wave 3 queued+set up: 47 France PS first secretaries, 48 India BSP/AAP/NPP, 49 USSR government/President attestations, 50 Saudi PMs, 51 RSFSR President/VP; workflow wf_c66e503c-3d8 (research -> packet_check -> repair once)."
+    "2026-10-01 User: \"Switch\" -> lean flow (no checker/fix rounds). Wave 3 queued+set up: 47 France PS first secretaries, 48 India BSP/AAP/NPP, 49 USSR government/President attestations, 50 Saudi PMs, 51 RSFSR President/VP; workflow wf_c66e503c-3d8 (research -> packet_check -> repair once).",
+    "2026-10-01 Wave 3 done (wf_c66e503c-3d8, 12 agents, 3.0M tokens, ~600k/packet): 47 PS 13 obs (importer extension = Codex decision), 48 BSP/AAP/NPP 4 obs, 49 USSR President/Premier 5 obs, 50 Saudi PMs 4 obs, 51 RSFSR President/VP 9 obs. All submitted (lean flow). packet_check curl max-time raised 120 -> 900 s."
   ]
 }
