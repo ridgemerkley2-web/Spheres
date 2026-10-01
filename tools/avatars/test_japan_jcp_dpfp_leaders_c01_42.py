@@ -23,7 +23,7 @@ T_EXEC = '幹部会委員長 — Executive Committee chair'
 T_CENTRAL = '中央委員会議長 — Central Committee chair'
 T_DPFP = '代表 — party representative'
 
-# The packet's sources before this packet (CLAUDE-C01-31, the stacked base, ends at 503).
+# The accepted sources before this packet (CLAUDE-C01-31 ends at 503).
 EARLIER_SOURCE_COUNT = 503
 
 GROUPS = ['jp_shugiin_group_20260218_011',
@@ -534,20 +534,8 @@ OTHER_PEOPLE = ['大塚耕平', '古川元久']
 
 SURNAMES = {'宮本顕治': '宮本', '不破哲三': '不破', '志位和夫': '志位', '玉木雄一郎': '玉木'}
 
-# Days that are never a holder's day for that office: elections, 'new' stylings, withdrawals, rule changes, the earlier
-# party's events, suspensions and stated term ends.
-NEVER_HOLDER_DATE = {'jp_jcp_executive_committee_chair': {'1997-09-23', '2006-01-12', '2006-01-15', '2000-11-24', '1997-09-25'},
- 'jp_jcp_central_committee_chair': {'2000-11-20', '1997-09-25', '1997-09-26', '2006-01-14', '2006-01-15'},
- 'jp_dpfp_representative': {'2018-05-07',
-                            '2018-09-04',
-                            '2020-09-11',
-                            '2020-09-15',
-                            '2020-12-18',
-                            '2023-09-02',
-                            '2023-09-30',
-                            '2024-12-04',
-                            '2025-03-03',
-                            '2026-09-30'}}
+# Calendar coincidences do not determine evidence kind. Exact submitted dates
+# remain pinned by HOLDERS and EVENTS in leaders_invariants.
 
 # On each day with several new claims, exactly these event kinds stay separate claims.
 TRANSITIONS = {'1997-09-26': ['central_committee_plenum_election',
@@ -648,7 +636,7 @@ def leaders_rules(packet, rows):
             day = dated[0]
             assert day > previous, (rid, name, 'holders stay in chronological order')
             previous = day
-            assert day <= research.CUTOFF and day not in NEVER_HOLDER_DATE[rid], (rid, name, day)
+            assert day <= research.CUTOFF, (rid, name, day)
             if holder in earlier:
                 continue
             assert name in PEOPLE_BY_ROLE[rid], (rid, name)
@@ -1033,6 +1021,25 @@ class JapanJcpDpfpLeadersTests(unittest.TestCase):
                          ('jp_jcp_miyamoto_absence_reported_19970923', '1997-09-26')):
             with self.subTest(redated=cid), self.assertRaises(AssertionError):
                 leaders_invariants(mutated(lambda p: claim(p, cid).update(attested_on=day)), self.rows)
+
+    def test_calendar_collision_uses_evidence_kind_not_a_date_blacklist(self):
+        # Synthetic control only: this changes no submitted claim or historical observation.
+        # The generic rule should allow an independently attested office on a day
+        # that also has election evidence; the exact fixture must still reject it.
+        packet, rows = copy.deepcopy(self.packet), copy.deepcopy(self.rows)
+        cid = 'jp_jcp_shii_executive_chair_report_20010529'
+        day = '2000-11-24'
+        holder = next(h for h in roles_of(packet)[EXEC]['holder_claims'] if cid in h['claim_ids'])
+        claim = next(c for s in packet['sources'] for c in s['claims'] if c['id'] == cid)
+        holder['attested_on'] = claim['attested_on'] = rows[cid]['attested_on'] = day
+        claim['text'] = rows[cid]['text'] = 'Synthetic independent office attestation for 志位和夫; no historical claim.'
+        leaders_rules(packet, rows)
+        with self.assertRaises(AssertionError):
+            leaders_invariants(packet, rows)
+        # A consistently dated election still cannot support that holder.
+        rows[cid]['event_kind'] = 'central_committee_plenum_election'
+        with self.assertRaises(AssertionError):
+            leaders_rules(packet, rows)
 
     def test_report_and_handoff_close_no_parent_gate(self):
         self.assertIn('ready_for_review', self.report)

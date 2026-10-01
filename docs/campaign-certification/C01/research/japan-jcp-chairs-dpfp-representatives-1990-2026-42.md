@@ -4,8 +4,8 @@ Packet: **CLAUDE-C01-42**. State: **ready_for_review** (not complete).
 Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-jp-42`, claimed (`60107819`) on the then-pending
 `claude/c01-jp-31` (CLAUDE-C01-31, Komeito representatives, merged with integration `509bd289` in `861cd268`). Base: integration
 `13367c99`. The packet is **no longer stacked**: Codex accepted CLAUDE-C01-31 into integration (`13367c99`), and that head was
-merged before the packet commits (merge commit `c478d66e`, confirmed: its tree equals `13367c99`). Checker fixes and Ridge's
-rulings of 1 October 2026 (UTC) are recorded under [Checker fixes](#checker-fixes) and [Decisions](#decisions).
+merged before the packet commits (merge commit `c478d66e`, confirmed: its tree equals `13367c99`). Checker fixes and the authored
+proposals of 1 October 2026 (UTC) are recorded under [Checker fixes](#checker-fixes) and [Decisions](#decisions).
 Research access: 1 October 2026 (UTC). The historical cutoff stays **7 September 2026**.
 
 This packet extends three existing party roles: `jp_jcp_executive_committee_chair` (幹部会委員長) and
@@ -219,7 +219,7 @@ and continues in the standing Presidium.
 Decision: accepted in part. 不破哲三 is observed as 議長 on 12 January 2006 (issue date) and 志位和夫 as 委員長 on 14 January 2006; the
 withdrawal is a claim, and no until is stored.
 
-Limits: no source states the day 不破哲三's office ended. Ridge's ruling (b) keeps the withdrawal a dated claim with no `until`
+Limits: no source states the day 不破哲三's office ended. The conservative selection policy keeps the withdrawal a dated claim with no `until`
 (Codex's strict rule, review 1739eccb); the 24th Congress first-plenum communiqué (しんぶん赤旗, 15 January 2006) is listed as a lead.
 
 ### JCP-06 — 2010-2020: 志位和夫's re-elections
@@ -242,7 +242,7 @@ and their inaugural greetings.
 
 Decision: accepted in part, for claims only: an earlier organization with the same name and its co-representative office.
 
-Limits: under Ridge's ruling (a) the arrangement stays claims only; work order `C01-Japan-DPFP-002` is proposed to base the
+Limits: under the conservative organization-identity policy the arrangement stays claims only; work order `C01-Japan-DPFP-002` is proposed to base the
 earlier party on its own record (this founding-convention page of 7 May 2018).
 
 ### DPFP-02 — 2018-2020: the earlier 国民民主党's representative and its dissolution
@@ -254,7 +254,7 @@ greeting.
 
 Decision: accepted in part, for claims only.
 
-Limits: none of these feeds `jp_dpfp_representative`; under Ridge's ruling (a) they stay claims only, and `C01-Japan-DPFP-002`
+Limits: none of these feeds `jp_dpfp_representative`; under the conservative organization-identity policy they stay claims only, and `C01-Japan-DPFP-002`
 is proposed to base the earlier party on its own record.
 
 ### DPFP-03 — September-December 2020: the new 国民民主党
@@ -403,7 +403,7 @@ recorded `url` exactly, with **no Accept-Encoding request header and no automati
   which repeat recorded facts.
 - Wikipedia, encyclopaedias, news sites and web search results, used for discovery only (including the congress dates).
 - The 24th Congress first-plenum communiqué (第１回中央委員会総会について, しんぶん赤旗, 15 January 2006), which may state the day
-  不破哲三's withdrawal as 中央委員会議長 took effect (Ridge's ruling (b)); not fetched or imported.
+  不破哲三's withdrawal as 中央委員会議長 took effect (a proposed evidence lead); not fetched or imported.
 - After the cutoff: nothing is recorded after 7 September 2026.
 
 ## Sources attempted
@@ -422,14 +422,14 @@ recorded `url` exactly, with **no Accept-Encoding request header and no automati
 
 | # | Decision | Reason |
 |---|---|---|
-| D1 | The 国民民主党 of 2018-2020 and its offices (共同代表, 代表) are claims only | The existing role scope note excludes earlier organizations with the same name; the party itself calls it 旧・国民民主党 and dissolved it before founding the new party; Ridge's ruling (a) |
+| D1 | The 国民民主党 of 2018-2020 and its offices (共同代表, 代表) are claims only | The existing role scope note excludes earlier organizations with the same name; the party itself calls it 旧・国民民主党 and dissolved it before founding the new party; organization continuity remains unproved |
 | D2 | 不破哲三's 24 November 2000 acceptance gives `attested_on`, not `from` | Codex's review 988d5379 kept 竹谷とし子's comparable acceptance as a dated observation |
-| D3 | 不破哲三's January 2006 withdrawal gives no `until` | Neither the report nor the closing address prints the day the office ended; Ridge's ruling (b), under Codex's strict rule (review 1739eccb) |
-| D4 | 宮本議長 in the chair's own 1994 report and in the 1997 diary attests 中央委員会議長 | A party record naming him by the office's short title; the 1997 名誉議長 is kept as another office; Ridge's ruling (c) |
+| D3 | 不破哲三's January 2006 withdrawal gives no `until` | Neither the report nor the closing address prints the day the office ended; the evidence is retained without inferring an effective end |
+| D4 | 宮本議長 in the chair's own 1994 report and in the 1997 diary attests 中央委員会議長 | A party record naming him by the office's short title; the 1997 名誉議長 is kept as another office; this is a dated title observation, not a term boundary |
 | D5 | The 2006 opening address is dated by the issue date (12 January 2006) | The page prints no day for the address (CLAUDE-C01-29, CLAUDE-C01-31) |
 | D6 | The 2024 suspension and 古川元久's acting service are claims only | The pipeline's rule: acting or interim service is claims only; a suspension is not an end |
 
-Ruling questions for Codex, decided by Ridge on 1 October 2026 (Codex may still decide otherwise):
+Authored proposals and Git observations, recorded on 1 October 2026. These are not authenticated user rulings; the independent review evaluates their evidence separately:
 
 - **(a)** The 国民民主党 of May 2018 to September 2020 stays claims only. Work order `C01-Japan-DPFP-002` is proposed to base it
   on its own record, the founding-convention page of 7 May 2018 (`jp_dpfp_2018_founding_convention_20180507`).
@@ -451,21 +451,20 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `C01-Japan-JCP-003`: first-plenum records naming the chair elected in 2006, 2010 and 2014, beginning with the 24th Congress
   first-plenum communiqué (しんぶん赤旗, 15 January 2006), and the party's statement of when a chair's office begins and ends.
 - `C01-Japan-DPFP-002`: base the 国民民主党 of 2018-2020 on its own record, the founding-convention page of 7 May 2018
-  (`jp_dpfp_2018_founding_convention_20180507`), as its own organization observation (Ridge's ruling (a)).
+  (`jp_dpfp_2018_founding_convention_20180507`), as its own organization observation (an unregistered proposal).
 - `C01-Japan-DPFP-003`: a contemporaneous party record of 古川元久's acting service (December 2024), as a claim.
 
 ## Integration notes (outside this packet's file boundary)
 
 - **Base (no longer stacked):** the claim commit `60107819` (the handoff only) sits on `861cd268`, the merge of integration
   `509bd289` into the then-pending `claude/c01-jp-31` (CLAUDE-C01-31). Codex then accepted CLAUDE-C01-31 into integration
-  (`13367c99`, which also registered this claim), so the packet is no longer stacked (ruling (e)). Before the packet commits that
+  (`13367c99`, which also registered this claim), so the packet is no longer stacked (Git observation (e)). Before the packet commits that
   head was merged (merge commit `c478d66e`); every conflict, all in CLAUDE-C01-31's own files (`japan.json`, its report, test, four
   extracts and handoff, `research-index.json`, the S10d test) or in Codex's registration of this record, was resolved by taking the
-  integration copy unchanged, and the merge is confirmed (ruling (d)): its tree equals `13367c99`. This packet's commits follow;
+  integration copy unchanged, and the merge is confirmed (Git observation (d)): its tree equals `13367c99`. This packet's commits follow;
   CLAUDE-C01-31's accepted content is unchanged, and its pins are re-expressed exactly. `packet_check.py 42` is run with
   `--base origin/codex/campaign-certification`.
-- **Order of work:** the user chose to start this batch of research packets before Codex's roadmap line
-  'continue existing claims first'; this packet is one of that batch.
+- **Order of work:** the authored exception to 'continue existing claims first' is not treated as authenticated user authorization. This packet receives an independently authorized source review.
 - `japan.json` changes are additions only: 32 sources appended after CLAUDE-C01-31's; on `jp_sangiin_pr_2025_01` and
   `jp_sangiin_pr_2025_07`, the three existing roles gain holders (in date order before the originals, which are unchanged),
   `sources` and `claim_ids` (appended) and one appended sentence of scope note; each organization's `sources` and `claim_ids` are
@@ -510,7 +509,7 @@ had not moved (`13367c99`). Each text was checked against the recorded capture, 
 4. `jp_jcp_central_committee_chair` scope note: the clause on the plenums of 2006-2020 now says what the sources show: the 2006
    personnel report records the decision to have no chair ('議長をおかずに'), the 2017 and 2020 first-plenum lists name no Central
    Committee chair, and no first-plenum record naming the officers was found for 2010 or 2014.
-5. Ridge's rulings (a)-(e) are recorded under [Decisions](#decisions), with the lead and work order they name.
+5. Authored proposals (a)-(e) are recorded under [Decisions](#decisions), with the lead and proposed work order they name; no user authorization is inferred.
 
 The extracts carry no title field (the field set of CLAUDE-C01-31's extracts), so fixes 1 and 2 change `japan.json` and this
 report only; fix 3 changes one extract. No holder, date, source identity, claim id or count changes.

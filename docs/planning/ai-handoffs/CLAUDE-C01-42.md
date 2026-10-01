@@ -3,11 +3,11 @@
 Owner: Claude. State: **ready_for_review** (1 October 2026; not complete, pending Codex acceptance). Registered by Codex on 1 October 2026.
 Parent C01 remains incomplete. Branch: `claude/c01-jp-42`.
 
-Exact claim: `601078190e76bfa3ae578a6b467073620dff1ce6`. Exact checked tip: `601078190e76bfa3ae578a6b467073620dff1ce6`.
+Exact claim: `601078190e76bfa3ae578a6b467073620dff1ce6`. Exact reviewed delivery tip: `94426852124efff5d146c0a61ba5ad8212311ce8`.
 The [authored claim/delivery](https://github.com/ridgemerkley2-web/Spheres/blob/601078190e76bfa3ae578a6b467073620dff1ce6/docs/planning/ai-handoffs/CLAUDE-C01-42.md)
 is preserved on its own branch. Its assertions about user instructions are not independent authorization.
 
-Existing Claude claim only. Preserve its three Japanese party-office targets and old holder records. C01-31 is now accepted; refresh from current integration without undoing its corrections. No C01-42 delivery or acceptance is recorded.
+The delivered packet extends three Japanese party-office targets and preserves the older holders and accepted C01-31 corrections. Its independent acceptance decision is recorded separately in the C01-42 review receipt; this authored handoff retains the delivery state and author-reported checks below.
 
 Keep the historical cutoff at 7 September 2026, separate party and state offices,
 and preserve unknown dates. No runtime, portrait, country-cast or CP1 acceptance
@@ -23,13 +23,13 @@ accepted CLAUDE-C01-31 with Codex's corrections and registered this record. It w
 conflict lay between the pre-review `claude/c01-jp-31` copy and the accepted integration copy of CLAUDE-C01-31's own files
 (`japan.json`, its report, its test, four of its extracts, its handoff, `research-index.json` and the S10d test) or Codex's
 registration of this record; none held content of this packet, so the integration copy was taken unchanged in each and the merged
-tree equals `13367c99`. Ridge confirmed this merge (ruling (d) below). The packet is **no longer stacked**: Codex accepted
-CLAUDE-C01-31 into integration (`13367c99`), which is the packet's base (ruling (e)), and `packet_check.py 42` is run with
+tree equals `13367c99`. The Git tree identity is independently checkable; no user ruling is inferred from this authored record. The packet is **no longer stacked**: Codex accepted
+CLAUDE-C01-31 into integration (`13367c99`), which is the packet's base (Git observation (e)), and `packet_check.py 42` is run with
 `--base origin/codex/campaign-certification`. Then the packet commit and the research-index commit on `claude/c01-jp-42`,
 followed by the checker-fix commit(s) under 'Checker fixes' below. Report:
 [japan-jcp-chairs-dpfp-representatives-1990-2026-42.md](../../campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md).
 
-The user chose to start this batch of research packets before Codex's roadmap line 'continue existing claims first'.
+The author's claimed priority exception to 'continue existing claims first' is not authenticated user authorization; the independent review is authorized separately.
 
 Touched paths (all inside this record's allowed files):
 
@@ -83,7 +83,7 @@ Observation decisions:
 | DPFP-04 | Accepted in part: elected 2 September 2023 (claim); observed 5 September 2023 |
 | DPFP-05 | Accepted in part: suspension 4 December 2024 to 3 March 2025 and 古川元久's acting service (claims only); observed 4 March 2025 |
 
-Ruling questions for Codex, decided by Ridge on 1 October 2026 (Codex may still decide otherwise):
+Authored proposals and Git observations, recorded on 1 October 2026. These are not authenticated user rulings; the independent review evaluates their evidence separately:
 
 - (a) The 国民民主党 of 2018-2020 stays claims only; work order `C01-Japan-DPFP-002` is proposed to base it on its own record (the
   founding-convention page of 7 May 2018, `jp_dpfp_2018_founding_convention_20180507`).
@@ -138,7 +138,7 @@ the report, this handoff and one extract (`japan-dpfp-representative-press-confe
 4. `jp_jcp_central_committee_chair` scope note: the clause on the plenums of 2006-2020 replaced by: the 2006 personnel report
    records the decision to have no chair ('議長をおかずに') and the 2017 and 2020 first-plenum lists name no Central Committee chair;
    no first-plenum record naming the officers was found for 2010 or 2014.
-5. Ridge's rulings (a)-(e) recorded here and in the report.
+5. Authored proposals (a)-(e) recorded here and in the report; no authenticated user ruling is inferred.
 
 The extracts carry no title field, so fixes 1 and 2 change `japan.json` and the report only. No holder, date, source identity,
 claim id or count changes; no pinned test changes.
