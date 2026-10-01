@@ -33,10 +33,12 @@ async function main(){
   const get=async route=>{const r=await page.request.get(url+route);assert(r.ok(),route);return r.json();};
   const state=()=>get('/api/state'),government=()=>get('/api/government?nation=Tonga');
   let capture=0;
-  async function archive(){const sequence=++capture,slot='tonga-proof-'+(sequence%2),r=await page.request.post(url+'/api/save',{data:{slot}});assert(r.ok());const v=JSON.parse(fs.readFileSync(path.join(run,'saves',slot+'.json'),'utf8'));delete v.saved_unix;(evidence.archive_hashes??=[]).push({sequence,slot,sha256:hash(JSON.stringify(v))});return v;}
-  async function openGovernment(){await page.locator('#govBtn').click();await page.locator('#govScreen').waitFor({state:'visible'});await page.locator('#gov-tab-institutions').click();await page.locator('[data-gov-section="institutions"]').waitFor();}
+  async function archive(){const sequence=++capture,slot='tonga-proof-'+(sequence%2),r=await page.request.post(url+'/api/save',{data:{slot}});assert(r.ok());const text=contract.archiveText(fs.readFileSync(path.join(run,'saves',slot+'.json'),'utf8'));(evidence.archive_hashes??=[]).push({sequence,slot,sha256:hash(text)});return text;}
+  async function openGovernment(){await page.waitForFunction(()=>S?.player==='Tonga'&&!SESSION.busy&&SESSION.live?.session_id===S.session_id);await page.locator('#govBtn').click();await page.locator('#govScreen').waitFor({state:'visible'});await page.locator('#gov-tab-institutions').click();await page.locator('[data-gov-section="institutions"]').waitFor();}
   async function load(slot){
-   await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#campaignHome').waitFor({state:'visible'});await page.locator('#openSavesBtn').click();
+   await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#campaignHome').waitFor({state:'visible'});
+   const live=await state();await page.waitForFunction(session=>SESSION.live?.session_id===session&&SESSION.live.player==='Tonga'&&!SESSION.busy,live.session_id);
+   await page.locator('#openSavesBtn').click();
    await page.locator('#saveSlots option[value="'+slot+'"]').waitFor({state:'attached'});await page.locator('#saveSlots').selectOption(slot);await page.locator('#loadBtn').click();
    await page.locator('#campaignConfirmDialog').waitFor({state:'visible'});const response=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/load'&&r.request().method()==='POST');
    await page.locator('#campaignConfirmAccept').click();const r=await response;assert(r.ok());assert.equal(r.request().postDataJSON().slot,slot);

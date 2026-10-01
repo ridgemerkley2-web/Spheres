@@ -24,4 +24,11 @@ function board(data,date){
 function unappointed(b){assert.equal(b.reformed,false);assert.deepEqual(b.people_representatives,[]);assert.deepEqual(b.nonelected_ministers,[]);assert.equal(b.prime_minister?.person.id,OPENING_PM);assert.equal(b.prime_minister.appointment.reason,'opening_reference');assert.equal(b.prime_minister.appointment.selected_on,null);}
 function appointed(b){assert.equal(b.reformed,true);assert.deepEqual(b.people_representatives.map(e=>e.person.id).sort(),IDS.slice(0,2));assert.equal(b.prime_minister?.person.id,IDS[1]);assert.equal(b.prime_minister.appointment.reason,'assembly_recommendation_and_royal_appointment');assert.deepEqual(b.nonelected_ministers.map(e=>e.person.id),[IDS[2]]);}
 function actionIndex(data,type,extra={}){const rows=data.actions.map((a,i)=>({a,i})).filter(({a})=>a.command?.kind==='tonga_institutions'&&a.command.action?.type===type&&Object.entries(extra).every(([k,v])=>a.command.action[k]===v));assert.equal(rows.length,1,'Exactly one authoritative action must match '+type);return rows[0].i;}
-module.exports={KING,OPENING_PM,IDS,CASES,fixtureManifest,board,unappointed,appointed,actionIndex};
+function archiveText(text){
+  // storage::Campaign serializes saved_unix as its final top-level member.
+  // Keep every other original byte, including native u64 values JS cannot round-trip.
+  assert(text.startsWith('{"format":"spheres-campaign","version":1,'),'Expected the native compact campaign envelope');
+  const suffix=/,"saved_unix":[0-9]+}$/;assert(suffix.test(text),'Native final top-level timestamp missing or envelope format changed');
+  return text.replace(suffix,',"saved_unix":0}');
+}
+module.exports={KING,OPENING_PM,IDS,CASES,fixtureManifest,board,unappointed,appointed,actionIndex,archiveText};

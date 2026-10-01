@@ -11,3 +11,14 @@ test('date-only fixtures fail if browsing has seated someone or invented appoint
 test('accepted appointments require distinct elected representatives, PM and minister',()=>{const b=c.board(sample(),'2026-09-08');b.reformed=true;b.people_representatives=c.IDS.slice(0,2).map(id=>({person:{id}}));b.prime_minister={person:{id:c.IDS[1]},appointment:{reason:'assembly_recommendation_and_royal_appointment'}};b.nonelected_ministers=[{person:{id:c.IDS[2]}}];c.appointed(b);b.people_representatives.push({person:{id:c.IDS[3]}});assert.throws(()=>c.appointed(b));});
 test('action selection rejects duplicates and distinguishes vacancy office',()=>{const a=office=>({command:{kind:'tonga_institutions',action:{type:'vacate',office,person_id:c.IDS[1]}}});const s={actions:[a('prime_minister'),a('peoples_representative')]};assert.equal(c.actionIndex(s,'vacate',{office:'prime_minister',person_id:c.IDS[1]}),0);s.actions.push(a('prime_minister'));assert.throws(()=>c.actionIndex(s,'vacate',{office:'prime_minister'}));});
 test('fixture manifest rejects swapped dates, duplicate cases, other source and path escape',()=>{const revision='a'.repeat(40),m={version:1,fixture:'tonga-authored-date-browser',source_revision:revision,days_advanced:0,scope:'This is not historical chronology.',cases:Object.entries(c.CASES).map(([name,date])=>({name,file:name+'.json',date,player:'Tonga',days_advanced:0,institutions:{date}}))};c.fixtureManifest(m,revision);for(const mutate of [m=>m.source_revision='b'.repeat(40),m=>m.cases[0].date='1990-01-01',m=>m.cases[0].file='../save.json',m=>m.cases[1]=copy(m.cases[0]),m=>m.days_advanced=1]){const bad=copy(m);mutate(bad);assert.throws(()=>c.fixtureManifest(bad,revision));}});
+test('archive equality preserves adjacent native u64 integers that JavaScript rounds together',()=>{
+ const first='{"format":"spheres-campaign","version":1,"world":{"rng":9007199254740992},"saved_unix":123}';
+ const next=first.replace('9007199254740992','9007199254740993');assert.deepEqual(JSON.parse(first),JSON.parse(next),'Demonstrate the former false-equality mechanism');
+ assert.notEqual(c.archiveText(first),c.archiveText(next));assert.equal(c.archiveText(first),c.archiveText(first.replace('"saved_unix":123','"saved_unix":456')));
+});
+test('archive normalization changes only the final top-level native timestamp',()=>{
+ const original='{"format":"spheres-campaign","version":1,"world":{"saved_unix":44},"saved_unix":123}';
+ assert.equal(c.archiveText(original),'{"format":"spheres-campaign","version":1,"world":{"saved_unix":44},"saved_unix":0}');
+ assert.notEqual(c.archiveText(original),c.archiveText(original.replace('"saved_unix":44','"saved_unix":45')));
+ for(const bad of ['{"format":"spheres-campaign","version":1,"world":{"saved_unix":123}}',original+'\n',original.replace(',"saved_unix":123','')])assert.throws(()=>c.archiveText(bad));
+});

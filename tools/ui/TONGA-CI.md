@@ -28,6 +28,10 @@ It checks the 2026-09-07 cutoff, first fictional day, inclusive 2035 endpoint an
 2036 refusal of new appointments while existing incumbents remain. Kalolo stays
 a fictional reference with no office action. Reviews/cancellations preserve the
 complete saved world/history; Save/Load and reload/Continue preserve it too.
+Equality uses the exact native serialized text, replacing only the final
+top-level `saved_unix` value. Native 64-bit integers retain every digit, and
+nested fields are never normalized. Load waits for the actual discovered live
+session before asserting the normal replacement confirmation.
 Every successful order uses the normal review token and command receipt channel,
 spends the quoted political capital and preserves the Crown identity. No advance
 request, synthetic API response, direct browser state mutation or forced click is
