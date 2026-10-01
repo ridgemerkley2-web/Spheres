@@ -1,0 +1,83 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_jcp_21st_congress_diary_19970926",
+  "source_url": "https://web.archive.org/web/20010718222448id_/http://www.jcp.or.jp/jcp/21taikai/21nissi.html",
+  "original_url": "http://www.jcp.or.jp/jcp/21taikai/21nissi.html",
+  "archive_capture_utc": "2001-07-18T22:24:48Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 6152,
+  "source_response_sha256": "faae9295cb3e43b31c80ba87adef9629b684109084fca8026c0f5c663e242806",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "DPW5NBUM73EBHAVVHXFXMEQO2C5JM7HE",
+  "source_character_encoding": "Shift_JIS (decoded as cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20010718222448id_/http://www.jcp.or.jp/jcp/21taikai/21nissi.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-07-18T22:24:48Z; that form replays the archived bytes unchanged. Researcher: first downloaded on 2026-10-01 (UTC) at 02:42:16Z. Downloaded again by this packet at 2026-10-01 04:07:17Z (UTC), 85 minutes after the first download, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Internet Archive sends gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party site's diary of the 21st Congress, held 22-26 September 1997, recording each day's proceedings with times.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_jcp_miyamoto_absence_reported_19970923",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-02",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": "宮本顕治",
+      "role_title": "中央委員会議長 — Central Committee chair",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-09-23",
+      "text": "The party's diary of the 21st Congress records on the second day, the 23rd, at 17:59 that the presiding officer reported the absence of 宮本議長 ('執行議長から宮本議長欠席について報告').",
+      "locator": {
+        "section": "第２日（２３日）, 午後５時５９分"
+      }
+    },
+    {
+      "claim_id": "jp_jcp_rules_amendment_adopted_19970926",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-02",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": null,
+      "role_title": "中央委員会議長 — Central Committee chair",
+      "event_kind": "party_rules_amended",
+      "attested_on": "1997-09-26",
+      "text": "It records on the final day, the 26th, at 10:26 the unanimous adoption of the partial amendment of the party rules ('党規約の一部改定を全員一致で採択').",
+      "locator": {
+        "section": "第５日（２６日）最終日, 午前１０時２６分"
+      }
+    },
+    {
+      "claim_id": "jp_jcp_honorary_chair_introduced_19970926",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-02",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": null,
+      "role_title": "名誉議長 — honorary chair of the Central Committee (another office; claims only)",
+      "event_kind": "honorary_office_conferred",
+      "attested_on": "1997-09-26",
+      "text": "It records at 12:46 on the 26th the approval and introduction of the honorary chair, honorary Presidium members and advisers ('名誉議長、名誉幹部会委員・顧問の承認・紹介'), and at 13:32 the announcement of the new three principal officers ('新三役').",
+      "locator": {
+        "section": "第５日（２６日）最終日, 午後０時４６分 and 午後１時３２分"
+      }
+    },
+    {
+      "claim_id": "jp_jcp_fuwa_closing_address_diary_19970926",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-02",
+      "role_id": "jp_jcp_executive_committee_chair",
+      "holder_name": "不破哲三",
+      "role_title": "幹部会委員長 — Executive Committee chair",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-09-26",
+      "text": "It records the closing address by 不破委員長 at 13:55 on the 26th, after the first plenum of the new Central Committee ('閉会あいさつ・不破委員長').",
+      "locator": {
+        "section": "第５日（２６日）最終日, 午後１時５５分"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the 日本共産党 Executive Committee chair (幹部会委員長) and Central Committee chair (中央委員会議長) and of the 国民民主党 representative (代表), for CLAUDE-C01-42 only, 1990-2026. Congress and plenum elections, in-office attestations, withdrawals, honorary offices, rule procedure, suspensions, acting service, the earlier 国民民主党 of 2018-2020 and its offices, and organization events stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the row names no holder of this office (an organization event, procedure, another office, acting service or an election that names nobody). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded; organization identities stay unresolved, and no row maps or merges the 国民民主党 of 2018-2020 with the 2025 election-list observation or any other organization."
+}

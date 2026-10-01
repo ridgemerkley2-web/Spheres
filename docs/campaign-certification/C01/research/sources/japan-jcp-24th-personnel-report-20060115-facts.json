@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_jcp_24th_personnel_report_20060115",
+  "source_url": "https://web.archive.org/web/20070209031400id_/http://www.jcp.or.jp/akahata/aik4/2006-01-15/2006011502_02_0.html",
+  "original_url": "http://www.jcp.or.jp/akahata/aik4/2006-01-15/2006011502_02_0.html",
+  "archive_capture_utc": "2007-02-09T03:14:00Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 14225,
+  "source_response_sha256": "f362e25e69d4f70634d8b0376f19e51c57ab8cf33943a0c42c6d7bd5c10ba070",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "6QRSJWA323P6MYXPMQMPVRNHKAFGFV4M",
+  "source_character_encoding": "Shift_JIS (decoded as cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20070209031400id_/http://www.jcp.or.jp/akahata/aik4/2006-01-15/2006011502_02_0.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2007-02-09T03:14:00Z; that form replays the archived bytes unchanged. Researcher: first downloaded on 2026-10-01 (UTC) at 03:25:56Z. Downloaded again by this packet at 2026-10-01 04:09:44Z (UTC), 44 minutes after the first download, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Internet Archive sends gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party organ's text, in its issue of 15 January 2006, of a Central Committee member's report to the 24th Congress on how the first plenum's personnel were chosen; the page prints no day for the report or the plenum.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_jcp_fuwa_withdrawal_accepted_reported_20060115",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-05",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": "不破哲三",
+      "role_title": "中央委員会議長 — Central Committee chair",
+      "event_kind": "withdrawal_accepted_reported",
+      "attested_on": "2006-01-15",
+      "text": "The report says 不破議長 asked the personnel subcommittee to let him withdraw from the office of chair ('議長から退くことを是非認めてほしい'), that the subcommittee accepted it and decided to have no chair ('議長をおかずに、三役体制でいくことを確認し'), and that the standing Presidium approved his withdrawal at its meeting at the end of December ('常任幹部会では、不破同志が議長から退くこと、新しい三役案について、慎重な検討のうえ承認し').",
+      "locator": {
+        "section": "paragraphs on the personnel subcommittee and the standing Presidium"
+      }
+    },
+    {
+      "claim_id": "jp_jcp_24th_first_plenum_three_officers_elected_20060115",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-05",
+      "role_id": "jp_jcp_executive_committee_chair",
+      "holder_name": null,
+      "role_title": "幹部会委員長 — Executive Committee chair",
+      "event_kind": "central_committee_plenum_election",
+      "attested_on": "2006-01-15",
+      "text": "It says the first plenum, just held, unanimously elected the new three principal officers on the outgoing standing Presidium's proposal ('一中総ではこの提案を検討し、全員一致で新しい三役を選出しました'); the printed text omits their names ('（略）').",
+      "locator": {
+        "section": "paragraph on the first plenum"
+      }
+    },
+    {
+      "claim_id": "jp_jcp_fuwa_offices_recalled_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-05",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": "不破哲三",
+      "role_title": "中央委員会議長 — Central Committee chair",
+      "event_kind": "retrospective_office_reference",
+      "attested_on": null,
+      "text": "It recalls that 不破議長 was elected head of the Secretariat at the 11th Congress in 1970, Executive Committee chair at the 16th Congress in 1982 and Central Committee chair at the 22nd Congress in 2000 ('一九八二年の第十六回党大会で幹部会委員長に、二〇〇〇年の第二十二回党大会で中央委員会議長に選出され').",
+      "locator": {
+        "section": "paragraph on his earlier offices"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the 日本共産党 Executive Committee chair (幹部会委員長) and Central Committee chair (中央委員会議長) and of the 国民民主党 representative (代表), for CLAUDE-C01-42 only, 1990-2026. Congress and plenum elections, in-office attestations, withdrawals, honorary offices, rule procedure, suspensions, acting service, the earlier 国民民主党 of 2018-2020 and its offices, and organization events stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the row names no holder of this office (an organization event, procedure, another office, acting service or an election that names nobody). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded; organization identities stay unresolved, and no row maps or merges the 国民民主党 of 2018-2020 with the 2025 election-list observation or any other organization."
+}
