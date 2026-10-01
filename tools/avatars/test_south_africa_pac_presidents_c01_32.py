@@ -12,6 +12,7 @@ import unittest
 from urllib.parse import urlsplit
 
 import campaign_research as research
+from test_south_africa_da_federal_leaders_c01_39 import RESPONSES as C01_39_RESPONSES
 
 OBS = 'za_iec_n2024_039'
 NAME = 'PAN AFRICANIST CONGRESS OF AZANIA'
@@ -523,8 +524,10 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (38, 65))
         order = [s['id'] for s in self.packet['sources']]
-        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES))
-        self.assertEqual(order[EARLIER_SOURCE_COUNT:], NEW_SOURCES)
+        # CLAUDE-C01-39 appends its DA sources after these, pinned in its own test.
+        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + len(C01_39_RESPONSES))
+        self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], list(C01_39_RESPONSES))
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith(PREFIX)])
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (53, 11))
         self.assertEqual(list(EVENTS), self.new_claims)
@@ -686,12 +689,14 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
         self.assertIn('(CLAUDE-C01-32, ', self.org['coverage']['unresolved'][3])
         self.assertIn('unknown lifecycle or empty game mapping', self.org['coverage']['unresolved'][3])
         # The packet note sits after the CLAUDE-C01-09 and CLAUDE-C01-30 notes and before the CLAUDE-C01-21 and
-        # CLAUDE-C01-16 notes, which their own tests pin as the last two entries.
+        # CLAUDE-C01-16 notes, which their own tests pin as the last two entries; CLAUDE-C01-39 inserts its note between
+        # this one and them.
         unresolved = self.packet['coverage']['unresolved']
         self.assertEqual(sum('CLAUDE-C01-32' in u for u in unresolved), 1)
-        self.assertTrue(unresolved[-5].startswith('Heads of state 1990-2024 (CLAUDE-C01-09'))
-        self.assertTrue(unresolved[-4].startswith('ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30'))
-        self.assertTrue(unresolved[-3].startswith('PAC Presidents 1990-2026 (CLAUDE-C01-32'))
+        self.assertTrue(unresolved[-6].startswith('Heads of state 1990-2024 (CLAUDE-C01-09'))
+        self.assertTrue(unresolved[-5].startswith('ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30'))
+        self.assertTrue(unresolved[-4].startswith('PAC Presidents 1990-2026 (CLAUDE-C01-32'))
+        self.assertTrue(unresolved[-3].startswith('DA Federal Leaders 2000-2026 (CLAUDE-C01-39'))
         self.assertTrue(unresolved[-2].startswith('Deputy Presidents 1994-2026 (CLAUDE-C01-21'))
         self.assertTrue(unresolved[-1].startswith('ANC Presidents 1990-2026 (CLAUDE-C01-16'))
         for earlier in ('CLAUDE-C01-09', 'CLAUDE-C01-16', 'CLAUDE-C01-21', 'CLAUDE-C01-30'):
@@ -958,7 +963,7 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (11, 471))
+        self.assertEqual((country['role_observations'], country['source_claims']), (11, 500))
         self.assertEqual(country['mapping_pending'], 53)
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'SouthAfrica'}, {'open'})
         self.assertFalse(index['c01_complete'])

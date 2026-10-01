@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_da_dp_party_info_page_2000",
+  "source_url": "https://web.archive.org/web/20000413093038id_/http://www.dp.org.za:80/partyinfo.htm",
+  "original_url": "http://www.dp.org.za/partyinfo.htm",
+  "archive_capture_utc": "2000-04-13T09:30:38Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 24997,
+  "source_response_sha256": "1fa2a4293c185a617137699512ed60d16e6fcff9773bc15297bea00e8400d5c4",
+  "source_response_sha1_base32": "4GL2O2JUJK2QKFFFR2JMP6RMVVZAESDN",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-10-01T00:16:07Z; downloaded again at 2026-10-01T00:48:07Z, at least 30 minutes after the first, with the same byte count and SHA-256 (24997 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the Democratic Party's original page, captured at 2000-04-13T09:30:38Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.dp.org.za pages are no longer served). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 13 April 2000 of the DP website's \"Party Info\" page; the page carries no date of its own. The captures of 3 December 1998 and 10 February 1999 serve an earlier 24,990-byte version under a CDX digest that does not match the served bytes and are not used. A retrospective history of another organization: its claims sit on the DEMOCRATIC ALLIANCE observation with no role and set no identity, predecessor link or lifecycle. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_da_dp_formed_by_merger_retrospective",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "other_party_founding_retrospective",
+      "attested_on": null,
+      "printed_range": "\"April 8, 1989\" in an undated retrospective history (before the 1990 coverage period)",
+      "text": "The DP's \"Party Info\" page says \"The Democratic Party was formed on April 8, 1989, when the former Progressive Federal Party, Independent party and National Democratic Movement merged\".",
+      "locator": {
+        "section": "Party history, first paragraph"
+      }
+    },
+    {
+      "claim_id": "za_da_dp_leader_de_beer_retrospective",
+      "observation_id": "za_iec_n2024_027",
+      "review_observation": "ZA-DA-01",
+      "role_id": null,
+      "holder_name": "Zach de Beer",
+      "role_title": "Leader of the Democratic Party",
+      "event_kind": "other_party_leader_reference_retrospective",
+      "attested_on": null,
+      "printed_range": "undated retrospective history; no year printed for the reference",
+      "text": "The same page says \"DP leader Zach de Beer was chosen as the first Management Committee Chairman of Codesa\".",
+      "locator": {
+        "section": "Party history, negotiations paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "DA Federal Leader observations for CLAUDE-C01-39 only (role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation). Claims about the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance are claims about organizations with no role (role_id null) and set no identity, predecessor link or lifecycle; elections, result publications, congress sessions, resignations, vacancies, interim service, tributes and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

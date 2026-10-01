@@ -13,6 +13,7 @@ from urllib.parse import urlsplit
 
 import campaign_research as research
 from test_south_africa_pac_presidents_c01_32 import RESPONSES as C01_32_RESPONSES
+from test_south_africa_da_federal_leaders_c01_39 import RESPONSES as C01_39_RESPONSES
 
 ANC_ID = 'za_iec_n2024_014'
 # The CLAUDE-C01-16 ANC holders, unchanged by this packet (pinned literally to avoid a circular test import).
@@ -516,10 +517,12 @@ class SouthAfricaPartyLeadersTests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (39, 64))
         order = [s['id'] for s in self.packet['sources']]
-        # CLAUDE-C01-32 appends its PAC sources after these, pinned in its own test.
-        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + len(C01_32_RESPONSES))
+        # CLAUDE-C01-32 appends its PAC sources after these, and CLAUDE-C01-39 its DA sources after those, each pinned
+        # in its own test.
+        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + len(C01_32_RESPONSES)
+                         + len(C01_39_RESPONSES))
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
-        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], list(C01_32_RESPONSES))
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], list(C01_32_RESPONSES) + list(C01_39_RESPONSES))
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith(('za_acdp', 'za_ff', 'za_ifp'))])
         # CLAUDE-C01-32 adds one party-leader role (za_pac_president).
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (53, 11))
@@ -641,12 +644,14 @@ class SouthAfricaPartyLeadersTests(unittest.TestCase):
             self.assertIn('(CLAUDE-C01-30, ', org['coverage']['unresolved'][3], key)
             self.assertIn('unknown lifecycle or empty game mapping', org['coverage']['unresolved'][3], key)
         # The packet note sits after the CLAUDE-C01-09 note and before the CLAUDE-C01-32, CLAUDE-C01-21 and CLAUDE-C01-16
-        # notes; the last two are pinned by their own tests, and CLAUDE-C01-32 inserts its note between this one and them.
+        # notes; the last two are pinned by their own tests, and CLAUDE-C01-32 inserts its note between this one and them,
+        # and CLAUDE-C01-39 its note after the CLAUDE-C01-32 note.
         unresolved = self.packet['coverage']['unresolved']
         self.assertEqual(sum('CLAUDE-C01-30' in u for u in unresolved), 1)
-        self.assertTrue(unresolved[-5].startswith('Heads of state 1990-2024 (CLAUDE-C01-09'))
-        self.assertTrue(unresolved[-4].startswith('ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30'))
-        self.assertTrue(unresolved[-3].startswith('PAC Presidents 1990-2026 (CLAUDE-C01-32'))
+        self.assertTrue(unresolved[-6].startswith('Heads of state 1990-2024 (CLAUDE-C01-09'))
+        self.assertTrue(unresolved[-5].startswith('ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30'))
+        self.assertTrue(unresolved[-4].startswith('PAC Presidents 1990-2026 (CLAUDE-C01-32'))
+        self.assertTrue(unresolved[-3].startswith('DA Federal Leaders 2000-2026 (CLAUDE-C01-39'))
         self.assertTrue(unresolved[-2].startswith('Deputy Presidents 1994-2026 (CLAUDE-C01-21'))
         self.assertTrue(unresolved[-1].startswith('ANC Presidents 1990-2026 (CLAUDE-C01-16'))
         for earlier in ('CLAUDE-C01-09', 'CLAUDE-C01-16', 'CLAUDE-C01-21'):
@@ -876,7 +881,7 @@ class SouthAfricaPartyLeadersTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (11, 471))
+        self.assertEqual((country['role_observations'], country['source_claims']), (11, 500))
         self.assertEqual(country['mapping_pending'], 53)
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'SouthAfrica'}, {'open'})
         self.assertFalse(index['c01_complete'])

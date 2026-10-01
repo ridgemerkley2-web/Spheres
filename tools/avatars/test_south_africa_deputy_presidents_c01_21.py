@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 import campaign_research as research
 from test_south_africa_party_leaders_c01_30 import RESPONSES as C01_30_RESPONSES
 from test_south_africa_pac_presidents_c01_32 import RESPONSES as C01_32_RESPONSES
+from test_south_africa_da_federal_leaders_c01_39 import RESPONSES as C01_39_RESPONSES
 
 DP = 'za_deputy_president'
 PR, SP = 'za_president_election', 'za_state_president'
@@ -465,10 +466,12 @@ class SouthAfricaDeputyPresidentsTests(unittest.TestCase):
         order = [s['id'] for s in self.packet['sources']]
         # CLAUDE-C01-30 appends its ACDP, Freedom Front and IFP sources after these, pinned in its own test, and adds
         # three party-leader roles (za_acdp_president, za_ff_leader, za_ifp_president); CLAUDE-C01-32 appends its PAC
-        # sources after those and adds one role (za_pac_president).
-        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + len(C01_30_RESPONSES) + len(C01_32_RESPONSES))
+        # sources after those and adds one role (za_pac_president); CLAUDE-C01-39 appends its DA sources after those.
+        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + len(C01_30_RESPONSES) + len(C01_32_RESPONSES)
+                         + len(C01_39_RESPONSES))
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
-        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], list(C01_30_RESPONSES) + list(C01_32_RESPONSES))
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], list(C01_30_RESPONSES) + list(C01_32_RESPONSES)
+                         + list(C01_39_RESPONSES))
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (53, 11))
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = [cid for ids_ in HOLDER_CLAIMS for cid in ids_]
@@ -799,7 +802,7 @@ class SouthAfricaDeputyPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (11, 471))
+        self.assertEqual((country['role_observations'], country['source_claims']), (11, 500))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'SouthAfrica'}, {'open'})
         self.assertFalse(index['c01_complete'])
 
