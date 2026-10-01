@@ -923,7 +923,7 @@ class IndiaIncPresidentsTests(unittest.TestCase):
                          (['in_jd_president'], 22, 41))
         # CLAUDE-C01-40 appends the sources of the CPI(M) party role after those; its own test pins them.
         cpm, = [r for o in self.packet['organizations'] if o['id'] == 'in_eci_20240323_np_04' for r in o['roles']]
-        self.assertEqual((cpm['id'], len(cpm['sources']), len(cpm['claim_ids'])), ('in_cpm_general_secretary', 18, 24))
+        self.assertEqual((cpm['id'], len(cpm['sources']), len(cpm['claim_ids'])), ('in_cpm_general_secretary', 20, 26))
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + pm['sources'] + presidency['sources'] + NEW_SOURCES + bjp['sources']
                          + jd['sources'] + cpm['sources'])
