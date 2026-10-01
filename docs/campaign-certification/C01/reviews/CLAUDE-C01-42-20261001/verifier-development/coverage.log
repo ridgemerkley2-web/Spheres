@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\docs\campaign-certification\C01\reviews\CLAUDE-C01-42-20261001\verify.py", line 131, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\docs\campaign-certification\C01\reviews\CLAUDE-C01-42-20261001\verify.py", line 125, in main
+    if args.repo:repository_checks(args.repo,load('scope-review.json'))
+                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\docs\campaign-certification\C01\reviews\CLAUDE-C01-42-20261001\verify.py", line 60, in repository_checks
+    assert prior[field]==current[field],(oid,field)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('jp_sangiin_pr_2025_01', 'coverage')

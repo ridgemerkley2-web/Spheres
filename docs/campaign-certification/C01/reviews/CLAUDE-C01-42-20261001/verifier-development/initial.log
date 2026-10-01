@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\docs\campaign-certification\C01\reviews\CLAUDE-C01-42-20261001\verify.py", line 131, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\docs\campaign-certification\C01\reviews\CLAUDE-C01-42-20261001\verify.py", line 113, in main
+    assert (source['sha256'],source['bytes'],source['url'])==(row['sha256'],row['bytes'],row['url'])
+                                                                                         ~~~^^^^^^^
+KeyError: 'url'

@@ -1,0 +1,17 @@
+F
+======================================================================
+FAIL: test_calendar_collision_uses_evidence_kind_not_a_date_blacklist (test_japan_jcp_dpfp_leaders_c01_42.JapanJcpDpfpLeadersTests.test_calendar_collision_uses_evidence_kind_not_a_date_blacklist)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\tools\avatars\test_japan_jcp_dpfp_leaders_c01_42.py", line 1048, in test_calendar_collision_uses_evidence_kind_not_a_date_blacklist
+    leaders_rules(packet, rows)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-42-20261001\tools\avatars\test_japan_jcp_dpfp_leaders_c01_42.py", line 651, in leaders_rules
+    assert day <= research.CUTOFF and day not in NEVER_HOLDER_DATE[rid], (rid, name, day)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('jp_jcp_executive_committee_chair', '志位和夫', '2000-11-24')
+
+----------------------------------------------------------------------
+Ran 1 test in 0.371s
+
+FAILED (failures=1)

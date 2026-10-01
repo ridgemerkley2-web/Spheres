@@ -1,0 +1,21 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "docs/campaign-certification/C01/reviews/CLAUDE-C01-42-20261001/verify.py",
+    "--repo",
+    ".",
+    "--originals",
+    "D:\\spheres-offload\\codex-next-20260928\\c01-42-review-evidence-20261001",
+    "--require-accepted"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-42-20261001",
+  "started_utc": "2026-10-01T05:10:50.352434+00:00",
+  "duration_seconds": 3.477,
+  "exit_code": 1,
+  "log": "verifier-coverage.log",
+  "bytes": 911,
+  "sha256": "f15fff3380ea1cdee99804c70d0fde782190da0f2897e251c06e1669907655a1"
+}

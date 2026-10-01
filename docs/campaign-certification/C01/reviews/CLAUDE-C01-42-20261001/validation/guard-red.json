@@ -1,0 +1,18 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_japan_jcp_dpfp_leaders_c01_42.JapanJcpDpfpLeadersTests.test_calendar_collision_uses_evidence_kind_not_a_date_blacklist"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-42-20261001",
+  "started_utc": "2026-10-01T04:59:09.305042+00:00",
+  "duration_seconds": 0.649,
+  "exit_code": 1,
+  "log": "guard-red.log",
+  "bytes": 1168,
+  "sha256": "4f3b0ce3beff31e48bed65ed9146816ffe1fcf239d3543db4252299a5eb12993"
+}
