@@ -113,7 +113,7 @@ EVENTS = {
     'fr_ps_cambadelis_elected_by_conseil_national_20140415': ('2014-04-15', 'election_by_conseil_national', 'FR-PS-09'),
     'fr_ps_desir_left_for_government_2014': ('2014-04-19', 'departure_reported', 'FR-PS-08'),
     'fr_ps_cambadelis_listed_premier_secretaire_20140419': ('2014-04-19', 'in_office_listing', 'FR-PS-09'),
-    'fr_ps_cambadelis_cedes_place_2017': ('2017-06-17', 'resignation_announced', 'FR-PS-09'),
+    'fr_ps_cambadelis_cedes_place_2017': (None, 'resignation_announced', 'FR-PS-09'),
     'fr_ps_bureau_national_collegial_direction_20170620': ('2017-06-20', 'interim_arrangement', 'FR-PS-10'),
     'fr_ps_cambadelis_former_premier_secretaire_20170624': ('2017-06-24', 'former_holder_reference', 'FR-PS-09'),
     'fr_ps_collegial_direction_pending_20170624': ('2017-06-24', 'interim_arrangement', 'FR-PS-10'),
@@ -124,7 +124,7 @@ EVENTS = {
     'fr_ps_members_vote_20230119': ('2023-01-19', 'members_vote_result', 'FR-PS-11'),
     'fr_ps_recolement_result_20230122': ('2023-01-22', 'members_vote_result', 'FR-PS-11'),
     'fr_ps_faure_closes_conseil_national_20230311': ('2023-03-11', 'in_office_styling', 'FR-PS-11'),
-    'fr_ps_ratification_81e_congres_20250605': ('2025-06-05', 'members_vote_ratified', 'FR-PS-11'),
+    'fr_ps_ratification_81e_congres_20250605': (None, 'members_vote_ratified', 'FR-PS-11'),
     'fr_ps_page_faure_elected_20180315_retrospective': ('2018-03-15', 'election_retrospective', 'FR-PS-11'),
     'fr_ps_page_faure_reconduit_retrospective': (None, 'reelection_retrospective', 'FR-PS-11'),
 }
@@ -344,7 +344,7 @@ class FrancePsFirstSecretariesTests(unittest.TestCase):
         observations = re.findall(r'^### (FR-PS-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'FR-PS-{n:02d}' for n in range(1, 12)])
         self.assertEqual({row['review_observation'] for row in self.rows.values()}, {f'FR-PS-{n:02d}' for n in range(1, 12)})
-        # Elections, results and departures each keep a dated claim; acting and collective arrangements name no holder.
+        # Elections, results and departures keep separate claims with only supported dates; acting and collective arrangements name no holder.
         kinds = [kind for _, kind, _ in EVENTS.values()]
         self.assertEqual((sum(k in ELECTION_KINDS for k in kinds), sum(k in DEPARTURE_KINDS for k in kinds),
                           sum(k in INTERIM_KINDS for k in kinds), sum(k in HOLDER_KINDS for k in kinds)), (17, 7, 6, 14))
@@ -374,6 +374,31 @@ class FrancePsFirstSecretariesTests(unittest.TestCase):
                 self.assertRegex(self.claims[cid]['uncertainty'], r'never an end|gives no end|no end', cid)
             if kind in INTERIM_KINDS:
                 self.assertRegex(self.claims[cid]['uncertainty'], r'claims only|never a holder', cid)
+
+    def test_undated_announcements_do_not_borrow_issue_or_vote_days(self):
+        # The June issue covers 17–30 June and contains an explicitly dated 20 June report.
+        # Its interval start cannot date its undated resignation announcement.
+        self.assertIsNone(self.claims['fr_ps_cambadelis_cedes_place_2017']['attested_on'])
+        self.assertIsNone(self.sources['fr_ps_hebdo_867_20170617'].get('published_date'))
+        self.assertIsNone(self.extracts['fr_ps_hebdo_867_20170617']['published_date'])
+        self.assertEqual(self.claims['fr_ps_bureau_national_collegial_direction_20170620']['attested_on'], '2017-06-20')
+        self.assertIn('17 to 30 June 2017', self.sources['fr_ps_hebdo_867_20170617']['scope_note'])
+    def test_ratification_day_does_not_borrow_vote_day(self):
+        # The communiqué ratifies two earlier votes; neither is the unknown ratification day.
+        self.assertIsNone(self.claims['fr_ps_ratification_81e_congres_20250605']['attested_on'])
+        self.assertIn('27 May and 5 June 2025', self.claims['fr_ps_ratification_81e_congres_20250605']['text'])
+        for cid in ('fr_ps_cambadelis_cedes_place_2017', 'fr_ps_ratification_81e_congres_20250605'):
+            self.assertIsNone(self.rows[cid]['attested_on'])
+            self.assertNotIn(cid, {c for h in self.role['holder_claims'] for c in h['claim_ids']})
+        party_invariants(self.packet)
+
+    def test_flnks_locator_names_its_own_dated_item(self):
+        claim = self.claims['fr_ps_jospin_receives_flnks_19951018']
+        self.assertEqual(claim['attested_on'], '1995-10-18')
+        self.assertEqual(claim['locator'], {
+            'pdf_page_1_based': 14,
+            'item': "FLNKS delegation communiqué, lower-left column, dated '18 octobre'; not the adjacent '17 octobre' items"})
+        self.assertEqual(self.rows[claim['id']]['locator'], claim['locator'])
 
     def test_distinct_events_keep_distinct_claims(self):
         claims = self.claims

@@ -77,8 +77,7 @@ archives-socialistes.fr viewer marks records `allowDownload: false`, treated as 
 public and served without login, cookie or token; (3) Fabius's resignation at the comité directeur of 3 April 1993 and the
 no-confidence vote in Rocard of 19 June 1994 give no `until`; (4) elections by a competent body on a stated day are claims, not
 `from`; (5) holders without an event day are dated by the party weekly's printed issue date, and the 1997 communiqué by its issue;
-(6) Hollande's June 1997 statement dates Jospin as Premier secrétaire; (7) the 2025 ratification claim is dated by the 5 June 2025
-vote.
+(6) Hollande's June 1997 statement dates Jospin as Premier secrétaire; (7) independent review preserves the unknown ratification day rather than borrowing the 5 June 2025 vote date. The undated 2017 resignation report likewise does not borrow the start of the 17–30 June issue range. The Jospin FLNKS locator identifies its own 18 October item; all 13 holder rows are unchanged.
 
 Checks: import_cnccfp_census.py --check, campaign_research.py --check, campaign_census.py --check, the France (37), importer (10), research (79) and campaign (16) tests, the Node check (11) and `git diff --check` pass. `workboard.py --check` fails only because the sparse worktree lacks `docs/campaign-certification/S26/` (present at `5ea4f8fc`). `packet_check.py` reports the importer as outside the allowed paths (Decisions, 1). Outside the suite, `test_certified_gap_ledger.py` (no pinned attribution until Codex classifies the commit) and `test_certified_boundary_matrix.py` (needs `spheres-web/src`) are known failures. The gap ledger is untouched; the `packet_check.py 47` summary for the pushed head is returned to the pipeline.
 

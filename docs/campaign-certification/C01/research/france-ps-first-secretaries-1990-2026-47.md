@@ -97,7 +97,7 @@ The resulting holder observations, in date order, all on `fr_ps_first_secretary`
 | 2013-01-08 | Désir at Jarnac as Premier secrétaire | `fr_ps_desir_at_jarnac_20130108` | holder `attested_on` |
 | 2014-04-15 | Cambadélis elected by the Conseil national | `fr_ps_cambadelis_elected_by_conseil_national_20140415` | claim |
 | 2014-04-19 | Désir left for the government (retrospective); Cambadélis listed | `fr_ps_desir_left_for_government_2014`, `fr_ps_cambadelis_listed_premier_secretaire_20140419` | claim; holder `attested_on` |
-| 2017-06-17 | Cambadélis hands over to a collective direction (issue date; no day printed) | `fr_ps_cambadelis_cedes_place_2017` | claim; not an end |
+| unknown | Cambadélis hands over to a collective direction (issue covers 17–30 June; no announcement day printed) | `fr_ps_cambadelis_cedes_place_2017` | claim; not an end |
 | 2017-06-20 | Bureau national defers the collegial direction | `fr_ps_bureau_national_collegial_direction_20170620` | claim only |
 | 2017-06-24 | 'l'ancien Premier secrétaire'; collegial direction pending | `fr_ps_cambadelis_former_premier_secretaire_20170624`, `fr_ps_collegial_direction_pending_20170624` | claims |
 | 2018-03-15 | orientation-text vote; the party page's retrospective election day | `fr_ps_orientation_text_vote_20180315`, `fr_ps_page_faure_elected_20180315_retrospective` | claims |
@@ -107,7 +107,7 @@ The resulting holder observations, in date order, all on `fr_ps_first_secretary`
 | 2023-01-19 | members' vote (provisional result) | `fr_ps_members_vote_20230119` | claim |
 | 2023-01-22 | reviewed count (51,09 %) | `fr_ps_recolement_result_20230122` | claim |
 | 2023-03-11 | 'notre Premier secrétaire Olivier Faure' | `fr_ps_faure_closes_conseil_national_20230311` | holder `attested_on` |
-| 2025-06-05 | members' vote, ratified at the 81st congress (ratification day not printed) | `fr_ps_ratification_81e_congres_20250605` | claim |
+| unknown | ratification at the 81st congress of votes held 27 May and 5 June 2025 (ratification day not printed) | `fr_ps_ratification_81e_congres_20250605` | claim |
 | undated | re-elected at Villeurbanne (2021), Marseille (2023), Nancy (2025) | `fr_ps_page_faure_reconduit_retrospective` | claim (retrospective) |
 
 ## Observations
@@ -314,7 +314,7 @@ Decoded identities of the gzip captures: `fr_ps_site_congress_ratification_2025`
    issue (5 December 1997), not by its text.
 6. **Jospin, June 1997.** François Hollande's statement that Lionel Jospin 'reste Premier Secrétaire' is used as a party officer's
    dated statement (attested_on 1997-06-06); Hollande's own delegated office is claims only.
-7. **The 2025 ratification claim** is dated by the 5 June 2025 vote it says re-elected him; the ratification day is not printed.
+7. **The 2025 ratification claim** has no exact attestation day: 27 May and 5 June identify votes being ratified, not the ratification. The independent review also leaves the 2017 undated resignation report undated because the issue interval is not its announcement day.
 
 ## Integration notes
 
