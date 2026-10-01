@@ -1,9 +1,79 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "e1fe36e00fb3b7efd4f6e560eebf2617035ccfd2",
+  "generated_from": "e36af2862b192ef45de6b2c1e0f3f37676cadc1a",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
+      "br_agir_executiva_resolucao_01_2022_20221111": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_plenaria_nacional_capt20240301": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_agora_agir36_20210601": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_apoio_aecio_20140516": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_ata_executiva_20180703": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_comissao_executiva_capt20071020": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_comunicado_20210723": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_convencao_aracaju_20150728": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_edital_convencao_20180719": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_historia_partido_capt20071011": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_resolucao_001_2020_20200807": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_ptc_resolucao_02_2018_20180725": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_tse_glossario_partidos_capt20230325": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
+      "br_agir_tse_partidos_registrados_capt20260802": {
+        "commit": "0a6b571d",
+        "packet": "CLAUDE-C01-43",
+        "via": "extract_first_added"
+      },
       "br_agsen_20160512_senado_abre_processo": {
         "commit": "f71f2f2f",
         "packet": "CLAUDE-C01-10",
@@ -3385,10 +3455,70 @@
       }
     },
     "Japan": {
+      "jp_dpfp_2018_founding_convention_20180507": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_2018_party_dissolved_20200911": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_2018_representative_elected_20180904": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_2018_representative_press_conference_20180904": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_founding_convention_20200915": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_new_officers_20201223": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_representative_election_20201218": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_representative_election_20230902": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_representative_press_conference_20230905": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_representative_press_conference_20250304": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_dpfp_suspension_notice_20241204": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
       "jp_dpfp_tamaki_elected_2026": {
         "commit": "db53947a",
         "packet": "S10",
         "via": "source_id_first_seen"
+      },
+      "jp_dpfp_tamaki_video_comment_20201026": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
       },
       "jp_hc_agriculture_committee_19940706": {
         "commit": "50b9a800",
@@ -3610,10 +3740,110 @@
         "packet": "CLAUDE-C01-12",
         "via": "extract_first_added"
       },
+      "jp_jcp_21st_congress_diary_19970926": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_21st_congress_honorary_officers_19970926": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_21st_first_plenum_19970926": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_21st_rules_amendment_proposal_19970925": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_22nd_congress_closing_address_20001124": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_22nd_congress_opening_address_20001120": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_22nd_officers_20001124": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_23rd_congress_summation_20040117": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_23rd_first_plenum_20040117": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_24th_congress_closing_address_20060114": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_24th_congress_opening_address_20060112": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_24th_personnel_report_20060115": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_25th_congress_closing_address_20100116": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_26th_congress_summation_20140118": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_27th_congress_closing_address_20170118": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_27th_officers_20170118": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_28th_congress_closing_address_20200118": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_28th_officers_20200118": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
       "jp_jcp_chairs_2024": {
         "commit": "db53947a",
         "packet": "S10",
         "via": "source_id_first_seen"
+      },
+      "jp_jcp_programme_report_20th_congress_19940719": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
+      },
+      "jp_jcp_second_plenum_presidium_report_20010529": {
+        "commit": "3cfbefc5",
+        "packet": "CLAUDE-C01-42",
+        "via": "extract_first_added"
       },
       "jp_joint_committee_19980730": {
         "commit": "50b9a800",
@@ -8738,6 +8968,11 @@
         "packet": "CLAUDE-C01-04",
         "via": "extract_first_added"
       },
+      "to_ca_psa_pohiva_v_kot_20150916": {
+        "commit": "c19f86c0",
+        "packet": "CLAUDE-C01-44",
+        "via": "extract_first_added"
+      },
       "to_cabinet_2026": {
         "commit": "4643bd97",
         "packet": "S10",
@@ -9013,6 +9248,11 @@
         "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
+      "to_la_news_pga_award_20131214": {
+        "commit": "c19f86c0",
+        "packet": "CLAUDE-C01-44",
+        "via": "extract_first_added"
+      },
       "to_la_news_pm_designate_20211215": {
         "commit": "6af1e942",
         "packet": "CLAUDE-C01-24",
@@ -9051,6 +9291,11 @@
       "to_la_obituary_fusitua_20140505": {
         "commit": "6af1e942",
         "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_profile_pohiva_2016": {
+        "commit": "c19f86c0",
+        "packet": "CLAUDE-C01-44",
         "via": "extract_first_added"
       },
       "to_la_profile_tuilakepa_2011": {
@@ -9473,6 +9718,11 @@
         "packet": "CLAUDE-C01-36",
         "via": "extract_first_added"
       },
+      "to_pmo_20200317_ptoa_reply": {
+        "commit": "c19f86c0",
+        "packet": "CLAUDE-C01-44",
+        "via": "extract_first_added"
+      },
       "to_pmo_20200416_dpm_clarification": {
         "commit": "364c6f6d",
         "packet": "CLAUDE-C01-36",
@@ -9651,6 +9901,11 @@
       "to_tlr_2007": {
         "commit": "6af1e942",
         "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_tlr_2014_pohiva_v_tuivakano": {
+        "commit": "c19f86c0",
+        "packet": "CLAUDE-C01-44",
         "via": "extract_first_added"
       },
       "to_un_a61_pv1": {

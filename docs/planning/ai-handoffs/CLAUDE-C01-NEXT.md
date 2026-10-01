@@ -12,35 +12,23 @@ C01-31 packet and its scoped corrections; resolve the held Russia C01-28 and
 DA C01-39 source dependencies. National representative figures are retired from country selection.
 Use dated exact campaign identities.
 
-Current review update, 1 October 2026: C01-31/38/40/41 are accepted **bounded research
-intakes**. Komeito now has all 31 originals, 64 claims and fifteen holder observations
-reviewed; import `b74f4fa5` and [receipt `d4d3542b`](../../campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md)
-preserve the conservative Takeya boundary and locator corrections. Russia remains
-held at 65/68 originals and 133/137 claims; all 24 holder observations have been
-materially checked, leaving three originals / four claims. The preserved DA review
-of `9cb02c20` covers one original / one claim and held all eleven submitted holder
-observations. Latest follow-up `b66f8c07` adds a Zille 2007 observation, proposes
-Maimane's effective end as 23 October 2019 and repairs a quote apostrophe in
-`9e3d0b3c`. These changes are triaged, not accepted or fully content-reviewed. The
-same 24 original identities are recorded; 23 remain unverified, 28 claims and all
-twelve latest holder observations remain held. One HTTP 429 stopped the only pass;
-22 originals were not attempted. Review the added observation and proposed boundary
-before integration. No Russia or DA research is imported.
+Current review update, 1 October 2026: C01-31/38/40/41 and C01-42–46 are
+accepted **bounded research intakes**, including the separately reviewed India
+amendment. Japan42 adds 32 reviewed originals, Brazil43 adds 14, and Tonga44’s
+single missing original is now recovered: five originals/six organization claims,
+zero new holders. Its initial HTTP 429 receipt stays immutable. Saudi45’s latest
+follow-up tightens a date guard without changing history. All exact tips, source
+imports and review receipts are in the [current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md).
 
-The queue now records 28 completed bounded Claude tasks: C01-45 Saudi and C01-46
-State Duma have separate accepted reviews. Tonga C01-44 is a third held submission:
-four of five originals and five of six organization claims were read; one PMO
-original/claim returned HTTP 429. No C01-44 data is imported. C01-43 Brazil is newly
-submitted and unreviewed; C01-42 Japan remains claimed. All five existing claims
-are registered; use the current handoff for exact tips and acceptance receipts.
-[Combined review and follow-up checks](../../campaign-certification/C01/reviews/PENDING-2026-10-01/README.md)
-retain all earlier failures. Only two USSR test tightenings were adopted from the
-new France/USSR follow-ups; the 48 USSR tests and two before/after mutation checks
-pass without changing source scope. Coordinate further missing-only source review
-when normal service permits; no additional Archive requests belong to this pass.
-The dated inventory below remains earlier context; use the
-[current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md) and machine-readable queue for current
-action and exact revisions.
+The queue records **31 completed bounded Claude tasks and two held submissions**.
+Russia C01-28 still has three originals/four claims unresolved (65/68 originals,
+133/137 claims and all 24 observations checked). DA C01-39 still has 23 originals,
+28 claims and all twelve latest proposed observations unverified. Neither was
+retried in this pass. Preserve their original failures and later triage separately.
+Do not repeat accepted intake or widen research instead of finishing Tonga’s cast.
+
+The dated inventory below is earlier context; use the current handoff and
+machine-readable queue for present action, ownership and exact revisions.
 
 Updated 28 September 2026. Fetch the latest `codex/campaign-certification`; runtime
 checkpoint `2cb1da4a` follows the original assignment base `474df63e`.

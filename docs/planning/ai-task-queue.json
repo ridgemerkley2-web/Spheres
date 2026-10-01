@@ -670,43 +670,46 @@
       "id": "CLAUDE-C01-42",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "complete",
       "priority": 29,
       "title": "Research JCP chairs and DPFP representatives, 1990–2026",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
       "depends_on": [],
       "branch": "claude/c01-jp-42",
       "claim_revision": "601078190e76bfa3ae578a6b467073620dff1ce6",
-      "next": "Existing Claude claim only. Preserve its three Japanese party-office targets and old holder records. C01-31 is now accepted; refresh from current integration without undoing its corrections. No C01-42 delivery or acceptance is recorded."
+      "next": "Accepted bounded intake: all 32 originals, 50 claims and 19 new observations independently read. Preserve distinct JCP chair offices and the 2018/2020 DPFP organizations; all effective boundaries remain unknown. Generic calendar veto repaired with a positive control while exact fixture pins remain. Authored user-ruling attribution is not adopted. No runtime, art, full chronology or parent qualification. First source import 3cfbefc5; evidence: docs/campaign-certification/C01/reviews/CLAUDE-C01-42-20261001/README.md. Follow-up 6d845541f8c7671bd9717aa76b40c0e0d9778d39 reviewed: wording/comments and regenerated index add no new original, claim, holder or substantive fix. Not imported; keep independently accepted guard correction. Alleged user rulings remain unauthenticated. Final follow-up evidence: docs/campaign-certification/C01/integrations/REVIEW-20261001-03/README.md.",
+      "submission_revision": "94426852124efff5d146c0a61ba5ad8212311ce8",
+      "review_revision": "a113a1f4ff25ab57e804a3a4d94657ce02a70fd8"
     },
     {
       "id": "CLAUDE-C01-43",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 30,
       "title": "Research PRN, PTC and Agir national presidents, 1990–2026",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-43.md",
       "depends_on": [],
       "branch": "claude/c01-br-43",
       "claim_revision": "6e6a9d06cf7c6a2e0f46f16d13119ab8bc822d39",
-      "next": "New delivery at 68fb8f86: fourteen proposed originals and twenty-one claims, with five Daniel Tourinho observations. Independently review all original content, renaming/office scope and preservation before import. No source retrieval or historical acceptance in this pass; Archive retrieval closed after a different packet returned HTTP 429. Preserve PDS claims-only limits and unavailable SGIP evidence.",
-      "submission_revision": "68fb8f863398247ba1515a1ff3f413a444a6d7f5"
+      "next": "Accepted bounded intake: all 14 originals, 21 claims and five Daniel Tourinho observations independently read, including four PDF pages. PRN/PTC/Agir renaming evidence remains separate from runtime mapping; PDS remains claims-only. Generic evidence rules now permit independently supported same-day office observations, while the exact fixture stays pinned. Narrow explanatory corrections change no holder or historical date. No runtime, art or parent qualification. First source import 0a6b571d; evidence: docs/campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/README.md. Follow-up 8e3a72d3db3c2def743a22bd258d715ab4630040 reviewed against retained originals: proposed sixth observation on 19 July 2018 is excluded pending evidence equating National Directorate presidency with this national-president role. Preserve the exact-title claim and five accepted observations. Only a report date explanation was corrected at 1f268515; no source/holder change. Do not overwrite accepted generic-guard or uncertainty corrections. Final follow-up evidence: docs/campaign-certification/C01/integrations/REVIEW-20261001-03/README.md.",
+      "submission_revision": "68fb8f863398247ba1515a1ff3f413a444a6d7f5",
+      "review_revision": "5a0fc340b2cf1291d8825747d5a68afcd3337fee"
     },
     {
       "id": "CLAUDE-C01-44",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 31,
       "title": "Research Tonga DPFI and PDP organization and leadership evidence",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
       "depends_on": [],
       "branch": "claude/c01-to-44",
       "claim_revision": "fdb71175e6a2f251c6e51361187068c0141cac9f",
-      "next": "Held after partial independent review: four of five originals and five of six organization claims materially checked. The PMO original returned HTTP 429 on its only request; its one claim remains unread. Zero new holder observations. Preserve the failed response and accepted older Tonga evidence. No packet data or isolated prose correction imported. Missing-only recovery can resume when normal service permits. See docs/campaign-certification/C01/reviews/CLAUDE-C01-44-20261001/README.md. The separate full Tonga cast assignment stays ready.",
-      "submission_revision": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
-      "review_revision": "214121f96bb36110653ce14cfcebb2223dca62fe"
+      "next": "Accepted bounded organization-claim intake after the missing PMO original was recovered and materially read: five originals and six claims, zero new holders. Four earlier source reviews and the initial 429 failure remain preserved. The PMO text is an attributed government assertion, not an objective registry finding; party-name identity and leadership gaps remain. Three non-holder names are now null and the old 2022 presidency evidence remains intact. No runtime, artwork, country cast or parent qualification. First source import c19f86c0; evidence: docs/campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/README.md. Follow-up e788b4eec5b1eb241a9649cb32401f61bad50953 reviewed: duplicate Helu correction plus author-history notes; already covered by the accepted correction. No further import or acceptance change. Final follow-up evidence: docs/campaign-certification/C01/integrations/REVIEW-20261001-03/README.md.",
+      "submission_revision": "6110064071a513d21bdcee7a8d2d081e90099359",
+      "review_revision": "43cafce64de27c43dd4e3cb32d3d5d62057ccbed"
     },
     {
       "id": "CLAUDE-C01-45",
@@ -719,8 +722,8 @@
       "depends_on": [],
       "branch": "claude/c01-sa-45",
       "claim_revision": "a529ab8dfdbe9473ff0536ebbf836599a8567500",
-      "next": "Accepted bounded intake: eighteen exact originals, thirty claims and eighteen new observations independently read. First import d23f0bf2; correction 4a98bc10 removes an unsupported explanation for portal metadata and qualifies unreviewed leads. All 103 prior sources, 158 claims and old holder objects remain intact. No new effective boundaries, runtime, art, full chronology or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/README.md.",
-      "submission_revision": "d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49",
+      "next": "Accepted bounded intake: eighteen exact originals, thirty claims and eighteen new observations independently read. First import d23f0bf2; correction 4a98bc10 removes an unsupported explanation for portal metadata and qualifies unreviewed leads. All 103 prior sources, 158 claims and old holder objects remain intact. No new effective boundaries, runtime, art, full chronology or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/README.md. Follow-up 5f083d7f reviewed: adopt only stronger Secretary date pin at 7aaf39e8 with three failing-before/passing-after adverse mutations. Additional alleged user rulings are not imported; historical acceptance is unchanged. Receipt: docs/campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/README.md.",
+      "submission_revision": "5f083d7fff505189a01cc69aef2e13e1d70d8066",
       "review_revision": "42046e519da389b713fd40f28a38a23e5b495936"
     },
     {

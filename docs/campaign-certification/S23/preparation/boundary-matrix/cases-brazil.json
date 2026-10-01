@@ -18,35 +18,35 @@
    },
    "statistics": {
     "roles": {
-     "research": 5,
+     "research": 6,
      "production_party": 6,
      "executive": 1
     },
-    "cases": 819,
+    "cases": 881,
     "case_kinds": {
-     "attestation_day": 26,
-     "attestation_day_after": 26,
-     "cutoff_day": 12,
-     "cutoff_day_before": 12,
+     "attestation_day": 31,
+     "attestation_day_after": 31,
+     "cutoff_day": 13,
+     "cutoff_day_before": 13,
      "death_day_after": 1,
      "death_day_before": 1,
      "death_day_of": 1,
      "dissolution_day_after": 1,
      "dissolution_day_before": 1,
      "dissolution_day_of": 1,
-     "fictional_end_exclusive": 12,
-     "fictional_last_day": 12,
-     "fictional_start_day": 12,
-     "future_2030": 12,
+     "fictional_end_exclusive": 13,
+     "fictional_last_day": 13,
+     "fictional_start_day": 13,
+     "future_2030": 13,
      "handover_day_after": 55,
      "handover_day_before": 55,
      "handover_day_of": 55,
-     "reference_start": 12,
-     "reference_start_day_before": 12,
-     "yearly": 552
+     "reference_start": 13,
+     "reference_start_day_before": 13,
+     "yearly": 598
     },
     "observations_by_acceptance": {
-     "accepted": 12,
+     "accepted": 17,
      "pending": 39,
      "production_registry": 28
     },
@@ -54,7 +54,7 @@
      "boundary_day": 16,
      "established": 4,
      "uncertain": 103,
-     "unknown": 62
+     "unknown": 99
     },
     "production_party_yearly_status": {
      "established": 99,
@@ -83,8 +83,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 5 (5 with holder observations); 20 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 62 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 12, pending 39.",
+    "Research roles: 6 (6 with holder observations); 20 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 99 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 17, pending 39.",
     "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
     "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
     "Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
@@ -1390,6 +1390,106 @@
    }
   },
   {
+   "key": "research:br_agir_president",
+   "identity": "Brazil",
+   "family": "research_role",
+   "role_id": "br_agir_president",
+   "title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+   "kind": "party_leader",
+   "entry": {
+    "id": "br_tse_fefc_2024_party_07",
+    "category": "organizations",
+    "name": "AGIR",
+    "kind": "political_party_election_funding_observation",
+    "lifecycle": {
+     "status": "unresearched",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "br_agir_president#1",
+    "br_agir_president#2",
+    "br_agir_president#3",
+    "br_agir_president#4",
+    "br_agir_president#5"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-05-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["br_agir_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-05-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-07-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["br_agir_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-07-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-08-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["br_agir_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-08-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-07-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["br_agir_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-07-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-11-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["br_agir_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-11-12","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 62,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 10
+   }
+  },
+  {
    "key": "research:br_president",
    "identity": "Brazil",
    "family": "research_role",
@@ -1633,6 +1733,116 @@
   }
  ],
  "observations": {
+  "br_agir_president#1": {
+   "role": "research:br_agir_president",
+   "name": "Daniel Tourinho",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-05-16",
+   "claim_ids": [
+    "br_agir_ptc_tourinho_styled_presidente_nacional_20140516"
+   ],
+   "note": "Observed on 16 May 2014: a PTC site item of that day says 'O Presidente Nacional do PTC, Daniel Tourinho, confirmando o apoio à candidatura do senador Aécio Neves à Presidência da República.'",
+   "uncertainty": "No start: no contemporaneous dated party record of 1990-2013 naming the office was found; the PRN era rests on claims (the court's register and glossary, a registry history republished by the party and an undated 2007 roster). The item prints no event day, so its own date dates the observation. No end.",
+   "sources": [
+    "br_agir_ptc_apoio_aecio_20140516"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-43"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "br_agir_president#2": {
+   "role": "research:br_agir_president",
+   "name": "Daniel Tourinho",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-07-25",
+   "claim_ids": [
+    "br_agir_ptc_tourinho_signs_resolution_02_2018_20180725"
+   ],
+   "note": "Observed on 25 July 2018: Resolução nº 02/2018 closes 'Brasília, 25 de Julho de 2018.' over 'Daniel Sampaio Tourinho Presidente Nacional PTC'.",
+   "uncertainty": "No start: the convention of 25 July 2015 elected a new executive without the item naming its President, and the convention convoked for 28 July 2018 has no result on record. The minutes of 3 July 2018 and the convocation of 19 July 2018 style him only 'Presidente' and 'Presidente do Diretório Nacional' and are claims. No end.",
+   "sources": [
+    "br_agir_ptc_resolucao_02_2018_20180725"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-43"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "br_agir_president#3": {
+   "role": "research:br_agir_president",
+   "name": "Daniel Tourinho",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-08-07",
+   "claim_ids": [
+    "br_agir_ptc_tourinho_signs_resolution_001_2020_20200807"
+   ],
+   "note": "Observed on 7 August 2020: Resolução nº 001/2020 closes 'Rio de Janeiro, 07 de Agosto de 2020. Daniel Sampaio Tourinho Presidente Nacional do PTC'.",
+   "uncertainty": "No start and no end; the item reproducing the resolution is dated 20 August 2020, and the observation takes the resolution's own signature day.",
+   "sources": [
+    "br_agir_ptc_resolucao_001_2020_20200807"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-43"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "br_agir_president#4": {
+   "role": "research:br_agir_president",
+   "name": "Daniel Tourinho",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-07-23",
+   "claim_ids": [
+    "br_agir_ptc_tourinho_signs_communique_20210723"
+   ],
+   "note": "Observed on 23 July 2021: a PTC communiqué closes 'Brasília, 23 de julho de 2021 Daniel Tourinho Presidente Nacional'.",
+   "uncertainty": "No start and no end. Seven weeks earlier the party announced its new name (1 June 2021); the court approved it on 31 March 2022, and the office is recorded as one office across the names only as the court's register keeps one registration (RPP nº 51-91.1989).",
+   "sources": [
+    "br_agir_ptc_comunicado_20210723"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-43"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "br_agir_president#5": {
+   "role": "research:br_agir_president",
+   "name": "Daniel Tourinho",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-11-11",
+   "claim_ids": [
+    "br_agir_tourinho_styled_presidente_nacional_20221111"
+   ],
+   "note": "Observed on 11 November 2022: an Agir item of that day names 'Daniel Tourinho (Presidente Nacional)' and 'o Pres Nacional Daniel Tourinho'.",
+   "uncertainty": "The last dated observation: no dated party record of 2023-2026 naming the national office was found (an undated 2024 styling as 'presidente do partido' and the court's live list captured 2 August 2026 are claims). No end is recorded.",
+   "sources": [
+    "br_agir_executiva_resolucao_01_2022_20221111"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-43"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "br_mdb_president#1": {
    "role": "research:br_mdb_president",
    "name": "Michel Temer",

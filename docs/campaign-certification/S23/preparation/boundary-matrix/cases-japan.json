@@ -22,10 +22,10 @@
      "production_party": 8,
      "executive": 1
     },
-    "cases": 1184,
+    "cases": 1222,
     "case_kinds": {
-     "attestation_day": 63,
-     "attestation_day_after": 63,
+     "attestation_day": 82,
+     "attestation_day_after": 82,
      "cutoff_day": 16,
      "cutoff_day_before": 16,
      "dissolution_day_after": 3,
@@ -46,7 +46,7 @@
      "yearly": 736
     },
     "observations_by_acceptance": {
-     "accepted": 31,
+     "accepted": 50,
      "pending": 44,
      "production_registry": 42,
      "unattributed_intake": 5
@@ -84,7 +84,7 @@
    },
    "headline": [
     "Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 31, pending 44, unattributed_intake 5.",
+    "Research holder observations by acceptance: accepted 50, pending 44, unattributed_intake 5.",
     "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
     "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
     "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1353,7 +1353,17 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "jp_jcp_executive_committee_chair#1"
+    "jp_jcp_executive_committee_chair#1",
+    "jp_jcp_executive_committee_chair#2",
+    "jp_jcp_executive_committee_chair#3",
+    "jp_jcp_executive_committee_chair#4",
+    "jp_jcp_executive_committee_chair#5",
+    "jp_jcp_executive_committee_chair#6",
+    "jp_jcp_executive_committee_chair#7",
+    "jp_jcp_executive_committee_chair#8",
+    "jp_jcp_executive_committee_chair#9",
+    "jp_jcp_executive_committee_chair#10",
+    "jp_jcp_executive_committee_chair#11"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1362,37 +1372,57 @@
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-07-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-07-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-09-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-09-27","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-21","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-05-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-05-30","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_executive_committee_chair#11","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1412,13 +1442,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 74,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 22
    }
   },
   {
@@ -1441,7 +1471,12 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "jp_jcp_central_committee_chair#1"
+    "jp_jcp_central_committee_chair#1",
+    "jp_jcp_central_committee_chair#2",
+    "jp_jcp_central_committee_chair#3",
+    "jp_jcp_central_committee_chair#4",
+    "jp_jcp_central_committee_chair#5",
+    "jp_jcp_central_committee_chair#6"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1450,18 +1485,28 @@
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-07-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-07-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-09-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-09-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-11-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1480,7 +1525,7 @@
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_jcp_central_committee_chair#6","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1500,13 +1545,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 64,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 12
    }
   },
   {
@@ -1529,7 +1574,11 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "jp_dpfp_representative#1"
+    "jp_dpfp_representative#1",
+    "jp_dpfp_representative#2",
+    "jp_dpfp_representative#3",
+    "jp_dpfp_representative#4",
+    "jp_dpfp_representative#5"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1564,13 +1613,21 @@
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-10-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_dpfp_representative#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-10-27","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-12-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_dpfp_representative#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-12-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-09-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_dpfp_representative#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-09-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-03-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["jp_dpfp_representative#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-03-05","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-06","kinds":["attestation_day","cutoff_day_before"],"historical":{"status":"attested","holders":[["jp_dpfp_representative#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["attestation_day","cutoff_day_before"],"historical":{"status":"attested","holders":[["jp_dpfp_representative#5","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["attestation_day_after","cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1586,13 +1643,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 60,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 2
+    "attestation_cases": 10
    }
   },
   {
@@ -2206,6 +2263,94 @@
    "name": "玉木雄一郎",
    "from": null,
    "until": null,
+   "attested_on": "2020-10-26",
+   "claim_ids": [
+    "jp_dpfp_tamaki_in_office_20201026"
+   ],
+   "note": "Observed on 26 October 2020: the party's same-day item naming 玉木雄一郎代表. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his selection at the founding convention of 15 September 2020 is an election claim with a 'new representative' styling, not a start; his offices in the 国民民主党 of May 2018 to September 2020 (co-representative from 7 May 2018, representative from 4 September 2018) belong to an earlier organization with the same name and are claims only.",
+   "sources": [
+    "jp_dpfp_tamaki_video_comment_20201026"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_dpfp_representative#2": {
+   "role": "research:jp_dpfp_representative",
+   "name": "玉木雄一郎",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-12-23",
+   "claim_ids": [
+    "jp_dpfp_tamaki_in_office_20201223"
+   ],
+   "note": "Observed on 23 December 2020: the party's same-day report that 玉木雄一郎代表 announced the officers following the representative election of 18 December 2020. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the election is a claim only, and the term to the end of September 2023 stated with it is a rule, never an until.",
+   "sources": [
+    "jp_dpfp_new_officers_20201223"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_dpfp_representative#3": {
+   "role": "research:jp_dpfp_representative",
+   "name": "玉木雄一郎",
+   "from": null,
+   "until": null,
+   "attested_on": "2023-09-05",
+   "claim_ids": [
+    "jp_dpfp_tamaki_in_office_20230905"
+   ],
+   "note": "Observed on 5 September 2023: the party's record of the representative's regular press conference that day, where he says he was reappointed in the recent representative election (2 September 2023, a claim only). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the term to the end of September 2026 stated at the election is a rule, never an until.",
+   "sources": [
+    "jp_dpfp_representative_press_conference_20230905"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_dpfp_representative#4": {
+   "role": "research:jp_dpfp_representative",
+   "name": "玉木雄一郎",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-03-04",
+   "claim_ids": [
+    "jp_dpfp_tamaki_in_office_20250304"
+   ],
+   "note": "Observed on 4 March 2025: the party's record of the representative's regular press conference that day, his return after a three-month suspension from party posts (4 December 2024 to 3 March 2025). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the suspension and 古川元久's acting service as 代表代行 are claims only: the notice does not say the office ended, and no until or new start is stored.",
+   "sources": [
+    "jp_dpfp_representative_press_conference_20250304"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_dpfp_representative#5": {
+   "role": "research:jp_dpfp_representative",
+   "name": "玉木雄一郎",
+   "from": null,
+   "until": null,
    "attested_on": "2026-09-06",
    "claim_ids": [
     "jp_tamaki_representative_20260906"
@@ -2312,6 +2457,116 @@
   },
   "jp_jcp_central_committee_chair#1": {
    "role": "research:jp_jcp_central_committee_chair",
+   "name": "宮本顕治",
+   "from": null,
+   "until": null,
+   "attested_on": "1994-07-19",
+   "claim_ids": [
+    "jp_jcp_miyamoto_named_chair_by_executive_chair_19940719"
+   ],
+   "note": "Observed on 19 July 1994: the Executive Committee chair's report to the 20th Congress, dated as given that day, naming him 宮本議長. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his office when the period opens (1 January 1990) and the congress elections of 1990 and 1994 are not attested by any contemporaneous party record found; no continuity from 1990 is inferred.",
+   "sources": [
+    "jp_jcp_programme_report_20th_congress_19940719"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_central_committee_chair#2": {
+   "role": "research:jp_jcp_central_committee_chair",
+   "name": "宮本顕治",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-09-23",
+   "claim_ids": [
+    "jp_jcp_miyamoto_absence_reported_19970923"
+   ],
+   "note": "Observed on 23 September 1997: the 21st Congress diary's record that the presiding officer reported 宮本議長's absence. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; on 26 September 1997 the congress adopted the rule amendment making the office optional (procedure only), approved him as 名誉議長 (another office), and its first plenum elected no Central Committee chair; none of these states the day his chairmanship ended, so no until is stored.",
+   "sources": [
+    "jp_jcp_21st_congress_diary_19970926"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_central_committee_chair#3": {
+   "role": "research:jp_jcp_central_committee_chair",
+   "name": "不破哲三",
+   "from": null,
+   "until": null,
+   "attested_on": "2000-11-24",
+   "claim_ids": [
+    "jp_jcp_fuwa_central_chair_closing_address_20001124"
+   ],
+   "note": "Observed on 24 November 2000: his closing address on the 22nd Congress's final day, styled 不破議長, in which he says he takes up the office of 中央委員会議長 (任にあたることになりました), the day the party's list records his election by the first plenum (a claim only). Following Codex's review 988d5379 of CLAUDE-C01-31, the acceptance is read as a same-day attestation, not a stated start. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the acceptance does not state the day the office began.",
+   "sources": [
+    "jp_jcp_22nd_congress_closing_address_20001124"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_central_committee_chair#4": {
+   "role": "research:jp_jcp_central_committee_chair",
+   "name": "不破哲三",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-01-17",
+   "claim_ids": [
+    "jp_jcp_fuwa_central_chair_first_plenum_20040117"
+   ],
+   "note": "Observed on 17 January 2004: the Secretariat's communiqué that 不破哲三議長 spoke at that day's first plenum, which elected the four principal officers. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the plenum's election names nobody, so it is a claim only.",
+   "sources": [
+    "jp_jcp_23rd_first_plenum_20040117"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_central_committee_chair#5": {
+   "role": "research:jp_jcp_central_committee_chair",
+   "name": "不破哲三",
+   "from": null,
+   "until": null,
+   "attested_on": "2006-01-12",
+   "claim_ids": [
+    "jp_jcp_fuwa_central_chair_self_stated_20060112"
+   ],
+   "note": "Observed on 12 January 2006, the issue date, because the page prints no day: the party organ's text of the 24th Congress opening address, in which he introduces himself as 日本共産党中央委員会議長. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his withdrawal from the office, approved by the standing Presidium at the end of December 2005, reported in the issue of 15 January 2006 and said in the closing address of 14 January 2006 to have been confirmed by the new Central Committee, is a claim only: no source reviewed states the day the office ended (whether the confirmation gives until 2006-01-14 is a ruling question). The first plenums of 2006, 2017 and 2020 are recorded electing principal officers without a Central Committee chair.",
+   "sources": [
+    "jp_jcp_24th_congress_opening_address_20060112"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_central_committee_chair#6": {
+   "role": "research:jp_jcp_central_committee_chair",
    "name": "志位和夫",
    "from": null,
    "until": null,
@@ -2331,6 +2586,50 @@
   },
   "jp_jcp_executive_committee_chair#1": {
    "role": "research:jp_jcp_executive_committee_chair",
+   "name": "不破哲三",
+   "from": null,
+   "until": null,
+   "attested_on": "1994-07-19",
+   "claim_ids": [
+    "jp_jcp_fuwa_executive_chair_report_19940719"
+   ],
+   "note": "Observed on 19 July 1994: the party's copy of his report to the 20th Congress, bylined 日本共産党中央委員会幹部会委員長 and dated as given that day. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his office when the period opens (1 January 1990) and the congress elections of 1990 and 1994 are not attested by any contemporaneous party record found, and this is the first party record reviewed that names him in the office; no continuity from 1990 is inferred.",
+   "sources": [
+    "jp_jcp_programme_report_20th_congress_19940719"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#10": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-01-18",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_closing_address_20200118"
+   ],
+   "note": "Observed on 18 January 2020: the party organ's text of his closing address on the 28th Congress's final day, the day the party's list records his election by the first plenum (a claim only). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the 29th Congress's officers of 18 January 2024 (the existing observations of 田村智子 and of 志位和夫 as 中央委員会議長) do not state the day his Executive Committee chairmanship ended, and none is inferred from his successor's election.",
+   "sources": [
+    "jp_jcp_28th_congress_closing_address_20200118"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#11": {
+   "role": "research:jp_jcp_executive_committee_chair",
    "name": "田村智子",
    "from": null,
    "until": null,
@@ -2346,6 +2645,184 @@
    "packets": [],
    "source_classes": {
     "unattributed_intake": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#2": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "不破哲三",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-09-26",
+   "claim_ids": [
+    "jp_jcp_fuwa_closing_address_diary_19970926",
+    "jp_jcp_fuwa_in_office_first_plenum_19970926"
+   ],
+   "note": "Observed on 26 September 1997: the Secretariat's communiqué that 不破委員長 spoke at that day's first plenum, which elected the Executive Committee chair, and the congress diary's record of his closing address after it. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the plenum's election names nobody, so it is a claim only.",
+   "sources": [
+    "jp_jcp_21st_congress_diary_19970926",
+    "jp_jcp_21st_first_plenum_19970926"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "jp_jcp_executive_committee_chair#3": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "不破哲三",
+   "from": null,
+   "until": null,
+   "attested_on": "2000-11-20",
+   "claim_ids": [
+    "jp_jcp_fuwa_opening_address_20001120"
+   ],
+   "note": "Observed on 20 November 2000: the party's text of the opening address of the 22nd Congress delivered by 不破哲三委員長. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; on 24 November 2000 the first plenum elected 志位和夫 Executive Committee chair and 不破哲三 Central Committee chair (another office), but no source reviewed states the day his Executive Committee chairmanship ended, and none is inferred from his successor's election.",
+   "sources": [
+    "jp_jcp_22nd_congress_opening_address_20001120"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#4": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-05-29",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_report_20010529"
+   ],
+   "note": "Observed on 29 May 2001: the party's text of the Presidium report he gave as 志位和夫委員長 at the second plenum held that day. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; his election by the first plenum on 24 November 2000 and the 'new chair' styling of that day are election claims, not a start.",
+   "sources": [
+    "jp_jcp_second_plenum_presidium_report_20010529"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#5": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-01-17",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_summation_20040117"
+   ],
+   "note": "Observed on 17 January 2004: the party organ's text of his summation on the 23rd Congress's final day, captioned 結語をのべる志位和夫委員長＝17日, the day the first plenum elected the four principal officers. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the plenum's election names nobody, so it is a claim only.",
+   "sources": [
+    "jp_jcp_23rd_congress_summation_20040117"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#6": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2006-01-14",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_closing_address_20060114"
+   ],
+   "note": "Observed on 14 January 2006: the party organ's text of his closing address on the 24th Congress's final day. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the first plenum's election of the three principal officers is printed without their names (a claim only).",
+   "sources": [
+    "jp_jcp_24th_congress_closing_address_20060114"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#7": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2010-01-16",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_closing_address_20100116"
+   ],
+   "note": "Observed on 16 January 2010: the party organ's text of his closing address on the 25th Congress's final day, given for the newly elected Central Committee. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; no record of the first plenum naming the chair it elected was imported.",
+   "sources": [
+    "jp_jcp_25th_congress_closing_address_20100116"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#8": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-01-18",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_summation_20140118"
+   ],
+   "note": "Observed on 18 January 2014: the party organ's text of his summation on the 26th Congress's final day. Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; no record of the first plenum naming the chair it elected was imported (the party's officer list for this congress is dated July 2016 and was not used).",
+   "sources": [
+    "jp_jcp_26th_congress_summation_20140118"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "jp_jcp_executive_committee_chair#9": {
+   "role": "research:jp_jcp_executive_committee_chair",
+   "name": "志位和夫",
+   "from": null,
+   "until": null,
+   "attested_on": "2017-01-18",
+   "claim_ids": [
+    "jp_jcp_shii_executive_chair_closing_address_20170118"
+   ],
+   "note": "Observed on 18 January 2017: the party organ's text of his closing address on the 27th Congress's final day, the day the party's list records his election by the first plenum (a claim only). Not a start, a continuous term, a biography or a likeness authorization.",
+   "uncertainty": "No start or end is stated by any source reviewed; the election is a claim only.",
+   "sources": [
+    "jp_jcp_27th_congress_closing_address_20170118"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-42"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "jp_jcp_kazuo_shii_200011": {

@@ -406,6 +406,30 @@
    "sources_listed": 12
   },
   {
+   "packet": "CLAUDE-C01-42",
+   "report": "docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-42/README.md",
+   "reviewed_head": null,
+   "sources_listed": 32
+  },
+  {
+   "packet": "CLAUDE-C01-43",
+   "report": "docs/campaign-certification/C01/research/brazil-prn-ptc-agir-presidents-1990-2026-43.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-43/README.md",
+   "reviewed_head": null,
+   "sources_listed": 14
+  },
+  {
+   "packet": "CLAUDE-C01-44",
+   "report": "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-44/README.md",
+   "reviewed_head": null,
+   "sources_listed": 5
+  },
+  {
    "packet": "CLAUDE-C01-45",
    "report": "docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md",
    "status": "accepted",
@@ -430,7 +454,8 @@
   "CLAUDE-C01-SOURCE-17",
   "CLAUDE-C01-SOURCE-26",
   "ORDERED-2026-09-28",
-  "REVIEW-2026-10-01"
+  "REVIEW-2026-10-01",
+  "REVIEW-20261001-02"
  ],
  "executive_pairing": {
   "France": [],
@@ -556,10 +581,10 @@
        "production_party": 8,
        "executive": 1
       },
-      "cases": 1184,
+      "cases": 1222,
       "case_kinds": {
-       "attestation_day": 63,
-       "attestation_day_after": 63,
+       "attestation_day": 82,
+       "attestation_day_after": 82,
        "cutoff_day": 16,
        "cutoff_day_before": 16,
        "dissolution_day_after": 3,
@@ -580,7 +605,7 @@
        "yearly": 736
       },
       "observations_by_acceptance": {
-       "accepted": 31,
+       "accepted": 50,
        "pending": 44,
        "production_registry": 42,
        "unattributed_intake": 5
@@ -618,7 +643,7 @@
      },
      "headline": [
       "Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 31, pending 44, unattributed_intake 5.",
+      "Research holder observations by acceptance: accepted 50, pending 44, unattributed_intake 5.",
       "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
       "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
       "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -724,35 +749,35 @@
      "identity": "Brazil",
      "statistics": {
       "roles": {
-       "research": 5,
+       "research": 6,
        "production_party": 6,
        "executive": 1
       },
-      "cases": 819,
+      "cases": 881,
       "case_kinds": {
-       "attestation_day": 26,
-       "attestation_day_after": 26,
-       "cutoff_day": 12,
-       "cutoff_day_before": 12,
+       "attestation_day": 31,
+       "attestation_day_after": 31,
+       "cutoff_day": 13,
+       "cutoff_day_before": 13,
        "death_day_after": 1,
        "death_day_before": 1,
        "death_day_of": 1,
        "dissolution_day_after": 1,
        "dissolution_day_before": 1,
        "dissolution_day_of": 1,
-       "fictional_end_exclusive": 12,
-       "fictional_last_day": 12,
-       "fictional_start_day": 12,
-       "future_2030": 12,
+       "fictional_end_exclusive": 13,
+       "fictional_last_day": 13,
+       "fictional_start_day": 13,
+       "future_2030": 13,
        "handover_day_after": 55,
        "handover_day_before": 55,
        "handover_day_of": 55,
-       "reference_start": 12,
-       "reference_start_day_before": 12,
-       "yearly": 552
+       "reference_start": 13,
+       "reference_start_day_before": 13,
+       "yearly": 598
       },
       "observations_by_acceptance": {
-       "accepted": 12,
+       "accepted": 17,
        "pending": 39,
        "production_registry": 28
       },
@@ -760,7 +785,7 @@
        "boundary_day": 16,
        "established": 4,
        "uncertain": 103,
-       "unknown": 62
+       "unknown": 99
       },
       "production_party_yearly_status": {
        "established": 99,
@@ -789,8 +814,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 5 (5 with holder observations); 20 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 62 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 12, pending 39.",
+      "Research roles: 6 (6 with holder observations); 20 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 99 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 17, pending 39.",
       "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
       "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
       "Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
@@ -1888,6 +1913,27 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-42/README.md",
+   "bytes": 733,
+   "sha256": "645c81cc1521a1a64eb6d98c89456eb220688366e09a79a529329feff37db30e",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-43/README.md",
+   "bytes": 744,
+   "sha256": "7d4c7df7e34d8b902162b50a578e71e86f5be58501f14a94e75bdd8e8cca6c20",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-44/README.md",
+   "bytes": 1823,
+   "sha256": "6efc14c72ad50a82f858e7b4eeb153dad83b5854f9220f5b4ac0141d64667e6d",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-45/README.md",
    "bytes": 1320,
    "sha256": "6d4c4c4a82c3d2bc3214ea04fcac2a21b4ee0714da8610b3e05af871e3ffd127",
@@ -1923,6 +1969,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/brazil-prn-ptc-agir-presidents-1990-2026-43.md",
+   "bytes": 30804,
+   "sha256": "7c10556fc5102c82dabd9586cc30334775245232812b3a1c7f37e59a58ae3ce2",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/brazil-pt-presidents-1990-2026-22.md",
    "bytes": 113398,
    "sha256": "41c82148d2601dab1abfc8c8221494176335d77471e995674757b0aa63ca38c4",
@@ -1938,8 +1991,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/brazil.json",
-   "bytes": 1029474,
-   "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a",
+   "bytes": 1077447,
+   "sha256": "a5331b1826ffa3fd02833ac05f5055b9e1852c00800766f9efc27b603ef689a6",
    "newline_normalized": true,
    "exists": true
   },
@@ -2021,6 +2074,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md",
+   "bytes": 60403,
+   "sha256": "1b4e548321f93f3dfe0c7db94f20680ee6e0ee6bc2c1b7261742e6cbd9d99e47",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
    "bytes": 51375,
    "sha256": "39b160a15605edd33d9c3dd1a160170645010eb804b6d1d4cea5bcf9e5c62dc5",
@@ -2057,8 +2117,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/japan.json",
-   "bytes": 1716657,
-   "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3",
+   "bytes": 1828719,
+   "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435",
    "newline_normalized": true,
    "exists": true
   },
@@ -2182,6 +2242,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+   "bytes": 30154,
+   "sha256": "496976ffacac3e03e751f6f32283030e95f194bad954497e34662a3ffbd02945",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
    "bytes": 47832,
    "sha256": "7d2c21a3aa595c929cd108bdd265dc97e488b4ac6a259b2e5cd7a528ccd5eec9",
@@ -2218,8 +2285,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/tonga.json",
-   "bytes": 637522,
-   "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853",
+   "bytes": 655160,
+   "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
    "newline_normalized": true,
    "exists": true
   },

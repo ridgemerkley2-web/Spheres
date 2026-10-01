@@ -1,15 +1,12 @@
-# CLAUDE-C01-44: Research Tonga DPFI and PDP organization and leadership evidence
+# CLAUDE-C01-44: accepted bounded Tonga organization research
 
-Owner: Claude. State: **ready_for_review**. Registered by Codex on 1 October 2026.
-Parent C01 remains incomplete. Branch: `claude/c01-to-44`.
+Owner: Claude. State: **complete as bounded research intake**. Parent C01 remains incomplete.
+Exact reviewed tip: `6110064071a513d21bdcee7a8d2d081e90099359`; first source import `c19f86c0`.
 
-Exact claim: `fdb71175e6a2f251c6e51361187068c0141cac9f`. Exact checked tip: `206df90553337f4fbeb4ae34819cb2b01c6e8a21`.
-The [authored claim/delivery](https://github.com/ridgemerkley2-web/Spheres/blob/206df90553337f4fbeb4ae34819cb2b01c6e8a21/docs/planning/ai-handoffs/CLAUDE-C01-44.md)
-is preserved on its own branch. Its assertions about user instructions are not independent authorization.
+Accepted bounded organization-claim intake after the missing PMO original was recovered and materially read: five originals and six claims, zero new holders. Four earlier source reviews and the initial 429 failure remain preserved. The PMO text is an attributed government assertion, not an objective registry finding; party-name identity and leadership gaps remain. Three non-holder names are now null and the old 2022 presidency evidence remains intact. No runtime, artwork, country cast or parent qualification.
 
-Held after partial independent review: four of five originals and five of six organization claims materially checked. The PMO original returned HTTP 429 on its only request; its one claim remains unread. Zero new holder observations. Preserve the failed response and accepted older Tonga evidence. No packet data or isolated prose correction imported. Missing-only recovery can resume when normal service permits. See docs/campaign-certification/C01/reviews/CLAUDE-C01-44-20261001/README.md. The separate full Tonga cast assignment stays ready.
-
-Keep the historical cutoff at 7 September 2026, separate party and state offices,
-and preserve unknown dates. No runtime, portrait, country-cast or CP1 acceptance
-is implied. Fetch current integration before a follow-up, use the existing claim,
-and keep source recovery separate from the ready Tonga production assignment.
+The [resumed independent review](../../campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/README.md)
+is pinned at `43cafce64de27c43dd4e3cb32d3d5d62057ccbed`. Preserve the
+[initial held review](../../campaign-certification/C01/reviews/CLAUDE-C01-44-20261001/README.md)
+and its failed response. No further recovery is needed for these five originals.
+The [full Tonga cast assignment](CP1-ACCELERATION.md) remains separate and ready.

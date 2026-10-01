@@ -58,13 +58,13 @@ The [CP1 acceleration assignment](CP1-ACCELERATION.md) makes Tonga the next
 complete country cast. `CLAUDE-C06-TONGA-01` is ready to claim after the accepted
 Codex identity proposal: reuse King IV, source the two existing 1990 identities,
 and resolve the five later identity checks before completing Tonga's cast. This is an
-assignment, not a claim that Claude has begun production. Keep current C01-44
-party research isolated and preserve its ownership. Do not let the Russia/DA
+assignment, not a claim that Claude has begun production. C01-44 is now accepted
+bounded research; use its integrated evidence and preserve its unresolved identities. Do not let the Russia/DA
 archive holds prevent work on a ready Tonga batch.
 
 Updated 1 October 2026 against the live remote tips and completed independent
-reviews. The central queue records all four new packets. It contains 26
-completed bounded Claude tasks and two submissions still awaiting acceptance.
+reviews. The central queue contains 31 completed bounded Claude tasks and two
+source-held submissions still awaiting acceptance: Russia C01-28 and DA C01-39.
 These task closures are research/preparation results, not completed country casts.
 
 | Packet | Scope | Current state / next action |
@@ -89,22 +89,35 @@ tightenings were adopted; all 48 USSR tests pass, with two failing-before/passin
 mutation checks. Source and holder scope is unchanged. The additional France and
 USSR prose is not imported; the independent acceptance limits remain authoritative.
 
-The later 1 October review and branch check registered these existing claims.
-The queue now records 28 completed bounded Claude tasks, three source-held
-submissions, one additional unreviewed delivery and the remaining Japan claim.
+The next 1 October review completes the existing C01-42–46 claims as bounded
+research. The queue records 31 completed Claude tasks and two source-held
+submissions: Russia C01-28 and DA C01-39. The full Tonga cast remains queued and ready.
 
 | Packet | Exact checked tip | Current decision |
 |---|---|---|
-| [C01-42](CLAUDE-C01-42.md) | `601078190e76bfa3ae578a6b467073620dff1ce6` | Claim only; preserve ownership and current accepted C01-31 corrections. |
-| [C01-43](CLAUDE-C01-43.md) | `68fb8f863398247ba1515a1ff3f413a444a6d7f5` | Newly submitted: 14 proposed originals / 21 claims. Not retrieved, reviewed or imported in this pass. |
-| [C01-44](CLAUDE-C01-44.md) | `206df90553337f4fbeb4ae34819cb2b01c6e8a21` | **Held**: 4/5 originals and 5/6 claims read, no new holders. PMO returned HTTP 429; one original/claim held. Receipt only, no data import. |
-| [C01-45](CLAUDE-C01-45.md) | `d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49` | **Accepted bounded intake**: 18 originals, 30 claims, 18 observations. First import `d23f0bf2`, correction `4a98bc10`, receipt `42046e51`. |
+| [C01-42](CLAUDE-C01-42.md) | `94426852124efff5d146c0a61ba5ad8212311ce8` | **Accepted bounded intake**: 32 originals, 50 claims, 19 new holder observations. First import `3cfbefc5`; [review `a113a1f4`](../../campaign-certification/C01/reviews/CLAUDE-C01-42-20261001/README.md). |
+| [C01-43](CLAUDE-C01-43.md) | `68fb8f863398247ba1515a1ff3f413a444a6d7f5` | **Accepted bounded intake**: 14 originals, 21 claims, 5 new holder observations. First import `0a6b571d`; [review `5a0fc340`](../../campaign-certification/C01/reviews/CLAUDE-C01-43-20261001/README.md). |
+| [C01-44](CLAUDE-C01-44.md) | `6110064071a513d21bdcee7a8d2d081e90099359` | **Accepted bounded intake**: 5 originals, 6 claims, 0 new holder observations. First import `c19f86c0`; [review `43cafce6`](../../campaign-certification/C01/reviews/CLAUDE-C01-44-resumed-20261001/README.md). |
+| [C01-45](CLAUDE-C01-45.md) | `5f083d7fff505189a01cc69aef2e13e1d70d8066` | **Accepted research preserved**: 18 originals, 30 claims, 18 observations. First import `d23f0bf2`, correction `4a98bc10`, historical receipt `42046e51`. [Follow-up](../../campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/README.md) adopts only a stronger date guard at `7aaf39e8`; extra reported user rulings are not imported. |
 | [C01-46](CLAUDE-C01-46.md) | `64fec76b8a61e7f65f0f98f7bf3a93699ea80d72` | **Accepted bounded intake**: 7 originals, 27 claims, 18 observations. First import `91a1dbe1`, correction `c1056321`, receipt `6f88cd1b`. C01-28 party research remains held. |
 
-The source pass is closed after Tonga’s rate-limit response. Preserve all failed
-attempts and resume only missing originals in a later permitted pass. No new
-research packet accepts a runtime identity, cartoon, whole country or parent gate.
-The ready Tonga cast and campaign-stability work remain the CP1 priorities.
+The coordinated resumed pass retrieved only Tonga’s missing original, then the
+new Japan and Brazil originals, one request per URL. Earlier failed responses
+remain preserved; no Russia/DA source retries occurred. No research packet accepts
+a runtime identity, cartoon, whole country or parent gate. Tonga cast production
+and campaign-stability work remain the CP1 priorities.
+
+Final follow-up review before publication: Japan `6d845541` adds wording and
+comments only; Tonga `e788b4ee` duplicates the integrated Helu correction. Neither
+needs another import. Brazil `8e3a72d3` proposes a sixth observation on 19 July
+2018: the original supports President of the National Directorate, but equivalence
+with the national-president research role is not established. Keep that exact-title
+claim and the five accepted observations; the additional promotion is excluded
+pending office-identity evidence. Only the report's article/meeting date explanation
+was corrected at `1f268515`. Preserve the independent generic-guard repairs.
+The table above pins accepted historical submissions, not these later unadopted
+changes. [Combined review and follow-up decisions](../../campaign-certification/C01/integrations/REVIEW-20261001-03/README.md)
+retain exact tips, raw deltas and evidence. No new original was requested for this triage.
 
 Continue existing claims without duplicating their ownership. Codex owns the
 remaining original-source/content reviews for C01-28 and C01-39. Both Archive
@@ -130,7 +143,7 @@ next content sequence is:
    Komeito is accepted; do not restart it or undo its conservative corrections.
 
 The source repairs are existing bounded queue records. Tonga now has a queued
-production assignment and an active Codex identity proposal; no Claude production
+production assignment and an accepted Codex identity proposal; no Claude production
 claim or completed delivery is implied by that assignment.
 Query the queue and check live branches before claiming a batch. The six earlier
 expanded tool/preparation packets are already accepted; do not redo them. S19

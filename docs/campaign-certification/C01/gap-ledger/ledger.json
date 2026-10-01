@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 129567,
-      "sha256": "e9aed9ad8a9dfa59507f4c23cfaf5a105f42db88d2f813e5bb8d1e28b6736a6f"
+      "bytes": 131763,
+      "sha256": "f29291247f0fc894278a4f3ff9f5eba9b9b7ca0257c3d3265c24ad2fa5fdc551"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,13 +66,13 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 46673,
-      "sha256": "5d7d301d65846ae425e610734a85a35068a6b13ee570763d3599d3f5089e02fc"
+      "bytes": 48949,
+      "sha256": "616283d52482af4e48bd39b7ca8724668cad1a19ce057196731b588b7fac134a"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 1029474,
-      "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a"
+      "bytes": 1077447,
+      "sha256": "a5331b1826ffa3fd02833ac05f5055b9e1852c00800766f9efc27b603ef689a6"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
@@ -86,8 +86,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 1716657,
-      "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3"
+      "bytes": 1828719,
+      "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
@@ -106,8 +106,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 637522,
-      "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853"
+      "bytes": 655160,
+      "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
@@ -238,6 +238,24 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
       "bytes": 1556,
       "sha256": "210c512749291702751f9d1184108673cdceb2cda5d99b4927a6a7baa026d650",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-42/README.md",
+      "bytes": 733,
+      "sha256": "645c81cc1521a1a64eb6d98c89456eb220688366e09a79a529329feff37db30e",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-43/README.md",
+      "bytes": 744,
+      "sha256": "7d4c7df7e34d8b902162b50a578e71e86f5be58501f14a94e75bdd8e8cca6c20",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-44/README.md",
+      "bytes": 1823,
+      "sha256": "6efc14c72ad50a82f858e7b4eeb153dad83b5854f9220f5b4ac0141d64667e6d",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -794,8 +812,8 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 311136,
-    "sha256": "7a3b3b4be11fad215fa7f5ddc376f660fb439e497d3a49ff085509665c3af7c4"
+    "bytes": 319375,
+    "sha256": "a32a4d5424c47d9e9accfd38f8083f6402a0f03876fed2905e53c5c22b76342e"
   },
   "in_flight": [
     {
@@ -822,46 +840,6 @@
       "targets": [
         "party:SouthAfrica/za_dp",
         "role:za_da_federal_leader"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-42",
-      "state": "claimed",
-      "branch": "claude/c01-jp-42",
-      "case": "Japan",
-      "scope": "Research JCP chairs and DPFP representatives, 1990–2026; existing claim preserved, no accepted import",
-      "targets": [
-        "party:Japan/jp_jcp",
-        "role:jp_jcp_executive_committee_chair",
-        "role:jp_jcp_central_committee_chair",
-        "role:jp_dpfp_representative"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-43",
-      "state": "ready_for_review",
-      "branch": "claude/c01-br-43",
-      "case": "Brazil",
-      "scope": "Research PRN, PTC and Agir national presidents, 1990–2026; existing claim preserved, no accepted import",
-      "targets": [
-        "party:Brazil/br_prn",
-        "party:Brazil/br_pds",
-        "role:br_agir_president"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-44",
-      "state": "ready_for_review",
-      "branch": "claude/c01-to-44",
-      "case": "Tonga",
-      "scope": "Research Tonga DPFI and PDP organization and leadership evidence; existing claim preserved, no accepted import",
-      "targets": [
-        "role:to_dpfi_leader",
-        "role:to_dpfi_president",
-        "role:to_pdp_leader"
       ],
       "accepted": false
     }
@@ -1793,6 +1771,60 @@
           "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
           "bytes": 1556,
           "sha256": "210c512749291702751f9d1184108673cdceb2cda5d99b4927a6a7baa026d650",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-42",
+      "state": "complete",
+      "case": "Japan",
+      "scope": "Research JCP chairs and DPFP representatives, 1990–2026; bounded intake accepted, no full chronology or runtime mapping",
+      "integration_revision": "a113a1f4ff25ab57e804a3a4d94657ce02a70fd8",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-42/README.md",
+          "bytes": 733,
+          "sha256": "645c81cc1521a1a64eb6d98c89456eb220688366e09a79a529329feff37db30e",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-43",
+      "state": "complete",
+      "case": "Brazil",
+      "scope": "Research PRN, PTC and Agir national presidents, 1990–2026; bounded intake accepted, no full chronology or runtime mapping",
+      "integration_revision": "5a0fc340b2cf1291d8825747d5a68afcd3337fee",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-43/README.md",
+          "bytes": 744,
+          "sha256": "7d4c7df7e34d8b902162b50a578e71e86f5be58501f14a94e75bdd8e8cca6c20",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-44",
+      "state": "complete",
+      "case": "Tonga",
+      "scope": "Research Tonga DPFI and PDP organization and leadership evidence; bounded intake accepted, no full chronology or runtime mapping",
+      "integration_revision": "43cafce64de27c43dd4e3cb32d3d5d62057ccbed",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-44/README.md",
+          "bytes": 1823,
+          "sha256": "6efc14c72ad50a82f858e7b4eeb153dad83b5854f9220f5b4ac0141d64667e6d",
           "hash_encoding": "UTF-8 text with LF line endings"
         }
       ],
@@ -6025,7 +6057,7 @@
         "research_roles": 7,
         "research_roles_unresolved": 7,
         "research_holders_by_evidence": {
-          "c01_accepted": 31,
+          "c01_accepted": 50,
           "c01_integrated_pending": 44,
           "s10_discovery_intake": 5
         },
@@ -6341,7 +6373,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-42",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -7643,19 +7675,119 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13388,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 11,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": "2024-01-18",
+            "first_evidence": "1994-07-19",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "1994-07-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1994-07-19",
+                "through": "1994-07-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "1994-07-20",
+                "through": "1997-09-25",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-09-26",
+                "through": "1997-09-26",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-09-27",
+                "through": "2000-11-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-11-20",
+                "through": "2000-11-20",
+                "status": "attested_day"
+              },
+              {
+                "from": "2000-11-21",
+                "through": "2001-05-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-05-29",
+                "through": "2001-05-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-05-30",
+                "through": "2004-01-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-01-17",
+                "through": "2004-01-17",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-01-18",
+                "through": "2006-01-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-01-14",
+                "through": "2006-01-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "2006-01-15",
+                "through": "2010-01-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2010-01-16",
+                "through": "2010-01-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2010-01-17",
+                "through": "2014-01-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-01-18",
+                "through": "2014-01-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-01-19",
+                "through": "2017-01-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2017-01-18",
+                "through": "2017-01-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "2017-01-19",
+                "through": "2020-01-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-01-18",
+                "through": "2020-01-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-01-19",
                 "through": "2024-01-17",
                 "status": "no_evidence"
               },
@@ -7673,17 +7805,42 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
-                "through": "2024-01-17",
+                "through": "1994-07-18",
                 "status": "no_evidence"
               },
               {
-                "from": "2024-01-18",
-                "through": "2024-01-18",
-                "status": "attested_day"
+                "from": "1994-07-20",
+                "through": "1997-09-25",
+                "status": "no_evidence"
               },
               {
-                "from": "2024-01-19",
-                "through": "2026-09-07",
+                "from": "1997-09-27",
+                "through": "2000-11-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-01-15",
+                "through": "2010-01-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2010-01-17",
+                "through": "2014-01-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-01-19",
+                "through": "2017-01-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2017-01-19",
+                "through": "2020-01-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-01-19",
+                "through": "2024-01-17",
                 "status": "no_evidence"
               }
             ]
@@ -7691,6 +7848,186 @@
           "holders": [
             {
               "position": 0,
+              "name": "不破哲三",
+              "attested_on": "1994-07-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "不破哲三",
+              "attested_on": "1997-09-26",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "不破哲三",
+              "attested_on": "2000-11-20",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "志位和夫",
+              "attested_on": "2001-05-29",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "志位和夫",
+              "attested_on": "2004-01-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "志位和夫",
+              "attested_on": "2006-01-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "志位和夫",
+              "attested_on": "2010-01-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "志位和夫",
+              "attested_on": "2014-01-18",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "志位和夫",
+              "attested_on": "2017-01-18",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "志位和夫",
+              "attested_on": "2020-01-18",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
               "name": "田村智子",
               "attested_on": "2024-01-18",
               "from": null,
@@ -7708,11 +8045,16 @@
               ]
             }
           ],
-          "source_count": 1,
+          "source_count": 17,
           "leads": [
-            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+            "https://web.archive.org/web/20120604115302id_/http://www.jcp.or.jp/web_jcp/1994/07/post-48.html",
+            "https://web.archive.org/web/20010718222448id_/http://www.jcp.or.jp/jcp/21taikai/21nissi.html",
+            "https://web.archive.org/web/20010718222700id_/http://www.jcp.or.jp/jcp/21taikai/2101-cmnq.html",
+            "https://web.archive.org/web/20010717015239id_/http://www.jcp.or.jp/jcp/22taikai/201121_22_fuwa_aisatu.html",
+            "https://web.archive.org/web/20010717014642id_/http://www.jcp.or.jp/jcp/22taikai/201125_22_chuo_kiko.html"
           ],
-          "in_flight": "CLAUDE-C01-42"
+          "in_flight": null
         },
         {
           "nation": "Japan",
@@ -7734,19 +8076,69 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13393,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 6,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": "2024-01-18",
+            "first_evidence": "1994-07-19",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "1994-07-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1994-07-19",
+                "through": "1994-07-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "1994-07-20",
+                "through": "1997-09-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-09-23",
+                "through": "1997-09-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-09-24",
+                "through": "2000-11-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-11-24",
+                "through": "2000-11-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "2000-11-25",
+                "through": "2004-01-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-01-17",
+                "through": "2004-01-17",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-01-18",
+                "through": "2006-01-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-01-12",
+                "through": "2006-01-12",
+                "status": "attested_day"
+              },
+              {
+                "from": "2006-01-13",
                 "through": "2024-01-17",
                 "status": "no_evidence"
               },
@@ -7764,13 +8156,38 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
-                "through": "2024-01-17",
+                "through": "1994-07-18",
                 "status": "no_evidence"
               },
               {
-                "from": "2024-01-18",
-                "through": "2024-01-18",
+                "from": "1994-07-19",
+                "through": "1994-07-19",
                 "status": "attested_day"
+              },
+              {
+                "from": "1994-07-20",
+                "through": "1997-09-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-09-24",
+                "through": "2000-11-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-11-25",
+                "through": "2004-01-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-01-18",
+                "through": "2006-01-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-01-13",
+                "through": "2024-01-17",
+                "status": "no_evidence"
               },
               {
                 "from": "2024-01-19",
@@ -7782,6 +8199,96 @@
           "holders": [
             {
               "position": 0,
+              "name": "宮本顕治",
+              "attested_on": "1994-07-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "宮本顕治",
+              "attested_on": "1997-09-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "不破哲三",
+              "attested_on": "2000-11-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "不破哲三",
+              "attested_on": "2004-01-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "不破哲三",
+              "attested_on": "2006-01-12",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
               "name": "志位和夫",
               "attested_on": "2024-01-18",
               "from": null,
@@ -7799,11 +8306,16 @@
               ]
             }
           ],
-          "source_count": 1,
+          "source_count": 11,
           "leads": [
-            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+            "https://web.archive.org/web/20120604115302id_/http://www.jcp.or.jp/web_jcp/1994/07/post-48.html",
+            "https://web.archive.org/web/20010718222448id_/http://www.jcp.or.jp/jcp/21taikai/21nissi.html",
+            "https://web.archive.org/web/20010718222059id_/http://www.jcp.or.jp/jcp/21taikai/21-veteran.html",
+            "https://web.archive.org/web/20010718223734id_/http://www.jcp.or.jp/jcp/21taikai/21-kiyaku.html",
+            "https://web.archive.org/web/20010717014642id_/http://www.jcp.or.jp/jcp/22taikai/201125_22_chuo_kiko.html"
           ],
-          "in_flight": "CLAUDE-C01-42"
+          "in_flight": null
         },
         {
           "nation": "Japan",
@@ -7825,19 +8337,59 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13398,
+              "no_evidence": 13394,
               "attested_within_period": 0,
-              "attested_day": 1,
+              "attested_day": 5,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": "2026-09-06",
+            "first_evidence": "2020-10-26",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "2020-10-25",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-10-26",
+                "through": "2020-10-26",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-10-27",
+                "through": "2020-12-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-12-23",
+                "through": "2020-12-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-12-24",
+                "through": "2023-09-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-09-05",
+                "through": "2023-09-05",
+                "status": "attested_day"
+              },
+              {
+                "from": "2023-09-06",
+                "through": "2025-03-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-03-04",
+                "through": "2025-03-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "2025-03-05",
                 "through": "2026-09-05",
                 "status": "no_evidence"
               },
@@ -7855,17 +8407,42 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
-                "through": "2026-09-05",
+                "through": "2020-10-25",
                 "status": "no_evidence"
               },
               {
-                "from": "2026-09-06",
-                "through": "2026-09-06",
+                "from": "2020-10-26",
+                "through": "2020-10-26",
                 "status": "attested_day"
               },
               {
-                "from": "2026-09-07",
-                "through": "2026-09-07",
+                "from": "2020-10-27",
+                "through": "2020-12-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-12-23",
+                "through": "2020-12-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-12-24",
+                "through": "2023-09-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-09-05",
+                "through": "2023-09-05",
+                "status": "attested_day"
+              },
+              {
+                "from": "2023-09-06",
+                "through": "2025-03-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-03-05",
+                "through": "2026-09-05",
                 "status": "no_evidence"
               }
             ]
@@ -7873,6 +8450,78 @@
           "holders": [
             {
               "position": 0,
+              "name": "玉木雄一郎",
+              "attested_on": "2020-10-26",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "玉木雄一郎",
+              "attested_on": "2020-12-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "玉木雄一郎",
+              "attested_on": "2023-09-05",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "玉木雄一郎",
+              "attested_on": "2025-03-04",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-42"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
               "name": "玉木雄一郎",
               "attested_on": "2026-09-06",
               "from": null,
@@ -7890,11 +8539,16 @@
               ]
             }
           ],
-          "source_count": 1,
+          "source_count": 13,
           "leads": [
-            "https://new-kokumin.jp/news/business/20260906_2"
+            "https://new-kokumin.jp/news/business/20260906_2",
+            "https://web.archive.org/web/20190604072816id_/https://www.dpfp.or.jp/about-dpfp/convention_20180507",
+            "https://web.archive.org/web/20180905214906id_/https://www.dpfp.or.jp/article/200539/",
+            "https://web.archive.org/web/20190722045733id_/https://www.dpfp.or.jp/article/200545",
+            "https://web.archive.org/web/20200930195530id_/https://www.dpfp.or.jp/article/203294",
+            "https://web.archive.org/web/20201130051711id_/https://new-kokumin.jp/news/business/001-2"
           ],
-          "in_flight": "CLAUDE-C01-42"
+          "in_flight": null
         },
         {
           "nation": "Japan",
@@ -13574,12 +14228,12 @@
         "party_chains_unresolved": 6,
         "documented_research_organizations": 31,
         "documented_unmapped_organizations": 31,
-        "research_organizations_with_roles": 3,
+        "research_organizations_with_roles": 4,
         "research_institutions": 1,
-        "research_roles": 5,
-        "research_roles_unresolved": 5,
+        "research_roles": 6,
+        "research_roles_unresolved": 6,
         "research_holders_by_evidence": {
-          "c01_accepted": 12,
+          "c01_accepted": 17,
           "c01_integrated_pending": 39
         },
         "seed_executive_observations": 1,
@@ -13673,7 +14327,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": "CLAUDE-C01-43",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -14391,7 +15045,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": "CLAUDE-C01-43",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -15793,6 +16447,239 @@
         },
         {
           "nation": "Brazil",
+          "category": "organizations",
+          "entity": "br_tse_fefc_2024_party_07",
+          "entity_name": "AGIR",
+          "id": "br_agir_president",
+          "title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13394,
+              "attested_within_period": 0,
+              "attested_day": 5,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "2014-05-16",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "2014-05-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-05-16",
+                "through": "2014-05-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-05-17",
+                "through": "2018-07-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-07-25",
+                "through": "2018-07-25",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-07-26",
+                "through": "2020-08-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-08-07",
+                "through": "2020-08-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-08-08",
+                "through": "2021-07-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-07-23",
+                "through": "2021-07-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-07-24",
+                "through": "2022-11-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-11-11",
+                "through": "2022-11-11",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-11-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "2014-05-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-05-16",
+                "through": "2014-05-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-05-17",
+                "through": "2018-07-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-07-25",
+                "through": "2018-07-25",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-07-26",
+                "through": "2020-08-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-08-08",
+                "through": "2021-07-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-07-24",
+                "through": "2022-11-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-11-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Daniel Tourinho",
+              "attested_on": "2014-05-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-43"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Daniel Tourinho",
+              "attested_on": "2018-07-25",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-43"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Daniel Tourinho",
+              "attested_on": "2020-08-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-43"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Daniel Tourinho",
+              "attested_on": "2021-07-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-43"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Daniel Tourinho",
+              "attested_on": "2022-11-11",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-43"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 14,
+          "leads": [
+            "https://web.archive.org/web/20260802212048id_/https://www.tse.jus.br/partidos/partidos-registrados-no-tse",
+            "https://web.archive.org/web/20230325042738id_/https://www.tse.jus.br/servicos-eleitorais/glossario/termos/partido-politico",
+            "https://web.archive.org/web/20071011184316id_/http://www.ptc.org.br/index.php?acao=historia_do_partido",
+            "https://web.archive.org/web/20071020032949id_/http://www.ptc.org.br/index.php?acao=comissao_executiva_nacional",
+            "https://web.archive.org/web/20141008035057id_/http://www.ptc36nacional.com.br/o-presidente-nacional-do-ptc-daniel-tourinho-confirma-apoio-a-candidatura-de-aecio-neves/",
+            "https://web.archive.org/web/20160829223324id_/http://www.ptc36nacional.com.br/ptc-realiza-convencao-nacional-em-aracaju/"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Brazil",
           "category": "institutions",
           "entity": "br_presidency",
           "entity_name": "Presidency of the Federative Republic of Brazil",
@@ -16347,7 +17234,8 @@
         "with_roles": [
           "br_tse_fefc_2024_party_01",
           "br_tse_fefc_2024_party_02",
-          "br_tse_fefc_2024_party_03"
+          "br_tse_fefc_2024_party_03",
+          "br_tse_fefc_2024_party_07"
         ],
         "discovery_work_orders": [
           "C01-Brazil-DISC-B001",
@@ -20723,7 +21611,7 @@
           "leads": [
             "https://data.ipu.org/election-summary/HTML/2317_08.htm"
           ],
-          "in_flight": "CLAUDE-C01-44"
+          "in_flight": null
         },
         {
           "nation": "Tonga",
@@ -20835,7 +21723,7 @@
             "https://data.ipu.org/election-summary/HTML/2317_10.htm",
             "https://data.ipu.org/election-summary/HTML/2317_14.htm"
           ],
-          "in_flight": "CLAUDE-C01-44"
+          "in_flight": null
         },
         {
           "nation": "Tonga",
@@ -20929,7 +21817,7 @@
           "leads": [
             "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling"
           ],
-          "in_flight": "CLAUDE-C01-44"
+          "in_flight": null
         },
         {
           "nation": "Tonga",
@@ -30956,6 +31844,85 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
+          "entity": "Japan/jp_jcp",
+          "title": "Japanese Communist Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 991,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "2000-11-02",
+              "through": "2000-11-29",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2024-01-19",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "kazuo_shii",
+              "record": "jp_jcp_kazuo_shii_200011",
+              "missing": [
+                "from (known only to month)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "tetsuzo_fuwa",
+              "record": "jp_jcp_tetsuzo_fuwa_1989",
+              "missing": [
+                "from (known only to year)",
+                "until (known only to month)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "tomoko_tamura",
+              "record": "jp_jcp_tomoko_tamura_20240118",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "month",
+                "value": "2000-11"
+              },
+              "until": {
+                "kind": "month",
+                "value": "2000-12"
+              },
+              "reason": "The exact November 2000 handover day needs primary confirmation. Month precision leaves unresolved days rather than inventing a precise boundary.",
+              "sources": [
+                "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.jnpc.or.jp/archive/conferences/20132/report",
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+            "https://www.jcp.or.jp/web_senkyo/2542/",
+            "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+          ],
+          "related_work_orders": [
+            "CH-Japan-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Japan",
           "entity": "Japan/jp_ldp",
           "title": "Liberal Democratic Party",
           "role": "party leader (census term records)",
@@ -31666,6 +32633,449 @@
             "pinned": true
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
+        }
+      ]
+    },
+    {
+      "id": "GAP-Japan-B002",
+      "case": "Japan",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
+        {
+          "item": "research_role_chain",
+          "nation": "Japan",
+          "entity": "jp_sangiin_pr_2025_01#jp_jcp_central_committee_chair",
+          "title": "中央委員会議長 — Central Committee chair",
+          "role": "party_chair",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1994-07-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1994-07-19",
+              "through": "1994-07-19",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1994-07-20",
+              "through": "1997-09-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1997-09-24",
+              "through": "2000-11-23",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2000-11-25",
+              "through": "2004-01-16",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2004-01-18",
+              "through": "2006-01-11",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2006-01-13",
+              "through": "2024-01-17",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2024-01-19",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "宮本顕治",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "宮本顕治",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "不破哲三",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "不破哲三",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "不破哲三",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+            "https://web.archive.org/web/20120604115302id_/http://www.jcp.or.jp/web_jcp/1994/07/post-48.html",
+            "https://web.archive.org/web/20010718222448id_/http://www.jcp.or.jp/jcp/21taikai/21nissi.html",
+            "https://web.archive.org/web/20010718222059id_/http://www.jcp.or.jp/jcp/21taikai/21-veteran.html",
+            "https://web.archive.org/web/20010718223734id_/http://www.jcp.or.jp/jcp/21taikai/21-kiyaku.html",
+            "https://web.archive.org/web/20010717014642id_/http://www.jcp.or.jp/jcp/22taikai/201125_22_chuo_kiko.html"
+          ],
+          "related_work_orders": [
+            "C01-Japan-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1994-07-19",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Japan",
+          "entity": "jp_sangiin_pr_2025_01#jp_jcp_executive_committee_chair",
+          "title": "幹部会委員長 — Executive Committee chair",
+          "role": "party_chair",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1994-07-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1994-07-20",
+              "through": "1997-09-25",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1997-09-27",
+              "through": "2000-11-19",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2006-01-15",
+              "through": "2010-01-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2010-01-17",
+              "through": "2014-01-17",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2014-01-19",
+              "through": "2017-01-17",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2017-01-19",
+              "through": "2020-01-17",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-01-19",
+              "through": "2024-01-17",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "不破哲三",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "不破哲三",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "不破哲三",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "志位和夫",
+              "record": 9,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "田村智子",
+              "record": 10,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+            "https://web.archive.org/web/20120604115302id_/http://www.jcp.or.jp/web_jcp/1994/07/post-48.html",
+            "https://web.archive.org/web/20010718222448id_/http://www.jcp.or.jp/jcp/21taikai/21nissi.html",
+            "https://web.archive.org/web/20010718222700id_/http://www.jcp.or.jp/jcp/21taikai/2101-cmnq.html",
+            "https://web.archive.org/web/20010717015239id_/http://www.jcp.or.jp/jcp/22taikai/201121_22_fuwa_aisatu.html",
+            "https://web.archive.org/web/20010717014642id_/http://www.jcp.or.jp/jcp/22taikai/201125_22_chuo_kiko.html"
+          ],
+          "related_work_orders": [
+            "C01-Japan-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1994-07-19",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Japan",
+          "entity": "jp_sangiin_pr_2025_07#jp_dpfp_representative",
+          "title": "代表 — party representative",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2020-10-25",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-10-26",
+              "through": "2020-10-26",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2020-10-27",
+              "through": "2020-12-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-12-23",
+              "through": "2020-12-23",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2020-12-24",
+              "through": "2023-09-04",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2023-09-05",
+              "through": "2023-09-05",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2023-09-06",
+              "through": "2025-03-03",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2025-03-05",
+              "through": "2026-09-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "玉木雄一郎",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "玉木雄一郎",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "玉木雄一郎",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "玉木雄一郎",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "玉木雄一郎",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://new-kokumin.jp/news/business/20260906_2",
+            "https://web.archive.org/web/20190604072816id_/https://www.dpfp.or.jp/about-dpfp/convention_20180507",
+            "https://web.archive.org/web/20180905214906id_/https://www.dpfp.or.jp/article/200539/",
+            "https://web.archive.org/web/20190722045733id_/https://www.dpfp.or.jp/article/200545",
+            "https://web.archive.org/web/20200930195530id_/https://www.dpfp.or.jp/article/203294",
+            "https://web.archive.org/web/20201130051711id_/https://new-kokumin.jp/news/business/001-2"
+          ],
+          "related_work_orders": [
+            "C01-Japan-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2020-10-26",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
           "item": "research_role_chain",
@@ -31887,15 +33297,7 @@
           },
           "first_evidence": "1990-04-06",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Japan-B002",
-      "case": "Japan",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -33265,6 +34667,68 @@
         {
           "item": "party_leader_chain",
           "nation": "Brazil",
+          "entity": "Brazil/br_prn",
+          "title": "National Reconstruction Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-07-04",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2026-07-05",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "daniel_sampaio_tourinho",
+              "record": "br_prn_daniel_sampaio_tourinho_20260705",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "day",
+                "value": "2026-07-05"
+              },
+              "reason": "Tourinho is explicitly national president in the February 2, 1990 newspaper report of party broadcast. Exact appointment and uninterrupted PRN/PTC/AGIR tenure have not been proven.",
+              "sources": [
+                "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
+                "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
+            "https://agir36.org.br/category/destaques/",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ],
+          "related_work_orders": [
+            "CH-Brazil-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Brazil",
           "entity": "Brazil/br_pfl",
           "title": "Liberal Front Party",
           "role": "party leader (census term records)",
@@ -33782,6 +35246,68 @@
           }
         },
         {
+          "item": "party_leader_chain",
+          "nation": "Brazil",
+          "entity": "Brazil/br_pds",
+          "title": "Democratic Social Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 1216,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1993-04-30",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "month",
+                "value": "1993-04"
+              },
+              "reason": "January 1990 party presidency unresolved. Jarbas Passarinho was on leave in November 1989; Maluf is explicitly party president in March 1992. Do not backdate either from candidacy or a later observation.",
+              "sources": [
+                "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
+                "https://hemeroteca-pdf.bn.gov.br/761036/per761036_1989_22490.pdf"
+              ]
+            },
+            {
+              "from": {
+                "kind": "month",
+                "value": "1993-04"
+              },
+              "until": {
+                "kind": "day",
+                "value": "2026-09-07"
+              },
+              "reason": "PDS no longer exists under its historical identity after merger; successor organization chain not ingested.",
+              "sources": [
+                "https://atlas.fgv.br/verbete/6099"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://atlas.fgv.br/verbete/6099",
+            "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
+            "https://hemeroteca-pdf.bn.gov.br/761036/per761036_1989_22490.pdf"
+          ],
+          "related_work_orders": [
+            "CH-Brazil-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "1993-04-30",
+            "pinned": true
+          }
+        },
+        {
           "item": "research_role_chain",
           "nation": "Brazil",
           "entity": "br_presidency#br_president",
@@ -34160,6 +35686,130 @@
             "pinned": false
           },
           "first_evidence": "2003-07-02",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Brazil",
+          "entity": "br_tse_fefc_2024_party_07#br_agir_president",
+          "title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2014-05-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2014-05-16",
+              "through": "2014-05-16",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2014-05-17",
+              "through": "2018-07-24",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2018-07-25",
+              "through": "2018-07-25",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2018-07-26",
+              "through": "2020-08-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-08-08",
+              "through": "2021-07-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2021-07-24",
+              "through": "2022-11-10",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-11-12",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Daniel Tourinho",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Daniel Tourinho",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Daniel Tourinho",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Daniel Tourinho",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Daniel Tourinho",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20260802212048id_/https://www.tse.jus.br/partidos/partidos-registrados-no-tse",
+            "https://web.archive.org/web/20230325042738id_/https://www.tse.jus.br/servicos-eleitorais/glossario/termos/partido-politico",
+            "https://web.archive.org/web/20071011184316id_/http://www.ptc.org.br/index.php?acao=historia_do_partido",
+            "https://web.archive.org/web/20071020032949id_/http://www.ptc.org.br/index.php?acao=comissao_executiva_nacional",
+            "https://web.archive.org/web/20141008035057id_/http://www.ptc36nacional.com.br/o-presidente-nacional-do-ptc-daniel-tourinho-confirma-apoio-a-candidatura-de-aecio-neves/",
+            "https://web.archive.org/web/20160829223324id_/http://www.ptc36nacional.com.br/ptc-realiza-convencao-nacional-em-aracaju/"
+          ],
+          "related_work_orders": [
+            "C01-Brazil-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2014-05-16",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         }
       ]
@@ -36212,6 +37862,160 @@
         {
           "item": "research_role_chain",
           "nation": "Tonga",
+          "entity": "to_dpfi#to_dpfi_leader",
+          "title": "Party leader",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2014-11-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2014-11-27",
+              "through": "2014-11-27",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2014-11-28",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "to_dpfi_pohiva_2010",
+              "record": "to_dpfi_pohiva_2010",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "'Akilisi Pohiva",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://data.ipu.org/election-summary/HTML/2317_10.htm",
+            "https://data.ipu.org/election-summary/HTML/2317_14.htm"
+          ],
+          "related_work_orders": [
+            "C01-Tonga-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2014-11-27",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Tonga",
+          "entity": "to_dpfi#to_dpfi_president",
+          "title": "President of the party (PTOA)",
+          "role": "other",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2022-08-28",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-08-29",
+              "through": "2022-08-29",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2022-08-30",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Fatai Helu",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling"
+          ],
+          "related_work_orders": [
+            "C01-Tonga-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2022-08-29",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Tonga",
+          "entity": "to_pdp#to_pdp_leader",
+          "title": "Party leader",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "to_pdp_split_fuko",
+              "record": "to_pdp_split_fuko",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://data.ipu.org/election-summary/HTML/2317_08.htm"
+          ],
+          "related_work_orders": [
+            "C01-Tonga-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": null
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Tonga",
           "entity": "to_peoples_party#to_peoples_party_leader",
           "title": "Leader",
           "role": "party_leader",
@@ -36314,7 +38118,15 @@
           },
           "first_evidence": "2022-04-19",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-Tonga-B002",
+      "case": "Tonga",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Tonga",
@@ -38890,9 +40702,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 73,
-    "research_roles_with_unresolved_days": 64,
-    "next_batches": 12,
-    "next_items": 87
+    "research_roles": 74,
+    "research_roles_with_unresolved_days": 65,
+    "next_batches": 13,
+    "next_items": 97
   }
 }

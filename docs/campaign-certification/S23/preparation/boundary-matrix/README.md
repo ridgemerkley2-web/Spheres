@@ -110,6 +110,9 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-38 | accepted | 22 |
 | CLAUDE-C01-40 | accepted | 20 |
 | CLAUDE-C01-41 | accepted | 12 |
+| CLAUDE-C01-42 | accepted | 32 |
+| CLAUDE-C01-43 | accepted | 14 |
+| CLAUDE-C01-44 | accepted | 5 |
 | CLAUDE-C01-45 | accepted | 18 |
 | CLAUDE-C01-46 | accepted | 7 |
 
@@ -118,9 +121,9 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
 | France | France | 2 / 15 / 1 | 1103 | 0/74 | 197/555 | 23/198 |
-| Japan | Japan | 7 / 8 / 1 | 1184 | 9/259 | 151/296 | 15/151 |
+| Japan | Japan | 7 / 8 / 1 | 1222 | 9/259 | 151/296 | 15/151 |
 | India | India | 6 / 4 / 1 | 783 | 6/222 | 109/148 | 10/109 |
-| Brazil | Brazil | 5 / 6 / 1 | 819 | 20/185 | 99/222 | 7/100 |
+| Brazil | Brazil | 6 / 6 / 1 | 881 | 20/222 | 99/222 | 7/100 |
 | SouthAfrica | SouthAfrica | 11 / 7 / 1 | 1190 | 4/407 | 151/259 | 13/151 |
 | Tonga | Tonga | 15 / 0 / 1 | 978 | 15/555 | none | none |
 | SaudiArabia | SaudiArabia | 10 / 0 / 1 | 721 | 2/370 | none | none |
@@ -143,7 +146,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 ### Japan
 
 - Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 31, pending 44, unattributed_intake 5.
+- Research holder observations by acceptance: accepted 50, pending 44, unattributed_intake 5.
 - Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.
 - Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).
 - Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
@@ -167,8 +170,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Brazil
 
-- Research roles: 5 (5 with holder observations); 20 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 62 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 12, pending 39.
+- Research roles: 6 (6 with holder observations); 20 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 99 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 17, pending 39.
 - Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.
 - Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).
 - Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
@@ -264,9 +267,9 @@ established holders at those samples; for the executive they count the campaign-
 | Japan | `party:jp_komeito/jp_komeito_1998` Komeito (reconstituted in 1998) | production_registry 7 | 28/0/0/0/0/0/9 | 21 | 0 | 0/28 |
 | Japan | `party:jp_jcp` Japanese Communist Party | production_registry 3 | 37/0/0/0/0/0/0 | 3 | 0 | 5/37 |
 | Japan | `party:jp_dsp` Democratic Socialist Party | production_registry 3 | 5/0/0/0/0/0/32 | 3 | 0 | 1/5 |
-| Japan | `research:jp_jcp_executive_committee_chair` 幹部会委員長 — Executive Committee chair | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
-| Japan | `research:jp_jcp_central_committee_chair` 中央委員会議長 — Central Committee chair | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
-| Japan | `research:jp_dpfp_representative` 代表 — party representative | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Japan | `research:jp_jcp_executive_committee_chair` 幹部会委員長 — Executive Committee chair | accepted 10, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 22 | - |
+| Japan | `research:jp_jcp_central_committee_chair` 中央委員会議長 — Central Committee chair | accepted 5, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 12 | - |
+| Japan | `research:jp_dpfp_representative` 代表 — party representative | accepted 4, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | Japan | `research:jp_sdp_chair` 委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party | accepted 16 | 0/0/1/36/0/0/0 | 6 | 30 | - |
 | Japan | `research:jp_ldp_party_president` 総裁 — party president | pending 14, unattributed_intake 2 | 0/0/0/26/11/0/0 | 3 | 30 | - |
 | Japan | `research:jp_komeito_representative` 代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長) | accepted 15 | 0/0/0/20/17/0/0 | 3 | 28 | - |
@@ -292,6 +295,7 @@ established holders at those samples; for the executive they count the campaign-
 | Brazil | `research:br_mdb_president` Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro) | accepted 5 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | Brazil | `research:br_pdt_president` Presidente Nacional do Partido Democrático Trabalhista | accepted 7 | 0/0/0/15/22/0/0 | 3 | 14 | - |
 | Brazil | `research:br_pt_president` Presidente Nacional do Partido dos Trabalhadores | pending 18 | 1/0/0/35/1/0/0 | 21 | 24 | - |
+| Brazil | `research:br_agir_president` Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir | accepted 5 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | Brazil | `research:br_president` President of the Federative Republic of Brazil | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | - |
 | Brazil | `research:br_vice_president` Vice-President of the Federative Republic of Brazil | pending 9 | 8/0/0/28/1/0/0 | 27 | 0 | - |
 | SouthAfrica | `executive` State President | pending 10, unattributed_intake 1 | 4/0/9/10/14/0/0 | 12 | 20 | 5/37 |
@@ -381,4 +385,4 @@ established holders at those samples; for the executive they count the campaign-
 - Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
 - Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
-- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01) do not change a packet's class.
+- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02) do not change a packet's class.
