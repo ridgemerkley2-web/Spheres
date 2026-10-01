@@ -75,9 +75,8 @@ person, so the assignment of duties is a claim. The August 1991 acts were not re
 
 ### RU-RSP-02 — December 1991 to January 1992: the restyling
 
-Evidence: the portal's listing of 20 December 1991 to 10 January 1992 titles every presidential act "Президента РСФСР" to 25
-December; from 26 December both titles appear (RSFSR titles on 26 and 29 December 1991 and 3 January 1992, all others "Президента
-Российской Федерации"). The texts read here confirm both on 26 December (decree 316 signed "Президент Российской Федерации Б.Ельцин"; decree 318 signed "Президент РСФСР Б.Ельцин"), and
+Evidence independently retained and reviewed: the texts and single-act portal cards confirm both titles on 26 December
+(decree 316 signed "Президент Российской Федерации Б.Ельцин"; decree 318 signed "Президент РСФСР Б.Ельцин"), and
 honours decree 245-н of 3 January 1992 is still signed "Президент РСФСР". The Vice-President's order 8-рв (5 December 1991)
 reads "РСФСР" and order 1-рв (16 January 1992) "Вице-президент Российской Федерации". Decision: decrees 318 and 245-н are
 observations on `ru_rsfsr_president` because they print its title; decree 316 is a styling claim on that role, not an
@@ -85,8 +84,10 @@ observation on either presidential role (CLAUDE-C01-14 left the 1991-1996 `ru_pr
 C01-Russia-PRES-002). The 1992 order is filed on `ru_rsfsr_vice_president`, the only vice-presidency role, with its title
 unchanged.
 
-Limits: listing titles were read for the window; texts only for the acts cited. Whether RSFSR-styled signatures continue
-after 10 January 1992 was not checked.
+Limits: the author reported a broader listing sweep for 20 December 1991 to 10 January 1992, including an act of
+29 December. That listing and the 29 December act were not retained and are not independently verified in this review.
+Only the cited acts support the accepted observations; they do not establish a last use of either title or an exhaustive
+transition window. Post-renaming RSFSR signatures attest the printed styling and do not extend an entity's legal lifetime.
 
 ### RU-RSP-03 — 16 April 1993: the Supreme Soviet names the Vice-President
 
@@ -120,7 +121,9 @@ Evidence: decree 1576 recites the suspension and the appropriation of powers, re
 President's powers in a vacancy to the Chairman of the Council of Ministers (point 3, procedure) and enters into force "с
 момента его подписания" (point 4); it is dated 3 October 1993. Decision: `until` 1993-10-03 on the 1 September observation,
 reading the effect-on-signature clause as stating the effective day, as the accepted CLAUDE-C01-19 did for decrees 861 and
-300. Fallback: no `until` (Decisions for Codex). No source reviewed states that the office itself was abolished.
+300. Independent review accepts this as the decree's stated release taking effect on signature, without adjudicating
+the competing constitutional legitimacy claims. Fallback: no `until` (Decisions for Codex). No source reviewed states
+that the office itself was abolished.
 
 ## Sources added
 
