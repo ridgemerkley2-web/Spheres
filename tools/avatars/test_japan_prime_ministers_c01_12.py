@@ -21,6 +21,9 @@ import test_japan_sdp_chairs_c01_29 as sdp
 # CLAUDE-C01-31 adds sources for a new party role, jp_komeito_representative, only; its exact source list is pinned in its own
 # test and appended after CLAUDE-C01-29's below.
 import test_japan_komeito_representatives_c01_31 as komeito
+# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+# after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -922,7 +925,7 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (119, 174))
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + NEW_SOURCES + later.NEW_SOURCES + ldp.NEW_SOURCES + sdp.NEW_SOURCES +
-                         komeito.NEW_SOURCES)
+                         komeito.NEW_SOURCES + jcp42.NEW_SOURCES)
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 7))
         self.assertEqual(len(self.packet['organizations']), 16)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
@@ -1047,7 +1050,8 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertTrue(coverage['unresolved'][10].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
         self.assertTrue(coverage['unresolved'][11].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29'))
         self.assertTrue(coverage['unresolved'][12].startswith('Komeito representatives 1990-2026 (CLAUDE-C01-31'))
-        self.assertEqual(len(coverage['unresolved']), 13)
+        self.assertTrue(coverage['unresolved'][13].startswith('JCP chairs and DPFP representatives 1990-2026 (CLAUDE-C01-42'))
+        self.assertEqual(len(coverage['unresolved']), 14)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [16, 7])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):

@@ -1,0 +1,37 @@
+{
+  "status": "passed_focused_checks",
+  "observed_results": {
+    "campaign-tests": {
+      "exit_code": 0,
+      "tests": 16
+    },
+    "census-check": {
+      "exit_code": 0
+    },
+    "guard-green": {
+      "exit_code": 0
+    },
+    "guard-red": {
+      "exit_code": 1
+    },
+    "japan-tests": {
+      "exit_code": 0,
+      "tests": 67
+    },
+    "research-check": {
+      "exit_code": 0
+    },
+    "research-generate": {
+      "exit_code": 0
+    },
+    "research-tests": {
+      "exit_code": 0,
+      "tests": 79
+    },
+    "ui-tests": {
+      "exit_code": 0,
+      "tests": 11
+    }
+  },
+  "scope": "Named test suites overlap; do not sum them as unique tests. guard-red deliberately reproduced the calendar-blacklist defect; guard-green passed after the rule repair. Metadata checks used a locally regenerated index, retained externally and restored before commit. Root owns final combined metadata/workboard/full-suite validation; no native test or campaign qualification was performed."
+}

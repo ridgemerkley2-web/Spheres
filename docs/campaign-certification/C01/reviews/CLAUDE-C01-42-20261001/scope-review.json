@@ -1,0 +1,321 @@
+{
+  "integration_base": "13367c99a6ee708e2324ce67f079e6c80148b854",
+  "incoming_tip": "94426852124efff5d146c0a61ba5ad8212311ce8",
+  "incoming_substantive_commit": "41dd03f8983fe2f58e316dc820ef0bfd6c02d4cd",
+  "incoming_checker_fix_commit": "dcf27e125add183028ab6aa4981cd3821fa447fd",
+  "first_source_import": "3cfbefc53fa74705a563fa7e9c3d448038d74758",
+  "corrective_commit": "ca8bcb640ebb98c2f743dbbca8fa6fcf3b828f78",
+  "reviewed_files": [
+    {
+      "path": "docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md",
+      "bytes": 60403,
+      "sha256": "1b4e548321f93f3dfe0c7db94f20680ee6e0ee6bc2c1b7261742e6cbd9d99e47"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "bytes": 1828719,
+      "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-2018-founding-convention-20180507-facts.json",
+      "bytes": 6442,
+      "sha256": "cf798f078fcf317c5ca162731208da01822d3786f8d93135ef3fbacf83c3672a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-2018-party-dissolved-20200911-facts.json",
+      "bytes": 5036,
+      "sha256": "2a1e471f1f0ad200313497a0f1a97ca772d7be6640a7a3db22bc578ad105ede7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-2018-representative-elected-20180904-facts.json",
+      "bytes": 5238,
+      "sha256": "ee92db8c8c1b5d03d9da003e2fb24d8e826829cb12d64c063947afaa902cc73b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-2018-representative-press-conference-20180904-facts.json",
+      "bytes": 4601,
+      "sha256": "4ebce0ce66f1182c386085ed9812172fc0216d88c40cbe3b23cedec66c04092e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-founding-convention-20200915-facts.json",
+      "bytes": 4930,
+      "sha256": "e316b56f0133782c3000d5a5d06c19c22b2328ccaaa2eebd3c6b9fcd917d4007"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-new-officers-20201223-facts.json",
+      "bytes": 4257,
+      "sha256": "4a1ff40d31b8cb06f68fe0e11658216c5abcbc3b2542389a72258b9714c1a7fc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-representative-election-20201218-facts.json",
+      "bytes": 4321,
+      "sha256": "13e6c92e41fff5ca2fedc16c69a9b848b2ee0d115208442352750a74e09aa5b0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-representative-election-20230902-facts.json",
+      "bytes": 4276,
+      "sha256": "bb18e6f5c14aa1841cf00bda396aa822e75f4e1ecb5193f0fa444e0b0c25c0a7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-representative-press-conference-20230905-facts.json",
+      "bytes": 4213,
+      "sha256": "cd187f282e6355362976ecbe3bef5f5a5940f48977bb6a56b4c8e72fc18a4f8e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-representative-press-conference-20250304-facts.json",
+      "bytes": 5740,
+      "sha256": "1f70b3d53d0f9871a39064e76a4b0cb2d87eb3b4beef1a184d9098430fad1765"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-suspension-notice-20241204-facts.json",
+      "bytes": 4136,
+      "sha256": "7651c9aff7cc934088840369cf04cb59f4adc4bc4485398399c8dc424f3eb5aa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-dpfp-tamaki-video-comment-20201026-facts.json",
+      "bytes": 4212,
+      "sha256": "927cd1010e9e5300facc90f5cf21d8e95bc969edc0cdb4d6715b30c1e4b7724c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-21st-congress-diary-19970926-facts.json",
+      "bytes": 6459,
+      "sha256": "f797b98362493e25ed8b0db11aad8f33fd6ffd182c86bbf3a4a17f52fa62624b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-21st-congress-honorary-officers-19970926-facts.json",
+      "bytes": 4345,
+      "sha256": "cc8b66996c4d91523df64ea9ae35b9f498c29c56a3b0db7fa352cb4188dd6ec2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-21st-first-plenum-19970926-facts.json",
+      "bytes": 5099,
+      "sha256": "a5ba69affcb5eae7ba1016da314a97928875a3056a706821ca0b490963667875"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-21st-rules-amendment-proposal-19970925-facts.json",
+      "bytes": 4538,
+      "sha256": "d2d66c391374636ebeb141d928abf07a0964b8d011e17b44e220536a0657a187"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-22nd-congress-closing-address-20001124-facts.json",
+      "bytes": 5160,
+      "sha256": "d099cd017b043cbaef7e96690b6398503bf066756177652278e64e7d548ac479"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-22nd-congress-opening-address-20001120-facts.json",
+      "bytes": 4248,
+      "sha256": "9d38b0ed16ddc196e6f2c974166f84cce4974479fce892da8a168e51da4703d4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-22nd-officers-20001124-facts.json",
+      "bytes": 4878,
+      "sha256": "35e20a7bb154ccfb6c58be936c140883b881d5cf93e6bd7bb09166608ac254da"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-23rd-congress-summation-20040117-facts.json",
+      "bytes": 4333,
+      "sha256": "99a1b5b0e341b0cefa7858296c5f28f78ad2fd93e611895a5de6998bb7e8b844"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-23rd-first-plenum-20040117-facts.json",
+      "bytes": 5253,
+      "sha256": "5f359bd495a2104f7dc9cabcb0407d0597a33713ef1758233cdd14f9de24a3ba"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-24th-congress-closing-address-20060114-facts.json",
+      "bytes": 5207,
+      "sha256": "e2aef86b0320a398a2efaf87b0fcc95c07424b12ec145e0fedfb046b3372c007"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-24th-congress-opening-address-20060112-facts.json",
+      "bytes": 4362,
+      "sha256": "53443e47fe1433f4085c20c573b4f0a76edf7a30b2f8c1b1d057b7ce3131aeaf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-24th-personnel-report-20060115-facts.json",
+      "bytes": 6405,
+      "sha256": "a78449f257f488a426ad281bf1051bda7531b9e5ad11aef1ea5524a8ca3e518e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-25th-congress-closing-address-20100116-facts.json",
+      "bytes": 4481,
+      "sha256": "a874902e99ebd8ce12b9f71a19facb99f04e253479e1b42045169a449231693f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-26th-congress-summation-20140118-facts.json",
+      "bytes": 4375,
+      "sha256": "5863357a3cb0fa5963584e5a8271f4e2314ab6ec915d7388f4014b68caeb9a72"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-27th-congress-closing-address-20170118-facts.json",
+      "bytes": 4339,
+      "sha256": "ca449053b3bac2a33e41304130d840e9991ccefa466ed95aa39a12a5850b117c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-27th-officers-20170118-facts.json",
+      "bytes": 4285,
+      "sha256": "9dc3aa8902589a30428df1cfe78c1b163c1e031ac40e7b35734811f8518a5e53"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-28th-congress-closing-address-20200118-facts.json",
+      "bytes": 4316,
+      "sha256": "ed1a3c2559e3d2a463c581835f19da86a0dd4c3a77e1de867069eee55897c8a3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-28th-officers-20200118-facts.json",
+      "bytes": 4347,
+      "sha256": "aab347b9ccdad6fe1d2357d91cb55d28a20653321e76c52f1832a5869deb0c8a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-programme-report-19940719-facts.json",
+      "bytes": 5348,
+      "sha256": "3dbf536cbf273260127913025a1bb7ab125a31db17b2a9dbe527f360175324a8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-jcp-second-plenum-presidium-report-20010529-facts.json",
+      "bytes": 4352,
+      "sha256": "bfb861e75cd6641743c136d20475f22218c7f8a93942acd7c3be2e02d5d78976"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
+      "bytes": 14398,
+      "sha256": "5636bdced6fa0d346399bddb333821023ee3eb1b9b1c93a680e559e7b413e5d7"
+    },
+    {
+      "path": "tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py",
+      "bytes": 77348,
+      "sha256": "101729a417e505a69e7b22f2d3bbb81395270628d4f07e0fddc377f958899689"
+    },
+    {
+      "path": "tools/avatars/test_japan_komeito_representatives_c01_31.py",
+      "bytes": 77033,
+      "sha256": "fdd9393ca3944d70880f28923eacce27d499aec61017ea46f9f7e584a45ff1e4"
+    },
+    {
+      "path": "tools/avatars/test_japan_ldp_presidents_c01_18.py",
+      "bytes": 121743,
+      "sha256": "cfd556aad3a7089e49a86de0563713ef8b7eb7331de14b7bd867f4952eb9dc2a"
+    },
+    {
+      "path": "tools/avatars/test_japan_prime_ministers_c01_12.py",
+      "bytes": 100155,
+      "sha256": "2a91678e91c5d7a8930ba2d9bacdc8cc5b4ecd77c89737a0416a517b3b1eab52"
+    },
+    {
+      "path": "tools/avatars/test_japan_prime_ministers_c01_13.py",
+      "bytes": 177178,
+      "sha256": "ec8c9d9b63c76e3592292265c8abb24da2b028971e33f14f08d1c664bfbd7deb"
+    },
+    {
+      "path": "tools/avatars/test_japan_research_s10d.py",
+      "bytes": 16760,
+      "sha256": "8b28a36b478d8bacf21205daf561794c98907c2112d025f1b02f7d77f973e7aa"
+    },
+    {
+      "path": "tools/avatars/test_japan_sdp_chairs_c01_29.py",
+      "bytes": 98062,
+      "sha256": "81f7d5921a97a6289bd2138a97a1dc1ab82197b462cfc7ff94348f309c6424c9"
+    }
+  ],
+  "corrective_paths": [
+    "docs/campaign-certification/C01/research/japan-jcp-chairs-dpfp-representatives-1990-2026-42.md",
+    "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
+    "tools/avatars/test_japan_jcp_dpfp_leaders_c01_42.py"
+  ],
+  "new_source_ids": [
+    "jp_jcp_programme_report_20th_congress_19940719",
+    "jp_jcp_21st_congress_diary_19970926",
+    "jp_jcp_21st_congress_honorary_officers_19970926",
+    "jp_jcp_21st_first_plenum_19970926",
+    "jp_jcp_21st_rules_amendment_proposal_19970925",
+    "jp_jcp_22nd_congress_opening_address_20001120",
+    "jp_jcp_22nd_officers_20001124",
+    "jp_jcp_22nd_congress_closing_address_20001124",
+    "jp_jcp_second_plenum_presidium_report_20010529",
+    "jp_jcp_23rd_first_plenum_20040117",
+    "jp_jcp_23rd_congress_summation_20040117",
+    "jp_jcp_24th_congress_opening_address_20060112",
+    "jp_jcp_24th_personnel_report_20060115",
+    "jp_jcp_24th_congress_closing_address_20060114",
+    "jp_jcp_25th_congress_closing_address_20100116",
+    "jp_jcp_26th_congress_summation_20140118",
+    "jp_jcp_27th_officers_20170118",
+    "jp_jcp_27th_congress_closing_address_20170118",
+    "jp_jcp_28th_officers_20200118",
+    "jp_jcp_28th_congress_closing_address_20200118",
+    "jp_dpfp_2018_founding_convention_20180507",
+    "jp_dpfp_2018_representative_elected_20180904",
+    "jp_dpfp_2018_representative_press_conference_20180904",
+    "jp_dpfp_2018_party_dissolved_20200911",
+    "jp_dpfp_founding_convention_20200915",
+    "jp_dpfp_tamaki_video_comment_20201026",
+    "jp_dpfp_representative_election_20201218",
+    "jp_dpfp_new_officers_20201223",
+    "jp_dpfp_representative_election_20230902",
+    "jp_dpfp_representative_press_conference_20230905",
+    "jp_dpfp_suspension_notice_20241204",
+    "jp_dpfp_representative_press_conference_20250304"
+  ],
+  "new_claim_ids": [
+    "jp_jcp_fuwa_executive_chair_report_19940719",
+    "jp_jcp_miyamoto_named_chair_by_executive_chair_19940719",
+    "jp_jcp_miyamoto_absence_reported_19970923",
+    "jp_jcp_rules_amendment_adopted_19970926",
+    "jp_jcp_honorary_chair_introduced_19970926",
+    "jp_jcp_fuwa_closing_address_diary_19970926",
+    "jp_jcp_miyamoto_named_honorary_chair_19970926",
+    "jp_jcp_21st_first_plenum_officers_elected_19970926",
+    "jp_jcp_fuwa_in_office_first_plenum_19970926",
+    "jp_jcp_central_chair_made_optional_proposed",
+    "jp_jcp_fuwa_opening_address_20001120",
+    "jp_jcp_fuwa_elected_central_chair_20001124",
+    "jp_jcp_shii_elected_executive_chair_20001124",
+    "jp_jcp_fuwa_central_chair_closing_address_20001124",
+    "jp_jcp_shii_new_executive_chair_styled_20001124",
+    "jp_jcp_shii_executive_chair_report_20010529",
+    "jp_jcp_23rd_first_plenum_four_officers_elected_20040117",
+    "jp_jcp_fuwa_central_chair_first_plenum_20040117",
+    "jp_jcp_shii_executive_chair_summation_20040117",
+    "jp_jcp_fuwa_central_chair_self_stated_20060112",
+    "jp_jcp_fuwa_withdrawal_accepted_reported_20060115",
+    "jp_jcp_24th_first_plenum_three_officers_elected_20060115",
+    "jp_jcp_fuwa_offices_recalled_retrospective",
+    "jp_jcp_shii_executive_chair_closing_address_20060114",
+    "jp_jcp_fuwa_steps_down_confirmed_20060114",
+    "jp_jcp_shii_executive_chair_closing_address_20100116",
+    "jp_jcp_shii_executive_chair_summation_20140118",
+    "jp_jcp_shii_elected_executive_chair_20170118",
+    "jp_jcp_shii_executive_chair_closing_address_20170118",
+    "jp_jcp_shii_elected_executive_chair_20200118",
+    "jp_jcp_shii_executive_chair_closing_address_20200118",
+    "jp_dpfp_2018_party_founded_20180507",
+    "jp_dpfp_2018_co_representatives_approved_20180507",
+    "jp_dpfp_2018_co_representatives_inaugural_greetings_20180507",
+    "jp_dpfp_2018_tamaki_elected_20180904",
+    "jp_dpfp_2018_second_representative_styled_20180904",
+    "jp_dpfp_2018_tamaki_assumption_stated_20180904",
+    "jp_dpfp_2018_party_dissolved_20200911",
+    "jp_dpfp_2018_tamaki_final_greeting_20200911",
+    "jp_dpfp_party_founded_20200915",
+    "jp_dpfp_tamaki_selected_founding_convention_20200915",
+    "jp_dpfp_tamaki_in_office_20201026",
+    "jp_dpfp_tamaki_elected_20201218",
+    "jp_dpfp_tamaki_in_office_20201223",
+    "jp_dpfp_tamaki_elected_20230902",
+    "jp_dpfp_tamaki_in_office_20230905",
+    "jp_dpfp_tamaki_suspended_from_posts_20241204",
+    "jp_dpfp_tamaki_in_office_20250304",
+    "jp_dpfp_suspension_recalled_20250304",
+    "jp_dpfp_furukawa_acting_recalled_20250304"
+  ],
+  "preserved_prior_sources": 503,
+  "preserved_prior_claims": 863,
+  "prior_holders_unchanged": true,
+  "prior_institutions_unchanged": true,
+  "other_organizations_unchanged": true,
+  "research_cutoff": "2026-09-07",
+  "generated_index_imported": false,
+  "runtime_or_art_changes": false,
+  "parent_qualification": false,
+  "scope_note": "Only32source extracts,Japanresearch JSON,authored report/handoff and7Japan tests in first import. Correction changes only active authority prose and test guard; all historical JSON and exact fixture pins remain the imported bytes."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_jcp_24th_congress_opening_address_20060112",
+  "source_url": "https://web.archive.org/web/20060204074827id_/http://www.jcp.or.jp/akahata/aik4/2006-01-12/2006011202_01_0.html",
+  "original_url": "http://www.jcp.or.jp/akahata/aik4/2006-01-12/2006011202_01_0.html",
+  "archive_capture_utc": "2006-02-04T07:48:27Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 15238,
+  "source_response_sha256": "5b9c2fee32c21ab9df170f881a7ea7040e48050d215f859de5beba1b41509169",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "33EIPVFTE4HVC2MUYJKMWBKQQ5FWCIDM",
+  "source_character_encoding": "Shift_JIS (decoded as cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20060204074827id_/http://www.jcp.or.jp/akahata/aik4/2006-01-12/2006011202_01_0.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-02-04T07:48:27Z; that form replays the archived bytes unchanged. Researcher: first downloaded on 2026-10-01 (UTC) at 03:25:25Z. Downloaded again by this packet at 2026-10-01 04:09:03Z (UTC), 44 minutes after the first download, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Internet Archive sends gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party organ's text, in its issue of 12 January 2006, of the opening address of the 24th Congress; the page prints no day for the address.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_jcp_fuwa_central_chair_self_stated_20060112",
+      "observation_id": "jp_sangiin_pr_2025_01",
+      "review_observation": "JCP-05",
+      "role_id": "jp_jcp_central_committee_chair",
+      "holder_name": "不破哲三",
+      "role_title": "中央委員会議長 — Central Committee chair",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2006-01-12",
+      "text": "The party organ of 12 January 2006 prints the opening address of the 24th Congress given by 不破哲三議長, which begins with his own statement of the office ('日本共産党中央委員会議長の不破哲三でございます').",
+      "locator": {
+        "section": "heading, introductory sentence and first line of the address"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the 日本共産党 Executive Committee chair (幹部会委員長) and Central Committee chair (中央委員会議長) and of the 国民民主党 representative (代表), for CLAUDE-C01-42 only, 1990-2026. Congress and plenum elections, in-office attestations, withdrawals, honorary offices, rule procedure, suspensions, acting service, the earlier 国民民主党 of 2018-2020 and its offices, and organization events stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the row names no holder of this office (an organization event, procedure, another office, acting service or an election that names nobody). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded; organization identities stay unresolved, and no row maps or merges the 国民民主党 of 2018-2020 with the 2025 election-list observation or any other organization."
+}

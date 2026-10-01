@@ -18,6 +18,9 @@ import test_japan_sdp_chairs_c01_29 as sdp
 # CLAUDE-C01-31 adds sources for a new party role, jp_komeito_representative, only, after CLAUDE-C01-29's; its exact sources
 # and holders are pinned in its own test.
 import test_japan_komeito_representatives_c01_31 as komeito
+# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+# after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
+import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -1954,9 +1957,9 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         self.assertEqual([s['id'] for s in later_sources(self.packet)], NEW_SOURCES)
         self.assertEqual(len(self.packet['sources']),
                          ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES) + len(ldp.NEW_SOURCES) + len(sdp.NEW_SOURCES) +
-                         len(komeito.NEW_SOURCES))
+                         len(komeito.NEW_SOURCES) + len(jcp42.NEW_SOURCES))
         self.assertEqual([s['id'] for s in self.packet['sources'][ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES):]],
-                         ldp.NEW_SOURCES + sdp.NEW_SOURCES + komeito.NEW_SOURCES)
+                         ldp.NEW_SOURCES + sdp.NEW_SOURCES + komeito.NEW_SOURCES + jcp42.NEW_SOURCES)
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 7))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual(self.new_claims, NEW_CLAIMS)
@@ -2070,10 +2073,10 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         unresolved = self.office['coverage']['unresolved']
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         self.assertEqual([u[:40] for u in unresolved[-4:-1]], [u[:40] for u in INSTITUTION_UNRESOLVED])
-        # This packet's note is at index 9, followed only by CLAUDE-C01-18's, CLAUDE-C01-29's and CLAUDE-C01-31's (pinned in
-        # their own tests).
+        # This packet's note is at index 9, followed only by CLAUDE-C01-18's, CLAUDE-C01-29's, CLAUDE-C01-31's and
+        # CLAUDE-C01-42's (pinned in their own tests).
         self.assertTrue(self.packet['coverage']['unresolved'][9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
-        self.assertEqual(len(self.packet['coverage']['unresolved']), 13)
+        self.assertEqual(len(self.packet['coverage']['unresolved']), 14)
         self.assertEqual(sum('CLAUDE-C01-13' in u for u in self.packet['coverage']['unresolved']), 1)
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
