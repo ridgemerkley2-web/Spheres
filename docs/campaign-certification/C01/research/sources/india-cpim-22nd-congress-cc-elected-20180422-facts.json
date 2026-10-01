@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_22nd_congress_new_cc_elected_20180422",
+  "source_url": "https://cpim.org/wp-json/wp/v2/posts/5567",
+  "accessed_date": "2026-09-30",
+  "published_date": "2018-04-22",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 6385,
+  "source_response_sha256": "e7492f9e17d479c3d50e0b454c337ca8ad6f510096240cc7c73aaca3a38119f2",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (cpim.org): the WordPress REST record of post 5567 (wp-json/wp/v2/posts/5567), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML page of the same post embeds a per-request cache timestamp, so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 23:36:17Z on 30 September 2026 and 00:22:28Z on 1 October 2026, the first and last 46 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's post 5567 (slug pressbriefs-new-central-committee-elected-22nd-congress), published 22 April 2018 and last modified 14 April 2024 (a site migration stamp, before the cutoff), recorded as its WordPress REST record (wp-json/wp/v2/posts/5567) because the HTML page of the same post embeds a per-request cache timestamp. The post's publication date is its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_cc_elected_yechury_gs_22nd_congress_20180422",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-04",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Sitaram Yechury",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "election_result",
+      "attested_on": "2018-04-22",
+      "text": "The party's press release of 22 April 2018 lists the Central Committee and Central Control Commission elected at the 22nd Congress and the 17-member Polit Bureau elected at the first meeting of the new Central Committee, and ends 'The Central Committee also elected Sitaram Yechury as the General Secretary.'",
+      "locator": {
+        "item": "last sentence of the post body"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

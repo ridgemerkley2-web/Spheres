@@ -1,0 +1,328 @@
+{
+  "format": "spheres-independent-research-review/v1",
+  "created_utc": "2026-10-01T01:10:04.236874+00:00",
+  "reviewer": "Codex /root/retire_selector_review",
+  "base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "scoped_import": "f04ead949211279473d5fcb5a408b49af5a944d1",
+  "correction": "cc57b876dfe01b5802dc00c6c891ee879a433c99",
+  "counts": {
+    "sources": 12,
+    "claims": 26,
+    "new_holders": 5,
+    "held_sources": 0,
+    "held_claims": 0,
+    "held_new_holders": 0,
+    "unique_pdf_pages": 22,
+    "render_images": 26,
+    "test_executions": 181
+  },
+  "reviewed_inputs": [
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-izvestia-tsk-kpss-1991-08-masthead-19910710-facts.json",
+      "bytes": 6763,
+      "sha256": "3b6e8f1b4e40f41a2666a7125e8a86ba5afa3612631be890e10f414fd042ae11"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-kremlin-rsfsr-ukaz-169-19911106-facts.json",
+      "bytes": 7330,
+      "sha256": "4ad954b2809db3f2b50ffa0cbba90e3005a04219ee1f32d97820e289b6f25447"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no192-general-secretary-election-19900711-facts.json",
+      "bytes": 11837,
+      "sha256": "e7a2e88ef3adec5c2034cdbbaee46114124927666f1123b914cbab0388914280"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no193-deputy-nominations-19900712-facts.json",
+      "bytes": 9229,
+      "sha256": "b951eaa66d33cb4a8013b22cefbfa87b55e8e17161b4acbd86c908b2d3b2ce77"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no194-deputy-election-19900713-facts.json",
+      "bytes": 11324,
+      "sha256": "43abbcd17a9b992622b2ee6a9c11455ff844c7daf6ac6365985fadefd36b499b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no195-program-commission-19900714-facts.json",
+      "bytes": 8908,
+      "sha256": "8769417c86e567aa8c174cc94334907de193992367d9d73bab5243ece2c1a14e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no201-secretariat-statement-19910822-facts.json",
+      "bytes": 10088,
+      "sha256": "f54a272241f712704f77fbf7524a409e36ffecbe8f8e0c1bcb19369c35254ee5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-pravda-no37-cc-plenum-19900206-facts.json",
+      "bytes": 7300,
+      "sha256": "f9115705da7629b207344d3f102a3f476e3eed6a6a785821d3026978658e4ee6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-snd5-bulletin3-cpsu-19910903-facts.json",
+      "bytes": 8017,
+      "sha256": "3cb3ff62acc87502b66e24967ddd677ef5d4ac9233d560a8d463d9f607eabb6c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin1-cpsu-19910826-facts.json",
+      "bytes": 8144,
+      "sha256": "6bb893df737edec3bc7bc42f3cf11011615a061427e15399aac07e131c7fabfa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-ved-1991-35-cpsu-property-19910828-facts.json",
+      "bytes": 6561,
+      "sha256": "95d32c23960691b28cd368e513b6ec3237ed02f380b6ddae4cd9d5c3bf63c405"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/ussr-ved-1991-36-cpsu-suspension-19910904-facts.json",
+      "bytes": 7059,
+      "sha256": "ae8a33b8a969313477c0c5eae033fa578c1bb5a7ee712026b7ea5e3658c3e1ba"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-cpsu-general-secretary-1990-1991-41.md",
+      "bytes": 42378,
+      "sha256": "f322d158043b3e8fc27174335422e87f806208c16c8f196d5d14caf984ae0b6c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "bytes": 360379,
+      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-41.md",
+      "bytes": 9887,
+      "sha256": "e177bc12c9232984b77f5524c4c582d195cbbc2c913ca19f2d29f0bbb980a47e"
+    },
+    {
+      "path": "tools/avatars/test_ussr_cpsu_general_secretary_c01_41.py",
+      "bytes": 45503,
+      "sha256": "ce0678b2527a9ca0498f9a8ce087d65908da393c29558f3e8f5bef9a0ad1dcc9"
+    },
+    {
+      "path": "tools/avatars/test_ussr_democratic_russia_soyuz_c01_35.py",
+      "bytes": 54910,
+      "sha256": "547fa9f999e8a8a0e657fcb314b6de098672e3464cb3c1365892e447732ede01"
+    },
+    {
+      "path": "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py",
+      "bytes": 69668,
+      "sha256": "6b12ca108e5acf8eba49ba4643b700854e2fc119ba2cfe8f5be733d3f0014205"
+    },
+    {
+      "path": "tools/avatars/test_ussr_research_s10h.py",
+      "bytes": 17281,
+      "sha256": "82bc21e2b6a4c11114d4c9373a8cd0ed9b6a31f453d9d3e49acc71a6c5c886fe"
+    }
+  ],
+  "receipt_files": [
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/.gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/claim-review.json",
+      "bytes": 19623,
+      "sha256": "96935999ed121f05336777309a9e6d511724bcbf827004e19f5f5e17550bd01b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_izv_tsk_1991_08.txt",
+      "bytes": 2011,
+      "sha256": "bade782d43daf77a131a00d809a29e98a6c6a8d49df5033879420053b017d68e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_kremlin_rsfsr_ukaz_169_19911106.txt",
+      "bytes": 2039,
+      "sha256": "dd38b7559795c649df708f068e26733583b669099b057e3fd1ed4c1040791c86"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravda_no192_19900711.txt",
+      "bytes": 2008,
+      "sha256": "adf2ef0e3b06abb08d2b0e70604f0c6e9de2ddeb7cd3811759019e09b303a810"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravda_no193_19900712.txt",
+      "bytes": 2008,
+      "sha256": "5ea1db4277a5774564a4398ca5fa14411b6e685be6f95a395a38afc01a9544dc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravda_no194_19900713.txt",
+      "bytes": 2008,
+      "sha256": "2b69e066ced9ae5a5d5512e7ccedfd198f923f6ac3ab0fa545ff6e3bece1c110"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravda_no195_19900714.txt",
+      "bytes": 2008,
+      "sha256": "992eeee21da96fb4fd39becb90b349de2ffb5ba37cfd6400b38aad684d8508d9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravda_no201_19910822.txt",
+      "bytes": 2008,
+      "sha256": "68782fa5bca33e9c79fd835ab3d75bca6e9814c574d9b221ea9a97e90fd4672f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravda_no37_19900206.txt",
+      "bytes": 2008,
+      "sha256": "bbbeedb13865c1f0864945b0b6efe5351c48bb4f37bc680d6c207b01617a3679"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_pravo_169_original.txt",
+      "bytes": 172,
+      "sha256": "7eb1e3a14c4bc8eaa4b20d968a9e1ca00a677977f137023f0d8bfb454e4be5ca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_snd5_bulletin3_cpsu_19910903.txt",
+      "bytes": 1851,
+      "sha256": "368de9a6f55731229ae7e6ad04409f6ac70f998515e5ee866966f85e187afc02"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_ved_1991_35_cpsu.txt",
+      "bytes": 1860,
+      "sha256": "a91a85c873549f9c18f311121007fc197b94a16869886a09207b18288ce5c6b4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_ved_1991_36_cpsu.txt",
+      "bytes": 1832,
+      "sha256": "59ff260abc0407cf12b8b55acf3bf7051d4e2c3f0b850d33416fd492fa0a2a93"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/headers/su_vs_bulletin1_cpsu_19910826.txt",
+      "bytes": 1820,
+      "sha256": "d7879b868056cbbfb1accffc2fa661e07b48340ced61e43305b267aa97286d25"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/holder-review.json",
+      "bytes": 2121,
+      "sha256": "4d8c7867e7b7fc05132a26ee6a74a70271e6ab2cc15e17cfaf42ba34c33a8ee3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/integration-plan.json",
+      "bytes": 2313,
+      "sha256": "136055624e07707c7f39af558a586bc01aed3ccb77b8e2b4a96b44b8ac0cea02"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/atlas.log",
+      "bytes": 1121,
+      "sha256": "eb5f1d9a56e42e87253527a3bb35b8f313efbe85297ef393723d4dc388478c65"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/campaign.log",
+      "bytes": 120,
+      "sha256": "17d486f640fa7e8d78007904ae82d239a2be3b53ac5633da0d16217ea88c5b23"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/census.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/diff.log",
+      "bytes": 177,
+      "sha256": "f7d39843c184430eb870012e1625150fa781b4646f40d68e10b7c0880fb5e81d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/final-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/index-before.log",
+      "bytes": 753,
+      "sha256": "ee0008d9783029ce9b5d720f6a14520f4e4112095be03baae3f1fb0276641968"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/index-check.log",
+      "bytes": 251,
+      "sha256": "ef99e16f04d81f5b1d3e1e29866afb46b79c405ce591e5de5b43839625af9737"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/index-generate.log",
+      "bytes": 252,
+      "sha256": "0845e5328bd28e2c8b1f8a11cca52a09c1a3cbe607a19a882f385ddd01e44511"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/raw-receipt-whitespace-before.log",
+      "bytes": 160187,
+      "sha256": "ccfed6ad24c708a32b41d0ae9956bf1457bfbb24597c51c5fa19afc0ea8623c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/research.log",
+      "bytes": 183,
+      "sha256": "47e6f336a1f95d1ce94b2ef1ad1fa317606e20e1adc6668ab3fbefc1253f8c4a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/russia.log",
+      "bytes": 133,
+      "sha256": "ea40ccdff5f2632d7f29b677131612c8531113e62f525d30c004a143387ca8e5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/ussr.log",
+      "bytes": 150,
+      "sha256": "d57da99162720ba88aae2c8fabcdc682aa82ce27d2e166da01d6baa66bf1939c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/workboard.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/original-edition-retrieval.json",
+      "bytes": 1013,
+      "sha256": "3ab9679ee60b2916e6be61195036e3476548d7c2b71c08182f4178a741569691"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/preservation.json",
+      "bytes": 639,
+      "sha256": "5077b3ccc9e87c90d3ca52aa9522ea4823e393098689a08cecc7df5a7fea35ca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/README.md",
+      "bytes": 6988,
+      "sha256": "5f2bf6f6447910de345a7b659136a59112fb0232ac3085195fab01343f574bc2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/render-plan.json",
+      "bytes": 3645,
+      "sha256": "672a7703c884f6d570030b0e43f18bd1577dc7d309587d8ce6da974d61e4aae1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/retrieval.json",
+      "bytes": 8678,
+      "sha256": "bb4c0f4bf732c57cd527ea24b8f68ee46bfebf58eaf623dbb3d9edea46190ddc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/retrieve.py",
+      "bytes": 1801,
+      "sha256": "c469693d42465da6feddcc68a9cef9914fa2294a522f14b90fe412156a3345fe"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/review-limits.json",
+      "bytes": 1760,
+      "sha256": "53f025dc436bfe5b6582b83ac36fca746056f3722b06187b507732fcaf878f8d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/source-review.json",
+      "bytes": 11385,
+      "sha256": "9012cef36af984890f20b1cf7b7290e2167cef985ca98271f7d0fcf387a900f9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/temporary-index.json",
+      "bytes": 232,
+      "sha256": "2a1c8ba5caf4506861e18f65af017fe4402c866dd2e60014f90dc5370b2d7abd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/validation.json",
+      "bytes": 4946,
+      "sha256": "013b688cb0c5b0a7b45d4f89189d5196d36ab813e0ea2e9b583bb57c34739fb4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/visual-review.json",
+      "bytes": 7554,
+      "sha256": "fc29b869521dec8ee97b155df418204cf8a2f10438e035f5c7b3cdd96eedb1ad"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/write-review.py",
+      "bytes": 10452,
+      "sha256": "883d968290cf71816deca38a1e6a49a3ce0390a975c0ec7198dcf7b09a21ea5a"
+    }
+  ]
+}

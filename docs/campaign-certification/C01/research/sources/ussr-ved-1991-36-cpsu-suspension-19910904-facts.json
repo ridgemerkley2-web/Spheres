@@ -1,0 +1,80 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ved_1991_36_cpsu",
+  "source_url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+  "original_url": "https://vedomosti.sssr.su/1991/36.pdf",
+  "archive_capture_utc": "2025-08-20T13:50:20Z",
+  "source_title": "Ведомости Съезда народных депутатов СССР и Верховного Совета СССР, 1991, No. 36 (4 September 1991), scanned issue, Internet Archive capture 20250820135020; recorded for the CPSU",
+  "accessed_date": "2026-09-30",
+  "published_date": "1991-09-04",
+  "document_date": "1991-09-04",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+  "source_response_bytes": 1303663,
+  "source_response_sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://vedomosti.sssr.su/1991/36.pdf",
+    "bytes": 1303663,
+    "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+    "last_modified": "Sun, 01 Jan 2017 22:40:50 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "This packet: downloaded at 2026-09-30T23:37:15Z and again at 2026-10-01T00:20:42Z (43 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query, no redirect followed); identical 1,303,663 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest RG5TINDLZDABIRTQX3XQBQC477EQ5NQ3.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:15Z",
+        "2026-10-01T00:20:42Z"
+      ],
+      "bytes": 1303663,
+      "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://vedomosti.sssr.su/1991/36.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:17Z",
+        "2026-10-01T00:20:44Z"
+      ],
+      "bytes": 1303663,
+      "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://vedomosti.sssr.su/1991/36.pdf, captured at 2025-08-20T13:50:20Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The same bytes as su_ved_1991_36 (CLAUDE-C01-26), recorded under a new ID so that its extract stays unchanged. Only point 7 of the Supreme Soviet's resolution 2371-I of 29 August 1991 (Art. 1038) is imported, as an organization claim: the suspension of the CPSU's activity on the whole territory of the USSR.",
+  "edition_and_host": {
+    "edition": "Ведомости, 1991, № 36; Art. 1038 (resolution 2371-I) begins on printed p. 1445 (PDF p. 15); point 7 and the signature block on printed p. 1447 (PDF p. 17).",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su, vedomosti.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      15,
+      17
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; headings, speaker lines, quotations and signature blocks were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_vs_2371i_cpsu_activity_suspended_19910829",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-06",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [],
+      "role_title": null,
+      "event_kind": "activity_suspended",
+      "attested_on": "1991-08-29",
+      "text": "Resolution of the Supreme Soviet of the USSR 'О ситуации, возникшей в стране в связи с имевшим место государственным переворотом' (Art. 1038), 'Москва, Кремль 29 августа 1991 г. № 2371—I', point 7: 'На основании имеющихся сведений об участии руководящих органов КПСС в подготовке и проведении государственного переворота 18—21 августа 1991 года приостановить деятельность КПСС на всей территории СССР, поручив органам МВД обеспечить сохранность ее материальных ценностей и архивов, а учреждениям банков прекращение всех операций с денежными фондами КПСС.'",
+      "locator": "Art. 1038: heading, printed p. 1445 (PDF p. 15); point 7 and signature block, printed p. 1447 (PDF p. 17)"
+    }
+  ],
+  "bounded_scope": "CPSU General Secretary and Deputy General Secretary observations for CLAUDE-C01-41 only. Nomination and ballot, vote, election result, biographical election dates, vote figures, in-office attestations, resignation statements and references, acting service and the party's property, suspension and termination records stay separate rows; holder boundaries are decided in the packet, not by any row. State offices, the RSFSR Communist Party, russia.json and the simulation's party rows are outside this extract."
+}

@@ -1,0 +1,480 @@
+{
+  "schema": 1,
+  "decision": "held_not_accepted",
+  "reviewed_tip": "696937ba3d31280aab569cbd78418e9c3a0c6880",
+  "authored_import": "b74f4fa565429b63052d94cc8ec10337b0b573ed",
+  "correction": "988d537934b4d36e2a251c4b5ca498f19dc7cf06",
+  "generated_at": "2026-10-01T01:09:52.928221+00:00",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "assemble_receipt.py",
+      "bytes": 16553,
+      "sha256": "9ff04d13810dd37fa8bfb7684aa3de4950309681c92d1ef446df468f54528a7f"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 48573,
+      "sha256": "01fc48d57e71e43949c82cd676aec3c111695554e794eb1fd48fd3032459b671"
+    },
+    {
+      "path": "decode_sources.py",
+      "bytes": 3688,
+      "sha256": "ef02ca8d82444490c145cb92e7bfe0688f60cd04dad212dbc8d2f2fb81ddc467"
+    },
+    {
+      "path": "header-provenance.json",
+      "bytes": 27084,
+      "sha256": "6cee3ee1d67051414d21ad59e5fdc718f709ea514bbd042aa91369ef0c5d00da"
+    },
+    {
+      "path": "held-dependencies.json",
+      "bytes": 2757,
+      "sha256": "745949c534ecc88c0b0ad1ba06c296f0ce0be0fff10ea92eace621f11df6e123"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 38666,
+      "sha256": "a8341d6952d41ec5ccd11a4ba2479191776d54125896a466683ed1859c7ed4a9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9166,
+      "sha256": "242ccd093a420e32e44c86380b6f6c587cde420b1b4ee5440ded5a7c30af528e"
+    },
+    {
+      "path": "record_command.py",
+      "bytes": 1153,
+      "sha256": "614962d24220fd3684d51dc1d89923b8d2a2827ee8cc00984adae34be9a260ce"
+    },
+    {
+      "path": "retrieval-01/attempts.jsonl",
+      "bytes": 343596,
+      "sha256": "f8b737cd74374b631edc7eb6c2c03d7a0d821aaa6b824a766403bf4fbe2ed782"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_chudo_founding_convention_20260125.headers.txt",
+      "bytes": 2207,
+      "sha256": "bd3990bd22e0e280b7b6c8a7386c8c3edffdf4bcbe0f61e4b224a869c672b7ee"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hc_budget_19940616.headers.txt",
+      "bytes": 915,
+      "sha256": "cb5ed40ef48d717f4271dab0755520d0dbaa454a2c8fb2a2b733799f30233da9"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hc_plenary_20091030.headers.txt",
+      "bytes": 916,
+      "sha256": "6ec1a3bd14df7ce8e4c1695cde6347b5a9904f39f5f683a93ad2f4e69f583e84"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hr_budget_19930129.headers.txt",
+      "bytes": 917,
+      "sha256": "558e0829ff3dabac367c60af8582c11e83b6654a7a5f1f5a01b9b388599b675b"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hr_plenary_19981130.headers.txt",
+      "bytes": 916,
+      "sha256": "42327d42f0dd7f310218544d6d2df04616a5aaac88a072dd727cd245bc2e58e8"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hr_plenary_20061003.headers.txt",
+      "bytes": 916,
+      "sha256": "9acea94dc7705343482aba099fbe5efa542d6bc56fe263cdd393ed22d3ed3de5"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hr_plenary_20241203.headers.txt",
+      "bytes": 916,
+      "sha256": "3f966655ea56b5814a832c357a28b18eae3283931c85d9137e7e9781dc03e993"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_diet_hr_political_reform_19931105.headers.txt",
+      "bytes": 915,
+      "sha256": "91be42e491f521b25769bee97cd8f50c6f61fb0e0d3906dc2f837ebfbd60783a"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_founding_convention_report_19981108.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_history_2003_retrospective.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_ishii_new_representative_interview_20240930.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_ishii_resignation_intent_20241101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_kanzaki_fourth_convention_address_20021103.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_kanzaki_reappointed_20021103.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_komei_representative_message_retrospective.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_ota_address_sixth_convention_20061001.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_saito_extraordinary_convention_20241110.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_saito_recommended_20241108.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_takeya_address_20260315.headers.txt",
+      "bytes": 2206,
+      "sha256": "d828a3179d650c497cde78d03fb973b1ec0221907af0b412b5775d3d632304ac"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_takeya_extraordinary_convention_20260315.headers.txt",
+      "bytes": 2206,
+      "sha256": "2fddb573f435069df3d4bb9286ef2b15afbd9ad9ec64cd5d96294412a8b554fc"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_takeya_interim_20260123.headers.txt",
+      "bytes": 2205,
+      "sha256": "c7afbdc601fea429a1ad16effa9fae218a6ac28c82f759831481db6f1d21b433"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_takeya_recommended_20260312.headers.txt",
+      "bytes": 2192,
+      "sha256": "9024b392a9fd92351e38d64946a0259618e564b4e8fcd49302d2ac9d5e48d512"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_eleventh_convention_20160918.headers.txt",
+      "bytes": 2346,
+      "sha256": "c452384582f0ca5532d272c466cb09a3f70bc908b24f722faf513c30eb8c3672"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_fourteenth_convention_20220926.headers.txt",
+      "bytes": 2179,
+      "sha256": "88c40fcfd59bcd4f88b28674a86bda124f6ef6436582cc4a27fad632f4338d82"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_ninth_convention_20120923.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_tenth_convention_20140922.headers.txt",
+      "bytes": 2090,
+      "sha256": "ae1e92c329d84d55986339d8aa4f4e45fb86b47f98d666ed028c04a5c5cc2a09"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_thirteenth_convention_20200928.headers.txt",
+      "bytes": 2206,
+      "sha256": "07ea6dfb88c49ad8a18ddd2e250fe5126be5da05a46d399212524135d93a06c0"
+    },
+    {
+      "path": "retrieval-01/jp_komeito_yamaguchi_twelfth_convention_20181001.headers.txt",
+      "bytes": 2267,
+      "sha256": "a6c81742a2f23b47bace0662590fbfae847607280f78cc35673f093bd030a597"
+    },
+    {
+      "path": "retrieval-01/retrieval.json",
+      "bytes": 372165,
+      "sha256": "86e6a9a22299ab44f9bb5cd12d2df1e29c00887a291313228091c138e3860c82"
+    },
+    {
+      "path": "retrieval-02/attempts.jsonl",
+      "bytes": 217347,
+      "sha256": "92bd2d3310b3cebf7fd67d541d574ab79893d0988d2d3a585bf94ebcbca22566"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_founding_convention_report_19981108.headers.txt",
+      "bytes": 363,
+      "sha256": "f77fa882ffc430a164b978fff66376ebbec25d19f3ed646ccec8c864cf1ceab4"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_history_2003_retrospective.headers.txt",
+      "bytes": 1897,
+      "sha256": "6afaaa3b6ba71026ab517ca2160522f6d567a08a1d07096af5dd2a3e4e3cbc16"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_ishii_new_representative_interview_20240930.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_ishii_resignation_intent_20241101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 363,
+      "sha256": "d3196a640d4c45bf3e89942fa2023f6c9d5e63b2f3b6a860c0c7842b96a5b809"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_kanzaki_fourth_convention_address_20021103.headers.txt",
+      "bytes": 363,
+      "sha256": "2dcbdbca83b0cfb601e53103b16c8afad93ede2ab3c6f6b311640eb784c8607d"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_kanzaki_reappointed_20021103.headers.txt",
+      "bytes": 363,
+      "sha256": "8858af7ec9a11215e2729080b680671429f5f2721085cbb225635f9f39b1703e"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_komei_representative_message_retrospective.headers.txt",
+      "bytes": 1751,
+      "sha256": "f1ea052f64855e7cea60821547a7155bcf494e6554121c48be584208fb34c18e"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_ota_address_sixth_convention_20061001.headers.txt",
+      "bytes": 363,
+      "sha256": "a7a3de25e62bd4c2d72ebeee7b9cd979ece761fc53a61fa4ae28ae4295a701b6"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 363,
+      "sha256": "d3196a640d4c45bf3e89942fa2023f6c9d5e63b2f3b6a860c0c7842b96a5b809"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_saito_extraordinary_convention_20241110.headers.txt",
+      "bytes": 2205,
+      "sha256": "c7fe01922c96fbfe7c82b373763d4804111c4c7c20c7eda0d78ef4207beb6cea"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_saito_recommended_20241108.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_yamaguchi_ninth_convention_20120923.headers.txt",
+      "bytes": 363,
+      "sha256": "2aa9a79a835f9439c7c7e77496840cb22b0289eea80acae409c17eed344aec3a"
+    },
+    {
+      "path": "retrieval-02/jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 363,
+      "sha256": "8577c89c2944a3ccbd5d75e7681c8726e2c32839dbd1f730349a299597fb5221"
+    },
+    {
+      "path": "retrieval-02/retrieval.json",
+      "bytes": 231436,
+      "sha256": "70fcef1f2ab5d99e5786137e5b5d69bbeb010437cb054b224900d8eac802f2e2"
+    },
+    {
+      "path": "retrieval-03/attempts.jsonl",
+      "bytes": 101236,
+      "sha256": "e1c02cc5a61c75cd14c345af28cf074f3d5812bde1d90ab6f5cb56818c37c4d5"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_founding_convention_report_19981108.headers.txt",
+      "bytes": 1864,
+      "sha256": "720ea735d4ea573889a10aa39f1912b28d3b04c2d55a36f70cbd034a80917205"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_kanzaki_fifth_convention_address_20041101.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_kanzaki_fourth_convention_address_20021103.headers.txt",
+      "bytes": 1793,
+      "sha256": "44ebf0ef8253d5645f95f9d5f639144f27e1f31b927a3c8b17f3d3fa33c04fe5"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_kanzaki_reappointed_20021103.headers.txt",
+      "bytes": 1790,
+      "sha256": "2a42a283544798636192d09b86fd6b62348964f8be1f1fb24665a587daf81b0b"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_ota_address_sixth_convention_20061001.headers.txt",
+      "bytes": 1726,
+      "sha256": "06e2131ca9f1a45f9d1813053af3e242af441056d057513d263250c07b90ccec"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_ota_sixth_convention_20061001.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-03/jp_komeito_yamaguchi_selection_greeting_20090909.headers.txt",
+      "bytes": 363,
+      "sha256": "39081b23cb410c8485140779afbfa11467b191a89cff240eada7e853403d1d0f"
+    },
+    {
+      "path": "retrieval-03/retrieval.json",
+      "bytes": 109499,
+      "sha256": "b69ccb3de370b8c9fc03bfe4845cf73c62d5bf2d38d2787d9276477d8a30406c"
+    },
+    {
+      "path": "retrieve_sources.py",
+      "bytes": 4412,
+      "sha256": "611e24202ac534e624a9740c2db9f0b5d5cb6c5a95d2d1dd33b080a79e29cf02"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 21798,
+      "sha256": "3f15877e369a3bf5d21eb9cf7d8a1e2515c20edf38349b204b95f4946edd9aed"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 47755,
+      "sha256": "c7d0f947cd1ee8eb5a5b186eec9781a74aa30b01d4c0e61334cd51abd8e640f1"
+    },
+    {
+      "path": "takeya-correction.patch",
+      "bytes": 40345,
+      "sha256": "287efb22325f2c522daef314a98d7069a70c577be266bb11d04b17ec904a25c3"
+    },
+    {
+      "path": "validation/atlas-tests.json",
+      "bytes": 367,
+      "sha256": "d71aaf164f1601497f7e734088f635fadfddaece144c0f054a195fa1c0b9d7e7"
+    },
+    {
+      "path": "validation/atlas-tests.log",
+      "bytes": 1121,
+      "sha256": "3172e559d935e72b43ef2b81cfcfd9a4d907fd797cefd2ab76cee450ae009e31"
+    },
+    {
+      "path": "validation/campaign-tests.json",
+      "bytes": 456,
+      "sha256": "1ed8a92343ad109217f38227c171d88d2dbd2bc63ec22db85f1c1b3c7e8aa3b3"
+    },
+    {
+      "path": "validation/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "5f3c01c12ff427ca04ebbadd9ce5ae2723b3304117d7bd83068145e61816bec8"
+    },
+    {
+      "path": "validation/census-check.json",
+      "bytes": 394,
+      "sha256": "995d042a4108a99a32bf5c463691c3e319001a12227e39a6627dc8fe86a3ff02"
+    },
+    {
+      "path": "validation/census-check.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "validation/correction-patch-check.json",
+      "bytes": 453,
+      "sha256": "0b90e78e047faa3fe91f737298e2a3a2162731ad821cd1659eaffecc15fa35c0"
+    },
+    {
+      "path": "validation/correction-patch-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/diff-check.json",
+      "bytes": 324,
+      "sha256": "b83f6399e3df6971df2e92a76f4f19de5ae9f236fa931c077f2fb4783a1034c7"
+    },
+    {
+      "path": "validation/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/index-check.json",
+      "bytes": 394,
+      "sha256": "8e50d2fa713f3e783c9fa8223613810e9e55b6b2c16386ecd28ee1e75e0b79ae"
+    },
+    {
+      "path": "validation/index-check.log",
+      "bytes": 251,
+      "sha256": "da2a6c0355c98e6c3cd35f765841de0126abaf29975ad6bf9cf2525f0ab51181"
+    },
+    {
+      "path": "validation/index-regenerate.json",
+      "bytes": 388,
+      "sha256": "dfc59124419cce66b6d0e95ab49c888f143929e30eb45764c6d11d4a9564f0e6"
+    },
+    {
+      "path": "validation/index-regenerate.log",
+      "bytes": 252,
+      "sha256": "476c3b403c09901a34af25cec1fa734512c32f2c88543323685cdc22994085bc"
+    },
+    {
+      "path": "validation/japan-corrected-01.json",
+      "bytes": 461,
+      "sha256": "8061f1afb19442b54b1ef5b272a0ee3190c4cd159b01f31eb62ef2ebcb7e2fd0"
+    },
+    {
+      "path": "validation/japan-corrected-01.log",
+      "bytes": 160,
+      "sha256": "c1d6c0bcb011da058c4e6fcca4c8ee075da693385c7fe3194b95ae741cfd9922"
+    },
+    {
+      "path": "validation/research-tests.json",
+      "bytes": 457,
+      "sha256": "ad3cd56f4c09b879dd660dbd22c544a146e6185caf450215ea50d0c3890764e5"
+    },
+    {
+      "path": "validation/research-tests.log",
+      "bytes": 183,
+      "sha256": "db9f5024110d58f7fe829714a8467c18dbe75a2aad81462fc9df6bccb3bf40cc"
+    },
+    {
+      "path": "validation/takeya-red.json",
+      "bytes": 517,
+      "sha256": "6f0a48642c51caa0d3f1dc08bca1494373e329ff41e8ef5c27a1bd3bb01b771e"
+    },
+    {
+      "path": "validation/takeya-red.log",
+      "bytes": 822,
+      "sha256": "4b623244424456b128a8133bd2cc33bc6899b615ea6a56ec8e34bf667624987d"
+    },
+    {
+      "path": "validation/workboard-check.json",
+      "bytes": 395,
+      "sha256": "6620ec541a4261abdf3692969e61e0d6cd204eb7e601adc7e56b92042f243629"
+    },
+    {
+      "path": "validation/workboard-check.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 3262,
+      "sha256": "b160128e99d392eef78bbf62870c4050bc46b8f84292548e9cf43a2004a44a03"
+    }
+  ]
+}

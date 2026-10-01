@@ -22,10 +22,10 @@
      "production_party": 15,
      "executive": 1
     },
-    "cases": 1079,
+    "cases": 1103,
     "case_kinds": {
-     "attestation_day": 18,
-     "attestation_day_after": 18,
+     "attestation_day": 30,
+     "attestation_day_after": 30,
      "cutoff_day": 18,
      "cutoff_day_before": 18,
      "dissolution_day_after": 1,
@@ -43,7 +43,7 @@
      "yearly": 828
     },
     "observations_by_acceptance": {
-     "accepted": 23,
+     "accepted": 35,
      "production_registry": 54
     },
     "research_yearly_status": {
@@ -75,10 +75,10 @@
    },
    "headline": [
     "Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 23.",
+    "Research holder observations by acceptance: accepted 35.",
     "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
     "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
-    "Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+    "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "The national executive office has no paired research role, so its historical chain is unresearched.",
     "Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
@@ -118,56 +118,56 @@
    "observations": [],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:francois_mitterrand:1990-01-01:1990-01-02:v1","context":"fresh_campaign_start"}],"asset":[],"campaign":{"observed":"fresh_campaign_start","incumbent":"Francois Mitterrand","person":"francois_mitterrand","verdict":"historical_identity_not_established"}},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"bound","asset":"spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"fresh_campaign_start"}],"asset":[["spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png","available"]],"campaign":{"observed":"fresh_campaign_start","incumbent":"Francois Mitterrand","person":"francois_mitterrand","verdict":"historical_identity_not_established"}},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"no_research_role_for_executive_office"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"francois_mitterrand","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":60}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
@@ -179,7 +179,8 @@
     "boundary_cases": 0,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "unbound": 37
+     "bound": 1,
+     "unbound": 36
     }
    }
   },
@@ -2754,7 +2755,19 @@
     "fr_pm#13",
     "fr_pm#14",
     "fr_pm#15",
-    "fr_pm#16"
+    "fr_pm#16",
+    "fr_pm#17",
+    "fr_pm#18",
+    "fr_pm#19",
+    "fr_pm#20",
+    "fr_pm#21",
+    "fr_pm#22",
+    "fr_pm#23",
+    "fr_pm#24",
+    "fr_pm#25",
+    "fr_pm#26",
+    "fr_pm#27",
+    "fr_pm#28"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2815,17 +2828,41 @@
     {"date":"2012-06-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-03-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#17","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-04-01","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-08-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#18","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-08-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#19","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#20","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-16","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-06-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#21","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-06-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-07-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#22","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-07-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#23","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#24","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-10","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#25","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-12-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#26","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-12-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-09-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#27","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-09-10","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-10-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_pm#28","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-10-11","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2843,13 +2880,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 84,
+    "cases": 108,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 32
+    "attestation_cases": 56
    }
   }
  ],
@@ -3421,6 +3458,78 @@
     "accepted": 2
    }
   },
+  "fr_pm#17": {
+   "role": "research:fr_pm",
+   "name": "Manuel Valls",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-03-31",
+   "claim_ids": [
+    "fr_jorf_valls_appointed_pm_20140331",
+    "fr_jorf_valls_functions_ended_20140825"
+   ],
+   "note": "Observed on 2014-03-31: the signed instrument names Manuel Valls as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2014-08-25 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_valls_20140331",
+    "fr_jorf_cessation_valls_20140825"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#18": {
+   "role": "research:fr_pm",
+   "name": "Manuel Valls",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-08-25",
+   "claim_ids": [
+    "fr_jorf_valls_appointed_pm_20140825",
+    "fr_jorf_valls_functions_ended_20161206"
+   ],
+   "note": "Observed on 2014-08-25: the signed instrument names Manuel Valls as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2016-12-06 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_valls_20140825",
+    "fr_jorf_cessation_valls_20161206"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#19": {
+   "role": "research:fr_pm",
+   "name": "Bernard Cazeneuve",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-12-06",
+   "claim_ids": [
+    "fr_jorf_cazeneuve_appointed_pm_20161206",
+    "fr_jorf_cazeneuve_functions_ended_20170510"
+   ],
+   "note": "Observed on 2016-12-06: the signed instrument names Bernard Cazeneuve as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2017-05-10 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_cazeneuve_20161206",
+    "fr_jorf_cessation_cazeneuve_20170510"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
   "fr_pm#2": {
    "role": "research:fr_pm",
    "name": "Édith Cresson",
@@ -3441,6 +3550,220 @@
    ],
    "source_classes": {
     "accepted": 1
+   }
+  },
+  "fr_pm#20": {
+   "role": "research:fr_pm",
+   "name": "Edouard Philippe",
+   "from": null,
+   "until": null,
+   "attested_on": "2017-05-15",
+   "claim_ids": [
+    "fr_jorf_philippe_appointed_pm_20170515",
+    "fr_jorf_philippe_functions_ended_20170619"
+   ],
+   "note": "Observed on 2017-05-15: the signed instrument names Edouard Philippe as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2017-06-19 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_philippe_20170515",
+    "fr_jorf_cessation_philippe_20170619"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#21": {
+   "role": "research:fr_pm",
+   "name": "Edouard Philippe",
+   "from": null,
+   "until": null,
+   "attested_on": "2017-06-19",
+   "claim_ids": [
+    "fr_jorf_philippe_appointed_pm_20170619",
+    "fr_jorf_philippe_functions_ended_20200703"
+   ],
+   "note": "Observed on 2017-06-19: the signed instrument names Edouard Philippe as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2020-07-03 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_philippe_20170619",
+    "fr_jorf_cessation_philippe_20200703"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#22": {
+   "role": "research:fr_pm",
+   "name": "Jean Castex",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-07-03",
+   "claim_ids": [
+    "fr_jorf_castex_appointed_pm_20200703",
+    "fr_jorf_castex_functions_ended_20220516"
+   ],
+   "note": "Observed on 2020-07-03: the signed instrument names Jean Castex as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2022-05-16 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_castex_20200703",
+    "fr_jorf_cessation_castex_20220516"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#23": {
+   "role": "research:fr_pm",
+   "name": "Elisabeth Borne",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-05-16",
+   "claim_ids": [
+    "fr_jorf_borne_appointed_pm_20220516",
+    "fr_jorf_borne_functions_ended_20240109"
+   ],
+   "note": "Observed on 2022-05-16: the signed instrument names Elisabeth Borne as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2024-01-09 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_borne_20220516",
+    "fr_jorf_cessation_borne_20240109"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#24": {
+   "role": "research:fr_pm",
+   "name": "Gabriel Attal",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-01-09",
+   "claim_ids": [
+    "fr_jorf_attal_appointed_pm_20240109",
+    "fr_jorf_attal_functions_ended_20240716"
+   ],
+   "note": "Observed on 2024-01-09: the signed instrument names Gabriel Attal as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2024-07-16 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_attal_20240109",
+    "fr_jorf_cessation_attal_20240716"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#25": {
+   "role": "research:fr_pm",
+   "name": "Michel Barnier",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-09-05",
+   "claim_ids": [
+    "fr_jorf_barnier_appointed_pm_20240905"
+   ],
+   "note": "Observed on 2024-09-05: the signed instrument names Michel Barnier as Premier ministre. This records the appointment instrument, not an independently established effective start. The instrument ending his Government's functions (the decree of 5 December 2024, JORFTEXT000050748889) was not retrieved; no end is recorded.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_barnier_20240905"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_pm#26": {
+   "role": "research:fr_pm",
+   "name": "François Bayrou",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-12-13",
+   "claim_ids": [
+    "fr_jorf_bayrou_appointed_pm_20241213",
+    "fr_jorf_bayrou_functions_ended_20250909"
+   ],
+   "note": "Observed on 2024-12-13: the signed instrument names François Bayrou as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2025-09-09 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_nomination_bayrou_20241213",
+    "fr_jorf_dila_opendata_20250910"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#27": {
+   "role": "research:fr_pm",
+   "name": "Sébastien Lecornu",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-09-09",
+   "claim_ids": [
+    "fr_jorf_lecornu_appointed_pm_20250909",
+    "fr_jorf_lecornu_functions_ended_20251006"
+   ],
+   "note": "Observed on 2025-09-09: the signed instrument names Sébastien Lecornu as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2025-10-06 is retained among the cited claims; it does not supply an independently established effective end.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_dila_opendata_20250910",
+    "fr_jorf_dila_opendata_20251007"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_pm#28": {
+   "role": "research:fr_pm",
+   "name": "Sébastien Lecornu",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-10-10",
+   "claim_ids": [
+    "fr_jorf_lecornu_appointed_pm_20251010",
+    "fr_jorf_lecornu_signs_decree_as_pm_20260904"
+   ],
+   "note": "Observed on 2025-10-10: the signed instrument names Sébastien Lecornu as Premier ministre. This records the appointment instrument, not an independently established effective start. A decree of 4 September 2026 that he signs as Premier ministre is retained among the cited claims; it attests him in office that day, three days before the cutoff, and supplies no end. No instrument ending this appointment was found before the cutoff.",
+   "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open.",
+   "sources": [
+    "fr_jorf_dila_opendata_20251011",
+    "fr_jorf_dila_opendata_pm_signature_20260904"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-38"
+   ],
+   "source_classes": {
+    "accepted": 2
    }
   },
   "fr_pm#3": {
@@ -5173,17 +5496,23 @@
     "value": "1916-10-26"
    },
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "1990-01-01",
+     "to": "1991-01-01",
+     "asset": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "1990-01-01",
      "to": "1990-01-02"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:francois_mitterrand:1990-01-01:1990-01-02:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "georges_marchais",

@@ -1,0 +1,323 @@
+diff --git a/docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md b/docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md
+index 315bf371..53d2191a 100644
+--- a/docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md
++++ b/docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md
+@@ -17,6 +17,8 @@ holders and every other role stay as they were. The December 1994 division, the
+ organizations only; no identity is merged, and the observation's unknown lifecycle and empty game mapping are unchanged. The
+ parent scope (C01, C06, S23, WC1 and CP1) remains open.
+ 
++**Independent review checkpoint (1 October 2026): held, not accepted.** Seven original responses remain unavailable. The review preserves the author's internal observation labels below; they are not Codex acceptance. Takeya's proposed effective start has been conservatively changed to a same-day attestation. See [review evidence](../reviews/CLAUDE-C01-31/README.md).
++
+ ## Outcome
+ 
+ An observation is **Accepted in part** where its holders are dated but a start, an end or an election is not stated by any
+@@ -33,7 +35,7 @@ source reviewed. KOMEITO-02 is accepted for its organization claims only and has
+ | KOMEITO-07 | 2014-2024: 山口那津男's re-elections and departure | **Accepted in part:** re-elected at the conventions of 21 Sep 2014, 17 Sep 2016, 30 Sep 2018, 27 Sep 2020 and 25 Sep 2022 (each time the only candidate, by the delegates' standing confidence) and observed each day; 石井啓一 calls him 前代表 (8期15年) after September 2024; no end is stated |
+ | KOMEITO-08 | 2024: 石井啓一 | **Accepted in part:** observed 28 Sep 2024 (the 15th convention launched the executive led by 石井啓一代表); resignation intention announced 31 Oct 2024 (not an end); called 前代表 on 10 Nov 2024; no start or end |
+ | KOMEITO-09 | 2024-2026: 斉藤鉄夫 and 中道改革連合 | **Accepted in part:** recommended 7 Nov and elected by the extraordinary convention on 9 Nov 2024, observed that day; his Diet statement of 3 Dec 2024 (党の代表として) is a continuation; 中道改革連合 founded on 22 Jan 2026 with him as a co-representative (another organization's office, claim only); called 前代表 on 22 Jan 2026 and the office said to have fallen vacant in January (month only); no end is stated |
+-| KOMEITO-10 | 2026: 竹谷とし子, interim and elected | **Accepted in part:** appointed 代表代理 on 22 Jan 2026 and styled 「代表」 until a convention elected a representative (interim service, claims only); recommended 11 Mar and elected by the extraordinary convention on 14 Mar 2026; from 14 Mar 2026 by her own statement at that convention (ただいま…公明党代表の大任を担わせていただくことになりました); no end before the cutoff |
++| KOMEITO-10 | 2026: 竹谷とし子, interim and elected | **Accepted in part:** appointed 代表代理 on 22 Jan 2026 and styled 「代表」 until a convention elected a representative (interim service, claims only); recommended 11 Mar and elected by the extraordinary convention on 14 Mar 2026; observed 14 Mar 2026 by her own statement at that convention, without inferring an effective start (ただいま…公明党代表の大任を担わせていただくことになりました); no end before the cutoff |
+ 
+ The resulting holder observations of `jp_komeito_representative`, in date order:
+ 
+@@ -53,7 +55,7 @@ The resulting holder observations of `jp_komeito_representative`, in date order:
+ | 山口那津男 | 2022-09-25 | null | null | `jp_komeito_yamaguchi_in_office_convention_20220925` |
+ | 石井啓一 | 2024-09-28 | null | null | `jp_komeito_ishii_in_office_convention_20240928` |
+ | 斉藤鉄夫 | 2024-11-09 | null | null | `jp_komeito_saito_in_office_convention_20241109` |
+-| 竹谷とし子 | null | 2026-03-14 | null | `jp_komeito_takeya_assumption_stated_20260314`, `jp_komeito_takeya_in_office_convention_20260314` |
++| 竹谷とし子 | 2026-03-14 | null | null | `jp_komeito_takeya_assumption_stated_20260314`, `jp_komeito_takeya_in_office_convention_20260314` |
+ 
+ ### How a holder is dated
+ 
+@@ -70,8 +72,7 @@ observations.
+   carrying exactly the holder's date.
+ - **What states a start.** Only a new holder's own first-person statement, on a day the source prints, that he or she takes office
+   now: 太田昭宏's '本日の党大会において…公明党代表に就任させていただきました', introduced as the address at the convention of the 30th,
+-  and 竹谷とし子's 'ただいま皆さまのご信任を賜り、公明党代表の大任を担わせていただくことになりました', captioned 14日 (as CLAUDE-C01-18 read
+-  森喜朗's 'ただ今…就任致すことになりました'). A statement of being chosen (選出されました, 選んでいただきました, 選任されました), a greeting on
++  while 竹谷とし子's acceptance of confidence and the duty of representative, captioned 14日, remains a same-day attestation: it does not separately state an effective assumption date. A statement of being chosen (選出されました, 選んでいただきました, 選任されました), a greeting on
+   taking office (代表就任にあたり) and a re-elected leader's statement that he continues (引き続き, 再び…重責を務めさせていただく) date an
+   observation but are not read as a start.
+ - **What never feeds a holder.** Convention selections and re-elections, the national meeting of representatives' selection,
+@@ -138,7 +139,7 @@ Each row is a separate dated fact with its own claim; two facts on one day stay
+ | 3 Dec 2024 | in office (continuation) (斉藤鉄夫) | `jp_komeito_saito_in_office_diet_20241203` |
+ | 22 Jan 2026 | 代表代理 appointed (interim, claim only); interim office styled 代表 (claim only); predecessor called 前代表 (斉藤鉄夫); organization formed (claim only); another organization's office (claim only); styled 就任 as 代表 (interim, claim only) | `jp_komeito_takeya_interim_approved_20260122`, `jp_komeito_interim_styled_representative_decided_20260122`, `jp_komeito_saito_former_20260122`, `jp_komeito_chudo_founded_20260122`, `jp_komeito_saito_chudo_co_representative_20260122`, `jp_komeito_takeya_styled_representative_20260122` |
+ | 11 Mar 2026 | candidate recommended by the central executive committee (竹谷とし子) | `jp_komeito_takeya_recommended_20260311` |
+-| 14 Mar 2026 | statement of the day office was assumed (start) (竹谷とし子); selection or re-election by the convention (竹谷とし子); in office (dates the holder) (竹谷とし子) | `jp_komeito_takeya_assumption_stated_20260314`, `jp_komeito_takeya_convention_selection_20260314`, `jp_komeito_takeya_in_office_convention_20260314` |
++| 14 Mar 2026 | acceptance of confidence and duty (attestation, not an effective start) (竹谷とし子); selection or re-election by the convention (竹谷とし子); in office (dates the holder) (竹谷とし子) | `jp_komeito_takeya_assumption_stated_20260314`, `jp_komeito_takeya_convention_selection_20260314`, `jp_komeito_takeya_in_office_convention_20260314` |
+ | (no structured date) | retrospective records, undated recollections and the claims whose day the source does not print | `jp_komeito_ishida_assumption_recalled_may_1989`, `jp_komeito_komei_formed_retrospective`, `jp_komeito_komei_representative_since_19941205_retrospective`, `jp_komeito_history_ishida_chair_in_cabinet_retrospective`, `jp_komeito_history_nfp_founded_retrospective`, `jp_komeito_history_division_retrospective`, `jp_komeito_history_nfp_dissolved_retrospective`, `jp_komeito_history_reimei_heiwa_formed_retrospective`, `jp_komeito_history_reformation_retrospective`, `jp_komeito_merger_form_reported`, `jp_komeito_kanzaki_convention_confidence`, `jp_komeito_kanzaki_sole_candidate_reelected_2002`, `jp_komeito_ishii_appointment_recalled`, `jp_komeito_yamaguchi_former_eight_terms_recalled`, `jp_komeito_vacancy_recalled_january_2026` |
+ 
+ ## Observations
+@@ -262,7 +263,7 @@ of 25 January says she took office as 公明党代表 the same day (the interim
+ as the candidate; on 14 March the extraordinary convention elected her by all delegates' confidence, and her printed address,
+ captioned 14日, says that having just received the delegates' confidence she takes on the duty of 公明党代表.
+ 
+-Decision: accepted in part: from 14 March 2026 by her own statement; the interim period of 22 January to 14 March 2026 is claims only.
++Decision: accepted in part in the author's internal classification: observed on 14 March 2026; the reviewed source does not separately state an effective assumption date; the interim period of 22 January to 14 March 2026 is claims only.
+ 
+ Limits: no attestation between March and the cutoff is recorded; the successor's selection in October 2026 falls after the cutoff
+ and is not recorded.
+@@ -399,7 +400,7 @@ gzip-encoded; every recorded identity is the identity-encoded body.
+ | # | Decision | Reason |
+ |---|---|---|
+ | D1 | 竹谷とし子's service from 22 January to 14 March 2026 is claims only | The party appointed her 代表代理 and only styled the interim office 「代表」 until a convention elected a representative (the pipeline's ruling: a party-labelled interim period is claims only) |
+-| D2 | Starts for 太田昭宏 (30 Sep 2006) and 竹谷とし子 (14 Mar 2026) | Each is the new holder's own first-person statement of taking office on a day the source prints, as CLAUDE-C01-18 read 森喜朗's |
++| D2 | Start for 太田昭宏 (30 Sep 2006); attestation for 竹谷とし子 (14 Mar 2026) | 太田 explicitly says he took office at today's dated convention. 竹谷 accepts confidence and the representative's duty but gives no separate effective assumption date. |
+ | D3 | Re-elected leaders' statements of continuing (神崎武法 2002 and 2004) and statements of being chosen (山口那津男 2009, 斉藤鉄夫 2024) are not starts | They state continuation or an election, not the day office was assumed |
+ | D4 | The 1998 and 2002 holders are dated by the page's date line | The pages report the convention without printing its day |
+ | D5 | 神崎武法's Diet statement of 30 November 1998 is used for an organization claim only | The record identifies him only as speaking for the parliamentary group |
+@@ -433,7 +434,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+ - Pinned tests, none loosened and no assertion removed:
+   - `test_japan_research_s10d.py`: counts (entries, sources, claims, roles) are now (24, 503, 863, 7), with this
+     packet's 31 sources and 64 claims pinned beside the earlier packets'; the CLAUDE-C01-29 slice is bounded exactly; the party
+-    holders' count adds 15; the stated starts are exactly 福島瑞穂's, 森喜朗's, 太田昭宏's and 竹谷とし子's, the one end stays
++    holders' count adds 15; the stated starts are exactly 福島瑞穂's, 森喜朗's and 太田昭宏's, the one end stays
+     福島瑞穂's; the Komeito holders' dates are pinned as an exact list; the access-date guard adds this packet's 30 September; the
+     extract count adds 31.
+   - `test_japan_prime_ministers_c01_12.py`: its exact source list is extended with this packet's sources (imported from
+@@ -445,7 +446,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
+   - `test_japan_sdp_chairs_c01_29.py`: its sources are pinned by position and followed exactly by this packet's; the role guard
+     names exactly the earlier roles, its own and this packet's; roles are 7; its coverage note is second to last, followed only by
+     this packet's.
+-- The atlas shows 'Observed on' for a holder with `attested_on`; thirteen holders have it and two have a `from`. No UI code changed.
++- The atlas shows 'Observed on' for a holder with `attested_on`; fourteen holders have it and one has a `from`. No UI code changed.
+ - Extract fields are those of CLAUDE-C01-29 (`source_response_sha1_base32`, `fetch_recipe`, `diet_record`); no new field.
+ - `research/README.md`, the C01 README totals and `docs/planning/ai-workstreams.json` are left for the integrator.
+ - Known failures outside the listed checks (not fixed): `tools/avatars/test_certified_gap_ledger.py` reports 'no pinned attribution'
+diff --git a/docs/campaign-certification/C01/research/japan.json b/docs/campaign-certification/C01/research/japan.json
+index d5847a69..67ce69c1 100644
+--- a/docs/campaign-certification/C01/research/japan.json
++++ b/docs/campaign-certification/C01/research/japan.json
+@@ -18744,8 +18744,8 @@
+       "scope_note": "The party site's copy of a 公明新聞 article dated 15 March 2026 printing 竹谷とし子's address to the extraordinary national convention; the photograph caption dates the address to the 14th (month and year from the page's date line).",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json",
+-        "bytes": 4729,
+-        "sha256": "d519a3157427a1492f2fd490ee5645cec6c7b49d716505737bffda4ba2af5ca4"
++        "bytes": 4733,
++        "sha256": "b37d76b8543015051b29398d9f22263fb1b1673eda920f67ec9517da4b840ac5"
+       },
+       "claims": [
+         {
+@@ -18756,7 +18756,7 @@
+             "paragraph": 1,
+             "caption": "あいさつする竹谷代表＝14日　公明会館"
+           },
+-          "uncertainty": "States the day office was assumed: her own first-person statement, on the occasion the caption dates to 14 March 2026, that she takes up the office now (as CLAUDE-C01-18 read 森喜朗's 'ただ今…就任致すことになりました'). It ends her interim service as 代表代理 by implication only; no end of that interim office is recorded."
++          "uncertainty": "Dates the holder observation of 14 March 2026: the caption dates the address, whose opening accepts confidence and the representative's duty. It does not separately state an effective assumption date, so the reviewed holder has attested_on and no from. The original claim ID is retained for provenance; it is not a boundary assertion. No end of the interim office is inferred."
+         }
+       ]
+     },
+@@ -18788,7 +18788,7 @@
+               3
+             ]
+           },
+-          "uncertainty": "A selection by the convention, never a holder or a start by itself; the start is her own statement of the same day."
++          "uncertainty": "A selection by the convention, never a holder or a start by itself; the separate same-day office statements support an attestation, not an inferred effective start."
+         },
+         {
+           "id": "jp_komeito_takeya_in_office_convention_20260314",
+@@ -18797,7 +18797,7 @@
+           "locator": {
+             "paragraph": 1
+           },
+-          "uncertainty": "Cited, with the statement of assumption, by the holder observation from 14 March 2026: a same-day party record naming her 代表 after the selection."
++          "uncertainty": "Dates the holder observation of 14 March 2026, together with the acceptance address: a same-day party record naming her 代表 after the selection. No separate effective assumption date is stated."
+         },
+         {
+           "id": "jp_komeito_vacancy_recalled_january_2026",
+@@ -21136,8 +21136,8 @@
+             },
+             {
+               "name": "竹谷とし子",
+-              "attested_on": null,
+-              "from": "2026-03-14",
++              "attested_on": "2026-03-14",
++              "from": null,
+               "until": null,
+               "sources": [
+                 "jp_komeito_takeya_address_20260315",
+@@ -21147,11 +21147,11 @@
+                 "jp_komeito_takeya_assumption_stated_20260314",
+                 "jp_komeito_takeya_in_office_convention_20260314"
+               ],
+-              "note": "From 14 March 2026: her own address to the extraordinary national convention, captioned 'あいさつする竹谷代表＝14日', saying that having just now received the delegates' confidence she takes on the great duty of 公明党代表 ('ただいま皆さまのご信任を賜り、公明党代表の大任を担わせていただくことになりました'), with the party organ's same-day report naming 竹谷代表 after her election. As with CLAUDE-C01-18's reading of 森喜朗's statement, the start rests on her statement of acceptance ('ただいま…ご信任を賜り') and the captioned day; the integrator may instead read it as a same-day attestation, in which case the day is unchanged and the holder keeps attested_on with from null. Not a continuous term, a biography or a likeness authorization.",
+-              "uncertainty": "No end is stated to the cutoff. From 22 January to 14 March 2026 she served as 代表代理, which the party decided to call 「代表」 until a national convention elected a representative: that interim service, the 中央幹事会's approval, the styled 就任 of 22 January and the recommendation of 11 March 2026 are claims only, never a holder or a start."
++              "note": "Observed on 14 March 2026: her own address to the extraordinary national convention, captioned 'あいさつする竹谷代表＝14日', accepts the delegates' confidence and the duty of 公明党代表. The party organ's convention report also names 竹谷代表 after her election. These support the dated office observation; they do not separately state the effective day the substantive office began. Not a start, a continuous term, a biography or a likeness authorization.",
++              "uncertainty": "No start or end is stated independently of the convention acceptance. The submitted from value of 14 March 2026 is preserved in the review's boundary record, but the reviewed holder uses attested_on on that same day. From 22 January until the national convention she served as 代表代理 styled 「代表」; that interim arrangement, its appointment and the 11 March recommendation remain claims only. No outgoing end or interim-office end is inferred."
+             }
+           ],
+-          "scope_note": "CLAUDE-C01-31 adds this role, following the office named in its handoff: the chair (委員長, formally 中央執行委員長) of 公明党 until its division of December 1994, and the representative (代表) of the 公明党 formed by the merger of 公明 and 新党平和 in November 1998. The December 1994 division into 公明 and 公明新党, the 新進党, 新党平和, 黎明クラブ, the November 1998 merger and the January 2026 founding of 中道改革連合 are claims about the organizations only: they are never merged into one identity with this observation or with each other, never mapped to a game party, and give the organization no lifecycle; their offices (公明代表, 中道改革連合共同代表) are other offices, claims only. Fifteen holder observations, one per selection found, are dated by a party officer's same-day statement or the leader's own statement of the office in the Diet minutes, or by a same-day party record; only 太田昭宏 (30 September 2006) and 竹谷とし子 (14 March 2026), each by his or her own statement at the convention of taking up the office that day, have a stated start, and no holder has a stated end. Convention selections and re-elections, recommendations, announced resignations, predecessor references (前代表), continuation attestations, the 1994 acting chair (委員長代行), the 代表代理 styled 代表 of 22 January to 14 March 2026 and retrospective records are claims that never feed a holder; party rules are procedure only, never a date. Do not infer an outgoing leader's last day from a successor's selection, and never read the prime-ministership (jp_pm), a ministerial office, a parliamentary group or another party's office into this office, or the reverse."
++          "scope_note": "CLAUDE-C01-31 adds this role, following the office named in its handoff: the chair (委員長, formally 中央執行委員長) of 公明党 until its division of December 1994, and the representative (代表) of the 公明党 formed by the merger of 公明 and 新党平和 in November 1998. The December 1994 division into 公明 and 公明新党, the 新進党, 新党平和, 黎明クラブ, the November 1998 merger and the January 2026 founding of 中道改革連合 are claims about the organizations only: they are never merged into one identity with this observation or with each other, never mapped to a game party, and give the organization no lifecycle; their offices (公明代表, 中道改革連合共同代表) are other offices, claims only. Fifteen holder observations, one per selection found, are dated by a party officer's same-day statement or the leader's own statement of the office in the Diet minutes, or by a same-day party record; only 太田昭宏 (30 September 2006), by his explicit statement of having taken office at that day's convention, has a stated start; 竹谷とし子's acceptance of confidence and duty supports an attestation on 14 March 2026, not a separately stated effective start, and no holder has a stated end. Convention selections and re-elections, recommendations, announced resignations, predecessor references (前代表), continuation attestations, the 1994 acting chair (委員長代行), the 代表代理 styled 代表 of 22 January to 14 March 2026 and retrospective records are claims that never feed a holder; party rules are procedure only, never a date. Do not infer an outgoing leader's last day from a successor's selection, and never read the prime-ministership (jp_pm), a ministerial office, a parliamentary group or another party's office into this office, or the reverse."
+         }
+       ],
+       "sources": [
+@@ -23811,7 +23811,7 @@
+       "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2014 appointments (the Official Gazette of 2006-2017 is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership.",
+       "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
+       "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office.",
+-      "Komeito representatives 1990-2026 (CLAUDE-C01-31): the 公明党 observation gains its first party role, jp_komeito_representative (委員長 to 1994, then 代表), with fifteen holder observations from 石田幸四郎 (1993) to 竹谷とし子 (2026); only 太田昭宏 (30 September 2006) and 竹谷とし子 (14 March 2026) have a stated start, and no holder has a stated end. The 1994 division, the organizations of 1994-1998, the 1998 merger and 中道改革連合 are organization claims, never a merge or mapping; the 1994 acting chair and the 2026 代表代理 are claims only. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous records of 1990-1994, several conventions and every end of office."
++      "Komeito representatives 1990-2026 (CLAUDE-C01-31): the 公明党 observation gains its first party role, jp_komeito_representative (委員長 to 1994, then 代表), with fifteen holder observations from 石田幸四郎 (1993) to 竹谷とし子 (2026); only 太田昭宏 (30 September 2006) has a stated start; 竹谷とし子 is attested on 14 March 2026 with no effective start inferred, and no holder has a stated end. The 1994 division, the organizations of 1994-1998, the 1998 merger and 中道改革連合 are organization claims, never a merge or mapping; the 1994 acting chair and the 2026 代表代理 are claims only. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous records of 1990-1994, several conventions and every end of office."
+     ]
+   }
+ }
+diff --git a/docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json b/docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json
+index e0ce1f04..77e44de7 100644
+--- a/docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json
++++ b/docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json
+@@ -29,7 +29,7 @@
+       "role_id": "jp_komeito_representative",
+       "holder_name": "竹谷とし子",
+       "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+-      "event_kind": "assumption_stated",
++      "event_kind": "in_office_attestation",
+       "attested_on": "2026-03-14",
+       "text": "The printed address, captioned 'あいさつする竹谷代表＝14日　公明会館', opens with her statement that, having just now received the delegates' confidence, she takes on the great duty of 公明党代表 ('ただいま皆さまのご信任を賜り、公明党代表の大任を担わせていただくことになりました').",
+       "locator": {
+diff --git a/docs/planning/ai-handoffs/CLAUDE-C01-31.md b/docs/planning/ai-handoffs/CLAUDE-C01-31.md
+index 1692609b..46d96e24 100644
+--- a/docs/planning/ai-handoffs/CLAUDE-C01-31.md
++++ b/docs/planning/ai-handoffs/CLAUDE-C01-31.md
+@@ -79,8 +79,8 @@ role are unchanged. Holders, in order: 石田幸四郎 observed 29 January 1993
+ November 2002 and 31 October 2004 (re-elections); 太田昭宏 from 30 September 2006 (his own address: 本日の党大会において…公明党代表に就任
+ させていただきました); 山口那津男 observed 8 September 2009 (selection by the national meeting of representatives) and at the
+ conventions of 22 September 2012, 21 September 2014, 17 September 2016, 30 September 2018, 27 September 2020 and 25 September 2022;
+-石井啓一 observed 28 September 2024; 斉藤鉄夫 observed 9 November 2024; 竹谷とし子 from 14 March 2026 (her own address: ただいま…公明党
+-代表の大任を担わせていただくことになりました). Only 太田昭宏 and 竹谷とし子 have a stated start; no holder has a stated end. The 1994 acting
++石井啓一 observed 28 September 2024; 斉藤鉄夫 observed 9 November 2024; 竹谷とし子 observed on 14 March 2026 (her own address: ただいま…公明党
++代表の大任を担わせていただくことになりました). Only 太田昭宏 has a stated start; the reviewed 竹谷 statement does not separately state an effective assumption date; no holder has a stated end. The 1994 acting
+ chair (委員長代行), the 代表代理 styled 「代表」 of 22 January to 14 March 2026, other organizations' offices (公明代表, 中道改革連合共同代表),
+ selections, recommendations, resignation announcements, predecessor references, continuations and retrospective records are claims
+ only. The December 1994 division, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, the November 1998 merger and 中道改革連合 are claims about
+@@ -99,11 +99,10 @@ Observation decisions:
+ | KOMEITO-07 | Accepted in part: 山口那津男 re-elected and observed 2014, 2016, 2018, 2020 and 2022; no end |
+ | KOMEITO-08 | Accepted in part: 石井啓一 observed 28 September 2024; resignation intention 31 October 2024 (not an end) |
+ | KOMEITO-09 | Accepted in part: 斉藤鉄夫 recommended 7 November, elected and observed 9 November 2024; 中道改革連合 founded 22 January 2026 (organization claim; his co-representative office is another office); called 前代表 22 January 2026; no end |
+-| KOMEITO-10 | Accepted in part: 竹谷とし子 代表代理 styled 「代表」 from 22 January 2026 (claims only); recommended 11 March; elected and from 14 March 2026 |
++| KOMEITO-10 | Accepted in part: 竹谷とし子 代表代理 styled 「代表」 from 22 January 2026 (claims only); recommended 11 March; elected and observed on 14 March 2026, without an inferred effective start |
+ 
+ Decisions (the report's table gives each): the interim 代表代理 is claims only (the pipeline's ruling on party-labelled interim
+-periods); a new holder's own first-person statement of taking office on a printed day is a start (太田昭宏, 竹谷とし子, as
+-CLAUDE-C01-18 read 森喜朗's), while statements of being chosen or of continuing after a re-election are not; the 1998 and 2002
++periods); 太田昭宏's explicit statement of having taken office at that day's convention supports a start; 竹谷とし子's acceptance of confidence and duty supports a dated attestation, while statements of being chosen or of continuing after a re-election are not; the 1998 and 2002
+ holders are dated by the page's date line because the pages print no convention day; 神崎武法's Diet statement of 30 November 1998
+ is used only for the organization claim (the record identifies him only as speaking for his group). Every recorded identity was
+ downloaded by the researcher on 30 September 2026 (21:40Z-22:31Z) and again by this packet at 22:26:11Z-22:28:03Z and 22:59:10Z-23:01:04Z
+@@ -127,3 +126,7 @@ jp_komeito_diet_hr_budget_19930129 (Japan) has no pinned attribution' until Code
+ `COMMIT_PACKETS`; `tools/avatars/test_certified_boundary_matrix.py` (S23) errors with 'Required input is missing:
+ spheres-web/src/person_avatar_assets.rs' in this sparse checkout, so Codex lists the packet and regenerates
+ `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration. The gap ledger was not touched.
++
++## Independent review checkpoint — 1 October 2026
++
++Held, not accepted: 24 of 31 original responses were independently reproduced and inspected; seven remain unavailable after connection failures and rate limiting. Fifty claims are supported in their bounded scope; fourteen claims and five holder rows retain missing-original dependencies. The original author's internal 'Accepted in part' labels above do not grant integration acceptance. Takeya's proposed 14 March 2026 effective start was conservatively replaced by a same-day attestation; all original response hashes, quoted wording, claim IDs and event dates remain preserved. See [the complete review](../../campaign-certification/C01/reviews/CLAUDE-C01-31/README.md). C01/C06/S23/CP1 remain open.
+diff --git a/tools/avatars/test_japan_komeito_representatives_c01_31.py b/tools/avatars/test_japan_komeito_representatives_c01_31.py
+index 0eea1818..204b34fe 100644
+--- a/tools/avatars/test_japan_komeito_representatives_c01_31.py
++++ b/tools/avatars/test_japan_komeito_representatives_c01_31.py
+@@ -269,7 +269,7 @@ EVENTS = {
+     'jp_komeito_saito_chudo_co_representative_20260122': ('2026-01-22', 'other_office_attestation', 'KOMEITO-09'),
+     'jp_komeito_takeya_styled_representative_20260122': ('2026-01-22', 'interim_representative_styled', 'KOMEITO-10'),
+     'jp_komeito_takeya_recommended_20260311': ('2026-03-11', 'candidate_recommended', 'KOMEITO-10'),
+-    'jp_komeito_takeya_assumption_stated_20260314': ('2026-03-14', 'assumption_stated', 'KOMEITO-10'),
++    'jp_komeito_takeya_assumption_stated_20260314': ('2026-03-14', 'in_office_attestation', 'KOMEITO-10'),
+     'jp_komeito_takeya_convention_selection_20260314': ('2026-03-14', 'convention_selection', 'KOMEITO-10'),
+     'jp_komeito_takeya_in_office_convention_20260314': ('2026-03-14', 'in_office_attestation', 'KOMEITO-10'),
+     'jp_komeito_vacancy_recalled_january_2026': (None, 'office_vacancy_recalled', 'KOMEITO-09'),
+@@ -369,7 +369,7 @@ HOLDERS = [
+     ('山口那津男', '2022-09-25', None, None),
+     ('石井啓一', '2024-09-28', None, None),
+     ('斉藤鉄夫', '2024-11-09', None, None),
+-    ('竹谷とし子', None, '2026-03-14', None),
++    ('竹谷とし子', '2026-03-14', None, None),
+ ]
+ HOLDER_CLAIMS = [
+     ['jp_komeito_ishida_named_chair_by_secretary_general_19930129'],
+@@ -388,9 +388,9 @@ HOLDER_CLAIMS = [
+     ['jp_komeito_saito_in_office_convention_20241109'],
+     ['jp_komeito_takeya_assumption_stated_20260314', 'jp_komeito_takeya_in_office_convention_20260314'],
+ ]
+-STARTS = [('太田昭宏', '2006-09-30'), ('竹谷とし子', '2026-03-14')]
++STARTS = [('太田昭宏', '2006-09-30')]
+ ENDS = []
+-START_CLAIMS = ['jp_komeito_ota_assumption_stated_20060930', 'jp_komeito_takeya_assumption_stated_20260314']
++START_CLAIMS = ['jp_komeito_ota_assumption_stated_20060930']
+ END_CLAIMS = []
+ REVIEW = ['KOMEITO-01', 'KOMEITO-02', 'KOMEITO-03', 'KOMEITO-04', 'KOMEITO-05', 'KOMEITO-06', 'KOMEITO-07', 'KOMEITO-08', 'KOMEITO-09', 'KOMEITO-10']
+ HOLDER_REVIEW = ['KOMEITO-01', 'KOMEITO-03', 'KOMEITO-04', 'KOMEITO-04', 'KOMEITO-05', 'KOMEITO-06', 'KOMEITO-06',
+@@ -447,7 +447,7 @@ TRANSITIONS = {
+     '2022-09-25': ['convention_selection', 'in_office_attestation'],
+     '2024-11-09': ['convention_selection', 'in_office_attestation'],
+     '2026-01-22': ['interim_representative_designated', 'interim_representative_styled', 'interim_title_decided', 'organization_formed', 'other_office_attestation', 'predecessor_referred_to_as_former'],
+-    '2026-03-14': ['assumption_stated', 'convention_selection', 'in_office_attestation'],
++    '2026-03-14': ['convention_selection', 'in_office_attestation'],
+ }
+ # Secondary sources and leads that must never be a source URL here.
+ LEAD_URL_MARKERS = ('wikipedia', 'britannica', 'kotobank', 'nikkei', 'asahi.com', 'yomiuri', 'mainichi', 'nhk.or.jp',
+@@ -686,6 +686,20 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
+         for cid in HOLDER_CLAIM_SET:
+             self.assertNotRegex(self.claims[cid]['text'], r'内閣総理大臣に(任命|指名)|首班指名|組閣|大臣に任命', cid)
+ 
++    def test_takeya_acceptance_does_not_infer_an_effective_start(self):
++        holder, = [h for h in self.role['holder_claims'] if h['name'] == '竹谷とし子']
++        self.assertIsNone(holder['from'])
++        self.assertEqual(holder['attested_on'], '2026-03-14')
++        cid = 'jp_komeito_takeya_assumption_stated_20260314'
++        self.assertIn('ただいま皆さまのご信任を賜り', self.claims[cid]['text'])
++        self.assertEqual(self.rows[cid]['event_kind'], 'in_office_attestation')
++        mutated = copy.deepcopy(self.packet)
++        role = next(o for o in mutated['organizations'] if o['id'] == ORG_ID)['roles'][0]
++        candidate, = [h for h in role['holder_claims'] if h['name'] == '竹谷とし子']
++        candidate.update(attested_on=None, **{'from': '2026-03-14'})
++        with self.assertRaises(AssertionError):
++            komeito_rules(mutated, self.rows)
++
+     def test_starts_ends_and_claims_that_never_feed_a_holder(self):
+         claims, rows = self.claims, self.rows
+         for day, expected in TRANSITIONS.items():
+@@ -723,7 +737,7 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
+         self.assertIn('代表代理', claims['jp_komeito_takeya_interim_approved_20260122']['text'])
+         self.assertIn('「代表」と呼称', claims['jp_komeito_interim_styled_representative_decided_20260122']['text'])
+         takeya = [h for h in self.role['holder_claims'] if h['name'] == '竹谷とし子']
+-        self.assertEqual([(h['attested_on'], h['from']) for h in takeya], [(None, '2026-03-14')])
++        self.assertEqual([(h['attested_on'], h['from']) for h in takeya], [('2026-03-14', None)])
+         # Organization events: the 1994 division, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, the 1998 merger and 中道改革連合
+         # are claims only; each is kept apart and none is merged or mapped.
+         org_text = ' '.join(claims[cid]['text'] for cid in ORGANIZATION + RETROSPECTIVE)
+@@ -928,7 +942,7 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
+             ('convention date used as a start (石井)', lambda p: holder(p, ishii).update({'from': '2024-09-28', 'attested_on': None})),
+             ('recommendation cited as a start (竹谷)',
+              cite(takeya, 'jp_komeito_takeya_recommended_20260311')),
+-            ('stated start dropped (竹谷)', lambda p: holder(p, takeya).update({'from': None, 'attested_on': '2026-03-14'})),
++            ('acceptance promoted to effective start (竹谷)', lambda p: holder(p, takeya).update({'from': '2026-03-14', 'attested_on': None})),
+             ('election claim cited by a holder (斉藤)', cite(saito, 'jp_komeito_saito_convention_selection_20241109')),
+             ('retrospective record cited by a holder (石田)',
+              cite(ishida, 'jp_komeito_history_ishida_chair_in_cabinet_retrospective')),
+diff --git a/tools/avatars/test_japan_research_s10d.py b/tools/avatars/test_japan_research_s10d.py
+index 21ae46b0..5fefd110 100644
+--- a/tools/avatars/test_japan_research_s10d.py
++++ b/tools/avatars/test_japan_research_s10d.py
+@@ -39,7 +39,7 @@ SDP_ATTESTED = ['1990-04-06', '1991-08-20', '1993-01-25', '1994-10-13', '1996-11
+ # The Komeito representative's holder observations (CLAUDE-C01-31): attested_on, None for holders dated by a stated start.
+ KOMEITO_ATTESTED = ['1993-01-29', '1998-11-08', '2002-11-03', '2004-10-31', None, '2009-09-08', '2012-09-22',
+                     '2014-09-21', '2016-09-17', '2018-09-30', '2020-09-27', '2022-09-25', '2024-09-28', '2024-11-09',
+-                    None]
++                    '2026-03-14']
+ 
+ 
+ class JapanDiscoveryTests(unittest.TestCase):
+@@ -115,11 +115,11 @@ class JapanDiscoveryTests(unittest.TestCase):
+         self.assertEqual(len(holders), 50)
+         # The one party holder with an end is 福島瑞穂's 2012 observation, ended by her own words on 25 July 2013
+         # (CLAUDE-C01-29); the stated starts are 福島瑞穂's own statement of 15 November 2003 (CLAUDE-C01-29), 森喜朗's
+-        # own statement of 5 April 2000 (CLAUDE-C01-18), and 太田昭宏's of 30 September 2006 and 竹谷とし子's of 14 March
+-        # 2026 (CLAUDE-C01-31). No other party holder has a start or an end.
++        # own statement of 5 April 2000 (CLAUDE-C01-18), and 太田昭宏's of 30 September 2006
++        # (CLAUDE-C01-31); 竹谷とし子's acceptance is a same-day attestation. No other party holder has a start or an end.
+         self.assertEqual([(h['name'], h['until']) for h in holders if h['until']], [('福島瑞穂', '2013-07-25')])
+         self.assertEqual([(h['name'], h['from']) for h in holders if h['from']],
+-                         [('福島瑞穂', '2003-11-15'), ('森喜朗', '2000-04-05'), ('太田昭宏', '2006-09-30'), ('竹谷とし子', '2026-03-14')])
++                         [('福島瑞穂', '2003-11-15'), ('森喜朗', '2000-04-05'), ('太田昭宏', '2006-09-30')])
+         self.assertEqual([h['attested_on'] for h in roles['jp_ldp_party_president']['holder_claims']], LDP_ATTESTED)
+         self.assertEqual([h['attested_on'] for h in roles['jp_sdp_chair']['holder_claims']], SDP_ATTESTED)
+         self.assertEqual([h['attested_on'] for h in roles['jp_komeito_representative']['holder_claims']], KOMEITO_ATTESTED)

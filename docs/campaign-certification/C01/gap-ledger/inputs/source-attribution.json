@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "0efebde9c787af31f9443292501ed61f0694cf6e",
+  "generated_from": "7d029f1dc1b84d68426620fa7d0b9fccadfef53e",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -1496,6 +1496,11 @@
         "packet": "CLAUDE-C01-23",
         "via": "extract_first_added"
       },
+      "fr_jorf_cessation_attal_20240716": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
       "fr_jorf_cessation_ayrault_20120618": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
@@ -1514,6 +1519,21 @@
       "fr_jorf_cessation_beregovoy_19930329": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_cessation_borne_20240109": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_cessation_castex_20220516": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_cessation_cazeneuve_20170510": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
         "via": "extract_first_added"
       },
       "fr_jorf_cessation_fillon_20070618": {
@@ -1541,6 +1561,16 @@
         "packet": "CLAUDE-C01-37",
         "via": "extract_first_added"
       },
+      "fr_jorf_cessation_philippe_20170619": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_cessation_philippe_20200703": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
       "fr_jorf_cessation_raffarin_20020617": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
@@ -1559,6 +1589,16 @@
       "fr_jorf_cessation_rocard_19910515": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_cessation_valls_20140825": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_cessation_valls_20161206": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
         "via": "extract_first_added"
       },
       "fr_jorf_cessation_villepin_20070515": {
@@ -1586,6 +1626,21 @@
         "packet": "CLAUDE-C01-23",
         "via": "extract_first_added"
       },
+      "fr_jorf_dila_opendata_20250910": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_dila_opendata_20251007": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_dila_opendata_20251011": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
       "fr_jorf_dila_opendata_20260904": {
         "commit": "09b27c49",
         "packet": "CLAUDE-C01-23",
@@ -1594,6 +1649,16 @@
       "fr_jorf_dila_opendata_20260905": {
         "commit": "09b27c49",
         "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_dila_opendata_pm_signature_20260904": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_attal_20240109": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
         "via": "extract_first_added"
       },
       "fr_jorf_nomination_ayrault_20120515": {
@@ -1606,9 +1671,34 @@
         "packet": "CLAUDE-C01-37",
         "via": "extract_first_added"
       },
+      "fr_jorf_nomination_barnier_20240905": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_bayrou_20241213": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
       "fr_jorf_nomination_beregovoy_19920402": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_borne_20220516": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_castex_20200703": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_cazeneuve_20161206": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
         "via": "extract_first_added"
       },
       "fr_jorf_nomination_fillon_20070517": {
@@ -1636,6 +1726,16 @@
         "packet": "CLAUDE-C01-37",
         "via": "extract_first_added"
       },
+      "fr_jorf_nomination_philippe_20170515": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_philippe_20170619": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
       "fr_jorf_nomination_pm_19910515": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
@@ -1654,6 +1754,16 @@
       "fr_jorf_nomination_raffarin_20040330": {
         "commit": "4d88fd03",
         "packet": "CLAUDE-C01-37",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_valls_20140331": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_nomination_valls_20140825": {
+        "commit": "9174c807",
+        "packet": "CLAUDE-C01-38",
         "via": "extract_first_added"
       },
       "fr_jorf_nomination_villepin_20050531": {
@@ -2116,6 +2226,61 @@
       "in_congress_sandesh_nov2000_sonia_elected": {
         "commit": "f0da27b2",
         "packet": "CLAUDE-C01-20",
+        "via": "extract_first_added"
+      },
+      "in_cpim_18th_congress_site_surjeet_biodata_2005": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_22nd_congress_new_cc_elected_20180422": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_23rd_congress_new_cc_elected_20220410": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_24th_congress_new_cc_elected_20250406": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_cc_karat_coordinator_interim_20240929": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_gs_letter_to_pm_20250512": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_karat_coordinator_inaugural_speech_20250402": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_memo_census_2027_20260824": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_pb_homage_yechury_20240912": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_site_ems_caption_page_2001": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_site_party_committees_page_2001": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
       "in_eci_dispute_case_1_of_1999_order_19990807": {
@@ -2771,6 +2936,41 @@
       "in_ls_written_answers_19910829_usq5063_nic": {
         "commit": "9d97caa9",
         "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_pd_20040307_surjeet_letter_to_cec": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_pd_20050417_new_polit_bureau": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_pd_20050417_rally_concludes_18th_congress": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_pd_20050417_surjeet_break_the_impasse": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_pd_20120415_rally_concludes_20th_congress": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_pd_20150426_central_committee_elected_21st_congress": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_pd_20150426_join_to_bring_forth_change": {
+        "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
       "in_pib_19980312_releases": {
@@ -9215,6 +9415,11 @@
         "packet": "CLAUDE-C01-26",
         "via": "extract_first_added"
       },
+      "su_izv_tsk_1991_08": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
       "su_japan_diplomatic_bluebook_1990": {
         "commit": "233b1320",
         "packet": "S10",
@@ -9250,6 +9455,11 @@
         "packet": "CLAUDE-C01-26",
         "via": "extract_first_added"
       },
+      "su_kremlin_rsfsr_ukaz_169_19911106": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
       "su_mek_rasp_2r_19911010": {
         "commit": "8701a28e",
         "packet": "CLAUDE-C01-26",
@@ -9278,6 +9488,36 @@
       "su_nara_bush_gorbachev_telcon_19911225": {
         "commit": "98402d22",
         "packet": "CLAUDE-C01-05",
+        "via": "extract_first_added"
+      },
+      "su_pravda_no192_19900711": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
+      "su_pravda_no193_19900712": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
+      "su_pravda_no194_19900713": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
+      "su_pravda_no195_19900714": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
+      "su_pravda_no201_19910822": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
+      "su_pravda_no37_19900206": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
         "via": "extract_first_added"
       },
       "su_presidency_law_19900314": {
@@ -9370,6 +9610,11 @@
         "packet": "CLAUDE-C01-35",
         "via": "extract_first_added"
       },
+      "su_snd5_bulletin3_cpsu_19910903": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
       "su_snd5_bulletin5_19910904": {
         "commit": "8701a28e",
         "packet": "CLAUDE-C01-26",
@@ -9410,9 +9655,19 @@
         "packet": "CLAUDE-C01-26",
         "via": "extract_first_added"
       },
+      "su_ved_1991_35_cpsu": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
+        "via": "extract_first_added"
+      },
       "su_ved_1991_36": {
         "commit": "8701a28e",
         "packet": "CLAUDE-C01-26",
+        "via": "extract_first_added"
+      },
+      "su_ved_1991_36_cpsu": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
         "via": "extract_first_added"
       },
       "su_ved_1991_37": {
@@ -9423,6 +9678,11 @@
       "su_ved_1991_41": {
         "commit": "8701a28e",
         "packet": "CLAUDE-C01-26",
+        "via": "extract_first_added"
+      },
+      "su_vs_bulletin1_cpsu_19910826": {
+        "commit": "f04ead94",
+        "packet": "CLAUDE-C01-41",
         "via": "extract_first_added"
       },
       "su_vs_bulletin1_soyuz_19910826": {

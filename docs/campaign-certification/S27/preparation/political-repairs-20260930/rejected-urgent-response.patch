@@ -1,0 +1,122 @@
+diff --git a/spheres-sim/src/government.rs b/spheres-sim/src/government.rs
+index e27b036c..f2cdb312 100644
+--- a/spheres-sim/src/government.rs
++++ b/spheres-sim/src/government.rs
+@@ -8232,6 +8232,20 @@ fn ai_party_can_contest_opening(w: &WorldState, id: NationId) -> bool {
+     polity_in(w, id).is_some_and(|pol| pol.parties.iter().any(|p| p.id == party))
+ }
+ 
++fn live_armed_threat(g: &GovState) -> bool {
++    g.coup_pressure > 0.0
++        && g.weakest_armed().is_some_and(|(_, loyalty)| loyalty < REGIME_COUP_LOYALTY)
++}
++
++/// Timing of an already selected legal, affordable AI lever. An active armed
++/// threat gets a prompt negotiated response; ordinary levers keep their draw.
++/// Selection, price, public demand and the one-action limit remain authoritative.
++pub(crate) fn ai_lever_is_urgent(w: &WorldState, command: &crate::Command) -> bool {
++    let crate::Command::ConveneRoundTable { nation } = command else { return false; };
++    w.rules.ideology_blocs && !is_electoral(w, *nation)
++        && state(w, *nation).is_some_and(live_armed_threat)
++}
++
+ /// The lever an AI government would reach for this month, or `None` — pure,
+ /// and `None` before reading anything while `rules.ideology_blocs` is off.
+ /// The four rules and their lines are the design's (S3, INVENTED): a
+@@ -8327,9 +8341,7 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
+         // Regime coups read the weakest armed institution, not their mean.
+         // Respond to that same live threat without treating old pressure,
+         // an unhappy civilian pillar, or a fresh seizure as a new threat.
+-        let live_armed_threat = g.coup_pressure > 0.0
+-            && g.weakest_armed().is_some_and(|(_, loyalty)| loyalty < REGIME_COUP_LOYALTY);
+-        if (armed_mean < 0.50 || voluntary_party_opening || live_armed_threat)
++        if (armed_mean < 0.50 || voluntary_party_opening || live_armed_threat(g))
+             && round_table_refusal(w, id).is_none()
+         {
+             return Some(round_table);
+diff --git a/spheres-sim/src/stratagems.rs b/spheres-sim/src/stratagems.rs
+index e1e2b59d..9ccb3565 100644
+--- a/spheres-sim/src/stratagems.rs
++++ b/spheres-sim/src/stratagems.rs
+@@ -573,8 +573,12 @@ pub fn ai_stratagems(w: &mut WorldState) {
+             },
+             (None, None) => continue,
+         };
+-        // Rare, because these are decisions of a whole term, not a month.
+-        if w.rng.chance(crate::clock::chance(w, 0.02)) {
++        // Ordinary term decisions remain rare. A selected negotiation under a
++        // live armed threat acts now instead of waiting an average fifty months.
++        // Always consume the existing single draw, even for this urgent response.
++        let urgent = crate::government::ai_lever_is_urgent(w, &cmd);
++        let ordinary_action = w.rng.chance(crate::clock::chance(w, 0.02));
++        if urgent || ordinary_action {
+             let _ = crate::apply_command(w, &cmd);
+             #[cfg(test)]
+             crate::government::a1_observer::record(w, id, "stratagem_after_action");
+diff --git a/spheres-sim/tests/political_responses.rs b/spheres-sim/tests/political_responses.rs
+new file mode 100644
+index 00000000..d6d844ce
+--- /dev/null
++++ b/spheres-sim/tests/political_responses.rs
+@@ -0,0 +1,61 @@
++use spheres_sim::{government::{self, Pillar}, init::world_1990,
++    world::{GameRules, NationId, WorldState}, Command};
++
++fn world(daily: bool) -> WorldState {
++    let id = NationId::Sudan;
++    let mut w = world_1990(GameRules { seed: 0, ideology_blocs: true,
++        ideology_takeover: true, daily_simulation: daily, ..GameRules::default() });
++    // Isolate this actor's dispatch and single draw; this is a synthetic unit
++    // fixture, not a campaign cohort or a historical outcome claim.
++    for n in &mut w.nations { n.alive = n.id == id; }
++    w.nation_mut(id).political_capital = 30.0;
++    let g = w.governments.states.iter_mut().find(|g| g.nation == id).unwrap();
++    g.coup_pressure = 0.4;
++    for (p, loyalty) in &mut g.pillars {
++        *loyalty = if *p == Pillar::Army { 0.20 } else { 0.90 };
++    }
++    w.rng.state = 0;
++    assert_eq!(government::ai_lever(&w,id), Some(Command::ConveneRoundTable { nation:id }));
++    w
++}
++
++#[test]
++fn selected_live_threat_response_keeps_one_draw_and_pays_without_waiting_for_a_routine_roll() {
++    let id = NationId::Sudan;
++    for daily in [false, true] {
++        let mut w = world(daily);
++        let mut expected_rng = w.rng.clone();
++        assert!(!expected_rng.chance(spheres_sim::clock::chance(&w, 0.02)));
++        let mut restored = spheres_sim::load(&spheres_sim::save(&w)).unwrap();
++        spheres_sim::stratagems::ai_stratagems(&mut w);
++        spheres_sim::stratagems::ai_stratagems(&mut restored);
++        assert!(government::is_electoral(&w,id), "the selected crisis response was left waiting");
++        assert_eq!(w.nation(id).political_capital, 0.0);
++        assert_eq!(w.rng, expected_rng, "exactly the existing one decision draw");
++        assert_eq!(spheres_sim::save(&w), spheres_sim::save(&restored));
++        let g = government::state(&w,id).unwrap();
++        assert!(g.awaiting_first_election);
++        assert_eq!(g.next_election, (1990,7));
++        assert_eq!(w.headlines.iter().filter(|h| h.contains("convenes a round table")).count(),1);
++    }
++}
++
++#[test]
++fn absent_recovered_unaffordable_or_closed_threat_keeps_ordinary_dispatch() {
++    let id = NationId::Sudan;
++    for control in 0..5 {
++        let mut w = world(false);
++        match control {
++            0 => w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().coup_pressure=0.0,
++            1 => { for (p,v) in &mut w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().pillars {
++                if *p==Pillar::Army { *v=0.35; }
++            } },
++            2 => w.nation_mut(id).political_capital=29.0,
++            3 => w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().movements.clear(),
++            _ => w.rules.ideology_blocs=false,
++        }
++        let saved=spheres_sim::save(&w);
++        spheres_sim::stratagems::ai_stratagems(&mut w);
++        assert_eq!(spheres_sim::save(&w),saved,"control {control}");
++    }
++}

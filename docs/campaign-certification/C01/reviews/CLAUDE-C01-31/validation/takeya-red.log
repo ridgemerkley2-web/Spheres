@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_takeya_acceptance_does_not_infer_an_effective_start (test_japan_komeito_representatives_c01_31.JapanKomeitoRepresentativesTests.test_takeya_acceptance_does_not_infer_an_effective_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-31-20261001\tools\avatars\test_japan_komeito_representatives_c01_31.py", line 691, in test_takeya_acceptance_does_not_infer_an_effective_start
+    self.assertIsNone(holder['from'])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: '2026-03-14' is not None
+
+----------------------------------------------------------------------
+Ran 1 test in 0.012s
+
+FAILED (failures=1)

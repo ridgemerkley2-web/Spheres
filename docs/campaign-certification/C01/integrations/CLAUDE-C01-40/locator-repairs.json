@@ -1,0 +1,54 @@
+{
+  "repairs": [
+    {
+      "claim_id": "in_pd_surjeet_says_karat_took_up_mantle_2005",
+      "before": {
+        "item": "section 'Here Is My Pledge!', first paragraph"
+      },
+      "after": {
+        "item": "section 'Here Is My Pledge!', third paragraph (handover statement)"
+      },
+      "rationale": "The third substantive pledge paragraph describes Karat taking over while Surjeet remains in the Polit Bureau. The submitted first-paragraph locator was wrong and is repaired. No day of handover is supplied."
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
+      "before": {
+        "item": "first and third paragraphs"
+      },
+      "after": {
+        "item": "paragraph beginning 'But this is a glimpse' for the April 9 date; continuation beginning 'Each contingent' for Karat's office and salute"
+      },
+      "rationale": "The report gives April 9 at Kozhikode and identifies Karat taking the salute as newly elected general secretary. Named text anchors replace ambiguous paragraph counting in legacy HTML. Later observation only; no exact election or assumption day."
+    },
+    {
+      "claim_id": "in_pd_rally_karat_outgoing_gs_20150419",
+      "before": {
+        "item": "public meeting report, ninth paragraph; last paragraph for the day"
+      },
+      "after": {
+        "item": "public meeting paragraph beginning 'Prakash Karat'; section 'Arise in Struggle', last paragraph for the April 19 date"
+      },
+      "rationale": "The Karat paragraph calls him outgoing; the final congress paragraph dates that afternoon meeting to April 19. The former ninth-paragraph pointer was displaced; named anchor repaired. Outgoing does not establish an effective end."
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_yechury_20150419",
+      "before": {
+        "item": "public meeting report, tenth paragraph; last paragraph for the day"
+      },
+      "after": {
+        "item": "public meeting paragraph beginning 'Newly elected general secretary'; section 'Arise in Struggle', last paragraph for the April 19 date"
+      },
+      "rationale": "The Yechury paragraph identifies him as newly elected general secretary speaking at the same April 19 meeting. The former tenth-paragraph pointer was displaced; named anchor repaired. Accept the dated observation, not a start."
+    },
+    {
+      "claim_id": "in_cpim_pb_yechury_elected_gs_21st_congress_recalled",
+      "before": {
+        "item": "third paragraph"
+      },
+      "after": {
+        "item": "tribute paragraph beginning 'He was elected as the General Secretary'"
+      },
+      "rationale": "The tribute recalls election at the 21st Congress in 2015 and continued service. The submitted third-paragraph pointer led to student biography, so a named anchor is substituted. A retrospective year does not establish an exact start."
+    }
+  ]
+}

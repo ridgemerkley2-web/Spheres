@@ -1,0 +1,294 @@
+{
+  "base": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+  "scope": "Changed source, data, art and handoff files; proof packet retained separately. Text hashes use LF for cross-checkout stability.",
+  "inputs": [
+    {
+      "path": "CLAUDE.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "77afe42cd5260e6ce2dcd7917bfb3d568260fed8b2518f2068f714bdc4e93343",
+      "bytes": 1133
+    },
+    {
+      "path": "docs/AI_WORKSTREAMS.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "c444a3434e81fd7c5813fddb1568721ee2b48f2f9acaea7e3ffd3a8ee03a9b64",
+      "bytes": 5577
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "b167d2382d12befb988904b0c7d207eb5854a583afdb972decadffbe5d5f1380",
+      "bytes": 795169
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "d52aca3d63728beb3161f9e06cc816d3be79e22c6656c95ae8f6efe3a0f6a40f",
+      "bytes": 18526
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/README.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "b574338e317d874ab3ab1347cfe31df832dfde5e5f369521ba66f1417cc37bc8",
+      "bytes": 34670
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-brazil.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "5a2159a6cb7c13725d379989ed29466675bc3769aff04ec6479a56a6f073adca",
+      "bytes": 355931
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-france.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "70e3e91d23494b3be95b7a67d5f65964784f0f37f6962e8ba5eaedc49175cb44",
+      "bytes": 495076
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-india.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "5ffcb6ace600a58fd3dfc297438114d6b27ca9d563767ed5936a6e64b06adec3",
+      "bytes": 342269
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-saudi-arabia.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "1f7c743943b06a45763fa78a33e3a77ebf63d34b22a09b685f84eaf64ef4db9c",
+      "bytes": 214875
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-ussr-russia.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "3604c310d80b468c141b0029682ad47a450da7a1d9345f4dfbb2c8789bfcfb7e",
+      "bytes": 457667
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "71431a931a5f4bb9b7edc0af763298f8c96a08fb15eba1beeb7cbfe156b72a0e",
+      "bytes": 87064
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "70fc7f429aab3c71f26e8dc4d863fa31ae75e09d546a1c2a1a3bc7d1b6c66c6f",
+      "bytes": 7462
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "40a0ffb5fce3d34198eb488fefeffd287416031f44e5b6643dbb8b0fae01d119",
+      "bytes": 6271
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "468262ad0f3e70fb4e7147054c0616e75001131a93023348f71288ceb4f9fe22",
+      "bytes": 4981
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CODEX-C03-OPENING-01.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "7792dfacd2a34a627811a9575aecee335c6f77679012336c4570bf0a3577c404",
+      "bytes": 2858
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "a8bd893961a80fd586c21d4c4cd7b32d52426260bb89625b6fc7114e2489fb82",
+      "bytes": 5997885
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
+      "bytes": 307745
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "hash_scope": "utf8-lf",
+      "sha256": "1c713482a3828bc6e6dc98e12d58d523e10795018e6add455ea5377b9f5fb2ef",
+      "bytes": 987321
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "hash_scope": "utf8-lf",
+      "sha256": "dbe28d29a5b036329b381c241fe2f0ac08d266c6c5892af10145af66ca51a182",
+      "bytes": 8608
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "hash_scope": "utf8-lf",
+      "sha256": "398bc6998b87b33425d3aedd30a98c93641bddc1decd12534880e7384ed7b900",
+      "bytes": 26112
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "hash_scope": "utf8-lf",
+      "sha256": "27e48116be6515c9037e2fbc1ba4c0a3bfaf82c740b752c01e1dee9893d26491",
+      "bytes": 1146596
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+      "hash_scope": "raw",
+      "sha256": "c6ef6fd60fae7fcd729edfd78ce4230eacc0070143c0c3732a6550daa617156e",
+      "bytes": 1612311
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
+      "hash_scope": "raw",
+      "sha256": "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0",
+      "bytes": 1610252
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/jose-sarney-cartoon-1990-v1.png",
+      "hash_scope": "raw",
+      "sha256": "8a35a2676cf1fca13312858f40cdfa80db9e25fe42af642fd982af5723a7e346",
+      "bytes": 1546316
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png",
+      "hash_scope": "raw",
+      "sha256": "175124a0e596c74c028167b6d5ad482b5540a7d6de0360704922e440c38fb316",
+      "bytes": 1568740
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/fahd-1990-reference.jpg",
+      "hash_scope": "raw",
+      "sha256": "9c3a9b7c03a1cc8a30aaf466cda4d7b584285bf5cf67079b9dd17a8246674f1b",
+      "bytes": 361366
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/francois-mitterrand-1988-reference.jpg",
+      "hash_scope": "raw",
+      "sha256": "6b12d2462cfce5f0cd021162fdb4be6ba20e7b1868e8b016d4877db7e9af86fa",
+      "bytes": 827622
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/jose-sarney-white-house-1986-v1.jpg",
+      "hash_scope": "raw",
+      "sha256": "f8f0250e72f3b408d77a2f6b9c7f51c17c759878294963a5e286b6ebbb21c4e0",
+      "bytes": 169529
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1990-reference.jpg",
+      "hash_scope": "raw",
+      "sha256": "6a8ddddb5b74f9f8e9d9bb31ad5a47172f528db13cad5fafc7d32fff42ccea72",
+      "bytes": 62551
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/v-p-singh-european-commission-1983-v1.jpg",
+      "hash_scope": "raw",
+      "sha256": "d6de3353c7809ffdd2b2066822813cb1c866610a7cbfd0a884d153cfc5f7d2d4",
+      "bytes": 370090
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/v-p-singh-cartoon-1990-v1.png",
+      "hash_scope": "raw",
+      "sha256": "433318848a194020dd2ca2e23ae54a25a169a14c11476b449c9e3dbc1ac66613",
+      "bytes": 1646088
+    },
+    {
+      "path": "tools/avatars/README.md",
+      "hash_scope": "utf8-lf",
+      "sha256": "f49f7f3974d5544c51e192c835c3e5ca2a51cd641acd50f384c32a6149fb4934",
+      "bytes": 11882
+    },
+    {
+      "path": "tools/avatars/cartoon_review.py",
+      "hash_scope": "utf8-lf",
+      "sha256": "746985c7b12783d617edc2b513d3f9d0495398e905079e1264f5e345a5ef9fd9",
+      "bytes": 73148
+    },
+    {
+      "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1990-v1.txt",
+      "hash_scope": "utf8-lf",
+      "sha256": "c7aa7aabe27c1a94f7f647ce70ad2bc878fc3c6bebbb3cd85f7d60512fd07c5f",
+      "bytes": 2170
+    },
+    {
+      "path": "tools/avatars/person-prompts/francois-mitterrand-cartoon-1990-v1.txt",
+      "hash_scope": "utf8-lf",
+      "sha256": "18ea51e13fb214ac2d9c45e0ab31e8b27856abf7282c75e4eede077f2911d351",
+      "bytes": 2101
+    },
+    {
+      "path": "tools/avatars/person-prompts/jose-sarney-cartoon-1990-v1.txt",
+      "hash_scope": "utf8-lf",
+      "sha256": "c87eefcee8cbef866f564a3ddaa30cf52b72aa6536e1fc18152e18d9b13a1419",
+      "bytes": 1688
+    },
+    {
+      "path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1990-v1.txt",
+      "hash_scope": "utf8-lf",
+      "sha256": "b4ba15b078ea8474bf74aad8ccc598bb2693becb25ffece6e47d3c44d957cbcc",
+      "bytes": 2015
+    },
+    {
+      "path": "tools/avatars/person-prompts/opening-1990-background-correction.txt",
+      "hash_scope": "utf8-lf",
+      "sha256": "35c1b89582d47a13f4966335265a3cc0ea3ec3d4e09a4948cfc4a5fff9e01a76",
+      "bytes": 666
+    },
+    {
+      "path": "tools/avatars/person-prompts/opening-1990-batch-v1.json",
+      "hash_scope": "utf8-lf",
+      "sha256": "9a7c71068969db0ae153c7e1c7759cabf95fd5ba1ea5c2b3387917a03687bd1c",
+      "bytes": 27313
+    },
+    {
+      "path": "tools/avatars/person-prompts/v-p-singh-cartoon-1990-v1.txt",
+      "hash_scope": "utf8-lf",
+      "sha256": "c123131bceb074fcbd7d9c143626b32ba2d9181890a0737db507bbfdddcde0fd",
+      "bytes": 2020
+    },
+    {
+      "path": "tools/avatars/test_cartoon_review.py",
+      "hash_scope": "utf8-lf",
+      "sha256": "5e5a21d97b4e2c31656eccf1551b0a5ef76d31a46b2803777b7c67f5ee7800cd",
+      "bytes": 38263
+    },
+    {
+      "path": "tools/ui/cartoon-review/cartoon-review.css",
+      "hash_scope": "utf8-lf",
+      "sha256": "a7a5eed0e3d728fddee4e62ff9b4a2dfa86eb944ac8398e2eab7aca12401fe03",
+      "bytes": 10855
+    },
+    {
+      "path": "tools/ui/cartoon-review/cartoon-review.js",
+      "hash_scope": "utf8-lf",
+      "sha256": "63f342b4d145b662a0609e99ccb4a24bbb1649aad7f5b90c3901cc01a9afffcf",
+      "bytes": 41827
+    },
+    {
+      "path": "tools/ui/cartoon-review/index.html",
+      "hash_scope": "utf8-lf",
+      "sha256": "0dc57cb4fd89a0ef29f2ffd12bc9966e11ffe7ed19bb7c80aedb4a7512e07bd0",
+      "bytes": 4021
+    },
+    {
+      "path": "tools/ui/check_cartoon_review.cjs",
+      "hash_scope": "utf8-lf",
+      "sha256": "5b73f068a71ac83959cb3c530e8559c77ba9d70789ace3127e3e13b90df00db9",
+      "bytes": 38697
+    },
+    {
+      "path": "tools/ui/check_government_leadership.cjs",
+      "hash_scope": "utf8-lf",
+      "sha256": "94e60ad176b8ceab41b6ef3fcaf1fa755d19e73df7c98eaf36025bae2253926c",
+      "bytes": 46401
+    },
+    {
+      "path": "tools/ui/check_selector_leaders.cjs",
+      "hash_scope": "utf8-lf",
+      "sha256": "35da921c37ae60a80f34d0d7ec5909424626319b7ffa8a25341f6a44e9310b47",
+      "bytes": 6403
+    },
+    {
+      "path": "tools/ui/check_selector_leaders_browser.cjs",
+      "hash_scope": "utf8-lf",
+      "sha256": "f9bc50f94a12da33c829d3c158df5ab2b9dffdd29b435ba474d0b949a661e5f6",
+      "bytes": 8222
+    }
+  ]
+}

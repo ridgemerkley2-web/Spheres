@@ -1,0 +1,54 @@
+{
+  "source_revision": "7d029f1dc1b84d68426620fa7d0b9fccadfef53e",
+  "phase": "generation-02",
+  "at_utc": "2026-10-01T01:19:04.012609+00:00",
+  "commands": [
+    {
+      "name": "index-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 1.294,
+      "log": "index-regenerate.log",
+      "bytes": 252,
+      "sha256": "320b81d22462f6457cc7fd4894561c08591a39006af50ae15ae34ee89bd9eba4"
+    },
+    {
+      "name": "gap-attribution-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--refresh-attribution"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 4.815,
+      "log": "gap-attribution-regenerate.log",
+      "bytes": 259,
+      "sha256": "40a72c0470551c09ebaff4910c9bec43d2e24c2c3ce2e1b2eae82b7a156fd8bd"
+    },
+    {
+      "name": "boundary-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.59,
+      "log": "boundary-regenerate.log",
+      "bytes": 238,
+      "sha256": "3f987e0100edc816ff425b1ec7bbbe167169f6227d301cc07b3a79b4297198bf"
+    }
+  ],
+  "passed": true
+}

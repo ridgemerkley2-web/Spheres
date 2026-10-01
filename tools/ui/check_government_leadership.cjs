@@ -354,8 +354,8 @@ test('historical cache can be reused only for the same nation and date',()=>{
  const f=hostFixture();f.c.gov.leadershipReference={nation:'UK',date:'1990-01-01',data:f.result(),loading:false,error:''};f.c.govSetLeadershipMode('reference');assert.equal(f.calls.length,0);
  f.c.gov.leadershipReference.nation='USA';f.c.govSetLeadershipMode('reference');assert.equal(f.calls.length,1);
 });
-test('selector art credit no longer invents a verified portrait source',()=>{
- const code=hostFunction('loadFigurePortrait');assert.match(code,/identity_source_asset \|\| leaderArt.identity_source_wikidata \|\| "authored historical identity"/);assert.doesNotMatch(code,/"verified portrait"/);
+test('campaign leader art retains the served credit without historical selector substitution',()=>{
+ const code=hostFunction('loadFigurePortrait');assert.match(code,/spec\.portrait\?\.credit/);assert.doesNotMatch(code,/leader_art|identity_source_asset|art\/portraits|verified portrait/);
 });
 test('index host has consistent LF or CRLF line endings and every inline script parses',()=>{
  const bytes=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/index.html'),'utf8');

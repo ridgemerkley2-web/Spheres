@@ -1,0 +1,134 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 21,
+      "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 43467,
+      "sha256": "174e98dce6c91e5a1bc8a0b837ca5a286056f800659d78b17a20b77a37e9e0c9"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 17789,
+      "sha256": "acd85d6259e9afa0215451b0c9125714397873c982596db47f7361aaf4fb716c"
+    },
+    {
+      "path": "initial-retrieval.json",
+      "bytes": 62010,
+      "sha256": "a7d57c2e4a57b5b6642f96edaa4ec868f85c9e48c0205b16060efe1525989a01"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2412,
+      "sha256": "232c78225e45443303a77cebd7da8b044e1b157d28f2bcc640bca4d3784cad23"
+    },
+    {
+      "path": "review-tools/prepare_content.py",
+      "bytes": 2517,
+      "sha256": "9521298e769e9b3bd87120717b398d56589a07eafe2aaf19e2322eac5bc4f495"
+    },
+    {
+      "path": "review-tools/retrieve.py",
+      "bytes": 4797,
+      "sha256": "034f97d51cf730deb80686546c69648a430c94013d4f89d312a49f475cac65e4"
+    },
+    {
+      "path": "review-tools/retry_missing.py",
+      "bytes": 1018,
+      "sha256": "aff222029c4df2f7d51b2fd044e9d226f32413d4e914b3de42ff12cd23a8f01d"
+    },
+    {
+      "path": "review-tools/run_checks.py",
+      "bytes": 4696,
+      "sha256": "f97ed8503ebf11f44e3b26986680d7801da5a34da185e3b2b5e1a601fc09f3e8"
+    },
+    {
+      "path": "review.json",
+      "bytes": 1934,
+      "sha256": "4a167ab7037aead8a2d32d3bd1b8ad0c20382b2feda3c1a184a796df171a3dd7"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 15396,
+      "sha256": "bbb2d6f2fb975144733d7724a74a24c1c0baf409be6ec8a16ffe85f37ba81e47"
+    },
+    {
+      "path": "source-attempts.json",
+      "bytes": 46563,
+      "sha256": "c774603d38d8218d418853c6de2d8600fe4b8be9ae7dfe8d48f6e248a3f62869"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 21453,
+      "sha256": "39edcde624b9c00c7d67463ccd6499f0066249335e5d07d24b95b26205c72dcc"
+    },
+    {
+      "path": "validation/atlas.log",
+      "bytes": 1123,
+      "sha256": "de652da9ca90e1e51f42421508970a5752f62c33e7638466bf969dffc5a58c96"
+    },
+    {
+      "path": "validation/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "58ac4ea4f90d314b1b5b50e726b0ba917c1fecfcf68222bb9e31fd5f11825664"
+    },
+    {
+      "path": "validation/census.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "validation/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/france.log",
+      "bytes": 132,
+      "sha256": "8c5b70ad85126f8452c91e43c76b21645e5519cb2a203ed4f6de523d485423ef"
+    },
+    {
+      "path": "validation/importer-tests.log",
+      "bytes": 114,
+      "sha256": "148e8b71cca14914c6deb97fe36b0ad20538fc02b5e783cbf68ea27286050fb9"
+    },
+    {
+      "path": "validation/importer.log",
+      "bytes": 149,
+      "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "path": "validation/research-check.log",
+      "bytes": 251,
+      "sha256": "30da6c6354da74ca4f666482b3ef5332afce370fd1e3a26b0ff740bdf65444bf"
+    },
+    {
+      "path": "validation/research-regenerate.log",
+      "bytes": 252,
+      "sha256": "812a44810baa4fa65f71e8c99b3552025b0f702a69852369dbaa8ecebc1101f2"
+    },
+    {
+      "path": "validation/research-tests.log",
+      "bytes": 183,
+      "sha256": "3632fb4c3760627727353c3b24f8e5dc583b347c785c4dd43e3c52ab0278c4af"
+    },
+    {
+      "path": "validation/results.json",
+      "bytes": 5119,
+      "sha256": "bb2ca1819a8d0e380668dbdfedf9d5482ba20afa40194c5b899f06545c90f643"
+    },
+    {
+      "path": "validation/workboard.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 3505,
+      "sha256": "8a14401ce13a668b555177912654afbef5e99b5604e44c41134291dd34caa1c9"
+    }
+  ]
+}

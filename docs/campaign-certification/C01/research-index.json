@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 1917,
-    "source_claims": 4791,
+    "sources": 1969,
+    "source_claims": 4874,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -83,7 +83,7 @@
       "organization_observations": 635,
       "institution_observations": 2,
       "role_observations": 2,
-      "source_claims": 1420,
+      "source_claims": 1453,
       "mapping_pending": 637,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -103,7 +103,8 @@
           "Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.",
           "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
           "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched.",
-          "CLAUDE-C01-37 adds the executive institution fr_prime_minister (Premier ministre) through the same supplement; it covers the first ten people to hold the office from 1 January 1990 (Michel Rocard to Jean-Marc Ayrault, to 31 March 2014). The Prime Ministers appointed from 31 March 2014 onward, ministers and party offices remain unresearched."
+          "CLAUDE-C01-37 adds the executive institution fr_prime_minister (Premier ministre) through the same supplement; it covers the first ten people to hold the office from 1 January 1990 (Michel Rocard to Jean-Marc Ayrault, to 31 March 2014). The Prime Ministers appointed from 31 March 2014 onward, ministers and party offices remain unresearched.",
+          "CLAUDE-C01-38 extends fr_prime_minister (Premier ministre) through the same supplement with the next nine people to hold the office, the Prime Ministers appointed from 31 March 2014 to the cutoff (Manuel Valls to Sébastien Lecornu). Ministers and party offices remain unresearched."
         ],
         "financial_reporting_universe": {
           "exercise": "2024",
@@ -196,8 +197,8 @@
       "packet": "docs/campaign-certification/C01/research/india.json",
       "organization_observations": 83,
       "institution_observations": 2,
-      "role_observations": 5,
-      "source_claims": 599,
+      "role_observations": 6,
+      "source_claims": 623,
       "mapping_pending": 85,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -240,7 +241,8 @@
           "Presidents 1990-2026 (CLAUDE-C01-15): the packet now holds a second institution, in_presidency, with one role, in_president, and eight dated holder observations (R. Venkataraman observed on 13 January 1990, and stated starts on 25 July 1992, 1997, 2002, 2007, 2012, 2017 and 2022 for his seven successors). No primary source reviewed states the day any President's office ended, so no holder has an end. Still open for the presidency: every end, the text of the 2002 notification of assumption, the names of the Chief Justices who administered the 1997, 2002, 2007 and 2012 oaths, and the Election Commission's own result records. Vice-presidents, acting arrangements, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
           "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
-          "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
+          "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted.",
+          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 11 April 2005, Sitaram Yechury 19 April 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2015, 2018, 2022 and 2025 are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -473,7 +475,7 @@
       "organization_observations": 3,
       "institution_observations": 4,
       "role_observations": 8,
-      "source_claims": 131,
+      "source_claims": 157,
       "mapping_pending": 7,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -494,7 +496,8 @@
           "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed.",
           "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
           "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until.",
-          "CLAUDE-C01-35 adds two organizations: su_democratic_russia (the Democratic Russia movement, with the co-leadership role su_dr_co_chair) and su_soyuz_deputies_group (the Soyuz group of USSR people's deputies, with the co-leadership role su_soyuz_co_chair). It reviews their leaders from 1 January 1990 to 25 December 1991 (SU-DR-01 to 05, SU-SOYUZ-01 to 05) from Congress and Supreme Soviet stenograms and archival facsimiles of the movement's own papers and of the RSFSR President's office. Co-chairs are recorded as co-leadership, one person per observation; no holder has a from or an until. Neither organization is mapped to a simulation party row, and the RSFSR deputies' faction of the same name and the later organizations called «Союз» remain unreviewed."
+          "CLAUDE-C01-35 adds two organizations: su_democratic_russia (the Democratic Russia movement, with the co-leadership role su_dr_co_chair) and su_soyuz_deputies_group (the Soyuz group of USSR people's deputies, with the co-leadership role su_soyuz_co_chair). It reviews their leaders from 1 January 1990 to 25 December 1991 (SU-DR-01 to 05, SU-SOYUZ-01 to 05) from Congress and Supreme Soviet stenograms and archival facsimiles of the movement's own papers and of the RSFSR President's office. Co-chairs are recorded as co-leadership, one person per observation; no holder has a from or an until. Neither organization is mapped to a simulation party row, and the RSFSR deputies' faction of the same name and the later organizations called «Союз» remain unreviewed.",
+          "CLAUDE-C01-41 dates the existing su_cpsu roles su_cpsu_general_secretary and su_cpsu_deputy_general_secretary from the party's own records (Pravda, the Central Committee's organ, and Известия ЦК КПСС, as Internet Archive stored files) and official Union records (the Supreme Soviet's and Congress's stenographic bulletins and Ведомости on the SSSR.SU host) and an RSFSR decree: three observations of Михаил Сергеевич Горбачев (5 February 1990, 10 July 1990, 22 August 1991) and two of Владимир Антонович Ивашко (13 July 1990, 21 August 1991), attested_on only, beside the unchanged S10.h month observations; 12 sources and 26 claims. The General Secretary's statement of 24 August 1991, the deputy's acting service and the party's dissolution remain unresolved; the suspension (29 August 1991) and the RSFSR decree (6 November 1991) are organization claims only."
         ]
       }
     }
@@ -2691,13 +2694,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 2122964,
-      "sha256": "6c4ed32a719effc98a4c5e8755eafcc9e1a3559c92b21c4fb3192b3368b76baf"
+      "bytes": 2224528,
+      "sha256": "03bd326b0acaddb96f33b71dad22e5f6ee906ec4649ce4de97fa2325e7a0f49e"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1241859,
-      "sha256": "ad31ae748940c61e5fc345228f8b51c1f4c55f897b54f0af58dc9bbb83d97c6d"
+      "bytes": 1301518,
+      "sha256": "42d68ee487ff13718fae67488a9d28ecce1be1b586da878574568f5d6d139176"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -2726,8 +2729,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 300502,
-      "sha256": "1fdb9f98ae0edcc10366bbea508c71140a8f949947d9f63db1a7dca32f016089"
+      "bytes": 360379,
+      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94"
     },
     {
       "path": "tools/avatars/campaign_research.py",

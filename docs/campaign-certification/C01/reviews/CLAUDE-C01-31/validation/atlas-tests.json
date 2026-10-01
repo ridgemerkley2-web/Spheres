@@ -1,0 +1,13 @@
+{
+  "name": "atlas-tests",
+  "command": [
+    "node",
+    "--test",
+    "tools/ui/check_leadership_research_review.cjs"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-31-20261001",
+  "started_at": "2026-10-01T01:04:19.965521+00:00",
+  "log": "atlas-tests.log",
+  "exit_code": 0,
+  "finished_at": "2026-10-01T01:04:20.341691+00:00"
+}

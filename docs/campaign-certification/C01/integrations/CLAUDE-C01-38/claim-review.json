@@ -1,0 +1,446 @@
+{
+  "reviewer": "Codex /root",
+  "method": "Manual reading of cited HTML decree text and structured XML metadata, operative articles, visas and signatures; hash verification was a separate step.",
+  "claims": [
+    {
+      "claim_id": "fr_jorf_valls_appointed_pm_20140331",
+      "source_id": "fr_jorf_nomination_valls_20140331",
+      "attested_on": "2014-03-31",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1407798D', 'JORF n°0077 du 1 avril 2014 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "af417b523e6fbaf859c3721a23be1982e7b0fdba7213288e11a499810a3d4903",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2014-03-31; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_valls_government_resignation_letter_20140825",
+      "source_id": "fr_jorf_cessation_valls_20140825",
+      "attested_on": "2014-08-25",
+      "locator": {
+        "item": "reference block ('NOR: HRUX1420333D', 'JORF n°0196 du 26 août 2014 page 14337 texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "3f80f2659faf3cf93ee39b4995bf85b42fe84fc399051026863b5e309a829d81",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone."
+    },
+    {
+      "claim_id": "fr_jorf_valls_functions_ended_20140825",
+      "source_id": "fr_jorf_cessation_valls_20140825",
+      "attested_on": "2014-08-25",
+      "locator": {
+        "item": "reference block ('NOR: HRUX1420333D', 'JORF n°0196 du 26 août 2014 page 14337 texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "3f80f2659faf3cf93ee39b4995bf85b42fe84fc399051026863b5e309a829d81",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2014-08-25; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_valls_appointed_pm_20140825",
+      "source_id": "fr_jorf_nomination_valls_20140825",
+      "attested_on": "2014-08-25",
+      "locator": {
+        "item": "reference block ('NOR: HRUX1420361D', 'JORF n°0196 du 26 août 2014 page 14337 texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "469ffc07bf47b488d2ab34812ae25cadae727ee87deb36e171b584d5f183ed85",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2014-08-25; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_valls_government_resignation_letter_20161206",
+      "source_id": "fr_jorf_cessation_valls_20161206",
+      "attested_on": "2016-12-06",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1635920D', 'JORF n°0284 du 7 décembre 2016 Texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "54d623b86b40ef99cd8085e61bf5138b9ed8b5807a919d3d96f8c08793075092",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone."
+    },
+    {
+      "claim_id": "fr_jorf_valls_functions_ended_20161206",
+      "source_id": "fr_jorf_cessation_valls_20161206",
+      "attested_on": "2016-12-06",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1635920D', 'JORF n°0284 du 7 décembre 2016 Texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "54d623b86b40ef99cd8085e61bf5138b9ed8b5807a919d3d96f8c08793075092",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2016-12-06; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_cazeneuve_appointed_pm_20161206",
+      "source_id": "fr_jorf_nomination_cazeneuve_20161206",
+      "attested_on": "2016-12-06",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1635924D', 'JORF n°0284 du 7 décembre 2016 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "96e3d3bdf8cec9af7c3b82ea612d4b9c794b34948622de6bfee91646be0d716f",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2016-12-06; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_cazeneuve_government_resignation_letter_20170510",
+      "source_id": "fr_jorf_cessation_cazeneuve_20170510",
+      "attested_on": "2017-05-10",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1714213D', 'JORF n°0110 du 11 mai 2017 Texte n° 3') and the second visa"
+      },
+      "source_body_sha256": "f6a550147079cc67bfcec2348012bf68e8fa8cb6efcf104f7cb9c9c335c38928",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone."
+    },
+    {
+      "claim_id": "fr_jorf_cazeneuve_functions_ended_20170510",
+      "source_id": "fr_jorf_cessation_cazeneuve_20170510",
+      "attested_on": "2017-05-10",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1714213D', 'JORF n°0110 du 11 mai 2017 Texte n° 3'), article 1 and the signature line"
+      },
+      "source_body_sha256": "f6a550147079cc67bfcec2348012bf68e8fa8cb6efcf104f7cb9c9c335c38928",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2017-05-10; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_philippe_appointed_pm_20170515",
+      "source_id": "fr_jorf_nomination_philippe_20170515",
+      "attested_on": "2017-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1714521D', 'JORF n°0115 du 16 mai 2017 Texte n° 1'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "32ee9316e3f39e5fc01eed7ab0fd303d23f7a89d5f85e169b192f3f2cadecc6b",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2017-05-15; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_philippe_government_resignation_letter_20170619",
+      "source_id": "fr_jorf_cessation_philippe_20170619",
+      "attested_on": "2017-06-19",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1718115D', 'JORF n°0143 du 20 juin 2017 Texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "e7ddb2b69e5bca3d94064b86335abd364e1819455c529375248433ed80ece197",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone."
+    },
+    {
+      "claim_id": "fr_jorf_philippe_functions_ended_20170619",
+      "source_id": "fr_jorf_cessation_philippe_20170619",
+      "attested_on": "2017-06-19",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1718115D', 'JORF n°0143 du 20 juin 2017 Texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "e7ddb2b69e5bca3d94064b86335abd364e1819455c529375248433ed80ece197",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2017-06-19; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_philippe_appointed_pm_20170619",
+      "source_id": "fr_jorf_nomination_philippe_20170619",
+      "attested_on": "2017-06-19",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1718116D', 'JORF n°0143 du 20 juin 2017 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "3b6355eae43497b22615b422beec8ebe4af6f4f07935c3ef2387c0ba93140d95",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2017-06-19; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_philippe_government_resignation_letter_20200702",
+      "source_id": "fr_jorf_cessation_philippe_20200703",
+      "attested_on": "2020-07-02",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2017189D', 'JORF n°0164 du 4 juillet 2020 Texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "8388ace1a15a0f2aa411a62fd8ebbf3b951935c45302382595ef72db259b785b",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone. The letter is dated 2020-07-02, before the decree signed 2020-07-03; neither day is an effective end, and the interval between them is not characterised by this decree."
+    },
+    {
+      "claim_id": "fr_jorf_philippe_functions_ended_20200703",
+      "source_id": "fr_jorf_cessation_philippe_20200703",
+      "attested_on": "2020-07-03",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2017189D', 'JORF n°0164 du 4 juillet 2020 Texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "8388ace1a15a0f2aa411a62fd8ebbf3b951935c45302382595ef72db259b785b",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2020-07-03; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_castex_appointed_pm_20200703",
+      "source_id": "fr_jorf_nomination_castex_20200703",
+      "attested_on": "2020-07-03",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2017234D', 'JORF n°0164 du 4 juillet 2020 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "9991cb10bddd832f38331c1d803a914dd6d7927244e1e14832e9798415f5f683",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2020-07-03; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_castex_government_resignation_letter_20220516",
+      "source_id": "fr_jorf_cessation_castex_20220516",
+      "attested_on": "2022-05-16",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2213739D', 'JORF n°0114 du 17 mai 2022 Texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "3cdc39bf9a6c4deda11e5d9e88bd5ae043009f6d77b04b6c17c33bffcc66924e",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone."
+    },
+    {
+      "claim_id": "fr_jorf_castex_functions_ended_20220516",
+      "source_id": "fr_jorf_cessation_castex_20220516",
+      "attested_on": "2022-05-16",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2213739D', 'JORF n°0114 du 17 mai 2022 Texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "3cdc39bf9a6c4deda11e5d9e88bd5ae043009f6d77b04b6c17c33bffcc66924e",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2022-05-16; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_borne_appointed_pm_20220516",
+      "source_id": "fr_jorf_nomination_borne_20220516",
+      "attested_on": "2022-05-16",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2213740D', 'JORF n°0114 du 17 mai 2022 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "b0278dd3e9c4e8bb74eac936535bf47b5b00e303615fcb058d5afab80c12146c",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2022-05-16; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_borne_government_resignation_letter_20240108",
+      "source_id": "fr_jorf_cessation_borne_20240109",
+      "attested_on": "2024-01-08",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2400543D', 'JORF n°0007 du 10 janvier 2024 Texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "9ae7b26bb02bf94052688f64651d6b1eb7ee32703b16595bd8321967df6cac1e",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone. The letter is dated 2024-01-08, before the decree signed 2024-01-09; neither day is an effective end, and the interval between them is not characterised by this decree."
+    },
+    {
+      "claim_id": "fr_jorf_borne_functions_ended_20240109",
+      "source_id": "fr_jorf_cessation_borne_20240109",
+      "attested_on": "2024-01-09",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2400543D', 'JORF n°0007 du 10 janvier 2024 Texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "9ae7b26bb02bf94052688f64651d6b1eb7ee32703b16595bd8321967df6cac1e",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2024-01-09; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_attal_appointed_pm_20240109",
+      "source_id": "fr_jorf_nomination_attal_20240109",
+      "attested_on": "2024-01-09",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2400540D', 'JORF n°0007 du 10 janvier 2024 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "553a022ad3c6cff7c5f835e67a6e93a0472582c81443cdc7c2753cb4b6905a6d",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2024-01-09; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_attal_government_resignation_letter_20240708",
+      "source_id": "fr_jorf_cessation_attal_20240716",
+      "attested_on": "2024-07-08",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2420108D', 'JORF n°0169 du 17 juillet 2024 Texte n° 1') and the second visa"
+      },
+      "source_body_sha256": "6dce5f1e87cf6c5a757d5fd1f478a303fcdf1de56f0d761cec04d6710c1b4975",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone. The letter is dated 2024-07-08, before the decree signed 2024-07-16; neither day is an effective end, and the interval between them is not characterised by this decree."
+    },
+    {
+      "claim_id": "fr_jorf_attal_functions_ended_20240716",
+      "source_id": "fr_jorf_cessation_attal_20240716",
+      "attested_on": "2024-07-16",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2420108D', 'JORF n°0169 du 17 juillet 2024 Texte n° 1'), article 1 and the signature line"
+      },
+      "source_body_sha256": "6dce5f1e87cf6c5a757d5fd1f478a303fcdf1de56f0d761cec04d6710c1b4975",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2024-07-16; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_barnier_appointed_pm_20240905",
+      "source_id": "fr_jorf_nomination_barnier_20240905",
+      "attested_on": "2024-09-05",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2423485D', 'JORF n°0212 du 6 septembre 2024 Texte n° 1'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "9a49893a6bf70dda0b494c486792673c4069e8e5c2510fe4fb834bd1703a2a0b",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2024-09-05; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_bayrou_appointed_pm_20241213",
+      "source_id": "fr_jorf_nomination_bayrou_20241213",
+      "attested_on": "2024-12-13",
+      "locator": {
+        "item": "reference block ('NOR : HRUX2433983D', 'JORF n°0295 du 14 décembre 2024 Texte n° 1'), the article appointing the Prime Minister and the signature line"
+      },
+      "source_body_sha256": "16b8582ae70e39de3ff419dc4c8384d00dd7ab033727136e614b00b1b94bc679",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2024-12-13; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation."
+    },
+    {
+      "claim_id": "fr_jorf_bayrou_government_resignation_letter_20250909",
+      "source_id": "fr_jorf_dila_opendata_20250910",
+      "attested_on": "2025-09-09",
+      "locator": {
+        "archive_member": "20250910-005809/jorf/global/texte/version/JORF/TEXT/00/00/52/22/19/JORFTEXT000052221929.xml",
+        "item": "DATE_TEXTE 2025-09-09; ORIGINE_PUBLI 'JORF n°0210 du 10 septembre 2025'; NUM_SEQUENCE 2; VISAS (second visa)"
+      },
+      "source_body_sha256": "74892eb74e45ff28ddbbdd10dd13c1dc84bd0465134a0fdfe20ffb79f69036d9",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone. 'Remise le' dates the handing over of the letter as the decree cites it."
+    },
+    {
+      "claim_id": "fr_jorf_bayrou_functions_ended_20250909",
+      "source_id": "fr_jorf_dila_opendata_20250910",
+      "attested_on": "2025-09-09",
+      "locator": {
+        "archive_member": "20250910-005809/jorf/global/texte/version/JORF/TEXT/00/00/52/22/19/JORFTEXT000052221929.xml",
+        "article_member": "20250910-005809/jorf/global/article/JORF/ARTI/00/00/52/22/19/JORFARTI000052221930.xml",
+        "item": "DATE_TEXTE 2025-09-09; ORIGINE_PUBLI 'JORF n°0210 du 10 septembre 2025'; NUM_SEQUENCE 2; VISAS; article 1; SIGNATAIRES"
+      },
+      "source_body_sha256": "74892eb74e45ff28ddbbdd10dd13c1dc84bd0465134a0fdfe20ffb79f69036d9",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2025-09-09; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation. The structured record's DATES_EFFET element is empty."
+    },
+    {
+      "claim_id": "fr_jorf_lecornu_appointed_pm_20250909",
+      "source_id": "fr_jorf_dila_opendata_20250910",
+      "attested_on": "2025-09-09",
+      "locator": {
+        "archive_member": "20250910-005809/jorf/global/texte/version/JORF/TEXT/00/00/52/22/19/JORFTEXT000052221932.xml",
+        "article_member": "20250910-005809/jorf/global/article/JORF/ARTI/00/00/52/22/19/JORFARTI000052221933.xml",
+        "item": "DATE_TEXTE 2025-09-09; ORIGINE_PUBLI 'JORF n°0210 du 10 septembre 2025'; NUM_SEQUENCE 3; VISAS; article 1; SIGNATAIRES"
+      },
+      "source_body_sha256": "74892eb74e45ff28ddbbdd10dd13c1dc84bd0465134a0fdfe20ffb79f69036d9",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2025-09-09; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation. The structured record's DATES_EFFET element is empty."
+    },
+    {
+      "claim_id": "fr_jorf_lecornu_government_resignation_letter_20251006",
+      "source_id": "fr_jorf_dila_opendata_20251007",
+      "attested_on": "2025-10-06",
+      "locator": {
+        "archive_member": "20251007-001919/jorf/global/texte/version/JORF/TEXT/00/00/52/36/70/JORFTEXT000052367030.xml",
+        "item": "DATE_TEXTE 2025-10-06; ORIGINE_PUBLI 'JORF n°0235 du 7 octobre 2025'; NUM_SEQUENCE 1; VISAS (second visa)"
+      },
+      "source_body_sha256": "a8b48bc2c874d4e1f96c392c5b1d8316d8caba8d865359b0758fa52b83cbd9cb",
+      "kind": "resignation_letter_reference",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The cited decree recites the named Prime Minister's Government resignation letter with this date. The letter is not treated as ending the office; earlier letter and instrument dates remain distinct.",
+      "retained_uncertainty": "The dated resignation letter is known only as cited by this decree; the letter itself was not retrieved. Presenting resignation, the separate cessation instrument, and any effective cessation date remain distinct. Presenting resignation is never an end established by this claim alone. 'Remise le' dates the handing over of the letter as the decree cites it."
+    },
+    {
+      "claim_id": "fr_jorf_lecornu_functions_ended_20251006",
+      "source_id": "fr_jorf_dila_opendata_20251007",
+      "attested_on": "2025-10-06",
+      "locator": {
+        "archive_member": "20251007-001919/jorf/global/texte/version/JORF/TEXT/00/00/52/36/70/JORFTEXT000052367030.xml",
+        "article_member": "20251007-001919/jorf/global/article/JORF/ARTI/00/00/52/36/70/JORFARTI000052367031.xml",
+        "item": "DATE_TEXTE 2025-10-06; ORIGINE_PUBLI 'JORF n°0235 du 7 octobre 2025'; NUM_SEQUENCE 1; VISAS; article 1; SIGNATAIRES"
+      },
+      "source_body_sha256": "a8b48bc2c874d4e1f96c392c5b1d8316d8caba8d865359b0758fa52b83cbd9cb",
+      "kind": "cessation_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The instrument identifies the named Prime Minister and ends Government functions in its operative article. The signing date is retained as a source observation, without inferring a separate effective boundary or the absence of current-affairs service.",
+      "retained_uncertainty": "Dated cessation instrument, signed 2025-10-06; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation. The structured record's DATES_EFFET element is empty."
+    },
+    {
+      "claim_id": "fr_jorf_lecornu_appointed_pm_20251010",
+      "source_id": "fr_jorf_dila_opendata_20251011",
+      "attested_on": "2025-10-10",
+      "locator": {
+        "archive_member": "20251011-005544/jorf/global/texte/version/JORF/TEXT/00/00/52/38/05/JORFTEXT000052380519.xml",
+        "article_member": "20251011-005544/jorf/global/article/JORF/ARTI/00/00/52/38/05/JORFARTI000052380520.xml",
+        "item": "DATE_TEXTE 2025-10-10; ORIGINE_PUBLI 'JORF n°0239 du 11 octobre 2025'; NUM_SEQUENCE 1; VISAS; article 1; SIGNATAIRES"
+      },
+      "source_body_sha256": "31b5f8aa376205754ec39584da4d6bf31d209e35c40b3510b2f2a68baa480072",
+      "kind": "appointment_instrument",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The operative appointment article names this Prime Minister; the signing line and journal metadata support the recorded observation and publication date. No separate effective date is established by this intake.",
+      "retained_uncertainty": "Dated appointment instrument, signed 2025-10-10; this is the source-event date. The reviewed text supplies no separate explicit effective-date clause. Neither signing nor publication alone establishes a structured effective holder boundary under the accepted evidence contract; effective term dates remain open research. A successor's appointment and any resignation letter are separate claims. The absence of current-affairs wording in this text does not establish an absence of continuation. The structured record's DATES_EFFET element is empty."
+    },
+    {
+      "claim_id": "fr_jorf_lecornu_signs_decree_as_pm_20260904",
+      "source_id": "fr_jorf_dila_opendata_pm_signature_20260904",
+      "attested_on": "2026-09-04",
+      "locator": {
+        "archive_member": "20260905-004620/jorf/global/texte/version/JORF/TEXT/00/00/54/79/66/JORFTEXT000054796645.xml",
+        "item": "DATE_TEXTE 2026-09-04; ORIGINE_PUBLI 'JORF n°0207 du 5 septembre 2026'; NUM_SEQUENCE 8; TITREFULL; VISAS (opening words); SIGNATAIRES"
+      },
+      "source_body_sha256": "edec7f27c7326f96effe331d76f3288195e0b210de8798472b0365b189d6ad1b",
+      "kind": "dated_in_office_signature",
+      "decision": "supported_bounded_source_observation",
+      "reason": "The decree's opening and signature block identify the named Prime Minister on the recorded instrument date. This supports an in-office observation only, not an uninterrupted term or end date.",
+      "retained_uncertainty": "Dated in-office signature: a decree made by 'Le Premier ministre' and signed by him on 2026-09-04, three days before the cutoff. It attests the named Premier ministre in office that day only; it is neither a start nor an end, and it does not establish continuity with his appointment of 10 October 2025."
+    }
+  ]
+}

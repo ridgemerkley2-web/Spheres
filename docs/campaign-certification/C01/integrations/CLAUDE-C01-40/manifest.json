@@ -1,0 +1,135 @@
+{
+  "format": "spheres-c01-review-receipt-manifest/v1",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 148,
+      "sha256": "6543767f3b151e26958522b8aa6ec0847b15f19febffa78934bddf408031fe82"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 21259,
+      "sha256": "0c94f9d1be34f6e6b68236ccdaff55d05c7d5aa6effc55175da55045e885dd1b"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 5107,
+      "sha256": "dd174009bfad08e337c114431cec57d58bf47579c009ca4a419548100ef21c83"
+    },
+    {
+      "path": "locator-repairs.json",
+      "bytes": 2931,
+      "sha256": "fe177f499e4ee408bcf23cc520a857755ab0219eec8a8794aabc7b37fec57cec"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7011,
+      "sha256": "e418f69f8bbb79f9ef2b9b90412d2825c5a8cda9c9d89d7679418c0add9f7fa0"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 7012,
+      "sha256": "0138d4cf40f3cb67cb665e44f54c4a4bc39708094521a7b85f4fe78791ff76ed"
+    },
+    {
+      "path": "scripts/build_review.py",
+      "bytes": 14795,
+      "sha256": "ac2ede0231534e1219e10aaecb61da50a1c02c0f5674d9bd5b67255f3eefe599"
+    },
+    {
+      "path": "scripts/extract_text.py",
+      "bytes": 3093,
+      "sha256": "91aeb765e08f8431362e3f935b0ce25afbe231ac27373457775afeba0b7e0ace"
+    },
+    {
+      "path": "scripts/retrieve.py",
+      "bytes": 4429,
+      "sha256": "c2ddaca8838bcbff81ee0ac091aaa85a83415168e7ff880c85fbe40c5463eae7"
+    },
+    {
+      "path": "scripts/validate.py",
+      "bytes": 2366,
+      "sha256": "462983389eae17187289a232ea04e6d60df08fa6b2df73b655ea31d4dcdda392"
+    },
+    {
+      "path": "source-attempts.json",
+      "bytes": 27763,
+      "sha256": "c61218aa9ab02c36438073c064f80d20c607aeb3e8ee78136f3ca25d1ba07c65"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 17078,
+      "sha256": "67613f0cb6fa7be2cc5d41c9c679308af27b7074c0b659af50ffcacf3623cfd2"
+    },
+    {
+      "path": "source-texts.json",
+      "bytes": 14384,
+      "sha256": "c562adeee09cfa61b62dee25f95f7877c6d86c5967181d45709930bf54ee9851"
+    },
+    {
+      "path": "validation/atlas.log",
+      "bytes": 1121,
+      "sha256": "859858f6758b26f55c7e14edb6b44d068a21841f04149cf5099d176a5cdba8c2"
+    },
+    {
+      "path": "validation/campaign.log",
+      "bytes": 120,
+      "sha256": "1de35c309da9d70f2a99340d446419539e1fa8bf7f09ee6ef2adb75a785d1fd9"
+    },
+    {
+      "path": "validation/census.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "validation/index-generation.log",
+      "bytes": 252,
+      "sha256": "a27a82a63f234e86d34c51112ffc6166ab48f3c3634963ab8fe5035f9ba2874f"
+    },
+    {
+      "path": "validation/india.log",
+      "bytes": 178,
+      "sha256": "57e60942074ead3b049d7ad9710c424562f62ae7246fdc71d2549c05a14219a7"
+    },
+    {
+      "path": "validation/original-regression-red.log",
+      "bytes": 60704,
+      "sha256": "a18097285acfaa4fa69770758095997828d90060c71c7b1151ca485fb0ff5bbd"
+    },
+    {
+      "path": "validation/research-index.log",
+      "bytes": 251,
+      "sha256": "c181ae68c6d913962894458028b1826d0ca1edea267ba5886fa972b8ec6c7076"
+    },
+    {
+      "path": "validation/research.log",
+      "bytes": 183,
+      "sha256": "e8fb35222d5353d8e180b6916b0a78ef3f082bda6ac4d636d9a733d5bda15233"
+    },
+    {
+      "path": "validation/results.json",
+      "bytes": 4472,
+      "sha256": "bc55eeeb1aed39ac20e029fc561c5fbcefb5982c484bf0b60fc608147d107a97"
+    },
+    {
+      "path": "validation/whitespace.log",
+      "bytes": 180,
+      "sha256": "06cbef218a618ba3e81bf0133741974809e70146dae87fed4440e679b0301589"
+    },
+    {
+      "path": "validation/workboard.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "path": "validation/yechury-locator-red.log",
+      "bytes": 890,
+      "sha256": "86df78dc90799263eb6f6eecb509e64edcdc82e2cdac1b1673c7357ac3322e21"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 2538,
+      "sha256": "7e4c251c7821f609d078184804e16ab7cc61fdcce772ad1242c3ace6a4beb8bd"
+    }
+  ]
+}

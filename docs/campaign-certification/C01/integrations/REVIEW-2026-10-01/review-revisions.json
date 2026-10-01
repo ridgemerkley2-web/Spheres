@@ -1,0 +1,33 @@
+{
+  "base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "integrated_head_before_final_receipt": "7d029f1dc1b84d68426620fa7d0b9fccadfef53e",
+  "remote_snapshot": [
+    "origin/claude/c01-fr-38 acf33f09a5d28cbc9bf9f539e152e9846a7bf395",
+    "origin/claude/c01-gaps-01-fix 1aa670479758a1320701639db28807fb3553adba",
+    "origin/claude/c01-in-40 54680e39910804b3864a3e973c452f2db2ac5e6f",
+    "origin/claude/c01-jp-31 696937ba3d31280aab569cbd78418e9c3a0c6880",
+    "origin/claude/c01-ru-28 03141c43c5663e35d21eebc631aaf5eec4e909aa",
+    "origin/claude/c01-su-41 a989ddb4d67657236292a35443049554cc9b19e7",
+    "origin/claude/c01-za-39 9cb02c20012a6e6314d7e64d52241609d566f738"
+  ],
+  "accepted_source_imports": {
+    "C01-38": "9174c8077e376c1dc3092a785d2be4d04c48bdfe",
+    "C01-40": "5d5935c36aa108e9b5d4b9ba1977f8341d63ea43",
+    "C01-41": "f04ead949211279473d5fcb5a408b49af5a944d1"
+  },
+  "held_receipt_source_commit": "d3b4e6daede2bc9fc571a88de1b0ba1049505b70",
+  "held_research_excluded": [
+    "b74f4fa565429b63052d94cc8ec10337b0b573ed",
+    "988d537934b4d36e2a251c4b5ca498f19dc7cf06"
+  ],
+  "da_triage_only": {
+    "submission": "9cb02c20012a6e6314d7e64d52241609d566f738",
+    "new_sources": 24,
+    "new_claims": 29,
+    "new_holder_observations": 11,
+    "prior_sources_unchanged": 245,
+    "prior_DA_holder_objects_unchanged": 2,
+    "source_content_review": false,
+    "tests_run": false
+  }
+}

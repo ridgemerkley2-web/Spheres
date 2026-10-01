@@ -8243,6 +8243,8 @@ fn ai_party_can_contest_opening(w: &WorldState, id: NationId) -> bool {
 /// held; an affordable, legally available round table when the armed pillars'
 /// mean loyalty is under 0.50, or an actual party-led executive can contest
 /// the promised ballot and excluded civilian demand reaches its quorum.
+/// An institution currently building coup pressure also prompts negotiation:
+/// other loyal institutions cannot average away that independent threat.
 /// The action's own discontent and movement
 /// requirements apply, and its actual standing bill is used. Each is asked
 /// its own refusal, so the AI never asks for what the
@@ -8322,7 +8324,12 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
             if armed.is_empty() { 1.0 } else { armed.iter().sum::<f64>() / armed.len() as f64 };
         let voluntary_party_opening = ai_party_can_contest_opening(w, id)
             && franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM;
-        if (armed_mean < 0.50 || voluntary_party_opening)
+        // Regime coups read the weakest armed institution, not their mean.
+        // Respond to that same live threat without treating old pressure,
+        // an unhappy civilian pillar, or a fresh seizure as a new threat.
+        let live_armed_threat = g.coup_pressure > 0.0
+            && g.weakest_armed().is_some_and(|(_, loyalty)| loyalty < REGIME_COUP_LOYALTY);
+        if (armed_mean < 0.50 || voluntary_party_opening || live_armed_threat)
             && round_table_refusal(w, id).is_none()
         {
             return Some(round_table);
@@ -8767,10 +8774,24 @@ fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pill
 fn walk_pillars(w: &mut WorldState, id: NationId, targets: Vec<(Pillar, f64)>) {
     let loss_rate = crate::clock::blend(w, 0.10);
     let gain_rate = crate::clock::blend(w, 0.045);
+    let per_institution = w.rules.ideology_blocs;
     let g = match state_mut(w, id) {
         Some(g) => g,
         None => return,
     };
+    if per_institution {
+        // A type can have more than one sourced institution (Sudan's Army
+        // and Popular Defence Forces). Walk each stored loyalty once. Looking
+        // up the first entry for each target walked it twice and froze the rest.
+        for (pillar, loyalty) in &mut g.pillars {
+            if let Some((_, target)) = targets.iter().find(|(p, _)| p == pillar) {
+                let rate = if target < loyalty { loss_rate } else { gain_rate };
+                *loyalty = (*loyalty + (target - *loyalty) * rate).clamp(0.0, 1.0);
+            }
+        }
+        return;
+    }
+    // Preserve the pre-lens simulation and its recorded legacy replays.
     for (pillar, target) in targets {
         if let Some(e) = g.pillars.iter_mut().find(|(p, _)| *p == pillar) {
             let rate = if target < e.1 { loss_rate } else { gain_rate };
@@ -8779,6 +8800,10 @@ fn walk_pillars(w: &mut WorldState, id: NationId, targets: Vec<(Pillar, f64)>) {
         }
     }
 }
+
+/// Existing armed-loyalty line shared by pressure, firing, and the AI's response.
+/// This names the original 0.35 model assumption; it does not recalibrate it.
+const REGIME_COUP_LOYALTY: f64 = 0.35;
 
 /// Loyalty walks toward what the regime is currently giving each institution.
 fn regime_tick(w: &mut WorldState, id: NationId) {
@@ -8799,8 +8824,8 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
     // first draft let any pillar move, and Iran's bazaar overthrew the Islamic
     // Republic seven times in twenty years.
     let weakest = g.weakest_armed().map(|(_, v)| v).unwrap_or(1.0);
-    if weakest < 0.35 {
-        g.coup_pressure = (g.coup_pressure + (0.35 - weakest) * 0.15 * dt).min(1.5);
+    if weakest < REGIME_COUP_LOYALTY {
+        g.coup_pressure = (g.coup_pressure + (REGIME_COUP_LOYALTY - weakest) * 0.15 * dt).min(1.5);
     } else {
         g.coup_pressure = (g.coup_pressure - 0.015 * dt).max(0.0);
     }
@@ -9193,7 +9218,7 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
     // The gauge can remain above the firing line while it cools after a
     // payment. An institution that has recovered its loyalty must not move
     // solely because pressure was accumulated before the recovery.
-    if loyalty >= 0.35 {
+    if loyalty >= REGIME_COUP_LOYALTY {
         return;
     }
     // The pressure gauge *is* the risk: it climbs only while an institution is
@@ -15789,4 +15814,8 @@ mod tests {
 // Test-only opt-in fixed-development-seed observation; never part of release state/API.
 #[cfg(test)]
 #[path = "government_a1_observer.rs"]
-mod a1_observer;
+pub(crate) mod a1_observer;
+
+#[cfg(test)]
+#[path = "government_opening_tests.rs"]
+mod opening_tests;

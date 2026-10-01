@@ -1,0 +1,29 @@
+{
+  "format": "spheres-combined-ui-verification/v1",
+  "source_revision": "3b6cecc8f4d99e2e2bed483baf5c3d5b60fa273d",
+  "finished_revision": "3b6cecc8f4d99e2e2bed483baf5c3d5b60fa273d",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.EXE",
+    "tools/ui/run-unit.cjs"
+  ],
+  "cwd": "D:\\spheres-opening-leader-art-20260930",
+  "started_utc": "2026-10-01T00:21:53.642868+00:00",
+  "finished_utc": "2026-10-01T00:23:57.553563+00:00",
+  "elapsed_seconds": 123.906,
+  "exit_code": 0,
+  "counts": {
+    "tests": 1807,
+    "suites": 0,
+    "pass": 1806,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1,
+    "todo": 0
+  },
+  "standard_browser_mode": "Reviewer journey disabled when SPHERES_BROWSER_CHANNEL is unset; its full browser receipt is separate. Native browser checks are separate.",
+  "browser_channel": null,
+  "log": "ui-unit.log",
+  "log_sha256": "0e70dcc25476427bb64af4c9eb289b0bdccc8b9f98b0199165594987f88e2bd7",
+  "log_bytes": 179257,
+  "passed": true
+}

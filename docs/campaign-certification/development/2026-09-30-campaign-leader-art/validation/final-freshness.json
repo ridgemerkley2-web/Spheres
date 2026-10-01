@@ -1,0 +1,38 @@
+[
+  {
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/cartoon_review.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "output": "{\n \"check\": true,\n \"items\": {\n  \"historical\": 59,\n  \"fictional\": 4,\n  \"unregistered\": 5,\n  \"missing\": 406\n },\n \"findings_by_severity\": {\n  \"error\": 0,\n  \"warning\": 19,\n  \"notice\": 642\n },\n \"duplicate_groups_with_different_identities\": 0,\n \"visual_review_entries\": 8,\n \"approved_by_this_export\": 0\n}\n"
+  },
+  {
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_boundary_matrix.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "output": "{\"check\": true, \"status\": \"preparation_only_not_s23_acceptance\", \"cases\": {\"France\": 1079, \"Japan\": 1101, \"India\": 720, \"Brazil\": 819, \"SouthAfrica\": 1190, \"Tonga\": 978, \"SaudiArabia\": 680, \"USSR -> Russia\": 1560}, \"total_cases\": 8127}\n"
+  },
+  {
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "output": "PASS: 44 canonical markers, each assigned once; handoffs and dependencies exist. No status is duplicated. 40 bounded tasks validated separately.\n"
+  }
+]

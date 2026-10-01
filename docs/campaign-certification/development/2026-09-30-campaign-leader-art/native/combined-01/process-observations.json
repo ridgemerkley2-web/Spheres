@@ -1,0 +1,137 @@
+{
+  "sample_started_at": "2026-10-01T00:41:38.8735303Z",
+  "sample_ended_at": "2026-10-01T00:41:46.9326426Z",
+  "sample_seconds": 8.0591123,
+  "logical_processors": 16,
+  "root_coordination": "Parent confirmed all agents completed CPU-heavy UI work and will keep heavy workloads idle during isolated resource timing.",
+  "top_cpu_processes": [
+    {
+      "id": 11608,
+      "name": "ChatGPT",
+      "cpu_seconds": 3.0,
+      "logical_core_fraction": 0.3722
+    },
+    {
+      "id": 13352,
+      "name": "ChatGPT",
+      "cpu_seconds": 1.0,
+      "logical_core_fraction": 0.1241
+    },
+    {
+      "id": 36300,
+      "name": "ChatGPT",
+      "cpu_seconds": 1.0,
+      "logical_core_fraction": 0.1241
+    },
+    {
+      "id": 5068,
+      "name": "AppActions",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 39328,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 41092,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 52040,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 38596,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 52968,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 1828,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 3028,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 4188,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 4284,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 4584,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 5044,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 452,
+      "name": "node_repl",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 38588,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 37492,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 36036,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    },
+    {
+      "id": 35708,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "logical_core_fraction": 0.0
+    }
+  ],
+  "native_processes": [
+    {
+      "ProcessId": 44020,
+      "ParentProcessId": 42560,
+      "Name": "spheres-web.exe",
+      "CommandLine": "\"C:\\Users\\ridge\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an\\work\\artwork-preview\\spheres-web.exe\" --port 7777 --no-open"
+    }
+  ]
+}

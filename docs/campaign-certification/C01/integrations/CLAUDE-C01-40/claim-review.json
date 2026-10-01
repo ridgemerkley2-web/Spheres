@@ -1,0 +1,423 @@
+{
+  "method": "Independent reading of original response material passages; numbering refers to hashed external reading aids. These decisions were authored by the reviewer, not inferred from tests or matching author extracts.",
+  "claims": [
+    {
+      "claim_id": "in_cpim_site_ems_former_general_secretary_caption",
+      "source_id": "in_cpim_site_ems_caption_page_2001",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "retrospective_former_styling",
+      "attested_on": null,
+      "locator": {
+        "item": "page body, caption lines"
+      },
+      "reading_aid_line_spans": [
+        2,
+        6
+      ],
+      "content_review": "The caption names EMS and describes a former general secretary. Its death date is not an office date. No dated in-period observation or 1990 opening holder is established.",
+      "source_response_sha256": "33441055f20b435128756fce7bcd8f438360d8e083428491766701a948e316b1",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_cpim_biodata_surjeet_elected_gs_1992_14th_congress",
+      "source_id": "in_cpim_18th_congress_site_surjeet_biodata_2005",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "locator": {
+        "item": "last paragraph, final two sentences"
+      },
+      "reading_aid_line_spans": [
+        35,
+        42
+      ],
+      "content_review": "The biography recalls a 1992 election at the 14th Congress and says he continues. Only a year is supplied; neither the modification stamp nor capture date dates an assumption or an in-office observation.",
+      "source_response_sha256": "7107de326e466360295b7425874d92f27bad9a7c8dd553c3b9e0320c3deedb19",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_cpim_site_cc_elected_surjeet_gs_recalled_19981011",
+      "source_id": "in_cpim_site_party_committees_page_2001",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_recalled_dated",
+      "attested_on": "1998-10-11",
+      "locator": {
+        "item": "first paragraph"
+      },
+      "reading_aid_line_spans": [
+        4,
+        8
+      ],
+      "content_review": "The committee page retrospectively dates the CC meeting to 11 October 1998 and names Surjeet as general secretary. Accept the recalled election date, not a new term start.",
+      "source_response_sha256": "7a7dbfdfafd9901179162a9116721291c63bfa9ce3a724587d08817c0bb656f4",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_surjeet_gs_letter_to_cec_20040302",
+      "source_id": "in_pd_20040307_surjeet_letter_to_cec",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2004-03-02",
+      "locator": {
+        "item": "introductory paragraph"
+      },
+      "reading_aid_line_spans": [
+        8,
+        16
+      ],
+      "content_review": "The March 7 issue introduces a March 2 letter and explicitly styles its author Surjeet as party general secretary. Contemporary 2004 context supplies the year. Accept the March 2 in-office observation, not assumption.",
+      "source_response_sha256": "0ef848e878f9734c4918262ca0845ae1aaf705c636fea513579190832ec8f3b1",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_karat_unanimously_elected_gs_18th_congress",
+      "source_id": "in_pd_20050417_new_polit_bureau",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_result",
+      "attested_on": null,
+      "locator": {
+        "item": "first paragraph"
+      },
+      "reading_aid_line_spans": [
+        8,
+        14
+      ],
+      "content_review": "The April 17, 2005 issue names Karat and unanimous election by the new CC. The misleading 04172004 filename does not override the printed 2005 issue date. No election day or effective start is stated.",
+      "source_response_sha256": "c69549381c2a88e240f8a1b718ce020d66b0adcf02bc34d4c0af611e1ae4610d",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_rally_surjeet_former_gs_20050411",
+      "source_id": "in_pd_20050417_rally_concludes_18th_congress",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "former_styling",
+      "attested_on": "2005-04-11",
+      "locator": {
+        "item": "first and second paragraphs"
+      },
+      "reading_aid_line_spans": [
+        14,
+        35
+      ],
+      "content_review": "The rally report styles Surjeet former general secretary and places the New Delhi meeting on April 11. Former status does not give the day his office ended.",
+      "source_response_sha256": "2b9011d7fa502b8f5b92fe13863e63733b1174509e73ddbeab022621704aae2d",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_karat_20050411",
+      "source_id": "in_pd_20050417_rally_concludes_18th_congress",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2005-04-11",
+      "locator": {
+        "item": "fourth to sixth paragraphs"
+      },
+      "reading_aid_line_spans": [
+        19,
+        22,
+        46,
+        66
+      ],
+      "content_review": "The same April 11 meeting describes Karat escorting Surjeet and speaking as newly elected general secretary. Accept an in-office observation on that day; no effective assumption date is inferred.",
+      "source_response_sha256": "2b9011d7fa502b8f5b92fe13863e63733b1174509e73ddbeab022621704aae2d",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_surjeet_general_secretary_since_1992_recalled",
+      "source_id": "in_pd_20050417_surjeet_break_the_impasse",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "locator": {
+        "item": "section 'Here Is My Pledge!', first paragraph"
+      },
+      "reading_aid_line_spans": [
+        169,
+        179
+      ],
+      "content_review": "The first substantive paragraph under the personal-pledge heading recalls service as general secretary since 1992. A retrospective year is not an exact dated boundary.",
+      "source_response_sha256": "e9ba6930441922a9d28ea7d5224736e8d7050628c09b1484cc58be64780bc7b7",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_surjeet_says_karat_took_up_mantle_2005",
+      "source_id": "in_pd_20050417_surjeet_break_the_impasse",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "handover_statement",
+      "attested_on": null,
+      "locator": {
+        "item": "section 'Here Is My Pledge!', third paragraph (handover statement)"
+      },
+      "reading_aid_line_spans": [
+        185,
+        188
+      ],
+      "content_review": "The third substantive pledge paragraph describes Karat taking over while Surjeet remains in the Polit Bureau. The submitted first-paragraph locator was wrong and is repaired. No day of handover is supplied.",
+      "source_response_sha256": "e9ba6930441922a9d28ea7d5224736e8d7050628c09b1484cc58be64780bc7b7",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
+      "source_id": "in_pd_20120415_rally_concludes_20th_congress",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2012-04-09",
+      "locator": {
+        "item": "paragraph beginning 'But this is a glimpse' for the April 9 date; continuation beginning 'Each contingent' for Karat's office and salute"
+      },
+      "reading_aid_line_spans": [
+        13,
+        19
+      ],
+      "content_review": "The report gives April 9 at Kozhikode and identifies Karat taking the salute as newly elected general secretary. Named text anchors replace ambiguous paragraph counting in legacy HTML. Later observation only; no exact election or assumption day.",
+      "source_response_sha256": "e537657ed6c2ea4152fde11b3a1781304a46fe4da99c995e8fe05d315883df8f",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_karat_gs_inaugurated_21st_congress_20150414",
+      "source_id": "in_pd_20150426_join_to_bring_forth_change",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2015-04-14",
+      "locator": {
+        "item": "section 'Arise in Struggle', first paragraph"
+      },
+      "reading_aid_line_spans": [
+        29,
+        30
+      ],
+      "content_review": "The opening-session section gives April 14 and styles Karat general secretary while inaugurating the congress. This is a continuation observation, not a new term.",
+      "source_response_sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_21st_congress_elected_general_secretary_20150419",
+      "source_id": "in_pd_20150426_join_to_bring_forth_change",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_result_unnamed",
+      "attested_on": "2015-04-19",
+      "locator": {
+        "item": "section 'Arise in Struggle', last paragraph"
+      },
+      "reading_aid_line_spans": [
+        32,
+        32
+      ],
+      "content_review": "The last congress paragraph dates election of the listed bodies and general secretary to April 19 but names no officeholder in that sentence. Retain an unnamed election claim.",
+      "source_response_sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_rally_karat_outgoing_gs_20150419",
+      "source_id": "in_pd_20150426_join_to_bring_forth_change",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "outgoing_styling",
+      "attested_on": "2015-04-19",
+      "locator": {
+        "item": "public meeting paragraph beginning 'Prakash Karat'; section 'Arise in Struggle', last paragraph for the April 19 date"
+      },
+      "reading_aid_line_spans": [
+        19,
+        19,
+        32,
+        32
+      ],
+      "content_review": "The Karat paragraph calls him outgoing; the final congress paragraph dates that afternoon meeting to April 19. The former ninth-paragraph pointer was displaced; named anchor repaired. Outgoing does not establish an effective end.",
+      "source_response_sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_yechury_20150419",
+      "source_id": "in_pd_20150426_join_to_bring_forth_change",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2015-04-19",
+      "locator": {
+        "item": "public meeting paragraph beginning 'Newly elected general secretary'; section 'Arise in Struggle', last paragraph for the April 19 date"
+      },
+      "reading_aid_line_spans": [
+        20,
+        20,
+        32,
+        32
+      ],
+      "content_review": "The Yechury paragraph identifies him as newly elected general secretary speaking at the same April 19 meeting. The former tenth-paragraph pointer was displaced; named anchor repaired. Accept the dated observation, not a start.",
+      "source_response_sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_pd_pb_list_yechury_general_secretary_21st_congress",
+      "source_id": "in_pd_20150426_central_committee_elected_21st_congress",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_result",
+      "attested_on": null,
+      "locator": {
+        "item": "list 'Polit Bureau Elected at the 21st Congress'"
+      },
+      "reading_aid_line_spans": [
+        116,
+        118
+      ],
+      "content_review": "The recovered original lists Yechury first with the general-secretary title under the elected Polit Bureau heading. No election day is printed in that list; the weekly issue date is not substituted.",
+      "source_response_sha256": "d91fa63d8430d924fc47980b6972119d9e860fb92a6fd8f1ffb6e9870fbbe5f3",
+      "date_basis": "archived_body_or_issue_context; capture_is_not_event_date"
+    },
+    {
+      "claim_id": "in_cpim_cc_elected_yechury_gs_22nd_congress_20180422",
+      "source_id": "in_cpim_22nd_congress_new_cc_elected_20180422",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_result",
+      "attested_on": "2018-04-22",
+      "locator": {
+        "item": "last sentence of the post body"
+      },
+      "reading_aid_line_spans": [
+        136,
+        137
+      ],
+      "content_review": "The concluding sentence says the CC elected Yechury as general secretary. April 22, 2018 is the current REST record dateline, with a later 2024 modification stamp. Accept an attributed election statement; no immutable contemporary capture or new term start.",
+      "source_response_sha256": "e7492f9e17d479c3d50e0b454c337ca8ad6f510096240cc7c73aaca3a38119f2",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410",
+      "source_id": "in_cpim_23rd_congress_new_cc_elected_20220410",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_result",
+      "attested_on": "2022-04-10",
+      "locator": {
+        "item": "post body, after the Polit Bureau list"
+      },
+      "reading_aid_line_spans": [
+        112,
+        120
+      ],
+      "content_review": "After the Polit Bureau list the post explicitly reports Yechury re-elected; a separate control-commission passage says it met today. April 10, 2022 comes from the current record dateline, not an assumption clause.",
+      "source_response_sha256": "d93cef3d84c756306df3d6099c871af89f73409bef51561ecdb9c43b721382e8",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_pb_yechury_general_secretary_died_20240912",
+      "source_id": "in_cpim_pb_homage_yechury_20240912",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "death_in_office_stated",
+      "attested_on": "2024-09-12",
+      "locator": {
+        "item": "first paragraph"
+      },
+      "reading_aid_line_spans": [
+        2,
+        4
+      ],
+      "content_review": "The party statement explicitly names Yechury, the general-secretary office and death on September 12, 2024 in the same sentence. Accept the stated death-in-office end; its date is in the body, not merely post metadata.",
+      "source_response_sha256": "510c06aba2d3d633866751cd718eae821e574ae5d1b67c3ef0fb564f9d25e80d",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_pb_yechury_elected_gs_21st_congress_recalled",
+      "source_id": "in_cpim_pb_homage_yechury_20240912",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "locator": {
+        "item": "tribute paragraph beginning 'He was elected as the General Secretary'"
+      },
+      "reading_aid_line_spans": [
+        8,
+        8
+      ],
+      "content_review": "The tribute recalls election at the 21st Congress in 2015 and continued service. The submitted third-paragraph pointer led to student biography, so a named anchor is substituted. A retrospective year does not establish an exact start.",
+      "source_response_sha256": "510c06aba2d3d633866751cd718eae821e574ae5d1b67c3ef0fb564f9d25e80d",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_cc_karat_coordinator_interim_arrangement_20240929",
+      "source_id": "in_cpim_cc_karat_coordinator_interim_20240929",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "interim_arrangement_decision",
+      "attested_on": "2024-09-29",
+      "locator": {
+        "item": "post body"
+      },
+      "reading_aid_line_spans": [
+        1,
+        2
+      ],
+      "content_review": "The CC decision describes Karat coordinating the Polit Bureau and CC temporarily until the 24th Congress. It does not appoint or style him general secretary. Keep only the attributed coordinator decision, dated by current post metadata.",
+      "source_response_sha256": "a6f5b9caff41ac41a38961d04600353103e863540bb617120db55479a3d0eed7",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_karat_styled_coordinator_inaugural_speech_20250402",
+      "source_id": "in_cpim_karat_coordinator_inaugural_speech_20250402",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "interim_service_attestation",
+      "attested_on": "2025-04-02",
+      "locator": {
+        "item": "post title and first line"
+      },
+      "reading_aid_line_spans": [
+        1,
+        3
+      ],
+      "content_review": "Both title and speech heading identify Karat as coordinator. April 2, 2025 is the current post dateline. This supports interim-service styling only, never a general-secretary holder or exact interim end.",
+      "source_response_sha256": "b7382cde1af9b8d34b084561a04e17640a59a23c12dffcfbe4dde699b0b090e0",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_cc_elected_baby_gs_24th_congress_20250406",
+      "source_id": "in_cpim_24th_congress_new_cc_elected_20250406",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "election_result",
+      "attested_on": "2025-04-06",
+      "locator": {
+        "item": "post body, after the Polit Bureau list"
+      },
+      "reading_aid_line_spans": [
+        120,
+        122
+      ],
+      "content_review": "After the Polit Bureau list the body reports the CC elected Baby general secretary. April 6, 2025 is current record metadata. No independent assumption clause; keep the election claim separate from his later observation.",
+      "source_response_sha256": "9626ab880c30d1387227a2d6ee0ee8e2d88a99beb4f1184797af74585508524e",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_baby_gs_letter_to_pm_20250512",
+      "source_id": "in_cpim_gs_letter_to_pm_20250512",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2025-05-12",
+      "locator": {
+        "item": "first paragraph and signature"
+      },
+      "reading_aid_line_spans": [
+        2,
+        2,
+        13,
+        14
+      ],
+      "content_review": "The release names Baby and the general-secretary office, dates the letter as today, and retains his signature with that title. Accept May 12, 2025 as the party record reported in-office observation; no assumption date, with current REST metadata limits.",
+      "source_response_sha256": "2704ad765fe48047bc29ae441ef9b67ed54c86cf69b338f5c9b412abeb896f39",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    },
+    {
+      "claim_id": "in_cpim_baby_gs_memo_census_20260824",
+      "source_id": "in_cpim_memo_census_2027_20260824",
+      "decision": "accepted_bounded_attributed_claim",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2026-08-24",
+      "locator": {
+        "item": "first paragraph and signature"
+      },
+      "reading_aid_line_spans": [
+        2,
+        2,
+        30,
+        31
+      ],
+      "content_review": "The release introduction and memo signature both identify Baby as general secretary. August 24, 2026 is the current post dateline. Retain a continuation claim within cutoff, not proof of every intervening or subsequent day.",
+      "source_response_sha256": "2933d246f61b9fa58e1bf21772eed135893635672c1b3a9d1994b0408adad4bc",
+      "date_basis": "current_party_record_dateline_or_explicit_body_date"
+    }
+  ]
+}

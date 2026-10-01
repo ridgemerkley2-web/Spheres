@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_cc_karat_coordinator_interim_20240929",
+  "source_url": "https://cpim.org/wp-json/wp/v2/posts/11626",
+  "accessed_date": "2026-09-30",
+  "published_date": "2024-09-29",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 2616,
+  "source_response_sha256": "a6f5b9caff41ac41a38961d04600353103e863540bb617120db55479a3d0eed7",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (cpim.org): the WordPress REST record of post 11626 (wp-json/wp/v2/posts/11626), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML page of the same post embeds a per-request cache timestamp, so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 23:36:04Z on 30 September 2026 and 00:22:23Z on 1 October 2026, the first and last 46 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's post 11626 (slug prakash-karat-will-be-the-coordinator-of-pb-cc-as-an-interim-arrangement), published 29 September 2024 and last modified the same day, recorded as its WordPress REST record (wp-json/wp/v2/posts/11626) because the HTML page of the same post embeds a per-request cache timestamp. A Central Committee decision reported while the Committee was 'now in session'; the post's publication date is its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_cc_karat_coordinator_interim_arrangement_20240929",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-05",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Prakash Karat",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "interim_arrangement_decision",
+      "attested_on": "2024-09-29",
+      "text": "The party reports that its Central Committee, 'now in session in New Delhi, has decided that Comrade Prakash Karat will be the coordinator of the Polit Bureau and the Central Committee, as an interim arrangement until the 24th Party Congress to be held in April 2025 at Madurai', a decision taken 'due to the sad and sudden demise of the sitting General Secretary of the CPI(M), Comrade Sitaram Yechury'.",
+      "locator": {
+        "item": "post body"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

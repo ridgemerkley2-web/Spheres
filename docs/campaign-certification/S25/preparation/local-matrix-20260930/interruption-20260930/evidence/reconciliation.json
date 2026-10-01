@@ -1,0 +1,836 @@
+{
+  "format": "spheres-matrix-interruption-reconciliation/v1",
+  "observed_utc": "2026-10-01T00:11:53.406839+00:00",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "source": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01",
+  "counts": {
+    "prior_pass_revalidated": 4,
+    "abnormal_exit_incomplete": 4,
+    "not_started": 16,
+    "running": 0
+  },
+  "cells": [
+    {
+      "id": "france-1990",
+      "country": "France",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "prior_pass_revalidated"
+    },
+    {
+      "id": "france-7",
+      "country": "France",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "prior_pass_revalidated"
+    },
+    {
+      "id": "france-42",
+      "country": "France",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "prior_pass_revalidated"
+    },
+    {
+      "id": "japan-1990",
+      "country": "Japan",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "prior_pass_revalidated"
+    },
+    {
+      "id": "japan-7",
+      "country": "Japan",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "abnormal_exit_incomplete"
+    },
+    {
+      "id": "japan-42",
+      "country": "Japan",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "abnormal_exit_incomplete"
+    },
+    {
+      "id": "india-1990",
+      "country": "India",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "abnormal_exit_incomplete"
+    },
+    {
+      "id": "india-7",
+      "country": "India",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "abnormal_exit_incomplete"
+    },
+    {
+      "id": "india-42",
+      "country": "India",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "brazil-1990",
+      "country": "Brazil",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "brazil-7",
+      "country": "Brazil",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "brazil-42",
+      "country": "Brazil",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "southafrica-1990",
+      "country": "SouthAfrica",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "southafrica-7",
+      "country": "SouthAfrica",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "southafrica-42",
+      "country": "SouthAfrica",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "tonga-1990",
+      "country": "Tonga",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "tonga-7",
+      "country": "Tonga",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "tonga-42",
+      "country": "Tonga",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "saudiarabia-1990",
+      "country": "SaudiArabia",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "saudiarabia-7",
+      "country": "SaudiArabia",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "saudiarabia-42",
+      "country": "SaudiArabia",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "ussr-1990",
+      "country": "USSR",
+      "seed": 1990,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "ussr-7",
+      "country": "USSR",
+      "seed": 7,
+      "through": "2035-12-31",
+      "status": "not_started"
+    },
+    {
+      "id": "ussr-42",
+      "country": "USSR",
+      "seed": 42,
+      "through": "2035-12-31",
+      "status": "not_started"
+    }
+  ],
+  "failures": [
+    {
+      "id": "japan-7",
+      "exit_code": 3221225477,
+      "finished_utc": "2026-09-30T23:29:02.849962+00:00",
+      "elapsed_seconds": 25066.819691099983,
+      "last_reported_date": "2031-01-01",
+      "days_each_leg": 14975,
+      "partial_comparisons": 1027,
+      "native_report_passed": false,
+      "native_report_failure": null
+    },
+    {
+      "id": "japan-42",
+      "exit_code": 1,
+      "finished_utc": "2026-09-30T23:29:49.391327+00:00",
+      "elapsed_seconds": 21641.113998000015,
+      "last_reported_date": "2027-10-01",
+      "days_each_leg": 13787,
+      "partial_comparisons": 945,
+      "native_report_passed": false,
+      "native_report_failure": null
+    },
+    {
+      "id": "india-1990",
+      "exit_code": 1,
+      "finished_utc": "2026-09-30T23:29:49.124402+00:00",
+      "elapsed_seconds": 20962.605950499972,
+      "last_reported_date": "2023-10-01",
+      "days_each_leg": 12326,
+      "partial_comparisons": 843,
+      "native_report_passed": false,
+      "native_report_failure": null
+    },
+    {
+      "id": "india-7",
+      "exit_code": 3221225477,
+      "finished_utc": "2026-09-30T23:29:02.850329+00:00",
+      "elapsed_seconds": 20754.602131199994,
+      "last_reported_date": "2024-12-01",
+      "days_each_leg": 12753,
+      "partial_comparisons": 872,
+      "native_report_passed": false,
+      "native_report_failure": null
+    }
+  ],
+  "launcher": {
+    "exit_code": 120,
+    "elapsed_seconds": 52058.57260869999,
+    "finished_utc": "2026-09-30T23:30:51.085314+00:00",
+    "result": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\result.json"
+  },
+  "dependent_verifier": {
+    "status": "dependent_verification_failed",
+    "preflight_passed": false,
+    "failure": "PermissionError: [Errno 13] Permission denied",
+    "format": "spheres-dependent-verification-result/v1",
+    "started_utc": "2026-09-30T10:02:08.141008+00:00",
+    "finished_utc": "2026-09-30T23:30:51.322917+00:00",
+    "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+    "config_sha256": "5143c308436e0b8f98287fe7fff2bc8cabb2555f548badeee046ed5dfedde26e",
+    "native_reexecuted": false,
+    "qualification": false,
+    "s25_complete": false
+  },
+  "matching_active_processes": [],
+  "prior_snapshot": {
+    "path": "D:\\spheres-repository-cleanup-20260930\\docs\\campaign-certification\\S25\\preparation\\local-matrix-20260930\\snapshot.json",
+    "bytes": 31141,
+    "sha256": "d8443b0a350e7b1f0e9d0babbfb2de277e9df9eab6332343358bfc75dc4a99dd"
+  },
+  "prior_metadata_pins_rechecked": 41,
+  "new_retained_files_rehashed": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\archive-manifest.json",
+      "bytes": 1229,
+      "sha256": "3bf18955016a48647a4f4e0214033788bd1f92bad620b926441b0a652b94cf70"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\execution.json",
+      "bytes": 1498,
+      "sha256": "f18eb70ea7b7f4679fe2984d94d95d1902764af17cb88185eb21dbbc352dffce"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\progress.jsonl",
+      "bytes": 52445,
+      "sha256": "1e630a9f1af08f9077c9870713e5180fee887950b6e5402dbf24c466814da782"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\result.json",
+      "bytes": 384103,
+      "sha256": "44247ede98781228e1cc88fa76ee5d8228bee08333a43185888e7b67839ce720"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\resumed\\saves\\monthly.json",
+      "bytes": 133481954,
+      "sha256": "2eb194a6d56a87df2c75f67d2e43077fd707bdf5c8e962edcda4da8af773ea40"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\resumed\\saves\\monthly.json.bak",
+      "bytes": 126972077,
+      "sha256": "0f239cf2d1c4b5468079b78c4e6f1207309c9ef9a427aa6c4f1a9afd993635bf"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 23677686,
+      "sha256": "d36ccaa6058b9c875d17f950ef2408360b34b17d225bb29acc63c4b8f447768a"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\request.json",
+      "bytes": 183,
+      "sha256": "283ffcbf56774b69abc6af7bdc1d561d7cbd9af0dbc868c331e7d85d6f3b746e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\transfer.json",
+      "bytes": 7231,
+      "sha256": "728466407b5790d0fe9d3c866cf6b308751fe5fc96036d670e1a6be5ee537153"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\archive-manifest.json",
+      "bytes": 1231,
+      "sha256": "2138fb3805104b23cf5a50f16e120cb72483f8feef5d04214c5df5a3fceb32f6"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\execution.json",
+      "bytes": 1492,
+      "sha256": "f7c55d0957728df9fec9521eb1a77bd75e9b62015ddc4a932261fc1f88c0e90f"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\progress.jsonl",
+      "bytes": 48291,
+      "sha256": "43d74247932a5c64581b153d1ff24da1b71dc2bb0ca4200fcae627f6cc0c35b3"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\result.json",
+      "bytes": 374028,
+      "sha256": "d6324ae195098f6d27c6773498c5a7c2b751a6f45e6b3a4bea7f3628187858cc"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\resumed\\saves\\monthly.json",
+      "bytes": 133115724,
+      "sha256": "54cade20c4d6b1091efc8e6d4c866e2a980845553838f282e8e155ed864d3811"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\resumed\\saves\\monthly.json.bak",
+      "bytes": 139752281,
+      "sha256": "62f5d48800ed4a46ccf4f72ea16eab165da1939bea70972c88d88bce3ef2ed5e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 24015872,
+      "sha256": "946a46aaf91516bacd5b5e9fb27061ff8485070e17d41c2fce9b4916fb9a9d95"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\request.json",
+      "bytes": 185,
+      "sha256": "cfc7ba88eaf219287485c2dc12b0d81f13d8fdb5ed4835700c83de83714779f3"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\transfer.json",
+      "bytes": 7253,
+      "sha256": "ffdad3c11472fdff068f44b8c119dc5e3e3ab8812231fbb6ed629e2f09eb9295"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\archive-manifest.json",
+      "bytes": 1235,
+      "sha256": "081f7c2ed3608d0ee34a8e5a02f0b2f84f77910c0da5811128f8385f76e9ae1c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\execution.json",
+      "bytes": 1498,
+      "sha256": "88ca115f08d60929181b818858a5b7d402047ef2918441f17f8919275d6c5095"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\progress.jsonl",
+      "bytes": 42883,
+      "sha256": "ff59069b7b7734087e7a1ae9d177a1af7268da7a361c0751ed24ca6a037524cf"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\result.json",
+      "bytes": 308006,
+      "sha256": "2456ed650a394b1c53ddae730acc3bd6be6859d660f598acba3feeadaeb26614"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\resumed\\saves\\monthly.json",
+      "bytes": 133372638,
+      "sha256": "2b141240322259631f0e867cd801bfe4ce854aa37b4de4f9d0d8d8c799b13ae0"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\resumed\\saves\\monthly.json.bak",
+      "bytes": 139971963,
+      "sha256": "f98113a6244b24b991fb98c95e8fac93662ca73574b0a458402210b1c9c5c7a1"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 23943318,
+      "sha256": "ffe3a97cbeb6a98f44b783068d0c9d6e6a90dc77f42859064a1efa89540af696"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\request.json",
+      "bytes": 189,
+      "sha256": "6fce102fbc34b32b66810c308aa488ef4718c9d3bcbc413a91acd302aaf37ba2"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\transfer.json",
+      "bytes": 7297,
+      "sha256": "1046622062d8977e365027c649a6a254c15560392369b10128def12bef770988"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\archive-manifest.json",
+      "bytes": 1229,
+      "sha256": "9ca129a63fcefe82c85e5159e086c4d2d81b26cf201a3a18cae78d84de31c084"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\execution.json",
+      "bytes": 1498,
+      "sha256": "89ee2e3b15d92c0dee96fbda967c3c67f97341a07fd29832ede893c77fb80be2"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\progress.jsonl",
+      "bytes": 44346,
+      "sha256": "de85d643d3abc17a43318db849c9153a7b38b7694fb996512e0cfde68d0eb7df"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\result.json",
+      "bytes": 308758,
+      "sha256": "0f8703db264ff7cb2b7eb27288d57813c94fc4f09c4c1761f4f4ed52fcdeaecd"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\resumed\\saves\\monthly.json",
+      "bytes": 126779381,
+      "sha256": "7810d744daaad66db3d6f8fea292b358faa7feb5abebcd712d23030d55208de4"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\resumed\\saves\\monthly.json.bak",
+      "bytes": 133291788,
+      "sha256": "113efe532fff837f435f9f5926212ce05ccf0eb0c56a724f57cdc322156e5e70"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 23142357,
+      "sha256": "cea74892656e7740451b65d74393b3dbaeeca367a9088769c5c25739c60d079d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\request.json",
+      "bytes": 183,
+      "sha256": "20edf1950a9cf242b58fde5f16b25750a8a4aff4abdfad16e475a08408624801"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\transfer.json",
+      "bytes": 7231,
+      "sha256": "683e1057ea05edb86a87aa7759908e79a60c9b181ebfe931b8d78efa130ce253"
+    }
+  ],
+  "new_gzip_archives_decoded_and_verified": 4,
+  "copied_metadata": [
+    {
+      "relative": "run/freeze.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\freeze.json",
+        "bytes": 2136,
+        "sha256": "e987a66ae55d65e894e982b20b6ac76f4ffbbd699e3acbf7b060354bb5771f10"
+      }
+    },
+    {
+      "relative": "run/plan.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\plan.json",
+        "bytes": 2861,
+        "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+      }
+    },
+    {
+      "relative": "run/resource-setup.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\resource-setup.json",
+        "bytes": 1182,
+        "sha256": "353bba79ca37d1289feccf913e1ecc0828c1286972c7a7892944dc255eb1ac22"
+      }
+    },
+    {
+      "relative": "run/journal.jsonl",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\journal.jsonl",
+        "bytes": 48669,
+        "sha256": "6132ad9936f0806095a85fc66363da780f1a0230df695568343448bb7687f07d"
+      }
+    },
+    {
+      "relative": "launcher/full-launch.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full-launch.json",
+        "bytes": 1355,
+        "sha256": "79d4779966099e0ec118edc67313d7166aa32ee7ce5d955123e296ef5ea3426c"
+      }
+    },
+    {
+      "relative": "launcher/full-exit.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full-exit.json",
+        "bytes": 221,
+        "sha256": "6dd5179ef21fc0c962d06ac3ef625e32e4191e457fb4af8f1d46c85bd25c8027"
+      }
+    },
+    {
+      "relative": "launcher/full.stdout.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "relative": "launcher/full.stderr.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\full.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "relative": "dependent/result.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\result.json",
+        "bytes": 538,
+        "sha256": "b03c0fb966230dbd50b625b8bd1bb77c83f4348c9c72d72b7e8ddfac7926a7c0"
+      }
+    },
+    {
+      "relative": "dependent/events.jsonl",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\events.jsonl",
+        "bytes": 630,
+        "sha256": "f070ccaf0b381e75e67e5481f539dcbe6f4860438bf7bc4a0c3979b6ecd4802c"
+      }
+    },
+    {
+      "relative": "dependent/pending.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\pending.json",
+        "bytes": 574,
+        "sha256": "e1908ccdad7e7b737b5ecd71d6048e27a1d166705dba84bcc480a37e15d8aefa"
+      }
+    },
+    {
+      "relative": "dependent/config.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-dependent-verification-20260930-01\\config.json",
+        "bytes": 7178,
+        "sha256": "5143c308436e0b8f98287fe7fff2bc8cabb2555f548badeee046ed5dfedde26e"
+      }
+    },
+    {
+      "relative": "cells/japan-7/execution.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\execution.json",
+        "bytes": 1498,
+        "sha256": "f18eb70ea7b7f4679fe2984d94d95d1902764af17cb88185eb21dbbc352dffce"
+      }
+    },
+    {
+      "relative": "cells/japan-7/request.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\request.json",
+        "bytes": 183,
+        "sha256": "283ffcbf56774b69abc6af7bdc1d561d7cbd9af0dbc868c331e7d85d6f3b746e"
+      }
+    },
+    {
+      "relative": "cells/japan-7/transfer.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\transfer.json",
+        "bytes": 7231,
+        "sha256": "728466407b5790d0fe9d3c866cf6b308751fe5fc96036d670e1a6be5ee537153"
+      }
+    },
+    {
+      "relative": "cells/japan-7/archive-manifest.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\archive-manifest.json",
+        "bytes": 1229,
+        "sha256": "3bf18955016a48647a4f4e0214033788bd1f92bad620b926441b0a652b94cf70"
+      }
+    },
+    {
+      "relative": "cells/japan-7/native/result.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\result.json",
+        "bytes": 384103,
+        "sha256": "44247ede98781228e1cc88fa76ee5d8228bee08333a43185888e7b67839ce720"
+      }
+    },
+    {
+      "relative": "cells/japan-7/native/progress.jsonl",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\native\\progress.jsonl",
+        "bytes": 52445,
+        "sha256": "1e630a9f1af08f9077c9870713e5180fee887950b6e5402dbf24c466814da782"
+      }
+    },
+    {
+      "relative": "cells/japan-7/stdout.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\stdout.log",
+        "bytes": 65,
+        "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+      }
+    },
+    {
+      "relative": "cells/japan-7/stderr.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-7\\stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "relative": "cells/japan-42/execution.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\execution.json",
+        "bytes": 1492,
+        "sha256": "f7c55d0957728df9fec9521eb1a77bd75e9b62015ddc4a932261fc1f88c0e90f"
+      }
+    },
+    {
+      "relative": "cells/japan-42/request.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\request.json",
+        "bytes": 185,
+        "sha256": "cfc7ba88eaf219287485c2dc12b0d81f13d8fdb5ed4835700c83de83714779f3"
+      }
+    },
+    {
+      "relative": "cells/japan-42/transfer.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\transfer.json",
+        "bytes": 7253,
+        "sha256": "ffdad3c11472fdff068f44b8c119dc5e3e3ab8812231fbb6ed629e2f09eb9295"
+      }
+    },
+    {
+      "relative": "cells/japan-42/archive-manifest.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\archive-manifest.json",
+        "bytes": 1231,
+        "sha256": "2138fb3805104b23cf5a50f16e120cb72483f8feef5d04214c5df5a3fceb32f6"
+      }
+    },
+    {
+      "relative": "cells/japan-42/native/result.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\result.json",
+        "bytes": 374028,
+        "sha256": "d6324ae195098f6d27c6773498c5a7c2b751a6f45e6b3a4bea7f3628187858cc"
+      }
+    },
+    {
+      "relative": "cells/japan-42/native/progress.jsonl",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\native\\progress.jsonl",
+        "bytes": 48291,
+        "sha256": "43d74247932a5c64581b153d1ff24da1b71dc2bb0ca4200fcae627f6cc0c35b3"
+      }
+    },
+    {
+      "relative": "cells/japan-42/stdout.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\stdout.log",
+        "bytes": 65,
+        "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+      }
+    },
+    {
+      "relative": "cells/japan-42/stderr.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\japan-42\\stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "relative": "cells/india-1990/execution.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\execution.json",
+        "bytes": 1498,
+        "sha256": "88ca115f08d60929181b818858a5b7d402047ef2918441f17f8919275d6c5095"
+      }
+    },
+    {
+      "relative": "cells/india-1990/request.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\request.json",
+        "bytes": 189,
+        "sha256": "6fce102fbc34b32b66810c308aa488ef4718c9d3bcbc413a91acd302aaf37ba2"
+      }
+    },
+    {
+      "relative": "cells/india-1990/transfer.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\transfer.json",
+        "bytes": 7297,
+        "sha256": "1046622062d8977e365027c649a6a254c15560392369b10128def12bef770988"
+      }
+    },
+    {
+      "relative": "cells/india-1990/archive-manifest.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\archive-manifest.json",
+        "bytes": 1235,
+        "sha256": "081f7c2ed3608d0ee34a8e5a02f0b2f84f77910c0da5811128f8385f76e9ae1c"
+      }
+    },
+    {
+      "relative": "cells/india-1990/native/result.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\result.json",
+        "bytes": 308006,
+        "sha256": "2456ed650a394b1c53ddae730acc3bd6be6859d660f598acba3feeadaeb26614"
+      }
+    },
+    {
+      "relative": "cells/india-1990/native/progress.jsonl",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\native\\progress.jsonl",
+        "bytes": 42883,
+        "sha256": "ff59069b7b7734087e7a1ae9d177a1af7268da7a361c0751ed24ca6a037524cf"
+      }
+    },
+    {
+      "relative": "cells/india-1990/stdout.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\stdout.log",
+        "bytes": 65,
+        "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+      }
+    },
+    {
+      "relative": "cells/india-1990/stderr.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-1990\\stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "relative": "cells/india-7/execution.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\execution.json",
+        "bytes": 1498,
+        "sha256": "89ee2e3b15d92c0dee96fbda967c3c67f97341a07fd29832ede893c77fb80be2"
+      }
+    },
+    {
+      "relative": "cells/india-7/request.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\request.json",
+        "bytes": 183,
+        "sha256": "20edf1950a9cf242b58fde5f16b25750a8a4aff4abdfad16e475a08408624801"
+      }
+    },
+    {
+      "relative": "cells/india-7/transfer.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\transfer.json",
+        "bytes": 7231,
+        "sha256": "683e1057ea05edb86a87aa7759908e79a60c9b181ebfe931b8d78efa130ce253"
+      }
+    },
+    {
+      "relative": "cells/india-7/archive-manifest.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\archive-manifest.json",
+        "bytes": 1229,
+        "sha256": "9ca129a63fcefe82c85e5159e086c4d2d81b26cf201a3a18cae78d84de31c084"
+      }
+    },
+    {
+      "relative": "cells/india-7/native/result.json",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\result.json",
+        "bytes": 308758,
+        "sha256": "0f8703db264ff7cb2b7eb27288d57813c94fc4f09c4c1761f4f4ed52fcdeaecd"
+      }
+    },
+    {
+      "relative": "cells/india-7/native/progress.jsonl",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\native\\progress.jsonl",
+        "bytes": 44346,
+        "sha256": "de85d643d3abc17a43318db849c9153a7b38b7694fb996512e0cfde68d0eb7df"
+      }
+    },
+    {
+      "relative": "cells/india-7/stdout.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\stdout.log",
+        "bytes": 65,
+        "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+      }
+    },
+    {
+      "relative": "cells/india-7/stderr.log",
+      "source": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\full-matrix-local-20260930-01\\cells\\india-7\\stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "native_reexecuted": false,
+  "full_matrix_passed": false,
+  "qualification": false,
+  "s25_complete": false,
+  "scope": "Failure and byte-integrity reconciliation, not full retained campaign verification. Prior four archive audits are referenced, not needlessly repeated."
+}

@@ -1,0 +1,81 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ved_1991_35_cpsu",
+  "source_url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+  "original_url": "https://vedomosti.sssr.su/1991/35.pdf",
+  "archive_capture_utc": "2021-12-04T06:59:55Z",
+  "source_title": "Ведомости Съезда народных депутатов СССР и Верховного Совета СССР, 1991, No. 35 (28 August 1991), scanned issue, Internet Archive capture 20211204065955; recorded for the CPSU",
+  "accessed_date": "2026-09-30",
+  "published_date": "1991-08-28",
+  "document_date": "1991-08-28",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+  "source_response_bytes": 618372,
+  "source_response_sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://vedomosti.sssr.su/1991/35.pdf",
+    "bytes": 618372,
+    "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+    "last_modified": "Sun, 01 Jan 2017 02:07:33 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "This packet: downloaded at 2026-09-30T23:37:13Z and again at 2026-10-01T00:20:39Z (43 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query, no redirect followed); identical 618,372 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest XBOY76DZ7UUFTRYS3MXBR444NT5FPJMC.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:13Z",
+        "2026-10-01T00:20:39Z"
+      ],
+      "bytes": 618372,
+      "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://vedomosti.sssr.su/1991/35.pdf",
+      "downloaded_at": [
+        "2026-09-30T23:37:14Z",
+        "2026-10-01T00:20:41Z"
+      ],
+      "bytes": 618372,
+      "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://vedomosti.sssr.su/1991/35.pdf, captured at 2021-12-04T06:59:55Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The same bytes as su_ved_1991_35 (CLAUDE-C01-26), recorded under a new ID so that its extract stays unchanged. Only Art. 1024 (decree УП-2460 of 24 August 1991 on the CPSU's property) is imported, as an organization claim.",
+  "edition_and_host": {
+    "edition": "Ведомости, 1991, № 35; Art. 1024 on printed p. 1429 (PDF p. 23).",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su, vedomosti.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official publications as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      23
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; headings, speaker lines, quotations and signature blocks were compared with the image."
+  },
+  "rows": [
+    {
+      "claim_id": "su_ukaz_up2460_cpsu_property_19910824",
+      "observation_id": "su_cpsu",
+      "review_observation": "SU-CPSU-06",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "М. ГОРБАЧЕВ"
+      ],
+      "role_title": null,
+      "event_kind": "party_property_decree",
+      "attested_on": "1991-08-24",
+      "text": "Decree of the President of the USSR 'Об имуществе Коммунистической партии Советского Союза' (Art. 1024), signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ', 'Москва, Кремль 24 августа 1991 г. № УП—2460': point 1 'Советам народных депутатов взять под охрану имущество КПСС'; point 2 provides for the employment and social security of 'работников тех партийных комитетов, которые прекращают свою деятельность'.",
+      "locator": "Art. 1024, printed p. 1429 (PDF p. 23)"
+    }
+  ],
+  "bounded_scope": "CPSU General Secretary and Deputy General Secretary observations for CLAUDE-C01-41 only. Nomination and ballot, vote, election result, biographical election dates, vote figures, in-office attestations, resignation statements and references, acting service and the party's property, suspension and termination records stay separate rows; holder boundaries are decided in the packet, not by any row. State offices, the RSFSR Communist Party, russia.json and the simulation's party rows are outside this extract."
+}

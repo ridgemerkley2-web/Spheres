@@ -1,0 +1,152 @@
+{
+  "head": "5d5935c36aa108e9b5d4b9ba1977f8341d63ea43",
+  "working_tree_review_repairs_present": true,
+  "checks": [
+    {
+      "name": "india",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py"
+      ],
+      "started_utc": "2026-10-01T01:05:27.391551+00:00",
+      "seconds": 12.062,
+      "exit_code": 0,
+      "log": "india.log",
+      "bytes": 178,
+      "sha256": "57e60942074ead3b049d7ad9710c424562f62ae7246fdc71d2549c05a14219a7"
+    },
+    {
+      "name": "research",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "started_utc": "2026-10-01T01:05:27.392553+00:00",
+      "seconds": 10.516,
+      "exit_code": 0,
+      "log": "research.log",
+      "bytes": 183,
+      "sha256": "e8fb35222d5353d8e180b6916b0a78ef3f082bda6ac4d636d9a733d5bda15233"
+    },
+    {
+      "name": "campaign",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "started_utc": "2026-10-01T01:05:27.392553+00:00",
+      "seconds": 3.922,
+      "exit_code": 0,
+      "log": "campaign.log",
+      "bytes": 120,
+      "sha256": "1de35c309da9d70f2a99340d446419539e1fa8bf7f09ee6ef2adb75a785d1fd9"
+    },
+    {
+      "name": "research-index",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T01:05:31.321595+00:00",
+      "seconds": 0.984,
+      "exit_code": 0,
+      "log": "research-index.log",
+      "bytes": 251,
+      "sha256": "c181ae68c6d913962894458028b1826d0ca1edea267ba5886fa972b8ec6c7076"
+    },
+    {
+      "name": "census",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T01:05:32.301680+00:00",
+      "seconds": 0.297,
+      "exit_code": 0,
+      "log": "census.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "name": "atlas",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "started_utc": "2026-10-01T01:05:32.598692+00:00",
+      "seconds": 0.219,
+      "exit_code": 0,
+      "log": "atlas.log",
+      "bytes": 1121,
+      "sha256": "859858f6758b26f55c7e14edb6b44d068a21841f04149cf5099d176a5cdba8c2"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T01:05:32.821686+00:00",
+      "seconds": 0.203,
+      "exit_code": 0,
+      "log": "workboard.log",
+      "bytes": 146,
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T01:05:33.025419+00:00",
+      "seconds": 0.906,
+      "exit_code": 0,
+      "log": "whitespace.log",
+      "bytes": 180,
+      "sha256": "06cbef218a618ba3e81bf0133741974809e70146dae87fed4440e679b0301589"
+    }
+  ],
+  "caution": "Discovery patterns overlap; execution counts are not unique-test totals. Source-content reading remains independent."
+}

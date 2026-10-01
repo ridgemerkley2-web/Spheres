@@ -1,0 +1,41 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 01 Oct 2026 00:50:06 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+x-archive-orig-server: nginx
+x-archive-orig-date: Sun, 30 Aug 2026 20:29:09 GMT
+x-archive-orig-transfer-encoding: chunked
+x-archive-orig-connection: close
+x-archive-orig-vary: Accept-Encoding
+x-archive-orig-x-frame-options: SAMEORIGIN
+x-archive-orig-x-content-type-options: nosniff
+x-archive-orig-content-security-policy: frame-src 'self';
+x-archive-orig-x-ua-compatible: IE=edge
+x-archive-orig-set-cookie: sid=X62ISGqUkpUD+2ZkGaGQAg==; path=/
+content-encoding: gzip
+cache-control: max-age=1800
+accept-ranges: bytes
+memento-datetime: Sun, 30 Aug 2026 20:29:01 GMT
+link: <http://kremlin.ru/acts/bank/385>; rel="original", <https://web.archive.org/web/timemap/link/http://kremlin.ru/acts/bank/385>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/http://kremlin.ru/acts/bank/385>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: WPO-20260830200506457-00010-zeno-k8s-wikipedia-0/WPO-20260830202636977-00014-zeno-k8s-wikipedia-crawl.warc.gz
+server-timing: captures_list;dur=0.426672, exclusion.robots;dur=0.035694, exclusion.robots.policy;dur=0.026865, esindex;dur=0.007922, cdx.remote;dur=4.140428, LoadShardBlock;dur=599.126810, PetaboxLoader3.datanode;dur=280.803199, PetaboxLoader3.resolve;dur=295.330881, load_resource;dur=89.186614
+x-app-server: wwwb-app54-dc6
+x-ts: 200
+x-tr: 714
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=1
+set-cookie: wb-p-SERVER=wwwb-app54; path=/
+cache-control: private
+X-location: All
+X-AS: 7922
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+Server-Timing: MISS
+X-NID: COMCAST-7922
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+X-sd: 0
+

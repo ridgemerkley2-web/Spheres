@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-09-30T23:52:39.5980662Z",
+  "reason": "Intentional compile-phase stop to resume the identical complete workspace command with two build jobs after memory became available. No tests had executed; no test failure or pass inferred.",
+  "runner_pid": 18696,
+  "owned_processes": [
+    {
+      "ProcessId": 42720,
+      "ParentProcessId": 18696,
+      "Name": "cargo.exe",
+      "CommandLine": "cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget --test-threads=4"
+    },
+    {
+      "ProcessId": 42320,
+      "ParentProcessId": 42720,
+      "Name": "cargo.exe",
+      "CommandLine": "\"C:\\Users\\ridge\\.rustup\\toolchains\\stable-x86_64-pc-windows-gnu\\bin\\cargo.exe\" test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget --test-threads=4"
+    },
+    {
+      "ProcessId": 9928,
+      "ParentProcessId": 42320,
+      "Name": "rustc.exe",
+      "CommandLine": "\"C:\\Users\\ridge\\.rustup\\toolchains\\stable-x86_64-pc-windows-gnu\\bin\\rustc.exe\" --crate-name economic_competition --edition=2021 spheres-sim\\tests\\economic_competition.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --emit=dep-info,link -C opt-level=3 -C embed-bitcode=no --test --check-cfg cfg(docsrs,test) --check-cfg \"cfg(feature, values())\" -C metadata=dda6ee5345f704b3 -C extra-filename=-9a74937bbf658ef8 --out-dir D:\\spheres-opening-leader-art-20260930-target\\release\\deps -C strip=debuginfo -L dependency=D:\\spheres-opening-leader-art-20260930-target\\release\\deps --extern serde=D:\\spheres-opening-leader-art-20260930-target\\release\\deps\\libserde-99400f793ad25db8.rlib --extern serde_json=D:\\spheres-opening-leader-art-20260930-target\\release\\deps\\libserde_json-019015e08a7ac1fe.rlib --extern spheres_sim=D:\\spheres-opening-leader-art-20260930-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rlib"
+    }
+  ],
+  "integration_targets_built": 35,
+  "integration_targets_total": 63,
+  "next_attempt": "workspace-02"
+}

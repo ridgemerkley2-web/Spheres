@@ -181,6 +181,12 @@ PAGES = {
 }
 # SHA-256 of every existing USSR role and holder (name, attested_on, from, until) at the base 44098c5a; unchanged here.
 USSR_BASE_HOLDERS_SHA256 = '3e3571c3a64375cb81fb1b5e7605e36baebb5f74524fd9e90fcd908ef3b77506'
+# CLAUDE-C01-41 later appended dated su_cpsu holders resting on these sources (pinned in test_ussr_cpsu_general_secretary_c01_41);
+# the guard above still covers every holder that existed at 44098c5a, exactly as before.
+C01_41_SOURCES = {'su_pravda_no37_19900206', 'su_pravda_no192_19900711', 'su_pravda_no193_19900712', 'su_pravda_no194_19900713',
+                  'su_pravda_no195_19900714', 'su_izv_tsk_1991_08', 'su_pravda_no201_19910822', 'su_vs_bulletin1_cpsu_19910826',
+                  'su_ved_1991_35_cpsu', 'su_snd5_bulletin3_cpsu_19910903', 'su_ved_1991_36_cpsu',
+                  'su_kremlin_rsfsr_ukaz_169_19911106'}
 
 DR, DR_ROLE, SOYUZ, SOYUZ_ROLE = 'su_democratic_russia', 'su_dr_co_chair', 'su_soyuz_deputies_group', 'su_soyuz_co_chair'
 DR_NAME = 'Движение «Демократическая Россия» — Democratic Russia movement'
@@ -274,7 +280,8 @@ def c35_invariants(ussr, russia):
     assert [r for r in kinds['party_leader'] if r.startswith('su_')] == ['su_cpsu_general_secretary', DR_ROLE]
     assert [r for r in kinds['parliamentary_leader'] if r.startswith('su_')] == [SOYUZ_ROLE]
     # Every existing USSR role and holder is unchanged.
-    base = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims'] if isinstance(h, dict)])
+    base = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
+                       if isinstance(h, dict) and not set(h['sources']) & C01_41_SOURCES])
             for g in ('organizations', 'institutions') for e in ussr[g] if e['id'] not in (DR, SOYUZ) for r in e['roles']]
     assert hashlib.sha256(json.dumps(base, ensure_ascii=False).encode('utf-8')).hexdigest() == USSR_BASE_HOLDERS_SHA256
     # Each holder rests on one in-office claim of its own role, dated that day, with no from and no until (rules first, so a
@@ -370,8 +377,9 @@ class UssrDemocraticRussiaSoyuzTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (16, 36))
-        self.assertEqual([s['id'] for s in self.packet['sources'][40:]], NEW_SOURCES)
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (56, 131, 7, 8))
+        # CLAUDE-C01-41 appended 12 sources after these 16 (positions 56-67), pinned in test_ussr_cpsu_general_secretary_c01_41.
+        self.assertEqual([s['id'] for s in self.packet['sources'][40:56]], NEW_SOURCES)
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (68, 157, 7, 8))
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         dates = [self.sources[sid]['document_date'] or '1991-11-09' for sid in NEW_SOURCES]
         self.assertEqual(dates, sorted(dates))
@@ -537,7 +545,8 @@ class UssrDemocraticRussiaSoyuzTests(unittest.TestCase):
         # The existing records of this packet are untouched: the first 40 sources and the five earlier entries.
         orgs = [e['id'] for e in self.packet['organizations']]
         self.assertEqual(orgs[0], 'su_cpsu')
-        self.assertEqual(len(self.packet['sources']), 56)
+        # CLAUDE-C01-41 appended 12 sources (positions 56-67), pinned in test_ussr_cpsu_general_secretary_c01_41.
+        self.assertEqual(len(self.packet['sources']), 68)
         # The RSFSR deputies' faction and bloc records are not imported as claims on the movement.
         self.assertNotIn('su_rsfsr_dr_group_registered_19900525', self.raw)
         self.assertNotIn('su_rsfsr_dr_faction_coordinator_19911211', self.raw)
@@ -663,7 +672,7 @@ class UssrDemocraticRussiaSoyuzTests(unittest.TestCase):
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         self.assertEqual((country['organization_observations'], country['institution_observations'], country['role_observations'],
-                          country['source_claims'], country['mapping_pending']), (3, 4, 8, 131, 7))
+                          country['source_claims'], country['mapping_pending']), (3, 4, 8, 157, 7))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'USSR'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

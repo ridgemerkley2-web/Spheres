@@ -1,0 +1,10 @@
+{
+  "candidate": "7c6f112cbfb7e1ae02e70dcc2986da66f425aa49",
+  "previous_candidate": "434abd50",
+  "previous_gates": "Nine of ten outcome gates plus attribution pass. A1 median 7.5 coups, exact median concentration 4/7; still fails strict <0.50.",
+  "defect": "Two recorded institutions of one Pillar type generate two target rows. walk_pillars finds the first stored matching pillar for each row, updating that first loyalty twice and freezing the second.",
+  "witness": "Public government tick, Sudan January 1990: identical 0.65 priors become first=0.667595, second=0.65; single-institution control=0.659.",
+  "correction": "Under the political lens, iterate stored institutions and apply their type target once apiece. Keep legacy lens-off update order, all source institutions and save/load contents intact.",
+  "validation": "Public tick regression compares each institution with its independent single-institution control in monthly and daily play, both equal and unequal saved priors. Unchanged A1-A10, existing government tests and full workspace follow.",
+  "no_claim": "No A1 success inferred from this correction or from the previous partial improvement."
+}

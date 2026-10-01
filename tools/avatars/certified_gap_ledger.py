@@ -72,6 +72,9 @@ COMMIT_PACKETS = {
     'e4e8d389': 'CLAUDE-C01-35',
     '364c6f6d': 'CLAUDE-C01-36',
     '4d88fd03': 'CLAUDE-C01-37',
+    '9174c807': 'CLAUDE-C01-38',
+    '5d5935c3': 'CLAUDE-C01-40',
+    'f04ead94': 'CLAUDE-C01-41',
 }
 
 EVIDENCE_CLASSES = {
@@ -103,7 +106,7 @@ IN_FLIGHT = {
                       'scope': 'ACDP, Freedom Front and IFP party-leader observations, 1990-2026; no accepted runtime mapping'},
     'CLAUDE-C01-31': {'case': 'Japan',
                       'targets': ['party:Japan/jp_komeito', 'party:Japan/jp_komeito/jp_komei_1994', 'party:Japan/jp_komeito/jp_komeito_1998'],
-                      'scope': 'Komeito representatives and distinct 1994/1998 organizations; active claim only, no accepted research or runtime mapping'},
+                      'scope': 'Komeito representatives and distinct 1994/1998 organizations; review held on seven originals and fourteen claims, no accepted research or runtime mapping'},
     'CLAUDE-C01-32': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_pac'],
                       'scope': 'Pan Africanist Congress presidents, 1990-2026; no accepted runtime mapping'},
     'CLAUDE-C01-33': {'case': 'India', 'targets': ['party:India/in_jd'],
@@ -117,6 +120,14 @@ IN_FLIGHT = {
                       'scope': 'Tongan deputy prime ministers, 1990-2026; bounded observations accepted, no runtime mapping'},
     'CLAUDE-C01-37': {'case': 'France', 'targets': ['institution:fr_prime_minister'],
                       'scope': 'French prime ministers, 1990-2026; bounded observations accepted, no runtime mapping'},
+    'CLAUDE-C01-38': {'case': 'France', 'targets': ['institution:fr_prime_minister'],
+                      'scope': 'French prime ministers, 2014-2026; bounded observations accepted, no effective terms or runtime mapping'},
+    'CLAUDE-C01-39': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_dp', 'role:za_da_federal_leader'],
+                      'scope': 'Democratic Alliance federal leaders, 2000-2026; submitted for review, no accepted research or runtime mapping'},
+    'CLAUDE-C01-40': {'case': 'India', 'targets': ['party:India/in_cpm'],
+                      'scope': 'CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping'},
+    'CLAUDE-C01-41': {'case': 'USSR -> Russia', 'targets': ['party:USSR/su_cpsu'],
+                      'scope': 'CPSU General Secretary and Deputy General Secretary, 1990-1991; bounded observations accepted, no runtime mapping'},
     'CLAUDE-C01-SOURCE-05': {'case': 'USSR -> Russia', 'targets': [],
                              'scope': 'Source-review repair of one CLAUDE-C01-05 source (no coverage change)'},
     'CLAUDE-C01-SOURCE-06': {'case': 'SaudiArabia', 'targets': [],
