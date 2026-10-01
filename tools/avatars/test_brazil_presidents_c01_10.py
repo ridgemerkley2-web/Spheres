@@ -16,6 +16,9 @@ import test_brazil_pt_presidents_c01_22 as pt
 # CLAUDE-C01-34 appends the MDB and PDT party roles and the PFL/DEM claims after CLAUDE-C01-22's; its exact claim and
 # source pins live in its own test and are reused here.
 import test_brazil_party_presidents_c01_34 as bp
+# CLAUDE-C01-43 appends the AGIR party role and one PDS claim after CLAUDE-C01-34's; its exact pins live in its own
+# test and are reused here.
+import test_brazil_prn_agir_presidents_c01_43 as ag
 
 
 # Original response identity recorded in each extract: (bytes, sha256). Every new source is reproducible.
@@ -528,10 +531,12 @@ class BrazilPresidentsTests(unittest.TestCase):
         # CLAUDE-C01-17's sources follow this packet's, then CLAUDE-C01-22's (the PT party role), then CLAUDE-C01-34's
         # (the MDB and PDT party roles and the PFL/DEM claims), exactly.
         self.assertEqual([s['id'] for s in self.packet['sources']],
-                         list(ORIGINAL_SOURCES) + NEW_SOURCES + vp.NEW_SOURCES + pt.NEW_SOURCES + bp.NEW_SOURCES)
+                         list(ORIGINAL_SOURCES) + NEW_SOURCES + vp.NEW_SOURCES + pt.NEW_SOURCES + bp.NEW_SOURCES +
+                         ag.NEW_SOURCES)
         # Entries and roles: br_president and br_vice_president on the presidency, br_pt_president on the PT observation,
-        # br_mdb_president and br_pdt_president on the MDB and PDT observations.
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (32, 5))
+        # br_mdb_president and br_pdt_president on the MDB and PDT observations, br_agir_president on the AGIR
+        # observation.
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (32, 6))
         # Each source keeps this packet's claims first, followed by exactly CLAUDE-C01-17's appended claims, if any.
         for sid in NEW_SOURCES:
             ids_ = [c['id'] for c in self.sources[sid]['claims']]
@@ -555,7 +560,7 @@ class BrazilPresidentsTests(unittest.TestCase):
         observations = re.findall(r'^### (BR-PRES-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'BR-PRES-{n:02d}' for n in range(1, 11)])
         self.assertEqual(set(self.rows), set(self.new_claims) | set(vp.C01_17_CLAIMS) | set(pt.NEW_CLAIMS) |
-                         set(bp.NEW_CLAIMS))
+                         set(bp.NEW_CLAIMS) | set(ag.NEW_CLAIMS))
         self.assertEqual({self.rows[cid]['review_observation'] for cid in self.new_claims},
                          {f'BR-PRES-{n:02d}' for n in range(1, 11)})
         for stale in STALE_IDS:
@@ -687,8 +692,10 @@ class BrazilPresidentsTests(unittest.TestCase):
                                              'role_title', 'event_kind', 'attested_on', 'text', 'locator'])
         self.assertEqual(len({self.sources[s]['snapshot']['path'] for s in NEW_SOURCES}), len(NEW_SOURCES))
         self.assertEqual({cid: (row['attested_on'], row['event_kind']) for cid, row in self.rows.items()
-                          if cid not in vp.EVENTS and cid not in pt.EVENTS and cid not in bp.EVENTS}, EVENTS)
-        self.assertEqual(set(self.rows) - set(EVENTS), set(vp.EVENTS) | set(pt.EVENTS) | set(bp.EVENTS))
+                          if cid not in vp.EVENTS and cid not in pt.EVENTS and cid not in bp.EVENTS and
+                          cid not in ag.EVENTS}, EVENTS)
+        self.assertEqual(set(self.rows) - set(EVENTS), set(vp.EVENTS) | set(pt.EVENTS) | set(bp.EVENTS) |
+                         set(ag.EVENTS))
         for sid, stamp in ARCHIVED.items():
             source, extract = self.sources[sid], self.extracts[sid]
             url = urlsplit(source['url'])
@@ -864,7 +871,7 @@ class BrazilPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Brazil')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 5))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 6))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

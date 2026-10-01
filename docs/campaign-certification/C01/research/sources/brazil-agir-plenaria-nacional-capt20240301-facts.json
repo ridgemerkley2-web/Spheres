@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_agir_plenaria_nacional_capt20240301",
+  "source_url": "https://web.archive.org/web/20240301164758id_/https://agir36.com.br/agir36-consolida-compromisso-historico-na-defesa-dos-direitos-dos-autistas-em-plenaria-nacional/",
+  "original_url": "https://agir36.com.br/agir36-consolida-compromisso-historico-na-defesa-dos-direitos-dos-autistas-em-plenaria-nacional/",
+  "archive_capture_utc": "2024-03-01T16:47:58Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 127999,
+  "source_response_sha256": "406dbbe231109e96d2f1af44c753de35295a6f2d37ec86efa8dbccea7d1d01ac",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-10-01T02:46:46Z and again at 2026-10-01T03:51:32Z (64 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 127999 bytes with SHA-256 406dbbe231109e96d2f1af44c753de35295a6f2d37ec86efa8dbccea7d1d01ac and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-03-01T16:47:58Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-10-01T02:46:46Z and again at 2026-10-01T03:51:32Z (64 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 127999 bytes with SHA-256 406dbbe231109e96d2f1af44c753de35295a6f2d37ec86efa8dbccea7d1d01ac and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An undated Agir site item on a national plenary at the Federal District's Legislative Chamber, captured 1 March 2024. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PRN / PTC / Agir national-president observations for CLAUDE-C01-43 only (role br_agir_president of the AGIR funding observation br_tse_fefc_2024_party_07). Conventions, executive meetings, convocations, registry listings, the renamings and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_agir_plenary_tourinho_styled_presidente_do_partido",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-03",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "styled_undated",
+      "attested_on": null,
+      "text": "An undated Agir site item on a national plenary held 'na última quarta-feira (31)' says 'O presidente do partido, Daniel Tourinho, elogiou a atuação brilhante de Bria'.",
+      "locator": {
+        "section": "Sixth paragraph"
+      }
+    }
+  ]
+}
