@@ -46,7 +46,10 @@ skip across the preparation and combined-tree runs. Workboard, research index,
 gap ledger, boundary matrix, cast and both receipt checks pass. The initial
 combined-campaign setup failed before tests because the sparse checkout omitted
 `tools/campaign`; that setup failure is retained. Materializing the tracked tools
-resolved it without changing source. No native
+resolved it without changing source. The first staged whitespace check flagged
+retained Windows CRLF in the new packet. Its output is preserved; the packet now
+uses `whitespace=cr-at-eol`, and the repeated check passes without rewriting
+any retained log or result bytes. No native
 gameplay, browser or long campaign rerun is implied by these tooling checks.
 
 The queue now has 49 bounded tasks and the same 44 canonical markers. Only the

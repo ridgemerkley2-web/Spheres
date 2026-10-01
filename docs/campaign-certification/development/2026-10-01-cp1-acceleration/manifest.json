@@ -13,13 +13,13 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 42,
-      "sha256": "30179a24c96289fe57e9bbb59dc2d5a75eb95ac3ebd5c6f4a123b71f0655b5ea"
+      "bytes": 61,
+      "sha256": "76f6b7b8ae2c44ac56f1ec0ec2e09c52a7901dcaa495e35167d7e1f7e3536a4c"
     },
     {
       "path": "README.md",
-      "bytes": 4322,
-      "sha256": "55db6808078306c157368dd43662fba26f303425e4ee839474b42d9e85ce75b2"
+      "bytes": 4556,
+      "sha256": "0e211b8008c72ad38655f6a842a06929e6b2ffd1e03ba25e12b3292181be8bf1"
     },
     {
       "path": "validation/accepted-preparation-01/a1-receipt.log",
@@ -165,6 +165,21 @@
       "path": "validation/combined-metadata-01/workboard-check.log",
       "bytes": 146,
       "sha256": "11861502dbb6c9dd475c05bc3f7f48d12382e1ddddab9e786eee5a7835ab9a44"
+    },
+    {
+      "path": "validation/line-endings-after.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/line-endings-before.log",
+      "bytes": 212457,
+      "sha256": "9b8e4da53c9c69bf87381b15c5e7b1605338ab4c9466ba8b161fb1d4a1b055cb"
+    },
+    {
+      "path": "validation/line-endings.json",
+      "bytes": 378,
+      "sha256": "047ddbb00e6f2ec656867d55d0781fb44f45bc05a5e66c1a12338b812703af30"
     },
     {
       "path": "validation/preparation-01/playtest-tool.log",
