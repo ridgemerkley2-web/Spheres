@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aap_post_national_council_meeting_20221218",
+  "source_url": "https://archive.aamaadmiparty.org/wp-json/wp/v2/posts/773305",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-12-18",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 76109,
+  "source_response_sha256": "2c7152d087d151318de1c768dd73074b327f0f0541cadacf97b7d8addbd8d759",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (archive.aamaadmiparty.org): the WordPress REST record of post 773305 (wp-json/wp/v2/posts/773305), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML pages of the party's websites change on every request (two downloads of one page a few seconds apart differed), so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 11:48:09Z and 12:28:35Z on 1 October 2026, the first and last 40 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's archive website's post 773305, published 18 December 2022 at 23:36 and last modified the same minute, recorded as its WordPress REST record (wp-json/wp/v2/posts/773305) because the HTML pages of the party's websites change on every request. It reports the day's National Council and National Executive meetings and quotes the party's officers.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aap_post_national_convenor_address_20221218",
+      "observation_id": "in_eci_20240323_np_01",
+      "review_observation": "AAP-NC-02",
+      "role_id": "in_aap_national_convenor",
+      "holder_name": "Arvind Kejriwal",
+      "role_title": "National Convenor of the Aam Aadmi Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2022-12-18",
+      "text": "The party's post of 18 December 2022 on its first National Council meeting after attaining national status quotes the party's Delhi convenor: 'The second decision taken at the meeting was regarding the address given by Shri Arvind Kejriwal this morning in the National Council Meeting. Our party national convenor had spoken in detail about the constant attacks on our soldiers by China'.",
+      "locator": {
+        "item": "English text, statement of the Delhi convenor"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_aap_national_convenor (National Convenor of the Aam Aadmi Party) on the recognition observation in_eci_20240323_np_01. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

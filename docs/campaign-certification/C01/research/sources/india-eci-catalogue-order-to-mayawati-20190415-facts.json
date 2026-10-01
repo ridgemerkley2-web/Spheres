@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_eci_catalogue_order_to_mayawati_20190415",
+  "source_url": "https://web.archive.org/web/20190516052807id_/https://www.eci.gov.in/files/file/9927-commissions-order-dated-15042019-to-ms-mayawati-and-shri-yogi-adityanath-along-with-letter-to-all-chief-electoral-officers/",
+  "original_url": "https://www.eci.gov.in/files/file/9927-commissions-order-dated-15042019-to-ms-mayawati-and-shri-yogi-adityanath-along-with-letter-to-all-chief-electoral-officers/",
+  "archive_capture_utc": "2019-05-16T05:28:07Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2019-04-15",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 97766,
+  "source_response_sha256": "49bde93e58b6ce4c96b5fcbed3287db1f05c68abd513ea5ddca07b92fbf0f86a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-05-16T05:28:07Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (eci.nic.in no longer resolves and eci.gov.in answers curl with HTTP 406 Not Acceptable, a block this packet did not work around). This packet downloaded it at 11:53:27Z and 12:29:05Z on 1 October 2026, the first and last 35 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Commission's own catalogue page for its orders of 15 April 2019 (file 9927 in its downloads section), giving the title and issue date, recorded as a raw Internet Archive capture of 16 May 2019. The attached orders were not captured and were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_catalogue_mayawati_national_president_20190415",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-02",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Mayawati",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2019-04-15",
+      "text": "The Election Commission's downloads catalogue lists 'Commission's order to Ms. Mayawati, National President, Bahujan Samaj Party', together with an order to the Chief Minister of Uttar Pradesh and a letter to Chief Electoral Officers, with the issue date 'Monday 15 April 2019'.",
+      "locator": {
+        "item": "About This File; File Information (Issue Date)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_bsp_national_president (National President of the Bahujan Samaj Party) on the recognition observation in_eci_20240323_np_02. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

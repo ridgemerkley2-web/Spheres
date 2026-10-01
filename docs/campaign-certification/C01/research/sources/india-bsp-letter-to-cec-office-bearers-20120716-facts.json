@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bsp_letter_to_cec_office_bearers_20120716",
+  "source_url": "https://web.archive.org/web/20150801083802id_/http://eci.nic.in/eci_main/miscellaneous_statistics/PPS2_01032013.pdf",
+  "original_url": "http://eci.nic.in/eci_main/miscellaneous_statistics/PPS2_01032013.pdf",
+  "archive_capture_utc": "2015-08-01T08:38:02Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_page_images_viewed",
+  "source_response_bytes": 2639930,
+  "source_response_sha256": "a21314ff14a3ad960290035852aa4d9d75e75c4db56a99dc922677e428d31ae3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2015-08-01T08:38:02Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (eci.nic.in no longer resolves and eci.gov.in answers curl with HTTP 406 Not Acceptable, a block this packet did not work around). This packet downloaded it at 11:54:22Z and 12:29:01Z on 1 October 2026, the first and last 34 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An 86-page scanned compilation the Commission published on its website (file PPS2_01032013.pdf, 'Information regarding Organisational Elections of various Parties PPS-II'), recorded as a raw Internet Archive capture of 1 August 2015. Pages 13 and 14 reproduce the party's letter dated 16-7-2012 on the letterhead of its National President, signed by her, and the enclosed list of office bearers.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      13,
+      14
+    ],
+    "method": "Scanned pages 13 and 14 viewed from the images embedded in the PDF; the OCR text layer was used only to locate them."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bsp_letter_mayawati_national_president_20120716",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-02",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Mayawati",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2012-07-16",
+      "text": "The party's letter to the Chief Election Commissioner dated 16-7-2012, 'Subject: Updated List of Office Bearers of Central Unit, BSP-Reg.', is written on the letterhead of 'Km. Mayawati, National President' and signed '(MAYAWATI)'; the enclosed 'Latest list of office bearers and members of the Central Executive Committee Bahujan Samaj Party' gives '1. Km. Mayawati' with the designation 'National President'.",
+      "locator": {
+        "pdf_page": 13,
+        "item": "letter (page 13) and enclosed list, row 1 (page 14)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_bsp_national_president (National President of the Bahujan Samaj Party) on the recognition observation in_eci_20240323_np_02. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

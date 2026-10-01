@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aap_letter_to_eci_org_election_20150529",
+  "source_url": "https://web.archive.org/web/20160804213413id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/Aam%20Aadmi%20Party%20year%202012-15.pdf",
+  "original_url": "http://eci.nic.in/eci_main/mis-Political_Parties/Organisational_Elections/Aam%20Aadmi%20Party%20year%202012-15.pdf",
+  "archive_capture_utc": "2016-08-04T21:34:13Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2015-05-29",
+  "access_method": "downloaded_archived_raw_capture_pdf_page_images_viewed",
+  "source_response_bytes": 1891611,
+  "source_response_sha256": "40498164efd553482af6d1ee3b56136ee1de7802f2de41bc1e965df81672a826",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2016-08-04T21:34:13Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (eci.nic.in no longer resolves and eci.gov.in answers curl with HTTP 406 Not Acceptable, a block this packet did not work around). This packet downloaded it at 11:51:33Z and 12:28:18Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's letter to the Commission, typed as 28 and corrected by hand to 29 May 2015, signed by its National Secretary, replying to the Commission's letter no. 56/org/2015/PPS-II/938 of 11 May 2015, with annexure A-1 in the Commission's format 'Information regarding Organizational Elections of various Parties'; a three-page scan the Commission published among its organisational-election papers, recorded as a raw Internet Archive capture of 4 August 2016.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Scanned pages 1 and 2 viewed from the images embedded in the PDF; the OCR text layer is unreliable and was used only to locate them."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aap_letter_first_office_bearer_election_20121125",
+      "observation_id": "in_eci_20240323_np_01",
+      "review_observation": "AAP-NC-01",
+      "role_id": "in_aap_national_convenor",
+      "holder_name": "Arvind Kejriwal",
+      "role_title": "National Convenor of the Aam Aadmi Party",
+      "event_kind": "election_recalled_dated",
+      "attested_on": "2012-11-25",
+      "text": "The party's letter of 29 May 2015 to the Election Commission says 'Aam Aadmi Party’s first election for the office bearers was conducted on' a day typed 24.11.2012 and altered by hand to 25, and its annexure A-1 gives 25.11.2012 as the 'Date on which last Election Held', 'ARVIND KEJRIWAL (NATIONAL CONVENOR)' as the first of the office bearers elected and 'Nov-15' as the date the next election was due.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "paragraph a; annexure A-1 (page 2), row 1"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_aap_national_convenor (National Convenor of the Aam Aadmi Party) on the recognition observation in_eci_20240323_np_01. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}
