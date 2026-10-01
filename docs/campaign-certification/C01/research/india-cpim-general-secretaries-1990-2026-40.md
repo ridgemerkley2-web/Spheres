@@ -23,7 +23,7 @@ C06, S23, WC1 and CP1) remains open.
 
 | ID | Question | Decision |
 |---|---|---|
-| CPM-GS-01 | EMS Namboodiripad, General Secretary when the period opens | **Declined:** no party or official record reviewed attests him in the office on any day from 1 January 1990; the party website's undated caption page (captured 24 April 2001) calls him 'Former General Secretary, CPI(M)' (claim) |
+| CPM-GS-01 | EMS Namboodiripad, proposed opening-era General Secretary | **Declined:** no party or official record reviewed attests him in the office on any day from 1 January 1990; the party website's undated caption page (captured 24 April 2001) calls him 'Former General Secretary, CPI(M)' (claim) |
 | CPM-GS-02 | Harkishan Singh Surjeet (1992-2005) | **Accepted in part:** observed on 2 March 2004 (People's Democracy of 7 March 2004 prints the letter 'written by CPI(M) general secretary, Harkishan Singh Surjeet' on 'March 2'); claims: the party's 2005 bio-data ('Elected General Secretary ... in 1992 at the 14th Party Congress'), the 16th Congress election recalled for 11 October 1998, his own 'general secretary since 1992', the 'former' styling of 11 April 2005 and his undated handover statement |
 | CPM-GS-03 | Prakash Karat (2005-2015) | **Accepted in part:** observed on 11 April 2005 (the 'newly-elected general secretary, Prakash Karat' at the rally concluding the 18th Congress); claims: the 18th Congress election (no day printed), the 'newly elected general secretary' who took the salute at Kozhikode on 9 April 2012, 'general secretary of the CPI(M)' inaugurating the 21st Congress on 14 April 2015 and 'the outgoing general secretary' on 19 April 2015; no end stated |
 | CPM-GS-04 | Sitaram Yechury (2015-2024) | **Accepted:** observed on 19 April 2015 (the 'Newly elected general secretary, Sitaram Yechury' at the rally concluding the 21st Congress); **until 12 September 2024** from the Polit Bureau's statement on 'the passing away of Comrade Sitaram Yechury, General Secretary of the Party on September 12, 2024'; claims: the 21st Congress election of 19 April 2015 (names nobody), the Polit Bureau list, the 22nd (22 April 2018) and 23rd (10 April 2022) Congress elections and a retrospective sentence |
@@ -85,7 +85,7 @@ claim; every other claim never feeds a holder.
 
 ### CPM-GS-01 — EMS Namboodiripad
 
-He was General Secretary when the period opened, by every account, but no record reviewed attests it on a day from
+An opening-era holder is not established by this packet. No record reviewed attests EMS in the office on a day from
 1 January 1990: the Rajya Sabha debates of 1990-1992 name him once, without the office (discovery only, below), the party's
 1990-1991 records are not online, and the Welfare Ministry's resolution of 29 March 1991 (an existing CLAUDE-C01-33 source)
 lists him without a designation. The party website's caption page, captured on 24 April 2001, reads 'Former General
@@ -177,8 +177,11 @@ extract's provenance note, and `packet_check.py` downloaded each once more (see 
 - **The party website's WordPress REST records (8).** `https://cpim.org/wp-json/wp/v2/posts/<id>`, the JSON record of each
   post (title, slug, publication and modification dates, body). The HTML page of every post ends with a LiteSpeed cache
   comment stamped with the request time, so two downloads a few seconds apart differ; the JSON record was identical across
-  downloads. Every post was published and last modified before the cutoff (two older posts carry a site-migration
-  modification stamp of 14 April 2024).
+  downloads. The current party record reports publication and modification dates before the cutoff (two older posts
+  carry a modification stamp of 14 April 2024). These are not independently timestamped historical captures: the current
+  record's metadata is the party's reported dateline, not proof that the retrieved text existed unchanged on that date.
+  Acceptance is limited to the attributed statements and metadata now served; it does not authenticate every past
+  revision or promote a post dateline into an effective term boundary.
 
 ## Leads not imported
 
