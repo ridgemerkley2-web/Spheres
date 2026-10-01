@@ -1,6 +1,6 @@
 # CLAUDE-C06-BRAZIL-01: Brazil cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **claimed** (1 October 2026; in progress, not complete). Parent: C06 (Brazil country cast), with
+Owner: Claude. State: **awaiting Codex render** (1 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (Brazil country cast), with
 C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: on 1 October 2026, after France batch 1 (`CLAUDE-C06-FRANCE-01`, branch `claude/c06-fr-01`) was prepared, the
@@ -117,3 +117,60 @@ Inputs at claim (sha256 of the committed bytes at `2fd186d6`):
 
 Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --check`; `leadership_production.py check`;
 `campaign_census.py --check`; `python -m unittest discover -s tools/avatars`; `workboard.py --check`; `git diff --check`.
+
+## Preparation
+
+Batch 1 (`BR-CAST-B01`) was prepared on 1 October 2026. Each of the seven windows had one preparation agent and one
+independent verification agent; Claude assembled the results and fixed the verifiers' mechanical findings. No image was
+generated, edited or labelled. The next step is Codex's render:
+[render request](../../campaign-certification/C06/production/brazil/render-request-batch-01.md). The
+[identity review](../../campaign-certification/C06/production/brazil/identity-review-batch-01.json) and
+[README](../../campaign-certification/C06/production/brazil/README.md) carry the observations, references and job IDs.
+
+In (six renders, four people):
+
+| person_id | window | likeness reference (photograph date, licence) | prompt |
+|---|---|---|---|
+| michel_temer | 2001-09-09 to 2010-06-15 | J. Batista / Camara dos Deputados, 11 Nov 2009; CC BY 3.0 | `michel-temer-cartoon-2001-v1.txt` |
+| michel_temer | 2010-06-15 to 2019-01-01 | Beto Barata/PR official portrait, May 2017 (Commons: 17 May); CC BY 2.0 | `michel-temer-cartoon-2010-v1.txt` |
+| baleia_rossi | 2019-10-06 to 2026-09-08 | MDB Nacional, 8 Dec 2021; CC BY 2.0 | `baleia-rossi-cartoon-2019-v1.txt` |
+| leonel_brizola | 1995-01-01 to 2004-06-21 | Sergio Neglia, 19 Sep 1998; CC BY-SA 4.0 | `leonel-brizola-cartoon-1995-v1.txt` |
+| carlos_lupi | 2004-06-30 to 2015-01-01 | J. Batista / Camara dos Deputados, 11 Nov 2009; CC BY 3.0 | `carlos-lupi-cartoon-2004-v1.txt` |
+| carlos_lupi | 2015-01-01 to 2026-09-08 | Geraldo Magela / Agencia Senado, 24 Oct 2023; CC BY 2.0 | `carlos-lupi-cartoon-2015-v1.txt` |
+
+Every photograph falls inside its window. The two 2009 references are the same photograph (Lupi centre, Temer right),
+committed under two per-person paths with identical bytes. The six windows close 14 of the 15 leadership-production
+cartoon jobs of the five people.
+
+Excluded: `daniel_sampaio_tourinho` (C01-43 Agir, 2014-05-16 to 2026-09-08). No dated photograph of him with a licence
+string from `FREE_LICENSES` exists on Commons, Wikidata or pt.wikipedia. The verifier found his TSE 2010 candidate
+photograph, but it is not on Commons, the TSE portal's licence is an unversioned 'Creative Commons Attribution', and it
+is a 161x225 greyscale thumbnail from 2010 or earlier. No reference or prompt for him is in the repository, and his
+three jobs (`daniel_sampaio_tourinho-fde53fa22842`, `daniel_sampaio_tourinho-c02873ad7899`,
+`cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1`) stay open. No reserve exists.
+
+Verifier findings and fixes: Baleia Rossi and Lupi's 2015 window passed outright. The other findings were fixed:
+- Temer 2001: the preparer's 11 March 2009 photograph is a strict right profile. The reference was switched to the
+  verifier's preferred near-frontal J. Batista photograph, copied locally from the bytes already pinned for Lupi. The
+  prompt was rewritten and re-pinned, and after-window candidates were added to the ledger.
+- Temer 2010: the photograph's date evidence is restated (an XMP Photoshop creation time; the month is corroborated by
+  Gazeta do Povo).
+- Brizola: the prompt's ears wording (re-pinned) and the job labels.
+- Lupi 2004: the accepted observation, window basis and registry term were added, the face width corrected and the jobs
+  labelled.
+- Tourinho: a wrong 'TSE portraits begin in 2004' claim was withdrawn, and the Flickr note corrected.
+
+Still open (Codex):
+- The Temer 2010-2019 window (end from C01-10, acceptance pending), and an optional early-window split using the CC BY-SA
+  2.0 photographs of 13 July 2010.
+- Brizola's registry birth date (1922-01-22 in the Chamber of Deputies open data and Wikidata, against 1922-11-22 in
+  the registry), plus whether to accept his reference's embedded IPTC contact fields (the photographer's own, already
+  public on Commons) and its 7.66 MB size.
+- The Lupi 2004 window start, which rests on leadership production and a month-precision registry term, and an optional
+  Lupi split at 2020-01-01.
+- For Tourinho: a ruling on the TSE portal's unversioned cc-by grant, and an optional TSE municipal-year search.
+- The six prompt files have no `eol=lf` rule, and `.gitattributes` is not on this task's file list. Each pin is the LF
+  (committed) sha256 and also gives the CRLF-checkout hash.
+
+The worktree's sparse checkout now also includes `spheres-web/ui/portraits` and `spheres-web/ui/leader-art`, which
+`person_art_pipeline.py self-test` reads; no file there was changed.
