@@ -825,6 +825,22 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
             for row in self.extracts[sid]['rows']:
                 self.assertIn('speaker', row['locator'], row['claim_id'])
 
+    def test_recovered_source_locators_cover_the_claimed_passages(self):
+        # Checked against the returned article bodies: the guest greeting precedes Kanzaki's
+        # continuation; Ota's report mixes p/br blocks; Saito's condition is in the next paragraph.
+        expected = {
+            'jp_komeito_kanzaki_self_stated_again_20041031': {'paragraph': 3},
+            'jp_komeito_ota_selected_20060930': {
+                'section': 'newsbody',
+                'passage_starts': ['「新しい公明党」が勇躍スタート', 'これに先立ち、代表選出が行われ']},
+            'jp_komeito_saito_recommended_20241107': {'paragraph': [1, 2]},
+        }
+        claims = {c['id']: c for source in self.packet['sources'] for c in source['claims']}
+        for cid, locator in expected.items():
+            with self.subTest(claim=cid):
+                self.assertEqual(claims[cid]['locator'], locator)
+                self.assertEqual(self.rows[cid]['locator'], locator)
+
     def test_response_identities_are_reproducible_urls(self):
         for sid in NEW_SOURCES:
             url = self.sources[sid]['url']
