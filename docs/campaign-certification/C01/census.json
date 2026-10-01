@@ -61,29 +61,23 @@
     "future_seat_policies": 2,
     "existing_lifecycle_records": 23,
     "future_templates": 2556,
-    "historical_manifest_assets": 54,
+    "historical_manifest_assets": 59,
     "fictional_manifest_assets": 4,
-    "historical_art_snapshot_pending_jobs": 704,
+    "historical_art_snapshot_pending_jobs": 699,
     "people_with_unknown_appearance_eligibility": 126,
     "exhaustive_country_censuses": 0,
     "unrepresented_organizations": null,
     "work_orders_by_phase": {
       "fictional_editorial_review": 316,
-      "historical_cartoon_jobs": 183,
+      "historical_cartoon_jobs": 180,
       "institution_and_office_roles": 160,
       "known_historical_chains": 150,
       "organization_census": 160
     }
   },
   "production_snapshot": {
-    "all_declared_inputs_current": false,
-    "stale_inputs": [
-      {
-        "path": "spheres-sim/src/government.rs",
-        "recorded_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
-        "current_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
-      }
-    ],
+    "all_declared_inputs_current": true,
+    "stale_inputs": [],
     "current_party_rows_match_snapshot_exactly": true,
     "job_person_and_portrait_inputs_current": true,
     "physical_art_revalidated_this_run": false,
@@ -97,8 +91,8 @@
     },
     {
       "path": "spheres-sim/src/government.rs",
-      "bytes": 849546,
-      "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
+      "bytes": 851150,
+      "sha256": "4b0b82dbdb111cfbc8350bcbdf0dc1ba85d23b07c1026ca5a58d2178dc283934"
     },
     {
       "path": "spheres-sim/data/party_leaders.json",
@@ -137,8 +131,8 @@
     },
     {
       "path": "spheres-web/data/person_portraits.json",
-      "bytes": 290378,
-      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d"
+      "bytes": 307745,
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176"
     },
     {
       "path": "spheres-web/data/fictional_portraits.json",
@@ -147,8 +141,8 @@
     },
     {
       "path": "spheres-web/data/leadership_production_2035.json",
-      "bytes": 5984743,
-      "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8"
+      "bytes": 5997885,
+      "sha256": "bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78"
     },
     {
       "path": "tools/avatars/leadership_production.py",

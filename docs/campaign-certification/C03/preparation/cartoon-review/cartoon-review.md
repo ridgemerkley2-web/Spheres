@@ -14,7 +14,7 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 | fictional_portraits | `spheres-web/data/fictional_portraits.json` | 7666 | `54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c` |
 | selector_figures | `spheres-web/data/nation_figures.json` | 408800 | `f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962` |
 | display_derivatives | `spheres-web/ui/display-art/manifest.json` | 133156 | `afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb` |
-| production_inventory | `spheres-web/data/leadership_production_2035.json` | 5997885 | `a8bd893961a80fd586c21d4c4cd7b32d52426260bb89625b6fc7114e2489fb82` |
+| production_inventory | `spheres-web/data/leadership_production_2035.json` | 5997885 | `bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78` |
 | fictional_catalog | `spheres-web/data/future_candidates_2035.json` | 3273947 | `75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492` |
 | person_registry | `spheres-sim/data/party_leaders.json` | 1262625 | `18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494` |
 | reference_audit_uk | `spheres-web/ui/person-portraits/references/source-review-uk-v1.json` | 5505 | `16baa8bba813953530af586c621f783548a2a501033f7b62bcb37c2aff5d40f1` |
