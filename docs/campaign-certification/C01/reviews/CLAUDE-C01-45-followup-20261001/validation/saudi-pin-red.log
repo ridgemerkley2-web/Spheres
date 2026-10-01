@@ -1,0 +1,32 @@
+...FFF.....
+======================================================================
+FAIL: test_mutations_are_rejected (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_mutations_are_rejected) (label='Secretary observation day changed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_saudi_shura_allegiance_c01_25.py", line 919, in test_mutations_are_rejected
+    with self.subTest(label=label), self.assertRaises((AssertionError, KeyError, IndexError, StopIteration, ValueError)):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'AssertionError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_mutations_are_rejected) (label='Secretary appointment made an effective start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_saudi_shura_allegiance_c01_25.py", line 919, in test_mutations_are_rejected
+    with self.subTest(label=label), self.assertRaises((AssertionError, KeyError, IndexError, StopIteration, ValueError)):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'AssertionError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_mutations_are_rejected) (label='Secretary given an unsupported end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_saudi_shura_allegiance_c01_25.py", line 919, in test_mutations_are_rejected
+    with self.subTest(label=label), self.assertRaises((AssertionError, KeyError, IndexError, StopIteration, ValueError)):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'AssertionError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>, <class 'ValueError'>) not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 3.540s
+
+FAILED (failures=3)

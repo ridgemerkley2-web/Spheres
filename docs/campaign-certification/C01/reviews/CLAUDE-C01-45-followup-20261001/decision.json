@@ -1,0 +1,23 @@
+{
+  "base": "13367c99a6ee708e2324ce67f079e6c80148b854",
+  "incoming_tip": "5f083d7fff505189a01cc69aef2e13e1d70d8066",
+  "repair_revision": "7aaf39e886ff87ee3ff7b34fef818d1f10bfc4b2",
+  "decision": "accept_test_tightening_only",
+  "incoming_paths": [
+    "docs/campaign-certification/C01/research/saudi-arabia-kings-crown-princes-1990-2026-45.md",
+    "docs/planning/ai-handoffs/CLAUDE-C01-45.md",
+    "tools/avatars/test_saudi_shura_allegiance_c01_25.py"
+  ],
+  "adopted_paths": [
+    "tools/avatars/test_saudi_shura_allegiance_c01_25.py"
+  ],
+  "independent_negative_mutations": [
+    "attestation shifted one day",
+    "appointment day converted into effective start",
+    "unsupported end assigned"
+  ],
+  "source_claim_holder_data_changed": false,
+  "historical_acceptance_extended": false,
+  "original_receipt": "42046e519da389b713fd40f28a38a23e5b495936",
+  "unadopted_prose": "Additional reported user rulings are unauthenticated Git claims; prior independent content decisions and unreviewed A/56/A/57 leads remain unchanged."
+}
