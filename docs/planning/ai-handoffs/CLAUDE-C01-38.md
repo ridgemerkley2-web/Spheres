@@ -10,7 +10,7 @@ Branch: `claude/c01-fr-38`. Base: `02d2c5a2` (current `codex/campaign-certificat
 
 ## Bounded deliverable
 
-Extend the existing role fr_pm (institution fr_prime_minister, added by CLAUDE-C01-37) with the Prime Ministers appointed from 31 March 2014 to the cutoff (C01-37's next work FR-PM-12): expected Manuel Valls, Bernard Cazeneuve, Édouard Philippe, Jean Castex, Élisabeth Borne, Gabriel Attal, Michel Barnier, François Bayrou and Sébastien Lecornu (appointed twice in 2025) — at most ten people. Apply C01-37's rulings exactly: the appointment decree naming the person gives `from`; the decree ending the Government's functions gives `until` on its signing day; resignation letters, publication dates and caretaker periods are separate claims; countersignatures give attested_on only. Additions go only through supplements/france.json and the importer (tools/avatars/import_cnccfp_census.py). Sources: JORF texts; Légifrance may refuse scripted access — use raw Internet Archive captures made before the cutoff, as C01-37 did.
+Extend the existing role fr_pm (institution fr_prime_minister, added by CLAUDE-C01-37) with the Prime Ministers appointed from 31 March 2014 to the cutoff (C01-37's next work FR-PM-12): expected Manuel Valls, Bernard Cazeneuve, Édouard Philippe, Jean Castex, Élisabeth Borne, Gabriel Attal, Michel Barnier, François Bayrou and Sébastien Lecornu (appointed twice in 2025) — at most ten people. Apply C01-37's accepted rulings (Codex's review `1739eccb`; ruling (a) below): appointment and cessation decrees give `attested_on` only, with `from` and `until` null unless a decree states the day it takes effect; resignation letters, publication dates and caretaker periods are separate claims; countersignatures give attested_on only. Additions go only through supplements/france.json and the importer (tools/avatars/import_cnccfp_census.py). Sources: JORF texts; Légifrance may refuse scripted access — use raw Internet Archive captures made before the cutoff, as C01-37 did.
 
 Keep each distinct event (election or selection, appointment, assumption of office, acting or interim service,
 resignation, removal, death, merger, renaming) as its own dated claim; acting service is claims only. Never infer an
@@ -47,6 +47,12 @@ Submitted `ready_for_review` on 1 October 2026 (UTC; 30 September local). Report
 as `bf41dca1` (no conflict). Then two commits: "Add CLAUDE-C01-38: French prime ministers, 2014-2026" (everything except the
 index) and "Regenerate the C01 research index for CLAUDE-C01-38" (`research-index.json` only). Not stacked.
 
+Codex imported this submission (`acf33f09`) as `9174c807`, repaired one report sentence (`e4757a3d`: Bayrou's cessation and
+Lecornu's appointment are instruments of the same day, 9 September 2025) and accepted it (`fa48313b`, merged in `534e45d9`). A
+later commit, "Apply checker fixes to CLAUDE-C01-38", carries that repair verbatim, records Ridge's rulings (a) to (e) below, and
+corrects the report's naming-convention sentence and the census disclosure; it changes only the report and this record (no
+research input, so no index commit).
+
 Batch order: the user chose to start this batch of C01 research packets (C01-38 to C01-41, in parallel in other country files)
 before Codex's roadmap line "continue existing claims first".
 
@@ -65,8 +71,9 @@ Touched paths (nothing else):
 - `tools/avatars/test_france_prime_ministers_c01_38.py` (new); pinned values re-expressed, none loosened, in
   `tools/avatars/test_france_prime_ministers_c01_37.py` (its invariants apply to the first 16 observations, 48 claims and 31 sources;
   49 + 31 + 22 supplement sources; three packet notes; its "eleventh person" mutation inserts inside its batch) and
-  `tools/avatars/test_france_pm_boundaries_review.py` (16 + 12 observations, 10 + 9 people; outside the spec's pin list, but its exact
-  counts pin the role, and its no-boundary contract now also covers this batch). `test_campaign_research.py`,
+  `tools/avatars/test_france_pm_boundaries_review.py` (16 to 28 observations, 10 to 19 people; outside the claim's allowed-files
+  list, but its exact counts pin the role, and its no-boundary contract now also covers this batch; accepted as an exact
+  re-expression by ruling (b)). `test_campaign_research.py`,
   `test_import_cnccfp_census.py` and `test_france_presidents_c01_23.py` needed no change;
 - `docs/campaign-certification/C01/research-index.json` (regenerated, separate commit; the only file shared with the parallel
   packets; regenerate rather than merge if another lands first).
@@ -79,26 +86,33 @@ Michel Barnier (2024-09-05), François Bayrou (2024-12-13), Sébastien Lecornu (
 signs on 2026-09-04). Ten cessation decrees and the ten resignation letters they cite stay separate claims. Légifrance answered
 HTTP 403 (not bypassed).
 
-Decisions needing a ruling:
+Rulings (decided by Ridge; Codex may still decide otherwise at integration):
 
-- **Boundaries.** This record's spec asks for `from` on the appointment decree and `until` on the cessation decree's signing day as
-  C01-37's rulings, but the accepted C01-37 record (its independent review) withdrew exactly those boundaries and
-  `test_france_pm_boundaries_review.py` rejects them on every holder of the role. This batch follows the accepted record. The
-  candidate values are in the report's date ledger if Codex rules otherwise.
-- **Names.** Holder names follow the Journal officiel's spelling, case aside: "Edouard Philippe" and "Elisabeth Borne" without an
-  initial accent (no source cited prints one).
-- **Barnier's cessation.** The decree of 5 December 2024 (JORFTEXT000050748889) has no text capture and predates DILA's daily
-  exports; his observation cites the appointment only.
-- **DILA retention.** The three 2025 exports may disappear from about late November 2026; re-verify before then.
+- **(a) Boundaries.** Boundaries follow Codex's accepted CLAUDE-C01-37 review `1739eccb`: every holder keeps `attested_on` only,
+  with `from` and `until` null; DILA's `DATES_EFFET` field is empty in every record read.
+- **(b) Pinned review test.** Re-expressing `tools/avatars/test_france_pm_boundaries_review.py` (16 to 28 holders, 10 to 19 people)
+  is accepted as an exact re-expression.
+- **(c) Names.** Holder names stay as the Journal officiel prints them, with only case normalised ("Edouard Philippe", "Elisabeth
+  Borne"). CLAUDE-C01-37's "Édith Cresson" and "Édouard Balladur" carry an added initial accent; the report proposes that Codex
+  align them separately; this packet does not change them.
+- **(d) DILA retention.** Codex should re-verify the three 2025 DILA daily exports on integration before mid-November 2026; an
+  HTTP 404 after expiry is a recorded expiry, not a mismatch; a durable copy is next work `C01-France-PM-006`.
+- **(e) Lecornu's signature.** His decree of 4 September 2026, signed as Premier ministre, stays a claim inside his 2025-10-10
+  observation (CLAUDE-C01-37 gave signatures their own observations only where the appointment text was missing).
+
+Open: Barnier's cessation. The decree of 5 December 2024 (JORFTEXT000050748889) has no text capture and predates DILA's daily
+exports; his observation cites the appointment only (next work `C01-France-PM-005`).
 
 Checks (from the worktree after the merge, `PYTHONDONTWRITEBYTECODE=1`, `python -X utf8`): `import_cnccfp_census.py` regenerated
 then `--check` passed; `campaign_research.py` regenerated then `--check` passed; `-m unittest discover -s tools/avatars` passed with
 `-p "test_france*.py"` (28 tests), `-p "test_import_cnccfp_census.py"` (10), `-p "test_*research*.py"` (79) and
 `-p "test_campaign*.py"` (16); `node --test tools/ui/check_leadership_research_review.cjs` passed (11);
 `python tools/planning/workboard.py --check` passed; `git diff --check` passed. `campaign_census.py --check` passed on the base
-`02d2c5a2` but **fails after the merge of `79ef97ec`**: its commit `7c6f112c` changed `spheres-sim/src/government.rs` without
-regenerating `docs/campaign-certification/C01/census.json`; regenerating it shows that input's hash (849,546 to 851,150 bytes) as
-the only difference (restored, not committed). Known failures outside the listed checks, not fixed:
+`02d2c5a2` but **fails on this branch and on `79ef97ec`, the integration head it merged**, because Codex commits after `262d5f61`
+(`c41376f5`, `ace1f233`, `434abd50`, `7c6f112c`) changed `spheres-sim/src/government.rs` (849,546 to 851,150 bytes) without
+regenerating `docs/campaign-certification/C01/census.json`; the packet touches neither file. Regenerating it shows that input's hash
+as the only difference (restored, not committed); Codex's `3b6cecc8` has since regenerated census.json on
+`codex/campaign-certification`. Known failures outside the listed checks, not fixed:
 `tools/avatars/test_certified_gap_ledger.py` reports no pinned attribution for this packet until Codex classifies its commit, and
 `tools/avatars/test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, which the sparse checkout lacks. The gap ledger is
 untouched. `D:/spheres-scratch/c01-pipeline/tools/packet_check.py 38` is run on the pushed head; its summary is returned to the
