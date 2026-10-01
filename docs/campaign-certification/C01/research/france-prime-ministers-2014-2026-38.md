@@ -168,8 +168,9 @@ Decision: accepted in part (2025-09-09, 2025-10-10). No instrument ending the se
 
 ### FR-PM-22 — Continued handling of current affairs, acting or interim service
 
-No decree reviewed (including those of 16 July 2024, 9 September 2025 and 6 October 2025, each followed by a longer interval before
-the next appointment) states continued handling of current affairs or names an acting or interim Prime Minister, so none is recorded.
+No decree reviewed (including those of 16 July 2024, 9 September 2025 and 6 October 2025) states continued handling of current affairs
+or names an acting or interim Prime Minister, so none is recorded. Bayrou's cessation and Lecornu's appointment are instruments
+dated the same day, 9 September 2025; their dates do not establish a longer intervening period.
 This is an absence in the texts reviewed, not a historical finding.
 
 ## Sources added
