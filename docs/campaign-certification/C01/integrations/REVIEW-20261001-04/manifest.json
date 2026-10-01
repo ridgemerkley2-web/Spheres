@@ -76,18 +76,18 @@
   },
   {
     "path": "README.md",
-    "bytes": 6506,
-    "sha256": "f2ebef663174a219e858db28242de7605d05c9922cf0ab4b68b9285d0d5da3c2"
+    "bytes": 7111,
+    "sha256": "afa939987ca1f6308a64d86cd085e05b59d76c96dc434b6500f62ee560d11789"
   },
   {
     "path": "reviewed-inputs.json",
     "bytes": 38233,
-    "sha256": "a789f3b0ed12ef2ea151d26158e09a52557b6f69e24ce2166c3a8c2b3c31ebe6"
+    "sha256": "98d3e32d841c7aeac7aaabe37f6da11c576118bb565e7489e6a54ae51902bb14"
   },
   {
     "path": "scope.json",
-    "bytes": 1390,
-    "sha256": "d86828b9ca96e8c967cc5439b34dd4262936ff7fd5b9fcfe98bf9a8e94d4c0fe"
+    "bytes": 1897,
+    "sha256": "2d6f92af7742072a778e13bab1745f33ea57f1a766becd2f58b67b73ed759471"
   },
   {
     "path": "validation/avatar-suite-complete-fixture.json",
@@ -108,6 +108,36 @@
     "path": "validation/avatar-suite.log",
     "bytes": 9308,
     "sha256": "2d61228c15f81c6aea6f83fea837abcc79e8c670b3383ed35fecfa2f2a601be3"
+  },
+  {
+    "path": "validation/boundary-after-receipt-generate.json",
+    "bytes": 524,
+    "sha256": "6d2572d08a2406cc0a790888f51969dd04ed4c25b5c034d9ddd930fbb7b4ef39"
+  },
+  {
+    "path": "validation/boundary-after-receipt-generate.log",
+    "bytes": 238,
+    "sha256": "fe20e74a46234f89916dbeb6ef577fad187eb799168c1dce49b5515ed8d5b5d8"
+  },
+  {
+    "path": "validation/boundary-after-receipt-green.json",
+    "bytes": 595,
+    "sha256": "9d86c5ca6624c14e6e396956eb7d8300e60864bf91b55c05b10732f4f097789a"
+  },
+  {
+    "path": "validation/boundary-after-receipt-green.log",
+    "bytes": 140,
+    "sha256": "2879eafc05125aa478ab5a11d618b3f79c89987be64a8cb2ce2e0224730e4def"
+  },
+  {
+    "path": "validation/boundary-after-receipt-red.json",
+    "bytes": 533,
+    "sha256": "598bb8c7e585a5b6bbb58314c0f6154bd4a04f97fe1c710adc0c320e7883ab9d"
+  },
+  {
+    "path": "validation/boundary-after-receipt-red.log",
+    "bytes": 70,
+    "sha256": "839e29260c3179c3906c5e4e9b7f248e7d793e4b0e6ff4daf51084412985b24c"
   },
   {
     "path": "validation/boundary-check-final.json",
@@ -361,7 +391,7 @@
   },
   {
     "path": "verify.py",
-    "bytes": 2583,
-    "sha256": "52649a9e3e55a3f5e3032cfd2449a80dea5787817dc01df0589f9637388d7e78"
+    "bytes": 2645,
+    "sha256": "639ea87448620f8ed8e843bc61172fb882ec9b701bcf20803c666481ab4b93e2"
   }
 ]

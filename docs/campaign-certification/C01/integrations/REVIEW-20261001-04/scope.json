@@ -1,5 +1,5 @@
 {
-  "reviewed_revision": "8cd4d8c0ab4e52b69798554389905db1288f85cb",
+  "reviewed_revision": "8874e40e22eabe10484d168f719f26e6c0351a8f",
   "base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
   "remote_tips_unchanged": true,
   "submitted": {
@@ -34,5 +34,16 @@
   },
   "canonical_qualification": false,
   "native_build_or_campaign_run": false,
-  "remote_rechecked_date": "2026-10-01"
+  "remote_rechecked_date": "2026-10-01",
+  "full_validation_input_revision": "8cd4d8c0ab4e52b69798554389905db1288f85cb",
+  "final_provenance_correction": {
+    "revision": "8874e40e22eabe10484d168f719f26e6c0351a8f",
+    "cause": "Review directory added after boundary provenance generation",
+    "changed_paths": [
+      "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+      "docs/campaign-certification/S23/preparation/boundary-matrix/README.md"
+    ],
+    "case_objects_unchanged": true,
+    "boundary_tests": 36
+  }
 }

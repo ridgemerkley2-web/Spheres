@@ -28,13 +28,13 @@ for pin in read('reviewed-inputs.json'):
 required = ['avatar-suite-complete-fixture', 'planning-suite-complete-fixture', 'ui-suite',
             'campaign-tooling', 'metadata-tests-final', 'research-check', 'census-check',
             'gap-check', 'boundary-check-final', 'workboard-final', 'whitespace-final',
-            'receipt-47-full', 'receipt-48-final', 'receipt-49-final', 'receipt-50', 'receipt-51-full']
+            'boundary-after-receipt-green', 'receipt-47-full', 'receipt-48-final', 'receipt-49-final', 'receipt-50', 'receipt-51-full']
 for label in required:
     result = read('validation/' + label + '.json')
     assert result['exit_code'] == 0, label
     verify({'path': result['log'], 'bytes': result['bytes'], 'sha256': result['sha256']},
            (here / 'validation' / result['log']).read_bytes())
-for label in ['avatar-suite', 'planning-suite']:
+for label in ['avatar-suite', 'planning-suite', 'boundary-after-receipt-red']:
     assert read('validation/' + label + '.json')['exit_code'] != 0, 'Original failure must remain: ' + label
 
 scope = read('scope.json')

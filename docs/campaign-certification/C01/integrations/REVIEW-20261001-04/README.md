@@ -44,3 +44,7 @@ A second reviewer checked 91 research/report/supplement pins, preservation of ol
 Tonga production remains on `codex/tonga-country-cast-20261001`, candidate `6829ecc75600c3fa11a2df8136f7c4a513c4941e`. Its 755 avatar tests pass after fixing the inherited-Crown campaign inspection path and refreshing the changed source pins. Its fresh [CI run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36878791848) was still running at this checkpoint. That runtime/art candidate is not imported here or declared country-complete. Its existing task ID is now assigned to Codex, in progress; no duplicate Claude task was created.
 
 The Japan/7 native diagnostic still had no terminal result at 14:48 UTC. This research pass launched no native build or competing campaign. Russia C01-28 and DA C01-39 retain their source holds. C01, C06, S23, S25, G5, WC1 and CP1 remain open.
+
+## Final provenance correction
+
+The post-push check caught a generation-order issue: creating this review directory after generation added a tenth non-packet integration record. The same failure reproduces in the isolated checkout; it was not a missing full-checkout fixture. Regeneration at `8874e40e` updates only the provenance list in the matrix summary and README. All 8,802 cases and all source/holder records are unchanged. The failing check, regeneration and passing 36-test boundary run are retained. This final metadata revision is pinned separately from the earlier full-suite input revision.
