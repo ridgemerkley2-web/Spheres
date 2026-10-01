@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a193_20050731",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/3a405a0abd",
+  "original_url": "https://www.spa.gov.sa/3a405a0abd",
+  "portal_metadata": {
+    "uuid": "3a405a0abd",
+    "locale": "ar",
+    "published_at_utc": "2005-07-31T11:55:45Z",
+    "date_hijri_field": "1426-06-25"
+  },
+  "title_as_published": "عام / أمر ملكي / صدور",
+  "source_title": "عام / أمر ملكي / صدور: Royal Order A/193 (31 July 2005)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2005-07-31",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/3a405a0abd",
+  "source_response_bytes": 2869,
+  "source_response_sha256": "6f89b870a9461c4fc0acac7be1fea895f6201f73f6bbd9f0c6827dd07167be5b",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "0133327b98655f9202e3cd6a4723f74a8d035a8aba4959a871c89438f080ef17",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:12Z and again at 2026-10-01T03:00:39Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2869 bytes, SHA-256 6f89b870a9461c4fc0acac7be1fea895f6201f73f6bbd9f0c6827dd07167be5b).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/3a405a0abd loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item. The order concerns a Riyadh emirate post and is used only for the King and the signature block.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_fahd_king_order_a193_20050731",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-01",
+      "role_id": "sa_king",
+      "holder_name": "Fahd bin Abdulaziz Al Saud",
+      "printed_name": "فهد بن عبدالعزيز آل سعود",
+      "role_title": "الملك — King",
+      "event_kind": "attestation",
+      "attested_on": "2005-07-31",
+      "text": "SPA, date line Riyadh 25 Jumada II 1426 / 31 July 2005: a royal order 'issued today' (صدر أمر ملكي اليوم), Royal Order A/193 dated 25/6/1426 AH, opens 'نحن فهد بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and creates an excellent-rank post of special adviser in the Riyadh Region emirate.",
+      "locator": "Date line; order number and date; preamble; item First; trailer 1456 (14:56 Makkah time)"
+    },
+    {
+      "claim_id": "sa_a193_signed_on_behalf_20050731",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "signature_on_behalf",
+      "attested_on": "2005-07-31",
+      "text": "The order's recital cites a submission by 'صاحب السمو الملكي ولي العهد نائب رئيس مجلس الوزراء رئيس الحرس الوطني', without a name, and its signature block reads 'فهد بن عبدالعزيز' followed by 'عنه / عبدالله بن عبدالعزيز' (on his behalf, Abdullah bin Abdulaziz).",
+      "locator": "Royal Order A/193, recital and signature block"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

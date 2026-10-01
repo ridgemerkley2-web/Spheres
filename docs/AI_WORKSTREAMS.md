@@ -22,7 +22,7 @@ and new systems remain after CP1; qualification criteria are unchanged.
 
 | Owner | Work | Next action |
 |---|---|---|
-| Claude | Historical research and cartoon production | Komeito C01-31, French PMs C01-38, CPI(M) C01-40 and CPSU C01-41 are accepted bounded research intake. The queue records 26 completed bounded Claude tasks and two held submissions: Russia C01-28 and DA C01-39. [Current art direction, exact remote tips and next content sequence](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md): use actual dated campaign leaders; national representative figures are retired. The [Tonga identity proposal](campaign-certification/C06/preparation/tonga-cast-01/README.md) is accepted as preparation: reuse King IV, source two exact existing 1990 identities, then resolve five later identity checks. Claude has the queued `CLAUDE-C06-TONGA-01` assignment to complete that first slice and the full country cast. |
+| Claude | Historical research and cartoon production | Komeito C01-31, French PMs C01-38, CPI(M) C01-40 and CPSU C01-41 are accepted bounded research intake. The queue records 28 completed bounded Claude tasks. Saudi C01-45 and State Duma C01-46 are newly accepted; Russia C01-28, DA C01-39 and Tonga C01-44 remain held after partial source review. Brazil C01-43 awaits independent review; Japan C01-42 remains claimed. [Current art direction, exact remote tips and next content sequence](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md): use actual dated campaign leaders; national representative figures are retired. The [Tonga identity proposal](campaign-certification/C06/preparation/tonga-cast-01/README.md) is accepted as preparation: reuse King IV, source two exact existing 1990 identities, then resolve five later identity checks. Claude has the queued `CLAUDE-C06-TONGA-01` assignment to complete that first slice and the full country cast. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September terminal failure](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 abnormal exits, 16 not started; verifier failed. The [runner journal repair](campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md) is accepted with 105 tooling tests and one existing skip. Native access violations remain unexplained. The reviewed [Japan / seed 7 diagnostic](campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md) started at 03:26 UTC on 1 October with dump capture and resource guards; read its external terminal result for current status. No replacement full matrix or verifier has been launched. |
 | Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. The [timing/A1 follow-up](campaign-certification/S27/preparation/a1-followup-20261001/README.md) records a 0.0623 ms/month resource assertion pass; quiet confirmation is still pending because of background app Git scans. Residual concentration remains unresolved; retain all original limits. |
 | Claude / Codex review | Russia research (`CLAUDE-C01-28`) | [Resumed review](campaign-certification/C01/reviews/CLAUDE-C01-28/2026-10-01-missing-only/README.md): 65/68 originals, 133/137 claims and all 24 holder observations materially checked. Three originals and four claims remain held; no Russia research is imported. |
@@ -60,11 +60,14 @@ The original 145-branch inventory, recovery tags and ancestor comparisons are in
 all literal Git merges: reviewed/cherry-picked work and older experiments retain
 their exact tips without being imported into the game again.
 
-A later 1 October fetch also found C01-45 at `d7db2cbc`, a new Saudi research
-submission awaiting independent review. C01-42, C01-43, C01-44 and C01-46
-remain claimed, without completed deliveries at their checked tips. Preserve
-these Claude branches and ownership; the [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md)
-records their exact revisions. None is imported or counted as accepted here.
+The later 1 October review accepted C01-45 at `d7db2cbc` and C01-46 at
+`64fec76b`, preserving separate corrections and source-level receipts. Tonga
+C01-44 at `206df905` is held on one PMO original/claim after HTTP 429; four other
+originals and five claims were read. No Tonga packet data is imported. Brazil
+C01-43 at `68fb8f86` is newly submitted and unreviewed; Japan C01-42 at `60107819`
+remains claimed. All five existing claims are now registered in the queue.
+The [current handoff](planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md) records
+the exact revisions. These research reviews do not change CP1 qualification.
 
 ## Handoffs and evidence
 

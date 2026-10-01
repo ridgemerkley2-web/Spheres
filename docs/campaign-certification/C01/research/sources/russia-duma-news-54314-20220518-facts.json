@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_news_54314_20220518",
+  "source_url": "https://web.archive.org/web/20220524092011id_/http://duma.gov.ru/news/54314/",
+  "original_url": "http://duma.gov.ru/news/54314/",
+  "archive_capture_utc": "2022-05-24T09:20:11Z",
+  "source_title": "State Duma news item 54314 of 2022-05-18, 10:25: «Леонид Слуцкий избран новым руководителем фракции ЛДПР», Internet Archive capture 20220524092011",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-05-18",
+  "document_date": "2022-05-18",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220524092011id_/http://duma.gov.ru/news/54314/",
+  "source_response_bytes": 232778,
+  "source_response_sha256": "3851ebdab4786543605f9d72ad7725fac50d8c111e4e05596db550429236b7e8",
+  "source_response_encoding": "UTF-8 HTML (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T02:34:54Z and again at 2026-10-01T03:19:30Z; identical 232,778 bytes and SHA-256 each time.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://duma.gov.ru/news/54314/, captured at 2022-05-24T09:20:11Z, before the 7 September 2026 cutoff; the official host did not answer direct requests from this environment (connection timeouts). Requested with curl's default User-Agent and no Accept-Encoding header. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations of names and office titles only. No photograph, emblem, signature image, linked biography or expressive article text is republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A dated State Duma website news item (dateline 18.05.2022, 10:25), frozen in the capture; not a growing listing. The page's linked hover biographies, view counter and related-news list are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML converted to text; the headline, subtitle, dateline and article body were read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_news_54314_slutsky_elected_ldpr_head_20220518",
+      "observation_id": "ru_duma_faction_20211012_ldpr",
+      "review_observation": "RU-FH-04",
+      "role_id": "ru_duma_faction_20211012_ldpr_head",
+      "holder_name": "Леонид Слуцкий",
+      "printed_name": "Леонид Слуцкий",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "election",
+      "attested_on": "2022-05-18",
+      "text": "A State Duma news item dated 18.05.2022, 10:25, headed 'Леонид Слуцкий избран новым руководителем фракции ЛДПР' and subtitled 'Решение было принято депутатами на внеочередном собрании фракции', states that he 'избран руководителем фракции ЛДПР в Государственной Думе' and that 'Решение было принято депутатами на заседании фракции 18 мая.'",
+      "locator": "Headline, subtitle and body, paragraphs 1-2"
+    },
+    {
+      "claim_id": "ru_duma_news_54314_slutsky_acting_ldpr_head_reported_20220518",
+      "observation_id": "ru_duma_faction_20211012_ldpr",
+      "review_observation": "RU-FH-04",
+      "role_id": "ru_duma_faction_20211012_ldpr_head",
+      "holder_name": "Леонид Слуцкий",
+      "printed_name": "Леонид Слуцкий",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "acting_service_reported",
+      "attested_on": "2022-05-18",
+      "text": "The same item states: 'Ранее Леонид Слуцкий был временно исполняющим обязанности руководителя фракции после ухода из жизни Владимира Жириновского.'",
+      "locator": "Body, paragraph 2"
+    }
+  ],
+  "bounded_scope": "State Duma faction-head observations for CLAUDE-C01-46 only (the five roles ru_duma_faction_20211012_*_head). Elections, reported selections, acting service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices (including CLAUDE-C01-28's party roles), committee offices and the Duma's leadership are outside this extract."
+}

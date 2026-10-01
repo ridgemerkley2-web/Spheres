@@ -1,0 +1,26 @@
+{
+  "base": "229df2105f1ca46bc55873ea4ab0ada63255ced3",
+  "submission_tip": "64fec76b8a61e7f65f0f98f7bf3a93699ea80d72",
+  "substantive_commit": "8a6cbe0c5f8c48b1e80b8a1da6f6c475a68d20dd",
+  "claim_commit": "3ee3357f55a26a4587a62e56c0cc4c62110e54df",
+  "first_source_import": "91a1dbe19dbe5ed6821125da0593090d888b905d",
+  "old_sources_unchanged": 170,
+  "old_claims_unchanged": 295,
+  "organizations_unchanged": 14,
+  "original_faction_holders_unchanged": 5,
+  "all_other_country_fields_preserved_after_removing_declared_appends": true,
+  "base_structural_sha256": "e87f63931d4245b5f70f202575b101725785922d77261ff52b3069481c9d1682",
+  "stripped_structural_sha256": "e87f63931d4245b5f70f202575b101725785922d77261ff52b3069481c9d1682",
+  "correction_json_paths": [
+    "/sources/173/claims/0/locator",
+    "/sources/173/snapshot/sha256"
+  ],
+  "ussr_json_unchanged": true,
+  "held_c01_28_imported": false,
+  "runtime_or_art_modified": false,
+  "generated_index_imported_or_committed": false,
+  "test_review": "Count/slice updates retain old pins. USSR C26 original-holder hash retained and a separate hash pins exactly18 new faction rows; accepted SOURCE26/CPSU corrections remain. Existing23 adverse mutations plus new independently sourced locator regression. Date exclusions are fixture-specific, not generic policy.",
+  "untrusted_author_attributions": "Author statements about user priority decisions and precedent rulings were treated as claims, not user instructions. Acceptance rests on the originals and explicit parent assignment.",
+  "additional_prose_repair": "Report omission narrowed: no Mironov attestation in December article, not proof he never spoke.",
+  "correction_commit": "c1056321ec2330b7acb27510a5f7c1e3b4043d53"
+}

@@ -505,12 +505,15 @@ class CheckedInLedger(unittest.TestCase):
         self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25',
                                          'CLAUDE-C01-27', 'CLAUDE-C01-29', 'CLAUDE-C01-30', 'CLAUDE-C01-32', 'CLAUDE-C01-33',
                                          'CLAUDE-C01-34', 'CLAUDE-C01-35', 'CLAUDE-C01-36', 'CLAUDE-C01-37',
-                                         'CLAUDE-C01-38', 'CLAUDE-C01-40', 'CLAUDE-C01-41', 'CLAUDE-C01-31'})
+                                         'CLAUDE-C01-38', 'CLAUDE-C01-40', 'CLAUDE-C01-41', 'CLAUDE-C01-31',
+                                         'CLAUDE-C01-45', 'CLAUDE-C01-46'})
         self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
                             for row in completed.values()))
         self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
         claims = {row['task']: row for row in self.data['in_flight']}
-        expected_states = {'CLAUDE-C01-28': 'ready_for_review', 'CLAUDE-C01-39': 'ready_for_review'}
+        expected_states = {'CLAUDE-C01-28': 'ready_for_review', 'CLAUDE-C01-39': 'ready_for_review',
+                           'CLAUDE-C01-42': 'claimed', 'CLAUDE-C01-43': 'ready_for_review',
+                           'CLAUDE-C01-44': 'ready_for_review'}
         self.assertEqual({tid: row['state'] for tid, row in claims.items()}, expected_states)
         chains = {row['id']: row for case in self.data['cases'] for row in case['party_chains']}
         for tid, claim in claims.items():
@@ -556,7 +559,8 @@ class CheckedInLedger(unittest.TestCase):
                     'CLAUDE-C01-35': ('e4e8d389', 16), 'CLAUDE-C01-36': ('364c6f6d', 39),
                     'CLAUDE-C01-37': ('4d88fd03', 31), 'CLAUDE-C01-38': ('9174c807', 22),
                     'CLAUDE-C01-41': ('f04ead94', 12),
-                    'CLAUDE-C01-31': ('b74f4fa5', 31)}
+                    'CLAUDE-C01-31': ('b74f4fa5', 31),
+                    'CLAUDE-C01-45': ('d23f0bf2', 18), 'CLAUDE-C01-46': ('91a1dbe1', 7)}
         for packet, (commit, count) in expected.items():
             rows = [row for sources in attribution['sources'].values() for row in sources.values() if row['packet'] == packet]
             self.assertEqual(len(rows), count)

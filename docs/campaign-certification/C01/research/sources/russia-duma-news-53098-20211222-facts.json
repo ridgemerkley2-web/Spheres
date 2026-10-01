@@ -1,0 +1,81 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_news_53098_20211222",
+  "source_url": "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+  "original_url": "http://duma.gov.ru/news/53098/",
+  "archive_capture_utc": "2022-01-19T09:55:04Z",
+  "source_title": "State Duma news item 53098 of 2021-12-22, 11:30: «Руководители и представители фракций выступили на завершающем пленарном заседании осенней сессии», Internet Archive capture 20220119095504",
+  "accessed_date": "2026-10-01",
+  "published_date": "2021-12-22",
+  "document_date": "2021-12-22",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220119095504id_/http://duma.gov.ru/news/53098/",
+  "source_response_bytes": 245393,
+  "source_response_sha256": "5beb30c907d7fa7c019fb2ce3d79ebb97ef78e2ce4c2ad5ca81280a094590264",
+  "source_response_encoding": "UTF-8 HTML (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T02:47:30Z and again at 2026-10-01T03:19:10Z; identical 245,393 bytes and SHA-256 each time.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://duma.gov.ru/news/53098/, captured at 2022-01-19T09:55:04Z, before the 7 September 2026 cutoff; the official host did not answer direct requests from this environment (connection timeouts). Requested with curl's default User-Agent and no Accept-Encoding header. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations of names and office titles only. No photograph, emblem, signature image, linked biography or expressive article text is republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A dated State Duma website news item (dateline 22.12.2021, 11:30), frozen in the capture; not a growing listing. The page's linked hover biographies, view counter and related-news list are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML converted to text; the headline, subtitle, dateline and article body were read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_news_53098_zyuganov_kprf_head_20211222",
+      "observation_id": "ru_duma_faction_20211012_kprf",
+      "review_observation": "RU-FH-02",
+      "role_id": "ru_duma_faction_20211012_kprf_head",
+      "holder_name": "Геннадий Зюганов",
+      "printed_name": "Геннадий Зюганов",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2021-12-22",
+      "text": "A State Duma news item dated 22.12.2021, 11:30, on the speeches at the closing plenary sitting of the autumn session (the first session of the eighth convocation), names 'Руководитель фракции КПРФ Геннадий Зюганов' among the speakers.",
+      "locator": "Body, section 1"
+    },
+    {
+      "claim_id": "ru_duma_news_53098_zhirinovsky_ldpr_head_20211222",
+      "observation_id": "ru_duma_faction_20211012_ldpr",
+      "review_observation": "RU-FH-02",
+      "role_id": "ru_duma_faction_20211012_ldpr_head",
+      "holder_name": "Владимир Жириновский",
+      "printed_name": "Владимир Жириновский",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2021-12-22",
+      "text": "The same item names 'Руководитель фракции ЛДПР Владимир Жириновский', who summed up the session, and later calls him 'руководитель фракции ЛДПР'.",
+      "locator": "Body, section 2"
+    },
+    {
+      "claim_id": "ru_duma_news_53098_nechaev_nl_head_20211222",
+      "observation_id": "ru_duma_faction_20211012_nl",
+      "review_observation": "RU-FH-02",
+      "role_id": "ru_duma_faction_20211012_nl_head",
+      "holder_name": "Алексей Нечаев",
+      "printed_name": "Алексей Нечаев",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2021-12-22",
+      "text": "The same item names 'Руководитель фракции «Новые люди» Алексей Нечаев'.",
+      "locator": "Body, section 4"
+    },
+    {
+      "claim_id": "ru_duma_news_53098_vasilyev_er_head_20211222",
+      "observation_id": "ru_duma_faction_20211012_er",
+      "review_observation": "RU-FH-02",
+      "role_id": "ru_duma_faction_20211012_er_head",
+      "holder_name": "Владимир Васильев",
+      "printed_name": "Владимир Васильев",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2021-12-22",
+      "text": "The same item names 'Руководитель фракции «Единая Россия» Владимир Васильев' and closes with the words of 'руководитель фракции «Единая Россия»'.",
+      "locator": "Body, section 5"
+    }
+  ],
+  "bounded_scope": "State Duma faction-head observations for CLAUDE-C01-46 only (the five roles ru_duma_faction_20211012_*_head). Elections, reported selections, acting service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices (including CLAUDE-C01-28's party roles), committee offices and the Duma's leadership are outside this extract."
+}

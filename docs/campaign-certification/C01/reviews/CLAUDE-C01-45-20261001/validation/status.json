@@ -1,0 +1,40 @@
+{
+  "status": "passed_focused_checks",
+  "observed_results": {
+    "metadata-cause-red": {
+      "tests": 8,
+      "failures": 1,
+      "exit_code": 1
+    },
+    "saudi-green": {
+      "tests": 25,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "research-tests": {
+      "tests": 79,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "campaign-tests": {
+      "tests": 16,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "ui-tests": {
+      "tests": 11,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "research-index-regenerate": {
+      "exit_code": 0
+    },
+    "research-index-check": {
+      "exit_code": 0
+    },
+    "census-check": {
+      "exit_code": 0
+    }
+  },
+  "limits": "No full-avatar, native, campaign endurance, gap-ledger or boundary qualification run. Parent owns combined metadata. Generated index was regenerated locally for validation then restored, not imported."
+}

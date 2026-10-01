@@ -89,20 +89,22 @@ tightenings were adopted; all 48 USSR tests pass, with two failing-before/passin
 mutation checks. Source and holder scope is unchanged. The additional France and
 USSR prose is not imported; the independent acceptance limits remain authoritative.
 
-The later 1 October fetch found these additional Claude branches. They are
-separate from the 26 accepted tasks above and have not been imported or accepted:
+The later 1 October review and branch check registered these existing claims.
+The queue now records 28 completed bounded Claude tasks, three source-held
+submissions, one additional unreviewed delivery and the remaining Japan claim.
 
-| Packet | Exact checked tip | Delivery state |
+| Packet | Exact checked tip | Current decision |
 |---|---|---|
-| C01-42 (`claude/c01-jp-42`) | `601078190e76bfa3ae578a6b467073620dff1ce6` | Claim only; preserve ownership. |
-| C01-43 (`claude/c01-br-43`) | `6e6a9d06cf7c6a2e0f46f16d13119ab8bc822d39` | Claim only; preserve ownership. |
-| C01-44 (`claude/c01-to-44`) | `fdb71175e6a2f251c6e51361187068c0141cac9f` | Claim only; preserve Tonga research ownership alongside the separate cast assignment. |
-| C01-45 (`claude/c01-sa-45`) | `d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49` | Newly submitted: source commit `af2d16bf`, eighteen proposed sources and thirty claims. Original content and proposed office observations await independent review; the submitted generated index is not imported. |
-| C01-46 (`claude/c01-ru-46`) | `3ee3357f55a26a4587a62e56c0cc4c62110e54df` | Claim only; preserve ownership. |
+| [C01-42](CLAUDE-C01-42.md) | `601078190e76bfa3ae578a6b467073620dff1ce6` | Claim only; preserve ownership and current accepted C01-31 corrections. |
+| [C01-43](CLAUDE-C01-43.md) | `68fb8f863398247ba1515a1ff3f413a444a6d7f5` | Newly submitted: 14 proposed originals / 21 claims. Not retrieved, reviewed or imported in this pass. |
+| [C01-44](CLAUDE-C01-44.md) | `206df90553337f4fbeb4ae34819cb2b01c6e8a21` | **Held**: 4/5 originals and 5/6 claims read, no new holders. PMO returned HTTP 429; one original/claim held. Receipt only, no data import. |
+| [C01-45](CLAUDE-C01-45.md) | `d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49` | **Accepted bounded intake**: 18 originals, 30 claims, 18 observations. First import `d23f0bf2`, correction `4a98bc10`, receipt `42046e51`. |
+| [C01-46](CLAUDE-C01-46.md) | `64fec76b8a61e7f65f0f98f7bf3a93699ea80d72` | **Accepted bounded intake**: 7 originals, 27 claims, 18 observations. First import `91a1dbe1`, correction `c1056321`, receipt `6f88cd1b`. C01-28 party research remains held. |
 
-This inventory is not queue acceptance, a new assignment or a reason to delay
-the ready Tonga cast and campaign-stability work. Review the Saudi delivery in
-an isolated source-review task before any import.
+The source pass is closed after Tonga’s rate-limit response. Preserve all failed
+attempts and resume only missing originals in a later permitted pass. No new
+research packet accepts a runtime identity, cartoon, whole country or parent gate.
+The ready Tonga cast and campaign-stability work remain the CP1 priorities.
 
 Continue existing claims without duplicating their ownership. Codex owns the
 remaining original-source/content reviews for C01-28 and C01-39. Both Archive

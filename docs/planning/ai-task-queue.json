@@ -665,6 +665,78 @@
       "handoff": "docs/campaign-certification/S26/preparation/RECRUITMENT.md",
       "depends_on": [],
       "next": "Use the prepared invitation and eight-slot plan; collect real eligibility and availability privately. No invitations or observations are assumed. Formal sessions wait for S24, a pinned build and locked five-person first-attempt cohort. Current local study has zero participants and sessions."
+    },
+    {
+      "id": "CLAUDE-C01-42",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 29,
+      "title": "Research JCP chairs and DPFP representatives, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-42.md",
+      "depends_on": [],
+      "branch": "claude/c01-jp-42",
+      "claim_revision": "601078190e76bfa3ae578a6b467073620dff1ce6",
+      "next": "Existing Claude claim only. Preserve its three Japanese party-office targets and old holder records. C01-31 is now accepted; refresh from current integration without undoing its corrections. No C01-42 delivery or acceptance is recorded."
+    },
+    {
+      "id": "CLAUDE-C01-43",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 30,
+      "title": "Research PRN, PTC and Agir national presidents, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-43.md",
+      "depends_on": [],
+      "branch": "claude/c01-br-43",
+      "claim_revision": "6e6a9d06cf7c6a2e0f46f16d13119ab8bc822d39",
+      "next": "New delivery at 68fb8f86: fourteen proposed originals and twenty-one claims, with five Daniel Tourinho observations. Independently review all original content, renaming/office scope and preservation before import. No source retrieval or historical acceptance in this pass; Archive retrieval closed after a different packet returned HTTP 429. Preserve PDS claims-only limits and unavailable SGIP evidence.",
+      "submission_revision": "68fb8f863398247ba1515a1ff3f413a444a6d7f5"
+    },
+    {
+      "id": "CLAUDE-C01-44",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 31,
+      "title": "Research Tonga DPFI and PDP organization and leadership evidence",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-44.md",
+      "depends_on": [],
+      "branch": "claude/c01-to-44",
+      "claim_revision": "fdb71175e6a2f251c6e51361187068c0141cac9f",
+      "next": "Held after partial independent review: four of five originals and five of six organization claims materially checked. The PMO original returned HTTP 429 on its only request; its one claim remains unread. Zero new holder observations. Preserve the failed response and accepted older Tonga evidence. No packet data or isolated prose correction imported. Missing-only recovery can resume when normal service permits. See docs/campaign-certification/C01/reviews/CLAUDE-C01-44-20261001/README.md. The separate full Tonga cast assignment stays ready.",
+      "submission_revision": "206df90553337f4fbeb4ae34819cb2b01c6e8a21",
+      "review_revision": "214121f96bb36110653ce14cfcebb2223dca62fe"
+    },
+    {
+      "id": "CLAUDE-C01-45",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 32,
+      "title": "Research Saudi royal offices and Allegiance Commission secretary",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-45.md",
+      "depends_on": [],
+      "branch": "claude/c01-sa-45",
+      "claim_revision": "a529ab8dfdbe9473ff0536ebbf836599a8567500",
+      "next": "Accepted bounded intake: eighteen exact originals, thirty claims and eighteen new observations independently read. First import d23f0bf2; correction 4a98bc10 removes an unsupported explanation for portal metadata and qualifies unreviewed leads. All 103 prior sources, 158 claims and old holder objects remain intact. No new effective boundaries, runtime, art, full chronology or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/README.md.",
+      "submission_revision": "d7db2cbcde25594d794d6c2dbbb309cd7d6cbf49",
+      "review_revision": "42046e519da389b713fd40f28a38a23e5b495936"
+    },
+    {
+      "id": "CLAUDE-C01-46",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 33,
+      "title": "Research State Duma faction heads, 2021–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-46.md",
+      "depends_on": [],
+      "branch": "claude/c01-ru-46",
+      "claim_revision": "3ee3357f55a26a4587a62e56c0cc4c62110e54df",
+      "next": "Accepted bounded intake: seven exact originals, twenty-seven claims and eighteen appended faction-office observations independently read. First import 91a1dbe1; correction c1056321 repairs one locator and narrows an omission inference. All 170 prior sources, 295 claims and five original faction holders remain intact. New observations have no effective starts; one directly supported death end is retained. C01-28 party research remains held and absent. No runtime, art or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-46-20261001/README.md.",
+      "submission_revision": "64fec76b8a61e7f65f0f98f7bf3a93699ea80d72",
+      "review_revision": "6f88cd1b9dd97d9c5839a85b1d8c2c7333649554"
     }
   ]
 }

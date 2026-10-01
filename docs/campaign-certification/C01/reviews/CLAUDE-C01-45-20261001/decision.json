@@ -1,0 +1,19 @@
+{
+  "status": "accepted_bounded_research",
+  "reviewed_utc": "2026-10-01T03:58:36.830763+00:00",
+  "originals_reviewed": 18,
+  "claims_reviewed": 30,
+  "holder_observations_reviewed": 18,
+  "held_originals": 0,
+  "held_claims": 0,
+  "held_holder_observations": 0,
+  "corrections": [
+    "Unexplained June2012 API timestamp mismatch no longer asserts an import cause.",
+    "Other-office lead contents are not treated as independently reviewed evidence for the Secretary General.",
+    "Unauthenticated user-authority attribution removed from active report/handoff.",
+    "Tests enforce matching claim/extract locators and scope, including two negative mutations."
+  ],
+  "historical_cutoff": "2026-09-07",
+  "parent_milestones_qualified": [],
+  "runtime_or_art_approval": false
+}
