@@ -129,7 +129,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Research holder observations by acceptance: accepted 23.
 - Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.
 - Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).
-- Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
+- Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - The national executive office has no paired research role, so its historical chain is unresearched.
 - Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
@@ -152,7 +152,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Research holder observations by acceptance: accepted 21, pending 31.
 - Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.
 - Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).
-- Campaign-start executive V. P. Singh: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
+- Campaign-start executive V. P. Singh: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:in_pm): 6 of 37 yearly samples 1990-2026 identify a holder.
 - Future: 16 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
@@ -165,7 +165,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Research holder observations by acceptance: accepted 12, pending 39.
 - Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.
 - Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).
-- Campaign-start executive Jose Sarney: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
+- Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.
 - Future: 24 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.
@@ -196,7 +196,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Research roles: 10 (5 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 82 uncertain, 66 unknown and 185 unresearched.
 - Research holder observations by acceptance: accepted 33, pending 13, unattributed_intake 3.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
-- Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
+- Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:sa_king, research:sa_pm): 0 of 37 yearly samples 1990-2026 identify a holder.
 
@@ -209,7 +209,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.
 - Research holder observations by acceptance: accepted 8, pending 6, unattributed_intake 4.
 - Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.
-- Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
+- Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.
 - Future: 12 fictional candidates, 0 with a served portrait, 12 authorized for a national executive.
@@ -231,7 +231,7 @@ established holders at those samples; for the executive they count the campaign-
 
 | Identity | Role | Evidence | Yearly id/period/br/unc/unk/unr/n.a. | Boundary cases | Attestation cases | Portraits bound |
 |---|---|---|---|---:|---:|---|
-| France | `executive` President of the Republic | none | 0/0/0/0/0/37/0 | 0 | 0 | 0/37 |
+| France | `executive` President of the Republic | none | 0/0/0/0/0/37/0 | 0 | 0 | 1/37 |
 | France | `party:fr_ps` Socialist Party | production_registry 16 | 37/0/0/0/0/0/0 | 24 | 0 | 3/37 |
 | France | `party:fr_rpr` Rally for the Republic | production_registry 6 | 13/0/0/0/0/0/24 | 9 | 0 | 5/13 |
 | France | `party:fr_udf/fr_udf_federation` UDF federal / national leadership | production_registry 3 | 18/0/0/0/19/0/0 | 9 | 0 | 5/18 |
@@ -264,7 +264,7 @@ established holders at those samples; for the executive they count the campaign-
 | Japan | `research:jp_sdp_chair` 委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party | accepted 16 | 0/0/1/36/0/0/0 | 6 | 30 | - |
 | Japan | `research:jp_ldp_party_president` 総裁 — party president | pending 14, unattributed_intake 2 | 0/0/0/26/11/0/0 | 3 | 30 | - |
 | Japan | `research:jp_pm` 内閣総理大臣 — Prime Minister of Japan | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | - |
-| India | `executive` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | 0/37 |
+| India | `executive` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | 1/37 |
 | India | `party:in_inc` Indian National Congress (I) | production_registry 7 | 36/0/0/1/0/0/0 | 15 | 0 | 2/36 |
 | India | `party:in_jd` Janata Dal | production_registry 3 | 7/0/0/30/0/0/0 | 6 | 0 | 4/7 |
 | India | `party:in_bjp` Bharatiya Janata Party | production_registry 14 | 30/0/0/7/0/0/0 | 18 | 0 | 2/30 |
@@ -274,7 +274,7 @@ established holders at those samples; for the executive they count the campaign-
 | India | `research:in_jd_president` President of the Janata Dal | accepted 2 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | India | `research:in_pm` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | - |
 | India | `research:in_president` President of India | pending 8 | 0/0/0/34/3/0/0 | 21 | 2 | - |
-| Brazil | `executive` President of the Republic | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | 0/37 |
+| Brazil | `executive` President of the Republic | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | 1/37 |
 | Brazil | `party:br_pmdb` Brazilian Democratic Movement Party | production_registry 13 | 35/0/0/0/2/0/0 | 42 | 0 | 0/36 |
 | Brazil | `party:br_pfl` Liberal Front Party | production_registry 1 | 2/0/0/1/30/0/4 | 3 | 0 | 2/2 |
 | Brazil | `party:br_prn` National Reconstruction Party | production_registry 1 | 0/0/0/0/37/0/0 | 3 | 0 | - |
@@ -321,7 +321,7 @@ established holders at those samples; for the executive they count the campaign-
 | Tonga | `research:to_deputy_speaker` Deputy Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | Tonga | `research:to_peoples_representatives` People's representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Tonga | `research:to_nobles_representatives` Nobles' representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `executive` King and Prime Minister | pending 5, unattributed_intake 2 | 0/0/10/16/11/0/0 | 3 | 10 | 0/37 |
+| SaudiArabia | `executive` King and Prime Minister | pending 5, unattributed_intake 2 | 0/0/10/16/11/0/0 | 3 | 10 | 1/37 |
 | SaudiArabia | `research:sa_king` King | pending 4, unattributed_intake 1 | 0/0/10/16/11/0/0 | 3 | 10 | - |
 | SaudiArabia | `research:sa_crown_prince` Crown Prince | pending 8, unattributed_intake 1 | 0/0/12/16/9/0/0 | 15 | 16 | - |
 | SaudiArabia | `research:sa_pm` Prime Minister | pending 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
@@ -332,7 +332,7 @@ established holders at those samples; for the executive they count the campaign-
 | SaudiArabia | `research:sa_succession_secretary` Secretary General | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | SaudiArabia | `research:sa_succession_members` Commission members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | SaudiArabia | `research:sa_municipal_members` Municipal council members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| USSR | `executive` General Secretary of the CPSU Central Committee and Chairman of the Supreme Soviet | pending 2, unattributed_intake 2 | 0/0/0/0/37/0/0 | 0 | 5 | 0/37 |
+| USSR | `executive` General Secretary of the CPSU Central Committee and Chairman of the Supreme Soviet | pending 2, unattributed_intake 2 | 0/0/0/0/37/0/0 | 0 | 5 | 1/37 |
 | USSR | `party:su_cpsu` Communist Party of the Soviet Union | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | USSR | `party:su_dr` Democratic Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | USSR | `party:su_soyuz` Soyuz group | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
@@ -362,7 +362,9 @@ established holders at those samples; for the executive they count the campaign-
 
 ## Asset checks
 
-26 bound or referenced portrait assets checked; 0 not fully available; 0 manifest assets are shared across people.
+31 bound or referenced portrait assets checked; 1 not fully available; 0 manifest assets are shared across people.
+
+- `spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png`: possible_wrong_person_binding
 
 ## Limitations
 

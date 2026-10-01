@@ -774,8 +774,12 @@ fn nation_param(url: &str) -> Option<NationId> {
 fn roster_1990_json() -> &'static serde_json::Value {
     static ROSTER: std::sync::OnceLock<serde_json::Value> = std::sync::OnceLock::new();
     ROSTER.get_or_init(|| {
-        let w = world_1990(GameRules::default());
+        let mut w = world_1990(GameRules { ideology_blocs: true, ..GameRules::default() });
+        spheres_sim::government::ensure_all(&mut w);
+        spheres_sim::party_leadership::enable_campaign(&mut w)
+            .expect("the opening picker uses validated campaign leadership");
         serde_json::json!({
+            "day": w.day,
             "month": w.month,
             "year": w.year,
             "date": w.date_str(),
@@ -788,6 +792,7 @@ fn roster_1990_json() -> &'static serde_json::Value {
                     "name": n.id.name(),
                     "gdp": n.gdp,
                     "population": n.population,
+                    "campaign_leader": person_portraits::campaign_leader(&w,n.id),
                 }))
                 .collect::<Vec<_>>(),
         })
@@ -1151,6 +1156,7 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "discontent": politics.as_ref().map(|p| p.discontent),
         "blocs": politics.as_ref().map(|p| &p.blocs),
         "leader": politics.as_ref().and_then(|p| p.leader.as_ref()),
+        "campaign_leader": person_portraits::campaign_leader(w,n.id),
         "government_of_the_day": politics.as_ref().and_then(|p| p.government_of_the_day.as_ref()),
         "takeover": politics.as_ref().map(|p| &p.takeover),
         "at_war": w.at_war(n.id),
@@ -15113,7 +15119,9 @@ mod tests {
         // Nothing on this card is drawn from the RNG, so one cached board is
         // right whatever seed the player types. Checked rather than assumed.
         for seed in [0u64, 7, 42, 1990] {
-            let w = world_1990(GameRules { seed, ..GameRules::default() });
+            let mut w = world_1990(GameRules { seed, ideology_blocs:true, ..GameRules::default() });
+            spheres_sim::government::ensure_all(&mut w);
+            spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();
             let live: Vec<(String, f64, f64)> = w
                 .nations
                 .iter()
@@ -15133,6 +15141,11 @@ mod tests {
                 })
                 .collect();
             assert_eq!(live, served, "seed {} deals a different opening board", seed);
+            for n in w.nations.iter().filter(|n|n.alive) {
+                let row=r["nations"].as_array().unwrap().iter().find(|row|row["id"]==format!("{:?}",n.id)).unwrap();
+                assert_eq!(row["campaign_leader"],person_portraits::campaign_leader(&w,n.id),
+                    "seed {seed} deals a different opening leader for {:?}",n.id);
+            }
         }
 
         // And the screen must read it rather than /api/state, with the date
@@ -15145,6 +15158,32 @@ mod tests {
             INDEX.contains("#setupSub"),
             "the setup caption must be filled from the served date"
         );
+    }
+
+    #[test]
+    fn campaign_leader_opening_roster_and_live_nations_share_the_campaign_identity_contract() {
+        let r=roster_1990_json();
+        assert_eq!(r["day"],1);
+        let mut w=world_1990(GameRules {ideology_blocs:true, ..GameRules::default()});
+        spheres_sim::government::ensure_all(&mut w);
+        spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();
+        let before=save(&w);
+        for row in r["nations"].as_array().unwrap() {
+            let n=w.nations.iter().find(|n|row["id"]==format!("{:?}",n.id)).unwrap();
+            let live=nation_json(&w,n);
+            assert_eq!(row["campaign_leader"],live["campaign_leader"],"{:?}",n.id);
+            assert_eq!(row["campaign_leader"]["date"],"1990-01-01");
+            assert_eq!(row["campaign_leader"]["name"],live["leader"]["name"]);
+            assert_eq!(row["campaign_leader"]["office"],live["leader"]["office"]);
+            if row["campaign_leader"]["person_id"].is_null() {
+                assert!(row["campaign_leader"]["portrait"].is_null());
+            }
+        }
+        assert_eq!(save(&w),before,"Reading selector and live nation art must not change the world");
+        let usa=r["nations"].as_array().unwrap().iter().find(|n|n["id"]=="USA").unwrap();
+        assert_eq!(usa["campaign_leader"]["person_id"],"george_h_w_bush");
+        assert_eq!(usa["campaign_leader"]["name"],"George H. W. Bush");
+        assert_eq!(usa["campaign_leader"]["portrait"]["url"],"/art/people/george-h-w-bush-cartoon-1990-v1.png");
     }
 
     /// The opening screen is a playable control surface, not a wall of
@@ -15182,12 +15221,10 @@ mod tests {
         );
     }
 
-    /// Nation art keys are game identities, not modern ISO guesses. The full
-    /// 160-row check matters even though only 137 cards appear in January 1990:
-    /// a dissolved union must reveal a deliberate successor avatar rather than
-    /// a broken image later in the campaign.
+    /// Retained archive URLs and flag identities must remain valid. Active
+    /// nation surfaces use dated campaign leaders, never this legacy manifest.
     #[test]
-    fn every_nation_has_a_historical_figure_and_flag() {
+    fn archived_nation_art_and_flags_remain_valid_without_driving_the_picker() {
         let manifest: serde_json::Value =
             serde_json::from_str(NATION_FIGURES_JSON).expect("nation figure manifest is JSON");
         let figures = manifest["nations"].as_object().expect("manifest has a nations object");
@@ -15243,15 +15280,15 @@ mod tests {
         }
 
         for needle in [
-            "/art/nation-figures-v2.json",
             "/art/nation-flags-v2.svg#flag-${n.id}",
-            "historical avatar ${spec.figure}",
+            "campaign_leader",
             "img.decoding = \"async\"",
             "setupNationButtons.get(n.id)",
             "showcasePortrait",
         ] {
-            assert!(INDEX.contains(needle), "historical picker lost {needle}");
+            assert!(INDEX.contains(needle), "campaign picker lost {needle}");
         }
+        assert!(!INDEX.contains("/art/nation-figures-v2.json"), "active surfaces must not fetch legacy national figures");
     }
 
     /// Time is the one thing this game cannot give back, and the route that

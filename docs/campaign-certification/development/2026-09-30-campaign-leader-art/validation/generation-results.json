@@ -1,0 +1,65 @@
+[
+  {
+    "name": "person-manifest",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/person_art_pipeline.py",
+      "validate"
+    ],
+    "exit_code": 0,
+    "seconds": 0.332
+  },
+  {
+    "name": "allowlist",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/build_person_avatar_assets.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.373
+  },
+  {
+    "name": "production",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/leadership_production.py",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.534
+  },
+  {
+    "name": "review-export",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/cartoon_review.py"
+    ],
+    "exit_code": 0,
+    "seconds": 3.559
+  },
+  {
+    "name": "boundary-export",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_boundary_matrix.py"
+    ],
+    "exit_code": 1,
+    "seconds": 0.22
+  }
+]

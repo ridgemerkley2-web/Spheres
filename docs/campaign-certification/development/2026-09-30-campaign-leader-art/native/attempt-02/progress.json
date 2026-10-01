@@ -1,0 +1,27 @@
+{
+  "state": "complete",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--no-fail-fast",
+    "--",
+    "--test-threads=1"
+  ],
+  "cwd": "D:\\spheres-opening-leader-art-20260930",
+  "environment": {
+    "CARGO_TARGET_DIR": "D:\\spheres-opening-leader-art-20260930-target",
+    "CARGO_BUILD_JOBS": "1"
+  },
+  "started_at": "2026-09-30T23:19:04.021551Z",
+  "observed_at": "2026-09-30T23:30:10.3350219Z",
+  "process_id": 41712,
+  "phase": "See results.json for final test/build outcomes.",
+  "console_capture_scope": "Initial list/three existing tiny_http warnings/compiler banner are in task tool transcript. Subsequent console output is recorded in console.log; none has been emitted at this checkpoint.",
+  "source_pins": "../attempt-01/results.json",
+  "notes": "Serial retry after unexplained exit101. Original failure preserved. No diagnostic establishes a resource/drive cause.",
+  "completed_at": "2026-09-30T23:36:50.405896+00:00"
+}

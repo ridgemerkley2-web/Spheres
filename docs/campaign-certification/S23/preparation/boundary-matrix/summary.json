@@ -486,7 +486,7 @@
       "Research holder observations by acceptance: accepted 23.",
       "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
       "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
-      "Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "The national executive office has no paired research role, so its historical chain is unresearched.",
       "Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
@@ -656,7 +656,7 @@
       "Research holder observations by acceptance: accepted 21, pending 31.",
       "Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.",
       "Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).",
-      "Campaign-start executive V. P. Singh: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start executive V. P. Singh: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:in_pm): 6 of 37 yearly samples 1990-2026 identify a holder.",
       "Future: 16 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.",
@@ -744,7 +744,7 @@
       "Research holder observations by acceptance: accepted 12, pending 39.",
       "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
       "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
-      "Campaign-start executive Jose Sarney: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.",
       "Future: 24 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
@@ -988,7 +988,7 @@
       "Research roles: 10 (5 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 82 uncertain, 66 unknown and 185 unresearched.",
       "Research holder observations by acceptance: accepted 33, pending 13, unattributed_intake 3.",
       "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
-      "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:sa_king, research:sa_pm): 0 of 37 yearly samples 1990-2026 identify a holder."
      ]
@@ -1065,7 +1065,7 @@
       "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.",
       "Research holder observations by acceptance: accepted 8, pending 6, unattributed_intake 4.",
       "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
-      "Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.",
       "Future: 12 fictional candidates, 0 with a served portrait, 12 authorized for a national executive."
@@ -1188,6 +1188,23 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1612311,
+   "sha256": "c6ef6fd60fae7fcd729edfd78ce4230eacc0070143c0c3732a6550daa617156e",
+   "manifest_sha256": [
+    "c6ef6fd60fae7fcd729edfd78ce4230eacc0070143c0c3732a6550daa617156e"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fahd_bin_abdulaziz_al_saud"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": false,
+   "status": "possible_wrong_person_binding"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-01-cartoon-2030-v1.png",
    "exists": true,
    "bytes": 1370935,
@@ -1256,6 +1273,23 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1610252,
+   "sha256": "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0",
+   "manifest_sha256": [
+    "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "francois_mitterrand"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1474524,
@@ -1318,6 +1352,23 @@
    "on_served_allowlist": true,
    "referenced_by": [
     "jean_marie_le_pen"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/jose-sarney-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1546316,
+   "sha256": "8a35a2676cf1fca13312858f40cdfa80db9e25fe42af642fd982af5723a7e346",
+   "manifest_sha256": [
+    "8a35a2676cf1fca13312858f40cdfa80db9e25fe42af642fd982af5723a7e346"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "jose_sarney"
    ],
    "shared_across_people": false,
    "filename_matches_person": true,
@@ -1403,6 +1454,23 @@
    "on_served_allowlist": true,
    "referenced_by": [
     "mangosuthu_buthelezi"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1568740,
+   "sha256": "175124a0e596c74c028167b6d5ad482b5540a7d6de0360704922e440c38fb316",
+   "manifest_sha256": [
+    "175124a0e596c74c028167b6d5ad482b5540a7d6de0360704922e440c38fb316"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "mikhail_gorbachev"
    ],
    "shared_across_people": false,
    "filename_matches_person": true,
@@ -1545,6 +1613,23 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/v-p-singh-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1646088,
+   "sha256": "433318848a194020dd2ca2e23ae54a25a169a14c11476b449c9e3dbc1ac66613",
+   "manifest_sha256": [
+    "433318848a194020dd2ca2e23ae54a25a169a14c11476b449c9e3dbc1ac66613"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "v_p_singh"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/valery-giscard-d-estaing-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1420999,
@@ -1579,7 +1664,9 @@
    "status": "available"
   }
  ],
- "wrong_or_unavailable_assets": [],
+ "wrong_or_unavailable_assets": [
+  "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png"
+ ],
  "assets_shared_across_people": [],
  "campaign_comparison": "The fresh campaign start is derived from production data and a runtime mirror, not observed through native execution. Divergent saved campaigns are exercised by test fixtures and by --campaign against a supplied save; a divergent incumbent is an expected outcome, never an error, and history never overwrites it.",
  "not_used": [
@@ -1589,8 +1676,8 @@
  "inputs": [
   {
    "path": "docs/campaign-certification/C01/census.json",
-   "bytes": 6364,
-   "sha256": "64e6cbc05e9f53a8f907d460cca9df72980f06fe6247de57387c0a2b0d5e46ff",
+   "bytes": 6105,
+   "sha256": "473fb44a5e07109f899bdab0df18f165d60802187fc01fc399b4e8ae966b8cd4",
    "newline_normalized": true,
    "exists": true
   },
@@ -2114,8 +2201,8 @@
   },
   {
    "path": "spheres-web/data/leadership_production_2035.json",
-   "bytes": 5984743,
-   "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+   "bytes": 5997885,
+   "sha256": "bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78",
    "newline_normalized": true,
    "exists": true
   },
@@ -2128,22 +2215,22 @@
   },
   {
    "path": "spheres-web/data/person_portraits.json",
-   "bytes": 290378,
-   "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+   "bytes": 307745,
+   "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "spheres-web/src/person_avatar_assets.rs",
-   "bytes": 7945,
-   "sha256": "3204b4110758b208f0dc1561d81783e05af800e9b737ff6a0d970f25dab57a2f",
+   "bytes": 8608,
+   "sha256": "dbe28d29a5b036329b381c241fe2f0ac08d266c6c5892af10145af66ca51a182",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "spheres-web/src/person_portraits.rs",
-   "bytes": 20216,
-   "sha256": "85ad4f7b772043eeedfeb50633bfcb11dc2ddf52c671911e0d466dd082beed51",
+   "bytes": 26112,
+   "sha256": "398bc6998b87b33425d3aedd30a98c93641bddc1decd12534880e7384ed7b900",
    "newline_normalized": true,
    "exists": true
   },
@@ -2165,6 +2252,13 @@
    "path": "spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png",
    "bytes": 1469870,
    "sha256": "83baf7337b0db19fb5ee166c79c8b954c54ddd5c9216475b3a5ddcafecb08284",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+   "bytes": 1612311,
+   "sha256": "c6ef6fd60fae7fcd729edfd78ce4230eacc0070143c0c3732a6550daa617156e",
    "newline_normalized": false,
    "exists": true
   },
@@ -2197,6 +2291,13 @@
    "exists": true
   },
   {
+   "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
+   "bytes": 1610252,
+   "sha256": "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
    "path": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
    "bytes": 1474524,
    "sha256": "84af0ef687c0af91e1a2028e7b33eef0abf7724d1a55b3399eb2795174922e57",
@@ -2221,6 +2322,13 @@
    "path": "spheres-web/ui/person-portraits/jean-marie-le-pen-cartoon-1990-v1.png",
    "bytes": 1428894,
    "sha256": "98c0aba4191e8b00d645a125509b5d21acb9c08ce1dcb92cdf8e3d9e6030c089",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/jose-sarney-cartoon-1990-v1.png",
+   "bytes": 1546316,
+   "sha256": "8a35a2676cf1fca13312858f40cdfa80db9e25fe42af642fd982af5723a7e346",
    "newline_normalized": false,
    "exists": true
   },
@@ -2256,6 +2364,13 @@
    "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png",
    "bytes": 1486793,
    "sha256": "ac3a78b825e10e3b287281dcb9a02873cc2e98ac56a4640f5dafb81f7f1498de",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png",
+   "bytes": 1568740,
+   "sha256": "175124a0e596c74c028167b6d5ad482b5540a7d6de0360704922e440c38fb316",
    "newline_normalized": false,
    "exists": true
   },
@@ -2312,6 +2427,13 @@
    "path": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
    "bytes": 1476438,
    "sha256": "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/v-p-singh-cartoon-1990-v1.png",
+   "bytes": 1646088,
+   "sha256": "433318848a194020dd2ca2e23ae54a25a169a14c11476b449c9e3dbc1ac66613",
    "newline_normalized": false,
    "exists": true
   },

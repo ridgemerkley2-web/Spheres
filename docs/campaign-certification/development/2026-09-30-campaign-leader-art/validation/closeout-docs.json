@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "workboard": "PASS: 44 markers and 40 bounded tasks",
+  "source_revision": "3b6cecc8f4d99e2e2bed483baf5c3d5b60fa273d",
+  "files": [
+    {
+      "sha256": "77ea213219489dd61eafa1b446fc5327215cc49b523380a179ef37419c700c68",
+      "path": "docs/AI_WORKSTREAMS.md",
+      "links_unchanged": true,
+      "links": [
+        "../ROADMAP.md",
+        "archive/2026-09-30/AI_WORKSTREAMS.md",
+        "archive/branches-2026-09-30.json",
+        "campaign-certification/development/2026-09-30-claim-registration/README.md",
+        "campaign-certification/S25/preparation/local-matrix-20260930/README.md",
+        "campaign-certification/S27/preparation/political-repairs-20260930/README.md",
+        "CERTIFIED_CAMPAIGN_PATHWAY.md",
+        "planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+        "planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+        "planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
+        "planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+        "planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+        "planning/ai-task-queue.json",
+        "planning/ai-workstreams.json",
+        "planning/campaign-pathway.json"
+      ]
+    },
+    {
+      "sha256": "e319bea9ee4433c90ca6e1a5d3f2467797a05ae058bb4c5e4be301a0d0072b04",
+      "path": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "links_unchanged": true,
+      "links": [
+        "CODEX-C03-OPENING-01.md"
+      ]
+    },
+    {
+      "sha256": "0e8eaa4d4ab47388a45b63cf45103b68fe09f129384a33ed6aff9510623f57a1",
+      "path": "docs/planning/ai-handoffs/CODEX-C03-OPENING-01.md",
+      "links_unchanged": true,
+      "links": [
+        "../../campaign-certification/development/2026-09-30-campaign-leader-art/README.md"
+      ]
+    },
+    {
+      "sha256": "d0a658aa85ad7a5821e85f6b8ad3928dad1e81d35f39c889ae54913aff0333e7",
+      "path": "docs/campaign-certification/development/2026-09-30-campaign-leader-art/README.md",
+      "links_unchanged": true,
+      "links": []
+    }
+  ],
+  "checked_at_utc": "2026-10-01T00:44:50.2045859Z",
+  "scope": "Documentation closeout only; current links match the previously validated 81-link set"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "name": "avatar-tests-final",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*.py"
+    ],
+    "exit_code": 0,
+    "seconds": 138.191
+  },
+  {
+    "name": "ui-unit-tests",
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "tools/ui/run-unit.cjs"
+    ],
+    "exit_code": 1,
+    "seconds": 143.419
+  }
+]

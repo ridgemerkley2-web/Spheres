@@ -1,0 +1,85 @@
+...........................................................................................................................E...................................................................................................................................................................................................................................................................F.EE.....................................................................................................................................
+======================================================================
+ERROR: setUpClass (test_certified_gap_ledger.CheckedInLedger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\test_certified_gap_ledger.py", line 493, in setUpClass
+    cls.files = ledger.outputs()
+                ~~~~~~~~~~~~~~^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_gap_ledger.py", line 1037, in outputs
+    ledger = build(root, attribution)
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_gap_ledger.py", line 530, in build
+    changed = modifications(root)
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_gap_ledger.py", line 356, in modifications
+    for row in read_json(SOURCE_AUDIT, root):
+               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_gap_ledger.py", line 218, in read_json
+    return json.loads((root / path).read_text(encoding='utf-8-sig'))
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-opening-leader-art-20260930\\docs\\campaign-certification\\verification\\evidence\\2026-09-27-claude-integration\\premerge-source-audit.json'
+
+======================================================================
+ERROR: test_violation_exits_non_zero (test_successor_proposals.CommandLineTests.test_violation_exits_non_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\test_successor_proposals.py", line 507, in test_violation_exits_non_zero
+    doc, sources = csp.load_packet(csp.ROOT, csp.PACKET)
+                   ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\check_successor_proposals.py", line 743, in load_packet
+    doc = json.loads((base / 'proposals.json').read_text(encoding='utf-8'))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-opening-leader-art-20260930\\docs\\campaign-certification\\C04\\preparation\\france-tonga\\proposals.json'
+
+======================================================================
+ERROR: setUpClass (test_successor_proposals.ProposalPacketTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\test_successor_proposals.py", line 26, in setUpClass
+    cls.doc, cls.sources = csp.load_packet(csp.ROOT, csp.PACKET)
+                           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\check_successor_proposals.py", line 743, in load_packet
+    doc = json.loads((base / 'proposals.json').read_text(encoding='utf-8'))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-opening-leader-art-20260930\\docs\\campaign-certification\\C04\\preparation\\france-tonga\\proposals.json'
+
+======================================================================
+FAIL: test_committed_packet_exits_zero (test_successor_proposals.CommandLineTests.test_committed_packet_exits_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\test_successor_proposals.py", line 503, in test_committed_packet_exits_zero
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : ERROR: cannot load inputs: [Errno 2] No such file or directory: 'D:\\spheres-opening-leader-art-20260930\\docs\\campaign-certification\\C04\\preparation\\france-tonga\\proposals.json'
+
+
+----------------------------------------------------------------------
+Ran 518 tests in 67.518s
+
+FAILED (failures=1, errors=3)

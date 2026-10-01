@@ -1,0 +1,527 @@
+{
+  "format": "spheres-campaign-leader-selector-browser/v1",
+  "passed": true,
+  "scope": "Working-tree UI and native API integration; opening selector only. Disposable server, no campaign creation, orders, saves or time advancement. Not campaign qualification.",
+  "started_utc": "2026-10-01T00:42:50.706Z",
+  "binary_sha256": "44f12747f3463710ccd382da5a89a87cc6a09840fe23b6c10a97d8245c1078eb",
+  "origin": "http://127.0.0.1:55124",
+  "cases": [
+    {
+      "nation": "France",
+      "person_id": "francois_mitterrand",
+      "name": "Francois Mitterrand",
+      "date": "1990-01-01",
+      "portrait": "/art/people/francois-mitterrand-cartoon-1990-v1.png",
+      "asset_sha256": "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0",
+      "native_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "nation": "Brazil",
+      "person_id": "jose_sarney",
+      "name": "Jose Sarney",
+      "date": "1990-01-01",
+      "portrait": "/art/people/jose-sarney-cartoon-1990-v1.png",
+      "asset_sha256": "8a35a2676cf1fca13312858f40cdfa80db9e25fe42af642fd982af5723a7e346",
+      "native_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "nation": "India",
+      "person_id": "v_p_singh",
+      "name": "V. P. Singh",
+      "date": "1990-01-01",
+      "portrait": "/art/people/v-p-singh-cartoon-1990-v1.png",
+      "asset_sha256": "433318848a194020dd2ca2e23ae54a25a169a14c11476b449c9e3dbc1ac66613",
+      "native_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "nation": "SaudiArabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "name": "Fahd bin Abdulaziz Al Saud",
+      "date": "1990-01-01",
+      "portrait": "/art/people/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+      "asset_sha256": "c6ef6fd60fae7fcd729edfd78ce4230eacc0070143c0c3732a6550daa617156e",
+      "native_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "nation": "USSR",
+      "person_id": "mikhail_gorbachev",
+      "name": "Mikhail Gorbachev",
+      "date": "1990-01-01",
+      "portrait": "/art/people/mikhail-gorbachev-cartoon-1990-v1.png",
+      "asset_sha256": "175124a0e596c74c028167b6d5ad482b5540a7d6de0360704922e440c38fb316",
+      "native_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "nation": "Afghanistan",
+      "name": "Mohammad Najibullah",
+      "date": "1990-01-01",
+      "portrait": null,
+      "missing_art_fallback": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "selector-france.jpg",
+      "sha256": "a49ac5f35901a25706d9f405032782f3f3580e71a6b871df4bcded54b9830542",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "selector-brazil.jpg",
+      "sha256": "572330d0e40193c637a3356363b839afca0b7afe7642c5080cfbf274af79dd29",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "selector-india.jpg",
+      "sha256": "e41ac2b18982605fbed4c14c5f13722864be7f03b9907f8a401bd39a9a2871e5",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "selector-saudiarabia.jpg",
+      "sha256": "9a2fc9c4cab040699511778f8aa0d989207c110aec93f205adbff4fb899cf6f8",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "selector-ussr.jpg",
+      "sha256": "cccd88ea0e0e12d63e242a9d569fde02799799902fcf48e86b36da9b965610bd",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "selector-missing-art.jpg",
+      "sha256": "4cbe8883b2c600f016e620fb4611d0f24fd2121a1e62631e2e15e169997d2694",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/arcade.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/arcade-operations.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/arcade-discovery.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/chronicle.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/programs.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/decision-tools.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/guidance-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/province-economy.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/industry-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/companies.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/cash-flow-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/equipment-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/government-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/arsenal3d.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/competition.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/agency.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/operations-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/campaign-operations-ui.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/campaign-journey.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/area-art.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/main-menu.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/map-controls.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/page-art.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/world.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/districts.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/rivers.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/terrain.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/cities.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/globe3d.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/map-controls.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/terrain-labels.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/water-detail.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/height-detail.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/terrain-surface.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/city-detail.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/shader-loader.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/campaign-transport.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/area-art.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/campaign-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/campaign-journey.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/chronicle-data.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/chronicle-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/programs-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/decision-tools.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/tutorial-model.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/advisor-model.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/guidance-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/performance-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/province-economy-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/competition-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/industry-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/companies-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/cash-flow-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/fiscal-recovery-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/equipment-mesh.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/equipment-export.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/military-surface.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/tank-surface.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/equipment-model.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/arsenal-models.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/arsenal3d.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/surface-grain.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/surface-wear.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/surface-material.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/site-mesh.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/town-mesh.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/city-mesh.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/city-layer.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/equipment-import.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/equipment-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/government-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/agency-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/operations-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/campaign-operations-ui.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/areas/campaign-v1.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/api/saves"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/api/roster"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/api/state"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/people/george-h-w-bush-cartoon-1990-v1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/pages/nation-selection-v1.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/people/francois-mitterrand-cartoon-1990-v1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/people/jose-sarney-cartoon-1990-v1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/people/v-p-singh-cartoon-1990-v1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/people/fahd-bin-abdulaziz-cartoon-1990-v1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/people/mikhail-gorbachev-cartoon-1990-v1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:55124/art/nation-flags-v2.svg"
+    }
+  ],
+  "build": {
+    "branch": "codex/opening-leader-art-20260930",
+    "built_at_unix_seconds": 1790813984,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "full_revision": "3b6cecc8f4d99e2e2bed483baf5c3d5b60fa273d",
+    "revision": "3b6cecc8f4d9",
+    "save_directory": "D:\\spheres-opening-leader-art-20260930\\docs\\campaign-certification\\development\\2026-09-30-campaign-leader-art\\browser\\native-selector-combined\\disposable-campaign",
+    "target_arch": "x86_64",
+    "target_os": "windows",
+    "version": "0.6.0"
+  },
+  "index": {
+    "path": "spheres-web/ui/index.html",
+    "bytes": 1146596,
+    "sha256": "27e48116be6515c9037e2fbc1ba4c0a3bfaf82c740b752c01e1dee9893d26491"
+  },
+  "roster_sha256": "4be04fa9e17ca67c67c1a162722f6a98be660bb1924c9f7ca21cebacfbcd9e5b",
+  "date": {
+    "year": 1990,
+    "month": 1,
+    "day": 1
+  },
+  "state_unchanged_sha256": "3fa144cc6cd2c50026005eacdbd583bcd413a91c18f4edc3e575009d79f64d37",
+  "finished_utc": "2026-10-01T00:42:53.137Z"
+}

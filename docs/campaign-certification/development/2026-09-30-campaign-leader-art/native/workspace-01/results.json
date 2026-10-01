@@ -1,0 +1,88 @@
+{
+  "scope": "Ordinary full workspace release tests; isolated absolute resource budget excluded because campaign matrix/political workloads are active. No ignored qualification workloads enabled.",
+  "base_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+  "branch": "codex/opening-leader-art-20260930",
+  "environment": {
+    "CARGO_TARGET_DIR": "D:\\spheres-opening-leader-art-20260930-target",
+    "CARGO_BUILD_JOBS": "1",
+    "GIT_OPTIONAL_LOCKS": "0"
+  },
+  "source_inputs": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "a66f8bc5cbe3f77bb60de7c880089e78ac70dd9147674944480c30192043c372",
+      "bytes": 9781
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "sha256": "1c713482a3828bc6e6dc98e12d58d523e10795018e6add455ea5377b9f5fb2ef",
+      "bytes": 987321
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "sha256": "398bc6998b87b33425d3aedd30a98c93641bddc1decd12534880e7384ed7b900",
+      "bytes": 26112
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "sha256": "dbe28d29a5b036329b381c241fe2f0ac08d266c6c5892af10145af66ca51a182",
+      "bytes": 8608
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "sha256": "27e48116be6515c9037e2fbc1ba4c0a3bfaf82c740b752c01e1dee9893d26491",
+      "bytes": 1146596
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
+      "bytes": 307745
+    }
+  ],
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "--workspace",
+    "--no-fail-fast",
+    "--",
+    "--skip",
+    "tests::the_resource_pass_stays_under_budget",
+    "--test-threads=4"
+  ],
+  "cwd": "D:\\spheres-opening-leader-art-20260930",
+  "started_at": "2026-09-30T23:37:22.184028+00:00",
+  "state": "stopped_during_compilation",
+  "log": "console.log",
+  "exit_code": 4294967295,
+  "finished_at": "2026-09-30T23:52:39.666868+00:00",
+  "source_inputs_unchanged": true,
+  "test_summaries": [],
+  "totals": {
+    "passed": 0,
+    "failed": 0,
+    "ignored": 0,
+    "filtered out": 0
+  },
+  "web_binary": {
+    "path": "D:\\spheres-opening-leader-art-20260930-target\\release\\spheres-web.exe",
+    "bytes": 366669643,
+    "sha256": "1e6a254f9edc055955e961f00bb5e6aab242986ec68950c5fdaf4b1fd1f5fd39"
+  },
+  "build_info": {
+    "branch": "codex/opening-leader-art-20260930",
+    "built_at_unix_seconds": 1790811442,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "full_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c-modified",
+    "revision": "301f63cb20ff-modified",
+    "save_directory": "D:\\spheres-opening-leader-art-20260930",
+    "target_arch": "x86_64",
+    "target_os": "windows",
+    "version": "0.6.0"
+  },
+  "test_execution_started": false,
+  "stop_evidence": "intentional-stop.json",
+  "next_attempt": "../workspace-02/results.json"
+}

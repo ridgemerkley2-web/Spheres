@@ -1,0 +1,85 @@
+[
+  {
+    "name": "avatar-tests",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*.py"
+    ],
+    "exit_code": 1,
+    "seconds": 68.552
+  },
+  {
+    "name": "person-pipeline-tests",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/person_art_pipeline.py",
+      "self-test"
+    ],
+    "exit_code": 0,
+    "seconds": 0.603
+  },
+  {
+    "name": "production-tests",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/leadership_production.py",
+      "self-test"
+    ],
+    "exit_code": 0,
+    "seconds": 1.062
+  },
+  {
+    "name": "review-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/cartoon_review.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.59
+  },
+  {
+    "name": "boundary-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_boundary_matrix.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.461
+  },
+  {
+    "name": "workboard",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.095
+  }
+]

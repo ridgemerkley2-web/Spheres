@@ -43,21 +43,24 @@ const ids = (list) => list.map((i) => i.id);
 const nations = {Tonga: 'Tonga', Japan: 'Japan'};
 
 test('collection, country, label and search filters keep missing, fictional and unknown items distinct', () => {
-  assert.deepEqual(ids(review.filterItems(sample, {collection: 'cartoons'}, nations)), ['historical:tupou#0', 'fictional:emi#0', 'selector:Tonga', 'historical:bad#0']);
+  assert.deepEqual(ids(review.filterItems(sample, {collection: 'cartoons'}, nations)), ['historical:tupou#0', 'fictional:emi#0', 'historical:bad#0']);
   assert.deepEqual(ids(review.filterItems(sample, {collection: 'missing'}, nations)), ['missing:carol']);
-  assert.deepEqual(ids(review.filterItems(sample, {country: 'Tonga'}, nations)), ['historical:tupou#0', 'selector:Tonga', 'missing:carol']);
+  assert.deepEqual(ids(review.filterItems(sample, {country: 'Tonga'}, nations)), ['historical:tupou#0', 'missing:carol']);
   assert.deepEqual(ids(review.filterItems(sample, {country: 'unknown'}, nations)), ['file:x.png']);
   assert.deepEqual(ids(review.filterItems(sample, {label: 'unknown-identity'}, nations)), ['file:x.png']);
-  assert.deepEqual(ids(review.filterItems(sample, {q: 'salote'}, nations)), ['selector:Tonga'], 'search ignores diacritics');
-  assert.deepEqual(ids(review.filterItems(sample, {q: 'tupou tonga'}, nations)), ['historical:tupou#0', 'selector:Tonga'], 'all terms must match');
+  assert.deepEqual(ids(review.filterItems(sample, {q: 'salote'}, nations)), [], 'retired national figures never reappear through search');
+  assert.deepEqual(ids(review.filterItems(sample, {q: 'tupou tonga'}, nations)), ['historical:tupou#0'], 'all terms must match');
   assert.deepEqual(ids(review.filterItems(sample, {q: 'not a real person'}, nations)), ['fictional:emi#0'], 'labels are searchable by their visible text');
-  assert.deepEqual(review.filterItems(sample, {}, nations).length, sample.length);
+  assert.deepEqual(review.filterItems(sample, {}, nations).length, sample.length - 1);
+  assert.deepEqual(review.filterItems(sample, {collection:'selector'}, nations), []);
+  assert.equal(review.COLLECTION_OPTIONS.some(([key]) => key === 'selector'), false);
+  assert.equal(review.fold('Sālote'), review.fold('Salote'), 'search folding still ignores diacritics');
 });
 
 test('era and date filters use half-open intervals; invalid and undated items are not dated', () => {
   assert.deepEqual(ids(review.filterItems(sample, {era: '1990s'}, nations)), ['historical:tupou#0', 'missing:carol']);
   assert.deepEqual(ids(review.filterItems(sample, {era: 'fictional'}, nations)), ['fictional:emi#0']);
-  assert.deepEqual(ids(review.filterItems(sample, {era: 'undated'}, nations)), ['selector:Tonga', 'file:x.png', 'historical:bad#0']);
+  assert.deepEqual(ids(review.filterItems(sample, {era: 'undated'}, nations)), ['file:x.png', 'historical:bad#0']);
   assert.deepEqual(ids(review.filterItems(sample, {date: '1990-01-01'}, nations)), ['historical:tupou#0', 'missing:carol']);
   assert.deepEqual(ids(review.filterItems(sample, {date: '1990-01-02'}, nations)), ['historical:tupou#0'], 'the window end is excluded');
   assert.deepEqual(ids(review.filterItems(sample, {date: '1991-01-01'}, nations)), []);
@@ -98,7 +101,7 @@ test('paths and links stay inside the repository and never become script or cred
   assert.equal(review.resolvePointer(doc, 'people'), undefined);
   assert.equal(review.initials('Sālote Tupou III'), 'SI');
   assert.equal(review.reasonText(['sourced_party_term', 'Tonga', null]), 'sourced party term · Tonga');
-  assert.equal(review.sizesFor({collection: 'selector'})[0].label, 'Selector pick card');
+  assert.equal(review.sizesFor({collection: 'historical'})[0].label, 'Government card');
   assert.deepEqual(review.sizesFor({collection: 'historical'}).map((s) => [s.width, s.height]), [[106, 152], [90, 132], [156, 218]]);
 });
 
@@ -148,7 +151,10 @@ test('the committed export keeps automated findings apart from approval and labe
   assert.equal(data.format, 'spheres-c03-cartoon-review/v1');
   assert.match(data.statement, /not visual approval/);
   assert.equal(data.summary.approved_by_this_export, 0);
-  assert.deepEqual(Object.keys(data.collections).sort(), ['fictional', 'historical', 'missing', 'selector', 'unregistered']);
+  assert.deepEqual(Object.keys(data.collections).sort(), ['fictional', 'historical', 'missing', 'unregistered']);
+  assert.equal(data.items.some(item => item.collection === 'selector' || item.id.startsWith('selector:')), false);
+  assert.equal(data.archived_selector.length, 160, 'original evidence remains archived');
+  assert.equal(data.style_references.some(ref => String(ref.item).startsWith('selector:')), false);
   const files = new Map(data.files.map((f) => [f.path, f]));
   for (const item of data.items) {
     assert.ok(item.labels.length, item.id);
@@ -164,7 +170,7 @@ test('the committed export keeps automated findings apart from approval and labe
   for (const entry of entries) {
     assert.ok(['fixes_proposed', 'reference_check_required'].includes(entry.decision), entry.item);
     assert.ok(entry.fixes.length > 0, entry.item);
-    assert.ok(data.items.some((i) => i.id === entry.item && i.labels.includes('sample-reviewed')), entry.item);
+    assert.ok([...data.items,...data.archived_selector].some((i) => i.id === entry.item && i.labels.includes('sample-reviewed')), entry.item);
   }
 });
 
@@ -179,7 +185,7 @@ const TYPES = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; cha
   '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
   '.md': 'text/plain; charset=utf-8', '.txt': 'text/plain; charset=utf-8'};
 const env = {server: null, origin: null, browser: null, context: null, requests: [], failures: [], errors: [],
-  proof: {format: 'spheres-c03-cartoon-review-browser/v1', task: 'CLAUDE-C03-REVIEW-01', checks: {}, screenshots: []}};
+  proof: {format: 'spheres-c03-cartoon-review-browser/v1', task: 'CODEX-C03-OPENING-01', passed:false, checks: {}, screenshots: []}};
 
 function serve() {
   const server = http.createServer((req, res) => {
@@ -319,7 +325,7 @@ test('real reviewer in a headless browser', {skip: skipBrowser}, async (t) => {
     await setFilter(page, 'f-country', 'Tonga');
     const tonga = await visibleIds(page);
     assert.deepEqual(tonga, expected({country: 'Tonga'}));
-    assert.ok(tonga.includes('historical:taufaahau_tupou_iv#0') && tonga.includes('selector:Tonga'));
+    assert.ok(tonga.includes('historical:taufaahau_tupou_iv#0') && !tonga.includes('selector:Tonga'));
     assert.ok((await page.$$eval('#sheet li:not([hidden]) .card', (cards) => cards.every((c) => c.dataset.countries.split(' ').includes('Tonga')))));
     await setFilter(page, 'f-date', '1990-06-01');
     assert.deepEqual(await visibleIds(page), expected({country: 'Tonga', date: '1990-06-01'}));
@@ -356,7 +362,7 @@ test('real reviewer in a headless browser', {skip: skipBrowser}, async (t) => {
     await setFilter(page, 'f-country', 'all');
     await setFilter(page, 'f-search', 'salote');
     assert.deepEqual(await visibleIds(page), expected({q: 'salote'}));
-    assert.ok((await visibleIds(page)).includes('selector:Tonga'), 'search ignores diacritics');
+    assert.equal((await visibleIds(page)).length, 0, 'retired selector figure is not searchable as active art');
     await setFilter(page, 'f-search', '');
     await setFilter(page, 'f-era', '2000s');
     const era = await visibleIds(page);
@@ -432,7 +438,7 @@ test('real reviewer in a headless browser', {skip: skipBrowser}, async (t) => {
     assert.match(await page.locator('#detail .automated').textContent(), /not visual approval/);
     assert.match(await page.locator('#detail .visual').textContent(), /fixes proposed · not approval/);
     await page.locator('#compare-anchor').check();
-    await page.waitForFunction(() => [...document.querySelectorAll('#detail .anchor-strip img')].filter((img) => img.complete && img.naturalWidth > 0).length === 3);
+    await page.waitForFunction(() => [...document.querySelectorAll('#detail .anchor-strip img')].filter((img) => img.complete && img.naturalWidth > 0).length === 2);
     await toFilters(page);
     await shot(page, 'desktop-tupou-side-by-side-with-style-references.jpg');
     await page.locator('#compare-anchor').uncheck();
@@ -440,13 +446,53 @@ test('real reviewer in a headless browser', {skip: skipBrowser}, async (t) => {
     await page.goto(env.origin + '/tools/ui/cartoon-review/?item=' + encodeURIComponent('selector:Tonga'));
     await ready(page);
     await page.locator('#detail .verify[data-verified="true"]').waitFor();
-    const selector = data.items.find((i) => i.id === 'selector:Tonga');
-    assert.ok((await page.$eval('#detail .small-views img', (img) => img.getAttribute('src'))).endsWith(selector.card.split('/').pop()), 'the selector card uses its display derivative');
-    assert.match(await page.locator('#detail .small-views').textContent(), /Selector pick card 143×174/);
+    assert.equal(await page.locator('#f-country').inputValue(), 'Tonga');
+    assert.match(await page.locator('#retired-selector-note').textContent(), /figures have been retired/);
+    assert.equal(await page.locator('#sheet .card[data-id^="selector:"]').count(), 0);
+    assert.doesNotMatch(await page.locator('#detail-name').textContent(), /Sālote/);
+    assert.doesNotMatch(page.url(), /item=selector/);
     const reference = page.locator('#detail details.reference');
     assert.equal(await reference.locator('img').count(), 0, 'the reference photograph is not loaded until asked for');
     assert.match(await reference.locator('summary').textContent(), /not game art; never shown as an avatar/);
-    env.proof.checks.side_by_side = {card_boxes: boxes, full_size: full, verified: true, style_reference_strip: 3, selector_card: selector.card, reference_photo_deferred: true};
+    env.proof.checks.side_by_side = {card_boxes: boxes, full_size: full, verified: true, style_reference_strip: 2, retired_selector_redirect: true, reference_photo_deferred: true};
+  });
+
+  await t.test('former country-selector links open current country work without replacement historical icons', async () => {
+    for (const country of ['Afghanistan','Greece']) {
+      await page.goto(env.origin + '/tools/ui/cartoon-review/?item=' + encodeURIComponent('selector:'+country));
+      await ready(page);
+      assert.equal(await page.locator('#f-country').inputValue(), country);
+      assert.match(await page.locator('#retired-selector-note').textContent(), /figures have been retired/);
+      assert.deepEqual(await visibleIds(page), expected({country}));
+      assert.equal(await page.locator('#sheet .card[data-id^="selector:"]').count(), 0);
+      assert.equal(await page.locator('img[src*="leader-art"]').count(), 0);
+      assert.equal(await page.locator('#f-collection option[value="selector"]').count(), 0);
+      assert.doesNotMatch(page.url(), /item=selector/);
+      await shot(page, 'retired-'+country.toLowerCase()+'-link.jpg');
+      env.proof.checks['retired_'+country.toLowerCase()+'_link'] = {campaign_items:expected({country}).length, no_legacy_images:true};
+    }
+  });
+
+  await t.test('five opening leaders load exact-person cartoons at every government card size', async () => {
+    const checked=[];
+    for (const person of ['francois_mitterrand','jose_sarney','v_p_singh','fahd_bin_abdulaziz_al_saud','mikhail_gorbachev']) {
+      const item=data.items.find(i => i.id==='historical:'+person+'#0');assert(item,person);
+      await page.goto(env.origin + '/tools/ui/cartoon-review/?item='+encodeURIComponent(item.id)+'&q='+encodeURIComponent(person));
+      await ready(page);
+      await page.locator('#detail .verify[data-verified="true"]').waitFor();
+      assert.equal(await page.locator('#detail-name').textContent(), item.name);
+      const sizes=await page.$$eval('#detail .small-views .thumb', els=>els.map(e=>[Math.round(e.getBoundingClientRect().width),Math.round(e.getBoundingClientRect().height)]));
+      assert.deepEqual(sizes,[[106,152],[90,132],[156,218]],person);
+      await page.waitForFunction(()=>[...document.querySelectorAll('#detail .small-views img')].every(img=>img.complete&&img.naturalWidth>0));
+      const file=data.files.find(f=>f.path===item.asset);
+      assert.deepEqual(await page.$eval('#detail .full-holder img',img=>[img.naturalWidth,img.naturalHeight]),[file.width,file.height]);
+      await page.locator('#detail').evaluate(el=>el.scrollIntoView({block:'start'}));
+      await shot(page,'opening-'+person+'.jpg');
+      await page.locator('#detail .full-holder').evaluate(el=>el.scrollIntoView({block:'start'}));
+      await shot(page,'opening-'+person+'-full.jpg');
+      checked.push({person_id:person,asset:item.asset,sha256:file.sha256,card_sizes:sizes});
+    }
+    env.proof.checks.opening_leaders=checked;
   });
 
   await t.test('a changed file is flagged and a changed input fails closed', async () => {
@@ -514,6 +560,8 @@ test('real reviewer in a headless browser', {skip: skipBrowser}, async (t) => {
     assert.deepEqual(env.requests.filter((r) => r.method !== 'GET'), []);
     assert.deepEqual(env.failures, []);
     assert.deepEqual(env.errors, []);
+    const required=['load','filters','keyboard','side_by_side','retired_afghanistan_link','retired_greece_link','opening_leaders','tamper','narrow'];
+    assert.deepEqual(required.filter(name => !env.proof.checks[name]), [], 'Every browser subjourney must finish before its receipt can pass');
     env.proof.passed = true;
   });
 });
