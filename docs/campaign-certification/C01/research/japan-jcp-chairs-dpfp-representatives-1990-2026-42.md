@@ -560,3 +560,5 @@ Run on the packet tree before committing (1 October 2026, UTC):
 - `python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 42 --base origin/codex/campaign-certification` runs
   after the push (it needs a clean, pushed head) and re-downloads all 32 identities a third time; its summary is returned with
   this handoff.
+
+Second checker pass (1 October 2026): the research file's ruling wording now states rulings (a) and (b) as decided (six places in japan.json), and the comments in the six earlier Japan tests and this packet's test no longer call it stacked (it is based on integration since CLAUDE-C01-31 was accepted). Comments and wording only; no assertion, holder, claim or source changed.

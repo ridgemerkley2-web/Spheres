@@ -159,3 +159,5 @@ Checks re-run on the fixed tree (1 October 2026, UTC):
   were re-downloaded for verification with the recorded bytes and SHA-256), so it does not re-download the 32 identities.
 
 C01 and all parent gates stay open.
+
+Second checker pass (1 October 2026): the research file's ruling wording now states rulings (a) and (b) as decided (six places in japan.json), and the comments in the six earlier Japan tests and this packet's test no longer call it stacked (it is based on integration since CLAUDE-C01-31 was accepted). Comments and wording only; no assertion, holder, claim or source changed.

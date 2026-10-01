@@ -15,7 +15,7 @@ import campaign_research as research
 # CLAUDE-C01-31 appends the sources of a new party role, jp_komeito_representative, on the 公明党 observation after this
 # packet's; its exact sources and holders are pinned in its own test.
 import test_japan_komeito_representatives_c01_31 as komeito
-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
+# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) appends the sources of the 日本共産党 chair and 国民民主党 representative roles
 # after CLAUDE-C01-31's; its exact sources and holders are pinned in its own test.
 import test_japan_jcp_dpfp_leaders_c01_42 as jcp42
 

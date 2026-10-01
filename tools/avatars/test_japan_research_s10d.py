@@ -13,7 +13,7 @@ import campaign_research as research
 # adds 54 sources and 111 claims for a new party role, jp_sdp_chair, on the 社会民主党 observation, pinned in
 # test_japan_sdp_chairs_c01_29.py; CLAUDE-C01-31 adds 31 sources and 64 claims for a new party role,
 # jp_komeito_representative, on the 公明党 observation, pinned in test_japan_komeito_representatives_c01_31.py;
-# CLAUDE-C01-42 (stacked on CLAUDE-C01-31) adds 32 sources and 50 claims to the existing 日本共産党 chair roles and the
+# CLAUDE-C01-42 (claimed while stacked on CLAUDE-C01-31, now based on integration) adds 32 sources and 50 claims to the existing 日本共産党 chair roles and the
 # 国民民主党 representative role, pinned in test_japan_jcp_dpfp_leaders_c01_42.py.
 ORIGINAL_SOURCES = ('jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218', 'jp_shugiin_group_definition',
                     'jp_ldp_ishiba_elected_2024', 'jp_ldp_takaichi_elected_2025', 'jp_jcp_chairs_2024',

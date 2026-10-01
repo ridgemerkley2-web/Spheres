@@ -23,7 +23,7 @@ T_EXEC = '幹部会委員長 — Executive Committee chair'
 T_CENTRAL = '中央委員会議長 — Central Committee chair'
 T_DPFP = '代表 — party representative'
 
-# The packet's sources before this packet (CLAUDE-C01-31, the stacked base, ends at 503).
+# The packet's sources before this packet (CLAUDE-C01-31, accepted into integration 13367c99, ends at 503).
 EARLIER_SOURCE_COUNT = 503
 
 GROUPS = ['jp_shugiin_group_20260218_011',
@@ -760,7 +760,7 @@ class JapanJcpDpfpLeadersTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
         order = [s['id'] for s in self.packet['sources']]
         self.assertEqual(order[EARLIER_SOURCE_COUNT:], NEW_SOURCES)
-        # CLAUDE-C01-31's 31 Komeito sources, the stacked base, end exactly where this packet's begin.
+        # CLAUDE-C01-31's 31 Komeito sources, accepted into integration, end exactly where this packet's begin.
         self.assertTrue(all(sid.startswith('jp_komeito_') for sid in order[EARLIER_SOURCE_COUNT - 31:EARLIER_SOURCE_COUNT]))
         self.assertFalse(order[EARLIER_SOURCE_COUNT - 32].startswith('jp_komeito_'))
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid in RESPONSES])
