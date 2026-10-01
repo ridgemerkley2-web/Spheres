@@ -54,8 +54,10 @@ The packet applies the rule of the integrated Brazil packets (CLAUDE-C01-10, -17
 only where a source states the day the office was assumed or took effect, and `until` only where a source states the
 day it ended. No record found here states either, so no holder has a start or an end. Every holder is dated by
 `attested_on` and cites only in-office attestations made on its own day: three signed acts (two resolutions and a
-communiqué) and two party items that print no event day and are dated by their own printed date, as a party
-newspaper's issue date may (C01-29, C01-31). The test pins that every cited claim carries exactly the holder's date.
+communiqué) and two party items dated by their own printed date. The 16 May 2014 item prints no separate event
+day. The 11 November 2022 item reports a meeting on 10 November and separately styles Tourinho national president;
+the selected observation uses the article's office styling on 11 November, not an inferred assumption of office
+at the previous day's meeting. The test pins that every cited claim carries exactly the holder's date.
 
 The remaining evidence is retained as claims in this bounded packet: the court's registration, renaming and fusion
 decisions, the party's renaming statement, conventions and executive meetings, minutes, convocations, undated rosters and listings,
