@@ -9567,8 +9567,8 @@
       "scope_note": "Raw Internet Archive capture made 18 May 2007 of a DA news article dated \"Sunday, May 06, 2007\". Its heading field reads \"Statement issued by: Helen Zille, DA spokesperson on Leader of the Official Opposition\", a label naming a parliamentary office, which is never evidence of the party office. Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-da-zille-acceptance-speech-20070506-facts.json",
-        "bytes": 4197,
-        "sha256": "38de82f82311e51eab5b0f7be1ec7a7f7e56ed6f50445f68dd6a977bf82912eb"
+        "bytes": 4189,
+        "sha256": "80a4de4270dbd265b2f483ad974a51d98e1f6f11e8adff1459bab5dd643c75bd"
       },
       "claims": [
         {
@@ -9578,7 +9578,7 @@
           "locator": {
             "section": "Article heading and speech text"
           },
-          "uncertainty": "An election reference in the elected person's own speech: it says \"your leader\", not the office by title, and states no day she assumed the office, so it is never a start and never a holder observation; it is not an end for anyone. The heading's \"Leader of the Official Opposition\" label is a parliamentary office and feeds nothing. Never a holder date, start or end."
+          "uncertainty": "Dates the holder observation of 6 May 2007 (Ridge's ruling, following Codex's CLAUDE-C01-31 review 988d5379, which kept a new holder's convention acceptance as a dated observation): her own speech says \"your leader\" to the DA's congress and states no day she assumed the office, so it is never a start, and it is not an end for anyone. The heading's \"Leader of the Official Opposition\" label is a parliamentary office and feeds nothing."
         }
       ]
     },
@@ -9690,13 +9690,13 @@
       "scope_note": "Raw Internet Archive capture made 3 June 2014 of a DA newsroom speech item bylined \"Helen Zille, Leader of the Democratic Alliance 9 May 2014\". The national election it discusses is a state election and is not used. Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-da-speech-zille-growth-victory-20140509-facts.json",
-        "bytes": 4076,
-        "sha256": "fd2744c6e8159bef61581baf3d9093b9759626d0b33773d02d40e66c2a3cc27d"
+        "bytes": 4078,
+        "sha256": "a0cc69196ccd7f7ae8c7d164c681e56fc9a6179982e11422dfe746e986c9a334"
       },
       "claims": [
         {
           "id": "za_da_speech_leader_zille_20140509",
-          "text": "The DA speech item \"DA's growth is a victory for all South Africans\" is bylined \"Helen Zille, Leader of the Democratic Alliance 9 May 2014\".",
+          "text": "The DA speech item \"DA’s growth is a victory for all South Africans\" is bylined \"Helen Zille, Leader of the Democratic Alliance 9 May 2014\".",
           "attested_on": "2014-05-09",
           "locator": {
             "section": "Speech title and byline"
@@ -9884,7 +9884,7 @@
           "locator": {
             "section": "First paragraph"
           },
-          "uncertainty": "A resignation claim: it names the weekday on which the Federal Executive was informed of a decision to resign, not a calendar day on which a resignation was accepted or took effect, so it is never an end (see the ruling question in the report). The Federal Chairperson is another office. Never a holder date, start or end."
+          "uncertainty": "A resignation claim: it names the weekday on which the Federal Executive was informed of a decision to resign, not the day the office became vacant, so it is never an end by itself; under Ridge's ruling its \"The FedEx was convened on Thursday morning\" fixes the week in which the vacancy statement of 25 October 2019 resolves \"on Wednesday\" to 23 October 2019. The Federal Chairperson is another office. Never a holder date, start or end."
         }
       ]
     },
@@ -9913,7 +9913,7 @@
           "locator": {
             "section": "Second paragraph"
           },
-          "uncertainty": "The vacancy is dated only by a weekday (\"on Wednesday\") in a statement of 25 October 2019; no calendar day is printed, and the packet does not convert the weekday into an end (see the ruling question in the report). Never a holder date, start or end."
+          "uncertainty": "Gives the end of the holder observation of 4 October 2019 (Mmusi Maimane) on 23 October 2019 (Ridge's ruling): a relative day in a dated party statement resolves from its dateline (the CLAUDE-C01-29 rule); this statement is dated 25 October 2019, a Friday, so \"on Wednesday\" is 23 October 2019, the week fixed by the statement of Thursday 24 October 2019 (\"The FedEx was convened on Thursday morning\"). The statement's own date is never a holder date, start or end; the Federal Chairperson is another office."
         },
         {
           "id": "za_da_fedco_interim_leader_election_scheduled_20191025",
@@ -12474,6 +12474,20 @@
             },
             {
               "name": "Helen Zille",
+              "attested_on": "2007-05-06",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_da_zille_acceptance_speech_20070506"
+              ],
+              "claim_ids": [
+                "za_da_zille_elected_leader_acceptance_20070506"
+              ],
+              "note": "Observed on 6 May 2007: her own acceptance speech on the DA site, dated \"Sunday, May 06, 2007\", says \"Today you have elected me as your leader\" and \"I accept nomination as your leader\"; it says \"your leader\" to the DA's congress (\"the DA delegates here today\"). As Codex's CLAUDE-C01-31 review (988d5379) kept a new holder's convention acceptance as a dated observation, the speech dates an observation, not a start (Ridge's ruling).",
+              "uncertainty": "No start: the speech dates her election and acceptance but states no day she assumed the office. No end: none is stated. The heading label \"Leader of the Official Opposition\" is a parliamentary office and feeds nothing, and Tony Leon's end is never inferred from her election."
+            },
+            {
+              "name": "Helen Zille",
               "attested_on": "2010-10-15",
               "from": null,
               "until": null,
@@ -12484,7 +12498,7 @@
                 "za_da_sa_today_leader_zille_20101015"
               ],
               "note": "Observed on 15 October 2010: a DA newsroom item of that day is bylined \"Helen Zille, Leader of the Democratic Alliance\".",
-              "uncertainty": "No start: her acceptance speech of 6 May 2007 is an election reference that states no day she assumed the office. No end: none is stated."
+              "uncertainty": "No start: none is stated; her acceptance speech of 6 May 2007 dates an earlier observation and states no day she assumed the office. No end: none is stated."
             },
             {
               "name": "Helen Zille",
@@ -12560,15 +12574,17 @@
               "name": "Mmusi Maimane",
               "attested_on": "2019-10-04",
               "from": null,
-              "until": null,
+              "until": "2019-10-23",
               "sources": [
-                "za_da_finance_chair_statement_20191004"
+                "za_da_finance_chair_statement_20191004",
+                "za_da_fedcouncil_chair_interim_election_20191025"
               ],
               "claim_ids": [
-                "za_da_statement_federal_leader_maimane_20191004"
+                "za_da_statement_federal_leader_maimane_20191004",
+                "za_da_federal_leader_position_vacant_20191025"
               ],
-              "note": "Observed on 4 October 2019: a DA statement of that day refers to him as \"Federal Leader Mmusi Maimane\" and \"Democratic Alliance (DA) Leader, Mmusi Maimane\".",
-              "uncertainty": "No start: none is stated. No end: the statements of 24 and 25 October 2019 date his decision to resign and the vacancy only by a weekday (\"on Wednesday\"); no calendar day of an accepted or effective resignation is printed (see the ruling question in the report)."
+              "note": "Observed on 4 October 2019: a DA statement of that day refers to him as \"Federal Leader Mmusi Maimane\" and \"Democratic Alliance (DA) Leader, Mmusi Maimane\". Until 23 October 2019: the DA statement issued by the Chairperson of the Federal Council on 25 October 2019, a Friday, says \"The Federal Leader and Federal Chairperson positions became vacant on Wednesday\"; a relative day in a dated party statement resolves from its dateline (the CLAUDE-C01-29 rule), so the Wednesday is 23 October 2019, and the statement of Thursday 24 October 2019 (the FedEx was informed \"On Wednesday\" and \"was convened on Thursday morning\") fixes the same week.",
+              "uncertainty": "No start: none is stated. The end is the vacancy the party stated by weekday, resolved from the statement's dateline (Ridge's ruling); no calendar day is printed. The Federal Executive's being informed of his decision (24 October 2019) is a resignation claim, and the interim election of 17 November 2019 and John Steenhuisen's interim service are claims only; no end is inferred from a successor."
             },
             {
               "name": "John Steenhuisen",
@@ -12625,7 +12641,7 @@
               "note": "Dated observation only; no continuous term, game identity, biography or likeness rights granted."
             }
           ],
-          "scope_note": "Federal Leader of the Democratic Alliance, the party office elected by the DA's Federal Congress (printed as \"Leader of the Democratic Alliance\", \"DA Leader\" and \"Federal Leader\"). The S10h intake's two discrete attestations (2023-04-03 and 2026-04-12) are unchanged. CLAUDE-C01-39 adds DA in-office attestations from 2000 to 2026 as dated observations (attested_on); no source reviewed states the day any Leader assumed or left the office, so no added holder has a start or an end. Elections and election references, result publications, congress sessions, resignation decisions, vacancies stated by weekday, tributes, retrospective stylings and interim service (the Interim Federal Leader, 2019-2020) are claims that never feed a holder. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's election. Claims about the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance sit on the organization with no role and never feed this role; the DP's Leader is another organization's office. Party office and state office stay separate: parliamentary seats, the Leader of the Official Opposition, the DA's Parliamentary Leader and ministerial office never feed this role, and no za_presidency claim or source feeds it."
+          "scope_note": "Federal Leader of the Democratic Alliance, the party office elected by the DA's Federal Congress (printed as \"Leader of the Democratic Alliance\", \"DA Leader\" and \"Federal Leader\"). The S10h intake's two discrete attestations (2023-04-03 and 2026-04-12) are unchanged. CLAUDE-C01-39 adds DA attestations from 2000 to 2026 as dated observations (attested_on), including Helen Zille's own acceptance speech of 6 May 2007 as a dated observation, not a start; no source reviewed states the day any Leader assumed the office, so no added holder has a start, and one has an end: Mmusi Maimane's until of 23 October 2019 resolves the vacancy the DA stated \"on Wednesday\" in its statement of 25 October 2019 from that statement's dateline. Result publications, congress sessions, the resignation decision, the dates of the vacancy statements, tributes, retrospective stylings and interim service (the Interim Federal Leader, 2019-2020) are claims that never feed a holder. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's election. Claims about the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance sit on the organization with no role and never feed this role; the DP's Leader is another organization's office. Party office and state office stay separate: parliamentary seats, the Leader of the Official Opposition, the DA's Parliamentary Leader and ministerial office never feed this role, and no za_presidency claim or source feeds it."
         },
         {
           "id": "za_da_federal_chair",
@@ -12787,7 +12803,7 @@
           "Reconcile legal registration, precise organization identity, renames, alliances, mergers and splits against original records.",
           "Research all independently dated party, parliamentary and executive leadership roles before character or succession eligibility.",
           "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation.",
-          "DA Federal Leaders 2000-2026 (CLAUDE-C01-39, ZA-DA-01..10): role za_da_federal_leader now holds thirteen dated observations of five people, Tony Leon (2000), Helen Zille (2010-2014), Mmusi Maimane (2016-2019), John Steenhuisen (2021-2026, with the S10h 2023 observation) and Geordin Hill-Lewis (the S10h 2026 observation), with no stated start or end. Elections (6 May 2007, 10 May 2015, 1 November 2020), the October 2019 resignation and vacancy, the interim leadership of 2019-2020 and the 2026 tribute are claims only. Claims about the Democratic Party (1989-2000; Zach de Beer and Tony Leon as its leaders), the DA's formation by the DP, NNP and Federal Alliance and the 2000 DP/NNP alliance are organization claims on this observation with no role, never merged identities. Still open: dated DA records of Leon from 2001 to 2007 and of Zille from 2007 to 2009 and in 2015, the day each Leader assumed or left the office, the congresses of 2000, 2010 and 2012, and the calendar day of the October 2019 vacancy. This observation's IEC reporting identity, unknown lifecycle and empty game mapping are unchanged."
+          "DA Federal Leaders 2000-2026 (CLAUDE-C01-39, ZA-DA-01..10): role za_da_federal_leader now holds fourteen dated observations of five people, Tony Leon (2000), Helen Zille (2007-2014), Mmusi Maimane (2016-2019, the last with an end on 23 October 2019), John Steenhuisen (2021-2026, with the S10h 2023 observation) and Geordin Hill-Lewis (the S10h 2026 observation); no holder has a stated start, and Maimane's end resolves the vacancy the DA stated \"on Wednesday\" on 25 October 2019 from that statement's dateline. Result publications (10 May 2015, 1 November 2020), the October 2019 resignation decision, the interim leadership of 2019-2020 and the 2026 tribute are claims only. Claims about the Democratic Party (1989-2000; Zach de Beer and Tony Leon as its leaders), the DA's formation by the DP, NNP and Federal Alliance and the 2000 DP/NNP alliance are organization claims on this observation with no role, never merged identities. Still open: dated DA records of Leon from 2001 to 2007 and of Zille from 2007 to 2009 and in 2015, the day each Leader assumed the office and every other end, the congresses of 2000, 2010 and 2012, a dated DA in-office record of Geordin Hill-Lewis to re-base the S10h observation of 12 April 2026 (a result announcement), and a review of the S10h observation of 3 April 2023 (a provincial congratulation). This observation's IEC reporting identity, unknown lifecycle and empty game mapping are unchanged."
         ]
       }
     },
@@ -16324,7 +16340,7 @@
       "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
       "ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30, ZA-ACDP-01..05, ZA-FF-01..09, ZA-IFP-01..08): three party-leader roles, za_acdp_president, za_ff_leader and za_ifp_president, on the AFRICAN CHRISTIAN DEMOCRATIC PARTY, VRYHEIDSFRONT PLUS and INKATHA FREEDOM PARTY observations, with 22 holder observations of seven people (Kenneth Meshoe; Constand Viljoen, Pieter Mulder, Pieter Groenewald and Corné Mulder; Mangosuthu Buthelezi and Velenkosini Hlabisa) dated by the parties' own in-office attestations and no start or end. This packet conservatively retains in-office attestations rather than promoting the reviewed election, acceptance and retirement statements into exact term boundaries; dated IFP retirement statements, including the 24 August 2019 address and retrospective timeline, remain claims only. Elections, selections, acceptances, result publications, retirement and valedictory statements, the President Emeritus title, deaths and the parliamentary leader office are claims only. The founding, renaming and merger claims (December 1993; March 1994 and 27 September 2003; 14 or 10 July 1990) are organization claims that set no lifecycle or identity. Ministerial, parliamentary and legislature offices never feed the party roles, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
       "PAC Presidents 1990-2026 (CLAUDE-C01-32, ZA-PAC-01..11): the party office is a separate role, za_pac_president, on the PAN AFRICANIST CONGRESS OF AZANIA observation, with fourteen holder observations of six people (Stanley Mogoba, Letlapa Mphahlele, Alton Mphethi, Luthando Mbinda, Narius Moloto and Mzwanele Nyhontso) dated by PAC in-office attestations and one High Court judgment, and no start or end; six observations from the disputed years 2014-2021 are marked disputed and no dispute is resolved by inference. No record found states the day any President assumed or left the office; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings and congress sessions are claims only, and so are the claims of two PAC posts that republish news text without credit and of an undated statement whose page carries only an edit stamp. Zephania Mothopeng, Clarence Makwetu and Motsoko Pheko appear only in retrospective lists, election references and an undated manifesto. Constitution amendments are organization claims that set no lifecycle or identity. Parliamentary seats and ministerial office never feed the role, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
-      "DA Federal Leaders 2000-2026 (CLAUDE-C01-39, ZA-DA-01..10): the party office stays the existing role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation, now with thirteen holder observations of five people (eleven added from DA records, 2000-2026; the S10h observations of 2023 and 2026 unchanged), every one a dated observation with no start or end. The Democratic Party (1989-2000) has no observation: its leaders and the DA's formation are claims only. Interim service, elections, result publications and resignations never feed a holder; party office and state office stay separate.",
+      "DA Federal Leaders 2000-2026 (CLAUDE-C01-39, ZA-DA-01..10): the party office stays the existing role za_da_federal_leader on the DEMOCRATIC ALLIANCE observation, now with fourteen holder observations of five people (twelve added from DA records, 2000-2026; the S10h observations of 2023 and 2026 unchanged); none has a stated start, and one (Mmusi Maimane, 2019) has an end, 23 October 2019, resolved from the dateline of the DA's vacancy statement of 25 October 2019. The Democratic Party (1989-2000) has no observation: its leaders and the DA's formation are claims only. Interim service, result publications and the resignation decision never feed a holder; party office and state office stay separate.",
       "Deputy Presidents 1994-2026 (CLAUDE-C01-21, ZA-DP-01..10): the Deputy President is a separate role, za_deputy_president, in za_presidency, with twelve holder observations from primary records; only Jacob Zuma's start (17 June 1999) is stated and no holder has a stated end. Announcements, appointments and their notices, scheduled oaths, releases, resignations and their stated effect, Assembly-seat events and retrospective lists are claims only; acting service as President is never a holder; the President's roles and the ANC's party office are unchanged, and no game identity or portrait permission is granted.",
       "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
     ]

@@ -1,14 +1,17 @@
 """CLAUDE-C01-39: the Federal Leader of the Democratic Alliance, 2000-2026, extends the existing S10h role
 za_da_federal_leader and stays one party office kept apart from every other role and from state office. The two S10h
-holders are unchanged; every added holder is a dated in-office observation with no start or end, because no record
-reviewed states one. Elections, result publications, congress sessions, the October 2019 resignation and vacancy, interim
-service and tributes stay separate claims; the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance
-are claims about organizations with no role, never merged identities."""
+holders are unchanged; every added holder is a dated observation with no start, because no record reviewed states one.
+Ridge's rulings: Helen Zille's own acceptance speech of 6 May 2007 dates an observation, never a start (b), and Mmusi
+Maimane's last observation ends on 23 October 2019, the Wednesday of the DA's vacancy statement of Friday 25 October 2019
+resolved from its dateline (a). Result publications, congress sessions, the resignation decision, interim service and
+tributes stay separate claims; the Democratic Party (1989-2000), the DA's formation and the DP/NNP alliance are claims
+about organizations with no role, never merged identities."""
 import copy
 import hashlib
 import json
 import re
 import unittest
+from datetime import date, timedelta
 from urllib.parse import urlsplit
 
 import campaign_research as research
@@ -118,7 +121,7 @@ EVENTS = {
     'za_da_formed_by_dp_nnp_fa_retrospective': (None, 'formation_by_parties_retrospective'),
     'za_da_speech_leader_leon_20001014': ('2000-10-14', 'in_office_attestation'),
     'za_da_speech_leader_leon_20001122': ('2000-11-22', 'in_office_attestation'),
-    'za_da_zille_elected_leader_acceptance_20070506': ('2007-05-06', 'election_acceptance_statement'),
+    'za_da_zille_elected_leader_acceptance_20070506': ('2007-05-06', 'in_office_attestation'),
     'za_da_profile_leon_former_leader_2007': (None, 'former_holder_styled'),
     'za_da_profile_formation_under_leon_leadership': (None, 'formation_under_leadership_retrospective'),
     'za_da_sa_today_leader_zille_20101015': ('2010-10-15', 'in_office_attestation'),
@@ -151,17 +154,18 @@ UNDATED = (
     'za_da_sixth_federal_congress_9_10_may_2015',
 )
 NEW_SOURCES = list(RESPONSES)
-# Holder observations (name, attested_on, from, until) in date order: eleven added and the two S10h rows (10 and 12).
+# Holder observations (name, attested_on, from, until) in date order: twelve added and the two S10h rows (11 and 13).
 HOLDERS = [
     ('Tony Leon', '2000-10-14', None, None),
     ('Tony Leon', '2000-11-22', None, None),
+    ('Helen Zille', '2007-05-06', None, None),
     ('Helen Zille', '2010-10-15', None, None),
     ('Helen Zille', '2012-11-04', None, None),
     ('Helen Zille', '2014-05-09', None, None),
     ('Mmusi Maimane', '2016-04-25', None, None),
     ('Mmusi Maimane', '2018-04-07', None, None),
     ('Mmusi Maimane', '2018-04-08', None, None),
-    ('Mmusi Maimane', '2019-10-04', None, None),
+    ('Mmusi Maimane', '2019-10-04', None, '2019-10-23'),
     ('John Steenhuisen', '2021-03-10', None, None),
     ('John Steenhuisen', '2023-04-03', None, None),
     ('John Steenhuisen', '2026-03-04', None, None),
@@ -170,30 +174,37 @@ HOLDERS = [
 HOLDER_CLAIMS = [
     ['za_da_speech_leader_leon_20001014'],
     ['za_da_speech_leader_leon_20001122'],
+    ['za_da_zille_elected_leader_acceptance_20070506'],
     ['za_da_sa_today_leader_zille_20101015'],
     ['za_da_press_release_leader_zille_20121104'],
     ['za_da_speech_leader_zille_20140509'],
     ['za_da_news_leader_maimane_20160425'],
     ['za_da_news_leader_maimane_20180407'],
     ['za_da_closing_speech_federal_leader_maimane_20180408'],
-    ['za_da_statement_federal_leader_maimane_20191004'],
+    ['za_da_statement_federal_leader_maimane_20191004', 'za_da_federal_leader_position_vacant_20191025'],
     ['za_da_statement_federal_leader_steenhuisen_20210310'],
     ['za_da_steenhuisen_attested_20230403'],
     ['za_da_statement_leader_steenhuisen_20260304'],
     ['za_da_leader_elected_20260412'],
 ]
-S10H_INDEXES = [10, 12]
+S10H_INDEXES = [11, 13]
 NEW_INDEXES = [i for i in range(len(HOLDERS)) if i not in S10H_INDEXES]
-HOLDER_REVIEW = {0: 'ZA-DA-03', 1: 'ZA-DA-03', 2: 'ZA-DA-05', 3: 'ZA-DA-05', 4: 'ZA-DA-05', 5: 'ZA-DA-07', 6: 'ZA-DA-07',
-                 7: 'ZA-DA-07', 8: 'ZA-DA-07', 9: 'ZA-DA-09', 11: 'ZA-DA-10'}
+HOLDER_REVIEW = {0: 'ZA-DA-03', 1: 'ZA-DA-03', 2: 'ZA-DA-04', 3: 'ZA-DA-05', 4: 'ZA-DA-05', 5: 'ZA-DA-05', 6: 'ZA-DA-07',
+                 7: 'ZA-DA-07', 8: 'ZA-DA-07', 9: 'ZA-DA-07', 10: 'ZA-DA-09', 12: 'ZA-DA-10'}
+# Ridge's ruling (a), the one stated end: a relative day in a dated party statement resolves from its dateline. The
+# statement of Friday 25 October 2019 says the office "became vacant on Wednesday", that is 23 October 2019.
+# Claim id -> (holder, the observation it ends, the statement's dateline, the weekday printed, until).
+END_CLAIMS = {
+    'za_da_federal_leader_position_vacant_20191025': ('Mmusi Maimane', '2019-10-04', '2019-10-25', 'Wednesday',
+                                                      '2019-10-23'),
+}
+WEEKDAYS = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
 # Role claims that must never feed a holder.
 NEVER_HOLDER = (
-    'za_da_zille_elected_leader_acceptance_20070506',
     'za_da_profile_leon_former_leader_2007',
     'za_da_sixth_federal_congress_9_10_may_2015',
     'za_da_leader_maimane_elected_published_20150510',
     'za_da_fedex_informed_maimane_resignation_decision_20191024',
-    'za_da_federal_leader_position_vacant_20191025',
     'za_da_fedco_interim_leader_election_scheduled_20191025',
     'za_da_fedex_congratulates_interim_leader_steenhuisen_20191123',
     'za_da_leader_steenhuisen_elected_published_20201101',
@@ -215,12 +226,16 @@ DP_CLAIMS = ORGANIZATION_ONLY[:5]
 INTERIM_CLAIMS = ('za_da_fedco_interim_leader_election_scheduled_20191025',
                   'za_da_fedex_congratulates_interim_leader_steenhuisen_20191123')
 REVIEW = [f'ZA-DA-{n:02d}' for n in range(1, 11)]
-# Days that must never be any holder's observation, start or end: elections and result publications, congress spans,
-# the resignation decision, the vacancy and its weekday, the interim election and its reporting, the tribute, the DP's
-# dated record and formation day, and lead days (the DA's reported launch).
-NEVER_HOLDER_DATE = {'1989-04-08', '1997-05-22', '2000-06-24', '2007-05-06', '2015-05-09', '2015-05-10', '2019-10-23',
-                     '2019-10-24', '2019-10-25', '2019-11-17', '2019-11-23', '2020-10-31', '2020-11-01', '2026-02-04'}
+# Days that must never be any holder's observation, start or end: result publications, congress spans, the dates of
+# the resignation and vacancy statements, the interim election and its reporting, the tribute, the DP's dated record and
+# formation day, and lead days (the DA's reported launch). Zille's acceptance day (ruling (b)) is an observation day
+# only, and the resolved Wednesday (ruling (a)) is Maimane's end only.
+NEVER_HOLDER_DATE = {'1989-04-08', '1997-05-22', '2000-06-24', '2015-05-09', '2015-05-10', '2019-10-24', '2019-10-25',
+                     '2019-11-17', '2019-11-23', '2020-10-31', '2020-11-01', '2026-02-04'}
+ONLY_OBSERVATION_DATE = {'2007-05-06'}
+ONLY_END_DATE = {'2019-10-23'}
 HOLDER_KINDS = {'in_office_attestation'}
+END_KINDS = {'vacancy_stated'}
 BOUNDARY_KINDS = {'assumption_of_office', 'end_of_term_statement', 'resignation_effective', 'oath_of_office'}
 # Holder names and the surname each cited claim prints.
 PEOPLE = {'Tony Leon': 'Leon', 'Helen Zille': 'Zille', 'Mmusi Maimane': 'Maimane', 'John Steenhuisen': 'Steenhuisen',
@@ -277,14 +292,28 @@ def da_invariants(packet):
     assert [holders[i] for i in S10H_INDEXES] == S10H_HOLDERS
     for index, h in enumerate(holders):
         assert 'acting' not in h['name'].lower() and 'interim' not in h['name'].lower(), h['name']
-        assert h['from'] is None and h['until'] is None, h['name']
-        assert h['attested_on'] not in NEVER_HOLDER_DATE, h['name']
+        assert h['from'] is None, h['name']
+        assert not {h['attested_on'], h['from'], h['until']} & NEVER_HOLDER_DATE, h['name']
+        assert h['attested_on'] not in ONLY_END_DATE and h['until'] not in ONLY_OBSERVATION_DATE, h['name']
         assert not set(h['claim_ids']) & set(NEVER_HOLDER), h['name']
         assert not set(h['claim_ids']) & set(ORGANIZATION_ONLY), h['name']
+        # An end only where a cited claim states it (ruling (a)): the printed weekday, resolved from the dateline.
+        ends = [cid for cid in h['claim_ids'] if cid in END_CLAIMS]
+        assert len(ends) == (0 if h['until'] is None else 1), h['name']
+        for cid in ends:
+            name, observed, dateline, weekday, until = END_CLAIMS[cid]
+            assert (h['name'], h['attested_on'], h['until']) == (name, observed, until), cid
+            assert claims[cid]['attested_on'] == dateline and f'on {weekday}' in claims[cid]['text'], cid
+            day = date.fromisoformat(dateline)
+            back = (day.weekday() - WEEKDAYS.index(weekday)) % 7
+            assert back and (day - timedelta(days=back)).isoformat() == until, cid
+            assert h['attested_on'] < until < dateline, cid
+        assert h['claim_ids'][0] not in END_CLAIMS, h['name']
         expected = []
         for cid in h['claim_ids']:
             assert cid in role['claim_ids'] and cid.startswith(PREFIX), cid
-            assert claims[cid]['attested_on'] == h['attested_on'], cid
+            if cid not in END_CLAIMS:
+                assert claims[cid]['attested_on'] == h['attested_on'], cid
             if claim_source[cid] not in expected:
                 expected.append(claim_source[cid])
         assert h['sources'] == expected, h['name']
@@ -363,13 +392,16 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
         self.assertEqual([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith(PREFIX)], S10H_ROLE_SOURCES)
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (53, 11))
         self.assertEqual(list(EVENTS), self.new_claims)
-        # Every new claim is exactly one of: a holder claim, a role claim that never feeds a holder, or an
-        # organization-only claim.
+        # Every new claim is exactly one of: a holder observation's claim, a holder's end claim, a role claim that
+        # never feeds a holder, or an organization-only claim.
         holder_claims = [HOLDER_CLAIMS[i][0] for i in NEW_INDEXES]
-        groups = holder_claims + list(NEVER_HOLDER) + list(ORGANIZATION_ONLY)
+        end_claims = [cid for i in NEW_INDEXES for cid in HOLDER_CLAIMS[i][1:]]
+        groups = holder_claims + end_claims + list(NEVER_HOLDER) + list(ORGANIZATION_ONLY)
         self.assertEqual(len(groups), len(set(groups)))
         self.assertEqual(set(groups), set(self.new_claims))
-        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(ORGANIZATION_ONLY)), (11, 10, 8))
+        self.assertEqual(end_claims, list(END_CLAIMS))
+        self.assertEqual((len(holder_claims), len(end_claims), len(NEVER_HOLDER), len(ORGANIZATION_ONLY)),
+                         (12, 1, 8, 8))
         observations = re.findall(r'^### (ZA-DA-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, REVIEW)
         self.assertEqual({row['review_observation'] for row in self.rows.values()}, set(REVIEW))
@@ -386,13 +418,26 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             holder = self.role['holder_claims'][index]
             self.assertTrue(holder['note'].startswith('Observed on '), holder['name'])
             self.assertRegex(holder['uncertainty'], r'^No start', holder['name'])
-            self.assertIn('No end', holder['uncertainty'], holder['name'])
+            if holder['until'] is None:
+                self.assertIn('No end', holder['uncertainty'], holder['name'])
+            else:
+                self.assertIn('Until 23 October 2019: ', holder['note'])
+                self.assertIn('resolves from its dateline', holder['note'])
+                self.assertIn("Ridge's ruling", holder['uncertainty'])
             for cid in holder['claim_ids']:
                 row = self.rows[cid]
                 self.assertIn(PEOPLE[holder['name']].lower(), self.claims[cid]['text'].lower(), cid)
                 self.assertEqual((row['holder_name'], row['role_id'], row['role_title']), (holder['name'], ROLE, TITLE), cid)
-                self.assertIn(row['event_kind'], HOLDER_KINDS, cid)
-                self.assertIn('Dates the holder observation', self.claims[cid]['uncertainty'], cid)
+                if cid in END_CLAIMS:
+                    self.assertIn(row['event_kind'], END_KINDS, cid)
+                    self.assertIn('Gives the end of the holder observation', self.claims[cid]['uncertainty'], cid)
+                else:
+                    self.assertIn(row['event_kind'], HOLDER_KINDS, cid)
+                    self.assertIn('Dates the holder observation', self.claims[cid]['uncertainty'], cid)
+        # Ruling (b): Zille's own acceptance speech, addressed to the DA's congress, dates an observation, never a start.
+        zille = self.role['holder_claims'][2]
+        self.assertIn('"your leader" to the DA\'s congress', zille['note'])
+        self.assertIn('988d5379', zille['note'])
         for cid in NEVER_HOLDER:
             self.assertNotIn(self.rows[cid]['event_kind'], HOLDER_KINDS | BOUNDARY_KINDS, cid)
             self.assertEqual(self.rows[cid]['role_id'], ROLE, cid)
@@ -415,21 +460,30 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             self.assertIn('Interim', self.claims[cid]['text'], cid)
             self.assertIn('nterim service is claims only', self.claims[cid]['uncertainty'], cid)
         kinds = {self.rows[cid]['event_kind'] for cid in NEVER_HOLDER}
-        for kind in ('election_acceptance_statement', 'result_publication', 'congress_session_dates',
-                     'resignation_decision_reported', 'vacancy_stated', 'interim_election_scheduled_prospective',
-                     'interim_election_reference', 'former_holder_styled', 'service_tribute_departure_reference'):
+        for kind in ('result_publication', 'congress_session_dates', 'resignation_decision_reported',
+                     'interim_election_scheduled_prospective', 'interim_election_reference', 'former_holder_styled',
+                     'service_tribute_departure_reference'):
             self.assertIn(kind, kinds, kind)
+        # Ruling (b) re-kinds Zille's acceptance row as the dated observation it supports (as Codex's 988d5379 did for
+        # CLAUDE-C01-31); ruling (a) keeps the vacancy row a vacancy statement, which gives the end.
+        self.assertEqual(self.rows['za_da_zille_elected_leader_acceptance_20070506']['event_kind'], 'in_office_attestation')
+        self.assertEqual({self.rows[cid]['event_kind'] for cid in END_CLAIMS}, END_KINDS)
+        self.assertFalse(kinds & (HOLDER_KINDS | END_KINDS))
 
     def test_no_start_or_end_is_stated_or_inferred(self):
         claims = self.claims
         for cid in UNDATED:
             self.assertIn('no structured date', claims[cid]['uncertainty'].lower(), cid)
             self.assertTrue(self.rows[cid]['printed_range'], cid)
-        # Evidence recorded but never used as a boundary, each saying why.
+        # The October 2019 weekday statements (ruling (a)): the vacancy gives the end, resolved from its dateline, and
+        # the resignation decision fixes the week but is never an end.
         for cid in ('za_da_fedex_informed_maimane_resignation_decision_20191024',
                     'za_da_federal_leader_position_vacant_20191025'):
             self.assertIn('on Wednesday', claims[cid]['text'].replace('On Wednesday', 'on Wednesday'), cid)
-            self.assertIn('ruling question', claims[cid]['uncertainty'], cid)
+            self.assertIn("Ridge's ruling", claims[cid]['uncertainty'], cid)
+            self.assertIn('convened on Thursday morning', claims[cid]['uncertainty'], cid)
+        self.assertIn('resolves from its dateline', claims['za_da_federal_leader_position_vacant_20191025']['uncertainty'])
+        # Evidence recorded but never used as a boundary, each saying why.
         self.assertIn('never an end', claims['za_da_fedex_informed_maimane_resignation_decision_20191024']['uncertainty'])
         self.assertIn('never an end', claims['za_da_tribute_steenhuisen_six_years_federal_leader_20260204']['uncertainty'])
         self.assertIn('never an end', claims['za_da_profile_leon_former_leader_2007']['uncertainty'])
@@ -448,7 +502,7 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             self.assertIn(phrase, claims[cid]['uncertainty'], cid)
         scope = self.role['scope_note']
         for phrase in ('no za_presidency claim or source feeds it', 'Do not fill the interval', 'interim service',
-                       "infer an outgoing holder's last day", 'so no added holder has a start or an end',
+                       "infer an outgoing holder's last day", 'so no added holder has a start, and one has an end',
                        'The S10h intake\'s two discrete attestations (2023-04-03 and 2026-04-12) are unchanged',
                        'Democratic Party'):
             self.assertIn(phrase, scope)
@@ -531,6 +585,9 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             self.assertEqual(host == 'www.dp.org.za', bool(dp_rows), sid)
         self.assertEqual({cid: (row['attested_on'], row['event_kind']) for cid, row in self.rows.items()}, EVENTS)
         self.assertEqual({cid for cid, row in self.rows.items() if row['attested_on'] is None}, set(UNDATED))
+        # The 2014 byline claim prints the source's curly apostrophe.
+        self.assertTrue(self.claims['za_da_speech_leader_zille_20140509']['text'].startswith(
+            'The DA speech item "DA\u2019s growth is a victory for all South Africans"'))
 
     def test_secondary_leads_and_per_request_pages_stay_out_of_the_packet(self):
         for sid in NEW_SOURCES:
@@ -585,10 +642,10 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             (lambda p: source(p, 'za_da_statement_condolences_cope_20260304')['snapshot'].update(sha256='0' * 64),
              'checksum mismatch'),
             (lambda p: source(p, 'za_da_dp_party_info_page_2000')['snapshot'].update(bytes=1), 'checksum mismatch'),
-            (lambda p: holder(p, 11).update(attested_on='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 12).update(attested_on='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'za_da_statement_leader_steenhuisen_20260304').update(attested_on='2026-09-08'),
              'exceeds cutoff'),
-            (lambda p: holder(p, 9)['claim_ids'].append('za_da_leader_steenhuisen_elected_published_20201101'),
+            (lambda p: holder(p, 10)['claim_ids'].append('za_da_leader_steenhuisen_elected_published_20201101'),
              'cited source'),
             (lambda p: role(p)['claim_ids'].append('za_da_does_not_exist'), 'Unknown'),
             (lambda p: org(p).update(represented_party_ids=['SouthAfrica/za_dp']), 'foreign represented party'),
@@ -598,23 +655,33 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
                 self.validate(mutated(change))
         invariant_cases = [
             ('successor election used as an end (Leon)', lambda p: holder(p, 1).update(until='2007-05-06')),
-            ('successor election used as an end (Zille)', lambda p: holder(p, 4).update(until='2015-05-10')),
-            ('vacancy weekday used as an end (Maimane)', lambda p: holder(p, 8).update(until='2019-10-23')),
-            ('resignation statement used as an end (Maimane)', lambda p: holder(p, 8).update(until='2019-10-24')),
-            ('tribute used as an end (Steenhuisen)', lambda p: holder(p, 11).update(until='2026-02-04')),
-            ('successor election used as an end (Steenhuisen)', lambda p: holder(p, 11).update(until='2026-04-12')),
-            ('election used as a start (Zille)', lambda p: holder(p, 2).update({'from': '2007-05-06'})),
-            ('result publication used as a start (Maimane)', lambda p: holder(p, 5).update({'from': '2015-05-10'})),
-            ('result publication used as a start (Steenhuisen)', lambda p: holder(p, 9).update({'from': '2020-11-01'})),
-            ('interim election used as a start (Steenhuisen)', lambda p: holder(p, 9).update({'from': '2019-11-17'})),
+            ('successor election used as an end (Zille)', lambda p: holder(p, 5).update(until='2015-05-10')),
+            ('vacancy statement date used as the end (Maimane)', lambda p: holder(p, 9).update(until='2019-10-25')),
+            ('resignation statement used as an end (Maimane)', lambda p: holder(p, 9).update(until='2019-10-24')),
+            ('vacancy weekday resolved to the wrong week (Maimane)', lambda p: holder(p, 9).update(until='2019-10-16')),
+            ('vacancy end dropped (Maimane)', lambda p: holder(p, 9).update(until=None)),
+            ('vacancy end kept without its claim (Maimane)', lambda p: (
+                holder(p, 9)['claim_ids'].pop(), holder(p, 9)['sources'].pop())),
+            ('vacancy end moved to an earlier observation (Maimane 2018)', lambda p: (
+                holder(p, 8).update(until='2019-10-23'), holder(p, 9).update(until=None))),
+            ('vacancy weekday used as an observation (Maimane)', lambda p: holder(p, 9).update(attested_on='2019-10-23')),
+            ('tribute used as an end (Steenhuisen)', lambda p: holder(p, 12).update(until='2026-02-04')),
+            ('successor election used as an end (Steenhuisen)', lambda p: holder(p, 12).update(until='2026-04-12')),
+            ('acceptance used as a start (Zille 2007)', lambda p: holder(p, 2).update({'from': '2007-05-06'})),
+            ('acceptance day used as an end (Zille 2007)', lambda p: holder(p, 2).update(until='2007-05-06')),
+            ('acceptance observation dropped (Zille 2007)', lambda p: role(p)['holder_claims'].pop(2)),
+            ('acceptance cited by a later holder (Zille 2010)', lambda p: (
+                holder(p, 3)['claim_ids'].append('za_da_zille_elected_leader_acceptance_20070506'),
+                holder(p, 3)['sources'].append('za_da_zille_acceptance_speech_20070506'))),
+            ('election used as a start (Zille 2010)', lambda p: holder(p, 3).update({'from': '2007-05-06'})),
+            ('result publication used as a start (Maimane)', lambda p: holder(p, 6).update({'from': '2015-05-10'})),
+            ('result publication used as a start (Steenhuisen)', lambda p: holder(p, 10).update({'from': '2020-11-01'})),
+            ('interim election used as a start (Steenhuisen)', lambda p: holder(p, 10).update({'from': '2019-11-17'})),
             ('in-office observation used as a start (Leon)', lambda p: holder(p, 0).update({'from': '2000-10-14'})),
-            ('result publication used as observation (Maimane)', lambda p: holder(p, 5).update(attested_on='2015-05-10')),
-            ('interim leader added as a holder', lambda p: role(p)['holder_claims'].insert(9, added(
+            ('result publication used as observation (Maimane)', lambda p: holder(p, 6).update(attested_on='2015-05-10')),
+            ('interim leader added as a holder', lambda p: role(p)['holder_claims'].insert(10, added(
                 'John Steenhuisen', '2019-11-23', 'za_da_fedex_statement_interim_leadership_20191123',
                 'za_da_fedex_congratulates_interim_leader_steenhuisen_20191123'))),
-            ('election acceptance added as a holder (Zille)', lambda p: role(p)['holder_claims'].insert(2, added(
-                'Helen Zille', '2007-05-06', 'za_da_zille_acceptance_speech_20070506',
-                'za_da_zille_elected_leader_acceptance_20070506'))),
             ('DP leader added as a DA holder (Leon 1997)', lambda p: role(p)['holder_claims'].insert(0, added(
                 'Tony Leon', '1997-05-22', 'za_da_dp_speech_taalbeleid_19970522',
                 'za_da_dp_speech_leader_of_dp_leon_19970522'))),
@@ -623,10 +690,10 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             ('formation claim moved onto the role', lambda p: role(p)['claim_ids'].append(
                 'za_da_speech_dp_and_nnp_led_into_da_20001014')),
             ('tribute cited by a holder (Steenhuisen 2026)', lambda p: (
-                holder(p, 11)['claim_ids'].append('za_da_tribute_steenhuisen_six_years_federal_leader_20260204'),
-                holder(p, 11)['sources'].append('za_da_statement_thanks_steenhuisen_20260204'))),
-            ('S10h holder changed (Steenhuisen 2023)', lambda p: holder(p, 10).update(note='Observed on 3 April 2023')),
-            ('S10h holder given an end (Steenhuisen 2023)', lambda p: holder(p, 10).update(until='2026-04-12')),
+                holder(p, 12)['claim_ids'].append('za_da_tribute_steenhuisen_six_years_federal_leader_20260204'),
+                holder(p, 12)['sources'].append('za_da_statement_thanks_steenhuisen_20260204'))),
+            ('S10h holder changed (Steenhuisen 2023)', lambda p: holder(p, 11).update(note='Observed on 3 April 2023')),
+            ('S10h holder given an end (Steenhuisen 2023)', lambda p: holder(p, 11).update(until='2026-04-12')),
             ('S10h holder removed (Hill-Lewis)', lambda p: role(p)['holder_claims'].pop()),
             ('holder order changed', lambda p: role(p)['holder_claims'].reverse()),
             ('formation day used as a lifecycle start', lambda p: org(p)['lifecycle'].update({'from': '2000-06-24'})),
@@ -644,7 +711,7 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             ('presidency holder added to the DA role', lambda p: role(p)['holder_claims'].append(
                 copy.deepcopy(president_role(p)['holder_claims'][8]))),
             ('DA holder added to the Presidency', lambda p: president_role(p)['holder_claims'].append(
-                copy.deepcopy(holder(p, 11)))),
+                copy.deepcopy(holder(p, 12)))),
             ('DA claim fed into the Federal Chairperson role', lambda p: (
                 org(p)['roles'][1]['claim_ids'].append('za_da_federal_leader_position_vacant_20191025'),
                 org(p)['roles'][1]['sources'].append('za_da_fedcouncil_chair_interim_election_20191025'))),
@@ -665,7 +732,13 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
         self.assertEqual(set(DECISIONS), set(REVIEW))
         for marker in ('C01', 'C06', 'S23', 'WC1', 'CP1'):
             self.assertNotRegex(self.report, rf'\b{marker}\b[^.\n]*\bis (now )?complete\b')
-        self.assertIn('ruling question', self.report)
+        # Ridge's rulings (a)-(e) are recorded as decisions; Codex may still decide otherwise at integration.
+        self.assertNotIn('ruling question', self.report)
+        rulings = self.section('Rulings recorded (decided by Ridge)')
+        for marker in ('(a)', '(b)', '(c)', '(d)', '(e)', 'Codex may still decide otherwise', '2019-10-23',
+                       'za_da_federal_leader_position_vacant_20191025', '988d5379', 'C01-SouthAfrica-DP-001',
+                       'SouthAfrica/za_dp'):
+            self.assertIn(marker, rulings, marker)
         notes = self.section('Integration notes')
         for text in ('03cd0bb9', '02d2c5a2', 'not stacked', 'research-index.json', 'continue existing claims first',
                      'test_south_africa_research_s10h.py', 'test_south_africa_heads_of_state_c01_09.py',
@@ -674,8 +747,10 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
             self.assertIn(text, notes)
         handoff = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
         for text in ('ready_for_review', 'south-africa-da-federal-leaders-2000-2026-39.md', 'claude/c01-za-39', '03cd0bb9',
-                     'test_south_africa_da_federal_leaders_c01_39.py', 'continue existing claims first'):
+                     'test_south_africa_da_federal_leaders_c01_39.py', 'continue existing claims first',
+                     'decided by Ridge', 'Codex may still decide otherwise', '2019-10-23', 'C01-SouthAfrica-DP-001'):
             self.assertIn(text, handoff)
+        self.assertNotIn('Ruling requested', handoff)
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
         self.assertFalse(country['country_census_complete'])

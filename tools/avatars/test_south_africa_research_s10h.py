@@ -28,6 +28,9 @@ from test_south_africa_da_federal_leaders_c01_39 import (HOLDERS as C01_39_HOLDE
 # CLAUDE-C01-39 adds 24 DA sources, pinned in test_south_africa_da_federal_leaders_c01_39.py.
 ORIGINAL_SOURCES = ('za_iec_national_results_20240621', 'za_iec_national_seats_20240606', 'za_da_kzn_leader_20230403',
                     'za_da_leadership_20260412', 'za_parliament_president_elect_20240614')
+# CLAUDE-C01-39 (Ridge's ruling (a)): the only party-office end, (role, name, attested_on) -> until, pinned exactly: Mmusi
+# Maimane's DA observation of 2019-10-04 ends on the Wednesday of the DA's vacancy statement of 25 October 2019.
+PARTY_ENDS = {('za_da_federal_leader', 'Mmusi Maimane', '2019-10-04'): '2019-10-23'}
 # CLAUDE-C01-09: every presidency holder observation, exactly, as (role, name, attested_on, from, until).
 PRESIDENCY_HOLDERS = [
     ('za_president_election', 'Nelson Mandela', '1994-05-10', None, '1999-06-16'),
@@ -209,7 +212,9 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                     if entry['id'] == 'za_presidency':
                         continue
                     self.assertIsNone(holder['from'])
-                    self.assertIsNone(holder['until'])
+                    self.assertEqual(holder['until'], PARTY_ENDS.get((role['id'], holder['name'], holder['attested_on'])))
+        self.assertEqual({(r['id'], h['name'], h['attested_on']): h['until'] for o in self.packet['organizations']
+                          for r in o['roles'] for h in r['holder_claims'] if h['until']}, PARTY_ENDS)
         # CLAUDE-C01-09: presidency holders carry a start or an end only where a primary source states one (Zuma's
         # 2014 assumption; the ends of Mandela, Mbeki and Zuma), pinned exactly; every other holder is a dated
         # observation with no interval.

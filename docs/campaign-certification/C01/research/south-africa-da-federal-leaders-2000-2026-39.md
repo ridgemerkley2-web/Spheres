@@ -7,12 +7,13 @@ historical cutoff stays **7 September 2026**.
 
 This packet extends the existing party-leader role `za_da_federal_leader` (Federal Leader) on the IEC organization
 observation `DEMOCRATIC ALLIANCE` (`za_iec_n2024_027`) in [south-africa.json](south-africa.json) back to the DA's
-formation in 2000. It reviews 10 observations (ZA-DA-01..10) and adds 24 sources and 29 claims, eleven
+formation in 2000. It reviews 10 observations (ZA-DA-01..10) and adds 24 sources and 29 claims, twelve
 holder observations of four people (Tony Leon, Helen Zille, Mmusi Maimane and John Steenhuisen), a rewritten role scope
 note, and coverage notes on the organization and the packet. The S10h intake's two holder observations (John Steenhuisen
 2023-04-03 and Geordin Hill-Lewis 2026-04-12), their sources and claims, and the Federal Chairperson and Chairperson of
-the Federal Council roles are unchanged; the role now holds thirteen observations of five people in date order, every one
-with `from` and `until` null. The IEC identity, its unknown lifecycle and empty game mapping are unchanged, and so is
+the Federal Council roles are unchanged; the role now holds fourteen observations of five people in date order, every one
+with `from` null and one with `until` (Mmusi Maimane, 23 October 2019, ruling (a)); Ridge's rulings (a) to (e) are recorded
+[below](#rulings-recorded-decided-by-ridge). The IEC identity, its unknown lifecycle and empty game mapping are unchanged, and so is
 every role, claim and holder of `za_presidency`, the ANC, the CLAUDE-C01-30 parties and the PAC. It adds no organization,
 institution, game mapping, lifespan, portrait or avatar. The parent scope (C01, C06, S23, WC1 and CP1) remains open.
 
@@ -30,27 +31,29 @@ Chairperson in 2019, the interim Federal Chairperson, the Chairperson of the Fed
 | ZA-DA-01 | The Democratic Party, 1989-2000: claims about another organization | **Claims only:** a DP record of 22 May 1997 names "Tony Leon Leader of the Democratic Party"; the DP's undated pages give its formation on "April 8, 1989" by merger, "DP leader Zach de Beer" (retrospective), the heading "DP Leader; Spokesperson on Labour and the Presidency Tony Leon" and his election to the DP's leadership "In 1994" (year only); no DP observation, role or holder |
 | ZA-DA-02 | 2000: the DP, the NNP and the Federal Alliance form the DA | **Claims only:** the DA's Deputy Leader on 14 October 2000: "Mr Leon lei die DP en ek lei die NNP in die DA in"; the DA's undated introduction page: the DP, NNP and Federal Alliance "formed the Democratic Alliance"; no formation day, merger of identities or lifecycle |
 | ZA-DA-03 | Tony Leon in office, 2000 | **Accepted:** DA speech pages of 14 October and 22 November 2000 give "Position Leader of the Democratic Alliance" |
-| ZA-DA-04 | May 2007: Helen Zille's election and Leon as former Leader | **Accepted in part:** Zille's acceptance speech of 6 May 2007 ("Today you have elected me as your leader") is an election reference; the undated 2007 profile styles Leon "Former Leader" (retrospective); neither is a start or an end |
+| ZA-DA-04 | May 2007: Helen Zille's election and Leon as former Leader | **Accepted in part:** Zille's own acceptance speech of 6 May 2007 ("Today you have elected me as your leader", "I accept nomination as your leader") dates a holder observation with no start (ruling (b)); the undated 2007 profile styles Leon "Former Leader" (retrospective), never an end |
 | ZA-DA-05 | Helen Zille in office, 2010-2014 | **Accepted:** DA newsroom items bylined "Helen Zille, Leader of the Democratic Alliance" on 15 October 2010, 4 November 2012 and 9 May 2014 |
 | ZA-DA-06 | May 2015: the sixth Federal Congress and Mmusi Maimane's election | **Accepted in part:** the DA's announcement of 10 May 2015 lists "Leader Mr Mmusi Maimane MP" (result publication) after the congress of "9 and 10 May 2015" (span); no start |
 | ZA-DA-07 | Mmusi Maimane in office, 2016-2019 | **Accepted:** DA records of 25 April 2016, 7 April 2018, 8 April 2018 and 4 October 2019 |
-| ZA-DA-08 | October-November 2019: Maimane's resignation and the interim leadership | **Accepted in part:** the FedEx was informed "On Wednesday" of his decision to resign (24 October 2019) and the positions "became vacant on Wednesday" (25 October 2019): claims, no end (ruling question); the interim election set for 17 November 2019 and the congratulation of John Steenhuisen as "Interim Federal Leader" (23 November 2019) are claims only |
+| ZA-DA-08 | October-November 2019: Maimane's resignation and the interim leadership | **Accepted in part:** the positions "became vacant on Wednesday" (statement of Friday 25 October 2019) gives Maimane's observation of 4 October 2019 `until` 2019-10-23 (ruling (a)); the FedEx being informed "On Wednesday" of his decision to resign (24 October 2019) is a claim; the interim election set for 17 November 2019 and the congratulation of John Steenhuisen as "Interim Federal Leader" (23 November 2019) are claims only |
 | ZA-DA-09 | 2020-2023: John Steenhuisen's election and the office | **Accepted in part:** the Presiding Officers' results of 1 November 2020 ("Federal Leader: John Steenhuisen") are a result publication; Steenhuisen observed 10 March 2021; the S10h observation of 3 April 2023 is unchanged |
 | ZA-DA-10 | 2026: the tribute, the last attestation and Geordin Hill-Lewis's election | **Accepted in part:** the tribute of 4 February 2026 ("six years of determined leadership as Federal Leader") is a claim, never an end; Steenhuisen observed 4 March 2026; the S10h observation of Hill-Lewis on 12 April 2026 is unchanged |
 
-The resulting holder observations, in date order (every `from` and `until` is null; the two S10h rows are unchanged):
+The resulting holder observations, in date order (every `from` is null, every `until` but Maimane's of 2019-10-04 is
+null; the two S10h rows are unchanged):
 
 | Holder | `attested_on` | Basis |
 |---|---|---|
 | Tony Leon | 2000-10-14 | speech page: "Author Tony Leon MP", "Position Leader of the Democratic Alliance" |
 | Tony Leon | 2000-11-22 | speech page: "Author Tony Leon MP", "Position Leader of the Democratic Alliance" |
+| Helen Zille | 2007-05-06 | her own acceptance speech, dated "Sunday, May 06, 2007": "Today you have elected me as your leader", "I accept nomination as your leader" (ruling (b); no start) |
 | Helen Zille | 2010-10-15 | newsroom item bylined "Helen Zille, Leader of the Democratic Alliance 15 October 2010" |
 | Helen Zille | 2012-11-04 | press release bylined "Helen Zille, Leader of the Democratic Alliance 4 November 2012" |
 | Helen Zille | 2014-05-09 | speech item bylined "Helen Zille, Leader of the Democratic Alliance 9 May 2014" |
 | Mmusi Maimane | 2016-04-25 | post headed "DA Leader unveils Local Government Election posters in Tshwane", styled "Federal Leader of the Democratic Alliance" |
 | Mmusi Maimane | 2018-04-07 | post: "On Saturday, 7 April, DA Leader Mmusi Maimane confronted racist remarks" |
 | Mmusi Maimane | 2018-04-08 | post: the speech "was delivered by the DA Federal Leader, Mmusi Maimane, to the party’s Federal Congress delegates" |
-| Mmusi Maimane | 2019-10-04 | statement headed "DA finds no financial wrongdoing committed by Federal Leader Mmusi Maimane" |
+| Mmusi Maimane | 2019-10-04 | statement headed "DA finds no financial wrongdoing committed by Federal Leader Mmusi Maimane"; `until` 2019-10-23: the positions "became vacant on Wednesday" (statement of 25 October 2019, ruling (a)) |
 | John Steenhuisen | 2021-03-10 | statement "Issued by John Steenhuisen MP – DA Federal Leader 10 Mar 2021" |
 | John Steenhuisen | 2023-04-03 | S10h (unchanged): DA KwaZulu-Natal statement on his re-election as Federal Leader |
 | John Steenhuisen | 2026-03-04 | statement "Issued by John Steenhuisen MP – Leader of the Democratic Alliance 04 Mar 2026" |
@@ -58,30 +61,35 @@ The resulting holder observations, in date order (every `from` and `until` is nu
 
 ### How a start and an end are decided
 
-The packet applies the CLAUDE-C01-30 and CLAUDE-C01-32 rule unchanged. A holder has `from` only where a source states the
-day the office was assumed or took effect, and `until` only where a source states the day it ended. No record reviewed
-states either, so every added holder is a dated observation citing only an in-office attestation made on its own
-`attested_on` day; the test pins that every cited claim carries exactly the holder's date. Everything else is a claim
-that never feeds a holder: elections and election references (6 May 2007), result publications (10 May 2015, 1 November
-2020), congress sessions (9 and 10 May 2015), the resignation decision and the vacancy of October 2019, the interim
-election and interim service, the retrospective "Former Leader" styling, and the tribute of 4 February 2026.
+The packet applies the CLAUDE-C01-30 and CLAUDE-C01-32 rule with Ridge's rulings (a) and (b). A holder has `from` only
+where a source states the day the office was assumed or took effect, and `until` only where a source states the day it
+ended. No record reviewed states a start, so every added holder is a dated observation citing a DA record made on its own
+`attested_on` day (Zille's own acceptance speech of 6 May 2007 included, ruling (b)); the test pins that every cited
+observation claim carries exactly the holder's date. One end is stated: the DA's vacancy statement of 25 October 2019
+gives Maimane's last observation `until` 23 October 2019 (ruling (a)). Everything else is a claim that never feeds a
+holder: result publications (10 May 2015, 1 November 2020), congress sessions (9 and 10 May 2015), the resignation
+decision of October 2019, the interim election and interim service, the retrospective "Former Leader" styling, and the
+tribute of 4 February 2026.
 
 No end is inferred from a successor's election or first attestation. The S10h holders keep their own basis: the
 Hill-Lewis observation of 12 April 2026 rests on an election result announcement, as the S10h intake recorded it, and is
-left unchanged; the added holders follow the later rule that result publications never feed a holder. Interim service is
-claims only, so Steenhuisen's added observations come after his election of November 2020 was published, and none rests
-on the interim period. One added observation (Steenhuisen, 4 March 2026) falls between the two S10h observations; it is
-inserted in date order and changes neither of them.
+left unchanged (ruling (c); a re-basing is proposed to Codex); the added holders follow the later rule that result
+publications never feed a holder. Interim service is claims only, so Steenhuisen's added observations come after his
+election of November 2020 was published, and none rests on the interim period. One added observation (Steenhuisen, 4
+March 2026) falls between the two S10h observations; it is inserted in date order and changes neither of them (ruling
+(d)).
 
-### The October 2019 resignation (ruling question)
+### The October 2019 resignation (ruling (a))
 
 The DA's Federal Council Chairperson stated on 24 October 2019 that "On Wednesday" the Federal Executive "was informed of
 the personal decision of its Federal Leader, Mmusi Maimane, and Federal Chairperson, Athol Trollip to resign from their
-positions", and on 25 October 2019 that "The Federal Leader and Federal Chairperson positions became vacant on
-Wednesday". Both statements date the event only by a weekday; neither prints a calendar day of an accepted or effective
-resignation. The rulings give `until` for a resignation "accepted or effective on a stated day"; the packet does not
-convert "Wednesday" into a calendar day and leaves Maimane's last observation (4 October 2019) without an end. A ruling
-is requested on whether a vacancy stated "on Wednesday" in a dated party statement gives `until` on the weekday it names.
+positions" and that "The FedEx was convened on Thursday morning", and on 25 October 2019 that "The Federal Leader and
+Federal Chairperson positions became vacant on Wednesday". Neither prints a calendar day. Ridge ruled that a relative day
+in a dated party statement resolves from its dateline, as CLAUDE-C01-29 read 福島's '本日で辞任': the vacancy statement is
+dated 25 October 2019, a Friday, so its Wednesday is 23 October 2019, and the statement of Thursday 24 October 2019 fixes
+the same week. Maimane's last observation (4 October 2019) therefore has `until` 2019-10-23, citing the vacancy claim
+`za_da_federal_leader_position_vacant_20191025` and its source; the statement days (24 and 25 October 2019) are never
+holder dates, and the resignation decision stays a claim.
 
 ### Party office, state office and the other roles
 
@@ -125,7 +133,7 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 14 October 2000 | Leon, "Position Leader of the Democratic Alliance" | `za_da_speech_leader_leon_20001014`; Leon `attested_on` |
 | 22 November 2000 | Leon, "Position Leader of the Democratic Alliance" | `za_da_speech_leader_leon_20001122`; Leon `attested_on` |
 | undated (capture 2001) | DP, NNP and Federal Alliance "formed the Democratic Alliance" | `za_da_formed_by_dp_nnp_fa_retrospective` |
-| 6 May 2007 | Zille: "Today you have elected me as your leader" (election reference) | `za_da_zille_elected_leader_acceptance_20070506` |
+| 6 May 2007 | Zille: "Today you have elected me as your leader" (her acceptance speech; dated observation, ruling (b)) | `za_da_zille_elected_leader_acceptance_20070506`; Zille `attested_on` |
 | undated (capture 2007) | Leon styled "Former Leader of the Democratic Alliance"; formation "under Tony Leon's leadership" | `za_da_profile_leon_former_leader_2007`, `za_da_profile_formation_under_leon_leadership` |
 | 15 October 2010 | "Helen Zille, Leader of the Democratic Alliance" | `za_da_sa_today_leader_zille_20101015`; Zille `attested_on` |
 | 4 November 2012 | "Helen Zille, Leader of the Democratic Alliance" | `za_da_press_release_leader_zille_20121104`; Zille `attested_on` |
@@ -136,8 +144,9 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 7 April 2018 | "DA Leader Mmusi Maimane" | `za_da_news_leader_maimane_20180407`; Maimane `attested_on` |
 | 8 April 2018 | "the DA Federal Leader, Mmusi Maimane" (closing speech to the Federal Congress) | `za_da_closing_speech_federal_leader_maimane_20180408`; Maimane `attested_on` |
 | 4 October 2019 | "Federal Leader Mmusi Maimane" | `za_da_statement_federal_leader_maimane_20191004`; Maimane `attested_on` |
-| 24 October 2019 | FedEx informed "On Wednesday" of the decision to resign (claim) | `za_da_fedex_informed_maimane_resignation_decision_20191024` |
-| 25 October 2019 | Positions "became vacant on Wednesday" (claim; no end) | `za_da_federal_leader_position_vacant_20191025` |
+| 23 October 2019 | The Wednesday of the vacancy, resolved from the dateline of 25 October 2019 (ruling (a)) | Maimane `until`, citing `za_da_federal_leader_position_vacant_20191025` |
+| 24 October 2019 | FedEx informed "On Wednesday" of the decision to resign; FedEx "convened on Thursday morning" (claim) | `za_da_fedex_informed_maimane_resignation_decision_20191024` |
+| 25 October 2019 | Positions "became vacant on Wednesday" (statement day never a holder date) | `za_da_federal_leader_position_vacant_20191025` |
 | 25 October 2019 | Interim election set for "Sunday, 17 November 2019" (prospective; interim) | `za_da_fedco_interim_leader_election_scheduled_20191025` |
 | 23 November 2019 | Steenhuisen congratulated as "Interim Federal Leader" (interim; claims only) | `za_da_fedex_congratulates_interim_leader_steenhuisen_20191123` |
 | 1 November 2020 | "Federal Leader: John Steenhuisen, with 80% of votes cast" (result publication) | `za_da_leader_steenhuisen_elected_published_20201101` |
@@ -146,6 +155,29 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 4 February 2026 | Tribute: "six years of determined leadership as Federal Leader" (claim; never an end) | `za_da_tribute_steenhuisen_six_years_federal_leader_20260204` |
 | 4 March 2026 | "John Steenhuisen MP – Leader of the Democratic Alliance" | `za_da_statement_leader_steenhuisen_20260304`; Steenhuisen `attested_on` |
 | 12 April 2026 | S10h: Hill-Lewis elected Federal Leader | `za_da_leader_elected_20260412` (unchanged) |
+
+## Rulings recorded (decided by Ridge)
+
+Ridge decided the following on this packet's checker round; they are applied here as decisions, and
+Codex may still decide otherwise at integration.
+
+- **(a) The October 2019 vacancy gives an end.** Mmusi Maimane's observation of 4 October 2019 has `until` 2019-10-23. The
+  DA's own statement of Friday 25 October 2019 says the Federal Leader position "became vacant on Wednesday", and the
+  statement of 24 October 2019 ("The FedEx was convened on Thursday morning") fixes the week; a relative day in a dated
+  party statement resolves from its dateline (the CLAUDE-C01-29 rule). The holder cites the vacancy claim
+  `za_da_federal_leader_position_vacant_20191025`; its row stays `vacancy_stated`.
+- **(b) Zille's acceptance speech is a dated observation.** Her own speech on the DA site, dated Sunday 6 May 2007 ("Today
+  you have elected me as your leader", "I accept nomination as your leader"), says "your leader" to the DA's congress; it
+  becomes a holder observation with `attested_on` 2007-05-06 and `from` null, as Codex's CLAUDE-C01-31 review
+  (`988d5379`) kept a new holder's convention acceptance as a dated observation, not a start. Its row is re-kinded
+  `in_office_attestation`, as that review re-kinded the CLAUDE-C01-31 acceptance row; the claim id is kept.
+- **(c) The two S10h holders stay unchanged** (Steenhuisen 2023-04-03, Hill-Lewis 2026-04-12). A Codex follow-up is
+  proposed: re-base Hill-Lewis (a result announcement) on a dated DA in-office record between 12 April and 7 September
+  2026, and review Steenhuisen 2023-04-03 (a provincial congratulation).
+- **(d) Steenhuisen 2026-03-04** is inserted between the S10h rows in date order.
+- **(e) The Democratic Party claims stay on the DA observation** with `role_id` null; a DP observation on the DP's own
+  records (for example the 22 May 1997 dp.org.za page, "Leader of the Democratic Party") is next work
+  `C01-SouthAfrica-DP-001`, and gap item `SouthAfrica/za_dp` stays open.
 
 ## Observations
 
@@ -197,12 +229,14 @@ Evidence: "Helen Zille`s acceptance speech", dated "Sunday, May 06, 2007", says 
 spokesperson on Leader of the Official Opposition". The DA profile page captured 7 September 2007 is headed "Tony Leon :
 Former Leader of the Democratic Alliance" (`za_da_profile_leon_former_leader_2007`).
 
-Decision: accepted in part. The acceptance speech is an election reference that names "your leader", not the office, and
-states no day she assumed it: never a start or a holder observation. The heading label is a parliamentary office and
-feeds nothing. The "Former Leader" styling is undated and is never Leon's end.
+Decision: accepted in part. Under ruling (b) Zille's own acceptance speech, which says "your leader" to the DA's congress
+("the DA delegates here today"), dates a holder observation on 6 May 2007 with `from` null, as Codex's CLAUDE-C01-31
+review (`988d5379`) kept a new holder's convention acceptance as a dated observation; it states no day she assumed the
+office, so it is never a start, and it is never Leon's end. The heading label is a parliamentary office and feeds
+nothing. The "Former Leader" styling is undated and is never Leon's end.
 
-Limits: no DA record of the 2007 Federal Congress result, of Leon's last day or of Zille in office from 2007 to 2009 was
-found in the captures reviewed.
+Limits: no DA record of the 2007 Federal Congress result, of Leon's last day or of Zille in office from later in 2007 to
+2009 was found in the captures reviewed.
 
 ### ZA-DA-05 — Helen Zille in office, 2010-2014
 
@@ -231,7 +265,7 @@ speech to the Federal Congress of 8 April 2018 ("delivered by the DA Federal Lea
 4 October 2019 by the Federal Finance Chairperson ("Federal Leader Mmusi Maimane", "Democratic Alliance (DA) Leader, Mmusi
 Maimane").
 
-Decision: accepted. Four dated observations. The "Parliamentary Leader" styling beside "Federal Leader" in 2016 is a
+Decision: accepted. Four dated observations; the last ends on 23 October 2019 (ZA-DA-08). The "Parliamentary Leader" styling beside "Federal Leader" in 2016 is a
 separate caucus office and feeds nothing; the 2018 closing speech states no election result.
 
 ### ZA-DA-08 — October-November 2019: Maimane's resignation and the interim leadership
@@ -242,9 +276,10 @@ the positions "became vacant on Wednesday" and that the Federal Council will "el
 17 November 2019"; the National Spokesperson's statement of 23 November 2019 says the FedEx began "by congratulating John
 Steenhuisen and Ivan Meyer on their election as Interim Federal Leader and Interim Federal Chairperson respectively".
 
-Decision: accepted in part. All four are claims: the resignation decision and the vacancy are dated by weekday only and
-give no end (see [the ruling question](#the-october-2019-resignation-ruling-question)); the interim election and the
-interim office are claims only and never a start.
+Decision: accepted in part. The vacancy statement gives Maimane's observation of 4 October 2019 `until` 2019-10-23, the
+Wednesday resolved from its dateline (see [ruling (a)](#the-october-2019-resignation-ruling-a)); the resignation decision
+of 24 October 2019 fixes the week and stays a claim; the interim election and the interim office are claims only and
+never a start.
 
 ### ZA-DA-09 — 2020-2023: John Steenhuisen's election and the office
 
@@ -340,8 +375,9 @@ archived listing pages were used for discovery only.
 - History sites, encyclopaedias and news, leads only: https://en.wikipedia.org/wiki/Democratic_Alliance_(South_Africa),
   https://en.wikipedia.org/wiki/Democratic_Party_(South_Africa), sahistory.org.za party pages, and news reports of the
   2007, 2010, 2012, 2015, 2018, 2020, 2023 and 2026 congresses and of Maimane's resignation (news24, dailymaverick,
-  iol.co.za, politicsweb republishing DA statements). The commonly reported days 24 June 2000 (the DA's launch), 23
-  October 2019 (Maimane's resignation) and 17 November 2019 (the interim election) are pinned as never-holder dates.
+  iol.co.za, politicsweb republishing DA statements). The commonly reported days 24 June 2000 (the DA's launch) and 17
+  November 2019 (the interim election) are pinned as never-holder dates; 23 October 2019, also reported for Maimane's
+  resignation, is used only as his end, resolved from the DA's own statement (ruling (a)).
 
 ## Sources attempted
 
@@ -361,8 +397,13 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `C01-SouthAfrica-DA-002`: DA records of 2001-2009: Leon's congresses and statements naming the party office, the NNP's
   departure, and the 2007 Federal Congress result.
 - `C01-SouthAfrica-DA-003`: the 2010 and 2012 Federal Congress results and Zille's announcement of April 2015.
-- `C01-SouthAfrica-DP-001`: a Democratic Party observation (1989-2000), if the integrator wants the DP's own leaders as
-  holders: dated DP records of Zach de Beer and of the 1994 congress.
+- `C01-SouthAfrica-DP-001` (ruling (e)): a Democratic Party observation (1989-2000) on the DP's own records, for example
+  the 22 May 1997 dp.org.za page ("Leader of the Democratic Party"), with dated DP records of Zach de Beer and of the 1994
+  congress. Until then the DP claims stay on the DA observation with `role_id` null, and gap item `SouthAfrica/za_dp`
+  stays open.
+- Codex follow-up (ruling (c)): re-base the S10h Hill-Lewis observation (2026-04-12, a result announcement) on a dated DA
+  in-office record between 12 April and 7 September 2026, and review the S10h Steenhuisen observation of 3 April 2023 (a
+  provincial congratulation). This packet leaves both unchanged.
 
 ## Integration notes (outside this packet's file boundary)
 
@@ -374,18 +415,24 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - **Roadmap:** the user chose to start this batch (CLAUDE-C01-38 to 41) before Codex's roadmap line
   "continue existing claims first"; this packet was started on the user's instruction.
 - `research-index.json` is regenerated in a **separate commit** and is the only file this packet shares with the parallel
-  packets CLAUDE-C01-38, 40 and 41 (other country files); regenerate it when integrating. New totals for South Africa:
+  packets CLAUDE-C01-38, 40 and 41 (other country files); regenerate it when integrating. Fix round: `codex/campaign-certification` has since moved to `509bd289`; a dry-run merge conflicts in the handoff record (Codex's integration-status preface, add/add) as well as in `research-index.json`, so it was not merged (the rule is to stop on a non-index conflict) and Codex's preface is left for integration. New totals for South Africa:
   269 sources and 500 claims (previously 245 and 471); role observations stay 11; organization, institution, packet
   and batch counts are unchanged, `mapping_pending` stays 53 and South Africa keeps six open batches.
 - The DA role's scope note is rewritten (declared edit): the S10h note said "Two discrete attestations"; the new note keeps
   its rule (do not fill the interval or infer the outgoing holder's last day; no state or parliamentary office) and states
   the packet's rules. The role's `sources` and `claim_ids` and the organization's lists are extended at the end; no
   existing holder, claim, source or extract changes.
+- Checker fixes (this round): Ridge's rulings (a) and (b) give Maimane's 2019-10-04 observation `until` 2019-10-23 and add
+  Zille's 2007-05-06 observation (its extract row re-kinded `in_office_attestation`); the claim
+  `za_da_speech_leader_zille_20140509` now prints the source's curly apostrophe ("DA’s growth"), checked against the saved
+  body, in the packet and its extract; the two changed extracts' snapshot bytes and SHA-256 are updated.
 - The packet-level coverage note is inserted after the CLAUDE-C01-32 note and before the CLAUDE-C01-21 and CLAUDE-C01-16
   notes, which their own tests pin as the last two entries; no existing note changes.
 - Pinned tests, none loosened and no assertion removed:
   - `test_south_africa_research_s10h.py`: counts (entries, sources, claims, roles) are now (53, 269, 500, 11);
-    the exact DA holder list is re-expressed as this packet's thirteen holders (the two S10h holders included); the exact source list, response pins, hosts and access dates (2026-09-30 for this packet) and the undated
+    the exact DA holder list is re-expressed as this packet's fourteen holders (the two S10h holders included), and the
+    rule that no holder outside `za_presidency` has an end is re-expressed as an exact pin of the one party-office end
+    (Maimane, 2019-10-23, ruling (a)); the exact source list, response pins, hosts and access dates (2026-09-30 for this packet) and the undated
     claim count (7 + 31 + 13 + 21 + 30 + 8) are extended exactly.
   - `test_south_africa_heads_of_state_c01_09.py`: the exact source list is extended.
   - `test_south_africa_anc_presidents_c01_16.py` and `test_south_africa_deputy_presidents_c01_21.py`: the exact source
@@ -416,10 +463,12 @@ git diff --check
 python -X utf8 D:/spheres-scratch/c01-pipeline/tools/packet_check.py 39
 ```
 
-Results are recorded in the handoff: the index regeneration and `--check`, `campaign_census.py --check` (after the merge
-of `f3e18e83`, which regenerated `census.json`), the South Africa (58 tests), research (79) and campaign (16) Python
-tests, the Node check (11) and the workboard check pass, and `git diff --check` is clean. `packet_check.py 39`:
-run on the final tree before commit (`0183c1e1` plus the working tree): 24 new sources re-downloaded, 23 matching their recorded identities and one rate-limited (HTTP 429), which was re-downloaded by hand at 00:58Z with the same 145,135 bytes and SHA-256; every suite check passed except `census --check`, which the later merge of `f3e18e83` fixed (see above). It is run again after the push; that run's summary line is returned with this submission.
+Results are recorded in the handoff. On the checker-fix tree the index regeneration and `--check`, the South Africa (58
+tests, with 7 validator and 41 invariant mutation cases), research (79) and campaign (16) Python tests, the Node check
+(11) and the workboard check pass, and `git diff --check` is clean. `tools/avatars/campaign_census.py --check`: passed on this branch head, whose `census.json` records `spheres-sim/src/government.rs` at 851,150 bytes, matching the file. Known failure, disclosed and not fixed: the check is reported failing on the integration head itself because Codex commits after `262d5f61` (`ace1f233`, `434abd50`, `7c6f112c`) changed `spheres-sim/src/government.rs` (849,546 -> 851,150 bytes) without regenerating `census.json`; this packet touches neither file. No source was added or changed on the fix round. The four responses whose text rulings (a) and (b) and the apostrophe fix rely on (the 2007 acceptance speech, the statements of 24 and 25 October 2019 and the 2014 speech) were downloaded again with their recorded bytes and SHA-256, and every quoted phrase was checked against those bodies. `packet_check.py 39 --no-fetch` is
+run after the push. First round, `packet_check.py 39`:
+run on the first-round tree before commit (`0183c1e1` plus the working tree): 24 new sources re-downloaded, 23 matching their recorded identities and one rate-limited (HTTP 429), which was re-downloaded by hand at 00:58Z with the same 145,135 bytes and SHA-256; every suite check passed except `census --check`, which the later merge of `f3e18e83` fixed (see above). After the first-round push it reported "C01-39 head 9cb02c20 base
+f3e18e83 (origin/codex/campaign-certification); 35 files changed; 24 new sources: {'match': 24}", every check ok, PASS.
 
 Access dates are the session's local date (30 September 2026, UTC-7); the two DP captures switched for their CDX
 digests were first downloaded at 00:16-00:17Z on 1 October UTC. Known failures outside the listed checks, not fixed:
