@@ -1,0 +1,173 @@
+{
+  "utc": "2026-10-01T03:04:34.8295915Z",
+  "nominal_sample_seconds": 3,
+  "top_cpu": [
+    {
+      "pid": 53192,
+      "name": "git",
+      "cpu_seconds": 2.969,
+      "private_bytes": 102756352
+    },
+    {
+      "pid": 33368,
+      "name": "git",
+      "cpu_seconds": 2.953,
+      "private_bytes": 16707584
+    },
+    {
+      "pid": 13352,
+      "name": "ChatGPT",
+      "cpu_seconds": 0.297,
+      "private_bytes": 1400246272
+    },
+    {
+      "pid": 12692,
+      "name": "ChatGPT",
+      "cpu_seconds": 0.172,
+      "private_bytes": 1677500416
+    },
+    {
+      "pid": 39596,
+      "name": "claude",
+      "cpu_seconds": 0.156,
+      "private_bytes": 324730880
+    },
+    {
+      "pid": 11608,
+      "name": "ChatGPT",
+      "cpu_seconds": 0.109,
+      "private_bytes": 1175445504
+    },
+    {
+      "pid": 5876,
+      "name": "claude",
+      "cpu_seconds": 0.062,
+      "private_bytes": 785342464
+    },
+    {
+      "pid": 15616,
+      "name": "pwsh",
+      "cpu_seconds": 0.062,
+      "private_bytes": 37003264
+    },
+    {
+      "pid": 17928,
+      "name": "claude",
+      "cpu_seconds": 0.062,
+      "private_bytes": 688091136
+    },
+    {
+      "pid": 48248,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "private_bytes": 54607872
+    },
+    {
+      "pid": 51336,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "private_bytes": 148975616
+    },
+    {
+      "pid": 40136,
+      "name": "node",
+      "cpu_seconds": 0.0,
+      "private_bytes": 29134848
+    }
+  ],
+  "claude_processes": [
+    {
+      "pid": 39596,
+      "name": "claude",
+      "cpu_seconds": 0.156,
+      "private_bytes": 324730880
+    },
+    {
+      "pid": 5876,
+      "name": "claude",
+      "cpu_seconds": 0.062,
+      "private_bytes": 785342464
+    },
+    {
+      "pid": 17928,
+      "name": "claude",
+      "cpu_seconds": 0.062,
+      "private_bytes": 688091136
+    },
+    {
+      "pid": 35056,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 9568256
+    },
+    {
+      "pid": 37736,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 59293696
+    },
+    {
+      "pid": 39672,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 236822528
+    },
+    {
+      "pid": 34216,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 10383360
+    },
+    {
+      "pid": 19060,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 31850496
+    },
+    {
+      "pid": 13132,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 63037440
+    },
+    {
+      "pid": 15264,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 19632128
+    },
+    {
+      "pid": 2632,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 38313984
+    },
+    {
+      "pid": 7004,
+      "name": "claude",
+      "cpu_seconds": 0.0,
+      "private_bytes": 28344320
+    }
+  ],
+  "game_processes": [
+    {
+      "pid": 44020,
+      "name": "spheres-web",
+      "cpu_seconds": 0.0,
+      "private_bytes": 66056192
+    }
+  ],
+  "native_build_processes": [
+    {
+      "pid": 9420,
+      "name": "GCC",
+      "cpu_seconds": 0.0,
+      "private_bytes": 126361600
+    }
+  ],
+  "claude_offload_junction": {
+    "FullName": "C:\\Users\\ridge\\spheres-companies\\target",
+    "LinkType": "Junction",
+    "Target": "D:\\spheres-offload\\spheres-companies\\target"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "utc": "2026-10-01T02:59:46.1567873Z",
+  "os": {
+    "Caption": "Microsoft Windows 11 Home",
+    "Version": "10.0.26200",
+    "FreePhysicalMemory": 9940112,
+    "TotalVisibleMemorySize": 32625640,
+    "FreeVirtualMemory": 8526804,
+    "TotalVirtualMemorySize": 49002100
+  },
+  "drives": [
+    {
+      "DeviceID": "C:",
+      "FreeSpace": 62919626752,
+      "Size": 999411412992
+    },
+    {
+      "DeviceID": "D:",
+      "FreeSpace": 756625043456,
+      "Size": 1000202653696
+    }
+  ],
+  "relevant_processes": [
+    {
+      "ProcessId": 39596,
+      "ParentProcessId": 8720,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 35056,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 39672,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 15264,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 19060,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 17928,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 7004,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 37736,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 5876,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Users\\ridge\\AppData\\Roaming\\Claude\\claude-code\\2.1.284\\claude.exe"
+    },
+    {
+      "ProcessId": 2632,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 34216,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 13132,
+      "ParentProcessId": 39596,
+      "Name": "claude.exe",
+      "ExecutablePath": "C:\\Program Files\\WindowsApps\\Claude_2.16120.0.0_x64__pzs8sxrjxfjjc\\app\\claude.exe"
+    },
+    {
+      "ProcessId": 44020,
+      "ParentProcessId": 42560,
+      "Name": "spheres-web.exe",
+      "ExecutablePath": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an\\work\\artwork-preview\\spheres-web.exe"
+    }
+  ],
+  "tool_version": {
+    "FileVersion": "12.01",
+    "ProductVersion": "12.01"
+  },
+  "eula_before": []
+}

@@ -1,0 +1,10 @@
+{"event":"prepared","data":{"mode":"captured-fault","synthetic":true,"campaign_launched":false},"utc":"2026-10-01T03:22:17.0289199Z"}
+{"event":"monitor_started","data":{"pid":50460},"utc":"2026-10-01T03:22:17.0375084Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"conhost.exe","pid":42640,"path":"C:\\WINDOWS\\system32\\conhost.exe"},"utc":"2026-10-01T03:22:17.1386676Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"python.exe","pid":48876,"path":null},"utc":"2026-10-01T03:22:17.1398717Z"}
+{"event":"resources","data":{"owned_children":[],"synthetic":true,"available_commit_bytes":8589934592,"utc":"2026-10-01T03:22:17.1409436Z","volumes":[{"FreeSpace":107374182400,"DeviceID":"C:"},{"FreeSpace":214748364800,"DeviceID":"D:"}]},"utc":"2026-10-01T03:22:17.1411471Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"conhost.exe","pid":42640,"path":"C:\\WINDOWS\\system32\\conhost.exe"},"utc":"2026-10-01T03:22:19.2736890Z"}
+{"event":"owned_child","data":{"created":"2026-09-30T20:22:17.065848-07:00","pid":48876,"path":"C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe","parent_pid":50460},"utc":"2026-10-01T03:22:19.2750295Z"}
+{"event":"resources","data":{"owned_children":[{"private_bytes":7516160,"pid":48876,"working_set_bytes":12627968,"cpu_seconds":0.03125}],"synthetic":true,"available_commit_bytes":8589934592,"utc":"2026-10-01T03:22:19.2756298Z","volumes":[{"FreeSpace":107374182400,"DeviceID":"C:"},{"FreeSpace":214748364800,"DeviceID":"D:"}]},"utc":"2026-10-01T03:22:19.2811975Z"}
+{"event":"uncontrolled_auxiliary_monitor_child","data":{"name":"conhost.exe","pid":42640,"path":"C:\\WINDOWS\\system32\\conhost.exe"},"utc":"2026-10-01T03:22:21.4032249Z"}
+{"event":"resources","data":{"owned_children":[{"private_bytes":7946240,"pid":48876,"working_set_bytes":28270592,"cpu_seconds":0.078125}],"synthetic":true,"available_commit_bytes":8589934592,"utc":"2026-10-01T03:22:21.4077256Z","volumes":[{"FreeSpace":107374182400,"DeviceID":"C:"},{"FreeSpace":214748364800,"DeviceID":"D:"}]},"utc":"2026-10-01T03:22:21.4147813Z"}

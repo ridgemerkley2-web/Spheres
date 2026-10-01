@@ -1,0 +1,43 @@
+[
+  {
+    "path": "HKCU:\\Software\\Sysinternals\\ProcDump",
+    "values": {
+      "EulaAccepted": 1,
+      "Debugger": null,
+      "Auto": null,
+      "DumpFolder": null,
+      "DumpCount": null,
+      "DumpType": null
+    },
+    "exists": true
+  },
+  {
+    "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AeDebug",
+    "values": {
+      "EulaAccepted": null,
+      "Debugger": null,
+      "Auto": null,
+      "DumpFolder": null,
+      "DumpCount": null,
+      "DumpType": null
+    },
+    "exists": true
+  },
+  {
+    "path": "HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows NT\\CurrentVersion\\AeDebug",
+    "values": {
+      "EulaAccepted": null,
+      "Debugger": null,
+      "Auto": null,
+      "DumpFolder": null,
+      "DumpCount": null,
+      "DumpType": null
+    },
+    "exists": true
+  },
+  {
+    "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps",
+    "values": null,
+    "exists": true
+  }
+]

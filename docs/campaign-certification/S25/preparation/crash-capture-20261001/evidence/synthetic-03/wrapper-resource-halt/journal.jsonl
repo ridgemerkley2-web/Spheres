@@ -1,0 +1,8 @@
+{"utc":"2026-10-01T03:16:02.9227238Z","event":"prepared","data":{"synthetic":true,"mode":"resource-halt","campaign_launched":false}}
+{"utc":"2026-10-01T03:16:02.9303801Z","event":"monitor_started","data":{"pid":41552}}
+{"utc":"2026-10-01T03:16:03.0574485Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":"C:\\WINDOWS\\system32\\conhost.exe","name":"conhost.exe","pid":50352}}
+{"utc":"2026-10-01T03:16:03.0587414Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":null,"name":"python.exe","pid":52456}}
+{"utc":"2026-10-01T03:16:03.0597956Z","event":"resources","data":{"owned_children":[],"utc":"2026-10-01T03:16:03.0596658Z","volumes":[{"DeviceID":"C:","FreeSpace":107374182400},{"DeviceID":"D:","FreeSpace":214748364800}],"synthetic":true,"available_commit_bytes":8589934592}}
+{"utc":"2026-10-01T03:16:05.1684682Z","event":"uncontrolled_auxiliary_monitor_child","data":{"path":"C:\\WINDOWS\\system32\\conhost.exe","name":"conhost.exe","pid":50352}}
+{"utc":"2026-10-01T03:16:05.1749010Z","event":"owned_child","data":{"created":"2026-09-30T20:16:02.961118-07:00","parent_pid":41552,"path":"C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe","pid":52456}}
+{"utc":"2026-10-01T03:16:05.1837950Z","event":"resources","data":{"owned_children":[{"cpu_seconds":0.03125,"private_bytes":7450624,"working_set_bytes":12537856,"pid":52456}],"utc":"2026-10-01T03:16:05.1755429Z","volumes":[{"DeviceID":"C:","FreeSpace":107374182400},{"DeviceID":"D:","FreeSpace":214748364800}],"synthetic":true,"available_commit_bytes":536870912}}

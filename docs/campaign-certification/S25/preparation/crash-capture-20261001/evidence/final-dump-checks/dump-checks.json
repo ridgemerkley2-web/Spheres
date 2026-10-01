@@ -1,0 +1,15 @@
+{
+  "passed": 7,
+  "failed": 0,
+  "checks": {
+    "owned_pid_matches_printed_launch_identity": true,
+    "owned_thread_matches_printed_launch_identity": true,
+    "actual_unhandled_execute_fault": true,
+    "full_memory_flag_and_complete_payload": true,
+    "context_and_module_streams_present": true,
+    "wrong_pid_would_not_match_owned_identity": true,
+    "truncated_full_dump_rejected": true
+  },
+  "truncation_error": "Full memory payload is truncated or absent",
+  "native_campaign_launched": false
+}

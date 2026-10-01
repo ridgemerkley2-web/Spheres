@@ -1,0 +1,24 @@
+{
+  "cleanup": [],
+  "primary": {
+    "stack": "at Write-Event, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 16\r\nat <ScriptBlock>, <No file>: line 15\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 55\r\nat <ScriptBlock>, <No file>: line 2",
+    "message": "synthetic journal failure",
+    "type": "System.IO.IOException",
+    "status": "running"
+  },
+  "owned": [
+    {
+      "exit_code": -1073740972,
+      "pid": 52448,
+      "exited": true
+    }
+  ],
+  "mode": "journal-fault",
+  "dump_count": 0,
+  "status": "diagnostic_failed_or_resource_halted",
+  "monitor_exited": true,
+  "production_core_sha256": "e8138eefd9f2133056baeefb1cc8ff34ac4f1d72375a855a1336b36f02f5e427",
+  "native_created_output": true,
+  "remaining_target_pids": [],
+  "monitor_exit": -1
+}

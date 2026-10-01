@@ -1,0 +1,71 @@
+ProcDump v12.01 - Sysinternals process dump utility
+
+Copyright (C) 2009-2026 Mark Russinovich and Andrew Richards
+
+Sysinternals - www.sysinternals.com
+
+
+
+Process:               python.exe (42036)
+
+CPU threshold:         n/a
+
+Performance counter:   n/a
+
+Commit threshold:      n/a
+
+Threshold seconds:     n/a
+
+Hung window check:     Disabled
+
+Log debug strings:     Disabled
+
+Exception monitor:     Unhandled
+
+Exception filter:      [Includes]
+
+                       *
+
+                       [Excludes]
+
+Terminate monitor:     Disabled
+
+Cloning type:          Disabled
+
+Concurrent limit:      n/a
+
+Avoid outage:          n/a
+
+Number of dumps:       1
+
+Dump folder:           D:\spheres-offload\codex-next-20260928\s25-crash-prep-raw-20261001\owned-proof-dumps\
+
+Dump filename/mask:    PROCESSNAME_YYMMDD_HHMMSS
+
+Queue to WER:          Disabled
+
+Kill after dump:       Disabled
+
+
+
+
+
+Press Ctrl-C to end monitoring without terminating the process.
+
+
+
+owned_fault_pid=42036
+owned_fault_thread=39588
+[20:02:44]Exception: C0000005.ACCESS_VIOLATION
+
+[20:02:44]Unhandled: C0000005.ACCESS_VIOLATION
+
+[20:02:44]Dump 1 info: Available space: 768163045376
+
+[20:02:44]Dump 1 initiated: D:\spheres-offload\codex-next-20260928\s25-crash-prep-raw-20261001\owned-proof-dumps\python.exe_260930_200244.dmp
+
+[20:02:44]Dump 1 writing: Estimated dump file size is 40 MB.
+
+[20:02:45]Dump 1 complete: 40 MB written in 1.4 seconds
+
+[20:02:45]Dump count reached.
