@@ -121,6 +121,17 @@ C01_45_CROWN_PRINCE_OBSERVATIONS = [
     'sa_salman_cp_obs_20120618', 'sa_salman_cp_obs_a145_20140520', 'sa_muqrin_cp_obs_20150428', 'sa_mbn_cp_obs_a267_20150725',
     'sa_mbn_cp_obs_a128_20170225', 'sa_mbs_cp_obs_20260901',
 ]
+# CLAUDE-C01-50 appends four sa_pm holders as (name, attested_on, from, until), each followed by its dated observations,
+# after the two entries below; the two entries are unchanged (pinned in test_saudi_prime_ministers_c01_50.py).
+C01_50_PM_ENTRIES = [
+    ('Fahd bin Abdulaziz Al Saud', '1996-03-04', None, None), 'sa_fahd_pm_styled_20041003', 'sa_fahd_pm_chairs_cabinet_20050425',
+    ('Abdullah bin Abdulaziz Al Saud', '2005-08-01', None, None), 'sa_abdullah_pm_order_a29_20070322',
+    'sa_abdullah_pm_chairs_cabinet_20121229',
+    ('Salman bin Abdulaziz Al Saud', '2015-01-23', None, None), 'sa_salman_pm_order_a68_20150129',
+    'sa_salman_pm_order_a138_20181227', 'sa_salman_pm_chairs_cabinet_20220517',
+    ('Mohammed bin Salman bin Abdulaziz Al Saud', '2022-09-27', None, None), 'sa_mbs_pm_order_a62_20220927',
+    'sa_mbs_pm_chairs_cabinet_20221025', 'sa_mbs_pm_chairs_cabinet_20260616',
+]
 # The existing 2022 claims, byte-identical to the base packet (reverified, not rewritten).
 BASE_PM_CLAIMS = [
     ('sa_mbs_pm_appointment', 'King Salman appointed Crown Prince Mohammed bin Salman prime minister on 27 September 2022, expressly excepting Article 56 of the Basic Law and related Cabinet-law provisions.'),
@@ -197,8 +208,8 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
 
     def test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited(self):
         ids = self.validate()
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (121, 188, 12, 10))
-        # The C01-06 sources end at position 32; the 71 CLAUDE-C01-25 and 18 CLAUDE-C01-45 sources follow them.
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (136, 206, 12, 10))
+        # The C01-06 sources end at position 32; the 71 CLAUDE-C01-25, 18 CLAUDE-C01-45 and 15 CLAUDE-C01-50 sources follow them.
         self.assertEqual([s['id'] for s in self.packet['sources'][32 - len(NEW_SOURCES):32]], NEW_SOURCES)
         self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']}, NEW_CLAIMS)
         cited = {cid for row in list(self.entries.values()) + list(self.roles.values()) for cid in row['claim_ids']}
@@ -215,7 +226,9 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
         self.assertEqual([(c['id'], c['text']) for c in self.sources[REVERIFIED]['claims']], BASE_PM_CLAIMS)
         self.assertEqual(self.roles['sa_king']['holder_claims'][0], 'sa_salman_king_observation')
         self.assertEqual(self.roles['sa_crown_prince']['holder_claims'][0], 'sa_mbs_pm_appointment')
-        self.assertEqual(self.roles['sa_pm']['holder_claims'], ['sa_mbs_pm_appointment', 'sa_mbs_cp_pm_obs_20260813'])
+        self.assertEqual([h if isinstance(h, str) else (h['name'], h['attested_on'], h['from'], h['until'])
+                          for h in self.roles['sa_pm']['holder_claims']],
+                         ['sa_mbs_pm_appointment', 'sa_mbs_cp_pm_obs_20260813'] + C01_50_PM_ENTRIES)
 
     def test_death_pledge_selection_relief_and_publication_dates_never_collapse(self):
         for cid, day in EVENT_DATES.items():
@@ -460,7 +473,7 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
             self.assertIn(phrase, handoff)
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'SaudiArabia')
-        self.assertEqual((country['source_claims'], country['role_observations']), (188, 10))
+        self.assertEqual((country['source_claims'], country['role_observations']), (206, 10))
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         batches = [row for row in index['work_orders'] if row['nation'] == 'SaudiArabia']

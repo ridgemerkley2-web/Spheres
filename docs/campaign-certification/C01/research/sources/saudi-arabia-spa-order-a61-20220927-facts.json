@@ -1,0 +1,74 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a61_20220927",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/d4d4490e5e",
+  "original_url": "https://www.spa.gov.sa/d4d4490e5e",
+  "portal_metadata": {
+    "uuid": "d4d4490e5e",
+    "locale": "ar",
+    "published_at_utc": "2022-09-27T17:16:19Z",
+    "date_hijri_field": "1444-03-01"
+  },
+  "title_as_published": "سياسي / صدور ثلاثة أوامر ملكية",
+  "source_title": "سياسي / صدور ثلاثة أوامر ملكية: Royal Orders A/61 to A/63, the Crown Prince made Prime Minister (27 September 2022)",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-09-27",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/d4d4490e5e",
+  "source_response_bytes": 10057,
+  "source_response_sha256": "57d979143b7bd438c314db0a9ddeba68634ed31a2d6229c849b1c80929f4f744",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "c2f02a68e7f54ab30d900c3157af875bf10009931450d2691c4380bd524cefaa",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T11:49:14Z and again at 2026-10-01T12:29:30Z, 40 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (10057 bytes, SHA-256 57d979143b7bd438c314db0a9ddeba68634ed31a2d6229c849b1c80929f4f744).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/d4d4490e5e loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item with Royal Orders A/61, A/62 and A/63; A/63 (an assistant minister) is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_mbs_pm_order_a61_20220927",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-04",
+      "role_id": "sa_pm",
+      "holder_name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+      "printed_name": "محمد بن سلمان بن عبدالعزيز آل سعود",
+      "role_title": "رئيس مجلس الوزراء — Prime Minister",
+      "event_kind": "appointment_by_royal_order",
+      "attested_on": "2022-09-27",
+      "text": "SPA, date line Jeddah 1 Rabi al-Awwal 1444 / 27 September 2022: three royal orders 'صدرت اليوم'; Royal Order A/61 dated 1/3/1444 AH: 'أولاً : يكون صاحب السمو الملكي الأمير / محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء ؛ استثناءً من حكم المادة (السادسة والخمسين) من النظام الأساسي للحكم، ومن الأحكام ذوات الصلة الواردة في نظام مجلس الوزراء.'; item Third: 'يبلغ أمرنا هذا للجهات المختصة لاعتماده وتنفيذه'.",
+      "locator": "Date line; Royal Order A/61, number, date, items First and Third; trailer 20:16 (Makkah time)"
+    },
+    {
+      "claim_id": "sa_king_chair_reservation_a61_20220927",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-05",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "chair_reservation",
+      "attested_on": "2022-09-27",
+      "text": "The same order, item Second: 'ثانياً : تكون جلسات مجلس الوزراء التي نحضرها برئاستنا.' (sessions of the Council of Ministers that we attend are under our chairmanship).",
+      "locator": "Royal Order A/61, item Second"
+    },
+    {
+      "claim_id": "sa_mbs_pm_order_a62_20220927",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-04",
+      "role_id": "sa_pm",
+      "holder_name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+      "printed_name": "محمد بن سلمان بن عبدالعزيز آل سعود",
+      "role_title": "رئيس مجلس الوزراء — Prime Minister",
+      "event_kind": "council_reconstituted_by_royal_order",
+      "attested_on": "2022-09-27",
+      "text": "The same release, Royal Order A/62 dated 1/3/1444 AH, citing A/138 of 20/4/1440 AH and A/61: 'أولاً : إعادة تشكيل مجلس الوزراء على النحو التالي : 1ـ صاحب السمو الملكي الأمير / محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء.'",
+      "locator": "Royal Order A/62, number, date, recitals, item First and member 1"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+}

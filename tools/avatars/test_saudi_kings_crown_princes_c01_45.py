@@ -12,6 +12,7 @@ import campaign_research as research
 REPORT = research.RESEARCH / 'saudi-arabia-kings-crown-princes-1990-2026-45.md'
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-45.md'
 BASE_SOURCES = 103  # CLAUDE-C01-06 and CLAUDE-C01-25 sources come first.
+C01_50_SOURCES = 15  # CLAUDE-C01-50 sources follow (pinned in test_saudi_prime_ministers_c01_50.py).
 ACCESSED = '2026-09-30'
 FAHD, ABD, SAL = 'Fahd bin Abdulaziz Al Saud', 'Abdullah bin Abdulaziz Al Saud', 'Salman bin Abdulaziz Al Saud'
 SUL, NAY, MUQ = 'Sultan bin Abdulaziz Al Saud', 'Nayef bin Abdulaziz Al Saud', 'Muqrin bin Abdulaziz Al Saud'
@@ -117,7 +118,8 @@ def kcp_invariants(packet, extracts):
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
     entries = {e['id']: e for e in packet['institutions']}
     roles = {r['id']: r for e in packet['institutions'] for r in e['roles']}
-    assert [s['id'] for s in packet['sources'][BASE_SOURCES:]] == NEW_SOURCES
+    assert [s['id'] for s in packet['sources'][BASE_SOURCES:BASE_SOURCES + len(NEW_SOURCES)]] == NEW_SOURCES
+    assert len(packet['sources']) == BASE_SOURCES + len(NEW_SOURCES) + C01_50_SOURCES
     assert [c['id'] for sid in NEW_SOURCES for c in sources[sid]['claims']] == list(EVENTS)
     for cid, (day, kind, _, role, holder) in EVENTS.items():
         assert claims[cid].get('attested_on') == day and 'period' not in claims[cid], cid
@@ -188,7 +190,7 @@ class SaudiKingsCrownPrincesTests(unittest.TestCase):
     def test_records_are_appended_classified_and_cited_once(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (18, 30))
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (121, 188, 12, 10))
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (136, 206, 12, 10))
         kcp_invariants(self.packet, self.extracts)
         self.assertEqual({v[2] for v in EVENTS.values()}, {f'SA-KCP-{n:02d}' for n in range(1, 10)})
         self.assertEqual(re.findall(r'^### (SA-KCP-\d\d)\b', self.report, re.M), [f'SA-KCP-{n:02d}' for n in range(1, 10)])
