@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_ca_psa_pohiva_v_kot_20150916",
+  "source_url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/32-ac-2015.html?download=1176:public-service-association-incorporated-pohiva-v-kingdom-of-tonga-ors-court-of-appeal-of-tonga-ac-9-15-moore-j-blanchard-j-hansen-j-tupou-j",
+  "accessed_date": "2026-09-30",
+  "published_date": "2015-09-16",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 2668960,
+  "source_response_sha256": "53307c4ec539ca82b3eb9fb9d6d5dced6f60c40816977a5a08fffefef314554b",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "not applicable (PDF page scan with an OCR text layer)",
+  "fetch_recipe": "GET the recorded url exactly with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed); the server answers 200 with the PDF itself and no redirect, without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-10-01T02:36:59Z and again at 2026-10-01T03:13:34Z (UTC), 36 minutes later, from the same URL: both responses were 2668960 bytes with SHA-256 53307c4ec539ca82b3eb9fb9d6d5dced6f60c40816977a5a08fffefef314554b. The URL serves a stored PDF from the Attorney General's Office download manager, not a page generated per request. The research download of 2026-10-01T02:27:32Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Original PDF as served by the Attorney General's Office on the access date; it is a dated historical document and no content later than its own date is used. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Court of Appeal judgment (Moore, Blanchard, Hansen and Tupou JJ; hearing 14 September 2015, judgment 16 September 2015) on leave to appeal against a security-for-costs order in the Tongasat grant-aid proceeding (CV 48 of 2014). A page scan with an OCR text layer. Used only for the court's description of the party on whose behalf Mr Pohiva sued (paragraphs [4] and [34]); the costs reasoning, the grant-aid allegations and the result are not imported. The same judgment is reprinted in [2015] Tonga LR 439, which is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      21
+    ],
+    "method": "The page images of PDF pages 3 (paragraph [4]) and 21 (paragraph [34]) were extracted and visually read against the OCR text layer; the case heading and the Date of Judgment on page 1 were read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "to_ca_fidp_unincorporated_body_20150916",
+      "observation_id": "to_dpfi",
+      "review_observation": "TO-OPP-03",
+      "role_id": null,
+      "holder_name": "Mr. Pohiva",
+      "role_title": "none (party description; claims only, not placed on a role)",
+      "event_kind": "court_description_of_legal_form",
+      "attested_on": "2015-09-16",
+      "text": "The Court of Appeal's judgment of 16 September 2015 (AC 9 of 2015) states at paragraph [4]: 'Mr. Pohiva brings his claim on behalf of an unincorporated body, the Friendly Islands Democratic Party, but accepts a personal liability for costs if he is unsuccessful', and adds that he maintains in an affidavit that he is also suing in his personal capacity.",
+      "locator": "PDF page 1 (Date of Judgment) and page 3 (paragraph [4])",
+      "uncertainty": "A judicial description of how the claim was brought, not a finding on the party's constitution, registration or officers, and not a registry record. It names no party office for Mr Pohiva; suing on the party's behalf is not treated as leadership. The name 'Friendly Islands Democratic Party' differs in word order from 'Democratic Party of the Friendly Islands'; identity with to_dpfi is not established here."
+    },
+    {
+      "claim_id": "to_ca_fidp_party_funds_argument_20150916",
+      "observation_id": "to_dpfi",
+      "review_observation": "TO-OPP-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": "none (party description; claims only, not placed on a role)",
+      "event_kind": "court_description_of_legal_form",
+      "attested_on": "2015-09-16",
+      "text": "Paragraph [34] of the same judgment states that, in relation to Mr. Pohiva, the second respondent (Tongasat) 'concentrated its fire in the Supreme Court entirely on the unincorporated political party on behalf of whom he said he was suing' and 'set out to show that the party had no funds'.",
+      "locator": "PDF page 21 (paragraph [34])",
+      "uncertainty": "Describes the respondent's argument in the Supreme Court; the Court of Appeal makes no finding on the party's funds, membership or officers, and the party is not named in this paragraph."
+    }
+  ],
+  "bounded_scope": "Opposition party observations for CLAUDE-C01-44 only (organizations to_dpfi and to_pdp; roles to_dpfi_leader, to_dpfi_president and to_pdp_leader). Rows are claims only: no row is a holder observation, and a court recital, a description of legal form and a retrospective founding statement stay separate rows. Organization identities stay unresolved; a party name printed differently from an existing name is not mapped to it."
+}

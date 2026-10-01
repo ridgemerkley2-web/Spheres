@@ -1,6 +1,8 @@
 # CLAUDE-C01-44: Tongan opposition party leaders (DPFI and PDP), 1990–2026
 
-Owner: Claude. State: **claimed** (2026-09-30; in progress, not complete). Parent: C01 (incomplete).
+Owner: Claude. State: **ready_for_review** (1 October 2026 UTC; 30 September local; submitted, not accepted). Parent: C01
+(incomplete).
+Report: [tonga-dpfi-pdp-leaders-1990-2026-44.md](../../campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md).
 
 Origin: part of the back-to-back C01 research pipeline the user asked for on 28 September 2026, taken from the
 certified-country gap ledger (`docs/campaign-certification/C01/gap-ledger/ledger.md`) items `to_dpfi#to_dpfi_leader`, `to_dpfi#to_dpfi_president`, `to_pdp#to_pdp_leader`. Pending Codex
@@ -37,3 +39,46 @@ Checks: research-index `--check`; `campaign_census.py --check`; the Tonga, resea
 (census included); the atlas Node check; `workboard.py --check`; `git diff --check`.
 
 Mark the packet `ready_for_review` when done. C01 and all parent gates stay open.
+
+## Result
+
+Submitted `ready_for_review` on 1 October 2026 (UTC; 30 September local) on `claude/c01-to-44` (claim `fdb71175`, base
+`509bd289`, not stacked). `codex/campaign-certification` moved to `efc88b85` during the work and was merged before the
+packet commits (merge `73ae1261`, no conflict). Commits: `Add CLAUDE-C01-44: Tongan opposition party leaders (DPFI and
+PDP), 1990-2026` (everything except the index) and `Regenerate the C01 research index for CLAUDE-C01-44`
+(`research-index.json` only). Touched paths (nothing else):
+
+- `docs/planning/ai-handoffs/CLAUDE-C01-44.md` (this record);
+- `docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md` (new report);
+- `docs/campaign-certification/C01/research/tonga.json` (additions only: 5 sources and 6 claims appended after every earlier
+  packet's; on `to_dpfi`, the 5 sources and 6 claims appended; five coverage notes appended on `to_dpfi`, two on `to_pdp` and
+  one on the packet; no holder, organization, role or name observation);
+- 5 new extracts `docs/campaign-certification/C01/research/sources/tonga-*-facts.json` (no existing extract edited);
+- `tools/avatars/test_tonga_dpfi_pdp_leaders_c01_44.py` (new); `tools/avatars/test_tonga_research_s10g.py` (totals pin
+  re-expressed exactly, 212 sources and 325 claims, none loosened);
+- `docs/campaign-certification/C01/research-index.json` (separate commit).
+
+Decisions (details in the report):
+
+- No holder is added. No primary record (party record, PMO, Assembly or Gazette naming the party office) names a DPFI/PTOA
+  leader, president or chair after 'Akilisi Pohiva, or any PDP officer; later names are news or tertiary leads.
+- TO-OPP-02: a Supreme Court recital (AM 20/2013, 17 January 2014) calls Mr Pohiva "the leader of the Tonga Democratic
+  Party". Kept as a claim, not a `to_dpfi_leader` holder, because the name differs from DPFI (ruling requested).
+- TO-OPP-03: the Court of Appeal (16 September 2015) calls the "Friendly Islands Democratic Party" an unincorporated body,
+  and the PMO (17 March 2020) asserts that PTOA was unregistered with no legal body or constitution: claims only;
+  TO-DPFI-04 stays unresolved.
+- TO-OPP-01: founding statements (September 2010 relayed third-party text; 2010 profile line) are claims only;
+  `lifecycle.from` stays null. The relayed PGA text is typed `legislature_republished_reference_text`.
+
+Checks (after the merge; full lines in the report): research-index `--check` pass; `campaign_census.py --check` pass (also
+on `509bd289`, so no census failure is disclosed); Tonga tests 101 pass; research tests 79 pass; campaign tests 16 pass;
+`test_country_cast.py` 31 pass; Node leadership check 11 pass; `workboard.py --check` pass; `git diff --check` clean. The
+sparse checkout was widened by `docs/campaign-certification/C06` and `S26` (22 small files) for the merged workboard and
+cast checks. Known failures outside the suite, disclosed and not fixed: `test_certified_gap_ledger.py` ("no pinned
+attribution" for this packet's sources until Codex classifies the commit) and `test_certified_boundary_matrix.py` (needs
+`spheres-web/src`). `D:/spheres-scratch/c01-pipeline/tools/packet_check.py 44` is run on the pushed head; its summary is
+returned to the pipeline and saved in `D:/spheres-scratch/verify/C01-44/packet_check.json`.
+
+Integration: the user chose to start this research batch before Codex's roadmap line "continue existing claims first";
+`research-index.json` is shared with the parallel packets (C01-38 to 41 in fixes, C01-42 to 46 in research), so regenerate it
+on any index-only conflict. C01 and all parent gates stay open.

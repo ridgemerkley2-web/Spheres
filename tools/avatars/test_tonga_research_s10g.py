@@ -41,7 +41,8 @@ class TongaDiscoveryTests(unittest.TestCase):
         # test_tonga_transition_c01_03 owns them.
         # CLAUDE-C01-24 added 49 sources and 82 claims; test_tonga_speakers_c01_24 owns them.
         # CLAUDE-C01-36 added 39 sources and 53 claims; test_tonga_deputy_prime_ministers_c01_36 owns them.
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 207, 319))
+        # CLAUDE-C01-44 added five sources and six claims; test_tonga_dpfi_pdp_leaders_c01_44 owns them.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 212, 325))
         self.assertEqual({e['id'] for e in self.packet['organizations']},
                          {'to_fihrdm', 'to_pdp', 'to_dpfi', 'to_peoples_party'})
         self.assertEqual(len(self.packet['institutions']), 5)

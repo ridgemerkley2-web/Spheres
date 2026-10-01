@@ -6188,6 +6188,146 @@
         "sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_la_news_pga_award_20131214",
+      "title": "'Akilisi Pohiva presented 2013 Defender of Democracy awards (Legislative Assembly news item, archived)",
+      "url": "https://web.archive.org/web/20161027095552id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/230-akilisi-pohiva-presented-2013-defender-of-democracy-awards",
+      "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/230-akilisi-pohiva-presented-2013-defender-of-democracy-awards",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-30",
+      "published_date": "2013-12-14",
+      "source_type": "legislature_republished_reference_text",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_la_pga_dpfi_established_sept2010",
+          "text": "The Legislative Assembly's news item ''Akilisi Pohiva presented 2013 Defender of Democracy awards' (created 14 December 2013), which names the PGA Forum website as its source, relays that website's text about Mr. Samuela 'Akilisi Pohiva: 'In September 2010, he established the Democratic Party of the Friendly Islands along with other Human Rights and Democracy Movement People's Representatives, in order to contest the 2010 elections.'",
+          "period": {
+            "from": "2010-09-01",
+            "through": "2010-09-30"
+          },
+          "locator": "Item body, paragraph quoting the PGA forum website, and the closing 'Source:' line",
+          "uncertainty": "Third-party reference text relayed on the Assembly's site, so a claim only and never holder evidence; a month-level founding statement, not a founding instrument, launch notice or registration, so lifecycle.from stays null. It names no party office: establishing the party is not read as holding the leader's office."
+        }
+      ],
+      "scope_note": "Assembly news item (its line 'Created: 14 December 2013') as a raw Internet Archive capture of 27 October 2016. It reports the award ceremony of 8 December 2013 and names its source as the Parliamentarians for Global Action (PGA) Forum website, so the biographical text it relays is third-party reference text republished on the Assembly's site (claims only, never holder evidence). Used only for the founding sentence; the award, the 1996 imprisonment and the accompanying delegation are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pga-award-news-20131214-facts.json",
+        "bytes": 4963,
+        "sha256": "301172d439d3124eeaea5253c3673af17dc4e124df62b0182b3363b07fdcee5b",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_tlr_2014_pohiva_v_tuivakano",
+      "title": "Tonga Law Reports 2014 ([2014] Tonga LR): Pohiva v Tu'ivakano & ors (Supreme Court, AM 20/2013, 17 January 2014)",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1552:2014_tlr",
+      "publisher": "Attorney General's Office, Tonga (Tonga Law Reports)",
+      "accessed_date": "2026-09-30",
+      "source_type": "primary_court_record",
+      "access_method": "downloaded_original_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_tlr_pohiva_leader_tonga_democratic_party_20140117",
+          "text": "In Pohiva v Tu'ivakano & ors (Supreme Court, Scott CJ, AM 20/2013, 17 January 2014), paragraph [4] describes the appellant, Mr Pohiva, as the No.1 Peoples Representative for Tongatapu, first elected to Parliament in 1987, and states in the present tense: 'He is the leader of the Tonga Democratic Party.'",
+          "attested_on": "2014-01-17",
+          "locator": "[2014] Tonga LR 9 (heading: Supreme Court, Nuku'alofa; Scott CJ; AM 20/2013; 17 January 2014) and 11 (paragraph [4]); PDF pages 31 and 33",
+          "uncertainty": "A judicial background recital in an appeal about private prosecutions, not a finding on party office and not a party or registry record; no selection, start or term is stated. The court's name 'Tonga Democratic Party' differs from 'Democratic Party of the Friendly Islands' and from every name already observed for to_dpfi, and no other name is given, so identity with to_dpfi is not established: the recital stays a claim and is not a to_dpfi_leader holder observation."
+        }
+      ],
+      "scope_note": "One judgment printed in the 2014 volume: Pohiva v Tu'ivakano & ors (Supreme Court, Scott CJ, AM 20/2013, 17 January 2014), an appeal against the discharge of private prosecutions. The volume's publication date is not printed (PDF metadata: created 9 November 2015). Used only for the present-tense description of the appellant's party office in paragraph [4]; the prosecution, its merits and the other judgments in the volume are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-tlr-2014-pohiva-leader-20140117-facts.json",
+        "bytes": 4811,
+        "sha256": "5810b52c21f47ed090097d1188906452d6b6b7a157fcea2dfb08cdaca9328128",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_ca_psa_pohiva_v_kot_20150916",
+      "title": "Public Service Association Incorporated & Samiuela 'Akilisi Pohiva v Kingdom of Tonga & Friendly Islands Satellite Communications Limited (Court of Appeal, AC 9 of 2015, judgment of 16 September 2015)",
+      "url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/32-ac-2015.html?download=1176:public-service-association-incorporated-pohiva-v-kingdom-of-tonga-ors-court-of-appeal-of-tonga-ac-9-15-moore-j-blanchard-j-hansen-j-tupou-j",
+      "publisher": "Attorney General's Office, Tonga (Court of Appeal judgments)",
+      "accessed_date": "2026-09-30",
+      "published_date": "2015-09-16",
+      "source_type": "primary_court_record",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_ca_fidp_unincorporated_body_20150916",
+          "text": "The Court of Appeal's judgment of 16 September 2015 (AC 9 of 2015) states at paragraph [4]: 'Mr. Pohiva brings his claim on behalf of an unincorporated body, the Friendly Islands Democratic Party, but accepts a personal liability for costs if he is unsuccessful', and adds that he maintains in an affidavit that he is also suing in his personal capacity.",
+          "attested_on": "2015-09-16",
+          "locator": "PDF page 1 (Date of Judgment) and page 3 (paragraph [4])",
+          "uncertainty": "A judicial description of how the claim was brought, not a finding on the party's constitution, registration or officers, and not a registry record. It names no party office for Mr Pohiva; suing on the party's behalf is not treated as leadership. The name 'Friendly Islands Democratic Party' differs in word order from 'Democratic Party of the Friendly Islands'; identity with to_dpfi is not established here."
+        },
+        {
+          "id": "to_ca_fidp_party_funds_argument_20150916",
+          "text": "Paragraph [34] of the same judgment states that, in relation to Mr. Pohiva, the second respondent (Tongasat) 'concentrated its fire in the Supreme Court entirely on the unincorporated political party on behalf of whom he said he was suing' and 'set out to show that the party had no funds'.",
+          "attested_on": "2015-09-16",
+          "locator": "PDF page 21 (paragraph [34])",
+          "uncertainty": "Describes the respondent's argument in the Supreme Court; the Court of Appeal makes no finding on the party's funds, membership or officers, and the party is not named in this paragraph."
+        }
+      ],
+      "scope_note": "Court of Appeal judgment (Moore, Blanchard, Hansen and Tupou JJ; hearing 14 September 2015, judgment 16 September 2015) on leave to appeal against a security-for-costs order in the Tongasat grant-aid proceeding (CV 48 of 2014). A page scan with an OCR text layer. Used only for the court's description of the party on whose behalf Mr Pohiva sued (paragraphs [4] and [34]); the costs reasoning, the grant-aid allegations and the result are not imported. The same judgment is reprinted in [2015] Tonga LR 439, which is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-ca-ac9-20150916-facts.json",
+        "bytes": 5932,
+        "sha256": "22917e22b2e0b0e2f559b4975fa5822a02d0f9fe4b81e1a95812c199cca8aaf5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_profile_pohiva_2016",
+      "title": "Hon. Samiuela 'Akilisi Pohiva (Legislative Assembly members' page, archived)",
+      "url": "https://web.archive.org/web/20160304030700id_/http://parliament.gov.to/members-of-parliament/ministers/305-hon-samiuela-akilisi-pohiva",
+      "original_url": "http://parliament.gov.to/members-of-parliament/ministers/305-hon-samiuela-akilisi-pohiva",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-30",
+      "source_type": "primary_legislature_member_profile_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_la_profile_dpfi_established_2010",
+          "text": "The Legislative Assembly's member page for Hon. Samiuela 'Akilisi Pohiva (People's Representative for Tongatapu No. 1), as captured on 4 March 2016, lists under Employment History: 'Established the Democratic Party of the Friendly Islands in 2010.'",
+          "locator": "Profile table, Employment History, third line",
+          "uncertainty": "An undated retrospective profile line at year precision, not a founding instrument, launch notice or registration; no day or month is given, so no structured date is stored and lifecycle.from stays null. It names no party office: establishing the party is not treated as holding the leader's office."
+        }
+      ],
+      "scope_note": "Undated Assembly member page (Members of Parliament / Ministers) as a raw Internet Archive capture of 4 March 2016; the capture date dates only what the site then presented. Used only for the Employment History line on the party's establishment; the state offices, seat and career details are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-profile-pohiva-2016-facts.json",
+        "bytes": 4418,
+        "sha256": "c1ca54f0d886242866126dfe72a26921c6968aaca12532867c14621a50120dd1",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20200317_ptoa_reply",
+      "title": "ONGOONGO TUKUATU: 'Ko e Tali 'a e 'Ofisi 'o e Palēmia ki he Ongoongo Tukuatu 'a e Paati Temokalati 'Otumotu Anga'ofa - PTOA' (Prime Minister's Office release in Tongan, 17 March 2020, archived)",
+      "url": "https://web.archive.org/web/20200703103038id_/https://pmo.gov.to/index.php/2020/03/18/ongoongo-tukuatu-ko-e-tali-a-e-ofisi-o-e-palemia-ki-he-ongoongo-tukuatu-a-e-paati-temokalati-otumotu-angaofa-ptoa/",
+      "original_url": "https://pmo.gov.to/index.php/2020/03/18/ongoongo-tukuatu-ko-e-tali-a-e-ofisi-o-e-palemia-ki-he-ongoongo-tukuatu-a-e-paati-temokalati-otumotu-angaofa-ptoa/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-30",
+      "published_date": "2020-03-17",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_ptoa_unregistered_statement_20200317",
+          "text": "The Prime Minister's Office release of 17 March 2020, a reply to a press release of the Paati Temokalati 'Otumotu Anga'ofa (PTOA), states that the PTOA party has not yet registered as the law requires, up to that day ('oku te'eki ke lesisita 'a e Paati PTOA 'o fakatatau ki he tu'utu'uni 'a e LAO, 'o a'u ki he 'aho ni), and that it has no legal body and no constitution ('oku 'ikai ke 'i ai ha sino fakalao mo ha'anau Konisitutone).",
+          "attested_on": "2020-03-17",
+          "locator": "Entry content: opening dateline paragraph ('('Aho 17 'o Ma'asi, 2020)') and the paragraph beginning 'Ko e me'a pango'",
+          "uncertainty": "The government's assertion in a political reply, not a registry search, registry certificate or court finding. It names no PTOA officer and does not say who issued the PTOA release, so it gives no holder. Party and state office stay separate: the release is a Prime Minister's Office statement about the party, not a party record."
+        }
+      ],
+      "scope_note": "Tongan-language PMO release posted under the address date 18 March 2020 and dated in its opening line ''Aho 17 'o Ma'asi, 2020'; raw Internet Archive capture of 3 July 2020. It answers a PTOA press release point by point. Used only for its statement on PTOA's registration and legal status; the policy rebuttals, its statement about another party's registration and the sidebar are not imported. Tongan is quoted with straight apostrophes for the glottal stop; English renderings are this packet's reading.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ptoa-reply-20200317-facts.json",
+        "bytes": 5019,
+        "sha256": "b9ff856ee6442939a1b73ca95aa7883b2358616bc4c42d58bc6381612d359916",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -6275,7 +6415,9 @@
           "Retrieve the archived constitution and registration instrument; distinguish party leader, chair and any parliamentary leader.",
           "April 2005 is the reported formation month; the exact day is unknown.",
           "Tesina Fuko's complete leadership interval and successors are unverified.",
-          "Continuation, dissolution and inactive periods after the 2008 observation remain unresolved."
+          "Continuation, dissolution and inactive periods after the 2008 observation remain unresolved.",
+          "TO-OPP-06 (tonga-dpfi-pdp-leaders-1990-2026-44.md): no PDP record (constitution, registration, minutes or statement) and no government release, Assembly page or judgment naming a PDP office was found. News leads give an April 2005 founding meeting, a presidential election at a meeting that month and a July 2005 registration; none is imported. to_pdp_leader keeps its string observation only, and no dict holder is added.",
+          "TO-OPP-07: no record of a later PDP leader or president, a dissolution or an inactive period was found in the Assembly's 2011 member pages, the Tonga Law Reports for 2005-2020 or the Attorney General's judgment listings searched; the party's continuation after the 2008 observation stays unresolved."
         ]
       }
     },
@@ -6364,7 +6506,12 @@
         "to_mcctil_incsoc_consultation_20260721",
         "to_ipu_2025",
         "to_tec_results_2025",
-        "to_tec_home_2025"
+        "to_tec_home_2025",
+        "to_la_news_pga_award_20131214",
+        "to_tlr_2014_pohiva_v_tuivakano",
+        "to_ca_psa_pohiva_v_kot_20150916",
+        "to_la_profile_pohiva_2016",
+        "to_pmo_20200317_ptoa_reply"
       ],
       "claim_ids": [
         "to_dpfi_pohiva_2010",
@@ -6384,7 +6531,13 @@
         "to_incsoc_paper_register_20260721",
         "to_ipu_2025_no_party_result",
         "to_tec_2025_no_party_column",
-        "to_tec_2025_candidate_list_no_party"
+        "to_tec_2025_candidate_list_no_party",
+        "to_la_pga_dpfi_established_sept2010",
+        "to_tlr_pohiva_leader_tonga_democratic_party_20140117",
+        "to_ca_fidp_unincorporated_body_20150916",
+        "to_ca_fidp_party_funds_argument_20150916",
+        "to_la_profile_dpfi_established_2010",
+        "to_pmo_ptoa_unregistered_statement_20200317"
       ],
       "coverage": {
         "status": "partial",
@@ -6405,7 +6558,12 @@
           "TO-DPFI-05: IPU 2014 adds a second leader observation for 'Akilisi Pohiva (27 November 2014). Both leader observations are IPU-only, not Legislative Assembly, registry or court records; no continuous leadership term from 2010 to 2019 is inferred. The 2014 Assembly selection, endorsement and Cabinet claims belong to to_pm and to_cabinet.",
           "TO-DPFI-06: 'Akilisi Pohiva's death is recorded at month precision (September 2019); the exact day needs a Prime Minister's Office release or Gazette notice. Neither Assembly article records a party-leadership transfer.",
           "TO-DPFI-07: Fatai Helu is recited as President of the party on 29 August 2022 (role to_dpfi_president, from and until null), a judicial background recital that probably relays the applicants' filings. The party leader after September 2019 is unresolved: rival leadership claims appear only in news and tertiary leads, and no party office for 2023 to the cutoff was found in the records searched. Whether President and Leader are one office is unknown.",
-          "TO-DPFI-08: a 2025 result of no seats is not accepted. IPU 2025 records no party-level result, and the Electoral Commission's candidate list and constituency tables carry no party labels; no primary record found links any 2025 candidate to PTOA/DPFI. No dissolution or inactivity is inferred."
+          "TO-DPFI-08: a 2025 result of no seats is not accepted. IPU 2025 records no party-level result, and the Electoral Commission's candidate list and constituency tables carry no party labels; no primary record found links any 2025 candidate to PTOA/DPFI. No dissolution or inactivity is inferred.",
+          "TO-OPP-01 (tonga-dpfi-pdp-leaders-1990-2026-44.md): the Legislative Assembly's news item of 14 December 2013 relays third-party text dating 'Akilisi Pohiva's establishment of the Democratic Party of the Friendly Islands to September 2010, and its member page (captured 4 March 2016) gives the year 2010. Both are retrospective; no founding statute, launch notice, convention record or registration was found, so lifecycle.from stays null and establishing the party is not read as an office.",
+          "TO-OPP-02: the Supreme Court (AM 20/2013, 17 January 2014) recites that Mr Pohiva 'is the leader of the Tonga Democratic Party'. That name is not otherwise observed for to_dpfi, so the recital is a claim and not a to_dpfi_leader holder observation unless a ruling joins the names. The existing leader observations of 2010 and 2014 are unchanged, and no continuous 2010-2019 term is inferred.",
+          "TO-OPP-03: the Court of Appeal (AC 9 of 2015, 16 September 2015) describes the Friendly Islands Democratic Party as an unincorporated body on whose behalf Mr Pohiva brought the Tongasat claim, and the Prime Minister's Office (release of 17 March 2020) asserts that PTOA had not registered as the law requires and had no legal body or constitution. Neither is a registry record: TO-DPFI-04 stays unresolved, the identity of the 2015 name with DPFI is not established, and suing for the party is not an office.",
+          "TO-OPP-04: leadership after September 2019. No party record, Prime Minister's Office release, Assembly record, Gazette notice or judgment found names a leader, interim leader or acting leader of DPFI or PTOA after 'Akilisi Pohiva's death; news reports naming a successor (2019-2020) and rival candidate lists in 2021 are leads only. No death in the party office is recorded, because no primary record names the party office together with the day.",
+          "TO-OPP-05: president or chair after 2022. Beyond the existing 2022 recital of Fatai Helu (TO-DPFI-07), no primary record of a later president, chair or leader was found; a 2025 news report naming a party chair is a lead only. The to_dpfi_president holder is unchanged."
         ]
       },
       "name_observations": [
@@ -8663,7 +8821,8 @@
       "Prime-minister packet 08 (tonga-prime-ministers-1990-2019-08.md) adds 1990-2019 to_pm holder observations: Fatafehi Tu'ipelehake and Baron Vaea at year precision only; Prince 'Ulukalala Lavaka Ata from his stated commencement on 3 January 2000 until his resignation was accepted on 11 February 2006; Feleti Sevele (attested 7 April 2006); Lord Tu'ivakano (appointment audience 22 December 2010); and Samuela 'Akilisi Pohiva (appointment audience 30 December 2014, then appointed with effect from 2 January 2018, with no end). Assembly selections, appointment audiences, oaths, acting service, the 2017 dissolution and the 2019 death and funeral are separate claims. The 1991 and 1999-2000 transitions, the 2006 substantive appointment day, Pohiva's status after the 2017 dissolution and the day of his death remain unresolved.",
       "Transition packet 03 (tonga-transition-2024-03.md) adds the 2024-2025 resignation, caretaker attestations, Assembly selection, royal appointment and first Eke Cabinet, with the end of the Sovaleni observation and three holder observations. The warrant, the boundaries of the acting premiership and the caretaker Cabinet's end remain unresolved; no complete leadership term is claimed.",
       "Speaker packet 24 (tonga-speakers-1990-2026-24.md) adds 1990-2026 to_speaker holder observations after the unchanged string observation to_speakers_appointment: Fusitu'a (attested 1996-11-14), Hon. Veikune (attested 2001-04-30), Hon. Tu'ivakano (attested 2003-04-08), Hon. Veikune (attested 2005-03-22, until 2006-01-25), Lord Tu'ilakepa (attested 2008-06-02), Lord Lasike (attested 2011-01-14, until 2012-07-17), Lord Fakafanua (attested 2012-07-19), Lord Tu'ivakano (attested 2015-02-24), Lord Fakafanua (attested 2018-03-05 and 2022-02-17) and Lord Vaea (attested 2026-05-19). Royal appointments, the Assembly's elections and recommendations, oaths, the 2012 revocation, acting and interim Speakers and retrospective lists are separate claims. The Speaker on 1 January 1990, every pre-2010 appointment instrument, Tu'iha'angana's 2006-2008 Speakership and the post-2014 appointment days remain unresolved; no complete term is claimed.",
-      "Deputy Prime Minister packet 36 (tonga-deputy-prime-ministers-1990-2026-36.md) adds 1990-2021 to_deputy_pm holder observations after the unchanged string observation to_cabinet_appointment and before the existing 2021-2025 holders: Langi Kavaliku (attested 2000-11-06), Tevita Poasi Tupou (2001-01-24 to 2001-09-28), James Cecil Cocker (attested 2002-05-13), Viliami Ta'u Tangi (attested 2006-08-08), Samiu Kuita Vaipulu (from 2011-01-04), Siaosi Sovaleni (attested 2014-12-31), Lord Ma'afu (from 2017-09-01), Semisi Kioa Lafu Sika (from 2018-01-05), Sione Vuna Fa'otusia (from 2019-10-09) and Lord Ma'afu (attested 2021-04-21, until his death on 2021-12-12). The Deputy Prime Minister of 1 January 1990 and most ends remain unresolved; acting service is recorded as claims only, and no complete term is claimed."
+      "Deputy Prime Minister packet 36 (tonga-deputy-prime-ministers-1990-2026-36.md) adds 1990-2021 to_deputy_pm holder observations after the unchanged string observation to_cabinet_appointment and before the existing 2021-2025 holders: Langi Kavaliku (attested 2000-11-06), Tevita Poasi Tupou (2001-01-24 to 2001-09-28), James Cecil Cocker (attested 2002-05-13), Viliami Ta'u Tangi (attested 2006-08-08), Samiu Kuita Vaipulu (from 2011-01-04), Siaosi Sovaleni (attested 2014-12-31), Lord Ma'afu (from 2017-09-01), Semisi Kioa Lafu Sika (from 2018-01-05), Sione Vuna Fa'otusia (from 2019-10-09) and Lord Ma'afu (attested 2021-04-21, until his death on 2021-12-12). The Deputy Prime Minister of 1 January 1990 and most ends remain unresolved; acting service is recorded as claims only, and no complete term is claimed.",
+      "Opposition party packet 44 (tonga-dpfi-pdp-leaders-1990-2026-44.md) adds five sources and six claims on to_dpfi: the Assembly's relayed text (September 2010) and profile line (2010) on the party's establishment, a 2014 Supreme Court recital of Mr Pohiva as leader of a 'Tonga Democratic Party', the Court of Appeal's 2015 description of the Friendly Islands Democratic Party as an unincorporated body, and the Prime Minister's Office's 2020 statement that PTOA was unregistered. It adds no holder, organization, role or name observation, and the existing holders are unchanged. DPFI leadership after September 2019, any later president or chair, and the PDP's leaders after its April 2005 formation remain unresolved."
     ]
   }
 }
