@@ -34,7 +34,7 @@ script against the decoded capture, and the three scanned PDFs were read visuall
 | Observation | Question | Result |
 | --- | --- | --- |
 | AGIR-PRES-01 | The PRN when the period opens, its registration and the renaming to PTC (1990-2013) | **Claims only:** the court records the PRN's definitive registration (Res.-TSE nº 16.281, 22 February 1990) and the renaming to PTC (24 April 2001); the party's site republished a registry history naming 'o presidente do PRN, o Sr. Daniel Sampaio Tourinho' in 1997, and an undated 2007 roster lists him as President; no contemporaneous dated party record of 1990-2013 naming the office was found |
-| AGIR-PRES-02 | The PTC presidency, 2014-2021 | **Accepted:** Daniel Tourinho observed on 16 May 2014, 25 July 2018, 7 August 2020 and 23 July 2021; the convention of 25 July 2015 (no President named), the minutes of 3 July 2018 and the convocation of 19 July 2018 are claims |
+| AGIR-PRES-02 | The PTC presidency, 2014-2021 | **Accepted:** Daniel Tourinho observed on 16 May 2014, 25 July 2018, 7 August 2020 and 23 July 2021; the convention of 25 July 2015 (no newly elected President identified), the minutes of 3 July 2018 and the convocation of 19 July 2018 are claims |
 | AGIR-PRES-03 | The renaming to Agir and the presidency to the cutoff | **Accepted in part:** the party announced the new name on 1 June 2021 and the court approved it on 31 March 2022; Daniel Tourinho observed on 11 November 2022; an undated 2024 styling and the court's live list (captured 2 August 2026) are claims; no dated party record of 2023-2026 naming the office was found |
 | PDS-PRES-01 | The PDS, 1990-1993 | **Claims only:** the court glossary records the fusion of the PDS with the PDC into the PPR (Res.-TSE nº 19.133, 8 June 1993); no primary record naming a PDS national president was found (leads only) |
 
@@ -57,15 +57,17 @@ day it ended. No record found here states either, so no holder has a start or an
 communiqué) and two party items that print no event day and are dated by their own printed date, as a party
 newspaper's issue date may (C01-29, C01-31). The test pins that every cited claim carries exactly the holder's date.
 
-Everything else is a claim that never feeds a holder: the court's registration, renaming and fusion decisions, the
-party's renaming statement, conventions and executive meetings, minutes, convocations, undated rosters and listings,
-the registry history republished on the party's site and stylings that do not name the national office. No end is
-inferred from a renaming.
+The remaining evidence is retained as claims in this bounded packet: the court's registration, renaming and fusion
+decisions, the party's renaming statement, conventions and executive meetings, minutes, convocations, undated rosters and listings,
+the registry history republished on the party's site and less explicit office stylings. This is a conservative
+selection of five observations, not a rule that an event day invalidates an independently supported office title.
+No end is inferred from a renaming.
 
 Three stylings could be read as attestations and are kept as claims:
 
 - **'o Presidente' in the minutes of 3 July 2018.** The signed minutes of the national executive name him only as the
-  meeting's President; the national styling of 25 July 2018 dates the observation.
+  'Presidente' in national-executive context, without an explicit national-office qualifier. That does not establish
+  that he was merely a meeting chair; the explicit national styling of 25 July 2018 dates the selected observation.
 - **'Presidente do Diretório Nacional' in the convocation of 19 July 2018.** The packet does not equate the President of
   the National Directorate with the national presidency without a ruling; if Codex does, the convocation is a further
   observation of 19 July 2018 and changes no boundary.
@@ -73,8 +75,8 @@ Three stylings could be read as attestations and are kept as claims:
   quarta-feira (31)') cannot be resolved; it names no national office.
 
 The court's decision days (registration, renamings, fusion) are stored as `attested_on` of organization claims, as
-CLAUDE-C01-34 stored the court's renaming of the PMDB; they are never holder dates or boundaries. Registry listings and
-rosters without a printed date carry no structured date; a capture date is never a holder date.
+CLAUDE-C01-34 stored the court's renaming of the PMDB; they do not supply holder dates or boundaries in this packet.
+Registry listings and rosters without a printed date carry no structured date; a capture date is never a holder date.
 
 ### Party office, state office and the PDS
 
@@ -257,9 +259,9 @@ recorded identity is the encoded body as served and the decoded identity is reco
 
 ## Integration notes (outside this packet's file boundary)
 
-- **Roadmap order.** The user chose to start this batch (C01-42 to C01-46) before Codex's 'continue existing claims
-  first' roadmap line; this packet is new research taken from the gap ledger items `Brazil/br_prn` and `Brazil/br_pds`,
-  not a continuation of an existing claim.
+- **Roadmap order (author report).** The author described this batch as a user-prioritized addition. That assertion
+  is not an instruction or an acceptance ruling. This packet is new research taken from the gap ledger items
+  `Brazil/br_prn` and `Brazil/br_pds`, not a continuation of an existing claim; the integrator owns task registration.
 - **Research index.** `docs/campaign-certification/C01/research-index.json` is regenerated in its own commit
   (`Regenerate the C01 research index for CLAUDE-C01-43`). It is the only file shared with the parallel packets
   (C01-38 to C01-41 in fixes, C01-42 to C01-46 in research); on integration, regenerate it rather than merging it.

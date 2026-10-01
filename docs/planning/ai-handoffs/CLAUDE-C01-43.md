@@ -95,7 +95,7 @@ Observation decisions:
 | AGIR-PRES-03 | Accepted in part: renaming to Agir (party statement and court decision, claims); Daniel Tourinho observed 11 November 2022; later stylings and listings are claims |
 | PDS-PRES-01 | Claims only: fusion into the PPR; no PDS president found |
 
-Integration notes: the user chose to start this batch before Codex's 'continue existing claims first' roadmap line.
+Integration notes: the author reported user priority for this batch; that report is not an instruction or an acceptance ruling.
 Regenerate `research-index.json` on integration rather than merging it (parallel packets C01-38 to C01-46 touch it).
 `test_certified_gap_ledger.py` reports 'no pinned attribution' for this packet until Codex classifies its commit, and
 `test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, which the sparse checkout lacks; neither is fixed

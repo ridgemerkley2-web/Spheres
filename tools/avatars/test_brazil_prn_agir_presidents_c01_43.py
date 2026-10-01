@@ -156,7 +156,7 @@ ORGANIZATION_KINDS = {'tse_renaming_decision', 'tse_registration_decision', 'tse
 ELECTION_KINDS = {'convention_held', 'styled_on_convention_day', 'executive_meeting_reported', 'executive_minutes_styling',
                   'signed_as_directorate_president'}
 UNDATED_KINDS = {'registry_listing', 'retrospective_statement', 'executive_roster_undated', 'styled_undated'}
-# Days that are events, never holder dates.
+# Submitted event days excluded from this historical fixture's holder list.
 NEVER_HOLDER_DATE = {'1990-02-22', '1993-06-08', '2001-04-24', '2015-07-25', '2018-07-03', '2018-07-19', '2018-07-28',
                      '2021-06-01', '2022-03-31', '2022-11-10'}
 PEOPLE = {'Daniel Tourinho'}
@@ -247,7 +247,6 @@ def agir_rules(packet, rows):
         assert holder['attested_on'] and holder['attested_on'] >= previous, (name, 'chronological')
         assert holder['attested_on'] <= research.CUTOFF
         previous = holder['attested_on']
-        assert holder['attested_on'] not in NEVER_HOLDER_DATE, (name, holder['attested_on'])
         expected_sources = []
         for cid in holder['claim_ids']:
             row = rows[cid]
@@ -269,6 +268,7 @@ def agir_invariants(packet, rows):
     agir_rules(packet, rows)
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
     role = role_of(packet)
+    assert all(h['attested_on'] not in NEVER_HOLDER_DATE for h in role['holder_claims'])
     assert [(h['name'], h['attested_on'], h['from'], h['until']) for h in role['holder_claims']] == HOLDERS
     assert [h['claim_ids'] for h in role['holder_claims']] == HOLDER_CLAIMS
     for cid, (_, day, _, _, _) in EVENTS.items():
@@ -390,6 +390,29 @@ class BrazilPrnAgirPresidentsTests(unittest.TestCase):
         hist = 'br_agir_ptc_historia_partido_capt20071011'
         self.assertEqual(self.sources[hist]['source_type'], 'party_republished_reference_text')
         self.assertFalse({c['id'] for c in self.sources[hist]['claims']} & {c for ids_ in HOLDER_CLAIMS for c in ids_})
+
+    def test_event_date_does_not_override_independent_office_evidence(self):
+        # Synthetic collisions test the generic evidence rules, not historical
+        # revisions. The exact fixture still rejects all changed observations.
+        cases = ((0, '2015-07-25', 'br_agir_ptc_tourinho_opens_convention_as_presidente_20150725'),
+                 (1, '2018-07-19', 'br_agir_ptc_tourinho_convokes_convention_20180719'),
+                 (4, '2022-03-31', 'br_agir_tse_registry_ptc_renamed_agir_20220331'))
+        for index, day, event in cases:
+            with self.subTest(day=day):
+                packet, rows = copy.deepcopy(self.packet), copy.deepcopy(self.rows)
+                claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
+                owner = {c['id']: s['id'] for s in packet['sources'] for c in s['claims']}
+                holder = role_of(packet)['holder_claims'][index]
+                direct, = holder['claim_ids']
+                holder['attested_on'] = claims[direct]['attested_on'] = rows[direct]['attested_on'] = day
+                text = f'Synthetic independent attestation: Daniel Tourinho, Presidente Nacional, on {day}.'
+                claims[direct]['text'] = rows[direct]['text'] = text
+                agir_rules(packet, rows)
+                with self.assertRaises(AssertionError):
+                    agir_invariants(packet, rows)
+                holder['claim_ids'], holder['sources'] = [event], [owner[event]]
+                with self.assertRaises(AssertionError):
+                    agir_rules(packet, rows)
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
         for sid in NEW_SOURCES:
