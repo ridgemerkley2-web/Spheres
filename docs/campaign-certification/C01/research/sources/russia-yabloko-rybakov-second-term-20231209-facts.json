@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_news_rybakov_second_term_20231209",
+  "source_url": "https://web.archive.org/web/20231209211736id_/https://www.yabloko.ru/cat-news/2023/12/09-3",
+  "source_title": "«Николай Рыбаков избран председателем партии «Яблоко» на второй срок», press release of 9 December 2023 — Rybakov re-elected for a second term",
+  "accessed_date": "2026-09-28",
+  "published_date": "2023-12-09",
+  "document_date": "2023-12-09",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://www.yabloko.ru/cat-news/2023/12/09-3",
+  "archive_capture_utc": "2023-12-09T21:17:36Z",
+  "source_response_url": "https://web.archive.org/web/20231209211736id_/https://www.yabloko.ru/cat-news/2023/12/09-3",
+  "source_response_bytes": 58023,
+  "source_response_sha256": "dae451e56be9d65878c7f86bae6f81737792ac8e9929382143d1cca995423a63",
+  "source_response_sha1_base32": "3FLQNI6I5MM6M5LP6WO4WAPXULOCLCA2",
+  "archive_index_digest": "3FLQNI6I5MM6M5LP6WO4WAPXULOCLCA2",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:11:34Z and again at 2026-09-28T14:50:03Z (UTC), 38 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T14:55:05Z and again at 2026-09-28T15:59:51Z (64 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2023-12-09T21:17:36Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. A Drupal page whose site chrome (menus, related lists) is frozen in the capture; the live page differs, so only the capture is recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "News page read from the capture.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_rybakov_incumbent_candidate_20231209",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-07",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Николай Игоревич Рыбаков",
+      "printed_name": "Николай Рыбаков",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "continuation_attestation",
+      "attested_on": "2023-12-09",
+      "text": "The release of 9 December 2023 names among the four shortlisted candidates \"действующий председатель Николай Рыбаков\".",
+      "locator": "paragraph beginning \"Напомним, по новой версии партийного устава\""
+    },
+    {
+      "claim_id": "ru_yabloko_rybakov_reelected_second_term_20231209",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-07",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Николай Игоревич Рыбаков",
+      "printed_name": "Николай Рыбаков",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "leader_election_reported",
+      "attested_on": "2023-12-09",
+      "text": "It reports \"Николай Рыбаков избран председателем партии «Яблоко» на второй срок\", with 59 votes for (55%) in the delegates' secret ballot.",
+      "locator": "headline and lead under the dateline \"9 декабря 2023 / Пресс-релиз\""
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

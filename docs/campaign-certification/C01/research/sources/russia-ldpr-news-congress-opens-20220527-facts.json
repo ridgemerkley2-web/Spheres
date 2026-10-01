@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ldpr_news_xxxiv_congress_opens_20220527",
+  "source_url": "https://web.archive.org/web/20251012090749id_/https://ldpr.ru/event/213496/",
+  "source_title": "«Начал работу XXXIV съезд ЛДПР» — party news dated 27.05.2022 (tagged Курганская область)",
+  "accessed_date": "2026-09-28",
+  "published_date": "2022-05-27",
+  "document_date": "2022-05-27",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://ldpr.ru/event/213496/",
+  "archive_capture_utc": "2025-10-12T09:07:49Z",
+  "source_response_url": "https://web.archive.org/web/20251012090749id_/https://ldpr.ru/event/213496/",
+  "source_response_bytes": 95630,
+  "source_response_sha256": "02b87926427668f49bafdabf36f8910ba77e417465b47666bba5f424a11413be",
+  "source_response_sha1_base32": "NADNQS6MQDZ52JL4RKVDLNMYAMRKGFET",
+  "archive_index_digest": "NADNQS6MQDZ52JL4RKVDLNMYAMRKGFET",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:01:22Z and again at 2026-09-28T16:33:31Z (UTC), 32 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:51:28Z and again at 2026-09-28T17:28:54Z (37 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-10-12T09:07:49Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The capture freezes the page chrome, including a view counter (\"Просмотров\") and the footer year; the live page changes per view and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "A page of the federal party site, tagged to a regional branch, read from a capture of 12 October 2025, so edits between publication and capture cannot be excluded. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_ldpr_news_xxxiv_congress_opened_20220527",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": null,
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "congress_dates",
+      "attested_on": "2022-05-27",
+      "text": "The item dated 27.05.2022 says \"В эти минуты в Москве начал работу XXXIV съезд ЛДПР. Основным вопросом будет избрание председателя ЛДПР\", with 87 delegates from 85 regions.",
+      "locator": "lead paragraph"
+    }
+  ],
+  "bounded_scope": "LDPR chairman observations for CLAUDE-C01-28 only. Retrospective timeline entries, registration statements, elections, election reports, the interim record, the undated death reference and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The State Duma faction and its head are outside this extract."
+}

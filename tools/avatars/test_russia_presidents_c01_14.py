@@ -468,7 +468,7 @@ class RussianPresidentsTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (53, 94))
         # CLAUDE-C01-19 appended 102 sources after these 53 and one institution with one role.
         self.assertEqual([s['id'] for s in self.packet['sources'][15:68]], NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (21, 9))
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 14))
         self.assertEqual([c['id'] for c in self.sources['ru_ukaz_1146_19960809']['claims']][1:], list(C01_19_ROWS_1146))
         self.assertEqual(set(self.new_claims), set(EVENTS))
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
@@ -787,7 +787,7 @@ class RussianPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (9, 342))  # with CLAUDE-C01-19, C01-46 and C01-51
+        self.assertEqual((country['role_observations'], country['source_claims']), (14, 479))  # with CLAUDE-C01-19, C01-46 and C01-51
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Russia'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

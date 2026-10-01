@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_apr_leadership_page_2004",
+  "source_url": "https://web.archive.org/web/20040520161601id_/http://www.agroparty.ru:80/party/people.php?id=10",
+  "source_title": "«РУКОВОДЯЩИЕ ОРГАНЫ - Председатель» — the party site's leading-bodies page for the Chairman (undated; captured 20 May 2004)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.agroparty.ru/party/people.php?id=10",
+  "archive_capture_utc": "2004-05-20T16:16:01Z",
+  "source_response_url": "https://web.archive.org/web/20040520161601id_/http://www.agroparty.ru:80/party/people.php?id=10",
+  "source_response_bytes": 24462,
+  "source_response_sha256": "ddbf238c820898f9ee875b6ae272f81e23d675024171abc9e366356d57cb9aaa",
+  "source_response_sha1_base32": "523ISJYY5OQBKH6NS25N7UTJ6MZS6WSQ",
+  "archive_index_digest": "523ISJYY5OQBKH6NS25N7UTJ6MZS6WSQ",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:54:52Z and again at 2026-09-28T15:26:14Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:56:27Z and again at 2026-09-28T16:28:33Z (32 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2004-05-20T16:16:01Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. (meta tag). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Undated page read from the capture of 20 May 2004; its archive selector is template text.",
+  "rows": [
+    {
+      "claim_id": "ru_apr_leadership_page_plotnikov_chairman_2004",
+      "observation_id": "ru_apr_party_self_record",
+      "review_observation": "RU-PTY-09",
+      "role_id": "ru_apr_chairman",
+      "holder_name": "Владимир Николаевич Плотников",
+      "printed_name": "Плотников Владимир Николаевич",
+      "role_title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+      "event_kind": "undated_attestation",
+      "attested_on": null,
+      "printed_date": "undated (captured 20 May 2004)",
+      "text": "The undated leading-bodies page reads \"Председатель - Плотников Владимир Николаевич\" (captured 20 May 2004).",
+      "locator": "block \"РУКОВОДЯЩИЕ ОРГАНЫ\""
+    }
+  ],
+  "bounded_scope": "Agrarian Party of Russia chairman and organization observations for CLAUDE-C01-28 only. Congresses, elections, retrospective and registration statements, the reorganisation and accession decisions, undated pages and in-office attestations stay separate rows; holder boundaries and the organization lifecycle are decided in the packet, not by any row."
+}

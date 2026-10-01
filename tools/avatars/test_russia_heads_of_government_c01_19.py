@@ -692,7 +692,7 @@ class RussianHeadsOfGovernmentTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims), len(EVENTS)), (102, 151, 153))
         # CLAUDE-C01-46 appended 7 sources (27 claims) after these, on the faction-head roles only.
         self.assertEqual([s['id'] for s in self.packet['sources'][68:170]], NEW_SOURCES)
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))  # with C01-51
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (261, 479, 24, 14))  # with C01-51
         self.assertEqual(set(self.new_claims) | set(SHARED_1146), set(EVENTS))
         self.assertEqual([c['id'] for c in self.sources[SHARED_SOURCE]['claims']][1:], SHARED_1146)
         # New sources are appended in date order; every claim has one kind from the pinned vocabulary.
@@ -1084,7 +1084,7 @@ class RussianHeadsOfGovernmentTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))  # with CLAUDE-C01-46 and C01-51
+        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (14, 479, 24))  # with CLAUDE-C01-46 and C01-51
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Russia'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

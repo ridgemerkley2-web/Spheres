@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_news_rybakov_appeal_20260819",
+  "source_url": "https://web.archive.org/web/20260821172511id_/https://www.yabloko.ru/cat-news/2026/08/19",
+  "source_title": "«Николай Рыбаков потребовал от главы МВД прекратить давление на граждан, пришедших в Верховный Суд РФ», press release of 19 August 2026 — the chairman's appeal to the Minister of Internal Affairs",
+  "accessed_date": "2026-09-28",
+  "published_date": "2026-08-19",
+  "document_date": "2026-08-19",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://www.yabloko.ru/cat-news/2026/08/19",
+  "archive_capture_utc": "2026-08-21T17:25:11Z",
+  "source_response_url": "https://web.archive.org/web/20260821172511id_/https://www.yabloko.ru/cat-news/2026/08/19",
+  "source_response_bytes": 49945,
+  "source_response_sha256": "5837c6f8c2f8948255ac5cd741397a8eb40748e92c7c1b23bbc4d5d18ff70950",
+  "source_response_sha1_base32": "2IR7CQWW5FI7GFH6PAJSHSXUDSMBXACZ",
+  "archive_index_digest": "2IR7CQWW5FI7GFH6PAJSHSXUDSMBXACZ",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:11:20Z and again at 2026-09-28T14:41:29Z (UTC), 30 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T14:55:08Z and again at 2026-09-28T15:59:54Z (64 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2026-08-21T17:25:11Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. A Drupal page whose site chrome (menus, related lists) is frozen in the capture; the live page differs, so only the capture is recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "News page read from the capture of 21 August 2026; no capture of a later party item before the cutoff was found.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_rybakov_chairman_appeal_20260819",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-07",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Николай Игоревич Рыбаков",
+      "printed_name": "Николай Рыбаков",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-19",
+      "text": "A release dated 19 August 2026 says \"Председатель партии «Яблоко» Николай Рыбаков обратился к Министру внутренних дел Российской Федерации\".",
+      "locator": "article lead under the dateline \"19 августа 2026 / Пресс-релиз\""
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

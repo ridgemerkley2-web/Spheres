@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_dvr_founding_congress_edition_1994",
+  "source_url": "https://web.archive.org/web/20160803131429id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4818",
+  "source_title": "«Демократический выбор России. Учредительный съезд партии. 12-13 июня 1994 г., г. Москва» — a published edition of the founding congress's documents (Библиотека открытой политики; М.: Евразия, 1994; scan)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4818",
+  "archive_capture_utc": "2016-08-03T13:14:29Z",
+  "source_response_url": "https://web.archive.org/web/20160803131429id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4818",
+  "source_response_bytes": 10512385,
+  "source_response_sha256": "df1015115b407715188bc13c223c8aeeace3d66c7bcf0eb7d38e7e7fd082e26f",
+  "source_response_sha1_base32": "2G3PACD2OR36X7K5KQ2AN55SBGTII5YI",
+  "archive_index_digest": "2G3PACD2OR36X7K5KQ2AN55SBGTII5YI",
+  "source_response_encoding": "application/pdf (77 pages; producer ABBYY FineReader 11; CreationDate D:16010101000000Z), served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T15:15:49Z and again at 2026-09-28T15:47:54Z (UTC), 32 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:56:50Z and again at 2026-09-28T16:28:52Z (32 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2016-08-03T13:14:29Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. A scanned PDF with an OCR text layer supplied by the archive. Every cited page was rendered (headless Chrome's PDF viewer) and read from the image; the OCR layer, read with pdftotext, is not quoted where it differs from the print. The archive hosts the organization's own document; it is not itself the organization's publisher, and its catalogue pages (not recorded) supply only titles and dates. Handwritten archival marks on the scans are the archive's, not the party's. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Scan of a publisher's edition (\"© Издательство «Евразия»\") printed after 9 August 1994 (it notes the charter's approval by the Ministry of Justice); only the founding declaration and the Political Council list are used.",
+  "rows": [
+    {
+      "claim_id": "ru_dvr_founding_declaration_19940612",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "founding_declaration",
+      "attested_on": "1994-06-12",
+      "text": "The declaration on the founding of the party says that on 12 June, the anniversary of the restoration of Russian statehood, they founded in Moscow \"новую общероссийскую политическую организацию — ПАРТИЮ “ДЕМОКРАТИЧЕСКИЙ ВЫБОР РОССИИ”\" and approved its programme and charter.",
+      "locator": "PDF p. 4 (printed p. 3), «ДЕКЛАРАЦИЯ О СОЗДАНИИ ПАРТИИ \"ДЕМОКРАТИЧЕСКИЙ ВЫБОР РОССИИ\"»"
+    },
+    {
+      "claim_id": "ru_dvr_political_council_gaidar_chairman_1994",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": "Егор Тимурович Гайдар",
+      "printed_name": "Гайдар Егор Тимурович",
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "leader_election",
+      "attested_on": null,
+      "printed_date": "12-13 июня 1994 г.",
+      "text": "The list \"Политсовет партии “Демократический Выбор России” ИЗБРАН УЧРЕДИТЕЛЬНЫМ СЪЕЗДОМ ПАРТИИ 12-13 июня 1994 г.\" opens with \"Председатель Политсовета Гайдар Егор Тимурович\", described among other titles as \"Председатель партии “Демократический выбор России”\".",
+      "locator": "PDF p. 5 (printed p. 4), «Политсовет партии \"Демократический Выбор России\"»"
+    }
+  ],
+  "bounded_scope": "Russia's Choice (1993 bloc) and Democratic Choice of Russia observations for CLAUDE-C01-28 only. The bloc's programme, the working name, founding, registration and dissolution statements, the election of the Political Council, the chairmanship ballot record, undated and bare-title signatures and in-office attestations stay separate rows; holder boundaries and organization lifecycles are decided in the packet, not by any row."
+}

@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kprf_i_plenum_notice_20250705",
+  "source_url": "https://web.archive.org/web/20250708000201id_/https://kprf.ru/party-live/cknews/235886.html",
+  "source_title": "«Информационное сообщение о работе I (июльского) Пленума ЦК КПРФ» — information notice on the I (July) Plenum of the Central Committee (5 July 2025), press service, posted 7 July 2025",
+  "accessed_date": "2026-09-28",
+  "published_date": "2025-07-07",
+  "document_date": "2025-07-05",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://kprf.ru/party-live/cknews/235886.html",
+  "archive_capture_utc": "2025-07-08T00:02:01Z",
+  "source_response_url": "https://web.archive.org/web/20250708000201id_/https://kprf.ru/party-live/cknews/235886.html",
+  "source_response_bytes": 28783,
+  "source_response_sha256": "19a6e954c0cba77685a09f263198d050fed63f48aa2a18faec5660f62dbb0329",
+  "source_response_sha1_base32": "HAYOW5YLFLHFI32Q6HZHXBPPSCI4XD57",
+  "archive_index_digest": "HAYOW5YLFLHFI32Q6HZHXBPPSCI4XD57",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T13:53:16Z and again at 2026-09-28T14:52:42Z (UTC), 59 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:10:25Z and again at 2026-09-28T16:00:37Z (50 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-07-08T00:02:01Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The site chrome (menus, related items, the \"© 1993-20xx\" footer) is frozen in the capture; the live page regenerates per request and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Party news item (byline \"Пресс-служба ЦК КПРФ\", \"7 Июля 2025, 23:42\") read from the capture of 8 July 2025; an earlier capture replayed gzip-encoded was rejected.",
+  "rows": [
+    {
+      "claim_id": "ru_kprf_i_plenum_zyuganov_elected_chairman_20250705",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-02",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "Г.А. Зюганова (accusative)",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "leader_election",
+      "attested_on": "2025-07-05",
+      "text": "The notice says the I Plenum of the Central Committee elected at the XIX congress was held on 5 July 2025 and \"Пленум избрал Председателем Центрального Комитета КПРФ Г.А. Зюганова\".",
+      "locator": "body paragraphs 1-2"
+    },
+    {
+      "claim_id": "ru_kprf_i_plenum_chairman_closing_word_20250705",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-02",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "Г.А. Зюганов",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2025-07-05",
+      "text": "It says Г.А. Зюганов gave the closing word and \"Председатель ЦК КПРФ призвал членов Центрального Комитета к слаженной и результативной работе\".",
+      "locator": "last body paragraph"
+    }
+  ],
+  "bounded_scope": "KPRF chairman observations for CLAUDE-C01-28 only. Congresses, plenum elections, retrospective and registration statements, continuation claims and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Duma faction head of 2021 is outside this extract."
+}

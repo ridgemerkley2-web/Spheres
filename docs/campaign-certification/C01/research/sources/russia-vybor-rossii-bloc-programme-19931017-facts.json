@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_vybor_rossii_bloc_programme_19931017",
+  "source_url": "https://web.archive.org/web/20131005073722id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3647",
+  "source_title": "«Избирательное объединение «Выбор России». Программа. Принята 17 октября 1993 года на учредительном съезде общественно-политического блока «Выбор России»» — the bloc's programme (Moscow, October 1993; scan)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "1993-10-17",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3647",
+  "archive_capture_utc": "2013-10-05T07:37:22Z",
+  "source_response_url": "https://web.archive.org/web/20131005073722id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3647",
+  "source_response_bytes": 2040735,
+  "source_response_sha256": "1fdfa9b2135409586ea85eda9eac0320e543a78f72666e1ecdc68776f175b17f",
+  "source_response_sha1_base32": "53ZRXIBJCNIVY2HO544K3Y3O4YHTXB3W",
+  "archive_index_digest": "53ZRXIBJCNIVY2HO544K3Y3O4YHTXB3W",
+  "source_response_encoding": "application/pdf (18 pages; producer ABBYY FineReader 10; CreationDate D:20120913153515+04'00'), served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T15:17:05Z and again at 2026-09-28T15:47:58Z (UTC), 30 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:56:38Z and again at 2026-09-28T16:28:43Z (32 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2013-10-05T07:37:22Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. A scanned PDF with an OCR text layer supplied by the archive. Every cited page was rendered (headless Chrome's PDF viewer) and read from the image; the OCR layer, read with pdftotext, is not quoted where it differs from the print. The archive hosts the organization's own document; it is not itself the organization's publisher, and its catalogue pages (not recorded) supply only titles and dates. Handwritten archival marks on the scans are the archive's, not the party's. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Scan of the bloc's printed programme (\"© «Выбор России», 1993\", PDF p. 2); only the title page is used. Its OCR is garbled on the title page and clean where the line is repeated on PDF p. 4.",
+  "rows": [
+    {
+      "claim_id": "ru_vybor_rossii_programme_adopted_founding_congress_19931017",
+      "observation_id": "ru_vybor_rossii_bloc_1993",
+      "review_observation": "RU-PTY-10",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "programme_adopted",
+      "attested_on": "1993-10-17",
+      "text": "The title page reads \"ИЗБИРАТЕЛЬНОЕ ОБЪЕДИНЕНИЕ «ВЫБОР РОССИИ»\" and \"ПРОГРАММА. Принята 17 октября 1993 года на учредительном съезде общественно-политического блока «Выбор России»\" (Moscow, October 1993).",
+      "locator": "title page (PDF p. 1, image), repeated on PDF p. 4"
+    }
+  ],
+  "bounded_scope": "Russia's Choice (1993 bloc) and Democratic Choice of Russia observations for CLAUDE-C01-28 only. The bloc's programme, the working name, founding, registration and dissolution statements, the election of the Political Council, the chairmanship ballot record, undated and bare-title signatures and in-office attestations stay separate rows; holder boundaries and organization lifecycles are decided in the packet, not by any row."
+}

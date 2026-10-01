@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_apr_release_plenum_20040531",
+  "source_url": "https://web.archive.org/web/20050523171303id_/http://agroparty.ru:80/releases/3/179/",
+  "source_title": "Пресс-релиз «Пленум Центрального Совета АПР избрал Правление и заместителей Председателя партии», 31.05.2004 — the organisational plenum of 28 May 2004",
+  "accessed_date": "2026-09-28",
+  "published_date": "2004-05-31",
+  "document_date": "2004-05-31",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://agroparty.ru/releases/3/179/",
+  "archive_capture_utc": "2005-05-23T17:13:03Z",
+  "source_response_url": "https://web.archive.org/web/20050523171303id_/http://agroparty.ru:80/releases/3/179/",
+  "source_response_bytes": 33588,
+  "source_response_sha256": "9c487c8b6388d4b62d129cbfe454ac7f0feb6c72db74db94470c8857f39b4368",
+  "source_response_sha1_base32": "BRV3OQ7N7WVHNGKBQR3LAOZX7IEJ7LBQ",
+  "archive_index_digest": "BRV3OQ7N7WVHNGKBQR3LAOZX7IEJ7LBQ",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:56:34Z and again at 2026-09-28T15:28:43Z (UTC), 32 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:56:23Z and again at 2026-09-28T16:28:30Z (32 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2005-05-23T17:13:03Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. (meta tag). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press release read from the capture of 23 May 2005 (sidebar frozen at that date).",
+  "rows": [
+    {
+      "claim_id": "ru_apr_plenum_plotnikov_reports_as_chairman_20040528",
+      "observation_id": "ru_apr_party_self_record",
+      "review_observation": "RU-PTY-09",
+      "role_id": "ru_apr_chairman",
+      "holder_name": "Владимир Николаевич Плотников",
+      "printed_name": "Владимир Плотников",
+      "role_title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2004-05-28",
+      "text": "The release says the organisational plenum of the Central Council met on 28 May 2004 to implement the decisions of the XII congress and \"На пленуме с докладом выступил Председатель Аграрной партии России Владимир Плотников\".",
+      "locator": "release body, paragraphs 1-2"
+    }
+  ],
+  "bounded_scope": "Agrarian Party of Russia chairman and organization observations for CLAUDE-C01-28 only. Congresses, elections, retrospective and registration statements, the reorganisation and accession decisions, undated pages and in-office attestations stay separate rows; holder boundaries and the organization lifecycle are decided in the packet, not by any row."
+}

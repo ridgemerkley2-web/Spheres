@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kprf_v_congress_notice_19980523",
+  "source_url": "https://web.archive.org/web/20000306152838id_/http://www.kprf.ru:80/arhiv/congr5/infsoob.htm",
+  "source_title": "«Информационное сообщение о V (внеочередном) съезде Коммунистической партии Российской Федерации» — information notice on the V (extraordinary) congress, signed by the Central Committee's ideology department, 23 May 1998",
+  "accessed_date": "2026-09-28",
+  "published_date": "1998-05-23",
+  "document_date": "1998-05-23",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.kprf.ru/arhiv/congr5/infsoob.htm",
+  "archive_capture_utc": "2000-03-06T15:28:38Z",
+  "source_response_url": "https://web.archive.org/web/20000306152838id_/http://www.kprf.ru:80/arhiv/congr5/infsoob.htm",
+  "source_response_bytes": 2959,
+  "source_response_sha256": "8dc7cb0174f2476924cb2764b55998438deac24c2b3420644d6e43b3d9b393d8",
+  "source_response_sha1_base32": "Q3RLAS7NNLQFFCSCX76HRG3VVCAC44NU",
+  "archive_index_digest": "Q3RLAS7NNLQFFCSCX76HRG3VVCAC44NU",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:02:54Z and again at 2026-09-28T14:52:32Z (UTC), 49 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:10:13Z and again at 2026-09-28T15:59:59Z (49 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2000-03-06T15:28:38Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Archive page of the party site read in full from the capture. The word \"соcтоялся\" in its first sentence has a Latin \"c\" in the source bytes.",
+  "rows": [
+    {
+      "claim_id": "ru_kprf_v_congress_held_19980523",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-01",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "congress_dates",
+      "attested_on": "1998-05-23",
+      "text": "The notice says \"23 мая 1998 года в Москве соcтоялся V (внеочередной) съезд КПРФ\" with 192 delegates; its agenda included amendments to the party's official name and Charter.",
+      "locator": "body paragraph 1 and the agenda"
+    },
+    {
+      "claim_id": "ru_kprf_v_congress_zyuganov_reports_as_chairman_19980523",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-01",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "Г.А.Зюганов",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1998-05-23",
+      "text": "It says \"По первому вопросу с докладом выступил Председатель ЦК КПРФ Г.А.Зюганов\", who also gave the closing word; the notice is signed \"Идеологический отдел ЦК КПРФ\" / \"23 мая 1998 г.\".",
+      "locator": "paragraph after the agenda list; signature block"
+    }
+  ],
+  "bounded_scope": "KPRF chairman observations for CLAUDE-C01-28 only. Congresses, plenum elections, retrospective and registration statements, continuation claims and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Duma faction head of 2021 is outside this extract."
+}

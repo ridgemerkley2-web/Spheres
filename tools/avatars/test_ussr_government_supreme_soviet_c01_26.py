@@ -206,8 +206,11 @@ PRESIDENT_HOLDERS = [
     ('Mikhail Gorbachev', '1990-03-20', None, None, ['su_gorbachev_president_letter_19900320']),
     ('Mikhail Gorbachev', '1991-12-25', None, None, ['su_telcon_gorbachev_title_19911225']),
 ]
-# SHA-256 of every Russia role and holder (name, attested_on, from, until) at the base (CLAUDE-C01-19); russia.json is unchanged.
+# SHA-256 of every Russia role and holder (name, attested_on, from, until) at the C01-19 base; later scopes are pinned separately.
 RUSSIA_HOLDERS_SHA256 = '8575fda3b3069ed498377c3b66df29822c33a47cd4c7ead9fe07e30f7edc27cd'
+# C01-28 party roles have their own exact hash; they never enter any of the three existing state/faction hashes.
+C01_28_ROLES = ('ru_kprf_chairman', 'ru_ldpr_chairman', 'ru_yabloko_chairman', 'ru_apr_chairman', 'ru_dvr_chairman')
+RUSSIA_C01_28_HOLDERS_SHA256 = '25f2c3d73b9b6caa7ab26bced8d46012b014738ee5c6e7f30c049b6b5f073e4c'
 # SHA-256 of the same list restricted to the 18 faction-head observations CLAUDE-C01-46 appended (pinned in its own test).
 RUSSIA_C01_46_HOLDERS_SHA256 = '53ccf3386cd78083590fadb0308dffaba70af2783d119f36a217d689f3ed592b'
 # The ten claims cited by the nine RSFSR presidency observations CLAUDE-C01-51 appended, and the SHA-256 of the same list
@@ -376,6 +379,11 @@ def c26_invariants(ussr, russia):
     assert all(h['sources'] and set(h['sources']) <= C01_49_SOURCES for h in roles[PRES_ROLE][1]['holder_claims'][2:])
     got = [(h['name'], h.get('attested_on'), h['from'], h['until'], h['claim_ids']) for h in roles[SS_ROLE][1]['holder_claims'][:1]]
     assert got == [('Mikhail Gorbachev (signature: M. Gorbachev)', '1990-03-14', None, None, ['su_gorbachev_chair_signature_19900314'])], got
+    assert [r['id'] for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']
+            if r['kind'] == 'party_leader'] == list(C01_28_ROLES)
+    party = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']])
+             for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles'] if r['id'] in C01_28_ROLES]
+    assert hashlib.sha256(json.dumps(party, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_C01_28_HOLDERS_SHA256
     # CLAUDE-C01-46 appended faction-head observations that cite only its own claims (ru_duma_news_*); every holder
     # present at the base is unchanged (the original hash), and the appended ones are pinned by a second hash.
     def c01_46(h):
@@ -386,15 +394,15 @@ def c26_invariants(ussr, russia):
         return set(h['claim_ids']) <= C01_51_HOLDER_CLAIMS
     ru = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
                      if isinstance(h, dict) and not c01_46(h) and not c01_51(h)])
-          for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
+          for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles'] if r['id'] not in C01_28_ROLES]
     assert hashlib.sha256(json.dumps(ru, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_HOLDERS_SHA256
     added = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
                         if isinstance(h, dict) and c01_46(h)])
-             for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
+             for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles'] if r['id'] not in C01_28_ROLES]
     assert hashlib.sha256(json.dumps(added, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_C01_46_HOLDERS_SHA256
     added_51 = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
                            if isinstance(h, dict) and c01_51(h)])
-                for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
+                for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles'] if r['id'] not in C01_28_ROLES]
     assert hashlib.sha256(json.dumps(added_51, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_C01_51_HOLDERS_SHA256
     # Exact holders on the two roles, in chronological order; each rests on its own claim, dated that day; no from, no until.
     for role_id in (GOV_ROLE, SS_ROLE):
@@ -815,6 +823,16 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         next(r for e in russia['institutions'] for r in e['roles'] if r['id'] == 'ru_government_chairman')['claim_ids'].append('su_km_943r_pavlov_signs_as_premier_19910819')
         with self.assertRaises(AssertionError):
             c26_invariants(self.packet, russia)
+
+    def test_russia_holder_scope_hashes_each_reject_changed_observations(self):
+        # Each partition must reject an altered date, including the party roles excluded from the three older hashes.
+        for role_id, index in (('ru_president', 0), ('ru_duma_faction_20211012_er_head', 1),
+                               ('ru_rsfsr_president', 1), ('ru_kprf_chairman', 0)):
+            russia = copy.deepcopy(self.russia)
+            role = roles_of(russia)[role_id][1]
+            role['holder_claims'][index]['attested_on'] = '2026-09-06'
+            with self.subTest(role=role_id), self.assertRaises(AssertionError):
+                c26_invariants(self.packet, russia)
 
     def test_report_and_handoff_are_ready_for_review_and_close_nothing(self):
         self.assertIn('ready_for_review', self.report)

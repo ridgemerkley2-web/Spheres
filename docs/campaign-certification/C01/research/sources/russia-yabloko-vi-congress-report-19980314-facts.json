@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_vi_congress_report_19980314",
+  "source_url": "https://web.archive.org/web/19980630062048id_/http://www.yabloko.ru:80/Press/980314.html",
+  "source_title": "«Доклад председателя общественной политической организации \"Объединение ЯБЛОКО\" Григория Явлинского на VI съезде», press release of 14 March 1998 — the chairman's report to the VI congress",
+  "accessed_date": "2026-09-28",
+  "published_date": "1998-03-14",
+  "document_date": "1998-03-14",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/Press/980314.html",
+  "archive_capture_utc": "1998-06-30T06:20:48Z",
+  "source_response_url": "https://web.archive.org/web/19980630062048id_/http://www.yabloko.ru:80/Press/980314.html",
+  "source_response_bytes": 27960,
+  "source_response_sha256": "2073831f8ad8b988d57cac09a3a70918903b5cb7a863d60a83538ab37fe61c57",
+  "source_response_sha1_base32": "BSEWK4KF6KLEIPXVYDLAO2AQ4TGCF3AV",
+  "archive_index_digest": "BSEWK4KF6KLEIPXVYDLAO2AQ4TGCF3AV",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:10:41Z and again at 2026-09-28T14:41:02Z (UTC), 30 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T14:54:19Z and again at 2026-09-28T15:59:15Z (64 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 1998-06-30T06:20:48Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. The 1998 page carries no charset: its Cyrillic letters are KOI8-R and its punctuation bytes windows-1251 (decoded accordingly for reading). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press-release page read from the capture; only its heading and dateline are used.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_yavlinsky_chairman_report_vi_congress_19980314",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-05",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Григорий Алексеевич Явлинский",
+      "printed_name": "ГРИГОРИЯ ЯВЛИНСКОГО (genitive)",
+      "role_title": "Председатель общественной политической организации «Объединение ЯБЛОКО» — Chairman of the public political organisation «Объединение ЯБЛОКО» (as printed)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1998-03-14",
+      "text": "The association's release is headed \"ДОКЛАД ПРЕДСЕДАТЕЛЯ ОБЩЕСТВЕННОЙ ПОЛИТИЧЕСКОЙ ОРГАНИЗАЦИИ \"ОБЪЕДИНЕНИЕ ЯБЛОКО\" ГРИГОРИЯ ЯВЛИНСКОГО НА VI СЪЕЗДЕ 14.03.98\": the chairman's report to the VI congress, 14 March 1998.",
+      "locator": "page heading and dateline"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

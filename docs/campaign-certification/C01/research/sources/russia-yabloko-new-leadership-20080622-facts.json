@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_press_new_leadership_20080622",
+  "source_url": "https://web.archive.org/web/20111112210033id_/http://www.yabloko.ru/Press/2008/0806221.html",
+  "source_title": "«Новое руководство «ЯБЛОКА»», press release of 22 June 2008 — the new leadership elected by the XV congress",
+  "accessed_date": "2026-09-28",
+  "published_date": "2008-06-22",
+  "document_date": "2008-06-22",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/Press/2008/0806221.html",
+  "archive_capture_utc": "2011-11-12T21:00:33Z",
+  "source_response_url": "https://web.archive.org/web/20111112210033id_/http://www.yabloko.ru/Press/2008/0806221.html",
+  "source_response_bytes": 11691,
+  "source_response_sha256": "e5f132c5dcb757412424a38967931957427f599312fa11de4d3a72cadacfb088",
+  "source_response_sha1_base32": "SXSLAELVAX75J4O53QPAQVZPVNL43WR5",
+  "archive_index_digest": "SXSLAELVAX75J4O53QPAQVZPVNL43WR5",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T13:49:12Z and again at 2026-09-28T14:22:50Z (UTC), 33 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T14:54:34Z and again at 2026-09-28T15:59:32Z (64 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2011-11-12T21:00:33Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. (HTTP header). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press-release page read from the capture.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_mitrokhin_chairman_joins_political_committee_20080622",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-06",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Сергей Сергеевич Митрохин",
+      "printed_name": "Сергей Митрохин",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2008-06-22",
+      "text": "A release dated 22 June 2008 on the new leadership says \"Председатель партии Сергей Митрохин вошел в ПК по должности\" (the party chairman joined the Political Committee ex officio).",
+      "locator": "end of paragraph 1"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_press_congress_schedule_20040703",
+  "source_url": "https://web.archive.org/web/20050302004743id_/http://www.yabloko.ru:80/Press/Docs/2004/0703_info.html",
+  "source_title": "«В Подмосковье проходит съезд РДП «Яблоко»», press-service item of 3 July 2004 — the XII congress's schedule",
+  "accessed_date": "2026-09-28",
+  "published_date": "2004-07-03",
+  "document_date": "2004-07-03",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/Press/Docs/2004/0703_info.html",
+  "archive_capture_utc": "2005-03-02T00:47:43Z",
+  "source_response_url": "https://web.archive.org/web/20050302004743id_/http://www.yabloko.ru:80/Press/Docs/2004/0703_info.html",
+  "source_response_bytes": 7308,
+  "source_response_sha256": "8224f98af3927f3f674258a2995f46717141c279977c5c914c7f1e290010ea8e",
+  "source_response_sha1_base32": "3RBB2LFE2WLTKTEMTAZJGBTXG6H7RPSA",
+  "archive_index_digest": "3RBB2LFE2WLTKTEMTAZJGBTXG6H7RPSA",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:02:23Z and again at 2026-09-28T16:33:58Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:27:44Z and again at 2026-09-28T17:27:53Z (60 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2005-03-02T00:47:43Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press-service item read from the capture of 2 March 2005. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_chairman_vote_scheduled_2004",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-06",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "election_schedule",
+      "attested_on": null,
+      "printed_date": "в 0.00 4 июля; в 1.00 (prospective)",
+      "text": "The press-service item of 3 July 2004 says nominations for the chairmanship would open \"в 0.00 4 июля\" and \"тайное голосование по выборам председателя партии состоится в 1.00\".",
+      "locator": "body paragraph on the agenda"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

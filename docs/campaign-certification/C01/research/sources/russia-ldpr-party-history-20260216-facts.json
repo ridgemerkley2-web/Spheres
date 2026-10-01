@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ldpr_party_history_2026",
+  "source_url": "https://web.archive.org/web/20260216025055id_/https://ldpr.ru/party/history/",
+  "source_title": "«История партии ЛДПР» — the LDPR's current party-history timeline (undated; captured 16 February 2026)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://ldpr.ru/party/history/",
+  "archive_capture_utc": "2026-02-16T02:50:55Z",
+  "source_response_url": "https://web.archive.org/web/20260216025055id_/https://ldpr.ru/party/history/",
+  "source_response_bytes": 245090,
+  "source_response_sha256": "1a65aaacafec3d5af3fdeae3459139f95ce74d36b8faef6ac4cc49b7fba97f78",
+  "source_response_sha1_base32": "GDDKKMITEU3ZB4FBVYDDVCDVIUCKPU4B",
+  "archive_index_digest": "GDDKKMITEU3ZB4FBVYDDVCDVIUCKPU4B",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:53:43Z and again at 2026-09-28T15:25:45Z (UTC), 32 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:27:18Z and again at 2026-09-28T16:00:52Z (33 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2026-02-16T02:50:55Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The capture freezes the page chrome, including the footer year; the live page changes per view and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Undated retrospective timeline read from the capture of 16 February 2026 (later captures are 403 pages). Entries sit under year headings, printed as day and month.",
+  "rows": [
+    {
+      "claim_id": "ru_ldpr_history2026_zhirinovsky_death_20220406",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Владимир Вольфович Жириновский",
+      "printed_name": "Владимир Жириновский",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "death_retrospective",
+      "attested_on": "2022-04-06",
+      "text": "In the timeline's year block 2022, the entry \"6 апреля\" says \"Глава ЛДПР Владимир Жириновский скончался после продолжительной болезни в возрасте 75 лет\".",
+      "locator": "year block \"2022\", entry \"6 апреля\""
+    },
+    {
+      "claim_id": "ru_ldpr_history2026_slutsky_elected_chairman_20220527",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Леонид Эдуардович Слуцкий",
+      "printed_name": "Слуцкий",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "leader_election_retrospective",
+      "attested_on": "2022-05-27",
+      "text": "The block's entry \"27 мая\" says \"27 мая 2022 года на съезде ЛДПР Слуцкий был избран Председателем партии\" (the entry first reports his election as leader of the party's State Duma faction, which is a different office).",
+      "locator": "year block \"2022\", entry \"27 мая\""
+    }
+  ],
+  "bounded_scope": "LDPR chairman observations for CLAUDE-C01-28 only. Retrospective timeline entries, registration statements, elections, election reports, the interim record, the undated death reference and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The State Duma faction and its head are outside this extract."
+}

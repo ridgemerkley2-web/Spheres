@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kprf_party_reference_20250912",
+  "source_url": "https://web.archive.org/web/20250912215927id_/https://kprf.ru/party/",
+  "source_title": "«О партии. Краткая справка» — the party site's undated reference page about the party (captured 12 September 2025)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://kprf.ru/party/",
+  "archive_capture_utc": "2025-09-12T21:59:27Z",
+  "source_response_url": "https://web.archive.org/web/20250912215927id_/https://kprf.ru/party/",
+  "source_response_bytes": 33284,
+  "source_response_sha256": "6cb3631316ef553130ef831df03da8221b734b9653a13f66e6f46524fa070330",
+  "source_response_sha1_base32": "WGY4W7Y3GFP4M7OUAPDDDXJJAIUYIPQX",
+  "archive_index_digest": "WGY4W7Y3GFP4M7OUAPDDDXJJAIUYIPQX",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:00:27Z and again at 2026-09-28T14:53:05Z (UTC), 52 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:10:19Z and again at 2026-09-28T16:00:31Z (50 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-09-12T21:59:27Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The site chrome (menus, related items, the \"© 1993-20xx\" footer) is frozen in the capture; the live page regenerates per request and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Undated reference page read from the capture of 12 September 2025 (the live page carries a later footer year and is not used). Its statements are retrospective.",
+  "rows": [
+    {
+      "claim_id": "ru_kprf_reference_zyuganov_since_february_1993",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-01",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "Г.А.Зюганов",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "retrospective_list",
+      "attested_on": null,
+      "printed_date": "с февраля 1993 г. ... до настоящего времени",
+      "text": "The undated reference page lists the party's leaders and ends with \"Г.А.Зюганов (с февраля 1993 г. - с момента воссоздания КП РСФСР - КПРФ и до настоящего времени)\"; the same list names И.К.Полозков (1990-1991) and В.А.Купцов (1991) as leaders of the КП РСФСР.",
+      "locator": "paragraph beginning \"Лидерами, генеральными (первыми) секретарями, председателями партии\""
+    },
+    {
+      "claim_id": "ru_kprf_reference_registered_since_ii_congress_1993",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-01",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "registration_statement",
+      "attested_on": null,
+      "printed_date": "13—14 февраля 1993 года",
+      "text": "It says the KPRF \"зарегистрирована в органах власти нынешней Российской Федерации с момента проведения II чрезвычайного съезда коммунистов России (13—14 февраля 1993 года)\" as the restored KP RSFSR.",
+      "locator": "paragraph beginning \"КПРФ - партия-продолжательница\""
+    }
+  ],
+  "bounded_scope": "KPRF chairman observations for CLAUDE-C01-28 only. Congresses, plenum elections, retrospective and registration statements, continuation claims and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Duma faction head of 2021 is outside this extract."
+}

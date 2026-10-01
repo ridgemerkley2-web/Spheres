@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_x_congress_chairman_speech_20011223",
+  "source_url": "https://web.archive.org/web/20020323204010id_/http://www.yabloko.ru:80/Union/XCongress/1223yavl.html",
+  "source_title": "«Выступление Председателя партии \"ЯБЛОКО\" Г.А. Явлинского», X congress, second day, Moscow, 23 December 2001, 12.00 — the chairman's speech page",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "2001-12-23",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/Union/XCongress/1223yavl.html",
+  "archive_capture_utc": "2002-03-23T20:40:10Z",
+  "source_response_url": "https://web.archive.org/web/20020323204010id_/http://www.yabloko.ru:80/Union/XCongress/1223yavl.html",
+  "source_response_bytes": 10068,
+  "source_response_sha256": "9e97363d8fba6469497619768b9589e91606fb7dbd71425f378aecfa7b26968d",
+  "source_response_sha1_base32": "MQRJE5I2XHG2X6VB56B3AQEABYMT5JTB",
+  "archive_index_digest": "MQRJE5I2XHG2X6VB56B3AQEABYMT5JTB",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:02:13Z and again at 2026-09-28T16:33:51Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:27:42Z and again at 2026-09-28T17:27:38Z (59 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2002-03-23T20:40:10Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset KOI8-R (HTTP header). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Speech page of the X congress section read from the capture of 23 March 2002. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_chairman_speech_page_20011223",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-05",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Григорий Алексеевич Явлинский",
+      "printed_name": "Г.А. Явлинского (genitive)",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2001-12-23",
+      "text": "The speech page is headed \"Выступление Председателя партии \"ЯБЛОКО\" Г.А. Явлинского\" and dated \"Москва, 23 декабря 2001 г., 12.00\".",
+      "locator": "page heading and date line"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

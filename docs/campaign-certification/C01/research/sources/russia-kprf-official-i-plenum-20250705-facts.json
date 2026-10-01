@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kprf_official_i_plenum_20250705",
+  "source_url": "https://web.archive.org/web/20251211130650id_/https://kprf.ru/official/2025/07/05/5-iiulia-2025-goda-sostoialsia-i-organizatsionnyi-plenum-tsk-kprf/",
+  "source_title": "«5 июля 2025 года состоялся I организационный Пленум ЦК КПРФ» — the Central Committee's official-documents record of the I organisational Plenum",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "2025-07-05",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://kprf.ru/official/2025/07/05/5-iiulia-2025-goda-sostoialsia-i-organizatsionnyi-plenum-tsk-kprf/",
+  "archive_capture_utc": "2025-12-11T13:06:50Z",
+  "source_response_url": "https://web.archive.org/web/20251211130650id_/https://kprf.ru/official/2025/07/05/5-iiulia-2025-goda-sostoialsia-i-organizatsionnyi-plenum-tsk-kprf/",
+  "source_response_bytes": 18158,
+  "source_response_sha256": "3aa99b06879c7c6b882488255fa71f930d2309018001ac7a5aa968fb1e65b508",
+  "source_response_sha1_base32": "WPXAQ2UAOPGAGDLSC7RK7PB6LSDCMDCL",
+  "archive_index_digest": "WPXAQ2UAOPGAGDLSC7RK7PB6LSDCMDCL",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T13:53:22Z and again at 2026-09-28T14:52:49Z (UTC), 59 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:10:30Z and again at 2026-09-28T16:00:41Z (50 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-12-11T13:06:50Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The site chrome (menus, related items, the \"© 1993-20xx\" footer) is frozen in the capture; the live page regenerates per request and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Page of the section \"Официальные документы ЦК КПРФ\" read from the capture of 11 December 2025; two other captures replayed gzip-encoded were rejected.",
+  "rows": [
+    {
+      "claim_id": "ru_kprf_official_zyuganov_unanimously_elected_20250705",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-02",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "Г. А. Зюганов",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "leader_election",
+      "attested_on": "2025-07-05",
+      "text": "The official-documents record says the I Plenum of the Central Committee elected at the XIX congress was held on 5 July 2025 and \"Председателем ЦК КПРФ единогласно избран Г. А. Зюганов\".",
+      "locator": "document body, paragraphs 1-2"
+    }
+  ],
+  "bounded_scope": "KPRF chairman observations for CLAUDE-C01-28 only. Congresses, plenum elections, retrospective and registration statements, continuation claims and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Duma faction head of 2021 is outside this extract."
+}

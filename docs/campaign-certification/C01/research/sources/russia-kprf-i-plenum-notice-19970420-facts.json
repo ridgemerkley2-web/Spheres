@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kprf_i_plenum_notice_19970420",
+  "source_url": "https://web.archive.org/web/20000306135653id_/http://www.kprf.ru:80/arhiv/plenum/1plenum.htm",
+  "source_title": "«Информационное сообщение о I Пленуме ЦК КПРФ 20 апреля 1997 года» — information notice on the I Plenum of the KPRF Central Committee, 20 April 1997 (kprf.ru archive section, captured 6 March 2000)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "1997-04-20",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.kprf.ru/arhiv/plenum/1plenum.htm",
+  "archive_capture_utc": "2000-03-06T13:56:53Z",
+  "source_response_url": "https://web.archive.org/web/20000306135653id_/http://www.kprf.ru:80/arhiv/plenum/1plenum.htm",
+  "source_response_bytes": 1757,
+  "source_response_sha256": "b26af368ce81ef4f7d9c01a9ba88c7c5022017a8d38e8b92aeb95f1c9207bdd5",
+  "source_response_sha1_base32": "TWQDLFKXM3QZEDFTGJTNWABGIKQ56L35",
+  "archive_index_digest": "TWQDLFKXM3QZEDFTGJTNWABGIKQ56L35",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:02:58Z and again at 2026-09-28T14:52:28Z (UTC), 49 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:10:11Z and again at 2026-09-28T15:59:57Z (49 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2000-03-06T13:56:53Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Archive page of the party site read in full from the capture; no publication date is printed.",
+  "rows": [
+    {
+      "claim_id": "ru_kprf_i_plenum_zyuganov_elected_chairman_19970420",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-01",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "т. Зюганова Г.А. (accusative)",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "leader_election",
+      "attested_on": "1997-04-20",
+      "text": "The notice on the I Plenum of the newly elected (\"вновь избранного\") Central Committee, held on 20 April 1997, says \"Пленум избрал Председателем ЦК КПРФ т. Зюганова Г.А.\"; Купцов В.А. was elected First Deputy Chairman.",
+      "locator": "heading \"о I Пленуме ЦК КПРФ 20 апреля 1997 года\"; body paragraphs 1-2"
+    }
+  ],
+  "bounded_scope": "KPRF chairman observations for CLAUDE-C01-28 only. Congresses, plenum elections, retrospective and registration statements, continuation claims and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Duma faction head of 2021 is outside this extract."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_dvr_congress_statement_1995",
+  "source_url": "https://web.archive.org/web/20170823162628id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3734",
+  "source_title": "«Заявление съезда партии \"Демократический выбор России\" 18 июня 1995 года» — statement of the II (extraordinary) congress, signed by the party chairman (single page; scan)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3734",
+  "archive_capture_utc": "2017-08-23T16:26:28Z",
+  "source_response_url": "https://web.archive.org/web/20170823162628id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3734",
+  "source_response_bytes": 22777,
+  "source_response_sha256": "33ef8455c3bbdb1259255135b878201067ed3adc583ce2ea78eb91e0b40a15a3",
+  "source_response_sha1_base32": "4VSP6ZN5LRXE36L3X7477DXBXH6LVMIK",
+  "archive_index_digest": "4VSP6ZN5LRXE36L3X7477DXBXH6LVMIK",
+  "source_response_encoding": "application/pdf (1 page; producer ABBYY FineReader 11; CreationDate D:16010101000000Z), served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T15:14:42Z and again at 2026-09-28T15:47:19Z (UTC), 32 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:57:03Z and again at 2026-09-28T16:29:02Z (31 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2017-08-23T16:26:28Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. A scanned PDF with an OCR text layer supplied by the archive. Every cited page was rendered (headless Chrome's PDF viewer) and read from the image; the OCR layer, read with pdftotext, is not quoted where it differs from the print. The archive hosts the organization's own document; it is not itself the organization's publisher, and its catalogue pages (not recorded) supply only titles and dates. Handwritten archival marks on the scans are the archive's, not the party's. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Scan of a signed congress statement whose heading and adoption line print different days; see the claim.",
+  "rows": [
+    {
+      "claim_id": "ru_dvr_ii_congress_statement_signed_by_chairman_1995",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": "Егор Тимурович Гайдар",
+      "printed_name": "Е.Т.ГАЙДАР",
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "conflicting_date_attestation",
+      "attested_on": null,
+      "printed_date": "18 июня 1995 года (heading); 17 июня 1995 года (adoption line)",
+      "text": "The statement is headed \"18 июня 1995 года\" but its adoption line reads \"Принято на втором (внеочередном) съезде партии “Демократический выбор России” 17 июня 1995 года\"; on the line below, \"Председатель партии ДВР\" is followed by a signature and the printed name \"Е.Т.ГАЙДАР\".",
+      "locator": "heading; adoption line and signature line"
+    }
+  ],
+  "bounded_scope": "Russia's Choice (1993 bloc) and Democratic Choice of Russia observations for CLAUDE-C01-28 only. The bloc's programme, the working name, founding, registration and dissolution statements, the election of the Political Council, the chairmanship ballot record, undated and bare-title signatures and in-office attestations stay separate rows; holder boundaries and organization lifecycles are decided in the packet, not by any row."
+}

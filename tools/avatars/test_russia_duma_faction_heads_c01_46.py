@@ -207,7 +207,7 @@ class RussianDumaFactionHeadsTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         # CLAUDE-C01-51 later appended 16 sources and 20 claims after these.
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (261, 479, 24, 14))
         self.assertEqual([s['id'] for s in self.packet['sources'][170:177]], NEW_SOURCES)
         new_claims = [c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']]
         self.assertEqual(new_claims, list(EVENTS))
@@ -335,7 +335,7 @@ class RussianDumaFactionHeadsTests(unittest.TestCase):
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
-        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))  # with CLAUDE-C01-51
+        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (14, 479, 24))  # with CLAUDE-C01-51
         self.assertFalse(index['c01_complete'])
 
     def test_mutations_are_rejected(self):
