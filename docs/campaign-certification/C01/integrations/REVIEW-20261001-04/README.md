@@ -30,7 +30,7 @@ All original content identities were independently reproduced. The receipts reta
 ## Combined checks
 
 - **770 avatar/research tests, 69 planning tests and 11 research-review UI tests passed.**
-- **106 campaign-tooling tests passed with one existing skip.** The journal test now recognizes equivalent canonical paths and fails directly on an unexpected native launch. The runtime runner is unchanged.
+- **106 campaign-tooling tests completed: 105 passed and one existing test was skipped.** The journal test now recognizes equivalent canonical paths and fails directly on an unexpected native launch. The runtime runner is unchanged.
 - **65 focused metadata tests passed** after the final acceptance list and Tonga candidate pointer update. These overlap the full avatar suite.
 - Research index, census, source attribution, gap ledger, boundary matrix and workboard checks pass. All five independent receipt verifiers passed with retained original checks enabled.
 - The index contains **2,127 sources and 5,136 claims**. The matrix contains **8,802 cases** and remains preparation only. There are **59 bounded tasks, 36 completed Claude tasks and 44 unchanged canonical markers**.
