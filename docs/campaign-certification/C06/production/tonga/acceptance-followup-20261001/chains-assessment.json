@@ -1,0 +1,565 @@
+{
+  "schema_version": 1,
+  "kind": "independent_read_only_remaining_chain_assessment",
+  "reviewed_at_utc": "2026-10-01T15:41:40.043039+00:00",
+  "combined_revision": "a86aee1b0de5498ca30019c042f05e398dfc78a1",
+  "requested_context": "After 3ddf8bed. HEAD was 47c3adfedd0d211ae6866fd261d4331178d80f62 at the first read and a86aee1b0de5498ca30019c042f05e398dfc78a1 when the assessment was written. The Tonga research/manifest bytes did not change; all report/contract text matches the recorded commit after CRLF-to-LF normalization.",
+  "conclusion": "No additional whole role-chain closure is supported by the currently accepted packet. This is not a claim that the named observations or all subintervals are unknown: substantial bounded evidence is accepted and identified per row.",
+  "remaining_role_count": 11,
+  "remaining_holder_observation_count": 46,
+  "recommended_whole_chain_closures": 0,
+  "collective_exceptions_applicable": false,
+  "why_crown_standard_does_not_close_these": "The Crown supplement supplied a near-cutoff named attestation for an already settled continuing incumbent. These rows retain unknown people/offices, multi-year political gaps, conflicting transition evidence or distinct acting/caretaker capacities. None is another empty collective-seat class. Daily attestations are not required, but a continuity inference cannot invent the missing successor, office equivalence or contested event.",
+  "rows": [
+    {
+      "institution_id": "to_fihrdm",
+      "role_id": "__unresearched_role__",
+      "accepted_holder_observation_count": 0,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_fihrdm_registered",
+        "to_movement_archive",
+        "to_pdp_split_fuko",
+        "to_dpfi_pohiva_2010"
+      ],
+      "accepted_bounded_progress": "IPU and catalogue evidence establish movement/party observations and the context for the PDP split and Pohiva's former affiliation. They do not name a complete FIHRDM office chain.",
+      "material_gap": "No accepted role or named holder exists; distinguish HRDM/HRDMT/FIHRDM and establish leaders/chairs and post-2010 continuation or end. An unresearched organization is not a collective-seat exception.",
+      "smallest_useful_next_work": "Original organization constitution/minutes or an official named leadership/register record, including the relationship among the observed movement names."
+    },
+    {
+      "institution_id": "to_pdp",
+      "role_id": "to_pdp_leader",
+      "accepted_holder_observation_count": 1,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_pdp_split_fuko",
+        "to_pdp_constitution_archive"
+      ],
+      "accepted_bounded_progress": "Tesina Fuko is an accepted leadership observation associated with the April 2005 split at month precision.",
+      "material_gap": "Later officers and the party's continuation/end after the 2008 report remain unknown; an archive catalogue reference is not a reviewed leadership constitution. No short continuity inference bridges eighteen years.",
+      "smallest_useful_next_work": "Retrieve the actual party constitution and original founding/later officer records; retain month precision unless a day is sourced."
+    },
+    {
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_leader",
+      "accepted_holder_observation_count": 2,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_dpfi_pohiva_2010",
+        "to_ipu_2014_dpfi_pohiva_leader",
+        "to_tlr_pohiva_leader_tonga_democratic_party_20140117",
+        "to_pohiva_death_month_2019"
+      ],
+      "accepted_bounded_progress": "The 2010 and 2014 Pohiva observations are accepted. The 2014 court recital supplies a separate political-name lead.",
+      "material_gap": "Leadership after September 2019 is absent; the court's Tonga Democratic Party name is not yet reconciled to DPFI/PTOA. President, leader, faction and parliamentary spokesman cannot be merged.",
+      "smallest_useful_next_work": "Primary party/officer succession records after Pohiva; a reliable organization-name/role bridge for the court and party labels."
+    },
+    {
+      "institution_id": "to_dpfi",
+      "role_id": "to_dpfi_president",
+      "accepted_holder_observation_count": 1,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_ptoa_president_helu_20220829",
+        "to_ptoa_tongan_name_20220829",
+        "to_ptoa_democratic_party_20230406"
+      ],
+      "accepted_bounded_progress": "Fatai Helu's August 2022 presidency is accepted at the weight of a judicial recital of party self-description.",
+      "material_gap": "Start, later president/term and relation to the leader role are unknown; the exact adult political likeness is still missing. Neither can be resolved by borrowing Futa Helu or a child namesake.",
+      "smallest_useful_next_work": "A dated primary party record identifying the adult president and office succession; an individually captioned adult political likeness remains separately necessary."
+    },
+    {
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_leader",
+      "accepted_holder_observation_count": 1,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_peoples_party_leader_20210528",
+        "to_peoples_party_incorporated_society_2022"
+      ],
+      "accepted_bounded_progress": "The event organizer names Tu'i'onetoa Leader on 28 May 2021. Court testimony names a society president in April 2022.",
+      "material_gap": "There is no proved leader/president equivalence, full leadership span or later leader/successor. A national PM appointment supplies no party role.",
+      "smallest_useful_next_work": "The incorporated society's constitution/register and political officer records, especially the leader/president relationship and later succession."
+    },
+    {
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_president",
+      "accepted_holder_observation_count": 1,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_peoples_party_incorporated_society_2022"
+      ],
+      "accepted_bounded_progress": "Tu'i'onetoa is named society president in testimony at the 19–21 April 2022 trial.",
+      "material_gap": "One testimony period is not a term. Registration/selection boundaries and later presidency remain absent; this is a named office, not the collective society itself.",
+      "smallest_useful_next_work": "Original society register/constitution, officer notices and later president records; do not substitute the separate leader attestation."
+    },
+    {
+      "institution_id": "to_peoples_party",
+      "role_id": "to_peoples_party_society_secretary",
+      "accepted_holder_observation_count": 1,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_peoples_party_incorporated_society_2022"
+      ],
+      "accepted_bounded_progress": "Tevita Lavemaau is named society secretary in the same April 2022 testimony; his identity/art bridge has been reviewed elsewhere.",
+      "material_gap": "Secretary appointment/end and later holders are absent. The existence of a correct portrait does not complete this named party office chain.",
+      "smallest_useful_next_work": "Society officer return/minutes/constitution establishing the secretary and later succession."
+    },
+    {
+      "institution_id": "to_prime_minister",
+      "role_id": "to_pm",
+      "accepted_holder_observation_count": 12,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_pmo_former_pms_2026_tuipelehake",
+        "to_pmo_former_pms_2026_vaea_lavaka",
+        "to_pmo_former_pms_2015_list",
+        "to_pmo_lavaka_ata_commencement_20000103",
+        "to_lavaka_ata_resignation_accepted_20060211",
+        "to_pohiva_styled_pm_20170912",
+        "to_sovaleni_royal_appointment_en_20211227",
+        "to_palace_acceptance_letter_20241209",
+        "to_caretaker_acting_pm_vaipulu_20250106",
+        "to_fakafanua_august"
+      ],
+      "accepted_bounded_progress": "Opening identity is accepted at year precision. Lavaka Ata's 2000-01-03 to 2006-02-11 and Sovaleni's 2021-12-27 to 2024-12-09 intervals are source-settled. The 2017 record names Pohiva after dissolution; Fakafanua is reattested in August 2026.",
+      "material_gap": "The 1991 handover lacks a day and the Vaea 1999/2000 end evidence conflicts; acting/substantive changes in 2006 and caretaker/interim arrangements in 2017, 2019, 2021 and 2024–25 are not a complete dated chain. Do not invent predecessor ends from successor appointments. These are substantive transitions, not a demand for a daily attestation or an oath/warrant date where identity is already known.",
+      "smallest_useful_next_work": "Review explicit transition evidence for the early Vaea/Lavaka and acting/caretaker intervals; classify known person continuity separately from unresolved capacity and effective-date precision."
+    },
+    {
+      "institution_id": "to_cabinet",
+      "role_id": "to_deputy_pm",
+      "accepted_holder_observation_count": 14,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_dpm_kavaliku_appointed_1991_retro",
+        "to_dpm_kavaliku_listed_20001106",
+        "to_dpm_tupou_appointment_effective_20010124",
+        "to_dpm_tupou_resignation_accepted_20010928",
+        "to_dpm_sovaleni_revocation_recommended_20170901",
+        "to_pohiva_conveys_deputy_pm_removal_20170905",
+        "to_dpm_maafu_death_20211212",
+        "to_sovaleni_cabinet_effective_20211228",
+        "to_deputy_pm_vaipulu_listed_20241209"
+      ],
+      "accepted_bounded_progress": "Tevita Poasi Tupou's 2001-01-24 to 2001-09-28 interval is settled. Cross-packet evidence additionally reports royal consent to Sovaleni's removal conveyed by 5 September 2017.",
+      "material_gap": "The 1990 opening holder is unknown. Later acting/substantive intervals and several changes are unresolved, including 12–27 December 2021 and Tei-to-Vaipulu. The 5 September 2017 communication confirms removal consent, but does not establish an exact 1 September effective end.",
+      "smallest_useful_next_work": "First establish the 1990 holder and post-Ma'afu late-2021 arrangement; use the accepted 2017 cross-packet claim to narrow that subproblem without changing dates."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_speaker",
+      "accepted_holder_observation_count": 12,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_la_list_fusitua_1990_1998_20111130",
+        "to_la_archives_fusitua_1995_1998_20060327",
+        "to_la_obituary_fusitua_appointed_1991_20140505",
+        "to_speaker_fusitua_interview_19961114",
+        "to_speaker_veikune_end_20060125",
+        "to_lasike_speaker_appointment_revoked_20120717",
+        "to_speakers_appointment"
+      ],
+      "accepted_bounded_progress": "The 1996 Fusitu'a identity attestation, Veikune's 2006-01-25 end, Lasike's 2012-07-17 revocation and Vaea's effective 2025-12-18 appointment are accepted.",
+      "material_gap": "The opening Speaker and conflicting Fusitu'a appointment years are unresolved; the 2006–08 Tu'iha'angana segment is claim-only, and several substantive/interim successions have no complete boundary account. Current Speaker continuity cannot repair those early conflicts.",
+      "smallest_useful_next_work": "Prioritize a contemporaneous 1989–91 Speaker record and the 2006–08 appointment/attestation bridge. Keep acting/interim claims distinct from substantive tenure."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_deputy_speaker",
+      "accepted_holder_observation_count": 1,
+      "recommended_status": "unresolved",
+      "accepted_support_claim_ids": [
+        "to_speakers_appointment",
+        "to_acting_speaker_tuihaangana_20260818"
+      ],
+      "accepted_bounded_progress": "Lord Tu'iha'angana's appointment effective 18 December 2025 is accepted. His acting as Speaker in August 2026 is a separate claim.",
+      "material_gap": "The 1990–2025 Deputy Speaker succession has not been inventoried. Acting as Speaker is not by itself proof of a Deputy Speaker appointment, and one modern deputy cannot be projected backward.",
+      "smallest_useful_next_work": "Establish the deputy-office historical roster and selection/appointment records, keeping acting and interim Speaker capacity separate."
+    }
+  ],
+  "candidate_subreceipts_possible_now": [
+    {
+      "scope": "PM complete intervals",
+      "claim_ids": [
+        "to_pmo_lavaka_ata_commencement_20000103",
+        "to_lavaka_ata_resignation_accepted_20060211",
+        "to_sovaleni_royal_appointment_en_20211227",
+        "to_palace_acceptance_letter_20241209"
+      ],
+      "outcome": "Source-settled individual intervals may be acknowledged independently; no additional whole PM chain pass."
+    },
+    {
+      "scope": "Deputy PM Tevita Poasi Tupou 2001",
+      "claim_ids": [
+        "to_dpm_tupou_appointment_effective_20010124",
+        "to_dpm_tupou_resignation_accepted_20010928"
+      ],
+      "outcome": "Both exact boundaries accepted; no whole Deputy PM chain pass."
+    },
+    {
+      "scope": "Cross-packet Sovaleni removal 2017",
+      "claim_ids": [
+        "to_dpm_sovaleni_revocation_recommended_20170901",
+        "to_pohiva_conveys_deputy_pm_removal_20170905"
+      ],
+      "outcome": "The gap is not total absence of royal consent: a former Deputy PM reports receiving that consent on 5 September. Exact 1 September end remains unproved by this combination."
+    }
+  ],
+  "source_support": [
+    {
+      "source_id": "to_ipu_2008",
+      "source_url": "https://data.ipu.org/election-summary/HTML/2317_08.htm",
+      "claim_id": "to_fihrdm_registered",
+      "claim_text": "IPU reports FIHRDM's registration as a political party after the March 2005 election."
+    },
+    {
+      "source_id": "to_nlnz_movement_archive",
+      "source_url": "https://natlib.govt.nz/records/40929126",
+      "claim_id": "to_movement_archive",
+      "claim_text": "The catalog identifies material from the November 1992 Tongan Constitution and Democracy conference and a January 1999 draft-constitution conference in the movement's collection."
+    },
+    {
+      "source_id": "to_ipu_2008",
+      "source_url": "https://data.ipu.org/election-summary/HTML/2317_08.htm",
+      "claim_id": "to_pdp_split_fuko",
+      "claim_text": "IPU reports that an April 2005 split from FIHRDM produced the People's Democratic Party under Tesina Fuko's leadership."
+    },
+    {
+      "source_id": "to_ipu_2010",
+      "source_url": "https://data.ipu.org/election-summary/HTML/2317_10.htm",
+      "claim_id": "to_dpfi_pohiva_2010",
+      "claim_text": "IPU names the Democratic Party of the Friendly Islands among parties formed before the 2010 election and identifies its leader as 'Akilisi Pohiva, formerly of FIHRDM."
+    },
+    {
+      "source_id": "to_nlnz_pdp_archive",
+      "source_url": "https://natlib.govt.nz/records/40929112",
+      "claim_id": "to_pdp_constitution_archive",
+      "claim_text": "The catalog for MS-Papers-12389-05 lists a copy of the People's Democratic Party constitution and rules among political records dated 2005/2006."
+    },
+    {
+      "source_id": "to_ipu_2014",
+      "source_url": "https://data.ipu.org/election-summary/HTML/2317_14.htm",
+      "claim_id": "to_ipu_2014_dpfi_pohiva_leader",
+      "claim_text": "IPU states that the Democratic Party of the Friendly Islands (DPFI), led by the veteran pro-democracy MP 'Akilisi Pohiva, took eight of the 17 directly elected seats at the 27 November 2014 election, and that two of the independents who won seats joined the DPFI after the elections. It calls Pohiva the DPFI leader during the election campaign, and its summary fields give two parties contesting and one winning seats."
+    },
+    {
+      "source_id": "to_tlr_2014_pohiva_v_tuivakano",
+      "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1552:2014_tlr",
+      "claim_id": "to_tlr_pohiva_leader_tonga_democratic_party_20140117",
+      "claim_text": "In Pohiva v Tu'ivakano & ors (Supreme Court, Scott CJ, AM 20/2013, 17 January 2014), paragraph [4] describes the appellant, Mr Pohiva, as the No.1 Peoples Representative for Tongatapu, first elected to Parliament in 1987, and states in the present tense: 'He is the leader of the Tonga Democratic Party.'"
+    },
+    {
+      "source_id": "to_assembly_byelection_20191119",
+      "source_url": "https://parliament.gov.to/en/media-centre/latest-news/tongatapu-1-constituency-to-elect-new-mp-next-thursday",
+      "claim_id": "to_pohiva_death_month_2019",
+      "claim_text": "The Legislative Assembly's article of 19 November 2019 states that 'Akilisi Pohiva, former Member of Parliament for Tongatapu 1 and late Prime Minister, passed away in September of that year."
+    },
+    {
+      "source_id": "to_sc_helu_piukala_v_ec_20220829",
+      "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+      "claim_id": "to_ptoa_president_helu_20220829",
+      "claim_text": "The ruling's background states in the present tense that Fatai Helu is the President of the party (PTOA) and that Paula Piukala is an executive member."
+    },
+    {
+      "source_id": "to_sc_helu_piukala_v_ec_20220829",
+      "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+      "claim_id": "to_ptoa_tongan_name_20220829",
+      "claim_text": "The ruling refers to the PTOA party, also known as the Democratic Party; footnote 3 expands PTOA as Paati Temokalati 'a e 'Otu Motu 'Anga'ofa."
+    },
+    {
+      "source_id": "to_ca_helu_piukala_v_ec_20230406",
+      "source_url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/223-ac-2023.html?download=2575:1-fatai-helu-2-paula-piveni-piukala-v-1-the-electoral-commission-2-lord-nuku-ac-22-22-toca-6-apr-2023-randerson-j-white-j-morrison-j-judgment-of-the-court",
+      "claim_id": "to_ptoa_democratic_party_20230406",
+      "claim_text": "Paragraph [1] states that the parties who challenged Lord Nuku's election after the 2021 election 'are associated with a political party known as PTOA or the Democratic Party'. The printed word for them is 'respondents', although the title names Fatai Helu and Paula Piveni Piukala as appellants and the Electoral Commission and Lord Nuku as respondents."
+    },
+    {
+      "source_id": "to_idcpc_dialogue_20210528",
+      "source_url": "https://www.idcpc.org.cn/english2023/bzhd/202105/t20210531_160418.html",
+      "claim_id": "to_peoples_party_leader_20210528",
+      "claim_text": "The dialogue organizer identifies participant Pohiva Tu'i'onetoa as Leader of Tonga People's Party and Prime Minister of Tonga at its 28 May 2021 video event."
+    },
+    {
+      "source_id": "to_sc_kiu_v_tuionetoa_20220429",
+      "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+      "claim_id": "to_peoples_party_incorporated_society_2022",
+      "claim_text": "A Ministry for Trade and Economic Development officer whose work includes registering incorporated societies testified that the People's Party is an incorporated society with 35 members, including Tu'i'onetoa as president and Tevita Lavemaau as secretary, and that it has a constitution and stated aims."
+    },
+    {
+      "source_id": "to_pmo_former_pms_2026",
+      "source_url": "https://pmo.gov.to/former-prime-minsiters/",
+      "claim_id": "to_pmo_former_pms_2026_tuipelehake",
+      "claim_text": "The PMO list of former Prime Ministers includes 'K.B.E Fatafehi Tu'ipelehake ( 1965 – 1991 )'."
+    },
+    {
+      "source_id": "to_pmo_former_pms_2026",
+      "source_url": "https://pmo.gov.to/former-prime-minsiters/",
+      "claim_id": "to_pmo_former_pms_2026_vaea_lavaka",
+      "claim_text": "The same list gives 'Baron Vaea ( 1991 – 2000 )' and 'HRH . Prince 'Uukalala Lavaka Ata ( 2000 – 2006 )' (spelling as printed)."
+    },
+    {
+      "source_id": "to_pmo_former_pms_2015",
+      "source_url": "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+      "claim_id": "to_pmo_former_pms_2015_list",
+      "claim_text": "The archived 2015 PMO list reads: 'Fatafehi Tu'ipelehake K.B.E. 1965-1991', 'Paloni Vaea 1991-1999', 'Pilinisi Lavaka Ata 'Ulukalala 2000-2006', 'Dr. Feleti Vaka'uta Sevele 2006-2010', ''Eiki Nopele Tu'ivakano 2010-2014', 'Hon. Akilisi Pohiva 2014- present'."
+    },
+    {
+      "source_id": "to_pmo_office_pm_2002",
+      "source_url": "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+      "claim_id": "to_pmo_lavaka_ata_commencement_20000103",
+      "claim_text": "The PMO's page on the office profiles 'HRH Prince Ulukalala Lavaka Ata, Prime Minister, and Minister for Communications and Women's Affairs', with 'Commencement Date : 3 rd January, 2000' and the career entry '2000 - Prime Minister of the Kingdom of Tonga ...'."
+    },
+    {
+      "source_id": "to_pmo_20060213_resignation",
+      "source_url": "https://web.archive.org/web/20060501015618id_/http://www.pmo.gov.to:80/artman/publish/article_87.shtml",
+      "claim_id": "to_lavaka_ata_resignation_accepted_20060211",
+      "claim_text": "The PMO states that on Saturday, February 11th, 2006, the Prince Regent, His Royal Highness Crown Prince Tupouto'a, accepted the resignation of the Prime Minister, Prince 'Ulukalala Lavaka Ata. The resignation included all his ministerial portfolios: Telecommunications, Civil Aviation, Marine and Ports, and Disaster Relief Activities."
+    },
+    {
+      "source_id": "to_la_20170912_speaker_release",
+      "source_url": "https://web.archive.org/web/20170914091449id_/http://parliament.gov.to:80/media-centre/press-releases/press-releases-in-english/585-press-release-from-the-speaker-of-the-legislative-assembly-of-tonga",
+      "claim_id": "to_pohiva_styled_pm_20170912",
+      "claim_text": "The Speaker, Lord Tu'ivakano, rejects claims made by 'the Hon. Prime Minister, Samuela' Akilisi Pohiva' about the advice that led to the dissolution of the Assembly 'with effect from 24 August 2017'. The release is dated Tuesday 12th September 2017."
+    },
+    {
+      "source_id": "to_pmo_sovaleni_appointment_20211228",
+      "source_url": "https://pmo.gov.to/king-appoints-prime-minister-hon-siaosi-ofakivahafolau-sovaleni/",
+      "claim_id": "to_sovaleni_royal_appointment_en_20211227",
+      "claim_text": "The PMO's English release dated 28 December 2021 states that, in accordance with Clause 50A of the Constitution, King Tupou VI appointed the Prime Minister-Designate, Hon. Siaosi 'Ofakivahafolau Sovaleni, as Prime Minister of Tonga with effect from 27 December 2021."
+    },
+    {
+      "source_id": "to_assembly_minutes_48_20241209",
+      "source_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+      "claim_id": "to_palace_acceptance_letter_20241209",
+      "claim_text": "The same minutes record the Table Clerk reading, in the 1400-1405 block after the House resumed, a letter from the Palace Office dated Monday 9 December 2024, signed by Sione U. Fifita, Secretary to His Majesty, and addressed to Speaker Lord Fakafanua: the Palace Office had received that day, Monday 9 December 2024, Hon. Hu'akavameiliku's letter to King Tupou VI resigning as Prime Minister of Tonga, and His Majesty had graciously accepted the resignation ('Kuo mokoi 'a e Finangalo 'a 'Ene 'Afio ki he fakafisi')."
+    },
+    {
+      "source_id": "to_pmo_caretaker_announcement_20250106",
+      "source_url": "https://pmo.gov.to/14107-2/",
+      "claim_id": "to_caretaker_acting_pm_vaipulu_20250106",
+      "claim_text": "The Government of Tonga Public Announcement dated 6 January 2025, 'Current Status of His Majesty's Government' (with the Tongan 'Tu'unga 'o e Pule'anga 'o 'Ene 'Afio' of the same date), states that Government resumed work that day, Monday 6 January 2025; that it is in 'caretaker mode' ('tauhi fakataimi') under the Acting Prime Minister ('Palemia Le'ole'o', as printed), Hon. Samiu Kuita Vaipulu, and the current Cabinet Ministers; that no new financial commitments or policies are to be made in the caretaker period; and that the caretaker Government continues until the appointment of Prime Minister Designate Hon. Dr. 'Aisake Valu Eke and of his new Cabinet Ministers is completed, after which the appointments of the current Cabinet Ministers will be revoked."
+    },
+    {
+      "source_id": "to_pm_august_2026",
+      "source_url": "https://pmo.gov.to/prime-minister-lord-fakafanua-officially-launched-the-tonga-rural-innovation-project-iii-trip-iii/",
+      "claim_id": "to_fakafanua_august",
+      "claim_text": "The PMO identifies Lord Fakafanua as prime minister in its 3 August 2026 project-launch report."
+    },
+    {
+      "source_id": "to_pmo_2000_press_releases",
+      "source_url": "https://web.archive.org/web/20011230032256id_/http://pmo.gov.to:80/Government_Press_Release.html",
+      "claim_id": "to_dpm_kavaliku_appointed_1991_retro",
+      "claim_text": "The same release says: 'At the height of his career, Dr. Kavaliku was appointed the Deputy Prime Minister in 1991.'"
+    },
+    {
+      "source_id": "to_pmo_news_in_brief_2001",
+      "source_url": "https://web.archive.org/web/20010708233245id_/http://pmo.gov.to:80/NEWS_IN_BRIEF.html",
+      "claim_id": "to_dpm_kavaliku_listed_20001106",
+      "claim_text": "The PMO's 'NEWS IN BRIEF' index lists, against the date '6/11/00', the release 'Dr. Langi Kavaliku, Deputy Prime Minister retires after thirty-four (34) years of Service'."
+    },
+    {
+      "source_id": "to_pmo_20010124_pm_address",
+      "source_url": "https://web.archive.org/web/20010430180727id_/http://pmo.gov.to:80/hrhadd.24j.html",
+      "claim_id": "to_dpm_tupou_appointment_effective_20010124",
+      "claim_text": "In his address of Wednesday 24 January 2001 the Prime Minister announces that the King 'in - Privy Council today' consented to ministerial appointments 'with effect from 24th January, 2001', the second being 'Hon. Tevita P. Tupou' as 'Deputy Prime Minister & The Attorney General & Minister of Justice'."
+    },
+    {
+      "source_id": "to_pmo_20010928_tupou_resignation_to",
+      "source_url": "https://web.archive.org/web/20011230022245id_/http://pmo.gov.to:80/Fkfisitupou.html",
+      "claim_id": "to_dpm_tupou_resignation_accepted_20010928",
+      "claim_text": "The release of 28 September 2001 says that at 4 p.m. that day ('I he taimi 4 efiafi 'o e 'aho ni') Tevita Poasi Tupou resigned ('na'e fakafisi') as Deputy Prime Minister ('Tokoni Palemia'), Attorney General and Minister of Justice, and that the Princess Regent, Pilinisesi Salote Mafile'o Pilolevu Tuita, accepted the request ('Na'e tali 'a e poaki ni')."
+    },
+    {
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "source_url": "https://web.archive.org/web/20170910020802id_/http://www.pmo.gov.to:80/ministerial-appointments/",
+      "claim_id": "to_dpm_sovaleni_revocation_recommended_20170901",
+      "claim_text": "The PMO media release of 6 September 2017 says that on 1 September 2017 the Prime Minister recommended to the King, under clause 51(3)(a) of the Constitution, 'to revoke the appointments of Hon. Siaosi Sovaleni, Deputy Prime Minister' and of the Minister for Finance, 'effective from 1st September, 2017'."
+    },
+    {
+      "source_id": "to_mic_20170907_sovaleni_letter",
+      "source_url": "https://web.archive.org/web/20170910132342id_/http://mic.gov.to:80/news-today/press-releases/6910-lea-fakamalo-a-e-tokoni-palemia-mll-siaosi-sovaleni",
+      "claim_id": "to_pohiva_conveys_deputy_pm_removal_20170905",
+      "claim_text": "The MEIDECC release dated '07 'o Sepitema, 2017' reports former Deputy Prime Minister ('Tokoni Palemia Malolo') Siaosi Sovaleni as saying that a letter reached him from the 'Palemia 'o Tonga Hon. 'Akilisi Pohiva' on 5 September ('i he 'aho 5 'o Sepitema), conveying that His Majesty had consented to the proposal that he be removed from his office of Deputy Prime Minister and from his ministerial office in the Cabinet, and that he accepted the decision."
+    },
+    {
+      "source_id": "to_pmo_20211213_maafu_death",
+      "source_url": "https://web.archive.org/web/20250415130759id_/https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+      "claim_id": "to_dpm_maafu_death_20211212",
+      "claim_text": "The same release states that 'His Lordship' (Lord Ma'afu) 'passed away in the early hours of Sunday, 12 December 2021, at the Auckland City Hospital, New Zealand.'"
+    },
+    {
+      "source_id": "to_pmo_cabinet_20211229",
+      "source_url": "https://pmo.gov.to/prime-minister-hon-siaosi-ofakivahafolau-sovaleni-announces-new-cabinet-ministers/",
+      "claim_id": "to_sovaleni_cabinet_effective_20211228",
+      "claim_text": "The PMO's release dated 29 December 2021 states that King Tupou VI, on the Prime Minister's recommendations, appointed the new Ministers of Government with effect from 28 December 2021. Its numbered list of twelve Cabinet members gives (1) Hon. Siaosi 'Ofakivahafolau Sovaleni as Prime Minister and Minister for Education and Training, for Police, Fire Services and Emergency Services, and for His Majesty's Armed Forces, and (2) Hon. Poasi Mataele Tei as Deputy Prime Minister, Minister for MEIDECC and Minister for Public Enterprises."
+    },
+    {
+      "source_id": "to_assembly_minutes_48_20241209",
+      "source_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+      "claim_id": "to_deputy_pm_vaipulu_listed_20241209",
+      "claim_text": "The members' list printed at the front of the same minutes ('Hou'eiki Minisitā Kapineti') sets Hon. Samiu Vaipulu against ''Eiki Tokoni Palēmia, 'Eiki Minisitā Lao & Pilīsone' (Deputy Prime Minister; Justice and Prisons), Hon. Siaosi Sovaleni against ''Eiki Palēmia' with Education & Training and Police & Fire Services, and Hon. Tiofilusi Tiueti against Finance & National Planning and Revenue & Customs. The Lands and Internal Affairs portfolio lines are printed in red with no name."
+    },
+    {
+      "source_id": "to_la_speakers_list_20111130",
+      "source_url": "https://web.archive.org/web/20111130035919id_/http://www.parliament.gov.to/index.php/about-parliament/lorem-ipsum-ii/speakers-of-the-house",
+      "claim_id": "to_la_list_fusitua_1990_1998_20111130",
+      "claim_text": "The Assembly's 'Speakers of the House' list, which says that 'Traditionally the Speaker of the House was appointed by the King from the Nobles of the Realm', gives 'Nopele Fusitu'a 1990 - 1998'."
+    },
+    {
+      "source_id": "to_la_archives_2006",
+      "source_url": "https://web.archive.org/web/20060327202443id_/http://parliament.gov.to:80/archives.htm",
+      "claim_id": "to_la_archives_fusitua_1995_1998_20060327",
+      "claim_text": "The Assembly's 'Archives' page lists 'Speakers of the House (from 1875 onwards)'; after 'Hon. Ma'atu Tukui'aulahi 1959-1978' its next entry is 'Hon. Fusitu'a 1995-1998', so it names no Speaker for 1979-1994."
+    },
+    {
+      "source_id": "to_la_obituary_fusitua_20140505",
+      "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+      "claim_id": "to_la_obituary_fusitua_appointed_1991_20140505",
+      "claim_text": "The Assembly's news item on Lord Fusitu'a's funeral states that 'Late Lord Fusitu'a was appointed the Hon. Speaker of the Legislative Assembly of Tonga in 1991'; its PARLIAMENTARY CAREER section says that he was appointed Speaker of the House by his late Majesty King Taufa'ahau Tupou IV and 'served for three terms from 1991-1998', and the item adds that he remained a Noble representative of the Niuas until he died at his residence on April 24, 2014."
+    },
+    {
+      "source_id": "to_tlr_1997",
+      "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1572:1997_tlr",
+      "claim_id": "to_speaker_fusitua_interview_19961114",
+      "claim_text": "In 'Akau'ola v Attorney General (Court of Appeal, Morling, Burchett and Tompkins JJ, App. 3/97, 12 and 20 June 1997) the court states that on 14 November 1996 the appellant journalist 'interviewed the Speaker of the Legislative Assembly' about the Chief Justice's order of 14 October 1996 releasing three persons imprisoned under a warrant issued by the Speaker; the article it quotes begins 'In a statement by Fusitu'a [i.e. the Speaker]'."
+    },
+    {
+      "source_id": "to_pmo_20060209_veikune_directives",
+      "source_url": "https://web.archive.org/web/20070930153712id_/http://www.pmo.gov.to/artman/publish/article_85.shtml",
+      "claim_id": "to_speaker_veikune_end_20060125",
+      "claim_text": "The PMO release reports that on 25 January 2006 the Supreme Court jury convicted Hon. Veikune (Siosifa Fatafehi Fuatakifolaha Veikune) and that under Clause 23 of the Constitution he is deemed to be no longer an elected representative; it states that on 3rd February 2006 the Acting Private Secretary to His Majesty confirmed that 'his position as the Speaker of the House ended on 25th January, 2006'."
+    },
+    {
+      "source_id": "to_la_20120717_speaker_revoked",
+      "source_url": "https://web.archive.org/web/20130411091047id_/http://www.mic.gov.to:80/legislative-assembly/3924-king-revokes-speakers-parliamentary-appointment",
+      "claim_id": "to_lasike_speaker_appointment_revoked_20120717",
+      "claim_text": "The Office of the Legislative Assembly's release states: '17 July 2012. His Majesty King Tupou VI under Clause 61(2) (c) of the Constitution has revoked Lord Lasike's appointment as the Speaker of the Legislative Assembly of Tonga effective immediately', and that this 'was conveyed in a letter to Havea Hikule'o Tu'uhetoka on the 17th of July 2012'."
+    },
+    {
+      "source_id": "to_speaker_appointment_2025",
+      "source_url": "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy",
+      "claim_id": "to_speakers_appointment",
+      "claim_text": "King Tupou VI appointed Lord Vaea Speaker and Lord Tu'iha'angana Deputy Speaker, with both instruments effective 18 December 2025. The release was issued the following day."
+    },
+    {
+      "source_id": "to_la_news_ministers_oath_20260818",
+      "source_url": "https://web.archive.org/web/20260818052147id_/https://parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+      "claim_id": "to_acting_speaker_tuihaangana_20260818",
+      "claim_text": "The Assembly's news item created on 18 August 2026 reports that three Cabinet Ministers took their oaths in Parliament 'today' and that 'The Acting Speaker of Parliament, Lord Tu'iha'angana, warmly welcomed the Ministers to the House'."
+    }
+  ],
+  "input_pins": [
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 655160,
+      "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "git_blob_bytes": 655160,
+      "git_blob_sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+      "worktree_equals_git_blob": true,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
+      "bytes": 192134,
+      "sha256": "e13fa4888807ba669eca52a7a1e7ccae087e4f13d21ee690d1edde8d39c1769b",
+      "git_blob_bytes": 192134,
+      "git_blob_sha256": "e13fa4888807ba669eca52a7a1e7ccae087e4f13d21ee690d1edde8d39c1769b",
+      "worktree_equals_git_blob": true,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "bytes": 67582,
+      "sha256": "569f24bcf00ab7f6dfbd3650102073e42988070b348c79b1a0ae9037c1b9dbc7",
+      "git_blob_bytes": 66506,
+      "git_blob_sha256": "5cd620b10403ff568479a055217fb5a5ef906a1517733a68879496f4e5f64d86",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+      "bytes": 12718,
+      "sha256": "28b27f2fe133942ec4680463a24b6d8892d2b966401d19f835c8ddbe142edaa1",
+      "git_blob_bytes": 12502,
+      "git_blob_sha256": "fbe5cd350fed63d1811c26d303e11d39f47c586fe0addd50189d8f8f438c1149",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
+      "bytes": 35398,
+      "sha256": "4a31f7a03a0cc8639e4a3e89c96beb72b29b1cc890e9e5872fa232ad5be9b086",
+      "git_blob_bytes": 34940,
+      "git_blob_sha256": "755f9db2abfb5c26e7d916f845bcba279c5ffdc41c8d895489437f9996b46f7d",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-dpfi-pdp-leaders-1990-2026-44.md",
+      "bytes": 30512,
+      "sha256": "490cd4b02dc98ea06db1064122930dd51671ad0c6bb6989a85e65722f878aad4",
+      "git_blob_bytes": 30154,
+      "git_blob_sha256": "496976ffacac3e03e751f6f32283030e95f194bad954497e34662a3ffbd02945",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+      "bytes": 48380,
+      "sha256": "c1b647efba4d64bd2ddb7845e7411bff8870db9023fcb0252cedbff26d426cc9",
+      "git_blob_bytes": 47832,
+      "git_blob_sha256": "7d2c21a3aa595c929cd108bdd265dc97e488b4ac6a259b2e5cd7a528ccd5eec9",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2021-02.md",
+      "bytes": 18531,
+      "sha256": "422141647394fa12dd68ec0bb6438623f44e10ae0a428c05839374942504bfb7",
+      "git_blob_bytes": 18258,
+      "git_blob_sha256": "a3dbf99ceb61db7a284086ba1bb5accd7ee961146768f774879a8232d611c6a5",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+      "bytes": 33606,
+      "sha256": "aae4ab1b52ca534755cf4af14b88a79c3343e89921c719591efc844a17f71f62",
+      "git_blob_bytes": 33174,
+      "git_blob_sha256": "abebeb4921d35213e0b2920a01ce96f7359d7910634d226115b9d5e39acbb0b5",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-deputy-prime-ministers-1990-2026-36.md",
+      "bytes": 61023,
+      "sha256": "3dc30a1b15cd51edffe33fd88dd4590a25693d9b8e5a9d2d00802af0bc4a5866",
+      "git_blob_bytes": 60447,
+      "git_blob_sha256": "a5dcac8880759a7294a1b1b296d4a48815287249a5175465dbc74e60384293f3",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-speakers-1990-2026-24.md",
+      "bytes": 66669,
+      "sha256": "93e6c3eb4f00c0b32c1fecd1138b19fd9666dd037513768f0462ffc074a377c4",
+      "git_blob_bytes": 66038,
+      "git_blob_sha256": "21927add50c2ae79cdebb48ce2354f4b463649130821e636122872ff2357f2ec",
+      "worktree_equals_git_blob": false,
+      "line_ending_normalized_equal": true
+    }
+  ],
+  "limits": [
+    "Accepted C01 claims and their existing review reports were re-read. No source was newly downloaded or newly material-accepted in this assessment.",
+    "Original holder objects, source data, manifest status, code and tests remain untouched.",
+    "The 46 observations under these eleven rows remain required and installed; portraits do not waive historical research.",
+    "Fatai Helu is the only presently accepted person with a missing likeness; unknown historical holders may add further required identities.",
+    "No new institutional exception, party-name reconciliation, party/executive eligibility grant, legal effective date or full historical roster is inferred.",
+    "No native process or test suite was launched."
+  ],
+  "repository_files_changed": [],
+  "network_requests": 0,
+  "tests_run": [],
+  "country_complete": false,
+  "input_pin_mode": "Top-level input pin bytes/hash describe the actual read worktree files. git_blob_bytes/git_blob_sha256 describe the immutable corresponding Git blobs. Exact equality holds for research and manifest JSON; the Markdown difference is line endings only."
+}

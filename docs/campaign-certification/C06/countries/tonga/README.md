@@ -52,22 +52,26 @@ The retained [art registration verification](../../production/tonga/art-registra
 
 ## Acceptance progress
 
-Three native checks pass on candidate `6829ecc75600c3fa11a2df8136f7c4a513c4941e`:
-runtime date limits, save compatibility and institutional rules. The
-[CI acceptance receipt](../../production/tonga/ci-acceptance-20261001/README.md)
-pins the exact sources and passing tests from Linux release job `110424971157`.
-Its workspace run passed 2,006 tests, including all ten institutional-leadership
-tests and the Tonga government/portrait regressions. These checks establish
-runtime behavior; they do not fill historical tenure gaps or complete the
-16 political chains above.
+The artwork and government implementation are integrated on the game branch at
+`5530c298`; the portrait display repair and Tonga browser harness are pushed at
+`a86aee1b`. Current country acceptance remains open.
 
-Three checks remain pending: the Tonga production browser journey, final country
-likeness review and country signoff. CI's existing native browser selects the
-United States and does not execute Tonga institutional commands, so its success
-does not close that requirement. Fatai Helu's likeness and broader historical
-appearance exposure remain unresolved. The candidate has not been accepted into
-the live integration playset. No local native build/run was started for this
-documentation update; earlier resource-guard stops and all failures remain intact.
+The preceding candidate `6829ecc75600c3fa11a2df8136f7c4a513c4941e` passed three
+native checks: runtime date limits, save compatibility and institutional rules.
+Its [immutable CI receipt](../../production/tonga/ci-acceptance-20261001/README.md)
+pins Linux job `110424971157`, which passed 2,006 workspace tests. Because the
+King IV display repair changes a pinned input, those checks are pending a fresh
+exact-source execution; the original successful evidence remains intact.
+
+The [current follow-up](../../production/tonga/acceptance-followup-20261001/README.md)
+records 805 passing avatar/research tests and the independent remaining-chain
+assessment. Dedicated Windows/Linux Tonga browser jobs exercise the actual
+government UI, portraits, explicit commands and save/reload. Their results are
+pending review. The existing generic USA browser does not satisfy this check.
+
+The current inventory therefore lists eleven historical chains, one missing
+likeness and six pending acceptance checks: 18 blockers. Final country likeness
+review and country signoff remain separate from automated interface evidence.
 
 ## Reproduce the inventory check
 
@@ -86,8 +90,9 @@ The [independent assessment and adoption](../../production/tonga/collective-scop
 explain four collective-body exceptions under the existing C06 contract.
 All 50 named observations and every individual/party chain remain required.
 This does not certify complete historical membership lists or backdate
-modern seat counts. Eleven political/office chains, one missing likeness
-and three final acceptance checks remain open: 15 explicit blockers.
+modern seat counts. At that review checkpoint, eleven political/office
+chains, one missing likeness and three final checks remained. The subsequent
+display repair requires the current-source native recheck described above.
 
 The original appearance inventory is preserved byte-for-byte in an
 [immutable snapshot](../../production/tonga/collective-scope-20261001/appearance-inventory-before.md).
