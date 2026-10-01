@@ -1,0 +1,19 @@
+{
+  "submitted_sha256": "3335fdf1c0be41db8f981c2befecae2f5ec10c36bb7e4fce845dfc54d8bf1d35",
+  "reviewed_sha256": "04e42a07a3bbcf7a05d7caf1673d633e42bcf66812ee3e072b1623539259da29",
+  "temporary_regeneration_passed": true,
+  "submitted_bytes_restored": true,
+  "differences": [
+    {
+      "pointer": "/source_files/2/bytes",
+      "before": 1378251,
+      "after": 1378296
+    },
+    {
+      "pointer": "/source_files/2/sha256",
+      "before": "e943d1619465b83192fe1eb4fed83bbf478a96fc3bac66dcb15bd5f2d0a33b5e",
+      "after": "4341a287e2eafed413fc375a9bac506241bb3677f7eef7bc39e507bc50244a73"
+    }
+  ],
+  "integration_requirement": "Regenerate shared index after combining accepted authored packets; do not copy this isolated generated index."
+}

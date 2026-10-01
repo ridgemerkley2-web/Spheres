@@ -1,0 +1,119 @@
+diff --git a/docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md b/docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md
+index e3a08574..fceba1a2 100644
+--- a/docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md
++++ b/docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md
+@@ -174,6 +174,12 @@ Accept-Encoding header; none was served with a Content-Encoding.
+ 
+ Each pair matched in byte count and SHA-256; `packet_check.py` downloads every source again.
+ 
++Independent review limitation: the three AAP REST records are current representations with publisher-supplied
++historical dates, not independently timestamped contemporary captures. Post 883198 records modification on
++21 November 2024, three days after its publication date; the cause is unknown. Reproducing the same bytes does not
++establish that any post body existed unchanged at publication. Acceptance is limited to the attributed office
++statements and dates now served, without authenticating earlier revisions or unrelated political assertions.
++
+ ## Leads not imported
+ 
+ - `aamaadmiparty.org/wp-json/wp/v2/aap_news/905580` (published 10 September 2026): Kejriwal 'unanimously re-elected'
+diff --git a/docs/campaign-certification/C01/research/india.json b/docs/campaign-certification/C01/research/india.json
+index 23756b06..a69b6ccf 100644
+--- a/docs/campaign-certification/C01/research/india.json
++++ b/docs/campaign-certification/C01/research/india.json
+@@ -13035,15 +13035,15 @@
+       "scope_note": "An undated biography of the party's National President on the party website, recorded as a raw Internet Archive capture of 25 February 2021. A retrospective page.",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json",
+-        "bytes": 3333,
+-        "sha256": "ee46e33e7032d99cb60c9b50a89d93960b32148eb1086554510e3e578b5c4a0d"
++        "bytes": 3378,
++        "sha256": "8578cd073e5a4bf0a19dba77b2918565de051b9cc69965e61925f3fff6e28ada"
+       },
+       "claims": [
+         {
+           "id": "in_npp_site_conrad_sangma_elected_national_president_march_2016",
+           "text": "The party website's page on Conrad Sangma says 'He was elected as the National President of the National People's Party (NPP) in March 2016, following his father's demise earlier that year.'",
+           "locator": {
+-            "item": "biography, fourth paragraph"
++            "item": "biography paragraph beginning 'He was elected as the National President'"
+           },
+           "uncertainty": "An election recalled by month only: no day, so no start and no dated claim."
+         }
+diff --git a/docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json b/docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json
+index 1483b2ca..82f70919 100644
+--- a/docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json
++++ b/docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json
+@@ -29,7 +29,7 @@
+       "attested_on": null,
+       "text": "The party website's page on Conrad Sangma says 'He was elected as the National President of the National People's Party (NPP) in March 2016, following his father's demise earlier that year.'",
+       "locator": {
+-        "item": "biography, fourth paragraph"
++        "item": "biography paragraph beginning 'He was elected as the National President'"
+       }
+     }
+   ],
+diff --git a/tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py b/tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py
+index 67dcec4f..3ba7fcee 100644
+--- a/tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py
++++ b/tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py
+@@ -426,6 +426,12 @@ class IndiaBspAapNppLeadersTests(unittest.TestCase):
+         self.assertEqual(len(parts), 2, heading)
+         return parts[1].split('\n## ', 1)[0]
+ 
++    def test_conrad_election_locator_identifies_the_election_passage(self):
++        cid = 'in_npp_site_conrad_sangma_elected_national_president_march_2016'
++        expected = {'item': "biography paragraph beginning 'He was elected as the National President'"}
++        self.assertEqual(self.claims[cid]['locator'], expected)
++        self.assertEqual(self.rows[cid]['locator'], expected)
++
+     def test_new_records_are_bounded_and_every_claim_is_classified(self):
+         ids = self.validate()
+         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (19, 24))
+diff --git a/tools/avatars/test_india_research_s10e.py b/tools/avatars/test_india_research_s10e.py
+index 582cb22c..85d8a066 100644
+--- a/tools/avatars/test_india_research_s10e.py
++++ b/tools/avatars/test_india_research_s10e.py
+@@ -156,6 +156,24 @@ class IndiaDiscoveryTests(unittest.TestCase):
+             'Nationalist Congress Party – Sharadchandra Pawar': 2})
+         self.assertTrue(all(o['recognition']['consolidated_current_status'] is None for o in qualified))
+ 
++    def test_cutoff_guard_rejects_both_prior_and_new_packet_dates(self):
++        # Exercise the actual date guard independently: an added packet branch must
++        # not take publication/claim checks away from an earlier packet.
++        role_sources = {r['id']: r['sources'] for o in self.packet['organizations'] for r in o['roles']}
++        for role_id in (C01_40_ROLE, C01_48_ROLES[0][1]):
++            sid = role_sources[role_id][0]
++            for field in ('published_date', 'attested_on'):
++                with self.subTest(role=role_id, field=field):
++                    case = IndiaDiscoveryTests('test_access_dates_never_extend_historical_attestations')
++                    case.packet = copy.deepcopy(self.packet)
++                    source = next(s for s in case.packet['sources'] if s['id'] == sid)
++                    if field == 'published_date':
++                        source[field] = '2026-09-08'
++                    else:
++                        source['claims'][0][field] = '2026-09-08'
++                    with self.assertRaises(AssertionError):
++                        case.test_access_dates_never_extend_historical_attestations()
++
+     def test_access_dates_never_extend_historical_attestations(self):
+         c01_15 = set(self.packet['institutions'][1]['sources'])
+         self.assertEqual(len(c01_15), C01_15_SOURCE_COUNT)
+@@ -191,12 +209,18 @@ class IndiaDiscoveryTests(unittest.TestCase):
+             elif source['id'] in c01_40:
+                 self.assertIn(urlsplit(source['url']).hostname, C01_40_HOSTS)
+                 self.assertIn(source['accessed_date'], C01_40_ACCESS_DATES)
++                if source['published_date']:
++                    self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
++                # CLAUDE-C01-40's retrospective pages, lists and undated statements carry no structured date.
++                for claim in source['claims']:
++                    if claim.get('attested_on'):
++                        self.assertLessEqual(claim['attested_on'], research.CUTOFF)
+             elif source['id'] in c01_48:
+                 self.assertIn(urlsplit(source['url']).hostname, C01_48_HOSTS)
+                 self.assertIn(source['accessed_date'], C01_48_ACCESS_DATES)
+                 if source['published_date']:
+                     self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
+-                # CLAUDE-C01-40's retrospective pages, lists and undated statements carry no structured date.
++                # CLAUDE-C01-48's undated and month-only statements carry no structured day.
+                 for claim in source['claims']:
+                     if claim.get('attested_on'):
+                         self.assertLessEqual(claim['attested_on'], research.CUTOFF)

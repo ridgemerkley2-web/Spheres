@@ -1,0 +1,26 @@
+{
+  "name": "locator-regression-red",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_india*.py",
+    "-k",
+    "conrad_election_locator",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:12:07.520249+00:00",
+  "elapsed_seconds": 0.631,
+  "exit_code": 1,
+  "log": "validation/locator-regression-red.log",
+  "log_bytes": 1301,
+  "log_sha256": "b92cebe28b343c34a3ba1f2b79279852c68a8696bf3d164f098955ee40a9b5c2"
+}

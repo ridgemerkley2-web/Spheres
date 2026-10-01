@@ -1,0 +1,288 @@
+{
+  "source_revision": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+  "review_patch_sha256": "10f1d7430279a5ccb9b723107628ff579d39b3588d1bca3f6c11b5bf03792bb0",
+  "results": [
+    {
+      "name": "atlas-node",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "C:/Users/ridge/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "started_utc": "2026-10-01T14:16:51.540352+00:00",
+      "elapsed_seconds": 1.177,
+      "exit_code": 0,
+      "log": "validation/atlas-node.log",
+      "log_bytes": 1121,
+      "log_sha256": "ab4f86ea25da908edec9af435d2f7a4da721d9a0683c1e483b36ecd2090adfd0"
+    },
+    {
+      "name": "campaign-tests",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:16:11.961934+00:00",
+      "elapsed_seconds": 3.223,
+      "exit_code": 0,
+      "log": "validation/campaign-tests.log",
+      "log_bytes": 2544,
+      "log_sha256": "9fc60efb9832e0e7b3714e1a3cc7adce30c2678a85495e91bafa0a9e2cedf42c"
+    },
+    {
+      "name": "census-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:16:49.789540+00:00",
+      "elapsed_seconds": 0.5,
+      "exit_code": 0,
+      "log": "validation/census-check.log",
+      "log_bytes": 1462,
+      "log_sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "name": "india-focused-after-repairs",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:14:18.292210+00:00",
+      "elapsed_seconds": 105.34,
+      "exit_code": 0,
+      "log": "validation/india-focused-after-repairs.log",
+      "log_bytes": 14929,
+      "log_sha256": "68473376198b5b9fce0b2d484595579dd5da0719d294caa6a81a1fec73c64741"
+    },
+    {
+      "name": "india-focused-final",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:13:08.726858+00:00",
+      "elapsed_seconds": 29.023,
+      "exit_code": 1,
+      "log": "validation/india-focused-final.log",
+      "log_bytes": 55062,
+      "log_sha256": "98fff605f7f33b8a0812bc0450f7e6f75df3aa94b82cd4ffd399d7dd77b7a73a"
+    },
+    {
+      "name": "locator-regression-red",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py",
+        "-k",
+        "conrad_election_locator",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:12:07.520249+00:00",
+      "elapsed_seconds": 0.631,
+      "exit_code": 1,
+      "log": "validation/locator-regression-red.log",
+      "log_bytes": 1301,
+      "log_sha256": "b92cebe28b343c34a3ba1f2b79279852c68a8696bf3d164f098955ee40a9b5c2"
+    },
+    {
+      "name": "research-index-before-regeneration",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:17:31.599057+00:00",
+      "elapsed_seconds": 0.846,
+      "exit_code": 1,
+      "log": "validation/research-index-before-regeneration.log",
+      "log_bytes": 780,
+      "log_sha256": "090abc187bbe27cfa3547d7be10e3a155b34fd302a927e05bda3aeebaa90a42e"
+    },
+    {
+      "name": "research-index-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:17:33.508628+00:00",
+      "elapsed_seconds": 0.785,
+      "exit_code": 0,
+      "log": "validation/research-index-check.log",
+      "log_bytes": 251,
+      "log_sha256": "535513ee28ecbcc899e1fd1c237fcc772e92e57e92ea048e79dc2c0f6585eb32"
+    },
+    {
+      "name": "research-index-regenerate",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py"
+      ],
+      "started_utc": "2026-10-01T14:17:32.601801+00:00",
+      "elapsed_seconds": 0.744,
+      "exit_code": 0,
+      "log": "validation/research-index-regenerate.log",
+      "log_bytes": 252,
+      "log_sha256": "509335c23d5ac3c90a24c7a9a9df644936f477baac57f8b9e282bc4f19d73807"
+    },
+    {
+      "name": "research-tests",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:16:03.850678+00:00",
+      "elapsed_seconds": 7.907,
+      "exit_code": 0,
+      "log": "validation/research-tests.log",
+      "log_bytes": 14882,
+      "log_sha256": "3374fb967c740cb23458e18e1368be82edf2d9775dc021acb81e85a977485982"
+    },
+    {
+      "name": "review-regressions-red",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py",
+        "-k",
+        "cutoff_guard",
+        "-v"
+      ],
+      "started_utc": "2026-10-01T14:11:47.139100+00:00",
+      "elapsed_seconds": 20.18,
+      "exit_code": 1,
+      "log": "validation/review-regressions-red.log",
+      "log_bytes": 2223,
+      "log_sha256": "4156dc652b322124616371e59a387171850c06a4b44cd45881be7a980108474d"
+    },
+    {
+      "name": "whitespace-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD",
+        "--",
+        "docs/campaign-certification/C01/research/india.json",
+        "docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json",
+        "docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md",
+        "tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py",
+        "tools/avatars/test_india_research_s10e.py"
+      ],
+      "started_utc": "2026-10-01T14:17:34.885840+00:00",
+      "elapsed_seconds": 0.214,
+      "exit_code": 0,
+      "log": "validation/whitespace-check.log",
+      "log_bytes": 281,
+      "log_sha256": "aa127de7ab254dafa449146f2cc9673e63af0ee9dab5d6623ed35796e949f19b"
+    },
+    {
+      "name": "workboard-check",
+      "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+      "command": [
+        "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "started_utc": "2026-10-01T14:16:50.479079+00:00",
+      "elapsed_seconds": 0.635,
+      "exit_code": 0,
+      "log": "validation/workboard-check.log",
+      "log_bytes": 146,
+      "log_sha256": "cf7a708deb40945f526e1a9158df99c0ea8115617d47c436b54032de8bebf16e"
+    }
+  ],
+  "overlapping_discovery_patterns": true,
+  "native_or_gameplay_run": false,
+  "retained_failures": {
+    "review-regressions-red": "Intentional red control: one method, two failures for CPI(M) publication and attestation dates; AAP controls rejected correctly.",
+    "locator-regression-red": "Intentional red control: wrong fourth-paragraph locator.",
+    "india-focused-final": "Intermediate failed run despite label: first repair-script attempt changed extract before an indentation assertion prevented packet pin update. 86 tests, 16 failures and 16 errors, all retained. Fixed coherent tree passes india-focused-after-repairs.",
+    "research-index-before-regeneration": "Expected stale generated pin after authored locator repair; regeneration and check pass, submitted index restored for integrator regeneration."
+  }
+}

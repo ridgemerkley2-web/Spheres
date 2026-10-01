@@ -1,0 +1,26 @@
+{
+  "name": "review-regressions-red",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_india*.py",
+    "-k",
+    "cutoff_guard",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:11:47.139100+00:00",
+  "elapsed_seconds": 20.18,
+  "exit_code": 1,
+  "log": "validation/review-regressions-red.log",
+  "log_bytes": 2223,
+  "log_sha256": "4156dc652b322124616371e59a387171850c06a4b44cd45881be7a980108474d"
+}

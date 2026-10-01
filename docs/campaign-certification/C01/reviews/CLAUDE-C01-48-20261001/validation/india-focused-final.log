@@ -1,0 +1,562 @@
+test_extracts_match_packet_claims_and_record_original_responses (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) ... 
+  test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) (message='cited source') ... FAIL
+  test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) (message='Unknown') ... FAIL
+  test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) (message='foreign represented party') ... FAIL
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_packet_formatting_is_preserved) ... ok
+test_party_and_state_offices_stay_separate (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_party_and_state_offices_stay_separate) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_conrad_election_locator_identifies_the_election_passage (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_conrad_election_locator_identifies_the_election_passage) ... FAIL
+test_extracts_match_packet_claims_and_record_original_responses (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_extracts_match_packet_claims_and_record_original_responses) ... FAIL
+test_holders_are_exactly_as_intended (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_packet_formatting_is_preserved) ... ok
+test_party_and_state_offices_stay_separate (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_party_and_state_offices_stay_separate) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_packet_formatting_is_preserved) ... ok
+test_party_and_state_offices_stay_separate (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_party_and_state_offices_stay_separate) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_styling_date_does_not_override_independently_cited_office_evidence (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) ... ok
+test_2015_office_locators_use_named_anchors_and_explicit_date_section (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_2015_office_locators_use_named_anchors_and_explicit_date_section) ... ok
+test_current_rest_metadata_is_not_treated_as_a_historical_capture (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_current_rest_metadata_is_not_treated_as_a_historical_capture) ... ok
+test_ems_opening_identity_is_not_asserted_without_evidence (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_ems_opening_identity_is_not_asserted_without_evidence) ... ok
+test_handover_points_to_its_own_paragraph_not_the_1992_recollection (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_handover_points_to_its_own_paragraph_not_the_1992_recollection) ... ok
+test_rally_2012_locator_identifies_both_date_and_office_passages (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_rally_2012_locator_identifies_both_date_and_office_passages) ... ok
+test_yechury_election_recollection_does_not_point_to_student_biography (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_yechury_election_recollection_does_not_point_to_student_biography) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) ... 
+  test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) (message='cited source') ... FAIL
+  test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) (message='Unknown') ... FAIL
+  test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) (message='foreign represented party') ... FAIL
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_packet_formatting_is_preserved) ... ok
+test_party_and_state_offices_stay_separate (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_party_and_state_offices_stay_separate) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) ... 
+  test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) (message='cited source') ... FAIL
+  test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) (message='Unknown') ... FAIL
+  test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) (message='foreign represented party') ... FAIL
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_packet_formatting_is_preserved) ... ok
+test_party_and_state_offices_stay_separate (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_party_and_state_offices_stay_separate) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_splits_and_successors_are_claims_about_the_organisation_only (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_splits_and_successors_are_claims_about_the_organisation_only) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_india_presidents_c01_15.IndiaPresidentsTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_india_presidents_c01_15.IndiaPresidentsTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_presidents_c01_15.IndiaPresidentsTests.test_mutations_are_rejected) ... 
+  test_mutations_are_rejected (test_india_presidents_c01_15.IndiaPresidentsTests.test_mutations_are_rejected) (message='cited source') ... FAIL
+  test_mutations_are_rejected (test_india_presidents_c01_15.IndiaPresidentsTests.test_mutations_are_rejected) (message='Unknown') ... FAIL
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_presidents_c01_15.IndiaPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_presidents_c01_15.IndiaPresidentsTests.test_packet_formatting_is_preserved) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_presidents_c01_15.IndiaPresidentsTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_presidents_c01_15.IndiaPresidentsTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_presidents_c01_15.IndiaPresidentsTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_presidents_c01_15.IndiaPresidentsTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_extracts_match_packet_claims_and_record_original_responses (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_holders_are_exactly_as_intended) ... ok
+test_mutations_are_rejected (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_mutations_are_rejected) ... 
+  test_mutations_are_rejected (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_mutations_are_rejected) (message='cited source') ... FAIL
+  test_mutations_are_rejected (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_mutations_are_rejected) (message='Unknown') ... FAIL
+test_new_records_are_bounded_and_every_claim_is_classified (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ERROR
+test_packet_formatting_is_preserved (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_packet_formatting_is_preserved) ... ok
+test_report_and_handoff_close_no_parent_gate (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_report_and_handoff_close_no_parent_gate) ... ERROR
+test_response_identities_are_reproducible_urls (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_response_identities_are_reproducible_urls) ... ok
+test_secondary_and_unimported_leads_stay_out_of_the_packet (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_secondary_and_unimported_leads_stay_out_of_the_packet) ... ok
+test_starts_and_ends_only_where_a_source_states_one (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_starts_and_ends_only_where_a_source_states_one) ... ok
+test_access_dates_never_extend_historical_attestations (test_india_research_s10e.IndiaDiscoveryTests.test_access_dates_never_extend_historical_attestations) ... ok
+test_all_source_jurisdiction_rows_are_retained_without_deduplication (test_india_research_s10e.IndiaDiscoveryTests.test_all_source_jurisdiction_rows_are_retained_without_deduplication) ... ok
+test_cutoff_guard_rejects_both_prior_and_new_packet_dates (test_india_research_s10e.IndiaDiscoveryTests.test_cutoff_guard_rejects_both_prior_and_new_packet_dates) ... ok
+test_dated_registers_are_valid_and_partial (test_india_research_s10e.IndiaDiscoveryTests.test_dated_registers_are_valid_and_partial) ... ERROR
+test_discovery_batches_remain_open_and_separate_from_campaign_certification (test_india_research_s10e.IndiaDiscoveryTests.test_discovery_batches_remain_open_and_separate_from_campaign_certification) ... ERROR
+test_factual_extracts_reconcile_every_claim_and_protect_source_bytes (test_india_research_s10e.IndiaDiscoveryTests.test_factual_extracts_reconcile_every_claim_and_protect_source_bytes) ... ok
+test_frozen_names_and_court_qualifications_survive_without_successor_grants (test_india_research_s10e.IndiaDiscoveryTests.test_frozen_names_and_court_qualifications_survive_without_successor_grants) ... ok
+test_recognition_does_not_grant_roles_lifespans_or_game_identity (test_india_research_s10e.IndiaDiscoveryTests.test_recognition_does_not_grant_roles_lifespans_or_game_identity) ... FAIL
+test_source_numbering_and_spelling_are_not_repaired_into_invented_rows (test_india_research_s10e.IndiaDiscoveryTests.test_source_numbering_and_spelling_are_not_repaired_into_invented_rows) ... ok
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bjp_presidents_c01_27.py", line 1136, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bjp_presidents_c01_27.py", line 1128, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bjp_presidents_c01_27.py", line 1696, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bsp_aap_npp_leaders_c01_48.py", line 436, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bsp_aap_npp_leaders_c01_48.py", line 422, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bsp_aap_npp_leaders_c01_48.py", line 760, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 392, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 384, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 732, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_inc_presidents_c01_20.py", line 923, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_inc_presidents_c01_20.py", line 915, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_inc_presidents_c01_20.py", line 1411, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_janata_dal_presidents_c01_33.py", line 479, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_janata_dal_presidents_c01_33.py", line 471, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_janata_dal_presidents_c01_33.py", line 1027, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_presidents_c01_15.IndiaPresidentsTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_presidents_c01_15.py", line 558, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_presidents_c01_15.py", line 550, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_presidents_c01_15.IndiaPresidentsTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_presidents_c01_15.py", line 1021, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_new_records_are_bounded_and_every_claim_is_classified (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_new_records_are_bounded_and_every_claim_is_classified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_prime_ministers_c01_11.py", line 660, in test_new_records_are_bounded_and_every_claim_is_classified
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_prime_ministers_c01_11.py", line 652, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_report_and_handoff_close_no_parent_gate (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_report_and_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_prime_ministers_c01_11.py", line 1117, in test_report_and_handoff_close_no_parent_gate
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_dated_registers_are_valid_and_partial (test_india_research_s10e.IndiaDiscoveryTests.test_dated_registers_are_valid_and_partial)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_research_s10e.py", line 90, in test_dated_registers_are_valid_and_partial
+    ids = self.validate()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_research_s10e.py", line 87, in validate
+    return research.validate(packet or self.packet, research.ROOT, {'India'}, {'India': set()})
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+ERROR: test_discovery_batches_remain_open_and_separate_from_campaign_certification (test_india_research_s10e.IndiaDiscoveryTests.test_discovery_batches_remain_open_and_separate_from_campaign_certification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_research_s10e.py", line 428, in test_discovery_batches_remain_open_and_separate_from_campaign_certification
+    index = research.build()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 130, in build
+    ids = validate(packet, root, nations, party_ids)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 84, in validate
+    require(path.stat().st_size == snapshot['bytes'] and sha(path) == snapshot['sha256'], 'Source snapshot checksum mismatch')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Source snapshot checksum mismatch
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) (message='cited source')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bjp_presidents_c01_27.py", line 1529, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "cited source" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) (message='Unknown')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bjp_presidents_c01_27.py", line 1529, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Unknown" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_bjp_presidents_c01_27.IndiaBjpPresidentsTests.test_mutations_are_rejected) (message='foreign represented party')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bjp_presidents_c01_27.py", line 1529, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "foreign represented party" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_conrad_election_locator_identifies_the_election_passage (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_conrad_election_locator_identifies_the_election_passage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bsp_aap_npp_leaders_c01_48.py", line 432, in test_conrad_election_locator_identifies_the_election_passage
+    self.assertEqual(self.claims[cid]['locator'], expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'item': 'biography, fourth paragraph'} != {'item': "biography paragraph beginning 'He was el[29 chars]nt'"}
+- {'item': 'biography, fourth paragraph'}
++ {'item': "biography paragraph beginning 'He was elected as the National "
++          "President'"}
+
+======================================================================
+FAIL: test_extracts_match_packet_claims_and_record_original_responses (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_extracts_match_packet_claims_and_record_original_responses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bsp_aap_npp_leaders_c01_48.py", line 576, in test_extracts_match_packet_claims_and_record_original_responses
+    self.assertEqual((len(data), hashlib.sha256(data).hexdigest()), (snapshot['bytes'], snapshot['sha256']))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (3378, '8578cd073e5a4bf0a19dba77b2918565de051b9cc69965e61925f3fff6e28ada') != (3333, 'ee46e33e7032d99cb60c9b50a89d93960b32148eb1086554510e3e578b5c4a0d')
+
+First differing element 0:
+3378
+3333
+
+- (3378, '8578cd073e5a4bf0a19dba77b2918565de051b9cc69965e61925f3fff6e28ada')
++ (3333, 'ee46e33e7032d99cb60c9b50a89d93960b32148eb1086554510e3e578b5c4a0d')
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) (message='cited source')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_inc_presidents_c01_20.py", line 1279, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "cited source" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) (message='Unknown')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_inc_presidents_c01_20.py", line 1279, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Unknown" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_inc_presidents_c01_20.IndiaIncPresidentsTests.test_mutations_are_rejected) (message='foreign represented party')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_inc_presidents_c01_20.py", line 1279, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "foreign represented party" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) (message='cited source')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_janata_dal_presidents_c01_33.py", line 869, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "cited source" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) (message='Unknown')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_janata_dal_presidents_c01_33.py", line 869, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Unknown" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_janata_dal_presidents_c01_33.IndiaJanataDalPresidentsTests.test_mutations_are_rejected) (message='foreign represented party')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_janata_dal_presidents_c01_33.py", line 869, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "foreign represented party" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_presidents_c01_15.IndiaPresidentsTests.test_mutations_are_rejected) (message='cited source')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_presidents_c01_15.py", line 886, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "cited source" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_presidents_c01_15.IndiaPresidentsTests.test_mutations_are_rejected) (message='Unknown')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_presidents_c01_15.py", line 886, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Unknown" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_mutations_are_rejected) (message='cited source')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_prime_ministers_c01_11.py", line 995, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "cited source" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_mutations_are_rejected (test_india_prime_ministers_c01_11.IndiaPrimeMinistersTests.test_mutations_are_rejected) (message='Unknown')
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_prime_ministers_c01_11.py", line 995, in test_mutations_are_rejected
+    with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Unknown" does not match "Source snapshot checksum mismatch"
+
+======================================================================
+FAIL: test_recognition_does_not_grant_roles_lifespans_or_game_identity (test_india_research_s10e.IndiaDiscoveryTests.test_recognition_does_not_grant_roles_lifespans_or_game_identity)
+----------------------------------------------------------------------
+ValueError: Source snapshot checksum mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_research_s10e.py", line 314, in test_recognition_does_not_grant_roles_lifespans_or_game_identity
+    with self.assertRaisesRegex(ValueError, 'foreign represented party mapping'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "foreign represented party mapping" does not match "Source snapshot checksum mismatch"
+
+----------------------------------------------------------------------
+Ran 86 tests in 28.781s
+
+FAILED (failures=16, errors=16)

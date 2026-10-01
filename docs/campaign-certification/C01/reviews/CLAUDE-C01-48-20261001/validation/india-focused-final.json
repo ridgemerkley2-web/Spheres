@@ -1,0 +1,24 @@
+{
+  "name": "india-focused-final",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_india*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:13:08.726858+00:00",
+  "elapsed_seconds": 29.023,
+  "exit_code": 1,
+  "log": "validation/india-focused-final.log",
+  "log_bytes": 55062,
+  "log_sha256": "98fff605f7f33b8a0812bc0450f7e6f75df3aa94b82cd4ffd399d7dd77b7a73a"
+}

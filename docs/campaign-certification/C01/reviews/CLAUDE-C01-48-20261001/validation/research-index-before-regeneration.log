@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 181, in <module>
+    main()
+    ~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 174, in main
+    require(target.exists() and target.read_text(encoding='utf-8') == text, 'Research index differs from inputs')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Research index differs from inputs

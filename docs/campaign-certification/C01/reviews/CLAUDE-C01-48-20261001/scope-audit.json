@@ -1,0 +1,42 @@
+{
+  "source_revision": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+  "comparison_base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "source_revisions": {
+    "claim": "e2623e3e69bb957e83228da3e48f486f7b3f31f3",
+    "authored": "8ce5058b1404733123aafde094fa07c85a4d6f07",
+    "generated_index": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded"
+  },
+  "earlier_sources_unchanged": 317,
+  "earlier_claims_unchanged": 625,
+  "all_institutions_unchanged": true,
+  "other_organizations_unchanged": 80,
+  "removing_only_scoped_additions_reproduces_base_exactly": true,
+  "organization_additions": [
+    {
+      "organization_id": "in_eci_20240323_np_01",
+      "added_roles": [
+        "in_aap_national_convenor"
+      ],
+      "added_sources": 8,
+      "added_claims": 8
+    },
+    {
+      "organization_id": "in_eci_20240323_np_02",
+      "added_roles": [
+        "in_bsp_national_president"
+      ],
+      "added_sources": 6,
+      "added_claims": 10
+    },
+    {
+      "organization_id": "in_eci_20240323_np_06",
+      "added_roles": [
+        "in_npp_national_president"
+      ],
+      "added_sources": 5,
+      "added_claims": 6
+    }
+  ],
+  "country_complete": false,
+  "runtime_or_art_approval": false
+}

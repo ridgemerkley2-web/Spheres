@@ -1,0 +1,18 @@
+test_conrad_election_locator_identifies_the_election_passage (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_conrad_election_locator_identifies_the_election_passage) ... FAIL
+
+======================================================================
+FAIL: test_conrad_election_locator_identifies_the_election_passage (test_india_bsp_aap_npp_leaders_c01_48.IndiaBspAapNppLeadersTests.test_conrad_election_locator_identifies_the_election_passage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_bsp_aap_npp_leaders_c01_48.py", line 432, in test_conrad_election_locator_identifies_the_election_passage
+    self.assertEqual(self.claims[cid]['locator'], expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'item': 'biography, fourth paragraph'} != {'item': "biography paragraph beginning 'He was el[29 chars]nt'"}
+- {'item': 'biography, fourth paragraph'}
++ {'item': "biography paragraph beginning 'He was elected as the National "
++          "President'"}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

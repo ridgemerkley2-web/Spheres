@@ -1,0 +1,26 @@
+test_cutoff_guard_rejects_both_prior_and_new_packet_dates (test_india_research_s10e.IndiaDiscoveryTests.test_cutoff_guard_rejects_both_prior_and_new_packet_dates) ... 
+  test_cutoff_guard_rejects_both_prior_and_new_packet_dates (test_india_research_s10e.IndiaDiscoveryTests.test_cutoff_guard_rejects_both_prior_and_new_packet_dates) (role='in_cpm_general_secretary', field='published_date') ... FAIL
+  test_cutoff_guard_rejects_both_prior_and_new_packet_dates (test_india_research_s10e.IndiaDiscoveryTests.test_cutoff_guard_rejects_both_prior_and_new_packet_dates) (role='in_cpm_general_secretary', field='attested_on') ... FAIL
+
+======================================================================
+FAIL: test_cutoff_guard_rejects_both_prior_and_new_packet_dates (test_india_research_s10e.IndiaDiscoveryTests.test_cutoff_guard_rejects_both_prior_and_new_packet_dates) (role='in_cpm_general_secretary', field='published_date')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_research_s10e.py", line 174, in test_cutoff_guard_rejects_both_prior_and_new_packet_dates
+    with self.assertRaises(AssertionError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: AssertionError not raised
+
+======================================================================
+FAIL: test_cutoff_guard_rejects_both_prior_and_new_packet_dates (test_india_research_s10e.IndiaDiscoveryTests.test_cutoff_guard_rejects_both_prior_and_new_packet_dates) (role='in_cpm_general_secretary', field='attested_on')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\india\tools\avatars\test_india_research_s10e.py", line 174, in test_cutoff_guard_rejects_both_prior_and_new_packet_dates
+    with self.assertRaises(AssertionError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: AssertionError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 19.561s
+
+FAILED (failures=2)

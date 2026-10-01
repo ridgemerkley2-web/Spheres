@@ -1,0 +1,24 @@
+{
+  "name": "india-focused-after-repairs",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_india*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:14:18.292210+00:00",
+  "elapsed_seconds": 105.34,
+  "exit_code": 0,
+  "log": "validation/india-focused-after-repairs.log",
+  "log_bytes": 14929,
+  "log_sha256": "68473376198b5b9fce0b2d484595579dd5da0719d294caa6a81a1fec73c64741"
+}

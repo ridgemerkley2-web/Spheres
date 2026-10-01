@@ -1,0 +1,82 @@
+{
+  "source_revision": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+  "comparison_base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "decision": "accepted_bounded_after_review_repairs",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 8753,
+      "sha256": "35c2d69b5377ca0c1372f77f9e11ba76cb26291b2dca4347d224966ab8372e78"
+    },
+    {
+      "path": "source-inventory.json",
+      "bytes": 133521,
+      "sha256": "4b28ab9c0e16ed5200ec6af84b9c75a3d5fd895cb055ce0e77b0b61b43325632"
+    },
+    {
+      "path": "source-retrieval.json",
+      "bytes": 39150,
+      "sha256": "7631ef7be9e6b68a386f2c6ca976a6f1bd9206c5f59928a9158327f35e46931d"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 26414,
+      "sha256": "0556c840524a7ed7a24d2c37f985bd2c86d40ae0dfdda7ef0629fdb6fc9fad7f"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 19650,
+      "sha256": "c4b028bf191b5ac35773651e6e8239cb25358d205a865bf24c4660afb99a74a0"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 5387,
+      "sha256": "c0ab27007873bb9b38f40f361314941b4fead7278a72b03c1c6c0114e51f3431"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 1243,
+      "sha256": "4e3fb8c51138804afd752cb55da5a69937faf123c170f68cbfce5d11aedc4609"
+    },
+    {
+      "path": "earlier-test-audit.json",
+      "bytes": 4832,
+      "sha256": "4bb2d5afe8e3b8207b9bba9467e4912b9e5b724b9e1af73032aa42c2dc9e885d"
+    },
+    {
+      "path": "locator-repair.json",
+      "bytes": 808,
+      "sha256": "312a9e757e4bfafd53fcf272b9dd73cc91871c1221ce524400c62000a8f9b9f1"
+    },
+    {
+      "path": "reviewed-files.json",
+      "bytes": 14466,
+      "sha256": "5482abf606bdccac62f68ea137d572ace3d95b5a322ad1e1e6ad8ab87ea38d6a"
+    },
+    {
+      "path": "review-repairs.patch",
+      "bytes": 8020,
+      "sha256": "10f1d7430279a5ccb9b723107628ff579d39b3588d1bca3f6c11b5bf03792bb0"
+    },
+    {
+      "path": "index-review.json",
+      "bytes": 768,
+      "sha256": "b60f2b3cea2a0f8bc438566b03b0fe2b54a8f3ee9ddf29c0dd1a961c8ff0fade"
+    },
+    {
+      "path": "supplemental-check-blobs.json",
+      "bytes": 1196,
+      "sha256": "682e66c504198683891203e2220c68b0e9711364c1d1697e469d37d51ce4d374"
+    },
+    {
+      "path": "validation/results.json",
+      "bytes": 10822,
+      "sha256": "619871fefbc8286f3c4cafb166aa31887a4bd43d29571b3af21f4de8a8c30bee"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 1560,
+      "sha256": "d298e5cbf393a728249402c1b7942cdbe72a4307df88b3800fd5255403c082dd"
+    }
+  ]
+}

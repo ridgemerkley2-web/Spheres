@@ -1,0 +1,24 @@
+{
+  "name": "campaign-tests",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_campaign*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:16:11.961934+00:00",
+  "elapsed_seconds": 3.223,
+  "exit_code": 0,
+  "log": "validation/campaign-tests.log",
+  "log_bytes": 2544,
+  "log_sha256": "9fc60efb9832e0e7b3714e1a3cc7adce30c2678a85495e91bafa0a9e2cedf42c"
+}

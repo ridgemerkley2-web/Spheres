@@ -1,0 +1,380 @@
+{
+  "source_revision": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+  "comparison_base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "changed_by_review": [
+    "docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md",
+    "docs/campaign-certification/C01/research/india.json",
+    "docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json",
+    "tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py",
+    "tools/avatars/test_india_research_s10e.py"
+  ],
+  "review_patch": {
+    "bytes": 8020,
+    "sha256": "10f1d7430279a5ccb9b723107628ff579d39b3588d1bca3f6c11b5bf03792bb0"
+  },
+  "claims_and_holders_preserved_except_named_locator_and_snapshot_pin": true,
+  "files": [
+    {
+      "path": "docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md",
+      "submitted_blob": {
+        "bytes": 23149,
+        "sha256": "5af95215708c367f2cbed4a89c9a8cd97801176a1028afd896858447a700b716"
+      },
+      "reviewed_workfile": {
+        "bytes": 23976,
+        "sha256": "c118d9e6cec2706cdb3449ea7c985a462861b69fda93578c2615bc9ab57a821e"
+      },
+      "review_modified": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "submitted_blob": {
+        "bytes": 1378251,
+        "sha256": "e943d1619465b83192fe1eb4fed83bbf478a96fc3bac66dcb15bd5f2d0a33b5e"
+      },
+      "reviewed_workfile": {
+        "bytes": 1378296,
+        "sha256": "4341a287e2eafed413fc375a9bac506241bb3677f7eef7bc39e507bc50244a73"
+      },
+      "review_modified": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-letter-to-eci-new-national-executive-20160531-facts.json",
+      "submitted_blob": {
+        "bytes": 4168,
+        "sha256": "5420d230c5c137f94a831469f3f854137a34659b7f77db74fa8a3305bd8e0ecb"
+      },
+      "reviewed_workfile": {
+        "bytes": 4168,
+        "sha256": "5420d230c5c137f94a831469f3f854137a34659b7f77db74fa8a3305bd8e0ecb"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-letter-to-eci-org-election-20150529-facts.json",
+      "submitted_blob": {
+        "bytes": 4214,
+        "sha256": "f717dfc9fd13fd697bc14508097440fa2da492bd09d0ab8fde6d9efd5056f4c5"
+      },
+      "reviewed_workfile": {
+        "bytes": 4214,
+        "sha256": "f717dfc9fd13fd697bc14508097440fa2da492bd09d0ab8fde6d9efd5056f4c5"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-news-e20-townhall-goa-20260825-facts.json",
+      "submitted_blob": {
+        "bytes": 3535,
+        "sha256": "cafe12209d340e166e46acac53367a857adcb425722a3773c86098593e75d64c"
+      },
+      "reviewed_workfile": {
+        "bytes": 3535,
+        "sha256": "cafe12209d340e166e46acac53367a857adcb425722a3773c86098593e75d64c"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-nri-release-kejriwal-interact-20131007-facts.json",
+      "submitted_blob": {
+        "bytes": 3935,
+        "sha256": "428ff8f5183d469a17f4b6f4d06f0976d356d9040d030a5ade8e9927f58990ab"
+      },
+      "reviewed_workfile": {
+        "bytes": 3935,
+        "sha256": "428ff8f5183d469a17f4b6f4d06f0976d356d9040d030a5ade8e9927f58990ab"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-post-national-council-meeting-20221218-facts.json",
+      "submitted_blob": {
+        "bytes": 3823,
+        "sha256": "95faf6147f5de916924c253cfba9ee7dfc60f9f00ef66be945c231f2edadb19e"
+      },
+      "reviewed_workfile": {
+        "bytes": 3823,
+        "sha256": "95faf6147f5de916924c253cfba9ee7dfc60f9f00ef66be945c231f2edadb19e"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-post-shokeen-minister-20241118-facts.json",
+      "submitted_blob": {
+        "bytes": 3610,
+        "sha256": "622cdef16cf91766c44218b4561557dd7e41a73c50dadbf58f692080ca791b91"
+      },
+      "reviewed_workfile": {
+        "bytes": 3610,
+        "sha256": "622cdef16cf91766c44218b4561557dd7e41a73c50dadbf58f692080ca791b91"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-aap-release-kejriwal-demonetisation-20161112-facts.json",
+      "submitted_blob": {
+        "bytes": 3640,
+        "sha256": "88ac0a2b813f2dbe8660db6067a60b5814965dfaa2bbcb25bbd135539758cb3d"
+      },
+      "reviewed_workfile": {
+        "bytes": 3640,
+        "sha256": "88ac0a2b813f2dbe8660db6067a60b5814965dfaa2bbcb25bbd135539758cb3d"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-bsp-letter-to-cec-office-bearers-20120716-facts.json",
+      "submitted_blob": {
+        "bytes": 4053,
+        "sha256": "248c1cc7603b4f6546faedd6e7cc6bb3e2738114a158194a3b2c60616fe8c812"
+      },
+      "reviewed_workfile": {
+        "bytes": 4053,
+        "sha256": "248c1cc7603b4f6546faedd6e7cc6bb3e2738114a158194a3b2c60616fe8c812"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-bsp-press-note-lucknow-20210901-facts.json",
+      "submitted_blob": {
+        "bytes": 4149,
+        "sha256": "0b72b4dbd391a3f610565069a5891f669da357a71e2526d85dffad77c27fc974"
+      },
+      "reviewed_workfile": {
+        "bytes": 4149,
+        "sha256": "0b72b4dbd391a3f610565069a5891f669da357a71e2526d85dffad77c27fc974"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-bsp-press-release-cochin-20090703-facts.json",
+      "submitted_blob": {
+        "bytes": 3442,
+        "sha256": "559bacb02afbb94bd069d063a72fd50f338663baf75b42e664bdb70feb3c4a95"
+      },
+      "reviewed_workfile": {
+        "bytes": 3442,
+        "sha256": "559bacb02afbb94bd069d063a72fd50f338663baf75b42e664bdb70feb3c4a95"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-bsp-site-about-bsp-20090328-facts.json",
+      "submitted_blob": {
+        "bytes": 4834,
+        "sha256": "518061172f4636da8cb2a16183842be57d1f03eed93cc689d15ab7990f690847"
+      },
+      "reviewed_workfile": {
+        "bytes": 4834,
+        "sha256": "518061172f4636da8cb2a16183842be57d1f03eed93cc689d15ab7990f690847"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-bsp-site-mayawati-profile-20090331-facts.json",
+      "submitted_blob": {
+        "bytes": 4927,
+        "sha256": "5770b11df813c1d1176ed16bb0689d0f637b2a46b2f56244fcfc3a6cd6c94c2f"
+      },
+      "reviewed_workfile": {
+        "bytes": 4927,
+        "sha256": "5770b11df813c1d1176ed16bb0689d0f637b2a46b2f56244fcfc3a6cd6c94c2f"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-eci-catalogue-order-to-kejriwal-20170120-facts.json",
+      "submitted_blob": {
+        "bytes": 3645,
+        "sha256": "d71de5a4a78bc77ee8a6c889d15e0176e34525c97886d1d24fc18354129b19ea"
+      },
+      "reviewed_workfile": {
+        "bytes": 3645,
+        "sha256": "d71de5a4a78bc77ee8a6c889d15e0176e34525c97886d1d24fc18354129b19ea"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-eci-catalogue-order-to-mayawati-20190415-facts.json",
+      "submitted_blob": {
+        "bytes": 3841,
+        "sha256": "ca2ec5b5857541280c9eb8eef4d08ce682974b193f68e6feeede15d8105e7770"
+      },
+      "reviewed_workfile": {
+        "bytes": 3841,
+        "sha256": "ca2ec5b5857541280c9eb8eef4d08ce682974b193f68e6feeede15d8105e7770"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-npp-notification-manipur-candidates-20220204-facts.json",
+      "submitted_blob": {
+        "bytes": 3796,
+        "sha256": "860c0e41c08c0df9bb967c33ea017efc3a3b94aa78040d0895256507a6553daa"
+      },
+      "reviewed_workfile": {
+        "bytes": 3796,
+        "sha256": "860c0e41c08c0df9bb967c33ea017efc3a3b94aa78040d0895256507a6553daa"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-npp-notification-national-committee-20250417-facts.json",
+      "submitted_blob": {
+        "bytes": 3806,
+        "sha256": "35b4780018cbcd032206d2da970d7c0f82b40fa68283f60da86829275862f4b2"
+      },
+      "reviewed_workfile": {
+        "bytes": 3806,
+        "sha256": "35b4780018cbcd032206d2da970d7c0f82b40fa68283f60da86829275862f4b2"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-npp-press-release-resolution-20200711-facts.json",
+      "submitted_blob": {
+        "bytes": 3656,
+        "sha256": "fba830499ffef718d9df907026deb7f75a28ce05107da001cb732bfaf8f481ff"
+      },
+      "reviewed_workfile": {
+        "bytes": 3656,
+        "sha256": "fba830499ffef718d9df907026deb7f75a28ce05107da001cb732bfaf8f481ff"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json",
+      "submitted_blob": {
+        "bytes": 3333,
+        "sha256": "ee46e33e7032d99cb60c9b50a89d93960b32148eb1086554510e3e578b5c4a0d"
+      },
+      "reviewed_workfile": {
+        "bytes": 3378,
+        "sha256": "8578cd073e5a4bf0a19dba77b2918565de051b9cc69965e61925f3fff6e28ada"
+      },
+      "review_modified": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/india-npp-site-leadership-page-20191116-facts.json",
+      "submitted_blob": {
+        "bytes": 4099,
+        "sha256": "c3f0ab91c1f55bf4f9065013b96747b73de4c0a3c60250eb8b798f44c7dff614"
+      },
+      "reviewed_workfile": {
+        "bytes": 4099,
+        "sha256": "c3f0ab91c1f55bf4f9065013b96747b73de4c0a3c60250eb8b798f44c7dff614"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-48.md",
+      "submitted_blob": {
+        "bytes": 7795,
+        "sha256": "c036960a2680c5b8f2d5946cd65b063749ab31f456bbfd0db7aeb8d2c661b009"
+      },
+      "reviewed_workfile": {
+        "bytes": 7880,
+        "sha256": "f6da89c93f73cb3f394f89cb18c680625409702a2e8ead055088bda96a3a265b"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_bjp_presidents_c01_27.py",
+      "submitted_blob": {
+        "bytes": 121248,
+        "sha256": "4690c2b900105967aded1e24b39a0ca662f83b75a5b0bcf7ac9406535f96f242"
+      },
+      "reviewed_workfile": {
+        "bytes": 122955,
+        "sha256": "bf26a32a37193d066e723819df21b05b8514c0dbc0196f739f8dffcfe952287c"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py",
+      "submitted_blob": {
+        "bytes": 51760,
+        "sha256": "908f1e64d5fe472fc9c88db099583c876d183855f555787d0bc0a97e0bc208d9"
+      },
+      "reviewed_workfile": {
+        "bytes": 52912,
+        "sha256": "6d60585438c420bfbd9ce9331f024f043a4d624cc7d15f972d99eb3d4e082abd"
+      },
+      "review_modified": true
+    },
+    {
+      "path": "tools/avatars/test_india_cpim_general_secretaries_c01_40.py",
+      "submitted_blob": {
+        "bytes": 49858,
+        "sha256": "dd498dec891516740f827693c20ea96fe4831e920cd359a3c6b670061d85c9d3"
+      },
+      "reviewed_workfile": {
+        "bytes": 50602,
+        "sha256": "16315ac54369da6f8ceaa542aff65089afc3c6ac70edfdaf224f66c9a9b7728f"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_inc_presidents_c01_20.py",
+      "submitted_blob": {
+        "bytes": 99537,
+        "sha256": "c891d9b23ca613c90f29d0cf636c9480acd59dd5c8ef203b2823dc5b165f6fdd"
+      },
+      "reviewed_workfile": {
+        "bytes": 100959,
+        "sha256": "6613361ac9ac50645b6ff78e81aaaedb0f4d4ca8c098bcb22c3ca1c32b632d33"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_janata_dal_presidents_c01_33.py",
+      "submitted_blob": {
+        "bytes": 74788,
+        "sha256": "58a3293f71c9a62ec4ab10211123a006747dcf08e4fe0512d25036dd36bdbb38"
+      },
+      "reviewed_workfile": {
+        "bytes": 75829,
+        "sha256": "9521047c80e52cc1cc1fc05d2292adc8ac225caddf414d10ac5a7f508f5b778f"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_presidents_c01_15.py",
+      "submitted_blob": {
+        "bytes": 75844,
+        "sha256": "06437b995f5385f8dfde680022a3d95d275f55de2e2c6d3935418d9ecc7dbc47"
+      },
+      "reviewed_workfile": {
+        "bytes": 76875,
+        "sha256": "76324e75ee96a42245db024d20cf71018b577fc31e25e35bc13795490e89eb9f"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_prime_ministers_c01_11.py",
+      "submitted_blob": {
+        "bytes": 83216,
+        "sha256": "ce34bf12c82659a14cf9be7774cc4ca4fe9a54f0df43eadfbf5895470dd8dde6"
+      },
+      "reviewed_workfile": {
+        "bytes": 84343,
+        "sha256": "017d670c3b8ff897972ba26d4c4bac67f8af35ba5e75dd5a3043d29715cb4edc"
+      },
+      "review_modified": false
+    },
+    {
+      "path": "tools/avatars/test_india_research_s10e.py",
+      "submitted_blob": {
+        "bytes": 32420,
+        "sha256": "8f7f29480376dbe69f239858460a4aa8c9c3dd54deaf52ed0911314d496bf874"
+      },
+      "reviewed_workfile": {
+        "bytes": 34433,
+        "sha256": "d8591a74ed1e40ec5e1278aa096e893d5c7e9ad75db6c9ab97da1d91ee3f57b4"
+      },
+      "review_modified": true
+    }
+  ],
+  "generated_index_excluded": true,
+  "integration_instruction": "Import the exact 30 authored submitted files plus the five-file review patch (or the reviewed workfiles). Regenerate shared metadata on the integration tree."
+}

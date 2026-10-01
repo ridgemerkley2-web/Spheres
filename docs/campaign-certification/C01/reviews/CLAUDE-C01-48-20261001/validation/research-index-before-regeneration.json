@@ -1,0 +1,18 @@
+{
+  "name": "research-index-before-regeneration",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/campaign_research.py",
+    "--check"
+  ],
+  "started_utc": "2026-10-01T14:17:31.599057+00:00",
+  "elapsed_seconds": 0.846,
+  "exit_code": 1,
+  "log": "validation/research-index-before-regeneration.log",
+  "log_bytes": 780,
+  "log_sha256": "090abc187bbe27cfa3547d7be10e3a155b34fd302a927e05bda3aeebaa90a42e"
+}

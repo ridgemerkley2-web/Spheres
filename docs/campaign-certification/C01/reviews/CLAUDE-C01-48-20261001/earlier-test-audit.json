@@ -1,0 +1,97 @@
+{
+  "source_revision": "bb0f86cded9fb0d196f32e385cbe7f30d3cecded",
+  "comparison_base": "5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104",
+  "tests": [
+    {
+      "path": "tools/avatars/test_india_bjp_presidents_c01_27.py",
+      "base_blob": {
+        "bytes": 119960,
+        "sha256": "1a3fdb5956f180eba3c84a5771eb9c592eccd539d4ab75262f53ecd1cf23817e"
+      },
+      "submitted_blob": {
+        "bytes": 121248,
+        "sha256": "4690c2b900105967aded1e24b39a0ca662f83b75a5b0bcf7ac9406535f96f242"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": null
+    },
+    {
+      "path": "tools/avatars/test_india_cpim_general_secretaries_c01_40.py",
+      "base_blob": {
+        "bytes": 48584,
+        "sha256": "30283e198c87dc0321202cf34ffe9f8331ee515587e236a8cadb203fb3977e0d"
+      },
+      "submitted_blob": {
+        "bytes": 49858,
+        "sha256": "dd498dec891516740f827693c20ea96fe4831e920cd359a3c6b670061d85c9d3"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": null
+    },
+    {
+      "path": "tools/avatars/test_india_inc_presidents_c01_20.py",
+      "base_blob": {
+        "bytes": 98070,
+        "sha256": "51948e985a111871fe80bc5d76ad93abaa7e840f9999b3d5d53e5fd3efd5ad30"
+      },
+      "submitted_blob": {
+        "bytes": 99537,
+        "sha256": "c891d9b23ca613c90f29d0cf636c9480acd59dd5c8ef203b2823dc5b165f6fdd"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": null
+    },
+    {
+      "path": "tools/avatars/test_india_janata_dal_presidents_c01_33.py",
+      "base_blob": {
+        "bytes": 73513,
+        "sha256": "33e378ae7826a2d843e0d9e2dcefe89161fe801472e420e2befb51792ec3f4f8"
+      },
+      "submitted_blob": {
+        "bytes": 74788,
+        "sha256": "58a3293f71c9a62ec4ab10211123a006747dcf08e4fe0512d25036dd36bdbb38"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": null
+    },
+    {
+      "path": "tools/avatars/test_india_presidents_c01_15.py",
+      "base_blob": {
+        "bytes": 74960,
+        "sha256": "070960afc6e37b5a968915447657efecdf22194a8b043fa64257668df34dc13b"
+      },
+      "submitted_blob": {
+        "bytes": 75844,
+        "sha256": "06437b995f5385f8dfde680022a3d95d275f55de2e2c6d3935418d9ecc7dbc47"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": null
+    },
+    {
+      "path": "tools/avatars/test_india_prime_ministers_c01_11.py",
+      "base_blob": {
+        "bytes": 82118,
+        "sha256": "ef4eee24b8acc582f56245b78b51495c7667d23dcc09bf880b54a4840a9f102a"
+      },
+      "submitted_blob": {
+        "bytes": 83216,
+        "sha256": "ce34bf12c82659a14cf9be7774cc4ca4fe9a54f0df43eadfbf5895470dd8dde6"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": null
+    },
+    {
+      "path": "tools/avatars/test_india_research_s10e.py",
+      "base_blob": {
+        "bytes": 28765,
+        "sha256": "4ed6c534b232fd39dc7a9f5c0a5c363ac8e1843da1d67ed9cd822f01067f70a7"
+      },
+      "submitted_blob": {
+        "bytes": 32420,
+        "sha256": "8f7f29480376dbe69f239858460a4aa8c9c3dd54deaf52ed0911314d496bf874"
+      },
+      "review": "Inspected every changed hunk. Exact prior holder/date/source fixtures and negative cases remain intact. Updates add the three named roles, exact source/claim counts, append-only source order, and the new unresolved-note position.",
+      "defect": "New elif moved prior CPI(M) publication and claim cutoff guards out of the prior branch; restored both and retained actual red/green mutation proof."
+    }
+  ]
+}

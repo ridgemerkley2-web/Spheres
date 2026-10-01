@@ -1,0 +1,22 @@
+{
+  "name": "whitespace-check",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "HEAD",
+    "--",
+    "docs/campaign-certification/C01/research/india.json",
+    "docs/campaign-certification/C01/research/sources/india-npp-site-conrad-sangma-page-20210225-facts.json",
+    "docs/campaign-certification/C01/research/india-bsp-aap-npp-leaders-1990-2026-48.md",
+    "tools/avatars/test_india_bsp_aap_npp_leaders_c01_48.py",
+    "tools/avatars/test_india_research_s10e.py"
+  ],
+  "started_utc": "2026-10-01T14:17:34.885840+00:00",
+  "elapsed_seconds": 0.214,
+  "exit_code": 0,
+  "log": "validation/whitespace-check.log",
+  "log_bytes": 281,
+  "log_sha256": "aa127de7ab254dafa449146f2cc9673e63af0ee9dab5d6623ed35796e949f19b"
+}

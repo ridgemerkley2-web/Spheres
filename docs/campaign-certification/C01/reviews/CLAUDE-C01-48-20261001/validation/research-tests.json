@@ -1,0 +1,24 @@
+{
+  "name": "research-tests",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\india",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_*research*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:16:03.850678+00:00",
+  "elapsed_seconds": 7.907,
+  "exit_code": 0,
+  "log": "validation/research-tests.log",
+  "log_bytes": 14882,
+  "log_sha256": "3374fb967c740cb23458e18e1368be82edf2d9775dc021acb81e85a977485982"
+}
