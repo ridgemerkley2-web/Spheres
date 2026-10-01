@@ -1,6 +1,6 @@
 # CLAUDE-C06-FRANCE-01: France cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **claimed** (1 October 2026; in progress, not complete). Parent: C06 (France country cast), with
+Owner: Claude. State: **awaiting Codex render** (1 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (France country cast), with
 C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: the user chose on 1 October 2026 to start the France cast after Codex closed all C01 research tasks. The CP1
@@ -61,3 +61,38 @@ shared runtime, the task queue and the workboard. Regenerated shared outputs are
 
 Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --check`; `leadership_production.py check`;
 `campaign_census.py --check`; `python -m unittest discover -s tools/avatars`; `workboard.py --check`; `git diff --check`.
+
+## Preparation
+
+Batch 1 (`FR-CAST-B01`) was prepared on 1 October 2026. Each person had one preparation agent and one independent
+verification agent; Claude assembled the results and fixed the verifiers' mechanical findings. No image was generated,
+edited or labelled. The next step is Codex's render:
+[render request](../../campaign-certification/C06/production/france/render-request-batch-01.md). The
+[identity review](../../campaign-certification/C06/production/france/identity-review-batch-01.json) and
+[README](../../campaign-certification/C06/production/france/README.md) carry the observations, references and job IDs.
+
+In (seven primary renders):
+
+| person_id | likeness reference (photograph date, licence) | prompt |
+|---|---|---|
+| francois_mitterrand | Gorup de Besanez, dated 1994 on Commons but probably about 1990-1993; CC BY-SA 4.0 | `francois-mitterrand-cartoon-1991-v1.txt` |
+| michel_rocard | Jean Weber / INRA, 1991; CC BY 2.0 | `michel-rocard-cartoon-1990-v1.txt` |
+| laurent_fabius | Andre Cros / Archives municipales de Toulouse, 28 Aug 1984; CC BY-SA 4.0 | `laurent-fabius-cartoon-1992-v1.txt` |
+| henri_emmanuelli | Kenji-Baptiste OIKAWA, May 2005; CC BY 3.0 | `henri-emmanuelli-cartoon-1994-v1.txt` |
+| alain_juppe | Tatarstan.ru, 12 Feb 1996; CC BY 4.0 | `alain-juppe-cartoon-1994-v1.txt` |
+| lionel_jospin | Benoit Bourgeois / EC Audiovisual Service, 12 or 13 Oct 1998; CC BY 4.0 | `lionel-jospin-cartoon-1995-v1.txt` |
+| francois_hollande | Marie-Lan Nguyen, 29 May 2007; CC BY 2.5 | `francois-hollande-cartoon-1997-v1.txt` |
+
+Reserve: martine_aubry (Marie-Lan Nguyen, 11 Mar 2010; CC BY 3.0; `martine-aubry-cartoon-2008-v1.txt`) is fully prepared
+but not part of the render, because none of the seven was excluded.
+
+Excluded: nobody. The verifiers passed Rocard and Hollande outright. Their other findings were fixed in the records and
+prompts: photograph dates (Mitterrand, Jospin), a misidentified bystander and a suit colour (Fabius), an age-gap figure
+(Emmanuelli), and provenance, hands wording and window basis (Juppe).
+
+Still open:
+- The prompt files have no `eol=lf` rule, and `.gitattributes` is not on this task's file list. Each pin is the LF
+  (committed) sha256 and also gives the CRLF-checkout hash.
+- An optional EC Audiovisual search for a 1989-1992 Fabius photograph.
+- Codex rulings: the Mitterrand window and reference-year naming, the Juppe window start and 17 MB reference, and a
+  possible Hollande split at 2005-01-01.
