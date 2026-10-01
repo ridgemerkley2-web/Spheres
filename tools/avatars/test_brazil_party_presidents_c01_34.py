@@ -740,7 +740,9 @@ def party_rules(packet, rows):
     # Exactly three party offices, each once, each on its own funding observation.
     placed = [(e['id'], r['id']) for e in packet['organizations'] + packet['institutions'] for r in e['roles']
               if r['kind'] == 'party_leader' or r['id'] in ROLE_ORG or r['title'] in TITLES.values()]
-    assert placed == [(MDB_ORG, MDB), (PDT_ORG, PDT), (PT_ORG, pt.ROLE)], placed
+    # CLAUDE-C01-43's party role on the AGIR observation follows in packet order.
+    assert placed == [(MDB_ORG, MDB), (PDT_ORG, PDT), (PT_ORG, pt.ROLE),
+                      ('br_tse_fefc_2024_party_07', 'br_agir_president')], placed
     for role_id, org_id in ROLE_ORG.items():
         org = entry(packet, org_id)
         assert [(r['id'], r['title'], r['kind']) for r in org['roles']] == [(role_id, ROLE_TITLE[role_id], 'party_leader')]
@@ -881,11 +883,14 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 248, 535, 5))
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 262, 556, 6))
         self.assertEqual((len(NEW_SOURCES), len(NEW_CLAIMS)), (76, 127))
         self.assertEqual({r: len(h) for r, h in HOLDERS.items()}, {MDB: 5, PDT: 7})
         order = [s['id'] for s in self.packet['sources']]
-        self.assertEqual(order[EARLIER_SOURCE_COUNT:], NEW_SOURCES)
+        # CLAUDE-C01-43's 14 sources follow this packet's.
+        self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
+        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + 14)
+        self.assertTrue(all(sid.startswith('br_agir_') for sid in order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):]))
         self.assertEqual(order[EARLIER_SOURCE_COUNT - len(pt.NEW_SOURCES):EARLIER_SOURCE_COUNT], pt.NEW_SOURCES)
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith(('br_pdt_', 'br_mdb_', 'br_pfl_'))])
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], NEW_CLAIMS)
@@ -1015,9 +1020,11 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
             self.assertEqual(unresolved[:-1], pt.ORG_UNRESOLVED)
             self.assertTrue(unresolved[-1].startswith(label), org_id)
         packet_unresolved = self.packet['coverage']['unresolved']
-        self.assertTrue(packet_unresolved[-1].startswith('PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34)'))
+        # CLAUDE-C01-43's note follows this packet's.
+        self.assertTrue(packet_unresolved[-2].startswith('PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34)'))
         self.assertEqual(sum('CLAUDE-C01-34' in u for u in packet_unresolved), 1)
-        self.assertTrue(packet_unresolved[-2].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
+        self.assertTrue(packet_unresolved[-3].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
+        self.assertTrue(packet_unresolved[-1].startswith('PRN / PTC / Agir national presidents 1990-2026 (CLAUDE-C01-43)'))
 
     def test_pfl_dem_chain_is_claims_only_and_never_tied_to_uniao(self):
         pfl_sources = [s for s in NEW_SOURCES if s.startswith(PFL_PREFIX)]
@@ -1352,7 +1359,7 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         self.assertEqual((country['institution_observations'], country['role_observations'], country['source_claims']),
-                         (1, 5, 535))
+                         (1, 6, 556))
         self.assertEqual(country['mapping_pending'], 32)
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])

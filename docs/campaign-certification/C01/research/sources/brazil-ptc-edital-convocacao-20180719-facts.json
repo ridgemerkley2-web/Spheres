@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_agir_ptc_edital_convencao_20180719",
+  "source_url": "https://web.archive.org/web/20181220140928id_/http://www.ptc36nacional.com.br/ptc/wp-content/uploads/2018/07/Edital_Convoca%C3%A7%C3%A3o_PTC_Nacional.pdf",
+  "original_url": "http://www.ptc36nacional.com.br/ptc/wp-content/uploads/2018/07/Edital_Convoca%C3%A7%C3%A3o_PTC_Nacional.pdf",
+  "archive_capture_utc": "2018-12-20T14:09:28Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2018-07-19",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 322372,
+  "source_response_sha256": "fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-10-01T03:10:54Z and again at 2026-10-01T03:50:55Z (40 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 322372 bytes with SHA-256 fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2018-12-20T14:09:28Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-10-01T03:10:54Z and again at 2026-10-01T03:50:55Z (40 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 322372 bytes with SHA-256 fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PTC's signed convocation of its national convention of 28 July 2018 (one scanned page), linked from a PTC site item of 26 July 2018 and captured 20 December 2018. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Scanned page image read visually (the PDF carries no text layer); quotations transcribed by eye; signatures, logos and stamps not reproduced."
+  },
+  "bounded_scope": "PRN / PTC / Agir national-president observations for CLAUDE-C01-43 only (role br_agir_president of the AGIR funding observation br_tse_fefc_2024_party_07). Conventions, executive meetings, convocations, registry listings, the renamings and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_agir_ptc_tourinho_convokes_convention_20180719",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-02",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "signed_as_directorate_president",
+      "attested_on": "2018-07-19",
+      "text": "The 'EDITAL DE CONVOCAÇÃO', signed 'Brasília DF, 19 de Julho de 2018' by 'Daniel Sampaio Tourinho' as 'Presidente do Diretório Nacional - PTC', says 'O Presidente do Diretório Nacional do Partido Trabalhista Cristão Sr. Daniel Sampaio Tourinho' convokes the voting members 'para a convenção Nacional do Partido que será realizada no dia 28 de Julho de 2018'.",
+      "locator": {
+        "page": 1
+      }
+    }
+  ]
+}

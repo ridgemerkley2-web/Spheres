@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_agir_tse_partidos_registrados_capt20260802",
+  "source_url": "https://web.archive.org/web/20260802212048id_/https://www.tse.jus.br/partidos/partidos-registrados-no-tse",
+  "original_url": "https://www.tse.jus.br/partidos/partidos-registrados-no-tse",
+  "archive_capture_utc": "2026-08-02T21:20:48Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 36548,
+  "source_response_sha256": "63222b4c603a9653a194e1d21930c543d60b7feb072e91a50515f0436b71bd6a",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 148444,
+  "decoded_response_sha256": "e2abefa96b04cd0eda06b7f20b068a77139b77945ff48d0f70765bdb74b8a376",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-10-01T03:14:17Z and again at 2026-10-01T03:50:12Z (35 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 36548 bytes with SHA-256 63222b4c603a9653a194e1d21930c543d60b7feb072e91a50515f0436b71bd6a, served with Content-Encoding: gzip (the archive serves this capture gzip-encoded even to an identity request); the recorded identity is the gzip-encoded body exactly as served, and the decoded body is 148444 bytes with SHA-256 e2abefa96b04cd0eda06b7f20b068a77139b77945ff48d0f70765bdb74b8a376. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-08-02T21:20:48Z; that form replays the archived bytes and is used in place of the live page. The archive serves this capture with Content-Encoding: gzip even to an identity request: the recorded identity is the gzip-encoded body exactly as served, and the decoded identity is recorded beside it; do not let the client decode it. Downloaded at 2026-10-01T03:14:17Z and again at 2026-10-01T03:50:12Z (35 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 36548 bytes with SHA-256 63222b4c603a9653a194e1d21930c543d60b7feb072e91a50515f0436b71bd6a, served with Content-Encoding: gzip (the archive serves this capture gzip-encoded even to an identity request); the recorded identity is the gzip-encoded body exactly as served, and the decoded body is 148444 bytes with SHA-256 e2abefa96b04cd0eda06b7f20b068a77139b77945ff48d0f70765bdb74b8a376. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Superior Electoral Court's live list of registered parties with the president it records for each, followed by its tables of fusions, incorporations and changes of name, captured 2 August 2026; www.tse.jus.br refuses curl (Akamai 403), so the raw capture is used. Raw Internet Archive capture, served gzip-encoded even to an identity request; the recorded identity is the encoded body as served, with the decoded identity beside it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full; the two table rows quoted were read in the HTML source cell by cell; menus ignored."
+  },
+  "bounded_scope": "PRN / PTC / Agir national-president observations for CLAUDE-C01-43 only (role br_agir_president of the AGIR funding observation br_tse_fefc_2024_party_07). Conventions, executive meetings, convocations, registry listings, the renamings and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_agir_tse_registry_prn_renamed_ptc_20010424",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-01",
+      "role_id": "br_agir_president",
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "tse_renaming_decision",
+      "attested_on": "2001-04-24",
+      "text": "The TSE's table 'MUDANÇAS DE NOME E/OU SIGLA' lists as row 3 'Partido da Reconstrução Nacional (PRN)', new name 'Partido Trabalhista Cristão (PTC)', process 'PET nº 341 (1069-69.1997.6.00.0000)' and 'DATA DECISÃO' '24/04/2001'.",
+      "locator": {
+        "section": "Table 'MUDANÇAS DE NOME E/OU SIGLA', row 3"
+      }
+    },
+    {
+      "claim_id": "br_agir_tse_registry_ptc_renamed_agir_20220331",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-03",
+      "role_id": "br_agir_president",
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "tse_renaming_decision",
+      "attested_on": "2022-03-31",
+      "text": "The same table lists as row 18 'Partido Trabalhista Cristão (PTC)', new name 'AGIR', process 'RPP nº 51-91.1989.6.00.0000' and 'DATA DECISÃO' '31/03/2022'.",
+      "locator": {
+        "section": "Table 'MUDANÇAS DE NOME E/OU SIGLA', row 18"
+      }
+    },
+    {
+      "claim_id": "br_agir_tse_registry_lists_tourinho_presidente_nacional",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-03",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "registry_listing",
+      "attested_on": null,
+      "text": "The TSE's list 'Partidos registrados no TSE' gives in row 7 the sigla 'AGIR', the name 'AGIR', the 'DEFERIMENTO' '22.2.1990', the 'PRES. NACIONAL' 'DANIEL S. TOURINHO' and the legenda '36'.",
+      "locator": {
+        "section": "Table 'Partidos registrados no TSE', row 7"
+      }
+    }
+  ]
+}

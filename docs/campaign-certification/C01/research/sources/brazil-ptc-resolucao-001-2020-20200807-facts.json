@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_agir_ptc_resolucao_001_2020_20200807",
+  "source_url": "https://web.archive.org/web/20200928205237id_/http://www.ptc36nacional.com.br/resolucao-no-0012020/",
+  "original_url": "http://www.ptc36nacional.com.br/resolucao-no-0012020/",
+  "archive_capture_utc": "2020-09-28T20:52:37Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2020-08-20",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 30056,
+  "source_response_sha256": "448fc9f5c5252d5399015e41ed55131c119421219d2b6f47523dc188db44ea34",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-10-01T02:45:04Z and again at 2026-10-01T03:51:06Z (66 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 30056 bytes with SHA-256 448fc9f5c5252d5399015e41ed55131c119421219d2b6f47523dc188db44ea34 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2020-09-28T20:52:37Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-10-01T02:45:04Z and again at 2026-10-01T03:51:06Z (66 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 30056 bytes with SHA-256 448fc9f5c5252d5399015e41ed55131c119421219d2b6f47523dc188db44ea34 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PTC site item dated 'Em 20 / 08 / 2020' reproducing Resolução nº 001/2020 of the national executive, captured 28 September 2020. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PRN / PTC / Agir national-president observations for CLAUDE-C01-43 only (role br_agir_president of the AGIR funding observation br_tse_fefc_2024_party_07). Conventions, executive meetings, convocations, registry listings, the renamings and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_agir_ptc_tourinho_signs_resolution_001_2020_20200807",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-02",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2020-08-07",
+      "text": "'RESOLUÇÃO Nº 001/2020', reproduced by the item, closes 'Rio de Janeiro, 07 de Agosto de 2020. Daniel Sampaio Tourinho Presidente Nacional do PTC'.",
+      "locator": {
+        "section": "Signature block at the end of the resolution"
+      }
+    }
+  ]
+}
