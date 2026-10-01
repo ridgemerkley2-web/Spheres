@@ -1,0 +1,5209 @@
+{
+  "counts": {
+    "Chad": 8,
+    "Guyana": 2,
+    "Yemen": 177,
+    "Mozambique": 13,
+    "Sudan": 155,
+    "Afghanistan": 122,
+    "Turkmenistan": 7,
+    "Kazakhstan": 79,
+    "Myanmar": 6,
+    "Ethiopia": 128,
+    "Angola": 53
+  },
+  "first": {
+    "Chad": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.32096034173191135,
+        "executive_leverage": 0.0,
+        "pressure": 0.0007559487402132914,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.34496034173191137,
+        "resources_per_member": 680.8374033846719,
+        "target": 0.2758996134470775,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Chad",
+      "date": [
+        1991,
+        5,
+        1
+      ],
+      "discontent": {
+        "growth": 0.2069342195367105,
+        "order_uncapped": 0.7590809346931233,
+        "prices": 0.0,
+        "total": 0.42092731125390376,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.1638,
+        "debt_gdp": 0.5425640390150019,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 2.97,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 1.719286372183515,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.0198,
+        "political_capital": 32.910455607331194,
+        "population_m": 6.209402532699251,
+        "revenue_gdp": 0.075,
+        "spend_gdp": 0.2388,
+        "state_invest_gdp": 0.045,
+        "tax_rate": 0.075
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.92,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 16,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "party:td_unir",
+          "months": 16.0,
+          "performance": -0.5759869967514185
+        },
+        "regime_bloc": "NonAligned",
+        "settled_months": 16,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1942-08-13",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Hissene Habre",
+          "nation": "Chad",
+          "native": "Hissein Habre",
+          "note": "Took power 7 Jun 1982 (acting head of state), formally president from 29 Oct 1982; the earlier date is used as the start of his rule. Led UNIR from its founding on 24 Jun 1984.",
+          "office": "President of the Republic and leader of UNIR",
+          "since": "1982-06-07",
+          "sources": [
+            "https://www.worldstatesmen.org/Chad.html",
+            "https://en.wikipedia.org/wiki/Hiss%C3%A8ne_Habr%C3%A9"
+          ],
+          "tie": {
+            "party": "td_unir"
+          }
+        },
+        "armed_mean": 0.543194728082534,
+        "drift_armed": false,
+        "franchise_demand": 0.0,
+        "movements": [
+          [
+            "Western",
+            0.00199999963999797
+          ],
+          [
+            "Communist",
+            0.00199999963999797
+          ],
+          [
+            "Nationalist",
+            0.5141558144763865
+          ],
+          [
+            "Islamist",
+            0.00199999963999797
+          ],
+          [
+            "NonAligned",
+            0.4798441866036195
+          ]
+        ],
+        "party_can_contest": true,
+        "pillars": [
+          [
+            "Army",
+            0.34496034173191137
+          ],
+          [
+            "Security",
+            0.7216748771562466
+          ],
+          [
+            "Party",
+            0.5629489653594439
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 24.919143918412598
+      },
+      "rng_state": 5601044482112371483,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Guyana": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.46574870690512715,
+        "executive_leverage": 0.0,
+        "pressure": 0.0016653086844021724,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.46574870690512715,
+        "resources_per_member": 1339.2996933055715,
+        "target": 0.3158401463650685,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Guyana",
+      "date": [
+        1992,
+        10,
+        1
+      ],
+      "discontent": {
+        "growth": 1.0,
+        "order_uncapped": 0.817044260550813,
+        "prices": 0.0,
+        "total": 0.6085221302754065,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.10660685604837519,
+        "debt_gdp": 2.566797113064686,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.3499999999999999,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 0.5952443081358096,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.009,
+        "political_capital": 32.74427173061013,
+        "population_m": 0.7100181039132591,
+        "revenue_gdp": 0.21800000000000005,
+        "spend_gdp": 0.32460685604837525,
+        "state_invest_gdp": 0.13560685604837522,
+        "tax_rate": 0.21800000000000005
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.8,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": "gy_pnc",
+        "months_in_office": 13,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 13.0,
+          "performance": -1.2498840030418887
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 13,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1929-03-09",
+          "emergent": {
+            "described": "the Guyana Defence Force",
+            "office": "head of state",
+            "party": null,
+            "pillar": "Army",
+            "since": "1991-08-01"
+          },
+          "heir": null,
+          "must_leave_by": null,
+          "name": null,
+          "nation": "Guyana",
+          "native": null,
+          "note": "Executive president under the 1980 constitution; tied to the PNC party row rather than the identically-named Party pillar.",
+          "office": "President of Guyana",
+          "since": "1985-08-06",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Desmond_Hoyte",
+            "https://en.wikipedia.org/wiki/Hamilton_Green"
+          ],
+          "tie": null
+        },
+        "armed_mean": 0.5069161833384009,
+        "drift_armed": false,
+        "franchise_demand": 0.8,
+        "movements": [
+          [
+            "Western",
+            0.19305358613664633
+          ],
+          [
+            "Communist",
+            0.27655433349515507
+          ],
+          [
+            "Nationalist",
+            0.017143248889731004
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.5112488314985273
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Party",
+            0.3388979421039855
+          ],
+          [
+            "Security",
+            0.7161019010060903
+          ],
+          [
+            "Army",
+            0.46574870690512715
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 18.225344366951227
+      },
+      "rng_state": 4306043153187228104,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Yemen": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8278268242509703,
+        "executive_leverage": 0.0,
+        "pressure": 0.0003980044241250341,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8278268242509703,
+        "resources_per_member": 6976.617008880576,
+        "target": 0.8056188941643003,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Yemen",
+      "date": [
+        1994,
+        8,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.9378964762100737,
+        "prices": 0.0,
+        "total": 0.46894823810503683,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.10191140629116463,
+        "debt_gdp": 0.8827810330116016,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 9.606687842627029,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 13.834586508520413,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.06404458561751353,
+        "political_capital": 44.36594117710684,
+        "population_m": 16.682386072103753,
+        "revenue_gdp": 0.21200000000000002,
+        "spend_gdp": 0.31391140629116465,
+        "state_invest_gdp": 0.0698668206736511,
+        "tax_rate": 0.21200000000000002
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.8,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": "ye_gpc",
+        "months_in_office": 15,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 15.0,
+          "performance": -0.4790500750679006
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 15,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1947-03-21",
+          "emergent": {
+            "described": "the northern forces under President Saleh's officers",
+            "office": "head of state",
+            "party": null,
+            "pillar": "Army",
+            "since": "1993-04-01"
+          },
+          "heir": null,
+          "must_leave_by": null,
+          "name": null,
+          "nation": "Yemen",
+          "native": null,
+          "note": "On 1 Jan 1990 Yemen was two states (unified 22 May 1990). The roster carries one Yemen with the unified table, whose Army pillar is named for Saleh's officers; Saleh is the face and the southern leadership sits in also. worldstatesmen gives al-Beidh's Presidium chair from 25 Jan 1986 and party post from 6 Feb 1986; Wikipedia's infobox gives 6 Feb 1986 for the party post. rulers.org ruly.html returned 404.",
+          "office": "President of the Yemen Arab Republic",
+          "since": "1978-07-18",
+          "sources": [
+            "https://www.worldstatesmen.org/Yemen.html",
+            "https://en.wikipedia.org/wiki/Ali_Abdullah_Saleh",
+            "https://en.wikipedia.org/wiki/Ali_Salem_al-Beidh"
+          ],
+          "tie": null
+        },
+        "armed_mean": 0.5875867307117351,
+        "drift_armed": false,
+        "franchise_demand": 0.8,
+        "movements": [
+          [
+            "Western",
+            0.0019999999799402207
+          ],
+          [
+            "Communist",
+            0.2652677128647434
+          ],
+          [
+            "Nationalist",
+            0.066576425733902
+          ],
+          [
+            "Islamist",
+            0.4031723893142624
+          ],
+          [
+            "NonAligned",
+            0.262983472107152
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8278268242509703
+          ],
+          [
+            "Party",
+            0.34734663717249975
+          ],
+          [
+            "Clergy",
+            0.6963942178543336
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 26.478211427395596
+      },
+      "rng_state": 7866581130836865846,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Mozambique": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.34926392152018887,
+        "executive_leverage": 0.0,
+        "pressure": 0.00011041177197166629,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.34926392152018887,
+        "resources_per_member": 1096.7539093836763,
+        "target": 0.32109217853958827,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Mozambique",
+      "date": [
+        1995,
+        4,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.4454152950998839,
+        "prices": 0.0,
+        "total": 0.22270764754994196,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.0871357180666878,
+        "debt_gdp": 1.863329042068629,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 2.6251648933336615,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.073401500852582,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.017501099288891077,
+        "political_capital": 37.040334022427494,
+        "population_m": 13.77439184274546,
+        "revenue_gdp": 0.2660000000000001,
+        "spend_gdp": 0.3531357180666879,
+        "state_invest_gdp": 0.15313461877779683,
+        "tax_rate": 0.2660000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.75,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 28,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 28.0,
+          "performance": -0.12964913421973553
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 28,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1939-10-22",
+          "emergent": {
+            "described": "the Forcas Populares de Libertacao de Mocambique",
+            "office": "head of state",
+            "party": null,
+            "pillar": "Army",
+            "since": "1992-11-01"
+          },
+          "heir": null,
+          "must_leave_by": null,
+          "name": null,
+          "nation": "Mozambique",
+          "native": null,
+          "note": "FRELIMO party leader from 1986 on succeeding Machel.",
+          "office": "President",
+          "since": "1986-11-06",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Joaquim_Chissano",
+            "https://en.wikipedia.org/wiki/M%C3%A1rio_da_Gra%C3%A7a_Machungo",
+            "https://rulers.org/rulm2.html"
+          ],
+          "tie": null
+        },
+        "armed_mean": 0.5631966183213954,
+        "drift_armed": false,
+        "franchise_demand": 0.75,
+        "movements": [
+          [
+            "Western",
+            0.2557884323600225
+          ],
+          [
+            "Communist",
+            0.0019999999195219297
+          ],
+          [
+            "Nationalist",
+            0.5524245402522618
+          ],
+          [
+            "Islamist",
+            0.0019999999195219297
+          ],
+          [
+            "NonAligned",
+            0.1877870275486716
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Party",
+            0.627722942953268
+          ],
+          [
+            "Army",
+            0.34926392152018887
+          ],
+          [
+            "Security",
+            0.7126029904907295
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 46.283082294006974
+      },
+      "rng_state": 5209424271319616899,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Sudan": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8494486066064159,
+        "executive_leverage": 0.0,
+        "pressure": 6.213386310150171e-05,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8494486066064159,
+        "resources_per_member": 24442.164011922294,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Sudan",
+      "date": [
+        1995,
+        5,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.9220783361226178,
+        "prices": 0.0,
+        "total": 0.4610391680613089,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.10631317895000647,
+        "debt_gdp": 1.0626275441385415,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 6.351985749231371,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 37.51757458603862,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.04234657166154247,
+        "political_capital": 35.365649583524245,
+        "population_m": 29.86420284991867,
+        "revenue_gdp": 0.14000000000000004,
+        "spend_gdp": 0.2463131789500065,
+        "state_invest_gdp": 0.026466607288464034,
+        "tax_rate": 0.14000000000000004
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.85,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 64,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Islamist",
+          "months": 64.0,
+          "performance": -0.9424149383635814
+        },
+        "regime_bloc": "Islamist",
+        "settled_months": 64,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1944-01-01",
+          "emergent": {
+            "described": "the Sudanese Armed Forces",
+            "office": "head of state",
+            "party": null,
+            "pillar": "Army",
+            "since": "1994-01-01"
+          },
+          "heir": null,
+          "must_leave_by": null,
+          "name": null,
+          "nation": "Sudan",
+          "native": null,
+          "note": "Decided case: Army tie, bloc_override Islamist - the coup was backed by the National Islamic Front and Bashir allied with Turabi. Turabi held no formal office on 1 Jan 1990 (arrested after the coup, parties banned), so he is not in also.",
+          "office": "Chairman of the Revolutionary Command Council for National Salvation",
+          "since": "1989-06-30",
+          "sources": [
+            "https://www.worldstatesmen.org/Sudan.html",
+            "https://en.wikipedia.org/wiki/Omar_al-Bashir",
+            "https://en.wikipedia.org/wiki/Hassan_al-Turabi"
+          ],
+          "tie": null
+        },
+        "armed_mean": 0.6520678469642198,
+        "drift_armed": false,
+        "franchise_demand": 0.85,
+        "movements": [
+          [
+            "Western",
+            0.3354107837632218
+          ],
+          [
+            "Communist",
+            0.1278948079217681
+          ],
+          [
+            "Nationalist",
+            0.1872083987563956
+          ],
+          [
+            "Islamist",
+            0.17003083768349564
+          ],
+          [
+            "NonAligned",
+            0.17945517187511886
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8494486066064159
+          ],
+          [
+            "Party",
+            0.34958577424598997
+          ],
+          [
+            "Security",
+            0.7592370070044735
+          ],
+          [
+            "Army",
+            0.65
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 28.675299832642935
+      },
+      "rng_state": 4865692805662544995,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Afghanistan": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.837252804129074,
+        "executive_leverage": 0.0,
+        "pressure": 0.00030647207651546824,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.837252804129074,
+        "resources_per_member": 5400.628690472402,
+        "target": 0.8239287848489765,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Afghanistan",
+      "date": [
+        1995,
+        9,
+        1
+      ],
+      "discontent": {
+        "growth": 0.4734651727430204,
+        "order_uncapped": 0.798829767075468,
+        "prices": 0.0,
+        "total": 0.49410791808633814,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.14316251141372824,
+        "debt_gdp": 1.7866135541540304,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 17.51203253404443,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 2.6830391912399296,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.11674688356029621,
+        "political_capital": 30.032056072908496,
+        "population_m": 12.85191787079647,
+        "revenue_gdp": 0.19000000000000009,
+        "spend_gdp": 0.3331625114137283,
+        "state_invest_gdp": 0.03891562785343211,
+        "tax_rate": 0.19000000000000009
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.85,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 68,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "party:af_pdpa",
+          "months": 68.0,
+          "performance": -0.9701024899976413
+        },
+        "regime_bloc": "Communist",
+        "settled_months": 68,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [
+            {
+              "name": "Sultan Ali Keshtmand",
+              "office": "Chairman of the Council of Ministers",
+              "party": "af_pdpa",
+              "since": "1989-02-21"
+            }
+          ],
+          "bloc_override": null,
+          "born": "1947-08-06",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Mohammad Najibullah",
+          "nation": "Afghanistan",
+          "native": "\u0645\u062d\u0645\u062f \u0646\u062c\u064a\u0628 \u0627\u0644\u0644\u0647",
+          "note": "Regime rule: general secretary. Najibullah took the party post 4 May 1986 and the presidency 30 Nov 1987; since is the party date. worldstatesmen.org/Afghanistan.html returned 404 twice this run.",
+          "office": "General Secretary of the PDPA and President of the Republic",
+          "since": "1986-05-04",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Mohammad_Najibullah",
+            "https://en.wikipedia.org/wiki/Sultan_Ali_Keshtmand"
+          ],
+          "tie": {
+            "party": "af_pdpa"
+          }
+        },
+        "armed_mean": 0.6501351537504634,
+        "drift_armed": false,
+        "franchise_demand": 0.0,
+        "movements": [
+          [
+            "Western",
+            0.1967564330412738
+          ],
+          [
+            "Communist",
+            0.16653986824688813
+          ],
+          [
+            "Nationalist",
+            0.2542005790519003
+          ],
+          [
+            "Islamist",
+            0.21914585694966474
+          ],
+          [
+            "NonAligned",
+            0.16335726271027307
+          ]
+        ],
+        "party_can_contest": true,
+        "pillars": [
+          [
+            "Army",
+            0.837252804129074
+          ],
+          [
+            "Security",
+            0.764937936885345
+          ],
+          [
+            "Party",
+            0.34821472023697114
+          ],
+          [
+            "Business",
+            0.3823496887931464
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 28.67821397547193
+      },
+      "rng_state": 6817450694008932533,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Turkmenistan": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8299922351345875,
+        "executive_leverage": 0.0,
+        "pressure": 0.0002465806001015758,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8299922351345875,
+        "resources_per_member": 25943.632516010955,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Turkmenistan",
+      "date": [
+        1997,
+        11,
+        1
+      ],
+      "discontent": {
+        "growth": 0.663492284595652,
+        "order_uncapped": 0.6694499737811026,
+        "prices": 0.0,
+        "total": 0.4674234438096817,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.07349999999999998,
+        "balance_gdp": 0.03849999999999998,
+        "debt_gdp": 0.0,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 4.217391780245916,
+          "share": 0.0068840547983605675,
+          "standing_affordable": true
+        },
+        "gdp_bn": 15.084385669995187,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.035,
+        "political_capital": 31.46268055247191,
+        "population_m": 3.9065079759631196,
+        "revenue_gdp": 0.3,
+        "spend_gdp": 0.2615,
+        "state_invest_gdp": 0.04,
+        "tax_rate": 0.3
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.6699999999999998,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 50,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:NonAligned",
+          "months": 50.0,
+          "performance": -1.3409329879534184
+        },
+        "regime_bloc": "NonAligned",
+        "settled_months": 50,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": null,
+        "armed_mean": 0.6362181691459426,
+        "drift_armed": true,
+        "franchise_demand": 0.0,
+        "movements": [
+          [
+            "Western",
+            0.4221019932921397
+          ],
+          [
+            "Communist",
+            0.001999999840000666
+          ],
+          [
+            "Nationalist",
+            0.4117603098035245
+          ],
+          [
+            "Islamist",
+            0.001999999840000666
+          ],
+          [
+            "NonAligned",
+            0.16213769722433452
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8299922351345875
+          ],
+          [
+            "Party",
+            0.34835612933265614
+          ],
+          [
+            "Security",
+            0.7303061429705842
+          ],
+          [
+            "Business",
+            0.3408327840190988
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 31.545001573133852
+      },
+      "rng_state": 13856628990793573739,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Kazakhstan": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8308925845535311,
+        "executive_leverage": 0.0,
+        "pressure": 0.060048305281703504,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8308925845535311,
+        "resources_per_member": 26521.712912964995,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Kazakhstan",
+      "date": [
+        1997,
+        12,
+        1
+      ],
+      "discontent": {
+        "growth": 0.2770889479289346,
+        "order_uncapped": 0.7966224638119599,
+        "prices": 0.0,
+        "total": 0.45372902149176686,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.09703063632393202,
+        "balance_gdp": 0.06903063632393203,
+        "debt_gdp": 0.00025,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 3.2358030247803313,
+          "share": 0.006427979834797789,
+          "standing_affordable": true
+        },
+        "gdp_bn": 89.43889127995936,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.028,
+        "political_capital": 30.00103408138594,
+        "population_m": 18.14424428415742,
+        "revenue_gdp": 0.32603063632393203,
+        "spend_gdp": 0.257,
+        "state_invest_gdp": 0.04,
+        "tax_rate": 0.3
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.62,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 51,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:NonAligned",
+          "months": 51.0,
+          "performance": -1.413626228539875
+        },
+        "regime_bloc": "NonAligned",
+        "settled_months": 51,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": null,
+        "armed_mean": 0.603434887722147,
+        "drift_armed": false,
+        "franchise_demand": 0.0,
+        "movements": [
+          [
+            "Western",
+            0.4004236773986201
+          ],
+          [
+            "Communist",
+            0.001999999840000666
+          ],
+          [
+            "Nationalist",
+            0.44626745738549767
+          ],
+          [
+            "Islamist",
+            0.001999999840000666
+          ],
+          [
+            "NonAligned",
+            0.14930886553588077
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8308925845535311
+          ],
+          [
+            "Party",
+            0.3130625500576622
+          ],
+          [
+            "Security",
+            0.6663495285552479
+          ],
+          [
+            "Business",
+            0.3825559767424229
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 29.386652171282414
+      },
+      "rng_state": 15418917709712003966,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Myanmar": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.3498201277558126,
+        "executive_leverage": 0.0,
+        "pressure": 2.6980836628104352e-05,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.3498201277558126,
+        "resources_per_member": 1105.852031517702,
+        "target": 0.3250391378467614,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Myanmar",
+      "date": [
+        1999,
+        4,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0007496011779326711,
+        "order_uncapped": 0.9368079166268053,
+        "prices": 0.0,
+        "total": 0.46855387854898917,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.013547293928489915,
+        "balance_gdp": -0.008107606151901925,
+        "debt_gdp": 1.4460473359023576,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.2161409227852888,
+          "share": 0.013547293928489915,
+          "standing_affordable": true
+        },
+        "gdp_bn": 11.74542326701279,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.02165490008039184,
+        "political_capital": 41.464227282210565,
+        "population_m": 47.067629039231214,
+        "revenue_gdp": 0.24200000000000016,
+        "spend_gdp": 0.2501076061519021,
+        "state_invest_gdp": 0.05095270607151021,
+        "tax_rate": 0.24200000000000016
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.8499999999999998,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": "mm_nld",
+        "months_in_office": 32,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 32.0,
+          "performance": -0.5419118975034741
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 32,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1928-12-05",
+          "emergent": {
+            "described": "the Tatmadaw",
+            "office": "head of state",
+            "party": null,
+            "pillar": "Army",
+            "since": "1996-07-01"
+          },
+          "heir": null,
+          "must_leave_by": null,
+          "name": null,
+          "nation": "Myanmar",
+          "native": null,
+          "note": "SLORC chairman and prime minister were the same man; the SLORC chairmanship is the executive. Army officer, tied to the Tatmadaw. worldstatesmen.org/Myanmar.html returned 404 twice this run.",
+          "office": "Chairman of the State Law and Order Restoration Council",
+          "since": "1988-09-18",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Saw_Maung"
+          ],
+          "tie": null
+        },
+        "armed_mean": 0.5515212966026057,
+        "drift_armed": false,
+        "franchise_demand": 0.8499999999999998,
+        "movements": [
+          [
+            "Western",
+            0.4482737530064868
+          ],
+          [
+            "Communist",
+            0.0019999999195219297
+          ],
+          [
+            "Nationalist",
+            0.2080691523351166
+          ],
+          [
+            "Islamist",
+            0.0019999999195219297
+          ],
+          [
+            "NonAligned",
+            0.33965709481935275
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.3498201277558126
+          ],
+          [
+            "Security",
+            0.7532224654493987
+          ],
+          [
+            "Business",
+            0.5917186890849315
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 27.791525002391687
+      },
+      "rng_state": 9632771371151293582,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Ethiopia": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.5598047925299237,
+        "executive_leverage": 0.0,
+        "pressure": 0.00011534407380753287,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.5598047925299237,
+        "resources_per_member": 2947.1404876036363,
+        "target": 0.54219410134345,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Ethiopia",
+      "date": [
+        2000,
+        5,
+        1
+      ],
+      "discontent": {
+        "growth": 0.09116040387821323,
+        "order_uncapped": 0.9812231800323987,
+        "prices": 0.0,
+        "total": 0.508843670791842,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.12668240491613256,
+        "balance_gdp": 0.0724512191035197,
+        "debt_gdp": 1.3286137320200246,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 3.380254671751844,
+          "share": 0.031696154667600555,
+          "standing_affordable": true
+        },
+        "gdp_bn": 13.586004267853403,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.054231185812612846,
+        "political_capital": 38.841732856161926,
+        "population_m": 68.14431207126655,
+        "revenue_gdp": 0.3520000000000002,
+        "spend_gdp": 0.2795487808964805,
+        "state_invest_gdp": 0.0503175950838676,
+        "tax_rate": 0.3520000000000002
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.9,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 124,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "party:et_wpe",
+          "months": 124.0,
+          "performance": -0.6849186238308343
+        },
+        "regime_bloc": "Communist",
+        "settled_months": 124,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [
+            {
+              "name": "Hailu Yimenu",
+              "office": "Acting Prime Minister",
+              "party": "et_wpe",
+              "since": "1989-11-08"
+            }
+          ],
+          "bloc_override": null,
+          "born": "1937-05-21",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Mengistu Haile Mariam",
+          "nation": "Ethiopia",
+          "native": "Mengistu Haile Mariam",
+          "note": "since is the WPE general secretaryship (12 Sep 1984), the office that carried power; the PDRE presidency followed on 10 Sep 1987. Lieutenant colonel, but by 1990 ruled through the party, so the tie is et_wpe.",
+          "office": "President of the People's Democratic Republic and General Secretary of the Workers' Party of Ethiopia",
+          "since": "1984-09-12",
+          "sources": [
+            "https://www.worldstatesmen.org/Ethiopia.html",
+            "https://en.wikipedia.org/wiki/Mengistu_Haile_Mariam"
+          ],
+          "tie": {
+            "party": "et_wpe"
+          }
+        },
+        "armed_mean": 0.5629503705846695,
+        "drift_armed": false,
+        "franchise_demand": 0.0,
+        "movements": [
+          [
+            "Western",
+            0.001999999840000666
+          ],
+          [
+            "Communist",
+            0.17653467803744624
+          ],
+          [
+            "Nationalist",
+            0.5201109295884697
+          ],
+          [
+            "Islamist",
+            0.001999999840000666
+          ],
+          [
+            "NonAligned",
+            0.29935439269408265
+          ]
+        ],
+        "party_can_contest": true,
+        "pillars": [
+          [
+            "Army",
+            0.5598047925299237
+          ],
+          [
+            "Party",
+            0.34923103950794976
+          ],
+          [
+            "Security",
+            0.7798152797161351
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 25.12660919805608
+      },
+      "rng_state": 2543731204419479655,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    "Angola": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.7982380315176161,
+        "executive_leverage": 0.0,
+        "pressure": 0.0006827434717457892,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.7982380315176161,
+        "resources_per_member": 14942.65912807544,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Angola",
+      "date": [
+        2004,
+        6,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0596086192195879,
+        "order_uncapped": 1.1277877552615376,
+        "prices": 0.0,
+        "total": 0.5119217238439175,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.16092509831724464,
+        "balance_gdp": 0.03007419293917507,
+        "debt_gdp": 0.20250772069062764,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 16.790751670713014,
+          "share": 0.018912560906649455,
+          "standing_affordable": true
+        },
+        "gdp_bn": 13.132548030628133,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.13085090537806957,
+        "political_capital": 39.830258798485886,
+        "population_m": 19.511942422662507,
+        "revenue_gdp": 0.39000000000000007,
+        "spend_gdp": 0.359925807060825,
+        "state_invest_gdp": 0.051074901682755434,
+        "tax_rate": 0.39000000000000007
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.84,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 20,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Communist",
+          "months": 173.0,
+          "performance": -0.550967129816102
+        },
+        "regime_bloc": "Communist",
+        "settled_months": 20,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1942-08-28",
+          "emergent": {
+            "described": "the Communist governing organisation",
+            "office": "head of state",
+            "party": null,
+            "pillar": "Party",
+            "since": "2002-09-01"
+          },
+          "heir": null,
+          "must_leave_by": null,
+          "name": null,
+          "nation": "Angola",
+          "native": null,
+          "note": "worldstatesmen lists 20 Sep 1979, Wikipedia says he took office 21 Sep 1979; the inauguration date is used. No prime minister (post abolished 1978-1991). The 1990 US Department of State report identifies the governing MPLA-PT as Marxist-Leninist. The opening Communist override describes that government, not the later multiparty MPLA row used by the dormant election table. See docs/political-arm/1990-census-reconciliation.md.",
+          "office": "President of the Republic and President of the MPLA-PT",
+          "since": "1979-09-21",
+          "sources": [
+            "https://www.worldstatesmen.org/Angola.html",
+            "https://www.ecoi.net/en/document/1119700.html",
+            "https://en.wikipedia.org/wiki/Jos%C3%A9_Eduardo_dos_Santos"
+          ],
+          "tie": null
+        },
+        "armed_mean": 0.6220528090384765,
+        "drift_armed": false,
+        "franchise_demand": 0.84,
+        "movements": [
+          [
+            "Western",
+            0.4076989535338699
+          ],
+          [
+            "Communist",
+            0.08539120849745306
+          ],
+          [
+            "Nationalist",
+            0.39340261019077755
+          ],
+          [
+            "Islamist",
+            0.0019999999799402216
+          ],
+          [
+            "NonAligned",
+            0.11150722779795938
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.7982380315176161
+          ],
+          [
+            "Party",
+            0.34544837685502805
+          ],
+          [
+            "Security",
+            0.7224720187427853
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 16.332734684307745
+      },
+      "rng_state": 7929433249774233489,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  "haiti": [
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.65,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.65,
+        "resources_per_member": 4296.29972757163,
+        "target": 0.6386661408967818,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1990,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.00969068346765474,
+        "order_uncapped": 0.601227639993971,
+        "prices": 1.0,
+        "total": 0.5025519566905164,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.14200000000000004,
+        "debt_gdp": 0.31396877509914434,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.65,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.124581620052094,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.011,
+        "political_capital": 28.236,
+        "population_m": 6.8616564166666665,
+        "revenue_gdp": 0.097,
+        "spend_gdp": 0.23900000000000005,
+        "state_invest_gdp": 0.047,
+        "tax_rate": 0.097
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 0,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": null,
+        "regime_bloc": "Nationalist",
+        "settled_months": 0,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.65,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.1829729525925404
+          ],
+          [
+            "Communist",
+            0.07611432530206085
+          ],
+          [
+            "Nationalist",
+            0.31670918607994986
+          ],
+          [
+            "Islamist",
+            0.0019979980139660457
+          ],
+          [
+            "NonAligned",
+            0.42220553801148275
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.65
+          ],
+          [
+            "Security",
+            0.65
+          ],
+          [
+            "Business",
+            0.65
+          ]
+        ],
+        "round_table_affordable": false,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 23.926341600361734
+      },
+      "rng_state": 9287422613789346101,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6455000966538328,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6455000966538328,
+        "resources_per_member": 4321.335865455656,
+        "target": 0.642598276242059,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1991,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.20414201647558658,
+        "order_uncapped": 0.5966857930004716,
+        "prices": 0.05068272132348238,
+        "total": 0.3493078440600496,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.14200000000000004,
+        "debt_gdp": 0.41523218148416546,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.65,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.142789720331386,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.011,
+        "political_capital": 30.138694156147057,
+        "population_m": 7.00309026743912,
+        "revenue_gdp": 0.097,
+        "spend_gdp": 0.23900000000000005,
+        "state_invest_gdp": 0.047,
+        "tax_rate": 0.097
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 12,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 12.0,
+          "performance": -1.0238329287287962
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 12,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.6631989487004644,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.22625596308287538
+          ],
+          [
+            "Communist",
+            0.08911620486425254
+          ],
+          [
+            "Nationalist",
+            0.23912138293079419
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.44350644914213755
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6455000966538328
+          ],
+          [
+            "Security",
+            0.6808978007470959
+          ],
+          [
+            "Business",
+            0.5407848737889556
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 24.198852419971697
+      },
+      "rng_state": 17984023411626854761,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6426997809626581,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6426997809626581,
+        "resources_per_member": 4302.7967571943855,
+        "target": 0.6429924536002305,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1992,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.20240886416959777,
+        "order_uncapped": 0.5847546108177378,
+        "prices": 0.0,
+        "total": 0.3328590782427885,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.14200000000000004,
+        "debt_gdp": 0.5568287180234257,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.65,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.129306732505008,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.011,
+        "political_capital": 32.74565991674607,
+        "population_m": 7.147439381368112,
+        "revenue_gdp": 0.097,
+        "spend_gdp": 0.23900000000000005,
+        "state_invest_gdp": 0.047,
+        "tax_rate": 0.097
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 24,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 24.0,
+          "performance": -0.8943808087939468
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 24,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.6710885538243551,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.23596121399881384
+          ],
+          [
+            "Communist",
+            0.10965523941931436
+          ],
+          [
+            "Nationalist",
+            0.1937949989203021
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.45858854768162943
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6426997809626581
+          ],
+          [
+            "Security",
+            0.699477326686052
+          ],
+          [
+            "Business",
+            0.5088782497092833
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 24.914723350935734
+      },
+      "rng_state": 8555729311932186026,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6453413610565513,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6453413610565513,
+        "resources_per_member": 4468.271510546914,
+        "target": 0.6583614990779091,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1993,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.5685115871938646,
+        "prices": 0.0,
+        "total": 0.2842557935969323,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.14200000000000004,
+        "debt_gdp": 0.6740850495494995,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.65,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.249652007670483,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.011,
+        "political_capital": 33.824473238921435,
+        "population_m": 7.294763848447834,
+        "revenue_gdp": 0.097,
+        "spend_gdp": 0.23900000000000005,
+        "state_invest_gdp": 0.047,
+        "tax_rate": 0.097
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 36,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 36.0,
+          "performance": -0.7425807111855984
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 36,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.6782802970364625,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.24363001661068612
+          ],
+          [
+            "Communist",
+            0.11575935541417541
+          ],
+          [
+            "Nationalist",
+            0.16748910904928846
+          ],
+          [
+            "Islamist",
+            0.0019999999799402216
+          ],
+          [
+            "NonAligned",
+            0.4711215189459099
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6453413610565513
+          ],
+          [
+            "Security",
+            0.7112192330163739
+          ],
+          [
+            "Business",
+            0.5631747514148936
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 25.889304768368117
+      },
+      "rng_state": 16153515719547895884,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6564087795807368,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6564087795807368,
+        "resources_per_member": 4763.785658859647,
+        "target": 0.6841213088991732,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1994,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.5491025256509037,
+        "prices": 0.0,
+        "total": 0.27455126282545184,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.14200000000000004,
+        "debt_gdp": 0.7760925318703096,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.65,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.464571388261562,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.011,
+        "political_capital": 37.21429005730445,
+        "population_m": 7.445124997259607,
+        "revenue_gdp": 0.097,
+        "spend_gdp": 0.23900000000000005,
+        "state_invest_gdp": 0.047,
+        "tax_rate": 0.097
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 48,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 48.0,
+          "performance": -0.6110371660177251
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 48,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.6878878304009459,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.24842255935329713
+          ],
+          [
+            "Communist",
+            0.11773558582526646
+          ],
+          [
+            "Nationalist",
+            0.15213434349130614
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.4797075113501901
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6564087795807368
+          ],
+          [
+            "Security",
+            0.7193668812211551
+          ],
+          [
+            "Business",
+            0.6390615232220946
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 27.05384846094578
+      },
+      "rng_state": 14292013780545723689,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6732831424237672,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6732831424237672,
+        "resources_per_member": 4986.869868870696,
+        "target": 0.7022725212858447,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1995,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.5298554922555215,
+        "prices": 0.0,
+        "total": 0.26492774612776077,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.13513434275,
+        "debt_gdp": 0.8770832029160288,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.6253735437499999,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.6817652567656642,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.010835823625,
+        "political_capital": 40.11438982954718,
+        "population_m": 7.598585420501874,
+        "revenue_gdp": 0.10300000000000001,
+        "spend_gdp": 0.23813434275,
+        "state_invest_gdp": 0.046298519125,
+        "tax_rate": 0.10300000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 60,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 60.0,
+          "performance": -0.5049498858409002
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 60,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.6994129960698763,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2509468954395561
+          ],
+          [
+            "Communist",
+            0.11860215970078841
+          ],
+          [
+            "Nationalist",
+            0.14331010697422117
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.485140837905494
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6732831424237672
+          ],
+          [
+            "Security",
+            0.7255428497159855
+          ],
+          [
+            "Business",
+            0.6917143255406444
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 28.208670464668707
+      },
+      "rng_state": 15007278375774035303,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6848303319148006,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6848303319148006,
+        "resources_per_member": 4996.923659639203,
+        "target": 0.698496788122882,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1996,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.5108667757207612,
+        "prices": 0.0,
+        "total": 0.2554333878603806,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.10779900019146302,
+        "debt_gdp": 0.9526720862549828,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.5304887985502407,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 3.91790413444846,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.010203258657001604,
+        "political_capital": 42.51705850541174,
+        "population_m": 7.7552090010464525,
+        "revenue_gdp": 0.12700000000000003,
+        "spend_gdp": 0.23479900019146305,
+        "state_invest_gdp": 0.043595741534461406,
+        "tax_rate": 0.12700000000000003
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 72,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 72.0,
+          "performance": -0.4187083835772468
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 72,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7076933634527365,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.25198396867743167
+          ],
+          [
+            "Communist",
+            0.11874527462217908
+          ],
+          [
+            "Nationalist",
+            0.13880809711008263
+          ],
+          [
+            "Islamist",
+            0.0019999999799402216
+          ],
+          [
+            "NonAligned",
+            0.48846265961036656
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6848303319148006
+          ],
+          [
+            "Security",
+            0.7305563949906724
+          ],
+          [
+            "Business",
+            0.722941042346137
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 29.347993456754324
+      },
+      "rng_state": 16300594454918002310,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.6926193614787262,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.6926193614787262,
+        "resources_per_member": 5204.468235910482,
+        "target": 0.7142680342344554,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1997,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.49241695662388857,
+        "prices": 0.0,
+        "total": 0.24620847831194428,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.08105074451319316,
+        "debt_gdp": 0.9991999576880425,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.5,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.163574588728385,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 44.42463886040869,
+        "population_m": 7.9150609385318385,
+        "revenue_gdp": 0.15100000000000005,
+        "spend_gdp": 0.2320507445131932,
+        "state_invest_gdp": 0.04105074451319318,
+        "tax_rate": 0.15100000000000005
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 84,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 84.0,
+          "performance": -0.34795046389501977
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 84,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7137468683835954,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.252007365847
+          ],
+          [
+            "Communist",
+            0.11839923950801542
+          ],
+          [
+            "Nationalist",
+            0.13728495334516436
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.49030844131988
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.6926193614787262
+          ],
+          [
+            "Security",
+            0.7348743752884646
+          ],
+          [
+            "Business",
+            0.7409353394320468
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 30.454982602566687
+      },
+      "rng_state": 5465160787474277170,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.7074096918535087,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.7074096918535087,
+        "resources_per_member": 5529.117143770123,
+        "target": 0.7410447941358971,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1998,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.4746654022253257,
+        "prices": 0.0,
+        "total": 0.23733270111266286,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.05465431727443784,
+        "debt_gdp": 1.0183724490100823,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.5,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.423293715016098,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 45.926143858236074,
+        "population_m": 8.078747112706507,
+        "revenue_gdp": 0.17500000000000007,
+        "spend_gdp": 0.2296543172744379,
+        "state_invest_gdp": 0.03865431727443787,
+        "tax_rate": 0.17500000000000007
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 96,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 96.0,
+          "performance": -0.2893574026109343
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 96,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7230744145677772,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2513178429595568
+          ],
+          [
+            "Communist",
+            0.11771232683200553
+          ],
+          [
+            "Nationalist",
+            0.1378862340561736
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.49108359617232383
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.7074096918535087
+          ],
+          [
+            "Security",
+            0.7387391372820458
+          ],
+          [
+            "Business",
+            0.7517942712533203
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 31.520075866480457
+      },
+      "rng_state": 4945151547782068331,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.7277041900260433,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.7277041900260433,
+        "resources_per_member": 5881.112679556309,
+        "target": 0.7695773763170837,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        1999,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.4570221005707365,
+        "prices": 0.0,
+        "total": 0.22851105028536825,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.02839778673131496,
+        "debt_gdp": 1.0096866451723545,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.5,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.704890143645046,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 47.248022168885754,
+        "population_m": 8.246919463069416,
+        "revenue_gdp": 0.1990000000000001,
+        "spend_gdp": 0.22739778673131505,
+        "state_invest_gdp": 0.03639778673131503,
+        "tax_rate": 0.1990000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 108,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 108.0,
+          "performance": -0.24028984699817724
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 108,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7350097494986327,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.25011129240976
+          ],
+          [
+            "Communist",
+            0.11678087198536381
+          ],
+          [
+            "Nationalist",
+            0.1400533821389154
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.49105445348602056
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.7277041900260433
+          ],
+          [
+            "Security",
+            0.7423153089712221
+          ],
+          [
+            "Business",
+            0.758258237023385
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 32.57867396575581
+      },
+      "rng_state": 9450574222681686524,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.750506893903459,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.750506893903459,
+        "resources_per_member": 6121.545412212838,
+        "target": 0.7899059871750513,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2000,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.43834280419601995,
+        "prices": 0.0,
+        "total": 0.21917140209800998,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.007727013892588416,
+        "balance_gdp": -0.0022729861074115842,
+        "debt_gdp": 0.9682962584066223,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 0.9914443885598729,
+          "share": 0.0033903707429341805,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.89723632977027,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 48.68437237653364,
+        "population_m": 8.418592596292834,
+        "revenue_gdp": 0.22300000000000011,
+        "spend_gdp": 0.2252729861074117,
+        "state_invest_gdp": 0.034272986107411675,
+        "tax_rate": 0.22300000000000011
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 120,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 120.0,
+          "performance": -0.19854143987334735
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 120,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7481324714046184,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2485156053324286
+          ],
+          [
+            "Communist",
+            0.11566750017713147
+          ],
+          [
+            "Nationalist",
+            0.1434199965368212
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.49039689797367847
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.750506893903459
+          ],
+          [
+            "Security",
+            0.7457580489057777
+          ],
+          [
+            "Business",
+            0.7619738176557806
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 33.6994317482388
+      },
+      "rng_state": 3733267335569114701,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.770700057039588,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.770700057039588,
+        "resources_per_member": 6318.315779173466,
+        "target": 0.8071259261742192,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2001,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.4201726500299049,
+        "prices": 0.0,
+        "total": 0.21008632501495245,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.033727774620201705,
+        "balance_gdp": 0.023727774620201703,
+        "debt_gdp": 0.9054671294942291,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.0058685734433406,
+          "share": 0.00329420951037773,
+          "standing_affordable": true
+        },
+        "gdp_bn": 5.054652623338772,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 49.891152762429606,
+        "population_m": 8.5938966092091,
+        "revenue_gdp": 0.24700000000000014,
+        "spend_gdp": 0.22327222537979843,
+        "state_invest_gdp": 0.032272225379798396,
+        "tax_rate": 0.24700000000000014
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 132,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 132.0,
+          "performance": -0.1624143406394923
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 132,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7599223954899008,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.24661593296091236
+          ],
+          [
+            "Communist",
+            0.11441303626900327
+          ],
+          [
+            "Nationalist",
+            0.14774286933478287
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.4892281614553611
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.770700057039588
+          ],
+          [
+            "Security",
+            0.7491447339402136
+          ],
+          [
+            "Business",
+            0.7640869522172616
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 34.789640998205705
+      },
+      "rng_state": 6875315021679071855,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.7910472910610264,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.7910472910610264,
+        "resources_per_member": 6642.507530915431,
+        "target": 0.8333482647858823,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2002,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.4001034618444869,
+        "prices": 0.0,
+        "total": 0.20005173092224346,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.8074346321021414,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.0263269567787925,
+          "share": 0.0031578202881413836,
+          "standing_affordable": true
+        },
+        "gdp_bn": 5.314006024732344,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 51.38932077093605,
+        "population_m": 8.773090408093802,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 144,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 144.0,
+          "performance": -0.13060304783243515
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 144,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7717850539892357,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.24447041542559278
+          ],
+          [
+            "Communist",
+            0.11304436557503914
+          ],
+          [
+            "Nationalist",
+            0.15285740375197562
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.48762781526745214
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.7910472910610264
+          ],
+          [
+            "Security",
+            0.7525228169174449
+          ],
+          [
+            "Business",
+            0.7654824070979259
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 35.993792289330784
+      },
+      "rng_state": 13344046458763704163,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8136752669604708,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8136752669604708,
+        "resources_per_member": 6924.480777296756,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2003,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.37848634605362175,
+        "prices": 0.0,
+        "total": 0.18924317302681087,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.7177600220725538,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.0430571478140773,
+          "share": 0.003046285681239485,
+          "standing_affordable": true
+        },
+        "gdp_bn": 5.539584621837405,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 53.154342527150924,
+        "population_m": 8.956325176137064,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 156,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 156.0,
+          "performance": -0.10157922267762175
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 156,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7848932569920094,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2421048273277101
+          ],
+          [
+            "Communist",
+            0.11157199995880135
+          ],
+          [
+            "Nationalist",
+            0.15869186436958002
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.48563130836396823
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8136752669604708
+          ],
+          [
+            "Security",
+            0.756111247023548
+          ],
+          [
+            "Business",
+            0.7663824048428568
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 37.290819236782696
+      },
+      "rng_state": 7141382953474803232,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8290953505032017,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8290953505032017,
+        "resources_per_member": 7179.176758315387,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2004,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.35870364835675894,
+        "prices": 0.0,
+        "total": 0.17935182417837947,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.6371526618934886,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.0574189693931466,
+          "share": 0.0029505402040456894,
+          "standing_affordable": true
+        },
+        "gdp_bn": 5.743341406652309,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 54.282062657340695,
+        "population_m": 9.144010788227076,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 168,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 168.0,
+          "performance": -0.07486470100645978
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 168,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.7944271677216898,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.23954254540485995
+          ],
+          [
+            "Communist",
+            0.11000385106930424
+          ],
+          [
+            "Nationalist",
+            0.16518688075546836
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.4832667227904271
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8290953505032017
+          ],
+          [
+            "Security",
+            0.7597589849401778
+          ],
+          [
+            "Business",
+            0.766740791539362
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 38.47778109859446
+      },
+      "rng_state": 16994086719143622678,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8379695090915484,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8379695090915484,
+        "resources_per_member": 7477.943791647765,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2005,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.3401137532608735,
+        "prices": 0.0,
+        "total": 0.17005687663043675,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.5589007956523229,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.0727494706745329,
+          "share": 0.0028483368621697812,
+          "standing_affordable": true
+        },
+        "gdp_bn": 5.982355033318211,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 55.07611601713246,
+        "population_m": 9.335743234930668,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 180,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 180.0,
+          "performance": -0.0503070203604225
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 180,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.8006366303116526,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2368053626830994
+          ],
+          [
+            "Communist",
+            0.10834725870897295
+          ],
+          [
+            "Nationalist",
+            0.1722871706853646
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.48056020794262283
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8379695090915484
+          ],
+          [
+            "Security",
+            0.7633037515317566
+          ],
+          [
+            "Business",
+            0.767302653950493
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 39.59317480434759
+      },
+      "rng_state": 4980667794388889069,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8430765301030041,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8430765301030041,
+        "resources_per_member": 7782.010555971756,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2006,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.42133512516619004,
+        "prices": 0.0,
+        "total": 0.21066756258309502,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.4862852084752022,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.0872512670421877,
+          "share": 0.00275165821971875,
+          "standing_affordable": true
+        },
+        "gdp_bn": 6.2256084447774045,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 26.684964163323983,
+        "population_m": 9.532076696360075,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 192,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 192.0,
+          "performance": -0.029346980127411437
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 192,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.8041999208423403,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.23393792190573245
+          ],
+          [
+            "Communist",
+            0.10662255700133624
+          ],
+          [
+            "Nationalist",
+            0.1798673402972683
+          ],
+          [
+            "Islamist",
+            0.0019999999799402207
+          ],
+          [
+            "NonAligned",
+            0.47757218081572267
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8430765301030041
+          ],
+          [
+            "Security",
+            0.7653233115816765
+          ],
+          [
+            "Business",
+            0.7679143596748631
+          ]
+        ],
+        "round_table_affordable": false,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 34.7198924900286
+      },
+      "rng_state": 7994614326629705637,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8460155877445588,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8460155877445588,
+        "resources_per_member": 8154.006443334988,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2007,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.40048312563136257,
+        "prices": 0.0,
+        "total": 0.20024156281568128,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.41673791753598605,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.1031734043953558,
+          "share": 0.002645510637364295,
+          "standing_affordable": true
+        },
+        "gdp_bn": 6.52320515466799,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 35.21155123990964,
+        "population_m": 9.732539108972782,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 204,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 204.0,
+          "performance": -0.027312017519000573
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 204,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.8027755763106406,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2314104030439311
+          ],
+          [
+            "Communist",
+            0.10508881135834192
+          ],
+          [
+            "Nationalist",
+            0.18650147195492306
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.47499931366286385
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8460155877445588
+          ],
+          [
+            "Security",
+            0.7595355648767222
+          ],
+          [
+            "Business",
+            0.7677892139488636
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 35.971012462118246
+      },
+      "rng_state": 3177208099610163428,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8477069964544515,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8477069964544515,
+        "resources_per_member": 8601.631907518584,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2008,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.37948899824705956,
+        "prices": 0.0,
+        "total": 0.18974449912352978,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.050996297576929105,
+        "balance_gdp": 0.0409962975769291,
+        "debt_gdp": 0.34892745206836556,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.1202464581229574,
+          "share": 0.0025316902791802844,
+          "standing_affordable": true
+        },
+        "gdp_bn": 6.881305526014868,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 41.525931642300584,
+        "population_m": 9.937300000233511,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22200370242307102,
+        "state_invest_gdp": 0.031003702423070986,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 216,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 216.0,
+          "performance": -0.021559225492558065
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 216,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.8038713907355259,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.22890829956157085
+          ],
+          [
+            "Communist",
+            0.1035789646385888
+          ],
+          [
+            "Nationalist",
+            0.19311112429874572
+          ],
+          [
+            "Islamist",
+            0.0019999999799402216
+          ],
+          [
+            "NonAligned",
+            0.47240161152115456
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8477069964544515
+          ],
+          [
+            "Security",
+            0.7600357850166005
+          ],
+          [
+            "Business",
+            0.7675424780774015
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 37.230660105176426
+      },
+      "rng_state": 6826494693376147373,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.8486803912540128,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.8486803912540128,
+        "resources_per_member": 9135.943895031016,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2009,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.35632353020325475,
+        "prices": 0.0,
+        "total": 0.17816176510162737,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.05052891288743854,
+        "balance_gdp": 0.04052891288743854,
+        "debt_gdp": 0.28367158723626834,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.1382350134776584,
+          "share": 0.00241176657681561,
+          "standing_affordable": true
+        },
+        "gdp_bn": 7.308755116024813,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 46.76430955066414,
+        "population_m": 10.146476547021594,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.22247108711256158,
+        "state_invest_gdp": 0.031471087112561566,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 228,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 228.0,
+          "performance": -0.012626873289278815
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 228,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.8053677702118933,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.2263717549001639
+          ],
+          [
+            "Communist",
+            0.10205738176846728
+          ],
+          [
+            "Nationalist",
+            0.19988164561133204
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.4696892177400966
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.8486803912540128
+          ],
+          [
+            "Security",
+            0.7620551491697737
+          ],
+          [
+            "Business",
+            0.7676987186659854
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 38.620588187804714
+      },
+      "rng_state": 10868443039579134141,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    },
+    {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.84924057368081,
+        "executive_leverage": 0.0,
+        "pressure": 0.0,
+        "public_mandate": 0.0,
+        "raw_loyalty": 0.84924057368081,
+        "resources_per_member": 9657.954967197129,
+        "target": 0.8500000000000001,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "Haiti",
+      "date": [
+        2010,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.0,
+        "order_uncapped": 0.33347279637373195,
+        "prices": 0.0,
+        "total": 0.16673639818686598,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.04858784509733873,
+        "balance_gdp": 0.03858784509733873,
+        "debt_gdp": 0.22582040482345547,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 1.1541396492623561,
+          "share": 0.0023057356715842935,
+          "standing_affordable": true
+        },
+        "gdp_bn": 7.726363973757704,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.01,
+        "political_capital": 50.74549074768419,
+        "population_m": 10.360182527537113,
+        "revenue_gdp": 0.2630000000000001,
+        "spend_gdp": 0.2244121549026614,
+        "state_invest_gdp": 0.03341215490266137,
+        "tax_rate": 0.2630000000000001
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.78,
+        "awaiting_first_election": false,
+        "elected": false,
+        "electoral": false,
+        "has_army": true,
+        "leader": null,
+        "months_in_office": 240,
+        "next_election": [
+          0,
+          0
+        ],
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 240.0,
+          "performance": -0.0010259464825345174
+        },
+        "regime_bloc": "Nationalist",
+        "settled_months": 240,
+        "unrestricted_mandate": false
+      },
+      "opening": {
+        "actual_leader": {
+          "also": [],
+          "bloc_override": null,
+          "born": "1937-12-12",
+          "heir": null,
+          "must_leave_by": null,
+          "name": "Prosper Avril",
+          "nation": "Haiti",
+          "native": "Matthieu Prosper Avril",
+          "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti).",
+          "office": "President of the Republic (military government)",
+          "since": "1988-09-17",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Prosper_Avril"
+          ],
+          "tie": {
+            "pillar": "Army"
+          }
+        },
+        "armed_mean": 0.8071153370899119,
+        "drift_armed": false,
+        "franchise_demand": 0.78,
+        "movements": [
+          [
+            "Western",
+            0.22373596847713131
+          ],
+          [
+            "Communist",
+            0.10049722319259123
+          ],
+          [
+            "Nationalist",
+            0.2070641093548978
+          ],
+          [
+            "Islamist",
+            0.001999999979940221
+          ],
+          [
+            "NonAligned",
+            0.4667026989954395
+          ]
+        ],
+        "party_can_contest": false,
+        "pillars": [
+          [
+            "Army",
+            0.84924057368081
+          ],
+          [
+            "Security",
+            0.7649901004990138
+          ],
+          [
+            "Business",
+            0.7679388992905116
+          ]
+        ],
+        "round_table_affordable": true,
+        "round_table_refusal": null,
+        "selected_lever": null,
+        "stability": 39.99163221757608
+      },
+      "rng_state": 4630373246160418909,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "stratagem_before_decision",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  ],
+  "choices": {
+    "USSR": {
+      "ConveneRoundTable { nation: USSR }": 31,
+      "None": 13
+    },
+    "China": {
+      "None": 252
+    },
+    "Iraq": {
+      "None": 252
+    },
+    "Kuwait": {
+      "None": 134
+    },
+    "SaudiArabia": {
+      "None": 252
+    },
+    "Iran": {
+      "None": 252
+    },
+    "Indonesia": {
+      "None": 252
+    },
+    "Egypt": {
+      "None": 250
+    },
+    "Nigeria": {
+      "None": 252
+    },
+    "Vietnam": {
+      "None": 252
+    },
+    "Yugoslavia": {
+      "None": 17,
+      "ConveneRoundTable { nation: Yugoslavia }": 2
+    },
+    "Albania": {
+      "ConveneRoundTable { nation: Albania }": 57
+    },
+    "Cuba": {
+      "None": 252
+    },
+    "Syria": {
+      "None": 252
+    },
+    "Lebanon": {
+      "None": 252
+    },
+    "UAE": {
+      "None": 252
+    },
+    "Qatar": {
+      "None": 252
+    },
+    "Oman": {
+      "None": 252
+    },
+    "Bahrain": {
+      "None": 252
+    },
+    "Morocco": {
+      "None": 12
+    },
+    "Tunisia": {
+      "None": 167
+    },
+    "Libya": {
+      "None": 252
+    },
+    "Sudan": {
+      "None": 252
+    },
+    "SouthAfrica": {
+      "ConveneRoundTable { nation: SouthAfrica }": 18,
+      "None": 19
+    },
+    "Ethiopia": {
+      "None": 252
+    },
+    "Kenya": {
+      "None": 239
+    },
+    "Ghana": {
+      "None": 25,
+      "ConveneRoundTable { nation: Ghana }": 5
+    },
+    "Zaire": {
+      "None": 252
+    },
+    "Angola": {
+      "ConveneRoundTable { nation: Angola }": 66,
+      "None": 186
+    },
+    "Tanzania": {
+      "None": 252
+    },
+    "Uganda": {
+      "None": 252
+    },
+    "Cameroon": {
+      "ConveneRoundTable { nation: Cameroon }": 10
+    },
+    "Bangladesh": {
+      "None": 224
+    },
+    "Nepal": {
+      "None": 9,
+      "ConveneRoundTable { nation: Nepal }": 17
+    },
+    "Afghanistan": {
+      "None": 240,
+      "ConveneRoundTable { nation: Afghanistan }": 12
+    },
+    "Myanmar": {
+      "None": 95
+    },
+    "NorthKorea": {
+      "None": 252
+    },
+    "Mongolia": {
+      "ConveneRoundTable { nation: Mongolia }": 3
+    },
+    "Cambodia": {
+      "None": 252
+    },
+    "Laos": {
+      "None": 252
+    },
+    "Haiti": {
+      "None": 252
+    },
+    "Chad": {
+      "None": 252
+    },
+    "CentralAfricanRepublic": {
+      "ConveneRoundTable { nation: CentralAfricanRepublic }": 30
+    },
+    "Congo": {
+      "ConveneRoundTable { nation: Congo }": 34
+    },
+    "Gabon": {
+      "ConveneRoundTable { nation: Gabon }": 80
+    },
+    "EquatorialGuinea": {
+      "None": 252
+    },
+    "SaoTome": {
+      "None": 26,
+      "ConveneRoundTable { nation: SaoTome }": 95
+    },
+    "Madagascar": {
+      "None": 252
+    },
+    "Seychelles": {
+      "None": 252
+    },
+    "CapeVerde": {
+      "ConveneRoundTable { nation: CapeVerde }": 4
+    },
+    "Fiji": {
+      "ConveneRoundTable { nation: Fiji }": 5
+    },
+    "Tonga": {
+      "None": 252
+    },
+    "Brunei": {
+      "None": 252
+    },
+    "Bhutan": {
+      "None": 252
+    },
+    "Maldives": {
+      "None": 252
+    },
+    "Mozambique": {
+      "None": 252
+    },
+    "Zambia": {
+      "None": 20
+    },
+    "Malawi": {
+      "ConveneRoundTable { nation: Malawi }": 113
+    },
+    "Lesotho": {
+      "None": 25
+    },
+    "Swaziland": {
+      "None": 252
+    },
+    "Guyana": {
+      "None": 128,
+      "ConveneRoundTable { nation: Guyana }": 86
+    },
+    "Guatemala": {
+      "None": 38,
+      "ConveneRoundTable { nation: Guatemala }": 34
+    },
+    "Serbia": {
+      "None": 229
+    },
+    "Montenegro": {
+      "None": 229
+    },
+    "Algeria": {
+      "None": 228
+    },
+    "Ecuador": {
+      "None": 50,
+      "ConveneRoundTable { nation: Ecuador }": 30
+    },
+    "Yemen": {
+      "None": 212
+    },
+    "Kazakhstan": {
+      "None": 202
+    },
+    "Uzbekistan": {
+      "None": 208
+    },
+    "Turkmenistan": {
+      "None": 57
+    },
+    "Georgia": {
+      "None": 189
+    },
+    "Comoros": {
+      "None": 15,
+      "ConveneRoundTable { nation: Comoros }": 45
+    }
+  }
+}

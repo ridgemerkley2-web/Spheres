@@ -789,3 +789,24 @@ scenario passed. No N200 or independent holdout was run for this rejected trial.
 The separate empty-stall resource optimization changes no political coefficient
 or outcome criterion. A1 remains open; the alternative diversity rule remains
 unapproved.
+
+## 30 September: opening decisions and institution updates
+
+The [opening and institution repair packet](../campaign-certification/S27/preparation/political-repairs-20260930/README.md)
+records two demonstrated defects after the route-exposure review. The AI now
+recognizes a live armed threat that other loyal institutions previously hid in
+its mean-loyalty preference. Each recorded armed institution also receives one
+loyalty update: Sudan's two legitimate Army entries previously updated the first
+twice and froze the second. Actual failing regressions precede both corrections;
+the corrected `7c6f112c` passes 1,990 ordinary native tests, UI coverage after
+fixture restoration, and the release build. Standalone resource timing remains
+pending during concurrent heavy native work.
+
+The original outcome suite still fails A1 at median 7.5 coups and median
+per-seed top-three share 0.571429. A2–A10 and attribution pass. An additional
+predeclared urgent-negotiation policy passed its local regressions but still
+failed A1 (12 / displayed 0.54) and regressed A2 to 6/12. That policy is rejected;
+its exact patch and all failures remain in the packet. No coefficients, source
+datasets, original cohorts or acceptance thresholds changed, and no reserved
+1000-series cohort or wider scan ran. These correctness repairs do not resolve
+political balance or complete S27.
