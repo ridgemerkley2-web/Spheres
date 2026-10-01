@@ -23,6 +23,8 @@ as active cartoons or supply an active style reference.
 
 Default mode writes the export; --check regenerates it in memory and exits 1
 when a committed export file differs. Standard library only; no network access.
+Optional inputs tracked by Git must be materialized in a sparse checkout;
+otherwise generation stops before writing an incomplete export.
 The file inventory is the git index when available (untracked files are
 ignored), otherwise a directory walk. Authored text (credits, era notes,
 rationales) stays in the manifests: every item carries a JSON pointer to its
@@ -297,6 +299,20 @@ def subtract(windows, covered):
     return gaps
 
 
+def is_tracked_input(root: Path, rel: str) -> bool:
+    """Distinguish an omitted tracked dependency from an absent fixture input."""
+    if not (root / '.git').exists():
+        return False
+    try:
+        result = subprocess.run(['git', '--literal-pathspecs', 'ls-files', '--error-unmatch', '--', rel],
+                                cwd=root, capture_output=True)
+    except OSError as error:
+        raise SystemExit(f'Cannot inspect Git index for missing optional input {rel}: {error}') from error
+    if result.returncode not in (0, 1):
+        raise SystemExit(f'Cannot inspect Git index for missing optional input {rel} (Git exit {result.returncode})')
+    return result.returncode == 0
+
+
 def art_inventory(root: Path) -> tuple[list[str], str]:
     """Tracked image paths under the art roots (git index), else a directory walk."""
     if (root / '.git').exists():
@@ -325,6 +341,9 @@ class Builder:
             if not path.is_file():
                 if required:
                     raise SystemExit(f'Required input is missing: {rel}')
+                if is_tracked_input(self.root, rel):
+                    raise SystemExit(f'Tracked optional input is missing: {rel}. '
+                                     'Materialize this exact file in the sparse checkout before generating the export.')
                 continue
             raw = path.read_bytes()
             # JSON text can be checked out with CRLF without changing its content.

@@ -12,6 +12,7 @@ import io
 import json
 import shutil
 import struct
+import subprocess
 import tempfile
 import unittest
 import zlib
@@ -491,6 +492,33 @@ class VisualReviewGuard(FixtureCase):
 
 
 class Regeneration(FixtureCase):
+    @unittest.skipUnless(shutil.which('git'), 'Git is needed for tracked sparse-input checks')
+    def test_tracked_optional_input_missing_aborts_without_writing_exports(self):
+        self.fx.write(self.tmp)
+        subprocess.run(['git', 'init', '--quiet'], cwd=self.tmp, check=True, capture_output=True)
+        rel = 'docs/campaign-certification/S10/c/manifest.json'
+        optional = self.tmp / rel
+        optional.parent.mkdir(parents=True, exist_ok=True)
+        optional.write_text('{}\n', encoding='utf-8')
+        subprocess.run(['git', 'add', '--', rel], cwd=self.tmp, check=True, capture_output=True)
+        optional.unlink()  # A tracked input omitted by a sparse checkout.
+        before = {p: p.read_bytes() for p in self.tmp.rglob('*') if p.is_file() and '.git' not in p.parts}
+        with self.assertRaisesRegex(SystemExit, 'Tracked optional input is missing: .*S10/c/manifest.json.*Materialize'):
+            with contextlib.redirect_stdout(io.StringIO()):
+                cr.main(['--root', str(self.tmp)])
+        self.assertFalse((self.tmp / cr.EXPORT_JSON).exists())
+        self.assertFalse((self.tmp / cr.EXPORT_MD).exists())
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    @unittest.skipUnless(shutil.which('git'), 'Git is needed for tracked sparse-input checks')
+    def test_untracked_optional_inputs_remain_optional_in_git_fixture(self):
+        self.fx.write(self.tmp)
+        subprocess.run(['git', 'init', '--quiet'], cwd=self.tmp, check=True, capture_output=True)
+        subprocess.run(['git', 'add', '--', cr.REGISTRY], cwd=self.tmp, check=True, capture_output=True)
+        export = json.loads(cr.outputs(self.tmp)[cr.EXPORT_JSON])
+        self.assertNotIn('s10c_reviewed_reference', [item['role'] for item in export['inputs']])
+        self.assertNotIn('visual_review_sample', [item['role'] for item in export['inputs']])
+
     def test_json_input_hashes_are_portable_without_changing_art_or_source_bytes(self):
         self.fx.write(self.tmp)
         expected = cr.outputs(self.tmp)
