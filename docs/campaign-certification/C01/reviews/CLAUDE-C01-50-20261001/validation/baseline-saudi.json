@@ -1,0 +1,23 @@
+{
+  "label": "baseline-saudi",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_saudi*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+  "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+  "started_at": "2026-10-01T14:06:12.206476+00:00",
+  "finished_at": "2026-10-01T14:08:17.695906+00:00",
+  "exit_code": 0,
+  "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\baseline-saudi.log",
+  "log_sha256": "f5863194f4f0c3d7f194db6e341168f59e2d3609bc354bea57d681858bd30a7c"
+}

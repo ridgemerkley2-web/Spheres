@@ -1,0 +1,17 @@
+{
+  "label": "index-regenerate",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/campaign_research.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+  "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+  "started_at": "2026-10-01T14:10:51.326951+00:00",
+  "finished_at": "2026-10-01T14:10:52.201619+00:00",
+  "exit_code": 0,
+  "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\index-regenerate.log",
+  "log_sha256": "cd1493d27d0d5c2dc65f8e072e73b4ccff672366b5f1e8b51d809a438f950a30"
+}

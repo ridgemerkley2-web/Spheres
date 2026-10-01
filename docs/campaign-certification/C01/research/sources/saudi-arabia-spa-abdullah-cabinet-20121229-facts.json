@@ -1,0 +1,50 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_abdullah_cabinet_20121229",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/fa1e2efc0a",
+  "original_url": "https://www.spa.gov.sa/fa1e2efc0a",
+  "portal_metadata": {
+    "uuid": "fa1e2efc0a",
+    "locale": "ar",
+    "published_at_utc": "2012-12-29T12:19:42Z",
+    "date_hijri_field": "1434-02-16"
+  },
+  "title_as_published": "اقتصادي / خادم الحرمين الشريفين يرأس جلسة مجلس الوزراء",
+  "source_title": "اقتصادي / خادم الحرمين الشريفين يرأس جلسة مجلس الوزراء: King Abdullah chairs the budget session of the Council of Ministers (29 December 2012)",
+  "accessed_date": "2026-10-01",
+  "published_date": "2012-12-29",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/fa1e2efc0a",
+  "source_response_bytes": 4104,
+  "source_response_sha256": "ca5bb338e33ef826d684aaf5df5e69177d1fa30b317c604c3014e223e2991232",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "93f4a48a91a854ea87833a736898000530c6f34367580a9a69130f0b5cb43aa0",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T11:49:02Z and again at 2026-10-01T12:29:18Z, 40 minutes later (Cloudflare HIT and REVALIDATED); both identical (4104 bytes, SHA-256 ca5bb338e33ef826d684aaf5df5e69177d1fa30b317c604c3014e223e2991232).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/fa1e2efc0a loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Main item; it ends 'to follow' and its additions (the budget figures) were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_abdullah_pm_chairs_cabinet_20121229",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-02",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": "رأس جلسة مجلس الوزراء — chairing the Council of Ministers (رئيس مجلس الوزراء not printed)",
+      "event_kind": "session_chaired_by_king",
+      "attested_on": "2012-12-29",
+      "text": "SPA, date line Riyadh 16 Safar 1434 / 29 December 2012: 'أقر مجلس الوزراء ، في جلسته التي عقدها برئاسة خادم الحرمين الشريفين الملك عبدالله بن عبدالعزيز آل سعود ـ حفظه الله ـ ، اليوم السبت السادس عشر من شهر صفر 1434هـ الموافق للتاسع والعشرين من شهر ديسمبر 2012م' the state budget for 1434/1435 AH.",
+      "locator": "Date line; first paragraph; trailer 15:19 (Makkah time)",
+      "observed_name": "عبدالله بن عبدالعزيز آل سعود"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract.",
+  "review_correction": "Codex 1 October 2026: session chairing alone does not identify the Prime Minister. Retain quoted facts and observed names; these rows are institution events, not holder evidence. Original submitted extract remains at 8b1a3c975749087fc6ed4bf48c788386fdecfa39."
+}

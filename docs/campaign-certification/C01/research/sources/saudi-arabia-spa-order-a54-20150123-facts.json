@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a54_20150123",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/6b04b607bd",
+  "original_url": "https://www.spa.gov.sa/6b04b607bd",
+  "portal_metadata": {
+    "uuid": "6b04b607bd",
+    "locale": "ar",
+    "published_at_utc": "2015-01-23T10:27:40Z",
+    "date_hijri_field": "1436-04-03"
+  },
+  "title_as_published": "عام / مستقبلو واس إليكم إعادة مصححة لخبر رقم 39 وعنوانه / صدور ستة أوامر ملكية وبيان من الديوان الملكي إضافة ثانية / برجاء اعتمادها .",
+  "source_title": "عام / مستقبلو واس إليكم إعادة مصححة لخبر رقم 39 وعنوانه / صدور ستة أوامر ملكية وبيان من الديوان الملكي إضافة ثانية / برجاء اعتمادها .: Royal Order A/54 continuing the Council of Ministers under King Salman, corrected re-send (23 January 2015)",
+  "accessed_date": "2026-10-01",
+  "published_date": "2015-01-23",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/6b04b607bd",
+  "source_response_bytes": 2552,
+  "source_response_sha256": "d33161c5205bc7cb72aaaa7465fbf512cc54a40927e3f2779108b6aa3ec044ba",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "b55488866ee44408b8b433414439e6cdfb4f33907f65412a6097e548c4e8eff3",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T11:49:04Z and again at 2026-10-01T12:29:20Z, 40 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2552 bytes, SHA-256 d33161c5205bc7cb72aaaa7465fbf512cc54a40927e3f2779108b6aa3ec044ba).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/6b04b607bd loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "SPA's corrected re-send of the second addition (A/54); the first transmission (f93316b9c3) and the main item are not recorded. Items First and Third are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_salman_pm_order_a54_20150123",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-03",
+      "role_id": "sa_pm",
+      "holder_name": "Salman bin Abdulaziz Al Saud",
+      "printed_name": "سلمان بن عبدالعزيز آل سعود",
+      "role_title": "مجلس الوزراء برئاستنا — the Council of Ministers under the King's chairmanship (رئيس مجلس الوزراء not printed)",
+      "event_kind": "council_continued_by_royal_order",
+      "attested_on": "2015-01-23",
+      "text": "SPA's corrected re-send (إعادة مصححة) of the second addition to 'صدور ستة أوامر ملكية وبيان من الديوان الملكي', filed at 13:27 Makkah time on 23 January 2015: 'صدر اليوم أمر ملكي فيما يلي نصه', Royal Order A/54 dated 3/4/1436 AH, in the name of 'سلمان بن عبدالعزيز آل سعود ملك المملكة العربية السعودية': 'أولاً : يستمر جميع أعضاء مجلس الوزراء الحاليين في مناصبهم برئاستنا.'; item Third reads 'على رئيس مجلس الوزراء تنفيذ أمرنا هذا'.",
+      "locator": "Re-send header; order number and date; items First and Third; trailer 13:27 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+}

@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a194_20050801",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/42f7ef2039",
+  "original_url": "https://www.spa.gov.sa/42f7ef2039",
+  "portal_metadata": {
+    "uuid": "42f7ef2039",
+    "locale": "ar",
+    "published_at_utc": "2005-08-01T13:21:29Z",
+    "date_hijri_field": "1426-06-26"
+  },
+  "title_as_published": "سياسي / أمر ملكي",
+  "source_title": "سياسي / أمر ملكي: Royal Order A/194 continuing the Council of Ministers under King Abdullah (1 August 2005)",
+  "accessed_date": "2026-10-01",
+  "published_date": "2005-08-01",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/42f7ef2039",
+  "source_response_bytes": 2608,
+  "source_response_sha256": "4e0f481a0f5e762c06e468a407b012f2fa0729b8bb1bec7909df1fb606ecfb53",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "38df031f526274ab7b203a0b41b3d9476ae404d257cc6335b36aede82bf014db",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T11:48:57Z and again at 2026-10-01T12:29:12Z, 40 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2608 bytes, SHA-256 4e0f481a0f5e762c06e468a407b012f2fa0729b8bb1bec7909df1fb606ecfb53).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/42f7ef2039 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item. Only items First and Third of the order are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_abdullah_pm_order_a194_20050801",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-02",
+      "role_id": "sa_pm",
+      "holder_name": "Abdullah bin Abdulaziz Al Saud",
+      "printed_name": "عبدالله بن عبدالعزيز آل سعود",
+      "role_title": "مجلس الوزراء برئاستنا — the Council of Ministers under the King's chairmanship (رئيس مجلس الوزراء not printed)",
+      "event_kind": "council_continued_by_royal_order",
+      "attested_on": "2005-08-01",
+      "text": "SPA, date line Riyadh 26 Jumada II 1426 / 1 August 2005: a royal order 'صدر اليوم الاثنين', Royal Order A/194 dated 26/6/1426 AH, opens 'نحن عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and orders 'أولا .. يستمر جميع أعضاء مجلس الوزراء الحاليين في مناصبهم برئاستنا' (all current members of the Council of Ministers continue in their posts under our chairmanship); item Third reads 'على رئيس مجلس الوزراء تنفيذ أمرنا هذا'.",
+      "locator": "Date line; order number and date; preamble; items First and Third; trailer 1622 (16:22 Makkah time)"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+}

@@ -1,0 +1,18 @@
+{
+  "label": "workboard-check",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/planning/workboard.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi",
+  "head": "8b1a3c975749087fc6ed4bf48c788386fdecfa39",
+  "started_at": "2026-10-01T14:12:18.609636+00:00",
+  "finished_at": "2026-10-01T14:12:19.931473+00:00",
+  "exit_code": 0,
+  "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi-evidence\\workboard-check.log",
+  "log_sha256": "cf7a708deb40945f526e1a9158df99c0ea8115617d47c436b54032de8bebf16e"
+}

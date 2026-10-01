@@ -1,0 +1,32 @@
+...F....F
+======================================================================
+FAIL: test_meeting_only_claims_cannot_identify_prime_minister (test_saudi_prime_ministers_c01_50.SaudiPrimeMinistersTests.test_meeting_only_claims_cannot_identify_prime_minister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\saudi\tools\avatars\test_saudi_prime_ministers_c01_50.py", line 328, in test_meeting_only_claims_cannot_identify_prime_minister
+    self.assertFalse(used & meeting_only)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'sa_fahd_pm_chairs_cabinet_19960304', 'sa_abdullah_pm_chairs_cabinet_20121229', 'sa_fahd_pm_chairs_cabinet_20050425'} is not false
+
+======================================================================
+FAIL: test_standing_council_orders_and_explicit_titles_remain_holder_evidence (test_saudi_prime_ministers_c01_50.SaudiPrimeMinistersTests.test_standing_council_orders_and_explicit_titles_remain_holder_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\saudi\tools\avatars\test_saudi_prime_ministers_c01_50.py", line 350, in test_standing_council_orders_and_explicit_titles_remain_holder_evidence
+    self.assertEqual((fahd['attested_on'], fahd['claim_ids']),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     ('2004-10-03', ['sa_fahd_pm_styled_20041003']))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('1996-03-04', ['sa_fahd_pm_chairs_cabinet_19960304']) != ('2004-10-03', ['sa_fahd_pm_styled_20041003'])
+
+First differing element 0:
+'1996-03-04'
+'2004-10-03'
+
+- ('1996-03-04', ['sa_fahd_pm_chairs_cabinet_19960304'])
++ ('2004-10-03', ['sa_fahd_pm_styled_20041003'])
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.191s
+
+FAILED (failures=2)

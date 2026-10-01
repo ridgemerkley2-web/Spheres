@@ -3669,6 +3669,432 @@
         "sha256": "f3052ca77875cb6724efbc395f65c0b93d9d6f1e98039a83548534e3aa8510d1",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "sa_embassy_fahd_cabinet_19960305",
+      "title": "Council of Ministers Meeting (March 5, 1996), Royal Embassy March 1996 page, Internet Archive capture 20000930104631",
+      "url": "https://web.archive.org/web/20000930104631id_/http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+      "original_url": "http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+      "publisher": "Royal Embassy of Saudi Arabia, Washington, Information Office (saudiembassy.net)",
+      "accessed_date": "2026-10-01",
+      "published_date": "1996-03-05",
+      "source_type": "primary_official_government_news_release",
+      "access_method": "internet_archive_raw_capture",
+      "claims": [
+        {
+          "id": "sa_fahd_pm_chairs_cabinet_19960304",
+          "text": "Release dated March 5, 1996 on the Royal Embassy's March 1996 page: 'Custodian of the Two Holy Mosques King Fahd Bin Abdul Aziz, chairing the regular weekly session of the Council of Ministers yesterday, extended congratulations to Kuwait'.",
+          "attested_on": "1996-03-04",
+          "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 5, 1996, first sentence",
+          "uncertainty": "'Yesterday' resolves from the March 5, 1996 date line to 4 March 1996. An English release of the Royal Embassy, not an Arabic Council record: it styles him King and does not print the title Prime Minister (رئيس مجلس الوزراء). No Saudi record for 1990-1995 was found in this bounded search; no start of the office is established. Codex review: this source attests a session chaired by the named King, without independently identifying him as Prime Minister; retain the event as an institution claim only."
+        },
+        {
+          "id": "sa_abdullah_deputy_chairs_cabinet_19960311",
+          "text": "Release dated March 11, 1996 on the same page: 'Crown Prince Abdullah Bin Abdul Aziz, Deputy Prime Minister and Commander of the National Guard, chairing the regular weekly meeting of the Council of Ministers today'.",
+          "attested_on": "1996-03-11",
+          "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 11, 1996, first sentence",
+          "uncertainty": "A session chaired by the Deputy Prime Minister: deputy chairing, a claim only, never a Prime Minister observation of the Crown Prince and never a boundary of King Fahd's observations. 'Today' resolves from the date line to 11 March 1996. The release does not say why or on whose behalf he chaired."
+        }
+      ],
+      "scope_note": "The Royal Embassy of Saudi Arabia in Washington (Information Office) filed its March 1996 releases on one page under press_release/96_spa/; an official Saudi government publication in English. Only the March 5 and March 11 cabinet items are imported; the page's other items, including King Fahd presiding on 18 March (release of March 19) and the Crown Prince chairing on 25 March, are leads.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-fahd-cabinet-19960305-facts.json",
+        "bytes": 4829,
+        "sha256": "1e673b04d2b3891aface885ef86870555d13ce3d81c775bf80fbcdb9a8f5e032",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_fahd_pm_styled_20041003",
+      "title": "عام / مجلس الخدمة العسكرية / اجتماع: the Military Service Council meets at the direction of King Fahd, styled Prime Minister (3 October 2004)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/8329c804c8",
+      "original_url": "https://www.spa.gov.sa/8329c804c8",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2004-10-03",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_fahd_pm_styled_20041003",
+          "text": "SPA, date line Riyadh 19 Sha'ban 1425 / 3 October 2004 (الرياض 19 شعبان 1425ه- الموافق 3 أكتوبر 2004م): 'بناء على توجيه خادم الحرمين الشريفين الملك فهد بن عبدالعزيز رئيس مجلس الوزراء القائد الأعلى لكافة القوات العسكرية ورئيس مجلس الخدمة العسكرية' the Crown Prince chaired the Military Service Council meeting held 'اليوم الأحد' (today, Sunday).",
+          "attested_on": "2004-10-03",
+          "locator": "Date line; first paragraph; trailer 1706 (17:06 Makkah time)",
+          "uncertainty": "SPA's own narrative styling of King Fahd as Prime Minister, in the report of a Military Service Council meeting rather than a Council of Ministers session. A point observation: it states no start of the office. The Crown Prince's chairing of the Military Service Council belongs to another council and is not a Prime Minister claim."
+        }
+      ],
+      "scope_note": "A complete item (it ends // انتهى //); only its first paragraph is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-pm-styled-20041003-facts.json",
+        "bytes": 4328,
+        "sha256": "f0052e54d385a16c6e0672518c3e5c260db4f8402272a87c49128403e1f1c60e",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_fahd_cabinet_20050425",
+      "title": "سياسي / خادم الحرمين الشريفين يرأس جلسة مجلس الوزراء: King Fahd chairs the Council of Ministers (25 April 2005)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/1a5c9ddb18",
+      "original_url": "https://www.spa.gov.sa/1a5c9ddb18",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2005-04-25",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_fahd_pm_chairs_cabinet_20050425",
+          "text": "SPA, date line Riyadh 16 Rabi al-Awwal 1426 / 25 April 2005 (الرياض 16 ربيع الأول 1426هـ- الموافق 25 إبريل 2005م): 'رأس خادم الحرمين الشريفين الملك فهد بن عبدالعزيز آل سعود حفظه الله الجلسة التي عقدها مجلس الوزراء بعد ظهر اليوم الاثنين في قصر اليمامة في مدينة الرياض'.",
+          "attested_on": "2005-04-25",
+          "locator": "Date line; first paragraph; trailer 1640 (16:40 Makkah time)",
+          "uncertainty": "The last session chaired by King Fahd found on the SPA portal; the Crown Prince chaired the sessions of 16 May to 25 July 2005 (leads). A point observation, never an end: the Royal Court's announcement of his death on 1 August 2005 (CLAUDE-C01-06) states no day of death and does not name the Council, so until stays null. Codex review: this source attests a session chaired by the named King, without independently identifying him as Prime Minister; retain the event as an institution claim only."
+        }
+      ],
+      "scope_note": "Main item; it ends 'to follow' (// يتبع //) and its additions were not read.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-cabinet-20050425-facts.json",
+        "bytes": 4637,
+        "sha256": "78ef4b9b5bb6556250541fe2672fe99c571f09b25b157dba098cc06a074a148a",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a194_20050801",
+      "title": "سياسي / أمر ملكي: Royal Order A/194 continuing the Council of Ministers under King Abdullah (1 August 2005)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/42f7ef2039",
+      "original_url": "https://www.spa.gov.sa/42f7ef2039",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2005-08-01",
+      "source_type": "primary_royal_order_text",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_abdullah_pm_order_a194_20050801",
+          "text": "SPA, date line Riyadh 26 Jumada II 1426 / 1 August 2005: a royal order 'صدر اليوم الاثنين', Royal Order A/194 dated 26/6/1426 AH, opens 'نحن عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and orders 'أولا .. يستمر جميع أعضاء مجلس الوزراء الحاليين في مناصبهم برئاستنا' (all current members of the Council of Ministers continue in their posts under our chairmanship); item Third reads 'على رئيس مجلس الوزراء تنفيذ أمرنا هذا'.",
+          "attested_on": "2005-08-01",
+          "locator": "Date line; order number and date; preamble; items First and Third; trailer 1622 (16:22 Makkah time)",
+          "uncertainty": "The order states no effective day, so it gives attested_on only; 'issued today' is the day of issue, not an effective boundary. It never dates the end of King Fahd's chairing. Item Third addresses the Prime Minister without a name. Item Second (Sultan bin Abdulaziz appointed Deputy Prime Minister) concerns another office and is not imported."
+        }
+      ],
+      "scope_note": "A complete item. Only items First and Third of the order are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a194-20050801-facts.json",
+        "bytes": 4511,
+        "sha256": "5a2c25f12a0fd21a74929b87cc3113955645ff1820628fad3e5209c2c015ab2c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a29_20070322",
+      "title": "عام / صدور ثلاثة أوامر ملكية: Royal Order A/29 reconstituting the Council of Ministers (22 March 2007)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/eb5f56fa80",
+      "original_url": "https://www.spa.gov.sa/eb5f56fa80",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2007-03-22",
+      "source_type": "primary_royal_order_text",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_abdullah_pm_order_a29_20070322",
+          "text": "SPA, date line Riyadh 3 Rabi al-Awwal 1428 / 22 March 2007: three royal orders 'صدرت اليوم الخميس'; Royal Order A/29 dated 3/3/1428 AH, in the name of 'عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and citing A/3 of 28/2/1424 AH and A/194 of 26/6/1426 AH, orders 'أولا : إعادة تشكيل مجلس الوزراء برئاستنا مع استمرار جميع أعضاء المجلس الحاليين في مناصبهم' and 'ثانيا : يعمل بهذا الأمر من تاريخه'.",
+          "attested_on": "2007-03-22",
+          "locator": "Date line; Royal Order A/29, number, date, recitals and items First and Second; trailer 1800 (18:00 Makkah time)",
+          "uncertainty": "Item Second makes the reconstitution effective from the order's date (3/3/1428 AH, 22 March 2007). That is the effective day of a reconstituted Council whose chairman was already attested on 1 August 2005, not the start of his office, so it is an observation and never a from. The recital's A/3 of 28/2/1424 AH (2003) was not found."
+        }
+      ],
+      "scope_note": "Main item, carrying Royal Order A/29 only; it ends 'to follow' and the other two orders of the day were not read.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a29-20070322-facts.json",
+        "bytes": 4581,
+        "sha256": "ce4762491334581243ebcad353e60f35df55b21d7e52a1f93df98fb1125336fe",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_abdullah_cabinet_20121229",
+      "title": "اقتصادي / خادم الحرمين الشريفين يرأس جلسة مجلس الوزراء: King Abdullah chairs the budget session of the Council of Ministers (29 December 2012)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/fa1e2efc0a",
+      "original_url": "https://www.spa.gov.sa/fa1e2efc0a",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2012-12-29",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_abdullah_pm_chairs_cabinet_20121229",
+          "text": "SPA, date line Riyadh 16 Safar 1434 / 29 December 2012: 'أقر مجلس الوزراء ، في جلسته التي عقدها برئاسة خادم الحرمين الشريفين الملك عبدالله بن عبدالعزيز آل سعود ـ حفظه الله ـ ، اليوم السبت السادس عشر من شهر صفر 1434هـ الموافق للتاسع والعشرين من شهر ديسمبر 2012م' the state budget for 1434/1435 AH.",
+          "attested_on": "2012-12-29",
+          "locator": "Date line; first paragraph; trailer 15:19 (Makkah time)",
+          "uncertainty": "A point observation; it does not print the title رئيس مجلس الوزراء. The 2014 sessions found were chaired by the Crown Prince as the King's deputy (leads). Never an end: the Royal Court statement of 23 January 2015 (CLAUDE-C01-06) gives his day of death but names him King, not Prime Minister, so until stays null on sa_pm. Codex review: this source attests a session chaired by the named King, without independently identifying him as Prime Minister; retain the event as an institution claim only."
+        }
+      ],
+      "scope_note": "Main item; it ends 'to follow' and its additions (the budget figures) were not read.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-cabinet-20121229-facts.json",
+        "bytes": 4713,
+        "sha256": "9f9a73fe21d9cfc83c10acc0c103957daf512450dbf75930e3d52afa13a37da2",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a54_20150123",
+      "title": "عام / مستقبلو واس إليكم إعادة مصححة لخبر رقم 39 وعنوانه / صدور ستة أوامر ملكية وبيان من الديوان الملكي إضافة ثانية / برجاء اعتمادها .: Royal Order A/54 continuing the Council of Ministers under King Salman, corrected re-send (23 January 2015)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/6b04b607bd",
+      "original_url": "https://www.spa.gov.sa/6b04b607bd",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2015-01-23",
+      "source_type": "primary_royal_order_text",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_salman_pm_order_a54_20150123",
+          "text": "SPA's corrected re-send (إعادة مصححة) of the second addition to 'صدور ستة أوامر ملكية وبيان من الديوان الملكي', filed at 13:27 Makkah time on 23 January 2015: 'صدر اليوم أمر ملكي فيما يلي نصه', Royal Order A/54 dated 3/4/1436 AH, in the name of 'سلمان بن عبدالعزيز آل سعود ملك المملكة العربية السعودية': 'أولاً : يستمر جميع أعضاء مجلس الوزراء الحاليين في مناصبهم برئاستنا.'; item Third reads 'على رئيس مجلس الوزراء تنفيذ أمرنا هذا'.",
+          "attested_on": "2015-01-23",
+          "locator": "Re-send header; order number and date; items First and Third; trailer 13:27 (Makkah time)",
+          "uncertainty": "The order states no effective day, so it gives attested_on only; 3/4/1436 AH is 23 January 2015 in the Royal Court statement of that day (CLAUDE-C01-06). It never ends King Abdullah's observations. SPA's first transmission of the same addition (f93316b9c3, 12:13 Makkah time) repeats one recital with a wrong date (أ/13 بتاريخ 27/8/1412هـ); the corrected re-send is recorded. Item Second (Muqrin bin Abdulaziz appointed Deputy Prime Minister) is another office and is not imported."
+        }
+      ],
+      "scope_note": "SPA's corrected re-send of the second addition (A/54); the first transmission (f93316b9c3) and the main item are not recorded. Items First and Third are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a54-20150123-facts.json",
+        "bytes": 5065,
+        "sha256": "9742765bd272bf9aaeca10594e0522063521ffa14cc8fbdbca15ab94caaf7280",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a68_20150129",
+      "title": "عام / صدور أوامر ملكية إضافة أولى: Royal Order A/68 reconstituting the Council of Ministers (29 January 2015)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/650a107137",
+      "original_url": "https://www.spa.gov.sa/650a107137",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2015-01-29",
+      "source_type": "primary_royal_order_text",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_salman_pm_order_a68_20150129",
+          "text": "SPA, first addition (إضافة أولى) to 'صدور أوامر ملكية', filed at 22:26 Makkah time on 29 January 2015: Royal Order A/68 dated 9/4/1436 AH, in the name of 'سلمان بن عبدالعزيز آل سعود ملك المملكة العربية السعودية', orders 'أولاً : إعادة تشكيل مجلس الوزراء برئاستنا على النحو التالي', listing first 'صاحب السمو الملكي الأمير مقرن بن عبدالعزيز آل سعود ولي العهد نائباً لرئيس مجلس الوزراء'.",
+          "attested_on": "2015-01-29",
+          "locator": "Royal Order A/68, number, date, item First and member 1; trailer 22:26 (Makkah time)",
+          "uncertainty": "An addition without its own date line: the order is dated 9/4/1436 AH only, and 29 January 2015 is the portal's filing day (published_at 2015-01-29T19:27:59Z; date_hijri field 1436-04-09). The part read ends 'to follow' (// يتبع //) and states no effective day. The Deputy Prime Ministers listed hold other offices."
+        }
+      ],
+      "scope_note": "First addition, carrying Royal Order A/68 to member 13; it ends 'to follow'. The main item (84075314e3) and later additions were not read.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a68-20150129-facts.json",
+        "bytes": 4593,
+        "sha256": "6d57e0565573b07253f9a6072e5511b0682967faece938960cb14f4493e54b87",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a138_20181227",
+      "title": "عام / صدور عدد من الأوامر الملكية الكريمة: Royal Order A/138 reconstituting the Council of Ministers (27 December 2018)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/0e38d85496",
+      "original_url": "https://www.spa.gov.sa/0e38d85496",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2018-12-27",
+      "source_type": "primary_royal_order_text",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_salman_pm_order_a138_20181227",
+          "text": "SPA, date line Riyadh 20 Rabi al-Akhir 1440 / 27 December 2018: royal orders 'صدر اليوم'; Royal Order A/138 dated 20/4/1440 AH, citing A/68 of 9/4/1436 AH 'الصادر بإعادة تشكيل مجلس الوزراء', orders 'أولاً : إعادة تشكيل مجلس الوزراء برئاستنا على النحو التالي', listing first 'صاحب السمو الملكي الأمير/ محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد نائباً لرئيس مجلس الوزراء ووزيراً للدفاع'; it is signed 'سلمان بن عبدالعزيز آل سعود'.",
+          "attested_on": "2018-12-27",
+          "locator": "Date line; Royal Order A/138, number, date, recital, item First, member 1 and signature",
+          "uncertainty": "No effective day is stated (item Second directs notification only). The Crown Prince is listed as Deputy Prime Minister, another office. The release's other orders are not imported."
+        }
+      ],
+      "scope_note": "A complete item of many royal orders; only Royal Order A/138 is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a138-20181227-facts.json",
+        "bytes": 4617,
+        "sha256": "4ce2cf1f1693b6eb0c32067643ca02d519a7a4a7fafbbaf40bc78d83c0672c65",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_salman_cabinet_20220517",
+      "title": "عام / مجلس الوزراء يعقد جلسته ـ عبر الاتصال المرئي ـ برئاسة خادم الحرمين الشريفين: the Council of Ministers meets under King Salman, styled Prime Minister (17 May 2022)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/c47ecba7f9",
+      "original_url": "https://www.spa.gov.sa/c47ecba7f9",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2022-05-17",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_salman_pm_chairs_cabinet_20220517",
+          "text": "SPA, date line Jeddah 16 Shawwal 1443 / 17 May 2022: 'عقد مجلس الوزراء جلسته اليوم الثلاثاء ـ عبر الاتصال المرئي ـ، برئاسة خادم الحرمين الشريفين الملك سلمان بن عبدالعزيز آل سعود رئيس مجلس الوزراء،حفظه الله.'",
+          "attested_on": "2022-05-17",
+          "locator": "Date line; first paragraph; trailer 16:08 (Makkah time)",
+          "uncertainty": "A Council of Ministers session statement that styles the King Prime Minister; a point observation. Never an end: the royal order of 27 September 2022 makes the Crown Prince Prime Minister and states no end of the King's premiership, so until stays null."
+        }
+      ],
+      "scope_note": "A complete item; only its first paragraph is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-salman-cabinet-20220517-facts.json",
+        "bytes": 4314,
+        "sha256": "938f303841e76c3ba64440c1d2cc6c97b3035a76b99ade9235cd00bc1bd349cb",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a61_20220927",
+      "title": "سياسي / صدور ثلاثة أوامر ملكية: Royal Orders A/61 to A/63, the Crown Prince made Prime Minister (27 September 2022)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/d4d4490e5e",
+      "original_url": "https://www.spa.gov.sa/d4d4490e5e",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2022-09-27",
+      "source_type": "primary_royal_order_text",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_mbs_pm_order_a61_20220927",
+          "text": "SPA, date line Jeddah 1 Rabi al-Awwal 1444 / 27 September 2022: three royal orders 'صدرت اليوم'; Royal Order A/61 dated 1/3/1444 AH: 'أولاً : يكون صاحب السمو الملكي الأمير / محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء ؛ استثناءً من حكم المادة (السادسة والخمسين) من النظام الأساسي للحكم، ومن الأحكام ذوات الصلة الواردة في نظام مجلس الوزراء.'; item Third: 'يبلغ أمرنا هذا للجهات المختصة لاعتماده وتنفيذه'.",
+          "attested_on": "2022-09-27",
+          "locator": "Date line; Royal Order A/61, number, date, items First and Third; trailer 20:16 (Makkah time)",
+          "uncertainty": "The order states no effective day (item Third only directs notification), so from is null and attested_on is the order's day under Codex's C01-37 rule. It states no end of King Salman's premiership, and none is inferred."
+        },
+        {
+          "id": "sa_king_chair_reservation_a61_20220927",
+          "text": "The same order, item Second: 'ثانياً : تكون جلسات مجلس الوزراء التي نحضرها برئاستنا.' (sessions of the Council of Ministers that we attend are under our chairmanship).",
+          "attested_on": "2022-09-27",
+          "locator": "Royal Order A/61, item Second",
+          "uncertainty": "A standing reservation of chairing to the King, a claim only: a session the King chairs after this order is neither a Prime Minister observation of the King nor an end of the Crown Prince's premiership. It restates in Arabic the CLAUDE-C01-06 claim sa_king_cabinet_chair_exception, which is unchanged."
+        },
+        {
+          "id": "sa_mbs_pm_order_a62_20220927",
+          "text": "The same release, Royal Order A/62 dated 1/3/1444 AH, citing A/138 of 20/4/1440 AH and A/61: 'أولاً : إعادة تشكيل مجلس الوزراء على النحو التالي : 1ـ صاحب السمو الملكي الأمير / محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء.'",
+          "attested_on": "2022-09-27",
+          "locator": "Royal Order A/62, number, date, recitals, item First and member 1",
+          "uncertainty": "A second order of the same day, stating no effective day (item Second directs notification only): an observation on the appointment day, not a separate start. The other 34 members are not imported."
+        }
+      ],
+      "scope_note": "A complete item with Royal Orders A/61, A/62 and A/63; A/63 (an assistant minister) is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a61-20220927-facts.json",
+        "bytes": 6114,
+        "sha256": "3f4be3c5a690dc24ae1d63a02ed4f9c9ec2bcec5ec934c6c8c0786f1e72d04c5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_king_cabinet_20220927",
+      "title": "سياسي / خادم الحرمين الشريفين يرأس جلسة مجلس الوزراء: King Salman chairs the Council of Ministers (27 September 2022)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/5ce6c92174",
+      "original_url": "https://www.spa.gov.sa/5ce6c92174",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2022-09-27",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_king_chairs_cabinet_20220927",
+          "text": "SPA, date line Jeddah 01 Rabi al-Awwal 1444 / 27 September 2022: 'رأس خادم الحرمين الشريفين، الملك سلمان بن عبد العزيز آل سعود - حفظه الله ، الجلسة التي عقدها مجلس الوزراء، اليوم الثلاثاء، في قصر السلام بجدة.'",
+          "attested_on": "2022-09-27",
+          "locator": "Date line; first paragraph; trailer 22:50 (Makkah time)",
+          "uncertainty": "Filed after the same day's orders (20:16 Makkah time), but the item does not say whether the session sat before or after them, and it does not style the King Prime Minister. A claim only: neither a Prime Minister observation of the King nor an end of either premiership. Later sessions chaired by the King (to 25 August 2026) are leads, read with A/61 item Second."
+        }
+      ],
+      "scope_note": "A complete item; only its first paragraph is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-king-cabinet-20220927-facts.json",
+        "bytes": 4023,
+        "sha256": "83917a0e639368b0b90dc192a284cf1653eeb85b211ffd62cfa78a0603870551",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_uqn_order_a61_20221007",
+      "title": "يكون ولي العهد الأمير محمد بن سلمان رئيساً لمجلس الوزراء, Umm al-Qura website (royal orders, 7 October 2022), Internet Archive capture 20250429135455",
+      "url": "https://web.archive.org/web/20250429135455id_/https://www.uqn.gov.sa/details?p=20294",
+      "original_url": "https://www.uqn.gov.sa/details?p=20294",
+      "publisher": "Umm al-Qura (official gazette website)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2022-10-07",
+      "source_type": "primary_official_gazette_website_text",
+      "access_method": "internet_archive_raw_capture",
+      "claims": [
+        {
+          "id": "sa_uqn_a61_published_20221007",
+          "text": "Umm al-Qura's page 'يكون ولي العهد الأمير محمد بن سلمان رئيساً لمجلس الوزراء', dated '1444-3-11 الموافق 2022-10-07', prints 'أمر ملكي رقم (أ/61) وتاريخ 01 /03/ 1444هـ' with items First to Third as in the SPA text, item First naming 'محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء'.",
+          "attested_on": "2022-10-07",
+          "locator": "Headline; item date; order number and date; items First to Third",
+          "uncertainty": "The gazette website's text of the order, ten days after it was issued. A publication date is never an effective boundary and the page adds no event, so it is never holder evidence. The capture also prints the day it was made (29 April 2025); no issue number or page is printed."
+        }
+      ],
+      "scope_note": "A pre-cutoff raw capture of the Umm al-Qura website's royal-orders page for A/61, recorded instead of the live page, whose responses embed a request time and a CSRF token. Not a scanned gazette issue; no issue number or page is printed, and the page credits no agency.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-uqn-order-a61-20221007-facts.json",
+        "bytes": 3792,
+        "sha256": "1d13e0d8a6f00760f1fe88779da44a4a908c49c51e62cadc71079262f34ab59c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_mbs_cabinet_20221025",
+      "title": "سياسي / سمو ولي العهد يرأس جلسة مجلس الوزراء: the Crown Prince and Prime Minister chairs the Council of Ministers (25 October 2022)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/f64ac0108eh",
+      "original_url": "https://www.spa.gov.sa/f64ac0108eh",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2022-10-25",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_mbs_pm_chairs_cabinet_20221025",
+          "text": "SPA, date line Riyadh 29 Rabi al-Awwal 1444 / 25 October 2022: 'رأس صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيس مجلس الوزراء ــ حفظه الله ـ، الجلسة التي عقدها مجلس الوزراء، اليوم الثلاثاء، في قصر اليمامة بمدينة الرياض.'",
+          "attested_on": "2022-10-25",
+          "locator": "Date line; first paragraph; trailer 20:40 (Makkah time)",
+          "uncertainty": "The first session found chaired by the Crown Prince as Prime Minister after 27 September 2022 (SPA titles show the King chairing on 27 September and 4, 11 and 18 October). A point observation."
+        }
+      ],
+      "scope_note": "A complete item; only its first paragraph is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbs-cabinet-20221025-facts.json",
+        "bytes": 4264,
+        "sha256": "39fee479215cee65549081bc4fae5b7c2c2bceaff6c111d4a65c79166d73c9ed",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_mbs_cabinet_20260616",
+      "title": "سياسي / سمو ولي العهد يرأس جلسة مجلس الوزراء في جدة: the Crown Prince and Prime Minister chairs the Council of Ministers in Jeddah (16 June 2026)",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2613923",
+      "original_url": "https://www.spa.gov.sa/N2613923",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-10-01",
+      "published_date": "2026-06-16",
+      "source_type": "primary_official_news_release",
+      "access_method": "spa_portal_news_api_json",
+      "claims": [
+        {
+          "id": "sa_mbs_pm_chairs_cabinet_20260616",
+          "text": "SPA, date line Jeddah 01 Muharram 1448 / 16 June 2026: 'رأس صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيس مجلس الوزراء -حفظه الله-، الجلسة التي عقدها مجلس الوزراء اليوم في جدة.'",
+          "attested_on": "2026-06-16",
+          "locator": "Date line; first paragraph; trailer 20:06 (Makkah time)",
+          "uncertainty": "A point observation 83 days before the cutoff; continuity to 7 September 2026 is not established. The later royal order of 13 August 2026 reconstituting the Council under his chairmanship is recorded by CLAUDE-C01-06 from SPA's English release (sa_mbs_cp_pm_obs_20260813, unchanged); its Arabic original (N2653088) stays a lead, as CLAUDE-C01-06 pins it."
+        }
+      ],
+      "scope_note": "A complete item; only its first paragraph is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbs-cabinet-20260616-facts.json",
+        "bytes": 4196,
+        "sha256": "2729de125ce4327372289a4973aebfa74de709b674d466a84f222cb3a553918b",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -4261,30 +4687,128 @@
           "sources": [
             "sa_basic_law_boe",
             "sa_spa_pm_2022",
-            "sa_spa_orders_20260813"
+            "sa_spa_orders_20260813",
+            "sa_spa_fahd_pm_styled_20041003",
+            "sa_spa_order_a194_20050801",
+            "sa_spa_order_a29_20070322",
+            "sa_spa_order_a54_20150123",
+            "sa_spa_order_a68_20150129",
+            "sa_spa_order_a138_20181227",
+            "sa_spa_salman_cabinet_20220517",
+            "sa_spa_order_a61_20220927",
+            "sa_spa_mbs_cabinet_20221025",
+            "sa_spa_mbs_cabinet_20260616"
           ],
           "claim_ids": [
             "sa_basic_pm_rule",
             "sa_king_cabinet_chair_exception",
             "sa_mbs_pm_appointment",
-            "sa_mbs_cp_pm_obs_20260813"
+            "sa_mbs_cp_pm_obs_20260813",
+            "sa_fahd_pm_styled_20041003",
+            "sa_abdullah_pm_order_a194_20050801",
+            "sa_abdullah_pm_order_a29_20070322",
+            "sa_salman_pm_order_a54_20150123",
+            "sa_salman_pm_order_a68_20150129",
+            "sa_salman_pm_order_a138_20181227",
+            "sa_salman_pm_chairs_cabinet_20220517",
+            "sa_mbs_pm_order_a61_20220927",
+            "sa_mbs_pm_order_a62_20220927",
+            "sa_mbs_pm_chairs_cabinet_20221025",
+            "sa_mbs_pm_chairs_cabinet_20260616"
           ],
           "holder_claims": [
             "sa_mbs_pm_appointment",
-            "sa_mbs_cp_pm_obs_20260813"
-          ]
+            "sa_mbs_cp_pm_obs_20260813",
+            {
+              "name": "Fahd bin Abdulaziz Al Saud",
+              "attested_on": "2004-10-03",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_fahd_pm_styled_20041003"
+              ],
+              "claim_ids": [
+                "sa_fahd_pm_styled_20041003"
+              ],
+              "note": "SPA explicitly styles King Fahd 'رئيس مجلس الوزراء' in its Military Service Council report of 3 October 2004 (SA-PM-01). The 1996 and 2005 session-chairing facts remain institution claims only.",
+              "uncertainty": "No Saudi record for 1990-1995, accession or Council formation order of his was read, so from is null; the death announcement of 1 August 2005 states no day and does not name the office, so until is null. Session chairing without independent office identification does not establish a Prime Minister observation. Continuity is not established."
+            },
+            {
+              "name": "Abdullah bin Abdulaziz Al Saud",
+              "attested_on": "2005-08-01",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_order_a194_20050801"
+              ],
+              "claim_ids": [
+                "sa_abdullah_pm_order_a194_20050801"
+              ],
+              "note": "Royal Order A/194 of 26/6/1426 AH (SPA, 1 August 2005) continues all members of the Council of Ministers 'برئاستنا' (SA-PM-02). He reconstituted the Council under his chairmanship by A/29 (22 March 2007, effective from its date). The 29 December 2012 budget-session chairing is retained as an institution event only.",
+              "uncertainty": "A/194 states no effective day, so from is null and attested_on is the order's day. The 2007 effective day belongs to the reconstituted Council, not to his office. The Royal Court statement of 23 January 2015 gives his day of death styled King, not Prime Minister, so under the death-notice ruling until is null on sa_pm; continuity between observations is not established."
+            },
+            "sa_abdullah_pm_order_a29_20070322",
+            {
+              "name": "Salman bin Abdulaziz Al Saud",
+              "attested_on": "2015-01-23",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_order_a54_20150123"
+              ],
+              "claim_ids": [
+                "sa_salman_pm_order_a54_20150123"
+              ],
+              "note": "Royal Order A/54 of 3/4/1436 AH (SPA, 23 January 2015) continues all members of the Council of Ministers 'برئاستنا' (SA-PM-03). He reconstituted the Council under his chairmanship by A/68 (29 January 2015) and A/138 (27 December 2018), and SPA styles him 'رئيس مجلس الوزراء' chairing the session of 17 May 2022.",
+              "uncertainty": "No effective day is stated, so from is null. Royal Order A/61 of 27 September 2022 makes the Crown Prince Prime Minister by exception to Article 56 and states no end for the King, so until is null and is never taken from the successor's appointment. After that order the King chairs only sessions he attends (A/61 item Second); those sessions are claims, not observations here."
+            },
+            "sa_salman_pm_order_a68_20150129",
+            "sa_salman_pm_order_a138_20181227",
+            "sa_salman_pm_chairs_cabinet_20220517",
+            {
+              "name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+              "attested_on": "2022-09-27",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_order_a61_20220927"
+              ],
+              "claim_ids": [
+                "sa_mbs_pm_order_a61_20220927"
+              ],
+              "note": "Made Prime Minister by item First of Royal Order A/61 of 1/3/1444 AH (SPA, 27 September 2022), 'استثناءً من حكم المادة (السادسة والخمسين)' (SA-PM-04). Listed first as Prime Minister in A/62 the same day, styled 'ولي العهد رئيس مجلس الوزراء' chairing on 25 October 2022 and again on 16 June 2026.",
+              "uncertainty": "The order states no effective day, so from is null under Codex's C01-37 rule and attested_on is the order's day; Umm al-Qura's text of 7 October 2022 is a publication, not a start. No end is stated, so until is null; continuity to 7 September 2026 is not established."
+            },
+            "sa_mbs_pm_order_a62_20220927",
+            "sa_mbs_pm_chairs_cabinet_20221025",
+            "sa_mbs_pm_chairs_cabinet_20260616"
+          ],
+          "scope_note": "CLAUDE-C01-50. Four holders identified by explicit Prime Minister styling or by operative royal orders continuing or reconstituting the whole Council under the named King's standing chairmanship ('برئاستنا'). These orders identify the institutional head, distinct from chairing one session; no holder is inferred from Article 56, which stays procedure. Royal orders give attested_on only, as none states the effective day of a premiership. The three meeting-only claims for Fahd (1996, 2005) and Abdullah (2012), deputy chairing, the King's 2022 chair reservation, a King-chaired session that day and gazette publication stay institution claims, never holder evidence. Fahd is anchored by explicit PM styling on 3 October 2004. The two CLAUDE-C01-06 entries stay first, unchanged."
         }
       ],
       "sources": [
         "sa_basic_law_boe",
         "sa_spa_pm_2022",
-        "sa_spa_orders_20260813"
+        "sa_spa_orders_20260813",
+        "sa_embassy_fahd_cabinet_19960305",
+        "sa_spa_fahd_cabinet_20050425",
+        "sa_spa_abdullah_cabinet_20121229",
+        "sa_spa_order_a61_20220927",
+        "sa_spa_king_cabinet_20220927",
+        "sa_uqn_order_a61_20221007"
       ],
       "claim_ids": [
         "sa_basic_pm_rule",
         "sa_mbs_pm_appointment",
         "sa_king_cabinet_chair_exception",
-        "sa_mbs_cp_pm_obs_20260813"
+        "sa_mbs_cp_pm_obs_20260813",
+        "sa_fahd_pm_chairs_cabinet_19960304",
+        "sa_abdullah_deputy_chairs_cabinet_19960311",
+        "sa_fahd_pm_chairs_cabinet_20050425",
+        "sa_abdullah_pm_chairs_cabinet_20121229",
+        "sa_king_chair_reservation_a61_20220927",
+        "sa_king_chairs_cabinet_20220927",
+        "sa_uqn_a61_published_20221007"
       ],
       "coverage": {
         "status": "partial",
@@ -4297,7 +4821,10 @@
           "Preserve the specific 27 September 2022 exception and the King's conditional Cabinet chairing; do not copy the Basic Law's default over it.",
           "Independently verify later appointments and office observations through cutoff.",
           "SA-EXEC-08: before 27 September 2022 the crown princes were styled or appointed Deputy Prime Minister (2005 styling; 2011, 2012, 2015 and 2017 orders). No King is added as a Prime Minister holder by inference from Article 56, whose text here rests on a search-index read.",
-          "Mohammed bin Salman is styled Prime Minister on 13 August 2026; continuity since the 27 September 2022 appointment is not established."
+          "Mohammed bin Salman is styled Prime Minister on 13 August 2026; continuity since the 27 September 2022 appointment is not established.",
+          "CLAUDE-C01-50 (SA-PM-01 to 04): sa_pm now has four holders anchored on Saudi records, not on Article 56: Fahd bin Abdulaziz (attested 2004-10-03), Abdullah bin Abdulaziz (2005-08-01), Salman bin Abdulaziz (2015-01-23) and Mohammed bin Salman (2022-09-27). None has a stated from or until: no order states the effective day of a premiership, the death announcements name the King rather than the Prime Minister, and an end is never taken from a successor's order.",
+          "CLAUDE-C01-50: no Saudi record of 1990-1995 was found online (the Royal Embassy's releases begin in 1996 and the SPA portal is dense only from 2004). The Council formation orders before 2005, including A/3 of 28/2/1424 AH cited in 2007, and the Umm al-Qura gazette texts before 2021 were not read.",
+          "CLAUDE-C01-50 (SA-PM-05): sessions chaired by the Crown Prince as Deputy Prime Minister or as the King's deputy (1996, 2005, 2014) and sessions chaired by the King under item Second of A/61 (27 September 2022 onward) are claims only, never Prime Minister observations or boundaries. Codex review also excludes the meeting-only Fahd 1996/2005 and Abdullah 2012 claims from PM holder evidence; the historical session facts remain recorded."
         ]
       }
     },

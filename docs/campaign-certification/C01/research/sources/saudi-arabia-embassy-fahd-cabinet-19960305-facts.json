@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_fahd_cabinet_19960305",
+  "source_url": "https://web.archive.org/web/20000930104631id_/http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+  "original_url": "http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+  "archive_capture_utc": "2000-09-30T10:46:31Z",
+  "source_title": "Council of Ministers Meeting (March 5, 1996), Royal Embassy March 1996 page, Internet Archive capture 20000930104631",
+  "accessed_date": "2026-10-01",
+  "published_date": "1996-03-05",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20000930104631id_/http://www.saudiembassy.net:80/press_release/96_spa/96_03.html",
+  "source_response_bytes": 50505,
+  "source_response_sha256": "ba272c789a523bc36b0ba146d42da72e8790da3e91ce3dc6811baede74c0bf9f",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T11:48:45Z and again at 2026-10-01T12:29:00Z, 40 minutes later; both identical (50505 bytes, SHA-256 ba272c789a523bc36b0ba146d42da72e8790da3e91ce3dc6811baede74c0bf9f).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20000930104631 of http://www.saudiembassy.net:80/press_release/96_spa/96_03.html, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent, no Accept-Encoding header). It was served without Content-Encoding, so the recorded identity is the body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Royal Embassy of Saudi Arabia in Washington (Information Office) filed its March 1996 releases on one page under press_release/96_spa/; an official Saudi government publication in English. Only the March 5 and March 11 cabinet items are imported; the page's other items, including King Fahd presiding on 18 March (release of March 19) and the Crown Prince chairing on 25 March, are leads.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_fahd_pm_chairs_cabinet_19960304",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": "Chairing the Council of Ministers (no Prime Minister title printed)",
+      "event_kind": "session_chaired_by_king",
+      "attested_on": "1996-03-04",
+      "text": "Release dated March 5, 1996 on the Royal Embassy's March 1996 page: 'Custodian of the Two Holy Mosques King Fahd Bin Abdul Aziz, chairing the regular weekly session of the Council of Ministers yesterday, extended congratulations to Kuwait'.",
+      "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 5, 1996, first sentence",
+      "observed_name": "Fahd Bin Abdul Aziz"
+    },
+    {
+      "claim_id": "sa_abdullah_deputy_chairs_cabinet_19960311",
+      "observation_id": "sa_prime_minister",
+      "review_observation": "SA-PM-05",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "deputy_chaired_session",
+      "attested_on": "1996-03-11",
+      "text": "Release dated March 11, 1996 on the same page: 'Crown Prince Abdullah Bin Abdul Aziz, Deputy Prime Minister and Commander of the National Guard, chairing the regular weekly meeting of the Council of Ministers today'.",
+      "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 11, 1996, first sentence"
+    }
+  ],
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract.",
+  "review_correction": "Codex 1 October 2026: session chairing alone does not identify the Prime Minister. Retain quoted facts and observed names; these rows are institution events, not holder evidence. Original submitted extract remains at 8b1a3c975749087fc6ed4bf48c788386fdecfa39."
+}

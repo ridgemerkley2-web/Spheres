@@ -1,0 +1,38 @@
+[
+  {
+    "command": [
+      "git",
+      "add",
+      "--",
+      "docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001",
+      "docs/campaign-certification/C01/integrations/CLAUDE-C01-50/README.md"
+    ],
+    "exit_code": 1,
+    "reason": "New receipt paths are outside the intentionally sparse checkout. No index updates were made; retry explicitly includes sparse paths."
+  },
+  {
+    "command": [
+      "git",
+      "add",
+      "--sparse",
+      "--",
+      "docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001",
+      "docs/campaign-certification/C01/integrations/CLAUDE-C01-50/README.md"
+    ],
+    "exit_code": 0,
+    "output": "warning: in the working copy of 'docs/campaign-certification/C01/integrations/CLAUDE-C01-50/README.md', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  {
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\saudi\\docs\\campaign-certification\\C01\\reviews\\CLAUDE-C01-50-20261001\\verify.py",
+      "--receipt-revision",
+      ":"
+    ],
+    "exit_code": 0,
+    "output": "{\"integrity\": \"verified\", \"originals\": 15, \"claims\": 18, \"new_named_holders\": 4, \"additional_holder_observations\": 7, \"reviewed_revision\": \"74d740dd7b2d7d543a1abb3f8327d00254eb9cb0\", \"material_reading_repeated\": false, \"native_reexecuted\": false, \"qualification\": false}\r\n"
+  }
+]
