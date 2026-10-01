@@ -1,0 +1,23 @@
+HTTP/1.1 200 OK
+Server: CloudFront
+Content-Type: application/json;charset=UTF-8
+Content-Length: 420107
+Connection: keep-alive
+Date: Thu, 01 Oct 2026 00:50:25 GMT
+X-Robots-Tag: all
+X-Track-Id: 171ff27b-bd32-11f1-924d-a32c82e39003
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store
+Pragma: no-cache
+Expires: 0
+Strict-Transport-Security: max-age=31536000
+X-Frame-Options: SAMEORIGIN
+Vary: Origin
+X-Cache: Miss from cloudfront
+Via: 1.1 43e1c8a07e2baf5ea799a95c6fa505ca.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: DEN53-P6
+X-Amz-Cf-Id: IJ9-LqH24LPjauknp-Jxq-jbeczexTrl-UA5S17c0GDTaTtiJsGKWg==
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.ndl.go.jp; style-src 'self' 'unsafe-inline' *.ndl.go.jp; connect-src 'self' https://*.hourei.ndl.go.jp https://hourei.ndl.go.jp
+

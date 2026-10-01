@@ -1,0 +1,389 @@
+{
+  "submission": "696937ba3d31280aab569cbd78418e9c3a0c6880",
+  "merge_base": "02d2c5a25c9a70bc9ba9503c8dc45f3ccdc1f0cf",
+  "integration_base": "f3e18e8306a0a7b1098b91f53f00efbb30da7990",
+  "authored_import": "b74f4fa565429b63052d94cc8ec10337b0b573ed",
+  "correction": "988d537934b4d36e2a251c4b5ca498f19dc7cf06",
+  "authored_paths": [
+    {
+      "path": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+      "authored_git_blob": "315bf371a5389d8d480f646c5443fb066160cb03",
+      "authored_bytes": 50867,
+      "authored_sha256": "7d7430c89b870d18d3d4cbab82f9ae851cc9eddd65472df31c5d4104969d6d06",
+      "reviewed_git_blob": "53d2191a1c90960e6dff7fca8de26b11159985c0",
+      "reviewed_bytes": 51375,
+      "reviewed_sha256": "39b160a15605edd33d9c3dd1a160170645010eb804b6d1d4cea5bcf9e5c62dc5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "authored_git_blob": "d5847a69ae3702b31cd0702fe83d15cf05599a8d",
+      "authored_bytes": 1716472,
+      "authored_sha256": "ac24e22ca8cf3bb23ec7dcd82d12a2236bda1ea0c7514f7d686e62b7ce883c61",
+      "reviewed_git_blob": "67ce69c18ca124df5a1f937976e4ca3610acde04",
+      "reviewed_bytes": 1716478,
+      "reviewed_sha256": "9ceacac65ef27523c95b1a24e9b4928deaa4457a7b4e8837a29490f6dae9e5bd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-chudo-founding-convention-20260125-facts.json",
+      "authored_git_blob": "50ddccf624fe46cd8a68f1e8361d5e807c5cff66",
+      "authored_bytes": 6013,
+      "authored_sha256": "e2f629ffd23dab757ac8e86ea6609fabf0bd44f09388ca903b52bf960d19bda5",
+      "reviewed_git_blob": "50ddccf624fe46cd8a68f1e8361d5e807c5cff66",
+      "reviewed_bytes": 6013,
+      "reviewed_sha256": "e2f629ffd23dab757ac8e86ea6609fabf0bd44f09388ca903b52bf960d19bda5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-founding-convention-report-19981108-facts.json",
+      "authored_git_blob": "77df474a15ae75a0c4ced12d3e4d3faf310478e5",
+      "authored_bytes": 7136,
+      "authored_sha256": "6d91a9b04d9985ca23de1a6a5e475f7b5f9220cf9b7ceff1dd719fa5d2ad9b3b",
+      "reviewed_git_blob": "77df474a15ae75a0c4ced12d3e4d3faf310478e5",
+      "reviewed_bytes": 7136,
+      "reviewed_sha256": "6d91a9b04d9985ca23de1a6a5e475f7b5f9220cf9b7ceff1dd719fa5d2ad9b3b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-history-2003-retrospective-20030206-facts.json",
+      "authored_git_blob": "c08d531aa3e697f50340459f71e1c2683b471f2d",
+      "authored_bytes": 9125,
+      "authored_sha256": "3fda72261fcb348c01cfc0c956046248ed8cac6d799395bc7cfec342a920bff5",
+      "reviewed_git_blob": "c08d531aa3e697f50340459f71e1c2683b471f2d",
+      "reviewed_bytes": 9125,
+      "reviewed_sha256": "3fda72261fcb348c01cfc0c956046248ed8cac6d799395bc7cfec342a920bff5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-new-representative-interview-20240930-facts.json",
+      "authored_git_blob": "d89931b3c770806d478694ecb2c18c4d93429142",
+      "authored_bytes": 6223,
+      "authored_sha256": "d6c2f7dcf2438a9a99b44f6e50692bad2d7acca470c92685bd563393325fe902",
+      "reviewed_git_blob": "d89931b3c770806d478694ecb2c18c4d93429142",
+      "reviewed_bytes": 6223,
+      "reviewed_sha256": "d6c2f7dcf2438a9a99b44f6e50692bad2d7acca470c92685bd563393325fe902"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ishii-resignation-intent-20241101-facts.json",
+      "authored_git_blob": "38c78629b6f3ade52f079743d28c06ab68fd3223",
+      "authored_bytes": 4655,
+      "authored_sha256": "2d4f6614b4acfcc9b5448d08f575e6f2397743077e0e2132dc9451b59a833d2f",
+      "reviewed_git_blob": "38c78629b6f3ade52f079743d28c06ab68fd3223",
+      "reviewed_bytes": 4655,
+      "reviewed_sha256": "2d4f6614b4acfcc9b5448d08f575e6f2397743077e0e2132dc9451b59a833d2f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json",
+      "authored_git_blob": "9e4566cd69e7109786932ab5a9c82fa03ba2f09a",
+      "authored_bytes": 5310,
+      "authored_sha256": "8a5dbcd65332a2450909a0c371417c55405733f4984efd511b82f8be1e4c634d",
+      "reviewed_git_blob": "9e4566cd69e7109786932ab5a9c82fa03ba2f09a",
+      "reviewed_bytes": 5310,
+      "reviewed_sha256": "8a5dbcd65332a2450909a0c371417c55405733f4984efd511b82f8be1e4c634d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fourth-convention-address-20021103-facts.json",
+      "authored_git_blob": "f1f2dd43926a090a9910d0c5c4513ac748a05f23",
+      "authored_bytes": 4610,
+      "authored_sha256": "7b97c0f3f28a85342e504a1494f7771fb6584dbe425ede2a2133701e76ff852f",
+      "reviewed_git_blob": "f1f2dd43926a090a9910d0c5c4513ac748a05f23",
+      "reviewed_bytes": 4610,
+      "reviewed_sha256": "7b97c0f3f28a85342e504a1494f7771fb6584dbe425ede2a2133701e76ff852f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-reappointed-20021103-facts.json",
+      "authored_git_blob": "0947167583b72227fc4605bdd22a9b5a9a891aa5",
+      "authored_bytes": 5343,
+      "authored_sha256": "50b778fe4712e6c18d32131f49747479497afd5ce5150b95ffb6e621d91899de",
+      "reviewed_git_blob": "0947167583b72227fc4605bdd22a9b5a9a891aa5",
+      "reviewed_bytes": 5343,
+      "reviewed_sha256": "50b778fe4712e6c18d32131f49747479497afd5ce5150b95ffb6e621d91899de"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-komei-representative-message-retrospective-19980202-facts.json",
+      "authored_git_blob": "3484d7ab89d6eb2ea75a33f938822a6e5c711326",
+      "authored_bytes": 5181,
+      "authored_sha256": "578345af62c8e6be39b66243612549df304ec67a54920dae41b48aade53ff949",
+      "reviewed_git_blob": "3484d7ab89d6eb2ea75a33f938822a6e5c711326",
+      "reviewed_bytes": 5181,
+      "reviewed_sha256": "578345af62c8e6be39b66243612549df304ec67a54920dae41b48aade53ff949"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-address-sixth-convention-20061001-facts.json",
+      "authored_git_blob": "3780f511e34677aeb54aad15fdd61e186b83a9ec",
+      "authored_bytes": 5599,
+      "authored_sha256": "d2eed437ea94c669db0d487e57347c1e26b34ea8075c601d32203ba570e3f759",
+      "reviewed_git_blob": "3780f511e34677aeb54aad15fdd61e186b83a9ec",
+      "reviewed_bytes": 5599,
+      "reviewed_sha256": "d2eed437ea94c669db0d487e57347c1e26b34ea8075c601d32203ba570e3f759"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json",
+      "authored_git_blob": "6afd668880c71f2bb7cdea660f77acc8100da7dc",
+      "authored_bytes": 5505,
+      "authored_sha256": "ea2c0f312e5d85059cc4b396559e10d4bacc95fe6ec0955e9179096d9cfea814",
+      "reviewed_git_blob": "6afd668880c71f2bb7cdea660f77acc8100da7dc",
+      "reviewed_bytes": 5505,
+      "reviewed_sha256": "ea2c0f312e5d85059cc4b396559e10d4bacc95fe6ec0955e9179096d9cfea814"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-extraordinary-convention-20241110-facts.json",
+      "authored_git_blob": "aa7bbb56c9a1348ecb8eb27667e6c4367278a59b",
+      "authored_bytes": 6171,
+      "authored_sha256": "71405d4efb7d7a08b1f9509c49796d874f8ef713bbd6e23f091a188873a84c31",
+      "reviewed_git_blob": "aa7bbb56c9a1348ecb8eb27667e6c4367278a59b",
+      "reviewed_bytes": 6171,
+      "reviewed_sha256": "71405d4efb7d7a08b1f9509c49796d874f8ef713bbd6e23f091a188873a84c31"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json",
+      "authored_git_blob": "9e4d354d3adbc967e13bb733be9326fb76d08996",
+      "authored_bytes": 4821,
+      "authored_sha256": "dfce61c197d6f29287fd4e93d9d9fb2df2385f700177d600beea00e991e94cb6",
+      "reviewed_git_blob": "9e4d354d3adbc967e13bb733be9326fb76d08996",
+      "reviewed_bytes": 4821,
+      "reviewed_sha256": "dfce61c197d6f29287fd4e93d9d9fb2df2385f700177d600beea00e991e94cb6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json",
+      "authored_git_blob": "e0ce1f04e06e7ae5b6748c26aa5288064fa15fb2",
+      "authored_bytes": 4729,
+      "authored_sha256": "d519a3157427a1492f2fd490ee5645cec6c7b49d716505737bffda4ba2af5ca4",
+      "reviewed_git_blob": "77e44de792f229fdc7ecf49dc04b602627cf0727",
+      "reviewed_bytes": 4733,
+      "reviewed_sha256": "b37d76b8543015051b29398d9f22263fb1b1673eda920f67ec9517da4b840ac5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-extraordinary-convention-20260315-facts.json",
+      "authored_git_blob": "e61195327202794272d7994907b440b49017724b",
+      "authored_bytes": 6108,
+      "authored_sha256": "853c49f2a65c1a3c285df2c3190912610f7b66598dcd1181515f5622e94ce287",
+      "reviewed_git_blob": "e61195327202794272d7994907b440b49017724b",
+      "reviewed_bytes": 6108,
+      "reviewed_sha256": "853c49f2a65c1a3c285df2c3190912610f7b66598dcd1181515f5622e94ce287"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-interim-20260123-facts.json",
+      "authored_git_blob": "37e42998ea68d5db3602d9b2a07fa9226085818b",
+      "authored_bytes": 6228,
+      "authored_sha256": "264aa204890a0a29bb5dca5f6fe7a6fb66ca3fa9121d8c1637a52ce053bd67b6",
+      "reviewed_git_blob": "37e42998ea68d5db3602d9b2a07fa9226085818b",
+      "reviewed_bytes": 6228,
+      "reviewed_sha256": "264aa204890a0a29bb5dca5f6fe7a6fb66ca3fa9121d8c1637a52ce053bd67b6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-recommended-20260312-facts.json",
+      "authored_git_blob": "d9ec0f16fff40d48f41fb303f63a944ef1a40e36",
+      "authored_bytes": 4735,
+      "authored_sha256": "2a9e5330987938ea2d118621d81801594ade730f5686a2d6b4160e9be2748954",
+      "reviewed_git_blob": "d9ec0f16fff40d48f41fb303f63a944ef1a40e36",
+      "reviewed_bytes": 4735,
+      "reviewed_sha256": "2a9e5330987938ea2d118621d81801594ade730f5686a2d6b4160e9be2748954"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-eleventh-convention-20160918-facts.json",
+      "authored_git_blob": "40174c0ac3b86183f67a7f75b4f978f036b08c26",
+      "authored_bytes": 5334,
+      "authored_sha256": "51dbd517acdbb4eed788ef853e93bd6928d5eb90ebfcd3c403424a2ae862174f",
+      "reviewed_git_blob": "40174c0ac3b86183f67a7f75b4f978f036b08c26",
+      "reviewed_bytes": 5334,
+      "reviewed_sha256": "51dbd517acdbb4eed788ef853e93bd6928d5eb90ebfcd3c403424a2ae862174f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-fourteenth-convention-20220926-facts.json",
+      "authored_git_blob": "33420be09b0b15a2fe60cd4ee28959c088dafe72",
+      "authored_bytes": 5312,
+      "authored_sha256": "f18c4884bea4ce674d85b2a6dd5478f9ade218b8fc7ced28f8c22021dc3dff24",
+      "reviewed_git_blob": "33420be09b0b15a2fe60cd4ee28959c088dafe72",
+      "reviewed_bytes": 5312,
+      "reviewed_sha256": "f18c4884bea4ce674d85b2a6dd5478f9ade218b8fc7ced28f8c22021dc3dff24"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-ninth-convention-20120923-facts.json",
+      "authored_git_blob": "6fdc2b555ed529c61ccc5f1122e23179aab0d8b8",
+      "authored_bytes": 5219,
+      "authored_sha256": "c436bc203ea3048331c0900fd2292b8f02cbb496b515e3e44d088c399664c3a7",
+      "reviewed_git_blob": "6fdc2b555ed529c61ccc5f1122e23179aab0d8b8",
+      "reviewed_bytes": 5219,
+      "reviewed_sha256": "c436bc203ea3048331c0900fd2292b8f02cbb496b515e3e44d088c399664c3a7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-selection-greeting-20090909-facts.json",
+      "authored_git_blob": "98f02f2d675325711ff3e5f39f6d8d1d47d0b46b",
+      "authored_bytes": 6212,
+      "authored_sha256": "21c58e0b1cc3aa51ffa69e911baff6d1d322fd3dcc9f5e09c02f5bb05211c398",
+      "reviewed_git_blob": "98f02f2d675325711ff3e5f39f6d8d1d47d0b46b",
+      "reviewed_bytes": 6212,
+      "reviewed_sha256": "21c58e0b1cc3aa51ffa69e911baff6d1d322fd3dcc9f5e09c02f5bb05211c398"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-tenth-convention-20140922-facts.json",
+      "authored_git_blob": "b1db6a4423981125a1812c4c1e9c535d1e344e7d",
+      "authored_bytes": 5295,
+      "authored_sha256": "f9ec19ea8fb504534c5189e1c9d235f48f59f63c2987e4ae47f54b11f6af8534",
+      "reviewed_git_blob": "b1db6a4423981125a1812c4c1e9c535d1e344e7d",
+      "reviewed_bytes": 5295,
+      "reviewed_sha256": "f9ec19ea8fb504534c5189e1c9d235f48f59f63c2987e4ae47f54b11f6af8534"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-thirteenth-convention-20200928-facts.json",
+      "authored_git_blob": "0113c5120cb91d4dda31522ce92f62cddc244f75",
+      "authored_bytes": 5312,
+      "authored_sha256": "14e1e699ef115a6a1d27dc4b784b7bc05e224c1d899da435e741741ad83f18ff",
+      "reviewed_git_blob": "0113c5120cb91d4dda31522ce92f62cddc244f75",
+      "reviewed_bytes": 5312,
+      "reviewed_sha256": "14e1e699ef115a6a1d27dc4b784b7bc05e224c1d899da435e741741ad83f18ff"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-komeito-yamaguchi-twelfth-convention-20181001-facts.json",
+      "authored_git_blob": "7ae619c9c45d162b69c51c84a7cecbf16c50c49d",
+      "authored_bytes": 5432,
+      "authored_sha256": "59808c93051ca1b3ddee99e2d6c805519b7ea1bee8aa31b28895a97298390521",
+      "reviewed_git_blob": "7ae619c9c45d162b69c51c84a7cecbf16c50c49d",
+      "reviewed_bytes": 5432,
+      "reviewed_sha256": "59808c93051ca1b3ddee99e2d6c805519b7ea1bee8aa31b28895a97298390521"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-komeito-19940616-facts.json",
+      "authored_git_blob": "0250593444c11d10859d649590e3f10d52c32d8b",
+      "authored_bytes": 6095,
+      "authored_sha256": "779b1b6f014ae7e15ef0a9f70f0ffcd1a1edddef879073972679a8f9df709c00",
+      "reviewed_git_blob": "0250593444c11d10859d649590e3f10d52c32d8b",
+      "reviewed_bytes": 6095,
+      "reviewed_sha256": "779b1b6f014ae7e15ef0a9f70f0ffcd1a1edddef879073972679a8f9df709c00"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-komeito-20091030-facts.json",
+      "authored_git_blob": "9bd6e7e7d8ead6c0cac90a4199e98445619bce7b",
+      "authored_bytes": 6006,
+      "authored_sha256": "68e205938db895ed6b799f58e2b1c7a50e78241285854ad2d15b4d085a240e6a",
+      "reviewed_git_blob": "9bd6e7e7d8ead6c0cac90a4199e98445619bce7b",
+      "reviewed_bytes": 6006,
+      "reviewed_sha256": "68e205938db895ed6b799f58e2b1c7a50e78241285854ad2d15b4d085a240e6a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-komeito-19930129-facts.json",
+      "authored_git_blob": "cef0f10fb2350a07d8244cc62b797607a4e620f6",
+      "authored_bytes": 5722,
+      "authored_sha256": "0f07788ce42cf097138c36f47f55a61b4fa9b04f98878950362d505d56be0d95",
+      "reviewed_git_blob": "cef0f10fb2350a07d8244cc62b797607a4e620f6",
+      "reviewed_bytes": 5722,
+      "reviewed_sha256": "0f07788ce42cf097138c36f47f55a61b4fa9b04f98878950362d505d56be0d95"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-19981130-facts.json",
+      "authored_git_blob": "01310784dbc697cadb3dc8945f0b7c59df20b03c",
+      "authored_bytes": 5432,
+      "authored_sha256": "b9bd26b708c5119b8f8112e4f1fcb014c478f31f791ac32aa47c1fb5479de36c",
+      "reviewed_git_blob": "01310784dbc697cadb3dc8945f0b7c59df20b03c",
+      "reviewed_bytes": 5432,
+      "reviewed_sha256": "b9bd26b708c5119b8f8112e4f1fcb014c478f31f791ac32aa47c1fb5479de36c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20061003-facts.json",
+      "authored_git_blob": "97053870f20079502efe288e9fbc62acf4ebc6d2",
+      "authored_bytes": 5244,
+      "authored_sha256": "5479a09d6bd938dc840e954e9c91c306b471f2f9ebff45b87ab131e7ed73f100",
+      "reviewed_git_blob": "97053870f20079502efe288e9fbc62acf4ebc6d2",
+      "reviewed_bytes": 5244,
+      "reviewed_sha256": "5479a09d6bd938dc840e954e9c91c306b471f2f9ebff45b87ab131e7ed73f100"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-komeito-20241203-facts.json",
+      "authored_git_blob": "fbf5ab1d2251793696ebd65f71ea83951b9c4c58",
+      "authored_bytes": 5162,
+      "authored_sha256": "de55ed498946993d4ed80184c3a91b502aa4cd99220e00a4a9f2d118327ec22a",
+      "reviewed_git_blob": "fbf5ab1d2251793696ebd65f71ea83951b9c4c58",
+      "reviewed_bytes": 5162,
+      "reviewed_sha256": "de55ed498946993d4ed80184c3a91b502aa4cd99220e00a4a9f2d118327ec22a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-political-reform-committee-komeito-19931105-facts.json",
+      "authored_git_blob": "f5e94d3dd13d7e846b649d1a3be3655609e13665",
+      "authored_bytes": 5395,
+      "authored_sha256": "c52a3af4e167824b36b518828c096263930982ca860259e0c13ee1c56faa5ed8",
+      "reviewed_git_blob": "f5e94d3dd13d7e846b649d1a3be3655609e13665",
+      "reviewed_bytes": 5395,
+      "reviewed_sha256": "c52a3af4e167824b36b518828c096263930982ca860259e0c13ee1c56faa5ed8"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
+      "authored_git_blob": "1692609b9051b8bb98b14629930fdd31a199fb12",
+      "authored_bytes": 12693,
+      "authored_sha256": "28725c1e61c558a5f6751a21a4a527bfbe50d3fe4a424a18b55588661f3ba286",
+      "reviewed_git_blob": "46d96e24aa19e2c200e14e34733014b03768008b",
+      "reviewed_bytes": 13594,
+      "reviewed_sha256": "f5dafaec7306d9a3c7f86cba0f6151f7e5f512db791a29bb51279ef35fcea357"
+    },
+    {
+      "path": "tools/avatars/test_japan_komeito_representatives_c01_31.py",
+      "authored_git_blob": "0eea1818fa936c4a088a8869c8b56e62f1859fa9",
+      "authored_bytes": 74708,
+      "authored_sha256": "62bbf3503637b570d787e55f85b962f56ecd56d615a108427f9cac5d37207db1",
+      "reviewed_git_blob": "204b34fe210f24fc18283b654e2ee5619ec0afef",
+      "reviewed_bytes": 75518,
+      "reviewed_sha256": "28a40482e6d312d0291b62bb36025b2d567535d2130317179dd0d6a96be0c74d"
+    },
+    {
+      "path": "tools/avatars/test_japan_ldp_presidents_c01_18.py",
+      "authored_git_blob": "c13779c22ed9603e25944df103989e051f8fd45f",
+      "authored_bytes": 121282,
+      "authored_sha256": "56c026411c272da67371fe984eeff810c1bcc5098246f2357270d42fa5f35949",
+      "reviewed_git_blob": "c13779c22ed9603e25944df103989e051f8fd45f",
+      "reviewed_bytes": 121282,
+      "reviewed_sha256": "56c026411c272da67371fe984eeff810c1bcc5098246f2357270d42fa5f35949"
+    },
+    {
+      "path": "tools/avatars/test_japan_prime_ministers_c01_12.py",
+      "authored_git_blob": "584978e21f1ecc5d989a2d5b57bee6c2235a5e59",
+      "authored_bytes": 99741,
+      "authored_sha256": "f8e9b24e11c0fd31c01b52c9587848a9d8c5d8058818feaa74e4ced39faa4171",
+      "reviewed_git_blob": "584978e21f1ecc5d989a2d5b57bee6c2235a5e59",
+      "reviewed_bytes": 99741,
+      "reviewed_sha256": "f8e9b24e11c0fd31c01b52c9587848a9d8c5d8058818feaa74e4ced39faa4171"
+    },
+    {
+      "path": "tools/avatars/test_japan_prime_ministers_c01_13.py",
+      "authored_git_blob": "639c15c3dad9deb385cf0f5a893b9415da584bcf",
+      "authored_bytes": 176849,
+      "authored_sha256": "460f5e6f3c55fd73ed36c7d04b9734f82395a7cb09e865be9deb059bd2bccf12",
+      "reviewed_git_blob": "639c15c3dad9deb385cf0f5a893b9415da584bcf",
+      "reviewed_bytes": 176849,
+      "reviewed_sha256": "460f5e6f3c55fd73ed36c7d04b9734f82395a7cb09e865be9deb059bd2bccf12"
+    },
+    {
+      "path": "tools/avatars/test_japan_research_s10d.py",
+      "authored_git_blob": "21ae46b073e70aacb802588d631c8125e41d8272",
+      "authored_bytes": 14743,
+      "authored_sha256": "297f7de09a5e590b9e555e8cdd9ca8e915bb76253734bdbe1de5823eab828b58",
+      "reviewed_git_blob": "5fefd110e0687a90c82ce9fa266fd6d96e0cc99f",
+      "reviewed_bytes": 14733,
+      "reviewed_sha256": "34242be370d3109234bca3355d4c009813fbbebe7dd446f287064f2b10e485aa"
+    },
+    {
+      "path": "tools/avatars/test_japan_sdp_chairs_c01_29.py",
+      "authored_git_blob": "119a77fb09d3e1a88928d7edc5a529e626e9e8c4",
+      "authored_bytes": 97652,
+      "authored_sha256": "fcc5e7fa267f8d3fa77246b1786d392bacce283254f8fb3581eacdc92227b893",
+      "reviewed_git_blob": "119a77fb09d3e1a88928d7edc5a529e626e9e8c4",
+      "reviewed_bytes": 97652,
+      "reviewed_sha256": "fcc5e7fa267f8d3fa77246b1786d392bacce283254f8fb3581eacdc92227b893"
+    }
+  ],
+  "prior_japan_values_restored_exactly": true,
+  "existing_sources_unchanged": 472,
+  "existing_claims_unchanged": 799,
+  "added_sources": 31,
+  "added_claims": 64,
+  "added_roles": 1,
+  "added_holder_observations": 15,
+  "distinct_people": 7,
+  "all_original_response_identities_unchanged": true,
+  "all_claim_ids_texts_dates_locators_unchanged": true,
+  "runtime_art_other_country_paths_changed": false,
+  "generated_index_excluded": true,
+  "correction_paths": [
+    "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+    "docs/campaign-certification/C01/research/japan.json",
+    "docs/campaign-certification/C01/research/sources/japan-komeito-takeya-address-20260315-facts.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
+    "tools/avatars/test_japan_komeito_representatives_c01_31.py",
+    "tools/avatars/test_japan_research_s10d.py"
+  ]
+}

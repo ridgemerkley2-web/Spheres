@@ -1,0 +1,89 @@
+{
+  "decision": "held_not_accepted",
+  "sources": [
+    "jp_komeito_kanzaki_fifth_convention_address_20041101",
+    "jp_komeito_ota_sixth_convention_20061001",
+    "jp_komeito_yamaguchi_selection_greeting_20090909",
+    "jp_komeito_yamaguchi_ninth_convention_20120923",
+    "jp_komeito_ishii_new_representative_interview_20240930",
+    "jp_komeito_ishii_resignation_intent_20241101",
+    "jp_komeito_saito_recommended_20241108"
+  ],
+  "claims": [
+    "jp_komeito_kanzaki_reelected_20041031",
+    "jp_komeito_kanzaki_self_stated_again_20041031",
+    "jp_komeito_ota_selected_20060930",
+    "jp_komeito_ota_in_office_convention_20060930",
+    "jp_komeito_yamaguchi_selected_20090908",
+    "jp_komeito_yamaguchi_in_office_greeting_20090908",
+    "jp_komeito_ota_former_20090908",
+    "jp_komeito_yamaguchi_reelected_20120922",
+    "jp_komeito_yamaguchi_in_office_convention_20120922",
+    "jp_komeito_ishii_in_office_convention_20240928",
+    "jp_komeito_ishii_appointment_recalled",
+    "jp_komeito_yamaguchi_former_eight_terms_recalled",
+    "jp_komeito_ishii_resignation_intent_20241031",
+    "jp_komeito_saito_recommended_20241107"
+  ],
+  "holder_dependencies": [
+    {
+      "name": "神崎武法",
+      "date": "2004-10-31",
+      "missing_source_ids": [
+        "jp_komeito_kanzaki_fifth_convention_address_20041101"
+      ],
+      "claim_ids": [
+        "jp_komeito_kanzaki_self_stated_again_20041031"
+      ]
+    },
+    {
+      "name": "太田昭宏",
+      "date": "2006-09-30",
+      "missing_source_ids": [
+        "jp_komeito_ota_sixth_convention_20061001"
+      ],
+      "claim_ids": [
+        "jp_komeito_ota_in_office_convention_20060930",
+        "jp_komeito_ota_assumption_stated_20060930"
+      ]
+    },
+    {
+      "name": "山口那津男",
+      "date": "2009-09-08",
+      "missing_source_ids": [
+        "jp_komeito_yamaguchi_selection_greeting_20090909"
+      ],
+      "claim_ids": [
+        "jp_komeito_yamaguchi_in_office_greeting_20090908"
+      ]
+    },
+    {
+      "name": "山口那津男",
+      "date": "2012-09-22",
+      "missing_source_ids": [
+        "jp_komeito_yamaguchi_ninth_convention_20120923"
+      ],
+      "claim_ids": [
+        "jp_komeito_yamaguchi_in_office_convention_20120922"
+      ]
+    },
+    {
+      "name": "石井啓一",
+      "date": "2024-09-28",
+      "missing_source_ids": [
+        "jp_komeito_ishii_new_representative_interview_20240930"
+      ],
+      "claim_ids": [
+        "jp_komeito_ishii_in_office_convention_20240928"
+      ]
+    }
+  ],
+  "totals": {
+    "originals_reproduced": 24,
+    "originals_unavailable": 7,
+    "claims_supported_in_bounded_scope": 50,
+    "claims_held": 14,
+    "holder_observations_fully_reviewed": 10,
+    "holder_observations_with_missing_dependency": 5
+  }
+}
