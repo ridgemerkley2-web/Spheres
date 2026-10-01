@@ -1,0 +1,172 @@
+{
+  "source_revision": "7d029f1dc1b84d68426620fa7d0b9fccadfef53e",
+  "phase": "validation-01",
+  "at_utc": "2026-10-01T01:18:17.463488+00:00",
+  "commands": [
+    {
+      "name": "research-index",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 3.279,
+      "log": "research-index.log",
+      "bytes": 251,
+      "sha256": "391da4d70d9cb77edf505a4bd2b63e6daf38bedb78085a81e706085b89aeb7fa"
+    },
+    {
+      "name": "census",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 1.917,
+      "log": "census.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "name": "gap-ledger",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 0.706,
+      "log": "gap-ledger.log",
+      "bytes": 1427,
+      "sha256": "f8d8cb4c34da3ac6f1612f661598b96449e388b6efadefa7ce359390769695cb"
+    },
+    {
+      "name": "boundary-matrix",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 6.628,
+      "log": "boundary-matrix.log",
+      "bytes": 158,
+      "sha256": "4317aa12a920f5bd103cbeed5da2646c320249dfa1ddac6033f03b3aebee2bc5"
+    },
+    {
+      "name": "cartoon-review",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 42.98,
+      "log": "cartoon-review.log",
+      "bytes": 316,
+      "sha256": "9aac929988383d746f68c82db52bea4d7375d5c1ca86c61111bb2ca3361a47d7"
+    },
+    {
+      "name": "avatars",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 117.976,
+      "log": "avatars.log",
+      "bytes": 4333,
+      "sha256": "cf4d717bc0cb8186f8e2d7b7d19768cf07f534e24848c228aade298b8a05ecb5"
+    },
+    {
+      "name": "planning",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 3.609,
+      "log": "planning.log",
+      "bytes": 173,
+      "sha256": "7f2db27e0476f47e085eb11a358e5f88c0ba0184cdcfab51931acf70f1fbfca6"
+    },
+    {
+      "name": "atlas",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.395,
+      "log": "atlas.log",
+      "bytes": 1120,
+      "sha256": "86a15313610488d2688d0a1c8cc0a8aab71f36458c30973b5204ca14410b7fa6"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.137,
+      "log": "workboard.log",
+      "bytes": 146,
+      "sha256": "99de2b8338b71f3d1721b04399727c9a68cc9e7325138a5ecc5313c5fff245fd"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 4.117,
+      "log": "diff-check.log",
+      "bytes": 390,
+      "sha256": "edcc6bc8fa6cc39c3d7316d8779879b4533bb3e573b21e99bb5ec6d557f42cbb"
+    }
+  ],
+  "passed": false
+}

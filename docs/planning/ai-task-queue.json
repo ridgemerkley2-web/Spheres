@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "tasks": [
     {
       "id": "CLAUDE-C01-SOURCE-05",
@@ -532,14 +532,75 @@
       "id": "CLAUDE-C01-31",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 24,
       "title": "Research Komeito representatives and distinct organizational phases",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-31.md",
       "depends_on": [],
       "branch": "claude/c01-jp-31",
       "claim_revision": "52b23d5961ea13355ab1e3edd497be0920b6bea6",
-      "next": "Continue the existing claim based on ff01ee61. Research at most ten Komeito representatives through 7 September 2026, preserving distinct 1994 and 1998 organizations and separating elections, assumptions, acting service and departures. Claim registration reserves Japan/jp_komeito and its two named phases against duplicate assignments. No research, source validation, runtime mapping or artwork is delivered or accepted yet; mark ready_for_review only when the bounded handoff and its checks are complete."
+      "next": "Review held: 24 of 31 original responses reproduced and 50 of 64 claims read; seven originals, fourteen claims and five holder dependencies remain unresolved. Supply accessible original evidence and reconcile Takeya convention acceptance with the conservative boundary correction 988d5379. Only the held-review receipt is integrated; no C01-31 research or runtime mapping is accepted. See docs/campaign-certification/C01/reviews/CLAUDE-C01-31/. Preserve the available-content review and failed requests.",
+      "submission_revision": "696937ba3d31280aab569cbd78418e9c3a0c6880",
+      "review_revision": "d3b4e6daede2bc9fc571a88de1b0ba1049505b70"
+    },
+    {
+      "id": "CLAUDE-C01-38",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 25,
+      "title": "Research French prime ministers, 2014–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-38.md",
+      "depends_on": [],
+      "branch": "claude/c01-fr-38",
+      "claim_revision": "f1420ba1265f6b3d193548eac6f596864c50c2c9",
+      "submission_revision": "acf33f09a5d28cbc9bf9f539e152e9846a7bf395",
+      "next": "Accepted bounded intake after independent reading of 22 exact originals, 33 claims and 12 appointment observations. Source import 9174c807; prose correction e4757a3d removes a false longer interval between same-day instruments. Prior France data and all 635 financial organizations remain unchanged. Effective terms, runtime mapping, art and parent gates remain open. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md.",
+      "review_revision": "fa48313b4218a8ad787ea33e126c8db4e64f0987"
+    },
+    {
+      "id": "CLAUDE-C01-39",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 26,
+      "title": "Research Democratic Alliance federal leaders, 2000–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-39.md",
+      "depends_on": [],
+      "branch": "claude/c01-za-39",
+      "claim_revision": "03cd0bb9bc6989e47e3da0ff1ca6373320daf30b",
+      "submission_revision": "9cb02c20012a6e6314d7e64d52241609d566f738",
+      "next": "Newly delivered at 9cb02c20012a6e6314d7e64d52241609d566f738. Authored handoff reports 24 new sources, 29 claims and eleven holder observations; Codex content review is pending. Register and preserve the existing claim. No DA research, acceptance, runtime mapping or art is imported by this registration."
+    },
+    {
+      "id": "CLAUDE-C01-40",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 27,
+      "title": "Research CPI(M) general secretaries, 1990–2026",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-40.md",
+      "depends_on": [],
+      "branch": "claude/c01-in-40",
+      "claim_revision": "c152e35e3cf184a6d7cbde87236a43d8c924fc86",
+      "submission_revision": "54680e39910804b3864a3e973c452f2db2ac5e6f",
+      "next": "Accepted bounded intake after independent reading of 18 exact originals, 24 claims and four holder observations. Source import 5d5935c3; correction d21357db repairs five locators and removes unsupported EMS opening prose. Current party REST-record limits and the unestablished opening-holder record remain explicit. No complete chronology, runtime mapping, art or parent gate acceptance. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md.",
+      "review_revision": "6ee593de6bb6a0c9fe5ae8ec5000d268421f485b"
+    },
+    {
+      "id": "CLAUDE-C01-41",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 28,
+      "title": "Research CPSU General Secretary and Deputy General Secretary, 1990–1991",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-41.md",
+      "depends_on": [],
+      "branch": "claude/c01-su-41",
+      "claim_revision": "7778be5b829587f6361d3935bc5aa50d9181e753",
+      "submission_revision": "a989ddb4d67657236292a35443049554cc9b19e7",
+      "next": "Accepted bounded intake after independent review of 12 exact originals plus a legal-portal original edition, 26 claims and five holder observations. Source import f04ead94; correction cc57b876 qualifies TASS reportage and annotations on both decree points. Eighteen cited PDF pages and source-cover/context views read. Existing undated Ivashkov identity remains unreconciled. No complete chronology, runtime mapping, art or parent gate acceptance. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md.",
+      "review_revision": "01faa02352365382a5a325f76c9fdf9472cffec0"
     }
   ]
 }

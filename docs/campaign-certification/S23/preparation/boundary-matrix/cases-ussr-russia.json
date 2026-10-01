@@ -24,10 +24,10 @@
      "production_party": 3,
      "executive": 1
     },
-    "cases": 675,
+    "cases": 689,
     "case_kinds": {
-     "attestation_day": 16,
-     "attestation_day_after": 16,
+     "attestation_day": 23,
+     "attestation_day_after": 23,
      "creation_day_after": 1,
      "creation_day_before": 1,
      "creation_day_of": 1,
@@ -48,7 +48,7 @@
      "yearly": 552
     },
     "observations_by_acceptance": {
-     "accepted": 8,
+     "accepted": 13,
      "pending": 6,
      "unattributed_intake": 4
     },
@@ -77,7 +77,7 @@
    },
    "headline": [
     "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.",
-    "Research holder observations by acceptance: accepted 8, pending 6, unattributed_intake 4.",
+    "Research holder observations by acceptance: accepted 13, pending 6, unattributed_intake 4.",
     "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
     "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -195,17 +195,21 @@
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"fresh_campaign_start"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]],"campaign":{"observed":"fresh_campaign_start","incumbent":"Mikhail Gorbachev","person":"mikhail_gorbachev","verdict":"historical_identity_not_established"}},
+    {"date":"1990-02-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#2","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
+    {"date":"1990-02-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-03-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_supreme_soviet_chair#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-03-15","kinds":["attestation_day","attestation_day_after"],"historical":{"status":"attested","holders":[["su_supreme_soviet_chair#2","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-03-16","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-06-30","kinds":["observation_window_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-07-01","kinds":["observation_window_from_day_of"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-07-02","kinds":["observation_window_from_day_after"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
+    {"date":"1990-07-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#3","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
+    {"date":"1990-07-11","kinds":["attestation_day_after"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-07-30","kinds":["observation_window_through_day_before"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-07-31","kinds":["observation_window_through_day_of"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-08-01","kinds":["observation_window_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1991-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_supreme_soviet_chair#3","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1991-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#4","attested_on_day"],["su_supreme_soviet_chair#3","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1991-08-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -258,13 +262,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 63,
+    "cases": 67,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 5,
+    "attestation_cases": 9,
     "yearly_image_bindings": {
      "bound": 1,
      "unbound": 36
@@ -582,18 +586,27 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "su_cpsu_general_secretary#1"
+    "su_cpsu_general_secretary#1",
+    "su_cpsu_general_secretary#2",
+    "su_cpsu_general_secretary#3",
+    "su_cpsu_general_secretary#4"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-02-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-02-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-06-30","kinds":["observation_window_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-01","kinds":["observation_window_from_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-02","kinds":["observation_window_from_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-07-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#3","attested_on_day"]],"possible":[["su_cpsu_general_secretary#1","within_observation_window"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-07-11","kinds":["attestation_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-30","kinds":["observation_window_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-31","kinds":["observation_window_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-08-01","kinds":["observation_window_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -645,13 +658,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 58,
+    "cases": 64,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 0
+    "attestation_cases": 6
    }
   },
   {
@@ -674,7 +687,9 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "su_cpsu_deputy_general_secretary#1"
+    "su_cpsu_deputy_general_secretary#1",
+    "su_cpsu_deputy_general_secretary#2",
+    "su_cpsu_deputy_general_secretary#3"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -682,10 +697,14 @@
     {"date":"1990-06-30","kinds":["observation_window_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-01","kinds":["observation_window_from_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_deputy_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-02","kinds":["observation_window_from_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_deputy_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-07-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_deputy_general_secretary#2","attested_on_day"]],"possible":[["su_cpsu_deputy_general_secretary#1","within_observation_window"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-07-14","kinds":["attestation_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_deputy_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-30","kinds":["observation_window_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_deputy_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-07-31","kinds":["observation_window_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["su_cpsu_deputy_general_secretary#1","within_observation_window"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-08-01","kinds":["observation_window_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_deputy_general_secretary#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-22","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -737,13 +756,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 58,
+    "cases": 62,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 0
+    "attestation_cases": 4
    }
   },
   {
@@ -3457,6 +3476,50 @@
     "unattributed_intake": 1
    }
   },
+  "su_cpsu_deputy_general_secretary#2": {
+   "role": "research:su_cpsu_deputy_general_secretary",
+   "name": "Владимир Антонович Ивашко",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-07-13",
+   "claim_ids": [
+    "su_pravda195_program_commission_lists_deputy_general_secretary_19900713"
+   ],
+   "note": "Named as Pravda prints him in full (a note headed 'ИВАШКО' over 'Владимир Антонович'; 'Ивашко Владимира Антоновича', 13 July 1990); the Congress list prints 'Ивашко В. А.'. Attested on 13 July 1990: the list of the commission the Congress formed that day styles him 'заместитель Генерального секретаря ЦК КПСС'.",
+   "uncertainty": "The earliest reviewed record printing him in the office. He was voted on 11 July and the result was announced and approved on 12 July 1990 (separate claims); no source states when he took office, so from is null. No name match is made with the existing observation 'Vladimir Ivashkov (source spelling; identity reconciliation pending)', which is unchanged.",
+   "sources": [
+    "su_pravda_no195_19900714"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-41"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "su_cpsu_deputy_general_secretary#3": {
+   "role": "research:su_cpsu_deputy_general_secretary",
+   "name": "Владимир Антонович Ивашко",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-08-21",
+   "claim_ids": [
+    "su_pravda201_ivashko_deputy_general_secretary_flew_to_crimea_19910821"
+   ],
+   "note": "Attested on 21 August 1991: Pravda's report of the Central Committee secretary's press conference of that day says 'заместитель Генерального секретаря ЦК В. Ивашко вылетел в Крым'.",
+   "uncertainty": "The latest reviewed attestation, from reported speech in the Central Committee's organ (a ruling is requested; the journal's masthead of 10 July 1991 is a claim). His acting as General Secretary after 24 August 1991 and any end of his office were not found in a primary record, so until is null.",
+   "sources": [
+    "su_pravda_no201_19910822"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-41"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "su_cpsu_general_secretary#1": {
    "role": "research:su_cpsu_general_secretary",
    "name": "Mikhail Gorbachev",
@@ -3478,6 +3541,72 @@
    "packets": [],
    "source_classes": {
     "unattributed_intake": 1
+   }
+  },
+  "su_cpsu_general_secretary#2": {
+   "role": "research:su_cpsu_general_secretary",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-02-05",
+   "claim_ids": [
+    "su_pravda37_plenum_report_by_general_secretary_19900205"
+   ],
+   "note": "Named as Pravda's biographical note of 11 July 1990 prints him in full (headed 'ГОРБАЧЕВ' over 'Михаил Сергеевич'); the communiques print 'М. С. Горбачев'. Attested on 5 February 1990: the Central Committee's communique on the plenum that opened that day names 'Генеральный секретарь ЦК КПСС М. С. Горбачев' as its rapporteur.",
+   "uncertainty": "The earliest reviewed attestation in 1990, not the start of his office, which began before the period. from and until are null. The existing observation of July 1990 (source spelling 'Mikhail Gorbachev') is unchanged and is not merged with this one.",
+   "sources": [
+    "su_pravda_no37_19900206"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-41"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "su_cpsu_general_secretary#3": {
+   "role": "research:su_cpsu_general_secretary",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-07-10",
+   "claim_ids": [
+    "su_pravda192_gorbachev_addresses_as_general_secretary_19900710"
+   ],
+   "note": "Attested on 10 July 1990: after the Congress's election and the approval of the counting commission's protocol, the communique names the 'Генеральный секретарь ЦК КПСС, Президент СССР М. С. Горбачев' addressing the Congress.",
+   "uncertainty": "The day of his re-election by the XXVIII Congress (a separate claim), but no source states that a new term began or when it took effect, so from is null. Intermediate attestations of 11 and 13 July 1990 and 21 August 1991 are claims.",
+   "sources": [
+    "su_pravda_no192_19900711"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-41"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "su_cpsu_general_secretary#4": {
+   "role": "research:su_cpsu_general_secretary",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-08-22",
+   "claim_ids": [
+    "su_pravda201_secretariat_statement_names_general_secretary_19910822"
+   ],
+   "note": "Attested on 22 August 1991: the Central Committee Secretariat's statement, printed undated in that day's Pravda, calls for a plenum 'с непременным участием Генерального секретаря ЦК КПСС М. С. Горбачева'.",
+   "uncertainty": "The latest reviewed record styling him in office. His own words of 26 August 1991 that he has laid down the duties state no day, and the statement of 24 August 1991 is known only from leads, so until is null; no end is inferred from them or from the party's suspension.",
+   "sources": [
+    "su_pravda_no201_19910822"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-41"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "su_dr_co_chair#1": {

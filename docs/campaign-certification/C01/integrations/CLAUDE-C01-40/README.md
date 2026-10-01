@@ -1,5 +1,7 @@
 # Independent review — CLAUDE-C01-40
 
+**Decision: accepted as a bounded research intake.**
+
 **Accepted as a bounded CPI(M) party-office observation intake after citation and scope corrections.** No original-source hold remains. This does not close C01, C06, S23, WC1 or CP1, establish continuous terms, or authorize runtime identities or art.
 
 Reviewer: Codex `/root/nation_art_scope`, 1 October 2026 UTC. Exact submission `54680e39910804b3864a3e973c452f2db2ac5e6f`; integration base `f3e18e8306a0a7b1098b91f53f00efbb30da7990`. Review branch `codex/review-c01-40-20261001`.

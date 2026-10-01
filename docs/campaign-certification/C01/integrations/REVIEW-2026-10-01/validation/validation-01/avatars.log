@@ -1,0 +1,56 @@
+.........................................................................................................................F.FE...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+ERROR: setUpClass (test_certified_gap_ledger.CheckedInLedger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_certified_gap_ledger.py", line 494, in setUpClass
+    cls.files = ledger.outputs()
+                ~~~~~~~~~~~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 1048, in outputs
+    ledger = build(root, attribution)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 540, in build
+    classes = acceptance_classes(root)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 354, in acceptance_classes
+    classes.update({packet: 'c01_accepted' for packet in acceptance_records(root)})
+                                                         ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 345, in acceptance_records
+    raise ValueError(f'No explicit accepted decision in {record.relative_to(root).as_posix()}')
+ValueError: No explicit accepted decision in docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md
+
+======================================================================
+FAIL: test_committed_matrix_is_current (test_certified_boundary_matrix.RealCommittedOutput.test_committed_matrix_is_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_certified_boundary_matrix.py", line 679, in test_committed_matrix_is_current
+    self.assertEqual(matrix.check_outputs(self.outputs, matrix.ROOT / matrix.OUTPUT), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['stale: cases-france.json', 'stale: cases[84 chars].md'] != []
+
+First list contains 5 additional elements.
+First extra element 0:
+'stale: cases-france.json'
+
++ []
+- ['stale: cases-france.json',
+-  'stale: cases-india.json',
+-  'stale: cases-ussr-russia.json',
+-  'stale: summary.json',
+-  'stale: README.md']
+
+======================================================================
+FAIL: test_scope_is_preparation_and_covers_all_eight_cases (test_certified_boundary_matrix.RealCommittedOutput.test_scope_is_preparation_and_covers_all_eight_cases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_certified_boundary_matrix.py", line 688, in test_scope_is_preparation_and_covers_all_eight_cases
+    self.assertEqual({k for k, v in statuses.items() if v == 'accepted'},
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     {'01', '02', '03', '04', '07', '08', '23', '24', '25', '27', '29', '30', '32', '33', '34', '35', '36', '37'})
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'38'
+'41'
+
+----------------------------------------------------------------------
+Ran 623 tests in 112.968s
+
+FAILED (failures=2, errors=1)

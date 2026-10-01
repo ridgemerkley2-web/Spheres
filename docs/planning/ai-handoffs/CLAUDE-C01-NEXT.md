@@ -6,6 +6,15 @@ C01-31 packet and address review findings; resolve the held Russia C01-28
 evidence. National representative figures are retired from country selection.
 Use dated exact campaign identities.
 
+Current review update, 1 October 2026: C01-38/40/41 are accepted **bounded research
+intakes**, with source, locator, prose and attribution limits in their independent
+receipts. C01-31 is held on seven originals / fourteen claims / five dependent
+holder observations, with its conservative Takeya correction preserved but no
+Japan research imported. C01-39 has now delivered at `9cb02c20` and awaits source
+content review. The queue records all four new packets. The dated inventory below
+remains earlier context; use the [current handoff](CLAUDE-CAMPAIGN-LEADER-ART.md)
+and machine-readable queue for current action and exact revisions.
+
 Updated 28 September 2026. Fetch the latest `codex/campaign-certification`; runtime
 checkpoint `2cb1da4a` follows the original assignment base `474df63e`.
 The machine-readable task queue is `docs/planning/ai-task-queue.json`; query it with

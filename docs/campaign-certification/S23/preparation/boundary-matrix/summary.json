@@ -372,6 +372,30 @@
    "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md",
    "reviewed_head": null,
    "sources_listed": 31
+  },
+  {
+   "packet": "CLAUDE-C01-38",
+   "report": "docs/campaign-certification/C01/research/france-prime-ministers-2014-2026-38.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
+   "reviewed_head": null,
+   "sources_listed": 22
+  },
+  {
+   "packet": "CLAUDE-C01-40",
+   "report": "docs/campaign-certification/C01/research/india-cpim-general-secretaries-1990-2026-40.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md",
+   "reviewed_head": null,
+   "sources_listed": 18
+  },
+  {
+   "packet": "CLAUDE-C01-41",
+   "report": "docs/campaign-certification/C01/research/ussr-cpsu-general-secretary-1990-1991-41.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
+   "reviewed_head": null,
+   "sources_listed": 12
   }
  ],
  "packets_without_report": [],
@@ -381,7 +405,8 @@
   "CLAUDE-C01-SOURCE-06",
   "CLAUDE-C01-SOURCE-17",
   "CLAUDE-C01-SOURCE-26",
-  "ORDERED-2026-09-28"
+  "ORDERED-2026-09-28",
+  "REVIEW-2026-10-01"
  ],
  "executive_pairing": {
   "France": [],
@@ -430,10 +455,10 @@
        "production_party": 15,
        "executive": 1
       },
-      "cases": 1079,
+      "cases": 1103,
       "case_kinds": {
-       "attestation_day": 18,
-       "attestation_day_after": 18,
+       "attestation_day": 30,
+       "attestation_day_after": 30,
        "cutoff_day": 18,
        "cutoff_day_before": 18,
        "dissolution_day_after": 1,
@@ -451,7 +476,7 @@
        "yearly": 828
       },
       "observations_by_acceptance": {
-       "accepted": 23,
+       "accepted": 35,
        "production_registry": 54
       },
       "research_yearly_status": {
@@ -483,7 +508,7 @@
      },
      "headline": [
       "Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 23.",
+      "Research holder observations by acceptance: accepted 35.",
       "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
       "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
       "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
@@ -590,40 +615,40 @@
      "identity": "India",
      "statistics": {
       "roles": {
-       "research": 5,
+       "research": 6,
        "production_party": 4,
        "executive": 1
       },
-      "cases": 720,
+      "cases": 783,
       "case_kinds": {
-       "attestation_day": 45,
-       "attestation_day_after": 45,
-       "cutoff_day": 10,
-       "cutoff_day_before": 10,
+       "attestation_day": 49,
+       "attestation_day_after": 49,
+       "cutoff_day": 11,
+       "cutoff_day_before": 11,
        "death_day_after": 2,
        "death_day_before": 2,
        "death_day_of": 2,
-       "fictional_end_exclusive": 10,
-       "fictional_last_day": 10,
-       "fictional_start_day": 10,
-       "future_2030": 10,
-       "handover_day_after": 37,
-       "handover_day_before": 37,
-       "handover_day_of": 37,
-       "reference_start": 10,
-       "reference_start_day_before": 10,
-       "yearly": 460
+       "fictional_end_exclusive": 11,
+       "fictional_last_day": 11,
+       "fictional_start_day": 11,
+       "future_2030": 11,
+       "handover_day_after": 38,
+       "handover_day_before": 38,
+       "handover_day_of": 38,
+       "reference_start": 11,
+       "reference_start_day_before": 11,
+       "yearly": 506
       },
       "observations_by_acceptance": {
-       "accepted": 21,
+       "accepted": 25,
        "pending": 31,
        "production_registry": 30
       },
       "research_yearly_status": {
-       "bracketed": 3,
+       "bracketed": 12,
        "established": 6,
-       "uncertain": 98,
-       "unknown": 78
+       "uncertain": 124,
+       "unknown": 80
       },
       "production_party_yearly_status": {
        "established": 109,
@@ -652,8 +677,8 @@
       ]
      },
      "headline": [
-      "Research roles: 5 (5 with holder observations); 6 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 3 are bracketed, 98 uncertain, 78 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: accepted 21, pending 31.",
+      "Research roles: 6 (6 with holder observations); 6 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 12 are bracketed, 124 uncertain, 80 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: accepted 25, pending 31.",
       "Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.",
       "Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).",
       "Campaign-start executive V. P. Singh: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
@@ -1010,10 +1035,10 @@
        "production_party": 3,
        "executive": 1
       },
-      "cases": 675,
+      "cases": 689,
       "case_kinds": {
-       "attestation_day": 16,
-       "attestation_day_after": 16,
+       "attestation_day": 23,
+       "attestation_day_after": 23,
        "creation_day_after": 1,
        "creation_day_before": 1,
        "creation_day_of": 1,
@@ -1034,7 +1059,7 @@
        "yearly": 552
       },
       "observations_by_acceptance": {
-       "accepted": 8,
+       "accepted": 13,
        "pending": 6,
        "unattributed_intake": 4
       },
@@ -1063,7 +1088,7 @@
      },
      "headline": [
       "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.",
-      "Research holder observations by acceptance: accepted 8, pending 6, unattributed_intake 4.",
+      "Research holder observations by acceptance: accepted 13, pending 6, unattributed_intake 4.",
       "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
       "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -1808,6 +1833,27 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
+   "bytes": 2374,
+   "sha256": "371acf3914e4c96d673ab0f6f5e37cb0faf6abf27339c892a9e0cf74530eb433",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md",
+   "bytes": 7011,
+   "sha256": "e418f69f8bbb79f9ef2b9b90412d2825c5a8cda9c9d89d7679418c0add9f7fa0",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
+   "bytes": 1556,
+   "sha256": "210c512749291702751f9d1184108673cdceb2cda5d99b4927a6a7baa026d650",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/represented-organizations.json",
    "bytes": 793318,
    "sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
@@ -1864,9 +1910,16 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/france-prime-ministers-2014-2026-38.md",
+   "bytes": 29895,
+   "sha256": "29d44dca20fe593ff493ff575e8f38b1fd365aeab7eef5a758dbd94f172806db",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/france.json",
-   "bytes": 2122964,
-   "sha256": "6c4ed32a719effc98a4c5e8755eafcc9e1a3559c92b21c4fb3192b3368b76baf",
+   "bytes": 2224528,
+   "sha256": "03bd326b0acaddb96f33b71dad22e5f6ee906ec4649ce4de97fa2325e7a0f49e",
    "newline_normalized": true,
    "exists": true
   },
@@ -1874,6 +1927,13 @@
    "path": "docs/campaign-certification/C01/research/india-bjp-presidents-1990-2026-27.md",
    "bytes": 133171,
    "sha256": "46970670c7ba905ba509ce9556fcf23ae173a55e0fe6d2e8377a4d49a4dfe5f6",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/india-cpim-general-secretaries-1990-2026-40.md",
+   "bytes": 27857,
+   "sha256": "7fa1f9cd5a14386e26207bb63c7c8dd4298d36fd153d6c982ce1947f62260853",
    "newline_normalized": true,
    "exists": true
   },
@@ -1907,8 +1967,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/india.json",
-   "bytes": 1241859,
-   "sha256": "ad31ae748940c61e5fc345228f8b51c1f4c55f897b54f0af58dc9bbb83d97c6d",
+   "bytes": 1301518,
+   "sha256": "42d68ee487ff13718fae67488a9d28ecce1be1b586da878574568f5d6d139176",
    "newline_normalized": true,
    "exists": true
   },
@@ -2095,6 +2155,13 @@
    "exists": true
   },
   {
+   "path": "docs/campaign-certification/C01/research/ussr-cpsu-general-secretary-1990-1991-41.md",
+   "bytes": 42378,
+   "sha256": "f322d158043b3e8fc27174335422e87f806208c16c8f196d5d14caf984ae0b6c",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "docs/campaign-certification/C01/research/ussr-democratic-russia-soyuz-1990-1991-35.md",
    "bytes": 53520,
    "sha256": "a7c6679e2e8995b982cb7ac3074019390cc7510ba011440162517cd634ef17e8",
@@ -2117,8 +2184,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/ussr.json",
-   "bytes": 300502,
-   "sha256": "1fdb9f98ae0edcc10366bbea508c71140a8f949947d9f63db1a7dca32f016089",
+   "bytes": 360379,
+   "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94",
    "newline_normalized": true,
    "exists": true
   },

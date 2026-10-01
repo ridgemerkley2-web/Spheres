@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 1083, in <module>
+    main()
+    ~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 1071, in main
+    files = outputs()
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 1048, in outputs
+    ledger = build(root, attribution)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 540, in build
+    classes = acceptance_classes(root)
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 354, in acceptance_classes
+    classes.update({packet: 'c01_accepted' for packet in acceptance_records(root)})
+                                                         ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\certified_gap_ledger.py", line 345, in acceptance_records
+    raise ValueError(f'No explicit accepted decision in {record.relative_to(root).as_posix()}')
+ValueError: No explicit accepted decision in docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md

@@ -1,0 +1,39 @@
+{
+  "source_revision": "7d029f1dc1b84d68426620fa7d0b9fccadfef53e",
+  "phase": "generation-01",
+  "at_utc": "2026-10-01T01:15:01.768967+00:00",
+  "commands": [
+    {
+      "name": "index-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 41.269,
+      "log": "index-regenerate.log",
+      "bytes": 252,
+      "sha256": "320b81d22462f6457cc7fd4894561c08591a39006af50ae15ae34ee89bd9eba4"
+    },
+    {
+      "name": "gap-attribution-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--refresh-attribution"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 9.511,
+      "log": "gap-attribution-regenerate.log",
+      "bytes": 1427,
+      "sha256": "f8d8cb4c34da3ac6f1612f661598b96449e388b6efadefa7ce359390769695cb"
+    }
+  ],
+  "passed": false
+}
