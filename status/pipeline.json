@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T23:26:43Z",
+  "updated": "2026-10-01T01:21:47Z",
   "mode": "parallel workflow (user, 30 Sep 2026: \"Run multiple in parallel\"; ultracode on)",
   "packets": [
     {
@@ -39,6 +39,7 @@
       "state": "submitted",
       "branch": "claude/c01-jp-31",
       "head": "696937ba",
+      "codex": "Codex review 988d5379 (30 Sep): kept 竹谷 convention acceptance as a dated observation (attested_on, no from)",
       "note": "Sonnet checker: clean; rulings accepted (竹谷 start per C01-18/22 with hedge; newspaper issue date per C01-29; interim claims only); 2 wording suggestions applied by me (fe855edd)"
     },
     {
@@ -105,41 +106,40 @@
       "n": "38",
       "title": "French prime ministers, 2014–2026",
       "country": "France",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-fr-38",
-      "head": "f1420ba1"
+      "head": "acf33f09"
     },
     {
       "n": "39",
       "title": "Democratic Alliance federal leaders, 2000–2026",
       "country": "SouthAfrica",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-za-39",
-      "head": "03cd0bb9"
+      "head": "9cb02c20"
     },
     {
       "n": "40",
       "title": "CPI(M) general secretaries, 1990–2026",
       "country": "India",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-in-40",
-      "head": "c152e35e"
+      "head": "54680e39"
     },
     {
       "n": "41",
       "title": "CPSU General Secretary and Deputy General Secretary, 1990–1991",
       "country": "USSR",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-su-41",
-      "head": "7778be5b"
+      "head": "a989ddb4"
     }
   ],
   "attention": [
     "C01-28 review held by Codex: 12 archived originals unreachable from its environment.",
-    "C01-38 to 41 running in parallel (workflow)."
+    "C01-38 to 41: fixes running (workflow)."
   ],
   "log": [
-    "2026-09-28 C01-34 research done (claude/c01-br-34@4d51cc10: 76 sources, 127 claims, 13 holder obs; Brizola until 2004-06-21 from party death report; open rulings on Lupi 2004/2025, Jucá, PMDB->MDB). Active: 34 verify, 35 research.",
     "2026-09-28 C01-34 verified: 76/76 sources clean, 4 text defects. Rulings: Brizola until kept; Lupi 2004 interim -> claims only (C01-22 Genoino precedent); Lupi 2025 kept; PMDB->MDB on one role; Jucá acting. Active: 34 fix, 35 research.",
     "2026-09-28 C01-34 fixed (79b028cb/16ef41a6: 12 holder obs; Lupi 2004 interim claims only) -> submitted, worktree removed. C01-36 (Tonga Deputy PMs) set up unstacked at e8821f40 on 44098c5a (to-24 now detected as merged via queue). Active: 35 research, 36 research. Remaining: 31 (held for 29), 37.",
     "2026-09-28 SPHERES Command dashboard built on orphan branch `dashboard` (worktree <local>, 400c8583); status publisher publish_status.py added (first status d7b20d18). Pages must be enabled by the user (source: dashboard, root).",
@@ -158,6 +158,7 @@
     "2026-09-30 Codex's new roadmap/workboard (b31bdfab, 301f63cb): Claude's lane = continue existing claims, then reconcile accepted Tonga research into dated identities and a reviewed 6-8 cartoon batch, repeating country batches toward C06; no new research batch before existing claims finish. Queued 38-41 put on hold pending the user.",
     "2026-09-30 C01-31 research done (f15de3bc: 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS). Lean Sonnet checker launched.",
     "2026-09-30 User: \"Run multiple in parallel\" (ultracode on). Released 38-41, set up (claims f1420ba1, 03cd0bb9, c152e35e, 7778be5b on 02d2c5a2), launched workflow wf_9de7b1d4-86c: research -> packet_check -> two checker lenses per packet, results back to me for rulings and fixes. C01-31 checker still running.",
-    "2026-09-30 C01-31 checked (Sonnet: clean, 376k tokens); my wording fixes fe855edd/696937ba; packet_check PASS -> submitted. Two new precedents added to the rulings list."
+    "2026-09-30 C01-31 checked (Sonnet: clean, 376k tokens); my wording fixes fe855edd/696937ba; packet_check PASS -> submitted. Two new precedents added to the rulings list.",
+    "2026-09-30 Workflow wf_9de7b1d4-86c done (16 agents, 3.5M tokens): 38-41 researched, all sources matched; rulings made following Codex (1739eccb: instrument dates never boundaries; 988d5379: acceptance = dated observation) - rulings list updated; fix workflow wf_17a2225b-386 launched (fix + adversarial verify per packet). C01-38 agent sent the users email in one User-Agent to fr.wikipedia (disclosed; not in any commit; scratch redacted)."
   ]
 }
