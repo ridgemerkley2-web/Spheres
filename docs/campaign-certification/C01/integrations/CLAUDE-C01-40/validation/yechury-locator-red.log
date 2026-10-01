@@ -1,0 +1,13 @@
+.....F
+======================================================================
+FAIL: test_yechury_election_recollection_does_not_point_to_student_biography (test_india_cpim_original_review_c01_40.CpimOriginalReview.test_yechury_election_recollection_does_not_point_to_student_biography)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-40-20261001\tools\avatars\test_india_cpim_original_review_c01_40.py", line 44, in test_yechury_election_recollection_does_not_point_to_student_biography
+    self.assertIn('He was elected as the General Secretary', locator)
+AssertionError: 'He was elected as the General Secretary' not found in 'third paragraph'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
+
+FAILED (failures=1)
