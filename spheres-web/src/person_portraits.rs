@@ -441,6 +441,30 @@ mod tests {
         assert_eq!(spheres_sim::save(&w),after_succession);
     }
     #[test]
+    fn tonga_king_iv_reference_portrait_uses_assent_context_without_inventing_tenure() {
+        let w=spheres_sim::init::world_1990(spheres_sim::world::GameRules{
+            ideology_blocs:true,historical_party_leadership:true,daily_simulation:true,..Default::default()
+        });
+        let saved=spheres_sim::save(&w);
+        let raw=spheres_sim::institutional_leadership::view(&w,NationId::Tonga);
+        let cards=institutional_view(&w,NationId::Tonga);
+        let binding_id="to_cast_crown_king_141b845110e8e610";
+        let original=raw["historical_bindings"].as_array().unwrap().iter()
+            .find(|b|b["id"]==binding_id).unwrap();
+        let king=cards["historical_bindings"].as_array().unwrap().iter()
+            .find(|b|b["id"]==binding_id).unwrap();
+        assert_eq!(king["holder"],original["holder"]);
+        assert!(king["holder"]["attested_on"].is_null());
+        assert!(king["holder"]["from"].is_null());
+        assert_eq!(king["holder"]["until"],"2006-09-11");
+        assert_eq!(king["portrait_reference_date"],"1990-07-12");
+        assert_eq!(king["portrait_date_is_tenure"],false);
+        assert_eq!(king["person"]["id"],"taufaahau_tupou_iv");
+        assert_eq!(king["person"]["portrait"]["url"],
+            "/art/people/taufaahau-tupou-iv-cartoon-1990-v1.png");
+        assert_eq!(spheres_sim::save(&w),saved);
+    }
+    #[test]
     fn registered_cartoons_exist_and_have_source_and_visual_review() {
         let mut registered=std::collections::BTreeSet::new();
         for (id,p) in manifest()["people"].as_object().unwrap() {
