@@ -29,7 +29,7 @@ scope (C01, C06, S23, WC1 and CP1) remains open.
 | SU-CPSU-01 | The General Secretary in 1990 before the XXVIII Congress | **Accepted:** the Central Committee's communique on the plenum opened 5 Feb 1990 names "Генеральный секретарь ЦК КПСС М. С. Горбачев" as rapporteur (Pravda No. 37); holder `attested_on` 5 Feb 1990 |
 | SU-CPSU-02 | The XXVIII Congress election of the General Secretary | **Accepted:** the ballot (Т. Г. Авалиани and М. С. Горбачев), the vote, the result announced and the counting commission's protocol approved, all on 10 Jul 1990, and the elected General Secretary's address (Pravda No. 192); holder `attested_on` 10 Jul 1990; the biography's "вновь избран" is a claim. No `from`: a re-election, and no source states when a term took effect |
 | SU-CPSU-03 | The new office of Deputy General Secretary: election and first attestation | **Accepted:** the ballot (А. С. Дудырев, В. А. Ивашко, Е. К. Лигачев) and the vote, 11 Jul 1990 (Pravda No. 193); the result announced and the protocols approved, 12 Jul 1990, with the vote figures in the paper's own report and a biography dating the election to 11 Jul (Pravda No. 194); the Congress's programme commission, formed 13 Jul 1990, lists "Ивашко В. А. — заместитель Генерального секретаря ЦК КПСС" and "Горбачев М. С. — Генеральный секретарь ЦК КПСС" (Pravda No. 195); holder `attested_on` 13 Jul 1990. No `from` |
-| SU-CPSU-04 | The latest attestations before the office changed | **Accepted in part:** the Central Committee journal's editorial board names the deputy (signed to press 10 Jul 1991, a claim); the Secretariat's undated statement in Pravda of 22 Aug 1991 names the General Secretary (holder `attested_on` 22 Aug 1991); Pravda's report of a Central Committee secretary's press conference of 21 Aug 1991 names both (the deputy's holder `attested_on` 21 Aug 1991; ruling requested) |
+| SU-CPSU-04 | The latest attestations before the office changed | **Accepted in part:** the Central Committee journal's editorial board names the deputy (signed to press 10 Jul 1991, a claim); the Secretariat's undated statement in Pravda of 22 Aug 1991 names the General Secretary (holder `attested_on` 22 Aug 1991); Pravda's report of a Central Committee secretary's press conference of 21 Aug 1991 names both (the deputy's holder `attested_on` 21 Aug 1991; ruling (b), decided by Ridge) |
 | SU-CPSU-05 | The General Secretary's resignation and the deputy's acting service | **Accepted in part:** his own words in the Supreme Soviet on 26 Aug 1991 that he has laid down the duties (no day stated) and another deputy's reference on 3 Sep 1991 are claims; the statement of 24 Aug 1991 itself is known only from leads, so no `until`. The deputy's acting service after 24 Aug 1991 was not found in a primary record (leads only) |
 | SU-CPSU-06 | The party's suspension and end | **Accepted in part:** decree УП-2460 on the party's property (24 Aug 1991), the proposal of self-dissolution (26 Aug), the Supreme Soviet's suspension of the party's activity in the USSR (2371-I, 29 Aug), a deputy's statement that the Central Committee has not decided to dissolve itself (3 Sep) and the RSFSR decree ending its activity on RSFSR territory (No. 169, 6 Nov 1991) are organization claims only; no union-level dissolution or lifecycle end is established |
 
@@ -69,7 +69,8 @@ Holders are named as this packet's sources print them in full: Pravda's biograph
 (11 July 1990) and "ИВАШКО" over "Владимир Антонович" (13 July 1990), and "Ивашко Владимира Антоновича" in that day's report (the CLAUDE-C01-19
 convention); the records themselves print "М. С. Горбачев", "Горбачев М. С.", "В. А. Ивашко", "Ивашко В. А." and "В. Ивашко". The
 S10.h deputy's source spelling "Vladimir Ivashkov" is **not** reconciled with "Владимир Антонович Ивашко": the two stay separate
-observations, and the identity question stays in the role's coverage. The CPSU and the RSFSR Communist Party (КП РСФСР, named with
+observations, and the identity question stays in the role's scope note and in su_cpsu's existing coverage item on reconciling
+original Russian personal names. The CPSU and the RSFSR Communist Party (КП РСФСР, named with
 it in the RSFSR decree) are not treated as one identity.
 
 ### Party office and state office
@@ -200,9 +201,10 @@ by the non-official SSSR.SU project (the host documented by the CLAUDE-C01-SOURC
 recorded by CLAUDE-C01-26 or CLAUDE-C01-35 under their own IDs (`su_vs_bulletin1_soyuz_19910826`, `su_ved_1991_35`,
 `su_snd5_bulletin3_19910903`, `su_ved_1991_36`), each as the same pre-cutoff raw capture under a new ID, so that the earlier
 extracts stay unchanged. **RSFSR decree No. 169** is the text on the official site of the President of Russia (kremlin.ru, acts bank
-item 385) as a pre-cutoff raw capture, with the original edition on the official legal portal attached. Whether the private-upload
-scans and the SSSR.SU host meet the official-facsimile standard is the integrator's decision, as for CLAUDE-C01-26 (C12). If the
-Internet Archive user uploads are ruled out, every new holder is lost (all five rest on Pravda) and SU-CPSU-01 to 04 fall to
+item 385) as a pre-cutoff raw capture, with the original edition on the official legal portal attached. Ridge has accepted the
+private-upload scans as non-official-host facsimiles (ruling (a); the `*_non_official_host` source types stay), decided together
+with the pending CLAUDE-C01-26 host ruling (C12), and the four SSSR.SU sources follow C12 (ruling (e)); Codex may still decide
+otherwise at integration. If C12 rejects such hosts, every new holder is lost (all five rest on Pravda) and SU-CPSU-01 to 04 fall to
 leads; SU-CPSU-05 and 06 keep their claims from the official Union and RSFSR records. If the SSSR.SU host is ruled out, SU-CPSU-05
 keeps no primary claim and SU-CPSU-06 keeps only the RSFSR decree.
 
@@ -279,13 +281,16 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   archival copy, e.g. the Presidential Archive or RGANI), which would allow an `until` under the resignation ruling.
 - `C01-USSR-CPSU-003`: the Deputy General Secretary's acting service and the Central Committee Secretariat's records after 24 August
   1991 (RGANI fund 4 or the 1992 Constitutional Court case file), and any record of the end of his office.
-- `C01-USSR-CPSU-004`: an integrator ruling on Internet Archive items uploaded by private accounts as hosts for party newspapers and
-  journals (the Pravda and Известия ЦК КПСС scans), parallel to the SSSR.SU ruling for CLAUDE-C01-26.
+- `C01-USSR-CPSU-004`: confirm at integration Ridge's ruling (a) on Internet Archive items uploaded by private accounts as hosts
+  for party newspapers and journals (the Pravda and Известия ЦК КПСС scans), together with the pending SSSR.SU ruling for
+  CLAUDE-C01-26 (C12).
 
 ## Integration notes (outside this packet's file boundary)
 
-- **Stacking.** Not stacked: claim commit `7778be5b` sits directly on `02d2c5a2`. `codex/campaign-certification` is fetched again
-  before committing and merged if it moved.
+- **Stacking.** Not stacked: claim commit `7778be5b` sits directly on `02d2c5a2`. `codex/campaign-certification` moved and was
+  merged at `79ef97ec` (`9927403a`) before the packet commit. It has since moved to `509bd289`, where Codex imported this packet
+  for independent review with its own corrections; the checker-fix commit is not merged with it (conflicts in `ussr.json`, two
+  extracts and this report).
 - **Batch order.** The user chose to start this batch (CLAUDE-C01-38 to C01-41, run in parallel in other country files) before
   Codex's roadmap line "continue existing claims first" was worked through; this packet is one of them.
 - **Shared file.** `research-index.json` is regenerated in a **separate commit** and is the only file this packet shares with the
@@ -294,15 +299,22 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   `sources` and `claim_ids`, appends to each role's `sources`, `claim_ids` and `holder_claims` (after the S10.h holder), adds a
   `scope_note` to each role (as CLAUDE-C01-26 did for `su_supreme_soviet_chair`) and appends four coverage items; one packet
   coverage item is appended. Role ids, titles and kinds, the organization's name, jurisdiction and lifecycle are unchanged.
-- **Existing tests updated** (pinned counts, exact sets and access dates only; none loosened): `test_ussr_research_s10h.py`: totals (7, 56, 131, 8) → (7, 68, 157, 8); the table-extract count 46 → 58; the PDF-page set adds the 11 scanned PDFs of this packet (`C01_41_PDF_SOURCES`); access dates add 2026-09-30, pinned to positions 56-67, with 2026-09-29 re-pinned to positions 40-55 (`[40:56]`); index source claims 131 → 157; the CPSU roles' source pin is re-expressed exactly: the S10.h source stays first in both roles and every later source is one of this packet's (`C01_41_SOURCES`). `test_ussr_government_supreme_soviet_c01_26.py`: packet totals (68, 157, 7, 8) and index figures (4, 8, 157, 7); its new-source list stays pinned to positions 10-39. `test_ussr_democratic_russia_soyuz_c01_35.py`: its new-source list is pinned to positions 40-55 (`[40:56]`), the packet totals become (68, 157, 7, 8), the source count 56 → 68 and the index figures (3, 4, 8, 157, 7); its holder guard keeps the same SHA-256 and now skips only holders resting on this packet's sources (`C01_41_SOURCES`), which the new test pins in full. `test_ussr_russia_transition_c01_05.py` is unchanged.
-- **Rulings requested.** (1) Internet Archive user uploads of Pravda and Известия ЦК КПСС as hosts (all five holders depend on
-  them). (2) Whether Pravda's report of a Central Committee secretary's press conference attests the deputy's office on 21 August
-  1991. (3) Whether the General Secretary's own words of 26 August 1991, with the statement's date only in leads, should ever give
-  `until` 1991-08-24 (this packet sets none). (4) Whether a re-election by the Congress on a stated day should give `from` (this
-  packet follows the CLAUDE-C01-26 rule: an election is a claim, not a holder start).
+- **Existing tests updated** (pinned counts, exact sets and access dates only; none loosened): `test_ussr_research_s10h.py`: totals (7, 56, 131, 8) → (7, 68, 157, 8); the table-extract count 46 → 58; the PDF-page set adds the 11 scanned PDFs of this packet (`C01_41_PDF_SOURCES`); access dates add 2026-09-30, pinned to positions 56-67, with 2026-09-29 re-pinned to positions 40-55 (`[40:56]`); index source claims 131 → 157; the CPSU roles' source pins stay exact lists, re-expressed to the S10.h source followed by this packet's sources in order (eight for the General Secretary, six for the Deputy; the base pinned the deputy's list equal to the General Secretary's one-source list). `test_ussr_government_supreme_soviet_c01_26.py`: packet totals (68, 157, 7, 8) and index figures (4, 8, 157, 7); its new-source list stays pinned to positions 10-39. `test_ussr_democratic_russia_soyuz_c01_35.py`: its new-source list is pinned to positions 40-55 (`[40:56]`), the packet totals become (68, 157, 7, 8), the source count 56 → 68 and the index figures (3, 4, 8, 157, 7); its holder guard keeps the same SHA-256 and now skips only the new holders of the two CPSU roles (holders of `su_cpsu_general_secretary` and `su_cpsu_deputy_general_secretary` whose sources are all this packet's, `C01_41_SOURCES`), which the new test pins in full. `test_ussr_russia_transition_c01_05.py` is unchanged.
+- **Rulings (decided by Ridge; Codex may still decide otherwise at integration).** (a) The Pravda and Известия ЦК КПСС scans on
+  Internet Archive items uploaded by private accounts are accepted as non-official-host facsimiles (the `*_non_official_host`
+  source types stay), decided together with the pending CLAUDE-C01-26 C12 host ruling; if C12 rejects such hosts, SU-CPSU-01 to 04
+  fall to leads. (b) Pravda's report of Central Committee secretary Дзасохов's press conference of 21 August 1991 ('заместитель
+  Генерального секретаря ЦК В. Ивашко вылетел в Крым') attests the Deputy General Secretary, `attested_on` only. (c) Gorbachev gets
+  no `until`: his words of 26 August 1991 state no day and 24 August appears only in leads. (d) The Congress elections (10 July
+  1990, 12 July 1990) give no `from`. (e) The four SSSR.SU sources follow the C12 ruling; no holder depends on them. (f) The
+  existing S10.h holders stay at index 0 unchanged, with the new holders appended in date order. The data already follows (a)-(f).
 - **Known failures outside the listed checks** (not fixed here): `tools/avatars/test_certified_gap_ledger.py` reports "no pinned
   attribution" for this packet's sources until Codex classifies its commit; `tools/avatars/test_certified_boundary_matrix.py` (S23)
-  needs `spheres-web/src`, absent from the sparse checkout, and Codex regenerates the boundary matrix on integration.
+  needs `spheres-web/src`, absent from the sparse checkout, and Codex regenerates the boundary matrix on integration;
+  `tools/avatars/campaign_census.py --check` exits 1 on the integration head `79ef97ec` itself, because Codex commits after
+  `262d5f61` (`c41376f5`, `ace1f233`, `434abd50`, `7c6f112c`) changed `spheres-sim/src/government.rs` without regenerating
+  `census.json` (last regenerated at `3947d1f1`): `census.json` records that input at 849,546 bytes, SHA-256 `3f846b4b…`, and the
+  file is now 851,150 bytes, SHA-256 `4b0b82db…`; this packet touches neither file.
   `docs/campaign-certification/C01/gap-ledger/` is not touched.
 - `research/README.md`, the C01 README totals and `docs/planning/ai-workstreams.json` are left for the integrator; this handoff is
   not registered there.

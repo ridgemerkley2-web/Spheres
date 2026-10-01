@@ -6,7 +6,8 @@ Origin: part of the back-to-back C01 research pipeline the user asked for on 28 
 certified-country gap ledger (`docs/campaign-certification/C01/gap-ledger/ledger.md`) items `USSR/su_cpsu`. Pending Codex
 acceptance; not registered in the task queue.
 
-Branch: `claude/c01-su-41`. Base: `02d2c5a2` (current `codex/campaign-certification`); not stacked on a pending packet. Claim commit: this record's first commit on the branch.
+Branch: `claude/c01-su-41`. Base: `02d2c5a2` at claim; `codex/campaign-certification` merged at `79ef97ec` (`9927403a`); not
+stacked on a pending packet. Claim commit: this record's first commit on the branch.
 
 ## Bounded deliverable
 
@@ -42,9 +43,10 @@ Mark the packet `ready_for_review` when done. C01 and all parent gates stay open
 
 [Report](../../campaign-certification/C01/research/ussr-cpsu-general-secretary-1990-1991-41.md):
 `ussr-cpsu-general-secretary-1990-1991-41.md`. Branch `claude/c01-su-41`, claim commit `7778be5b` on `02d2c5a2`; **not stacked**.
-Result commits: the packet commit `Add CLAUDE-C01-41: CPSU General Secretary and Deputy General Secretary, 1990–1991` and the
-separate commit `Regenerate the C01 research index for CLAUDE-C01-41` at the head of `claude/c01-su-41` at submission; to be
-recorded by the integrator. Research access 30 September 2026 (UTC; the second download pass ran on 1 October UTC). One research
+Base: `02d2c5a2` at claim; `codex/campaign-certification` merged at `79ef97ec` (`9927403a`). Result commits: `f4d9394e` (packet),
+`befa7c36` (research-index.json only), `a989ddb4` (this record only; packet_check re-run at this head, same result), and the
+follow-up `Apply checker fixes to CLAUDE-C01-41` (the two pinned tests, this record and the report; no research input changed, so
+no new index commit). Research access 30 September 2026 (UTC; the second download pass ran on 1 October UTC). One research
 pass, no sub-agents.
 
 Decisions per observation (`su_cpsu`, existing roles `su_cpsu_general_secretary` and `su_cpsu_deputy_general_secretary`):
@@ -56,7 +58,7 @@ Decisions per observation (`su_cpsu`, existing roles `su_cpsu_general_secretary`
   report; the biography says 11 July) are claims; Владимир Антонович Ивашко attested 1990-07-13 (the Congress's programme
   commission list, Pravda No. 195). No `from`.
 - SU-CPSU-04 accepted in part: Горбачев attested 1991-08-22 (the Secretariat's undated statement, Pravda No. 201); Ивашко attested
-  1991-08-21 (Pravda's report of А. Дзасохов's press conference; ruling requested); the journal masthead of 10 July 1991 is a claim.
+  1991-08-21 (Pravda's report of А. Дзасохов's press conference; ruling (b)); the journal masthead of 10 July 1991 is a claim.
 - SU-CPSU-05 accepted in part: his own words of 26 August 1991 that he laid down the duties and a deputy's reference of 3 September
   are claims with no day; the statement of 24 August 1991 is a lead; no `until`; the deputy's acting service was not found in a
   primary record (no acting holder).
@@ -68,11 +70,15 @@ The S10.h observations ("Mikhail Gorbachev"; "Vladimir Ivashkov (source spelling
 and stay first in each role; the Russian names are never reconciled with them. No holder has a `from` or an `until`. Party and
 state offices stay separate; nothing is added to `russia.json`. Two people are researched.
 
-Rulings requested: (1) Internet Archive items uploaded by private accounts (Pravda, Известия ЦК КПСС) as hosts of the party's own
-records: all five new holders rest on them; (2) Pravda's report of a Central Committee secretary's press conference as attestation
-of the deputy's office (21 August 1991); (3) whether his own words of 26 August 1991, with the statement's date only in leads,
-should ever give `until` 1991-08-24 (none set); (4) whether a congress re-election on a stated day gives `from` (none set, as in
-CLAUDE-C01-26). The SSSR.SU host ruling of CLAUDE-C01-26 (C12) also applies to four sources.
+Rulings (decided by Ridge; Codex may still decide otherwise at integration): (a) the Pravda and Известия ЦК КПСС scans on
+Internet Archive items uploaded by private accounts are accepted as non-official-host facsimiles (the `*_non_official_host`
+source types stay), decided together with the pending CLAUDE-C01-26 C12 host ruling; if C12 rejects such hosts, SU-CPSU-01 to 04
+fall to leads and all five new holders are lost; (b) Pravda's report of Central Committee secretary Дзасохов's press conference
+of 21 August 1991 ('заместитель Генерального секретаря ЦК В. Ивашко вылетел в Крым') attests the Deputy General Secretary,
+`attested_on` only; (c) Gorbachev gets no `until`: his words of 26 August 1991 state no day and 24 August appears only in leads;
+(d) the Congress elections (10 July 1990, 12 July 1990) give no `from`; (e) the four SSSR.SU sources follow the C12 ruling, and
+no holder depends on them; (f) the existing S10.h holders stay at index 0 unchanged, with the new holders appended in date order.
+The data already follows (a)-(f); nothing in `ussr.json` or the extracts changed with them.
 
 Touched paths: this record; `docs/campaign-certification/C01/research/ussr.json` (12 sources, 26 claims, five holder observations
 appended to the two existing roles after the S10.h holders, a scope note per role, four `su_cpsu` coverage items and one packet
@@ -95,11 +101,20 @@ pass; the atlas Node check passes (11); `workboard.py --check` passes (44 marker
 clean. The new test's 19 mutations each fail on the rule they break. `packet_check.py 41` (head `befa7c36`, base `79ef97ec`):
 12 new sources, all 12 re-downloaded responses match their recorded byte counts and SHA-256; every check passes except
 `census --check` (below); it lists the re-expressed pinned-test lines for review. Known failures outside these checks, not fixed: `campaign_census.py --check` exits 1 on the
-integration head `79ef97ec` itself, because commits there (`ace1f233`, `434abd50`, `7c6f112c`) changed
+integration head `79ef97ec` itself, because commits there (`c41376f5`, `ace1f233`, `434abd50`, `7c6f112c`) changed
 `spheres-sim/src/government.rs` without regenerating `census.json` (regenerating to a scratch directory shows that `census.json`'s
 record of that input is the only difference: 849,546 → 851,150 bytes, SHA-256 `3f846b4b…` → `4b0b82db…`; the other four outputs
 are identical); `test_certified_gap_ledger.py` reports "no pinned attribution" for this packet's sources until Codex classifies
 its commit; `test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, absent from the sparse checkout, and Codex
 regenerates the boundary matrix on integration.
+
+Checker fixes (`Apply checker fixes to CLAUDE-C01-41`): `test_ussr_research_s10h.py` pins both CPSU roles' `sources` as exact lists
+again (the S10.h source, then this packet's sources in order); the holder guard of `test_ussr_democratic_russia_soyuz_c01_35.py`
+skips only the new holders of the two CPSU roles, with the same SHA-256; this record's base and result commits, the census commit
+list and rulings (a)-(f) are recorded, and the report's identity sentence, test notes, hosting paragraph, rulings and known
+failures follow. The USSR tests pass after the fixes; `packet_check.py 41 --no-fetch` is re-run at the fix head after pushing.
+Not merged: `codex/campaign-certification` has since moved to `509bd289`, where Codex imported this packet for independent
+review (`f04ead94` to `01faa023`, merged at `7d029f1d`) with precision corrections to `ussr.json`, two extracts and the report;
+a merge conflicts in those files, so this branch stays on `79ef97ec`, and Codex's copy still has the two test lines fixed here.
 
 C01 and all parent gates stay open.
