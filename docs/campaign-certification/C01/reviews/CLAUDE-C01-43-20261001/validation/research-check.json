@@ -1,0 +1,19 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/campaign_research.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-43-20261001",
+  "started_utc": "2026-10-01T05:07:37.924646+00:00",
+  "finished_utc": "2026-10-01T05:07:38.606146+00:00",
+  "exit_code": 0,
+  "output": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\validation\\research-check.log",
+    "bytes": 251,
+    "sha256": "b0bc31763010f8400d9a8a0045c314095471d8c049fe793b45fb93edff42d97b"
+  }
+}

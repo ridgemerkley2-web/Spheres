@@ -23,7 +23,12 @@ EARLIER_SOURCE_COUNT = 64
 # CLAUDE-C01-34 appends 76 sources after this packet's (the MDB and PDT party roles br_mdb_president and
 # br_pdt_president and the PFL/DEM claims; pinned exactly in test_brazil_party_presidents_c01_34.py).
 LATER_SOURCE_COUNT = 76
+# CLAUDE-C01-43 then appends 14 sources (the AGIR party role br_agir_president and one PDS claim; pinned exactly in
+# test_brazil_prn_agir_presidents_c01_43.py).
+AGIR_SOURCE_COUNT = 14
 LATER_PARTY_ROLES = [('br_tse_fefc_2024_party_01', 'br_mdb_president'), ('br_tse_fefc_2024_party_02', 'br_pdt_president')]
+# CLAUDE-C01-43's party role on the AGIR observation, which follows the PT observation in packet order.
+AGIR_PARTY_ROLES = [('br_tse_fefc_2024_party_07', 'br_agir_president')]
 # The PT observation's lifecycle, funding record and earlier coverage notes, which this packet must not change.
 LIFECYCLE = {"status": "unresearched", "from": None, "until": None, "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."}
 FUNDING = {"election_year": 2024, "release_date": "2024-08-20", "release_cell_as_displayed": "20.8.2024", "attested_on": "2024-08-20", "from": None, "until": None, "amount": None, "consolidated_current_status": None}
@@ -856,8 +861,8 @@ def pt_rules(packet, rows):
     # the MDB and PDT observations; the presidency institution keeps exactly its two roles.
     placed = [(e['id'], r['id']) for e in packet['organizations'] + packet['institutions'] for r in e['roles']
               if r['id'] == ROLE or r['kind'] == 'party_leader' or r['title'] == T_PRES]
-    assert [p for p in placed if p not in LATER_PARTY_ROLES] == [(ORG_ID, ROLE)], placed
-    assert placed == LATER_PARTY_ROLES + [(ORG_ID, ROLE)], placed
+    assert [p for p in placed if p not in LATER_PARTY_ROLES + AGIR_PARTY_ROLES] == [(ORG_ID, ROLE)], placed
+    assert placed == LATER_PARTY_ROLES + [(ORG_ID, ROLE)] + AGIR_PARTY_ROLES, placed
     assert [(e['id'], r['id']) for e in packet['organizations'] + packet['institutions'] for r in e['roles']
             if r['id'] == ROLE or r['title'] == T_PRES] == [(ORG_ID, ROLE)], 'the PT office exists once'
     assert [i['id'] for i in packet['institutions']] == ['br_presidency']
@@ -989,13 +994,15 @@ class BrazilPtPresidentsTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 248, 535, 5))
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 262, 556, 6))
         self.assertEqual((len(NEW_SOURCES), len(NEW_CLAIMS), len(HOLDERS)), (108, 177, 18))
         order = [s['id'] for s in self.packet['sources']]
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
-        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + LATER_SOURCE_COUNT)
+        self.assertEqual(len(order), EARLIER_SOURCE_COUNT + len(NEW_SOURCES) + LATER_SOURCE_COUNT + AGIR_SOURCE_COUNT)
+        later = EARLIER_SOURCE_COUNT + len(NEW_SOURCES)
         self.assertTrue(all(sid.startswith(('br_pdt_', 'br_mdb_', 'br_pfl_'))
-                            for sid in order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):]))
+                            for sid in order[later:later + LATER_SOURCE_COUNT]))
+        self.assertTrue(all(sid.startswith('br_agir_') for sid in order[later + LATER_SOURCE_COUNT:]))
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith('br_pt_')])
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], NEW_CLAIMS)
         self.assertEqual(self.role['claim_ids'], NEW_CLAIMS)
@@ -1096,12 +1103,13 @@ class BrazilPtPresidentsTests(unittest.TestCase):
         self.assertEqual(unresolved[:-1], ORG_UNRESOLVED)
         self.assertTrue(unresolved[-1].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22)'))
         packet_unresolved = self.packet['coverage']['unresolved']
-        # CLAUDE-C01-34's note follows this packet's.
-        self.assertTrue(packet_unresolved[-2].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
+        # CLAUDE-C01-34's note follows this packet's, then CLAUDE-C01-43's.
+        self.assertTrue(packet_unresolved[-3].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
         self.assertEqual(sum('CLAUDE-C01-22' in u for u in packet_unresolved), 1)
-        self.assertTrue(packet_unresolved[-3].startswith('Vice-presidents 1990-2026 (CLAUDE-C01-17)'))
-        self.assertTrue(packet_unresolved[-1].startswith('PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 '
+        self.assertTrue(packet_unresolved[-4].startswith('Vice-presidents 1990-2026 (CLAUDE-C01-17)'))
+        self.assertTrue(packet_unresolved[-2].startswith('PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 '
                                                          '(CLAUDE-C01-34)'))
+        self.assertTrue(packet_unresolved[-1].startswith('PRN / PTC / Agir national presidents 1990-2026 (CLAUDE-C01-43)'))
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
         for sid in NEW_SOURCES:
@@ -1363,7 +1371,7 @@ class BrazilPtPresidentsTests(unittest.TestCase):
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         self.assertEqual((country['institution_observations'], country['role_observations'], country['source_claims']),
-                         (1, 5, 535))
+                         (1, 6, 556))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

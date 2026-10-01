@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_agir_ptc_historia_partido_capt20071011",
+  "source_url": "https://web.archive.org/web/20071011184316id_/http://www.ptc.org.br/index.php?acao=historia_do_partido",
+  "original_url": "http://www.ptc.org.br/index.php?acao=historia_do_partido",
+  "archive_capture_utc": "2007-10-11T18:43:16Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 27308,
+  "source_response_sha256": "05cd95f56e424e28fccd04f48649a8ede9652666a7bde970f333c8488b9b2345",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-10-01T02:32:28Z and again at 2026-10-01T03:50:24Z (77 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 27308 bytes with SHA-256 05cd95f56e424e28fccd04f48649a8ede9652666a7bde970f333c8488b9b2345 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2007-10-11T18:43:16Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-10-01T02:32:28Z and again at 2026-10-01T03:50:24Z (77 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 27308 bytes with SHA-256 05cd95f56e424e28fccd04f48649a8ede9652666a7bde970f333c8488b9b2345 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An undated PTC site page, captured 11 October 2007, reproducing a registry history of the party written in the court's voice ('junto a este egrégio Tribunal Superior'); third-party reference text republished on a party site: claims only, never holder evidence. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PRN / PTC / Agir national-president observations for CLAUDE-C01-43 only (role br_agir_president of the AGIR funding observation br_tse_fefc_2024_party_07). Conventions, executive meetings, convocations, registry listings, the renamings and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_agir_history_prn_president_requests_statute_adaptation_1997",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-01",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The page says 'o presidente do PRN, o Sr. Daniel Sampaio Tourinho requereu, junto a este egrégio Tribunal Superior, a adaptação do estatuto partidário', a request 'deferida em sessão de 9.12.97, nos termos da Resolução/TSE nº 20.044'.",
+      "locator": {
+        "section": "Paragraph on the adaptation to Lei nº 9.096"
+      }
+    },
+    {
+      "claim_id": "br_agir_history_prn_requests_renaming_ptc_2000",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-01",
+      "role_id": "br_agir_president",
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The page says 'o PRN, mediante petição protocolizada sob nº 25225/ e 25325/2000, juntada a supracitada petição, requereu nova mudança de nomenclatura e sigla para Partido Trabalhista Cristão - PTC, deferida em sessão de 24.4.2001'.",
+      "locator": {
+        "section": "Last paragraph ('Por último')"
+      }
+    }
+  ]
+}

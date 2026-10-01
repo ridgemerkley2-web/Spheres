@@ -1,0 +1,721 @@
+{
+  "schema": "spheres-independent-research-receipt/v1",
+  "reviewed_revision": "878a48bcaea12a3ef89037a7dfb2028297fea3c6",
+  "original_external_root": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001",
+  "payload": [
+    {
+      "path": ".gitattributes",
+      "bytes": 115,
+      "sha256": "8cb5e89fc2c4195820e7d75a8500887fee8fd0a0b06a1ef089838b2bebb3f2ee"
+    },
+    {
+      "path": "check.py",
+      "bytes": 983,
+      "sha256": "0bb701d7f0410766f40dc85d1ca1fb5e75a4158ec9c51cdd24a9d68ff339568b"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 9851,
+      "sha256": "14b1d13a2ef7d267d6b72cabb4f753ac33d46fccb3dbaea602fa190cdf92c454"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 1980,
+      "sha256": "a43eef088ca9b35b756eaa3c054637d102085bc8f8648d592240655f39f820d5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6520,
+      "sha256": "73a18fc689371f94b12d3dbe62d5a777daae0a92253f9c4cdcda43f8c827facb"
+    },
+    {
+      "path": "retrieve.py",
+      "bytes": 3726,
+      "sha256": "d7e080fbe38a2d5d7263941d1f9da802a0361aa48a9d5c3a859f3441840aac6c"
+    },
+    {
+      "path": "scope-review.json",
+      "bytes": 3451,
+      "sha256": "3447dc48d6790f574f3872be181f200ac7d493c28249236d6ba1711d19dada07"
+    },
+    {
+      "path": "source-attempts.json",
+      "bytes": 288353,
+      "sha256": "c0b2b8c79246c7f303cc38460de3e3f1025b654835f11471bee4108a666f6f2f"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 15589,
+      "sha256": "b834c89f5205bb677a27e17f762c0f34d0c9329f44a5cc2d4b4153480497f01f"
+    },
+    {
+      "path": "validation/brazil-focused-final.json",
+      "bytes": 709,
+      "sha256": "d5abdcd97337b9030ad95ee6c8c890155238377b28d17f16a81cc799cb660f1c"
+    },
+    {
+      "path": "validation/brazil-focused-final.log",
+      "bytes": 9132,
+      "sha256": "beb18759f73ce0fa5da79ca9f22b0f31094d64caf9a5a636e8036ba5f21a2f69"
+    },
+    {
+      "path": "validation/brazil-focused-precontent.json",
+      "bytes": 714,
+      "sha256": "128006e5222a6fb3c86ae1a23b8c84bea41a76a513a6dd635d6d9d4114756f01"
+    },
+    {
+      "path": "validation/brazil-focused-precontent.log",
+      "bytes": 9132,
+      "sha256": "f0e959525e542fa7bfb331999a656ff50db357b9aacd3c82b06482ea82e0fdf9"
+    },
+    {
+      "path": "validation/campaign-research-final.json",
+      "bytes": 722,
+      "sha256": "99d201f8c85e6579f028cde9b7699119b03b542b7d51ecec20aa3878d219a344"
+    },
+    {
+      "path": "validation/campaign-research-final.log",
+      "bytes": 1496,
+      "sha256": "3e72637216c7ee9195bd6a32f7f0f27b2142d5eb7a4d723b285551c7e1c446d4"
+    },
+    {
+      "path": "validation/campaign-research-precontent.json",
+      "bytes": 727,
+      "sha256": "4c7b9e569f62acab7c13ee9f96d100f3a70e54c8346bbfebf245729534b658dd"
+    },
+    {
+      "path": "validation/campaign-research-precontent.log",
+      "bytes": 1496,
+      "sha256": "bfdad5c8aac099065b19493a8bd378d96d43357646ce562c2538b1ae42e4504a"
+    },
+    {
+      "path": "validation/date-guard-green.json",
+      "bytes": 976,
+      "sha256": "48c6c4c3c0435e3a4803da6ac7a0ca0efd5b9f90ea0dccc99ae190ca5f2ba72b"
+    },
+    {
+      "path": "validation/date-guard-green.log",
+      "bytes": 591,
+      "sha256": "7700a3dbf810e3c0fa746220e883f726cdbde3a11c84048983eab0c9b9aa806e"
+    },
+    {
+      "path": "validation/date-guard-red.json",
+      "bytes": 760,
+      "sha256": "346321713fe3c1279cb371b1d27a8e6ab6a3877636c7379bf3a80fcd2bcd439c"
+    },
+    {
+      "path": "validation/date-guard-red.log",
+      "bytes": 4051,
+      "sha256": "85043733b9563fb96e552c072dbc28c7f3dfdb63c1b3ef5bb9c4141a1799a044"
+    },
+    {
+      "path": "validation/diff-check.json",
+      "bytes": 497,
+      "sha256": "ec99918f5ad86a4e812f1dd78142d75cb9a493cf872eb9bcba83e23df6b03f49"
+    },
+    {
+      "path": "validation/diff-check.log",
+      "bytes": 463,
+      "sha256": "64ed0a3d53fed242e27d9546b1f45c27f8e9dd98aff36bd00e3d2f736a130aaa"
+    },
+    {
+      "path": "validation/research-check.json",
+      "bytes": 643,
+      "sha256": "7372f1c1732ab2a0dd0d02ff3b0c5a93e4c3fae21a7c12a2fd70c18b41fadcc5"
+    },
+    {
+      "path": "validation/research-check.log",
+      "bytes": 251,
+      "sha256": "b0bc31763010f8400d9a8a0045c314095471d8c049fe793b45fb93edff42d97b"
+    },
+    {
+      "path": "validation/research-generate.json",
+      "bytes": 631,
+      "sha256": "cde01f23c36031a7c10774b693d5f1e58ad88d5dd4849ad40237f94d093b68e1"
+    },
+    {
+      "path": "validation/research-generate.log",
+      "bytes": 252,
+      "sha256": "57a6cdb466d5704d1d94b78ad0e6d42fb7a72259bc72dda34dfde1049f5412a4"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3393,
+      "sha256": "cb3d850488158f3b5dc73c66cc776d262be3234d53736d331952966f26090151"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 3319,
+      "sha256": "7de05c0c7de254fdb8cca0bd347b7f63cc7fd6dea21f272916a71892f2c6d435"
+    }
+  ],
+  "reviewed_git_inputs": [
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-prn-ptc-agir-presidents-1990-2026-43.md",
+      "bytes": 30588,
+      "sha256": "1bb8f7d2d23e253f95f45a5bd83bf9f5c9a4ce23cc6aa2b7b951824d341f5e2b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "bytes": 1077447,
+      "sha256": "a5331b1826ffa3fd02833ac05f5055b9e1852c00800766f9efc27b603ef689a6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-agir-executiva-resolucao-01-2022-20221111-facts.json",
+      "bytes": 6144,
+      "sha256": "cdcda68b5d5b32f34f07285d3be32b5ebe9cd35468f909421292094a51fc3200"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-agir-plenaria-nacional-capt20240301-facts.json",
+      "bytes": 4590,
+      "sha256": "58f7367bab12cabcab17dcc95832b950f4c7264c1b202662c71b94b7f11c9480"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-agora-agir36-20210601-facts.json",
+      "bytes": 4344,
+      "sha256": "448fc9d94dcd6b839cb2392dc09035abe47fad279d155ff6482553bef160c49d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-apoio-aecio-20140516-facts.json",
+      "bytes": 4571,
+      "sha256": "54cd10d8d7655300df366ce85faf5043e3c86d12db1e07199c1f73fe9c3ca630"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-ata-executiva-nacional-20180703-facts.json",
+      "bytes": 4845,
+      "sha256": "a0a5b1d38476375cb3384218cce3c4a3e6c956b8b8218c1dd753b134a5916d64"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-comissao-executiva-nacional-capt20071020-facts.json",
+      "bytes": 4470,
+      "sha256": "093aee27171cefed0a842ff89b540810a567852710cb6bfc338568cd8de4ca12"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-comunicado-20210723-facts.json",
+      "bytes": 4383,
+      "sha256": "9ef14d25cd6253dff54dcded34a26ae63bdacb9af74a21bbfb2cdb6ceb4e005a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-convencao-aracaju-20150728-facts.json",
+      "bytes": 5186,
+      "sha256": "4ba8893ee9c83b81ade6c06171c8b750366b2c6b98804e3c3fafaf53f22cc4c0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-edital-convocacao-20180719-facts.json",
+      "bytes": 4876,
+      "sha256": "a572d7bbe74e78b417b835c49ba0c6fb282767539bfe2dee3591dc259f3d7d98"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-historia-partido-capt20071011-facts.json",
+      "bytes": 5407,
+      "sha256": "4ef426ca52622c0fe4cd123939ccdec1d106b546fc56b79e241c00104bacdd32"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-resolucao-001-2020-20200807-facts.json",
+      "bytes": 4507,
+      "sha256": "073bfe7063607267b5adfd2869fe1b02f48d3479f4a0e0c176712fb33378f732"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-ptc-resolucao-02-2018-20180725-facts.json",
+      "bytes": 4647,
+      "sha256": "23c16b236af04b122b57d7c2b9185b474469db8d2311d8b4150f09a3201c728c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-glossario-partido-politico-capt20230325-facts.json",
+      "bytes": 5813,
+      "sha256": "3276d9c8d5bc838514bebada6a4436eadf3856b001ba84dc3d07c655d64b18be"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/brazil-tse-partidos-registrados-agir-capt20260802-facts.json",
+      "bytes": 6712,
+      "sha256": "0d962360a2be6518f9d744e44811e7b116a4c4b1806183db5069630ab53d9af7"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-43.md",
+      "bytes": 10665,
+      "sha256": "c0447514a6f8f6dd9ec8c066ec19f3c11fd4bff0a716fc9946dd86d99476cb72"
+    },
+    {
+      "path": "tools/avatars/test_brazil_party_presidents_c01_34.py",
+      "bytes": 95651,
+      "sha256": "6b129699986da012c571d6a385b89e71781de6e4166e5209a1ed533455bca09e"
+    },
+    {
+      "path": "tools/avatars/test_brazil_presidents_c01_10.py",
+      "bytes": 63601,
+      "sha256": "f8e9a87c24075a0518328ff2269fbe81d7f334eb090211177261e7cc9efad9a0"
+    },
+    {
+      "path": "tools/avatars/test_brazil_prn_agir_presidents_c01_43.py",
+      "bytes": 37963,
+      "sha256": "cb9fc8eea9a265a9548500ad6e70f1be588de35f4e4cefafbf6d7d38ba4e01b5"
+    },
+    {
+      "path": "tools/avatars/test_brazil_pt_presidents_c01_22.py",
+      "bytes": 100095,
+      "sha256": "b176a062dbf2d1a36e891d6f1f281d47a1063d7ebe037a91522ade0a65414992"
+    },
+    {
+      "path": "tools/avatars/test_brazil_research_s10f.py",
+      "bytes": 17048,
+      "sha256": "e19974629ea0aa8c0ab8b5ab08f23041bab9504fc17471a8488fcc6fff3806ca"
+    },
+    {
+      "path": "tools/avatars/test_brazil_vice_presidents_c01_17.py",
+      "bytes": 70490,
+      "sha256": "9c09e885a5027d8593a934c417b9a3c85e94c523adae11d26610502e1e23cc24"
+    }
+  ],
+  "external_files": [
+    {
+      "path": "attempt-01/attempts.json",
+      "bytes": 288353,
+      "sha256": "c0b2b8c79246c7f303cc38460de3e3f1025b654835f11471bee4108a666f6f2f"
+    },
+    {
+      "path": "attempt-01/br_agir_executiva_resolucao_01_2022_20221111.body",
+      "bytes": 14315,
+      "sha256": "f252cd32737f39cd9fdd0c2330433f499c1eeb8191cf650a6ad2b0f7a5d29bf8"
+    },
+    {
+      "path": "attempt-01/br_agir_executiva_resolucao_01_2022_20221111.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_executiva_resolucao_01_2022_20221111.curl.stdout",
+      "bytes": 17284,
+      "sha256": "438955454b0ce432c8e98038a4200a619449b71a71324ea7871039f6a9afeaa5"
+    },
+    {
+      "path": "attempt-01/br_agir_executiva_resolucao_01_2022_20221111.decoded.html",
+      "bytes": 77862,
+      "sha256": "80d14ef5acd3ac13acf702901a7d839124b4343b6af509dbb47c7687df8ae20f"
+    },
+    {
+      "path": "attempt-01/br_agir_executiva_resolucao_01_2022_20221111.headers",
+      "bytes": 2256,
+      "sha256": "72f2e6c2df766e060eb623148ed45b1f142814b5ebdf4c132dcc65288f9a70d2"
+    },
+    {
+      "path": "attempt-01/br_agir_executiva_resolucao_01_2022_20221111.text.txt",
+      "bytes": 3255,
+      "sha256": "d2172446d655579ca559fec74a240c6d3f9637ea506d713bdc9c2fc27cb828c3"
+    },
+    {
+      "path": "attempt-01/br_agir_plenaria_nacional_capt20240301.body",
+      "bytes": 127999,
+      "sha256": "406dbbe231109e96d2f1af44c753de35295a6f2d37ec86efa8dbccea7d1d01ac"
+    },
+    {
+      "path": "attempt-01/br_agir_plenaria_nacional_capt20240301.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_plenaria_nacional_capt20240301.curl.stdout",
+      "bytes": 17308,
+      "sha256": "e822f9bc8844fba75b10e1726cd4bd980e85386adf3280444329ebb46361ccf3"
+    },
+    {
+      "path": "attempt-01/br_agir_plenaria_nacional_capt20240301.decoded.html",
+      "bytes": 127999,
+      "sha256": "406dbbe231109e96d2f1af44c753de35295a6f2d37ec86efa8dbccea7d1d01ac"
+    },
+    {
+      "path": "attempt-01/br_agir_plenaria_nacional_capt20240301.headers",
+      "bytes": 2958,
+      "sha256": "463ee0f92b5b368e428aa34757749358bd704f642cc6c7fc37d01aa000e87531"
+    },
+    {
+      "path": "attempt-01/br_agir_plenaria_nacional_capt20240301.text.txt",
+      "bytes": 5376,
+      "sha256": "7657b0c0fb076977ee8650805ab235167f839661e8c24e46d05d23761b59c107"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_agora_agir36_20210601.body",
+      "bytes": 37384,
+      "sha256": "29ee50b675f1ba83a4840956b25a3a509452ee2beb437e44b902d6a81c101b85"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_agora_agir36_20210601.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_agora_agir36_20210601.curl.stdout",
+      "bytes": 17041,
+      "sha256": "31862c53f4237fccd7f836e87bf721c083249affda400d3263feb968d1a3b55b"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_agora_agir36_20210601.decoded.html",
+      "bytes": 37384,
+      "sha256": "29ee50b675f1ba83a4840956b25a3a509452ee2beb437e44b902d6a81c101b85"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_agora_agir36_20210601.headers",
+      "bytes": 2116,
+      "sha256": "f96ffe8c13ecb74592d76d1d6efda8d1c7b35f16d3e0d92795a4c16194812f32"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_agora_agir36_20210601.text.txt",
+      "bytes": 4158,
+      "sha256": "02989df265203b1abfe11cff4433ee95e770a83b6d5b1a8f9d1c5f06c787fe99"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_apoio_aecio_20140516.body",
+      "bytes": 20490,
+      "sha256": "68b1d9a12847fc0242912fd9b045a55d98ef78564ffadc0575911e1c71a6e3af"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_apoio_aecio_20140516.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_apoio_aecio_20140516.curl.stdout",
+      "bytes": 17312,
+      "sha256": "c8de439a4a8c786b456b07894f66025d130faf81c1b0103a626ed300ba82d432"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_apoio_aecio_20140516.decoded.html",
+      "bytes": 20490,
+      "sha256": "68b1d9a12847fc0242912fd9b045a55d98ef78564ffadc0575911e1c71a6e3af"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_apoio_aecio_20140516.headers",
+      "bytes": 2104,
+      "sha256": "f9ab5d4bcc5999283fcbf73b06f0f773c3262b3db7775e6604e017734f4d71ff"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_apoio_aecio_20140516.text.txt",
+      "bytes": 822,
+      "sha256": "18c0b176661152125ceb552235c022f4f674d49ef7976be943788b0d8ac27c1a"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.body",
+      "bytes": 1130004,
+      "sha256": "a93a97cdc04946e756b8d2d8c719de4b82389c97c5ded1b0f4260990ec6431fb"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.curl.stdout",
+      "bytes": 17157,
+      "sha256": "494da3e74c0c36627af754da934ce49da7297fb081e04049801eb42306283639"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.decoded.pdf",
+      "bytes": 1130004,
+      "sha256": "a93a97cdc04946e756b8d2d8c719de4b82389c97c5ded1b0f4260990ec6431fb"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.decoded.pdfinfo.txt",
+      "bytes": 436,
+      "sha256": "254ba704f34e4c81f5911f6e9ff5672dbb865464c94f4d83d42549a48a065f2b"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.headers",
+      "bytes": 2129,
+      "sha256": "78309779bfb1caaeb33bcaf5707941a9d821192ecee8591c87c896dd98af1970"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.page1.png",
+      "bytes": 2227929,
+      "sha256": "1945af5b0827d0df28292276e2ab88c0d2d97ff4c06a7bd932db4b5b8a8ba592"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.page2.png",
+      "bytes": 1643591,
+      "sha256": "104f222d44058169961cb5ea2ab86eea5d22adc8126c8b983dc30e72259ef750"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comissao_executiva_capt20071020.body",
+      "bytes": 23214,
+      "sha256": "2c15b81cab612c24d3ac91e377d2e80e62995952c25818a2ba2e12c38bc40d05"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comissao_executiva_capt20071020.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comissao_executiva_capt20071020.curl.stdout",
+      "bytes": 17094,
+      "sha256": "046a4c669f4bed08d112c75d09f3d9ad7215526d9fdf72c0611481e989fd381f"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comissao_executiva_capt20071020.decoded.html",
+      "bytes": 23214,
+      "sha256": "2c15b81cab612c24d3ac91e377d2e80e62995952c25818a2ba2e12c38bc40d05"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comissao_executiva_capt20071020.headers",
+      "bytes": 2115,
+      "sha256": "2342dfc822d108f29c3944970ef4c33e892b5e54090626d60292c90e680fa3a2"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comissao_executiva_capt20071020.text.txt",
+      "bytes": 1431,
+      "sha256": "b4d921864b04f8a109333d36ebf40692129acbfb4b45ac8288748096838b3a6d"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comunicado_20210723.body",
+      "bytes": 27090,
+      "sha256": "cc13f2566449dad458244b5c4094ff99c7ba9eea419d92b6d1b8c4b9e80de9cf"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comunicado_20210723.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comunicado_20210723.curl.stdout",
+      "bytes": 17011,
+      "sha256": "092ec281e4bc694368446dd3296a88f1af4a991b6c01188c33b1f4603b62e9d8"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comunicado_20210723.decoded.html",
+      "bytes": 27090,
+      "sha256": "cc13f2566449dad458244b5c4094ff99c7ba9eea419d92b6d1b8c4b9e80de9cf"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comunicado_20210723.headers",
+      "bytes": 1942,
+      "sha256": "ab99fecef11f72c5293853b90d91723bfe3b8010e83ace326583db4a7df23b57"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_comunicado_20210723.text.txt",
+      "bytes": 897,
+      "sha256": "db8bd3f52956929df575f72ffd8d1ed58d7cf9eadbf2dd16bc029010f7bdb63f"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_convencao_aracaju_20150728.body",
+      "bytes": 28704,
+      "sha256": "3594488d8e31ac9bc4a3ebc41ed17f04dfd9c008ad249f2e1637a9cd00c4105d"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_convencao_aracaju_20150728.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_convencao_aracaju_20150728.curl.stdout",
+      "bytes": 17130,
+      "sha256": "4b8850eb0d0edb95cdd556660ef931a8f6b2073b583785c799336cea76c7b099"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_convencao_aracaju_20150728.decoded.html",
+      "bytes": 28704,
+      "sha256": "3594488d8e31ac9bc4a3ebc41ed17f04dfd9c008ad249f2e1637a9cd00c4105d"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_convencao_aracaju_20150728.headers",
+      "bytes": 1954,
+      "sha256": "027a1d68d4f95f61700144dde6774bddf1bcd576d676a8c5db6532c1340e8151"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_convencao_aracaju_20150728.text.txt",
+      "bytes": 3099,
+      "sha256": "fde9e499fd881af3b5d663803000ba4519f5006237fc1c8a2ddbf55fc95b18a3"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.body",
+      "bytes": 322372,
+      "sha256": "fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.curl.stdout",
+      "bytes": 17254,
+      "sha256": "c5ee8d99ee10fe5988d8a8a23fac0d47d7dbce7ef409bc66871123c745b9bbee"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.decoded.pdf",
+      "bytes": 322372,
+      "sha256": "fcd6ba94e8a75b5dbd101fc5ce900d66e287c13c49a0546e66fc6956a1367c4d"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.decoded.pdfinfo.txt",
+      "bytes": 435,
+      "sha256": "495f3ddf6b4d309a8f7ffb6513796f20f47249a76d5ea7d39accc826fa5d64c4"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.headers",
+      "bytes": 2223,
+      "sha256": "0d467213ce73ea739ab7e4a56173cf89c36ef2477757aa6d5aa5c0647b8ff320"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.page1.png",
+      "bytes": 1120192,
+      "sha256": "8e947369dab9e687c0ce320056e70614251aad18dce760dbc74675d87d88255d"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_historia_partido_capt20071011.body",
+      "bytes": 27308,
+      "sha256": "05cd95f56e424e28fccd04f48649a8ede9652666a7bde970f333c8488b9b2345"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_historia_partido_capt20071011.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_historia_partido_capt20071011.curl.stdout",
+      "bytes": 17060,
+      "sha256": "086d6986c065b447dc7679fe5f3dec919efe6f40c39a3cdc5197797475987314"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_historia_partido_capt20071011.decoded.html",
+      "bytes": 27308,
+      "sha256": "05cd95f56e424e28fccd04f48649a8ede9652666a7bde970f333c8488b9b2345"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_historia_partido_capt20071011.headers",
+      "bytes": 2090,
+      "sha256": "88ef9834422297adba0ccb4771bc9f2225c338f84077c50d62fa283156b3d83c"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_historia_partido_capt20071011.text.txt",
+      "bytes": 3671,
+      "sha256": "635f11f18b5ba0d80034791354e2ff61fdd43eaa05900c7eca32eb64eeab60b6"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_001_2020_20200807.body",
+      "bytes": 30056,
+      "sha256": "448fc9f5c5252d5399015e41ed55131c119421219d2b6f47523dc188db44ea34"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_001_2020_20200807.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_001_2020_20200807.curl.stdout",
+      "bytes": 17047,
+      "sha256": "1d1d5352512420e3b9a6ec03560459384daba67ecbf3feddd4d430e6a898facc"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_001_2020_20200807.decoded.html",
+      "bytes": 30056,
+      "sha256": "448fc9f5c5252d5399015e41ed55131c119421219d2b6f47523dc188db44ea34"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_001_2020_20200807.headers",
+      "bytes": 2217,
+      "sha256": "5bae9e0adfb4a97dc00eaf1942bc8f3a9730fa985f0fe56d5dc78c9098418650"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_001_2020_20200807.text.txt",
+      "bytes": 4319,
+      "sha256": "08653c772155c5cd51a24a6e1e07ebd77c7e245f2699df79755b7d1078363f03"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.body",
+      "bytes": 336809,
+      "sha256": "2bf6b2aaa64f1524e104482e0218bf9c2c64f49fb150aaf48c590a121e976624"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.curl.stdout",
+      "bytes": 17127,
+      "sha256": "4a29ab56193291033f23611c95624f69b07444b64c734bc593c88ec7477cad4e"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.decoded.pdf",
+      "bytes": 336809,
+      "sha256": "2bf6b2aaa64f1524e104482e0218bf9c2c64f49fb150aaf48c590a121e976624"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.decoded.pdfinfo.txt",
+      "bytes": 435,
+      "sha256": "0551395d0ec03a54069f209630394022fa086987368a73f9901f712a63225ba0"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.headers",
+      "bytes": 2101,
+      "sha256": "bd86cb083d873fe03e366aa5d1658e886a40235229c8afd71a1bb8ba0dca147c"
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.page1.png",
+      "bytes": 1234474,
+      "sha256": "98fab7dacb15be301482b2363f2d980ce1470fc434dd4ffc7fb5285bef51c38c"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_glossario_partidos_capt20230325.body",
+      "bytes": 127257,
+      "sha256": "72ec97fd5fe4906d8c8d95f7e134034b211f0da2245adce780e45f5d2dbb6ee8"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_glossario_partidos_capt20230325.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_glossario_partidos_capt20230325.curl.stdout",
+      "bytes": 17144,
+      "sha256": "afcf694ff9dfcfadb75bcb855287950a37a36575a99175dd4c32f03a2df2436f"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_glossario_partidos_capt20230325.decoded.html",
+      "bytes": 127257,
+      "sha256": "72ec97fd5fe4906d8c8d95f7e134034b211f0da2245adce780e45f5d2dbb6ee8"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_glossario_partidos_capt20230325.headers",
+      "bytes": 3026,
+      "sha256": "ae5003ab2713235b1e289dd3f1b2556ad752b840200d3c1811cda82feacd489a"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_glossario_partidos_capt20230325.text.txt",
+      "bytes": 47642,
+      "sha256": "5eb30fac507a673e3fc6acd0d90e0b11014f147ce1141c319165ea7b8970fa23"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_partidos_registrados_capt20260802.body",
+      "bytes": 36548,
+      "sha256": "63222b4c603a9653a194e1d21930c543d60b7feb072e91a50515f0436b71bd6a"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_partidos_registrados_capt20260802.curl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_partidos_registrados_capt20260802.curl.stdout",
+      "bytes": 17076,
+      "sha256": "03a48aa7f2293a2a8e37705fad320a00c2be5fd12abda719e3f6a2f203fa97ca"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_partidos_registrados_capt20260802.decoded.html",
+      "bytes": 148444,
+      "sha256": "e2abefa96b04cd0eda06b7f20b068a77139b77945ff48d0f70765bdb74b8a376"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_partidos_registrados_capt20260802.headers",
+      "bytes": 3716,
+      "sha256": "d635bb085ebc9af4014898df8a3cb8d6311f9567b8b9258d9e5a8c97a8c51760"
+    },
+    {
+      "path": "attempt-01/br_agir_tse_partidos_registrados_capt20260802.text.txt",
+      "bytes": 18101,
+      "sha256": "5a4d91fa82c66d53dc57380b4a54170d12bb106c01b2eb90bb39c38c8ee4ce5a"
+    },
+    {
+      "path": "attempt-01/pdf-info-checks.json",
+      "bytes": 1814,
+      "sha256": "58d80f2d7501010ac819d5e9f31f655b3f7aea360befc084834846367f788759"
+    }
+  ]
+}

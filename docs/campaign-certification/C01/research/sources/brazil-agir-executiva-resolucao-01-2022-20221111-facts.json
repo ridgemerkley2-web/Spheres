@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_agir_executiva_resolucao_01_2022_20221111",
+  "source_url": "https://web.archive.org/web/20230125002213id_/https://www.agir36.com.br/comissao-executiva-nacional-aprova-novas-regras-partidarias-para-as-eleicoes-de-2024/",
+  "original_url": "https://www.agir36.com.br/comissao-executiva-nacional-aprova-novas-regras-partidarias-para-as-eleicoes-de-2024/",
+  "archive_capture_utc": "2023-01-25T00:22:13Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-11-11",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 14315,
+  "source_response_sha256": "f252cd32737f39cd9fdd0c2330433f499c1eeb8191cf650a6ad2b0f7a5d29bf8",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 77862,
+  "decoded_response_sha256": "80d14ef5acd3ac13acf702901a7d839124b4343b6af509dbb47c7687df8ae20f",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-10-01T02:46:20Z and again at 2026-10-01T03:51:26Z (65 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 14315 bytes with SHA-256 f252cd32737f39cd9fdd0c2330433f499c1eeb8191cf650a6ad2b0f7a5d29bf8, served with Content-Encoding: gzip (the archive serves this capture gzip-encoded even to an identity request); the recorded identity is the gzip-encoded body exactly as served, and the decoded body is 77862 bytes with SHA-256 80d14ef5acd3ac13acf702901a7d839124b4343b6af509dbb47c7687df8ae20f. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2023-01-25T00:22:13Z; that form replays the archived bytes and is used in place of the live page. The archive serves this capture with Content-Encoding: gzip even to an identity request: the recorded identity is the gzip-encoded body exactly as served, and the decoded identity is recorded beside it; do not let the client decode it. Downloaded at 2026-10-01T02:46:20Z and again at 2026-10-01T03:51:26Z (65 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 14315 bytes with SHA-256 f252cd32737f39cd9fdd0c2330433f499c1eeb8191cf650a6ad2b0f7a5d29bf8, served with Content-Encoding: gzip (the archive serves this capture gzip-encoded even to an identity request); the recorded identity is the gzip-encoded body exactly as served, and the decoded body is 77862 bytes with SHA-256 80d14ef5acd3ac13acf702901a7d839124b4343b6af509dbb47c7687df8ae20f. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Agir site item dated '11 de novembro de 2022, 17:45', captured 25 January 2023. Raw Internet Archive capture, served gzip-encoded even to an identity request; the recorded identity is the encoded body as served, with the decoded identity beside it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PRN / PTC / Agir national-president observations for CLAUDE-C01-43 only (role br_agir_president of the AGIR funding observation br_tse_fefc_2024_party_07). Conventions, executive meetings, convocations, registry listings, the renamings and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_agir_tourinho_styled_presidente_nacional_20221111",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-03",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2022-11-11",
+      "text": "An Agir site item dated '11 de novembro de 2022, 17:45' names 'Daniel Tourinho (Presidente Nacional)' among those pictured and says the party is represented in the government transition 'na figura de seu principal líder o Pres Nacional Daniel Tourinho'.",
+      "locator": {
+        "section": "Photo caption and fourth paragraph"
+      }
+    },
+    {
+      "claim_id": "br_agir_executive_approves_resolution_01_2022_20221110",
+      "observation_id": "br_tse_fefc_2024_party_07",
+      "review_observation": "AGIR-PRES-03",
+      "role_id": "br_agir_president",
+      "holder_name": "Daniel Tourinho",
+      "role_title": "Presidente Nacional do Partido da Reconstrução Nacional (PRN) / Partido Trabalhista Cristão (PTC) / Agir",
+      "event_kind": "executive_meeting_reported",
+      "attested_on": "2022-11-10",
+      "text": "The same item says 'Liderada pelo Presidente Nacional Daniel Tourinho' and that 'foi aprovada ontem no Centro de Convenções do Edifício Rodolpho de Paoli, no Rio de Janeiro, a resolução 01/2022'.",
+      "locator": {
+        "section": "Third paragraph"
+      }
+    }
+  ]
+}

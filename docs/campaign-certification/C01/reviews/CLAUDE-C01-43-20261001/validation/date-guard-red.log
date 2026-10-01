@@ -1,0 +1,45 @@
+test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) ... 
+  test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) (day='2015-07-25') ... FAIL
+  test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) (day='2018-07-19') ... FAIL
+  test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) (day='2022-03-31') ... FAIL
+
+======================================================================
+FAIL: test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) (day='2015-07-25')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-43-20261001\tools\avatars\test_brazil_prn_agir_presidents_c01_43.py", line 410, in test_event_date_does_not_override_independent_office_evidence
+    agir_rules(packet, rows)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-43-20261001\tools\avatars\test_brazil_prn_agir_presidents_c01_43.py", line 250, in agir_rules
+    assert holder['attested_on'] not in NEVER_HOLDER_DATE, (name, holder['attested_on'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Daniel Tourinho', '2015-07-25')
+
+======================================================================
+FAIL: test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) (day='2018-07-19')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-43-20261001\tools\avatars\test_brazil_prn_agir_presidents_c01_43.py", line 410, in test_event_date_does_not_override_independent_office_evidence
+    agir_rules(packet, rows)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-43-20261001\tools\avatars\test_brazil_prn_agir_presidents_c01_43.py", line 250, in agir_rules
+    assert holder['attested_on'] not in NEVER_HOLDER_DATE, (name, holder['attested_on'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Daniel Tourinho', '2018-07-19')
+
+======================================================================
+FAIL: test_event_date_does_not_override_independent_office_evidence (test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence) (day='2022-03-31')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-c01-43-20261001\tools\avatars\test_brazil_prn_agir_presidents_c01_43.py", line 410, in test_event_date_does_not_override_independent_office_evidence
+    agir_rules(packet, rows)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\review-c01-43-20261001\tools\avatars\test_brazil_prn_agir_presidents_c01_43.py", line 250, in agir_rules
+    assert holder['attested_on'] not in NEVER_HOLDER_DATE, (name, holder['attested_on'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Daniel Tourinho', '2022-03-31')
+
+----------------------------------------------------------------------
+Ran 1 test in 0.069s
+
+FAILED (failures=3)

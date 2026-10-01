@@ -10,6 +10,7 @@ import campaign_research as research
 from test_brazil_vice_presidents_c01_17 import NEW_SOURCES as C01_17_SOURCES
 from test_brazil_pt_presidents_c01_22 import NEW_SOURCES as C01_22_SOURCES
 from test_brazil_party_presidents_c01_34 import NEW_SOURCES as C01_34_SOURCES
+from test_brazil_prn_agir_presidents_c01_43 import NEW_SOURCES as C01_43_SOURCES
 
 # The five sources of the original S10f intake keep every assertion below by id. CLAUDE-C01-10 adds 48 sources for
 # the br_presidency institution whose response identities are pinned exactly (bytes and SHA-256) in
@@ -18,7 +19,9 @@ from test_brazil_party_presidents_c01_34 import NEW_SOURCES as C01_34_SOURCES
 # party role br_pt_president on the PT funding observation; its identities are pinned exactly in
 # test_brazil_pt_presidents_c01_22.py. CLAUDE-C01-34 then adds 76 sources, the party roles br_mdb_president and
 # br_pdt_president on the MDB and PDT funding observations and the PFL/DEM claims; its identities are pinned exactly in
-# test_brazil_party_presidents_c01_34.py.
+# test_brazil_party_presidents_c01_34.py. CLAUDE-C01-43 then adds 14 sources, the party role br_agir_president on the
+# AGIR funding observation and one PDS claim; its identities are pinned exactly in
+# test_brazil_prn_agir_presidents_c01_43.py.
 ORIGINAL_SOURCES = ('br_tse_fefc_2024', 'br_tse_fefc_announcement_20240617', 'br_tse_missao_20251104',
                     'br_tse_pmb_rename_20251202', 'br_trerj_pmb_name_notices')
 # CLAUDE-C01-10 sources: raw Internet Archive captures and the Senate, Chamber and TSE document services, all accessed
@@ -38,6 +41,9 @@ C01_22_SOURCE_COUNT = 108
 # accessed on 2026-09-28.
 C01_34_HOSTS = {'web.archive.org', 'sgip3.tse.jus.br'}
 C01_34_SOURCE_COUNT = 76
+# CLAUDE-C01-43 sources: raw Internet Archive captures, accessed on 2026-10-01.
+C01_43_HOSTS = {'web.archive.org'}
+C01_43_SOURCE_COUNT = 14
 
 
 class BrazilDiscoveryTests(unittest.TestCase):
@@ -57,8 +63,9 @@ class BrazilDiscoveryTests(unittest.TestCase):
         # 31 organization observations plus the presidency: CLAUDE-C01-10 (48 sources, 112 claims, br_president),
         # CLAUDE-C01-17 (11 sources, 85 claims, br_vice_president), CLAUDE-C01-22 (108 sources, 177 claims, the PT
         # observation's party role br_pt_president) and CLAUDE-C01-34 (76 sources, 127 claims, the MDB and PDT
-        # observations' party roles br_mdb_president and br_pdt_president, and the PFL/DEM claims).
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 248, 535, 5))
+        # observations' party roles br_mdb_president and br_pdt_president, and the PFL/DEM claims) and CLAUDE-C01-43 (14
+        # sources, 21 claims, the AGIR observation's party role br_agir_president, and one PDS claim).
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 262, 556, 6))
         self.assertEqual(len(self.packet['organizations']), 31)
         coverage = self.packet['coverage']
         self.assertFalse(coverage['exhaustive_organization_register_reviewed'])
@@ -148,6 +155,9 @@ class BrazilDiscoveryTests(unittest.TestCase):
                 self.assertIn(urlsplit(source['url']).hostname, C01_34_HOSTS)
                 expected_access = '2026-09-30' if source['id'] == 'br_mdb_tse_sgip_cen_2013_2019' else '2026-09-28'
                 self.assertEqual(source['accessed_date'], expected_access)
+            elif source['id'] in C01_43_SOURCES:
+                self.assertIn(urlsplit(source['url']).hostname, C01_43_HOSTS)
+                self.assertEqual(source['accessed_date'], '2026-10-01')
             else:
                 self.assertIn(urlsplit(source['url']).hostname, C01_10_HOSTS)
                 self.assertEqual(source['accessed_date'], '2026-09-23')
@@ -187,12 +197,14 @@ class BrazilDiscoveryTests(unittest.TestCase):
         self.assertEqual([s['id'] for s in self.packet['sources']][:5], list(ORIGINAL_SOURCES))
         self.assertEqual(len(self.packet['sources']),
                          len(ORIGINAL_SOURCES) + C01_10_SOURCE_COUNT + C01_17_SOURCE_COUNT + C01_22_SOURCE_COUNT +
-                         C01_34_SOURCE_COUNT)
+                         C01_34_SOURCE_COUNT + C01_43_SOURCE_COUNT)
         start = len(ORIGINAL_SOURCES) + C01_10_SOURCE_COUNT
         self.assertEqual([s['id'] for s in self.packet['sources']][start:start + C01_17_SOURCE_COUNT], C01_17_SOURCES)
-        self.assertEqual([s['id'] for s in self.packet['sources']][-C01_22_SOURCE_COUNT - C01_34_SOURCE_COUNT:
-                                                                    -C01_34_SOURCE_COUNT], C01_22_SOURCES)
-        self.assertEqual([s['id'] for s in self.packet['sources']][-C01_34_SOURCE_COUNT:], C01_34_SOURCES)
+        later = -C01_43_SOURCE_COUNT
+        self.assertEqual([s['id'] for s in self.packet['sources']][later - C01_22_SOURCE_COUNT - C01_34_SOURCE_COUNT:
+                                                                    later - C01_34_SOURCE_COUNT], C01_22_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']][later - C01_34_SOURCE_COUNT:later], C01_34_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']][later:], C01_43_SOURCES)
         packet = copy.deepcopy(self.packet)
         packet['sources'][0]['snapshot']['sha256'] = '0' * 64
         with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
@@ -201,13 +213,14 @@ class BrazilDiscoveryTests(unittest.TestCase):
     def test_reconciliation_never_grants_game_identity_or_closes_certification(self):
         for entry in self.packet['organizations']:
             self.assertEqual(entry['represented_party_ids'], [])
-            # Exactly three funding observations carry a role, each exactly one party office: CLAUDE-C01-22's
-            # br_pt_president on the PT observation and CLAUDE-C01-34's br_mdb_president and br_pdt_president on the MDB
-            # and PDT observations, whose holders are pinned exactly in their packets' tests; every other organization,
-            # including UNIÃO, has none.
+            # Exactly four funding observations carry a role, each exactly one party office: CLAUDE-C01-22's
+            # br_pt_president on the PT observation, CLAUDE-C01-34's br_mdb_president and br_pdt_president on the MDB
+            # and PDT observations and CLAUDE-C01-43's br_agir_president on the AGIR observation, whose holders are
+            # pinned exactly in their packets' tests; every other organization, including UNIÃO, has none.
             party_roles = {'br_tse_fefc_2024_party_01': [('br_mdb_president', 'party_leader')],
                            'br_tse_fefc_2024_party_02': [('br_pdt_president', 'party_leader')],
-                           'br_tse_fefc_2024_party_03': [('br_pt_president', 'party_leader')]}
+                           'br_tse_fefc_2024_party_03': [('br_pt_president', 'party_leader')],
+                           'br_tse_fefc_2024_party_07': [('br_agir_president', 'party_leader')]}
             if entry['id'] in party_roles:
                 self.assertEqual([(r['id'], r['kind']) for r in entry['roles']], party_roles[entry['id']])
             else:

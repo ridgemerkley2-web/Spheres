@@ -1,0 +1,21 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_brazil_prn_agir_presidents_c01_43.BrazilPrnAgirPresidentsTests.test_event_date_does_not_override_independent_office_evidence",
+    "-v"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-43-20261001",
+  "started_utc": "2026-10-01T04:53:06.867946+00:00",
+  "finished_utc": "2026-10-01T04:53:07.181204+00:00",
+  "exit_code": 1,
+  "output": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\validation\\date-guard-red.log",
+    "bytes": 4051,
+    "sha256": "85043733b9563fb96e552c072dbc28c7f3dfdb63c1b3ef5bb9c4141a1799a044"
+  }
+}
