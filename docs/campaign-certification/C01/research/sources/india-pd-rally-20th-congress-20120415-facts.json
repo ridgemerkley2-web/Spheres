@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pd_20120415_rally_concludes_20th_congress",
+  "source_url": "https://web.archive.org/web/20120812040620id_/http://pd.cpim.org/2012/0415_pd/04152012_6.html",
+  "original_url": "http://pd.cpim.org/2012/0415_pd/04152012_6.html",
+  "archive_capture_utc": "2012-08-12T04:06:20Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2012-04-15",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 699954,
+  "source_response_sha256": "e537657ed6c2ea4152fde11b3a1781304a46fe4da99c995e8fe05d315883df8f",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2012-08-12T04:06:20Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:47:04Z on 30 September 2026 and 00:23:31Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's weekly organ, issue of 15 April 2012 (archived Last-Modified 14 April 2012), recorded as a raw Internet Archive capture of 12 August 2012. A report of the public meeting at Kozhikode on 9 April 2012 that concluded the 20th Congress; the day is printed in its text.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-03",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Prakash Karat",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2012-04-09",
+      "text": "People's Democracy reports that at Kozhikode on April 9, when the delegates marched to the public meeting concluding the 20th Congress, 'the newly elected general secretary of CPI(M), Prakash Karat, took the salute from the dais' of the volunteers' march.",
+      "locator": {
+        "item": "first and third paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

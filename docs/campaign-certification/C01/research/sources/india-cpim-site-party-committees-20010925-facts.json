@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_site_party_committees_page_2001",
+  "source_url": "https://web.archive.org/web/20010925192536id_/http://cpim.org:80/party_com.htm",
+  "original_url": "http://cpim.org/party_com.htm",
+  "archive_capture_utc": "2001-09-25T19:25:36Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 3997,
+  "source_response_sha256": "7a7dbfdfafd9901179162a9116721291c63bfa9ce3a724587d08817c0bb656f4",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-09-25T19:25:36Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:45:42Z on 30 September 2026 and 00:22:30Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An undated page of the party's website, recorded as a raw Internet Archive capture of 25 September 2001; it notes deaths of June and July 2001, so it was written after them. A retrospective account of the 16th Congress: its dated statement of the Central Committee's election is a claim, never a holder boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_site_cc_elected_surjeet_gs_recalled_19981011",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-02",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Harkishan Singh Surjeet",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "election_recalled_dated",
+      "attested_on": "1998-10-11",
+      "text": "The party website's 'Party Committees/Structure' page says the 16th Congress, 'held between October 5 and 11, 1998', elected a 75-member Central Committee, and that 'The Central Committee at its meeting held on October 11, 1998 at the conclusion of the Congress elected a 17 Member Polit Bureau, with Harkishan Singh Surjeet as the General Secretary'.",
+      "locator": {
+        "item": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

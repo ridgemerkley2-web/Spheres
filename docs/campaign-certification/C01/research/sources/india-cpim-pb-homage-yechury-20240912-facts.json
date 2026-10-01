@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_pb_homage_yechury_20240912",
+  "source_url": "https://cpim.org/wp-json/wp/v2/posts/11608",
+  "accessed_date": "2026-09-30",
+  "published_date": "2024-09-12",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 6954,
+  "source_response_sha256": "510c06aba2d3d633866751cd718eae821e574ae5d1b67c3ef0fb564f9d25e80d",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (cpim.org): the WordPress REST record of post 11608 (wp-json/wp/v2/posts/11608), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML page of the same post embeds a per-request cache timestamp, so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 23:36:00Z on 30 September 2026 and 00:22:22Z on 1 October 2026, the first and last 46 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's post 11608 (slug homage-to-comrade-sitaram-yechury), published 12 September 2024 and last modified the same day, recorded as its WordPress REST record (wp-json/wp/v2/posts/11608) because the HTML page of the same post embeds a per-request cache timestamp. A Polit Bureau statement that names the office and states the day of death.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_pb_yechury_general_secretary_died_20240912",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-04",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Sitaram Yechury",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "death_in_office_stated",
+      "attested_on": "2024-09-12",
+      "text": "The Polit Bureau's statement 'expresses its profound grief at the passing away of Comrade Sitaram Yechury, General Secretary of the Party on September 12, 2024', saying he died at the All India Institute of Medical Sciences, New Delhi.",
+      "locator": {
+        "item": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_cpim_pb_yechury_elected_gs_21st_congress_recalled",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-04",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Sitaram Yechury",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "text": "The Polit Bureau's statement on Sitaram Yechury says 'He was elected as the General Secretary of the CPI(M) at the 21st Congress in 2015, a position he continued until now.'",
+      "locator": {
+        "item": "third paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

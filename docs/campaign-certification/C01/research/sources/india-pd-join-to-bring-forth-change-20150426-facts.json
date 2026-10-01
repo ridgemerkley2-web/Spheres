@@ -1,0 +1,79 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pd_20150426_join_to_bring_forth_change",
+  "source_url": "https://web.archive.org/web/20150429172939id_/http://peoplesdemocracy.in:80/2015/0426_pd/join-bring-forth-change",
+  "original_url": "http://peoplesdemocracy.in/2015/0426_pd/join-bring-forth-change",
+  "archive_capture_utc": "2015-04-29T17:29:39Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2015-04-26",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 54802,
+  "source_response_sha256": "737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2015-04-29T17:29:39Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:47:13Z on 30 September 2026 and 00:23:40Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's weekly organ, issue of 26 April 2015 (archived Last-Modified 29 April 2015), recorded as a raw Internet Archive capture of 29 April 2015. A report of the 21st Congress at Visakhapatnam (14-19 April 2015) and of its concluding public meeting on 19 April 2015; the days are printed in its text.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pd_karat_gs_inaugurated_21st_congress_20150414",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-03",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Prakash Karat",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2015-04-14",
+      "text": "People's Democracy reports that the open session of the 21st Congress 'began in the morning on April 14' and that 'Prakash Karat, general secretary of the CPI(M) inaugurated the Congress'.",
+      "locator": {
+        "item": "section 'Arise in Struggle', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_pd_21st_congress_elected_general_secretary_20150419",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-04",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": null,
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "election_result_unnamed",
+      "attested_on": "2015-04-19",
+      "text": "The report says 'The new Central Committee, Control Commission, Polit Bureau and general secretary were elected by the Congress on April 19'.",
+      "locator": {
+        "item": "section 'Arise in Struggle', last paragraph"
+      }
+    },
+    {
+      "claim_id": "in_pd_rally_karat_outgoing_gs_20150419",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-03",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Prakash Karat",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "outgoing_styling",
+      "attested_on": "2015-04-19",
+      "text": "Reporting the public meeting that concluded the Congress 'in the afternoon, on April 19', People's Democracy calls him 'Prakash Karat, the outgoing general secretary', addressing the meeting.",
+      "locator": {
+        "item": "public meeting report, ninth paragraph; last paragraph for the day"
+      }
+    },
+    {
+      "claim_id": "in_pd_rally_newly_elected_gs_yechury_20150419",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-04",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Sitaram Yechury",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2015-04-19",
+      "text": "At the same public meeting of 19 April 2015, the report says, the 'Newly elected general secretary, Sitaram Yechury, addressing the gathering called upon the people to come and support the CPI(M)'.",
+      "locator": {
+        "item": "public meeting report, tenth paragraph; last paragraph for the day"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

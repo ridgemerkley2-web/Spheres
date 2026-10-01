@@ -299,6 +299,12 @@ C01_27_COUNTS = (74, 167)
 C01_33_ORGANIZATION = 'in_eci_19980110_np_06'
 C01_33_ROLE = 'in_jd_president'
 C01_33_COUNTS = (22, 41)
+# CLAUDE-C01-40 adds one party role, in_cpm_general_secretary, to the existing Communist Party of India (Marxist)
+# recognition observation and appends its sources after the C01-33 sources, with this many sources and claims; its own
+# test pins them. This packet's assertions are unchanged for its own records.
+C01_40_ORGANIZATION = 'in_eci_20240323_np_04'
+C01_40_ROLE = 'in_cpm_general_secretary'
+C01_40_COUNTS = (18, 24)
 INSTITUTION = 'in_presidency'
 PRES = 'in_president'
 T_PRES = 'President of India'
@@ -554,13 +560,16 @@ class IndiaPresidentsTests(unittest.TestCase):
         jd, = [o for o in self.packet['organizations'] if o['id'] == C01_33_ORGANIZATION]
         self.assertEqual(([r['id'] for r in jd['roles']], len(jd['sources']), len(jd['claim_ids'])),
                          ([C01_33_ROLE],) + C01_33_COUNTS)
+        cpm, = [r for o in self.packet['organizations'] if o['id'] == C01_40_ORGANIZATION for r in o['roles']]
+        self.assertEqual((cpm['id'], len(cpm['sources']), len(cpm['claim_ids'])), (C01_40_ROLE,) + C01_40_COUNTS)
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + pm_sources + NEW_SOURCES + party['sources'] + bjp['sources']
-                         + jd['sources'])
+                         + jd['sources'] + cpm['sources'])
         self.assertFalse(set(self.new_claims) & set(party['claim_ids']))
         self.assertFalse(set(self.new_claims) & set(bjp['claim_ids']))
         self.assertFalse(set(self.new_claims) & set(jd['claim_ids']))
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 5))
+        self.assertFalse(set(self.new_claims) & set(cpm['claim_ids']))
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 6))
         self.assertEqual(len(self.packet['organizations']), 83)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
@@ -701,8 +710,9 @@ class IndiaPresidentsTests(unittest.TestCase):
         self.assertTrue(coverage['unresolved'][8].startswith('Presidents 1990-2026 (CLAUDE-C01-15)'))
         self.assertTrue(coverage['unresolved'][9].startswith('INC Presidents 1990-2026 (CLAUDE-C01-20'))
         self.assertTrue(coverage['unresolved'][10].startswith('BJP Presidents 1990-2026 (CLAUDE-C01-27'))
-        self.assertTrue(coverage['unresolved'][-1].startswith('Janata Dal Presidents 1990-2026 (CLAUDE-C01-33'))
-        self.assertEqual(len(coverage['unresolved']), 12)
+        self.assertTrue(coverage['unresolved'][11].startswith('Janata Dal Presidents 1990-2026 (CLAUDE-C01-33'))
+        self.assertTrue(coverage['unresolved'][-1].startswith('CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40'))
+        self.assertEqual(len(coverage['unresolved']), 13)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [6, 76])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -1000,7 +1010,7 @@ class IndiaPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'India')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 5))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 6))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'India'}, {'open'})
         self.assertFalse(index['c01_complete'])
 
