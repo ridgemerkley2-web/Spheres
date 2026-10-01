@@ -74,6 +74,7 @@ COMMIT_PACKETS = {
     '4d88fd03': 'CLAUDE-C01-37',
     '9174c807': 'CLAUDE-C01-38',
     '5d5935c3': 'CLAUDE-C01-40',
+    '3c4a3abc': 'CLAUDE-C01-40',
     'f04ead94': 'CLAUDE-C01-41',
     'b74f4fa5': 'CLAUDE-C01-31',
 }
