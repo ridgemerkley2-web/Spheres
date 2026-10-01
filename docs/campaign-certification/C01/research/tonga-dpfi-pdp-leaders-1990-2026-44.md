@@ -295,7 +295,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   (`e7592644`). Merging it conflicts on `research-index.json` and, add/add, on `docs/planning/ai-handoffs/CLAUDE-C01-44.md`
   (Codex's registration record at the same path), so it is not merged in the fix round and the conflict is reported for a
   decision. The review's prose correction (`9955de17` on `codex/review-c01-44-20261001`, the paragraph on later primary
-  records and the 2022 Helu presidency) is outside this round's fix list and is not applied here.
+  records and the 2022 Helu presidency) is applied on this branch by a cherry-pick of that commit.
 - **Known failures outside this packet (disclosed, not fixed):**
   - `tools/avatars/test_certified_gap_ledger.py` errors on this packet's new sources ("no pinned attribution") until Codex
     classifies the packet's commit in `COMMIT_PACKETS` at integration.

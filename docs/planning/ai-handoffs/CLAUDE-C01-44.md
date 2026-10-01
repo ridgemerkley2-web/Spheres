@@ -121,7 +121,7 @@ packet (`214121f9`; receipt `docs/campaign-certification/C01/reviews/CLAUDE-C01-
 the PMO original unread after HTTP 429, zero new holders) and Codex's registration of this record (`e7592644`). Merging it
 conflicts on `research-index.json` and, add/add, on this file (Codex's registration record at the same path), so the
 branch was **not merged** in this round; the conflict is reported for a decision. The review's prose correction
-(`9955de17` on `codex/review-c01-44-20261001`) is outside this round's fix list and is not applied here.
+(`9955de17` on `codex/review-c01-44-20261001`) is applied on this branch by a cherry-pick of that commit.
 
 Checks on the fix tree (full lines in the report): research-index `--check` pass; `campaign_census.py --check` pass (no
 census failure to disclose); Tonga tests 101 pass; research tests 79 pass; campaign tests 16 pass; `test_country_cast.py`
