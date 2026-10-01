@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "source_revision": "5530c298581702305430cc308cc53a7a432a01e3",
+  "old_path": "docs/campaign-certification/C06/countries/tonga/README.md",
+  "preserved_snapshot": {
+    "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
+    "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
+  },
+  "retargeted_inventory_references": 33,
+  "meaning": "Preserve exact previously reviewed appearance-inventory bytes while the live country README changes. No new artwork, appearance approval or historical date is asserted.",
+  "repair_trigger": "The coverage validator detected33 stale appearance-review hashes after the live status README changed. The original reviewed bytes are preserved unchanged, not replaced by a fresh hash of unrelated status edits."
+}

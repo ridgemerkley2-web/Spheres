@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "kind": "c06_collective_role_disposition",
+  "reviewer": "Codex",
+  "reviewed_at": "2026-10-01",
+  "integration_base": "5530c298",
+  "decision": "Adopt four explicitly sourced institutional exceptions under the existing C06 cast contract",
+  "basis": "These are collective classes, not individual leaders or political parties. No accepted named holder belongs to these four rows. Complete membership histories were not required as four additional personal leadership chains.",
+  "original_assessment": {
+    "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/original-assessment.json",
+    "sha256": "2fd258e1c8777b584c76e519584edfa0ace17d0810db8f835bf44992c730a382"
+  },
+  "research": {
+    "path": "docs/campaign-certification/C01/research/tonga.json",
+    "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1"
+  },
+  "decisions": [
+    {
+      "institution_id": "to_cabinet",
+      "role_id": "to_ministers",
+      "before": {
+        "institution_id": "to_cabinet",
+        "role_id": "to_ministers",
+        "status": "unresolved",
+        "reason": "This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.",
+        "accepted_holder_observation_count": 0,
+        "installed_holder_reference_count": 0,
+        "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      },
+      "reason": "Cabinet ministers is a collective constitutional class, not a single party leader or personal head-of-government office. The census has no accepted individual holder observations for this role. The exception covers the collective row only; it does not declare a complete Cabinet membership ledger or waive the separate Prime Minister and Deputy Prime Minister chains.",
+      "claim_ids": [
+        "to_constitution_pm_cabinet",
+        "to_older_ministers",
+        "to_reform_structure"
+      ]
+    },
+    {
+      "institution_id": "to_privy_council",
+      "role_id": "to_privy_councillors",
+      "before": {
+        "institution_id": "to_privy_council",
+        "role_id": "to_privy_councillors",
+        "status": "unresolved",
+        "reason": "This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.",
+        "accepted_holder_observation_count": 0,
+        "installed_holder_reference_count": 0,
+        "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      },
+      "reason": "Privy Councillors is a royal advisory and appellate collective, not a single political leader. The census has no accepted individual holder observations for this role. The exception does not certify every councillor, erase separately observed named offices, or merge the older ministerial membership arrangement with the later institution.",
+      "claim_ids": [
+        "to_constitution_privy",
+        "to_older_ministers",
+        "to_reform_structure"
+      ]
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_peoples_representatives",
+      "before": {
+        "institution_id": "to_legislative_assembly",
+        "role_id": "to_peoples_representatives",
+        "status": "unresolved",
+        "reason": "This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description. Native future-election permissions passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.",
+        "accepted_holder_observation_count": 0,
+        "installed_holder_reference_count": 0,
+        "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      },
+      "reason": "People's representatives is an electoral seat class, not a party or one leadership chain. There are no accepted individual holder observations for this role. The exception does not certify every elected member, turn poll results into terms, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles.",
+      "claim_ids": [
+        "to_parliament_seats",
+        "to_constitution_assembly",
+        "to_older_assembly"
+      ]
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_nobles_representatives",
+      "before": {
+        "institution_id": "to_legislative_assembly",
+        "role_id": "to_nobles_representatives",
+        "status": "unresolved",
+        "reason": "This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.",
+        "accepted_holder_observation_count": 0,
+        "installed_holder_reference_count": 0,
+        "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      },
+      "reason": "Nobles' representatives is an electoral seat class, not a party or a single hereditary office. There are no accepted individual holder observations for this role. The exception does not certify all historical members, noble-title successions or electors, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles.",
+      "claim_ids": [
+        "to_parliament_seats",
+        "to_constitution_assembly",
+        "to_older_assembly"
+      ]
+    }
+  ],
+  "preserved_named_observations": 50,
+  "preserved_installed_bindings": 50,
+  "limits": [
+    "All 50 accepted named holder observations remain required and unchanged. Explicit PM, Speaker, deputy and political-party chains remain required.",
+    "Incidental named claims and existing research backlog remain visible; nothing is deleted, promoted into a holder, or represented as complete.",
+    "No current or consolidated constitutional text is backdated to 1990; no unreviewed reform commencement is inferred.",
+    "No future candidate receives a historical office or automatic election, appointment, royal title, party affiliation or eligibility grant.",
+    "A pinned review is required if the integration owner adopts these exceptions. The validator rejects an institutional exception if named holder observations exist."
+  ],
+  "crown_status": "Unresolved; this change does not close the Crown or any other named/party chain",
+  "country_complete": false
+}

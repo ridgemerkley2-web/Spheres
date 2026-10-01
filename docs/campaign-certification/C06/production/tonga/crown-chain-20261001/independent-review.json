@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "kind": "c06_supplemental_country_chain_continuity_review",
+  "reviewed_at_utc": "2026-10-01T15:26:50.338502+00:00",
+  "candidate_revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e",
+  "status": "recommended_for_integration_owner_acceptance_not_applied",
+  "scope": "Historical Crown identity-chain continuity only. Source observation and bounded continuity inference are separate. C01 claims/holders, runtime dates, identity records, art and acceptance checks are unchanged.",
+  "previous_review": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\bounded-crown-and-collective-scope-review.json",
+    "bytes": 27524,
+    "sha256": "2fd258e1c8777b584c76e519584edfa0ace17d0810db8f835bf44992c730a382"
+  },
+  "supersedes_only": "The earlier review's lack-of-2026-attestation conclusion. Its settled junctions, source limits, collective-role recommendations and separation of production acceptance remain intact.",
+  "source": {
+    "publisher": "Legislative Assembly of Tonga",
+    "title": "Three Cabinet Ministers take oath in Parliament today",
+    "requested_url": "https://mail.parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+    "response_url": "https://mail.parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+    "http_status": 200,
+    "redirects": 0,
+    "retrieved_at_utc": "2026-10-01T15:23:42.250010+00:00",
+    "published_date_as_displayed": "2026-08-18",
+    "last_updated_date_as_displayed": "2026-08-18",
+    "identity_basis": "The official parliament.gov.to subdomain serves the legislative site; its HTML schema identifies the publisher as Legislative Assembly of Tonga and uses the Parliament root as organization/site identity. The title, original path and 18 August 2026 date match the already accepted C01 source listed below.",
+    "body": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\cabinet-oath-20260818\\parliament.body",
+      "bytes": 59987,
+      "sha256": "d9381aeb43e4f742f217c3764b04d0a127aa89f76edc7dded893e7bae47c370a"
+    },
+    "reading_method": "Downloaded original HTML retained outside Git; article heading, created/updated dates and every article-body paragraph read. Navigation/share text was separated mechanically with Python standard-library HTMLParser. No source image/likeness review or reuse.",
+    "whole_body_scope": "Eight paragraphs cover the ministers' oaths, three names/portfolios, loyalty to the King, the Acting Speaker welcome and each minister's remarks. No paragraph reports a Crown succession, abdication or death.",
+    "existing_c01_source_id": "to_la_news_ministers_oath_20260818",
+    "existing_c01_archive_url": "https://web.archive.org/web/20260818052147id_/https://parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+    "existing_c01_source_scope": "C01 originally used this article only for the acting Speaker claim to_acting_speaker_tuihaangana_20260818. This supplemental C06 review reads the distinct named King wording in paragraph 1.",
+    "existing_c01_decoded_response_bytes": 58734,
+    "existing_c01_decoded_response_sha256": "c584714726d6f59cc766cbc2156e7cd91ccb8b2f4fc25cc24856e55ac4a566f4",
+    "body_identity_limit": "The live mail-host response has different bytes from the old archived www/root-host response. It is retained as a new response and never substituted for, or represented as a match to, the historical source pin. The old archive body was not re-retrieved in this pass.",
+    "post_cutoff_retrieval_limit": "The response was retrieved on 1 October 2026. Its event and visible created/updated dates are 18 August 2026; the earlier accepted C01 archive metadata independently records this title/path captured on that same pre-cutoff date."
+  },
+  "new_source_observation": {
+    "review_local_id": "c06_to_tupou_vi_parliament_20260818",
+    "canonical_c01_claim_added": false,
+    "name": "Tupou VI",
+    "role": "King of Tonga",
+    "attested_on": "2026-08-18",
+    "locator": "Article date fields and first body paragraph",
+    "short_quote": "in service to His Majesty King Tupou VI",
+    "reading": "The legislature reports that ministers took their oaths that day in service to named King Tupou VI. This is a current named-holder attestation on the article's event date, not an appointment or accession notice.",
+    "inferences_not_made": [
+      "The oath is not a new accession.",
+      "The article supplies no reign end.",
+      "The three ministers and Acting Speaker are not imported as new holders or made complete terms."
+    ]
+  },
+  "accepted_chain_used": [
+    {
+      "person": "Taufa'ahau Tupou IV",
+      "opening_identity": "Accepted incumbent when the 1990 period opens; from:null is preserved.",
+      "until": "2006-09-11",
+      "claim_ids": [
+        "to_crown_assent_tupou_iv_19900712",
+        "to_crown_assent_tupou_iv_19900808",
+        "to_crown_tupou_iv_death_20060911",
+        "to_crown_gtv_devolution_proclamation_20060911"
+      ]
+    },
+    {
+      "person": "George Tupou V",
+      "from": "2006-09-11",
+      "until": "2012-03-18",
+      "claim_ids": [
+        "to_crown_tupou_iv_death_20060911",
+        "to_crown_gtv_devolution_proclamation_20060911",
+        "to_crown_gtv_devolution_proclamation_to_20060911",
+        "to_crown_gtv_death_20120318",
+        "to_crown_tupou_vi_devolution_proclamation_20120319"
+      ]
+    },
+    {
+      "person": "Tupou VI",
+      "from": "2012-03-18",
+      "until": null,
+      "latest_prior_named_crown_attestation": "2025-12-18",
+      "claim_ids": [
+        "to_crown_gtv_death_20120318",
+        "to_crown_tupou_vi_devolution_proclamation_20120319",
+        "to_tupou_vi_2025"
+      ]
+    }
+  ],
+  "continuity_disposition": {
+    "recommendation": "Accept the historical to_king identity chain through the fixed 2026-09-07 cutoff with this explicit supplemental continuity inference.",
+    "basis": [
+      "The accepted death/devolution evidence already settles the two succession junctions and Tupou VI's 18 March 2012 accession.",
+      "The new primary legislature article directly reattests the same named King on 18 August 2026, only 20 calendar days before the cutoff.",
+      "The accepted role is a continuing hereditary Crown, not an office that expires at a daily interval or an election-cycle boundary. The legal succession-rule claim to_crown_const2020_succession_c32 supplies institutional context only, not a new historical event.",
+      "No contrary Crown death, abdication or succession is identified in the accepted Crown packet or this article. Absence here is not presented as an exhaustive search of every possible record.",
+      "A review can reasonably carry this continuing incumbent across the short remainder without demanding one attestation per day; the extension is recorded as review inference, not attributed to explicit wording of the article."
+    ],
+    "inference_from": "2026-08-18",
+    "inference_through": "2026-09-07",
+    "calendar_days_after_attestation": 20,
+    "not_a_new_term_boundary": true,
+    "no_holder_object_mutation": true,
+    "earlier_opening_and_junction_precision_unchanged": true,
+    "limits": [
+      "This recommendation concerns historical identity-chain continuity, not constitutional/legal adjudication.",
+      "It grants no post-cutoff replacement or heir accession.",
+      "A subsequently discovered contradictory primary source would reopen the affected interval.",
+      "Date-boundary/save/production and future institutional succession validation must retain their independently evidenced status. Country completion and human sign-off are not awarded here."
+    ]
+  },
+  "proposed_manifest_disposition": {
+    "institution_id": "to_crown",
+    "role_id": "to_king",
+    "status": "covered",
+    "apply_only_if": "The integration owner accepts this supplemental historical-chain review and installs a pinned chain_review. Keep all separate checks/open_requirements unchanged unless their own evidence supports closure.",
+    "reason": "Opening Crown identity and both death/devolution succession junctions are source-reviewed. Parliament explicitly names Tupou VI as King on 18 August 2026; continuity to 7 September 2026 is an explicit bounded inference for the continuing hereditary incumbent. Existing holder dates and all separate production/future-succession acceptance remain unchanged.",
+    "chain_review_pin_required": true
+  },
+  "input_pins": [
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 655160,
+      "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-ministers-oath-news-20260818-facts.json",
+      "bytes": 4851,
+      "sha256": "62cbdee0e66215ff5ea95b741c9cf6493f3ed02c0dc6d42556fa79f06f7bdca6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+      "bytes": 37983,
+      "sha256": "a11076bba20dea088fefe7882e47586a8454c3c67f4f001c048c4c92f296a703"
+    },
+    {
+      "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
+      "bytes": 187488,
+      "sha256": "d7a1fca23594cbe6567094f9f54cb0314247726920f00d8c5de147e0ca56dfd8"
+    }
+  ],
+  "unchanged_c01_holder_objects": {
+    "count": 4,
+    "canonical_json_encoding": "UTF-8, sorted keys, compact separators, ensure_ascii=False",
+    "sha256": "cc4277a350e182a449b3d016b3dae2e0f3839b28e2c8056fdf856d4767207644"
+  },
+  "retained_evidence_pins": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\cabinet-oath-20260818\\retrieval-receipt.json",
+      "bytes": 17840,
+      "sha256": "09d7ba26d97622fa1472041688d5f8f7ee5fb92e3552e90c3bbf23b6eeb56b52"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\cabinet-oath-20260818\\parliament.headers.txt",
+      "bytes": 1080,
+      "sha256": "868acd69b32e946381456b8d46e518f78c3700c60eb65916636d038dc7ac1a5e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\cabinet-oath-20260818\\curl.stderr.txt",
+      "bytes": 550,
+      "sha256": "251022c530d936c187c7ffc475cfec5af29c16196398e6469c61f948d39e4b01"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\cabinet-oath-20260818\\curl.transfer.json",
+      "bytes": 16037,
+      "sha256": "a9a18e31d40e56d8fcc600de2c93e60f7ab6cfcaa142f8dfd303d39213a5090b"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\cabinet-oath-20260818\\article.reading.txt",
+      "bytes": 1928,
+      "sha256": "6b0d3320908eb13ea309f04478c6efd15f0c6e93b32eab8b8e48c9a7b1f5f389"
+    }
+  ],
+  "repository_files_changed": [],
+  "network_summary": "One ordinary curl GET of the supplied official mail-host URL plus a web tool read of that same URL; no Archive request, retry, changed user agent or alternate identity.",
+  "tests_run": [],
+  "country_complete": false
+}

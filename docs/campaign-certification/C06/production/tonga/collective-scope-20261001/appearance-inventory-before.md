@@ -29,15 +29,15 @@ Fatai Helu is the adult PTOA president named by the Supreme Court in August 2022
 - `to_peoples_party/to_peoples_party_leader`: Pohiva Tu’ionetoa’s May 2021 leader observation is installed. Formation, leader selection, later succession and continuity with the incorporated society are not a completed chain.
 - `to_peoples_party/to_peoples_party_society_president`: The April 2022 trial observation names society president Tu’ionetoa. Society-president and political-leader offices remain separate; officer rules and complete dates are unverified.
 - `to_peoples_party/to_peoples_party_society_secretary`: The April 2022 trial observation names secretary Tevita Lavemaau. Appointment/end, officer-selection rules and later secretary succession remain unverified.
-- `to_crown/to_king`: **Historical chain reviewed.** Opening King IV identity and the 2006/2012 succession junctions are settled. Parliament reattests Tupou VI on 18 August 2026; the [accepted review](../../production/tonga/crown-chain-20261001/acceptance.json) records an explicit 20-day continuity inference through 7 September. Original null bounds and separate production checks stay intact.
+- `to_crown/to_king`: All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance and a Tonga production-browser succession review remain pending; native saved-heir succession and date guards passed on candidate 6829ecc7. Portraits do not grant royal eligibility.
 - `to_prime_minister/to_pm`: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain remains open. Native appointment contracts passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.
-- `to_cabinet/to_ministers`: **Sourced institutional exception.** Cabinet ministers is a collective constitutional class, not a single party leader or personal head-of-government office. The census has no accepted individual holder observations for this role. The exception covers the collective row only; it does not declare a complete Cabinet membership ledger or waive the separate Prime Minister and Deputy Prime Minister chains.
+- `to_cabinet/to_ministers`: This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.
 - `to_cabinet/to_deputy_pm`: All 14 accepted deputy-PM observations are installed. Early coverage, acting service and unresolved start/end gaps (including late 2021) remain; no successor date fills an earlier boundary.
-- `to_privy_council/to_privy_councillors`: **Sourced institutional exception.** Privy Councillors is a royal advisory and appellate collective, not a single political leader. The census has no accepted individual holder observations for this role. The exception does not certify every councillor, erase separately observed named offices, or merge the older ministerial membership arrangement with the later institution.
+- `to_privy_council/to_privy_councillors`: This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.
 - `to_legislative_assembly/to_speaker`: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.
 - `to_legislative_assembly/to_deputy_speaker`: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.
-- `to_legislative_assembly/to_peoples_representatives`: **Sourced institutional exception.** People's representatives is an electoral seat class, not a party or one leadership chain. There are no accepted individual holder observations for this role. The exception does not certify every elected member, turn poll results into terms, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles.
-- `to_legislative_assembly/to_nobles_representatives`: **Sourced institutional exception.** Nobles' representatives is an electoral seat class, not a party or a single hereditary office. There are no accepted individual holder observations for this role. The exception does not certify all historical members, noble-title successions or electors, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles.
+- `to_legislative_assembly/to_peoples_representatives`: This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description. Native future-election permissions passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.
+- `to_legislative_assembly/to_nobles_representatives`: This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.
 
 The civilian review additionally retains small-party and successor leads: FIHRDM/HRDM continuity; later DPFI leadership; PDP’s constitution and subsequent leadership; Sustainable Nation-Building Party/Sione Fonua; Democratic Labour Party/Mele ‘Amanaki; and the distinct People’s Party leader/president/secretary offices. A news lead is not an installed party office. Acting Speakers/deputies and names appearing incidentally in Cabinet lists are separately inventoried rather than merged into substantive holders.
 
@@ -79,16 +79,3 @@ python tools/avatars/tonga_cast_coverage.py --require-complete
 The first command checks structure, exact bindings, source pins and art metadata. The second must remain nonzero while any recorded blocker is open. The report is a snapshot: refresh it after changes to registry, institutional references, art manifests or review evidence.
 
 Source reviews: [civilian identities](../../production/tonga/civilian-identity-review.json), [civilian originals ledger](../../production/tonga/civilian-source-ledger.json), [royal identities](../../production/tonga/royal-identity-review.json), [party likenesses](../../production/tonga/party-likeness-review.json), and [binding completion](../../production/tonga/historical-binding-completion-receipt.json).
-
-## Collective-role disposition
-
-The [independent assessment and adoption](../../production/tonga/collective-scope-20261001/adoption.json)
-explain four collective-body exceptions under the existing C06 contract.
-All 50 named observations and every individual/party chain remain required.
-This does not certify complete historical membership lists or backdate
-modern seat counts. Eleven political/office chains, one missing likeness
-and three final acceptance checks remain open: 15 explicit blockers.
-
-The original appearance inventory is preserved byte-for-byte in an
-[immutable snapshot](../../production/tonga/collective-scope-20261001/appearance-inventory-before.md).
-Updating this status page cannot silently invalidate those review references.

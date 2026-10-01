@@ -136,11 +136,15 @@
     {
       "institution_id": "to_crown",
       "role_id": "to_king",
-      "status": "unresolved",
-      "reason": "All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance and a Tonga production-browser succession review remain pending; native saved-heir succession and date guards passed on candidate 6829ecc7. Portraits do not grant royal eligibility.",
+      "status": "covered",
+      "reason": "Historical Crown identity chain accepted with explicit20-day continuity inference to the frozen cutoff; original office records unchanged.",
       "accepted_holder_observation_count": 4,
       "installed_holder_reference_count": 4,
-      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate.",
+      "chain_review": {
+        "path": "docs/campaign-certification/C06/production/tonga/crown-chain-20261001/acceptance.json",
+        "sha256": "a35c9c2c97114830576a17f8d8b6d4e1f335e385d7218e10b3afeb789126ef04"
+      }
     },
     {
       "institution_id": "to_prime_minister",
@@ -154,11 +158,20 @@
     {
       "institution_id": "to_cabinet",
       "role_id": "to_ministers",
-      "status": "unresolved",
-      "reason": "This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.",
+      "status": "institutional_exception",
+      "reason": "Cabinet ministers is a collective constitutional class, not a single party leader or personal head-of-government office. The census has no accepted individual holder observations for this role. The exception covers the collective row only; it does not declare a complete Cabinet membership ledger or waive the separate Prime Minister and Deputy Prime Minister chains.",
       "accepted_holder_observation_count": 0,
       "installed_holder_reference_count": 0,
-      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate.",
+      "claim_ids": [
+        "to_constitution_pm_cabinet",
+        "to_older_ministers",
+        "to_reform_structure"
+      ],
+      "review": {
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/adoption.json",
+        "sha256": "2bbf483e1a84a0031c57d546a263df57279ea48201dca7a336de4246e99619ec"
+      }
     },
     {
       "institution_id": "to_cabinet",
@@ -172,11 +185,20 @@
     {
       "institution_id": "to_privy_council",
       "role_id": "to_privy_councillors",
-      "status": "unresolved",
-      "reason": "This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.",
+      "status": "institutional_exception",
+      "reason": "Privy Councillors is a royal advisory and appellate collective, not a single political leader. The census has no accepted individual holder observations for this role. The exception does not certify every councillor, erase separately observed named offices, or merge the older ministerial membership arrangement with the later institution.",
       "accepted_holder_observation_count": 0,
       "installed_holder_reference_count": 0,
-      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate.",
+      "claim_ids": [
+        "to_constitution_privy",
+        "to_older_ministers",
+        "to_reform_structure"
+      ],
+      "review": {
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/adoption.json",
+        "sha256": "2bbf483e1a84a0031c57d546a263df57279ea48201dca7a336de4246e99619ec"
+      }
     },
     {
       "institution_id": "to_legislative_assembly",
@@ -199,20 +221,38 @@
     {
       "institution_id": "to_legislative_assembly",
       "role_id": "to_peoples_representatives",
-      "status": "unresolved",
-      "reason": "This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description. Native future-election permissions passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.",
+      "status": "institutional_exception",
+      "reason": "People's representatives is an electoral seat class, not a party or one leadership chain. There are no accepted individual holder observations for this role. The exception does not certify every elected member, turn poll results into terms, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles.",
       "accepted_holder_observation_count": 0,
       "installed_holder_reference_count": 0,
-      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate.",
+      "claim_ids": [
+        "to_parliament_seats",
+        "to_constitution_assembly",
+        "to_older_assembly"
+      ],
+      "review": {
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/adoption.json",
+        "sha256": "2bbf483e1a84a0031c57d546a263df57279ea48201dca7a336de4246e99619ec"
+      }
     },
     {
       "institution_id": "to_legislative_assembly",
       "role_id": "to_nobles_representatives",
-      "status": "unresolved",
-      "reason": "This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.",
+      "status": "institutional_exception",
+      "reason": "Nobles' representatives is an electoral seat class, not a party or a single hereditary office. There are no accepted individual holder observations for this role. The exception does not certify all historical members, noble-title successions or electors, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles.",
       "accepted_holder_observation_count": 0,
       "installed_holder_reference_count": 0,
-      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+      "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate.",
+      "claim_ids": [
+        "to_parliament_seats",
+        "to_constitution_assembly",
+        "to_older_assembly"
+      ],
+      "review": {
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/adoption.json",
+        "sha256": "2bbf483e1a84a0031c57d546a263df57279ea48201dca7a336de4246e99619ec"
+      }
     }
   ],
   "historical_bindings": [
@@ -1749,7 +1789,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -1782,7 +1822,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -1825,7 +1865,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -1874,7 +1914,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -1907,7 +1947,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -1940,7 +1980,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -1983,7 +2023,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2017,7 +2057,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2050,7 +2090,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2083,7 +2123,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2116,7 +2156,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2149,7 +2189,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2182,7 +2222,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2215,7 +2255,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2248,7 +2288,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2281,7 +2321,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2324,7 +2364,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2357,7 +2397,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2390,7 +2430,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2423,7 +2463,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2466,7 +2506,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2499,7 +2539,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2532,7 +2572,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2592,7 +2632,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2625,7 +2665,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2658,7 +2698,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2691,7 +2731,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2724,7 +2764,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2757,7 +2797,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2790,7 +2830,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2849,7 +2889,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2882,7 +2922,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [
@@ -2915,7 +2955,7 @@
         }
       ],
       "appearance_review": {
-        "path": "docs/campaign-certification/C06/countries/tonga/README.md",
+        "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/appearance-inventory-before.md",
         "sha256": "75e34390690e72190b396515a48c00b2ba167b52798fe17e1bd452e0f346005a"
       },
       "appearance_requirement_basis": [

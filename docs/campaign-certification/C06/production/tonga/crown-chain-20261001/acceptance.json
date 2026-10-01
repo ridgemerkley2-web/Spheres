@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "kind": "accepted_historical_crown_chain",
+  "reviewer": "Codex",
+  "reviewed_at": "2026-10-01",
+  "through": "2026-09-07",
+  "independent_review": {
+    "path": "docs/campaign-certification/C06/production/tonga/crown-chain-20261001/independent-review.json",
+    "sha256": "028cce7b3c852b9ff21dd5a3fb786085a77485dac92f9593a4912a1fde1a38a3"
+  },
+  "previous_role_disposition": {
+    "institution_id": "to_crown",
+    "role_id": "to_king",
+    "status": "unresolved",
+    "reason": "All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance and a Tonga production-browser succession review remain pending; native saved-heir succession and date guards passed on candidate 6829ecc7. Portraits do not grant royal eligibility.",
+    "accepted_holder_observation_count": 4,
+    "installed_holder_reference_count": 4,
+    "review_scope": "Exact observed identities are accounted for; complete political-chain and institutional acceptance is separate."
+  },
+  "decision": "Accept the three-person historical Crown chain with the explicitly documented short continuity inference; preserve all original holder objects and date precision.",
+  "source_read_by_integration_reviewer": {
+    "url": "https://mail.parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+    "publisher": "Legislative Assembly of Tonga",
+    "article_date": "2026-08-18",
+    "scope": "Full article read; first paragraph names Tupou VI as King in contemporaneous service wording."
+  },
+  "continuity_inference": {
+    "from": "2026-08-18",
+    "through": "2026-09-07",
+    "calendar_days": 20,
+    "meaning": "Carry a directly reattested incumbent of a continuing hereditary office across the short remainder of the frozen historical window. This is an explicit review inference, not wording attributed to the article.",
+    "new_accession_or_end_inferred": false
+  },
+  "boundaries_preserved": "Opening King IV from:null; 2006-09-11 Tonga-time succession; 2012-03-18 devolution, distinct from 19 March proclamation; Tupou VI until:null.",
+  "limits": [
+    "No Crown appointment or forced historical succession is added to gameplay",
+    "Historical chain acceptance is separate from native/browser/likeness and future succession checks",
+    "Regency/oath/ceremony observations do not create extra King identities",
+    "Country, C06, S23 and CP1 are not declared complete"
+  ]
+}

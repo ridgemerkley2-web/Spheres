@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "kind": "read_only_bounded_scope_and_crown_assessment",
+  "reviewed_at_utc": "2026-10-01T15:21:36.218451+00:00",
+  "candidate_revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e",
+  "repository_mutations": false,
+  "network_requests": 0,
+  "material_scope": "Re-read accepted Crown and collective-role claims and the C01/C05/C06 contract; independently read retained 2012 Gazette PDF texts and visually inspected their first pages. Earlier accepted claims are reused with explicit limits, not represented as newly retrieved originals.",
+  "input_pins": [
+    {
+      "path": "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "bytes": 66506,
+      "sha256": "5cd620b10403ff568479a055217fb5a5ef906a1517733a68879496f4e5f64d86"
+    },
+    {
+      "path": "docs/campaign-certification/C01/README.md",
+      "bytes": 16017,
+      "sha256": "1faba2f5b2c84d753fd9e831bfe3a37eafbe890ae5161c880e2e37d176a7309a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "bytes": 6414,
+      "sha256": "8dc5242ed08a59d3dd71aafb9e02afabe45defb06cfa6e59719ac5667d9cf095"
+    },
+    {
+      "path": "docs/campaign-certification/C01/countries.json",
+      "bytes": 102317,
+      "sha256": "dabbeba53e8d8141a9df108075daf4bd882e48de7b8194570e9873e80f5b123c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 655160,
+      "sha256": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+      "bytes": 37983,
+      "sha256": "a11076bba20dea088fefe7882e47586a8454c3c67f4f001c048c4c92f296a703"
+    },
+    {
+      "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
+      "bytes": 187488,
+      "sha256": "d7a1fca23594cbe6567094f9f54cb0314247726920f00d8c5de147e0ca56dfd8"
+    },
+    {
+      "path": "tools/avatars/tonga_cast_coverage.py",
+      "bytes": 17412,
+      "sha256": "1e45a1d87614c4b0e7fdfdcee2b25659be13732ca40b1ae7dd7410dcd28abe0b"
+    }
+  ],
+  "contract_basis": [
+    {
+      "path": "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "lines": "902-904",
+      "finding": "C01 requires distinctions among political, executive and collective institutional roles."
+    },
+    {
+      "path": "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "lines": "950-952",
+      "finding": "C05 separates unknown, unresearched and genuinely inapplicable roles and separately requires boundary/production checks."
+    },
+    {
+      "path": "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+      "lines": "962-964",
+      "finding": "C06 requires party/component chains and art while allowing census-explained institutional exceptions; no required identity is silently waived."
+    },
+    {
+      "path": "docs/campaign-certification/C01/README.md",
+      "lines": "147-155,167-172,188-211",
+      "finding": "Zero game party rows is not evidence that parties are absent. Collective-role review is required, but policy records do not equal full historical membership."
+    }
+  ],
+  "collective_role_recommendations": [
+    {
+      "institution_id": "to_cabinet",
+      "role_id": "to_ministers",
+      "current_status": "unresolved",
+      "recommended_status": "institutional_exception",
+      "applied": false,
+      "accepted_holder_observation_count": 0,
+      "census_role_unchanged": {
+        "id": "to_ministers",
+        "title": "Cabinet ministers",
+        "kind": "collective_seat",
+        "sources": [
+          "to_constitution_2020"
+        ],
+        "claim_ids": [
+          "to_constitution_pm_cabinet"
+        ],
+        "holder_claims": []
+      },
+      "claim_ids": [
+        "to_constitution_pm_cabinet",
+        "to_older_ministers",
+        "to_reform_structure"
+      ],
+      "reason": "Cabinet ministers is a collective constitutional class, not a single party leader or personal head-of-government office. The census has no accepted individual holder observations for this role. The exception covers the collective row only; it does not declare a complete Cabinet membership ledger or waive the separate Prime Minister and Deputy Prime Minister chains."
+    },
+    {
+      "institution_id": "to_privy_council",
+      "role_id": "to_privy_councillors",
+      "current_status": "unresolved",
+      "recommended_status": "institutional_exception",
+      "applied": false,
+      "accepted_holder_observation_count": 0,
+      "census_role_unchanged": {
+        "id": "to_privy_councillors",
+        "title": "Privy Councillors",
+        "kind": "collective_seat",
+        "sources": [
+          "to_constitution_2020"
+        ],
+        "claim_ids": [
+          "to_constitution_privy"
+        ],
+        "holder_claims": []
+      },
+      "claim_ids": [
+        "to_constitution_privy",
+        "to_older_ministers",
+        "to_reform_structure"
+      ],
+      "reason": "Privy Councillors is a royal advisory and appellate collective, not a single political leader. The census has no accepted individual holder observations for this role. The exception does not certify every councillor, erase separately observed named offices, or merge the older ministerial membership arrangement with the later institution."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_peoples_representatives",
+      "current_status": "unresolved",
+      "recommended_status": "institutional_exception",
+      "applied": false,
+      "accepted_holder_observation_count": 0,
+      "census_role_unchanged": {
+        "id": "to_peoples_representatives",
+        "title": "People's representatives",
+        "kind": "collective_seat",
+        "sources": [
+          "to_parliament_work_2025"
+        ],
+        "claim_ids": [
+          "to_parliament_seats"
+        ],
+        "holder_claims": []
+      },
+      "claim_ids": [
+        "to_parliament_seats",
+        "to_constitution_assembly",
+        "to_older_assembly"
+      ],
+      "reason": "People's representatives is an electoral seat class, not a party or one leadership chain. There are no accepted individual holder observations for this role. The exception does not certify every elected member, turn poll results into terms, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles."
+    },
+    {
+      "institution_id": "to_legislative_assembly",
+      "role_id": "to_nobles_representatives",
+      "current_status": "unresolved",
+      "recommended_status": "institutional_exception",
+      "applied": false,
+      "accepted_holder_observation_count": 0,
+      "census_role_unchanged": {
+        "id": "to_nobles_representatives",
+        "title": "Nobles' representatives",
+        "kind": "collective_seat",
+        "sources": [
+          "to_parliament_work_2025"
+        ],
+        "claim_ids": [
+          "to_parliament_seats"
+        ],
+        "holder_claims": []
+      },
+      "claim_ids": [
+        "to_parliament_seats",
+        "to_constitution_assembly",
+        "to_older_assembly"
+      ],
+      "reason": "Nobles' representatives is an electoral seat class, not a party or a single hereditary office. There are no accepted individual holder observations for this role. The exception does not certify all historical members, noble-title successions or electors, backdate the 2025 seat count, or waive named Speaker, deputy, executive or party roles."
+    }
+  ],
+  "shared_exception_limits": [
+    "These are four proposed cast-scope dispositions, not four completed historical membership chains.",
+    "All 50 accepted named holder observations remain required and unchanged. Explicit PM, Speaker, deputy and political-party chains remain required.",
+    "Incidental named claims and existing research backlog remain visible; nothing is deleted, promoted into a holder, or represented as complete.",
+    "No current or consolidated constitutional text is backdated to 1990; no unreviewed reform commencement is inferred.",
+    "No future candidate receives a historical office or automatic election, appointment, royal title, party affiliation or eligibility grant.",
+    "A pinned review is required if the integration owner adopts these exceptions. The validator rejects an institutional exception if named holder observations exist."
+  ],
+  "crown_recommendation": {
+    "institution_id": "to_crown",
+    "role_id": "to_king",
+    "current_status": "unresolved",
+    "recommended_status": "unresolved_pending_cutoff_continuity_disposition",
+    "materially_settled": [
+      "Opening-period incumbent identity is accepted as Taufa'ahau Tupou IV; preserve from:null and do not invent a 1990-01-01 accession.",
+      "2006 succession: Tupou IV until 2006-09-11 (Tonga time), George Tupou V from 2006-09-11.",
+      "2012 succession: George Tupou V until 2012-03-18, Tupou VI from 2012-03-18. Proclamation was 2012-03-19."
+    ],
+    "can_accept_now": "A bounded dated-chain receipt for the opening identity and both succession junctions, preserving the four holder objects and exact date precision. These items should not remain described as wholly unresearched.",
+    "not_established_by_this_packet": "The latest explicit named Tupou VI holder attestation in the accepted Crown packet is 2025-12-18. This assessment supplies no new 2026 attestation and does not silently extend a point observation to the 2026-09-07 cutoff.",
+    "next_minimal_research_or_decision": "Obtain and review a primary named-holder record at or sufficiently near the cutoff, together with an explicit accepted continuity disposition. Do not require a fictitious reign end or a new accession event.",
+    "not_king_identity_blockers": [
+      "Regency instruments",
+      "Coronation-oath dates",
+      "Ceremonial installation dates",
+      "Independent 2006 Gazette facsimile strengthening"
+    ],
+    "separate_acceptance": "Date-boundary/save/production and post-cutoff succession checks remain their own C05/C06 gates; this source assessment neither passes nor fails them.",
+    "claim_ids": [
+      "to_crown_assent_tupou_iv_19900712",
+      "to_crown_assent_tupou_iv_19900808",
+      "to_crown_gtv_king_20060912_un",
+      "to_crown_tupou_iv_death_20060911",
+      "to_crown_gtv_devolution_proclamation_20060911",
+      "to_crown_gtv_devolution_proclamation_to_20060911",
+      "to_crown_gtv_death_20120318",
+      "to_crown_tupou_vi_devolution_proclamation_20120319",
+      "to_tupou_vi_2025",
+      "to_crown_succession_not_oath_dependent_2006"
+    ]
+  },
+  "source_claims": [
+    {
+      "source_id": "to_act_income_tax_amend_1990",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+      "claim": {
+        "id": "to_crown_assent_tupou_iv_19900712",
+        "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 12th July 1990'; the Act records its passage by the Legislative Assembly on 14 June 1990.",
+        "attested_on": "1990-07-12",
+        "locator": "PDF page 1, assent block and passage line",
+        "uncertainty": "A dated attestation of Tupou IV exercising the royal assent. It dates neither the start of his reign nor its continuity. The file is a re-typeset reproduction by the Attorney General's Office, not a facsimile of the gazetted print."
+      }
+    },
+    {
+      "source_id": "to_act_constitution_amend_1990",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+      "claim": {
+        "id": "to_crown_assent_tupou_iv_19900808",
+        "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 8th August, 1990'; the Act records its passage on 26 July 1990.",
+        "attested_on": "1990-08-08",
+        "locator": "PDF page 1, assent block and passage line",
+        "uncertainty": "A dated attestation of Tupou IV exercising the royal assent only. Re-typeset reproduction; the assent block was read from the text layer, not from a rendered page."
+      }
+    },
+    {
+      "source_id": "to_un_a61_pv1",
+      "source_url": "https://documents.un.org/doc/undoc/gen/n06/520/19/pdf/n0652019.pdf",
+      "claim": {
+        "id": "to_crown_gtv_king_20060912_un",
+        "text": "Tonga's representative speaks on behalf of King George Tupou V, and the United States representative conveys condolences to King George Tupou V, 'who has succeeded his father'. Tonga's representative also says Tupou IV became King in 1965 and reigned for 41 years.",
+        "attested_on": "2006-09-12",
+        "locator": "Pages 2-3 (statements of Mr Wolff and Mrs 'Utoikamanu)",
+        "uncertainty": "A dated attestation of George Tupou V as King. The 1965 accession is year-level context outside the 1990 period and is not structured."
+      }
+    },
+    {
+      "source_id": "to_pmo_20060911_death_notice",
+      "source_url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+      "claim": {
+        "id": "to_crown_tupou_iv_death_20060911",
+        "text": "Gazette No. 20 of Monday 11 September 2006 carries Prime Minister Feleti Vaka'uta Sevele's announcement that the passing away of His Majesty King Taufa'ahau Tupou IV occurred in Auckland, New Zealand, 'at 11:34 pm on 10th September 2006 (New Zealand time), 12:34 am on 11th September 2006, (Tongan time)'.",
+        "attested_on": "2006-09-11",
+        "printed_times": [
+          {
+            "zone": "New Zealand time",
+            "date": "2006-09-10",
+            "time": "23:34"
+          },
+          {
+            "zone": "Tongan time",
+            "date": "2006-09-11",
+            "time": "00:34"
+          }
+        ],
+        "locator": "Reproduced gazette header and first paragraph; article timestamp Sep 11, 2006, 18:32",
+        "uncertainty": "attested_on is the Tongan calendar date, as for George Tupou V's death, which is recorded in Tonga time; the New Zealand date, 10 September, is kept in printed_times and is the date the UN record gives (to_crown_tupou_iv_death_20060910_un). The two printed times are one instant, consistent with New Zealand standard time (UTC+12) and Tongan time (UTC+13) in September 2006. PMO web reproduction, not the gazette facsimile."
+      }
+    },
+    {
+      "source_id": "to_pmo_20060911_proclamation",
+      "source_url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+      "claim": {
+        "id": "to_crown_gtv_devolution_proclamation_20060911",
+        "text": "Gazette No. 19 of Monday 11 September 2006 carries a proclamation in the name of His Majesty George Tupou V, by Prime Minister Feleti Vaka'uta Sevele, stating that by the decease of His Late Majesty King Taufa'ahau Tupou IV the Crown of the Kingdom of Tonga devolves upon Crown Prince Tupouto'a. The ministers, as members of the Privy Council, Speaker Tu'iha'angana and Chief Justice Anthony David Ford proclaim that Crown Prince Tupouto'a 'has now become the only lawful and rightful heir to the throne, King of the Kingdom of Tonga', as King George Tupou V. It is given at Nuku'alofa on 11 September 2006 and signed by Ma'afu, Clerk to the Privy Council.",
+        "attested_on": "2006-09-11",
+        "locator": "Reproduced gazette header, proclamation text and sign-off; article timestamp Sep 11, 2006, 18:44",
+        "uncertainty": "The proclamation is its own event, dated 11 September 2006; it does not state the date or time of the death. Its statement that the Crown devolved by the decease is the basis for the accession date (TO-CROWN-04); the proclamation date is not used as the start. PMO web reproduction, not the gazette facsimile."
+      }
+    },
+    {
+      "source_id": "to_pmo_20060911_proclamation_to",
+      "source_url": "https://web.archive.org/web/20070312032819id_/http://www.pmo.gov.to/artman/publish/article_171.shtml",
+      "claim": {
+        "id": "to_crown_gtv_devolution_proclamation_to_20060911",
+        "text": "The Tongan text of Gazette No. 19 (Kasete 'a e Pule'anga Tonga, Fika 19, Monite 11 Sepitema 2006) carries the FANONGONONGO in the name of SIAOSI TUPOU V, Tu'i 'o e 'Otu Tonga, by Premier Feleti Vaka'uta Sevele. It states that at the death (hala) of Taufa'ahau Tupou IV the Crown of Tonga passed to Crown Prince Tupouto'a, proclaims that he has become the rightful King (Tu'i totonu), and is signed at Nuku'alofa on 11 September 2006 by Ma'afu, Kalake ki he Fakataha Tokoni.",
+        "attested_on": "2006-09-11",
+        "locator": "Reproduced gazette header, FANONGONONGO and sign-off; article timestamp Sep 11, 2006, 18:40",
+        "uncertainty": "A summary of the Tongan text, not an official translation. It corroborates the English proclamation (to_crown_gtv_devolution_proclamation_20060911) and, like it, gives no date or time of death. PMO web reproduction, not the gazette facsimile."
+      }
+    },
+    {
+      "source_id": "to_gazette_ext_8_2012",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+      "claim": {
+        "id": "to_crown_gtv_death_20120318",
+        "text": "Prime Minister Lord Tu'ivakano announces that King George Tupou V died in Hong Kong, China, at 15:58 (Hong Kong, China time), which was 20:58 (Tonga time), on 18 March 2012.",
+        "attested_on": "2012-03-18",
+        "printed_times": [
+          {
+            "zone": "Hong Kong, China time",
+            "date": "2012-03-18",
+            "time": "15:58"
+          },
+          {
+            "zone": "Tonga time",
+            "date": "2012-03-18",
+            "time": "20:58"
+          }
+        ],
+        "locator": "PDF page 1 (gazette page 8/113), English and Tongan notices",
+        "uncertainty": "Official death notice. The mourning it declares is a separate claim (to_crown_gtv_mourning_declared_20120319)."
+      }
+    },
+    {
+      "source_id": "to_gazette_ext_9_2012",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+      "claim": {
+        "id": "to_crown_tupou_vi_devolution_proclamation_20120319",
+        "text": "Gazette Extraordinary No. 9 of Monday 19 March 2012 carries a proclamation in the name of His Majesty Tupou VI, by Prime Minister Lord Tu'ivakano, stating that by the decease of His Late Majesty King George Tupou V the Crown of the Kingdom of Tonga devolves upon Crown Prince Tupouto'a Lavaka. The Cabinet Ministers, Speaker Lasike and Chief Justice Michael Dishington Scott proclaim that Crown Prince Tupouto'a Lavaka has now become King of the Kingdom of Tonga, as King Tupou VI. It is given at Nuku'alofa on 19 March 2012, with a Tongan FANONGONONGO to the same effect.",
+        "attested_on": "2012-03-19",
+        "locator": "PDF page 1 (gazette 9/115), English; page 2 (9/116), Tongan",
+        "uncertainty": "The proclamation is its own event, dated 19 March 2012, and prints no accession time. The accession date (18 March 2012) rests on its statement that the Crown devolves by the decease, with the death date and time from Gazette Extraordinary No. 8; the proclamation date is not used as the start."
+      }
+    },
+    {
+      "source_id": "to_pm_appointment_2025",
+      "source_url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+      "claim": {
+        "id": "to_tupou_vi_2025",
+        "text": "The appointment release identifies Tupou VI as King.",
+        "locator": "Media release, opening paragraph",
+        "period": {
+          "from": "2025-12-18",
+          "through": "2025-12-18"
+        },
+        "uncertainty": "This attestation does not supply accession or a complete reign chronology."
+      }
+    },
+    {
+      "source_id": "to_pmo_20060818_succession",
+      "source_url": "https://web.archive.org/web/20061018001211id_/http://www.pmo.gov.to:80/artman/publish/article_154.shtml",
+      "claim": {
+        "id": "to_crown_succession_not_oath_dependent_2006",
+        "text": "The PMO, in consultation with the Palace Office and the Office of the Lord Chamberlain, states that no vacancy in the Throne would arise on the King's passing because Crown Prince Tupouto'a is the lawful heir; that succession is not dependent on the heir taking the Coronation Oath; and that the powers of office pass to the new King from the time of his appointment, expected immediately upon the passing of the present Monarch, without awaiting the oath.",
+        "attested_on": "2006-08-18",
+        "locator": "Clarification paragraphs 3-7; article timestamp Aug 18, 2006, 17:36",
+        "uncertainty": "A prospective statement of the government's legal position, issued before the death; not an event record. The newspaper report it answers is not imported."
+      }
+    },
+    {
+      "source_id": "to_constitution_2020",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "claim": {
+        "id": "to_constitution_pm_cabinet",
+        "text": "The King appoints the Assembly-recommended elected representative as prime minister. Cabinet exercises executive authority collectively and answers to the Assembly; ministers are nominated by the prime minister and appointed by the King. Reserved royal powers are excluded.",
+        "locator": "Clauses 50A, 51(1)-(2), 51(7)"
+      }
+    },
+    {
+      "source_id": "to_constitution_older",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ActofConstitutionofTonga_1.pdf?zoom_highlight=Act+of+Constitution",
+      "claim": {
+        "id": "to_older_ministers",
+        "text": "The older text gives the King appointment of ministers, serving at his pleasure or for their commission period. Ministers sit in the Privy Council and Assembly.",
+        "locator": "Clause 51"
+      }
+    },
+    {
+      "source_id": "to_reform_act_2010",
+      "source_url": "https://ago.gov.to/cms/phocadownload/2010/Act%2020%20of%202010%20ConstitutionofTonga(Amendment)(No.2)Act2010RoyalAssent.pdf",
+      "claim": {
+        "id": "to_reform_structure",
+        "text": "Act 20 replaces the prime minister, Cabinet, Privy Council, Assembly-composition and Speaker provisions. It changes the English description of royal government from governing to reigning.",
+        "locator": "Sections 6-7, 11-15, 18-19"
+      }
+    },
+    {
+      "source_id": "to_constitution_2020",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "claim": {
+        "id": "to_constitution_privy",
+        "text": "The King appoints Privy Council advisers. The Council also handles specified hereditary estate and title appeals.",
+        "locator": "Clause 50"
+      }
+    },
+    {
+      "source_id": "to_parliament_work_2025",
+      "source_url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "claim": {
+        "id": "to_parliament_seats",
+        "text": "The Assembly's account specifies seventeen people's representatives and nine nobles' representatives, elected by their respective electorates.",
+        "locator": "Composition and representative functions",
+        "period": {
+          "from": "2025-01-15",
+          "through": "2025-01-15"
+        }
+      }
+    },
+    {
+      "source_id": "to_constitution_2020",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "claim": {
+        "id": "to_constitution_assembly",
+        "text": "The Assembly includes nobles' representatives, people's representatives and Cabinet. Its recommended Speaker must be an elected nobles' representative and is appointed by the King.",
+        "locator": "Clauses 59, 61"
+      }
+    },
+    {
+      "source_id": "to_constitution_older",
+      "source_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ActofConstitutionofTonga_1.pdf?zoom_highlight=Act+of+Constitution",
+      "claim": {
+        "id": "to_older_assembly",
+        "text": "The older text includes Privy Councillors and Cabinet in the Assembly, specifies nine noble and nine people's elected representatives, and gives the King appointment of the Speaker.",
+        "locator": "Clauses 59-61"
+      }
+    }
+  ],
+  "new_material_original_readings": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\royals\\tonga-gazette-2012-8.pdf",
+      "bytes": 659563,
+      "sha256": "ec50ad5d05fbf90ec52ea6dce7913178b4e4bf04456e5c78e8e619c98eef0b6b",
+      "source_id": "to_gazette_ext_8_2012",
+      "text_pages_read": [
+        1
+      ],
+      "rendered_pages_visually_inspected": [
+        1
+      ],
+      "finding": "No. 8 dated 19 March 2012 gives George Tupou V's death on 18 March 2012 at 20:58 Tonga time. Mourning is distinct."
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\royals\\tonga-gazette-2012-9.pdf",
+      "bytes": 662692,
+      "sha256": "773fd96d13b46e8fbba1e943e1f85d7b6d406cbc65937b313c3631f5b294d3e9",
+      "source_id": "to_gazette_ext_9_2012",
+      "text_pages_read": [
+        1,
+        2
+      ],
+      "rendered_pages_visually_inspected": [
+        1
+      ],
+      "finding": "No. 9 dated 19 March 2012 expressly links Crown devolution to the predecessor's decease and proclaims Crown Prince Tupouto'a Lavaka as Tupou VI. The proclamation date is not the accession date."
+    }
+  ],
+  "retained_visual_pins": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\gazette8-page1.png",
+      "bytes": 187678,
+      "sha256": "6dc93553105b82990a5b12845724af5749465a0870023c7218914d026359a2d5"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\tonga-crown-evidence\\gazette9-page1.png",
+      "bytes": 210098,
+      "sha256": "a599dea71f35d9a1d447439e36e6cf30e77a01754b9fa0bff45ccf24e941bed5"
+    }
+  ],
+  "original_availability_limits": [
+    "No retained 1990 assent, UN A61/PV1 or 2006 death/proclamation original was located in the royal evidence directory; their accepted C01 claims are reused, not freshly material-reviewed here.",
+    "The 2012 Gazette originals are retained and verified. Gazette No. 9 page 2 was text-read but not visually rendered in this bounded assessment.",
+    "No constitution or Parliament composition original was newly retrieved or material-reviewed here. Collective recommendations rely on accepted census/source claims and the pathway scope, not a new legal research acceptance."
+  ],
+  "fatai_helu_likeness": "Still unresolved: the accepted August 2022 court recital names the adult PTOA president, but no exact identified adult political face was established in the previous bounded search. Futa Helu the philosopher and child namesakes must not be substituted.",
+  "remaining_named_chain_count_if_exceptions_adopted": 12,
+  "country_completion_awarded": false,
+  "tests_run": []
+}

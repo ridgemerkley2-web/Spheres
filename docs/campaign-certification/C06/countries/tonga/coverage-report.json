@@ -50,15 +50,10 @@
     "to_peoples_party/to_peoples_party_leader: Pohiva Tu’ionetoa’s May 2021 leader observation is installed. Formation, leader selection, later succession and continuity with the incorporated society are not a completed chain.",
     "to_peoples_party/to_peoples_party_society_president: The April 2022 trial observation names society president Tu’ionetoa. Society-president and political-leader offices remain separate; officer rules and complete dates are unverified.",
     "to_peoples_party/to_peoples_party_society_secretary: The April 2022 trial observation names secretary Tevita Lavemaau. Appointment/end, officer-selection rules and later secretary succession remain unverified.",
-    "to_crown/to_king: All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance and a Tonga production-browser succession review remain pending; native saved-heir succession and date guards passed on candidate 6829ecc7. Portraits do not grant royal eligibility.",
     "to_prime_minister/to_pm: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain remains open. Native appointment contracts passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.",
-    "to_cabinet/to_ministers: This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.",
     "to_cabinet/to_deputy_pm: All 14 accepted deputy-PM observations are installed. Early coverage, acting service and unresolved start/end gaps (including late 2021) remain; no successor date fills an earlier boundary.",
-    "to_privy_council/to_privy_councillors: This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.",
     "to_legislative_assembly/to_speaker: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.",
     "to_legislative_assembly/to_deputy_speaker: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.",
-    "to_legislative_assembly/to_peoples_representatives: This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description. Native future-election permissions passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.",
-    "to_legislative_assembly/to_nobles_representatives: This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.",
     "to_fatai_helu: no reviewed cartoon for 2022-08-29 through 2022-08-30 exclusive",
     "Unfinished country acceptance check: country_signoff",
     "Unfinished country acceptance check: likeness_visual_review",
@@ -70,7 +65,7 @@
     "recorded_at": "2026-10-01",
     "manifest": {
       "path": "docs/campaign-certification/C06/countries/tonga/manifest.json",
-      "sha256": "657e7ec040aef68e8825d3974cfefecc12296bfb5e90179aaa1bbc84b06aa9d7"
+      "sha256": "a29072a8a2cb0c87d8ffca442a9a5d12e3d239e323a7a8df46d621609cf9e4e7"
     },
     "source_pins": {
       "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
@@ -128,6 +123,14 @@
       "institutional_rules"
     ],
     "all_acceptance_checks_executed": false,
-    "native_ci_receipt": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json"
+    "native_ci_receipt": "docs/campaign-certification/C06/production/tonga/ci-acceptance-20261001/receipt.json",
+    "collective_scope_receipt": {
+      "path": "docs/campaign-certification/C06/production/tonga/collective-scope-20261001/adoption.json",
+      "sha256": "2bbf483e1a84a0031c57d546a263df57279ea48201dca7a336de4246e99619ec"
+    },
+    "crown_chain_receipt": {
+      "path": "docs/campaign-certification/C06/production/tonga/crown-chain-20261001/acceptance.json",
+      "sha256": "a35c9c2c97114830576a17f8d8b6d4e1f335e385d7218e10b3afeb789126ef04"
+    }
   }
 }
