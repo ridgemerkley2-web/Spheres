@@ -116,8 +116,8 @@
   "receipt_files": [
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/.gitattributes",
-      "bytes": 8,
-      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
     },
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/claim-review.json",
@@ -220,6 +220,11 @@
       "sha256": "f7d39843c184430eb870012e1625150fa781b4646f40d68e10b7c0880fb5e81d"
     },
     {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/final-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/index-before.log",
       "bytes": 753,
       "sha256": "ee0008d9783029ce9b5d720f6a14520f4e4112095be03baae3f1fb0276641968"
@@ -233,6 +238,11 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/index-generate.log",
       "bytes": 252,
       "sha256": "0845e5328bd28e2c8b1f8a11cca52a09c1a3cbe607a19a882f385ddd01e44511"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/raw-receipt-whitespace-before.log",
+      "bytes": 160187,
+      "sha256": "ccfed6ad24c708a32b41d0ae9956bf1457bfbb24597c51c5fa19afc0ea8623c4"
     },
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/logs/research.log",
@@ -266,8 +276,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/README.md",
-      "bytes": 6581,
-      "sha256": "5dc073734515d78b1052f772df7140671de1410978b3b95bc537c93940941313"
+      "bytes": 6988,
+      "sha256": "5f2bf6f6447910de345a7b659136a59112fb0232ac3085195fab01343f574bc2"
     },
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/render-plan.json",

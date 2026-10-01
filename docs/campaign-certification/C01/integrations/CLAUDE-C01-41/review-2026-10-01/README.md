@@ -105,3 +105,9 @@ in Git. The receipts preserve byte identities and locations without asserting an
 open license. `retrieve.py` repeats only the 12 ordinary recorded-source requests.
 `write-review.py` records authored review decisions; it is not an automatic fact
 checker. `manifest.json` pins this receipt and the corrected input files.
+
+The first staged raw-receipt diff check flagged HTTP CRLF and console line endings.
+Its output is retained as `logs/raw-receipt-whitespace-before.log`. The receipt
+directory now uses the existing C01-35/SOURCE-26 `-text -whitespace` convention,
+preserving exact evidence bytes without applying source-code whitespace rules.
+No source file or test tolerance is exempted. The final branch diff check passed.
