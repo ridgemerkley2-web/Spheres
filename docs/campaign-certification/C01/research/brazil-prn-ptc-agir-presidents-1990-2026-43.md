@@ -2,8 +2,9 @@
 
 Packet: **CLAUDE-C01-43**. State: **ready_for_review** (not complete).
 Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-br-43`, based on `509bd289` (current
-`codex/campaign-certification`), with the moved integration `229df210` merged cleanly (`803b2627`), **not
-stacked** on any pending packet; claim commit `6e6a9d06`. Research access:
+`codex/campaign-certification`), with the moved integration `229df210` merged cleanly (`803b2627`) and, in the
+checker round, the moved integration `13367c99` merged (`7a002dbe`; see the integration notes), **not stacked** on
+any pending packet; claim commit `6e6a9d06`. Research access:
 30 September to 1 October 2026 (downloads dated 1 October 2026 UTC). The historical cutoff stays **7 September 2026**.
 
 This packet adds one party role to an existing 2024 funding observation in [brazil.json](brazil.json):
@@ -17,7 +18,7 @@ unchanged. The Partido Democrático Social (PDS, 1980-1993) has no research obse
 court glossary's record of its fusion with the PDC into the PPR is recorded, and no primary record naming a PDS
 national president of 1990-1993 was found.
 
-The packet adds 14 sources and 21 claims (twenty on the role, one PDS claim), five holder observations
+The packet adds 14 sources and 21 claims (twenty on the role, one PDS claim), six holder observations
 (all of Daniel Tourinho), one role scope note, one coverage note on the AGIR observation and one packet coverage note.
 The `br_presidency` institution and its twelve `br_president` and nine `br_vice_president` holders, CLAUDE-C01-22's
 eighteen `br_pt_president` holders and CLAUDE-C01-34's seven `br_pdt_president` and five `br_mdb_president` holders are
@@ -34,7 +35,7 @@ script against the decoded capture, and the three scanned PDFs were read visuall
 | Observation | Question | Result |
 | --- | --- | --- |
 | AGIR-PRES-01 | The PRN when the period opens, its registration and the renaming to PTC (1990-2013) | **Claims only:** the court records the PRN's definitive registration (Res.-TSE nº 16.281, 22 February 1990) and the renaming to PTC (24 April 2001); the party's site republished a registry history naming 'o presidente do PRN, o Sr. Daniel Sampaio Tourinho' in 1997, and an undated 2007 roster lists him as President; no contemporaneous dated party record of 1990-2013 naming the office was found |
-| AGIR-PRES-02 | The PTC presidency, 2014-2021 | **Accepted:** Daniel Tourinho observed on 16 May 2014, 25 July 2018, 7 August 2020 and 23 July 2021; the convention of 25 July 2015 (no President named), the minutes of 3 July 2018 and the convocation of 19 July 2018 are claims |
+| AGIR-PRES-02 | The PTC presidency, 2014-2021 | **Accepted:** Daniel Tourinho observed on 16 May 2014, 19 July 2018 (the signed convocation), 25 July 2018, 7 August 2020 and 23 July 2021; the convention of 25 July 2015 (no elected President named) and his styling that day, and the minutes of 3 July 2018, are claims |
 | AGIR-PRES-03 | The renaming to Agir and the presidency to the cutoff | **Accepted in part:** the party announced the new name on 1 June 2021 and the court approved it on 31 March 2022; Daniel Tourinho observed on 11 November 2022; an undated 2024 styling and the court's live list (captured 2 August 2026) are claims; no dated party record of 2023-2026 naming the office was found |
 | PDS-PRES-01 | The PDS, 1990-1993 | **Claims only:** the court glossary records the fusion of the PDS with the PDC into the PPR (Res.-TSE nº 19.133, 8 June 1993); no primary record naming a PDS national president was found (leads only) |
 
@@ -43,38 +44,48 @@ Holders of `br_agir_president`, in order (name, attested_on, from, until):
 | # | Holder | attested_on | from | until | Evidence |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Daniel Tourinho | 2014-05-16 | - | - | PTC site item of that day: 'O Presidente Nacional do PTC, Daniel Tourinho, confirmando o apoio …' |
-| 2 | Daniel Tourinho | 2018-07-25 | - | - | Resolução nº 02/2018, signed 'Brasília, 25 de Julho de 2018.' as 'Presidente Nacional PTC' (scan) |
-| 3 | Daniel Tourinho | 2020-08-07 | - | - | Resolução nº 001/2020, signed 'Rio de Janeiro, 07 de Agosto de 2020.' as 'Presidente Nacional do PTC' |
-| 4 | Daniel Tourinho | 2021-07-23 | - | - | PTC communiqué signed 'Brasília, 23 de julho de 2021' as 'Presidente Nacional' |
-| 5 | Daniel Tourinho | 2022-11-11 | - | - | Agir item of that day: 'Daniel Tourinho (Presidente Nacional)', 'o Pres Nacional Daniel Tourinho' |
+| 2 | Daniel Tourinho | 2018-07-19 | - | - | Edital de convocação signed 'Brasília DF, 19 de Julho de 2018' by 'Daniel Sampaio Tourinho' as 'Presidente do Diretório Nacional - PTC' (scan) |
+| 3 | Daniel Tourinho | 2018-07-25 | - | - | Resolução nº 02/2018, signed 'Brasília, 25 de Julho de 2018.' as 'Presidente Nacional PTC' (scan) |
+| 4 | Daniel Tourinho | 2020-08-07 | - | - | Resolução nº 001/2020, signed 'Rio de Janeiro, 07 de Agosto de 2020.' as 'Presidente Nacional do PTC' |
+| 5 | Daniel Tourinho | 2021-07-23 | - | - | PTC communiqué signed 'Brasília, 23 de julho de 2021' as 'Presidente Nacional' |
+| 6 | Daniel Tourinho | 2022-11-11 | - | - | Agir item of that day: 'Daniel Tourinho (Presidente Nacional)', 'o Pres Nacional Daniel Tourinho' |
 
 ### How a start and an end are decided
 
 The packet applies the rule of the integrated Brazil packets (CLAUDE-C01-10, -17, -22 and -34). A holder has `from`
 only where a source states the day the office was assumed or took effect, and `until` only where a source states the
 day it ended. No record found here states either, so no holder has a start or an end. Every holder is dated by
-`attested_on` and cites only in-office attestations made on its own day: three signed acts (two resolutions and a
-communiqué) and two party items that print no event day and are dated by their own printed date, as a party
-newspaper's issue date may (C01-29, C01-31). The test pins that every cited claim carries exactly the holder's date.
+`attested_on` and cites only in-office attestations made on its own day: four signed acts (two resolutions, a
+convocation and a communiqué) and two party items. A PTC item of 16 May 2014 that prints no event day is dated by its
+own printed date (C01-29/C01-31), and the Agir item of 11 November 2022, which reports the previous day's meeting
+('ontem'), is dated by its own printed date for its present-tense styling while the 10 November meeting stays a
+separate claim. The test pins that every cited claim carries exactly the holder's date.
 
 Everything else is a claim that never feeds a holder: the court's registration, renaming and fusion decisions, the
-party's renaming statement, conventions and executive meetings, minutes, convocations, undated rosters and listings,
-the registry history republished on the party's site and stylings that do not name the national office. No end is
-inferred from a renaming.
+party's renaming statement, conventions and executive meetings, the styling on the convention day of 25 July 2015,
+minutes, undated rosters and listings, the registry history republished on the party's site and stylings that do not
+name the national office. No end is inferred from a renaming.
 
 Three stylings could be read as attestations and are kept as claims:
 
+- **'presidente Nacional do Partido' on the convention day of 25 July 2015.** The item says the event 'foi aberto pelo
+  presidente Nacional do Partido, Daniel Tourinho' but does not say who was elected President; the styling cannot be
+  separated from that day's election of a new directorate and executive, so it stays a claim of the convention day
+  (ruling (e)).
 - **'o Presidente' in the minutes of 3 July 2018.** The signed minutes of the national executive name him only as the
-  meeting's President; the national styling of 25 July 2018 dates the observation.
-- **'Presidente do Diretório Nacional' in the convocation of 19 July 2018.** The packet does not equate the President of
-  the National Directorate with the national presidency without a ruling; if Codex does, the convocation is a further
-  observation of 19 July 2018 and changes no boundary.
+  meeting's President; the signed convocation of 19 July 2018 and the national styling of 25 July 2018 date the
+  observations that follow.
 - **'presidente do partido' in an undated 2024 Agir item.** The page prints no date and the relative day ('na última
   quarta-feira (31)') cannot be resolved; it names no national office.
 
+The convocation of 19 July 2018, signed 'Daniel Sampaio Tourinho' as 'Presidente do Diretório Nacional - PTC', is a
+signed act of its own day. A signed act attests the office (the C01-37/C01-38 signature rule), so it is a holder
+observation of 19 July 2018 with no start and no end, and the convention it convokes for 28 July 2018 is never a
+boundary (ruling (a)).
+
 The court's decision days (registration, renamings, fusion) are stored as `attested_on` of organization claims, as
-CLAUDE-C01-34 stored the court's renaming of the PMDB; they are never holder dates or boundaries. Registry listings and
-rosters without a printed date carry no structured date; a capture date is never a holder date.
+CLAUDE-C01-34 stored the court's renaming of the PMDB; they are never holder dates or boundaries (ruling (c)). Registry
+listings and rosters without a printed date carry no structured date; a capture date is never a holder date.
 
 ### Party office, state office and the PDS
 
@@ -82,6 +93,24 @@ The role holds only `br_agir_` claims and sources; the presidency, the PT, PDT a
 role never cites theirs (pinned in the test). The renamings are the court's own records of a change of name of one
 registered party; they never merge this observation with any other organization, and the PPR, into which the PDS was
 fused, is a different organization. The PDS row has a null observation and role and is never cited.
+
+### Rulings decided by Ridge (checker round)
+
+Ridge decided the following after the independent check of this packet. They are recorded here as his decisions and
+applied to the data; Codex may still decide otherwise.
+
+- **(a) The convocation of 19 July 2018.** Signed by 'Daniel Sampaio Tourinho' as
+  'Presidente do Diretório Nacional - PTC', it is a holder observation of `br_agir_president` with `attested_on`
+  2018-07-19 and no `from` or `until`: a signed act attests the office (the C01-37/C01-38 signature rule). Its claim is re-kinded `in_office_attestation`, and the
+  convention it convokes for 28 July 2018 is never a boundary.
+- **(b) One role across PRN, PTC and Agir** is accepted: the TSE register records both renamings as changes of name of
+  one registered party (PET nº 341 and RPP nº 51-91.1989), as CLAUDE-C01-34 ruled for the PMDB to MDB.
+- **(c) The TSE's printed decision days** stay as `attested_on` of organization claims, never holder boundaries.
+- **(d) Party items that print no event day** are dated by their own printed date (the C01-29/C01-31 issue-date
+  ruling); for 11 November 2022 the present-tense styling dates the item, and the meeting of 10 November stays a
+  separate claim.
+- **(e) The styling of 25 July 2015** stays a claim: it cannot be separated from that day's election of a new
+  executive.
 
 ## Date ledger
 
@@ -93,14 +122,14 @@ fused, is a different organization. The PDS row has a null observation and role 
 | 2014-05-16 | PTC item styling the Presidente Nacional (holder 1) | `br_agir_ptc_tourinho_styled_presidente_nacional_20140516` |
 | 2015-07-25 | National convention elects a new directorate and executive; styling on the convention day (claims) | `br_agir_ptc_convention_elects_directorate_20150725`, `br_agir_ptc_tourinho_opens_convention_as_presidente_20150725` |
 | 2018-07-03 | Minutes of the national executive: 'o Presidente Daniel Tourinho' (claim) | `br_agir_ptc_executive_minutes_presidente_20180703` |
-| 2018-07-19 | Convocation signed as 'Presidente do Diretório Nacional' (claim; convention of 28 July 2018 prospective) | `br_agir_ptc_tourinho_convokes_convention_20180719` |
-| 2018-07-25 | Resolução nº 02/2018 signed as Presidente Nacional (holder 2) | `br_agir_ptc_tourinho_signs_resolution_02_2018_20180725` |
-| 2020-08-07 | Resolução nº 001/2020 signed as Presidente Nacional (holder 3) | `br_agir_ptc_tourinho_signs_resolution_001_2020_20200807` |
+| 2018-07-19 | Convocation signed as 'Presidente do Diretório Nacional' (holder 2; the convention of 28 July 2018 is prospective and never a boundary) | `br_agir_ptc_tourinho_convokes_convention_20180719` |
+| 2018-07-25 | Resolução nº 02/2018 signed as Presidente Nacional (holder 3) | `br_agir_ptc_tourinho_signs_resolution_02_2018_20180725` |
+| 2020-08-07 | Resolução nº 001/2020 signed as Presidente Nacional (holder 4) | `br_agir_ptc_tourinho_signs_resolution_001_2020_20200807` |
 | 2021-06-01 | Party statement of the new name AGIR 36 (claim) | `br_agir_ptc_announces_name_change_20210601` |
-| 2021-07-23 | Communiqué signed as Presidente Nacional (holder 4) | `br_agir_ptc_tourinho_signs_communique_20210723` |
+| 2021-07-23 | Communiqué signed as Presidente Nacional (holder 5) | `br_agir_ptc_tourinho_signs_communique_20210723` |
 | 2022-03-31 | TSE: PTC renamed AGIR (RPP nº 51-91.1989) | `br_agir_tse_registry_ptc_renamed_agir_20220331` |
 | 2022-11-10 | Executive meeting led by the Presidente Nacional approves resolution 01/2022 (claim; day from 'ontem') | `br_agir_executive_approves_resolution_01_2022_20221110` |
-| 2022-11-11 | Agir item styling the Presidente Nacional (holder 5) | `br_agir_tourinho_styled_presidente_nacional_20221111` |
+| 2022-11-11 | Agir item styling the Presidente Nacional (holder 6) | `br_agir_tourinho_styled_presidente_nacional_20221111` |
 | undated (AGIR-PRES-01) | undated pages, rosters, listings and retrospective text (no structured date) | `br_agir_history_prn_president_requests_statute_adaptation_1997`, `br_agir_history_prn_requests_renaming_ptc_2000`, `br_agir_ptc_roster_tourinho_presidente_capt20071020` |
 | undated (AGIR-PRES-03) | undated pages, rosters, listings and retrospective text (no structured date) | `br_agir_tse_registry_lists_tourinho_presidente_nacional`, `br_agir_plenary_tourinho_styled_presidente_do_partido` |
 
@@ -131,10 +160,11 @@ novo Diretório Nacional, a nova Comissão Executiva Nacional e aprovou o novo E
 presidente Nacional do Partido, Daniel Tourinho'; the item names no elected President, so both are claims of the
 convention day. The signed minutes of the national executive of 3 July 2018 name 'o Presidente Daniel Tourinho'
 (claim); the convocation signed on 19 July 2018 by 'Daniel Sampaio Tourinho' as 'Presidente do Diretório Nacional - PTC'
-calls the convention of 28 July 2018 (claim; result not found). Resolução nº 02/2018 is signed 'Brasília, 25 de Julho de
-2018.' by 'Daniel Sampaio Tourinho Presidente Nacional PTC' (holder 2). Resolução nº 001/2020 closes 'Rio de Janeiro, 07
-de Agosto de 2020. Daniel Sampaio Tourinho Presidente Nacional do PTC' (holder 3). A communiqué closes 'Brasília, 23 de
-julho de 2021 Daniel Tourinho Presidente Nacional' (holder 4).
+calls the convention of 28 July 2018 (holder 2: a signed act attests the office; the convention's result was not found
+and it is never a boundary). Resolução nº 02/2018 is signed 'Brasília, 25 de Julho de 2018.' by 'Daniel Sampaio
+Tourinho Presidente Nacional PTC' (holder 3). Resolução nº 001/2020 closes 'Rio de Janeiro, 07 de Agosto de 2020.
+Daniel Sampaio Tourinho Presidente Nacional do PTC' (holder 4). A communiqué closes 'Brasília, 23 de julho de 2021
+Daniel Tourinho Presidente Nacional' (holder 5).
 
 ### AGIR-PRES-03 — The renaming to Agir and the presidency to the cutoff
 
@@ -142,7 +172,7 @@ A PTC item dated 1 June 2021, 'PTC agora é AGIR 36!', says 'Foi definido, no ú
 do Partido Trabalhista Cristão (PTC) para AGIR 36' (`br_agir_ptc_announces_name_change_20210601`); the weekend meant is
 not resolved. The court's list of name changes gives row 18, PTC to 'AGIR', 'RPP nº 51-91.1989.6.00.0000', decided
 '31/03/2022' (`br_agir_tse_registry_ptc_renamed_agir_20220331`). An Agir item of 11 November 2022 names 'Daniel
-Tourinho (Presidente Nacional)' and 'o Pres Nacional Daniel Tourinho' (holder 5) and reports that the executive meeting
+Tourinho (Presidente Nacional)' and 'o Pres Nacional Daniel Tourinho' (holder 6) and reports that the executive meeting
 'Liderada pelo Presidente Nacional Daniel Tourinho' approved resolution 01/2022 'ontem', resolved from the dateline to
 Thursday 10 November 2022 (a meeting claim). An undated Agir item captured 1 March 2024 says 'O presidente do partido,
 Daniel Tourinho, elogiou a atuação brilhante de Bria' (claim). The court's live list of registered parties, captured 2
@@ -268,17 +298,43 @@ recorded identity is the encoded body as served and the decoded identity is reco
   `test_brazil_pt_presidents_c01_22.py` and `test_brazil_party_presidents_c01_34.py` (entries, sources, claims and roles
   (32, 262, 556, 6); index role observations and claims (6, 556); the exact list of party roles now ends with
   `br_agir_president`; the exact source order now ends with this packet's fourteen sources).
+- **Checker-round merge.** `codex/campaign-certification` had moved to `13367c99` and was merged (`7a002dbe`) before
+  the checker fixes. Two conflicts: the generated `research-index.json` (regenerated with `campaign_research.py`)
+  and this packet's handoff, where the integration carries Codex's registration of this record (`e7592644`). The
+  registration is kept verbatim at the top of the handoff and Claude's claim and delivery record follows it unchanged
+  (only its duplicate title dropped), as CLAUDE-C01-42's merge kept Codex's registration; Codex may prefer another
+  resolution.
 - **Gap ledger.** `test_certified_gap_ledger.py` reports 'no pinned attribution' for this packet until Codex classifies
   its commit; `docs/campaign-certification/C01/gap-ledger/` is not touched. `test_certified_boundary_matrix.py` (S23)
   needs `spheres-web/src`, which the sparse checkout lacks; Codex regenerates the matrix on integration.
 - **SGIP outage.** The court's SGIP consultation service returned its election-period outage page on 1 October 2026;
   the twelve SGIP sources recorded by CLAUDE-C01-34 cannot be re-downloaded until it returns.
-- **Census.** `campaign_census.py --check` passes on the unchanged base `509bd289` and with this packet, so there is nothing to disclose about `spheres-sim/src/government.rs` and `census.json` for this packet.
+- **Census.** `campaign_census.py --check` passes on the unchanged base `509bd289` and with this packet, and again
+  after merging `13367c99` in the checker round, so there is nothing to disclose about `spheres-sim/src/government.rs`
+  and `census.json` for this packet.
 
 ## Checks
 
-Run in the worktree on 1 October 2026 (UTC) after merging the moved integration `229df210` (`803b2627`) and before
-committing, at least 30 minutes after the first downloads:
+Checker round, run in the worktree on 1 October 2026 (UTC) after merging the moved integration `13367c99`
+(`7a002dbe`) and applying the fixes, before committing:
+
+- `python tools/avatars/campaign_research.py` then `--check`: pass (9 country packets, 2,010 sources, 4,954 claims).
+- `python tools/avatars/campaign_census.py --check`: pass; nothing to disclose.
+- `python -m unittest discover -s tools/avatars -p 'test_brazil*.py'`: 51 tests OK (the focused test now pins six holder
+  observations, the convocation of 19 July 2018 as an in-office attestation with no start or end, and three further
+  mutations); `-p 'test_*research*.py'`: 79 tests OK; `-p 'test_campaign*.py'`: 16 tests OK.
+- `node --test tools/ui/check_leadership_research_review.cjs`: 11 pass, 0 fail.
+- `python tools/planning/workboard.py --check`: PASS.
+- `git diff --check`: clean.
+- Known failures outside the suite, unchanged and not fixed here: `test_certified_gap_ledger.py` ('Source
+  br_agir_tse_partidos_registrados_capt20260802 (Brazil) has no pinned attribution', until Codex classifies this
+  packet's commit) and `test_certified_boundary_matrix.py` ('Required input is missing:
+  spheres-web/src/person_avatar_assets.rs' in the sparse checkout).
+- No source was added or changed, so `packet_check.py 43 --base origin/codex/campaign-certification --no-fetch` reruns
+  this suite after the push; its summary is reported with the handoff.
+
+At the original submission, run in the worktree on 1 October 2026 (UTC) after merging the moved integration
+`229df210` (`803b2627`) and before committing, at least 30 minutes after the first downloads:
 
 - `python tools/avatars/campaign_research.py` then `--check`: pass (9 country packets, 1,985 sources, 4,897 claims).
 - `python tools/avatars/campaign_census.py --check`: pass, on the unchanged base `509bd289` (claim commit `6e6a9d06`)

@@ -737,10 +737,9 @@ def party_rules(packet, rows):
     uniao = entry(packet, UNIAO_ORG)
     assert uniao['roles'] == [] and uniao['sources'] == ['br_tse_fefc_2024'], 'UNIÃO changed'
     assert uniao['claim_ids'] == ['br_tse_fefc_2024_row_27'] and len(uniao['coverage']['unresolved']) == 3
-    # Exactly three party offices, each once, each on its own funding observation.
+    # Exactly four party offices, each once, each on its own funding observation (CLAUDE-C01-43's AGIR role last).
     placed = [(e['id'], r['id']) for e in packet['organizations'] + packet['institutions'] for r in e['roles']
               if r['kind'] == 'party_leader' or r['id'] in ROLE_ORG or r['title'] in TITLES.values()]
-    # CLAUDE-C01-43's party role on the AGIR observation follows in packet order.
     assert placed == [(MDB_ORG, MDB), (PDT_ORG, PDT), (PT_ORG, pt.ROLE),
                       ('br_tse_fefc_2024_party_07', 'br_agir_president')], placed
     for role_id, org_id in ROLE_ORG.items():

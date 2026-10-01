@@ -1,8 +1,8 @@
 """CLAUDE-C01-43: the national presidency of the party registered as the PRN, renamed PTC and then Agir, is one party
 office on the AGIR funding observation, kept apart from the Presidency of the Republic and from the PT, PDT and MDB
-offices. The court's renamings, the party's conventions, meetings, convocations, rosters and listings stay separate
-claims; a holder is dated only by a signed act or a party item of its own day and has no start or end, because no
-source states one. The PDS (1980-1993) is claims only."""
+offices. The court's renamings, the party's conventions, meetings, minutes, rosters and listings stay separate claims; a
+holder is dated only by a signed act (a signed convocation included) or a party item of its own day and has no start
+or end, because no source states one. The PDS (1980-1993) is claims only."""
 import copy
 import hashlib
 import json
@@ -117,7 +117,7 @@ EVENTS = {
     'br_agir_ptc_executive_minutes_presidente_20180703':
         ('AGIR-PRES-02', '2018-07-03', 'executive_minutes_styling', 'Daniel Tourinho', 'A'),
     'br_agir_ptc_tourinho_convokes_convention_20180719':
-        ('AGIR-PRES-02', '2018-07-19', 'signed_as_directorate_president', 'Daniel Tourinho', 'A'),
+        ('AGIR-PRES-02', '2018-07-19', 'in_office_attestation', 'Daniel Tourinho', 'A'),
     'br_agir_ptc_tourinho_signs_resolution_02_2018_20180725':
         ('AGIR-PRES-02', '2018-07-25', 'in_office_attestation', 'Daniel Tourinho', 'A'),
     'br_agir_ptc_tourinho_signs_resolution_001_2020_20200807':
@@ -138,6 +138,7 @@ NEW_CLAIMS = list(EVENTS)
 # Exact holder observations of br_agir_president, (name, attested_on, from, until), in chronological order.
 HOLDERS = [
     ('Daniel Tourinho', '2014-05-16', None, None),
+    ('Daniel Tourinho', '2018-07-19', None, None),
     ('Daniel Tourinho', '2018-07-25', None, None),
     ('Daniel Tourinho', '2020-08-07', None, None),
     ('Daniel Tourinho', '2021-07-23', None, None),
@@ -145,20 +146,22 @@ HOLDERS = [
 ]
 HOLDER_CLAIMS = [
     ['br_agir_ptc_tourinho_styled_presidente_nacional_20140516'],
+    ['br_agir_ptc_tourinho_convokes_convention_20180719'],
     ['br_agir_ptc_tourinho_signs_resolution_02_2018_20180725'],
     ['br_agir_ptc_tourinho_signs_resolution_001_2020_20200807'],
     ['br_agir_ptc_tourinho_signs_communique_20210723'],
     ['br_agir_tourinho_styled_presidente_nacional_20221111'],
 ]
-HOLDER_OBSERVATIONS = ['AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-03']
+HOLDER_OBSERVATIONS = ['AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-02', 'AGIR-PRES-03']
 HOLDER_KINDS = {'in_office_attestation'}
 ORGANIZATION_KINDS = {'tse_renaming_decision', 'tse_registration_decision', 'tse_merger_decision', 'renaming_statement'}
-ELECTION_KINDS = {'convention_held', 'styled_on_convention_day', 'executive_meeting_reported', 'executive_minutes_styling',
-                  'signed_as_directorate_president'}
+ELECTION_KINDS = {'convention_held', 'styled_on_convention_day', 'executive_meeting_reported', 'executive_minutes_styling'}
 UNDATED_KINDS = {'registry_listing', 'retrospective_statement', 'executive_roster_undated', 'styled_undated'}
-# Days that are events, never holder dates.
-NEVER_HOLDER_DATE = {'1990-02-22', '1993-06-08', '2001-04-24', '2015-07-25', '2018-07-03', '2018-07-19', '2018-07-28',
+# Days that are events, never holder dates (2018-07-28 is the convention the signed convocation of 19 July 2018
+# convokes; the convocation itself dates an observation and is never a boundary).
+NEVER_HOLDER_DATE = {'1990-02-22', '1993-06-08', '2001-04-24', '2015-07-25', '2018-07-03', '2018-07-28',
                      '2021-06-01', '2022-03-31', '2022-11-10'}
+CONVOCATION = 'br_agir_ptc_tourinho_convokes_convention_20180719'
 PEOPLE = {'Daniel Tourinho'}
 REVIEW = ['AGIR-PRES-01', 'AGIR-PRES-02', 'AGIR-PRES-03', 'PDS-PRES-01']
 HOSTS = {'web.archive.org'}
@@ -349,15 +352,25 @@ class BrazilPrnAgirPresidentsTests(unittest.TestCase):
                       self.claims['br_agir_ptc_tourinho_signs_resolution_02_2018_20180725']['text'])
         self.assertIn('DANIEL S. TOURINHO', self.claims['br_agir_tse_registry_lists_tourinho_presidente_nacional']['text'])
         # Stylings that are not the national office, or that fall on an event day, are claims only.
-        for cid in ('br_agir_ptc_executive_minutes_presidente_20180703', 'br_agir_ptc_tourinho_convokes_convention_20180719',
+        for cid in ('br_agir_ptc_executive_minutes_presidente_20180703',
                     'br_agir_ptc_tourinho_opens_convention_as_presidente_20150725',
                     'br_agir_plenary_tourinho_styled_presidente_do_partido',
                     'br_agir_executive_approves_resolution_01_2022_20221110'):
             self.assertEqual(self.rows[cid]['holder_name'], 'Daniel Tourinho', cid)
             self.assertNotIn(self.rows[cid]['event_kind'], HOLDER_KINDS, cid)
-        self.assertIn('Presidente do Diretório Nacional',
-                      self.claims['br_agir_ptc_tourinho_convokes_convention_20180719']['text'])
-        self.assertIn('without a ruling', self.claims['br_agir_ptc_tourinho_convokes_convention_20180719']['uncertainty'])
+        # The convocation signed as 'Presidente do Diretório Nacional' is a signed act of its own day: it attests the
+        # office (the C01-37/C01-38 signature rule) and dates one observation with no start and no end; the convention
+        # it convokes for 28 July 2018 is never a boundary.
+        self.assertIn('Presidente do Diretório Nacional', self.claims[CONVOCATION]['text'])
+        self.assertIn('signature rule', self.claims[CONVOCATION]['uncertainty'])
+        self.assertEqual(self.rows[CONVOCATION]['event_kind'], 'in_office_attestation')
+        convocation, = [h for h in role_of(self.packet)['holder_claims'] if CONVOCATION in h['claim_ids']]
+        self.assertEqual((convocation['attested_on'], convocation['from'], convocation['until']), ('2018-07-19', None, None))
+        self.assertEqual((convocation['sources'], convocation['claim_ids']), (['br_agir_ptc_edital_convencao_20180719'],
+                                                                             [CONVOCATION]))
+        self.assertIn('2018-07-28', NEVER_HOLDER_DATE)
+        self.assertNotIn('2018-07-28', {d for h in role_of(self.packet)['holder_claims']
+                                        for d in (h['attested_on'], h['from'], h['until'])})
 
     def test_dates_renamings_and_event_kinds(self):
         undated = [cid for cid, e in EVENTS.items() if e[1] is None]
@@ -520,15 +533,22 @@ class BrazilPrnAgirPresidentsTests(unittest.TestCase):
         def wrong_day(packet):
             claim(packet, 'br_agir_ptc_tourinho_signs_resolution_001_2020_20200807')['attested_on'] = '2020-08-20'
 
+        def set_day(packet, cid, day):
+            claim(packet, cid)['attested_on'] = day
+            holder(packet, 1)['attested_on'] = day
+
         def date_listing(packet):
             claim(packet, 'br_agir_tse_registry_lists_tourinho_presidente_nacional')['attested_on'] = '2026-08-02'
 
         def renaming_as_holder(packet):
-            cite(packet, 4, 'br_agir_tse_registry_ptc_renamed_agir_20220331', 'br_agir_tse_partidos_registrados_capt20260802')
+            cite(packet, 5, 'br_agir_tse_registry_ptc_renamed_agir_20220331', 'br_agir_tse_partidos_registrados_capt20260802')
 
         cases = {
             'start from a signed act': lambda p: set_from(p, 0, '2014-05-16'),
-            'end inferred from the renaming': lambda p: set_until(p, 3, '2022-03-31'),
+            'end inferred from the renaming': lambda p: set_until(p, 4, '2022-03-31'),
+            'start from the signed convocation': lambda p: set_from(p, 1, '2018-07-19'),
+            'end at the convoked convention': lambda p: set_until(p, 1, '2018-07-28'),
+            'convocation dated by its convention day': lambda p: set_day(p, CONVOCATION, '2018-07-28'),
             'party office fed to the Presidency of the Republic': to_presidency,
             'PDS claim cited by the AGIR observation': pds_cited,
             'AGIR claim fed to the PT office': to_pt,
