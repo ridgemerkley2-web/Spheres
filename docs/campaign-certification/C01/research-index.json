@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 1969,
-    "source_claims": 4874,
+    "sources": 1976,
+    "source_claims": 4901,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -304,7 +304,7 @@
       "organization_observations": 14,
       "institution_observations": 7,
       "role_observations": 9,
-      "source_claims": 295,
+      "source_claims": 322,
       "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -345,7 +345,8 @@
           "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
           "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
           "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
-          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim."
+          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim.",
+          "CLAUDE-C01-46 extends the five eighth-convocation faction-head roles with seven State Duma website news items (Internet Archive raw captures, 2021-2026): dated in-office attestations of Владимир Васильев, Геннадий Зюганов, Сергей Миронов, Алексей Нечаев and Леонид Слуцкий through 27 July 2026, Владимир Жириновский's end on 6 April 2022 (death in office, pending a ruling), and the faction elections, reported selections, Слуцкий's acting service and a death report without a day as claims only. The ninth-convocation faction elections of September 2026 are after the cutoff and are not imported; party offices are untouched."
         ]
       }
     },
@@ -2709,8 +2710,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 575140,
-      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
+      "bytes": 626569,
+      "sha256": "62d4260421d7f6eb144ae690193178831d6249ff3454404329a20ef8839fbf20"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
