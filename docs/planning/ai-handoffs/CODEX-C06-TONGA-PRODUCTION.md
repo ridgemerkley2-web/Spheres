@@ -1,7 +1,8 @@
 # Tonga country cast production
 
 Owner: Codex. State: in progress. Base: `5ea4f8fcd05e1858b1dfa83ae34c6d3703d6b104`.
-Branch: `codex/tonga-country-cast-20261001`.
+Authoring branch: `codex/tonga-country-cast-20261001`. The first production
+integration is pushed on `codex/campaign-certification` at `5530c298`.
 
 On 1 October 2026 the user explicitly asked Codex to complete the Tonga character
 cast. This takes over the existing `CLAUDE-C06-TONGA-01` queued assignment; its
@@ -26,10 +27,21 @@ and premier presentation, event-driven institutional candidate actions, 41 new
 historical appearance cartoons and four fictional portraits. See the
 [production receipt](../../campaign-certification/C06/production/tonga/README.md)
 and [country inventory](../../campaign-certification/C06/countries/tonga/README.md).
-Fatai Helu has no verified likeness. Remaining political chains and native/browser
-acceptance remain open. Preserve the 1990 monarchy, hereditary office restrictions,
+Fatai Helu has no verified likeness. Eleven historical political/office chains
+remain unresolved. The Crown chain is accepted with its recorded continuity
+inference; four collective institutional rows have explicit scope exceptions.
+Preserve the 1990 monarchy, hereditary office restrictions,
 existing saves and divergent campaign incumbents. Do not mark this task or its
 parent complete based on the artwork count or reference inventory.
 
-The S25 Japan diagnostic remains a separate running experiment. Coordinate native
-builds and qualification so production does not overwrite its files or evidence.
+King IV's historical reference portrait now uses the accepted 12 July 1990 assent
+as display context only; his original tenure uncertainty is unchanged. The full
+805-test avatar/research suite and the 9,010-case boundary preparation check pass
+after this repair. The preceding native acceptance receipts remain preserved;
+current-source native checks and the new Tonga browser journey run in independent
+Windows/Linux CI jobs. Do not mark a pending or unexecuted check as passed.
+
+The separate S25 Japan diagnostic stopped at its twelve-hour wall-clock bound
+on 1 October 2026 without campaign qualification. Its result and original evidence
+remain under the external `japan-7-diagnostic-20261001-01` directory. Tonga
+production neither closes that experiment nor starts a replacement campaign.

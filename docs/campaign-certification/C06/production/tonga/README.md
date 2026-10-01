@@ -1,5 +1,14 @@
 # Tonga cast production — 1 October 2026
 
+Current integration: the cast and government implementation are pushed at
+`5530c298` on `codex/campaign-certification`. Subsequent review accepts the
+[Crown identity chain](crown-chain-20261001/acceptance.json), records four
+[collective-body scope exceptions](collective-scope-20261001/README.md), and
+repairs King IV's historical portrait display context. Eleven personal/party
+chains and Fatai Helu's likeness remain unresolved. Current-source native and
+Tonga production-browser checks are pending; earlier receipts below describe
+their original tested versions.
+
 Codex has created 41 new historical appearance illustrations and four original
 fictional characters. Together with the existing King IV opening portrait, the
 cast has 42 dated historical appearances for 32 real people and four fictional
@@ -74,8 +83,9 @@ its separate typecheck. Earlier typecheck attempts exposed omitted tracked
 artwork in the sparse checkout; those exact files were restored, and the original
 attempts are retained. Typechecking does not execute native tests or establish
 production-browser behavior. That was the local validation checkpoint; the
-later GitHub execution evidence is recorded below. The candidate has not yet
-been merged into the active integration playset.
+later GitHub execution evidence is recorded below. This was a pre-integration
+checkpoint; the later [integration receipt](integration-20261001/README.md)
+records its inclusion in the game branch.
 
 ## Native CI acceptance checkpoint
 
