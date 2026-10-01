@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_muqrin_cp_obs_20150428",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/71d56a9352",
+  "original_url": "https://www.spa.gov.sa/71d56a9352",
+  "portal_metadata": {
+    "uuid": "71d56a9352",
+    "locale": "ar",
+    "published_at_utc": "2015-04-28T08:13:56Z",
+    "date_hijri_field": "1436-07-09"
+  },
+  "title_as_published": "عام / سمو ولي العهد يستقبل رئيس هيئة الأركان العامة الماليزي",
+  "source_title": "عام / سمو ولي العهد يستقبل رئيس هيئة الأركان العامة الماليزي: the Crown Prince receives the Chief of the Malaysian General Staff (28 April 2015)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2015-04-28",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/71d56a9352",
+  "source_response_bytes": 2983,
+  "source_response_sha256": "b905fc2cb7901e3d72c7bcc186368369268c1ec4a0e3923f378d66281353f8bd",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "b97e174f7f71fbe3657365e9c92e42531212faab51511183b2a4794a61380641",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:55Z and again at 2026-10-01T03:01:11Z, 32 minutes later (Cloudflare HIT and REVALIDATED); both identical (2983 bytes, SHA-256 b905fc2cb7901e3d72c7bcc186368369268c1ec4a0e3923f378d66281353f8bd).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/71d56a9352 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_muqrin_cp_obs_20150428",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-06",
+      "role_id": "sa_crown_prince",
+      "holder_name": "Muqrin bin Abdulaziz Al Saud",
+      "printed_name": "مقرن بن عبدالعزيز آل سعود",
+      "role_title": "ولي العهد — Crown Prince",
+      "event_kind": "attestation",
+      "attested_on": "2015-04-28",
+      "text": "SPA, date line Riyadh 9 Rajab 1436 / 28 April 2015: 'استقبل صاحب السمو الملكي الأمير مقرن بن عبدالعزيز آل سعود ولي العهد نائب رئيس مجلس الوزراء' the Chief of the Malaysian General Staff in his office at al-Yamamah Palace 'اليوم' (today).",
+      "locator": "Date line; first paragraph; trailer 11:12 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

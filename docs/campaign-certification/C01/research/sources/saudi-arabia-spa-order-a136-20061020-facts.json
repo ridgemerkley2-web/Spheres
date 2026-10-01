@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a136_20061020",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/f9cb0a7263",
+  "original_url": "https://www.spa.gov.sa/f9cb0a7263",
+  "portal_metadata": {
+    "uuid": "f9cb0a7263",
+    "locale": "ar",
+    "published_at_utc": "2006-10-20T03:36:13Z",
+    "date_hijri_field": "1427-09-27"
+  },
+  "title_as_published": "سياسي / أمر ملكي بتعيين أمين عام لهيئة نظام البيعة",
+  "source_title": "سياسي / أمر ملكي بتعيين أمين عام لهيئة نظام البيعة: Royal Order A/136 appointing the Secretary General of the Allegiance Commission (20 October 2006)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2006-10-20",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/f9cb0a7263",
+  "source_response_bytes": 2420,
+  "source_response_sha256": "7c4a3614486727eebeb91ee83a6b50d8b64596ae9ba2b44153ab3860e560a4ac",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "844ea4fd383cccd20f5a73ddccb364b61bb5d635554cc5cc6d73d42dd90687d3",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:18Z and again at 2026-10-01T03:00:44Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2420 bytes, SHA-256 7c4a3614486727eebeb91ee83a6b50d8b64596ae9ba2b44153ab3860e560a4ac).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/f9cb0a7263 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A complete item. SPA re-sent the same text, still under the 20 October 2006 date line, with published_at 6 August 2007 (7a34c6edb4); the re-send is a duplicate and is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_tuwaijri_sg_appointed_a136_20061020",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-KCP-09",
+      "role_id": "sa_succession_secretary",
+      "holder_name": "Khalid bin Abdulaziz Al-Tuwaijri",
+      "printed_name": "خالد بن عبدالعزيز التويجري",
+      "role_title": "أمين عام هيئة البيعة — Secretary General of the Allegiance Commission",
+      "event_kind": "appointment_by_royal_order",
+      "attested_on": "2006-10-20",
+      "text": "SPA, date line Makkah 28 Ramadan 1427 / 20 October 2006: the Royal Court issued a statement reproducing Royal Order A/136 dated 26/9/1427 AH, which cites Article 24 of the Allegiance Commission Law issued by Royal Order A/135 of 26/9/1427 AH; item First: 'يعين معالي الأستاذ / خالد بن عبدالعزيز التويجري أمينا عاما لهيئة البيعة'; signed 'عبدالله بن عبدالعزيز'.",
+      "locator": "Date line; statement; order number and date; recitals; item First; signature; trailer 0636 (06:36 Makkah time)"
+    },
+    {
+      "claim_id": "sa_abdullah_king_order_a136_20061020",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-04",
+      "role_id": "sa_king",
+      "holder_name": "Abdullah bin Abdulaziz Al Saud",
+      "printed_name": "عبدالله بن عبدالعزيز آل سعود",
+      "role_title": "الملك — King",
+      "event_kind": "attestation",
+      "attested_on": "2006-10-20",
+      "text": "Royal Order A/136, reproduced in the same Royal Court statement, opens 'نحن عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية'.",
+      "locator": "Royal Order A/136, preamble"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}

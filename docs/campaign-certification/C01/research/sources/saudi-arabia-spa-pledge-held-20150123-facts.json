@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_pledge_held_20150123",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/7fbe706628",
+  "original_url": "https://www.spa.gov.sa/7fbe706628",
+  "portal_metadata": {
+    "uuid": "7fbe706628",
+    "locale": "ar",
+    "published_at_utc": "2015-01-23T17:18:20Z",
+    "date_hijri_field": "1436-04-03"
+  },
+  "title_as_published": "عام / خادم الحرمين الشريفين وسمو ولي العهد وسمو ولي ولي العهد يتلقون البيعة من أصحاب السمو الملكي الأمراء ومفتي عام المملكة وأصحاب الفضيلة العلماء والمعالي الوزراء وكبار المسؤولين والمواطنين على كتاب الله وسنة رسوله صلى الله عليه وسلم",
+  "source_title": "عام / خادم الحرمين الشريفين وسمو ولي العهد وسمو ولي ولي العهد يتلقون البيعة من أصحاب السمو الملكي الأمراء ومفتي عام المملكة وأصحاب الفضيلة العلماء والمعالي الوزراء وكبار المسؤولين والمواطنين على كتاب الله وسنة رسوله صلى الله عليه وسلم: the pledge to King Salman, Crown Prince Muqrin and the Deputy Crown Prince (23 January 2015)",
+  "accessed_date": "2026-09-30",
+  "published_date": "2015-01-23",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/7fbe706628",
+  "source_response_bytes": 2678,
+  "source_response_sha256": "d8d7885c13a4090690a3fd58a8016f18270d7e34585b693f8b5541624ea371d5",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "1386fb8a40024cd2c1b43de197afb0702a3fb7caf693a8c3d1271e4f42e08b63",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "This packet: downloaded at 2026-10-01T02:28:50Z and again at 2026-10-01T03:01:08Z, 32 minutes later (Cloudflare REVALIDATED and REVALIDATED); both identical (2678 bytes, SHA-256 d8d7885c13a4090690a3fd58a8016f18270d7e34585b693f8b5541624ea371d5).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/7fbe706628 loads, fetched with curl (default User-Agent, no cookies, no Accept-Encoding header). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Main item; it ends 'to follow' and its additions were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_citizen_pledge_held_20150123",
+      "observation_id": "sa_crown",
+      "review_observation": "SA-KCP-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "pledge_held",
+      "attested_on": "2015-01-23",
+      "text": "SPA, date line Riyadh 3 Rabi al-Akhir 1436 / 23 January 2015: 'استقبل خادم الحرمين الشريفين الملك سلمان بن عبدالعزيز آل سعود وصاحب السمو الملكي الأمير مقرن بن عبدالعزيز آل سعود ولي العهد نائب رئيس مجلس الوزراء' and the Deputy Crown Prince, 'بعد صلاة العشاء لهذا اليوم الجمعة 3 ربيع الآخر 1436 هـ' at Qasr al-Hukm in Riyadh, princes, the Grand Mufti, scholars, ministers, officials and citizens who gave the pledge to him 'ملكا للمملكة العربية السعودية' and to Prince Muqrin 'وليا للعهد'.",
+      "locator": "Date line; first paragraph; trailer 20:18 (Makkah time)"
+    }
+  ],
+  "bounded_scope": "King, Crown Prince and Allegiance Commission Secretary General observations for CLAUDE-C01-45 only (sa_king, sa_crown_prince and sa_succession_secretary). Attestations, an appointment, delegations and deputations of state affairs and their end, a signature on the King's behalf, scheduled and held pledges and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-06 holders and the CLAUDE-C01-25 chair roles are outside this extract."
+}
