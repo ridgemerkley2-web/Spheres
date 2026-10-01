@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_komeito_chudo_founding_convention_20260125",
+  "source_url": "https://web.archive.org/web/20260129004916id_/https://www.komei.or.jp/komeinews/p504963/",
+  "original_url": "https://www.komei.or.jp/komeinews/p504963/",
+  "archive_capture_utc": "2026-01-29T00:49:16Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 50500,
+  "source_response_sha256": "c20324907719dcf9d55ede20cc1bd617f6230925bc347d051665a9cc1f34e83e",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "J322GRFHYXTQ5L45C5PDKKR3Y3NHCJI2",
+  "source_character_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20260129004916id_/https://www.komei.or.jp/komeinews/p504963/' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-01-29T00:49:16Z; that form replays the archived bytes unchanged. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher: first downloaded on 2026-09-30 (UTC) at 22:00:11Z. Downloaded again by this packet at 2026-09-30 22:27:52Z and 2026-09-30 23:00:53Z (UTC), 33 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party site's report dated 25 January 2026 of the founding convention of 中道改革連合 on 22 January 2026. Used only for claims about that other organization, its office and the interim title; its year and month come from the page's date line.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_komeito_chudo_founded_20260122",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-09",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "organization_formed",
+      "attested_on": "2026-01-22",
+      "text": "The party organ reports that the founding convention of the new party 「中道改革連合」 (略称「中道」) was held in the Diet on the 22nd ('「中道改革連合」（略称＝「中道」）の結党大会が22日').",
+      "locator": {
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_komeito_saito_chudo_co_representative_20260122",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-09",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "中道改革連合共同代表 — co-representative of 中道改革連合 (another organization; claims only)",
+      "event_kind": "other_office_attestation",
+      "attested_on": "2026-01-22",
+      "text": "It reports that 斉藤鉄夫 and 野田佳彦 took office as its co-representatives ('共同代表には斉藤鉄夫、野田佳彦両衆院議員が就任').",
+      "locator": {
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_komeito_takeya_styled_representative_20260122",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-10",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表代理 (styled 代表) — interim office under the party rules until a national convention elects a representative (claims only)",
+      "event_kind": "interim_representative_styled",
+      "attested_on": "2026-01-22",
+      "text": "It says that 竹谷とし子氏 took office as 公明党代表 the same day ('同日、公明党代表に就任した竹谷とし子氏').",
+      "locator": {
+        "paragraph": 4
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair (委員長) of 公明党 until its December 1994 division and of the representative (代表) of the 公明党 formed in November 1998, for CLAUDE-C01-31 only, 1990-2026. Convention and other party selections, recommendations, in-office attestations, resignation announcements, predecessor references, acting and interim arrangements (委員長代行 in 1994; the 代表代理 styled 代表 in 2026), other organizations' offices, the organizations' formation, division, merger, renaming and dissolution, and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (an organization event, another office, an acting or interim office). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 公明党, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, 中道改革連合 or any other party."
+}

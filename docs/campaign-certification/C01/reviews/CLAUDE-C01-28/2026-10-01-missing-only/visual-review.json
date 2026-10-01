@@ -1,0 +1,64 @@
+{
+  "pdf_documents": 4,
+  "pdf_pages_rendered_and_visually_read": 7,
+  "tool": "pdftoppm -png -r130; view_image",
+  "warnings": "Poppler reported missing display fonts and font-weight warnings. The scanned visible pages were rendered and legible; no date/title/name was accepted from OCR alone.",
+  "pages": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_congress_statement_1995-1.png",
+      "source_id": "ru_dvr_congress_statement_1995",
+      "pdf_page": 1,
+      "visually_read": true,
+      "bytes": 243873,
+      "sha256": "803be6bc3a622d78170cda65774d92ca96d1af2726d4beee080e8e1512b39b76"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_ii_congress_decision_19950618-1.png",
+      "source_id": "ru_dvr_ii_congress_decision_19950618",
+      "pdf_page": 1,
+      "visually_read": true,
+      "bytes": 261596,
+      "sha256": "67bcc0b3d97298f23b10de4df58ac0254af444865534e212b5b99d3b570c5511"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_v_congress_decision_19960921-1.png",
+      "source_id": "ru_dvr_v_congress_decision_19960921",
+      "pdf_page": 1,
+      "visually_read": true,
+      "bytes": 145503,
+      "sha256": "f3ddc8a399db2643aefef92ac8bd4290a57de4b7e7fe1df402b1c9dc79843c39"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_v_congress_decision_19960921-2.png",
+      "source_id": "ru_dvr_v_congress_decision_19960921",
+      "pdf_page": 2,
+      "visually_read": true,
+      "bytes": 136105,
+      "sha256": "24850cea5211782945314400fa48a6e035cbc270114429e242f5f6d250fab506"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_v_congress_decisions_19960922-1.png",
+      "source_id": "ru_dvr_v_congress_decisions_19960922",
+      "pdf_page": 1,
+      "visually_read": true,
+      "bytes": 156206,
+      "sha256": "54cebc43779c7191a749472ed32709211d668033ee62b8cf3e62f2544019fb07"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_v_congress_decisions_19960922-2.png",
+      "source_id": "ru_dvr_v_congress_decisions_19960922",
+      "pdf_page": 2,
+      "visually_read": true,
+      "bytes": 272706,
+      "sha256": "31b81226a2e6628baa67e3fc47c71376b32907de782d88b9f3c239c675f946e3"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ru28-originals-20261001\\renders\\ru_dvr_v_congress_decisions_19960922-3.png",
+      "source_id": "ru_dvr_v_congress_decisions_19960922",
+      "pdf_page": 3,
+      "visually_read": true,
+      "bytes": 193262,
+      "sha256": "4e26b37310876bdf2b3f9d7560734386533f1127aa511fb55430029b31c3b787"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_komeito_history_2003_retrospective",
+  "source_url": "https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/",
+  "original_url": "http://www.komei.or.jp/about/history/",
+  "archive_capture_utc": "2003-02-06T01:31:42Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 27148,
+  "source_response_sha256": "1ac4e853d360316db830f0735d9bdb21af83e316ff27b69cdaf20fbfe996a0ca",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "CKAUZB6CBQQM4NWA7GTLKXUCBLJYTACN",
+  "source_character_encoding": "Shift_JIS (cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2003-02-06T01:31:42Z; that form replays the archived bytes unchanged. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher: first downloaded on 2026-09-30 (UTC) at 21:52:15Z. Downloaded again by this packet at 2026-09-30 22:26:25Z and 2026-09-30 22:59:25Z (UTC), 33 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's history page (公明党 歴史) as captured on 6 February 2003: a narrative of the old 公明党 (旧公明党), its December 1994 division, 公明, 公明新党, 新進党, 新党平和 and 黎明クラブ, and the November 1998 merger. Retrospective: its claims carry no structured date and never set a holder boundary; they are claims about the organizations only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_komeito_history_ishida_chair_in_cabinet_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-01",
+      "role_id": "jp_komeito_representative",
+      "holder_name": "石田幸四郎",
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "retrospective_office_reference",
+      "attested_on": null,
+      "text": "The party's history page says that 石田幸四郎委員長（当時） and three others from the old 公明党 joined the 細川 cabinet.",
+      "locator": {
+        "section": "旧公明党30年の歩み",
+        "paragraph": "＜自民党政権の転換の一翼も＞"
+      }
+    },
+    {
+      "claim_id": "jp_komeito_history_nfp_founded_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-02",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "retrospective_organization_record",
+      "attested_on": null,
+      "text": "It says that the 新進党 was founded on １９９４年１２月１０日 under the slogan 「たゆまざる改革、責任ある政治の実現」.",
+      "locator": {
+        "section": "新しい公明党の誕生",
+        "paragraph": "＜「公明」の発足と新進党結成へ参加＞"
+      }
+    },
+    {
+      "claim_id": "jp_komeito_history_division_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-02",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "retrospective_organization_record",
+      "attested_on": null,
+      "text": "It says that, to join it, the old 公明党 held a national convention on １９９４年１２月５日, closed its thirty-year history and decided the party's dissolution ('党の解散'), the formation of 「公明」 centred on local members and some Councillors and the founding of 「公明新党」 centred on Diet members, which 'それぞれ同日に発足'; 「公明新党」 took part in founding the 新進党.",
+      "locator": {
+        "section": "新しい公明党の誕生",
+        "paragraph": "＜「公明」の発足と新進党結成へ参加＞"
+      }
+    },
+    {
+      "claim_id": "jp_komeito_history_nfp_dissolved_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-02",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "retrospective_organization_record",
+      "attested_on": null,
+      "text": "It says that the 新進党 suddenly dissolved itself on １９９７年（平成９年）１２月２７日.",
+      "locator": {
+        "section": "新しい公明党の誕生",
+        "paragraph": "＜新進党の解党＞"
+      }
+    },
+    {
+      "claim_id": "jp_komeito_history_reimei_heiwa_formed_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-02",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "retrospective_organization_record",
+      "attested_on": null,
+      "text": "It says that after the 新進党 dissolved, eighteen Councillors of the former 公明党 group formed 「黎明クラブ」 on the premise of joining 公明, most of the Representatives formed 「新党平和」, and three weeks later 「黎明クラブ」 merged with 「公明」.",
+      "locator": {
+        "section": "新しい公明党の誕生",
+        "paragraph": "＜「大衆とともに」の原点に戻り、新しい公明党の誕生＞"
+      }
+    },
+    {
+      "claim_id": "jp_komeito_history_reformation_retrospective",
+      "observation_id": "jp_sangiin_pr_2025_15",
+      "review_observation": "KOMEITO-03",
+      "role_id": "jp_komeito_representative",
+      "holder_name": null,
+      "role_title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+      "event_kind": "retrospective_organization_record",
+      "attested_on": null,
+      "text": "It says that on １９９８年（平成１０年）１１月７日 「公明」 and 「新党平和」 merged and the new, present 「公明党」 was formed ('新しい現在の「公明党」が結成されました').",
+      "locator": {
+        "section": "新しい「公明党」の誕生と連立政権への参加",
+        "paragraph": 1
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair (委員長) of 公明党 until its December 1994 division and of the representative (代表) of the 公明党 formed in November 1998, for CLAUDE-C01-31 only, 1990-2026. Convention and other party selections, recommendations, in-office attestations, resignation announcements, predecessor references, acting and interim arrangements (委員長代行 in 1994; the 代表代理 styled 代表 in 2026), other organizations' offices, the organizations' formation, division, merger, renaming and dissolution, and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (an organization event, another office, an acting or interim office). The prime-ministership (jp_pm), ministerial offices, parliamentary groups and other parties' offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 公明党, 公明, 公明新党, 新進党, 新党平和, 黎明クラブ, 中道改革連合 or any other party."
+}

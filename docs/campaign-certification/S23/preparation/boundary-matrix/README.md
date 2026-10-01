@@ -100,6 +100,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-27 | accepted | 74 |
 | CLAUDE-C01-29 | accepted | 54 |
 | CLAUDE-C01-30 | accepted | 39 |
+| CLAUDE-C01-31 | accepted | 31 |
 | CLAUDE-C01-32 | accepted | 38 |
 | CLAUDE-C01-33 | accepted | 22 |
 | CLAUDE-C01-34 | accepted | 76 |
@@ -115,7 +116,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
 | France | France | 2 / 15 / 1 | 1103 | 0/74 | 197/555 | 23/198 |
-| Japan | Japan | 6 / 8 / 1 | 1101 | 9/222 | 151/296 | 15/151 |
+| Japan | Japan | 7 / 8 / 1 | 1184 | 9/259 | 151/296 | 15/151 |
 | India | India | 6 / 4 / 1 | 783 | 6/222 | 109/148 | 10/109 |
 | Brazil | Brazil | 5 / 6 / 1 | 819 | 20/185 | 99/222 | 7/100 |
 | SouthAfrica | SouthAfrica | 11 / 7 / 1 | 1190 | 4/407 | 151/259 | 13/151 |
@@ -139,8 +140,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Japan
 
-- Research roles: 6 (6 with holder observations); 9 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 83 uncertain, 129 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 16, pending 44, unattributed_intake 5.
+- Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 31, pending 44, unattributed_intake 5.
 - Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.
 - Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).
 - Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
@@ -266,6 +267,7 @@ established holders at those samples; for the executive they count the campaign-
 | Japan | `research:jp_dpfp_representative` 代表 — party representative | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | Japan | `research:jp_sdp_chair` 委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party | accepted 16 | 0/0/1/36/0/0/0 | 6 | 30 | - |
 | Japan | `research:jp_ldp_party_president` 総裁 — party president | pending 14, unattributed_intake 2 | 0/0/0/26/11/0/0 | 3 | 30 | - |
+| Japan | `research:jp_komeito_representative` 代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長) | accepted 15 | 0/0/0/20/17/0/0 | 3 | 28 | - |
 | Japan | `research:jp_pm` 内閣総理大臣 — Prime Minister of Japan | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | - |
 | India | `executive` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | 1/37 |
 | India | `party:in_inc` Indian National Congress (I) | production_registry 7 | 36/0/0/1/0/0/0 | 15 | 0 | 2/36 |

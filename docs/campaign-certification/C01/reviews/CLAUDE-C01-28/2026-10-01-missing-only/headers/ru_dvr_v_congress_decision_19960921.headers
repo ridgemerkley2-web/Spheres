@@ -1,0 +1,34 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 01 Oct 2026 01:35:42 GMT
+Content-Type: application/pdf
+Content-Length: 101000
+Connection: keep-alive
+x-archive-orig-server: Apache-Coyote/1.1
+x-archive-orig-content-length: 101000
+x-archive-orig-date: Tue, 08 Nov 2016 00:45:55 GMT
+x-archive-orig-connection: close
+cache-control: max-age=1800
+accept-ranges: bytes
+memento-datetime: Tue, 08 Nov 2016 00:45:56 GMT
+link: <http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3796>; rel="original", <https://web.archive.org/web/timemap/link/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3796>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3796>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: alexa20161108-37/51_55_20161108003030_crawl301_IndexOnly.arc.gz
+server-timing: captures_list;dur=0.418139, exclusion.robots;dur=0.050834, exclusion.robots.policy;dur=0.043495, esindex;dur=0.006350, cdx.remote;dur=11.074166, LoadShardBlock;dur=108.299589, PetaboxLoader3.datanode;dur=99.322838, PetaboxLoader3.resolve;dur=210.036279, load_resource;dur=245.860438
+x-app-server: wwwb-app264-dc8
+x-ts: 200
+x-tr: 380
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=0
+set-cookie: wb-p-SERVER=wwwb-app264; path=/
+cache-control: private
+X-location: All
+X-AS: 7922
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+Server-Timing: MISS
+X-NID: COMCAST-7922
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+X-sd: 0
+

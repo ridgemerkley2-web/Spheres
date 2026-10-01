@@ -1,0 +1,144 @@
+diff --git a/docs/campaign-certification/C01/research/japan.json b/docs/campaign-certification/C01/research/japan.json
+index 67ce69c1..4cf31853 100644
+--- a/docs/campaign-certification/C01/research/japan.json
++++ b/docs/campaign-certification/C01/research/japan.json
+@@ -17942,7 +17942,7 @@
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json",
+         "bytes": 5310,
+-        "sha256": "8a5dbcd65332a2450909a0c371417c55405733f4984efd511b82f8be1e4c634d"
++        "sha256": "94fe8a2b39c3294e8f1b014615d09bb151c83c236e84fe1e0dd1d3863a681c9b"
+       },
+       "claims": [
+         {
+@@ -17959,7 +17959,7 @@
+           "text": "In the address, given at that convention, 神崎武法 says that by the delegates' confidence he will again bear the heavy duty of party representative ('代議員の皆さまのご信任により、再び党代表の重責を務めさせていただくことになりました').",
+           "attested_on": "2004-10-31",
+           "locator": {
+-            "paragraph": 2
++            "paragraph": 3
+           },
+           "uncertainty": "Dates the holder observation of 31 October 2004 (his own statement of the office at the convention the page dates to the 31st); a statement of continuing (再び) after re-election, not read as a start."
+         }
+@@ -17979,8 +17979,8 @@
+       "scope_note": "The party site's copy of a 公明新聞 report dated 1 October 2006 of the sixth national convention of 30 September 2006 (the report and its caption print the 30th, the day before the page's date line).",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json",
+-        "bytes": 5505,
+-        "sha256": "ea2c0f312e5d85059cc4b396559e10d4bacc95fe6ec0955e9179096d9cfea814"
++        "bytes": 5633,
++        "sha256": "eb775c25d2eb00c398051e33387d36ebc9605aec55c98739e242af15ada522c4"
+       },
+       "claims": [
+         {
+@@ -17988,9 +17988,10 @@
+           "text": "The party organ reports that on the 30th 公明党 held its sixth national convention and elected 太田昭宏新代表: under rule 20, 太田幹事長代行, confirmed as the only candidate, received the confidence of all delegates present standing and was elected new representative ('出席代議員の起立総員による信任を受け、新代表に選出された').",
+           "attested_on": "2006-09-30",
+           "locator": {
+-            "paragraph": [
+-              1,
+-              7
++            "section": "newsbody",
++            "passage_starts": [
++              "「新しい公明党」が勇躍スタート",
++              "これに先立ち、代表選出が行われ"
+             ]
+           },
+           "uncertainty": "A selection by the convention, never a holder or a start by itself; see the same-day in-office attestation. 幹事長代行 is another office."
+@@ -18510,8 +18511,8 @@
+       "scope_note": "The party site's copy of a 公明新聞 article dated 8 November 2024 on the central executive committee of 7 November 2024 (month and year from the page's date line).",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json",
+-        "bytes": 4821,
+-        "sha256": "dfce61c197d6f29287fd4e93d9d9fb2df2385f700177d600beea00e991e94cb6"
++        "bytes": 4856,
++        "sha256": "a618ceecc81a8154b34cc8fbb0dfd661b72f68bdbd0fdcf6af1a9cd4e7651439"
+       },
+       "claims": [
+         {
+@@ -18519,7 +18520,10 @@
+           "text": "The party organ reports that on the 7th the 中央幹事会 decided to recommend 斉藤鉄夫副代表 as the candidate to succeed 石井啓一代表, who had announced his resignation mid-term, and that under the party rules he would be elected if he won the confidence of a majority of the delegates at the extraordinary national convention on the 9th ('石井啓一代表の後任に、国土交通相の斉藤鉄夫副代表（衆院議員）を候補者として推薦することを決定した').",
+           "attested_on": "2024-11-07",
+           "locator": {
+-            "paragraph": 1
++            "paragraph": [
++              1,
++              2
++            ]
+           },
+           "uncertainty": "A recommendation of the candidate and a plan for the convention: never a holder or a start. His ministerial office (国土交通相) is state office and is excluded. It still calls 石井啓一 代表 on 7 November 2024; his announced resignation is not an end."
+         }
+diff --git a/docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json b/docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json
+index 9e4566cd..6064333f 100644
+--- a/docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json
++++ b/docs/campaign-certification/C01/research/sources/japan-komeito-kanzaki-fifth-convention-address-20041101-facts.json
+@@ -47,7 +47,7 @@
+       "attested_on": "2004-10-31",
+       "text": "In the address, given at that convention, 神崎武法 says that by the delegates' confidence he will again bear the heavy duty of party representative ('代議員の皆さまのご信任により、再び党代表の重責を務めさせていただくことになりました').",
+       "locator": {
+-        "paragraph": 2
++        "paragraph": 3
+       }
+     }
+   ],
+diff --git a/docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json b/docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json
+index 6afd6688..f9eefda1 100644
+--- a/docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json
++++ b/docs/campaign-certification/C01/research/sources/japan-komeito-ota-sixth-convention-20061001-facts.json
+@@ -33,9 +33,10 @@
+       "attested_on": "2006-09-30",
+       "text": "The party organ reports that on the 30th 公明党 held its sixth national convention and elected 太田昭宏新代表: under rule 20, 太田幹事長代行, confirmed as the only candidate, received the confidence of all delegates present standing and was elected new representative ('出席代議員の起立総員による信任を受け、新代表に選出された').",
+       "locator": {
+-        "paragraph": [
+-          1,
+-          7
++        "section": "newsbody",
++        "passage_starts": [
++          "「新しい公明党」が勇躍スタート",
++          "これに先立ち、代表選出が行われ"
+         ]
+       }
+     },
+diff --git a/docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json b/docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json
+index 9e4d354d..00d2a6ad 100644
+--- a/docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json
++++ b/docs/campaign-certification/C01/research/sources/japan-komeito-saito-recommended-20241108-facts.json
+@@ -33,7 +33,10 @@
+       "attested_on": "2024-11-07",
+       "text": "The party organ reports that on the 7th the 中央幹事会 decided to recommend 斉藤鉄夫副代表 as the candidate to succeed 石井啓一代表, who had announced his resignation mid-term, and that under the party rules he would be elected if he won the confidence of a majority of the delegates at the extraordinary national convention on the 9th ('石井啓一代表の後任に、国土交通相の斉藤鉄夫副代表（衆院議員）を候補者として推薦することを決定した').",
+       "locator": {
+-        "paragraph": 1
++        "paragraph": [
++          1,
++          2
++        ]
+       }
+     }
+   ],
+diff --git a/tools/avatars/test_japan_komeito_representatives_c01_31.py b/tools/avatars/test_japan_komeito_representatives_c01_31.py
+index 204b34fe..729268aa 100644
+--- a/tools/avatars/test_japan_komeito_representatives_c01_31.py
++++ b/tools/avatars/test_japan_komeito_representatives_c01_31.py
+@@ -825,6 +825,22 @@ class JapanKomeitoRepresentativesTests(unittest.TestCase):
+             for row in self.extracts[sid]['rows']:
+                 self.assertIn('speaker', row['locator'], row['claim_id'])
+ 
++    def test_recovered_source_locators_cover_the_claimed_passages(self):
++        # Checked against the returned article bodies: the guest greeting precedes Kanzaki's
++        # continuation; Ota's report mixes p/br blocks; Saito's condition is in the next paragraph.
++        expected = {
++            'jp_komeito_kanzaki_self_stated_again_20041031': {'paragraph': 3},
++            'jp_komeito_ota_selected_20060930': {
++                'section': 'newsbody',
++                'passage_starts': ['「新しい公明党」が勇躍スタート', 'これに先立ち、代表選出が行われ']},
++            'jp_komeito_saito_recommended_20241107': {'paragraph': [1, 2]},
++        }
++        claims = {c['id']: c for source in self.packet['sources'] for c in source['claims']}
++        for cid, locator in expected.items():
++            with self.subTest(claim=cid):
++                self.assertEqual(claims[cid]['locator'], locator)
++                self.assertEqual(self.rows[cid]['locator'], locator)
++
+     def test_response_identities_are_reproducible_urls(self):
+         for sid in NEW_SOURCES:
+             url = self.sources[sid]['url']

@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 127697,
-      "sha256": "f2ce8e4f0de988958422221459f4ea180b1fd5e46c34db5704ba232dd2c6dd56"
+      "bytes": 128519,
+      "sha256": "8735c23b8b0b18291c9911b1ac2f849f1d6d25fe95aeb50c07292d7b8e71ca95"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 37778,
-      "sha256": "a2b0b27b613bd0e7c27ba9aa6e9afbb19bc394f8ae817fa313632e099ec1f4d8"
+      "bytes": 38019,
+      "sha256": "8dc695a46a119b39abb65586e8a5524ae286feb1c3b0b9e7a9486572624c5cf0"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -86,8 +86,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 1590799,
-      "sha256": "7aae60165858f216411adae3836cf98355ce867a834521e72c3a13427efeff06"
+      "bytes": 1716657,
+      "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
@@ -178,6 +178,12 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
       "bytes": 7345,
       "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+      "bytes": 1271,
+      "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -776,8 +782,8 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 301860,
-    "sha256": "3adaab4393f3d161f88371bfe915b5a1676cc00c0c2a32651e8267ff512c6fe4"
+    "bytes": 307019,
+    "sha256": "38cf67db40a27af276d40fe4fc2bde967f60db0d094166f541a313b6fa5fb964"
   },
   "in_flight": [
     {
@@ -785,7 +791,7 @@
       "state": "ready_for_review",
       "branch": "claude/c01-ru-28",
       "case": "USSR -> Russia",
-      "scope": "Five Russian party-leader chains; submitted for review, no accepted mapping",
+      "scope": "Five Russian party-leader chains; held on three originals/four claims after partial source review, no research import or accepted mapping",
       "targets": [
         "party:Russia/ru_kprf",
         "party:Russia/ru_ldpr",
@@ -796,24 +802,11 @@
       "accepted": false
     },
     {
-      "task": "CLAUDE-C01-31",
-      "state": "ready_for_review",
-      "branch": "claude/c01-jp-31",
-      "case": "Japan",
-      "scope": "Komeito representatives and distinct 1994/1998 organizations; review held on seven originals and fourteen claims, no accepted research or runtime mapping",
-      "targets": [
-        "party:Japan/jp_komeito",
-        "party:Japan/jp_komeito/jp_komei_1994",
-        "party:Japan/jp_komeito/jp_komeito_1998"
-      ],
-      "accepted": false
-    },
-    {
       "task": "CLAUDE-C01-39",
       "state": "ready_for_review",
       "branch": "claude/c01-za-39",
       "case": "SouthAfrica",
-      "scope": "Democratic Alliance federal leaders, 2000-2026; submitted for review, no accepted research or runtime mapping",
+      "scope": "Democratic Alliance federal leaders, 2000-2026; held on 23 unverified originals after rate limiting, no accepted research or runtime mapping",
       "targets": [
         "party:SouthAfrica/za_dp",
         "role:za_da_federal_leader"
@@ -1568,6 +1561,24 @@
           "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
           "bytes": 7345,
           "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-31",
+      "state": "complete",
+      "case": "Japan",
+      "scope": "Komeito representatives and distinct 1994/1998 organizations; bounded observations accepted after original-source recovery, no runtime mapping",
+      "integration_revision": "d4d3542b2c7750a83d27564f99cc0428536c8852",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+          "bytes": 1271,
+          "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6",
           "hash_encoding": "UTF-8 text with LF line endings"
         }
       ],
@@ -5921,12 +5932,12 @@
         "party_chains_unresolved": 9,
         "documented_research_organizations": 16,
         "documented_unmapped_organizations": 16,
-        "research_organizations_with_roles": 4,
+        "research_organizations_with_roles": 5,
         "research_institutions": 8,
-        "research_roles": 6,
-        "research_roles_unresolved": 6,
+        "research_roles": 7,
+        "research_roles_unresolved": 7,
         "research_holders_by_evidence": {
-          "c01_accepted": 16,
+          "c01_accepted": 31,
           "c01_integrated_pending": 44,
           "s10_discovery_intake": 5
         },
@@ -6846,7 +6857,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-31",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -6961,7 +6972,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-31",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -7204,7 +7215,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": "CLAUDE-C01-31",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -8698,6 +8709,413 @@
         },
         {
           "nation": "Japan",
+          "category": "organizations",
+          "entity": "jp_sangiin_pr_2025_15",
+          "entity_name": "公明党",
+          "id": "jp_komeito_representative",
+          "title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 6112,
+              "attested_within_period": 0,
+              "attested_day": 4,
+              "open_end": 7283,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1993-01-29",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1993-01-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1993-01-29",
+                "through": "1993-01-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "1993-01-30",
+                "through": "1998-11-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-11-08",
+                "through": "1998-11-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-11-09",
+                "through": "2002-11-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-11-03",
+                "through": "2002-11-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2002-11-04",
+                "through": "2004-10-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-10-31",
+                "through": "2004-10-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-11-01",
+                "through": "2006-09-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-09-30",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1993-01-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1993-01-29",
+                "through": "1993-01-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "1993-01-30",
+                "through": "1998-11-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-11-08",
+                "through": "1998-11-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-11-09",
+                "through": "2002-11-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-11-04",
+                "through": "2004-10-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-11-01",
+                "through": "2006-09-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-09-30",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "石田幸四郎",
+              "attested_on": "1993-01-29",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "神崎武法",
+              "attested_on": "1998-11-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "神崎武法",
+              "attested_on": "2002-11-03",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "神崎武法",
+              "attested_on": "2004-10-31",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "太田昭宏",
+              "attested_on": null,
+              "from": "2006-09-30",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "山口那津男",
+              "attested_on": "2009-09-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "山口那津男",
+              "attested_on": "2012-09-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "山口那津男",
+              "attested_on": "2014-09-21",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "山口那津男",
+              "attested_on": "2016-09-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "山口那津男",
+              "attested_on": "2018-09-30",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "山口那津男",
+              "attested_on": "2020-09-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": "山口那津男",
+              "attested_on": "2022-09-25",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 12,
+              "name": "石井啓一",
+              "attested_on": "2024-09-28",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 13,
+              "name": "斉藤鉄夫",
+              "attested_on": "2024-11-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 14,
+              "name": "竹谷とし子",
+              "attested_on": "2026-03-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-31"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 31,
+          "leads": [
+            "https://kokkai.ndl.go.jp/api/meeting?issueID=112605261X00319930129&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112804573X01519931105&speechNumber=117&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112915261X01619940616&speechNumber=3&recordPacking=json",
+            "https://web.archive.org/web/19980202152557id_/http://www.komei.or.jp:80/eng/daihyo2.htm",
+            "https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/",
+            "https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "Japan",
           "category": "institutions",
           "entity": "jp_prime_minister",
           "entity_name": "Prime Minister of Japan (office)",
@@ -9375,7 +9793,8 @@
           "jp_sangiin_pr_2025_01",
           "jp_sangiin_pr_2025_07",
           "jp_sangiin_pr_2025_10",
-          "jp_sangiin_pr_2025_13"
+          "jp_sangiin_pr_2025_13",
+          "jp_sangiin_pr_2025_15"
         ],
         "discovery_work_orders": [
           "C01-Japan-DISC-B001",
@@ -29392,6 +29811,71 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
+          "entity": "Japan/jp_komeito",
+          "title": "Komeito",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1994-12-05"
+              },
+              "until": {
+                "kind": "day",
+                "value": "1998-11-07"
+              },
+              "reason": "Local Komei chronology is included, but the national New Komei and New Peace Party branches have unverified terms. Do not substitute New Frontier leaders for Komei leaders.",
+              "sources": [
+                "https://www.komei.or.jp/about/history/"
+              ]
+            },
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "open"
+              },
+              "reason": "Early appointment precision and party membership outside the leadership windows need further review.",
+              "sources": [
+                "https://www.jnpc.or.jp/archive/conferences/20132/report"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.komei.or.jp/about/history/",
+            "https://www.jnpc.or.jp/archive/conferences/20132/report"
+          ],
+          "related_work_orders": [
+            "CH-Japan-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "components_with_terms": [
+            "Japan/jp_komeito/jp_komei_1994 (2 terms)",
+            "Japan/jp_komeito/jp_komeito_1964 (1 terms)",
+            "Japan/jp_komeito/jp_komeito_1998 (7 terms)"
+          ],
+          "note": "Leadership recorded on components or name phases does not fill this parent chain; check whether the parent office is separate from the components listed."
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Japan",
           "entity": "Japan/jp_jcp",
           "title": "Japanese Communist Party",
           "role": "party leader (census term records)",
@@ -30015,6 +30499,45 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
+          "entity": "Japan/jp_komeito/jp_komeito_1998",
+          "title": "Komeito (reconstituted in 1998)",
+          "role": "party leader (census term records)",
+          "priority": 3,
+          "unresolved_days": 177,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "2026-03-15",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "toshiko_takeya",
+              "record": "jp_komeito_toshiko_takeya_20260314",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "related_work_orders": [
+            "CH-Japan-B001"
+          ],
+          "window": {
+            "from": "1998-11-07",
+            "until": "2026-09-07",
+            "pinned": true
+          },
+          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "Japan",
           "entity": "Japan/jp_jsp/jp_jsp_1945",
           "title": "Japan Socialist Party",
           "role": "party leader (census term records)",
@@ -30089,6 +30612,68 @@
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
         },
+        {
+          "item": "party_leader_chain",
+          "nation": "Japan",
+          "entity": "Japan/jp_komeito/jp_komei_1994",
+          "title": "Komei (local assembly and House of Councillors organization)",
+          "role": "party leader (census term records)",
+          "priority": 3,
+          "unresolved_days": 55,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1994-12-05",
+              "through": "1994-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "1998-01-02",
+              "through": "1998-01-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "dates",
+              "holder": "tomio_fujii",
+              "record": "jp_komeito_tomio_fujii_199412",
+              "missing": [
+                "from (known only to month)",
+                "until (known only to month)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "toshiko_hamayotsu",
+              "record": "jp_komeito_toshiko_hamayotsu_199801",
+              "missing": [
+                "from (known only to month)"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "related_work_orders": [
+            "CH-Japan-B001"
+          ],
+          "window": {
+            "from": "1994-12-05",
+            "until": "1998-11-07",
+            "pinned": true
+          },
+          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
+        }
+      ]
+    },
+    {
+      "id": "GAP-Japan-B002",
+      "case": "Japan",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -30247,15 +30832,7 @@
           },
           "first_evidence": "2026-09-06",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Japan-B002",
-      "case": "Japan",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -30697,6 +31274,219 @@
             "pinned": false
           },
           "first_evidence": "1990-05-14",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Japan",
+          "entity": "jp_sangiin_pr_2025_15#jp_komeito_representative",
+          "title": "代表 / 委員長 — representative of 公明党 and, until its December 1994 division, its chair (委員長)",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1993-01-28",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1993-01-29",
+              "through": "1993-01-29",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1993-01-30",
+              "through": "1998-11-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1998-11-08",
+              "through": "1998-11-08",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1998-11-09",
+              "through": "2002-11-02",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2002-11-04",
+              "through": "2004-10-30",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2004-11-01",
+              "through": "2006-09-29",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2006-09-30",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "石田幸四郎",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "神崎武法",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "神崎武法",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "神崎武法",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "太田昭宏",
+              "record": 4,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 9,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 10,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "山口那津男",
+              "record": 11,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "石井啓一",
+              "record": 12,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "斉藤鉄夫",
+              "record": 13,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "竹谷とし子",
+              "record": 14,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://kokkai.ndl.go.jp/api/meeting?issueID=112605261X00319930129&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112804573X01519931105&speechNumber=117&recordPacking=json",
+            "https://kokkai.ndl.go.jp/api/speech?issueID=112915261X01619940616&speechNumber=3&recordPacking=json",
+            "https://web.archive.org/web/19980202152557id_/http://www.komei.or.jp:80/eng/daihyo2.htm",
+            "https://web.archive.org/web/20030206013142id_/http://www.komei.or.jp:80/about/history/",
+            "https://web.archive.org/web/19991004170254id_/http://www.komei.or.jp:80/topics/981107shoho.htm"
+          ],
+          "related_work_orders": [
+            "C01-Japan-DISC-B002"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1993-01-29",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         }
       ]
@@ -37049,9 +37839,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 72,
-    "research_roles_with_unresolved_days": 63,
+    "research_roles": 73,
+    "research_roles_with_unresolved_days": 64,
     "next_batches": 13,
-    "next_items": 92
+    "next_items": 96
   }
 }

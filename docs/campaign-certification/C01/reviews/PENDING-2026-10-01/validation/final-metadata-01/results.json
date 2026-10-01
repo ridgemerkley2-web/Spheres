@@ -1,0 +1,162 @@
+{
+  "source_revision": "c58ee025da50dfac164fc839b3fc021c39d483fe",
+  "phase": "final-metadata-01",
+  "at_utc": "2026-10-01T01:52:46.776860+00:00",
+  "commands": [
+    {
+      "name": "research-index",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.803,
+      "log": "research-index.log",
+      "bytes": 251,
+      "sha256": "47586deee2828ff84432400bf1e61653253cc3eeedb27fcd9afc4c8bfdaab983"
+    },
+    {
+      "name": "gap-ledger",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.923,
+      "log": "gap-ledger.log",
+      "bytes": 258,
+      "sha256": "3a41a201dd474bb50906158e855f57cf5cbda91bdabb89e704821cf4be2ebdc4"
+    },
+    {
+      "name": "boundary-matrix",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.452,
+      "log": "boundary-matrix.log",
+      "bytes": 237,
+      "sha256": "18aacdf719014af92c8507dd86e0aa889a489193e7cc345024fb46352c80554e"
+    },
+    {
+      "name": "ledger-boundary-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_certified_*.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.024,
+      "log": "ledger-boundary-tests.log",
+      "bytes": 169,
+      "sha256": "8ff17c5de1b998cac97c1e02c678f11385335bd3a47e5747f4ded809d3c2f2d5"
+    },
+    {
+      "name": "planning",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 3.092,
+      "log": "planning.log",
+      "bytes": 173,
+      "sha256": "1ff8a276463f1f16b2795f559a89a7bfb21814b5eca814acaf0521a382d634fd"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.111,
+      "log": "workboard.log",
+      "bytes": 146,
+      "sha256": "99de2b8338b71f3d1721b04399727c9a68cc9e7325138a5ecc5313c5fff245fd"
+    },
+    {
+      "name": "japan-receipt",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs/campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/verify.py",
+        "--external-originals",
+        "--repo",
+        "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 4.442,
+      "log": "japan-receipt.log",
+      "bytes": 144,
+      "sha256": "db9fe6b5109cea887b8e741665ab76ce1d4602b38f729ea961f44063eae8044d"
+    },
+    {
+      "name": "da-receipt",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs/campaign-certification/C01/reviews/CLAUDE-C01-39/verify_receipt.py",
+        "--external-evidence",
+        "D:/spheres-offload/codex-next-20260928/c01-39-review-evidence-20261001b"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.164,
+      "log": "da-receipt.log",
+      "bytes": 219,
+      "sha256": "5a6e2aa0944fa7f16d81aa644d9e3a72c77f238ac42571415e23eb10d4dd7091"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.176,
+      "log": "diff-check.log",
+      "bytes": 833,
+      "sha256": "11d2cb45f37e46aa3a5cf27c0c61e715b4833bffaddb3d3d96aa215d40f6e57a"
+    }
+  ],
+  "passed": true
+}

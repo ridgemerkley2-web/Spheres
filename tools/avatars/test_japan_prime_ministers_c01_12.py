@@ -18,6 +18,9 @@ import test_japan_ldp_presidents_c01_18 as ldp
 # CLAUDE-C01-29 adds sources for a new party role, jp_sdp_chair, only; its exact source list is pinned in its own test and
 # appended after CLAUDE-C01-18's below.
 import test_japan_sdp_chairs_c01_29 as sdp
+# CLAUDE-C01-31 adds sources for a new party role, jp_komeito_representative, only; its exact source list is pinned in its own
+# test and appended after CLAUDE-C01-29's below.
+import test_japan_komeito_representatives_c01_31 as komeito
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -918,8 +921,9 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (119, 174))
         self.assertEqual([s['id'] for s in self.packet['sources']],
-                         list(ORIGINAL_SOURCES) + NEW_SOURCES + later.NEW_SOURCES + ldp.NEW_SOURCES + sdp.NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 6))
+                         list(ORIGINAL_SOURCES) + NEW_SOURCES + later.NEW_SOURCES + ldp.NEW_SOURCES + sdp.NEW_SOURCES +
+                         komeito.NEW_SOURCES)
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 7))
         self.assertEqual(len(self.packet['organizations']), 16)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
@@ -1042,7 +1046,8 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertTrue(coverage['unresolved'][9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
         self.assertTrue(coverage['unresolved'][10].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
         self.assertTrue(coverage['unresolved'][11].startswith('SDP chairs 1990-2026 (CLAUDE-C01-29'))
-        self.assertEqual(len(coverage['unresolved']), 12)
+        self.assertTrue(coverage['unresolved'][12].startswith('Komeito representatives 1990-2026 (CLAUDE-C01-31'))
+        self.assertEqual(len(coverage['unresolved']), 13)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [16, 7])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -1331,7 +1336,7 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Japan')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (8, 6))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (8, 7))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Japan'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

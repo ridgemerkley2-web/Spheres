@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-28",
+  "updated": "2026-10-01",
   "integration_branch": "codex/campaign-certification",
   "status_source": "docs/planning/campaign-pathway.json",
   "workstreams": [
@@ -61,8 +61,8 @@
         "C07",
         "S23"
       ],
-      "handoff": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
-      "next": "C01-GAPS-01, C03-REVIEW-01, C04-PREP-01, S23-MATRIX-01 and SOURCE-05/06/17/26 are accepted bounded deliveries; their parent character sessions remain open. C01-23/24/25/27/29/30/32–37 are accepted bounded research intake. Russia C01-28 remains held: available-content addendum 031bd0e37e24526dcb3f42449002a31c5b03f654 checks 113/137 claims and 20/24 holder observations; 24 claims, four holder observations and 12 unavailable originals remain held, with no new Russia research imported. Preserve existing work and retain accepted S24/E05 preparation with its recorded limits. Query --tasks --owner Claude. Research cutoff stays 2026-09-07. S23 remains planned pending C06. Next content slice: reconcile an accepted Tonga research batch into dated identities, then a reviewed 6-8-cartoon batch; no parent session or country certificate until its acceptance criteria are met."
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md",
+      "next": "The queue records 26 completed bounded Claude tasks and two held submissions. Komeito C01-31 is now accepted after 31 originals, 64 claims and 15 holder observations were reviewed; C01-38/40/41 also retain bounded acceptance. Russia C01-28 has 65/68 originals and 133/137 claims checked; three originals/four claims remain held. DA C01-39 has one original/claim reviewed; 23 originals and 28 claims remain held, including the latest b66f8c07 follow-up with 12 proposed new holder observations. No held Russia/DA research is imported. See the 1 October pending-review receipt and query --tasks --owner Claude for exact revisions. Preserve all accepted research and S24/E05 preparation limits. Research cutoff stays 2026-09-07. S23 awaits C06. Continue the accepted Tonga identity batch, reviewed 6-8-cartoon batch and complete country cast while source-access holds remain separately tracked. Use actual dated campaign leaders rather than retired selector figures. No parent session or country certificate closes before its criteria are met."
     },
     {
       "id": "qualification",

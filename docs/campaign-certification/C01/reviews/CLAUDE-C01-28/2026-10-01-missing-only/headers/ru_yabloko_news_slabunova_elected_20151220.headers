@@ -1,0 +1,40 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 01 Oct 2026 01:35:06 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+x-archive-orig-server: nginx/1.9.3
+x-archive-orig-date: Tue, 22 Dec 2015 10:36:39 GMT
+x-archive-orig-connection: close
+x-archive-orig-vary: Accept-Encoding
+x-archive-orig-x-powered-by: PHP/5.6.11-1
+x-archive-orig-expires: Sun, 19 Nov 1978 05:00:00 GMT
+x-archive-orig-last-modified: Tue, 22 Dec 2015 10:22:06 GMT
+x-archive-orig-cache-control: store, no-cache, must-revalidate
+x-archive-orig-cache-control: post-check=0, pre-check=0
+x-archive-orig-vary: Accept-Encoding
+cache-control: max-age=1800
+accept-ranges: bytes
+memento-datetime: Tue, 22 Dec 2015 10:36:38 GMT
+link: <http://www.yabloko.ru/news/2015/12/20>; rel="original", <https://web.archive.org/web/timemap/link/http://www.yabloko.ru/news/2015/12/20>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/http://www.yabloko.ru/news/2015/12/20>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: NO404-WKP-20151222094258-crawl345/NO404-WKP-20151222101216-08632.warc.gz
+server-timing: captures_list;dur=0.403250, exclusion.robots;dur=0.030428, exclusion.robots.policy;dur=0.022713, esindex;dur=0.007400, cdx.remote;dur=33.858217, LoadShardBlock;dur=337.882027, PetaboxLoader3.resolve;dur=184.588480, PetaboxLoader3.datanode;dur=176.711043, load_resource;dur=254.892623
+x-app-server: wwwb-app262-dc8
+x-ts: 200
+x-tr: 648
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=6
+set-cookie: wb-p-SERVER=wwwb-app262; path=/
+cache-control: private
+X-location: All
+X-AS: 7922
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+Server-Timing: MISS
+X-NID: COMCAST-7922
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+X-sd: 0
+

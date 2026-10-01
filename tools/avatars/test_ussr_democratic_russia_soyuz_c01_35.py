@@ -182,7 +182,7 @@ PAGES = {
 # SHA-256 of every existing USSR role and holder (name, attested_on, from, until) at the base 44098c5a; unchanged here.
 USSR_BASE_HOLDERS_SHA256 = '3e3571c3a64375cb81fb1b5e7605e36baebb5f74524fd9e90fcd908ef3b77506'
 # CLAUDE-C01-41 later appended dated su_cpsu holders resting on these sources (pinned in test_ussr_cpsu_general_secretary_c01_41);
-# the guard above still covers every holder that existed at 44098c5a, exactly as before.
+# the guard skips only those holders of the two CPSU roles and still covers every holder that existed at 44098c5a, exactly as before.
 C01_41_SOURCES = {'su_pravda_no37_19900206', 'su_pravda_no192_19900711', 'su_pravda_no193_19900712', 'su_pravda_no194_19900713',
                   'su_pravda_no195_19900714', 'su_izv_tsk_1991_08', 'su_pravda_no201_19910822', 'su_vs_bulletin1_cpsu_19910826',
                   'su_ved_1991_35_cpsu', 'su_snd5_bulletin3_cpsu_19910903', 'su_ved_1991_36_cpsu',
@@ -281,7 +281,8 @@ def c35_invariants(ussr, russia):
     assert [r for r in kinds['parliamentary_leader'] if r.startswith('su_')] == [SOYUZ_ROLE]
     # Every existing USSR role and holder is unchanged.
     base = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
-                       if isinstance(h, dict) and not set(h['sources']) & C01_41_SOURCES])
+                       if isinstance(h, dict) and not (r['id'] in ('su_cpsu_general_secretary', 'su_cpsu_deputy_general_secretary')
+                                                       and set(h['sources']) <= C01_41_SOURCES)])
             for g in ('organizations', 'institutions') for e in ussr[g] if e['id'] not in (DR, SOYUZ) for r in e['roles']]
     assert hashlib.sha256(json.dumps(base, ensure_ascii=False).encode('utf-8')).hexdigest() == USSR_BASE_HOLDERS_SHA256
     # Each holder rests on one in-office claim of its own role, dated that day, with no from and no until (rules first, so a
