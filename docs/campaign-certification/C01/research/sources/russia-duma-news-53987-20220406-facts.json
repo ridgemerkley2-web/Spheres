@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_news_53987_20220406",
+  "source_url": "https://web.archive.org/web/20220407135620id_/http://duma.gov.ru/news/53987/",
+  "original_url": "http://duma.gov.ru/news/53987/",
+  "archive_capture_utc": "2022-04-07T13:56:20Z",
+  "source_title": "State Duma news item 53987 of 2022-04-06, 13:10: «Ушел из жизни Владимир Вольфович Жириновский», Internet Archive capture 20220407135620",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-04-06",
+  "document_date": "2022-04-06",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220407135620id_/http://duma.gov.ru/news/53987/",
+  "source_response_bytes": 225439,
+  "source_response_sha256": "3c4962730ce2199a54b1a25bad0328debbc482c897cbc12ac2aed06202f70197",
+  "source_response_encoding": "UTF-8 HTML (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "This packet: downloaded at 2026-10-01T02:32:51Z and again at 2026-10-01T03:19:16Z; identical 225,439 bytes and SHA-256 each time.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://duma.gov.ru/news/53987/, captured at 2022-04-07T13:56:20Z, before the 7 September 2026 cutoff; the official host did not answer direct requests from this environment (connection timeouts). Requested with curl's default User-Agent and no Accept-Encoding header. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations of names and office titles only. No photograph, emblem, signature image, linked biography or expressive article text is republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A dated State Duma website news item (dateline 6.04.2022, 13:10), frozen in the capture; not a growing listing. The page's linked hover biographies, view counter and related-news list are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML converted to text; the headline, subtitle, dateline and article body were read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_news_53987_zhirinovsky_death_reported_20220406",
+      "observation_id": "ru_duma_faction_20211012_ldpr",
+      "review_observation": "RU-FH-03",
+      "role_id": "ru_duma_faction_20211012_ldpr_head",
+      "holder_name": "Владимир Жириновский",
+      "printed_name": "Владимир Вольфович Жириновский",
+      "role_title": "Руководитель фракции — head of the parliamentary faction",
+      "event_kind": "death_reported",
+      "attested_on": "2022-04-06",
+      "text": "A State Duma news item dated 6.04.2022, 13:10, headed 'Ушел из жизни Владимир Вольфович Жириновский', reports the announcement by the Chairman of the State Duma Вячеслав Володин; its subtitle reads 'Депутаты на пленарном заседании почтили память руководителя фракции ЛДПР минутой молчания', and Volodin's quoted message calls him 'Лидер фракции ЛДПР в Государственной Думе'.",
+      "locator": "Headline, subtitle and body, paragraph 1"
+    }
+  ],
+  "bounded_scope": "State Duma faction-head observations for CLAUDE-C01-46 only (the five roles ru_duma_faction_20211012_*_head). Elections, reported selections, acting service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices (including CLAUDE-C01-28's party roles), committee offices and the Duma's leadership are outside this extract."
+}
