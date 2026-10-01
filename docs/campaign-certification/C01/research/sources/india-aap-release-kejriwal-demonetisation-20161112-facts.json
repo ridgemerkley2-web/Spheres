@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aap_release_kejriwal_demonetisation_20161112",
+  "source_url": "https://web.archive.org/web/20161121224935id_/http://www.aamaadmiparty.org:80/aap-national-convenor-delhi-cm-arvind-kejriwal-on-the-demonetization-scam",
+  "original_url": "http://www.aamaadmiparty.org/aap-national-convenor-delhi-cm-arvind-kejriwal-on-the-demonetization-scam",
+  "archive_capture_utc": "2016-11-21T22:49:35Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2016-11-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 101927,
+  "source_response_sha256": "75e16c576352f22121fb589b44c705be9001adb107d9193ccef0f3f016b70223",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2016-11-21T22:49:35Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (the old party pages at these addresses no longer exist on aamaadmiparty.org, which now serves a rebuilt site). This packet downloaded it at 11:41:04Z and 12:28:27Z on 1 October 2026, the first and last 47 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A press release on the party website, printed with the date 12 Nov 2016, recorded as a raw Internet Archive capture of 21 November 2016. It reports a statement made 'on Saturday' and styles the speaker with his party office.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aap_release_kejriwal_national_convenor_20161112",
+      "observation_id": "in_eci_20240323_np_01",
+      "review_observation": "AAP-NC-02",
+      "role_id": "in_aap_national_convenor",
+      "holder_name": "Arvind Kejriwal",
+      "role_title": "National Convenor of the Aam Aadmi Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2016-11-12",
+      "text": "The party's press release dated 12 Nov 2016 says 'AAP national convenor and Delhi Chief Minister Arvind Kejriwal on Saturday exposed the real intention behind the Narendra Modi Government’s sudden decision to demonetize currency of Rs 500 and Rs 1000.'",
+      "locator": {
+        "item": "heading, date line and first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_aap_national_convenor (National Convenor of the Aam Aadmi Party) on the recognition observation in_eci_20240323_np_01. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

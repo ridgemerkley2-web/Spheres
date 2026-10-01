@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aap_nri_release_kejriwal_interact_20131007",
+  "source_url": "https://web.archive.org/web/20140819153447id_/http://nri.aamaadmiparty.org/news/arvind-kejriwal-national-convener-of-the-aam-aadmi-party-aap-to-interact-online-with-supporters",
+  "original_url": "http://nri.aamaadmiparty.org/news/arvind-kejriwal-national-convener-of-the-aam-aadmi-party-aap-to-interact-online-with-supporters",
+  "archive_capture_utc": "2014-08-19T15:34:47Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2013-10-07",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 60785,
+  "source_response_sha256": "2ee8b421727527d8913feee110c67507f0d584e46e1696eabb2943475e226d42",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-08-19T15:34:47Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (the old party pages at these addresses no longer exist on aamaadmiparty.org, which now serves a rebuilt site). This packet downloaded it at 11:53:24Z and 12:28:13Z on 1 October 2026, the first and last 34 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A release on the party's NRI website (nri.aamaadmiparty.org), datelined 'Silicon Valley, California, USA (October 7, 2013)', from the party's volunteers in the USA and Canada, recorded as a raw Internet Archive capture of 19 August 2014. It announces an online Hangout with the party's National Convener and ends with a note on the party that styles him in the present tense.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aap_nri_kejriwal_national_convener_20131007",
+      "observation_id": "in_eci_20240323_np_01",
+      "review_observation": "AAP-NC-01",
+      "role_id": "in_aap_national_convenor",
+      "holder_name": "Arvind Kejriwal",
+      "role_title": "National Convenor of the Aam Aadmi Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2013-10-07",
+      "text": "The party's NRI release datelined 'Silicon Valley, California, USA (October 7, 2013)' is headed 'Arvind Kejriwal, National Convener of the Aam Aadmi Party (AAP), to interact online with supporters in USA and Canada on October 20th', and its note on the party says 'AAP was formally launched in November 2012 and Arvind Kejriwal is AAP’s National Convener.'",
+      "locator": {
+        "item": "heading, dateline and closing note on the party"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_aap_national_convenor (National Convenor of the Aam Aadmi Party) on the recognition observation in_eci_20240323_np_01. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_npp_notification_manipur_candidates_20220204",
+  "source_url": "https://web.archive.org/web/20220204184638id_/https://nppindia.in/wp-content/uploads/2022/02/Manipur-Election-2022-List-of-candidates.pdf",
+  "original_url": "https://nppindia.in/wp-content/uploads/2022/02/Manipur-Election-2022-List-of-candidates.pdf",
+  "archive_capture_utc": "2022-02-04T18:46:38Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2022-02-04",
+  "access_method": "downloaded_archived_raw_capture_pdf_page_images_viewed",
+  "source_response_bytes": 1071596,
+  "source_response_sha256": "41996d12d265283d5417e5dab78e56777d131873cbc1c002bee57f778c83096d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-02-04T18:46:38Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (nppindia.in now serves a rebuilt site without these WordPress pages and files). This packet downloaded it at 11:56:52Z and 12:29:24Z on 1 October 2026, the first and last 32 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A two-page scanned notification on the letterhead of the party's National President, dated Shillong, 4 February 2022, and signed by him, stored on the party website and recorded as a raw Internet Archive capture of 4 February 2022.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Scanned pages 1 and 2 viewed from the images embedded in the PDF."
+  },
+  "rows": [
+    {
+      "claim_id": "in_npp_notification_conrad_sangma_national_president_20220204",
+      "observation_id": "in_eci_20240323_np_06",
+      "review_observation": "NPP-NP-02",
+      "role_id": "in_npp_national_president",
+      "holder_name": "Conrad K. Sangma",
+      "role_title": "National President of the National People's Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2022-02-04",
+      "text": "The party's notification NPP/HQ/ORG/228, 'Dated Shillong, the 4th February, 2022', on the letterhead of 'CONRAD K. SANGMA, National President', lists the candidates the Central Election Management Committee finalised 'today' for the 12th Manipur Legislative Assembly and is signed '(Conrad K. Sangma) National President'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "letterhead, reference and date line; signature on page 2"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_npp_national_president (National President of the National People's Party) on the recognition observation in_eci_20240323_np_06. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

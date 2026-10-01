@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_npp_site_conrad_sangma_page_2021",
+  "source_url": "https://web.archive.org/web/20210225155801id_/https://nppindia.in/conrad-sangma/",
+  "original_url": "https://nppindia.in/conrad-sangma/",
+  "archive_capture_utc": "2021-02-25T15:58:01Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 124635,
+  "source_response_sha256": "49746d13db3a631891d73a4291b8880da8ff0ea4de5888b0039340bc5b8cdb69",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2021-02-25T15:58:01Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (nppindia.in now serves a rebuilt site without these WordPress pages and files). This packet downloaded it at 11:40:14Z and 12:29:20Z on 1 October 2026, the first and last 49 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An undated biography of the party's National President on the party website, recorded as a raw Internet Archive capture of 25 February 2021. A retrospective page.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_npp_site_conrad_sangma_elected_national_president_march_2016",
+      "observation_id": "in_eci_20240323_np_06",
+      "review_observation": "NPP-NP-02",
+      "role_id": "in_npp_national_president",
+      "holder_name": "Conrad K. Sangma",
+      "role_title": "National President of the National People's Party",
+      "event_kind": "election_recalled_month_only",
+      "attested_on": null,
+      "text": "The party website's page on Conrad Sangma says 'He was elected as the National President of the National People's Party (NPP) in March 2016, following his father's demise earlier that year.'",
+      "locator": {
+        "item": "biography, fourth paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_npp_national_president (National President of the National People's Party) on the recognition observation in_eci_20240323_np_06. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

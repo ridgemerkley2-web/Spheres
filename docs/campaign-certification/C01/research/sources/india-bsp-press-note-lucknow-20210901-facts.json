@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bsp_press_note_lucknow_20210901",
+  "source_url": "https://web.archive.org/web/20211230002707id_/https://www.bspindia.org/download/pr/01-09-2021-BSP-PRESS-NOTE-REVIEW-MEETING-2.pdf",
+  "original_url": "https://www.bspindia.org/download/pr/01-09-2021-BSP-PRESS-NOTE-REVIEW-MEETING-2.pdf",
+  "archive_capture_utc": "2021-12-30T00:27:07Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2021-09-01",
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read",
+  "source_response_bytes": 84146,
+  "source_response_sha256": "cc7bb6a8f3cdb8c44fb9dbb0377705fb71ff0a588260832daf1c636d4f516c35",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2021-12-30T00:27:07Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (bspindia.org did not resolve when this packet checked it on 1 October 2026). This packet downloaded it at 11:39:56Z and 12:29:09Z on 1 October 2026, the first and last 49 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A two-page Hindi press note headed 'बी.एस.पी. द्वारा जारी प्रेस विज्ञप्ति-दिनांक 01-09-2021' and issued by the party's Uttar Pradesh state office in Lucknow, stored on the party website and recorded as a raw Internet Archive capture of 30 December 2021. Its text layer uses a legacy (Kruti Dev) Hindi font encoding, transliterated to Unicode for reading.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 read from the PDF text layer, transliterated from the legacy font encoding; no page was rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bsp_press_note_mayawati_national_president_20210901",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-02",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Mayawati",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2021-09-01",
+      "text": "The party's press note dated 01-09-2021, datelined 'लखनऊ, 01 सितम्बर 2021, दिन बुधवार' (Lucknow, Wednesday), says that 'बहुजन समाज पार्टी की राष्ट्रीय अध्यक्ष' (the National President of the Bahujan Samaj Party), former MP and former Chief Minister of Uttar Pradesh, सुश्री मायावती (Ms Mayawati), continued 'आज भी' (today too) her meetings with senior office bearers of about ten divisions of Uttar Pradesh.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "dateline paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_bsp_national_president (National President of the Bahujan Samaj Party) on the recognition observation in_eci_20240323_np_02. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bsp_press_release_cochin_20090703",
+  "source_url": "https://web.archive.org/web/20090726014731id_/http://bspindia.org:80/bsp-press-releases.php",
+  "original_url": "http://bspindia.org/bsp-press-releases.php",
+  "archive_capture_utc": "2009-07-26T01:47:31Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2009-07-03",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28694,
+  "source_response_sha256": "f3a4c8848b2447e83f8b68ef4da93495bf3c0f15f0f38c9d883e6ad71901f7ae",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-07-26T01:47:31Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (bspindia.org did not resolve when this packet checked it on 1 October 2026). This packet downloaded it at 11:39:31Z and 12:28:58Z on 1 October 2026, the first and last 49 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's press-release page as captured by the Internet Archive on 26 July 2009, carrying the party's 'Nationwide Awareness Campaign' release datelined 'Cochin:, July 3, 2009'. The release recalls the death of the party's founder.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bsp_release_founder_president_kanshi_ram_died_20061009",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-01",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Kanshi Ram",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "death_recalled_with_founder_styling",
+      "attested_on": "2006-10-09",
+      "text": "The party's 'Nationwide Awareness Campaign' press release datelined 'Cochin:, July 3, 2009' says 'Hon’ble Kanshi Ramji, the founder President BSP died on October 9, 2006'.",
+      "locator": {
+        "item": "release datelined Cochin, July 3, 2009, third paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_bsp_national_president (National President of the Bahujan Samaj Party) on the recognition observation in_eci_20240323_np_02. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

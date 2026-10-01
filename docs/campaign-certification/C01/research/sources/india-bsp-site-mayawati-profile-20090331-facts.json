@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bsp_site_mayawati_profile_2009",
+  "source_url": "https://web.archive.org/web/20090331050921id_/http://bspindia.org:80/kumari-mayawati.php",
+  "original_url": "http://bspindia.org/kumari-mayawati.php",
+  "archive_capture_utc": "2009-03-31T05:09:21Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 32452,
+  "source_response_sha256": "28f7c635183844976aa42772a3d17a9922b223a787eeedd6eac991b2024dba2d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-03-31T05:09:21Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (bspindia.org did not resolve when this packet checked it on 1 October 2026). This packet downloaded it at 11:39:10Z and 12:28:54Z on 1 October 2026, the first and last 49 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An undated profile of the party's President on the party website, with a dated timeline of her career, recorded as a raw Internet Archive capture of 31 March 2009. A retrospective page: its timeline entries are recalled, not attested on the day, and its present-tense styling has no date of its own.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bsp_profile_mayawati_assumed_national_president_20030918",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-02",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Mayawati",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "assumption_recalled_retrospective",
+      "attested_on": "2003-09-18",
+      "text": "The party website's profile of its President, Kumari Mayawati, lists '18 September, 2003 : Assumed the office of Bahujan Samaj Party's National President after Mr. Kanshi Ram Ji suddenly fell seriously ill following a brain stroke.'",
+      "locator": {
+        "item": "Political and administrative experience, timeline entry for 18 September 2003"
+      }
+    },
+    {
+      "claim_id": "in_bsp_profile_mayawati_reelected_national_president_20060827",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-02",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Mayawati",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "election_recalled_dated",
+      "attested_on": "2006-08-27",
+      "text": "The same profile of Mayawati lists '27 August, 2006 : Re-elected as National President of the Bahujan Samaj Party unanimously in an All India Delegate Conference held at Lucknow.'",
+      "locator": {
+        "item": "Political and administrative experience, timeline entry for 27 August 2006"
+      }
+    },
+    {
+      "claim_id": "in_bsp_profile_mayawati_at_present_national_president",
+      "observation_id": "in_eci_20240323_np_02",
+      "review_observation": "BSP-NP-02",
+      "role_id": "in_bsp_national_president",
+      "holder_name": "Mayawati",
+      "role_title": "National President of the Bahujan Samaj Party",
+      "event_kind": "undated_office_styling",
+      "attested_on": null,
+      "text": "The same profile is headed 'Our President: Bahan Kumari Mayawati' and says 'At present, National President of the Bahujan Samaj Party (BSP).'",
+      "locator": {
+        "item": "heading and personal details"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_bsp_national_president (National President of the Bahujan Samaj Party) on the recognition observation in_eci_20240323_np_02. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aap_letter_to_eci_new_national_executive_20160531",
+  "source_url": "https://web.archive.org/web/20170329121746id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/AAP_Org_2016-19.pdf",
+  "original_url": "http://eci.nic.in/eci_main/mis-Political_Parties/Organisational_Elections/AAP_Org_2016-19.pdf",
+  "archive_capture_utc": "2017-03-29T12:17:46Z",
+  "accessed_date": "2026-10-01",
+  "published_date": "2016-05-31",
+  "access_method": "downloaded_archived_raw_capture_pdf_page_images_viewed",
+  "source_response_bytes": 623833,
+  "source_response_sha256": "708dfdf9cdba85e1e7ffee454932cd68f645a8ae49c63658060d7419772b6891",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-03-29T12:17:46Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live address (eci.nic.in no longer resolves and eci.gov.in answers curl with HTTP 406 Not Acceptable, a block this packet did not work around). This packet downloaded it at 11:51:37Z and 12:28:22Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's letter to the Commission dated 31.05.2016, signed by its National Secretary, and its enclosures, among them a 'Certified true excerpt of the minutes of the meeting of National Executive of Aam Aadmi Party held on 27th April, 2016' signed for the party by its office bearers; a four-page scan the Commission published among its organisational-election papers, recorded as a raw Internet Archive capture of 29 March 2017.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3
+    ],
+    "method": "Scanned pages 1 and 3 viewed from the images embedded in the PDF; the OCR text layer was used only to locate them."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aap_ne_minutes_kejriwal_convener_wef_20160427",
+      "observation_id": "in_eci_20240323_np_01",
+      "review_observation": "AAP-NC-02",
+      "role_id": "in_aap_national_convenor",
+      "holder_name": "Arvind Kejriwal",
+      "role_title": "National Convenor of the Aam Aadmi Party",
+      "event_kind": "office_bearer_election_effective_day_stated",
+      "attested_on": "2016-04-27",
+      "text": "The party's letter of 31 May 2016 to the Election Commission says the new National Executive 'in its 1st meeting on 27th April has elected new office bearers of the party', and the enclosed certified excerpt of the National Executive's minutes of 27 April 2016 records that it 'ELECTED THE FOLLOWING PERSONS AS OFFICE BEARER OF THE PARTY W.E.F. 27.04.2016', the first being 'ARVIND KEJRIWAL – NATIONAL CONVENER'.",
+      "locator": {
+        "pdf_page": 3,
+        "item": "certified excerpt of the minutes; letter on page 1"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-48 only: the role in_aap_national_convenor (National Convenor of the Aam Aadmi Party) on the recognition observation in_eci_20240323_np_01. Elections, effective-day statements, in-office attestations, later attestations, retrospective pages, stylings and recalled events stay separate rows; holder boundaries are decided in the packet, not by any row. Other party offices, state and parliamentary offices and every other organisation are excluded as holders."
+}

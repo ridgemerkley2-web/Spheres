@@ -756,6 +756,11 @@ LEAD_URL_MARKERS = ('wikipedia', 'eparlib.nic.in.510/', 'eparlib.nic.in.3144', '
                     'New_Jharkhand_PCC', 'PR_AICC_GS_and_Incharges', 'brief-history-of-congress/1985-1995',
                     'sansad.in')
 # URL patterns of responses generated per request, growing listings, searches, cache-busting queries or session state.
+# CLAUDE-C01-48 adds one party role on each of the AAP, BSP and NPP recognition observations and appends its sources in
+# that order: (observation, role, sources, claims).
+C01_48_ROLES = (('in_eci_20240323_np_01', 'in_aap_national_convenor', 8, 8),
+                ('in_eci_20240323_np_02', 'in_bsp_national_president', 6, 10),
+                ('in_eci_20240323_np_06', 'in_npp_national_president', 5, 6))
 PER_REQUEST = re.compile(r'[?&](cb|_|s|q|token|sessionid)=|reviewcb|X-Amz-|Signature=|cdx/search|email-protection|cdn-cgi|'
                          r'press-releases/page/|/search|nocache|form_build_id|ASPSESSION|__VIEWSTATE', re.I)
 OFFICIAL_HOSTS = {'bucketapi.rajyasabha.digital', 'res.cloudinary.com'}
@@ -800,10 +805,14 @@ def inc_rules(packet, rows):
     leaders = [(e['id'], r['id']) for e in packet['organizations'] + packet['institutions'] for r in e['roles']
                if r['kind'] == 'party_leader' or r['id'] == ROLE]
     # CLAUDE-C01-27's party role on the Bharatiya Janata Party observation, CLAUDE-C01-40's party role on the Communist
-    # Party of India (Marxist) observation and CLAUDE-C01-33's party role on the Janata Dal observation are the only
+    # Party of India (Marxist) observation, CLAUDE-C01-33's party role on the Janata Dal observation and CLAUDE-C01-48's
+    # party roles on the Aam Aadmi Party, Bahujan Samaj Party and National People's Party observations are the only
     # other party-leader roles.
-    assert leaders == [('in_eci_20240323_np_03', 'in_bjp_president'),
+    assert leaders == [('in_eci_20240323_np_01', 'in_aap_national_convenor'),
+                       ('in_eci_20240323_np_02', 'in_bsp_national_president'),
+                       ('in_eci_20240323_np_03', 'in_bjp_president'),
                        ('in_eci_20240323_np_04', 'in_cpm_general_secretary'), (ORG, ROLE),
+                       ('in_eci_20240323_np_06', 'in_npp_national_president'),
                        ('in_eci_19980110_np_06', 'in_jd_president')], \
         'no other party-leader role and no copy of this one'
     assert set(role['claim_ids']) <= set(org['claim_ids']) and set(role['sources']) <= set(org['sources'])
@@ -924,11 +933,17 @@ class IndiaIncPresidentsTests(unittest.TestCase):
         # CLAUDE-C01-40 appends the sources of the CPI(M) party role after those; its own test pins them.
         cpm, = [r for o in self.packet['organizations'] if o['id'] == 'in_eci_20240323_np_04' for r in o['roles']]
         self.assertEqual((cpm['id'], len(cpm['sources']), len(cpm['claim_ids'])), ('in_cpm_general_secretary', 20, 26))
+        # CLAUDE-C01-48 appends the sources of its AAP, BSP and NPP party roles after those; its own test pins them.
+        c01_48 = []
+        for org_id, role_id, n_sources, n_claims in C01_48_ROLES:
+            new, = [r for o in self.packet['organizations'] if o['id'] == org_id for r in o['roles']]
+            self.assertEqual((new['id'], len(new['sources']), len(new['claim_ids'])), (role_id, n_sources, n_claims))
+            c01_48 += new['sources']
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + pm['sources'] + presidency['sources'] + NEW_SOURCES + bjp['sources']
-                         + jd['sources'] + cpm['sources'])
+                         + jd['sources'] + cpm['sources'] + c01_48)
         self.assertEqual((pm['sources'], presidency['sources']), (c01_11.NEW_SOURCES, c01_15.NEW_SOURCES))
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 6))
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 9))
         self.assertEqual(len(self.packet['organizations']), 83)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = [cid for ids_ in HOLDER_CLAIMS for cid in ids_]
@@ -1036,9 +1051,11 @@ class IndiaIncPresidentsTests(unittest.TestCase):
         self.assertTrue(coverage['unresolved'][10].startswith('BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10)'))
         self.assertTrue(coverage['unresolved'][11].startswith('Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, '
                                                               'JD-PRES-01..08)'))
-        self.assertTrue(coverage['unresolved'][-1].startswith('CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, '
+        self.assertTrue(coverage['unresolved'][12].startswith('CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, '
                                                               'CPM-GS-01..06)'))
-        self.assertEqual(len(coverage['unresolved']), 13)
+        self.assertTrue(coverage['unresolved'][-1].startswith('BSP, AAP and NPP national leaders 1990-2026 (CLAUDE-C01-48, '
+                                                              'AAP-NC-01..02, BSP-NP-01..02, NPP-NP-01..02)'))
+        self.assertEqual(len(coverage['unresolved']), 14)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [6, 76])
 
     def test_party_and_state_offices_stay_separate(self):
@@ -1395,7 +1412,7 @@ class IndiaIncPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'India')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 6))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 9))
         self.assertEqual(country['mapping_pending'], 85)
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'India'}, {'open'})
         self.assertFalse(index['c01_complete'])

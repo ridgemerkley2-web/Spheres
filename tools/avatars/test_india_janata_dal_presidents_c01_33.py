@@ -284,6 +284,12 @@ REPORT = research.RESEARCH / 'india-janata-dal-presidents-1990-2026-33.md'
 C01_40_ORG = 'in_eci_20240323_np_04'
 C01_40_ROLE = 'in_cpm_general_secretary'
 C01_40_COUNTS = (20, 26)
+
+# CLAUDE-C01-48 adds one party role on each of the AAP, BSP and NPP recognition observations and appends its sources in
+# that order: (observation, role, sources, claims).
+C01_48_ROLES = (('in_eci_20240323_np_01', 'in_aap_national_convenor', 8, 8),
+                ('in_eci_20240323_np_02', 'in_bsp_national_president', 6, 10),
+                ('in_eci_20240323_np_06', 'in_npp_national_president', 5, 6))
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-33.md'
 
 
@@ -335,9 +341,12 @@ def jd_rules(packet, rows):
     leaders = [(e['id'], r['id']) for e in packet['organizations'] + packet['institutions'] for r in e['roles']
                if r['kind'] == 'party_leader' or r['id'] == ROLE]
     # CLAUDE-C01-40's party role on the Communist Party of India (Marxist) observation, added after this packet, sits
-    # between the BJP and Congress roles in observation order.
-    assert leaders == [(c01_27.ORG, c01_27.ROLE), (C01_40_ORG, C01_40_ROLE), (c01_20.ORG, c01_20.ROLE), (ORG, ROLE)], \
-        'the four party-leader roles only, and no copy of this one'
+    # between the BJP and Congress roles in observation order; CLAUDE-C01-48's AAP and BSP roles come before the BJP
+    # role and its NPP role after the Congress role.
+    assert leaders == [(C01_48_ROLES[0][0], C01_48_ROLES[0][1]), (C01_48_ROLES[1][0], C01_48_ROLES[1][1]),
+                       (c01_27.ORG, c01_27.ROLE), (C01_40_ORG, C01_40_ROLE), (c01_20.ORG, c01_20.ROLE),
+                       (C01_48_ROLES[2][0], C01_48_ROLES[2][1]), (ORG, ROLE)], \
+        'the seven party-leader roles only, and no copy of this one'
     assert set(role['claim_ids']) <= set(org['claim_ids']) and set(role['sources']) <= set(org['sources'])
     # Organisation claims never sit on the role, and role claims always do.
     assert not set(role['claim_ids']) & set(ORG_CLAIMS), 'an organisation claim moved onto the role'
@@ -473,12 +482,17 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
         inc, bjp = other_role(self.packet, c01_20.ORG), other_role(self.packet, c01_27.ORG)
         cpm = other_role(self.packet, C01_40_ORG)
         self.assertEqual((cpm['id'], len(cpm['sources']), len(cpm['claim_ids'])), (C01_40_ROLE,) + C01_40_COUNTS)
+        c01_48 = []
+        for org_id, role_id, n_sources, n_claims in C01_48_ROLES:
+            new, = [r for o in self.packet['organizations'] if o['id'] == org_id for r in o['roles']]
+            self.assertEqual((new['id'], len(new['sources']), len(new['claim_ids'])), (role_id, n_sources, n_claims))
+            c01_48 += new['sources']
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(c01_27.ORIGINAL_SOURCES) + pm['sources'] + presidency['sources'] + inc['sources']
-                         + bjp['sources'] + NEW_SOURCES + cpm['sources'])
+                         + bjp['sources'] + NEW_SOURCES + cpm['sources'] + c01_48)
         self.assertEqual((pm['sources'], presidency['sources'], inc['sources'], bjp['sources']),
                          (c01_11.NEW_SOURCES, c01_15.NEW_SOURCES, c01_20.NEW_SOURCES, c01_27.NEW_SOURCES))
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 6))
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 9))
         self.assertEqual(len(self.packet['organizations']), 83)
         # Every new claim is an organisation claim, a holder claim or a role claim that never feeds a holder; never two.
         holder_claims = [cid for ids_ in HOLDER_CLAIMS for cid in ids_]
@@ -589,9 +603,11 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
         self.assertTrue(coverage['unresolved'][11].startswith('Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, '
                                                               'JD-PRES-01..08)'))
         self.assertTrue(coverage['unresolved'][10].startswith('BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10)'))
-        self.assertTrue(coverage['unresolved'][-1].startswith('CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, '
+        self.assertTrue(coverage['unresolved'][12].startswith('CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, '
                                                               'CPM-GS-01..06)'))
-        self.assertEqual(len(coverage['unresolved']), 13)
+        self.assertTrue(coverage['unresolved'][-1].startswith('BSP, AAP and NPP national leaders 1990-2026 (CLAUDE-C01-48, '
+                                                              'AAP-NC-01..02, BSP-NP-01..02, NPP-NP-01..02)'))
+        self.assertEqual(len(coverage['unresolved']), 14)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [6, 76])
 
     def test_splits_and_successors_are_claims_about_the_organisation_only(self):
@@ -1013,7 +1029,7 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         self.assertEqual((country['organization_observations'], country['institution_observations'],
-                          country['role_observations']), (83, 2, 6))
+                          country['role_observations']), (83, 2, 9))
         self.assertEqual(country['mapping_pending'], 85)
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'India'}, {'open'})
         self.assertIn(ORG, next(w for w in index['work_orders'] if w['nation'] == 'India' and ORG in w['members'])[
