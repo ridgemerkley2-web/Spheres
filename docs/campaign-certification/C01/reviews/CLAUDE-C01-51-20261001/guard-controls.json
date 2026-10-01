@@ -1,0 +1,49 @@
+[
+  {
+    "case": "unmodified exact submitted packet",
+    "expected": "accepted",
+    "actual": "accepted"
+  },
+  {
+    "case": "extend original July 1991 VP holder with otherwise correct removal citation",
+    "expected": "rejected",
+    "actual": "rejected",
+    "exception": "AssertionError",
+    "message": ""
+  },
+  {
+    "case": "treat suspension as end",
+    "expected": "rejected",
+    "actual": "rejected",
+    "exception": "AssertionError",
+    "message": "[('Александр Владимирович Руцкой', '1991-07-29', None, None, ['ru_rsfsr_vp_rasp_1rv_signed_as_vice_president_19910729']), ('Александр Владимирович Руцкой', '1991-12-05', None, None, ['ru_rsfsr_vp_rasp_8rv_signed_as_vice_president_19911205']), ('Александр Владимирович Руцкой', '1992-01-16', None, Non"
+  },
+  {
+    "case": "remove explicit removal citation",
+    "expected": "rejected",
+    "actual": "rejected",
+    "exception": "AssertionError",
+    "message": "[('Александр Владимирович Руцкой', '1991-07-29', None, None, ['ru_rsfsr_vp_rasp_1rv_signed_as_vice_president_19910729']), ('Александр Владимирович Руцкой', '1991-12-05', None, None, ['ru_rsfsr_vp_rasp_8rv_signed_as_vice_president_19911205']), ('Александр Владимирович Руцкой', '1992-01-16', None, Non"
+  },
+  {
+    "case": "make printed signature an effective accession",
+    "expected": "rejected",
+    "actual": "rejected",
+    "exception": "AssertionError",
+    "message": "[('Борис Николаевич Ельцин', '1991-07-19', '1991-07-19', None, ['ru_rsfsr_ukaz_8_signed_as_president_rsfsr_19910719']), ('Борис Николаевич Ельцин', '1991-11-19', None, None, ['ru_rsfsr_rasp_98rp_signed_as_president_rsfsr_19911119']), ('Борис Николаевич Ельцин', '1991-12-26', None, None, ['ru_rsfsr_u"
+  },
+  {
+    "case": "turn competing acting claim into a holder",
+    "expected": "rejected",
+    "actual": "rejected",
+    "exception": "AssertionError",
+    "message": ""
+  },
+  {
+    "case": "extend RSFSR entity lifetime from postrename signature",
+    "expected": "rejected",
+    "actual": "rejected",
+    "exception": "AssertionError",
+    "message": ""
+  }
+]

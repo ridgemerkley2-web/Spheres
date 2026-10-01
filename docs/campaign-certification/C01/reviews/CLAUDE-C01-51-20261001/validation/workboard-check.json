@@ -1,0 +1,18 @@
+{
+  "name": "workboard-check",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/planning/workboard.py",
+    "--check"
+  ],
+  "started_utc": "2026-10-01T14:30:41.278531+00:00",
+  "elapsed_seconds": 0.117,
+  "exit_code": 0,
+  "log": "validation/workboard-check.log",
+  "log_bytes": 146,
+  "log_sha256": "cf7a708deb40945f526e1a9158df99c0ea8115617d47c436b54032de8bebf16e"
+}

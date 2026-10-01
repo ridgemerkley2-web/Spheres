@@ -1,0 +1,24 @@
+{
+  "name": "ussr-tests",
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\russia",
+  "command": [
+    "D:/spheres-offload/codex-next-20260928/tonga-cast-production-20261001/civilian/coverage-venv/Scripts/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_ussr*.py",
+    "-v"
+  ],
+  "started_utc": "2026-10-01T14:27:34.669891+00:00",
+  "elapsed_seconds": 3.15,
+  "exit_code": 0,
+  "log": "validation/ussr-tests.log",
+  "log_bytes": 8775,
+  "log_sha256": "687527b42ebcadbf058a023066ce7b9271cae11dc5670c8458df7cda55216fc4"
+}
