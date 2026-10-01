@@ -1,0 +1,25 @@
+{
+  "command": [
+    "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_brazil*.py",
+    "-v"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-43-20261001",
+  "started_utc": "2026-10-01T04:58:19.754337+00:00",
+  "finished_utc": "2026-10-01T04:58:33.133651+00:00",
+  "exit_code": 0,
+  "output": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\validation\\brazil-focused-precontent.log",
+    "bytes": 9132,
+    "sha256": "f0e959525e542fa7bfb331999a656ff50db357b9aacd3c82b06482ea82e0fdf9"
+  }
+}

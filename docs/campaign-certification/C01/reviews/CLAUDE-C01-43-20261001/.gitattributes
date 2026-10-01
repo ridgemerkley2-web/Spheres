@@ -1,0 +1,4 @@
+# Raw command output preserves emitted line endings and hashes.
+* -text
+validation/** -text
+validation/*.log -diff

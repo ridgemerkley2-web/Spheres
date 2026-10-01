@@ -1,0 +1,76 @@
+{
+  "reader": "Codex independent reviewer",
+  "method": "Poppler pdftoppm PNG render followed by visual inspection; PDF text extraction alone not used",
+  "pdf_info_checks": [
+    {
+      "command": [
+        "C:/Users/ridge/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin/pdfinfo.exe",
+        "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_ata_executiva_20180703.decoded.pdf"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_ata_executiva_20180703.decoded.pdfinfo.txt",
+        "bytes": 436,
+        "sha256": "254ba704f34e4c81f5911f6e9ff5672dbb865464c94f4d83d42549a48a065f2b"
+      }
+    },
+    {
+      "command": [
+        "C:/Users/ridge/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin/pdfinfo.exe",
+        "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_edital_convencao_20180719.decoded.pdf"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_edital_convencao_20180719.decoded.pdfinfo.txt",
+        "bytes": 435,
+        "sha256": "495f3ddf6b4d309a8f7ffb6513796f20f47249a76d5ea7d39accc826fa5d64c4"
+      }
+    },
+    {
+      "command": [
+        "C:/Users/ridge/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin/pdfinfo.exe",
+        "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_resolucao_02_2018_20180725.decoded.pdf"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\c01-43-review-evidence-20261001\\attempt-01\\br_agir_ptc_resolucao_02_2018_20180725.decoded.pdfinfo.txt",
+        "bytes": 435,
+        "sha256": "0551395d0ec03a54069f209630394022fa086987368a73f9901f712a63225ba0"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.page1.png",
+      "bytes": 2227929,
+      "sha256": "1945af5b0827d0df28292276e2ab88c0d2d97ff4c06a7bd932db4b5b8a8ba592",
+      "source_id": "br_agir_ptc_ata_executiva_20180703",
+      "page_one_based": 1,
+      "read_visually": true
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_ata_executiva_20180703.page2.png",
+      "bytes": 1643591,
+      "sha256": "104f222d44058169961cb5ea2ab86eea5d22adc8126c8b983dc30e72259ef750",
+      "source_id": "br_agir_ptc_ata_executiva_20180703",
+      "page_one_based": 2,
+      "read_visually": true
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_edital_convencao_20180719.page1.png",
+      "bytes": 1120192,
+      "sha256": "8e947369dab9e687c0ce320056e70614251aad18dce760dbc74675d87d88255d",
+      "source_id": "br_agir_ptc_edital_convencao_20180719",
+      "page_one_based": 1,
+      "read_visually": true
+    },
+    {
+      "path": "attempt-01/br_agir_ptc_resolucao_02_2018_20180725.page1.png",
+      "bytes": 1234474,
+      "sha256": "98fab7dacb15be301482b2363f2d980ce1470fc434dd4ffc7fb5285bef51c38c",
+      "source_id": "br_agir_ptc_resolucao_02_2018_20180725",
+      "page_one_based": 1,
+      "read_visually": true
+    }
+  ]
+}
