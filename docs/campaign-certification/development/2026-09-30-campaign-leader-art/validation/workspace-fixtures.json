@@ -1,0 +1,835 @@
+{
+  "format": "spheres-sparse-workspace-fixture-audit/v1",
+  "checked_utc": "2026-09-30T23:39:02.489805+00:00",
+  "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+  "scope": [
+    "spheres-sim/src",
+    "spheres-sim/tests",
+    "spheres-cli"
+  ],
+  "tracked_crate_files_checked": 367,
+  "rust_files_scanned": 209,
+  "include_references_checked": 189,
+  "unique_include_dependencies": 188,
+  "restored": [
+    {
+      "path": "spheres-sim/examples/audit_leadership_save_upgrade.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 3687,
+      "sha256": "31d7f24b8cdc71b75ee2f105f0ac5489e4dcdbb9dc2c2dc101a335c6658dd0e8"
+    },
+    {
+      "path": "spheres-sim/examples/daily_calibration.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 33375,
+      "sha256": "ef0521afb1216eb0c8cc5591f97824e4fd4aed15aa9e695a4bee22492429cd50"
+    },
+    {
+      "path": "spheres-sim/examples/economic_competition_census.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 20093,
+      "sha256": "113447a3add4a3f8abe3da426843d300142adffaacc3798bacc2fba12f06f38a"
+    },
+    {
+      "path": "spheres-sim/examples/economic_competition_profile.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 2225,
+      "sha256": "3bf7c5b5e7d85bd42147cfc79d317066d5998991005f12e6aa5e1314183e120f"
+    },
+    {
+      "path": "spheres-sim/examples/export_future_leadership.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 2277,
+      "sha256": "8a07d1559b3e4c068b3f3ac7ff7ebd28a308842545e6d1dd669d1554c380ee9a"
+    },
+    {
+      "path": "spheres-sim/examples/export_party_leadership_views.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 1758,
+      "sha256": "0c4982647ee7da374942feb863ad664aaacba7fc26ee43f20ed640e087afb100"
+    },
+    {
+      "path": "spheres-sim/examples/materials_census.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 32650,
+      "sha256": "d0c76b9731e19903c6518b2e236f0a9e11d406c1f414c4e59f8ed5de5f12610d"
+    },
+    {
+      "path": "spheres-sim/examples/materials_profile.rs",
+      "reason": "tracked simulation/CLI workspace dependency absent from sparse checkout",
+      "source_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+      "bytes": 7466,
+      "sha256": "a473ab2d899f6eb351c9162ada1796de441cb3ac8790918fe8d966f2da3e4ecb"
+    }
+  ],
+  "include_references": [
+    {
+      "source": "spheres-sim/src/armed_security.rs",
+      "path": "spheres-sim/data/armed_security_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/army_authority.rs",
+      "path": "spheres-sim/data/army_authority_1989.json"
+    },
+    {
+      "source": "spheres-sim/src/army_institutions.rs",
+      "path": "spheres-sim/data/army_institutions_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/army_institutions.rs",
+      "path": "spheres-sim/data/army_institution_coverage_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/companies.rs",
+      "path": "spheres-sim/src/companies_ammunition.rs"
+    },
+    {
+      "source": "spheres-sim/src/companies.rs",
+      "path": "spheres-sim/src/companies_refits.rs"
+    },
+    {
+      "source": "spheres-sim/src/companies.rs",
+      "path": "spheres-sim/src/companies_imports.rs"
+    },
+    {
+      "source": "spheres-sim/src/companies.rs",
+      "path": "spheres-sim/src/companies_stock_target_tests.rs"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/usa.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/ussr.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/china.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/japan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/germany.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/uk.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/france.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/italy.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/india.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/pakistan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/iraq.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/kuwait.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/saudiarabia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/iran.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/southkorea.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/poland.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/brazil.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/indonesia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/egypt.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/israel.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/turkey.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/nigeria.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/vietnam.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/yugoslavia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/spain.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/netherlands.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/belgium.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/sweden.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/switzerland.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/austria.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/portugal.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/greece.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/denmark.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/norway.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/finland.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/ireland.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/czechoslovakia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/hungary.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/romania.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/bulgaria.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/albania.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/argentina.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/mexico.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/chile.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/colombia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/venezuela.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/peru.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/cuba.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/bolivia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/ecuador.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/uruguay.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/syria.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/jordan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/lebanon.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/uae.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/qatar.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/oman.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/yemen.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/bahrain.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/algeria.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/morocco.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/tunisia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/libya.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/sudan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/southafrica.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/ethiopia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/kenya.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/ghana.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/zaire.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/angola.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/zimbabwe.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/tanzania.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/uganda.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/senegal.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/cameroon.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/bangladesh.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/srilanka.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/nepal.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/afghanistan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/myanmar.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/northkorea.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/taiwan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/mongolia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/thailand.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/malaysia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/singapore.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/philippines.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/cambodia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/laos.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/canada.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/australia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/newzealand.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/dominicanrepublic.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/haiti.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/jamaica.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/trinidadtobago.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/bahamas.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/chad.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/centralafricanrepublic.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/congo.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/gabon.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/equatorialguinea.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/saotome.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/guatemala.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/honduras.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/elsalvador.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/nicaragua.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/costarica.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/panama.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/belize.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/madagascar.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/mauritius.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/seychelles.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/comoros.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/capeverde.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/fiji.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/solomonislands.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/vanuatu.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/samoa.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/tonga.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/brunei.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/papuanewguinea.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/bhutan.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/maldives.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/iceland.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/luxembourg.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/malta.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/cyprus.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/mozambique.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/zambia.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/malawi.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/botswana.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/lesotho.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/swaziland.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/paraguay.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/guyana.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/nations/suriname.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/relations_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/data/embedded.rs",
+      "path": "spheres-sim/data/leaders_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/data/movements.rs",
+      "path": "spheres-sim/data/movements_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/districts.rs",
+      "path": "spheres-sim/data/districts.json"
+    },
+    {
+      "source": "spheres-sim/src/districts.rs",
+      "path": "spheres-web/data/district_population.json"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_specs.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_ground.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_ground_receipt.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_aviation.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_supply.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_service.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_maintenance.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_targets.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_replenishment.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_ammunition_production.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_ammunition_operations.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_ammunition_reserves.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_air_support.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment.rs",
+      "path": "spheres-sim/src/equipment_supply_automation.rs"
+    },
+    {
+      "source": "spheres-sim/src/equipment_air_support.rs",
+      "path": "spheres-sim/src/equipment_air_support_tests.rs"
+    },
+    {
+      "source": "spheres-sim/src/government.rs",
+      "path": "spheres-sim/src/government.rs"
+    },
+    {
+      "source": "spheres-sim/src/government.rs",
+      "path": "spheres-sim/src/government.rs"
+    },
+    {
+      "source": "spheres-sim/src/logistics.rs",
+      "path": "spheres-sim/data/logistics_network.json"
+    },
+    {
+      "source": "spheres-sim/src/military_ai_tests.rs",
+      "path": "spheres-sim/src/military_import_command_tests.rs"
+    },
+    {
+      "source": "spheres-sim/src/military_ai_tests.rs",
+      "path": "spheres-sim/src/military_empty_import_tests.rs"
+    },
+    {
+      "source": "spheres-sim/src/military_ai_tests.rs",
+      "path": "spheres-sim/src/military_ground_offer_tests.rs"
+    },
+    {
+      "source": "spheres-sim/src/opening_mandates.rs",
+      "path": "spheres-sim/data/opening_mandates_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/party_executive_eligibility.rs",
+      "path": "spheres-sim/data/party_executive_eligibility.json"
+    },
+    {
+      "source": "spheres-sim/src/party_executive_eligibility_tests.rs",
+      "path": "docs/research/usa-party-roles-1990-starter.json"
+    },
+    {
+      "source": "spheres-sim/src/party_executive_eligibility_tests.rs",
+      "path": "docs/research/france-party-leaders-1990-2026.json"
+    },
+    {
+      "source": "spheres-sim/src/party_leadership.rs",
+      "path": "spheres-sim/data/party_leaders.json"
+    },
+    {
+      "source": "spheres-sim/src/party_leadership_future.rs",
+      "path": "spheres-sim/data/future_party_continuation.json"
+    },
+    {
+      "source": "spheres-sim/src/party_leadership_future.rs",
+      "path": "spheres-sim/data/future_party_leadership.json"
+    },
+    {
+      "source": "spheres-sim/src/party_leadership_seats.rs",
+      "path": "spheres-sim/data/future_party_leadership_seats.json"
+    },
+    {
+      "source": "spheres-sim/src/population.rs",
+      "path": "spheres-sim/data/population_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/resources.rs",
+      "path": "spheres-sim/data/resources_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/resources.rs",
+      "path": "spheres-sim/src/commitment.rs"
+    },
+    {
+      "source": "spheres-sim/src/resources.rs",
+      "path": "spheres-sim/src/theatre.rs"
+    },
+    {
+      "source": "spheres-sim/src/resources.rs",
+      "path": "spheres-sim/src/resources.rs"
+    },
+    {
+      "source": "spheres-sim/src/resources.rs",
+      "path": "spheres-sim/src/districts.rs"
+    },
+    {
+      "source": "spheres-sim/src/resources.rs",
+      "path": "spheres-sim/src/resource_replenishment.rs"
+    },
+    {
+      "source": "spheres-sim/src/sector_profiles.rs",
+      "path": "spheres-sim/data/sectors_1990.json"
+    },
+    {
+      "source": "spheres-sim/src/starting_industry.rs",
+      "path": "spheres-sim/data/industry_1990.json"
+    },
+    {
+      "source": "spheres-sim/tests/treasury.rs",
+      "path": "spheres-sim/src/stratagems.rs"
+    }
+  ],
+  "manual_runtime_review": "Runtime file reads in simulation tests use environment-supplied immutable checkpoints in explicitly ignored tests. exact.rs recursively reads the present simulation source tree. CLI runtime resume path is user supplied; no checked-in CLI test fixture. CARGO_MANIFEST_DIR population fallback and research JSON includes are present.",
+  "index_sha256_before": "23db2863457720e7aec26e7f409e35b43430f8f9999034330fb2da403e1c71d1",
+  "index_sha256_after": "23db2863457720e7aec26e7f409e35b43430f8f9999034330fb2da403e1c71d1",
+  "source_or_tests_edited": false,
+  "tests_run": false
+}

@@ -10,11 +10,11 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 
 | Role | Path | Bytes | SHA-256 |
 |---|---|---:|---|
-| historical_portraits | `spheres-web/data/person_portraits.json` | 290378 | `1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d` |
+| historical_portraits | `spheres-web/data/person_portraits.json` | 307745 | `a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176` |
 | fictional_portraits | `spheres-web/data/fictional_portraits.json` | 7666 | `54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c` |
 | selector_figures | `spheres-web/data/nation_figures.json` | 408800 | `f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962` |
 | display_derivatives | `spheres-web/ui/display-art/manifest.json` | 133156 | `afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb` |
-| production_inventory | `spheres-web/data/leadership_production_2035.json` | 5984743 | `f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8` |
+| production_inventory | `spheres-web/data/leadership_production_2035.json` | 5997885 | `a8bd893961a80fd586c21d4c4cd7b32d52426260bb89625b6fc7114e2489fb82` |
 | fictional_catalog | `spheres-web/data/future_candidates_2035.json` | 3273947 | `75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492` |
 | person_registry | `spheres-sim/data/party_leaders.json` | 1262625 | `18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494` |
 | reference_audit_uk | `spheres-web/ui/person-portraits/references/source-review-uk-v1.json` | 5505 | `16baa8bba813953530af586c621f783548a2a501033f7b62bcb37c2aff5d40f1` |
@@ -25,18 +25,23 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 
 | Collection | Items | Source |
 |---|---:|---|
-| historical | 54 | Historical person cartoons |
+| historical | 59 | Historical person cartoons |
 | fictional | 4 | Fictional successor cartoons (not real people) |
-| selector | 160 | Country-selector historical figures |
 | unregistered | 5 | Tracked cartoon-root files bound by no manifest (not active avatars) |
-| missing | 411 | Known people with sourced art windows and no cartoon |
+| missing | 406 | Known people with sourced art windows and no cartoon |
 
-677 image files inventoried, 677 present: `spheres-web/ui/person-portraits` 71, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
+63 active historical/fictional cartoon records have an asset path. 160 retired national-icon records are retained separately in `archived_selector`; they are not campaign leaders, active collections or active style references. Their byte pins, source/rights findings and original visual sample remain in this audit.
+
+| Audit scope | Errors | Warnings | Notices |
+|---|---:|---:|---:|
+| Active / unresolved | 0 | 2 | 482 |
+| Archived national icons | 0 | 17 | 160 |
+
+687 image files inventoried, 687 present: `spheres-web/ui/person-portraits` 81, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
 
 ## Style references
 
 - **approved person-cartoon style anchor (production inventory)**: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`
-- **country-selector style reference (most cited "Style reference" in selector prompt records)**: `spheres-web/ui/leader-art/USA-leader-088ed05335f8.png` (cited by 159 prompt records)
 - **reviewed reference cartoon (S10.c Tupou IV review)**: `spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png`
 
 ## Automated findings by code
@@ -50,7 +55,7 @@ Severity: **error** = integrity failure; **warning** = needs a decision; **notic
 | `identity_photo_selected_automatically` | notice | 143 | The identity photograph record states an automated title-match selection. |
 | `identity_reference_generated` | warning | 2 | The identity reference named in the prompt record is an earlier generated study, not a source photograph. |
 | `interval_after_death` | notice | 3 | The appearance interval continues after the recorded death date. |
-| `missing_art` | notice | 411 | A known person has sourced art windows but no cartoon. |
+| `missing_art` | notice | 406 | A known person has sourced art windows but no cartoon. |
 | `reference_rights_not_recorded` | notice | 49 | The identity reference is not shipped and its rights are not recorded in the manifest. |
 | `sharealike_derivative_license_not_recorded` | warning | 17 | The identity reference is ShareAlike-licensed but no derivative licence is recorded for the artwork. |
 | `text_led_interpretation` | notice | 17 | No freely licensed identity photograph; the artwork is a text-led interpretation of a resolved identity. |
@@ -62,7 +67,7 @@ None: every bound file exists, has a readable header and matches its recorded ha
 
 ## Duplicate images bound to different identities
 
-None found among 677 files (exact SHA-256 comparison; 0 duplicate groups in total).
+None found among 687 files (exact SHA-256 comparison; 0 duplicate groups in total).
 
 ## Warnings
 
@@ -97,7 +102,7 @@ None found among 677 files (exact SHA-256 comparison; 0 duplicate groups in tota
   - David Cameron: 1287 days of sourced art windows are not covered: 2013-01-01 → 2016-07-11 (end excluded)
   - Paddy Ashdown: 1681 days of sourced art windows are not covered: 1995-01-01 → 1999-08-09 (end excluded)
   - Tony Blair: 1635 days of sourced art windows are not covered: 2003-01-01 → 2007-06-24 (end excluded)
-- **Missing art** (411 people with sourced art windows and no cartoon), by country: Germany 59, Australia 39, France 36, United Kingdom 33, Japan 32, Brazil 24, India 21, Canada 20, Italy 13, South Africa 11, China 2, United States 2; one each in 119 other countries.
+- **Missing art** (406 people with sourced art windows and no cartoon), by country: Germany 59, Australia 39, France 35, United Kingdom 33, Japan 32, Brazil 23, Canada 20, India 20, Italy 13, South Africa 11, China 2, United States 2; one each in 117 other countries.
 
 ## Source and rights gaps
 
@@ -109,9 +114,9 @@ None found among 677 files (exact SHA-256 comparison; 0 duplicate groups in tota
 
 ## Recorded review decisions (existing manifests)
 
+- archived selector: free-text production review recorded: 160
 - fictional: design and visual recorded true: 4
-- historical: identity, likeness, era and visual all recorded true: 54
-- selector: free-text production review recorded: 160
+- historical: identity, likeness, era and visual all recorded true: 59
 
 These are decisions recorded by earlier production passes. This export reproduces them; it does not re-decide or endorse them.
 

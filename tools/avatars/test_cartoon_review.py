@@ -184,23 +184,47 @@ class FixtureCase(unittest.TestCase):
     def item(export, item_id):
         return next(i for i in export['items'] if i['id'] == item_id)
 
+    @staticmethod
+    def archived(export, item_id):
+        return next(i for i in export['archived_selector'] if i['id'] == item_id)
+
 
 class CleanFixture(FixtureCase):
+    def test_archive_only_nation_keeps_roster_metadata_without_an_active_figure(self):
+        self.fx.production['countries'].append({'id': 'Retiredland', 'name': 'Retired Republic'})
+        self.fx.figures['nations']['Retiredland'] = {
+            'figure': 'Former Founder', 'wikidata': 'Q2', 'years': '1800–1870'}
+        export = self.export()
+        self.assertEqual(export['nations']['Retiredland'], 'Retired Republic')
+        self.assertFalse(any('Retiredland' in i.get('countries', []) for i in export['items']))
+        self.assertEqual(self.archived(export, 'selector:Retiredland')['name'], 'Former Founder')
+        self.assertEqual(export['summary']['countries_with_items'], 2)
+        self.assertEqual(export['summary']['cartoon_items_with_files'], 3)
+
     def test_clean_fixture_has_no_errors_and_labels_every_collection(self):
         export = self.export()
         self.assertEqual(self.codes(export, severity='error'), [])
         self.assertEqual(export['file_inventory'], 'filesystem')
-        self.assertEqual(export['summary']['items'], {'historical': 2, 'fictional': 1, 'selector': 1, 'unregistered': 0, 'missing': 1})
+        self.assertEqual(export['summary']['items'], {'historical': 2, 'fictional': 1, 'unregistered': 0, 'missing': 1})
+        self.assertEqual(export['summary']['cartoon_items_with_files'], 3)
+        self.assertEqual(export['summary']['archived_selector_items'], 1)
+        self.assertEqual(export['summary']['archived_selector_items_with_files'], 1)
+        self.assertNotIn('selector', export['collections'])
+        self.assertFalse(any(i['id'].startswith('selector:') for i in export['items']))
         self.assertEqual(export['summary']['approved_by_this_export'], 0)
         self.assertIn('not visual approval', export['statement'])
         self.assertIn('fictional', self.item(export, 'fictional:fictional_v1_testland_p_01#0')['labels'])
         self.assertIn('missing-art', self.item(export, 'missing:carol')['labels'])
         self.assertNotIn('missing:dave', [i['id'] for i in export['items']], 'no art window means no missing-art card')
-        selector = self.item(export, 'selector:Testland')
-        self.assertEqual(selector['card'], self.fx.leader_display, 'the selector card is the display derivative the game uses')
+        selector = self.archived(export, 'selector:Testland')
+        self.assertEqual(selector['card'], self.fx.leader_display, 'the retired display derivative remains pinned for audit')
+        self.assertTrue(selector['archived'])
+        self.assertEqual(selector['labels'][0], 'archived-selector')
         self.assertEqual(export['nations']['Testland'], 'Testland Republic')
         roles = [ref['role'] for ref in export['style_references']]
-        self.assertTrue(any('person-cartoon style anchor' in r for r in roles) and any('country-selector' in r for r in roles))
+        self.assertTrue(any('person-cartoon style anchor' in r for r in roles))
+        self.assertFalse(any('country-selector' in r for r in roles))
+        self.assertTrue(all(ref['path'].startswith(PP + '/') for ref in export['style_references']))
         self.assertEqual(self.item(export, 'historical:alice#0')['labels'][:2], ['historical', 'style-reference'])
 
     def test_file_facts_come_from_headers_for_png_webp_and_jpeg(self):
@@ -213,6 +237,16 @@ class CleanFixture(FixtureCase):
         for bad in (b'not an image', b'\x89PNG\r\n\x1a\n\x00\x00', b'RIFF\x00\x00\x00\x00WEBPVP8 '):
             with self.assertRaises(ValueError):
                 cr.image_info(bad)
+
+    def test_dated_person_and_reviewed_tupou_style_references_remain(self):
+        self.fx.files['docs/campaign-certification/S10/c/manifest.json'] = json.dumps({
+            'portrait_scope': {'person_id': 'bob', 'from': '1990-01-01', 'to': '1990-07-01'}
+        }).encode('utf-8')
+        export = self.export()
+        self.assertEqual([ref['item'] for ref in export['style_references']],
+                         ['historical:alice#0', 'historical:bob#0'])
+        self.assertIn('S10.c Tupou IV review', export['style_references'][1]['role'])
+        self.assertNotIn('style-reference', self.archived(export, 'selector:Testland')['labels'])
 
 
 class MissingFiles(FixtureCase):
@@ -242,6 +276,28 @@ class MissingFiles(FixtureCase):
         paths = {(f['code'], f.get('path')) for f in export['findings']}
         self.assertIn(('missing_file', self.fx.photo_display), paths)
         self.assertIn(('display_derivative_stale', self.fx.leader_display), paths)
+
+    def test_archived_integrity_errors_keep_identity_and_reference_bindings(self):
+        self.fx.figures['nations']['Testland']['leader_art']['sha256'] = '0' * 64
+        self.fx.files[self.fx.photo_display] = b'broken old derivative'
+        export = self.export()
+        selector = self.archived(export, 'selector:Testland')
+        self.assertIn('integrity-error', selector['labels'])
+        failures = [f for f in export['findings'] if f['severity'] == 'error']
+        self.assertEqual({f['code'] for f in failures}, {'hash_mismatch', 'unreadable_image'})
+        self.assertTrue(all(f['scope'] == 'archived_selector' for f in failures))
+        self.assertEqual(export['summary']['findings_by_severity']['error'], 2)
+        self.assertEqual(export['summary']['active_findings_by_severity']['error'], 0)
+        self.assertEqual(export['summary']['archived_selector_findings_by_severity']['error'], 2)
+        files = {f['path']: f for f in export['files']}
+        self.assertEqual(files[self.fx.photo_display]['bindings'],
+                         [['identity-photo-display-derivative', 'figure:Q1', 'selector:Testland']])
+        self.assertEqual(files[f'spheres-web/ui/portraits/{self.fx.photo_name}']['bindings'],
+                         [['identity-reference-photo', 'figure:Q1', 'selector:Testland']])
+        self.assertNotIn('unbound_file', self.codes(export))
+        rendered = cr.render(export)
+        self.assertIn('hash_mismatch@selector:Testland', rendered)
+        self.assertIn('| Archived national icons | 2 |', rendered)
 
 
 class Intervals(FixtureCase):
@@ -371,7 +427,7 @@ class Rights(FixtureCase):
         prompt = self.item(export, 'historical:alice#0')['prompt']
         self.assertEqual(prompt['reference_files'], ['anchor.png', 'alice-1989.jpg'])
         self.assertNotIn('C:\\', json.dumps(export))
-        selector_prompt = self.item(export, 'selector:Testland')['prompt']
+        selector_prompt = self.archived(export, 'selector:Testland')['prompt']
         text = self.fx.files['tools/avatars/prompts/Testland-founder-one-v1.md'].replace(b'\r\n', b'\n')
         self.assertEqual(selector_prompt['sha256_lf'], sha(text), 'text provenance is hashed after CRLF normalization')
         del self.fx.files['tools/avatars/prompts/Testland-founder-one-v1.md']
@@ -399,6 +455,32 @@ class VisualReviewGuard(FixtureCase):
         self.assertIn('visual_review_stale', self.codes(self.export(), 'historical:alice#0', 'warning'))
         self.fx.sample = self.sample(item='historical:nobody#0')
         self.assertIn('visual_review_unknown_item', self.codes(self.export(), severity='error'))
+
+    def test_retired_visual_sample_is_audited_without_becoming_active(self):
+        asset = f'spheres-web/ui/leader-art/{self.fx.leader_name}'
+        self.fx.sample = self.sample(item='selector:Testland', sha256=sha(self.fx.files[asset]))
+        original_sample = copy.deepcopy(self.fx.sample)
+        export = self.export()
+        self.assertEqual(self.fx.sample, original_sample)
+        self.assertNotIn('visual_review_unknown_item', self.codes(export))
+        self.assertTrue(self.archived(export, 'selector:Testland')['visual_review']['current_sha256_matches'])
+        self.assertIn('sample-reviewed', self.archived(export, 'selector:Testland')['labels'])
+        self.assertFalse(any(i['id'] == 'selector:Testland' for i in export['items']))
+        self.assertEqual(export['visual_review_sample']['entries'][0],
+                         {**original_sample['entries'][0], 'current_sha256_matches': True})
+        self.fx.sample['entries'][0]['sha256'] = '1' * 64
+        stale = next(f for f in self.export()['findings'] if f['code'] == 'visual_review_stale')
+        self.assertEqual((stale['item'], stale['scope']), ('selector:Testland', 'archived_selector'))
+
+    def test_unknown_archived_sample_retains_context_and_remains_an_error(self):
+        self.fx.sample = self.sample(item='selector:Atlantis')
+        export = self.export()
+        finding = next(f for f in export['findings'] if f['code'] == 'visual_review_unknown_item')
+        self.assertEqual(finding['item'], 'selector:Atlantis')
+        self.assertEqual(finding['severity'], 'error')
+        self.assertEqual(finding['scope'], 'active', 'unknown records must not disappear into a trusted archive')
+        self.assertEqual(export['summary']['active_findings_by_severity']['error'], 1)
+        self.assertIn('selector:Atlantis', cr.render(export))
 
     def test_sample_can_never_record_approval(self):
         for bad in ({'decision': 'approved'}, {'decision': 'accepted'}, {'approved': True}, {'fixes': []}, {'fixes': ['  ']}):

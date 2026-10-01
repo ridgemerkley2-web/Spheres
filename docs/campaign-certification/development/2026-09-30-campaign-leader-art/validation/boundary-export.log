@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 1739, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 1724, in main
+    outputs = build(args.root)
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 1368, in build
+    packets, owners, listed, other_records = packet_provenance(inputs)
+                                             ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 315, in packet_provenance
+    note = inputs.text(PENDING_NOTE)
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 183, in text
+    return self._read(rel).decode('utf-8-sig')
+           ~~~~~~~~~~^^^^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 173, in _read
+    require(path.is_file(), f'Required input is missing: {rel}')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\spheres-opening-leader-art-20260930\tools\avatars\certified_boundary_matrix.py", line 151, in require
+    raise MatrixError(message)
+MatrixError: Required input is missing: docs/campaign-certification/verification/2026-09-27-claude-integration.md

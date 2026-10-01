@@ -23,9 +23,9 @@
   },
   "input_hashes": {
     "spheres-sim/src/nations.rs": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
-    "spheres-sim/src/government.rs": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "spheres-sim/src/government.rs": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
     "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
-    "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "spheres-web/data/person_portraits.json": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
     "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
   },
   "counts": {
@@ -41,12 +41,12 @@
     "parties_with_declared_history_gaps": 623,
     "known_historical_people": 590,
     "known_party_terms": 393,
-    "validated_cartoon_people": 54,
-    "validated_cartoon_assets": 54,
+    "validated_cartoon_people": 59,
+    "validated_cartoon_assets": 59,
     "validated_fictional_cartoon_people": 4,
     "validated_fictional_cartoon_assets": 4,
-    "validated_cartoon_total_assets": 58,
-    "pending_historical_art_jobs": 704,
+    "validated_cartoon_total_assets": 63,
+    "pending_historical_art_jobs": 699,
     "people_without_researched_eligibility": 126,
     "countries_with_complete_all_party_history": 0,
     "images_generated_by_this_tool": 0
@@ -114216,11 +114216,59 @@
           "note": "The seed confirms identity on 1 January 1990 only; no unsourced office end or later eligibility is inferred."
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:fahd_bin_abdulaziz_al_saud:1990-01-01:1990-01-02:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+          "sha256": "c6ef6fd60fae7fcd729edfd78ce4230eacc0070143c0c3732a6550daa617156e",
+          "bytes": 1612311,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-30",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_and_King_Fahd_bin_Abdulaziz_Al_Saud_discuss_the_situation_in_Iraq.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen. Artistic adaptation, pose and color interpretation. Reference: George H. W. Bush Presidential Library and Museum, official White House photograph P17638-18, 21 November 1990; public domain.",
+          "era_note": "1990 artistic appearance from the 21 November 1990 photograph. Subject is the man seated at right in white robes, not Bush, the central attendee or a background soldier. Standing pose and shoes are artistic extensions. Appearance interval only; historical role data independently controls use.",
+          "identity_source": {
+            "person_id": "fahd_bin_abdulaziz_al_saud",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/fahd-1990-reference.jpg",
+            "sha256": "9c3a9b7c03a1cc8a30aaf466cda4d7b584285bf5cf67079b9dd17a8246674f1b",
+            "bytes": 361366,
+            "width": 700,
+            "height": 468,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_and_King_Fahd_bin_Abdulaziz_Al_Saud_discuss_the_situation_in_Iraq.jpg",
+            "license": "PDM-1.0",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "credit": "George H. W. Bush Presidential Library and Museum, official White House photograph P17638-18, 21 November 1990; public domain.",
+            "rights_statement": "Specific photograph identified as an official-duty US federal government work under 17 USC 105 on the Commons file record.",
+            "depiction_date": "1990-11-21"
+          },
+          "prompt_record": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1990-v1.txt",
+          "generation_record": "Exact generation and any background correction retained in tools/avatars/person-prompts/opening-1990-batch-v1.json. Final PNG is a byte-identical built-in output.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual comparison with dated reference and approved cartoon style; artistic likeness, not human approval",
+            "reviewed_at": "2026-09-30"
+          },
+          "visual_note": "Reviewed the right-hand white-cloaked subject, broad face, moustache/chin beard and white gold-edged bisht; final cartoon contains only Fahd with both hands and shoes.",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "fatafehi_tuipelehake",
@@ -114613,11 +114661,59 @@
           "note": "The seed confirms identity on 1 January 1990 only; no unsourced office end or later eligibility is inferred."
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:francois_mitterrand:1990-01-01:1990-01-02:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
+          "sha256": "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0",
+          "bytes": 1610252,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-30",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:President_Mitterand_bij_slotzitting_Europa_Congres_Mitterand,_kop,_Bestanddeelnr_934-2444_(portrait_crop).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen. Artistic adaptation, pose and color interpretation. Reference: Rob Croes / Anefo, Nationaal Archief, 7 May 1988, archive 934-2444; CC0 1.0. Commons portrait crop.",
+          "era_note": "Near-1990 illustrated appearance based on a photograph dated 7 May 1988. Colors, standing pose and lower body are artistic extensions of a monochrome headshot. Appearance interval only; historical role data independently controls use.",
+          "identity_source": {
+            "person_id": "francois_mitterrand",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/francois-mitterrand-1988-reference.jpg",
+            "sha256": "6b12d2462cfce5f0cd021162fdb4be6ba20e7b1868e8b016d4877db7e9af86fa",
+            "bytes": 827622,
+            "width": 1875,
+            "height": 2361,
+            "mode": "L",
+            "source_url": "https://commons.wikimedia.org/wiki/File:President_Mitterand_bij_slotzitting_Europa_Congres_Mitterand,_kop,_Bestanddeelnr_934-2444_(portrait_crop).jpg",
+            "license": "CC0 1.0",
+            "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "credit": "Rob Croes / Anefo, Nationaal Archief, 7 May 1988, archive 934-2444; CC0 1.0. Commons portrait crop.",
+            "rights_statement": "The specific Nationaal Archief/Anefo photograph is released under CC0 1.0 on its Commons file record.",
+            "depiction_date": "1988-05-07"
+          },
+          "prompt_record": "tools/avatars/person-prompts/francois-mitterrand-cartoon-1990-v1.txt",
+          "generation_record": "Exact generation and any background correction retained in tools/avatars/person-prompts/opening-1990-batch-v1.json. Final PNG is a byte-identical built-in output.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual comparison with dated reference and approved cartoon style; artistic likeness, not human approval",
+            "reviewed_at": "2026-09-30"
+          },
+          "visual_note": "Receding gray hair, prominent nose, thin lips and reserved expression match the observed Mitterrand reference; full-body silhouette and outlines remain clear.",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "frank_walter_steinmeier",
@@ -118554,11 +118650,59 @@
           "note": "The seed confirms identity on 1 January 1990 only; no unsourced office end or later eligibility is inferred."
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:jose_sarney:1990-01-01:1990-01-02:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/jose-sarney-cartoon-1990-v1.png",
+          "sha256": "8a35a2676cf1fca13312858f40cdfa80db9e25fe42af642fd982af5723a7e346",
+          "bytes": 1546316,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-30",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:President_Jos%C3%A9_Sarney_in_1986.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen. Artistic adaptation, pose and color interpretation. Reference: White House Photographic Office / Ronald Reagan Presidential Library / National Archives and Records Administration, C36804-12; 10 September 1986. Commons crop by OliverDF.",
+          "era_note": "Near-1990 artistic interpretation informed by a four-year-old photograph, not an exact 1990 image. Broad smiling face; silver hair swept backward; grey moustache; dark slate-blue suit, white shirt and silvery blue tie. Reference cropped above waist. Full-body legs/hands/shoes must be explicit artistic extensions. Appearance interval only; historical role data independently controls use.",
+          "identity_source": {
+            "person_id": "jose_sarney",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/jose-sarney-white-house-1986-v1.jpg",
+            "sha256": "f8f0250e72f3b408d77a2f6b9c7f51c17c759878294963a5e286b6ebbb21c4e0",
+            "bytes": 169529,
+            "width": 553,
+            "height": 775,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:President_Jos%C3%A9_Sarney_in_1986.jpg",
+            "license": "PDM-1.0",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "credit": "White House Photographic Office / Ronald Reagan Presidential Library / National Archives and Records Administration, C36804-12; 10 September 1986. Commons crop by OliverDF.",
+            "rights_statement": "Specific work identified by Commons as an official-duty United States Federal Government photograph under 17 USC 105, with Public Domain Mark 1.0. Derived from NARA item 276564133.",
+            "depiction_date": "1986-09-10"
+          },
+          "prompt_record": "tools/avatars/person-prompts/jose-sarney-cartoon-1990-v1.txt",
+          "generation_record": "Exact generation and any background correction retained in tools/avatars/person-prompts/opening-1990-batch-v1.json. Final PNG is a byte-identical built-in output.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual comparison with dated reference and approved cartoon style; artistic likeness, not human approval",
+            "reviewed_at": "2026-09-30"
+          },
+          "visual_note": "Codex compared the downloaded source and generated full-body cartoon: Broad smiling face; silver hair swept backward; grey moustache; dark slate-blue suit, white shirt and silvery blue tie. Reference cropped above waist. Full-body legs/hands/shoes must be explicit artistic extensions.",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "joseph_warioba",
@@ -121806,11 +121950,59 @@
           "note": "The seed confirms identity on 1 January 1990 only; no unsourced office end or later eligibility is inferred."
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:mikhail_gorbachev:1990-01-01:1990-01-02:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png",
+          "sha256": "175124a0e596c74c028167b6d5ad482b5540a7d6de0360704922e440c38fb316",
+          "bytes": 1568740,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-30",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Gorbachev_(cropped)_186420.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen. Artistic adaptation, pose and color interpretation. Reference: Susan Biddle / White House Photographic Office, NARA 186420, Helsinki summit, 9 September 1990; public domain. Commons crop/enhancement by G-Man.",
+          "era_note": "1990 illustrated appearance from a small 200 x 187 crop dated 9 September 1990. Spectacles and civilian clothing follow the reference; headset and microphone omitted. Standing pose and simplified birthmark are artistic interpretation. Appearance interval only; historical role data independently controls use.",
+          "identity_source": {
+            "person_id": "mikhail_gorbachev",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1990-reference.jpg",
+            "sha256": "6a8ddddb5b74f9f8e9d9bb31ad5a47172f528db13cad5fafc7d32fff42ccea72",
+            "bytes": 62551,
+            "width": 200,
+            "height": 187,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Gorbachev_(cropped)_186420.jpg",
+            "license": "PDM-1.0",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "credit": "Susan Biddle / White House Photographic Office, NARA 186420, Helsinki summit, 9 September 1990; public domain. Commons crop/enhancement by G-Man.",
+            "rights_statement": "Specific official White House photograph is a US federal official-duty work under 17 USC 105; Commons records public-domain source review against NARA 186420.",
+            "depiction_date": "1990-09-09"
+          },
+          "prompt_record": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1990-v1.txt",
+          "generation_record": "Exact generation and any background correction retained in tools/avatars/person-prompts/opening-1990-batch-v1.json. Final PNG is a byte-identical built-in output.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual comparison with dated reference and approved cartoon style; artistic likeness, not human approval",
+            "reviewed_at": "2026-09-30"
+          },
+          "visual_note": "Reviewed rounded face, receding gray hair, spectacles, birthmark and civilian suit; no headset or unrelated person. Small source limits fine facial detail.",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "miklos_nemeth",
@@ -127286,11 +127478,61 @@
           "note": "The seed confirms identity on 1 January 1990 only; no unsourced office end or later eligibility is inferred."
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:v_p_singh:1990-01-01:1990-01-02:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/v-p-singh-cartoon-1990-v1.png",
+          "sha256": "433318848a194020dd2ca2e23ae54a25a169a14c11476b449c9e3dbc1ac66613",
+          "bytes": 1646088,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-30",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Visit_of_Vishwanath_Pratap_Singh,_Indian_Minister_for_Trade,_to_the_CEC_(cropped).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen. Artistic adaptation, pose and color interpretation. Reference: Christian Lambiotte / European Commission, 30 May 1983, P-001604/01-21; copyright European Union. Commons crop by Zoozaz1. CC BY 4.0.",
+          "era_note": "Near-1990 artistic interpretation informed by a seven-year-old reference. No exact 1990 photo established. PM India independently identifies the person and 1989-1990 premiership. Three-quarter profile looking to viewer right; narrow face and prominent nose; neatly trimmed dark moustache; thick dark square glasses; textured karakul cap; high-collared dark coat. Reference is monochrome and head/shoulders only, so color, unobserved side of face and lower-body extensions are artistic interpretations. Appearance interval only; historical role data independently controls use.",
+          "identity_source": {
+            "person_id": "v_p_singh",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/v-p-singh-european-commission-1983-v1.jpg",
+            "sha256": "d6de3353c7809ffdd2b2066822813cb1c866610a7cbfd0a884d153cfc5f7d2d4",
+            "bytes": 370090,
+            "width": 785,
+            "height": 1052,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Visit_of_Vishwanath_Pratap_Singh,_Indian_Minister_for_Trade,_to_the_CEC_(cropped).jpg",
+            "license": "CC BY 4.0",
+            "license_url": "https://creativecommons.org/licenses/by/4.0/",
+            "credit": "Christian Lambiotte / European Commission, 30 May 1983, P-001604/01-21; copyright European Union. Commons crop by Zoozaz1. CC BY 4.0.",
+            "rights_statement": "Specific EC Audiovisual Service photo recorded as CC BY 4.0, author Christian Lambiotte - European Commission; license review dated 9 February 2024 is retained on Commons. Attribution/source/license and changes must accompany adaptations; no endorsement claimed.",
+            "depiction_date": "1983-05-30"
+          },
+          "prompt_record": "tools/avatars/person-prompts/v-p-singh-cartoon-1990-v1.txt",
+          "generation_record": "Exact generation and any background correction retained in tools/avatars/person-prompts/opening-1990-batch-v1.json. Final PNG is a byte-identical built-in output.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual comparison with dated reference and approved cartoon style; artistic likeness, not human approval",
+            "reviewed_at": "2026-09-30"
+          },
+          "visual_note": "Codex compared the downloaded source and generated full-body cartoon: Three-quarter profile looking to viewer right; narrow face and prominent nose; neatly trimmed dark moustache; thick dark square glasses; textured karakul cap; high-collared dark coat. Reference is monochrome and head/shoulders only, so color, unobserved side of face and lower-body extensions are artistic interpretations.",
+          "derivative_license": "CC BY 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "vaclav_havel",
@@ -131544,27 +131786,6 @@
       "note": "Requested appearance window only; it does not extend an office, affiliation or life."
     },
     {
-      "id": "cartoon:fahd_bin_abdulaziz_al_saud:1990-01-01:1990-01-02:v1",
-      "person_id": "fahd_bin_abdulaziz_al_saud",
-      "name": "Fahd bin Abdulaziz Al Saud",
-      "from": "1990-01-01",
-      "to": "1990-01-02",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.worldstatesmen.org/Saudi_Arabia.htm",
-        "https://en.wikipedia.org/wiki/Fahd_of_Saudi_Arabia",
-        "https://en.wikipedia.org/wiki/Abdullah_of_Saudi_Arabia"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
       "id": "cartoon:felipe_gonzalez:1990-01-01:1990-01-02:v1",
       "person_id": "felipe_gonzalez",
       "name": "Felipe Gonzalez",
@@ -131980,27 +132201,6 @@
       "identity_sources": [
         "https://www.france-politique.fr/chronologie-parti-radical.htm",
         "https://www.france-politique.fr/chronologie-udf.htm"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:francois_mitterrand:1990-01-01:1990-01-02:v1",
-      "person_id": "francois_mitterrand",
-      "name": "Francois Mitterrand",
-      "from": "1990-01-01",
-      "to": "1990-01-02",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand",
-        "https://en.wikipedia.org/wiki/Michel_Rocard",
-        "https://www.worldstatesmen.org/France.html"
       ],
       "requirements": [
         "dated likeness reference",
@@ -134862,28 +135062,6 @@
       "note": "Requested appearance window only; it does not extend an office, affiliation or life."
     },
     {
-      "id": "cartoon:jose_sarney:1990-01-01:1990-01-02:v1",
-      "person_id": "jose_sarney",
-      "name": "Jose Sarney",
-      "from": "1990-01-01",
-      "to": "1990-01-02",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.worldstatesmen.org/Brazil.html",
-        "https://en.wikipedia.org/wiki/Jos%C3%A9_Sarney",
-        "https://en.wikipedia.org/wiki/Fernando_Collor_de_Mello",
-        "https://en.wikipedia.org/wiki/1989_Brazilian_presidential_election"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
       "id": "cartoon:juergen_trittin:1994-12-31:1995-01-01:v1",
       "person_id": "juergen_trittin",
       "name": "Jürgen Trittin",
@@ -137669,26 +137847,6 @@
         "https://www.vie-publique.fr/discours/134486-communique-de-m-jacques-chirac-president-de-la-republique-en-date-du",
         "https://www.lemonde.fr/archives/article/2002/09/21/mme-alliot-marie-dernier-patron-du-rpr-a-resiste-jusqu-au-bout_4259392_1819218.html",
         "https://www.lemonde.fr/archives/article/2002/09/23/a-l-enterrement-du-rpr-les-dirigeants-gaullistes-etalent-leurs-rivalites_291500_1819218.html"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:mikhail_gorbachev:1990-01-01:1990-01-02:v1",
-      "person_id": "mikhail_gorbachev",
-      "name": "Mikhail Gorbachev",
-      "from": "1990-01-01",
-      "to": "1990-01-02",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://en.wikipedia.org/wiki/Mikhail_Gorbachev",
-        "https://en.wikipedia.org/wiki/Nikolai_Ryzhkov"
       ],
       "requirements": [
         "dated likeness reference",
@@ -141761,28 +141919,6 @@
       "status": "pending_source_and_visual_review",
       "identity_sources": [
         "https://www.mdb.org.br/quem-somos/"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:v_p_singh:1990-01-01:1990-01-02:v1",
-      "person_id": "v_p_singh",
-      "name": "V. P. Singh",
-      "from": "1990-01-01",
-      "to": "1990-01-02",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://en.wikipedia.org/wiki/V._P._Singh",
-        "https://en.wikipedia.org/wiki/R._Venkataraman",
-        "https://upvidhansabhaproceedings.gov.in/en/prev_chiefminister_vishwanathpratapsingh",
-        "https://www.pmindia.gov.in/en/former_pm/shri-vishwanath-pratap-singh/"
       ],
       "requirements": [
         "dated likeness reference",

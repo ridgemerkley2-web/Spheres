@@ -1,0 +1,18 @@
+# Native validation
+
+This evidence covers the web presentation change on the modified `codex/opening-leader-art-20260930` worktree based on `301f63cb20ff3d2a90076ef978f20f2db62a1f1c`. Source input hashes are retained in each attempt's results. No simulation/save schema was changed.
+
+- `attempt-01`: the first full web-package command exited 101 during compilation without a diagnostic beyond the existing `tiny_http` warnings. No tests are counted as passed by this attempt. Its original output and result are retained; the cause has not been established.
+- `attempt-02`: serial retry of the complete web package passed **455 tests, 0 failed, 28 ignored** (453 unit passes and two integration passes). The complete test-run output is in `console.log`; initial compiler warnings/banners are retained in the task tool transcript. `results.json` separately records the explicit release build, binary identity/hash, and whether the pinned source inputs stayed unchanged.
+
+The four new campaign-leader tests cover the 137-nation opening/live contract, saved executive identity, exact portrait-era expiry, actual fictional succession with save/reload, and safe missing-person/unseated/dead fallbacks. The existing opening-roster test also compares leaders across four seeds. All 11 person/portrait tests passed before the full package run.
+
+Ignored tests retain their original explicit fixture, long-run, and qualification requirements. These ordinary package checks do not certify a full campaign, historical worldwide coverage, A1 calibration, CP1, or isolated performance. The absolute resource timing check is not run concurrently with the existing matrix and political builds.
+
+The real-browser selector check is recorded separately in the [selector browser result](../browser/native-selector/result.json) by its reviewer. The separate [workspace check](workspace-02/results.json) completed successfully against the same pinned, modified source with two build jobs, four test threads and `GIT_OPTIONAL_LOCKS=0`: **1,989 passed, 0 failed, 115 ignored, 1 filtered**. Only `tests::the_resource_pass_stays_under_budget` was filtered. The command was `cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget --test-threads=4`; all pinned source inputs remained unchanged. The source is not represented as a clean release or campaign qualification.
+
+This completed workspace result covers the baseline revision and presentation changes identified above. Political repair commits newly arriving upstream during this run are outside its source boundary and need separate combined integration verification; their independent receipts are not folded into these totals.
+
+`workspace-01` is retained as an intentional compilation-only stop, with no executed test results. Its [stop record](workspace-01/intentional-stop.json) identifies the owned processes and reason: additional memory became available, so the identical full command resumed with two build jobs. Its original process exit is preserved separately; it is not a test failure or pass.
+
+Repeated web builds may change the executable hash through `SPHERES_BUILD_EPOCH` after the build script observes Git index changes. This is kept separate from the implementation: the receipts pin the changed source inputs and compare them after validation, while browser checks compare the embedded UI and served artwork with repository bytes. These modified-worktree checks do not claim a clean release identity. All browser saves were disposable; the existing user campaign, frozen campaign matrix, and independent political workload were left untouched.

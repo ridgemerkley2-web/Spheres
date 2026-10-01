@@ -118,24 +118,51 @@ fn decorate_context(value: &mut Value, date: &str, future_preview: bool) {
     }
 }
 
+/// Resolve the same saved executive used by government cards. Legacy saves
+/// may reference only an intact, explicitly linked original office; a successor
+/// or name-only resemblance never inherits that person's art.
+fn campaign_person(w: &WorldState, nation: NationId) -> Option<&'static party_leadership::Person> {
+    if !w.nation_opt(nation).is_some_and(|n| n.alive) { return None }
+    if w.rules.historical_party_leadership {
+        return party_leadership::executive_person(w,nation);
+    }
+    let offices=w.leadership.as_ref()?;
+    let roster=party_leadership::roster().ok()?;
+    let office=offices.iter().find(|o| o.nation==nation && o.emergent.is_none() && o.name.is_some())?;
+    let link=roster.office_links.iter().find(|l| l.nation==nation && l.since==office.since)?;
+    let person=party_leadership::person(&link.person)?;
+    (office.name.as_deref()==Some(person.name.as_str()) || office.name.as_deref()==person.native.as_deref()).then_some(person)
+}
+
+/// Compact, read-only nation art contract for both the opening picker and live
+/// nation surfaces. Identity follows the campaign; art follows its exact date.
+/// No national figure or another era's portrait substitutes for missing art.
+pub(crate) fn campaign_leader(w: &WorldState, nation: NationId) -> Value {
+    let date=format!("{:04}-{:02}-{:02}",w.year,w.month,w.day);
+    let leader=w.nation_opt(nation).filter(|n|n.alive).and_then(|_|spheres_sim::blocs::leader(w,nation));
+    let person=leader.as_ref().and_then(|_|campaign_person(w,nation));
+    let identity_status=if person.is_some() {"linked_person"}
+        else if leader.as_ref().is_some_and(|l|l.name.is_some()) {"unlinked_person"}
+        else if leader.is_some() {"institutional"} else {"unavailable"};
+    json!({
+        "date":date,
+        "person_id":person.map(|p|p.id.as_str()),
+        "origin":person.map(|p|if party_leadership::fictional_person(&p.id).is_some() {"fictional_successor"} else {"historical_person"}),
+        "name":leader.as_ref().and_then(|l|l.name.as_deref()),
+        "native":leader.as_ref().and_then(|l|l.native.as_deref()),
+        "described":leader.as_ref().and_then(|l|l.described.as_deref()),
+        "office":leader.as_ref().map(|l|l.office.as_str()),
+        "since":leader.as_ref().and_then(|l|l.since.as_deref()),
+        "portrait":person.map(|p|portrait(&p.id,&date)).unwrap_or(Value::Null),
+        "identity_status":identity_status,
+    })
+}
+
 pub(crate) fn campaign_view(w: &WorldState, nation: NationId) -> Value {
     let mut value = party_leadership::view(w,nation);
-    // An old campaign may show its original executive's explicitly linked art
-    // without enabling or inventing saved party succession. Never rebind a
-    // successor: an intact named original, exact office start and identity are
-    // all required. This is a read-only presentation reference.
+    // Read-only support for original, explicitly linked executives in old saves.
     if !w.rules.historical_party_leadership {
-        if let (Some(offices),Ok(roster)) = (&w.leadership,party_leadership::roster()) {
-            if let Some(office)=offices.iter().find(|o| o.nation==nation && o.emergent.is_none() && o.name.is_some()) {
-                if let Some(link)=roster.office_links.iter().find(|l| l.nation==nation && l.since==office.since) {
-                    if let Some(person)=party_leadership::person(&link.person) {
-                        if office.name.as_deref()==Some(person.name.as_str()) || office.name.as_deref()==person.native.as_deref() {
-                            value["executive_person"]=json!(person);
-                        }
-                    }
-                }
-            }
-        }
+        value["executive_person"]=campaign_person(w,nation).map(|p|json!(p)).unwrap_or(Value::Null);
     }
     let date=value["date"].as_str().unwrap_or("").to_string();
     decorate(&mut value,&date);
@@ -169,6 +196,82 @@ pub(crate) fn reference_view(w: &WorldState, nation: NationId, date: &str) -> Re
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn campaign_leader_uses_the_saved_executive_and_exact_era_without_mutation() {
+        let mut w=spheres_sim::init::world_1990(spheres_sim::world::GameRules {
+            ideology_blocs:true, historical_party_leadership:true, ..Default::default()
+        });
+        spheres_sim::government::ensure_all(&mut w);
+        party_leadership::ensure_all(&mut w);
+        let before=spheres_sim::save(&w);
+        let uk=campaign_leader(&w,NationId::UK);
+        assert_eq!(uk["date"],"1990-01-01");
+        assert_eq!(uk["person_id"],"margaret_thatcher");
+        assert_eq!(uk["name"],"Margaret Thatcher");
+        assert_eq!(uk["identity_status"],"linked_person");
+        assert_eq!(uk["origin"],"historical_person");
+        assert_eq!(uk["portrait"]["url"],"/art/people/margaret-thatcher-cartoon-1990-v3.png");
+        // France's national executive is the served incumbent,
+        // not the separate Socialist Party leader or a national icon.
+        assert_eq!(campaign_leader(&w,NationId::France)["person_id"],"francois_mitterrand");
+        let _=reference_view(&w,NationId::UK,"1990-11-27").unwrap();
+        assert_eq!(campaign_leader(&w,NationId::UK),uk);
+        assert_eq!(spheres_sim::save(&w),before);
+        // Date-only fixture: no election happened. The saved person remains,
+        // but an expired portrait must not be shown as current-era artwork.
+        w.year=1995;
+        let before=spheres_sim::save(&w);
+        let later=campaign_leader(&w,NationId::UK);
+        assert_eq!(later["person_id"],"margaret_thatcher");
+        assert_eq!(later["date"],"1995-01-01");
+        assert!(later["portrait"].is_null());
+        assert_eq!(spheres_sim::save(&w),before);
+    }
+
+    #[test]
+    fn campaign_leader_follows_actual_succession_and_survives_save_reload() {
+        let mut w=spheres_sim::init::world_1990(spheres_sim::world::GameRules {
+            seed:13, ideology_blocs:true, historical_party_leadership:true, ..Default::default()
+        });
+        spheres_sim::government::ensure_all(&mut w);
+        party_leadership::ensure_all(&mut w);
+        // Authored future fixture, not a claim that simulated years elapsed.
+        w.year=2027;
+        spheres_sim::government::seat_office(&mut w,NationId::UK,&spheres_sim::government::Succession::Death);
+        let before=spheres_sim::save(&w);
+        let current=campaign_leader(&w,NationId::UK);
+        let id=current["person_id"].as_str().expect("fixture selects a named fictional successor");
+        assert_ne!(id,"margaret_thatcher");
+        assert!(party_leadership::fictional_person(id).is_some());
+        assert_eq!(current["origin"],"fictional_successor");
+        assert_eq!(current["name"],party_leadership::person(id).unwrap().name);
+        assert_ne!(current["portrait"]["url"],"/art/people/margaret-thatcher-cartoon-1990-v3.png");
+        assert_eq!(campaign_leader(&spheres_sim::load(&before).unwrap(),NationId::UK),current);
+        assert_eq!(spheres_sim::save(&w),before);
+    }
+
+    #[test]
+    fn campaign_leader_never_borrows_identity_for_unknown_or_unseated_offices() {
+        let mut w=spheres_sim::init::world_1990(spheres_sim::world::GameRules {
+            ideology_blocs:true, ..Default::default()
+        });
+        spheres_sim::government::ensure_all(&mut w);
+        assert_eq!(campaign_leader(&w,NationId::USA)["person_id"],"george_h_w_bush");
+        let office=w.leadership.as_mut().unwrap().iter_mut().find(|o|o.nation==NationId::USA).unwrap();
+        office.name=Some("Unlinked fixture incumbent".into());
+        let before=spheres_sim::save(&w);
+        let unknown=campaign_leader(&w,NationId::USA);
+        assert_eq!(unknown["name"],"Unlinked fixture incumbent");
+        assert_eq!(unknown["identity_status"],"unlinked_person");
+        assert!(unknown["person_id"].is_null() && unknown["portrait"].is_null());
+        let absent=campaign_leader(&w,NationId::Russia);
+        assert_eq!(absent["identity_status"],"unavailable");
+        assert!(absent["name"].is_null() && absent["person_id"].is_null() && absent["portrait"].is_null());
+        assert_eq!(spheres_sim::save(&w),before);
+        w.nation_mut(NationId::USA).alive=false;
+        assert_eq!(campaign_leader(&w,NationId::USA)["identity_status"],"unavailable");
+    }
+
     #[test]
     fn tupou_cartoon_exposes_its_artwork_license_with_exact_person_and_era() {
         let art=portrait("taufaahau_tupou_iv","1990-01-01");

@@ -1,0 +1,41 @@
+{
+  "reviewer": "Codex independent sub-agent review",
+  "kind": "read-only implementation and metadata review; not human approval",
+  "result": "No actionable defects found",
+  "scope": [
+    "Saved campaign leader and exact date",
+    "Legacy original-office identity guards",
+    "Missing, expired, institutional and unavailable portraits",
+    "Fictional identity labeling and stale image/credit removal",
+    "No active nation-figures requests",
+    "Exactly five additive portrait identities; prior identity metadata unchanged",
+    "All ten new image/reference byte counts and SHA-256 pins",
+    "1990 appearance interval distinct from office dates and source-age limits"
+  ],
+  "inputs": [
+    {
+      "path": "spheres-web/src/main.rs",
+      "sha256": "1c713482a3828bc6e6dc98e12d58d523e10795018e6add455ea5377b9f5fb2ef"
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "sha256": "398bc6998b87b33425d3aedd30a98c93641bddc1decd12534880e7384ed7b900"
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "sha256": "27e48116be6515c9037e2fbc1ba4c0a3bfaf82c740b752c01e1dee9893d26491"
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176"
+    },
+    {
+      "path": "tools/ui/cartoon-review/cartoon-review.js",
+      "sha256": "63f342b4d145b662a0609e99ccb4a24bbb1649aad7f5b90c3901cc01a9afffcf"
+    },
+    {
+      "path": "tools/avatars/cartoon_review.py",
+      "sha256": "10d7c1d8ec21f59af827ff94f9402f875d0e29d0fd2f021a71f26f3a6c4b82e9"
+    }
+  ]
+}

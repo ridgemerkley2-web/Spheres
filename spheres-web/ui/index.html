@@ -2623,7 +2623,7 @@
             <div class="showcase-stat"><span>POPULATION</span><strong id="showcasePop">—</strong><small id="showcasePopRank">world rank —</small></div>
             <div class="showcase-stat"><span>GDP PER PERSON</span><strong id="showcasePerCap">—</strong><small id="showcaseShare">opening position</small></div>
           </div>
-          <div class="menu-nation-story"><div class="nation-art" id="showcaseArt" aria-hidden="true"><div class="historical-cameo" id="showcaseFallback"><span class="cameo-person"></span><span class="cameo-initials" id="showcaseInitials">?</span></div><img class="historical-portrait" id="showcasePortrait" alt="" width="512" height="640"></div><div><div class="showcase-figure" id="showcaseFigure">Historical avatar</div><p id="showcaseBiography">Choose a nation to discover its historical avatar.</p><span class="menu-avatar-note">A figure from this nation's history, not its 1990 leader.</span></div></div>
+          <div class="menu-nation-story"><div class="nation-art" id="showcaseArt" aria-hidden="true"><div class="historical-cameo" id="showcaseFallback"><span class="cameo-person"></span><span class="cameo-initials" id="showcaseInitials">?</span></div><img class="historical-portrait" id="showcasePortrait" alt="" width="512" height="640"></div><div><div class="showcase-figure" id="showcaseFigure">Campaign leader</div><p id="showcaseBiography">Choose a nation to see its leader at the campaign start.</p><span class="menu-avatar-note" id="showcaseLeaderDate">Leadership follows the campaign date.</span></div></div>
         </div>
         <div id="setupFoot"><details class="menu-world-options"><summary>World settings <span>January 1990 start</span></summary><div class="seedrow"><label for="seed">WORLD SEED</label><input id="seed" value="1990" inputmode="numeric" aria-describedby="seedHint"><span id="seedHint">The same seed and decisions produce the same history.</span></div></details><button class="primary menu-primary" id="startBtn" disabled>Choose a nation</button><p class="menu-start-note">Review your starting position, then begin the campaign.</p></div>
       </section>
@@ -3642,7 +3642,7 @@ async function api(path, body, rawCommand = false) {
 /* ================= setup ================= */
 
 let setupNations = [];
-let setupFigures = {};
+let setupDate = "";
 const setupNationButtons = new Map();
 const SESSION = { live: null, busy: false, client: null, sequence: 0, slot: "default", saves: null };
 const COMMAND_CHANNEL = CampaignTransport.create({
@@ -3881,13 +3881,10 @@ $("#menuAboutBtn").onclick = openBuildInfo;
 /// cards and the button now all describe one board. The date comes with it
 /// rather than being spelt into the markup.
 async function buildSetup() {
-  const [board, figureBoard] = await Promise.all([
-    api("/api/roster"),
-    api("/art/nation-figures-v2.json").catch(() => ({ nations: {} })),
-  ]);
+  const board = await api("/api/roster");
   setupNations = board.nations;
+  setupDate = campaignLeaderDate(board);
   $("#menuRosterCount").textContent = String(setupNations.length);
-  setupFigures = figureBoard.nations || {};
   const sub = $("#setupSub");
   if (sub && board.month >= 1 && board.month <= 12) {
     sub.textContent =
@@ -3950,19 +3947,41 @@ function nationHue(n) {
   return palette[hash % palette.length];
 }
 
-// Historical figures are presentation data, deliberately separate from the
-// simulation roster. Missing metadata or a failed image can never make a
-// country unplayable: both fall back to an explicit archival cameo.
-function figureFor(n) {
-  return setupFigures[n.id] || {
-    figure: "Archive pending",
-    years: "",
-    role: "historical figure",
-    portrait: null,
+// Both starting and live boards carry their own authoritative officeholder.
+// No national icon, photograph, closest-era portrait or guessed identity is a
+// substitute for the exact person in that board on that date.
+function campaignLeaderDate(board) {
+  const value = board && /^\d{4}-\d{2}-\d{2}$/.test(board.date || "") ? board.date
+    : board && Number.isInteger(board.year) && Number.isInteger(board.month)
+      ? `${String(board.year).padStart(4,"0")}-${String(board.month).padStart(2,"0")}-${String(board.day || 1).padStart(2,"0")}` : "";
+  const parsed = new Date(value + "T12:00:00Z");
+  return value && Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0,10) === value ? value : "";
+}
+
+function figureFor(n, date) {
+  const leader = n?.campaign_leader;
+  const valid = !!date && leader && leader.date === date;
+  const named = valid && typeof leader.name === "string" && leader.name.trim();
+  const portrait = named && leader.identity_status === "linked_person" && typeof leader.person_id === "string" && leader.person_id.trim()
+    && leader.portrait && typeof leader.portrait === "object" ? leader.portrait : null;
+  const url = portrait && /^\/art\/people\/[A-Za-z0-9._-]+\.png$/.test(portrait.url || "")
+    && portrait.method === "generated" && portrait.style === "cartoon"
+    && ["illustrated-likeness", "fictional-character"].includes(portrait.status)
+    && !!portrait.from && campaignLeaderDate({date:portrait.from}) === portrait.from && portrait.from <= date
+    && (portrait.to == null || campaignLeaderDate({date:portrait.to}) === portrait.to && date < portrait.to) ? portrait.url : "";
+  return {
+    figure: named || (valid && leader.identity_status === "institutional" ? "Campaign leadership" : "Leader not recorded"),
+    role: valid && leader.office || "Campaign leader",
+    date: date || "",
+    description: valid && typeof leader.described === "string" ? leader.described : "",
+    portrait: url ? portrait : null,
+    fictional: valid && leader.origin === "fictional_successor",
+    available: !!named,
   };
 }
 
 function figureInitials(spec, n) {
+  if (spec.available === false) return "?";
   const ignored = new Set(["a", "al", "and", "da", "de", "del", "di", "of", "the"]);
   const words = String(spec.figure || "")
     .split(/\s+/)
@@ -3980,19 +3999,12 @@ function flagUse(use, n) {
 }
 
 function loadFigurePortrait(img, spec, eager) {
-  const leaderArt = spec.leader_art && typeof spec.leader_art === "object" ? spec.leader_art : null;
-  const portraitAsset = typeof spec.portrait === "string"
-    ? spec.portrait
-    : (spec.portrait && (spec.portrait.asset || spec.portrait.file)) || "";
-  const asset = (leaderArt && leaderArt.asset) || portraitAsset;
-  const portraitRecord = spec.portrait && typeof spec.portrait === "object" ? spec.portrait : null;
-  const credit = leaderArt
-    ? [leaderArt.credit, leaderArt.generator, `Identity source: ${leaderArt.identity_source_asset || leaderArt.identity_source_wikidata || "authored historical identity"}`].filter(Boolean).join(" · ")
-    : portraitRecord
-    ? [portraitRecord.source_title, portraitRecord.credit, portraitRecord.license].filter(Boolean).join(" · ")
-    : "";
+  const asset = spec.portrait?.url || "";
+  const credit = spec.portrait?.credit || "";
   img.classList.remove("ready");
-  img.classList.toggle("character-art", Boolean(leaderArt && leaderArt.asset));
+  img.classList.toggle("character-art", Boolean(asset));
+  img.onload = null;
+  img.onerror = null;
   img.removeAttribute("src");
   if (credit) img.title = credit;
   else img.removeAttribute("title");
@@ -4008,7 +4020,7 @@ function loadFigurePortrait(img, spec, eager) {
   img.onerror = () => {
     if (img.dataset.asset === asset) img.classList.remove("ready");
   };
-  img.src = `/art/portraits/${encodeURIComponent(asset)}?v=display512-v1`;
+  img.src = asset;
 }
 
 function setupRank(n, field) {
@@ -4025,21 +4037,22 @@ function perCapita(n) {
 }
 
 function renderShowcase(n) {
-  const spec = figureFor(n);
+  const spec = figureFor(n, setupDate);
   const hue = nationHue(n);
   $("#nationShowcase").style.setProperty("--nation-hue", hue);
   $("#showcaseInitials").textContent = figureInitials(spec, n);
   flagUse($("#showcaseFlag"), n);
   loadFigurePortrait($("#showcasePortrait"), spec, true);
   const figure = $("#showcaseFigure");
-  figure.replaceChildren(document.createTextNode("Historical avatar · "));
+  figure.replaceChildren(document.createTextNode(`${spec.role} · `));
   const figureName = document.createElement("strong");
   figureName.textContent = spec.figure;
   figure.appendChild(figureName);
-  if (spec.years) figure.appendChild(document.createTextNode(` · ${spec.years}`));
   $("#showcaseName").textContent = n.name;
-  const rationale = spec.rationale || `${spec.figure} is the historical avatar selected for ${n.name}.`;
-  $("#showcaseBiography").textContent = rationale;
+  $("#showcaseBiography").textContent = spec.description || (spec.available
+    ? `${spec.figure} leads ${n.name} when this campaign begins.`
+    : "This country's leader has not been linked to a reviewed person record yet. You can still begin the campaign.");
+  $("#showcaseLeaderDate").textContent = `${spec.date ? "Campaign start · " + spec.date : "Campaign date unavailable"}${spec.fictional ? " · Fictional successor" : ""}${spec.available && !spec.portrait ? " · Portrait pending" : ""}`;
   const outputRank = setupRank(n, "gdp");
   $("#showcasePrompt").textContent = `Begin with ${fmt.pop(n.population)} people and the world's #${outputRank} economy. Your decisions on industry, trade and diplomacy shape what follows.`;
   $("#showcaseGdp").textContent = fmt.money(n.gdp);
@@ -4083,7 +4096,6 @@ function renderPick() {
   list.forEach((n) => {
     let d = setupNationButtons.get(n.id);
     if (!d) {
-      const spec = figureFor(n);
       d = document.createElement("button");
       d.type = "button";
       d.className = "opt";
@@ -4123,11 +4135,12 @@ function renderPick() {
       d.ondblclick = () => { pickNation(n.name); $("#startBtn").click(); };
       setupNationButtons.set(n.id, d);
     }
-    const spec = figureFor(n);
+    const spec = figureFor(n, setupDate);
+    d.querySelector(".figure-name").textContent = spec.figure;
     const isSelected = n.name === pickedNation;
     d.classList.toggle("sel", isSelected);
     d.setAttribute("aria-pressed", isSelected ? "true" : "false");
-    d.setAttribute("aria-label", `${n.name}; historical avatar ${spec.figure}; output ${fmt.money(n.gdp)}; population ${fmt.pop(n.population)}`);
+    d.setAttribute("aria-label", `${n.name}; ${spec.role} ${spec.figure}${spec.fictional ? " (fictional successor)" : ""}${spec.date ? " on " + spec.date : ""}; output ${fmt.money(n.gdp)}; population ${fmt.pop(n.population)}`);
     grid.appendChild(d);
   });
 }
@@ -14836,8 +14849,8 @@ function openNation(id, keepScroll) {
       <span class="spacer"></span>
       <button class="close" onclick="closeSheet()" aria-label="Close national dossier">&times;</button>
     </div>
-    <div class="arc-nation-hero"><div class="arc-nation-art"><span class="arc-initials" aria-hidden="true">${escText(figureInitials(figureFor(n),n))}</span><img id="dossierPortrait" alt="" width="512" height="640"><svg class="arc-flag" viewBox="0 0 640 480" aria-label="${escText(n.name)} flag"><use id="dossierFlag"></use></svg></div>
-      <div><div class="arc-kicker">${isMe ? "Your nation" : "A nation in your world"}</div><h1>${escText(n.name)}</h1><p>${describe(n)}</p><p>Historical avatar · ${escText(figureFor(n).figure)}</p></div>
+    <div class="arc-nation-hero"><div class="arc-nation-art"><span class="arc-initials" aria-hidden="true">${escText(figureInitials(figureFor(n,campaignLeaderDate(S)),n))}</span><img id="dossierPortrait" alt="" width="512" height="640"><svg class="arc-flag" viewBox="0 0 640 480" aria-label="${escText(n.name)} flag"><use id="dossierFlag"></use></svg></div>
+      <div><div class="arc-kicker">${isMe ? "Your nation" : "A nation in your world"}</div><h1>${escText(n.name)}</h1><p>${describe(n)}</p><p>${escText(figureFor(n,campaignLeaderDate(S)).role)} · ${escText(figureFor(n,campaignLeaderDate(S)).figure)}${figureFor(n,campaignLeaderDate(S)).fictional ? " · Fictional successor" : ""} · ${escText(campaignLeaderDate(S))}</p></div>
     </div>
     <nav class="arc-nation-tabs" role="tablist" aria-label="National dossier sections">${[["overview","Overview"],["economy","Economy"],["resources","Resources"],["world","World ties"]].map(([key,label]) => `<button role="tab" id="nation-tab-${key}" data-nation-view="${key}" aria-controls="nation-page-${key}" aria-selected="${nationView===key}">${label}</button>`).join("")}</nav>
     <section id="nation-page-overview" data-nation-page="overview" role="tabpanel" aria-labelledby="nation-tab-overview">
@@ -14972,7 +14985,7 @@ function openNation(id, keepScroll) {
   });
   if (isMe) $("#dossierCabinet").onclick = () => { closeSheet(); toggleGameDrawer("cabinetDrawer"); };
   flagUse($("#dossierFlag"),n);
-  loadFigurePortrait($("#dossierPortrait"),figureFor(n),false);
+  loadFigurePortrait($("#dossierPortrait"),figureFor(n,campaignLeaderDate(S)),false);
   openSheetEl(keepScroll, scroll);
   sheet.querySelectorAll(".relrow[data-id]").forEach((r) => {
     r.onclick = () => openNation(r.dataset.id);
@@ -18570,11 +18583,9 @@ function dominationStakeText(stake) {
 function dominationFigureDecor(agenda) {
   const id = String((agenda && agenda.figure_nation_id) || (S && S.player) || "");
   if (!id) return "";
-  const spec = setupFigures[id] || {};
-  const leader = spec.leader_art && typeof spec.leader_art === "object" ? spec.leader_art : null;
-  const portrait = spec.portrait && typeof spec.portrait === "object" ? spec.portrait : null;
-  const asset = (leader && leader.asset) || (portrait && (portrait.asset || portrait.file)) || (typeof spec.portrait === "string" ? spec.portrait : "");
-  const image = asset ? `<img class="dom-card-figure" src="/art/portraits/${logisticsEscAttr(encodeURIComponent(asset))}?v=display512-v1" alt="" width="512" height="640" loading="lazy" decoding="async">` : "";
+  const nation = S?.nations?.find(candidate => candidate.id === id);
+  const spec = figureFor(nation, campaignLeaderDate(S));
+  const image = spec.portrait ? `<img class="dom-card-figure" src="${logisticsEscAttr(spec.portrait.url)}" alt="" width="512" height="640" loading="lazy" decoding="async">` : "";
   return `${image}<svg class="dom-card-target-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="/art/nation-flags-v2.svg#flag-${logisticsEscAttr(id)}" width="640" height="480"></use></svg>`;
 }
 
@@ -18706,16 +18717,16 @@ function renderDominationIdentity() {
   if (!nation) return;
   $("#dominationNation").textContent = nation.name || S.player_name || nation.id;
   flagUse($("#dominationFlag"), nation);
-  const spec = figureFor(nation);
+  const spec = figureFor(nation, campaignLeaderDate(S));
   const image = $("#dominationLeader");
-  const identity = `${nation.id}:${spec.figure || ""}`;
+  const identity = `${nation.id}:${spec.date}:${spec.figure}:${spec.portrait?.url || ""}`;
   if (image.dataset.figure !== identity) {
     image.dataset.figure = identity;
     loadFigurePortrait(image, spec, true);
   }
   $("#dominationLeaderFallback").textContent = figureInitials(spec, nation);
   $("#dominationLeaderCaption").textContent = spec.figure
-    ? `${spec.figure} · national command`
+    ? `${spec.figure}${spec.fictional ? " · Fictional successor" : ""} · national command`
     : `${nation.name || nation.id} · national command`;
 }
 

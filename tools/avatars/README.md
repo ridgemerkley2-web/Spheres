@@ -1,4 +1,15 @@
-# Nation historical figures and selector art
+# Campaign leader art and archived nation figures
+
+**Current direction, 30 September 2026:** country selection displays the actual
+campaign leader for its opening/current date, using the exact person's reviewed
+cartoon. Do not generate national representative figures or use them as portrait
+fallbacks. Follow [the campaign-leader art handoff](../../docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md)
+and `person_art_pipeline.py` for new work.
+
+The remainder of this document describes the retained legacy figure/flag asset
+contracts. Legacy artwork and provenance are archived for audit; they are not
+the active country-selector identity or production-art queue. Flag identities
+and roster keys remain in use.
 
 The campaign selector is presentation, not simulation state. Its identity key is
 the stable `NationId` code in `spheres-sim/src/nations.rs`; names, ISO codes,

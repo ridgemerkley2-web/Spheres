@@ -1,0 +1,101 @@
+{
+  "scope": "Complete spheres-web release package test retry and explicit release server build; no simulation suite or timing qualification. Original unexplained exit101 retained in attempt-01.",
+  "base_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c",
+  "branch": "codex/opening-leader-art-20260930",
+  "environment": {
+    "CARGO_TARGET_DIR": "D:\\spheres-opening-leader-art-20260930-target",
+    "CARGO_BUILD_JOBS": "1"
+  },
+  "source_inputs": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "a66f8bc5cbe3f77bb60de7c880089e78ac70dd9147674944480c30192043c372",
+      "bytes": 9781
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "sha256": "1c713482a3828bc6e6dc98e12d58d523e10795018e6add455ea5377b9f5fb2ef",
+      "bytes": 987321
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "sha256": "398bc6998b87b33425d3aedd30a98c93641bddc1decd12534880e7384ed7b900",
+      "bytes": 26112
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "sha256": "dbe28d29a5b036329b381c241fe2f0ac08d266c6c5892af10145af66ca51a182",
+      "bytes": 8608
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "sha256": "27e48116be6515c9037e2fbc1ba4c0a3bfaf82c740b752c01e1dee9893d26491",
+      "bytes": 1146596
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "a1ae322b63ecdae6624f0a65f1783e013523b22ad063b18ee1d4cef5df142176",
+      "bytes": 307745
+    }
+  ],
+  "results": [
+    {
+      "name": "web-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "started_at": "2026-09-30T23:19:04.021551Z",
+      "completion_observed_at": "2026-09-30T23:34:25.003776+00:00",
+      "exit_code": 0,
+      "passed": 455,
+      "failed": 0,
+      "ignored": 28,
+      "log": "console.log",
+      "console_scope": "Complete test run output from compilation completion onward. Initial three existing tiny_http warnings and compiler banner are retained in the task tool transcript."
+    },
+    {
+      "name": "web-build",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "started_at": "2026-09-30T23:34:25.004775+00:00",
+      "finished_at": "2026-09-30T23:36:49.384639+00:00",
+      "exit_code": 0,
+      "log": "web-build.log"
+    }
+  ],
+  "binary": {
+    "path": "D:\\spheres-opening-leader-art-20260930-target\\release\\spheres-web.exe",
+    "bytes": 366669732,
+    "sha256": "563476f896b1a5378e229ee45c4212f9bc7a338fe73087f141a696d8ef3474e9"
+  },
+  "build_info": {
+    "branch": "codex/opening-leader-art-20260930",
+    "built_at_unix_seconds": 1790811269,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "full_revision": "301f63cb20ff3d2a90076ef978f20f2db62a1f1c-modified",
+    "revision": "301f63cb20ff-modified",
+    "save_directory": "D:\\spheres-opening-leader-art-20260930",
+    "target_arch": "x86_64",
+    "target_os": "windows",
+    "version": "0.6.0"
+  },
+  "source_inputs_unchanged": true,
+  "finished_at": "2026-09-30T23:36:50.402706+00:00"
+}

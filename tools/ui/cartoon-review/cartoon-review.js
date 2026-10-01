@@ -32,26 +32,21 @@
   ];
   const COLLECTION_OPTIONS = [
     ['all', 'Everything'], ['cartoons', 'Existing cartoons'], ['historical', 'Historical people'],
-    ['fictional', 'Fictional (not real people)'], ['selector', 'Country-selector figures'],
+    ['fictional', 'Fictional (not real people)'],
     ['missing', 'Artwork missing'], ['unregistered', 'Unregistered files'],
   ];
   const LABELS = {
-    historical: 'Historical person', fictional: 'Fictional · not a real person', selector: 'Country selector',
+    historical: 'Historical person', fictional: 'Fictional · not a real person',
     unregistered: 'Unregistered file', 'missing-art': 'Artwork missing', 'style-reference': 'Style reference',
     'file-missing': 'File missing', 'unknown-identity': 'Unknown identity', 'country-unknown': 'Country unknown',
     duplicate: 'Duplicate image', 'interval-issue': 'Interval issue', 'coverage-gap': 'Coverage gap',
     'rights-gap': 'Rights gap', 'sample-reviewed': 'Visual notes · not approval', 'integrity-error': 'Integrity error',
   };
-  // Sizes taken from the game's CSS: government-ui.css person cards and index.html selector cards.
+  // The same exact-person cartoons supply government and campaign leader views.
   const CARD_SIZES = [
     { id: 'card', label: 'Government card', width: 106, height: 152 },
     { id: 'narrow', label: 'Narrow card', width: 90, height: 132 },
     { id: 'featured', label: 'Featured card', width: 156, height: 218 },
-  ];
-  const SELECTOR_SIZES = [
-    { id: 'pick', label: 'Selector pick card', width: 143, height: 174 },
-    { id: 'compact', label: 'Compact showcase', width: 116, height: 145 },
-    { id: 'showcase', label: 'Selector showcase', width: 174, height: 218 },
   ];
 
   // ------------------------------------------------------------ pure helpers
@@ -85,10 +80,12 @@
   }
 
   function matchesFilters(item, filters, nations) {
+    // Retired country icons stay unavailable even with an older export or URL.
+    if (item.collection === 'selector' || String(item.id || '').startsWith('selector:')) return false;
     const f = filters || {};
     if (f.collection && f.collection !== 'all') {
       if (f.collection === 'cartoons') {
-        if (!['historical', 'fictional', 'selector'].includes(item.collection)) return false;
+        if (!['historical', 'fictional'].includes(item.collection)) return false;
       } else if (item.collection !== f.collection) return false;
     }
     const countries = item.countries || [];
@@ -171,7 +168,7 @@
   }
 
   function sizesFor(item) {
-    return item && item.collection === 'selector' ? SELECTOR_SIZES : CARD_SIZES;
+    return CARD_SIZES;
   }
 
   function reasonText(reason) {
@@ -234,7 +231,7 @@
   }
 
   function nationOptions(items, nations) {
-    const used = new Set();
+    const used = new Set(Object.keys(nations || {}));
     let unknown = 0;
     for (const item of items) {
       if (!(item.countries || []).length) unknown += 1;
@@ -327,7 +324,6 @@
 
     function altText(item) {
       if (item.collection === 'fictional') return `Fictional cartoon of ${item.name} (not a real person)`;
-      if (item.collection === 'selector') return `Country-selector cartoon of ${item.name}`;
       if (item.collection === 'unregistered') return `Unregistered image file ${item.name}`;
       return `Cartoon of ${item.name}`;
     }
@@ -336,7 +332,6 @@
       if (item.interval && item.interval.valid) return formatInterval(item.interval);
       if (item.interval) return 'Invalid interval';
       if (item.collection === 'missing') return `${(item.required_windows || []).length} art window(s) needed`;
-      if (item.collection === 'selector') return item.years ? `Figure ${item.years}` : 'No dated appearance';
       return 'No dated appearance';
     }
 
@@ -614,9 +609,7 @@
       const panel = section('Appearance and identity');
       const identity = item.identity || {};
       const rows = [['Identity', identity.key || 'Not bound (identity unknown)'], ['Identity status', identity.status]];
-      if (item.collection === 'selector') {
-        rows.push(['Figure years', item.years], ['Dated appearance', 'None: selector art is not tied to an appearance interval']);
-      } else if (item.interval) {
+      if (item.interval) {
         rows.push(['Appearance interval', item.interval.valid ? formatInterval(item.interval) : `Invalid (${item.interval.from} → ${item.interval.to})`]);
       }
       if (item.life) rows.push(['Born', item.life.born], ['Died', item.life.died]);
@@ -766,9 +759,9 @@
         else button.disabled = true;
         box.append(button);
       };
-      add('Existing cartoons', s.items.historical + s.items.fictional + s.items.selector, { collection: 'cartoons', label: 'all' });
+      add('Existing cartoons', state.items.filter(i => ['historical','fictional'].includes(i.collection)).length, { collection: 'cartoons', label: 'all' });
       add('Artwork missing', s.items.missing, { collection: 'missing', label: 'all' });
-      add('Integrity errors', s.findings_by_severity.error, { collection: 'all', label: 'integrity-error' });
+      add('Integrity errors', (s.active_findings_by_severity || s.findings_by_severity).error, { collection: 'all', label: 'integrity-error' });
       add('Different-identity duplicates', s.duplicate_groups_with_different_identities, { collection: 'all', label: 'duplicate' });
       add('Coverage gaps', s.findings_by_code.coverage_gap || 0, { collection: 'all', label: 'coverage-gap' });
       add('Rights gaps', (state.items.filter((i) => (i.labels || []).includes('rights-gap'))).length, { collection: 'all', label: 'rights-gap' });
@@ -817,9 +810,9 @@
         delete r.buffer;
       }
       state.verification = results;
-      state.data = data;
-      state.items = data.items;
-      for (const item of data.items) state.byId.set(item.id, item);
+      state.data = {...data, style_references: (data.style_references || []).filter(ref => !String(ref.item || '').startsWith('selector:'))};
+      state.items = filterItems(data.items, {}, data.nations);
+      for (const item of state.items) state.byId.set(item.id, item);
       for (const f of data.files) state.files.set(f.path, f);
       for (const f of data.findings) {
         if (!f.item) continue;
@@ -828,10 +821,17 @@
       }
       for (const entry of (data.visual_review_sample || {}).entries || []) state.sample.set(entry.item, entry);
       const params = new URLSearchParams(window.location.search);
-      fillSelect($('f-country'), [['all', 'All countries'], ...nationOptions(data.items, data.nations)], params.get('country'));
+      const retiredNation = (params.get('item') || '').startsWith('selector:') ? params.get('item').slice('selector:'.length) : null;
+      if (retiredNation) {
+        params.delete('item');
+        if (Object.prototype.hasOwnProperty.call(data.nations, retiredNation)) params.set('country', retiredNation);
+        $('retired-selector-note').hidden = false;
+        $('retired-selector-note').textContent = 'Country-selector figures have been retired. This view now shows campaign people for ' + (data.nations[retiredNation] || 'the selected country') + '. Missing leader artwork remains a visible gap.';
+      }
+      fillSelect($('f-country'), [['all', 'All countries'], ...nationOptions(state.items, data.nations)], params.get('country'));
       fillSelect($('f-era'), ERAS.map((e) => [e.id, e.label]), params.get('era'));
       fillSelect($('f-collection'), COLLECTION_OPTIONS, params.get('collection') || 'all');
-      const used = new Set(data.items.flatMap((i) => i.labels || []));
+      const used = new Set(state.items.flatMap((i) => i.labels || []));
       fillSelect($('f-label'), [['all', 'Any label or finding'], ...Object.keys(LABELS).filter((l) => used.has(l)).map((l) => [l, LABELS[l]])], params.get('label'));
       $('f-search').value = params.get('q') || '';
       if (/^\d{4}-\d{2}-\d{2}$/.test(params.get('date') || '')) $('f-date').value = params.get('date');
@@ -839,7 +839,8 @@
       renderRefs();
       renderSummary();
       const s = data.summary;
-      setStatus(`Export verified: ${results.length} pinned inputs match their SHA-256. ${data.items.length} items · ${s.findings_by_severity.error} integrity errors · ${s.findings_by_severity.warning} warnings · ${s.findings_by_severity.notice} notices. Automated findings are not visual approval.`);
+      const findings = s.active_findings_by_severity || s.findings_by_severity;
+      setStatus(`Export verified: ${results.length} pinned inputs match their SHA-256. ${state.items.length} active items · ${findings.error} integrity errors · ${findings.warning} warnings · ${findings.notice} notices. Automated findings are not visual approval.`);
       document.body.dataset.state = 'ready';
       applyFilters(false);
       const wanted = params.get('item');
@@ -870,7 +871,7 @@
     });
   }
 
-  return { EXPORT_PATH, ERAS, LABELS, CARD_SIZES, SELECTOR_SIZES, COLLECTION_OPTIONS, fold, labelText, itemIntervals, overlaps, contains,
+  return { EXPORT_PATH, ERAS, LABELS, CARD_SIZES, COLLECTION_OPTIONS, fold, labelText, itemIntervals, overlaps, contains,
     matchesFilters, filterItems, moveIndex, columnsFromTops, safePath, publicURL, resolvePointer, formatInterval, initials, sizesFor, reasonText,
     sha256Hex, verifyInputs, latest, nationOptions, boot };
 });

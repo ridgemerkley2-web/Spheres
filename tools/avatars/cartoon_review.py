@@ -17,6 +17,9 @@ recorded in the manifests and the visual review sample recorded by this packet.
 It never edits, generates, approves or substitutes an image or a manifest.
 Automated findings are integrity and consistency observations, not visual
 approval. A duplicate is a review finding, not proof of a wrong identity.
+Retired national-icon records live only in archived_selector. Their original
+assets, findings and visual review samples remain auditable, but do not count
+as active cartoons or supply an active style reference.
 
 Default mode writes the export; --check regenerates it in memory and exits 1
 when a committed export file differs. Standard library only; no network access.
@@ -77,14 +80,12 @@ ART_ROOTS = (PERSON_ART, SELECTOR_PHOTOS, SELECTOR_ART, DISPLAY_ART)
 IMAGE_EXTS = {'.png', '.webp', '.jpg', '.jpeg'}
 HISTORICAL = ('1990-01-01', '2026-09-08')
 FICTIONAL = ('2026-09-08', '2036-01-01')
-COLLECTIONS = ('historical', 'fictional', 'selector', 'unregistered', 'missing')
+COLLECTIONS = ('historical', 'fictional', 'unregistered', 'missing')
 COLLECTION_SOURCES = {
     'historical': {'label': 'Historical person cartoons', 'manifest': HISTORICAL_MANIFEST, 'identity_registry': REGISTRY,
                    'countries': 'sourced party terms and office observations in ' + PRODUCTION},
     'fictional': {'label': 'Fictional successor cartoons (not real people)', 'manifest': FICTIONAL_MANIFEST,
                   'identity_registry': CATALOG, 'countries': 'fictional catalogue nation'},
-    'selector': {'label': 'Country-selector historical figures', 'manifest': SELECTOR_MANIFEST,
-                 'identity_registry': SELECTOR_MANIFEST, 'countries': 'selector NationId'},
     'unregistered': {'label': 'Tracked cartoon-root files bound by no manifest (not active avatars)', 'manifest': None,
                      'identity_registry': None, 'countries': 'none'},
     'missing': {'label': 'Known people with sourced art windows and no cartoon', 'manifest': PRODUCTION,
@@ -100,7 +101,6 @@ ID_RE = re.compile(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,119}\Z')
 PHOTO_NAME_RE = re.compile(r'(?P<nation>[A-Za-z0-9]+)-(?P<hex>[0-9a-f]{6,16})\.webp\Z')
 LEADER_NAME_RE = re.compile(r'(?P<nation>[A-Za-z0-9]+)-leader-(?P<hex>[0-9a-f]{12})\.png\Z')
 DISPLAY_NAME_RE = re.compile(r'.+-(?P<hex>[0-9a-f]{16})\.webp\Z')
-STYLE_LINE_RE = re.compile(r'^Style reference:\s*`([^`]+)`', re.M)
 SOF_MARKERS = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
 
 CODE_TEXT = {
@@ -336,6 +336,9 @@ class Builder:
         self.file_cache: dict[str, dict] = {}
         self.bindings: dict[str, list[dict]] = defaultdict(list)
         self.items: list[dict] = []
+        # National icons are retired. Keep their original identity, source and
+        # review bindings for audit without presenting them as campaign leaders.
+        self.archived_selector: list[dict] = []
         self.findings: list[dict] = []
         self.inventory, self.inventory_mode = art_inventory(self.root)
         self.nation_names = {c['id']: c['name'] for c in self.data['production_inventory'].get('countries', [])
@@ -677,9 +680,20 @@ class Builder:
         figures = self.data['selector_figures'].get('nations')
         if not isinstance(figures, dict):
             raise SystemExit(f'{SELECTOR_MANIFEST} requires a nations object')
-        display = {}
+        display, display_bindings = {}, defaultdict(list)
         for record in self.data['display_derivatives'] if isinstance(self.data['display_derivatives'], list) else []:
-            if isinstance(record, dict) and self.check_display(record):
+            if not isinstance(record, dict):
+                continue
+            valid = self.check_display(record)
+            # Broken derivatives still belong to the archived identity. Binding
+            # them is an audit fact, not permission to display corrupt images.
+            try:
+                source = safe_rel(record.get('source'))
+                derived = safe_rel(record.get('display'), (DISPLAY_ART,))
+            except ValueError:
+                continue
+            display_bindings[source].append(derived)
+            if valid:
                 display[record['source']] = record
         for nation in sorted(figures):
             spec = figures[nation]
@@ -688,6 +702,7 @@ class Builder:
             item_id = f'selector:{nation}'
             identity = f"figure:{spec['wikidata']}" if spec.get('wikidata') else f"figure:name:{str(spec.get('canonical_lookup', '')).casefold()}"
             item = {'id': item_id, 'collection': 'selector', 'name': spec.get('figure') or nation,
+                    'archived': True,
                     'identity': compact({'key': identity, 'wikidata': spec.get('wikidata'), 'status': 'known'}),
                     'countries': [nation], 'record': f'/nations/{nation}', 'years': spec.get('years')}
             if nation not in self.nation_names:
@@ -705,8 +720,8 @@ class Builder:
                 if rel:
                     rights['reference_file'] = rel
                     self.bind(rel, item_id, 'identity-reference-photo', identity)
-                    if rel in display:
-                        self.bind(display[rel]['display'], item_id, 'identity-photo-display-derivative', identity)
+                    for derived in display_bindings[rel]:
+                        self.bind(derived, item_id, 'identity-photo-display-derivative', identity)
                 if 'automated' in str(photo.get('review', '')).lower():
                     self.find('identity_photo_selected_automatically', item_id, f"identity photograph review: {photo.get('review')!r}")
             if art:
@@ -718,9 +733,10 @@ class Builder:
                 if rel:
                     item['asset'] = item['card'] = rel
                     self.bind(rel, item_id, 'cartoon-master', identity)
+                    for derived in display_bindings[rel]:
+                        self.bind(derived, item_id, 'cartoon-display-derivative', identity)
                     if rel in display:
                         item['card'] = display[rel]['display']
-                        self.bind(item['card'], item_id, 'cartoon-display-derivative', identity)
                     elif facts.get('exists'):
                         self.find('display_derivative_missing', item_id, f'{rel} has no display512 derivative in {DISPLAY_MANIFEST}', rel)
                 if photo and art.get('identity_source_asset') != photo.get('asset'):
@@ -745,7 +761,7 @@ class Builder:
                 item['style'] = art.get('style')
                 item['review'] = compact({'text': art.get('review'), 'identity': art.get('identity_review')})
             item['rights'] = compact(rights)
-            self.items.append(self.lean(item))
+            self.archived_selector.append(self.lean(item))
 
     def references(self):
         for ref in (self.data.get('reference_audit_uk') or {}).get('references', []):
@@ -807,7 +823,7 @@ class Builder:
             raise SystemExit(f'{where}: format must be {SAMPLE_FORMAT}')
         if any(key in sample for key in FORBIDDEN_SAMPLE_KEYS):
             raise SystemExit(f'{where}: approval/acceptance fields are not allowed in a preparation review')
-        by_id = {item['id']: item for item in self.items}
+        by_id = {item['id']: item for item in self.items + self.archived_selector}
         entries = []
         for position, entry in enumerate(sample.get('entries', [])):
             at = f'{where} entry {position}'
@@ -823,7 +839,7 @@ class Builder:
             current = self.file_facts(item['asset']).get('sha256') if item and item.get('asset') else None
             matches = bool(current) and current == entry.get('sha256')
             if item is None:
-                self.find('visual_review_unknown_item', None, f"{at} names {entry.get('item')!r}")
+                self.find('visual_review_unknown_item', text(entry.get('item')), f"{at} names {entry.get('item')!r}")
             elif not matches:
                 self.find('visual_review_stale', item['id'], f"{at} reviewed {str(entry.get('sha256'))[:12]}…, current file is {str(current)[:12]}…")
             if item is not None:
@@ -843,25 +859,6 @@ class Builder:
             refs.append({'role': 'approved person-cartoon style anchor (production inventory)', 'path': anchor,
                          'recorded_sha256': style.get('anchor_sha256'), 'sha256': self.file_facts(anchor).get('sha256'),
                          'approval': style.get('user_style_approval')})
-        counts = Counter()
-        for spec in (self.data['selector_figures'].get('nations') or {}).values():
-            prompt = ((spec.get('leader_art') or {}) if isinstance(spec, dict) else {}).get('prompt_record')
-            try:
-                prompt = safe_rel(prompt, ('tools/avatars',))
-            except ValueError:
-                continue
-            if (self.root / prompt).is_file():
-                match = STYLE_LINE_RE.search((self.root / prompt).read_text(encoding='utf-8-sig'))
-                if match:
-                    counts[match.group(1)] += 1
-        if counts:
-            path, count = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[0]
-            try:
-                sha = self.file_facts(safe_rel(path, (SELECTOR_ART,))).get('sha256')
-            except ValueError:
-                sha = None
-            refs.append({'role': 'country-selector style reference (most cited "Style reference" in selector prompt records)',
-                         'path': path, 'cited_by_prompt_records': count, 'sha256': sha})
         person = (((self.data.get('s10c_reviewed_reference') or {}).get('portrait_scope')) or {}).get('person_id')
         if person:
             item = next((i for i in self.items if i['id'].startswith(f'historical:{person}#')), {})
@@ -891,13 +888,19 @@ class Builder:
         def sort_key(item):
             countries = item.get('countries') or []
             country = self.nation_names.get(countries[0], countries[0]) if countries else '\uffff'
-            return (country.casefold(), order[item['collection']], str(item['name']).casefold(), item['id'])
+            return (country.casefold(), order.get(item['collection'], len(order)), str(item['name']).casefold(), item['id'])
 
         self.items.sort(key=sort_key)
-        position = {item['id']: n for n, item in enumerate(self.items)}
+        self.archived_selector.sort(key=sort_key)
+        all_items = self.items + self.archived_selector
+        position = {item['id']: n for n, item in enumerate(all_items)}
+        archive_ids = {item['id'] for item in self.archived_selector}
         self.findings.sort(key=lambda f: (position.get(f['item'], len(position)), SEVERITIES.index(f['severity']), f['code'], f['path'] or '', f['message']))
         seen = Counter()
         for finding in self.findings:
+            bound_items = {b['item'] for b in self.bindings.get(finding['path'], [])}
+            archived = finding['item'] in archive_ids or (finding['item'] is None and bool(bound_items) and bound_items <= archive_ids)
+            finding['scope'] = 'archived_selector' if archived else 'active'
             base = f"{finding['code']}@{finding['item'] or finding['path'] or 'repository'}"
             seen[base] += 1
             finding['id'] = base if seen[base] == 1 else f'{base}#{seen[base]}'
@@ -905,7 +908,7 @@ class Builder:
         for finding in self.findings:
             by_item[finding['item']].append(finding)
         self.findings = [compact(f) for f in self.findings]
-        for item in self.items:
+        for item in all_items:
             item['labels'] = self.labels(item, by_item.get(item['id'], []))
         files = []
         for rel in sorted(set(self.inventory) | set(self.bindings)):
@@ -914,7 +917,9 @@ class Builder:
             if rel not in self.inventory:
                 record['tracked'] = False
             files.append(compact(record))
-        used = sorted({c for item in self.items for c in item.get('countries', [])})
+        # A nation remains selectable even when its only old image was retired.
+        # This is roster metadata, never a fallback identity or active art item.
+        used = sorted({c for item in all_items for c in item.get('countries', [])})
         return {
             'format': FORMAT, 'task': TASK, 'statement': STATEMENT,
             'generated_by': 'tools/avatars/cartoon_review.py',
@@ -937,6 +942,7 @@ class Builder:
             'codes': {code: {'severity': sev, 'meaning': meaning} for code, (sev, meaning) in sorted(CODE_TEXT.items())},
             'visual_review_sample': sample,
             'items': self.items,
+            'archived_selector': self.archived_selector,
             'findings': self.findings,
             'duplicates': groups,
             'files': files,
@@ -945,7 +951,7 @@ class Builder:
     @staticmethod
     def labels(item: dict, findings: list[dict]) -> list[str]:
         codes = {f['code'] for f in findings}
-        labels = ['missing-art' if item['collection'] == 'missing' else item['collection']]
+        labels = ['archived-selector' if item.get('archived') else 'missing-art' if item['collection'] == 'missing' else item['collection']]
         if item.get('style_reference'):
             labels.append('style-reference')
         if 'missing_file' in codes:
@@ -972,15 +978,21 @@ class Builder:
         by_collection = Counter(item['collection'] for item in self.items)
         by_code = Counter(f['code'] for f in self.findings)
         by_severity = Counter(f['severity'] for f in self.findings)
+        active_severity = Counter(f['severity'] for f in self.findings if f['scope'] == 'active')
+        archive_severity = Counter(f['severity'] for f in self.findings if f['scope'] == 'archived_selector')
         roots = Counter(next((r for r in ART_ROOTS if f['path'].startswith(r + '/')), 'other') for f in files)
         return {
             'items': {c: by_collection.get(c, 0) for c in COLLECTIONS},
-            'cartoon_items_with_files': sum(1 for i in self.items if i['collection'] in ('historical', 'fictional', 'selector') and i.get('asset')),
+            'cartoon_items_with_files': sum(1 for i in self.items if i['collection'] in ('historical', 'fictional') and i.get('asset')),
+            'archived_selector_items': len(self.archived_selector),
+            'archived_selector_items_with_files': sum(1 for i in self.archived_selector if i.get('asset')),
             'files': {'total': len(files), 'existing': sum(1 for f in files if f['exists']),
                       'by_root': {r: roots.get(r, 0) for r in ART_ROOTS}},
             'duplicate_groups': len(groups),
             'duplicate_groups_with_different_identities': sum(1 for g in groups if g['different_identities']),
             'findings_by_severity': {s: by_severity.get(s, 0) for s in SEVERITIES},
+            'active_findings_by_severity': {s: active_severity.get(s, 0) for s in SEVERITIES},
+            'archived_selector_findings_by_severity': {s: archive_severity.get(s, 0) for s in SEVERITIES},
             'findings_by_code': {code: by_code[code] for code in sorted(by_code)},
             'countries_with_items': len({c for i in self.items for c in i.get('countries', [])}),
             'visual_review_entries': len((self.data.get('visual_review_sample') or {}).get('entries', [])),
@@ -999,9 +1011,10 @@ def md(value) -> str:
 
 
 def render(export: dict) -> str:
-    s, items = export['summary'], {i['id']: i for i in export['items']}
+    archived = export['archived_selector']
+    s, items = export['summary'], {i['id']: i for i in export['items'] + archived}
     findings = export['findings']
-    name = lambda f: items[f['item']]['name'] if f.get('item') in items else (f.get('path') or 'repository')
+    name = lambda f: items[f['item']]['name'] if f.get('item') in items else (f.get('item') or f.get('path') or 'repository')
     lines = ['# Cartoon review export (CLAUDE-C03-REVIEW-01)', '', f"> {export['statement']}", '',
              f"Generated by `{export['generated_by']}` from the pinned inputs below. Regenerate with `{export['regenerate']}`; "
              f"verify with `{export['check']}` (exit 1 when stale). The reviewer `tools/ui/cartoon-review/index.html` presents "
@@ -1013,6 +1026,14 @@ def render(export: dict) -> str:
     lines += [f"| {i['role']} | `{i['path']}` | {i['bytes']} | `{i['sha256']}` |" for i in export['inputs']]
     lines += ['', '## Collections', '', '| Collection | Items | Source |', '|---|---:|---|']
     lines += [f"| {c} | {n} | {md(export['collections'][c]['label'])} |" for c, n in s['items'].items()]
+    lines += ['', f"{s['cartoon_items_with_files']} active historical/fictional cartoon records have an asset path. "
+              f"{len(archived)} retired national-icon records are retained separately in `archived_selector`; "
+              'they are not campaign leaders, active collections or active style references. Their byte pins, '
+              'source/rights findings and original visual sample remain in this audit.', '',
+              '| Audit scope | Errors | Warnings | Notices |', '|---|---:|---:|---:|']
+    for label, key in (('Active / unresolved', 'active_findings_by_severity'),
+                       ('Archived national icons', 'archived_selector_findings_by_severity')):
+        lines.append(f"| {label} | " + ' | '.join(str(s[key][level]) for level in SEVERITIES) + ' |')
     lines += ['', f"{s['files']['total']} image files inventoried, {s['files']['existing']} present: "
               + ', '.join(f'`{root}` {n}' for root, n in s['files']['by_root'].items()) + '.', '', '## Style references', '']
     for ref in export['style_references']:
@@ -1059,7 +1080,7 @@ def render(export: dict) -> str:
         lines.append(f"- **`{code}`** ({len(names)}): " + ', '.join(names[:24]) + (f', … ({len(names) - 24} more)' if len(names) > 24 else ''))
     lines += ['', '## Recorded review decisions (existing manifests)', '']
     recorded = Counter()
-    for item in export['items']:
+    for item in export['items'] + archived:
         review = item.get('review') or {}
         if item['collection'] == 'historical':
             recorded['historical: identity, likeness, era and visual all recorded true'
@@ -1067,7 +1088,7 @@ def render(export: dict) -> str:
         elif item['collection'] == 'fictional':
             recorded['fictional: design and visual recorded true' if all(review.get(k) is True for k in ('design', 'visual')) else 'fictional: incomplete'] += 1
         elif item['collection'] == 'selector':
-            recorded['selector: free-text production review recorded' if review.get('text') else 'selector: none recorded'] += 1
+            recorded['archived selector: free-text production review recorded' if review.get('text') else 'archived selector: none recorded'] += 1
     lines += [f'- {k}: {v}' for k, v in sorted(recorded.items())]
     lines += ['', 'These are decisions recorded by earlier production passes. This export reproduces them; it does not re-decide or endorse them.', '',
               '## Visual review sample (this packet)', '']
