@@ -1,0 +1,17 @@
+F
+======================================================================
+FAIL: test_ambiguous_signature_does_not_identify_a_premier (test_ussr_government_president_c01_49.UssrGovernmentPresidentTests.test_ambiguous_signature_does_not_identify_a_premier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\combined\tools\avatars\test_ussr_government_president_c01_49.py", line 323, in test_ambiguous_signature_does_not_identify_a_premier
+    self.assertEqual(self.rows[cid]['event_kind'], 'ambiguous_signature_block')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'in_office_attestation' != 'ambiguous_signature_block'
+- in_office_attestation
++ ambiguous_signature_block
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.253s
+
+FAILED (failures=1)
