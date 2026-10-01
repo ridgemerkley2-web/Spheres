@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_pga_award_20131214",
+  "source_url": "https://web.archive.org/web/20161027095552id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/230-akilisi-pohiva-presented-2013-defender-of-democracy-awards",
+  "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/230-akilisi-pohiva-presented-2013-defender-of-democracy-awards",
+  "archive_capture_utc": "2016-10-27T09:55:52Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2013-12-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35057,
+  "source_response_sha256": "bcaa0769b9b25cd07350815a25f43b7d8cd67e669749b3dc2b9c451eb1918918",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-10-01T02:47:29Z and again at 2026-10-01T03:19:10Z (UTC), 31 minutes later, from the same URL: both responses were 35057 bytes with SHA-256 bcaa0769b9b25cd07350815a25f43b7d8cd67e669749b3dc2b9c451eb1918918. The raw id_ form replays the stored capture rather than generating a page per request. The research download of 2026-10-01T02:46:15Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2016-10-27T09:55:52Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item (its line 'Created: 14 December 2013') as a raw Internet Archive capture of 27 October 2016. It reports the award ceremony of 8 December 2013 and names its source as the Parliamentarians for Global Action (PGA) Forum website, so the biographical text it relays is third-party reference text republished on the Assembly's site (claims only, never holder evidence). Used only for the founding sentence; the award, the 1996 imprisonment and the accompanying delegation are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (heading, Created line, body and Source line); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_la_pga_dpfi_established_sept2010",
+      "observation_id": "to_dpfi",
+      "review_observation": "TO-OPP-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": "none (party description; claims only, not placed on a role)",
+      "event_kind": "retrospective_founding_statement",
+      "attested_on": null,
+      "text": "The Legislative Assembly's news item ''Akilisi Pohiva presented 2013 Defender of Democracy awards' (created 14 December 2013), which names the PGA Forum website as its source, relays that website's text about Mr. Samuela 'Akilisi Pohiva: 'In September 2010, he established the Democratic Party of the Friendly Islands along with other Human Rights and Democracy Movement People's Representatives, in order to contest the 2010 elections.'",
+      "locator": "Item body, paragraph quoting the PGA forum website, and the closing 'Source:' line",
+      "uncertainty": "Third-party reference text relayed on the Assembly's site, so a claim only and never holder evidence; a month-level founding statement, not a founding instrument, launch notice or registration, so lifecycle.from stays null. It names no party office: establishing the party is not read as holding the leader's office."
+    }
+  ],
+  "bounded_scope": "Opposition party observations for CLAUDE-C01-44 only (organizations to_dpfi and to_pdp; roles to_dpfi_leader, to_dpfi_president and to_pdp_leader). Rows are claims only: no row is a holder observation, and a court recital, a description of legal form and a retrospective founding statement stay separate rows. Organization identities stay unresolved; a party name printed differently from an existing name is not mapped to it."
+}
