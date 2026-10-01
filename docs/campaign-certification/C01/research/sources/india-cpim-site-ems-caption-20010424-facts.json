@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_site_ems_caption_page_2001",
+  "source_url": "https://web.archive.org/web/20010424181354id_/http://cpim.org:80/ems~2.htm",
+  "original_url": "http://cpim.org/ems~2.htm",
+  "archive_capture_utc": "2001-04-24T18:13:54Z",
+  "accessed_date": "2026-09-30",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 757,
+  "source_response_sha256": "33441055f20b435128756fce7bcd8f438360d8e083428491766701a948e316b1",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-04-24T18:13:54Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page (cpim.org and pd.cpim.org answered HTTP 404 for these addresses when this packet checked them, and peoplesdemocracy.in adds a per-request script to every page). This packet downloaded it at 23:45:50Z on 30 September 2026 and 00:22:38Z on 1 October 2026, the first and last 36 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A one-line caption page of the party's website (archived Last-Modified 15 October 2000), recorded as a raw Internet Archive capture of 24 April 2001. It carries no date of its own; its 'Former General Secretary' styling is retrospective and never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_site_ems_former_general_secretary_caption",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-01",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "EMS Namboodiripad",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "retrospective_former_styling",
+      "attested_on": null,
+      "text": "The party website's caption page, as captured on 24 April 2001, reads 'EMS Namboodiripad', 'Former General Secretary, CPI(M)' and '(Died March 19, 1998)'.",
+      "locator": {
+        "item": "page body, caption lines"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}

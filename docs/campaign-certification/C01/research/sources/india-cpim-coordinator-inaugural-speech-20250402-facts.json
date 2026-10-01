@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cpim_karat_coordinator_inaugural_speech_20250402",
+  "source_url": "https://cpim.org/wp-json/wp/v2/posts/11826",
+  "accessed_date": "2026-09-30",
+  "published_date": "2025-04-02",
+  "access_method": "party_website_rest_record_download_and_post_text_read",
+  "source_response_bytes": 17491,
+  "source_response_sha256": "b7382cde1af9b8d34b084561a04e17640a59a23c12dffcfbe4dde699b0b090e0",
+  "source_response_checked_in": false,
+  "provenance_note": "Party record served by the party's own host (cpim.org): the WordPress REST record of post 11826 (wp-json/wp/v2/posts/11826), a JSON document carrying the post's title, slug, publication and modification dates and body. The HTML page of the same post embeds a per-request cache timestamp, so the page is not a reproducible identity and the JSON record is recorded instead. This packet downloaded it at 23:36:10Z on 30 September 2026 and 00:22:24Z on 1 October 2026, the first and last 46 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent, without --compressed and with no Accept-Encoding request header; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's post 11826 (slug prakash-karats-speech-at-the-inaugural-session-of-24th-congress-of-cpim), published 2 April 2025 and last modified the same day, recorded as its WordPress REST record (wp-json/wp/v2/posts/11826) because the HTML page of the same post embeds a per-request cache timestamp. The text of the coordinator's inaugural speech at the 24th Congress at Madurai; the post's publication date is its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Post title, dates and body read in full from the JSON record (HTML tags stripped)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cpim_karat_styled_coordinator_inaugural_speech_20250402",
+      "observation_id": "in_eci_20240323_np_04",
+      "review_observation": "CPM-GS-05",
+      "role_id": "in_cpm_general_secretary",
+      "holder_name": "Prakash Karat",
+      "role_title": "General Secretary of the Communist Party of India (Marxist)",
+      "event_kind": "interim_service_attestation",
+      "attested_on": "2025-04-02",
+      "text": "The party's post of 2 April 2025 is headed 'Speech by Comrade Prakash Karat, Coordinator of the CPI(M), at the Inaugural session of 24th Party Congress', and the text opens 'Inaugural Speech of Prakash Karat, Coordinator, Polit Bureau of Communist Party of India (Marxist)'.",
+      "locator": {
+        "item": "post title and first line"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-40 only: the role in_cpm_general_secretary (General Secretary of the Communist Party of India (Marxist)) on the CPI(M) recognition observation in_eci_20240323_np_04. Party Congress and Central Committee elections, in-office attestations, later attestations, 'former', 'outgoing' and handover stylings, retrospective biographies, the death in office and the interim coordinator arrangement stay separate rows; holder boundaries are decided in the packet, not by any row. Polit Bureau and Central Committee membership, state secretaries, parliamentary offices, ministers, chief ministers and every other office or organisation are excluded as holders."
+}
