@@ -183,6 +183,11 @@ extract's `downloads`). Points a reviewer needs:
   and the live static files (fixed Last-Modified) are byte-identical and attached as `live_file_response`.
 - Izvestia No. 197: the CDX index holds no capture of `izvestija.sssr.su/1991/197.pdf`; the live file has a fixed Last-Modified
   (Fri, 02 Dec 2016 01:36:05 GMT) and no text layer.
+- Izvestia No. 197 is a 39.8 MB file. A third download by `packet_check.py` on 1 October 2026 stopped at curl's 120-second
+  `--max-time` and kept 33,680,543 bytes (`2d85c149ae56…`). The first 33,680,543 bytes of the recorded body hash to exactly that
+  value, so it was a truncated transfer of the same file, not a different file. A full re-download at 2026-10-01T12:43:43Z (31.9 s)
+  returned the recorded 39,761,395 bytes and `ddb564e7…7e63e45e4d` with the same ETag and Last-Modified, and the recorded identity
+  is unchanged. Re-verify it with a time limit long enough for the whole file.
 - Every quotation was read from rendered page images (PyMuPDF crops); OCR or text layers were used only to find passages.
 
 ## Leads not imported
