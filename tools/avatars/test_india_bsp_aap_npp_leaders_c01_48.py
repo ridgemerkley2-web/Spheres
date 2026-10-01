@@ -426,6 +426,12 @@ class IndiaBspAapNppLeadersTests(unittest.TestCase):
         self.assertEqual(len(parts), 2, heading)
         return parts[1].split('\n## ', 1)[0]
 
+    def test_conrad_election_locator_identifies_the_election_passage(self):
+        cid = 'in_npp_site_conrad_sangma_elected_national_president_march_2016'
+        expected = {'item': "biography paragraph beginning 'He was elected as the National President'"}
+        self.assertEqual(self.claims[cid]['locator'], expected)
+        self.assertEqual(self.rows[cid]['locator'], expected)
+
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (19, 24))

@@ -156,6 +156,24 @@ class IndiaDiscoveryTests(unittest.TestCase):
             'Nationalist Congress Party – Sharadchandra Pawar': 2})
         self.assertTrue(all(o['recognition']['consolidated_current_status'] is None for o in qualified))
 
+    def test_cutoff_guard_rejects_both_prior_and_new_packet_dates(self):
+        # Exercise the actual date guard independently: an added packet branch must
+        # not take publication/claim checks away from an earlier packet.
+        role_sources = {r['id']: r['sources'] for o in self.packet['organizations'] for r in o['roles']}
+        for role_id in (C01_40_ROLE, C01_48_ROLES[0][1]):
+            sid = role_sources[role_id][0]
+            for field in ('published_date', 'attested_on'):
+                with self.subTest(role=role_id, field=field):
+                    case = IndiaDiscoveryTests('test_access_dates_never_extend_historical_attestations')
+                    case.packet = copy.deepcopy(self.packet)
+                    source = next(s for s in case.packet['sources'] if s['id'] == sid)
+                    if field == 'published_date':
+                        source[field] = '2026-09-08'
+                    else:
+                        source['claims'][0][field] = '2026-09-08'
+                    with self.assertRaises(AssertionError):
+                        case.test_access_dates_never_extend_historical_attestations()
+
     def test_access_dates_never_extend_historical_attestations(self):
         c01_15 = set(self.packet['institutions'][1]['sources'])
         self.assertEqual(len(c01_15), C01_15_SOURCE_COUNT)
@@ -191,12 +209,18 @@ class IndiaDiscoveryTests(unittest.TestCase):
             elif source['id'] in c01_40:
                 self.assertIn(urlsplit(source['url']).hostname, C01_40_HOSTS)
                 self.assertIn(source['accessed_date'], C01_40_ACCESS_DATES)
+                if source['published_date']:
+                    self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
+                # CLAUDE-C01-40's retrospective pages, lists and undated statements carry no structured date.
+                for claim in source['claims']:
+                    if claim.get('attested_on'):
+                        self.assertLessEqual(claim['attested_on'], research.CUTOFF)
             elif source['id'] in c01_48:
                 self.assertIn(urlsplit(source['url']).hostname, C01_48_HOSTS)
                 self.assertIn(source['accessed_date'], C01_48_ACCESS_DATES)
                 if source['published_date']:
                     self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
-                # CLAUDE-C01-40's retrospective pages, lists and undated statements carry no structured date.
+                # CLAUDE-C01-48's undated and month-only statements carry no structured day.
                 for claim in source['claims']:
                     if claim.get('attested_on'):
                         self.assertLessEqual(claim['attested_on'], research.CUTOFF)

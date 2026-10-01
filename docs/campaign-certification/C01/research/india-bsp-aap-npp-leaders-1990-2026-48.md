@@ -174,6 +174,12 @@ Accept-Encoding header; none was served with a Content-Encoding.
 
 Each pair matched in byte count and SHA-256; `packet_check.py` downloads every source again.
 
+Independent review limitation: the three AAP REST records are current representations with publisher-supplied
+historical dates, not independently timestamped contemporary captures. Post 883198 records modification on
+21 November 2024, three days after its publication date; the cause is unknown. Reproducing the same bytes does not
+establish that any post body existed unchanged at publication. Acceptance is limited to the attributed office
+statements and dates now served, without authenticating earlier revisions or unrelated political assertions.
+
 ## Leads not imported
 
 - `aamaadmiparty.org/wp-json/wp/v2/aap_news/905580` (published 10 September 2026): Kejriwal 'unanimously re-elected'
