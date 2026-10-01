@@ -1,0 +1,16 @@
+{
+  "name": "workboard-check",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/planning/workboard.py",
+    "--check"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-31-20261001",
+  "started_at": "2026-10-01T01:33:24.282224+00:00",
+  "log": "workboard-check.log",
+  "exit_code": 0,
+  "finished_at": "2026-10-01T01:33:24.404837+00:00"
+}

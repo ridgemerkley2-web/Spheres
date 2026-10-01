@@ -1,0 +1,23 @@
+{
+  "status": "diagnostic_failed_or_resource_halted",
+  "mode": "captured-fault",
+  "production_core_sha256": "b636010efbc8d45fb36a27092e18b1840ac7ff99bad7c61037218fac77dc1570",
+  "cleanup": [],
+  "monitor_exit": 1,
+  "owned": [
+    {
+      "exit_code": -1073741819,
+      "exited": true,
+      "pid": 34760
+    }
+  ],
+  "dump_count": 1,
+  "native_created_output": true,
+  "monitor_exited": true,
+  "primary": {
+    "type": "System.Management.Automation.RuntimeException",
+    "status": "running",
+    "stack": "at <ScriptBlock>, <No file>: line 30\r\nat <ScriptBlock>, D:\\spheres-offload\\codex-next-20260928\\cp1-s25-crash-prep-20261001\\docs\\campaign-certification\\S25\\preparation\\crash-capture-20261001\\check-monitor.ps1: line 49\r\nat <ScriptBlock>, <No file>: line 2",
+    "message": "Owned native target failed with exit -1073741819"
+  }
+}

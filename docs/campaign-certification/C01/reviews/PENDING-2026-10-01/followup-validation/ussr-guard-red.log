@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_mixed_old_and_new_citations_cannot_hide_extra_party_holder (test_ussr_prior_holder_guard.PriorHolderGuard.test_mixed_old_and_new_citations_cannot_hide_extra_party_holder)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_ussr_prior_holder_guard.py", line 32, in test_mixed_old_and_new_citations_cannot_hide_extra_party_holder
+    with self.assertRaises(AssertionError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: AssertionError not raised
+
+======================================================================
+FAIL: test_new_cpsu_citation_cannot_hide_extra_state_office_holder (test_ussr_prior_holder_guard.PriorHolderGuard.test_new_cpsu_citation_cannot_hide_extra_state_office_holder)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_ussr_prior_holder_guard.py", line 22, in test_new_cpsu_citation_cannot_hide_extra_state_office_holder
+    with self.assertRaises(AssertionError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: AssertionError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.010s
+
+FAILED (failures=2)

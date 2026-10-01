@@ -1,0 +1,8 @@
+error: failed to load manifest for workspace member `D:\spheres-offload\codex-next-20260928\cp1-a1-followup-20261001\spheres-web`
+referenced by workspace at `D:\spheres-offload\codex-next-20260928\cp1-a1-followup-20261001\Cargo.toml`
+
+Caused by:
+  failed to parse manifest at `D:\spheres-offload\codex-next-20260928\cp1-a1-followup-20261001\spheres-web\Cargo.toml`
+
+Caused by:
+  can't find `mapgen` bin at `src\bin\mapgen.rs` or `src\bin\mapgen\main.rs`. Please specify bin.path if you want to use a non-default path.

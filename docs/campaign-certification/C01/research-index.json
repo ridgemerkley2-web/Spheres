@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 1938,
-    "source_claims": 4810,
+    "sources": 1971,
+    "source_claims": 4876,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -198,7 +198,7 @@
       "organization_observations": 83,
       "institution_observations": 2,
       "role_observations": 6,
-      "source_claims": 623,
+      "source_claims": 625,
       "mapping_pending": 85,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -242,7 +242,7 @@
           "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
           "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted.",
-          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 11 April 2005, Sitaram Yechury 19 April 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2015, 2018, 2022 and 2025 are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
+          "CPI(M) General Secretaries 1990-2026 (CLAUDE-C01-40, CPM-GS-01..06): the CPI(M) recognition observation in_eci_20240323_np_04 has one party role, in_cpm_general_secretary, with four holder observations dated by same-day in-office attestations in party records (Harkishan Singh Surjeet 2 March 2004, Prakash Karat 10 September 2011, Sitaram Yechury 6 May 2015, M. A. Baby 12 May 2025) and one stated end (Sitaram Yechury, 12 September 2024, the day of death stated with the office in the Polit Bureau's statement). EMS Namboodiripad has no in-office attestation in the period (claims only); the Party Congress elections recorded for 1998, 2005, 2012, 2015, 2018, 2022 and 2025, with the 'newly elected' stylings at the rallies closing the 2005, 2012 and 2015 Congresses, are claims, and the interim coordinator arrangement of 2024-2025 (Prakash Karat) is claims only. The prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted. This amendment changes only the selected Karat and Yechury observation dates; all earlier styling claims remain preserved, without a blanket exclusion of independently supported same-day in-office attestations."
         ]
       }
     },
@@ -251,8 +251,8 @@
       "packet": "docs/campaign-certification/C01/research/japan.json",
       "organization_observations": 16,
       "institution_observations": 8,
-      "role_observations": 6,
-      "source_claims": 799,
+      "role_observations": 7,
+      "source_claims": 863,
       "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -293,7 +293,8 @@
           "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted.",
           "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2014 appointments (the Official Gazette of 2006-2017 is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership.",
           "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
-          "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office."
+          "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office.",
+          "Komeito representatives 1990-2026 (CLAUDE-C01-31): the 公明党 observation gains its first party role, jp_komeito_representative (委員長 to 1994, then 代表), with fifteen holder observations from 石田幸四郎 (1993) to 竹谷とし子 (2026); only 太田昭宏 (30 September 2006) has a stated start; 竹谷とし子 is attested on 14 March 2026 with no effective start inferred, and no holder has a stated end. The 1994 division, the organizations of 1994-1998, the 1998 merger and 中道改革連合 are organization claims, never a merge or mapping; the 1994 acting chair and the 2026 代表代理 are claims only. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous records of 1990-1994, several conventions and every end of office."
         ]
       }
     },
@@ -2698,13 +2699,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1301518,
-      "sha256": "42d68ee487ff13718fae67488a9d28ecce1be1b586da878574568f5d6d139176"
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 1590799,
-      "sha256": "7aae60165858f216411adae3836cf98355ce867a834521e72c3a13427efeff06"
+      "bytes": 1716657,
+      "sha256": "00859d166818d2b11b1a932c4f0ff10a8181142b2fdfcbd21903272cb06b9ec3"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",

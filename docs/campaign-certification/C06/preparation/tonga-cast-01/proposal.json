@@ -1,0 +1,871 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "status": "proposal_only",
+  "task": "CODEX-C02-TO-01",
+  "base_revision": "c58ee025da50dfac164fc839b3fc021c39d483fe",
+  "historical_cutoff": "2026-09-07",
+  "authority": {
+    "runtime_installation": false,
+    "office_eligibility": false,
+    "scheduled_succession": false,
+    "art_approval": false,
+    "country_completion": false,
+    "party_mapping": false
+  },
+  "opening_record_sha256": "84f034041808f7314e50ad5d5b903140e856bac0d893d521e8c0d79025997fee",
+  "reviews": [
+    {
+      "id": "C01-07",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md",
+      "sha256": "ae2a2ec522d7670fa06f4a14ca1ccf556863c96a7a02e00a5b4ae35217673e5a",
+      "scope": "Bounded research intake; targeted critical-claim audit, not exhaustive verification or production identity/eligibility acceptance.",
+      "hash_encoding": "utf8_lf"
+    },
+    {
+      "id": "C01-08",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+      "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
+      "scope": "Bounded research intake; targeted critical-claim audit, not exhaustive verification or production identity/eligibility acceptance.",
+      "hash_encoding": "utf8_lf"
+    }
+  ],
+  "people": [
+    {
+      "priority": 1,
+      "person_id": "taufaahau_tupou_iv",
+      "name": "Taufa'ahau Tupou IV",
+      "identity": {
+        "status": "existing",
+        "record": {
+          "id": "taufaahau_tupou_iv",
+          "name": "Taufa'ahau Tupou IV",
+          "sources": [
+            "https://www.worldstatesmen.org/Tonga.html",
+            "https://rulers.org/rult.html",
+            "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
+            "https://en.wikipedia.org/wiki/George_Tupou_V"
+          ],
+          "native": "Tāufaʻāhau Tupou IV",
+          "born": {
+            "kind": "day",
+            "value": "1918-07-04"
+          }
+        },
+        "decision": "Exact existing King identity and opening office link. C01 supports the 1990 assents/end, not a new proof of the saved 1965-12-16 start or birthday; preserve those facts."
+      },
+      "opening_slot": "primary",
+      "opening_record": {
+        "name": "Taufa'ahau Tupou IV",
+        "office": "King",
+        "since": "1965-12-16"
+      },
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_crown",
+          "role_id": "to_king",
+          "holder": {
+            "name": "Taufa'ahau Tupou IV",
+            "attested_on": null,
+            "from": null,
+            "until": "2006-09-11",
+            "sources": [
+              "to_act_income_tax_amend_1990",
+              "to_act_constitution_amend_1990",
+              "to_pmo_20060911_death_notice",
+              "to_pmo_20060911_proclamation"
+            ],
+            "claim_ids": [
+              "to_crown_assent_tupou_iv_19900712",
+              "to_crown_assent_tupou_iv_19900808",
+              "to_crown_tupou_iv_death_20060911",
+              "to_crown_gtv_devolution_proclamation_20060911"
+            ],
+            "note": "King when the period opens: dated royal assents of 12 July and 8 August 1990 (TO-CROWN-01). His reign ended with his death in Auckland at 00:34 on 11 September 2006, Tongan time (23:34 on 10 September, New Zealand time), as Gazette No. 20 records; Gazette No. 19 states that the Crown devolved by his decease (TO-CROWN-03, TO-CROWN-04).",
+            "uncertainty": "The start of the reign (1965) is outside the period and is not structured. The end is the Tongan calendar date of the death, to which the proclamation's devolution wording ties the transfer of the Crown; it is not taken from George Tupou V's proclamation or coronation. The State Funeral, burial and mourning are separate claims."
+          },
+          "binding": "existing_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_crown_assent_tupou_iv_19900712": {
+              "source_id": "to_act_income_tax_amend_1990",
+              "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+              "claim_sha256": "d88ba6a83d21dd1be79c0bf1fa93285d3991bea901c58d15627d2356c839a1ac"
+            },
+            "to_crown_assent_tupou_iv_19900808": {
+              "source_id": "to_act_constitution_amend_1990",
+              "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+              "claim_sha256": "5f3f6e194cff4f857595972c9100c4cd1ec8d8bdf8bfca286d7a179d59404124"
+            },
+            "to_crown_tupou_iv_death_20060911": {
+              "source_id": "to_pmo_20060911_death_notice",
+              "url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+              "claim_sha256": "8a51a75d603371dd056989a89f3f6a4b5d385860908f620bdc5bb7be1f786872"
+            },
+            "to_crown_gtv_devolution_proclamation_20060911": {
+              "source_id": "to_pmo_20060911_proclamation",
+              "url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+              "claim_sha256": "67c16e347a31c8a13af4597c34a266c0f667790e57a3eb6d661509a608336268"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-07",
+          "reviewed_claim_ids": [
+            "to_crown_assent_tupou_iv_19900712",
+            "to_crown_assent_tupou_iv_19900808",
+            "to_crown_tupou_iv_death_20060911",
+            "to_crown_gtv_devolution_proclamation_20060911"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": true,
+      "art": {
+        "status": "reuse_existing",
+        "disposition": "reuse",
+        "from": "1990-01-01",
+        "to": "1991-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+          "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-13",
+          "license": "generated",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "derivative_license": "CC BY-SA 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+          "credit": "Spheres cartoon adaptation generated with OpenAI image_gen from Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001 (1985), CC BY-SA 4.0. Cartoon adaptation and any copyrightable contributions are also offered under CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/. Changed to full-body cartoon, simplified shapes and near-1990 age treatment. No endorsement implied.",
+          "era_note": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+          "identity_source": {
+            "person_id": "taufaahau_tupou_iv",
+            "kind": "observed_portrait",
+            "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+            "asset": "spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg",
+            "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF."
+          },
+          "prompt_record": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt",
+          "generation_record": "Built-in image_gen, 13 September 2026. Exact prompt, input roles, original output location, file hashes, source rights and Codex visual review retained in tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; personally inspected source photograph, established style anchor and generated result. Artistic interpretation; no human or user approval claimed.",
+            "reviewed_at": "2026-09-13"
+          }
+        },
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Reuse the reviewed 1990 cartoon. Do not generate a duplicate or widen its exclusive 1991-01-01 end. Later appearance windows need new dated references."
+      }
+    },
+    {
+      "priority": 2,
+      "person_id": "fatafehi_tuipelehake",
+      "name": "Prince Fatafehi Tu'ipelehake",
+      "identity": {
+        "status": "existing",
+        "record": {
+          "id": "fatafehi_tuipelehake",
+          "name": "Prince Fatafehi Tu'ipelehake",
+          "sources": [
+            "https://www.worldstatesmen.org/Tonga.html",
+            "https://rulers.org/rult.html",
+            "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
+            "https://en.wikipedia.org/wiki/George_Tupou_V"
+          ]
+        },
+        "decision": "Existing exact Fatafehi identity, with Prince as its style. Government lists identify Fatafehi, not merely any holder of the hereditary title. The 1990 observation is year precision; do not replace the saved secondary start or create a primary office link."
+      },
+      "opening_slot": "secondary",
+      "opening_record": {
+        "name": "Prince Fatafehi Tu'ipelehake",
+        "office": "Prime Minister",
+        "since": "1965-12-16",
+        "party": null
+      },
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Fatafehi Tu'ipelehake",
+            "attested_on": null,
+            "from": null,
+            "until": null,
+            "attested_period": {
+              "from": "1990-01-01",
+              "through": "1990-12-31"
+            },
+            "sources": [
+              "to_pmo_former_pms_2026",
+              "to_pmo_former_pms_2015",
+              "to_mic_pm_list_2011",
+              "to_ipu_1990"
+            ],
+            "claim_ids": [
+              "to_pmo_former_pms_2026_tuipelehake",
+              "to_pmo_former_pms_2015_list",
+              "to_mic_pm_list_2011_list",
+              "to_ipu_1990_tuipelehake"
+            ],
+            "note": "Holder when the period opens (TO-PM90-01), at year precision. All three government lists give his premiership as 1965-1991; IPU's summary of the February 1990 election names him as Prime Minister in a present-tense sentence written in March 1990 or later (reference date unknown).",
+            "uncertainty": "Year precision only. attested_period is the calendar year 1990, which lies inside the 1965-1991 range printed by every cited list if that range is read as one continuous tenure; it is not an observation on any particular day, and no 1990 gazette, instrument or contemporaneous Tongan record naming him was found. No start or end is stated; the retirement month (August 1991) is IPU-only (to_ipu_1993_retirement_succession_199108) and is not used."
+          },
+          "binding": "existing_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_pmo_former_pms_2026_tuipelehake": {
+              "source_id": "to_pmo_former_pms_2026",
+              "url": "https://pmo.gov.to/former-prime-minsiters/",
+              "claim_sha256": "025ca2dcdf0fac6bcb21c0800292631ff57cd439000d0f03e0a749f2ef427f7c"
+            },
+            "to_pmo_former_pms_2015_list": {
+              "source_id": "to_pmo_former_pms_2015",
+              "url": "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+              "claim_sha256": "2c480c2a3fc450b92f699c285e08382eaea832d509fbd0708db8dcedf8e1fa78"
+            },
+            "to_mic_pm_list_2011_list": {
+              "source_id": "to_mic_pm_list_2011",
+              "url": "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+              "claim_sha256": "5ef746ec8f8953be0146ae461e2fdb9aad91099cd2ada21bb2affffb02a4a4d3"
+            },
+            "to_ipu_1990_tuipelehake": {
+              "source_id": "to_ipu_1990",
+              "url": "https://data.ipu.org/election-summary/HTML/2317_90.htm",
+              "claim_sha256": "0dd04d56efebb5aa2a831c185b27fcee19c84d1a0d7c45abdeb5f044d8c18820"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_pmo_former_pms_2015_list",
+            "to_mic_pm_list_2011_list"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": true,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "ready_for_dated_reference",
+        "from": "1990-01-01",
+        "to": "1991-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "First missing-art priority: obtain and review a dated near-1990 likeness of Fatafehi specifically, then generate the cartoon under this existing person ID. Do not substitute a later titleholder."
+      }
+    },
+    {
+      "priority": 3,
+      "person_id": "siaosi_taufaahau_manumataongo",
+      "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+      "identity": {
+        "status": "existing",
+        "record": {
+          "id": "siaosi_taufaahau_manumataongo",
+          "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+          "sources": [
+            "https://www.worldstatesmen.org/Tonga.html",
+            "https://rulers.org/rult.html",
+            "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
+            "https://en.wikipedia.org/wiki/George_Tupou_V"
+          ]
+        },
+        "decision": "Preserve the existing 1990 named heir record. The existing record authorizes an exact-person portrait request only; it does not independently validate all royal aliases or later reign bindings."
+      },
+      "opening_slot": "heir",
+      "opening_record": {
+        "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+        "office": "Crown Prince",
+        "since": "1966-05-04"
+      },
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_crown",
+          "role_id": "to_king",
+          "holder": {
+            "name": "George Tupou V",
+            "attested_on": null,
+            "from": "2006-09-11",
+            "until": "2012-03-18",
+            "sources": [
+              "to_pmo_20060911_death_notice",
+              "to_pmo_20060911_proclamation",
+              "to_pmo_20060911_proclamation_to",
+              "to_gazette_ext_8_2012",
+              "to_gazette_ext_9_2012"
+            ],
+            "claim_ids": [
+              "to_crown_tupou_iv_death_20060911",
+              "to_crown_gtv_devolution_proclamation_20060911",
+              "to_crown_gtv_devolution_proclamation_to_20060911",
+              "to_crown_gtv_death_20120318",
+              "to_crown_tupou_vi_devolution_proclamation_20120319"
+            ],
+            "note": "Formerly Crown Prince Tupouto'a; Siaosi Tupou V in the Tongan texts. Accession by devolution of the Crown on the decease of Taufa'ahau Tupou IV at 00:34 on 11 September 2006, Tongan time (TO-CROWN-04); proclaimed King by Gazette No. 19 on the same Tongan day, as a separate event. Traditional installation (taumafa kava) on 30 July 2008 and coronation on 1 August 2008 (TO-CROWN-05). Died in Hong Kong at 20:58 on 18 March 2012, Tonga time (TO-CROWN-06).",
+            "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation, the traditional installation, the coronation or the coronation oath (which no source dates). The end is his death as Gazette Extraordinary No. 8 records it; Gazette Extraordinary No. 9 states that the Crown devolved by his decease. No accession time is stored."
+          },
+          "binding": "alias_held",
+          "hold_reason": "The proclamation links Crown Prince Tupoutoa to George V, but this slice has not independently established that the existing full-name 1990 heir ID is that same individual. Review the full-name bridge before adding later King aliases/windows.",
+          "evidence": {
+            "to_crown_tupou_iv_death_20060911": {
+              "source_id": "to_pmo_20060911_death_notice",
+              "url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+              "claim_sha256": "8a51a75d603371dd056989a89f3f6a4b5d385860908f620bdc5bb7be1f786872"
+            },
+            "to_crown_gtv_devolution_proclamation_20060911": {
+              "source_id": "to_pmo_20060911_proclamation",
+              "url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+              "claim_sha256": "67c16e347a31c8a13af4597c34a266c0f667790e57a3eb6d661509a608336268"
+            },
+            "to_crown_gtv_devolution_proclamation_to_20060911": {
+              "source_id": "to_pmo_20060911_proclamation_to",
+              "url": "https://web.archive.org/web/20070312032819id_/http://www.pmo.gov.to/artman/publish/article_171.shtml",
+              "claim_sha256": "bff1de6ffe6abe8e0053210d146aa14fd3259f4dd40b035af261b250ded1b0f0"
+            },
+            "to_crown_gtv_death_20120318": {
+              "source_id": "to_gazette_ext_8_2012",
+              "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+              "claim_sha256": "476ff82049684111d9bd1373d14050ea9903cb561767b8e017a2bec9dc5f0296"
+            },
+            "to_crown_tupou_vi_devolution_proclamation_20120319": {
+              "source_id": "to_gazette_ext_9_2012",
+              "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+              "claim_sha256": "0c6734dbfc157613f34ade836878ab7051009f5787414e46233902e8bed6906e"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-07",
+          "reviewed_claim_ids": [
+            "to_crown_gtv_devolution_proclamation_20060911",
+            "to_crown_gtv_death_20120318",
+            "to_crown_tupou_vi_devolution_proclamation_20120319"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": false,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "ready_for_dated_reference",
+        "from": "1990-01-01",
+        "to": "1991-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Second missing-art priority: source a dated near-1990 likeness explicitly identified as the full-name existing heir. Keep the proposed George V role association held until a primary full-name alias bridge is reviewed."
+      }
+    },
+    {
+      "priority": 4,
+      "person_id": "to_baron_vaea_pm_1992",
+      "name": "Baron Vaea",
+      "identity": {
+        "status": "reserved_not_imported",
+        "record": null,
+        "decision": "Reserved ID scoped to the 1990s prime minister. No birth, death or legal name invented. The later 2026 Lord Vaea Speaker must not be merged by title."
+      },
+      "opening_slot": null,
+      "opening_record": null,
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Baron Vaea",
+            "attested_on": null,
+            "from": null,
+            "until": null,
+            "attested_period": {
+              "from": "1992-01-01",
+              "through": "1998-12-31"
+            },
+            "sources": [
+              "to_pmo_former_pms_2026",
+              "to_pmo_former_pms_2015",
+              "to_mic_pm_list_2011",
+              "to_pmo_vaea_tribute_20090613",
+              "to_ipu_1993"
+            ],
+            "claim_ids": [
+              "to_pmo_former_pms_2026_vaea_lavaka",
+              "to_pmo_former_pms_2015_list",
+              "to_mic_pm_list_2011_list",
+              "to_pmo_vaea_tribute_appointment_undated",
+              "to_ipu_1993_retirement_succession_199108"
+            ],
+            "note": "Appointed Prime Minister by the Sovereign (PMO tribute, undated). The lists give 1991-2000 (current PMO list and 2011 MIC list) or 1991-1999 (2015 PMO list).",
+            "uncertainty": "Year precision only. attested_period covers the calendar years 1992-1998, which lie inside every cited list's range read as one continuous tenure; it is not a start, an end or an observation on any particular day. The appointment day is unstated (IPU gives August 1991 for the succession, month only), and the end year conflicts between the PMO lists (TO-PM90-02, TO-PM90-03)."
+          },
+          "binding": "new_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_pmo_former_pms_2026_vaea_lavaka": {
+              "source_id": "to_pmo_former_pms_2026",
+              "url": "https://pmo.gov.to/former-prime-minsiters/",
+              "claim_sha256": "f179cc416e5b1bf7ae5aac366d67b2ca5dd8dfd767508e88440cc80ab879cd11"
+            },
+            "to_pmo_former_pms_2015_list": {
+              "source_id": "to_pmo_former_pms_2015",
+              "url": "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+              "claim_sha256": "2c480c2a3fc450b92f699c285e08382eaea832d509fbd0708db8dcedf8e1fa78"
+            },
+            "to_mic_pm_list_2011_list": {
+              "source_id": "to_mic_pm_list_2011",
+              "url": "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+              "claim_sha256": "5ef746ec8f8953be0146ae461e2fdb9aad91099cd2ada21bb2affffb02a4a4d3"
+            },
+            "to_pmo_vaea_tribute_appointment_undated": {
+              "source_id": "to_pmo_vaea_tribute_20090613",
+              "url": "https://web.archive.org/web/20100825201222id_/https://www.pmo.gov.to/the-kingdom-of-tonga-pays-tribute-to-its-12th-prime-minister-baron-vaea-of-houma-1921-2009.html",
+              "claim_sha256": "78cf9a9fc18f6a790cd1785050e5f24c6aa979b6b4df39aa86ea17086232d208"
+            },
+            "to_ipu_1993_retirement_succession_199108": {
+              "source_id": "to_ipu_1993",
+              "url": "https://data.ipu.org/election-summary/HTML/2317_93.htm",
+              "claim_sha256": "139dec292b02b9d8a4579bee25a1863d9b14e48677515457c051abbd4c8fb89c"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_pmo_former_pms_2015_list",
+            "to_mic_pm_list_2011_list"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": false,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "identity_review_then_dated_reference",
+        "from": "1992-01-01",
+        "to": "1993-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Identity review first: resolve the full name and dated likeness of the Baron Vaea in the 1990s government lists; explicitly distinguish the later Lord Vaea. The 1992 art request is editorial, not a 1992 appointment."
+      }
+    },
+    {
+      "priority": 5,
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000",
+      "name": "Prince 'Ulukalala Lavaka Ata",
+      "identity": {
+        "status": "reserved_not_imported",
+        "record": null,
+        "decision": "Reserved PM identity. The accepted explicit commencement and resignation-acceptance dates stay distinct from proposed aliases. No invented hereditary lineage."
+      },
+      "opening_slot": null,
+      "opening_record": null,
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Prince 'Ulukalala Lavaka Ata",
+            "attested_on": null,
+            "from": "2000-01-03",
+            "until": "2006-02-11",
+            "sources": [
+              "to_pmo_office_pm_2002",
+              "to_pmo_timeline_2000_en",
+              "to_pmo_20060213_resignation",
+              "to_pmo_20060213_resignation_to"
+            ],
+            "claim_ids": [
+              "to_pmo_lavaka_ata_commencement_20000103",
+              "to_pmo_timeline_lavaka_ata_appointed_200001",
+              "to_lavaka_ata_resignation_accepted_20060211",
+              "to_lavaka_ata_resignation_accepted_20060211_to"
+            ],
+            "note": "The start is the PMO's stated 'Commencement Date'. The end is the Prince Regent's acceptance on 11 February 2006 of his resignation (the Tongan release: retirement) from the premiership and all his portfolios.",
+            "uncertainty": "The appointment instrument was not seen, and the date of his resignation letter is not given; 11 February 2006 is the stated date of acceptance. The end of Baron Vaea's premiership is not inferred from this start."
+          },
+          "binding": "new_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_pmo_lavaka_ata_commencement_20000103": {
+              "source_id": "to_pmo_office_pm_2002",
+              "url": "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+              "claim_sha256": "1c3d24526930685e343e93df0743d140a3766ef55b20f2a1a71699035b80afd4"
+            },
+            "to_pmo_timeline_lavaka_ata_appointed_200001": {
+              "source_id": "to_pmo_timeline_2000_en",
+              "url": "https://web.archive.org/web/20100824203123id_/https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html",
+              "claim_sha256": "4c0784b41447750ba48795bbb64b0a119e24f0bfe151afb5cfecde5058d005fb"
+            },
+            "to_lavaka_ata_resignation_accepted_20060211": {
+              "source_id": "to_pmo_20060213_resignation",
+              "url": "https://web.archive.org/web/20060501015618id_/http://www.pmo.gov.to:80/artman/publish/article_87.shtml",
+              "claim_sha256": "c758c6d671c49b0622893263357f205f844fe971211c68346360578d3fb0cd47"
+            },
+            "to_lavaka_ata_resignation_accepted_20060211_to": {
+              "source_id": "to_pmo_20060213_resignation_to",
+              "url": "https://web.archive.org/web/20060501015706id_/http://www.pmo.gov.to:80/artman/publish/article_88.shtml",
+              "claim_sha256": "01c2c223af835027b5b10b1ef5702e8b004a209fddc29015005c0cd10551a573"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_pmo_lavaka_ata_commencement_20000103",
+            "to_lavaka_ata_resignation_accepted_20060211"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        },
+        {
+          "institution_id": "to_crown",
+          "role_id": "to_king",
+          "holder": {
+            "name": "Tupou VI",
+            "attested_on": null,
+            "from": "2012-03-18",
+            "until": null,
+            "sources": [
+              "to_gazette_ext_8_2012",
+              "to_gazette_ext_9_2012"
+            ],
+            "claim_ids": [
+              "to_crown_gtv_death_20120318",
+              "to_crown_tupou_vi_devolution_proclamation_20120319"
+            ],
+            "note": "Formerly Crown Prince Tupouto'a Lavaka, the former Prince 'Ulukalala Lavaka Ata, on whom the Crown Prince title was vested in September 2006. Accession by devolution of the Crown on the decease of George Tupou V at 20:58 on 18 March 2012, Tonga time; proclaimed King on 19 March 2012 as a separate event (TO-CROWN-07); crowned on 4 July 2015 (TO-CROWN-08).",
+            "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation or the coronation. No end is inferred: no source here records one before the 7 September 2026 cutoff, and the latest attestation in this packet is 18 December 2025 (to_tupou_vi_2025)."
+          },
+          "binding": "alias_held",
+          "hold_reason": "The 28 September 2006 PMO article explicitly proposes the Lavaka Ata -> Crown Prince Tupoutoa Lavaka bridge, but the prior critical-claim audit did not record independently reopening it. Review the original and full-name identity before merging the PM and later King; do not derive a vesting date from yesterday.",
+          "evidence": {
+            "to_crown_gtv_death_20120318": {
+              "source_id": "to_gazette_ext_8_2012",
+              "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+              "claim_sha256": "476ff82049684111d9bd1373d14050ea9903cb561767b8e017a2bec9dc5f0296"
+            },
+            "to_crown_tupou_vi_devolution_proclamation_20120319": {
+              "source_id": "to_gazette_ext_9_2012",
+              "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+              "claim_sha256": "0c6734dbfc157613f34ade836878ab7051009f5787414e46233902e8bed6906e"
+            }
+          },
+          "bridge_evidence": {
+            "to_crown_crown_prince_tupouto_a_lavaka_2006": {
+              "source_id": "to_pmo_20060928_crown_prince",
+              "url": "https://web.archive.org/web/20061005234019id_/http://www.pmo.gov.to/artman/publish/article_183.shtml",
+              "claim_sha256": "fd536245ce9a37b04e2524d5064ed82cf285dccb4e3e2564aec93f41702403b1"
+            }
+          },
+          "review_id": "C01-07",
+          "reviewed_claim_ids": [
+            "to_crown_gtv_death_20120318",
+            "to_crown_tupou_vi_devolution_proclamation_20120319"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": false,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "identity_review_then_dated_reference",
+        "from": "2000-01-01",
+        "to": "2001-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Review the existing 2002 PMO profile for exact identity/dated likeness and the recorded 2006 PMO alias article before choosing one permanent cross-role ID. No further royal portrait is approved by this proposal."
+      }
+    },
+    {
+      "priority": 6,
+      "person_id": "to_feleti_sevele",
+      "name": "Feleti Sevele",
+      "identity": {
+        "status": "reserved_not_imported",
+        "record": null,
+        "decision": "Unambiguous named holder proposal from contemporaneous PMO material; no existing registry identity found. Import review is required before art is attached. Acting service is not a substantive appointment."
+      },
+      "opening_slot": null,
+      "opening_record": null,
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Feleti Sevele",
+            "attested_on": "2006-04-07",
+            "from": null,
+            "until": null,
+            "sources": [
+              "to_pmo_20060410_marist_remarks",
+              "to_pmo_20060413_psc"
+            ],
+            "claim_ids": [
+              "to_sevele_pm_20060407",
+              "to_sevele_acting_then_pm_20060413"
+            ],
+            "note": "Substantive Prime Minister, event-dated to 7 April 2006, the earliest contemporaneous PMO item found that styles him Prime Minister without 'Acting'; on 13 April the PMO refers to his tenure as 'Acting Prime Minister, and now Prime Minister'. His acting appointment of 11 February 2006 (to_sevele_acting_pm_appointed_20060211) is a separate claim on the role, not a holder.",
+            "uncertainty": "The substantive appointment day is not established: contemporaneous PMO usage brackets it between 23 March (styled Acting) and 7 April 2006, and the 30 March 2006 date is given only by a retrospective timeline (to_sevele_appointed_20060330). No instrument was seen. His leave-taking audience on 22 December 2010 (to_sevele_leave_audience_20101222) is not used as an end date."
+          },
+          "binding": "new_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_sevele_pm_20060407": {
+              "source_id": "to_pmo_20060410_marist_remarks",
+              "url": "https://web.archive.org/web/20060501190324id_/http://www.pmo.gov.to:80/artman/publish/article_107.shtml",
+              "claim_sha256": "3d5e3d2c3ae24bd1909c40e06607ab722e9362c2a8b3dfeaab26b5d50e28f9bd"
+            },
+            "to_sevele_acting_then_pm_20060413": {
+              "source_id": "to_pmo_20060413_psc",
+              "url": "https://web.archive.org/web/20060501190232id_/http://www.pmo.gov.to:80/artman/publish/article_108.shtml",
+              "claim_sha256": "b45774b7d89297d8a472cd8e21827f3d8e83532fb294c2d18c5809fe54488475"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_sevele_pm_20060407",
+            "to_sevele_acting_then_pm_20060413"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": false,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "identity_review_then_dated_reference",
+        "from": "2006-01-01",
+        "to": "2007-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Review the named PMO identity for a people-only import, then obtain a licensed dated near-2006 likeness. Preserve 7 April as an attestation; do not turn the 11 February acting appointment into a substantive start."
+      }
+    },
+    {
+      "priority": 7,
+      "person_id": "to_lord_tuivakano_pm_2010",
+      "name": "Lord Tu'ivakano",
+      "identity": {
+        "status": "reserved_not_imported",
+        "record": null,
+        "decision": "Reserved identity scoped to the 2010 PM appointment. Do not automatically merge 2003/2015 Speaker observations or another titleholder without an identity bridge."
+      },
+      "opening_slot": null,
+      "opening_record": null,
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Lord Tu'ivakano",
+            "attested_on": "2010-12-22",
+            "from": null,
+            "until": null,
+            "sources": [
+              "to_palace_20101222_appointment"
+            ],
+            "claim_ids": [
+              "to_tuivakano_royal_appointment_20101222"
+            ],
+            "note": "Received in audience at noon on 22 December 2010 at the Villa for his appointment to the office of Prime Minister ('The Kissing of Hands'), and received his Letter of Appointment. The Assembly's selection and its presentation to the King (to_tuivakano_assembly_result_presented_20101221) are separate claims.",
+            "uncertainty": "An appointment event with no stated effective date. The end is not stated: his description as 'former Prime Minister' on 29 December 2014 (to_pohiva_declared_pm_elect_pmo_20141229) is not used as an end."
+          },
+          "binding": "new_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_tuivakano_royal_appointment_20101222": {
+              "source_id": "to_palace_20101222_appointment",
+              "url": "https://web.archive.org/web/20111130040811id_/http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano",
+              "claim_sha256": "51d35bbd18dc702f5b7cd8749fb99840121c2d47aac2a224c7a39dc40ef65f41"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_tuivakano_royal_appointment_20101222"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": false,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "identity_review_then_dated_reference",
+        "from": "2010-01-01",
+        "to": "2011-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Resolve the named appointee/full name using the accepted Palace appointment source, review a dated likeness, then authorize a permanent person ID. Keep appointment audience as observation, not an inferred effective start."
+      }
+    },
+    {
+      "priority": 8,
+      "person_id": "to_samuela_akilisi_pohiva",
+      "name": "Samuela 'Akilisi Pohiva",
+      "identity": {
+        "status": "reserved_not_imported",
+        "record": null,
+        "decision": "Same fully named PM in two accepted observations; new registry identity still requires review. No DPFI party affiliation or party leadership import: Claude C01-44 owns that research."
+      },
+      "opening_slot": null,
+      "opening_record": null,
+      "party_ids": [],
+      "observations": [
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Samuela 'Akilisi Pohiva",
+            "attested_on": "2014-12-30",
+            "from": null,
+            "until": null,
+            "sources": [
+              "to_pmo_20141230_appointment"
+            ],
+            "claim_ids": [
+              "to_pohiva_royal_appointment_20141230"
+            ],
+            "note": "Received in audience at 10:00 on 30 December 2014 at the Royal Palace for his appointment to the office of Prime Minister. The Assembly's selection on 29 December 2014 (to_pohiva_assembly_selection_20141229) is a separate claim.",
+            "uncertainty": "An appointment event with no stated effective date. His status after the 24 August 2017 dissolution is unresolved (TO-PM90-07): the PMO's later wording that he 'served as the 16th Prime Minister from 2015-2017' (to_pohiva_royal_appointment_20180102) is not used as an end, and no end of this appointment is inferred from his re-appointment effective 2 January 2018."
+          },
+          "binding": "new_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_pohiva_royal_appointment_20141230": {
+              "source_id": "to_pmo_20141230_appointment",
+              "url": "https://web.archive.org/web/20150707000535id_/http://www.pmo.gov.to/king-appoints-akilisi-pohiva-as-new-prime-minister-of-tonga/",
+              "claim_sha256": "6333f39d75b43868fa83b4836a8e9d2c407aeb7514cff5566c6e592dab4b8a9b"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_pohiva_royal_appointment_20141230"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        },
+        {
+          "institution_id": "to_prime_minister",
+          "role_id": "to_pm",
+          "holder": {
+            "name": "Samuela 'Akilisi Pohiva",
+            "attested_on": null,
+            "from": "2018-01-02",
+            "until": null,
+            "sources": [
+              "to_pmo_20180104_appointment",
+              "to_pmo_20180122_cabinet"
+            ],
+            "claim_ids": [
+              "to_pohiva_royal_appointment_20180102",
+              "to_pohiva_appointment_repeated_20180122"
+            ],
+            "note": "Appointed under Clause 50A with effect from 2 January 2018, following the Assembly's re-selection on 18 December 2017 (to_pohiva_assembly_reselection_20171218). He took his oaths in the Assembly on 18 January 2018 (to_pohiva_oath_assembly_20180118). Both are separate claims.",
+            "uncertainty": "until is null. His death in September 2019 is recorded in claims (Gazette Extraordinary No. 28 of 16 September 2019; the PMO programme of 14 September places it on or before the 12th, Auckland date), but no record retrieved states the day, so no end is set (TO-PM90-08)."
+          },
+          "binding": "new_identity_proposal",
+          "hold_reason": null,
+          "evidence": {
+            "to_pohiva_royal_appointment_20180102": {
+              "source_id": "to_pmo_20180104_appointment",
+              "url": "https://web.archive.org/web/20180113055859id_/http://www.mic.gov.to:80/news-today/press-releases/7065-king-appoints-prime-minister-hon-samuela-akilisi-pohiva",
+              "claim_sha256": "45196eda184300cc6a18343857541fdc7451553832761c95f996d563cf717ed8"
+            },
+            "to_pohiva_appointment_repeated_20180122": {
+              "source_id": "to_pmo_20180122_cabinet",
+              "url": "https://web.archive.org/web/20181030055037id_/http://www.mic.gov.to/news-today/press-releases/7086-his-majesty-the-king-appoints-prime-minister-and-ministers-of-his-majestys-cabinet",
+              "claim_sha256": "7aa9963ed42c174dcb4fb8cb780fcebc6841df19a093ec8da99ddceff7b5df29"
+            }
+          },
+          "bridge_evidence": {},
+          "review_id": "C01-08",
+          "reviewed_claim_ids": [
+            "to_pohiva_royal_appointment_20180102",
+            "to_pohiva_appointment_repeated_20180122"
+          ],
+          "review_limit": "Prior acceptance independently reopened the named critical claims. It was not an exhaustive source/claim audit. Exact copying here supplies traceability, not new independent factual acceptance or identity/office eligibility."
+        }
+      ],
+      "people_only_preview": false,
+      "art": {
+        "status": "reference_and_review_required",
+        "disposition": "identity_review_then_dated_reference",
+        "from": "2014-01-01",
+        "to": "2015-01-01",
+        "interval_meaning": "appearance_request_not_office_tenure",
+        "existing_portrait": null,
+        "gates": [
+          "exact_identity",
+          "dated_likeness",
+          "source_rights",
+          "physical_png",
+          "identity_likeness_era_visual_review"
+        ],
+        "next_action": "Review a people-only identity import from the PMO appointment records, then obtain a licensed near-2014 likeness. Do not merge the separate 2014 audience and 2018 effective appointment or manufacture a 2019 end."
+      }
+    }
+  ]
+}

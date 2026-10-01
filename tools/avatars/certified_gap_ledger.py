@@ -74,7 +74,9 @@ COMMIT_PACKETS = {
     '4d88fd03': 'CLAUDE-C01-37',
     '9174c807': 'CLAUDE-C01-38',
     '5d5935c3': 'CLAUDE-C01-40',
+    '3c4a3abc': 'CLAUDE-C01-40',
     'f04ead94': 'CLAUDE-C01-41',
+    'b74f4fa5': 'CLAUDE-C01-31',
 }
 
 EVIDENCE_CLASSES = {
@@ -97,7 +99,7 @@ IN_FLIGHT = {
                       'scope': 'Bharatiya Janata Party presidents, 1990-2026'},
     'CLAUDE-C01-28': {'case': 'USSR -> Russia',
                       'targets': ['party:Russia/' + p for p in ('ru_kprf', 'ru_ldpr', 'ru_yabloko', 'ru_apr', 'ru_vybor')],
-                      'scope': 'Five Russian party-leader chains; submitted for review, no accepted mapping'},
+                      'scope': 'Five Russian party-leader chains; held on three originals/four claims after partial source review, no research import or accepted mapping'},
     'CLAUDE-C01-29': {'case': 'Japan',
                       'targets': ['party:Japan/jp_jsp', 'party:Japan/jp_jsp/jp_jsp_1945', 'party:Japan/jp_jsp/jp_sdp_1996'],
                       'scope': 'Japan Socialist Party / Social Democratic Party chair observations; bounded intake accepted, no runtime mapping'},
@@ -106,7 +108,7 @@ IN_FLIGHT = {
                       'scope': 'ACDP, Freedom Front and IFP party-leader observations, 1990-2026; no accepted runtime mapping'},
     'CLAUDE-C01-31': {'case': 'Japan',
                       'targets': ['party:Japan/jp_komeito', 'party:Japan/jp_komeito/jp_komei_1994', 'party:Japan/jp_komeito/jp_komeito_1998'],
-                      'scope': 'Komeito representatives and distinct 1994/1998 organizations; review held on seven originals and fourteen claims, no accepted research or runtime mapping'},
+                      'scope': 'Komeito representatives and distinct 1994/1998 organizations; bounded observations accepted after original-source recovery, no runtime mapping'},
     'CLAUDE-C01-32': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_pac'],
                       'scope': 'Pan Africanist Congress presidents, 1990-2026; no accepted runtime mapping'},
     'CLAUDE-C01-33': {'case': 'India', 'targets': ['party:India/in_jd'],
@@ -123,7 +125,7 @@ IN_FLIGHT = {
     'CLAUDE-C01-38': {'case': 'France', 'targets': ['institution:fr_prime_minister'],
                       'scope': 'French prime ministers, 2014-2026; bounded observations accepted, no effective terms or runtime mapping'},
     'CLAUDE-C01-39': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_dp', 'role:za_da_federal_leader'],
-                      'scope': 'Democratic Alliance federal leaders, 2000-2026; submitted for review, no accepted research or runtime mapping'},
+                      'scope': 'Democratic Alliance federal leaders, 2000-2026; held on 23 unverified originals after rate limiting, no accepted research or runtime mapping'},
     'CLAUDE-C01-40': {'case': 'India', 'targets': ['party:India/in_cpm'],
                       'scope': 'CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping'},
     'CLAUDE-C01-41': {'case': 'USSR -> Russia', 'targets': ['party:USSR/su_cpsu'],

@@ -1,0 +1,25 @@
+{
+  "format": "spheres-s25-disposable-volume-probe/v1",
+  "python": "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+  "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "passed": true,
+  "probes": [
+    {
+      "directory": "D:\\spheres-offload\\codex-next-20260928\\s25-journal-probe-20261001T020748380799Z",
+      "started_utc": "2026-10-01T02:07:48.387571+00:00",
+      "passed": true,
+      "bytes": 87,
+      "sha256": "b9184628a7cd4a28b6bcb2881affac7f0ee5e47c2714e522fbd4e73d1ea05d04",
+      "finished_utc": "2026-10-01T02:07:48.422981+00:00"
+    },
+    {
+      "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s25-journal-probe-20261001T020748380799Z",
+      "started_utc": "2026-10-01T02:07:48.423248+00:00",
+      "passed": true,
+      "bytes": 87,
+      "sha256": "b9184628a7cd4a28b6bcb2881affac7f0ee5e47c2714e522fbd4e73d1ea05d04",
+      "finished_utc": "2026-10-01T02:07:48.426515+00:00"
+    }
+  ],
+  "scope": "Immediate fresh-handle write/flush/fsync/read/close only; does not reproduce a14-hour handle lifetime or prove the old failure cause. No retained campaign file touched."
+}

@@ -1,0 +1,140 @@
+{
+  "format": "spheres-c01-held-review-receipt/v1",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 142,
+      "sha256": "6db74a56ef5133ab21f1cec3137b9d399804ed887d8d33dff3e1776d6690a93f"
+    },
+    {
+      "path": "authored-handoff.md",
+      "bytes": 11543,
+      "sha256": "ef29e45c86351addddcc25f25123fad9449850fa819e1d922187687a03d6306b"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 16388,
+      "sha256": "83627d49dc2cdb7863d0e0709aae08722ff3622e3628d0d21716ad8d4b5caa93"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 4821,
+      "sha256": "6375c2f667cc7ca488439d062039b14273041de549da38fed3fb8b40fa73f783"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7139,
+      "sha256": "a37fb5001d84d4856577bedd74d1cab5f5a36da7fbe777f66cc332e707a59f4b"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 15753,
+      "sha256": "4e64e9a486862bb5ebec44f1177004391dfc37dd57a76202f67a9cda7c5df645"
+    },
+    {
+      "path": "scripts/build_review.py",
+      "bytes": 5074,
+      "sha256": "4b5e09baef6977c17f3e4ce65181051c9dee257ff57a9c86347c72a4d0d3b4ab"
+    },
+    {
+      "path": "scripts/extract_text.py",
+      "bytes": 3093,
+      "sha256": "91aeb765e08f8431362e3f935b0ce25afbe231ac27373457775afeba0b7e0ace"
+    },
+    {
+      "path": "scripts/retrieve.py",
+      "bytes": 5448,
+      "sha256": "1604006b18557c447184bcc79006c4ee6d7fa039bd8da7383306de807bd0b7ba"
+    },
+    {
+      "path": "scripts/scope_audit.py",
+      "bytes": 3931,
+      "sha256": "6548d70efbefe68d3ab1c20a2767106e823ae730f0a98e8500d00d9601dcd2ae"
+    },
+    {
+      "path": "scripts/validate.py",
+      "bytes": 2421,
+      "sha256": "b0e12b908f403607c1e21a37029af945d033a6ee967f34e572387aadeedf7c4b"
+    },
+    {
+      "path": "source-attempts.json",
+      "bytes": 6400,
+      "sha256": "03db691c69dcab7b30fc3e72aaa675c759792d991075a7da58065b250e0b14dd"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 10471,
+      "sha256": "cf8e6ff7e3afd7709362b10c978da1a2c173fc9fe86fb82cda26adfa8db0c17f"
+    },
+    {
+      "path": "source-texts.json",
+      "bytes": 920,
+      "sha256": "b29ac0018bffdf297d1c34f23fd9b0cf0401740b10cc95efec5f12c849885ab5"
+    },
+    {
+      "path": "validation/imported-integration-check.log",
+      "bytes": 4881,
+      "sha256": "9acd98649076d70d153d572b66fa00a6b8a22b1d1cd357272c741377aee8a342"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/atlas.log",
+      "bytes": 1122,
+      "sha256": "569cdd603fb5a7dba7e5ccdeb99bc7a2081332fd0409e4814bebbb88d51f2b26"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/campaign.log",
+      "bytes": 120,
+      "sha256": "b5095a75c1542a566027af86e68d6904bb180a35802eb61a362901c65ad8a3dd"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/census.log",
+      "bytes": 1462,
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/research-index.log",
+      "bytes": 251,
+      "sha256": "03b213e06d5051781ae05df4cd1f96e2332aa3d72782acc05bba217187742f04"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/research.log",
+      "bytes": 183,
+      "sha256": "e2aa69627b69f10f4d9eaa1209523b62d865c1dbe252ec777b1bb46ac38894c5"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/results.json",
+      "bytes": 4490,
+      "sha256": "da1e7d87bdb496cb4909670dcb2049a90c183196491d51928d78aad8445edd09"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/south-africa.log",
+      "bytes": 162,
+      "sha256": "5783d27493703fa71015deac3e791c7ca02a430b37ac2d9222b09777a4290170"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/whitespace.log",
+      "bytes": 153,
+      "sha256": "afabbf7c1f5932c103ce2935253ff73a6e884515156d30affb2cb90a0f5691ab"
+    },
+    {
+      "path": "validation/isolated-reviewed-tree/workboard.log",
+      "bytes": 146,
+      "sha256": "99de2b8338b71f3d1721b04399727c9a68cc9e7325138a5ecc5313c5fff245fd"
+    },
+    {
+      "path": "validation/registered-handoff-repair.log",
+      "bytes": 111,
+      "sha256": "032d3f761ce14d6de74798af404f5e610c10c5ba08969ade6ef917eb5d16da22"
+    },
+    {
+      "path": "validation/temporary-index-generation.log",
+      "bytes": 252,
+      "sha256": "43bd4f1d0d5f704e8304425168d80085c7667ca7acd50bd0608fe5d0f92a769a"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 2727,
+      "sha256": "fccf9f70709e1d32736d4cbf5d95a2416908da8a67fa225d409e11c9f75732ab"
+    }
+  ]
+}

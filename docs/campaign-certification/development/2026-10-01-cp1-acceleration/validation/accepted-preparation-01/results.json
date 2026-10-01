@@ -1,0 +1,44 @@
+[
+  {
+    "name": "tonga-check",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/check_country_cast.py"
+    ],
+    "exit_code": 0,
+    "sha256": "690c5d10c3895a11cc5b93a8a2ab4071402a89d011c16c3c2d8bd508a5540b30"
+  },
+  {
+    "name": "tonga-tests",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_country_cast.py"
+    ],
+    "exit_code": 0,
+    "sha256": "3afb0d8974cea691b2108af10a252a2a98323249dfa4356041e98a786b5d4106"
+  },
+  {
+    "name": "a1-receipt",
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "docs/campaign-certification/S27/preparation/a1-followup-20261001/verify.py"
+    ],
+    "exit_code": 0,
+    "sha256": "750cfefb5d13ec65c30b04d7afaaf13bf225fc6114834301e21cc5a74af0511a"
+  }
+]

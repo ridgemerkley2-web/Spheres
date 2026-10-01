@@ -1,0 +1,56 @@
+{
+  "failed": 0,
+  "scope": "Static plan, refusal paths and real durable writer/hash functions; process lifecycle/resource-halt wrapper branches are not yet integration-tested.",
+  "passed": 12,
+  "checks": [
+    {
+      "name": "PowerShell parser",
+      "passed": true
+    },
+    {
+      "name": "Native output remains absent for the frozen test to create",
+      "passed": true
+    },
+    {
+      "name": "Full dump reserve credits bytes already consumed",
+      "passed": true
+    },
+    {
+      "name": "Dry run leaves proposed output absent",
+      "passed": true
+    },
+    {
+      "name": "Only full-horizon Japan7 frozen request, one exact test, one dump",
+      "passed": true
+    },
+    {
+      "name": "Qualification always false",
+      "passed": true
+    },
+    {
+      "name": "Existing directory refused",
+      "passed": true
+    },
+    {
+      "name": "Outside declared root refused",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous native argument path refused",
+      "passed": true
+    },
+    {
+      "name": "Durable writer refuses overwrite and preserves original bytes",
+      "passed": true
+    },
+    {
+      "name": "Exact file pin accepted",
+      "passed": true
+    },
+    {
+      "name": "Changed file pin refused",
+      "passed": true
+    }
+  ],
+  "native_campaign_launched": false
+}

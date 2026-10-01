@@ -1,0 +1,10 @@
+test_duplicate_unknown_fields_and_unsourced_identity_fail (__main__.self_test.<locals>.Checks.test_duplicate_unknown_fields_and_unsourced_identity_fail) ... ok
+test_existing_identity_facts_and_images_never_change (__main__.self_test.<locals>.Checks.test_existing_identity_facts_and_images_never_change) ... ok
+test_invalid_life_dates_fail_before_import (__main__.self_test.<locals>.Checks.test_invalid_life_dates_fail_before_import) ... ok
+test_new_sourced_identity_does_not_create_offices_or_art (__main__.self_test.<locals>.Checks.test_new_sourced_identity_does_not_create_offices_or_art) ... ok
+test_repeated_import_is_idempotent (__main__.self_test.<locals>.Checks.test_repeated_import_is_idempotent) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

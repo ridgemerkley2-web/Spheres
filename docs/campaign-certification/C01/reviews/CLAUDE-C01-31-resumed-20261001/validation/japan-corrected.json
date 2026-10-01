@@ -1,0 +1,21 @@
+{
+  "name": "japan-corrected",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_japan*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-31-20261001",
+  "started_at": "2026-10-01T01:32:34.766827+00:00",
+  "log": "japan-corrected.log",
+  "exit_code": 0,
+  "finished_at": "2026-10-01T01:33:03.333655+00:00"
+}
