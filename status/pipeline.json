@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01T02:11:16Z",
+  "updated": "2026-10-01T04:40:08Z",
   "mode": "parallel workflow (user, 30 Sep 2026: \"Run multiple in parallel\"; ultracode on)",
   "packets": [
     {
@@ -36,10 +36,10 @@
       "n": "31",
       "title": "Komeito representatives, 1990–2026",
       "country": "Japan",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-jp-31",
       "head": "696937ba",
-      "codex": "Codex review 988d5379 (30 Sep): kept 竹谷 convention acceptance as a dated observation (attested_on, no from)",
+      "codex": "Accepted into integration 13367c99 (Codex review 988d5379 kept 竹谷 acceptance as a dated observation)",
       "note": "Sonnet checker: clean; rulings accepted (竹谷 start per C01-18/22 with hedge; newspaper issue date per C01-29; interim claims only); 2 wording suggestions applied by me (fe855edd)"
     },
     {
@@ -138,50 +138,47 @@
       "n": "42",
       "title": "Japanese Communist Party chairs and DPFP representatives, 1990–2026",
       "country": "Japan",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-jp-42",
-      "head": "60107819"
+      "head": "7fc1d21b"
     },
     {
       "n": "43",
       "title": "PRN / PTC / Agir national presidents, 1990–2026",
       "country": "Brazil",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-br-43",
-      "head": "6e6a9d06"
+      "head": "68fb8f86"
     },
     {
       "n": "44",
       "title": "Tongan opposition party leaders (DPFI and PDP), 1990–2026",
       "country": "Tonga",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-to-44",
-      "head": "fdb71175"
+      "head": "206df905"
     },
     {
       "n": "45",
       "title": "Saudi kings and crown princes: Saudi primary attestations, and the Allegiance Commission secretary, 1990–2026",
       "country": "SaudiArabia",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-sa-45",
-      "head": "a529ab8d"
+      "head": "d7db2cbc"
     },
     {
       "n": "46",
       "title": "State Duma faction heads, 2021–2026",
       "country": "Russia",
-      "state": "research",
+      "state": "fix",
       "branch": "claude/c01-ru-46",
-      "head": "3ee3357f"
+      "head": "64fec76b"
     }
   ],
   "attention": [
-    "C01-38 to 41: fixes running (workflow).",
-    "C01-42 to 46: research running (workflow)."
+    "C01-38 to 41 and 42 to 46: fixes running (two workflows)."
   ],
   "log": [
-    "2026-09-28 SPHERES Command dashboard built on orphan branch `dashboard` (worktree <local>, 400c8583); status publisher publish_status.py added (first status d7b20d18). Pages must be enabled by the user (source: dashboard, root).",
-    "2026-09-28 C01-35 research done (claude/c01-su-35@fb225cc6: Democratic Russia + Soyuz, 16 sources, 36 claims, 8 co-chair holder obs). Verifier launched. Active: 35 verify, 36 research.",
     "2026-09-28 C01-36 research done (claude/c01-to-36@e5b62596: 39 sources, 53 claims, 10 Deputy PM holder obs). Verifier launched. Active: 35 verify, 36 verify. Remaining: 31 (held), 37.",
     "2026-09-28 C01-35 verified: 16/16 sources clean; 4 text defects. Rulings: 1991-09-12 kept; \"лидер\" references claims only; 12 Dec 1991 President-office list holders kept. Fix agent launched. Active: 35 fix, 36 verify.",
     "2026-09-28 C01-36 verified: 1 quote-spacing defect fixed by me (6b82475e); all six boundaries kept -> submitted, worktree removed. C01-37 (French PMs) set up at 1a3fc352 on 44098c5a, agent launched. Active: 35 fix, 37 research. Remaining: 31 (held for 29).",
@@ -199,6 +196,8 @@
     "2026-09-30 C01-31 checked (Sonnet: clean, 376k tokens); my wording fixes fe855edd/696937ba; packet_check PASS -> submitted. Two new precedents added to the rulings list.",
     "2026-09-30 Workflow wf_9de7b1d4-86c done (16 agents, 3.5M tokens): 38-41 researched, all sources matched; rulings made following Codex (1739eccb: instrument dates never boundaries; 988d5379: acceptance = dated observation) - rulings list updated; fix workflow wf_17a2225b-386 launched (fix + adversarial verify per packet). C01-38 agent sent the users email in one User-Agent to fr.wikipedia (disclosed; not in any commit; scratch redacted).",
     "2026-09-30 User: \"Can you run even more in parallel?\" Queued + set up 42 (Japan JCP/DPFP, stacked on jp-31), 43 (Brazil PRN/PTC/Agir), 44 (Tonga DPFI/PDP), 45 (Saudi kings/CPs), 46 (Russia Duma faction heads; unstacked after a C01-28 handoff conflict). C: fell to 4.6 GB (not ours) -> moving idle Codex targets (companies, industry-rebuild, military-development) to <local> with junctions before launching the wave.",
-    "2026-09-30 User: move as much as wanted off C:. spheres-companies/target moved (junction created via PowerShell); offload_to_d.py (robocopy + count/bytes verify + mklink /J) moving military-development, industry-rebuild, population-rebuild targets, population-baseline, industry-rebuild-qa, war-overhaul (all idle since 26 Sep). Wave-2 research workflow wf_aa6fbbc6-70f launched for 42-46."
+    "2026-09-30 User: move as much as wanted off C:. spheres-companies/target moved (junction created via PowerShell); offload_to_d.py (robocopy + count/bytes verify + mklink /J) moving military-development, industry-rebuild, population-rebuild targets, population-baseline, industry-rebuild-qa, war-overhaul (all idle since 26 Sep). Wave-2 research workflow wf_aa6fbbc6-70f launched for 42-46.",
+    "2026-09-30 Offload done: military-development (10.4 GB), industry-rebuild (9.5 GB), population-rebuild/target + target-population-release (3.6 GB), population-baseline (1.8 GB), industry-rebuild-qa, war-overhaul (32.4 GB) all verified (file count + bytes) and replaced by junctions; Playwright reachable. C: 59 GB free. Codex workspace Documents/Codex/2026-09-05 is 236 GB (live matrix runs; not touched).",
+    "2026-09-30 Wave-2 research done (wf_aa6fbbc6-70f, 20 agents, 4.3M tokens): 42 JCP/DPFP 19 obs, 43 Agir 5 obs, 44 Tonga parties claims only, 45 Saudi 1 new holder + appended obs, 46 Duma faction heads 18 obs. Codex accepted C01-31 (13367c99). Rulings made (strict, per Codex); wave-2 fix workflow wf_4697cdb5-d89 launched."
   ]
 }
