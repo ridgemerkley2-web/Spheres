@@ -366,10 +366,15 @@ def presidents_invariants(russia, ussr):
     assert heads == [PR], 'no other head-of-state role'
     # CLAUDE-C01-19 appended ru_government (head_of_government), pinned in test_russia_heads_of_government_c01_19.
     assert [e['id'] for e in russia['institutions'] if not e['id'].startswith('ru_duma_faction_')] == ['ru_rsfsr_presidency', 'ru_government']
-    # The C01-05 holders are unchanged: one start each, no end.
-    for role_id, name in ((RSFSR, YELTSIN), (VICE, 'Александр Владимирович Руцкой')):
+    # The C01-05 holders are unchanged: one start each, no end. CLAUDE-C01-51 later appended dated observations after
+    # them (pinned in test_russia_rsfsr_presidency_c01_51); only its last vice-presidential observation has an end.
+    rutskoi = 'Александр Владимирович Руцкой'
+    c01_51 = {RSFSR: [(YELTSIN, d, None, None) for d in ('1991-07-19', '1991-11-19', '1991-12-26', '1992-01-03')],
+              VICE: [(rutskoi, d, None, None) for d in ('1991-07-29', '1991-12-05', '1992-01-16', '1993-04-16')]
+              + [(rutskoi, '1993-09-01', None, '1993-10-03')]}
+    for role_id, name in ((RSFSR, YELTSIN), (VICE, rutskoi)):
         got = [(h['name'], h['attested_on'], h['from'], h['until']) for h in roles[role_id]['holder_claims']]
-        assert got == [(name, None, '1991-07-10', None)], (role_id, got)
+        assert got == [(name, None, '1991-07-10', None)] + c01_51[role_id], (role_id, got)
     holders = roles[PR]['holder_claims']
     assert all(isinstance(h, dict) for h in holders)
     got = [(h['name'], h['attested_on'], h['from'], h['until']) for h in holders]
@@ -464,9 +469,14 @@ class RussianPresidentsTests(unittest.TestCase):
         self.assertEqual(len(NEVER_HOLDER), len(set(NEVER_HOLDER)))
         self.assertFalse(holder_claims & set(NEVER_HOLDER))
         self.assertEqual(holder_claims | set(NEVER_HOLDER), set(self.new_claims))
-        # Every new source and claim is cited by ru_president, in packet order, and by no other role.
-        self.assertEqual(self.role['sources'], NEW_SOURCES)
-        self.assertEqual(self.role['claim_ids'], self.new_claims)
+        # Every new source and claim is cited by ru_president, in packet order, and by no other role. CLAUDE-C01-51 later
+        # appended five claims-only events of September 1993 (declared termination and acting service) and their four sources.
+        self.assertEqual(self.role['sources'], NEW_SOURCES + ['ru_vs_presidium_res_5779i_19930921', 'ru_vs_res_5780i_19930922',
+                                                              'ru_vs_res_5781i_19930922', 'ru_ukaz_1410_19930922'])
+        self.assertEqual(self.role['claim_ids'], self.new_claims + [
+            'ru_vs_presidium_5779i_yeltsin_powers_deemed_terminated_19930921', 'ru_vs_presidium_5779i_rutskoi_began_exercising_powers_19930921',
+            'ru_vs_5780i_yeltsin_powers_declared_terminated_19930922', 'ru_vs_5781i_rutskoi_exercises_presidential_powers_19930922',
+            'ru_ukaz_1410_rutskoi_assumption_declared_unlawful_19930922'])
         self.assertEqual((self.role['title'], self.role['kind']), (PRESIDENT_TITLE, 'head_of_state'))
         observations = re.findall(r'^### (RU-PRES-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'RU-PRES-{n:02d}' for n in range(1, 11)])
@@ -539,7 +549,8 @@ class RussianPresidentsTests(unittest.TestCase):
         self.assertIn('procedure only, never a date', self.role['scope_note'])
         self.assertIn('no ru_president holder is recorded for 1991-1996', self.role['scope_note'])
         unresolved = self.presidency['coverage']['unresolved']
-        self.assertEqual([u.split(':')[0].split(' (')[0] for u in unresolved[-7:]],
+        # CLAUDE-C01-51 later appended three notes after these seven (pinned in its test).
+        self.assertEqual([u.split(':')[0].split(' (')[0] for u in unresolved[-10:-3]],
                          ['RU-PRES-01', 'RU-PRES-02', 'RU-PRES-03', 'RU-PRES-04', 'RU-PRES-05', 'RU-PRES-05 to 10', 'RU-PRES-07 to 10'])
         self.assertEqual(sum('CLAUDE-C01-14' in u for u in self.packet['coverage']['unresolved']), 1)
 
@@ -770,7 +781,7 @@ class RussianPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (9, 322))  # with CLAUDE-C01-19 and C01-46
+        self.assertEqual((country['role_observations'], country['source_claims']), (9, 342))  # with CLAUDE-C01-19, C01-46 and C01-51
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Russia'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

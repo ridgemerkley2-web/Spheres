@@ -1,0 +1,59 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_vs_presidium_res_5779i_19930921",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102026142&page=1&rdk=0",
+  "source_title": "Resolution of the Presidium of the Supreme Soviet of the Russian Federation No. 5779-I of 21 September 1993 'On the immediate termination of the powers of the President of the Russian Federation B. N. Yeltsin' (original edition)",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1993-09-21",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102026142&page=1&rdk=0",
+  "source_response_bytes": 8650,
+  "source_response_sha256": "220cd093eedd054663db5f367cd50efc8535502a2fbcb20ac7d18ef6930d9e2c",
+  "source_response_encoding": "windows-1251; served uncompressed (no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Document frame: downloaded at 2026-10-01T11:45:53Z and again at 2026-10-01T12:25:08Z (39 minutes later); identical 8,650 bytes and SHA-256. Portal card: downloaded at 2026-10-01T11:45:53Z and again at 2026-10-01T12:23:46Z (37 minutes later); identical 3,073 bytes and SHA-256. Both with curl's default User-Agent, no Accept-Encoding header and no --compressed; the portal served both uncompressed.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=5779-I&a8type=1&a7type=4&a7from=21.09.1993&a7to=21.09.1993&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3073,
+    "sha256": "602873b91986e2554a2d94902d0e78ab7f5bce30227c8f843a664f343973a9cc",
+    "note": "Date-restricted single-document card (number 5779-I, date 21.09.1993): one hit, citing Rossiyskaya Gazeta of 23 September 1993."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP with curl's default User-Agent and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 1 October 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act; it cites Rossiyskaya Gazeta of 23 September 1993 (not inspected).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_vs_presidium_5779i_yeltsin_powers_deemed_terminated_19930921",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-05",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б. Н. Ельцина (genitive)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "termination_declared",
+      "attested_on": "1993-09-21",
+      "text": "Citing Decree No. 1400 of 21 September 1993 ('20.00 час'), which it says ended the activity of the Congress, the Supreme Soviet and the deputies' powers, the Presidium of the Supreme Soviet resolves under Article 121.6 of the Constitution to consider the powers of 'Президента Российской Федерации Б. Н. Ельцина' terminated from the moment of signing of that decree, and that the decree is not to be executed. It is signed by the Chairman of the Supreme Soviet, Moscow, Дом Советов России, 21 сентября 1993 года, N 5779-I.",
+      "locator": "Preamble; points 1-2; signature and date block"
+    },
+    {
+      "claim_id": "ru_vs_presidium_5779i_rutskoi_began_exercising_powers_19930921",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-05",
+      "role_id": "ru_president",
+      "holder_name": "Александр Владимирович Руцкой",
+      "printed_name": "А. В. Руцкой",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "acting_service_declared",
+      "attested_on": "1993-09-21",
+      "text": "Point 3 resolves under Article 121.11 to recognise that 'вице-президент Российской Федерации А. В. Руцкой приступил к исполнение полномочий Президента Российской Федерации с момента подписания Указа'; point 4 convenes an extraordinary session of the Supreme Soviet on 22 September 1993.",
+      "locator": "Points 3-4"
+    }
+  ],
+  "bounded_scope": "RSFSR President and Vice-President observations for CLAUDE-C01-51 only. Signed acts, official records naming the office, suspension, declared termination, declared or disputed acting service, removal and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, the Government and the USSR packet are outside this extract."
+}

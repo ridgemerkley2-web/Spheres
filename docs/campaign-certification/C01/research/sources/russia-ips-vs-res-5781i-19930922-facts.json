@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_vs_res_5781i_19930922",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102026182&page=1&rdk=0",
+  "source_title": "Resolution of the Supreme Soviet of the Russian Federation No. 5781-I of 22 September 1993 'On the exercise of the powers of the President of the Russian Federation by the Vice-President of the Russian Federation Rutskoi A. V.' (original edition)",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1993-09-22",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102026182&page=1&rdk=0",
+  "source_response_bytes": 7629,
+  "source_response_sha256": "c1fc0e6c9e1dc91c2edb6cc358ac31df536570e55a7af93e414789a85ff68f6c",
+  "source_response_encoding": "windows-1251; served uncompressed (no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Document frame: downloaded at 2026-10-01T11:45:07Z and again at 2026-10-01T12:22:58Z (37 minutes later); identical 7,629 bytes and SHA-256. Portal card: downloaded at 2026-10-01T11:45:07Z and again at 2026-10-01T12:22:58Z (37 minutes later); identical 3,087 bytes and SHA-256. Both with curl's default User-Agent, no Accept-Encoding header and no --compressed; the portal served both uncompressed.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=5781-I&a8type=1&a7type=4&a7from=22.09.1993&a7to=22.09.1993&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3087,
+    "sha256": "b0a45abcef91b38a7a5c3cd36dd0572ade55c47d4b0e4e481a9a79ba87553846",
+    "note": "Date-restricted single-document card (number 5781-I, date 22.09.1993): one hit, citing Rossiyskaya Gazeta of 23 September 1993."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP with curl's default User-Agent and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 1 October 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act; it cites Rossiyskaya Gazeta of 23 September 1993 (not inspected).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_vs_5781i_rutskoi_exercises_presidential_powers_19930922",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-05",
+      "role_id": "ru_president",
+      "holder_name": "Александр Владимирович Руцкой",
+      "printed_name": "Руцкой А. В.",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "acting_service_declared",
+      "attested_on": "1993-09-22",
+      "text": "Citing the termination of the powers of 'Президента Российской Федерации Б. Н. Ельцина' (the text prints 'статьи 21.6' and 'статьей 21.11' of the Constitution), the Supreme Soviet resolves that 'полномочия Президента Российской Федерации с 20 часов 00 минут 21 сентября 1993 года исполняет вице-президент Российской Федерации Руцкой А. В.'. It is signed by the Chairman of the Supreme Soviet, Moscow, Дом Советов России, 22 сентября 1993 года, N 5781-I.",
+      "locator": "Preamble; operative paragraph; signature and date block"
+    }
+  ],
+  "bounded_scope": "RSFSR President and Vice-President observations for CLAUDE-C01-51 only. Signed acts, official records naming the office, suspension, declared termination, declared or disputed acting service, removal and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, the Government and the USSR packet are outside this extract."
+}

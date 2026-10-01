@@ -205,6 +205,21 @@ PRESIDENT_HOLDERS = [
 RUSSIA_HOLDERS_SHA256 = '8575fda3b3069ed498377c3b66df29822c33a47cd4c7ead9fe07e30f7edc27cd'
 # SHA-256 of the same list restricted to the 18 faction-head observations CLAUDE-C01-46 appended (pinned in its own test).
 RUSSIA_C01_46_HOLDERS_SHA256 = '53ccf3386cd78083590fadb0308dffaba70af2783d119f36a217d689f3ed592b'
+# The ten claims cited by the nine RSFSR presidency observations CLAUDE-C01-51 appended, and the SHA-256 of the same list
+# restricted to those observations (pinned in its own test).
+C01_51_HOLDER_CLAIMS = {
+    'ru_rsfsr_rasp_98rp_signed_as_president_rsfsr_19911119',
+    'ru_rsfsr_ukaz_245n_signed_as_president_rsfsr_19920103',
+    'ru_rsfsr_ukaz_318_signed_as_president_rsfsr_19911226',
+    'ru_rsfsr_ukaz_8_signed_as_president_rsfsr_19910719',
+    'ru_rsfsr_vp_rasp_1rv_signed_as_vice_president_19910729',
+    'ru_rsfsr_vp_rasp_8rv_signed_as_vice_president_19911205',
+    'ru_ukaz_1328_rutskoi_styled_vice_president_19930901',
+    'ru_ukaz_1576_rutskoi_released_as_vice_president_19931003',
+    'ru_vp_rasp_1rv_signed_as_vice_president_rf_19920116',
+    'ru_vs_4825i_rutskoi_styled_vice_president_19930416',
+}
+RUSSIA_C01_51_HOLDERS_SHA256 = 'ddaef72d048d3263646aadcb07daef7d7eddd82f2d637b3ddc4b0545d0403672'
 ARCHIVED = {
     'su_garf_exhibit_res_1362i_19900315': '20191207080438',
     'su_rada_law_1861i_19901226': '20250531192616',
@@ -359,14 +374,22 @@ def c26_invariants(ussr, russia):
     # present at the base is unchanged (the original hash), and the appended ones are pinned by a second hash.
     def c01_46(h):
         return all(cid.startswith('ru_duma_news_') for cid in h['claim_ids'])
+
+    # CLAUDE-C01-51 appended RSFSR presidency observations that cite only its own claims; a third hash pins them.
+    def c01_51(h):
+        return set(h['claim_ids']) <= C01_51_HOLDER_CLAIMS
     ru = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
-                     if isinstance(h, dict) and not c01_46(h)])
+                     if isinstance(h, dict) and not c01_46(h) and not c01_51(h)])
           for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
     assert hashlib.sha256(json.dumps(ru, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_HOLDERS_SHA256
     added = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
                         if isinstance(h, dict) and c01_46(h)])
              for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
     assert hashlib.sha256(json.dumps(added, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_C01_46_HOLDERS_SHA256
+    added_51 = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims']
+                           if isinstance(h, dict) and c01_51(h)])
+                for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
+    assert hashlib.sha256(json.dumps(added_51, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_C01_51_HOLDERS_SHA256
     # Exact holders on the two roles, in chronological order; each rests on its own claim, dated that day; no from, no until.
     for role_id in (GOV_ROLE, SS_ROLE):
         role = roles[role_id][1]
