@@ -1,0 +1,73 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_vendredi_234_19940624",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/5858/image/3414/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "1994-06-24",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 11784262,
+  "source_response_sha256": "2bd8037dbbc0177933247067687c046259881b3872e83fd4cfe1317c95e66b3c",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 5858,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcea8f2d446cd88b82fa163e8087d3/1/1",
+    "stored_file": "depot/presse/vendredi/vendredi_234.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 5858 (stored file depot/presse/vendredi/vendredi_234.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"d77f403cfcfebac95675d449a5eb7e44\"; Content-Disposition: attachment; filename=depot-presse-vendredi-vendredi-234.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:04Z and again at 2026-10-01 13:02Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Vendredi n°234, dated 24 June 1994 on its pages. Imported: the report on the Conseil national of 19 June 1994 that voted its no-confidence in Michel Rocard and elected Henri Emmanuelli (PDF p. 4, 7 and 8). An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_rocard_no_confidence_vote_19940619",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-03",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Michel Rocard",
+      "role_title": "Premier secrétaire",
+      "event_kind": "no_confidence_vote",
+      "attested_on": "1994-06-19",
+      "text": "The issue reports that the Conseil national of 19 June 1994 'a tranché en votant majoritairement sa défiance à Michel Rocard', and records a debate 'sur la procédure à suivre pour remplacer la direction démissionnaire'.",
+      "locator": {
+        "pdf_page_1_based": 4,
+        "item": "article 'Henri Emmanuelli Premier secrétaire', second paragraph; PDF p. 7, paragraph on the procedure"
+      }
+    },
+    {
+      "claim_id": "fr_ps_emmanuelli_elected_by_conseil_national_19940619",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-04",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Henri Emmanuelli",
+      "role_title": "Premier secrétaire",
+      "event_kind": "election_by_conseil_national",
+      "attested_on": "1994-06-19",
+      "text": "The issue reports: 'Le Conseil National du 19 juin a élu Henri Emmanuelli premier secrétaire du Parti socialiste.'",
+      "locator": {
+        "pdf_page_1_based": 4,
+        "item": "article 'Henri Emmanuelli Premier secrétaire', first sentence"
+      }
+    },
+    {
+      "claim_id": "fr_ps_emmanuelli_styled_premier_secretaire_19940624",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-04",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Henri Emmanuelli",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_styling",
+      "attested_on": "1994-06-24",
+      "text": "Describing the congress to follow, the same issue writes that it 'n'a d'extraordinaire que la date', as 'a précisé le premier secrétaire' Henri Emmanuelli, who 'entend confirmer son élection par le Conseil national dans un vote des militants et des délégués au congrès'.",
+      "locator": {
+        "pdf_page_1_based": 8,
+        "item": "paragraph on the planned congress"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

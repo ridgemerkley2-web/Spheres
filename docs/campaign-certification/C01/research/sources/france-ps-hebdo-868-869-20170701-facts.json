@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_hebdo_868_869_20170701",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/21809/image/11730/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "2017-07-01",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 2709620,
+  "source_response_sha256": "8f407b58d29d99b87ac2db8fd7f8a0a52e31ea46db1eade6d9f85215b9990330",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 21809,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcec2e8cc261748795fa163e8087d3/1/1",
+    "stored_file": "depot/presse/hds/hds_868-869_n.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 21809 (stored file depot/presse/hds/hds_868-869_n.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"a37e973df3062e928c4da012d6649439\"; Content-Disposition: attachment; filename=depot-presse-hds-hds-868-869-n.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:24Z and again at 2026-10-01 13:04Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "L'Hebdo des socialistes n°868/869, dated 1 to 7 July 2017 on its first page, a special issue on the Conseil national of 24 June 2017. Only the front-page report (PDF p. 1) is imported. An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_cambadelis_former_premier_secretaire_20170624",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-09",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Jean-Christophe Cambadélis",
+      "role_title": "Premier secrétaire",
+      "event_kind": "former_holder_reference",
+      "attested_on": "2017-06-24",
+      "text": "The issue, 'SPÉCIAL CONSEIL NATIONAL du 24 juin 2017', reports that at that meeting the hall applauded at length 'l'ancien Premier secrétaire, Jean-Christophe Cambadélis'.",
+      "locator": {
+        "pdf_page_1_based": 1,
+        "item": "'SPÉCIAL CONSEIL NATIONAL du 24 juin 2017', first paragraphs"
+      }
+    },
+    {
+      "claim_id": "fr_ps_collegial_direction_pending_20170624",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-10",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": null,
+      "role_title": "Premier secrétaire",
+      "event_kind": "interim_arrangement",
+      "attested_on": "2017-06-24",
+      "text": "The same report quotes Rachid Temal, 'Secrétaire national chargé de la coordination et de l'organisation', and states: 'Le conseil national prévu le 8 juillet permettra de présenter la direction collégiale.'",
+      "locator": {
+        "pdf_page_1_based": 1,
+        "item": "same report, closing paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_hebdo_667_20121016",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/14600/image/7387/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "2012-10-16",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 3273847,
+  "source_response_sha256": "f70ccf3ee5afb22777ca64d3b8d286e1d9e8339e05d93484a67611b8f5ebd161",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 14600,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcec2c55726f40b0cdfa163e8087d3/1/1",
+    "stored_file": "depot/presse/hds/hds_667_n.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 14600 (stored file depot/presse/hds/hds_667_n.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"f997292c9ffeae75c5c90a7928a00479\"; Content-Disposition: attachment; filename=depot-presse-hds-hds-667-n.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:24Z and again at 2026-10-01 13:03Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "L'Hebdo des socialistes n°667, dated 16 to 26 October 2012 on its first page. Only the call to the members' vote of 18 October 2012 (PDF p. 1) is imported; the issue predates the vote and prints no result. An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_first_secretary_ballot_20121018",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-08",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": null,
+      "role_title": "Premier secrétaire",
+      "event_kind": "members_vote_scheduled",
+      "attested_on": "2012-10-18",
+      "text": "The issue calls members to the 'Élection du Premier secrétaire, votez le 18 octobre !' before the 76th congress at Toulouse of 26, 27 and 28 October, and prints the professions de foi of Harlem Désir and Emmanuel Maurel.",
+      "locator": {
+        "pdf_page_1_based": 1,
+        "item": "front page banner and the candidates named under it"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

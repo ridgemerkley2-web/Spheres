@@ -1,0 +1,90 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_hebdo_508_20081129",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/14592/image/7381/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "2008-11-29",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read_and_cover_image_viewed",
+  "source_response_bytes": 8842715,
+  "source_response_sha256": "c65e635bb8854875529c92d2a26e58cd39b1beeefc96cb08ca4be083320a5b82",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 14592,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcec2c4fef6f3c886efa163e8087d3/1/1",
+    "stored_file": "depot/presse/hds/hds_508_p_ocr.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 14592 (stored file depot/presse/hds/hds_508_p_ocr.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"f54dfdfdf611ed58a3a90ab6c27ec0d6\"; Content-Disposition: attachment; filename=depot-presse-hds-hds-508-p-ocr.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:23Z and again at 2026-10-01 13:03Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "L'Hebdo des socialistes n°508, dated Saturday 29 November 2008 on its cover (read on the cover image, PDF p. 1, which has no text layer). Imported: the table of contents (PDF p. 3), the report on the Conseil national of 25 November 2008 (PDF p. 6 and 9) and the item on François Hollande's farewell (PDF p. 52). An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The cover (PDF p. 1) has no text layer; its embedded image was viewed only to read the printed issue line 'N°508 • samedi 29 novembre 2008'. All quoted passages come from the OCR text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_hollande_farewell_20081119",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-06",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "François Hollande",
+      "role_title": "Premier secrétaire",
+      "event_kind": "departure_farewell",
+      "attested_on": "2008-11-19",
+      "text": "The issue reports a 'pot de départ pour l'ex-Premier secrétaire le 19 novembre', at which François Hollande gave the staff of rue de Solferino a last speech.",
+      "locator": {
+        "pdf_page_1_based": 52,
+        "item": "portrait page 'Militant d'abord', opening sentence"
+      }
+    },
+    {
+      "claim_id": "fr_ps_recolement_report_approved_20081125",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-07",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Martine Aubry",
+      "role_title": "Premier secrétaire",
+      "event_kind": "members_vote_result",
+      "attested_on": "2008-11-25",
+      "text": "The issue reports that at the Conseil national of 25 November the report of the commission de récolement, approved by 159 votes (76 against, 2 abstentions), indicated that in the second round of the election of the Premier secrétaire Martine Aubry obtained 67 451 votes and Ségolène Royal 67 349.",
+      "locator": {
+        "pdf_page_1_based": 9,
+        "item": "closing paragraph of the congress dossier"
+      }
+    },
+    {
+      "claim_id": "fr_ps_aubry_elected_20081125",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-07",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Martine Aubry",
+      "role_title": "Premier secrétaire",
+      "event_kind": "election_proclaimed_by_conseil_national",
+      "attested_on": "2008-11-25",
+      "text": "The issue reports: 'Martine Aubry a été élue Première secrétaire du Parti socialiste, à l'issue du Conseil national du 25 novembre.'",
+      "locator": {
+        "pdf_page_1_based": 6,
+        "item": "article 'Etre sur tous les terrains', first sentence"
+      }
+    },
+    {
+      "claim_id": "fr_ps_aubry_styled_premiere_secretaire_20081129",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-07",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Martine Aubry",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_styling",
+      "attested_on": "2008-11-29",
+      "text": "The issue's table of contents lists 'Martine Aubry Première secrétaire'.",
+      "locator": {
+        "pdf_page_1_based": 3,
+        "item": "table of contents, 'Actualités France'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

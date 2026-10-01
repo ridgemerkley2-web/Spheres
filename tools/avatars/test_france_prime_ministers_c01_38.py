@@ -14,6 +14,8 @@ import import_cnccfp_census as importer
 
 PRESIDENCY, PRESIDENT, INSTITUTION, ROLE = 'fr_presidency', 'fr_president', 'fr_prime_minister', 'fr_pm'
 C01_23_SOURCES, C01_37_SOURCES, C01_37_CLAIMS, C01_37_HOLDERS = 49, 31, 48, 16
+# CLAUDE-C01-47 appends 24 party sources after this batch, for its party role on fr_cnccfp_76.
+C01_47_SOURCES = 24
 ACCESSED = '2026-09-30'
 
 # Original response identity recorded in each extract: (bytes, sha256), the body as received.
@@ -205,7 +207,9 @@ def batch_invariants(packet):
     # Separation: no organization and not the presidency cites this batch.
     for entry in packet['organizations']:
         assert not set(entry['claim_ids']) & set(new_claims) and not set(entry['sources']) & set(new_sources), entry['id']
-        assert entry['roles'] == [] and entry['represented_party_ids'] == [], entry['id']
+        # CLAUDE-C01-47's party role on fr_cnccfp_76 is the only organization role.
+        assert [r['id'] for r in entry['roles']] == (['fr_ps_first_secretary'] if entry['id'] == 'fr_cnccfp_76' else []), entry['id']
+        assert entry['represented_party_ids'] == [], entry['id']
     presidency = packet['institutions'][0]
     assert not set(presidency['claim_ids']) & set(new_claims) and not set(presidency['sources']) & set(new_sources)
     for r in presidency['roles']:
@@ -249,14 +253,15 @@ class FrancePrimeMinistersSecondBatchTests(unittest.TestCase):
         self.assertEqual(self.supplement_bytes.decode('utf-8'), json.dumps(self.supplement, indent=2, ensure_ascii=False) + '\n')
         ids = [s['id'] for s in self.supplement['sources']]
         first = C01_23_SOURCES + C01_37_SOURCES
-        self.assertEqual(len(ids), first + len(NEW_SOURCES))
-        self.assertEqual(ids[first:], NEW_SOURCES)
-        self.assertEqual([s['id'] for s in self.packet['sources']][-len(NEW_SOURCES):], NEW_SOURCES)
+        self.assertEqual(len(ids), first + len(NEW_SOURCES) + C01_47_SOURCES)
+        self.assertEqual(ids[first:first + len(NEW_SOURCES)], NEW_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']][-len(NEW_SOURCES) - C01_47_SOURCES:-C01_47_SOURCES], NEW_SOURCES)
         self.assertEqual(self.packet['institutions'], self.supplement['institutions'])
         notes = self.supplement['coverage_unresolved']
-        self.assertEqual(len(notes), 3)
+        self.assertEqual(len(notes), 4)
         self.assertTrue(notes[2].startswith('CLAUDE-C01-38 extends fr_prime_minister'))
-        self.assertEqual(self.packet['coverage']['unresolved'][-3:], notes)
+        self.assertTrue(notes[3].startswith('CLAUDE-C01-47 adds the party role fr_ps_first_secretary'))
+        self.assertEqual(self.packet['coverage']['unresolved'][-4:], notes)
         # The first batch's text is kept and this batch only appends to it.
         scope = self.role['scope_note']
         self.assertTrue(scope.startswith('Premier ministre under the Constitution of 4 October 1958 (article 8)'))
@@ -269,7 +274,15 @@ class FrancePrimeMinistersSecondBatchTests(unittest.TestCase):
         self.assertIn('JORFTEXT000050748889', unresolved[5])
         self.assertIn('re-verify them before then', unresolved[6])
         base = importer.build(self.csv, supplement=b'{"sources": [], "institutions": [], "coverage_unresolved": []}')
-        self.assertEqual(self.packet['organizations'], base['organizations'])
+        # The CNCCFP organizations, with CLAUDE-C01-47's organization_roles appended to fr_cnccfp_76 only.
+        expected = copy.deepcopy(base['organizations'])
+        for addition in self.supplement['organization_roles']:
+            target = next(o for o in expected if o['id'] == addition['organization_id'])
+            for key in ('roles', 'sources', 'claim_ids'):
+                target[key] = target[key] + addition[key]
+            target['coverage']['unresolved'] = target['coverage']['unresolved'] + addition['coverage_unresolved']
+        self.assertEqual([a['organization_id'] for a in self.supplement['organization_roles']], ['fr_cnccfp_76'])
+        self.assertEqual(self.packet['organizations'], expected)
         self.assertEqual(len(base['organizations']), 635)
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
@@ -277,7 +290,7 @@ class FrancePrimeMinistersSecondBatchTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (22, 33))
         self.assertEqual((len(WAYBACK), len(DILA_SOURCES)), (18, 4))
         self.assertEqual(len(ids['entries']), 637)
-        self.assertEqual(ids['roles'], {PRESIDENT, ROLE})
+        self.assertEqual(ids['roles'], {PRESIDENT, ROLE, 'fr_ps_first_secretary'})
         self.assertEqual(self.new_claims, list(EVENTS))
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         self.assertFalse(holder_claims & set(NEVER_HOLDER))
@@ -535,7 +548,8 @@ class FrancePrimeMinistersSecondBatchTests(unittest.TestCase):
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'France')
         self.assertFalse(country['country_census_complete'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 2))
+        # Two institutions with one role each, and CLAUDE-C01-47's party role on fr_cnccfp_76.
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 3))
         self.assertFalse(index['c01_complete'])
 
 

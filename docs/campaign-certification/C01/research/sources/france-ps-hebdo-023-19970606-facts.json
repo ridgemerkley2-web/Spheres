@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_hebdo_023_19970606",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/20543/image/10933/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "1997-06-06",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 2419753,
+  "source_response_sha256": "503163bf18764570a5909ec45b816231a3befd68e55617f84a7964de4762342f",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 20543,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcec2a42a06d4cb292fa163e8087d3/1/1",
+    "stored_file": "depot/presse/hds/hds_023_p.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 20543 (stored file depot/presse/hds/hds_023_p.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"dbc049da40503a16fc110aa491b4e5b7\"; Content-Disposition: attachment; filename=depot-presse-hds-hds-023-p.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:23Z and again at 2026-10-01 13:03Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "L'Hebdo des socialistes n°23, dated 6 June 1997 on its pages. Only the interview of François Hollande as Premier secrétaire délégué (PDF p. 2) is imported; it prints no day for the Bureau national it describes. An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_hollande_premier_secretaire_delegue_1997",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-06",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": null,
+      "role_title": "Premier secrétaire",
+      "event_kind": "delegated_office",
+      "attested_on": "1997-06-06",
+      "text": "The issue's interview of François Hollande, styled 'Premier secrétaire-délégué', explains that Lionel Jospin proposed that 'il délègue une responsabilité à un Premier secrétaire-délégué. C'est ce rôle qu'il m'a confié', a principle the Bureau national adopted with 3 abstentions, for the Conseil national of 14 and 15 June to ratify.",
+      "locator": {
+        "pdf_page_1_based": 2,
+        "item": "interview headed 'François Hollande, Premier secrétaire-délégué', first answer"
+      }
+    },
+    {
+      "claim_id": "fr_ps_jospin_remains_premier_secretaire_19970606",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-05",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Lionel Jospin",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_statement",
+      "attested_on": "1997-06-06",
+      "text": "In the same interview, François Hollande states that Lionel Jospin, present at the Bureau national 'en tant que Premier secrétaire du Parti socialiste', 'reste Premier Secrétaire du parti jusqu'au prochain congrès'.",
+      "locator": {
+        "pdf_page_1_based": 2,
+        "item": "same interview, first answer"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

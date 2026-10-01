@@ -9,10 +9,14 @@ docs/campaign-certification/C01/research/supplements/france.json (CLAUDE-C01-23)
 which holds exactly three keys: its sources are appended after the CNCCFP
 sources, its institutions become the packet's institutions, and its
 coverage_unresolved notes are appended to the packet's coverage.unresolved.
-The merge is deterministic and changes no CNCCFP organization, source, claim or
-pinned checksum. A missing or malformed supplement, an id that collides with
-the generated packet or within the supplement, or a supplement snapshot path
-outside research/sources fails the build.
+An optional fourth key, organization_roles (CLAUDE-C01-47), names existing
+CNCCFP organizations and appends to each its roles, its supplement sources and
+claim ids, and its coverage notes; nothing generated is replaced or removed.
+The merge is deterministic and changes no CNCCFP source, claim, name, lifecycle
+or pinned checksum. A missing or malformed supplement, an id that collides with
+the generated packet or within the supplement, a supplement snapshot path
+outside research/sources, or an organization_roles entry that names no
+organization or cites a source or claim outside the supplement fails the build.
 """
 import argparse
 import csv
@@ -196,20 +200,44 @@ def merge_supplement(packet, raw=None):
         supplement = json.loads(raw.decode('utf-8'))
     except (UnicodeDecodeError, json.JSONDecodeError) as error:
         raise ValueError(f'Malformed France supplement: {error}') from None
-    if not isinstance(supplement, dict) or set(supplement) != {'sources', 'institutions', 'coverage_unresolved'}:
-        raise ValueError('Malformed France supplement: expected exactly sources, institutions and coverage_unresolved')
+    required = {'sources', 'institutions', 'coverage_unresolved'}
+    if not isinstance(supplement, dict) or not required <= set(supplement) <= required | {'organization_roles'}:
+        raise ValueError('Malformed France supplement: expected exactly sources, institutions and coverage_unresolved'
+                         ' (and optionally organization_roles)')
     sources, institutions, notes = supplement['sources'], supplement['institutions'], supplement['coverage_unresolved']
-    if (not all(isinstance(part, list) for part in (sources, institutions, notes))
+    additions = supplement.get('organization_roles', [])
+    if (not all(isinstance(part, list) for part in (sources, institutions, notes, additions))
             or not all(isinstance(s, dict) and s.get('id') and isinstance(s.get('claims'), list)
                        and all(isinstance(c, dict) and c.get('id') for c in s['claims']) for s in sources)
             or not all(isinstance(i, dict) and i.get('id') for i in institutions)
             or not all(isinstance(note, str) and note.strip() for note in notes)):
         raise ValueError('Malformed France supplement entries')
+    fields = ('organization_id', 'roles', 'sources', 'claim_ids', 'coverage_unresolved')
+    if not all(isinstance(a, dict) and tuple(a) == fields and isinstance(a['organization_id'], str)
+               and all(isinstance(a[k], list) and a[k] for k in fields[1:])
+               and all(isinstance(r, dict) and r.get('id') for r in a['roles'])
+               and all(isinstance(note, str) and note.strip() for note in a['coverage_unresolved']) for a in additions):
+        raise ValueError('Malformed France supplement organization_roles')
     for kind, ids in (('source', [s['id'] for s in packet['sources'] + sources]),
                       ('claim', [c['id'] for s in packet['sources'] + sources for c in s['claims']]),
-                      ('entry', [e['id'] for e in packet['organizations'] + institutions])):
+                      ('entry', [e['id'] for e in packet['organizations'] + institutions]),
+                      ('role', [r['id'] for e in packet['organizations'] + institutions for r in e.get('roles', [])]
+                       + [r['id'] for a in additions for r in a['roles']]),
+                      ('organization_roles target', [a['organization_id'] for a in additions])):
         if len(ids) != len(set(ids)):
             raise ValueError(f'France supplement {kind} id collision')
+    organizations = {o['id']: o for o in packet['organizations']}
+    owned = {s['id']: {c['id'] for c in s['claims']} for s in sources}
+    for addition in additions:
+        target = organizations.get(addition['organization_id'])
+        if target is None:
+            raise ValueError(f"France supplement organization_roles names no organization: {addition['organization_id']}")
+        cited, claim_ids = addition['sources'], addition['claim_ids']
+        if (len(cited) != len(set(cited)) or not set(cited) <= owned.keys() or set(cited) & set(target['sources'])
+                or len(claim_ids) != len(set(claim_ids)) or set(claim_ids) & set(target['claim_ids'])
+                or not set(claim_ids) <= set().union(*(owned[s] for s in cited))):
+            raise ValueError(f"France supplement organization_roles must cite its own supplement sources and their claims: "
+                             f"{addition['organization_id']}")
     allowed = (ROOT / SOURCES_DIR).resolve()
     for source in sources:
         snapshot = source.get('snapshot')
@@ -221,6 +249,12 @@ def merge_supplement(packet, raw=None):
     packet['sources'].extend(sources)
     packet['institutions'] = institutions
     packet['coverage']['unresolved'].extend(notes)
+    for addition in additions:
+        target = organizations[addition['organization_id']]
+        target['roles'].extend(addition['roles'])
+        target['sources'].extend(addition['sources'])
+        target['claim_ids'].extend(addition['claim_ids'])
+        target['coverage']['unresolved'].extend(addition['coverage_unresolved'])
     return packet
 
 

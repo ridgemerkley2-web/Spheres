@@ -61,7 +61,9 @@ class CnccfpImportTests(unittest.TestCase):
     def test_non_filing_never_becomes_a_lifespan_or_current_game_binding(self):
         for organization in self.packet['organizations']:
             self.assertEqual(organization['lifecycle']['status'], 'unknown')
-            self.assertEqual(organization['roles'], [])
+            # CLAUDE-C01-47's supplement adds one party role, fr_ps_first_secretary, to fr_cnccfp_76 (PARTI SOCIALISTE) only.
+            self.assertEqual([role['id'] for role in organization['roles']],
+                             ['fr_ps_first_secretary'] if organization['id'] == 'fr_cnccfp_76' else [])
             self.assertEqual(organization['represented_party_ids'], [])
             self.assertEqual(organization['representation_status'], 'unreconciled')
             self.assertNotIn('from', organization['lifecycle'])
