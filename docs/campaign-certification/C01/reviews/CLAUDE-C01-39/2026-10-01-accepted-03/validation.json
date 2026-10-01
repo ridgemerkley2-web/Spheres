@@ -1,0 +1,55 @@
+{
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_south_africa*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\focused-after-repairs-0.log",
+      "sha256": "6eadd122af3ee153fbac921d4ae095f9c26ff86f206f75c0d3144bd913ed878e"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign_research.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\generic-research-after-repairs.log",
+      "sha256": "7c53e1c3c5834153d68aa7e32cd86f6cac3dba62ee10612ec7f676b0ac46a3b6"
+    }
+  ],
+  "successful_test_counts": {
+    "SouthAfrica": 59,
+    "generic_research": 9
+  },
+  "red_before_green": {
+    "initial_overlay": "6 failures and1 error: sparse snapshot fixtures absent plus authored-handoff binding; exact existing fixtures materialized without source edits.",
+    "with_fixtures": "8 DA tests,1 expected handoff-binding failure.",
+    "with_handoff_repair_before_locators": "9 DA tests,3 independently pinned locator failures.",
+    "after_repairs": "59 South Africa tests and9 generic research tests pass."
+  },
+  "non_test_setup_failure": "Alternate-index git add initially refused sparse paths; diagnostic retained, --sparse used without changing canonical content.",
+  "global_generation": false,
+  "native_execution": false
+}

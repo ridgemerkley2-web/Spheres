@@ -1,0 +1,57 @@
+{
+  "retrieved_at_utc": "2026-10-01T16:58:24.986560+00:00",
+  "completed_at_utc": "2026-10-01T16:58:26.670687+00:00",
+  "source_id": "za_da_statement_stellenbosch_visit_20210310",
+  "requested_url": "https://web.archive.org/web/20210311042629id_/https://www.da.org.za/2021/03/da-leader-john-steenhuisen-visits-and-supports-afrikaans-students-in-stellenbosch",
+  "command": [
+    "curl.exe",
+    "--location",
+    "--max-redirs",
+    "5",
+    "--connect-timeout",
+    "20",
+    "--max-time",
+    "50",
+    "--dump-header",
+    "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\exact-stellenbosch.headers",
+    "--output",
+    "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\exact-stellenbosch.body",
+    "--write-out",
+    "%{json}",
+    "https://web.archive.org/web/20210311042629id_/https://www.da.org.za/2021/03/da-leader-john-steenhuisen-visits-and-supports-afrikaans-students-in-stellenbosch"
+  ],
+  "exit_code": 0,
+  "http_status": 200,
+  "effective_url": "https://web.archive.org/web/20210311042629id_/https://www.da.org.za/2021/03/da-leader-john-steenhuisen-visits-and-supports-afrikaans-students-in-stellenbosch",
+  "redirect_count": 0,
+  "expected_bytes": 134450,
+  "expected_sha256": "730846b64891bac5bcd0fe512300a18b2413d9e8274fce780ff7027d04d5e32c",
+  "actual_bytes": 134450,
+  "actual_sha256": "730846b64891bac5bcd0fe512300a18b2413d9e8274fce780ff7027d04d5e32c",
+  "exact_original_reproduced": true,
+  "retries": 0,
+  "timestamp_substitutions": 0,
+  "packet_accepted": false,
+  "files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\exact-stellenbosch.body",
+      "bytes": 134450,
+      "sha256": "730846b64891bac5bcd0fe512300a18b2413d9e8274fce780ff7027d04d5e32c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\exact-stellenbosch.headers",
+      "bytes": 2410,
+      "sha256": "309cf6db6870b0a2e264d9c08190a8fdf969cb7b83d98ac907d9c1b7cef56654"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\exact-stellenbosch.stderr",
+      "bytes": 550,
+      "sha256": "685fe30e09f98e5903e01e1d032befa1e2b09f800ea87ee8cebf717ada186736"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-05\\da39-evidence\\attempt-03-heartbeat\\curl-output.json",
+      "bytes": 17278,
+      "sha256": "128a59a8a8a4506bfb1292928d900171f9fae922255ffdc47a547114128a58b9"
+    }
+  ]
+}

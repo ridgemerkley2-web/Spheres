@@ -1,0 +1,64 @@
+{
+  "locator_repairs": [
+    {
+      "source_id": "za_da_fedcouncil_chair_interim_election_20191025",
+      "claim_id": "za_da_federal_leader_position_vacant_20191025",
+      "submitted_locator": {
+        "section": "Second paragraph"
+      },
+      "proposed_locator": {
+        "section": "Third paragraph"
+      },
+      "apply_to": [
+        "source claim locator in south-africa.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json matching row locator"
+      ],
+      "snapshot_update_required": true,
+      "original_response_identity_unchanged": true,
+      "applied": true,
+      "application_scope": "reviewed local test overlay and reviewer-corrections.patch only; no canonical import"
+    },
+    {
+      "source_id": "za_da_fedcouncil_chair_interim_election_20191025",
+      "claim_id": "za_da_fedco_interim_leader_election_scheduled_20191025",
+      "submitted_locator": {
+        "section": "First paragraph"
+      },
+      "proposed_locator": {
+        "section": "First and second paragraphs"
+      },
+      "apply_to": [
+        "source claim locator in south-africa.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json matching row locator"
+      ],
+      "snapshot_update_required": true,
+      "original_response_identity_unchanged": true,
+      "applied": true,
+      "application_scope": "reviewed local test overlay and reviewer-corrections.patch only; no canonical import"
+    },
+    {
+      "source_id": "za_da_statement_thanks_steenhuisen_20260204",
+      "claim_id": "za_da_tribute_steenhuisen_six_years_federal_leader_20260204",
+      "submitted_locator": {
+        "section": "First and last paragraphs"
+      },
+      "proposed_locator": {
+        "section": "First and penultimate paragraphs"
+      },
+      "apply_to": [
+        "source claim locator in south-africa.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json matching row locator"
+      ],
+      "snapshot_update_required": true,
+      "original_response_identity_unchanged": true,
+      "applied": true,
+      "application_scope": "reviewed local test overlay and reviewer-corrections.patch only; no canonical import"
+    }
+  ],
+  "checker_repair": {
+    "path": "tools/avatars/test_south_africa_da_federal_leaders_c01_39.py",
+    "prior_repair": "6b069f07f2a304627fec8b3827cc53c8f21b0989",
+    "adaptation": "Checks a new exact b66 authored-handoff copy, keeping the prior 9cb copy and newer central registration unchanged. Adds an independently reviewed three-locator regression, observed red before data corrections.",
+    "date_boundary_guard": "No weakening or generic date exception required. The authored 9e3d0b3c exact Maimane tuple/end guard and wrong/missing/week-shift/start/crossover mutation controls pass unchanged."
+  }
+}

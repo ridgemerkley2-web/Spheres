@@ -1,0 +1,60 @@
+test_extracts_match_packet_claims_and_record_original_responses (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_holders_are_exactly_as_intended) ... ok
+test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) ... 
+  test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) (claim='za_da_federal_leader_position_vacant_20191025') ... FAIL
+  test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) (claim='za_da_fedco_interim_leader_election_scheduled_20191025') ... FAIL
+  test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) (claim='za_da_tribute_steenhuisen_six_years_federal_leader_20260204') ... FAIL
+test_mutations_are_rejected (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_and_every_claim_is_classified (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_new_records_are_bounded_and_every_claim_is_classified) ... ok
+test_no_start_or_end_is_stated_or_inferred (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_no_start_or_end_is_stated_or_inferred) ... ok
+test_packet_formatting_is_preserved (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_packet_formatting_is_preserved) ... ok
+test_report_and_handoff_close_no_parent_gate (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_report_and_handoff_close_no_parent_gate) ... ok
+test_secondary_leads_and_per_request_pages_stay_out_of_the_packet (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_secondary_leads_and_per_request_pages_stay_out_of_the_packet) ... ok
+
+======================================================================
+FAIL: test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) (claim='za_da_federal_leader_position_vacant_20191025')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-05\da39\tools\avatars\test_south_africa_da_federal_leaders_c01_39.py", line 736, in test_independently_reviewed_passage_locators
+    self.assertEqual(claims[cid]['locator'], {'section': section})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'section': 'Second paragraph'} != {'section': 'Third paragraph'}
+- {'section': 'Second paragraph'}
+?              ^^^^^
+
++ {'section': 'Third paragraph'}
+?              ^^^^
+
+
+======================================================================
+FAIL: test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) (claim='za_da_fedco_interim_leader_election_scheduled_20191025')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-05\da39\tools\avatars\test_south_africa_da_federal_leaders_c01_39.py", line 736, in test_independently_reviewed_passage_locators
+    self.assertEqual(claims[cid]['locator'], {'section': section})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'section': 'First paragraph'} != {'section': 'First and second paragraphs'}
+- {'section': 'First paragraph'}
++ {'section': 'First and second paragraphs'}
+?                   +++++++++++          +
+
+
+======================================================================
+FAIL: test_independently_reviewed_passage_locators (test_south_africa_da_federal_leaders_c01_39.SouthAfricaDaFederalLeadersTests.test_independently_reviewed_passage_locators) (claim='za_da_tribute_steenhuisen_six_years_federal_leader_20260204')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-05\da39\tools\avatars\test_south_africa_da_federal_leaders_c01_39.py", line 736, in test_independently_reviewed_passage_locators
+    self.assertEqual(claims[cid]['locator'], {'section': section})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'section': 'First and last paragraphs'} != {'section': 'First and penultimate paragraphs'}
+- {'section': 'First and last paragraphs'}
+?                          -
+
++ {'section': 'First and penultimate paragraphs'}
+?                        ++++ +++  +
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 5.763s
+
+FAILED (failures=3)

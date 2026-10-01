@@ -1,0 +1,142 @@
+diff --git a/docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json b/docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json
+index d8d641e3..6d2c04a4 100644
+--- a/docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json
++++ b/docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json
+@@ -33,7 +33,7 @@
+       "attested_on": "2019-10-25",
+       "text": "The statement issued on \"25 Oct 2019\" says \"The Federal Leader and Federal Chairperson positions became vacant on Wednesday following the personal decision of Mmusi Maimane and Athol Trollip to resign from their positions\".",
+       "locator": {
+-        "section": "Second paragraph"
++        "section": "Third paragraph"
+       }
+     },
+     {
+@@ -47,7 +47,7 @@
+       "attested_on": "2019-10-25",
+       "text": "The same statement says a special Federal Council meeting will \"elect an Interim Federal Leader and Interim Federal Chairperson\" and that \"The election will take place on Sunday, 17 November 2019\".",
+       "locator": {
+-        "section": "First paragraph"
++        "section": "First and second paragraphs"
+       }
+     }
+   ],
+diff --git a/docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json b/docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json
+index d4b5bf09..c3996865 100644
+--- a/docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json
++++ b/docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json
+@@ -33,7 +33,7 @@
+       "attested_on": "2026-02-04",
+       "text": "The statement issued on \"04 Feb 2026\" \"extends our sincere gratitude to John Steenhuisen for six years of determined leadership as Federal Leader of the party\" and says \"As John now focuses fully on his responsibilities as Minister of Agriculture in the Government of National Unity\".",
+       "locator": {
+-        "section": "First and last paragraphs"
++        "section": "First and penultimate paragraphs"
+       }
+     }
+   ],
+diff --git a/docs/campaign-certification/C01/research/south-africa.json b/docs/campaign-certification/C01/research/south-africa.json
+index 107425d2..c16f50d1 100644
+--- a/docs/campaign-certification/C01/research/south-africa.json
++++ b/docs/campaign-certification/C01/research/south-africa.json
+@@ -9902,8 +9902,8 @@
+       "scope_note": "Raw Internet Archive capture made 28 October 2019 of the DA statement \"Issued by Helen Zille – Chairperson of the Federal Council 25 Oct 2019\". Its prospective election of interim office-bearers is acting or interim service and is recorded as claims only. Served without content encoding.",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json",
+-        "bytes": 4961,
+-        "sha256": "e5e369b59692d1150e0cc1ecc425e4b658f1ed4fd8ee8355d68d205877a9ded4"
++        "bytes": 4972,
++        "sha256": "3fb0b94d44dbac2e7a7c9eeaf998c2b834ab399945d5b0992a50bc72cecb12ce"
+       },
+       "claims": [
+         {
+@@ -9911,7 +9911,7 @@
+           "text": "The statement issued on \"25 Oct 2019\" says \"The Federal Leader and Federal Chairperson positions became vacant on Wednesday following the personal decision of Mmusi Maimane and Athol Trollip to resign from their positions\".",
+           "attested_on": "2019-10-25",
+           "locator": {
+-            "section": "Second paragraph"
++            "section": "Third paragraph"
+           },
+           "uncertainty": "Gives the end of the holder observation of 4 October 2019 (Mmusi Maimane) on 23 October 2019 (Ridge's ruling): a relative day in a dated party statement resolves from its dateline (the CLAUDE-C01-29 rule); this statement is dated 25 October 2019, a Friday, so \"on Wednesday\" is 23 October 2019, the week fixed by the statement of Thursday 24 October 2019 (\"The FedEx was convened on Thursday morning\"). The statement's own date is never a holder date, start or end; the Federal Chairperson is another office."
+         },
+@@ -9920,7 +9920,7 @@
+           "text": "The same statement says a special Federal Council meeting will \"elect an Interim Federal Leader and Interim Federal Chairperson\" and that \"The election will take place on Sunday, 17 November 2019\".",
+           "attested_on": "2019-10-25",
+           "locator": {
+-            "section": "First paragraph"
++            "section": "First and second paragraphs"
+           },
+           "uncertainty": "A prospective scheduling decision announced on 25 October 2019 for an interim election; interim service is claims only and the scheduled day is never a start. Never a holder date, start or end."
+         }
+@@ -10028,8 +10028,8 @@
+       "scope_note": "Raw Internet Archive capture made 4 February 2026 of the DA statement issued by its National Spokesperson on \"04 Feb 2026\". The ministry it names is a state office and is not used. Served without content encoding.",
+       "snapshot": {
+         "path": "docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json",
+-        "bytes": 4340,
+-        "sha256": "742fcc2648d6230082182bf311620e4f240ac99a292a6ca4704b1e5b95f6f7a0"
++        "bytes": 4347,
++        "sha256": "0b10b35d16976fe16c0d9cba0ad0ecf4e3d972844243c0f4c9eb70b9b397b984"
+       },
+       "claims": [
+         {
+@@ -10037,7 +10037,7 @@
+           "text": "The statement issued on \"04 Feb 2026\" \"extends our sincere gratitude to John Steenhuisen for six years of determined leadership as Federal Leader of the party\" and says \"As John now focuses fully on his responsibilities as Minister of Agriculture in the Government of National Unity\".",
+           "attested_on": "2026-02-04",
+           "locator": {
+-            "section": "First and last paragraphs"
++            "section": "First and penultimate paragraphs"
+           },
+           "uncertainty": "A tribute that states no day on which his leadership ended or would end, so it is never an end: the DA styles him its Leader again on 4 March 2026. \"Six years\" is a retrospective span. The ministry is a state office and feeds nothing. Never a holder date, start or end."
+         }
+diff --git a/tools/avatars/test_south_africa_da_federal_leaders_c01_39.py b/tools/avatars/test_south_africa_da_federal_leaders_c01_39.py
+index bc818d12..09421ce1 100644
+--- a/tools/avatars/test_south_africa_da_federal_leaders_c01_39.py
++++ b/tools/avatars/test_south_africa_da_federal_leaders_c01_39.py
+@@ -258,6 +258,7 @@ DECISIONS = {
+ }
+ REPORT = research.RESEARCH / 'south-africa-da-federal-leaders-2000-2026-39.md'
+ HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-39.md'
++AUTHORED_HANDOFF = 'docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-accepted-03/authored-handoff.md'
+ 
+ 
+ def da_invariants(packet):
+@@ -723,6 +724,18 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
+             with self.subTest(label=label), self.assertRaises((AssertionError, KeyError, IndexError, ValueError)):
+                 da_invariants(mutated(change))
+ 
++    def test_independently_reviewed_passage_locators(self):
++        expected = {
++            'za_da_federal_leader_position_vacant_20191025': 'Third paragraph',
++            'za_da_fedco_interim_leader_election_scheduled_20191025': 'First and second paragraphs',
++            'za_da_tribute_steenhuisen_six_years_federal_leader_20260204': 'First and penultimate paragraphs',
++        }
++        claims = {c['id']: c for source in self.packet['sources'] for c in source['claims']}
++        for cid, section in expected.items():
++            with self.subTest(claim=cid):
++                self.assertEqual(claims[cid]['locator'], {'section': section})
++                self.assertEqual(self.rows[cid]['locator'], {'section': section})
++
+     def test_report_and_handoff_close_no_parent_gate(self):
+         self.assertIn('ready_for_review', self.report)
+         table = self.section('Outcome')
+@@ -745,12 +758,21 @@ class SouthAfricaDaFederalLeadersTests(unittest.TestCase):
+                      'test_south_africa_anc_presidents_c01_16.py', 'test_south_africa_deputy_presidents_c01_21.py',
+                      'test_south_africa_party_leaders_c01_30.py', 'test_south_africa_pac_presidents_c01_32.py'):
+             self.assertIn(text, notes)
+-        handoff = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
++        # Authored delivery assertions belong to its immutable copy, not the
++        # integration's newer registration. Authored claims of approval are not
++        # independent acceptance evidence.
++        authored = (research.ROOT / AUTHORED_HANDOFF).read_bytes()
++        self.assertEqual(hashlib.sha256(authored).hexdigest(),
++                         '0d7e30cf0f471024533f7292f3d72e355ba11e2f2fd5f01c746ecc0436dcddd9')
++        handoff = authored.decode('utf-8')
+         for text in ('ready_for_review', 'south-africa-da-federal-leaders-2000-2026-39.md', 'claude/c01-za-39', '03cd0bb9',
+                      'test_south_africa_da_federal_leaders_c01_39.py', 'continue existing claims first',
+                      'decided by Ridge', 'Codex may still decide otherwise', '2019-10-23', 'C01-SouthAfrica-DP-001'):
+             self.assertIn(text, handoff)
+         self.assertNotIn('Ruling requested', handoff)
++        registered = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
++        self.assertIn('b66f8c074431d7e1a8c9bfca228576c7d5134655', registered)
++        self.assertIn('claude/c01-za-39', registered)
+         index = research.build()
+         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
+         self.assertFalse(country['country_census_complete'])

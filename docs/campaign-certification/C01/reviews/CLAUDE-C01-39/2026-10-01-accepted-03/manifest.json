@@ -1,0 +1,140 @@
+{
+  "format": "spheres-c01-immutable-review-files/v1",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "authored-handoff.md",
+      "bytes": 14829,
+      "sha256": "0d7e30cf0f471024533f7292f3d72e355ba11e2f2fd5f01c746ecc0436dcddd9"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 15484,
+      "sha256": "96bd658757cb486e0a8bba39db4f72236c7012168b89d37b927806c13d6ddf77"
+    },
+    {
+      "path": "corrections.json",
+      "bytes": 2973,
+      "sha256": "914c843dddd82f2bb4e1991012a9d3979c67ec84d959050c6f6dcd59fc47262a"
+    },
+    {
+      "path": "exact-authored-scoped.patch",
+      "bytes": 329859,
+      "sha256": "7222fdb650376a0c9099c65077c7e9b4755478114165a49174b55f67121e5276"
+    },
+    {
+      "path": "external-files.json",
+      "bytes": 31315,
+      "sha256": "03195cdc2b56b4a0a9e414759a8204defe5fbc7285a62379ab36f1af89553862"
+    },
+    {
+      "path": "holder-review.json",
+      "bytes": 4102,
+      "sha256": "2082d17084c9015f412e8f6e951f33215a054fb237b12c02068e2c41fb44daca"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5838,
+      "sha256": "82461770299ad3f22aedd9d89ada6a3de710a2d7caa6bd101841a4890f23b4bf"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 2678,
+      "sha256": "1c95e9214ea050dbcdb9626fa65a14ac827aa4bd8b0d0f51285ce138341aaeab"
+    },
+    {
+      "path": "review.json",
+      "bytes": 1747,
+      "sha256": "4164647ea483ce88a6bf2130c3c861bac23fef192922ae5c1552c9d57b252ed6"
+    },
+    {
+      "path": "reviewed-git-blobs.json",
+      "bytes": 17360,
+      "sha256": "58267c8fcb6a16a9333a0e83e8bd44c9131011b4246555c6581ec204eb207732"
+    },
+    {
+      "path": "reviewed-scoped-import.patch",
+      "bytes": 331362,
+      "sha256": "bda4238416f50d14f6f1414e9655730f32642820c08252126e499a2fc2d9e321"
+    },
+    {
+      "path": "reviewed-source-files.json",
+      "bytes": 11435,
+      "sha256": "3ce64d53636770f80c7a641a486cf8fc918038fbf15eddd1391da5e688fee824"
+    },
+    {
+      "path": "reviewer-corrections.patch",
+      "bytes": 10101,
+      "sha256": "3257cce884485d6f800a049b6d848e2615be437c3a0cb02c8f09e34af940a2bc"
+    },
+    {
+      "path": "scope-review.json",
+      "bytes": 1218,
+      "sha256": "17742f522550345453c7f5e5f66e80a7e9a054a303b09ba6e884e3116731677d"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 29574,
+      "sha256": "5cb5c593749c0ee691b4890d603704ea51d39e04770da3041d41861378999e99"
+    },
+    {
+      "path": "validation/focused-after-repairs-0.log",
+      "bytes": 10847,
+      "sha256": "6eadd122af3ee153fbac921d4ae095f9c26ff86f206f75c0d3144bd913ed878e"
+    },
+    {
+      "path": "validation/focused-before-checker-repair.log",
+      "bytes": 7938,
+      "sha256": "c97952fb19d74aab7de50e30865abac33bf79c053a9dd9088ae1909449d12155"
+    },
+    {
+      "path": "validation/focused-before-locator-repair.log",
+      "bytes": 5449,
+      "sha256": "383bcb191507354266e8d3a6aeaa8cadae5e399b3d82fc3e6e39ed9d7416e7d4"
+    },
+    {
+      "path": "validation/focused-before-repairs.log",
+      "bytes": 15134,
+      "sha256": "90bcc265543582d79968be37faf7b7894b603d36dce508848c5e5d689fd6c386"
+    },
+    {
+      "path": "validation/generic-research-after-repairs.log",
+      "bytes": 1496,
+      "sha256": "7c53e1c3c5834153d68aa7e32cd86f6cac3dba62ee10612ec7f676b0ac46a3b6"
+    },
+    {
+      "path": "validation/patch-sparse-add-failure.log",
+      "bytes": 3619,
+      "sha256": "b6120f4d551a02e5a99ebe598d1f860ec5332004951fd1b9555c45c03582393d"
+    },
+    {
+      "path": "validation/patch-sparse-add-repaired.log",
+      "bytes": 181,
+      "sha256": "e3ca21e383b8a95798a0e3d0f1dfb7a4f98439adc8bbbf89ac50d633b3dfd888"
+    },
+    {
+      "path": "validation/patch-whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/prior-receipt-reverified.log",
+      "bytes": 184,
+      "sha256": "fedb91f433db26e22aa3a086b208ccb9263eb6ec585eb714b82cb39bff38794a"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1805,
+      "sha256": "dd9a3ae6fa5cf8c2c5835fd0592cdd7793d845539861482c13c4eac2a6e41bee"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 5160,
+      "sha256": "df3b6777ed30cae08c458ddfafd6d6f05dfce49702b5b3f57f7b881692b10202"
+    }
+  ]
+}

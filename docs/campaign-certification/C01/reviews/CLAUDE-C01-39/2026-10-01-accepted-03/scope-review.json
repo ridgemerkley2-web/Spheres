@@ -1,0 +1,32 @@
+{
+  "prior_sources_unchanged": 245,
+  "new_sources": 24,
+  "new_claims": 29,
+  "new_holder_observations": 12,
+  "prior_S10h_holders_unchanged": 2,
+  "total_DA_holder_observations_after_import": 14,
+  "other_organizations_roles_institutions_unchanged": true,
+  "presidency_unchanged": true,
+  "runtime_or_art_import": false,
+  "new_mappings": 0,
+  "country_complete": false,
+  "source_file_count": 33,
+  "reviewer_modified_files": [
+    "docs/campaign-certification/C01/research/sources/south-africa-da-fedco-interim-leadership-election-20191025-facts.json",
+    "docs/campaign-certification/C01/research/sources/south-africa-da-statement-thanks-steenhuisen-20260204-facts.json",
+    "docs/campaign-certification/C01/research/south-africa.json",
+    "tools/avatars/test_south_africa_da_federal_leaders_c01_39.py"
+  ],
+  "excluded_from_import": [
+    "docs/campaign-certification/C01/research-index.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-39.md"
+  ],
+  "authored_commits": [
+    "d897f024f131fb7092d4a9ae030b5921a2b271dc",
+    "9e3d0b3c3b46022887137f3297afefd24b9beb21"
+  ],
+  "index_only_commits_excluded": [
+    "9cb02c20012a6e6314d7e64d52241609d566f738",
+    "b66f8c074431d7e1a8c9bfca228576c7d5134655"
+  ]
+}
