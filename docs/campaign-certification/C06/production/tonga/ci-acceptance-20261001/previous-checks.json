@@ -1,0 +1,30 @@
+{
+  "revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e",
+  "manifest_sha256": "d7a1fca23594cbe6567094f9f54cb0314247726920f00d8c5de147e0ca56dfd8",
+  "checks": {
+    "boundary_dates": {
+      "status": "pending",
+      "reason": "Focused native boundary tests on the final integrated source are pending; metadata validation does not prove runtime date behavior."
+    },
+    "country_signoff": {
+      "status": "pending",
+      "reason": "Historical/party-chain gaps, final art and required acceptance receipts remain open. No human country signoff is claimed."
+    },
+    "institutional_rules": {
+      "status": "pending",
+      "reason": "The authored institutional rules and command paths need final native/UI validation; reference observations do not grant office."
+    },
+    "likeness_visual_review": {
+      "status": "pending",
+      "reason": "Per-image root reviews and seven registration batches are retained. Complete final-source-pinned country visual acceptance remains pending; Fatai’s historical likeness is unresolved."
+    },
+    "production_browser": {
+      "status": "pending",
+      "reason": "The production browser journey on the final built sources has not been certified."
+    },
+    "save_compatibility": {
+      "status": "pending",
+      "reason": "Final integrated native save/load and compatibility evidence is pending."
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "format": "spheres-tonga-native-acceptance/v1",
+  "reviewed_at": "2026-10-01",
+  "reviewer": "Codex",
+  "candidate": "6829ecc75600c3fa11a2df8136f7c4a513c4941e",
+  "run_id": 36878791848,
+  "native_job_id": 110424971157,
+  "native_job_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36878791848/job/110424971157",
+  "platform": "ubuntu-latest",
+  "workspace": {
+    "passed": 2006,
+    "failed": 0,
+    "ignored": 115,
+    "filtered": 1
+  },
+  "separate_timing": {
+    "passed": 1,
+    "total_ms_per_month": 0.0763,
+    "assertion_limit_ms_per_month": 0.15
+  },
+  "source_pins": {
+    "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+    "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+    "spheres-sim/data/tonga_institutional_leadership.json": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+    "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+    "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+    "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+    "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+    "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+    "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+    "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d"
+  },
+  "accepted_checks": {
+    "boundary_dates": {
+      "status": "passed",
+      "scope": "Runtime cutoff 7/8 September 2026, 2036 endpoint, and read-only/date-only non-appointment behavior. Does not certify all historical office boundaries or appearance intervals.",
+      "test_names": [
+        "institutional_leadership::tests::dates_and_read_only_views_never_seat_a_candidate",
+        "institutional_leadership::tests::reference_cutoff_foreign_actor_and_refused_costs_are_exact",
+        "institutional_leadership::tests::after_endpoint_no_new_fiction_but_saved_incumbents_continue"
+      ]
+    },
+    "save_compatibility": {
+      "status": "passed",
+      "scope": "Institutional absence in legacy state, appointed-state roundtrip, exact inherited heir identity, and rejection of tampered/unjournalled appointments. No 46-year endurance claim.",
+      "test_names": [
+        "institutional_leadership::tests::election_recommendation_and_minister_are_separate_from_crown",
+        "institutional_leadership::tests::authored_heir_survives_actual_succession_and_reload",
+        "institutional_leadership::tests::saves_reject_unjournalled_appointments_and_keep_old_absence",
+        "institutional_leadership::tests::cabinet_limit_and_saved_identity_tampering_fail_closed"
+      ]
+    },
+    "institutional_rules": {
+      "status": "passed",
+      "scope": "Explicit reform/election/recommendation/minister/vacancy actions, Crown separation, eligibility refusals, costs and caretaker rules; exact government and portrait identity payloads. Arcade recommendation abstraction remains disclosed.",
+      "test_names": [
+        "institutional_leadership::tests::a_takeover_does_not_inherit_the_crowns_civilian_appointment_authority",
+        "institutional_leadership::tests::after_endpoint_no_new_fiction_but_saved_incumbents_continue",
+        "institutional_leadership::tests::authored_heir_survives_actual_succession_and_reload",
+        "institutional_leadership::tests::cabinet_limit_and_saved_identity_tampering_fail_closed",
+        "institutional_leadership::tests::dates_and_read_only_views_never_seat_a_candidate",
+        "institutional_leadership::tests::election_recommendation_and_minister_are_separate_from_crown",
+        "institutional_leadership::tests::real_vacancy_reopens_recommendation_and_ministers_remain_caretakers",
+        "institutional_leadership::tests::reference_cutoff_foreign_actor_and_refused_costs_are_exact",
+        "institutional_leadership::tests::saves_reject_unjournalled_appointments_and_keep_old_absence",
+        "institutional_leadership::tests::unreviewed_party_office_and_hereditary_people_cannot_get_civilian_roles",
+        "government_view::tests::tonga_institution_reviews_are_exact_read_only_and_keep_the_crown",
+        "person_portraits::tests::tonga_institution_cards_keep_reference_civilian_and_crown_identities_separate"
+      ]
+    }
+  },
+  "not_accepted": [
+    "production_browser",
+    "likeness_visual_review",
+    "country_signoff"
+  ],
+  "browser_scope": "The passed generic native browser selects USA and does not execute Tonga institutional actions. It cannot close the Tonga production-browser requirement.",
+  "other_ci": "Both JS/contracts jobs and both package/offline-smoke jobs passed. Windows native was in progress at this snapshot. Earlier64627c82 Windows native passed unchanged native source; this is supplemental evidence, not a latest Windows pass.",
+  "remaining": "All16 historical role dispositions, Fatai Helu likeness, broader appearance exposure and final visual/country signoff remain open. Known A1 political calibration fails. No C06/S23/S25/G5/CP1 closure or live integration."
+}

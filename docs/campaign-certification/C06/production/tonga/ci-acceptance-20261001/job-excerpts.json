@@ -1,0 +1,488 @@
+{
+  "native_job": 110424971157,
+  "revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e",
+  "tests": {
+    "institutional_leadership::tests::a_takeover_does_not_inherit_the_crowns_civilian_appointment_authority": {
+      "line": 1291,
+      "text": "2026-10-01T14:55:33.4214471Z test institutional_leadership::tests::a_takeover_does_not_inherit_the_crowns_civilian_appointment_authority ... ok"
+    },
+    "institutional_leadership::tests::after_endpoint_no_new_fiction_but_saved_incumbents_continue": {
+      "line": 1292,
+      "text": "2026-10-01T14:55:33.4254490Z test institutional_leadership::tests::after_endpoint_no_new_fiction_but_saved_incumbents_continue ... ok"
+    },
+    "institutional_leadership::tests::authored_heir_survives_actual_succession_and_reload": {
+      "line": 1293,
+      "text": "2026-10-01T14:55:33.4464169Z test institutional_leadership::tests::authored_heir_survives_actual_succession_and_reload ... ok"
+    },
+    "institutional_leadership::tests::cabinet_limit_and_saved_identity_tampering_fail_closed": {
+      "line": 1294,
+      "text": "2026-10-01T14:55:33.4614210Z test institutional_leadership::tests::cabinet_limit_and_saved_identity_tampering_fail_closed ... ok"
+    },
+    "institutional_leadership::tests::dates_and_read_only_views_never_seat_a_candidate": {
+      "line": 1295,
+      "text": "2026-10-01T14:55:33.4764181Z test institutional_leadership::tests::dates_and_read_only_views_never_seat_a_candidate ... ok"
+    },
+    "institutional_leadership::tests::election_recommendation_and_minister_are_separate_from_crown": {
+      "line": 1296,
+      "text": "2026-10-01T14:55:33.4904392Z test institutional_leadership::tests::election_recommendation_and_minister_are_separate_from_crown ... ok"
+    },
+    "institutional_leadership::tests::real_vacancy_reopens_recommendation_and_ministers_remain_caretakers": {
+      "line": 1297,
+      "text": "2026-10-01T14:55:33.4964051Z test institutional_leadership::tests::real_vacancy_reopens_recommendation_and_ministers_remain_caretakers ... ok"
+    },
+    "institutional_leadership::tests::reference_cutoff_foreign_actor_and_refused_costs_are_exact": {
+      "line": 1298,
+      "text": "2026-10-01T14:55:33.5074400Z test institutional_leadership::tests::reference_cutoff_foreign_actor_and_refused_costs_are_exact ... ok"
+    },
+    "institutional_leadership::tests::saves_reject_unjournalled_appointments_and_keep_old_absence": {
+      "line": 1299,
+      "text": "2026-10-01T14:55:33.5414267Z test institutional_leadership::tests::saves_reject_unjournalled_appointments_and_keep_old_absence ... ok"
+    },
+    "institutional_leadership::tests::unreviewed_party_office_and_hereditary_people_cannot_get_civilian_roles": {
+      "line": 1300,
+      "text": "2026-10-01T14:55:33.5574376Z test institutional_leadership::tests::unreviewed_party_office_and_hereditary_people_cannot_get_civilian_roles ... ok"
+    },
+    "government_view::tests::tonga_institution_reviews_are_exact_read_only_and_keep_the_crown": {
+      "line": 2854,
+      "text": "2026-10-01T15:01:20.1094637Z test government_view::tests::tonga_institution_reviews_are_exact_read_only_and_keep_the_crown ... ok"
+    },
+    "person_portraits::tests::tonga_institution_cards_keep_reference_civilian_and_crown_identities_separate": {
+      "line": 2898,
+      "text": "2026-10-01T15:01:20.8733939Z test person_portraits::tests::tonga_institution_cards_keep_reference_civilian_and_crown_identities_separate ... ok"
+    }
+  },
+  "suite_results": [
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1084,
+      0,
+      44,
+      1
+    ],
+    [
+      11,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      7,
+      0
+    ],
+    [
+      7,
+      0,
+      0,
+      0
+    ],
+    [
+      6,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      0,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      5,
+      0
+    ],
+    [
+      25,
+      0,
+      2,
+      0
+    ],
+    [
+      13,
+      0,
+      1,
+      0
+    ],
+    [
+      15,
+      0,
+      1,
+      0
+    ],
+    [
+      7,
+      0,
+      0,
+      0
+    ],
+    [
+      10,
+      0,
+      1,
+      0
+    ],
+    [
+      18,
+      0,
+      0,
+      0
+    ],
+    [
+      18,
+      0,
+      0,
+      0
+    ],
+    [
+      9,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      12,
+      0,
+      0,
+      0
+    ],
+    [
+      6,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      20,
+      0
+    ],
+    [
+      13,
+      0,
+      0,
+      0
+    ],
+    [
+      17,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      0,
+      0,
+      0
+    ],
+    [
+      12,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      9,
+      0,
+      0,
+      0
+    ],
+    [
+      19,
+      0,
+      0,
+      0
+    ],
+    [
+      10,
+      0,
+      0,
+      0
+    ],
+    [
+      15,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      13,
+      0,
+      0,
+      0
+    ],
+    [
+      11,
+      0,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      13,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      10,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      10,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      10,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      9,
+      0,
+      0,
+      0
+    ],
+    [
+      11,
+      0,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      13,
+      0,
+      0,
+      0
+    ],
+    [
+      10,
+      0,
+      0,
+      0
+    ],
+    [
+      455,
+      0,
+      28,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1128
+    ]
+  ],
+  "command_excerpts": [
+    {
+      "line": 619,
+      "text": "2026-10-01T14:48:09.4693998Z ##[group]Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+    },
+    {
+      "line": 3213,
+      "text": "2026-10-01T15:02:12.4750133Z ##[group]Run cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1"
+    },
+    {
+      "line": 3228,
+      "text": "2026-10-01T15:02:22.4217253Z     total           0.0763 ms/month  (market on, best of 3, 1200 months, 137 living at start)"
+    },
+    {
+      "line": 3521,
+      "text": "2026-10-01T15:03:43.3216760Z ##[group]Run node tools/ui/ci-browser.cjs"
+    }
+  ]
+}

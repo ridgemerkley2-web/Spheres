@@ -29,14 +29,14 @@ Fatai Helu is the adult PTOA president named by the Supreme Court in August 2022
 - `to_peoples_party/to_peoples_party_leader`: Pohiva Tu’ionetoa’s May 2021 leader observation is installed. Formation, leader selection, later succession and continuity with the incorporated society are not a completed chain.
 - `to_peoples_party/to_peoples_party_society_president`: The April 2022 trial observation names society president Tu’ionetoa. Society-president and political-leader offices remain separate; officer rules and complete dates are unverified.
 - `to_peoples_party/to_peoples_party_society_secretary`: The April 2022 trial observation names secretary Tevita Lavemaau. Appointment/end, officer-selection rules and later secretary succession remain unverified.
-- `to_crown/to_king`: All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance, boundary behavior and post-cutoff institutional succession validation remain pending; portraits do not grant royal eligibility.
-- `to_prime_minister/to_pm`: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain and production appointment behavior are not signed off.
+- `to_crown/to_king`: All four accepted Crown observations and personal identity bridges are installed. Country-level historical-chain acceptance and a Tonga production-browser succession review remain pending; native saved-heir succession and date guards passed on candidate 6829ecc7. Portraits do not grant royal eligibility.
+- `to_prime_minister/to_pm`: All 12 accepted PM observations are installed. Unknown starts/ends and acting/caretaker claims remain distinct; the full dated political chain remains open. Native appointment contracts passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.
 - `to_cabinet/to_ministers`: This is a collective constitutional role with no accepted individual holder rows. A complete historical minister roster and its individual identity/appearance requirements have not been established; it is not waived as a modern party.
 - `to_cabinet/to_deputy_pm`: All 14 accepted deputy-PM observations are installed. Early coverage, acting service and unresolved start/end gaps (including late 2021) remain; no successor date fills an earlier boundary.
 - `to_privy_council/to_privy_councillors`: This is a collective constitutional role with no accepted named holder rows. A complete historical councillor roster, role distinctions and individual identity/appearance requirements remain unestablished.
 - `to_legislative_assembly/to_speaker`: All 12 accepted Speaker observations are installed. Early Fusitu’a appointment-year conflicts, Veikune/Tu’ivakano boundaries, the 2006–2008 Speaker chain and interim/acting roles remain independently unresolved.
 - `to_legislative_assembly/to_deputy_speaker`: The December 2025 named appointment is installed. Earlier deputy Speakers, appointment/end boundaries and acting/substantive distinctions are not a complete historical chain.
-- `to_legislative_assembly/to_peoples_representatives`: This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description; future election permissions still need production validation.
+- `to_legislative_assembly/to_peoples_representatives`: This collective seat class has no accepted individual holder rows. Historical elected rosters and date-specific seat counts are not inferred from the 2025 institutional description. Native future-election permissions passed on candidate 6829ecc7; the Tonga production-browser journey remains pending.
 - `to_legislative_assembly/to_nobles_representatives`: This collective seat class has no accepted individual holder rows. Historical noble-elector/representative rosters and individual title succession are not inferred from titles or current seat counts.
 
 The civilian review additionally retains small-party and successor leads: FIHRDM/HRDM continuity; later DPFI leadership; PDP’s constitution and subsequent leadership; Sustainable Nation-Building Party/Sione Fonua; Democratic Labour Party/Mele ‘Amanaki; and the distinct People’s Party leader/president/secretary offices. A news lead is not an installed party office. Acting Speakers/deputies and names appearing incidentally in Cabinet lists are separately inventoried rather than merged into substantive holders.
@@ -50,9 +50,24 @@ The civilian review additionally retains small-party and successor leads: FIHRDM
 
 The retained [art registration verification](../../production/tonga/art-registration-verification.json) reports that the static gallery passed root’s image, filter and mobile review. That is not the production gameplay browser check and does not close it.
 
-## Acceptance still pending
+## Acceptance progress
 
-All six checks remain pending: boundary dates, save compatibility, institutional rules, production browser, final country likeness review, and country signoff. No native build/run was started for this documentation task because the independent diagnostic is active. Source/data validation and the artwork metadata validator cannot replace those checks. A passed acceptance receipt must pin the final files required by the unchanged validator.
+Three native checks pass on candidate `6829ecc75600c3fa11a2df8136f7c4a513c4941e`:
+runtime date limits, save compatibility and institutional rules. The
+[CI acceptance receipt](../../production/tonga/ci-acceptance-20261001/README.md)
+pins the exact sources and passing tests from Linux release job `110424971157`.
+Its workspace run passed 2,006 tests, including all ten institutional-leadership
+tests and the Tonga government/portrait regressions. These checks establish
+runtime behavior; they do not fill historical tenure gaps or complete the
+16 political chains above.
+
+Three checks remain pending: the Tonga production browser journey, final country
+likeness review and country signoff. CI's existing native browser selects the
+United States and does not execute Tonga institutional commands, so its success
+does not close that requirement. Fatai Helu's likeness and broader historical
+appearance exposure remain unresolved. The candidate has not been accepted into
+the live integration playset. No local native build/run was started for this
+documentation update; earlier resource-guard stops and all failures remain intact.
 
 ## Reproduce the inventory check
 

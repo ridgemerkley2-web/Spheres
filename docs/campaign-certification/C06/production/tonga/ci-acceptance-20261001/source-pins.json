@@ -1,0 +1,25 @@
+{
+  "revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e",
+  "pins": {
+    "docs/campaign-certification/C01/research/tonga.json": "15e52f1256b0e9be0f251a57aac22f3e6cabafd1942355b3ff65062a94c5d8e1",
+    "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+    "spheres-sim/data/tonga_institutional_leadership.json": "eee265aea011555708648173a5b049ec5d763839aff4880da2c5031c1c5588bf",
+    "spheres-sim/src/company_save.rs": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+    "spheres-sim/src/data/mod.rs": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+    "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+    "spheres-sim/src/institutional_leadership.rs": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+    "spheres-sim/src/lib.rs": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+    "spheres-sim/src/party_leadership.rs": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+    "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d"
+  },
+  "browser_scope_sources": [
+    {
+      "path": "tools/ui/ci-browser.cjs",
+      "sha256": "0eaf46d09c3a967384c119b982cbd87401520380d91f5a19f88404d6b382197d"
+    },
+    {
+      "path": "tools/ui/ci-integrated.cjs",
+      "sha256": "b7f4ed1406a6d4c07ca675f7aa5e139468fb400d219e7730f4ac8cbb386aaa1f"
+    }
+  ]
+}

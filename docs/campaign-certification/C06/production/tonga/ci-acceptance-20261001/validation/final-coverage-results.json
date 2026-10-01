@@ -1,0 +1,27 @@
+[
+  {
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/tonga_cast_coverage.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "coverage-final.log"
+  },
+  {
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/tonga_cast_coverage.py",
+      "--require-complete"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1,
+    "log": "require-complete-final.log"
+  }
+]

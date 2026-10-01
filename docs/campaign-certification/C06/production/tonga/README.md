@@ -73,13 +73,26 @@ available commit throughout. The institutional catalogue exporter also passed
 its separate typecheck. Earlier typecheck attempts exposed omitted tracked
 artwork in the sparse checkout; those exact files were restored, and the original
 attempts are retained. Typechecking does not execute native tests or establish
-production-browser behavior. GitHub native execution remains pending, and the
-candidate has not yet been merged into the active integration playset.
+production-browser behavior. That was the local validation checkpoint; the
+later GitHub execution evidence is recorded below. The candidate has not yet
+been merged into the active integration playset.
+
+## Native CI acceptance checkpoint
+
+Candidate `6829ecc75600c3fa11a2df8136f7c4a513c4941e` passed 2,006 release workspace
+tests on Linux and its separate 0.15 ms/month resource assertion at 0.0763.
+Both platform JavaScript/contracts and packaging/offline-smoke jobs also passed.
+Windows native was still running at the recorded snapshot; an earlier revision
+passed its unchanged native implementation on Windows. The
+[bounded receipt](ci-acceptance-20261001/README.md) closes only runtime date limits,
+save compatibility and institutional rules in the country manifest, with exact
+source pins. The generic USA browser journey does not certify Tonga's interface.
+Political calibration still fails A1, and no country or campaign gate is closed.
 
 ## Acceptance remains open
 
 The [production manifest](../../countries/tonga/manifest.json) distinguishes
 installed identity/art references from country acceptance. Fatai Helu's likeness,
-the unresolved historical political chains, native execution, production-browser
-checks and country signoff are still required. C06, S23 and CP1 remain open.
+the unresolved historical political chains, Tonga production-browser checks,
+final visual review and country signoff are still required. C06, S23 and CP1 remain open.
 The stable work item is `CLAUDE-C06-TONGA-01`, now owned by Codex.
