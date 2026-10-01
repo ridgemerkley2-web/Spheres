@@ -1,0 +1,14 @@
+...........F..............................................................
+======================================================================
+FAIL: test_holders_are_exactly_as_intended (test_india_cpim_general_secretaries_c01_40.IndiaCpimGeneralSecretariesTests.test_holders_are_exactly_as_intended)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-integration-20261001\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 424, in test_holders_are_exactly_as_intended
+    self.assertTrue(holder['note'].startswith('Observed on '), holder['name'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Prakash Karat
+
+----------------------------------------------------------------------
+Ran 74 tests in 13.196s
+
+FAILED (failures=1)

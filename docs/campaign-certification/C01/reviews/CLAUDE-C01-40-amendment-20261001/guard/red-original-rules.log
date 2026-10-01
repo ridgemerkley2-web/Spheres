@@ -1,0 +1,45 @@
+test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) ... 
+  test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) (name='Prakash Karat', day='2005-04-11') ... FAIL
+  test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) (name='Prakash Karat', day='2012-04-09') ... FAIL
+  test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) (name='Sitaram Yechury', day='2015-04-19') ... FAIL
+
+======================================================================
+FAIL: test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) (name='Prakash Karat', day='2005-04-11')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 442, in test_styling_date_does_not_override_independently_cited_office_evidence
+    def test_party_and_state_offices_stay_separate(self):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 293, in cpm_rules
+    assert attest_days == ({holder['attested_on']} if holder['attested_on'] else set()), (name, 'observation')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Prakash Karat
+
+======================================================================
+FAIL: test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) (name='Prakash Karat', day='2012-04-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 442, in test_styling_date_does_not_override_independently_cited_office_evidence
+    def test_party_and_state_offices_stay_separate(self):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 293, in cpm_rules
+    assert attest_days == ({holder['attested_on']} if holder['attested_on'] else set()), (name, 'observation')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Prakash Karat
+
+======================================================================
+FAIL: test_styling_date_does_not_override_independently_cited_office_evidence (red_original_rules.IndiaCpimGeneralSecretariesTests.test_styling_date_does_not_override_independently_cited_office_evidence) (name='Sitaram Yechury', day='2015-04-19')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 442, in test_styling_date_does_not_override_independently_cited_office_evidence
+    def test_party_and_state_offices_stay_separate(self):
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_india_cpim_general_secretaries_c01_40.py", line 293, in cpm_rules
+    assert attest_days == ({holder['attested_on']} if holder['attested_on'] else set()), (name, 'observation')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Sitaram Yechury
+
+----------------------------------------------------------------------
+Ran 1 test in 0.030s
+
+FAILED (failures=3)
