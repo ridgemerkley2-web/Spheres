@@ -1,0 +1,986 @@
+[
+  {
+    "claim_id": "jp_komeito_ishida_named_chair_by_secretary_general_19930129",
+    "source_id": "jp_komeito_diet_hr_budget_19930129",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "1993-01-29",
+    "locator": {
+      "issueID": "112605261X00319930129",
+      "speechOrder": [
+        25,
+        43,
+        71
+      ],
+      "speaker": "市川雄一 (71); 宮澤喜一 (25) and 船田元 (43) identify him as 市川書記長"
+    },
+    "claim_text_sha256": "e9f431a1066eb963c1a01887d0f5a0c019c21728a1329eb436d2ad59fe4f3f65",
+    "reviewer_observation": "Read meeting metadata and speeches 25,43,71. The replies identify Ichikawa as secretary-general; his housing question names the party chair Ishida. This establishes the 29 January 1993 observation, not continuous service since 1990.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_ishida_assumption_recalled_may_1989",
+    "source_id": "jp_komeito_diet_hr_political_reform_19931105",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "assumption_recalled_by_holder",
+    "structured_attested_on": null,
+    "locator": {
+      "issueID": "112804573X01519931105",
+      "speechOrder": [
+        117
+      ],
+      "speaker": "石田幸四郎 (石田国務大臣)"
+    },
+    "claim_text_sha256": "9eeccec1d7e90ebbcb170891cdd3617cfbb5150aabf874ef807856fce99d0830",
+    "reviewer_observation": "Read speech 117, including the May 1989 recollection and its approximate newspaper days. Month-only recollection is retained without a structured date or holder boundary; ministerial title is not used as party-office proof.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_ishida_still_chair_19940616",
+    "source_id": "jp_komeito_diet_hc_budget_19940616",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_continuation_attestation",
+    "structured_attested_on": "1994-06-16",
+    "locator": {
+      "issueID": "112915261X01619940616",
+      "speechOrder": [
+        3
+      ],
+      "speaker": "石田幸四郎 (国務大臣)"
+    },
+    "claim_text_sha256": "939b122757ad7811a26491a15d6c839fcc647391f4db4bed4adb943332f684ee",
+    "reviewer_observation": "Read speech 3. Ishida explicitly says he remains chair while an unnamed acting chair operates the party. Both continuation and acting-arrangement claims match; neither invents an outgoing end or acting-holder identity.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_acting_chair_in_place_19940616",
+    "source_id": "jp_komeito_diet_hc_budget_19940616",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "acting_chair_in_place",
+    "structured_attested_on": "1994-06-16",
+    "locator": {
+      "issueID": "112915261X01619940616",
+      "speechOrder": [
+        3
+      ],
+      "speaker": "石田幸四郎 (国務大臣)"
+    },
+    "claim_text_sha256": "68786be30e530a438d2bd8e195f1ca244f2dde671b95315167df550916721cbb",
+    "reviewer_observation": "Read speech 3. Ishida explicitly says he remains chair while an unnamed acting chair operates the party. Both continuation and acting-arrangement claims match; neither invents an outgoing end or acting-holder identity.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_komei_formed_retrospective",
+    "source_id": "jp_komeito_komei_representative_message_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_organization_record",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "Komei Representative Message",
+      "paragraph": 2
+    },
+    "claim_text_sha256": "f57ad3a876174b41059b75b35bb312a93555e83e549cba583c3ff9c6f079560f",
+    "reviewer_observation": "Read the complete English representative message and personal-history list. Formation and Fujii representative history belong to Komei, not the later Komeito observation; retrospective dates remain unstructured.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_komei_representative_since_19941205_retrospective",
+    "source_id": "jp_komeito_komei_representative_message_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "other_office_retrospective",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "Personal history"
+    },
+    "claim_text_sha256": "aaaee5264b59e8553959bd9a8dbde56cab71a38637d651e5aab165d72a864a40",
+    "reviewer_observation": "Read the complete English representative message and personal-history list. Formation and Fujii representative history belong to Komei, not the later Komeito observation; retrospective dates remain unstructured.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_history_ishida_chair_in_cabinet_retrospective",
+    "source_id": "jp_komeito_history_2003_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_office_reference",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "旧公明党30年の歩み",
+      "paragraph": "＜自民党政権の転換の一翼も＞"
+    },
+    "claim_text_sha256": "f9ab6808818d184d5fc88f3e8d41c55752e1a9aeb6f6c8e48269f705a8e2a6d8",
+    "reviewer_observation": "Read the named old-party, division, New Frontier Party, Reimei/Heiwa and reformation sections. The six paraphrases match the retrospective page; no organizational identity, date boundary or cabinet office is inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_history_nfp_founded_retrospective",
+    "source_id": "jp_komeito_history_2003_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_organization_record",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "新しい公明党の誕生",
+      "paragraph": "＜「公明」の発足と新進党結成へ参加＞"
+    },
+    "claim_text_sha256": "0f374fbf2f5adf0b92c51d8d25ff9c3f5066991c2a7b5d74745fb88556746491",
+    "reviewer_observation": "Read the named old-party, division, New Frontier Party, Reimei/Heiwa and reformation sections. The six paraphrases match the retrospective page; no organizational identity, date boundary or cabinet office is inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_history_division_retrospective",
+    "source_id": "jp_komeito_history_2003_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_organization_record",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "新しい公明党の誕生",
+      "paragraph": "＜「公明」の発足と新進党結成へ参加＞"
+    },
+    "claim_text_sha256": "2d831b33f6701a6bb129804fefe60a34bd5e31050ae403a0f269a2a46aabcab0",
+    "reviewer_observation": "Read the named old-party, division, New Frontier Party, Reimei/Heiwa and reformation sections. The six paraphrases match the retrospective page; no organizational identity, date boundary or cabinet office is inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_history_nfp_dissolved_retrospective",
+    "source_id": "jp_komeito_history_2003_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_organization_record",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "新しい公明党の誕生",
+      "paragraph": "＜新進党の解党＞"
+    },
+    "claim_text_sha256": "38cc6941293829544bb89659782e9a66a8b2b3a86194289319280855b36ecc95",
+    "reviewer_observation": "Read the named old-party, division, New Frontier Party, Reimei/Heiwa and reformation sections. The six paraphrases match the retrospective page; no organizational identity, date boundary or cabinet office is inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_history_reimei_heiwa_formed_retrospective",
+    "source_id": "jp_komeito_history_2003_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_organization_record",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "新しい公明党の誕生",
+      "paragraph": "＜「大衆とともに」の原点に戻り、新しい公明党の誕生＞"
+    },
+    "claim_text_sha256": "606ad989f6e26045d3a7af8c82054ac25756d4eef551c2f6f9c8f8dd1963cb2b",
+    "reviewer_observation": "Read the named old-party, division, New Frontier Party, Reimei/Heiwa and reformation sections. The six paraphrases match the retrospective page; no organizational identity, date boundary or cabinet office is inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_history_reformation_retrospective",
+    "source_id": "jp_komeito_history_2003_retrospective",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "retrospective_organization_record",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "新しい「公明党」の誕生と連立政権への参加",
+      "paragraph": 1
+    },
+    "claim_text_sha256": "7b27ed4a690558b065671adf7fd69307e61283db38481483254f55671a915666",
+    "reviewer_observation": "Read the named old-party, division, New Frontier Party, Reimei/Heiwa and reformation sections. The six paraphrases match the retrospective page; no organizational identity, date boundary or cabinet office is inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_new_name_decided_19981024",
+    "source_id": "jp_komeito_founding_convention_report_19981108",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "organization_renaming_decided",
+    "structured_attested_on": "1998-10-24",
+    "locator": {
+      "paragraph": 2
+    },
+    "claim_text_sha256": "9ed6d3bbafbd9070eed7e24fd7bddc924c34eac96aa9e0edb240b279eb7a93ed",
+    "reviewer_observation": "Read the complete 1998 report. October 24 naming decision, surviving-party merger form, confidence procedure and Kanzaki address are separate facts. The page gives November 8 as its publication line, not a convention day; the holder remains a publication-date observation.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_merger_form_reported",
+    "source_id": "jp_komeito_founding_convention_report_19981108",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "organization_merger",
+    "structured_attested_on": null,
+    "locator": {
+      "paragraph": 2
+    },
+    "claim_text_sha256": "c7c7c33b01ca9bff026a7edb10dbabf63056c312f89ce68c74e6aabc6ea6e007",
+    "reviewer_observation": "Read the complete 1998 report. October 24 naming decision, surviving-party merger form, confidence procedure and Kanzaki address are separate facts. The page gives November 8 as its publication line, not a convention day; the holder remains a publication-date observation.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_convention_confidence",
+    "source_id": "jp_komeito_founding_convention_report_19981108",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": null,
+    "locator": {
+      "paragraph": 4
+    },
+    "claim_text_sha256": "efbd4599c2fbe3e95324317e7dc6d1a871888873716689b57a2e36424596d99a",
+    "reviewer_observation": "Read the complete 1998 report. October 24 naming decision, surviving-party merger form, confidence procedure and Kanzaki address are separate facts. The page gives November 8 as its publication line, not a convention day; the holder remains a publication-date observation.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_in_office_founding_report_19981108",
+    "source_id": "jp_komeito_founding_convention_report_19981108",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "1998-11-08",
+    "locator": {
+      "paragraph": 7
+    },
+    "claim_text_sha256": "aa8bd76e7e29a5f49975453c82c4f0a96feb9d0f8a8de84ce100491704ff298e",
+    "reviewer_observation": "Read the complete 1998 report. October 24 naming decision, surviving-party merger form, confidence procedure and Kanzaki address are separate facts. The page gives November 8 as its publication line, not a convention day; the holder remains a publication-date observation.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_merger_convention_recalled_19981107",
+    "source_id": "jp_komeito_diet_hr_plenary_19981130",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "organization_merger",
+    "structured_attested_on": "1998-11-07",
+    "locator": {
+      "issueID": "114405254X00219981130",
+      "speechOrder": [
+        15
+      ],
+      "speaker": "神崎武法"
+    },
+    "claim_text_sha256": "3b61360cefcdb7a6efa40e6637a55aeecb1ec0970ba664991ee8b4b0b03fa43c",
+    "reviewer_observation": "Read speech 15 opening. Kanzaki dates the organizational merger convention to November 7 but introduces a parliamentary-group representative question; the packet correctly does not turn that into party-holder proof.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_sole_candidate_reelected_2002",
+    "source_id": "jp_komeito_kanzaki_reappointed_20021103",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": null,
+    "locator": {
+      "paragraph": [
+        1,
+        4
+      ]
+    },
+    "claim_text_sha256": "7d3378fc68ada0759795080d1fa0f298693730bd0e233a505b643027bb3ae2d1",
+    "reviewer_observation": "Read date line and officer-selection paragraphs 1,4,5. Sole-candidate confidence and subsequent naming of officers match. The report supplies November 3 publication, without an explicit convention day or assumption boundary.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_in_office_reappointed_20021103",
+    "source_id": "jp_komeito_kanzaki_reappointed_20021103",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2002-11-03",
+    "locator": {
+      "paragraph": 5
+    },
+    "claim_text_sha256": "6ff42ee75b4d0e8e6384b75196e39b3170a15a2c470098d3820f12060c226897",
+    "reviewer_observation": "Read date line and officer-selection paragraphs 1,4,5. Sole-candidate confidence and subsequent naming of officers match. The report supplies November 3 publication, without an explicit convention day or assumption boundary.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_self_stated_continuing_20021103",
+    "source_id": "jp_komeito_kanzaki_fourth_convention_address_20021103",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2002-11-03",
+    "locator": {
+      "paragraph": 2
+    },
+    "claim_text_sha256": "74079fe3dc7ee89bc43c1a024147f06e463aced28fea179dd06aaffcd9a822e2",
+    "reviewer_observation": "Read the November 3 date line, representative heading and second address paragraph. The speaker explicitly continues in the duty after confidence; this supports an observation, not a new effective start.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_reelected_20041031",
+    "source_id": "jp_komeito_kanzaki_fifth_convention_address_20041101",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2004-10-31",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "c127786e599c2321b66c728ac2ffcc3bb0eb21f019e19037e2a659f7f6e8d004",
+    "reviewer_observation": "Introduction calls Kanzaki reappointed at the convention held on the 31st; November publication resolves 31 October, supported by the dated article.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_self_stated_again_20041031",
+    "source_id": "jp_komeito_kanzaki_fifth_convention_address_20041101",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2004-10-31",
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "03364bb458ae7a50b4d483a3e16112346aa691b689a764cf0b2aaedf4a4d5a86",
+    "reviewer_observation": "Self-address says he again bears the duty after confidence. This is the third article paragraph after introduction and guest greeting; keep attestation only.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_ota_selected_20060930",
+    "source_id": "jp_komeito_ota_sixth_convention_20061001",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2006-09-30",
+    "locator": {
+      "section": "newsbody",
+      "passage_starts": [
+        "「新しい公明党」が勇躍スタート",
+        "これに先立ち、代表選出が行われ"
+      ]
+    },
+    "claim_text_sha256": "f989b8b08f1c6e41302863b58ec46047b0715c6a3f6f7647633adcba96347416",
+    "reviewer_observation": "Opening names the sixth convention on the 30th; the later rule-20 passage states unanimous standing confidence for the sole candidate. The caption explicitly says 30 September.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_ota_in_office_convention_20060930",
+    "source_id": "jp_komeito_ota_sixth_convention_20061001",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2006-09-30",
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "493e8a13f751081d661e7181799a5300f0ad521bf23294872275c942104e476d",
+    "reviewer_observation": "The report names representative Ota rising to address after selection; this supports the same-day office observation independently of his ministry or Diet role.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_ota_assumption_stated_20060930",
+    "source_id": "jp_komeito_ota_address_sixth_convention_20061001",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "assumption_stated",
+    "structured_attested_on": "2006-09-30",
+    "locator": {
+      "paragraph": [
+        1,
+        2
+      ]
+    },
+    "claim_text_sha256": "a56709474a29d60e317a3118f92281049f2d102e8016320be6a48bc707e38652",
+    "reviewer_observation": "Read October 1 publication, introduction dating the convention to the 30th, and first two address paragraphs. Ota explicitly says he took office at today's convention; September 30 assumption is supported. Kanzaki four-term/eight-year predecessor reference does not provide an end.",
+    "effective_boundary": "Explicit Ota assumption statement supports 2006-09-30.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_kanzaki_former_four_terms_20060930",
+    "source_id": "jp_komeito_ota_address_sixth_convention_20061001",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "predecessor_referred_to_as_former",
+    "structured_attested_on": "2006-09-30",
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "22b05c3bff9fd3ae847bc6e87d3ce799915f07b1fe580048e61c80f1187379e9",
+    "reviewer_observation": "Read October 1 publication, introduction dating the convention to the 30th, and first two address paragraphs. Ota explicitly says he took office at today's convention; September 30 assumption is supported. Kanzaki four-term/eight-year predecessor reference does not provide an end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_ota_self_stated_representative_20061003",
+    "source_id": "jp_komeito_diet_hr_plenary_20061003",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_continuation_attestation",
+    "structured_attested_on": "2006-10-03",
+    "locator": {
+      "issueID": "116505254X00520061003",
+      "speechOrder": [
+        3
+      ],
+      "speaker": "太田昭宏"
+    },
+    "claim_text_sha256": "fb87e5df04f1d53a4db2938737c976265109f79fea1c9d79f2da1d1d4b2ec75f",
+    "reviewer_observation": "Read speech 3 opening and metadata. Ota introduces himself as recently having taken the party representative office; October 3 is a continuation, not a new start.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_selected_20090908",
+    "source_id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "national_representatives_meeting_selection",
+    "structured_attested_on": "2009-09-08",
+    "locator": {
+      "paragraph": [
+        1,
+        2
+      ]
+    },
+    "claim_text_sha256": "385415e2506dbd21e545ce3a72e5bbb42614a876dc56d3d5deee096a12734829",
+    "reviewer_observation": "Introduction dates the meeting to the 8th; the new representative says he has just been selected with delegates' confidence. Keep selection separate from tenure.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_greeting_20090908",
+    "source_id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2009-09-08",
+    "locator": {
+      "paragraph": [
+        2,
+        4
+      ]
+    },
+    "claim_text_sha256": "8ec105d1c7c7f5318db5cfa0537edcdd5b1cb63af4db69ef06b9e043c262d57f",
+    "reviewer_observation": "Heading and paragraphs 2/4 name the new representative and his greeting on taking office. Current-office attestation is supported without a separately explicit effective date.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_ota_former_20090908",
+    "source_id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "predecessor_referred_to_as_former",
+    "structured_attested_on": "2009-09-08",
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "0ada9be5f34967618a7d9364e8a5e43b4d864137b2bb04d69a853a5db53cbf21",
+    "reviewer_observation": "Paragraph 3 calls Ota former representative while thanking former leadership. Former status supplies no outgoing effective date.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_selection_recalled_20090908",
+    "source_id": "jp_komeito_diet_hc_plenary_20091030",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "election_recalled_by_holder",
+    "structured_attested_on": "2009-09-08",
+    "locator": {
+      "issueID": "117315254X00320091030",
+      "speechOrder": [
+        2
+      ],
+      "speaker": "山口那津男"
+    },
+    "claim_text_sha256": "27b3c86309eebd4d76174ba4953715a47664e88589c16e900909c966815992ea",
+    "reviewer_observation": "Read speech 2 opening, September 8 selection recollection and since-taking-office passage. Selection date and October 30 current-office attestation remain separate; neither substitutes for unavailable contemporaneous address content.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_diet_20091030",
+    "source_id": "jp_komeito_diet_hc_plenary_20091030",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_continuation_attestation",
+    "structured_attested_on": "2009-10-30",
+    "locator": {
+      "issueID": "117315254X00320091030",
+      "speechOrder": [
+        2
+      ],
+      "speaker": "山口那津男"
+    },
+    "claim_text_sha256": "9206e9983c29c4857598b82a90974eff12a25a7d6454c897318cb60d18696761",
+    "reviewer_observation": "Read speech 2 opening, September 8 selection recollection and since-taking-office passage. Selection date and October 30 current-office attestation remain separate; neither substitutes for unavailable contemporaneous address content.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_reelected_20120922",
+    "source_id": "jp_komeito_yamaguchi_ninth_convention_20120923",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2012-09-22",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "c9fbb4eb393e05e8a4ee8f8f188c99494914418c4a04048fea04a909b9176548",
+    "reviewer_observation": "Opening dates ninth convention to the 22nd and calls Yamaguchi reappointed; the 23 September publication/caption support this calendar day.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_convention_20120922",
+    "source_id": "jp_komeito_yamaguchi_ninth_convention_20120923",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2012-09-22",
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "4113fe3ddcc34b63500eb6e9fe46a3294ecf07a1730fdc35a0e234104d608e83",
+    "reviewer_observation": "The reappointed party representative rises to address at the same convention. Current duty supports observation, not a new term boundary.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_reelected_20140921",
+    "source_id": "jp_komeito_yamaguchi_tenth_convention_20140922",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2014-09-21",
+    "locator": {
+      "paragraph": [
+        1,
+        5
+      ]
+    },
+    "claim_text_sha256": "58b6e69d0536b52e0c94c9f5f927f34c4893b86683d97ee4b37148205161c5c8",
+    "reviewer_observation": "Read September 22 publication,21st convention paragraph and confidence/officer-nomination paragraph. Re-election by all standing delegates and the subsequent representative action match; no effective term boundary is stated.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_convention_20140921",
+    "source_id": "jp_komeito_yamaguchi_tenth_convention_20140922",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2014-09-21",
+    "locator": {
+      "paragraph": 5
+    },
+    "claim_text_sha256": "e42df2cc9245c1dd70b375aee83b2d22171588858777dcebf5c74b755ede5e28",
+    "reviewer_observation": "Read September 22 publication,21st convention paragraph and confidence/officer-nomination paragraph. Re-election by all standing delegates and the subsequent representative action match; no effective term boundary is stated.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_reelected_20160917",
+    "source_id": "jp_komeito_yamaguchi_eleventh_convention_20160918",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2016-09-17",
+    "locator": {
+      "paragraph": [
+        1,
+        4
+      ]
+    },
+    "claim_text_sha256": "9631be36a19999a0297b797c9f1b3529d6f11b1078a868fee3feb51fb4c8b8e1",
+    "reviewer_observation": "Read September 18 publication,17th convention/caption and confidence procedure. Re-election and named in-office address are separately supported; no effective term boundary is stated.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_convention_20160917",
+    "source_id": "jp_komeito_yamaguchi_eleventh_convention_20160918",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2016-09-17",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "a0a21e16bce5dc7e72b8e35d50682b45abe35d00f0f37520fbf60822b1039aa1",
+    "reviewer_observation": "Read September 18 publication,17th convention/caption and confidence procedure. Re-election and named in-office address are separately supported; no effective term boundary is stated.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_reelected_20180930",
+    "source_id": "jp_komeito_yamaguchi_twelfth_convention_20181001",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2018-09-30",
+    "locator": {
+      "paragraph": [
+        1,
+        4
+      ]
+    },
+    "claim_text_sha256": "c8aec3ddec84c3b79440062d5f72b0b2ece5e22be0562921d7232b7c7c0085c8",
+    "reviewer_observation": "Read October 1 publication,30th convention/caption and sole-candidate confidence procedure. September 30 follows the explicitly reported prior-day convention; two-year term language supplies no effective boundary.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_convention_20180930",
+    "source_id": "jp_komeito_yamaguchi_twelfth_convention_20181001",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2018-09-30",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "ccae3f2a698f2f4f263901288f25ba719665c3d445709c2fdcbf89e54ac13a43",
+    "reviewer_observation": "Read October 1 publication,30th convention/caption and sole-candidate confidence procedure. September 30 follows the explicitly reported prior-day convention; two-year term language supplies no effective boundary.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_reelected_20200927",
+    "source_id": "jp_komeito_yamaguchi_thirteenth_convention_20200928",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2020-09-27",
+    "locator": {
+      "paragraph": [
+        1,
+        6
+      ]
+    },
+    "claim_text_sha256": "722c6a3b4c633265f20e756519a46f4d996af5f00b5f76aca8e62cb71871c557",
+    "reviewer_observation": "Read September 28 publication,27th convention and sole-candidate confidence/officer nomination. Both claims match, with election and subsequent office naming kept distinct.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_convention_20200927",
+    "source_id": "jp_komeito_yamaguchi_thirteenth_convention_20200928",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2020-09-27",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "a0a21e16bce5dc7e72b8e35d50682b45abe35d00f0f37520fbf60822b1039aa1",
+    "reviewer_observation": "Read September 28 publication,27th convention and sole-candidate confidence/officer nomination. Both claims match, with election and subsequent office naming kept distinct.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_reelected_20220925",
+    "source_id": "jp_komeito_yamaguchi_fourteenth_convention_20220926",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2022-09-25",
+    "locator": {
+      "paragraph": [
+        1,
+        5
+      ]
+    },
+    "claim_text_sha256": "f5be3abee4c4d2b3015a8f07eafd41ba33ea601906e654cfac4b302a4d742448",
+    "reviewer_observation": "Read September 26 publication,25th convention and confidence/officer nomination. Both claims match; no successor, outgoing end or precise term start is derived.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_in_office_convention_20220925",
+    "source_id": "jp_komeito_yamaguchi_fourteenth_convention_20220926",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2022-09-25",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "a0a21e16bce5dc7e72b8e35d50682b45abe35d00f0f37520fbf60822b1039aa1",
+    "reviewer_observation": "Read September 26 publication,25th convention and confidence/officer nomination. Both claims match; no successor, outgoing end or precise term start is derived.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_ishii_in_office_convention_20240928",
+    "source_id": "jp_komeito_ishii_new_representative_interview_20240930",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2024-09-28",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "9ec5bdca2d864dd729dbb330c14f64b73e4363b5e4603cdda5a0c4603e6d2c27",
+    "reviewer_observation": "Opening says the new executive led by representative Ishii launched at the convention on the 28th. Preserve the observation; no separately stated individual assumption date is promoted.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_ishii_appointment_recalled",
+    "source_id": "jp_komeito_ishii_new_representative_interview_20240930",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "election_recalled_by_holder",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "就任の抱負",
+      "paragraph": 1
+    },
+    "claim_text_sha256": "59f200bde37aa3a8fd89ad76305d2edd3da0fd3b07b520ff4e40b924b965e140",
+    "reviewer_observation": "First answer recalls accepting the party representative appointment after Yamaguchi. No day occurs in that answer, so its structured date stays null.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_yamaguchi_former_eight_terms_recalled",
+    "source_id": "jp_komeito_ishii_new_representative_interview_20240930",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "predecessor_referred_to_as_former",
+    "structured_attested_on": null,
+    "locator": {
+      "section": "就任の抱負",
+      "paragraph": 1
+    },
+    "claim_text_sha256": "19f3d0ff48fed8cf117f6283b45b50352a5e35ab857f87fc320d0976a0df1661",
+    "reviewer_observation": "Same answer calls Yamaguchi former representative over eight terms/fifteen years. It proves the bounded retrospective statement without an outgoing date.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_ishii_resignation_intent_20241031",
+    "source_id": "jp_komeito_ishii_resignation_intent_20241101",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "resignation_intent_announced",
+    "structured_attested_on": "2024-10-31",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "4d3cd0dfbdb91d33471a495909d27d7e82bd13b078d35a692d300ce7ac0097d4",
+    "reviewer_observation": "Opening expressly reports intention to resign at the 31st-morning executive meeting. Later future succession procedure does not state effective resignation; no end recorded.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_saito_recommended_20241107",
+    "source_id": "jp_komeito_saito_recommended_20241108",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "candidate_recommended",
+    "structured_attested_on": "2024-11-07",
+    "locator": {
+      "paragraph": [
+        1,
+        2
+      ]
+    },
+    "claim_text_sha256": "e2c6f931f7cc5758895bcde680d79c43c2dbda0b17cb5a71afd77bcbe5c7be56",
+    "reviewer_observation": "Paragraph 1 reports the 7th recommendation; paragraph 2 expressly makes selection conditional on majority confidence at the 9th convention. No assumption inferred.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "resumed-20261001"
+  },
+  {
+    "claim_id": "jp_komeito_saito_convention_selection_20241109",
+    "source_id": "jp_komeito_saito_extraordinary_convention_20241110",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2024-11-09",
+    "locator": {
+      "paragraph": [
+        1,
+        3
+      ]
+    },
+    "claim_text_sha256": "ef6251482e5c0a1433cad45a1118d74520e34bf0fdf85f536d32c7caf0c148e1",
+    "reviewer_observation": "Read November 10 publication,9th extraordinary convention, rules-based selection, subsequent Saito address and former-Ishii reference. The three claims match; former status does not date Ishii's end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_saito_in_office_convention_20241109",
+    "source_id": "jp_komeito_saito_extraordinary_convention_20241110",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2024-11-09",
+    "locator": {
+      "paragraph": 4
+    },
+    "claim_text_sha256": "9d9a4be85867135d9deb160734f20eb8722ac7e2435835b39dce91c54e12050d",
+    "reviewer_observation": "Read November 10 publication,9th extraordinary convention, rules-based selection, subsequent Saito address and former-Ishii reference. The three claims match; former status does not date Ishii's end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_ishii_former_20241110",
+    "source_id": "jp_komeito_saito_extraordinary_convention_20241110",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "predecessor_referred_to_as_former",
+    "structured_attested_on": "2024-11-10",
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "2ef50177d22d476f76c5ed461e2407ccfdda28ea6a4401cee64cf2b1e7715c5a",
+    "reviewer_observation": "Read November 10 publication,9th extraordinary convention, rules-based selection, subsequent Saito address and former-Ishii reference. The three claims match; former status does not date Ishii's end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_saito_in_office_diet_20241203",
+    "source_id": "jp_komeito_diet_hr_plenary_20241203",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_continuation_attestation",
+    "structured_attested_on": "2024-12-03",
+    "locator": {
+      "issueID": "121605254X00420241203",
+      "speechOrder": [
+        10
+      ],
+      "speaker": "斉藤鉄夫"
+    },
+    "claim_text_sha256": "5937f6aeaf31aaf0f9d421f90ff2612ee3c0d463abf3d7a3ed1bdb8584ac6d1e",
+    "reviewer_observation": "Read speech 10 metadata and nuclear-disarmament passage expressly identifying the speaker as party representative. This is December 3 continuation evidence, independent of any ministerial title.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_takeya_interim_approved_20260122",
+    "source_id": "jp_komeito_takeya_interim_20260123",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "interim_representative_designated",
+    "structured_attested_on": "2026-01-22",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "b3db398899ab8554a5987e4612c6f41424312d73b17f1d2a10cd292dd9078012",
+    "reviewer_observation": "Read January 23 publication and first two paragraphs. January 22 approval is explicitly representative-proxy service styled representative pending a convention; predecessor thanks do not supply Saito's effective last day.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_interim_styled_representative_decided_20260122",
+    "source_id": "jp_komeito_takeya_interim_20260123",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "interim_title_decided",
+    "structured_attested_on": "2026-01-22",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "88da0c41f43940b3a8f56980644a537a009e35ab1955f665983ef086228a58f2",
+    "reviewer_observation": "Read January 23 publication and first two paragraphs. January 22 approval is explicitly representative-proxy service styled representative pending a convention; predecessor thanks do not supply Saito's effective last day.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_saito_former_20260122",
+    "source_id": "jp_komeito_takeya_interim_20260123",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "predecessor_referred_to_as_former",
+    "structured_attested_on": "2026-01-22",
+    "locator": {
+      "paragraph": 2
+    },
+    "claim_text_sha256": "d766a2fbd70726993f2c9ab5fe5468f5f4bc696c77306a45cb2f850d682b6d73",
+    "reviewer_observation": "Read January 23 publication and first two paragraphs. January 22 approval is explicitly representative-proxy service styled representative pending a convention; predecessor thanks do not supply Saito's effective last day.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_chudo_founded_20260122",
+    "source_id": "jp_komeito_chudo_founding_convention_20260125",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "organization_formed",
+    "structured_attested_on": "2026-01-22",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "0993b7d86cb0a552d3a46a255d3af902ae4006786bca7655171a3b4a86c34b8c",
+    "reviewer_observation": "Read January 25 publication,22nd founding convention and same-day Takeya reference. Chudo co-representatives are other-organization offices; Takeya's styled title is constrained by the verified interim clarification.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_saito_chudo_co_representative_20260122",
+    "source_id": "jp_komeito_chudo_founding_convention_20260125",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "other_office_attestation",
+    "structured_attested_on": "2026-01-22",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "fe3e4b7177cc549a6cc8465883769253940720c77a01bc3eb8c291588e3bea53",
+    "reviewer_observation": "Read January 25 publication,22nd founding convention and same-day Takeya reference. Chudo co-representatives are other-organization offices; Takeya's styled title is constrained by the verified interim clarification.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_takeya_styled_representative_20260122",
+    "source_id": "jp_komeito_chudo_founding_convention_20260125",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "interim_representative_styled",
+    "structured_attested_on": "2026-01-22",
+    "locator": {
+      "paragraph": 4
+    },
+    "claim_text_sha256": "f3b1dc869eb013c90c7328f9ddfa2bb40733b6d022049e7a847f1a71485fd339",
+    "reviewer_observation": "Read January 25 publication,22nd founding convention and same-day Takeya reference. Chudo co-representatives are other-organization offices; Takeya's styled title is constrained by the verified interim clarification.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_takeya_recommended_20260311",
+    "source_id": "jp_komeito_takeya_recommended_20260312",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "candidate_recommended",
+    "structured_attested_on": "2026-03-11",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "e6bc9ff656ecbfe5e2bbb6db4b447d8e538f1ee37bc0af8bc03538cbe8562db0",
+    "reviewer_observation": "Read March 12 publication and March 11 committee decision. Recommendation and conditional future convention confidence remain a proposal/event, never an effective start.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_takeya_assumption_stated_20260314",
+    "source_id": "jp_komeito_takeya_address_20260315",
+    "decision": "supported_as_attestation_after_boundary_correction",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2026-03-14",
+    "locator": {
+      "paragraph": 1,
+      "caption": "あいさつする竹谷代表＝14日　公明会館"
+    },
+    "claim_text_sha256": "699f3047a3890f5c0e632b2c4700a65138681550192ee9da09d752d0a1f6581a",
+    "reviewer_observation": "Read March 15 publication,14th caption and first address paragraph. Confidence and acceptance of representative duty support the office observation; they do not separately state an effective assumption day. Preserve claim wording/date/ID, correct holder to attested_on.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_takeya_convention_selection_20260314",
+    "source_id": "jp_komeito_takeya_extraordinary_convention_20260315",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "convention_selection",
+    "structured_attested_on": "2026-03-14",
+    "locator": {
+      "paragraph": [
+        1,
+        3
+      ]
+    },
+    "claim_text_sha256": "6d524c0615ec98dfb2cf7d3027ea0b24452b1e87ad5a387208c1992e873f17fa",
+    "reviewer_observation": "Read March 15 publication,14th convention, selection and subsequent representative address, and January vacancy recollection. Selection/attestation are distinct; the vacancy is month-only and cannot date Saito's end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_takeya_in_office_convention_20260314",
+    "source_id": "jp_komeito_takeya_extraordinary_convention_20260315",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "in_office_attestation",
+    "structured_attested_on": "2026-03-14",
+    "locator": {
+      "paragraph": 1
+    },
+    "claim_text_sha256": "081f772f305f585acea087eaee618c6da2f3bb58f34a3bf747f38a19ab6223e4",
+    "reviewer_observation": "Read March 15 publication,14th convention, selection and subsequent representative address, and January vacancy recollection. Selection/attestation are distinct; the vacancy is month-only and cannot date Saito's end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  },
+  {
+    "claim_id": "jp_komeito_vacancy_recalled_january_2026",
+    "source_id": "jp_komeito_takeya_extraordinary_convention_20260315",
+    "decision": "supported_within_stated_scope",
+    "event_kind": "office_vacancy_recalled",
+    "structured_attested_on": null,
+    "locator": {
+      "paragraph": 3
+    },
+    "claim_text_sha256": "b4bf01a079a8727667b25e9ab05f821f68577f4bdd69a51e747c2016b100bb15",
+    "reviewer_observation": "Read March 15 publication,14th convention, selection and subsequent representative address, and January vacancy recollection. Selection/attestation are distinct; the vacancy is month-only and cannot date Saito's end.",
+    "effective_boundary": "No new effective start/end derived from this claim.",
+    "content_review_checkpoint": "prior-review-reused"
+  }
+]

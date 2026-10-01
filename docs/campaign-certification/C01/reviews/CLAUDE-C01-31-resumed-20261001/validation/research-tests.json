@@ -1,0 +1,21 @@
+{
+  "name": "research-tests",
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_*research*.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-c01-31-20261001",
+  "started_at": "2026-10-01T01:33:04.045669+00:00",
+  "log": "research-tests.log",
+  "exit_code": 0,
+  "finished_at": "2026-10-01T01:33:11.489210+00:00"
+}
