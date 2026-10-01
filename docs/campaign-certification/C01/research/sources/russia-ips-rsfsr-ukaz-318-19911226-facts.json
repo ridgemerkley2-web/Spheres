@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rsfsr_ukaz_318_19911226",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013783&page=1&rdk=0",
+  "source_title": "Decree of the President of the RSFSR No. 318 of 26 December 1991 'On the conditions of the economic experiment creating a special investment regime in the territory of the Republic of Karelia' (original edition)",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1991-12-26",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013783&page=1&rdk=0",
+  "source_response_bytes": 36815,
+  "source_response_sha256": "7b73e65bb8d63b1de773431e548cc5e209b32610bc140cc9f545257d475a7467",
+  "source_response_encoding": "windows-1251; served uncompressed (no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Document frame: downloaded at 2026-10-01T11:40:43Z and again at 2026-10-01T12:20:57Z (40 minutes later); identical 36,815 bytes and SHA-256. Portal card: downloaded at 2026-10-01T11:40:43Z and again at 2026-10-01T12:24:52Z (44 minutes later); identical 3,127 bytes and SHA-256. Both with curl's default User-Agent, no Accept-Encoding header and no --compressed; the portal served both uncompressed.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=318&a8type=1&a7type=4&a7from=26.12.1991&a7to=26.12.1991&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3127,
+    "sha256": "453a9993cfefce4c4302a2f4b0951166aa30d85094037723667897809e3926ad",
+    "note": "Date-restricted single-document card (number 318, date 26.12.1991): one hit, citing Vedomosti S'ezda narodnykh deputatov RSFSR i Verkhovnogo Soveta RSFSR 1992 No. 1, art. 46."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP with curl's default User-Agent and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 1 October 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act; it cites Vedomosti S'ezda narodnykh deputatov RSFSR i Verkhovnogo Soveta RSFSR 1992 No. 1, art. 46 (not inspected).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_rsfsr_ukaz_318_signed_as_president_rsfsr_19911226",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-02",
+      "role_id": "ru_rsfsr_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б.Ельцин (signature)",
+      "role_title": "President of the RSFSR (Президент РСФСР)",
+      "event_kind": "signed_act_attestation",
+      "attested_on": "1991-12-26",
+      "text": "Decree No. 318, headed 'УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ СОВЕТСКОЙ ФЕДЕРАТИВНОЙ СОЦИАЛИСТИЧЕСКОЙ РЕСПУБЛИКИ', sets the conditions of an economic experiment in investment in the Republic of Karelia. It is signed 'Президент РСФСР Б.Ельцин, Москва, Кремль, 26 декабря 1991 года, № 318'.",
+      "locator": "Heading; signature and date block"
+    }
+  ],
+  "bounded_scope": "RSFSR President and Vice-President observations for CLAUDE-C01-51 only. Signed acts, official records naming the office, suspension, declared termination, declared or disputed acting service, removal and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, the Government and the USSR packet are outside this extract."
+}

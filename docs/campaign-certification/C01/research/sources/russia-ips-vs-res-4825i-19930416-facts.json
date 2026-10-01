@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_vs_res_4825i_19930416",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102022817&page=1&rdk=0",
+  "source_title": "Resolution of the Supreme Soviet of the Russian Federation No. 4825-I of 16 April 1993 on the information of the Vice-President and of the Prosecutor General on combating crime and corruption (original edition)",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "document_date": "1993-04-16",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102022817&page=1&rdk=0",
+  "source_response_bytes": 10197,
+  "source_response_sha256": "0fd28136d89f8d59a01d61e074b633646fc746082c96ea02b850b68aecb04c04",
+  "source_response_encoding": "windows-1251; served uncompressed (no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Document frame: downloaded at 2026-10-01T11:43:28Z and again at 2026-10-01T12:21:58Z (38 minutes later); identical 10,197 bytes and SHA-256. Portal card: downloaded at 2026-10-01T11:49:22Z and again at 2026-10-01T12:21:58Z (32 minutes later); identical 3,362 bytes and SHA-256. Both with curl's default User-Agent, no Accept-Encoding header and no --compressed; the portal served both uncompressed.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=4825-I&a8type=1&a7type=4&a7from=16.04.1993&a7to=16.04.1993&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3362,
+    "sha256": "0bc66a0a22939dca41e2152a86188ffd5c84d4c5427eaf8f59c1b96944b21aa8",
+    "note": "Date-restricted single-document card (number 4825-I, date 16.04.1993): one hit, citing Vedomosti S'ezda narodnykh deputatov Rossiyskoy Federatsii i Verkhovnogo Soveta Rossiyskoy Federatsii 1993 No. 17, art. 619."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP with curl's default User-Agent and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 1 October 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act; it cites Vedomosti S'ezda narodnykh deputatov Rossiyskoy Federatsii i Verkhovnogo Soveta Rossiyskoy Federatsii 1993 No. 17, art. 619 (not inspected).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_vs_4825i_rutskoi_styled_vice_president_19930416",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-RSP-03",
+      "role_id": "ru_rsfsr_vice_president",
+      "holder_name": "Александр Владимирович Руцкой",
+      "printed_name": "А. В. Руцкого (genitive)",
+      "role_title": "Vice-President of the RSFSR (вице-президент РСФСР)",
+      "event_kind": "official_record_attestation",
+      "attested_on": "1993-04-16",
+      "text": "Point 1 of Supreme Soviet resolution 4825-I takes note of the information of 'вице-президента Российской Федерации, председателя Межведомственной комиссии Совета безопасности Российской Федерации по борьбе с преступностью и коррупцией ... А. В. Руцкого' and of the Prosecutor General on combating crime and corruption. It is signed by the First Deputy Chairman of the Supreme Soviet, Moscow, Дом Советов России, 16 апреля 1993 года, N 4825-I.",
+      "locator": "Title; point 1; signature and date block"
+    }
+  ],
+  "bounded_scope": "RSFSR President and Vice-President observations for CLAUDE-C01-51 only. Signed acts, official records naming the office, suspension, declared termination, declared or disputed acting service, removal and procedure stay separate rows; holder boundaries are decided in the packet, not by any row. Party offices, the Government and the USSR packet are outside this extract."
+}

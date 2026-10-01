@@ -567,8 +567,9 @@ VOLATILE_URL = re.compile(r'(ysclid=|sessid=|PHPSESSID|[?&]cb=|nocache|token=|ut
                           r'/web/\d{4}id_/|/web/\d{14}/)')
 REPORT = research.RESEARCH / 'russia-heads-of-government-1991-2026-19.md'
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-19.md'
+# CLAUDE-C01-51 later appended four observations to ru_rsfsr_president and five to ru_rsfsr_vice_president.
 PRESIDENCY_HOLDERS = [
-    ('ru_rsfsr_president', ['Борис Николаевич Ельцин']), ('ru_rsfsr_vice_president', ['Александр Владимирович Руцкой']),
+    ('ru_rsfsr_president', ['Борис Николаевич Ельцин'] * 5), ('ru_rsfsr_vice_president', ['Александр Владимирович Руцкой'] * 6),
     ('ru_president', ['Борис Николаевич Ельцин', PUTIN, PUTIN, MED, PUTIN, PUTIN, PUTIN])]
 
 
@@ -596,7 +597,8 @@ def government_invariants(russia, ussr):
     # The presidency holders are unchanged and share nothing with this role.
     presidency = next(e for e in russia['institutions'] if e['id'] == 'ru_rsfsr_presidency')
     assert [(r['id'], [h['name'] for h in r['holder_claims']]) for r in presidency['roles']] == PRESIDENCY_HOLDERS
-    assert all(h['until'] in (None, '1999-12-31') for r in presidency['roles'] for h in r['holder_claims'])
+    assert [(r['id'], h['until']) for r in presidency['roles'] for h in r['holder_claims'] if h['until'] is not None] == [
+        ('ru_rsfsr_vice_president', '1993-10-03'), ('ru_president', '1999-12-31')]  # the first from CLAUDE-C01-51
     ours = set(EVENTS)
     for r in presidency['roles']:
         cited = set(r['claim_ids']) | {c for h in r['holder_claims'] for c in h['claim_ids']}
@@ -690,7 +692,7 @@ class RussianHeadsOfGovernmentTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims), len(EVENTS)), (102, 151, 153))
         # CLAUDE-C01-46 appended 7 sources (27 claims) after these, on the faction-head roles only.
         self.assertEqual([s['id'] for s in self.packet['sources'][68:170]], NEW_SOURCES)
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (177, 322, 21, 9))
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (193, 342, 21, 9))  # with C01-51
         self.assertEqual(set(self.new_claims) | set(SHARED_1146), set(EVENTS))
         self.assertEqual([c['id'] for c in self.sources[SHARED_SOURCE]['claims']][1:], SHARED_1146)
         # New sources are appended in date order; every claim has one kind from the pinned vocabulary.
@@ -1082,7 +1084,7 @@ class RussianHeadsOfGovernmentTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 322, 21))  # with CLAUDE-C01-46
+        self.assertEqual((country['role_observations'], country['source_claims'], country['mapping_pending']), (9, 342, 21))  # with CLAUDE-C01-46 and C01-51
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Russia'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

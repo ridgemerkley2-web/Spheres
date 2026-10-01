@@ -133,7 +133,10 @@ def inference_problems(ussr, russia):
         for entry, role, holder in holders(packet):
             guarded = entry['id'] == 'su_presidency' or (
                 entry['id'] == 'ru_rsfsr_presidency' and role['id'] in {'ru_rsfsr_president', 'ru_rsfsr_vice_president'})
-            if guarded and holder.get('until') is not None:
+            # CLAUDE-C01-51's one end on the vice-presidency is source-stated (decree 1576), pinned in its own test.
+            stated = (role['id'] == 'ru_rsfsr_vice_president' and holder.get('until') == '1993-10-03'
+                      and holder['claim_ids'][-1:] == ['ru_ukaz_1576_rutskoi_released_as_vice_president_19931003'])
+            if guarded and holder.get('until') is not None and not stated:
                 problems.append(f"inferred end on {role['id']}: {holder['name']}")
     presidency = next(e for e in russia['institutions'] if e['id'] == 'ru_rsfsr_presidency')
     if presidency['lifecycle']['from'] is not None:
@@ -229,8 +232,11 @@ class UssrRussiaTransitionTests(unittest.TestCase):
             self.assertIn(phrase, lifecycle['note'])
 
     def test_holders_start_only_where_sources_state_it_and_never_end(self):
-        yeltsin, = self.roles['ru_rsfsr_president']['holder_claims']
-        rutskoi, = self.roles['ru_rsfsr_vice_president']['holder_claims']
+        # CLAUDE-C01-51 later appended four and five dated observations after these holders (pinned in its own test).
+        yeltsin, *_ = self.roles['ru_rsfsr_president']['holder_claims']
+        rutskoi, *_ = self.roles['ru_rsfsr_vice_president']['holder_claims']
+        self.assertEqual((len(self.roles['ru_rsfsr_president']['holder_claims']),
+                          len(self.roles['ru_rsfsr_vice_president']['holder_claims'])), (5, 6))
         for holder, release in ((yeltsin, 'ru_res_1595i_yeltsin_release_19910710'), (rutskoi, 'ru_res_1596i_rutskoi_release_19910710')):
             self.assertEqual((holder['from'], holder['until'], holder['attested_on']), ('1991-07-10', None, None))
             self.assertIn('ru_rsfsr_inauguration_law_rules_19910627', holder['claim_ids'])
