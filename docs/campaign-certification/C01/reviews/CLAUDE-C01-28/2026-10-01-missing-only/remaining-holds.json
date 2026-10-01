@@ -1,0 +1,48 @@
+{
+  "decision": "held_pending_original_source_access",
+  "sources": [
+    "ru_dvr_about_page_2001",
+    "ru_dvr_newspaper_demvybor_21_2001",
+    "ru_dvr_politsovet_statement_20001216"
+  ],
+  "claims": [
+    {
+      "claim_id": "ru_dvr_politsovet_statement_signed_chairman_20001216",
+      "source_id": "ru_dvr_politsovet_statement_20001216",
+      "locator": "letterhead, number and date line; signature line",
+      "status": "held_original_response_unavailable",
+      "finding": "Original still inaccessible: HTTP429 stopped this pass before remaining requests; earlier failed requests remain preserved. No content acceptance asserted.",
+      "review_phase": "1October missing-only retry",
+      "source_url": "https://web.archive.org/web/20160827164330id_/http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3887"
+    },
+    {
+      "claim_id": "ru_dvr_about_page_chairman_gaidar_2001",
+      "source_id": "ru_dvr_about_page_2001",
+      "locator": "fact box at the top",
+      "status": "held_original_response_unavailable",
+      "finding": "Original still inaccessible: HTTP429 stopped this pass before remaining requests; earlier failed requests remain preserved. No content acceptance asserted.",
+      "review_phase": "1October missing-only retry",
+      "source_url": "https://web.archive.org/web/20010303063231id_/http://www.dvr.ru:80/party.htm"
+    },
+    {
+      "claim_id": "ru_dvr_x_congress_self_dissolution_decision_2001",
+      "source_id": "ru_dvr_newspaper_demvybor_21_2001",
+      "locator": "section \"НОВОСТИ\", item \"Партия ДВР объявила о роспуске\"",
+      "status": "held_original_response_unavailable",
+      "finding": "Original still inaccessible: HTTP429 stopped this pass before remaining requests; earlier failed requests remain preserved. No content acceptance asserted.",
+      "review_phase": "1October missing-only retry",
+      "source_url": "https://web.archive.org/web/20010607195936id_/http://www.dvr.ru:80/demvyb/index.htm"
+    },
+    {
+      "claim_id": "ru_dvr_x_congress_gaidar_speech_dissolution_2001",
+      "source_id": "ru_dvr_newspaper_demvybor_21_2001",
+      "locator": "section \"НА X СЪЕЗДЕ ДВР\", speech",
+      "status": "held_original_response_unavailable",
+      "finding": "Original still inaccessible: HTTP429 stopped this pass before remaining requests; earlier failed requests remain preserved. No content acceptance asserted.",
+      "review_phase": "1October missing-only retry",
+      "source_url": "https://web.archive.org/web/20010607195936id_/http://www.dvr.ru:80/demvyb/index.htm"
+    }
+  ],
+  "holders": [],
+  "reason": "Three originals and four claims remain held after one paced pass; stopped at first429 with no Retry-After. All24 dated holder observations now have material passages checked, but Russia research remains unaccepted as a packet."
+}
