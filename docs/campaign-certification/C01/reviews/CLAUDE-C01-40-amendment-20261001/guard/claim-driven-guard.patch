@@ -1,0 +1,69 @@
+--- a/tools/avatars/test_india_cpim_general_secretaries_c01_40.py
++++ b/tools/avatars/test_india_cpim_general_secretaries_c01_40.py
+@@ -277,9 +277,6 @@
+             for r in entry['roles']:
+                 assert not set(r['claim_ids']) & cpm_claims and not set(r['sources']) & cpm_sources, r['id']
+                 assert not {h['name'] for h in r['holder_claims']} & HOLDER_NAMES, (r['id'], 'cross-party holder')
+-    # A 'newly elected' styling on or for the election never dates the holder it names.
+-    styled = {(rows[c]['holder_name'], claims[c].get('attested_on')) for c in role['claim_ids']
+-              if rows[c]['event_kind'] in NEWLY_ELECTED_KINDS}
+     previous = ''
+     for holder in role['holder_claims']:
+         name = holder['name']
+@@ -290,9 +287,7 @@
+         assert dated[0] >= previous, (name, 'holders stay in chronological order')
+         assert '1990-01-01' <= dated[0] <= research.CUTOFF, (name, 'inside the period')
+         previous = dated[0]
+-        assert not {holder['attested_on'], holder['from'], holder['until']} & set(NEVER_HOLDER_DATE), name
+         assert not set(holder['claim_ids']) & set(NEVER_HOLDER), name
+-        assert (name, holder['attested_on']) not in styled, (name, "a 'newly elected' styling is not an observation")
+         if name in INTERIM:
+             assert dated[0] not in INTERIM[name] and holder['until'] not in INTERIM[name], \
+                 (name, 'the interim coordinatorship is never a holder')
+@@ -337,6 +332,10 @@
+     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
+     got = [(h['name'], h['attested_on'], h['from'], h['until']) for h in role['holder_claims']]
+     assert got == HOLDERS, got
++    # This blacklist describes this exact fixture, not every possible
++    # independently supported observation that could share an event day.
++    for holder in role['holder_claims']:
++        assert not {holder['attested_on'], holder['from'], holder['until']} & set(NEVER_HOLDER_DATE), holder['name']
+     assert [h['claim_ids'] for h in role['holder_claims']] == HOLDER_CLAIMS
+     assert [(h['name'], h['from']) for h in role['holder_claims'] if h['from']] == STARTS
+     assert [(h['name'], h['until']) for h in role['holder_claims'] if h['until']] == ENDS
+@@ -424,6 +423,35 @@
+         for holder in self.role['holder_claims']:
+             self.assertTrue(holder['note'].startswith('Observed on '), holder['name'])
+             self.assertTrue(holder['uncertainty'].startswith('No start'), holder['name'])
++
++    def test_styling_date_does_not_override_independently_cited_office_evidence(self):
++        # Synthetic date collisions exercise generic evidence rules only. They
++        # do not change the selected historical observations or source records.
++        for name, day in NEWLY_ELECTED:
++            with self.subTest(name=name, day=day):
++                packet, rows = copy.deepcopy(self.packet), copy.deepcopy(self.rows)
++                claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
++                sources = {c['id']: s['id'] for s in packet['sources'] for c in s['claims']}
++                holder = next(h for h in cpm_role(packet)['holder_claims'] if h['name'] == name)
++                direct, = [c for c in holder['claim_ids'] if rows[c]['event_kind'] in HOLDER_KINDS]
++                holder['attested_on'] = day
++                claims[direct]['attested_on'] = rows[direct]['attested_on'] = day
++                synthetic = f'Synthetic explicit office attestation: {name}, General Secretary, on {day}.'
++                claims[direct]['text'] = rows[direct]['text'] = synthetic
++                cpm_rules(packet, rows)
++                # The historical fixture is still immutable even though this
++                # independent synthetic evidence satisfies the generic rules.
++                with self.assertRaises(AssertionError):
++                    cpm_invariants(packet, rows)
++                styling, = [c for c in cpm_role(packet)['claim_ids']
++                            if rows[c]['event_kind'] in NEWLY_ELECTED_KINDS
++                            and rows[c]['holder_name'] == name and claims[c].get('attested_on') == day]
++                holder['claim_ids'] = [styling] + [c for c in holder['claim_ids'] if c != direct]
++                holder['sources'] = list(dict.fromkeys(sources[c] for c in holder['claim_ids']))
++                # Same person/day, but citing the styling instead of direct
++                # office evidence remains insufficient under this amendment.
++                with self.assertRaises(AssertionError):
++                    cpm_rules(packet, rows)
+ 
+     def test_starts_and_ends_only_where_a_source_states_one(self):
+         # No source states the day an office was assumed; the one end is a death in office stated with the office.

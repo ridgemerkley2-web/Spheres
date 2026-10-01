@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 128519,
-      "sha256": "8735c23b8b0b18291c9911b1ac2f849f1d6d25fe95aeb50c07292d7b8e71ca95"
+      "bytes": 128831,
+      "sha256": "98ff2e9f3f523e216971d7283ae03c0acff6a9975b4764e6d74bb0257243ea0e"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 41861,
-      "sha256": "0d18c215cae13580694eb645dfe81feb4409623f1ab6aac064d286446f982b7a"
+      "bytes": 42019,
+      "sha256": "c0afe4659446972568f2ab9baac95cb7adc108b67d01cebc615da5416dca580e"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -81,8 +81,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1301518,
-      "sha256": "42d68ee487ff13718fae67488a9d28ecce1be1b586da878574568f5d6d139176"
+      "bytes": 1309163,
+      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -782,8 +782,8 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 307019,
-    "sha256": "cb026c6e1f06dd94343f7639d1c6bbcaab3ac3946f839629db69bb5d399b06c3"
+    "bytes": 307331,
+    "sha256": "3fefafea283b3ab04d0662e7b471df6b48d6a10b49b1f3689d4fc97456379ac7"
   },
   "in_flight": [
     {
@@ -1716,7 +1716,7 @@
       "state": "complete",
       "case": "India",
       "scope": "CPI(M) general secretary observations, 1990-2026; bounded intake accepted, no full chronology or runtime mapping",
-      "integration_revision": "6ee593de6bb6a0c9fe5ae8ec5000d268421f485b",
+      "integration_revision": "53b8a0ebf8b2683acb0b64de0e6cfbea7e946ff4",
       "evidence_class": "c01_accepted",
       "evidence": [
         {
@@ -11862,26 +11862,26 @@
               },
               {
                 "from": "2004-03-03",
-                "through": "2005-04-10",
+                "through": "2011-09-09",
                 "status": "no_evidence"
               },
               {
-                "from": "2005-04-11",
-                "through": "2005-04-11",
+                "from": "2011-09-10",
+                "through": "2011-09-10",
                 "status": "attested_day"
               },
               {
-                "from": "2005-04-12",
-                "through": "2015-04-18",
+                "from": "2011-09-11",
+                "through": "2015-05-05",
                 "status": "no_evidence"
               },
               {
-                "from": "2015-04-19",
-                "through": "2015-04-19",
+                "from": "2015-05-06",
+                "through": "2015-05-06",
                 "status": "attested_day"
               },
               {
-                "from": "2015-04-20",
+                "from": "2015-05-07",
                 "through": "2024-09-11",
                 "status": "no_evidence"
               },
@@ -11919,21 +11919,21 @@
               },
               {
                 "from": "2004-03-03",
-                "through": "2005-04-10",
+                "through": "2011-09-09",
                 "status": "no_evidence"
               },
               {
-                "from": "2005-04-11",
-                "through": "2005-04-11",
+                "from": "2011-09-10",
+                "through": "2011-09-10",
                 "status": "attested_day"
               },
               {
-                "from": "2005-04-12",
-                "through": "2015-04-18",
+                "from": "2011-09-11",
+                "through": "2015-05-05",
                 "status": "no_evidence"
               },
               {
-                "from": "2015-04-20",
+                "from": "2015-05-07",
                 "through": "2024-09-11",
                 "status": "no_evidence"
               },
@@ -11971,7 +11971,7 @@
             {
               "position": 1,
               "name": "Prakash Karat",
-              "attested_on": "2005-04-11",
+              "attested_on": "2011-09-10",
               "from": null,
               "until": null,
               "attested_period": null,
@@ -11989,7 +11989,7 @@
             {
               "position": 2,
               "name": "Sitaram Yechury",
-              "attested_on": "2015-04-19",
+              "attested_on": "2015-05-06",
               "from": null,
               "until": "2024-09-12",
               "attested_period": null,
@@ -12022,7 +12022,7 @@
               ]
             }
           ],
-          "source_count": 18,
+          "source_count": 20,
           "leads": [
             "https://web.archive.org/web/20010424181354id_/http://cpim.org:80/ems~2.htm",
             "https://web.archive.org/web/20050414085223id_/http://www.cpim.org:80/18cong/lead/bio-hks.htm",

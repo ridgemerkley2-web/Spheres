@@ -108,7 +108,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-36 | accepted | 39 |
 | CLAUDE-C01-37 | accepted | 31 |
 | CLAUDE-C01-38 | accepted | 22 |
-| CLAUDE-C01-40 | accepted | 18 |
+| CLAUDE-C01-40 | accepted | 20 |
 | CLAUDE-C01-41 | accepted | 12 |
 
 ## Coverage by country

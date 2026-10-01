@@ -1,8 +1,9 @@
 """CLAUDE-C01-40: the General Secretaries of the Communist Party of India (Marxist), 1990-2026, are one party role on the
 existing CPI(M) recognition observation (row 4 of the Election Commission's national-party table of 23 March 2024), kept
 apart from the prime-ministership, the presidency and the Congress, BJP and Janata Dal presidencies both ways. Party
-Congress and Central Committee elections, later attestations, 'former', 'outgoing' and handover stylings, retrospective
-pages and the interim coordinator arrangement of 2024-2025 stay separate claims; the only boundary is the death in office
+Congress and Central Committee elections, 'newly elected' stylings on or for an election, later attestations, 'former',
+'outgoing' and handover stylings, retrospective pages and the interim coordinator arrangement of 2024-2025 stay separate
+claims; the only boundary is the death in office
 of 12 September 2024, stated with the office in the Polit Bureau's own statement. No source states a day of assumption,
 so every holder is a dated in-office observation."""
 import copy
@@ -47,12 +48,16 @@ RESPONSES = {
         (15375, '2b9011d7fa502b8f5b92fe13863e63733b1174509e73ddbeab022621704aae2d'),
     'in_pd_20050417_surjeet_break_the_impasse':
         (24529, 'e9ba6930441922a9d28ea7d5224736e8d7050628c09b1484cc58be64780bc7b7'),
+    'in_cpim_gs_note_to_nic_20110910':
+        (12336, 'dc2e86ccc93d9da313f9f1d44061d7d29857bd9424930b54c654fa9a785dfad2'),
     'in_pd_20120415_rally_concludes_20th_congress':
         (699954, 'e537657ed6c2ea4152fde11b3a1781304a46fe4da99c995e8fe05d315883df8f'),
     'in_pd_20150426_join_to_bring_forth_change':
         (54802, '737f58484923183c78ac0731e3f1f2c4356d3dc03965b855fbe7f8c25d319842'),
     'in_pd_20150426_central_committee_elected_21st_congress':
         (45816, 'd91fa63d8430d924fc47980b6972119d9e860fb92a6fd8f1ffb6e9870fbbe5f3'),
+    'in_cpim_gs_letter_to_naidu_20150508':
+        (5790, '8d48f4e16cae84c2e03fbb491e8dccb10be0e9cdd83125d984d76ad362a4c36e'),
     'in_cpim_22nd_congress_new_cc_elected_20180422':
         (6385, 'e7492f9e17d479c3d50e0b454c337ca8ad6f510096240cc7c73aaca3a38119f2'),
     'in_cpim_23rd_congress_new_cc_elected_20220410':
@@ -83,6 +88,8 @@ WAYBACK = {
     'in_pd_20150426_central_committee_elected_21st_congress': ('20150429173030', 'http://peoplesdemocracy.in/2015/0426_pd/central-committee-elected-21st-congress'),
 }
 REST_POSTS = {
+    'in_cpim_gs_note_to_nic_20110910': 1411,
+    'in_cpim_gs_letter_to_naidu_20150508': 4346,
     'in_cpim_22nd_congress_new_cc_elected_20180422': 5567,
     'in_cpim_23rd_congress_new_cc_elected_20220410': 6757,
     'in_cpim_pb_homage_yechury_20240912': 11608,
@@ -92,6 +99,8 @@ REST_POSTS = {
     'in_cpim_gs_letter_to_pm_20250512': 11982,
     'in_cpim_memo_census_2027_20260824': 12752,
 }
+# The two sources added by the checker fixes were first downloaded on 1 October 2026, every other on 30 September.
+ACCESSED_20261001 = ('in_cpim_gs_note_to_nic_20110910', 'in_cpim_gs_letter_to_naidu_20150508')
 # Every claim: (attested_on, event_kind, review observation, holder_name), in packet order.
 EVENTS = {
     'in_cpim_site_ems_former_general_secretary_caption':
@@ -107,13 +116,15 @@ EVENTS = {
     'in_pd_rally_surjeet_former_gs_20050411':
         ('2005-04-11', 'former_styling', 'CPM-GS-02', SUR),
     'in_pd_rally_newly_elected_gs_karat_20050411':
-        ('2005-04-11', 'in_office_attestation', 'CPM-GS-03', PK),
+        ('2005-04-11', 'newly_elected_styling', 'CPM-GS-03', PK),
     'in_pd_surjeet_general_secretary_since_1992_recalled':
         (None, 'retrospective_biography_statement', 'CPM-GS-02', SUR),
     'in_pd_surjeet_says_karat_took_up_mantle_2005':
         (None, 'handover_statement', 'CPM-GS-02', SUR),
+    'in_cpim_karat_gs_note_to_nic_20110910':
+        ('2011-09-10', 'in_office_attestation', 'CPM-GS-03', PK),
     'in_pd_rally_newly_elected_gs_karat_took_salute_20120409':
-        ('2012-04-09', 'in_office_continuation_attestation', 'CPM-GS-03', PK),
+        ('2012-04-09', 'newly_elected_styling', 'CPM-GS-03', PK),
     'in_pd_karat_gs_inaugurated_21st_congress_20150414':
         ('2015-04-14', 'in_office_continuation_attestation', 'CPM-GS-03', PK),
     'in_pd_21st_congress_elected_general_secretary_20150419':
@@ -121,9 +132,11 @@ EVENTS = {
     'in_pd_rally_karat_outgoing_gs_20150419':
         ('2015-04-19', 'outgoing_styling', 'CPM-GS-03', PK),
     'in_pd_rally_newly_elected_gs_yechury_20150419':
-        ('2015-04-19', 'in_office_attestation', 'CPM-GS-04', SY),
+        ('2015-04-19', 'newly_elected_styling', 'CPM-GS-04', SY),
     'in_pd_pb_list_yechury_general_secretary_21st_congress':
         (None, 'election_result', 'CPM-GS-04', SY),
+    'in_cpim_yechury_gs_letter_to_naidu_20150506':
+        ('2015-05-06', 'in_office_attestation', 'CPM-GS-04', SY),
     'in_cpim_cc_elected_yechury_gs_22nd_congress_20180422':
         ('2018-04-22', 'election_result', 'CPM-GS-04', SY),
     'in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410':
@@ -151,21 +164,25 @@ UNTIL_KINDS = {'death_in_office_stated'}
 ELECTION_KINDS = {'election_result', 'election_result_unnamed', 'election_recalled_dated'}
 CONTINUATION_KINDS = {'in_office_continuation_attestation'}
 STYLING_KINDS = {'former_styling', 'outgoing_styling', 'handover_statement'}
+# Preserve these literal descriptions as claims. This amendment selects the
+# explicit note/letter observations; styling alone supplies no effective start.
+NEWLY_ELECTED_KINDS = {'newly_elected_styling'}
 RETROSPECTIVE_KINDS = {'retrospective_biography_statement', 'retrospective_former_styling'}
 INTERIM_KINDS = {'interim_arrangement_decision', 'interim_service_attestation'}
-NEVER_KINDS = ELECTION_KINDS | CONTINUATION_KINDS | STYLING_KINDS | RETROSPECTIVE_KINDS | INTERIM_KINDS
+NEVER_KINDS = (ELECTION_KINDS | NEWLY_ELECTED_KINDS | CONTINUATION_KINDS | STYLING_KINDS | RETROSPECTIVE_KINDS
+               | INTERIM_KINDS)
 
 # Exact holder observations of in_cpm_general_secretary: (name, attested_on, from, until), in chronological order.
 HOLDERS = [
     (SUR, '2004-03-02', None, None),
-    (PK, '2005-04-11', None, None),
-    (SY, '2015-04-19', None, '2024-09-12'),
+    (PK, '2011-09-10', None, None),
+    (SY, '2015-05-06', None, '2024-09-12'),
     (MAB, '2025-05-12', None, None),
 ]
 HOLDER_CLAIMS = [
     ['in_pd_surjeet_gs_letter_to_cec_20040302'],
-    ['in_pd_rally_newly_elected_gs_karat_20050411'],
-    ['in_pd_rally_newly_elected_gs_yechury_20150419', 'in_cpim_pb_yechury_general_secretary_died_20240912'],
+    ['in_cpim_karat_gs_note_to_nic_20110910'],
+    ['in_cpim_yechury_gs_letter_to_naidu_20150506', 'in_cpim_pb_yechury_general_secretary_died_20240912'],
     ['in_cpim_baby_gs_letter_to_pm_20250512'],
 ]
 STARTS = []
@@ -176,6 +193,8 @@ NEVER_HOLDER = tuple(cid for cid, e in EVENTS.items() if e[1] in NEVER_KINDS)
 ELECTION_DAYS = ['1998-10-11', '2015-04-19', '2018-04-22', '2022-04-10', '2025-04-06']
 # The interim coordinator of the Polit Bureau and the Central Committee is never a holder of this office.
 INTERIM = {PK: ('2024-09-29', '2025-04-02')}
+# The 'newly elected' stylings at the rallies closing the 18th, 20th and 21st Congresses: (person, day), in order.
+NEWLY_ELECTED = [(PK, '2005-04-11'), (PK, '2012-04-09'), (SY, '2015-04-19')]
 NOT_HOLDERS = {EMS}
 HOLDER_DATES = {d for h in HOLDERS for d in h[1:] if d}
 # Days carried only by claims that never feed a holder; no holder may be dated by one of them.
@@ -268,7 +287,6 @@ def cpm_rules(packet, rows):
         assert dated[0] >= previous, (name, 'holders stay in chronological order')
         assert '1990-01-01' <= dated[0] <= research.CUTOFF, (name, 'inside the period')
         previous = dated[0]
-        assert not {holder['attested_on'], holder['from'], holder['until']} & set(NEVER_HOLDER_DATE), name
         assert not set(holder['claim_ids']) & set(NEVER_HOLDER), name
         if name in INTERIM:
             assert dated[0] not in INTERIM[name] and holder['until'] not in INTERIM[name], \
@@ -314,6 +332,10 @@ def cpm_invariants(packet, rows):
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
     got = [(h['name'], h['attested_on'], h['from'], h['until']) for h in role['holder_claims']]
     assert got == HOLDERS, got
+    # This blacklist describes this exact fixture, not every possible
+    # independently supported observation that could share an event day.
+    for holder in role['holder_claims']:
+        assert not {holder['attested_on'], holder['from'], holder['until']} & set(NEVER_HOLDER_DATE), holder['name']
     assert [h['claim_ids'] for h in role['holder_claims']] == HOLDER_CLAIMS
     assert [(h['name'], h['from']) for h in role['holder_claims'] if h['from']] == STARTS
     assert [(h['name'], h['until']) for h in role['holder_claims'] if h['until']] == ENDS
@@ -360,7 +382,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (18, 24))
+        self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (20, 26))
         pm, presidency = self.packet['institutions']
         inc, bjp = other_role(self.packet, c01_20.ORG), other_role(self.packet, c01_27.ORG)
         jd, = [o for o in self.packet['organizations'] if o['id'] == c01_33.ORG]
@@ -372,7 +394,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
                          (c01_11.NEW_SOURCES, c01_15.NEW_SOURCES, c01_20.NEW_SOURCES, c01_27.NEW_SOURCES,
                           c01_33.NEW_SOURCES))
         self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims']), len(ids['roles'])),
-                         (85, 315, 623, 6))
+                         (85, 317, 625, 6))
         self.assertEqual(len(self.packet['organizations']), 83)
         self.assertEqual(self.org['sources'], ['in_eci_national_parties_20240323'] + NEW_SOURCES)
         self.assertEqual(self.org['claim_ids'], ['in_eci_20240323_np_row_04'] + list(EVENTS))
@@ -383,7 +405,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
         self.assertEqual(set(holder_claims) | set(NEVER_HOLDER), set(self.new_claims))
         self.assertEqual(sorted(set(holder_claims) - {c for c, e in EVENTS.items() if e[1] in UNTIL_KINDS}),
                          sorted(HOLDER_OBSERVATIONS))
-        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(HOLDERS)), (5, 19, 4))
+        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(HOLDERS)), (5, 21, 4))
         # At most ten people, each named as the sources print them; one claim names nobody.
         people = {e[3] for e in EVENTS.values()} - {None}
         self.assertEqual(people, set(SURNAMES))
@@ -402,6 +424,35 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
             self.assertTrue(holder['note'].startswith('Observed on '), holder['name'])
             self.assertTrue(holder['uncertainty'].startswith('No start'), holder['name'])
 
+    def test_styling_date_does_not_override_independently_cited_office_evidence(self):
+        # Synthetic date collisions exercise generic evidence rules only. They
+        # do not change the selected historical observations or source records.
+        for name, day in NEWLY_ELECTED:
+            with self.subTest(name=name, day=day):
+                packet, rows = copy.deepcopy(self.packet), copy.deepcopy(self.rows)
+                claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
+                sources = {c['id']: s['id'] for s in packet['sources'] for c in s['claims']}
+                holder = next(h for h in cpm_role(packet)['holder_claims'] if h['name'] == name)
+                direct, = [c for c in holder['claim_ids'] if rows[c]['event_kind'] in HOLDER_KINDS]
+                holder['attested_on'] = day
+                claims[direct]['attested_on'] = rows[direct]['attested_on'] = day
+                synthetic = f'Synthetic explicit office attestation: {name}, General Secretary, on {day}.'
+                claims[direct]['text'] = rows[direct]['text'] = synthetic
+                cpm_rules(packet, rows)
+                # The historical fixture is still immutable even though this
+                # independent synthetic evidence satisfies the generic rules.
+                with self.assertRaises(AssertionError):
+                    cpm_invariants(packet, rows)
+                styling, = [c for c in cpm_role(packet)['claim_ids']
+                            if rows[c]['event_kind'] in NEWLY_ELECTED_KINDS
+                            and rows[c]['holder_name'] == name and claims[c].get('attested_on') == day]
+                holder['claim_ids'] = [styling] + [c for c in holder['claim_ids'] if c != direct]
+                holder['sources'] = list(dict.fromkeys(sources[c] for c in holder['claim_ids']))
+                # Same person/day, but citing the styling instead of direct
+                # office evidence remains insufficient under this amendment.
+                with self.assertRaises(AssertionError):
+                    cpm_rules(packet, rows)
+
     def test_starts_and_ends_only_where_a_source_states_one(self):
         # No source states the day an office was assumed; the one end is a death in office stated with the office.
         self.assertFalse([h for h in self.role['holder_claims'] if h['from']])
@@ -412,7 +463,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
                          'Communist Party of India (Marxist) (cpim.org, the party website)')
         # 'Former', 'outgoing' and handover stylings, elections and the interim arrangement are never boundaries.
         for cid, (day, kind, _review, name) in EVENTS.items():
-            if kind in STYLING_KINDS | ELECTION_KINDS | INTERIM_KINDS:
+            if kind in STYLING_KINDS | ELECTION_KINDS | NEWLY_ELECTED_KINDS | INTERIM_KINDS:
                 for holder in self.role['holder_claims']:
                     self.assertNotIn(cid, holder['claim_ids'])
                     if day and holder['name'] == name:
@@ -421,6 +472,17 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
         dated = [e[0] for e in EVENTS.values() if e[1] in ELECTION_KINDS and e[0]]
         self.assertEqual(dated, ELECTION_DAYS)
         self.assertEqual(len([e for e in EVENTS.values() if e[1] in ELECTION_KINDS]), 7)
+        # These three claims are excluded as the selected holder evidence in
+        # this exact packet, without banning a separate source on the same day.
+        styled = [(e[3], e[0]) for e in EVENTS.values() if e[1] in NEWLY_ELECTED_KINDS]
+        self.assertEqual(styled, NEWLY_ELECTED)
+        for name, day in styled:
+            holder = next(h for h in self.role['holder_claims'] if h['name'] == name)
+            self.assertNotIn(day, (holder['attested_on'], holder['from'], holder['until']), name)
+        for cid in [c for c, e in EVENTS.items() if e[1] in NEWLY_ELECTED_KINDS]:
+            self.assertIn('newly_elected_styling', self.claims[cid]['uncertainty'], cid)
+            self.assertIn('not selected as a structured holder date', self.claims[cid]['uncertainty'], cid)
+            self.assertNotIn('ruling (a)', self.claims[cid]['uncertainty'], cid)
         # Karat's end is not inferred from Yechury's election or observation on 19 April 2015, nor Surjeet's from Karat's.
         karat = next(h for h in self.role['holder_claims'] if h['name'] == PK)
         surjeet = next(h for h in self.role['holder_claims'] if h['name'] == SUR)
@@ -461,7 +523,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
             self.assertEqual((extract['source_id'], extract['source_url']), (sid, source['url']))
             for key in ('scope_note', 'access_method', 'published_date', 'rights_note', 'accessed_date'):
                 self.assertEqual(extract[key], source[key], (sid, key))
-            self.assertEqual(source['accessed_date'], '2026-09-30', sid)
+            self.assertEqual(source['accessed_date'], '2026-10-01' if sid in ACCESSED_20261001 else '2026-09-30', sid)
             self.assertLessEqual(source['published_date'] or '', research.CUTOFF)
             self.assertIs(extract['source_response_checked_in'], False)
             self.assertEqual((extract['source_response_bytes'], extract['source_response_sha256']), RESPONSES[sid])
@@ -497,7 +559,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
                           for cid, row in self.rows.items()}, EVENTS)
         self.assertEqual(set(WAYBACK) | set(REST_POSTS), set(NEW_SOURCES))
         self.assertFalse(set(WAYBACK) & set(REST_POSTS))
-        self.assertEqual((len(WAYBACK), len(REST_POSTS)), (10, 8))
+        self.assertEqual((len(WAYBACK), len(REST_POSTS)), (10, 10))
         for sid, (stamp, original) in WAYBACK.items():
             source, extract = self.sources[sid], self.extracts[sid]
             self.assertEqual((source['original_url'], extract['original_url']), (original, original))
@@ -537,7 +599,8 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
                        'frontline', 'deccanherald', 'business-standard'):
             self.assertNotIn(marker, lowered, marker)
         leads, added = self.section('Leads not imported'), self.section('Sources added')
-        for marker in ('posts/11973', '18cong/speeches/hks_opening.htm', 'E-0298-1996-0190-10568', '04132008_1.htm'):
+        for marker in ('posts/11973', '18cong/speeches/hks_opening.htm', 'E-0298-1996-0190-10568', '04132008_1.htm',
+                       'posts/597'):
             self.assertIn(marker, leads, marker)
             self.assertNotIn(marker, added, marker)
 
@@ -598,6 +661,12 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
                   'claim_ids': []})),
             ('an election claim dropped from the role',
              lambda p: cpm_role(p)['claim_ids'].remove('in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410')),
+            ("'newly elected' styling used as Karat's observation (11 April 2005)",
+             lambda p: holder(p, PK).update({'attested_on': '2005-04-11',
+                                             'sources': ['in_pd_20050417_rally_concludes_18th_congress'],
+                                             'claim_ids': ['in_pd_rally_newly_elected_gs_karat_20050411']})),
+            ("'newly elected' styling used as Yechury's observation (19 April 2015)",
+             lambda p: holder(p, SY).update({'attested_on': '2015-04-19'})),
         ]
         failures = []
         for label, fn in mutations:
@@ -609,7 +678,7 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
                 continue
             failures.append(label)
         self.assertEqual(failures, [])
-        self.assertEqual(len(mutations), 17)
+        self.assertEqual(len(mutations), 19)
         # A claim whose day is changed, and an extract row that disagrees with the packet, are both caught.
         p = copy.deepcopy(self.packet)
         next(c for s in p['sources'] for c in s['claims']
@@ -618,6 +687,10 @@ class IndiaCpimGeneralSecretariesTests(unittest.TestCase):
             cpm_invariants(p, self.rows)
         rows = copy.deepcopy(self.rows)
         rows['in_pd_rally_karat_outgoing_gs_20150419']['event_kind'] = 'in_office_attestation'
+        with self.assertRaises(AssertionError):
+            cpm_invariants(self.packet, rows)
+        rows = copy.deepcopy(self.rows)
+        rows['in_pd_rally_newly_elected_gs_yechury_20150419']['event_kind'] = 'in_office_attestation'
         with self.assertRaises(AssertionError):
             cpm_invariants(self.packet, rows)
 

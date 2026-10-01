@@ -1,0 +1,24 @@
+[
+  {
+    "command": [
+      "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_india*.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\claude-review-integration-20261001",
+    "started_utc": "2026-10-01T03:05:26.460490+00:00",
+    "duration_seconds": 13.568,
+    "exit_code": 1,
+    "log": "india-01.log",
+    "bytes": 943,
+    "sha256": "dc4b9d2991434e17b5803e9f449f6fbb248f59e42bf7ef791a95c83dcea0b392"
+  }
+]

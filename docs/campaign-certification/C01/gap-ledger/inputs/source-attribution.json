@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "5b6356f3d4ad3c60327158c14bead2c943d8fdfc",
+  "generated_from": "3c4a3abcc59208ba0923705db0193964643b21f9",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -2253,8 +2253,18 @@
         "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
+      "in_cpim_gs_letter_to_naidu_20150508": {
+        "commit": "3c4a3abc",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
       "in_cpim_gs_letter_to_pm_20250512": {
         "commit": "5d5935c3",
+        "packet": "CLAUDE-C01-40",
+        "via": "extract_first_added"
+      },
+      "in_cpim_gs_note_to_nic_20110910": {
+        "commit": "3c4a3abc",
         "packet": "CLAUDE-C01-40",
         "via": "extract_first_added"
       },
