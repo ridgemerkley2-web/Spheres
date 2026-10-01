@@ -63,6 +63,12 @@ spheres-web/src/main.rs text eol=lf
 spheres-web/src/person_portraits.rs text eol=lf
 spheres-web/ui/government-ui.css text eol=lf
 spheres-web/ui/index.html text eol=lf
+spheres-sim/src/government.rs text eol=lf
+spheres-sim/src/institutional_leadership.rs text eol=lf
+spheres-web/src/government_view.rs text eol=lf
+spheres-web/src/person_avatar_assets.rs text eol=lf
+spheres-web/ui/government-ui.js text eol=lf
+tools/avatars/tonga_cast_coverage.py text eol=lf
 # These evidence Markdown files are byte-hashed beside the LF-only JSON receipts.
 docs/campaign-certification/S25/preparation/native-stability/evidence/** -text -whitespace
 docs/campaign-certification/S28/preparation/portable-release/evidence/** -text -whitespace
