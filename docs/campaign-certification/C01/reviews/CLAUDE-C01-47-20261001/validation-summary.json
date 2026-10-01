@@ -1,0 +1,14 @@
+{
+  "status": "passed_bounded_checks",
+  "france_importer_tests": 48,
+  "campaign_research_census_tests": 16,
+  "red_guard_tests": 3,
+  "red_guard_expected_failures": 3,
+  "initial_sparse_error": "test_campaign_census lacked exact HEAD nations.rs; original log retained. Materialized nations.rs and government.rs only; rerun16 passes.",
+  "checks": [
+    "import_cnccfp_census.py --check",
+    "locally regenerated campaign_research.py --check"
+  ],
+  "generated_index": "Generated locally for checking; restored HEAD bytes before correction commit. Root regenerates combined metadata.",
+  "no_native_or_full_avatar_suite": true
+}

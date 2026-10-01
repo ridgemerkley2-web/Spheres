@@ -1,0 +1,28 @@
+.........E
+======================================================================
+ERROR: setUpClass (test_campaign_census.CensusTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\france\tools\avatars\test_campaign_census.py", line 12, in setUpClass
+    cls.outputs = census.build()
+                  ~~~~~~~~~~~~^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\france\tools\avatars\campaign_census.py", line 89, in build
+    roster, live = production.nation_roster(root), production.simulation_parties(root)
+                   ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\france\tools\avatars\leadership_production.py", line 45, in nation_roster
+    source = (root / "spheres-sim/src/nations.rs").read_text(encoding="utf-8")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\spheres-offload\\codex-next-20260928\\claude-review-20261001-04\\france\\spheres-sim\\src\\nations.rs'
+
+----------------------------------------------------------------------
+Ran 9 tests in 28.063s
+
+FAILED (errors=1)

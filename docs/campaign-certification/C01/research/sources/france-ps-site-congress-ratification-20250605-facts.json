@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_site_congress_ratification_2025",
+  "source_url": "https://web.archive.org/web/20250617103637id_/https://www.parti-socialiste.fr/congres_du_parti_socialiste_les_delegues_ratifient_l_unanimite_les_resultats_du_congres_et_confirment_olivier_faure_premier_secretaire",
+  "original_url": "https://www.parti-socialiste.fr/congres_du_parti_socialiste_les_delegues_ratifient_l_unanimite_les_resultats_du_congres_et_confirment_olivier_faure_premier_secretaire",
+  "archive_capture_utc": "2025-06-17T10:36:37Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 11622,
+  "source_response_sha256": "2cfc536b7f04a4dbe223293b59119d9fb87d4bf2c4cd4f7f481c7afccfed2258",
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 59386,
+  "decoded_response_sha256": "83d1ba01424a04a42c4f8fd50bd88ed26e2888d54e797d894dd6d710c2e6f615",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-06-17T10:36:37Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header); the Internet Archive nevertheless serves this capture with Content-Encoding: gzip (the stored response was compressed), so the recorded identity is the body as received, the gzip stream (11622 bytes), exactly what curl without --compressed saves. Decompressed, it is 59386 bytes, SHA-256 83d1ba01424a04a42c4f8fd50bd88ed26e2888d54e797d894dd6d710c2e6f615. This packet downloaded it at 2026-10-01 12:26Z and again at 2026-10-01 13:05Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 17 June 2025 of a communiqué on the party's website. The communiqué text prints no day for the ratification; the site's publication stamp is not used as a date. The Internet Archive serves this capture gzip-compressed even to a request without Accept-Encoding; the recorded identity is the compressed body as received, and the provenance note also gives the decompressed size and SHA-256.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_ratification_81e_congres_20250605",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-11",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Olivier Faure",
+      "role_title": "Premier secrétaire",
+      "event_kind": "members_vote_ratified",
+      "attested_on": null,
+      "text": "The communiqué reports unanimous ratification by congress delegates of the votes of 27 May and 5 June 2025. It confirms Olivier Faure as first secretary for a fourth mandate with 51.15% of votes cast among 25,163 voters, without giving a ratification day.",
+      "locator": {
+        "item": "communiqué text, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

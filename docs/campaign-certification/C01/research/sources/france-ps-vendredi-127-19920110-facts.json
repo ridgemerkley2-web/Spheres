@@ -1,0 +1,118 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_vendredi_127_19920110",
+  "source_url": "https://archives-socialistes.fr/_recherche-images/download/5730/image/3293/0",
+  "accessed_date": "2026-10-01",
+  "published_date": "1992-01-10",
+  "access_method": "downloaded_archive_viewer_pdf_ocr_text_layer_read",
+  "source_response_bytes": 20394417,
+  "source_response_sha256": "a7298aee6e88168634c3e54881b7dac6d7cb964ba6e4774c55816104d63cf5ae",
+  "source_response_checked_in": false,
+  "archive_record": {
+    "host": "Fondation Jean-Jaurès, Centre d'archives socialistes (archives-socialistes.fr)",
+    "catalogue_record_id": 5730,
+    "catalogue_record_ark": "https://archives-socialistes.fr/ark:21895/1efcea8e0ace679a8677fa163e8087d3/1/1",
+    "stored_file": "depot/presse/vendredi/vendredi_127.pdf",
+    "viewer_allow_download": false
+  },
+  "provenance_note": "The stored PDF of this issue as served by the Fondation Jean-Jaurès's Centre d'archives socialistes (archives-socialistes.fr) at the address its public document viewer loads for catalogue record 5730 (stored file depot/presse/vendredi/vendredi_127.pdf); no login, form, cookie or token is involved. The record's viewer configuration sets allowDownload to false and offers no download button; the response is nonetheless the public, cacheable file the viewer itself requests (Cache-Control: max-age=864000, public; ETag \"374b94e27a370db08404fc677a5e374d\"; Content-Disposition: attachment; filename=depot-presse-vendredi-vendredi-127.pdf). Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the PDF as received. This packet downloaded it at 2026-10-01 12:03Z and again at 2026-10-01 13:02Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. The PDF's OCR text layer was read. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Vendredi n°127, dated 10 January 1992 (a Friday) on its pages. Imported: Pierre Mauroy's declaration to the bureau exécutif of 7 January 1992 (PDF p. 4 to 5), the report of Laurent Fabius's election by the comité directeur (PDF p. 4 to 6) and his address (PDF p. 6). A relative day in the issue resolves from its dateline: 'jeudi' is 9 January 1992. An issue of the Parti socialiste's weekly, a party record for its own offices, as digitized and served by the Fondation Jean-Jaurès's Centre d'archives socialistes (the party's foundation archive). The stored PDF is the file the archive's public document viewer loads for this catalogue record; its OCR text layer was read and quotations are kept to passages whose OCR reads cleanly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "OCR text layer of the PDF read; quotations are kept to passages whose OCR reads cleanly. No page images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_mauroy_mandate_at_disposal_19920107",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-01",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Pierre Mauroy",
+      "role_title": "Premier secrétaire",
+      "event_kind": "mandate_placed_at_disposal",
+      "attested_on": "1992-01-07",
+      "text": "The issue prints Pierre Mauroy's 'Déclaration devant le bureau exécutif, 7 janvier 1992': he has decided 'de remettre mon mandat de premier secrétaire à la disposition du prochain comité directeur, qui se réunira jeudi'.",
+      "locator": {
+        "pdf_page_1_based": 4,
+        "item": "declaration 'Pierre Mauroy : J'ai le sentiment ... d'avoir aujourd'hui largement rempli ma mission', closing 'Déclaration devant le bureau exécutif, 7 janvier 1992.' (PDF p. 5)"
+      }
+    },
+    {
+      "claim_id": "fr_ps_mauroy_elected_19880514_retrospective",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-01",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Pierre Mauroy",
+      "role_title": "Premier secrétaire",
+      "event_kind": "election_retrospective",
+      "attested_on": "1988-05-14",
+      "text": "In the same declaration he recalls: 'Lorsque j'ai été élu premier secrétaire, le 14 mai 1988'.",
+      "locator": {
+        "pdf_page_1_based": 4,
+        "item": "same declaration, second paragraph"
+      }
+    },
+    {
+      "claim_id": "fr_ps_fabius_elected_by_comite_directeur_19920109",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-02",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Laurent Fabius",
+      "role_title": "Premier secrétaire",
+      "event_kind": "election_by_comite_directeur",
+      "attested_on": "1992-01-09",
+      "text": "The issue reports that Laurent Fabius, 'élu premier secrétaire du PS à une très forte majorité', 'a été élu, jeudi, par le comité directeur, à une très large majorité, en dépit de onze abstentions'; in an issue dated Friday 10 January 1992, 'jeudi' is 9 January 1992.",
+      "locator": {
+        "pdf_page_1_based": 5,
+        "item": "article 'le Parti socialiste rassemblé', first paragraphs"
+      }
+    },
+    {
+      "claim_id": "fr_ps_fabius_acceptance_address_19920110",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-02",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Laurent Fabius",
+      "role_title": "Premier secrétaire",
+      "event_kind": "acceptance_statement",
+      "attested_on": "1992-01-10",
+      "text": "The issue prints Laurent Fabius's address to the comité directeur, opening 'Me voilà donc, par votre décision, élu premier secrétaire de notre parti'.",
+      "locator": {
+        "pdf_page_1_based": 6,
+        "item": "address headed 'Je serai le premier secrétaire de tous', opening words"
+      }
+    },
+    {
+      "claim_id": "fr_ps_fabius_styled_premier_secretaire_19920110",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-02",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Laurent Fabius",
+      "role_title": "Premier secrétaire",
+      "event_kind": "in_office_styling",
+      "attested_on": "1992-01-10",
+      "text": "The issue's political section opens: 'Avec l'élection de Laurent Fabius, premier secrétaire, commence une nouvelle étape de la vie du PS.'",
+      "locator": {
+        "pdf_page_1_based": 4,
+        "item": "standfirst of the political section"
+      }
+    },
+    {
+      "claim_id": "fr_ps_mauroy_leaves_19920110",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-01",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Pierre Mauroy",
+      "role_title": "Premier secrétaire",
+      "event_kind": "departure_reported",
+      "attested_on": "1992-01-10",
+      "text": "The issue reports that Pierre Mauroy, 'après trois ans et demi passés à la tête du PS, a décidé de céder sa place', and that he 'quitte ses fonctions'; it prints no day of departure.",
+      "locator": {
+        "pdf_page_1_based": 5,
+        "item": "article 'le Parti socialiste rassemblé', paragraph on the succession"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

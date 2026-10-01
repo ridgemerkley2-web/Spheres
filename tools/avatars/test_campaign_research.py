@@ -19,12 +19,14 @@ class ResearchTests(unittest.TestCase):
     def test_official_snapshot_is_pinned_and_observations_are_not_terms(self):
         ids = self.valid(self.france)
         # The 635 CNCCFP organizations plus CLAUDE-C01-23's presidency and CLAUDE-C01-37's prime-minister institutions;
-        # their two roles are the only roles.
+        # their two roles and CLAUDE-C01-47's party role on fr_cnccfp_76 are the only roles.
         self.assertEqual(len(ids['entries']), 637)
         self.assertEqual(sorted(e for e, category in ids['entries'].items() if category == 'institutions'),
                          ['fr_presidency', 'fr_prime_minister'])
-        self.assertEqual(ids['roles'], {'fr_president', 'fr_pm'})
-        self.assertTrue(all(o['lifecycle']['status'] == 'unknown' and not o['represented_party_ids'] and not o['roles'] for o in self.france['organizations']))
+        self.assertEqual(ids['roles'], {'fr_president', 'fr_pm', 'fr_ps_first_secretary'})
+        self.assertTrue(all(o['lifecycle']['status'] == 'unknown' and not o['represented_party_ids']
+                            and [r['id'] for r in o['roles']] == (['fr_ps_first_secretary'] if o['id'] == 'fr_cnccfp_76' else [])
+                            for o in self.france['organizations']))
         with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
             france.build((research.ROOT / france.RAW).read_bytes() + b'\n')
 

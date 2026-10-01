@@ -375,7 +375,9 @@ def presidency_invariants(packet):
     new_sources, new_claims = set(RESPONSES), set(EVENTS)
     for entry in packet['organizations']:
         assert not set(entry['claim_ids']) & new_claims and not set(entry['sources']) & new_sources, entry['id']
-        assert entry['roles'] == [] and entry['represented_party_ids'] == [], entry['id']
+        # CLAUDE-C01-47's party role on fr_cnccfp_76 is the only organization role.
+        assert [r['id'] for r in entry['roles']] == (['fr_ps_first_secretary'] if entry['id'] == 'fr_cnccfp_76' else []), entry['id']
+        assert entry['represented_party_ids'] == [], entry['id']
     assert set(role['claim_ids']) == new_claims and set(role['sources']) == new_sources
 
 
@@ -418,7 +420,15 @@ class FrancePresidentsTests(unittest.TestCase):
         text = json.dumps(base, ensure_ascii=False, indent=2) + '\n'
         self.assertEqual(hashlib.sha256(text.encode('utf-8')).hexdigest(), PRE_SUPPLEMENT_SHA256)
         self.assertEqual(base['institutions'], [])
-        self.assertEqual(self.packet['organizations'], base['organizations'])
+        # The CNCCFP organizations, with CLAUDE-C01-47's organization_roles appended to fr_cnccfp_76 only.
+        expected = copy.deepcopy(base['organizations'])
+        for addition in self.supplement['organization_roles']:
+            target = next(o for o in expected if o['id'] == addition['organization_id'])
+            for key in ('roles', 'sources', 'claim_ids'):
+                target[key] = target[key] + addition[key]
+            target['coverage']['unresolved'] = target['coverage']['unresolved'] + addition['coverage_unresolved']
+        self.assertEqual([a['organization_id'] for a in self.supplement['organization_roles']], ['fr_cnccfp_76'])
+        self.assertEqual(self.packet['organizations'], expected)
         self.assertEqual(len(base['organizations']), 635)
         count = len(base['sources'])
         self.assertEqual(self.packet['sources'][:count], base['sources'])
@@ -428,12 +438,13 @@ class FrancePresidentsTests(unittest.TestCase):
         coverage = dict(self.packet['coverage'])
         self.assertEqual(coverage.pop('unresolved'), unresolved + self.supplement['coverage_unresolved'])
         self.assertEqual(coverage, base['coverage'])
-        self.assertEqual({k: v for k, v in self.packet.items() if k not in ('sources', 'institutions', 'coverage')},
-                         {k: v for k, v in base.items() if k not in ('sources', 'institutions', 'coverage')})
-        # The supplement is LF, indent=2, ensure_ascii=False, with exactly the three merged keys.
+        self.assertEqual({k: v for k, v in self.packet.items() if k not in ('sources', 'institutions', 'coverage', 'organizations')},
+                         {k: v for k, v in base.items() if k not in ('sources', 'institutions', 'coverage', 'organizations')})
+        # The supplement is LF, indent=2, ensure_ascii=False, with exactly the three merged keys and CLAUDE-C01-47's
+        # organization_roles.
         self.assertNotIn(b'\r', self.supplement_bytes)
         self.assertEqual(self.supplement_bytes.decode('utf-8'), json.dumps(self.supplement, indent=2, ensure_ascii=False) + '\n')
-        self.assertEqual(list(self.supplement), ['sources', 'institutions', 'coverage_unresolved'])
+        self.assertEqual(list(self.supplement), ['sources', 'institutions', 'coverage_unresolved', 'organization_roles'])
         self.assertEqual(importer.SUPPLEMENT.parent.name, 'supplements')
         self.assertNotIn(importer.SUPPLEMENT.parent, [research.RESEARCH])
 
@@ -491,7 +502,7 @@ class FrancePresidentsTests(unittest.TestCase):
         # This packet's 49 sources open the supplement; CLAUDE-C01-37's sources follow them.
         self.assertEqual([s['id'] for s in self.supplement['sources']][:49], NEW_SOURCES)
         self.assertEqual(len(ids['entries']), 637)
-        self.assertEqual(ids['roles'], {ROLE, 'fr_pm'})
+        self.assertEqual(ids['roles'], {ROLE, 'fr_pm', 'fr_ps_first_secretary'})
         self.assertEqual(set(self.new_claims), set(EVENTS))
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         self.assertFalse(holder_claims & set(NEVER_HOLDER))
@@ -802,8 +813,8 @@ class FrancePresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'France')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        # The presidency and CLAUDE-C01-37's prime-minister institution, one role each.
-        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 2))
+        # The presidency and CLAUDE-C01-37's prime-minister institution, one role each, and CLAUDE-C01-47's party role.
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 3))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'France'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

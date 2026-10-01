@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_ps_site_press_conference_2018",
+  "source_url": "https://web.archive.org/web/20180414154012id_/http://www.parti-socialiste.fr:80/conference-de-presse-de-rachid-temal-dolivier-faure/",
+  "original_url": "http://www.parti-socialiste.fr:80/conference-de-presse-de-rachid-temal-dolivier-faure/",
+  "archive_capture_utc": "2018-04-14T15:40:12Z",
+  "accessed_date": "2026-10-01",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 115977,
+  "source_response_sha256": "a55b6460312621dd154c47370c1210aecf6be856937714cea5788bb5a40144d4",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2018-04-14T15:40:12Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding; the recorded identity is the HTML as received. This packet downloaded it at 2026-10-01 12:28Z and again at 2026-10-01 13:04Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 14 April 2018 of a page on the party's website. The page prints no date of its own; the CMS publication time in its metadata is not used as a date. Only its one-sentence text is imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_ps_faure_premier_secretaire_elu_20180329",
+      "observation_id": "fr_cnccfp_76",
+      "review_observation": "FR-PS-11",
+      "role_id": "fr_ps_first_secretary",
+      "holder_name": "Olivier Faure",
+      "role_title": "Premier secrétaire",
+      "event_kind": "members_vote_election",
+      "attested_on": "2018-03-29",
+      "text": "The page reads: 'Suite au scrutin du 29 mars, retrouvez la conférence de presse de Rachid Temal, Coordinateur national du Parti socialiste, et d'Olivier Faure, Premier secrétaire élu.'",
+      "locator": {
+        "item": "page text"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-47 only (Premier secrétaire of the Parti socialiste, the party role fr_ps_first_secretary on the CNCCFP reporting identity fr_cnccfp_76; the ten people who held it from 1 January 1990 to the 7 September 2026 cutoff). Elections, results, ratifications, departures, resignations and acting, delegated, provisional or collective arrangements stay separate rows; holder dates are decided in the packet, not by any row. State offices (government, ministries, parliament), other party offices and other parties are excluded."
+}

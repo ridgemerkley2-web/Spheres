@@ -1,0 +1,40 @@
+FFF
+======================================================================
+FAIL: test_undated_announcements_do_not_borrow_issue_or_vote_days (test_france_ps_first_secretaries_c01_47.FrancePsFirstSecretariesTests.test_undated_announcements_do_not_borrow_issue_or_vote_days)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\france\tools\avatars\test_france_ps_first_secretaries_c01_47.py", line 381, in test_undated_announcements_do_not_borrow_issue_or_vote_days
+    self.assertIsNone(self.claims['fr_ps_cambadelis_cedes_place_2017']['attested_on'])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '2017-06-17' is not None
+
+======================================================================
+FAIL: test_ratification_day_does_not_borrow_vote_day (test_france_ps_first_secretaries_c01_47.FrancePsFirstSecretariesTests.test_ratification_day_does_not_borrow_vote_day)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\france\tools\avatars\test_france_ps_first_secretaries_c01_47.py", line 388, in test_ratification_day_does_not_borrow_vote_day
+    self.assertIsNone(self.claims['fr_ps_ratification_81e_congres_20250605']['attested_on'])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '2025-06-05' is not None
+
+======================================================================
+FAIL: test_flnks_locator_names_its_own_dated_item (test_france_ps_first_secretaries_c01_47.FrancePsFirstSecretariesTests.test_flnks_locator_names_its_own_dated_item)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\claude-review-20261001-04\france\tools\avatars\test_france_ps_first_secretaries_c01_47.py", line 398, in test_flnks_locator_names_its_own_dated_item
+    self.assertEqual(claim['locator'], {
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+        'pdf_page_1_based': 14,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+        'item': "FLNKS delegation communiqué, lower-left column, dated '18 octobre'; not the adjacent '17 octobre' items"})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'pdf[24 chars]m': "dated item '17 octobre' / FLNKS delegation"} != {'pdf[24 chars]m': "FLNKS delegation communiqué, lower-left c[59 chars]ems"}
+- {'item': "dated item '17 octobre' / FLNKS delegation", 'pdf_page_1_based': 14}
++ {'item': "FLNKS delegation communiqué, lower-left column, dated '18 octobre'; "
++          "not the adjacent '17 octobre' items",
++  'pdf_page_1_based': 14}
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.014s
+
+FAILED (failures=3)
