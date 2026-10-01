@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_nomination_cazeneuve_20161206",
+  "source_url": "https://web.archive.org/web/20221102101154id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033545008",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033545008",
+  "archive_capture_utc": "2022-11-02T10:11:54Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2016-12-07",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12977,
+  "source_response_sha256": "96e3d3bdf8cec9af7c3b82ea612d4b9c794b34948622de6bfee91646be0d716f",
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 87692,
+  "decoded_response_sha256": "a3db3895de84654270b257d6db4c6a5419f9c2f8a6ea310e09384ce218edd697",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2022-11-02T10:11:54Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header); the Internet Archive nevertheless serves this capture with Content-Encoding: gzip (the stored response was compressed), so the recorded identity is the body as received, the gzip stream (12977 bytes), exactly what curl without --compressed saves. Decompressed, it is 87692 bytes, SHA-256 a3db3895de84654270b257d6db4c6a5419f9c2f8a6ea310e09384ce218edd697. No uncompressed capture of this text was found. This packet downloaded it at 2026-09-30 23:45Z and again at 2026-10-01 00:21Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 2 November 2022 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX1635924D); Légifrance itself refuses automated access (HTTP 403 on 30 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it. The Internet Archive serves this capture gzip-compressed even to a request without Accept-Encoding; the recorded identity is the compressed body as received, and the provenance note also gives the decompressed size and SHA-256.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_cazeneuve_appointed_pm_20161206",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-14",
+      "role_id": "fr_pm",
+      "holder_name": "Bernard Cazeneuve",
+      "role_title": "Premier ministre",
+      "event_kind": "appointment_decree",
+      "attested_on": "2016-12-06",
+      "text": "A decree of 'Le Président de la République', 'Vu l'article 8 de la Constitution', published in JORF n°0284 of 7 December 2016 (NOR HRUX1635924D), decrees 'M. Bernard Cazeneuve est nommé Premier ministre' and closes 'Fait le 6 décembre 2016.', signed 'François Hollande'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1635924D', 'JORF n°0284 du 7 décembre 2016 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-38 only (Premier ministre; the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff, the next batch after CLAUDE-C01-37). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister and a decree the Prime Minister signs stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}

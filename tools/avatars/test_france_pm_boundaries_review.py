@@ -21,8 +21,9 @@ class PrimeMinisterBoundaryReviewTests(unittest.TestCase):
 
     def test_effective_boundaries_are_not_inferred_from_instrument_dates(self):
         role = observation_only_contract(self.supplement)
-        self.assertEqual(len(role['holder_claims']), 16)
-        self.assertEqual(len({h['name'] for h in role['holder_claims']}), 10)
+        # CLAUDE-C01-37: 16 observations of 10 people; CLAUDE-C01-38 appends 12 observations of 9 more people.
+        self.assertEqual(len(role['holder_claims']), 16 + 12)
+        self.assertEqual(len({h['name'] for h in role['holder_claims']}), 10 + 9)
 
     def test_signature_and_publication_promotion_is_rejected(self):
         observation_only_contract(self.supplement)

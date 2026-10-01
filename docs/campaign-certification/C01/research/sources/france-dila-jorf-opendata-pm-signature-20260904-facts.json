@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_dila_opendata_pm_signature_20260904",
+  "source_url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20260905-004620.tar.gz",
+  "accessed_date": "2026-09-30",
+  "published_date": "2026-09-05",
+  "access_method": "downloaded_official_open_data_archive_and_xml_member_read",
+  "source_response_bytes": 126639,
+  "source_response_sha256": "edec7f27c7326f96effe331d76f3288195e0b210de8798472b0365b189d6ad1b",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default headers (no Accept-Encoding header), and the response had no Content-Encoding. This packet downloaded it at 2026-09-30 23:50Z and again at 2026-10-01 00:22Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A daily Journal officiel open-data export, a static file in DILA's open-data directory (Last-Modified Fri, 04 Sep 2026 22:46:34 GMT; ETag \"1eeaf-65ab00a5d3a7c\"); the .tar.gz is the file itself, not a Content-Encoding. The record read: 20260905-004620/jorf/global/texte/version/JORF/TEXT/00/00/54/79/66/JORFTEXT000054796645.xml (6382 bytes, SHA-256 307a5c4bb33cabce685c58f39d62f1327cfba590f9594302ba3cfcc07d5fc1ce), the TEXTE_VERSION record of JORFTEXT000054796645 (NOR JUSD2622325D). The DATES_EFFET element of the record read is empty. Retention caveat: on 30 September 2026 the directory listed daily files back to 13 July 2025, so daily exports appear to be removed after about fourteen months; this file may be removed around late 2027, so re-verify it before then. Légifrance itself refuses automated access (HTTP 403 on 30 September 2026), which was not bypassed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Structured XML records read directly (metadata, visas, article 1 and signature block); no rendering needed."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_lecornu_signs_decree_as_pm_20260904",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-21",
+      "role_id": "fr_pm",
+      "holder_name": "Sébastien LECORNU",
+      "role_title": "Premier ministre",
+      "event_kind": "in_office_signature_as_pm",
+      "attested_on": "2026-09-04",
+      "text": "'Décret n° 2026-841 du 4 septembre 2026' (NOR JUSD2622325D, JORFTEXT000054796645), published in JORF n°0207 of 5 September 2026, opens 'Le Premier ministre,' and closes 'Fait le 4 septembre 2026.', signed 'Sébastien LECORNU', followed by 'Par le Premier ministre :' and the countersigning minister.",
+      "locator": {
+        "archive_member": "20260905-004620/jorf/global/texte/version/JORF/TEXT/00/00/54/79/66/JORFTEXT000054796645.xml",
+        "item": "DATE_TEXTE 2026-09-04; ORIGINE_PUBLI 'JORF n°0207 du 5 septembre 2026'; NUM_SEQUENCE 8; TITREFULL; VISAS (opening words); SIGNATAIRES"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-38 only (Premier ministre; the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff, the next batch after CLAUDE-C01-37). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister and a decree the Prime Minister signs stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}

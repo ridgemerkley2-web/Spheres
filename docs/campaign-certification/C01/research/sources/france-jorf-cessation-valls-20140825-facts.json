@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_cessation_valls_20140825",
+  "source_url": "https://web.archive.org/web/20160317061550id_/http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029401541",
+  "original_url": "http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029401541",
+  "archive_capture_utc": "2016-03-17T06:15:50Z",
+  "accessed_date": "2026-09-30",
+  "published_date": "2014-08-26",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 14083,
+  "source_response_sha256": "3f80f2659faf3cf93ee39b4995bf85b42fe84fc399051026863b5e309a829d81",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2016-03-17T06:15:50Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with curl's default headers (no Accept-Encoding header) and served without Content-Encoding, so the recorded identity is the body as received. This packet downloaded it at 2026-09-30 23:44Z and again at 2026-10-01 00:21Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 17 March 2016 of Légifrance's Journal officiel text page (the earlier affichTexte.do address; NOR HRUX1420333D); Légifrance itself refuses automated access (HTTP 403 on 30 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_valls_government_resignation_letter_20140825",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-13",
+      "role_id": "fr_pm",
+      "holder_name": "Manuel VALLS",
+      "role_title": "Premier ministre",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2014-08-25",
+      "text": "The decree ending the Government's functions (NOR HRUX1420333D) cites in its visas 'la lettre en date du 25 août 2014 par laquelle le Premier ministre a présenté au Président de la République la démission du Gouvernement'.",
+      "locator": {
+        "item": "reference block ('NOR: HRUX1420333D', 'JORF n°0196 du 26 août 2014 page 14337 texte n° 1') and the second visa"
+      }
+    },
+    {
+      "claim_id": "fr_jorf_valls_functions_ended_20140825",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-13",
+      "role_id": "fr_pm",
+      "holder_name": "Manuel VALLS",
+      "role_title": "Premier ministre",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2014-08-25",
+      "text": "The decree ending the Government's functions, published in JORF n°0196 of 26 August 2014 (NOR HRUX1420333D), decrees 'Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. Manuel VALLS, Premier ministre, et des autres membres du Gouvernement' and closes 'Fait à l'Ile de Sein, le 25 août 2014.', signed 'François Hollande'.",
+      "locator": {
+        "item": "reference block ('NOR: HRUX1420333D', 'JORF n°0196 du 26 août 2014 page 14337 texte n° 1'), article 1 and the signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-38 only (Premier ministre; the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff, the next batch after CLAUDE-C01-37). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister and a decree the Prime Minister signs stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}
