@@ -1,5 +1,8 @@
 # USSR government and President 49: the President and the head of the Union government, dated attestations, 1990-1991
 
+> Independent review, 1 October 2026: accept six sources, 17 claims and **four Presidential holder observations**. Withhold the proposed Pavlov observation of 22 January 1991: the title between two names in the printed signature block is ambiguous. It remains an `ambiguous_signature_block` claim with no identified holder. The unchanged submission below records the author's original proposal, including its five-observation count, and is superseded on that point by this review. The existing three government observations are unchanged. See the C01-49 independent review receipt; no canonical qualification is granted.
+
+
 Packet: **CLAUDE-C01-49**. State: **ready_for_review** (not complete).
 Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-su-49`; claim commit `b2ae720b` on `5ea4f8fc`, the head of
 `codex/campaign-certification` when the packet was claimed; **not stacked** on any pending packet. Research access: 1 October 2026

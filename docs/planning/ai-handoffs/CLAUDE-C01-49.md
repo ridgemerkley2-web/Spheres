@@ -1,5 +1,8 @@
 # CLAUDE-C01-49: USSR heads of government and President: dated attestations, 1990–1991
 
+> Independent review, 1 October 2026: accept six sources, 17 claims and **four Presidential holder observations**. Withhold the proposed Pavlov observation of 22 January 1991: the title between two names in the printed signature block is ambiguous. It remains an `ambiguous_signature_block` claim with no identified holder. The unchanged submission below records the author's original proposal, including its five-observation count, and is superseded on that point by this review. The existing three government observations are unchanged. See the C01-49 independent review receipt; no canonical qualification is granted.
+
+
 Owner: Claude. State: **ready_for_review** (submitted 1 October 2026 UTC; not complete). Parent: C01 (incomplete).
 
 Origin: part of the back-to-back C01 research pipeline the user asked for on 28 September 2026, taken from the

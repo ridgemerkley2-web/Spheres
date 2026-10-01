@@ -84,7 +84,7 @@ EVENTS = {
     'su_pravda13_supreme_soviet_approves_premier_19910114': ('1991-01-14', 'appointment_approved', 'SU-GOV-11', GOV),
     'su_pravda13_note_styles_premier_19910115': ('1991-01-15', 'styling_in_biographical_note', 'SU-GOV-11', GOV),
     'su_pravda20_president_signs_decree_19910122': ('1991-01-22', 'in_office_attestation', 'SU-PRES-02', PRES),
-    'su_pravda20_premier_signs_resolution_19910122': ('1991-01-22', 'in_office_attestation', 'SU-GOV-12', GOV),
+    'su_pravda20_premier_signs_resolution_19910122': ('1991-01-22', 'ambiguous_signature_block', 'SU-GOV-12', GOV),
     'su_izv197_vice_president_decree_assumes_duties_19910818': ('1991-08-18', 'acting_service_claimed', 'SU-PRES-03', PRES),
     'su_izv197_leadership_statement_powers_passed_19910818': ('1991-08-18', 'powers_transfer_claimed', 'SU-PRES-03', PRES),
     'su_izv197_statement_lists_pavlov_as_premier_19910818': ('1991-08-18', 'styling_in_signed_statement', 'SU-GOV-12', GOV),
@@ -102,7 +102,7 @@ ROW_HOLDERS.update({cid: GORB for cid in (
     'su_ved35p_up2443_president_signs_19910822', 'su_ved41p_up2668_president_signs_19911005')})
 ROW_HOLDERS.update({cid: PAVLOV for cid in (
     'su_pravda13_supreme_soviet_approves_premier_19910114', 'su_pravda13_note_styles_premier_19910115',
-    'su_pravda20_premier_signs_resolution_19910122', 'su_izv197_statement_lists_pavlov_as_premier_19910818')})
+    'su_izv197_statement_lists_pavlov_as_premier_19910818')})
 # The exact holders, existing first and unchanged, then the appended ones: (name, attested_on, from, until).
 HOLDERS = {
     PRES: [
@@ -117,7 +117,6 @@ HOLDERS = {
         ('Николай Иванович Рыжков', '1990-01-12', None, None),
         ('Николай Иванович Рыжков', '1990-11-24', None, None),
         (PAVLOV, '1991-08-19', None, None),
-        (PAVLOV, '1991-01-22', None, None),
     ],
 }
 HOLDER_CLAIMS = {
@@ -126,7 +125,7 @@ HOLDER_CLAIMS = {
            ['su_pravda20_president_signs_decree_19910122'], ['su_ved35p_up2443_president_signs_19910822'],
            ['su_ved41p_up2668_president_signs_19911005']],
     GOV: [['su_sprsfsr_60_ryzhkov_signs_as_chairman_19900112'], ['su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124'],
-          ['su_km_943r_pavlov_signs_as_premier_19910819'], ['su_pravda20_premier_signs_resolution_19910122']],
+          ['su_km_943r_pavlov_signs_as_premier_19910819']],
 }
 BASE_COUNT = {PRES: 2, GOV: 3}
 # SHA-256 (sorted-key JSON) of the base holder lists of the two roles and of every other USSR role's holders (5ea4f8fc).
@@ -154,7 +153,7 @@ ELECTION_KINDS = {'secret_ballot_held', 'election_result_announced', 'election_r
 STYLING_KINDS = {'styling_in_biographical_note', 'styling_in_signed_statement'}
 ACTING_KINDS = {'acting_service_claimed', 'powers_transfer_claimed', 'acting_styling_claimed', 'removal_declared_unlawful',
                 'acting_acts_revocation_demanded'}
-VOCABULARY = SIGNATURE_KINDS | START_KINDS | ELECTION_KINDS | STYLING_KINDS | ACTING_KINDS
+VOCABULARY = SIGNATURE_KINDS | START_KINDS | ELECTION_KINDS | STYLING_KINDS | ACTING_KINDS | {'ambiguous_signature_block'}
 HOLDER_CLAIM_IDS = {c for ids in HOLDER_CLAIMS.values() for group in ids for c in group}
 NEVER_HOLDER = tuple(cid for cid in EVENTS if cid not in HOLDER_CLAIM_IDS)
 OATH = ['su_snd3p_gorbachev_oath_19900315', 'su_snd3p_assumption_of_office_declared_19900315']
@@ -303,7 +302,7 @@ class UssrGovernmentPresidentTests(unittest.TestCase):
             self.assertTrue(sid.startswith('su_') and all(c['id'].startswith('su_') for c in self.sources[sid]['claims']))
         # At most ten people: two holders here; the others appear only as signatories or claimants in persons_named.
         names = {h['name'] for rid in (PRES, GOV) for h in self.roles[rid][1]['holder_claims'][BASE_COUNT[rid]:]}
-        self.assertEqual(names, {GORB, PAVLOV})
+        self.assertEqual(names, {GORB})
         for p in {p for row in self.rows.values() for p in row['persons_named']}:
             self.assertTrue(any(name in p.lower() for name in PEOPLE), p)
         self.assertLessEqual(len(PEOPLE), 10)
@@ -318,6 +317,16 @@ class UssrGovernmentPresidentTests(unittest.TestCase):
                 self.assertTrue(h['note'] and h['uncertainty'], h['name'])
                 for cid in h['claim_ids']:
                     self.assertEqual((self.rows[cid]['holder_name'], self.rows[cid]['role_id']), (h['name'], rid), cid)
+
+    def test_ambiguous_signature_does_not_identify_a_premier(self):
+        cid = 'su_pravda20_premier_signs_resolution_19910122'
+        self.assertEqual(self.rows[cid]['event_kind'], 'ambiguous_signature_block')
+        self.assertIsNone(self.rows[cid]['holder_name'])
+        self.assertIn('ambiguous', self.claims[cid]['uncertainty'])
+        for entry in self.packet['institutions'] + self.packet['organizations']:
+            for role in entry['roles']:
+                for holder in role['holder_claims']:
+                    self.assertNotIn(cid, holder['claim_ids'])
 
     def test_starts_and_ends_only_where_a_source_states_one(self):
         oath = self.roles[PRES][1]['holder_claims'][2]
@@ -457,12 +466,16 @@ class UssrGovernmentPresidentTests(unittest.TestCase):
 
         cases = {
             'announced end as until': lambda p: role(p, PRES)['holder_claims'][5].update({'until': '1991-12-25'}),
-            'approval day as the Premier start': lambda p: role(p, GOV)['holder_claims'][3].update({'from': '1991-01-14'}),
+            'approval day as the Premier start': lambda p: role(p, GOV)['holder_claims'][2].update({'from': '1991-01-14'}),
             'election day moved onto the start': lambda p: role(p, PRES)['holder_claims'][2].update(
                 {'claim_ids': ['su_snd3p_president_vote_result_19900315'], 'from': '1990-03-15'}),
             'ballot day as from': lambda p: role(p, PRES)['holder_claims'][2].update({'from': '1990-03-14'}),
             'oath observation given attested_on': lambda p: role(p, PRES)['holder_claims'][2].update({'attested_on': '1990-03-15'}),
-            'holder day moved off its claim': lambda p: role(p, GOV)['holder_claims'][3].update({'attested_on': '1991-01-23'}),
+            'holder day moved off its claim': lambda p: role(p, PRES)['holder_claims'][3].update({'attested_on': '1991-01-23'}),
+            'ambiguous Premier signature promoted': lambda p: role(p, GOV)['holder_claims'].append(
+                {'name': PAVLOV, 'attested_on': '1991-01-22', 'from': None, 'until': None,
+                 'sources': ['su_pravda_no20_19910123'],
+                 'claim_ids': ['su_pravda20_premier_signs_resolution_19910122']}),
             'acting Vice-President as holder': lambda p: role(p, PRES)['holder_claims'].append(
                 {'name': 'Геннадий Иванович Янаев', 'attested_on': '1991-08-18', 'from': None, 'until': None,
                  'sources': ['su_izv_197_19910820'], 'claim_ids': ['su_izv197_vice_president_decree_assumes_duties_19910818']}),
@@ -479,7 +492,7 @@ class UssrGovernmentPresidentTests(unittest.TestCase):
                 {'attested_on': '1991-12-26'}),
         }
         for name, change in cases.items():
-            with self.subTest(name), self.assertRaises((AssertionError, KeyError, IndexError, StopIteration)):
+            with self.subTest(name), self.assertRaises(AssertionError):
                 c49_invariants(mutated(change), self.russia)
         # The validator rejects a broken snapshot and a date past the cutoff.
         packet = mutated(lambda p: next(s for s in p['sources'] if s['id'] == 'su_izv_197_19910820')['snapshot'].update(
