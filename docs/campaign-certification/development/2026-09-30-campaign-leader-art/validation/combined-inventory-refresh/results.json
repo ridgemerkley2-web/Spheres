@@ -1,0 +1,425 @@
+{
+  "format": "spheres-combined-art-inventory-refresh/v1",
+  "started_utc": "2026-10-01T00:17:39.944973+00:00",
+  "scope": "Generated metadata refresh after incoming political fixes; no new art, research, acceptance or simulation changes. Original receipts retained.",
+  "commands": [
+    {
+      "name": "production-before",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 1,
+      "seconds": 3.687,
+      "output": "production-before.log",
+      "sha256": "4415f2821c191d6e320c39157fada38bec47d9ae352b20cca5c12db8b74ec59e"
+    },
+    {
+      "name": "production-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "build"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.571,
+      "output": "production-regenerate.log",
+      "sha256": "d63d2484e195849e64d2286fa30952d49bf5e0d09e0e90e84e852bb8e7bc6206"
+    },
+    {
+      "name": "production-after",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.405,
+      "output": "production-after.log",
+      "sha256": "d63d2484e195849e64d2286fa30952d49bf5e0d09e0e90e84e852bb8e7bc6206"
+    },
+    {
+      "name": "census-before",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 1,
+      "seconds": 0.233,
+      "output": "census-before.log",
+      "sha256": "0bcb27bfdcaa4e7db55ad9a7ea695ab2adde760b9e346b6fd65810f35c59c179"
+    },
+    {
+      "name": "census-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.299,
+      "output": "census-regenerate.log",
+      "sha256": "5032e38a3af2ca38c5a9cd45efc5d7a6d1ae1499aa3c1633c8fb50191a4ad771"
+    },
+    {
+      "name": "census-after",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.321,
+      "output": "census-after.log",
+      "sha256": "91c8f9cdfcbf17d4c380feec549db4bee0085d8f5c4c40dc5871cc29f00cc1cb"
+    },
+    {
+      "name": "gap-ledger-before",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 1,
+      "seconds": 1.867,
+      "output": "gap-ledger-before.log",
+      "sha256": "0d610d93a5bcc82f94c31e74e8e0eb3c5cb1860612393c7ed447dee614d0c264"
+    },
+    {
+      "name": "gap-ledger-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.954,
+      "output": "gap-ledger-regenerate.log",
+      "sha256": "72e9a23329900253ec2991ebe1b1722c2388d3033f8a9322b866abc73a3a2904"
+    },
+    {
+      "name": "gap-ledger-after",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.929,
+      "output": "gap-ledger-after.log",
+      "sha256": "aabd8ec3423755cc7d63879958df5f8c3af068dd0e681ad23c807d662d14420b"
+    },
+    {
+      "name": "boundary-before",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 1,
+      "seconds": 0.961,
+      "output": "boundary-before.log",
+      "sha256": "831015f2f8a43ff8ddc1164b2622325e15feedf3dea78697348d039b9564b86e"
+    },
+    {
+      "name": "boundary-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.537,
+      "output": "boundary-regenerate.log",
+      "sha256": "bf9454849a71a0f3a76ad83d9d558fd494ee5f3f563f2b86489597c726abcebf"
+    },
+    {
+      "name": "boundary-after",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.488,
+      "output": "boundary-after.log",
+      "sha256": "053a85df44e9f27caaea931516fec171f32f73875b9f72990b52ce01e4280202"
+    },
+    {
+      "name": "cartoon-review-before",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 1,
+      "seconds": 13.42,
+      "output": "cartoon-review-before.log",
+      "sha256": "c92d8c051c8944fbd50149bf9a8b95b36fdb086cdf77ba3c55753f5b4c433c28"
+    },
+    {
+      "name": "cartoon-review-regenerate",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.601,
+      "output": "cartoon-review-regenerate.log",
+      "sha256": "aeea72406556d39895b7d3787892404c04a44e54af0f3cd1a3287f0d0fe95556"
+    },
+    {
+      "name": "cartoon-review-after",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 0.529,
+      "output": "cartoon-review-after.log",
+      "sha256": "9aac929988383d746f68c82db52bea4d7375d5c1ca86c61111bb2ca3361a47d7"
+    },
+    {
+      "name": "production-self-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "self-test"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "seconds": 1.035,
+      "output": "production-self-tests.log",
+      "sha256": "69f97c315b34c1ffd9bf10f801e11255981e1af150d0c80d5f24af6726bf8edd"
+    },
+    {
+      "name": "focused-tests",
+      "command": [
+        "D:\\spheres-offload\\codex-next-20260928\\avatar-ci-clean-venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "test_campaign_census",
+        "test_certified_gap_ledger",
+        "test_certified_boundary_matrix",
+        "test_cartoon_review",
+        "-v"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930\\tools\\avatars",
+      "exit_code": 0,
+      "seconds": 9.428,
+      "output": "focused-tests.log",
+      "sha256": "03ffe9ec1872617fc22ccb75b06b0419dcab131db2121310fb6d499c67452b5d"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "cwd": "D:\\spheres-opening-leader-art-20260930",
+      "exit_code": 0,
+      "output": "workboard.log",
+      "sha256": "65b02b1de437f9f0dc8f2672088bbfdad445a5c021b92c564128d125250ad8e6"
+    }
+  ],
+  "passed": true,
+  "changed_files": [
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "before": {
+        "path": "spheres-web/data/leadership_production_2035.json",
+        "bytes": 5997885,
+        "sha256": "a8bd893961a80fd586c21d4c4cd7b32d52426260bb89625b6fc7114e2489fb82"
+      },
+      "after": {
+        "path": "spheres-web/data/leadership_production_2035.json",
+        "bytes": 5997885,
+        "sha256": "bc210f6a9bea3cad6b2cfe87ea9fe849222aeeb2412ba7c064eab08e3c077a78"
+      },
+      "changed_top_level_fields": [
+        "input_hashes"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "before": {
+        "path": "docs/campaign-certification/C01/census.json",
+        "bytes": 6364,
+        "sha256": "64e6cbc05e9f53a8f907d460cca9df72980f06fe6247de57387c0a2b0d5e46ff"
+      },
+      "after": {
+        "path": "docs/campaign-certification/C01/census.json",
+        "bytes": 6105,
+        "sha256": "473fb44a5e07109f899bdab0df18f165d60802187fc01fc399b4e8ae966b8cd4"
+      },
+      "changed_top_level_fields": [
+        "counts",
+        "production_snapshot",
+        "source_files"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/work-orders.json",
+      "before": {
+        "path": "docs/campaign-certification/C01/work-orders.json",
+        "bytes": 874340,
+        "sha256": "ac94a794e315be810eb5c77fe65aaea9727c4f654b31d35810c0929fc8bc784d"
+      },
+      "after": {
+        "path": "docs/campaign-certification/C01/work-orders.json",
+        "bytes": 871456,
+        "sha256": "6a0496b247e0c722c7218e313fade838d21ef846f75526744a5d9a9fdeb68f61"
+      },
+      "changed_top_level_fields": [
+        "<list>"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+      "before": {
+        "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+        "bytes": 1187984,
+        "sha256": "17016b16a3ca9547634feeb1aa4d153af88e2f508a48114896e4688d4680bb37"
+      },
+      "after": {
+        "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+        "bytes": 1187984,
+        "sha256": "65b65d17438c1fe70535a8a46fdc744691656a86eb715fd794846929d287f38d"
+      },
+      "changed_top_level_fields": [
+        "inputs"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.md",
+      "before": {
+        "path": "docs/campaign-certification/C01/gap-ledger/ledger.md",
+        "bytes": 94786,
+        "sha256": "ef332db1d12d9a059820675bae84db8abbb0d2e160aa0fc1918b3c0920a45f9f"
+      },
+      "after": {
+        "path": "docs/campaign-certification/C01/gap-ledger/ledger.md",
+        "bytes": 93946,
+        "sha256": "53c8f7a9866a5265ae7a47bb44768aa056bd1400fd80565d06bc7c0a17ba0ed3"
+      }
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+      "before": {
+        "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+        "bytes": 795169,
+        "sha256": "b167d2382d12befb988904b0c7d207eb5854a583afdb972decadffbe5d5f1380"
+      },
+      "after": {
+        "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+        "bytes": 795169,
+        "sha256": "7562c52e7378866ac72aac1daf66d688e78cb7e35b98a6e39375a7b0f17adc8a"
+      },
+      "changed_top_level_fields": [
+        "inputs"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md",
+      "before": {
+        "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md",
+        "bytes": 18526,
+        "sha256": "d52aca3d63728beb3161f9e06cc816d3be79e22c6656c95ae8f6efe3a0f6a40f"
+      },
+      "after": {
+        "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md",
+        "bytes": 18526,
+        "sha256": "0e4024f1cbb070c63406081e4d5224714547fa4ddb600a47ccd026797db0d56e"
+      }
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+      "before": {
+        "path": "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+        "bytes": 87064,
+        "sha256": "71431a931a5f4bb9b7edc0af763298f8c96a08fb15eba1beeb7cbfe156b72a0e"
+      },
+      "after": {
+        "path": "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+        "bytes": 87064,
+        "sha256": "79c34750684aed5b976a929a8464f5f7504d625955fd338f90f65c433f2cfc45"
+      },
+      "changed_top_level_fields": [
+        "inputs"
+      ]
+    }
+  ],
+  "finished_utc": "2026-10-01T00:18:16.347204+00:00",
+  "integration_merge_revision": "77f3bab54fcff7ea1010a0f6f0cbbf72cfe6a15c",
+  "workboard_checked_utc": "2026-10-01T00:19:15.914760+00:00"
+}

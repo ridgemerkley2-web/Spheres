@@ -41,6 +41,9 @@ See the [development receipt](../../campaign-certification/development/2026-09-3
 for native build outcomes, exact commands, retained failed sparse-checkout
 checkpoints, screenshots, provenance and acceptance limits. Full workspace checks
 pass 1,989 tests with zero failures, 115 ignored and one timing exclusion on the
-original base. Integration with the newly arrived political repairs is the
-remaining closeout checkpoint. This is bounded art and
-presentation production, not C03/C06/S23 completion.
+original base. Combined verification at `3b6cecc8` includes the newly arrived
+political repairs and latest matrix evidence: 1,994 native tests pass, the separate
+resource check passes at 0.0604 ms/month against the unchanged 0.15 limit, the
+release build passes, 1,806 UI tests pass, and all six compiled-game selector
+browser cases pass. The bounded implementation and validation are complete.
+This is art and presentation production, not C03/C06/S23 completion.

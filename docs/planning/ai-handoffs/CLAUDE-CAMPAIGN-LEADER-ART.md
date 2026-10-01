@@ -54,7 +54,7 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 
 ## Claude's current work
 
-Remote snapshot checked 30 September 2026 at 23:50 UTC against the authored
+Remote snapshot checked 1 October 2026 at 00:40 UTC against the authored
 branch handoffs and live remote tips. The integrated queue has not yet recorded
 the new remote deliveries/claims below. A branch claim is not reviewed content.
 
@@ -62,14 +62,16 @@ the new remote deliveries/claims below. A branch claim is not reviewed content.
 |---|---|---|
 | C01-31 | Komeito representatives and distinct organizational phases | Delivered for Codex review, not accepted: `claude/c01-jp-31` at `696937ba3d31280aab569cbd78418e9c3a0c6880` (wording clarifications and refreshed index after the initial delivery). The central queue still says claimed. |
 | C01-28 | Five Russian party-leader chains | Review held on original-source access; `claude/c01-ru-28` at `03141c43`. |
-| C01-38 | French prime ministers, 2014–2026 | Claim only: `claude/c01-fr-38` at `f1420ba1265f6b3d193548eac6f596864c50c2c9`. |
+| C01-38 | French prime ministers, 2014–2026 | Delivered for Codex review, not accepted: `claude/c01-fr-38` at `acf33f09a5d28cbc9bf9f539e152e9846a7bf395`. Dated attestations still require source and tenure-boundary review. |
 | C01-39 | Democratic Alliance federal leaders, 2000–2026 | Claim only: `claude/c01-za-39` at `03cd0bb9bc6989e47e3da0ff1ca6373320daf30b`. |
-| C01-40 | CPI(M) general secretaries, 1990–2026 | Claim only: `claude/c01-in-40` at `c152e35e3cf184a6d7cbde87236a43d8c924fc86`. |
-| C01-41 | CPSU General Secretary and Deputy General Secretary, 1990–1991 | Claim only: `claude/c01-su-41` at `7778be5b829587f6361d3935bc5aa50d9181e753`. |
+| C01-40 | CPI(M) general secretaries, 1990–2026 | Delivered for Codex review, not accepted: `claude/c01-in-40` at `54680e39910804b3864a3e973c452f2db2ac5e6f`. Source/attestation rulings and the unestablished EMS record remain explicit limits. |
+| C01-41 | CPSU General Secretary and Deputy General Secretary, 1990–1991 | Delivered for Codex review, not accepted: `claude/c01-su-41` at `a989ddb4d67657236292a35443049554cc9b19e7`. Archive-host sources, exact boundaries and prior undated records still need review/reconciliation. |
 
 Continue these existing research claims without duplicating their ownership.
-Codex must independently review C01-31 and register new claims before treating
-them as accepted or installed. The next content sequence is:
+Codex must independently review C01-31/38/40/41 and register the new packets
+before treating them as accepted or installed. The three new deliveries were
+checked for authored status and scope only; their original sources and claims
+have not yet received independent content acceptance. The next content sequence is:
 
 1. **Resolve the held Russia packet C01-28.** Supply accessible original evidence
    for the twelve missing originals; 24 claims and four holder observations remain

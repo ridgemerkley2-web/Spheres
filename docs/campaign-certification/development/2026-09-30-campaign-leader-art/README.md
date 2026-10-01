@@ -112,3 +112,33 @@ The new direction and current research inventory are recorded in
 `docs/planning/ai-handoffs/CLAUDE-CAMPAIGN-LEADER-ART.md`, linked from `CLAUDE.md`,
 the workboard and both current Claude entry handoffs. Remote claims/deliveries are
 distinguished from accepted research, installed identities and finished art.
+
+## Combined integration closeout
+
+The final source build is `3b6cecc8f4d99e2e2bed483baf5c3d5b60fa273d`, combining
+the art/selector implementation with upstream political fixes and the terminal
+matrix evidence through `79ef97ec`. Subsequent closeout changes are documentation
+and verification receipts only. Earlier failed and baseline receipts remain intact.
+
+- `validation/combined-inventory-refresh/results.json`: all five generated
+  inventory freshness checks, 109 focused tests and the workboard pass. The census
+  removes exactly the five newly fulfilled portrait jobs; it awards no additional
+  historical coverage. All 8,127 boundary cases remain represented.
+- `validation/combined-ui/result.json`: 1,806 UI tests pass, zero fail, with the
+  standard separately exercised browser journey skipped. Its accompanying
+  `doc-links.json` verifies 81 local documentation links and the heading fragment.
+- `native/combined-01/README.md` and `results.json`: 1,994 ordinary workspace tests
+  pass, zero fail and 115 are ignored. The separately executed resource test passes
+  at 0.0604 ms/month against the unchanged 0.15 limit; the aspirational 0.05 reading
+  was not met. The explicit release build passes. All 293 pinned source inputs,
+  HEAD and the Git index stayed unchanged during native verification.
+- `browser/native-selector-combined/result.json`: all six real browser cases pass
+  on the clean `3b6cecc8` build, binary SHA-256
+  `44f12747f3463710ccd382da5a89a87cc6a09840fe23b6c10a97d8245c1078eb`.
+  Exact embedded UI/portrait bytes match, with no page/HTTP errors, legacy figure
+  requests, campaign writes or state changes. The disposable server was stopped.
+
+The updated Claude guide also records the later France/CPI(M)/CPSU research
+deliveries checked at 00:40 UTC on 1 October. They are awaiting independent source
+and content review, not accepted or installed. Existing A1 and full-matrix failures
+remain open; this implementation does not claim global CI or campaign qualification.
