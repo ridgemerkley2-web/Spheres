@@ -16,7 +16,7 @@ These are milestone counts, not a percentage of remaining effort.
 |---|---|---|---|
 | 1 — release content dependency | Claude research/art; Codex review | Finish and integrate the eight country casts: accepted historical identities → dated role bindings → reviewed cartoons → fictional successors → country signoff. Continue existing claims before starting another batch. | C06 closes, then S23 passes its historical/date/art audit. Research receipts alone do not close a country. |
 | 2 — active engineering | Codex | Collect the existing 24-cell campaign run and its independent verification. | All eight countries × three seeds reach the full endpoint with valid save/resume and conservation evidence. The 30 September snapshot has 4 revalidated passes, 4 running and 16 queued. |
-| 3 — blocked engineering | Codex; design review as needed | Resolve A1 political-outcome concentration from new causal evidence or a reviewed model change. | The original political-calibration gate passes. Existing diagnostics found no justified repair; its threshold remains unchanged. |
+| 3 — blocked engineering | Codex; design review as needed | Complete standalone performance verification for two political correctness fixes, then review the remaining concentration against the causal model. | The original political-calibration gate passes. The fixes leave median top-three coup share at 0.571429, above the strict 0.50 limit. |
 | 4 — player feedback | Human participants; Codex preparation | Prepare the newcomer protocol, then conduct independent opening and later-game sessions once S24 is qualified. | At least five first-time participants and eight sessions, meeting S26's recorded task-success criteria. |
 | 5 — release | Codex | Fix remaining significant defects, freeze the candidate, qualify its packages, audit the evidence and publish. | S27–S30 close on the exact tested build. |
 
@@ -46,7 +46,7 @@ Full acceptance criteria and source-specific evidence remain in the
 - **Campaign endurance:** the fresh `68ba0622` attempt has 4 completed passes
   independently revalidated, 4 cases running and 16 queued in the 30 September
   snapshot. Full-matrix verification remains pending. [Current run and next action](docs/campaign-certification/S25/preparation/local-matrix-20260930/README.md).
-- **Political balance:** A1 still fails. [Diagnostic record](docs/campaign-certification/S27/preparation/a1-geography-20260928/README.md).
+- **Political balance:** two defects are corrected: the AI recognizes an individual armed threat, and each recorded armed institution receives one loyalty update. A1 still fails; a further urgent-response trial was rejected after A2 also failed. [Repairs, validation and remaining blocker](docs/campaign-certification/S27/preparation/political-repairs-20260930/README.md).
 - **Human usability:** automated browser tests do not satisfy S26.
 - **Final qualification:** worldwide startup, recovery, succession and packaging
   have completed preparation. Their canonical milestones still retain the

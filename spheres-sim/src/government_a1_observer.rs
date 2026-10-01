@@ -33,7 +33,7 @@ impl Drop for Session {
     }
 }
 
-pub(super) fn record(w: &WorldState, id: NationId, stage: &'static str) {
+pub(crate) fn record(w: &WorldState, id: NationId, stage: &'static str) {
     // Return before any world read or allocation when the explicit test session is off.
     if !ROWS.with(|rows| rows.borrow().is_some()) {
         return;
@@ -65,8 +65,27 @@ fn snapshot(w: &WorldState, id: NationId, stage: &str) -> Value {
                "clears_existing_hysteresis":share >= n.mil_spend_gdp + 0.001})
     });
     let army_target = has_army.then(|| pillar_targets(w, id, &[Pillar::Army])[0].1);
+    let opening = stage.starts_with("stratagem_").then(|| {
+        let armed: Vec<_> = g.into_iter().flat_map(|g| &g.pillars)
+            .filter(|(p, _)| matches!(p, Pillar::Army | Pillar::Security | Pillar::Party))
+            .map(|(_, v)| *v).collect();
+        json!({
+            "franchise_demand":franchise_demand(w,id),
+            "party_can_contest":ai_party_can_contest_opening(w,id),
+            "actual_leader":crate::blocs::leader_row(w,id),
+            "armed_mean":if armed.is_empty() {1.0} else {armed.iter().sum::<f64>()/armed.len() as f64},
+            "round_table_refusal":round_table_refusal(w,id),
+            "round_table_affordable":crate::affordable(w,&crate::Command::ConveneRoundTable {nation:id}),
+            "drift_armed":crate::blocs::round_table_armed(w,id),
+            "selected_lever":ai_lever(w,id).map(|c|format!("{c:?}")),
+            "pillars":g.map(|g|&g.pillars),
+            "movements":g.map(|g|&g.movements),
+            "stability":n.stability
+        })
+    });
     json!({
         "stage":stage,"country":id.code(),"date":[w.year,w.month,w.day],
+        "opening":opening,
         "rng_state":w.rng.state,
         "rules":{"ideology_blocs":w.rules.ideology_blocs,"ideology_takeover":w.rules.ideology_takeover,
                  "daily_simulation":w.rules.daily_simulation,"crisis_intensity":w.rules.crisis_intensity},

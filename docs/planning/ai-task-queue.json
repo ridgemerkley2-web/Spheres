@@ -349,7 +349,7 @@
       "title": "Repair the unchanged A1 political calibration gate",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
       "depends_on": [],
-      "next": "A1 remains failed; rejected trials and original limits are retained. Exact firing and independently reproduced 118-country geography checks found no missed funding command or contract defect. In non-firing eligible crises, 3550/3552 loyalty targets were already at or above .35, with no recorded AI funding increase. No justified model replacement established and no holdouts used. Resume from new causal evidence or a reviewed design contract. Evidence: docs/campaign-certification/S27/preparation/a1-geography-20260928/README.md. S27/CP1 remain unqualified."
+      "next": "Two demonstrated political defects are corrected on 7c6f112c: the AI recognizes an individual live armed threat, and each recorded institution receives one loyalty update. Actual red/green regressions and 1,990 passing ordinary native tests are retained; UI coverage and release build pass. A1 still fails under its original limits (median 7.5 coups; top-three share 0.571429); A2-A10 and attribution pass. The separate urgent-response policy is rejected because A1 remains failed and A2 regresses to 6/12. Next complete uncontended resource timing, then review residual concentration against a justified causal contract; do not add post hoc country exceptions or alter acceptance limits. Evidence: docs/campaign-certification/S27/preparation/political-repairs-20260930/README.md. Reserved cohorts and the frozen S25 matrix are unchanged; S27/CP1 remain unqualified."
     },
     {
       "id": "CODEX-S24-STARTUP-01",

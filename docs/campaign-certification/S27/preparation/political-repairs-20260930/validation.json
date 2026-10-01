@@ -1,0 +1,253 @@
+{
+  "recorded_utc": "2026-10-01T00:02:37.623223+00:00",
+  "commits": {
+    "integration_base": "02d2c5a25c9a70bc9ba9503c8dc45f3ccdc1f0cf",
+    "observer": "c41376f534a746b3e36633457e313176aeb1c461",
+    "opening_regression_red": "ace1f233672fd10ad755ce8ee6acb94ecb83bd95",
+    "opening_fix": "434abd50c83bf2a5966e370d5f508743dbd6043c",
+    "accepted_runtime": "7c6f112cbfb7e1ae02e70dcc2986da66f425aa49",
+    "rejected_urgent_policy": "75af467f6b87c5a19edf4a69a6ee8b6f0800a2cf"
+  },
+  "scope": "Two demonstrated correctness repairs; A1 and S27 remain blocked. No qualification claim.",
+  "runtime_trees": {
+    "spheres-sim": "e40ea34de1ab2b07ae0b5d6cefc188d733bca05a",
+    "spheres-cli": "ca897ed6da3fca5a39ccc4c253187d2549fde325",
+    "spheres-web": "fcb114c87e1660a1795bfa43ba69d6d1d78dd5ff"
+  },
+  "sources": {
+    "Cargo.toml": {
+      "working_sha256": "e9a90fb5048c0cf6346509b3f3df195cd63222a1af351b17b62ea3d8cc6e5402",
+      "git_sha256": "bb53efb0c9ad7b1bb2387c5280fb4624a6142ee3519cf884d8a2e8ffbeb8d321"
+    },
+    "Cargo.lock": {
+      "working_sha256": "a66f8bc5cbe3f77bb60de7c880089e78ac70dd9147674944480c30192043c372",
+      "git_sha256": "7d232286affcc685b3c10ea6362968309fc441226a677662e6e14c872fb48a56"
+    },
+    "spheres-sim/src/government.rs": {
+      "working_sha256": "4b0b82dbdb111cfbc8350bcbdf0dc1ba85d23b07c1026ca5a58d2178dc283934",
+      "git_sha256": "4b0b82dbdb111cfbc8350bcbdf0dc1ba85d23b07c1026ca5a58d2178dc283934"
+    },
+    "spheres-sim/src/government_opening_tests.rs": {
+      "working_sha256": "25a1fea16345f45ce54e15edbf40b3e136659150de2783975c252c8ddbcb1e6b",
+      "git_sha256": "18fb75fea9156148df956514365153bc8a887aefe948043108d6807f51ecebdc"
+    },
+    "spheres-sim/src/government_a1_observer.rs": {
+      "working_sha256": "70cdfdda3e2b6b9da624143cc50014383b4f2478cce1b80e0c3af1b775f63964",
+      "git_sha256": "56d451ab63b148c9798179d90c11da17333f7fccaf80880d3e7f988b04e77f5c"
+    },
+    "spheres-sim/src/stratagems.rs": {
+      "working_sha256": "c62b673f0278d8e8fba1dc37bf98adb613c0f9eb968513c4a8cb57e06b406637",
+      "git_sha256": "70cacdb59102e5d175313e18f8651f2a1757976839af0b28fc48539ca6b956dd"
+    },
+    "spheres-sim/tests/armed_institutions.rs": {
+      "working_sha256": "40881260538e8a8b44dd00b9640e5cf9725c17812483a4824dc580723bd2445f",
+      "git_sha256": "40881260538e8a8b44dd00b9640e5cf9725c17812483a4824dc580723bd2445f"
+    },
+    "spheres-sim/tests/bloc_census.rs": {
+      "working_sha256": "d68e8e615aade63fc15a8f3b30d97036cc6b2762febaf262f91211772c5fb76e",
+      "git_sha256": "5f87457baf8d4f4d6a4258ea72edd4b348b18d1e7ed10c7b7be2998e837e1bb2"
+    }
+  },
+  "binaries": {
+    "regression-before.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930\\regression-before.exe",
+      "sha256": "c1cf144f8103d1410ab246db87bfca79a3f15a1179f6873045ccbdec195957bb",
+      "bytes": 49783952
+    },
+    "candidate-government.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930\\candidate-government.exe",
+      "sha256": "c82b3bbdf520b434e5cd806cbfff1303a93f0b46d29eb99018305cf3f92f72ba",
+      "bytes": 49791564
+    },
+    "candidate-census.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930\\candidate-census.exe",
+      "sha256": "56dadbba036308427809412ab4de0e943c5df642849e1422f86a8f0bd75b74b7",
+      "bytes": 31687376
+    },
+    "institutions-census.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930\\institutions-census.exe",
+      "sha256": "741f604fe1660a4980e5db19ba9d97569b5525f4f7835fcdf18d436fd8ed2500",
+      "bytes": 31697458
+    },
+    "urgent-before.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930\\urgent-before.exe",
+      "sha256": "31a4d4a4e5b03fb68fe1440a09952011a72892b5822be4bcdb86dec23189df31",
+      "bytes": 37119099
+    },
+    "urgent-census.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930\\urgent-census.exe",
+      "sha256": "3490891df5926faf95e73556830a8224f56a314fefc0ea5a36db0247662086d6",
+      "bytes": 31699940
+    },
+    "opening-observer.exe": {
+      "path": "D:\\spheres-political-evidence-20260930\\opening-observer.exe",
+      "sha256": "30803d43c3dc0c65cddc70d78815ac786da1f29647587d5bda0b2417e09c08bf",
+      "bytes": 50366642
+    },
+    "spheres-web.exe": {
+      "path": "C:\\Users\\ridge\\spheres-political-build-20260930\\release\\spheres-web.exe",
+      "sha256": "7024d6bff5e1cadb2112c19e0d46b6125e4b05a99ce055f45a2c1f13f817dd3c",
+      "bytes": 358649978
+    }
+  },
+  "unchanged": [
+    "A1-A10 thresholds and assertion cohorts",
+    "252-month A1 horizon",
+    "420-month A6 horizon",
+    "starting datasets",
+    "Cargo.lock",
+    "reserved 1000-series cohort unused"
+  ],
+  "observer": {
+    "source": "c41376f534a746b3e36633457e313176aeb1c461",
+    "seed": 0,
+    "months": 252,
+    "snapshots": 185260,
+    "complete_save_comparisons_equal": 252,
+    "actual_coups": 10,
+    "external_manifest_verified": true
+  },
+  "test_results": {
+    "opening-regression-before.log": {
+      "target_results": 1,
+      "passed": 2,
+      "failed": 2,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 1115
+    },
+    "candidate-government.log": {
+      "target_results": 1,
+      "passed": 124,
+      "failed": 0,
+      "ignored": 1,
+      "measured": 0,
+      "filtered": 994
+    },
+    "candidate-stratagems.log": {
+      "target_results": 1,
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 1112
+    },
+    "candidate-gates.log": {
+      "target_results": 1,
+      "passed": 10,
+      "failed": 1,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 1
+    },
+    "institutions-before.log": {
+      "target_results": 1,
+      "passed": 0,
+      "failed": 1,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 0
+    },
+    "institutions-after.log": {
+      "target_results": 1,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 0
+    },
+    "institutions-gates.log": {
+      "target_results": 1,
+      "passed": 10,
+      "failed": 1,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 1
+    },
+    "urgent-before.log": {
+      "target_results": 1,
+      "passed": 1,
+      "failed": 1,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 0
+    },
+    "urgent-after.log": {
+      "target_results": 1,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 0
+    },
+    "urgent-gates.log": {
+      "target_results": 1,
+      "passed": 9,
+      "failed": 2,
+      "ignored": 0,
+      "measured": 0,
+      "filtered": 1
+    },
+    "workspace.log": {
+      "target_results": 68,
+      "passed": 1990,
+      "failed": 0,
+      "ignored": 115,
+      "measured": 0,
+      "filtered": 1
+    }
+  },
+  "ui": {
+    "full_run": {
+      "tests": 1799,
+      "passed": 1796,
+      "failed": 2,
+      "skipped": 1
+    },
+    "cause": "Missing docs/art/3D_MODEL_MASTER_ROADMAP.md in isolated sparse checkout",
+    "repair": "Restore unchanged docs/art fixtures from HEAD; no UI or test code changed",
+    "targeted_reruns": {
+      "check_art_gallery": 6,
+      "check_art_budget_contract": 3
+    },
+    "combined_coverage": "Every non-skipped test passed, including both original failures; not a fresh all-green full run"
+  },
+  "accepted_outcomes": {
+    "a1": {
+      "pass": false,
+      "median_elected_coups": 7.5,
+      "median_top_three_share": 0.5714285714285714,
+      "required_share": "< 0.50"
+    },
+    "a2": "8/12 pass",
+    "outcome_gates_passed": 9,
+    "attribution_passed": true
+  },
+  "rejected_policy": {
+    "a1_pass": false,
+    "a1_median_count": 12,
+    "a1_share_displayed": 0.54,
+    "a2": "6/12 fail (strict majority required)",
+    "disposition": "Not integrated; exact patch preserved"
+  },
+  "release_web_build": {
+    "exit_code": 0,
+    "log": "web-build.log"
+  },
+  "resource_timing": {
+    "status": "pending",
+    "limit_ms_per_month": 0.15,
+    "reason": "Another development task is compiling/running native workspace tests; no uncontended measurement claimed",
+    "command": "cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1"
+  },
+  "external_evidence_root": "C:\\Users\\ridge\\spheres-political-repair-backup-20260930",
+  "commands": [
+    "cargo test --locked --release --workspace --no-fail-fast -j 2 -- --skip tests::the_resource_pass_stays_under_budget --test-threads=2",
+    "node tools/ui/run-unit.cjs",
+    "node --test tools/ui/check_art_gallery.cjs",
+    "node --test tools/ui/check_art_budget_contract.cjs",
+    "cargo build --locked --release -p spheres-web -j 2",
+    "institutions-census.exe --ignored --nocapture --test-threads=2 --skip bloc_census",
+    "SPHERES_CENSUS_SEEDS=12 SPHERES_CENSUS_MONTHS=252 SPHERES_CENSUS_SEED_START=0 institutions-census.exe --ignored --exact bloc_census --nocapture"
+  ]
+}
