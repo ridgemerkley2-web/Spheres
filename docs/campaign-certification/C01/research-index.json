@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 844,
     "institution_observations": 36,
-    "sources": 1971,
-    "source_claims": 4876,
+    "sources": 1985,
+    "source_claims": 4897,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -21,8 +21,8 @@
       "packet": "docs/campaign-certification/C01/research/brazil.json",
       "organization_observations": 31,
       "institution_observations": 1,
-      "role_observations": 5,
-      "source_claims": 535,
+      "role_observations": 6,
+      "source_claims": 556,
       "mapping_pending": 32,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -73,7 +73,8 @@
           "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
           "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted.",
           "PT national presidents 1990-2026 (CLAUDE-C01-22, PT-PRES-01..10): the PT funding observation br_tse_fefc_2024_party_03 now holds one party role, br_pt_president, with eighteen dated holder observations; the earlier statement in this list that party offices remain outside this intake no longer applies to the PT national presidency. Party office and the Presidency of the Republic stay separate, the presidency and vice-presidency holders are unchanged, interim and acting service is claims only, and no game identity or portrait permission is granted.",
-          "PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34): the MDB funding observation br_tse_fefc_2024_party_01 now holds one party role, br_mdb_president, and the PDT funding observation br_tse_fefc_2024_party_02 one party role, br_pdt_president, each with dated holder observations; the PFL/DEM national presidency is recorded only as claims (sources br_pfl_*) that no organization, role or holder cites, and the UNIÃO funding observation is unchanged. Renamings (PFL to Democratas, PMDB to MDB) and the fusion of the Democratas with the PSL into União Brasil are claims about the organizations, never merged identities. Party office and state office stay separate, acting and interim service is claims only, the presidency, vice-presidency and PT holders are unchanged, and no game identity or portrait permission is granted. At most ten people are researched: Leonel Brizola and Carlos Lupi (PDT); Jader Barbalho, Michel Temer, Romero Jucá and Baleia Rossi (PMDB/MDB); Jorge Bornhausen, Rodrigo Maia, José Agripino and ACM Neto (PFL/DEM, claims only). The PMDB presidents of 1990-1998 (Jarbas Vasconcelos, Ulysses Guimarães, Orestes Quércia, José Fogaça, Luiz Henrique da Silveira and Paes de Andrade, as the party's retrospective list gives them, the first two with overlapping mandates and the third and fourth likewise), the PFL presidents before 1999 (including Hugo Napoleão) and every other party office remain unresearched."
+          "PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34): the MDB funding observation br_tse_fefc_2024_party_01 now holds one party role, br_mdb_president, and the PDT funding observation br_tse_fefc_2024_party_02 one party role, br_pdt_president, each with dated holder observations; the PFL/DEM national presidency is recorded only as claims (sources br_pfl_*) that no organization, role or holder cites, and the UNIÃO funding observation is unchanged. Renamings (PFL to Democratas, PMDB to MDB) and the fusion of the Democratas with the PSL into União Brasil are claims about the organizations, never merged identities. Party office and state office stay separate, acting and interim service is claims only, the presidency, vice-presidency and PT holders are unchanged, and no game identity or portrait permission is granted. At most ten people are researched: Leonel Brizola and Carlos Lupi (PDT); Jader Barbalho, Michel Temer, Romero Jucá and Baleia Rossi (PMDB/MDB); Jorge Bornhausen, Rodrigo Maia, José Agripino and ACM Neto (PFL/DEM, claims only). The PMDB presidents of 1990-1998 (Jarbas Vasconcelos, Ulysses Guimarães, Orestes Quércia, José Fogaça, Luiz Henrique da Silveira and Paes de Andrade, as the party's retrospective list gives them, the first two with overlapping mandates and the third and fourth likewise), the PFL presidents before 1999 (including Hugo Napoleão) and every other party office remain unresearched.",
+          "PRN / PTC / Agir national presidents 1990-2026 (CLAUDE-C01-43): the AGIR funding observation br_tse_fefc_2024_party_07 now holds one party role, br_agir_president, with five dated holder observations of Daniel Tourinho (16 May 2014 to 11 November 2022; no stated start or end). No contemporaneous dated party record of 1990-2013 or of 2023-2026 naming the office was found. The renamings PRN to PTC (24 April 2001, PET nº 341) and PTC to Agir (31 March 2022, in the registration case RPP nº 51-91.1989) are organization claims from the court's own register. The PDS (1980-1993) has no observation: the court glossary's record of its fusion with the PDC into the PPR (Res.-TSE nº 19.133, 8 June 1993) is a claim, and no primary record naming a PDS national president of 1990-1993 was found. The court's SGIP registry was unavailable during the 2026 election period, so no registered organ periods were read."
         ]
       }
     },
@@ -2689,8 +2690,8 @@
   "source_files": [
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 1029474,
-      "sha256": "d92cc53d22a73f351c319af0ab0d01e2c544de7c332727c1f985b1d0e343697a"
+      "bytes": 1077047,
+      "sha256": "9aeffc25a15a088c6e1c96fca4bcd40679bfe160a209fa296e00bc8ca2d016ae"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
