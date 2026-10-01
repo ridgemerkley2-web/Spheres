@@ -1,0 +1,26 @@
+{
+  "prior_checkpoint_verifier": {
+    "command": "python -B -X utf8 docs/campaign-certification/C01/reviews/CLAUDE-C01-39/verify_receipt.py --external-evidence D:/spheres-offload/codex-next-20260928/c01-39-review-evidence-20261001b",
+    "returncode": 0,
+    "receipt_files": 27,
+    "external_files": 7
+  },
+  "staged_resumed_verifier": {
+    "command": "python -B -X utf8 docs/campaign-certification/C01/reviews/CLAUDE-C01-39/2026-10-01-resumed-02/verify_receipt.py --receipt-revision : --verify-external",
+    "returncode": 0,
+    "reviewed_git_blobs": 26,
+    "external_files": 98
+  },
+  "whitespace": {
+    "command": "git diff --cached --check",
+    "returncode": 0
+  },
+  "source_pass": {
+    "requests": 23,
+    "exact_originals": 22,
+    "capture_redirect_mismatches": 1,
+    "minimum_gap_after_response_seconds": 15,
+    "retries": 0
+  },
+  "validation_limit": "No held source data installed, no new packet test suite run, no native execution; prior58/79/16/11 test receipt is preserved and is not a fresh result for b66f8c07."
+}

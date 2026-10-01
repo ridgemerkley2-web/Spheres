@@ -1,0 +1,27 @@
+{
+  "same_24_original_identities": true,
+  "changed_derived_extracts": [
+    "za_da_zille_acceptance_speech_20070506",
+    "za_da_speech_growth_victory_20140509"
+  ],
+  "older_test_review": {
+    "exact_source_count_and_order_extensions": [
+      "test_south_africa_anc_presidents_c01_16.py",
+      "test_south_africa_deputy_presidents_c01_21.py",
+      "test_south_africa_heads_of_state_c01_09.py",
+      "test_south_africa_party_leaders_c01_30.py",
+      "test_south_africa_pac_presidents_c01_32.py"
+    ],
+    "scope_sensitive_change": "S10h now allows only one exact Maimane end, with literal tuple/date guard; material acceptance pending original statement.",
+    "negative_controls": "Latest DA checker rejects missing/moved/wrong-week vacancy end, unsupported start dates, party/state crossover, renamed/removed original holders and added mappings."
+  },
+  "prior_checker_repair": {
+    "sha": "6b069f07f2a304627fec8b3827cc53c8f21b0989",
+    "meaning": "Read exact authored handoff separately from canonical registration; preserve canonical registration. Must adapt to latest authored tip without overwriting immutable old receipt."
+  },
+  "late_checker_revision": {
+    "sha": "9e3d0b3c",
+    "meaning": "Adds Zille attestation and Maimane weekday-derived vacancy end; changes exact holder guards accordingly; repairs 2014 quote apostrophe. Claims about user rulings provide no independent authorization."
+  },
+  "source_material_acceptance": "no new sources or holders accepted before retained originals are retrieved and read"
+}
