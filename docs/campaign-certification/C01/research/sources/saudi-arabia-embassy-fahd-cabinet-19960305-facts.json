@@ -27,14 +27,14 @@
       "claim_id": "sa_fahd_pm_chairs_cabinet_19960304",
       "observation_id": "sa_prime_minister",
       "review_observation": "SA-PM-01",
-      "role_id": "sa_pm",
-      "holder_name": "Fahd bin Abdulaziz Al Saud",
-      "printed_name": "Fahd Bin Abdul Aziz",
+      "role_id": null,
+      "holder_name": null,
       "role_title": "Chairing the Council of Ministers (no Prime Minister title printed)",
-      "event_kind": "attestation",
+      "event_kind": "session_chaired_by_king",
       "attested_on": "1996-03-04",
       "text": "Release dated March 5, 1996 on the Royal Embassy's March 1996 page: 'Custodian of the Two Holy Mosques King Fahd Bin Abdul Aziz, chairing the regular weekly session of the Council of Ministers yesterday, extended congratulations to Kuwait'.",
-      "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 5, 1996, first sentence"
+      "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 5, 1996, first sentence",
+      "observed_name": "Fahd Bin Abdul Aziz"
     },
     {
       "claim_id": "sa_abdullah_deputy_chairs_cabinet_19960311",
@@ -49,5 +49,6 @@
       "locator": "March 1996 page; item 'COUNCIL OF MINISTERS MEETING', March 11, 1996, first sentence"
     }
   ],
-  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract.",
+  "review_correction": "Codex 1 October 2026: session chairing alone does not identify the Prime Minister. Retain quoted facts and observed names; these rows are institution events, not holder evidence. Original submitted extract remains at 8b1a3c975749087fc6ed4bf48c788386fdecfa39."
 }

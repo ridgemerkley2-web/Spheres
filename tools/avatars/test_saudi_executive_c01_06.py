@@ -124,9 +124,8 @@ C01_45_CROWN_PRINCE_OBSERVATIONS = [
 # CLAUDE-C01-50 appends four sa_pm holders as (name, attested_on, from, until), each followed by its dated observations,
 # after the two entries below; the two entries are unchanged (pinned in test_saudi_prime_ministers_c01_50.py).
 C01_50_PM_ENTRIES = [
-    ('Fahd bin Abdulaziz Al Saud', '1996-03-04', None, None), 'sa_fahd_pm_styled_20041003', 'sa_fahd_pm_chairs_cabinet_20050425',
+    ('Fahd bin Abdulaziz Al Saud', '2004-10-03', None, None),
     ('Abdullah bin Abdulaziz Al Saud', '2005-08-01', None, None), 'sa_abdullah_pm_order_a29_20070322',
-    'sa_abdullah_pm_chairs_cabinet_20121229',
     ('Salman bin Abdulaziz Al Saud', '2015-01-23', None, None), 'sa_salman_pm_order_a68_20150129',
     'sa_salman_pm_order_a138_20181227', 'sa_salman_pm_chairs_cabinet_20220517',
     ('Mohammed bin Salman bin Abdulaziz Al Saud', '2022-09-27', None, None), 'sa_mbs_pm_order_a62_20220927',

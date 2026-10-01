@@ -8,26 +8,44 @@ cutoff stays **7 September 2026**.
 This packet reviews five observations, SA-PM-01 to SA-PM-05, in [saudi-arabia.json](saudi-arabia.json). It fills the
 role `sa_pm` (Prime Minister) of institution `sa_prime_minister`, which had no dict holders, with four holders: King Fahd,
 King Abdullah, King Salman and Crown Prince Mohammed bin Salman. It adds 15 sources and 18 claims, one derived extract per
-source, four holder tenures with nine dated observations after them, a scope note on `sa_pm` and three coverage items on
+source, four holder records with seven additional dated holder observations, a scope note on `sa_pm` and three coverage items on
 `sa_prime_minister`. The two CLAUDE-C01-06 entries of `sa_pm` (`sa_mbs_pm_appointment`, `sa_mbs_cp_pm_obs_20260813`) stay
 first and unchanged; the new holders follow them. No other role, institution or organization changes, and no existing
 source or extract is edited. Four people are named as holders. No game mapping, lifespan, portrait or avatar is added. The
 parent scope (C01, C06, S23, WC1 and CP1) remains open.
 
-Each holder rests on a Saudi record that ties the person to the Council of Ministers itself: a session he chaired, SPA's
-styling of him as 'رئيس مجلس الوزراء', or a royal order placing the Council 'برئاستنا' (under our chairmanship) or making him
+Each holder rests on SPA's explicit
+styling as 'رئيس مجلس الوزراء', or a royal order placing the whole Council 'برئاستنا' (under our standing chairmanship) or making him
 Prime Minister. No holder is inferred from Article 56 of the Basic Law, which stays procedure (the CLAUDE-C01-06 coverage
 item SA-EXEC-08 forbids that inference, and this packet does not make it). Sources are the Saudi Press Agency (SPA)
 portal's news-detail JSON (13 items, read in Arabic and quoted as printed with their Hijri and Gregorian dates), one raw
 Internet Archive capture of the Umm al-Qura gazette website (2022) and one of the Royal Embassy of Saudi Arabia's English
 releases (March 1996). Foreign records, news and encyclopaedias stay leads.
 
+## Independent review correction (1 October 2026)
+
+Codex independently retrieved and read all 15 originals at submitted tip
+`8b1a3c975749087fc6ed4bf48c788386fdecfa39`; all response bytes matched the submitted
+identities. The original submission remains at that revision. Three meeting-only
+claims (Fahd 1996/2005 and Abdullah 2012) are retained as historical institution
+events, but removed as Prime Minister holder evidence. Fahd is re-anchored to
+explicit PM styling on 3 October 2004. Five royal orders continue or reconstitute
+the entire Council under the named King's chairmanship; their operative text
+identifies its standing institutional head, unlike chairing a single session.
+Those observations remain, without using Article 56 to infer a holder.
+
+All 18 claims remain. The corrected additions are four named holder records,
+seven further holder observations and seven institution-only claims. No tenure
+boundary or other accepted role changes. The tables below reflect this correction;
+the original author's historical checks and unresolved source leads below remain
+attributed to the submission, not repeated reviewer results.
+
 ## Outcome
 
 | ID | Question | Decision |
 |---|---|---|
-| SA-PM-01 | King Fahd as Prime Minister, 1990-2005 | **Accepted:** chairing the weekly Council of Ministers session on 4 March 1996 (Royal Embassy release of March 5, 1996, 'yesterday'); styled 'الملك فهد بن عبدالعزيز رئيس مجلس الوزراء' by SPA on 3 October 2004; chairing the Council on 25 April 2005, the last King-chaired session found. No 1990-1995 Saudi record is online; `from` and `until` null |
-| SA-PM-02 | King Abdullah as Prime Minister, 2005-2015 | **Accepted:** Royal Order A/194 of 26/6/1426 AH (1 August 2005), 'يستمر جميع أعضاء مجلس الوزراء الحاليين في مناصبهم برئاستنا'; A/29 of 3/3/1428 AH (22 March 2007) reconstituting the Council 'برئاستنا', 'يعمل بهذا الأمر من تاريخه'; chairing the budget session of 29 December 2012. `from` and `until` null |
+| SA-PM-01 | King Fahd as Prime Minister, 1990-2005 | **Reviewed holder:** styled 'الملك فهد بن عبدالعزيز رئيس مجلس الوزراء' by SPA on 3 October 2004. The 4 March 1996 and 25 April 2005 session-chairing facts remain institution events only. No 1990-1995 Saudi record was found in this bounded search; `from` and `until` null |
+| SA-PM-02 | King Abdullah as Prime Minister, 2005-2015 | **Accepted:** Royal Order A/194 of 26/6/1426 AH (1 August 2005), 'يستمر جميع أعضاء مجلس الوزراء الحاليين في مناصبهم برئاستنا'; A/29 of 3/3/1428 AH (22 March 2007) reconstituting the Council 'برئاستنا', 'يعمل بهذا الأمر من تاريخه'; the 29 December 2012 budget-session chairing is an institution event only. `from` and `until` null |
 | SA-PM-03 | King Salman as Prime Minister, 2015-2022 | **Accepted:** A/54 of 3/4/1436 AH (23 January 2015), 'برئاستنا' (SPA's corrected re-send); A/68 of 9/4/1436 AH (29 January 2015) and A/138 of 20/4/1440 AH (27 December 2018) reconstituting the Council 'برئاستنا'; styled 'الملك سلمان بن عبدالعزيز آل سعود رئيس مجلس الوزراء' chairing on 17 May 2022. No end is stated by the 2022 order; `until` null |
 | SA-PM-04 | Mohammed bin Salman as Prime Minister, 2022-2026 | **Accepted:** item First of A/61 of 1/3/1444 AH (27 September 2022), 'ولي العهد رئيساً لمجلس الوزراء ؛ استثناءً من حكم المادة (السادسة والخمسين)'; first in A/62 the same day; styled 'ولي العهد رئيس مجلس الوزراء' chairing on 25 October 2022 and 16 June 2026. Umm al-Qura's text of A/61 (7 October 2022) is a publication claim. The order states no effective day, so `from` is null |
 | SA-PM-05 | Chairing that is not the premiership | **Accepted as claims only:** Crown Prince Abdullah, 'Deputy Prime Minister', chairing on 11 March 1996; A/61 item Second, 'تكون جلسات مجلس الوزراء التي نحضرها برئاستنا'; King Salman chairing the session of 27 September 2022, the day of the order, without a Prime Minister title. Never holder evidence or a boundary |
@@ -36,12 +54,12 @@ releases (March 1996). Foreign records, news and encyclopaedias stay leads.
 
 | Holder on `sa_pm` | attested_on | from | until | Observations after the tenure (attested_on) |
 |---|---|---|---|---|
-| Fahd bin Abdulaziz Al Saud | 1996-03-04 | - | - | `sa_fahd_pm_styled_20041003` (2004-10-03), `sa_fahd_pm_chairs_cabinet_20050425` (2005-04-25) |
-| Abdullah bin Abdulaziz Al Saud | 2005-08-01 | - | - | `sa_abdullah_pm_order_a29_20070322` (2007-03-22), `sa_abdullah_pm_chairs_cabinet_20121229` (2012-12-29) |
+| Fahd bin Abdulaziz Al Saud | 2004-10-03 | - | - | None |
+| Abdullah bin Abdulaziz Al Saud | 2005-08-01 | - | - | `sa_abdullah_pm_order_a29_20070322` (2007-03-22) |
 | Salman bin Abdulaziz Al Saud | 2015-01-23 | - | - | `sa_salman_pm_order_a68_20150129` (2015-01-29), `sa_salman_pm_order_a138_20181227` (2018-12-27), `sa_salman_pm_chairs_cabinet_20220517` (2022-05-17) |
 | Mohammed bin Salman bin Abdulaziz Al Saud | 2022-09-27 | - | - | `sa_mbs_pm_order_a62_20220927` (2022-09-27), `sa_mbs_pm_chairs_cabinet_20221025` (2022-10-25), `sa_mbs_pm_chairs_cabinet_20260616` (2026-06-16) |
 
-The anchors are `sa_fahd_pm_chairs_cabinet_19960304`, `sa_abdullah_pm_order_a194_20050801`,
+The anchors are `sa_fahd_pm_styled_20041003`, `sa_abdullah_pm_order_a194_20050801`,
 `sa_salman_pm_order_a54_20150123` and `sa_mbs_pm_order_a61_20220927`. Names follow the existing CLAUDE-C01-06 holders;
 each extract row carries the name as printed.
 
@@ -71,13 +89,13 @@ each extract row carries the name as printed.
 
 The Royal Embassy's March 1996 page (capture 20000930104631) prints, under 'COUNCIL OF MINISTERS MEETING March 5, 1996',
 'King Fahd Bin Abdul Aziz, chairing the regular weekly session of the Council of Ministers yesterday'. 'Yesterday' resolves
-from the date line to 4 March 1996, the earliest `sa_pm` observation found. The release styles him King and prints no
-Prime Minister title; whether a King-chaired session attests the premiership is listed under Decisions for Codex. SPA's own
+from the date line to 4 March 1996. The release styles him King and prints no
+Prime Minister title; independent review retains the session event without identifying a PM holder. SPA's own
 report of the Military Service Council meeting of 3 October 2004 styles him 'خادم الحرمين الشريفين الملك فهد بن عبدالعزيز
 رئيس مجلس الوزراء', the first explicit styling found. SPA reports him chairing the Council on 25 April 2005 in Riyadh, the
 last King-chaired session found; the Crown Prince chaired the sessions of 16 May to 25 July 2005.
 
-Decision: one holder, `attested_on` 1996-03-04. `from` is null: no Saudi record of 1990-1995, no accession and no Council
+Reviewed decision: one holder, `attested_on` 2004-10-03, using explicit PM styling. The 1996 and 2005 session events are institution claims only. `from` is null: no Saudi record of 1990-1995, no accession and no Council
 formation order of his was read (A/3 of 28/2/1424 AH is cited in 2007 but was not found). `until` is null: the Royal Court
 announcement of 1 August 2005 (CLAUDE-C01-06) states no day of death and does not name the office, and A/194 of the same day
 is a successor's order.
@@ -131,9 +149,10 @@ reserves to the King the chair of sessions he attends. SPA reports King Salman c
 September 2022, filed at 22:50 Makkah time, after the orders (20:16); the item does not say whether the session sat before
 or after them and prints no Prime Minister title.
 
-Decision: four claims on the institution (`sa_abdullah_deputy_chairs_cabinet_19960311`,
+Reviewed decision: seven claims on the institution: `sa_fahd_pm_chairs_cabinet_19960304`,
+`sa_fahd_pm_chairs_cabinet_20050425`, `sa_abdullah_pm_chairs_cabinet_20121229`, `sa_abdullah_deputy_chairs_cabinet_19960311`,
 `sa_king_chair_reservation_a61_20220927`, `sa_king_chairs_cabinet_20220927`, and the gazette claim
-`sa_uqn_a61_published_20221007` of SA-PM-04), never on a role and never holder evidence or a boundary.
+`sa_uqn_a61_published_20221007` of SA-PM-04, never on a role and never holder evidence or a boundary.
 
 ## Sources added
 
@@ -220,6 +239,8 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   office (Fahd to 2004-10-03; Salman to 2022-05-17; Abdullah would need a new source).
 
 ## Decisions for Codex
+
+The first office-identity question is resolved by the independent review above: whole-Council operative orders remain holder evidence; meeting-only chairing does not. Remaining proposed boundaries stay null. The questions below preserve the submission context.
 
 1. **What attests the premiership.** The kings are anchored on direct Council records, not on Article 56: a King-chaired
    session that prints no Prime Minister title (Fahd 1996-03-04; observations 2005-04-25 and 2012-12-29) and royal orders

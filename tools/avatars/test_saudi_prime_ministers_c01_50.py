@@ -42,13 +42,13 @@ CAPTURES = {
 }
 # Every new claim in packet order: (attested_on, event kind, review observation, role or None, holder or None).
 EVENTS = {
-    'sa_fahd_pm_chairs_cabinet_19960304': ('1996-03-04', 'attestation', 'SA-PM-01', 'sa_pm', FAHD),
+    'sa_fahd_pm_chairs_cabinet_19960304': ('1996-03-04', 'session_chaired_by_king', 'SA-PM-01', None, None),
     'sa_abdullah_deputy_chairs_cabinet_19960311': ('1996-03-11', 'deputy_chaired_session', 'SA-PM-05', None, None),
     'sa_fahd_pm_styled_20041003': ('2004-10-03', 'attestation', 'SA-PM-01', 'sa_pm', FAHD),
-    'sa_fahd_pm_chairs_cabinet_20050425': ('2005-04-25', 'attestation', 'SA-PM-01', 'sa_pm', FAHD),
+    'sa_fahd_pm_chairs_cabinet_20050425': ('2005-04-25', 'session_chaired_by_king', 'SA-PM-01', None, None),
     'sa_abdullah_pm_order_a194_20050801': ('2005-08-01', 'council_continued_by_royal_order', 'SA-PM-02', 'sa_pm', ABD),
     'sa_abdullah_pm_order_a29_20070322': ('2007-03-22', 'council_reconstituted_by_royal_order', 'SA-PM-02', 'sa_pm', ABD),
-    'sa_abdullah_pm_chairs_cabinet_20121229': ('2012-12-29', 'attestation', 'SA-PM-02', 'sa_pm', ABD),
+    'sa_abdullah_pm_chairs_cabinet_20121229': ('2012-12-29', 'session_chaired_by_king', 'SA-PM-02', None, None),
     'sa_salman_pm_order_a54_20150123': ('2015-01-23', 'council_continued_by_royal_order', 'SA-PM-03', 'sa_pm', SAL),
     'sa_salman_pm_order_a68_20150129': ('2015-01-29', 'council_reconstituted_by_royal_order', 'SA-PM-03', 'sa_pm', SAL),
     'sa_salman_pm_order_a138_20181227': ('2018-12-27', 'council_reconstituted_by_royal_order', 'SA-PM-03', 'sa_pm', SAL),
@@ -67,14 +67,14 @@ NEVER_HOLDER_KINDS = {'deputy_chaired_session', 'chair_reservation', 'session_ch
 # The CLAUDE-C01-06 entries stay first and unchanged; the four holders follow, each followed by its own observations.
 C01_06_PM = ['sa_mbs_pm_appointment', 'sa_mbs_cp_pm_obs_20260813']
 HOLDERS = [  # (name, attested_on, from, until, sources, claim_ids)
-    (FAHD, '1996-03-04', None, None, ['sa_embassy_fahd_cabinet_19960305'], ['sa_fahd_pm_chairs_cabinet_19960304']),
+    (FAHD, '2004-10-03', None, None, ['sa_spa_fahd_pm_styled_20041003'], ['sa_fahd_pm_styled_20041003']),
     (ABD, '2005-08-01', None, None, ['sa_spa_order_a194_20050801'], ['sa_abdullah_pm_order_a194_20050801']),
     (SAL, '2015-01-23', None, None, ['sa_spa_order_a54_20150123'], ['sa_salman_pm_order_a54_20150123']),
     (MBS, '2022-09-27', None, None, ['sa_spa_order_a61_20220927'], ['sa_mbs_pm_order_a61_20220927']),
 ]
 OBSERVATIONS = {
-    FAHD: ['sa_fahd_pm_styled_20041003', 'sa_fahd_pm_chairs_cabinet_20050425'],
-    ABD: ['sa_abdullah_pm_order_a29_20070322', 'sa_abdullah_pm_chairs_cabinet_20121229'],
+    FAHD: [],
+    ABD: ['sa_abdullah_pm_order_a29_20070322'],
     SAL: ['sa_salman_pm_order_a68_20150129', 'sa_salman_pm_order_a138_20181227', 'sa_salman_pm_chairs_cabinet_20220517'],
     MBS: ['sa_mbs_pm_order_a62_20220927', 'sa_mbs_pm_chairs_cabinet_20221025', 'sa_mbs_pm_chairs_cabinet_20260616'],
 }
@@ -221,7 +221,7 @@ class SaudiPrimeMinistersTests(unittest.TestCase):
     def test_dates_events_and_wording_never_collapse(self):
         text = lambda cid: self.claims[cid]['text']
         doubt = lambda cid: self.claims[cid]['uncertainty']
-        # 1996: the King chairs ('yesterday'), then the Deputy Prime Minister chairs ('today'): two claims, one holder fact.
+        # 1996: King and Deputy Prime Minister chair separate sessions: both are event-only claims.
         self.assertIn('chairing the regular weekly session of the Council of Ministers yesterday', text('sa_fahd_pm_chairs_cabinet_19960304'))
         self.assertIn('March 5, 1996', text('sa_fahd_pm_chairs_cabinet_19960304'))
         self.assertIn('does not print the title Prime Minister', doubt('sa_fahd_pm_chairs_cabinet_19960304'))
@@ -317,6 +317,39 @@ class SaudiPrimeMinistersTests(unittest.TestCase):
         self.assertNotIn(b'\r', data)
         self.assertEqual(data.decode('utf-8'), json.dumps(self.packet, indent=2, ensure_ascii=False) + '\n')
 
+    def test_meeting_only_claims_cannot_identify_prime_minister(self):
+        meeting_only = {
+            'sa_fahd_pm_chairs_cabinet_19960304',
+            'sa_fahd_pm_chairs_cabinet_20050425',
+            'sa_abdullah_pm_chairs_cabinet_20121229',
+        }
+        holders = self.roles['sa_pm']['holder_claims']
+        used = {cid for h in holders for cid in ([h] if isinstance(h, str) else h['claim_ids'])}
+        self.assertFalse(used & meeting_only)
+        self.assertTrue(meeting_only <= set(self.entries['sa_prime_minister']['claim_ids']))
+        for cid in meeting_only:
+            with self.subTest(cid=cid):
+                packet = copy.deepcopy(self.packet)
+                pm = next(r for e in packet['institutions'] for r in e['roles'] if r['id'] == 'sa_pm')
+                pm['holder_claims'].append(cid)
+                with self.assertRaises(AssertionError):
+                    pm_invariants(packet, self.extracts)
+
+    def test_standing_council_orders_and_explicit_titles_remain_holder_evidence(self):
+        # Whole-Council constitution under the named sovereign is distinct from
+        # a session chaired by a king or deputy, independent of Article 56.
+        used = {cid for h in self.roles['sa_pm']['holder_claims']
+                for cid in ([h] if isinstance(h, str) else h['claim_ids'])}
+        orders = {'sa_abdullah_pm_order_a194_20050801', 'sa_abdullah_pm_order_a29_20070322',
+                  'sa_salman_pm_order_a54_20150123', 'sa_salman_pm_order_a68_20150129',
+                  'sa_salman_pm_order_a138_20181227'}
+        self.assertTrue(orders <= used)
+        self.assertIn('sa_fahd_pm_styled_20041003', used)
+        fahd = next(h for h in self.roles['sa_pm']['holder_claims']
+                    if isinstance(h, dict) and h['name'] == FAHD)
+        self.assertEqual((fahd['attested_on'], fahd['claim_ids']),
+                         ('2004-10-03', ['sa_fahd_pm_styled_20041003']))
+
     def test_mutations_are_rejected(self):
         pm_invariants(self.packet, self.extracts)
 
@@ -349,10 +382,10 @@ class SaudiPrimeMinistersTests(unittest.TestCase):
             pm(p).append('sa_king_chairs_cabinet_20220927')
 
         def deputy_chair_as_observation(p, e):
-            pm(p).insert(pm(p).index('sa_fahd_pm_styled_20041003'), 'sa_abdullah_deputy_chairs_cabinet_19960311')
+            pm(p).append('sa_abdullah_deputy_chairs_cabinet_19960311')
 
         def observation_on_wrong_tenure(p, e):
-            i, j = pm(p).index('sa_fahd_pm_chairs_cabinet_20050425'), pm(p).index('sa_abdullah_pm_order_a29_20070322')
+            i, j = pm(p).index('sa_salman_pm_order_a68_20150129'), pm(p).index('sa_abdullah_pm_order_a29_20070322')
             pm(p)[i], pm(p)[j] = pm(p)[j], pm(p)[i]
 
         def existing_entry_dropped(p, e):

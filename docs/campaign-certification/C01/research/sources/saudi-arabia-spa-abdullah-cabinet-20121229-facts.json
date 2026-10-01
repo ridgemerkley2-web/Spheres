@@ -35,15 +35,16 @@
       "claim_id": "sa_abdullah_pm_chairs_cabinet_20121229",
       "observation_id": "sa_prime_minister",
       "review_observation": "SA-PM-02",
-      "role_id": "sa_pm",
-      "holder_name": "Abdullah bin Abdulaziz Al Saud",
-      "printed_name": "عبدالله بن عبدالعزيز آل سعود",
+      "role_id": null,
+      "holder_name": null,
       "role_title": "رأس جلسة مجلس الوزراء — chairing the Council of Ministers (رئيس مجلس الوزراء not printed)",
-      "event_kind": "attestation",
+      "event_kind": "session_chaired_by_king",
       "attested_on": "2012-12-29",
       "text": "SPA, date line Riyadh 16 Safar 1434 / 29 December 2012: 'أقر مجلس الوزراء ، في جلسته التي عقدها برئاسة خادم الحرمين الشريفين الملك عبدالله بن عبدالعزيز آل سعود ـ حفظه الله ـ ، اليوم السبت السادس عشر من شهر صفر 1434هـ الموافق للتاسع والعشرين من شهر ديسمبر 2012م' the state budget for 1434/1435 AH.",
-      "locator": "Date line; first paragraph; trailer 15:19 (Makkah time)"
+      "locator": "Date line; first paragraph; trailer 15:19 (Makkah time)",
+      "observed_name": "عبدالله بن عبدالعزيز آل سعود"
     }
   ],
-  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract."
+  "bounded_scope": "Prime Minister observations for CLAUDE-C01-50 only (role sa_pm of institution sa_prime_minister). Attestations, royal orders continuing, reconstituting or appointing, a deputy-chaired session, the King's chair reservation, a King-chaired session after it and a gazette publication stay separate rows; holder boundaries are decided in the packet, not by any row. The King, Crown Prince and chair roles of CLAUDE-C01-06, 25 and 45 are outside this extract.",
+  "review_correction": "Codex 1 October 2026: session chairing alone does not identify the Prime Minister. Retain quoted facts and observed names; these rows are institution events, not holder evidence. Original submitted extract remains at 8b1a3c975749087fc6ed4bf48c788386fdecfa39."
 }

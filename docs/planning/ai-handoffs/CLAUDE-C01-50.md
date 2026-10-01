@@ -38,6 +38,10 @@ Checks: research-index `--check`; `campaign_census.py --check`; the SaudiArabia,
 
 Mark the packet `ready_for_review` when done. C01 and all parent gates stay open.
 
+## Independent review amendment (1 October 2026)
+
+Codex independently retrieved all 15 originals at `8b1a3c975749087fc6ed4bf48c788386fdecfa39`, read every new claim and holder use, and retained byte-identical response bodies and headers externally. The repaired packet retains all 18 claims but removes three meeting-only PM holder uses: Fahd 1996/2005 and Abdullah 2012. Fahd is anchored instead by explicit PM styling on 3 October 2004. Five whole-Council operative orders identify standing institutional chairmanship and remain supported holder evidence. Corrected additions: four named holder records, seven additional holder observations, seven institution-only claims. Existing C01-06 entries and all unknown boundaries remain unchanged. The source submission below is retained as original author context; the amended report and JSON describe the current candidate. Integration acceptance remains separate.
+
 ## Submission (ready_for_review)
 
 [Report](../../campaign-certification/C01/research/saudi-arabia-prime-ministers-1990-2026-50.md):
