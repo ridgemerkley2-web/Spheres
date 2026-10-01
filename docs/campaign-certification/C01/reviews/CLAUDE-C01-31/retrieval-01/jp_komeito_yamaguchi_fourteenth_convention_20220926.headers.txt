@@ -1,0 +1,44 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 01 Oct 2026 00:51:10 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 43206
+Connection: keep-alive
+x-archive-orig-connection: close
+x-archive-orig-content-length: 43206
+x-archive-orig-server: Apache
+x-archive-orig-link: <https://www.komei.or.jp/wp-json/>; rel="https://api.w.org/"
+x-archive-orig-link: <https://www.komei.or.jp/?p=258623>; rel=shortlink
+x-archive-orig-via: 1.1 varnish, 1.1 varnish
+x-archive-orig-accept-ranges: bytes
+x-archive-orig-date: Wed, 28 Sep 2022 12:29:12 GMT
+x-archive-orig-age: 0
+x-archive-orig-x-served-by: cache-hnd18736-HND, cache-sjc10045-SJC
+x-archive-orig-x-cache: HIT, MISS
+x-archive-orig-x-cache-hits: 1, 0
+x-archive-orig-x-timer: S1664368153.502447,VS0,VE130
+x-archive-orig-vary: Host
+cache-control: max-age=1800
+accept-ranges: bytes
+memento-datetime: Wed, 28 Sep 2022 12:29:12 GMT
+link: <https://www.komei.or.jp/komeinews/p258623/>; rel="original", <https://web.archive.org/web/timemap/link/https://www.komei.or.jp/komeinews/p258623/>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/https://www.komei.or.jp/komeinews/p258623/>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: TWITTER-20220928102901-crawl856/TWITTER-20220928120457-04772.warc.gz
+server-timing: captures_list;dur=0.642620, exclusion.robots;dur=0.048586, exclusion.robots.policy;dur=0.036814, esindex;dur=0.008495, cdx.remote;dur=6.831822, LoadShardBlock;dur=77.872432, PetaboxLoader3.datanode;dur=566.216849, load_resource;dur=595.586697, PetaboxLoader3.resolve;dur=35.430586
+x-app-server: wwwb-app249-dc8
+x-ts: 200
+x-tr: 702
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=1
+set-cookie: [response value redacted]
+cache-control: private
+X-location: All
+X-AS: 7922
+X-RL: 0
+X-NA: 0
+X-Page-Cache: MISS
+Server-Timing: MISS
+X-NID: COMCAST-7922
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+X-sd: 0
+
