@@ -17,9 +17,10 @@ entry. The existing holders ('Akilisi Pohiva as leader, attested 27 November 201
 Fatai Helu as President, attested 29 August 2022; the PDP string observation) are unchanged. The parent scope (C01, C06,
 S23, WC1 and CP1) remains open.
 
-No primary record found names a DPFI or PTOA leader, president or chair after 'Akilisi Pohiva, or any PDP officer: every
-later name (a 2019-2020 successor, rival 2021 groups, a 2025 chair, the PDP's first president) comes only from news or
-tertiary leads, listed below.
+No additional primary record found by this packet names a later DPFI or PTOA leader, president or chair, or any PDP
+officer. The existing primary 2022 Fatai Helu presidency observation remains unchanged. Other proposed names (a
+2019-2020 successor, rival 2021 groups, a 2025 chair, the PDP's first president) come only from news or tertiary leads,
+listed below.
 
 ## Outcome
 
