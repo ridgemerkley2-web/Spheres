@@ -115,27 +115,32 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-44 | accepted | 5 |
 | CLAUDE-C01-45 | accepted | 18 |
 | CLAUDE-C01-46 | accepted | 7 |
+| CLAUDE-C01-47 | accepted | 24 |
+| CLAUDE-C01-48 | accepted | 0 |
+| CLAUDE-C01-49 | accepted | 6 |
+| CLAUDE-C01-50 | accepted | 15 |
+| CLAUDE-C01-51 | accepted | 16 |
 
 ## Coverage by country
 
 | Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
-| France | France | 2 / 15 / 1 | 1103 | 0/74 | 197/555 | 23/198 |
+| France | France | 3 / 15 / 1 | 1181 | 0/111 | 197/555 | 23/198 |
 | Japan | Japan | 7 / 8 / 1 | 1222 | 9/259 | 151/296 | 15/151 |
-| India | India | 6 / 4 / 1 | 783 | 6/222 | 109/148 | 10/109 |
+| India | India | 9 / 4 / 1 | 948 | 6/333 | 109/148 | 10/109 |
 | Brazil | Brazil | 6 / 6 / 1 | 881 | 20/222 | 99/222 | 7/100 |
 | SouthAfrica | SouthAfrica | 11 / 7 / 1 | 1190 | 4/407 | 151/259 | 13/151 |
 | Tonga | Tonga | 15 / 0 / 1 | 978 | 15/555 | none | none |
-| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 721 | 2/370 | none | none |
-| USSR -> Russia | USSR | 8 / 3 / 1 | 689 | 0/296 | 0/111 | none |
-| USSR -> Russia | Russia | 9 / 5 / 1 | 924 | 3/333 | 0/185 | none |
+| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 753 | 2/370 | none | none |
+| USSR -> Russia | USSR | 8 / 3 / 1 | 696 | 0/296 | 0/111 | none |
+| USSR -> Russia | Russia | 9 / 5 / 1 | 953 | 3/333 | 0/185 | none |
 
 ## Headline findings
 
 ### France
 
-- Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 35.
+- Research roles: 3 (3 with holder observations); 0 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 87 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 48.
 - Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.
 - Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).
 - Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
@@ -157,8 +162,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### India
 
-- Research roles: 6 (6 with holder observations); 6 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 12 are bracketed, 124 uncertain, 80 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 25, pending 31.
+- Research roles: 9 (9 with holder observations); 6 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 12 are bracketed, 134 uncertain, 181 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 25, pending 31, unattributed_intake 4.
 - Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.
 - Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).
 - Campaign-start executive V. P. Singh: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
@@ -203,7 +208,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 ### SaudiArabia
 
 - Research roles: 10 (6 with holder observations); 2 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 80 uncertain, 103 unknown and 148 unresearched.
-- Research holder observations by acceptance: accepted 51, pending 13, unattributed_intake 3.
+- Research holder observations by acceptance: accepted 62, pending 13, unattributed_intake 3.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
 - Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -215,8 +220,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 **USSR**
 
-- Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.
-- Research holder observations by acceptance: accepted 13, pending 6, unattributed_intake 4.
+- Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 36 uncertain, 222 unknown and 37 unresearched.
+- Research holder observations by acceptance: accepted 17, pending 6, unattributed_intake 4.
 - Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.
 - Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -225,8 +230,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 **Russia**
 
-- Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 155 uncertain, 174 unknown and 0 unresearched.
-- Research holder observations by acceptance: accepted 18, pending 24, unattributed_intake 5.
+- Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 172 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 27, pending 24, unattributed_intake 5.
 - Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.
 - Successor identity: no executive or party assignment exists at the 1990 campaign start.
 - Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.
@@ -256,6 +261,7 @@ established holders at those samples; for the executive they count the campaign-
 | France | `party:fr_udf/fr_udf_pril` Pôle républicain, indépendant et libéral (PRIL) | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | France | `party:fr_pcf` French Communist Party | production_registry 6 | 37/0/0/0/0/0/0 | 9 | 0 | 5/38 |
 | France | `party:fr_fn` National Front | production_registry 7 | 37/0/0/0/0/0/0 | 15 | 0 | 5/37 |
+| France | `research:fr_ps_first_secretary` Premier secrétaire | accepted 13 | 0/0/0/0/37/0/0 | 0 | 26 | - |
 | France | `research:fr_president` Président de la République | accepted 7 | 0/0/0/24/13/0/0 | 15 | 4 | - |
 | France | `research:fr_pm` Premier ministre | accepted 28 | 0/0/0/0/37/0/0 | 0 | 56 | - |
 | Japan | `executive` Prime Minister | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | 5/37 |
@@ -279,9 +285,12 @@ established holders at those samples; for the executive they count the campaign-
 | India | `party:in_jd` Janata Dal | production_registry 3 | 7/0/0/30/0/0/0 | 6 | 0 | 4/7 |
 | India | `party:in_bjp` Bharatiya Janata Party | production_registry 14 | 30/0/0/7/0/0/0 | 18 | 0 | 2/30 |
 | India | `party:in_cpm` Communist Party of India (Marxist) | production_registry 6 | 36/0/0/1/0/0/0 | 9 | 0 | 2/36 |
+| India | `research:in_aap_national_convenor` National Convenor of the Aam Aadmi Party | unattributed_intake 2 | 0/0/0/10/27/0/0 | 3 | 2 | - |
+| India | `research:in_bsp_national_president` National President of the Bahujan Samaj Party | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | India | `research:in_bjp_president` National President of the Bharatiya Janata Party | accepted 19 | 0/0/1/35/1/0/0 | 12 | 32 | - |
 | India | `research:in_cpm_general_secretary` General Secretary of the Communist Party of India (Marxist) | accepted 4 | 0/0/9/26/2/0/0 | 3 | 8 | - |
 | India | `research:in_inc_president` President of the Indian National Congress | pending 10 | 0/0/0/0/37/0/0 | 0 | 20 | - |
+| India | `research:in_npp_national_president` National President of the National People's Party | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | India | `research:in_jd_president` President of the Janata Dal | accepted 2 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | India | `research:in_pm` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | - |
 | India | `research:in_president` President of India | pending 8 | 0/0/0/34/3/0/0 | 21 | 2 | - |
@@ -333,10 +342,10 @@ established holders at those samples; for the executive they count the campaign-
 | Tonga | `research:to_deputy_speaker` Deputy Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | Tonga | `research:to_peoples_representatives` People's representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Tonga | `research:to_nobles_representatives` Nobles' representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `executive` King and Prime Minister | accepted 7, pending 5, unattributed_intake 2 | 1/0/10/15/11/0/0 | 3 | 23 | 1/37 |
+| SaudiArabia | `executive` King and Prime Minister | accepted 18, pending 5, unattributed_intake 2 | 1/0/10/15/11/0/0 | 3 | 37 | 1/37 |
 | SaudiArabia | `research:sa_king` King | accepted 7, pending 4, unattributed_intake 1 | 1/0/10/15/11/0/0 | 3 | 23 | - |
 | SaudiArabia | `research:sa_crown_prince` Crown Prince | accepted 10, pending 8, unattributed_intake 1 | 1/0/12/15/9/0/0 | 15 | 33 | - |
-| SaudiArabia | `research:sa_pm` Prime Minister | pending 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
+| SaudiArabia | `research:sa_pm` Prime Minister | accepted 11, pending 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 22 | - |
 | SaudiArabia | `research:sa_cabinet_ministers` Ministers | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | SaudiArabia | `research:sa_shura_chair` Chairman of the Shura Council | accepted 29 | 0/0/5/32/0/0/0 | 9 | 42 | - |
 | SaudiArabia | `research:sa_shura_members` Shura Council members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
@@ -352,11 +361,11 @@ established holders at those samples; for the executive they count the campaign-
 | USSR | `research:su_cpsu_deputy_general_secretary` Deputy General Secretary | accepted 2, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | USSR | `research:su_dr_co_chair` Сопредседатель движения «Демократическая Россия» (Координационного совета) — Co-chair of the Democratic Russia movement | accepted 7 | 0/0/0/0/37/0/0 | 0 | 8 | - |
 | USSR | `research:su_soyuz_co_chair` Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group | accepted 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
-| USSR | `research:su_president` President of the USSR | pending 1, unattributed_intake 1 | 0/0/0/0/36/0/1 | 3 | 4 | - |
+| USSR | `research:su_president` President of the USSR | accepted 4, pending 1, unattributed_intake 1 | 0/0/0/36/0/0/1 | 4 | 10 | - |
 | USSR | `research:su_congress_deputies` USSR people's deputies in Congress | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | USSR | `research:su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet | pending 2, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 5 | - |
 | USSR | `research:su_government_head` Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government | pending 3 | 0/0/0/0/37/0/0 | 0 | 6 | - |
-| Russia | `executive` none at campaign start (successor identity) | pending 8 | 3/0/0/32/2/0/0 | 27 | 0 | - |
+| Russia | `executive` none at campaign start (successor identity) | accepted 4, pending 8 | 3/0/0/32/2/0/0 | 27 | 8 | - |
 | Russia | `party:ru_ldpr` Liberal Democratic Party of Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Russia | `party:ru_vybor` Russia's Choice | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Russia | `party:ru_kprf` Communist Party of the Russian Federation | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
@@ -367,8 +376,8 @@ established holders at those samples; for the executive they count the campaign-
 | Russia | `research:ru_duma_faction_20211012_srzp_head` Руководитель фракции — head of the parliamentary faction | accepted 3, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 8 | - |
 | Russia | `research:ru_duma_faction_20211012_ldpr_head` Руководитель фракции — head of the parliamentary faction | accepted 3, unattributed_intake 1 | 0/0/1/32/4/0/0 | 3 | 8 | - |
 | Russia | `research:ru_duma_faction_20211012_nl_head` Руководитель фракции — head of the parliamentary faction | accepted 4, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 10 | - |
-| Russia | `research:ru_rsfsr_president` President of the RSFSR (Президент РСФСР) | pending 1 | 0/0/0/35/2/0/0 | 3 | 0 | - |
-| Russia | `research:ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) | pending 1 | 0/0/0/35/2/0/0 | 3 | 0 | - |
+| Russia | `research:ru_rsfsr_president` President of the RSFSR (Президент РСФСР) | accepted 4, pending 1 | 0/0/0/35/2/0/0 | 3 | 8 | - |
+| Russia | `research:ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) | accepted 5, pending 1 | 0/0/0/37/0/0/0 | 6 | 10 | - |
 | Russia | `research:ru_president` Президент Российской Федерации — President of the Russian Federation | pending 7 | 3/0/0/26/8/0/0 | 24 | 0 | - |
 | Russia | `research:ru_government_chairman` Председатель Правительства — Chairman of the Government | pending 15 | 0/0/0/27/10/0/0 | 30 | 10 | - |
 
@@ -385,4 +394,4 @@ established holders at those samples; for the executive they count the campaign-
 - Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
 - Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
-- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02) do not change a packet's class.
+- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28, REVIEW-2026-10-01, REVIEW-20261001-02, REVIEW-20261001-03) do not change a packet's class.

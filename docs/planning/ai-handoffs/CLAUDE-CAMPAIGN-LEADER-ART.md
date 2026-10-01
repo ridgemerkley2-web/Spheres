@@ -57,8 +57,8 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 The [CP1 acceleration assignment](CP1-ACCELERATION.md) keeps Tonga as the first
 country-cast priority. Production task `CLAUDE-C06-TONGA-01` is now owned by
 **Codex, in progress**; the stable ID preserves its original assignment history.
-Candidate `328ff914` on `codex/tonga-country-cast-20261001` remains isolated,
-with CI run `36876063103` running at this registration checkpoint. It is not live,
+Candidate `6829ecc7` on `codex/tonga-country-cast-20261001` remains isolated,
+with CI run `36878791848` running at this registration checkpoint. It is not live,
 accepted or a completed country cast. Preserve the accepted identity proposal
 and C01-44 research; coordinate any Claude assistance with Codex before changing
 production identities, artwork or shared runtime. The Russia/DA source holds

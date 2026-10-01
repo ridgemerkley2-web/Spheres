@@ -18,37 +18,37 @@
    },
    "statistics": {
     "roles": {
-     "research": 2,
+     "research": 3,
      "production_party": 15,
      "executive": 1
     },
-    "cases": 1103,
+    "cases": 1181,
     "case_kinds": {
-     "attestation_day": 30,
-     "attestation_day_after": 30,
-     "cutoff_day": 18,
-     "cutoff_day_before": 18,
+     "attestation_day": 43,
+     "attestation_day_after": 43,
+     "cutoff_day": 19,
+     "cutoff_day_before": 19,
      "dissolution_day_after": 1,
      "dissolution_day_before": 1,
      "dissolution_day_of": 1,
-     "fictional_end_exclusive": 18,
-     "fictional_last_day": 18,
-     "fictional_start_day": 18,
-     "future_2030": 18,
+     "fictional_end_exclusive": 19,
+     "fictional_last_day": 19,
+     "fictional_start_day": 19,
+     "future_2030": 19,
      "handover_day_after": 37,
      "handover_day_before": 37,
      "handover_day_of": 37,
-     "reference_start": 18,
-     "reference_start_day_before": 18,
-     "yearly": 828
+     "reference_start": 19,
+     "reference_start_day_before": 19,
+     "yearly": 874
     },
     "observations_by_acceptance": {
-     "accepted": 35,
+     "accepted": 48,
      "production_registry": 54
     },
     "research_yearly_status": {
      "uncertain": 24,
-     "unknown": 50
+     "unknown": 87
     },
     "production_party_yearly_status": {
      "established": 197,
@@ -74,8 +74,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 2 (2 with holder observations); 0 of 74 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 50 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 35.",
+    "Research roles: 3 (3 with holder observations); 0 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 87 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 48.",
     "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
     "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
     "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
@@ -2609,6 +2609,130 @@
    }
   },
   {
+   "key": "research:fr_ps_first_secretary",
+   "identity": "France",
+   "family": "research_role",
+   "role_id": "fr_ps_first_secretary",
+   "title": "Premier secrétaire",
+   "kind": "party_leader",
+   "entry": {
+    "id": "fr_cnccfp_76",
+    "category": "organizations",
+    "name": "PARTI SOCIALISTE",
+    "kind": "financial_reporting_identity",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "fr_ps_first_secretary#1",
+    "fr_ps_first_secretary#2",
+    "fr_ps_first_secretary#3",
+    "fr_ps_first_secretary#4",
+    "fr_ps_first_secretary#5",
+    "fr_ps_first_secretary#6",
+    "fr_ps_first_secretary#7",
+    "fr_ps_first_secretary#8",
+    "fr_ps_first_secretary#9",
+    "fr_ps_first_secretary#10",
+    "fr_ps_first_secretary#11",
+    "fr_ps_first_secretary#12",
+    "fr_ps_first_secretary#13"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-03-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-03-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-08","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-11","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-11-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-11-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-06-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-06-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-10-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-10-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-06-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-06-07","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-12-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-12-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-11-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-11-30","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-09","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-04-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-04-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-07-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-07-10","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-03-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_ps_first_secretary#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-03-12","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 78,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 26
+   }
+  },
+  {
    "key": "research:fr_president",
    "identity": "France",
    "family": "research_role",
@@ -4105,6 +4229,292 @@
    ],
    "source_classes": {
     "accepted": 4
+   }
+  },
+  "fr_ps_first_secretary#1": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Pierre Mauroy",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-03-24",
+   "claim_ids": [
+    "fr_ps_mauroy_listed_premier_secretaire_19900324"
+   ],
+   "note": "Observed on 24 March 1990: Vendredi n°54 lists the new secrétariat national opening 'Premier secrétaire : Pierre Mauroy', after his re-election by the comité directeur following the Rennes congress (a separate claim with no printed day).",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_vendredi_054_19900324"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#10": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Harlem Désir",
+   "from": null,
+   "until": null,
+   "attested_on": "2013-01-08",
+   "claim_ids": [
+    "fr_ps_desir_at_jarnac_20130108"
+   ],
+   "note": "Observed on 8 January 2013: L'Hebdo des socialistes n°677 reports that at Jarnac that day 'Harlem Désir, Premier secrétaire du PS, était entouré d'une délégation'.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_hebdo_677_20130112"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#11": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Jean-Christophe Cambadélis",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-04-19",
+   "claim_ids": [
+    "fr_ps_cambadelis_listed_premier_secretaire_20140419"
+   ],
+   "note": "Observed on 19 April 2014: L'Hebdo des socialistes n°730-731 opens the new secrétariat national with 'Premier secrétaire – Jean-Christophe Cambadélis'; his election by the Conseil national on 15 April 2014 is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_hebdo_730_731_20140419"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#12": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Olivier Faure",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-07-09",
+   "claim_ids": [
+    "fr_ps_faure_signed_statement_20180709"
+   ],
+   "note": "Observed on 9 July 2018: a party statement of that day is signed 'Olivier FAURE Premier secrétaire du Parti socialiste'; the members' vote of 29 March 2018 is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_site_versailles_reaction_20180709"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#13": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Olivier Faure",
+   "from": null,
+   "until": null,
+   "attested_on": "2023-03-11",
+   "claim_ids": [
+    "fr_ps_faure_closes_conseil_national_20230311"
+   ],
+   "note": "Observed on 11 March 2023: the party's page reads 'Samedi 11 mars 2023, notre Premier secrétaire Olivier Faure s'est exprimé en clôture du Conseil national'; the members' vote of 19 January 2023 and its reviewed count are separate claims.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_site_conseil_national_20230311"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#2": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Pierre Mauroy",
+   "from": null,
+   "until": null,
+   "attested_on": "1992-01-07",
+   "claim_ids": [
+    "fr_ps_mauroy_mandate_at_disposal_19920107"
+   ],
+   "note": "Observed on 7 January 1992: in his declaration of that day to the bureau exécutif, printed in Vendredi n°127, he places 'mon mandat de premier secrétaire' at the disposal of the next comité directeur.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_vendredi_127_19920110"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#3": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Laurent Fabius",
+   "from": null,
+   "until": null,
+   "attested_on": "1992-01-10",
+   "claim_ids": [
+    "fr_ps_fabius_styled_premier_secretaire_19920110"
+   ],
+   "note": "Observed on 10 January 1992: Vendredi n°127 opens its political section 'Avec l'élection de Laurent Fabius, premier secrétaire'; his election by the comité directeur on 9 January 1992 ('jeudi') and his acceptance address are separate claims.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_vendredi_127_19920110"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#4": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Michel Rocard",
+   "from": null,
+   "until": null,
+   "attested_on": "1993-11-12",
+   "claim_ids": [
+    "fr_ps_rocard_in_office_19931112"
+   ],
+   "note": "Observed on 12 November 1993: Vendredi n°207 lists the secrétariat national headed by Michel Rocard as premier secrétaire and speaks of 'ses fonctions de premier secrétaire'; his election by the Le Bourget congress on 23 October 1993 ('samedi') is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_vendredi_207_19931112"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#5": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Henri Emmanuelli",
+   "from": null,
+   "until": null,
+   "attested_on": "1994-06-24",
+   "claim_ids": [
+    "fr_ps_emmanuelli_styled_premier_secretaire_19940624"
+   ],
+   "note": "Observed on 24 June 1994: Vendredi n°234 styles him 'le premier secrétaire'; his election by the Conseil national of 19 June 1994 is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_vendredi_234_19940624"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#6": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Lionel Jospin",
+   "from": null,
+   "until": null,
+   "attested_on": "1995-10-18",
+   "claim_ids": [
+    "fr_ps_jospin_receives_flnks_19951018"
+   ],
+   "note": "Observed on 18 October 1995: Vendredi of 20 October 1995 reports that a FLNKS delegation met 'Lionel Jospin, Premier secrétaire du Parti socialiste' on Wednesday 18 October; the members' vote result (no day printed) is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_vendredi_261_19951020"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#7": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Lionel Jospin",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-06-06",
+   "claim_ids": [
+    "fr_ps_jospin_remains_premier_secretaire_19970606"
+   ],
+   "note": "Observed on 6 June 1997: in L'Hebdo des socialistes n°23, François Hollande states that Lionel Jospin 'reste Premier Secrétaire du parti jusqu'au prochain congrès' while delegating to a Premier secrétaire délégué.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_hebdo_023_19970606"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#8": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "François Hollande",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-12-05",
+   "claim_ids": [
+    "fr_ps_hollande_styled_premier_secretaire_19971205"
+   ],
+   "note": "Observed on 5 December 1997: L'Hebdo des socialistes n°43 prints a communiqué headed with his title of Premier secrétaire and lists him first in the new secrétariat national; the result of the members' election (91,18 %) is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_hebdo_043_19971205"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_ps_first_secretary#9": {
+   "role": "research:fr_ps_first_secretary",
+   "name": "Martine Aubry",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-11-29",
+   "claim_ids": [
+    "fr_ps_aubry_styled_premiere_secretaire_20081129"
+   ],
+   "note": "Observed on 29 November 2008: the table of contents of L'Hebdo des socialistes n°508 lists 'Martine Aubry Première secrétaire'; her election declared at the Conseil national of 25 November 2008 is a separate claim.",
+   "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries.",
+   "sources": [
+    "fr_ps_hebdo_508_20081129"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-47"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "fr_ps_francois_hollande_199706_acting": {

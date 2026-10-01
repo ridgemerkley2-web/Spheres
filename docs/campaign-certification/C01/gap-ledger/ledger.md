@@ -54,6 +54,11 @@ These completed reviews are no longer pending work. Their remaining coverage gap
 | CLAUDE-C01-44 | Tonga | `43cafce64de27c43dd4e3cb32d3d5d62057ccbed` | Research Tonga DPFI and PDP organization and leadership evidence; bounded intake accepted, no full chronology or runtime mapping |
 | CLAUDE-C01-45 | SaudiArabia | `42046e519da389b713fd40f28a38a23e5b495936` | Research Saudi royal offices and Allegiance Commission secretary; bounded observations accepted, no runtime mapping |
 | CLAUDE-C01-46 | USSR -> Russia | `6f88cd1b9dd97d9c5839a85b1d8c2c7333649554` | Research State Duma faction heads, 2021–2026; bounded observations accepted, no runtime mapping |
+| CLAUDE-C01-47 | France | `32eb9977f505217070a9d3ae74a8824a0b77e113` | Socialist Party first-secretary observations, 1990–2026; bounded intake accepted with date-precision repairs, organization reconciliation and runtime mapping remain open |
+| CLAUDE-C01-48 | India | `ee884dfc5201b3652e274b33fc286db94693d1b0` | BSP, AAP and NPP national leadership; bounded intake accepted, no complete party chronology or runtime mapping |
+| CLAUDE-C01-49 | USSR -> Russia | `9ec1583a779b6978ca96e78797ae8faa5227f8bd` | USSR government and Presidential evidence, 1990–1991; four Presidential observations accepted, ambiguous Premier signature remains claims-only, no runtime mapping |
+| CLAUDE-C01-50 | SaudiArabia | `6248bde6b68f543b8c814d4db5d49f41bccc6efc` | Saudi prime-minister evidence, 1990–2026; eleven observations accepted, three meeting-only holder uses withheld, no runtime mapping |
+| CLAUDE-C01-51 | USSR -> Russia | `1299cfd835dcb87e52ecfb48b999441ae45fe42d` | RSFSR President and Vice-President, 1991–1993; bounded observations accepted, competing authority claims remain claims-only, no runtime mapping |
 
 ## Completed source repairs (bounded acceptance only)
 
@@ -73,16 +78,16 @@ These integrated source-identity reviews add no historical coverage and do not a
 - cases: 8
 - represented rows: 35
 - party chains with unresolved days: 50
-- research roles: 74
-- research roles with unresolved days: 65
+- research roles: 78
+- research roles with unresolved days: 69
 - next batches: 13
-- next items: 97
+- next items: 100
 
 ## France
 
-Represented rows 5, components or name phases 11, party chains with gaps 16; research organizations 635 (635 unmapped, 0 with roles); research institutions 2, roles 2 (2 with unresolved days); seed executives 1, executive grants 0.
+Represented rows 5, components or name phases 11, party chains with gaps 16; research organizations 635 (635 unmapped, 1 with roles); research institutions 2, roles 3 (3 with unresolved days); seed executives 1, executive grants 0.
 
-Research holders by evidence class: `c01_accepted` 35.
+Research holders by evidence class: `c01_accepted` 48.
 
 | Party chain | Kind | Definite days | Unresolved days | Declared gaps | Candidates (not counted) | In flight |
 |---|---|---|---|---|---|---|
@@ -105,6 +110,7 @@ Research holders by evidence class: `c01_accepted` 35.
 
 | Research role | Kind | Window | Holders | Definite days | Unresolved days | Exception / in flight |
 |---|---|---|---|---|---|---|
+| `fr_cnccfp_76#fr_ps_first_secretary` Premier secrétaire | party_leader | 1990-01-01 to 2026-09-07 | 13 | 0 | 13399 | - |
 | `fr_presidency#fr_president` Président de la République | head_of_state | 1990-01-01 to 2026-09-07 | 7 | 0 | 13399 | - |
 | `fr_prime_minister#fr_pm` Premier ministre | head_of_government | 1990-01-01 to 2026-09-07 | 28 | 0 | 13399 | - |
 
@@ -174,9 +180,9 @@ Alias collisions (never merged): 5.
 
 ## India
 
-Represented rows 4, components or name phases 0, party chains with gaps 4; research organizations 83 (83 unmapped, 4 with roles); research institutions 2, roles 6 (6 with unresolved days); seed executives 1, executive grants 0.
+Represented rows 4, components or name phases 0, party chains with gaps 4; research organizations 83 (83 unmapped, 7 with roles); research institutions 2, roles 9 (9 with unresolved days); seed executives 1, executive grants 0.
 
-Research holders by evidence class: `c01_accepted` 25, `c01_integrated_pending` 31.
+Research holders by evidence class: `c01_accepted` 29, `c01_integrated_pending` 31.
 
 | Party chain | Kind | Definite days | Unresolved days | Declared gaps | Candidates (not counted) | In flight |
 |---|---|---|---|---|---|---|
@@ -187,9 +193,12 @@ Research holders by evidence class: `c01_accepted` 25, `c01_integrated_pending` 
 
 | Research role | Kind | Window | Holders | Definite days | Unresolved days | Exception / in flight |
 |---|---|---|---|---|---|---|
+| `in_eci_20240323_np_01#in_aap_national_convenor` National Convenor of the Aam Aadmi Party | party_leader | 1990-01-01 to 2026-09-07 | 2 | 0 | 13399 | - |
+| `in_eci_20240323_np_02#in_bsp_national_president` National President of the Bahujan Samaj Party | party_leader | 1990-01-01 to 2026-09-07 | 1 | 0 | 13399 | - |
 | `in_eci_20240323_np_03#in_bjp_president` National President of the Bharatiya Janata Party | party_leader | 1990-01-01 to 2026-09-07 | 19 | 0 | 13399 | - |
 | `in_eci_20240323_np_04#in_cpm_general_secretary` General Secretary of the Communist Party of India (Marxist) | party_leader | 1990-01-01 to 2026-09-07 | 4 | 0 | 13399 | - |
 | `in_eci_20240323_np_05#in_inc_president` President of the Indian National Congress | party_leader | 1990-01-01 to 2026-09-07 | 10 | 0 | 13399 | - |
+| `in_eci_20240323_np_06#in_npp_national_president` National President of the National People's Party | party_leader | 1990-01-01 to 2026-09-07 | 1 | 0 | 13399 | - |
 | `in_eci_19980110_np_06#in_jd_president` President of the Janata Dal | party_leader | 1990-01-01 to 2026-09-07 | 2 | 0 | 13399 | - |
 | `in_prime_minister#in_pm` Prime Minister of India | head_of_government | 1990-01-01 to 2026-09-07 | 13 | 2366 | 11033 | - |
 | `in_presidency#in_president` President of India | head_of_state | 1990-01-01 to 2026-09-07 | 8 | 0 | 13399 | - |
@@ -334,13 +343,13 @@ Institutional exceptions:
 
 Represented rows 0, components or name phases 0, party chains with gaps 0; research organizations 6 (6 unmapped, 0 with roles); research institutions 6, roles 10 (6 with unresolved days); seed executives 1, executive grants 0.
 
-Research holders by evidence class: `c01_accepted` 51, `c01_integrated_pending` 16.
+Research holders by evidence class: `c01_accepted` 62, `c01_integrated_pending` 16.
 
 | Research role | Kind | Window | Holders | Definite days | Unresolved days | Exception / in flight |
 |---|---|---|---|---|---|---|
 | `sa_crown#sa_king` King | head_of_state | 1990-01-01 to 2026-09-07 | 12 | 0 | 13399 | Saudi dynastic monarchy |
 | `sa_crown#sa_crown_prince` Crown Prince | institutional_office | 1990-01-01 to 2026-09-07 | 19 | 0 | 13399 | Saudi dynastic monarchy |
-| `sa_prime_minister#sa_pm` Prime Minister | head_of_government | 1990-01-01 to 2026-09-07 | 2 | 0 | 13399 | - |
+| `sa_prime_minister#sa_pm` Prime Minister | head_of_government | 1990-01-01 to 2026-09-07 | 13 | 0 | 13399 | - |
 | `sa_council_ministers#sa_cabinet_ministers` Ministers | collective_seat | 1990-01-01 to 2026-09-07 | 0 | 0 | 13399 | collective_institution |
 | `sa_shura#sa_shura_chair` Chairman of the Shura Council | institutional_office | 1990-01-01 to 2026-09-07 | 29 | 0 | 13399 | - |
 | `sa_shura#sa_shura_members` Shura Council members | collective_seat | 1990-01-01 to 2026-09-07 | 0 | 0 | 13399 | collective_institution |
@@ -364,7 +373,7 @@ Institutional exceptions:
 
 Represented rows 8, components or name phases 0, party chains with gaps 8; research organizations 17 (17 unmapped, 3 with roles); research institutions 11, roles 17 (16 with unresolved days); seed executives 1, executive grants 0.
 
-Research holders by evidence class: `c01_accepted` 31, `c01_integrated_pending` 30, `s10_discovery_intake` 9.
+Research holders by evidence class: `c01_accepted` 44, `c01_integrated_pending` 30, `s10_discovery_intake` 9.
 
 | Party chain | Kind | Definite days | Unresolved days | Declared gaps | Candidates (not counted) | In flight |
 |---|---|---|---|---|---|---|
@@ -383,7 +392,7 @@ Research holders by evidence class: `c01_accepted` 31, `c01_integrated_pending` 
 | `su_cpsu#su_cpsu_deputy_general_secretary` Deputy General Secretary | other | 1990-01-01 to 1991-12-25 | 3 | 0 | 724 | - |
 | `su_democratic_russia#su_dr_co_chair` Сопредседатель движения «Демократическая Россия» (Координационного совета) — Co-chair of the Democratic Russia movement | party_leader | 1990-01-01 to 1991-12-25 | 7 | 0 | 724 | - |
 | `su_soyuz_deputies_group#su_soyuz_co_chair` Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group | parliamentary_leader | 1990-01-01 to 1991-12-25 | 1 | 0 | 724 | - |
-| `su_presidency#su_president` President of the USSR | head_of_state | 1990-01-01 to 1991-12-25 | 2 | 0 | 724 | - |
+| `su_presidency#su_president` President of the USSR | head_of_state | 1990-01-01 to 1991-12-25 | 6 | 0 | 724 | - |
 | `su_congress_peoples_deputies#su_congress_deputies` USSR people's deputies in Congress | collective_seat | 1990-01-01 to 1991-12-25 | 0 | 0 | 724 | collective_institution |
 | `su_supreme_soviet#su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet | institutional_office | 1990-01-01 to 1991-12-25 | 3 | 0 | 724 | - |
 | `su_government#su_government_head` Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government | head_of_government | 1990-01-01 to 1991-12-25 | 3 | 0 | 724 | - |
@@ -392,8 +401,8 @@ Research holders by evidence class: `c01_accepted` 31, `c01_integrated_pending` 
 | `ru_duma_faction_20211012_srzp#ru_duma_faction_20211012_srzp_head` Руководитель фракции — head of the parliamentary faction | parliamentary_leader | 1990-01-01 to 2026-09-07 | 4 | 0 | 13399 | - |
 | `ru_duma_faction_20211012_ldpr#ru_duma_faction_20211012_ldpr_head` Руководитель фракции — head of the parliamentary faction | parliamentary_leader | 1990-01-01 to 2026-09-07 | 4 | 0 | 13399 | - |
 | `ru_duma_faction_20211012_nl#ru_duma_faction_20211012_nl_head` Руководитель фракции — head of the parliamentary faction | parliamentary_leader | 1990-01-01 to 2026-09-07 | 5 | 0 | 13399 | - |
-| `ru_rsfsr_presidency#ru_rsfsr_president` President of the RSFSR (Президент РСФСР) | institutional_office | 1991-04-24 to 1991-12-25 | 1 | 0 | 246 | - |
-| `ru_rsfsr_presidency#ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) | institutional_office | 1991-04-24 to 2026-09-07 | 1 | 0 | 12921 | - |
+| `ru_rsfsr_presidency#ru_rsfsr_president` President of the RSFSR (Президент РСФСР) | institutional_office | 1991-04-24 to 1991-12-25 | 5 | 0 | 246 | - |
+| `ru_rsfsr_presidency#ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) | institutional_office | 1991-04-24 to 2026-09-07 | 6 | 0 | 12921 | - |
 | `ru_rsfsr_presidency#ru_president` Президент Российской Федерации — President of the Russian Federation | head_of_state | 1991-12-25 to 2026-09-07 | 7 | 1240 | 11436 | - |
 | `ru_government#ru_government_chairman` Председатель Правительства — Chairman of the Government | head_of_government | 1990-01-01 to 2026-09-07 | 15 | 0 | 13399 | - |
 
@@ -569,7 +578,7 @@ Each batch holds at most ten chains. Claim a batch by its ID; in-flight targets 
   - Records with missing dates: 15 (e.g. 石田幸四郎: from, until)
   - Leads: https://kokkai.ndl.go.jp/api/meeting?issueID=112605261X00319930129&recordPacking=json, https://kokkai.ndl.go.jp/api/speech?issueID=112804573X01519931105&speechNumber=117&recordPacking=json, https://kokkai.ndl.go.jp/api/speech?issueID=112915261X01619940616&speechNumber=3&recordPacking=json
 
-### GAP-India-B001 (India, 6 items)
+### GAP-India-B001 (India, 9 items)
 
 - `India/in_jd` Janata Dal [party_leader_chain; priority 0; unresolved days 10822]
   - Unresolved spans: 1990-01-01..1990-12-30 (boundary_imprecise); 1996-01-02..1996-12-31 (boundary_imprecise); 1997-01-01..1997-07-02 (open_end)
@@ -599,6 +608,18 @@ Each batch holds at most ten chains. Claim a batch by its ID; in-flight targets 
   - Unresolved spans: 1990-01-01..1990-03-11 (no_evidence); 1990-03-12..1990-03-12 (attested_day); 1990-03-13..1990-11-15 (no_evidence)
   - Records with missing dates: 11 (e.g. Vishwanath Pratap Singh: from, until)
   - Leads: https://web.archive.org/web/20210519104239id_/https://eparlib.nic.in/bitstream/123456789/419/1/lsd_09_II_12_03_1990.pdf, https://web.archive.org/web/20240928132810id_/https://eparlib.nic.in/bitstream/123456789/1334/1/lsd_09_04_07-11-1990.pdf, https://web.archive.org/web/20251107120348id_/https://www.pmindia.gov.in/en/former_pm/shri-vishwanath-pratap-singh/
+- `in_eci_20240323_np_01#in_aap_national_convenor` National Convenor of the Aam Aadmi Party [research_role_chain; priority 4; unresolved days 13399]
+  - Unresolved spans: 1990-01-01..2013-10-06 (no_evidence); 2013-10-07..2013-10-07 (attested_day); 2013-10-08..2016-04-26 (no_evidence)
+  - Records with missing dates: 2 (e.g. Arvind Kejriwal: from, until)
+  - Leads: https://web.archive.org/web/20140819153447id_/http://nri.aamaadmiparty.org/news/arvind-kejriwal-national-convener-of-the-aam-aadmi-party-aap-to-interact-online-with-supporters, https://web.archive.org/web/20160804213413id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/Aam%20Aadmi%20Party%20year%202012-15.pdf, https://web.archive.org/web/20170329121746id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/AAP_Org_2016-19.pdf
+- `in_eci_20240323_np_02#in_bsp_national_president` National President of the Bahujan Samaj Party [research_role_chain; priority 4; unresolved days 13399]
+  - Unresolved spans: 1990-01-01..2012-07-15 (no_evidence); 2012-07-16..2012-07-16 (attested_day); 2012-07-17..2026-09-07 (no_evidence)
+  - Records with missing dates: 1 (e.g. Mayawati: from, until)
+  - Leads: https://web.archive.org/web/20090328123255id_/http://bspindia.org:80/about-bsp.php, https://web.archive.org/web/20090331050921id_/http://bspindia.org:80/kumari-mayawati.php, https://web.archive.org/web/20090726014731id_/http://bspindia.org:80/bsp-press-releases.php
+- `in_eci_20240323_np_06#in_npp_national_president` National President of the National People's Party [research_role_chain; priority 4; unresolved days 13399]
+  - Unresolved spans: 1990-01-01..2020-07-10 (no_evidence); 2020-07-11..2020-07-11 (attested_day); 2020-07-12..2026-09-07 (no_evidence)
+  - Records with missing dates: 1 (e.g. Conrad K. Sangma: from, until)
+  - Leads: https://web.archive.org/web/20191116212724id_/http://www.nppindia.in:80/leadership-and-key-people/, https://web.archive.org/web/20210225154913id_/https://nppindia.in/2020/07/11/npp-adopts-resolution-to-fight-discrimination-of-ne-citizens/, https://web.archive.org/web/20210225155801id_/https://nppindia.in/conrad-sangma/
 
 ### GAP-Brazil-B001 (Brazil, 10 items)
 
@@ -769,8 +790,8 @@ Each batch holds at most ten chains. Claim a batch by its ID; in-flight targets 
   - Records with missing dates: 12 (e.g. sa_salman_king_observation: holder identity and dates (claim-only observation))
   - Leads: https://laws.boe.gov.sa/Files/Download/?attId=ed4842e1-9543-40b9-973b-ada200d4ed10, https://www.spa.gov.sa/2387811, https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/16b97fcb-4833-4f66-8531-a9a700f161b6/1
 - `sa_prime_minister#sa_pm` Prime Minister [research_role_chain; priority 1; unresolved days 13399]
-  - Unresolved spans: 1990-01-01..2026-09-07 (no_evidence)
-  - Records with missing dates: 2 (e.g. sa_mbs_pm_appointment: holder identity and dates (claim-only observation))
+  - Unresolved spans: 1990-01-01..2004-10-02 (no_evidence); 2004-10-03..2004-10-03 (attested_day); 2004-10-04..2005-07-31 (no_evidence)
+  - Records with missing dates: 13 (e.g. sa_mbs_pm_appointment: holder identity and dates (claim-only observation))
   - Leads: https://laws.boe.gov.sa/Files/Download/?attId=ed4842e1-9543-40b9-973b-ada200d4ed10, https://www.spa.gov.sa/2387811, https://www.spa.gov.sa/en/N2653199
 - `sa_crown#sa_crown_prince` Crown Prince [research_role_chain; priority 2; unresolved days 13399]
   - Unresolved spans: 1990-01-01..2005-07-31 (no_evidence); 2005-08-02..2011-10-21 (no_evidence); 2011-10-23..2011-10-26 (no_evidence)
@@ -816,8 +837,8 @@ Each batch holds at most ten chains. Claim a batch by its ID; in-flight targets 
   - Records with missing dates: 3 (e.g. Николай Иванович Рыжков: from, until)
   - Leads: https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941, https://docs.historyrussia.org/system/pages/016/529/29/images/small/08390f990d8fd8b5127cefd8c1c749b501710421.jpg?1716491978, https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010231&page=1&rdk=0
 - `su_presidency#su_president` President of the USSR [research_role_chain; priority 1; unresolved days 724]
-  - Unresolved spans: 1990-01-01..1990-03-19 (no_evidence); 1990-03-20..1990-03-20 (attested_day); 1990-03-21..1991-12-24 (no_evidence)
-  - Records with missing dates: 2 (e.g. Mikhail Gorbachev: from, until)
+  - Unresolved spans: 1990-01-01..1990-03-14 (no_evidence); 1990-03-15..1991-12-25 (open_end)
+  - Records with missing dates: 6 (e.g. Mikhail Gorbachev: from, until)
   - Leads: https://www.1000dokumente.de/index.php?title=Einrichtung_des_Amtes_des_Pr%C3%A4sidenten_der_UdSSR_sowie_%C3%84nderungen_und_Erg%C3%A4nzungen_der_Verfassung_(Grundgesetz)_der_UdSSR&oldid=9231, https://history.state.gov/historicaldocuments/frus1989-92v31/d90, https://catalog.archives.gov/medialz/presidential-libraries/bush/gb-nsc/321498139/1991-12-25--Gorbachev.pdf
 - `ru_duma_faction_20211012_er#ru_duma_faction_20211012_er_head` Руководитель фракции — head of the parliamentary faction [research_role_chain; priority 2; unresolved days 13399]
   - Unresolved spans: 1990-01-01..2021-10-11 (no_evidence); 2021-10-12..2021-10-12 (attested_day); 2021-10-13..2021-12-21 (no_evidence)
@@ -844,7 +865,7 @@ Each batch holds at most ten chains. Claim a batch by its ID; in-flight targets 
   - Leads: https://duma.gov.ru/news/52404/, https://web.archive.org/web/20211011155146id_/http://duma.gov.ru/news/52394/, https://web.archive.org/web/20220407092508id_/http://duma.gov.ru/news/53988/
 - `ru_rsfsr_presidency#ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) [research_role_chain; priority 2; unresolved days 12921]
   - Unresolved spans: 1991-04-24..1991-07-09 (no_evidence); 1991-07-10..2026-09-07 (open_end)
-  - Records with missing dates: 1 (e.g. Александр Владимирович Руцкой: until)
+  - Records with missing dates: 6 (e.g. Александр Владимирович Руцкой: until)
   - Leads: https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011228&page=1&rdk=0, https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml, https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011894&page=1&rdk=0
 - `su_supreme_soviet#su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet [research_role_chain; priority 2; unresolved days 724]
   - Unresolved spans: 1990-01-01..1990-03-13 (no_evidence); 1990-03-14..1990-03-15 (attested_day); 1990-03-16..1991-08-21 (no_evidence)
@@ -852,7 +873,7 @@ Each batch holds at most ten chains. Claim a batch by its ID; in-flight targets 
   - Leads: https://www.1000dokumente.de/index.php?title=Einrichtung_des_Amtes_des_Pr%C3%A4sidenten_der_UdSSR_sowie_%C3%84nderungen_und_Erg%C3%A4nzungen_der_Verfassung_(Grundgesetz)_der_UdSSR&oldid=9231, https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml, https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print
 - `ru_rsfsr_presidency#ru_rsfsr_president` President of the RSFSR (Президент РСФСР) [research_role_chain; priority 2; unresolved days 246]
   - Unresolved spans: 1991-04-24..1991-07-09 (no_evidence); 1991-07-10..1991-12-25 (open_end)
-  - Records with missing dates: 1 (e.g. Борис Николаевич Ельцин: until)
+  - Records with missing dates: 5 (e.g. Борис Николаевич Ельцин: until)
   - Leads: https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011228&page=1&rdk=0, https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011539&page=1&rdk=0, https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml
 - `su_democratic_russia#su_dr_co_chair` Сопредседатель движения «Демократическая Россия» (Координационного совета) — Co-chair of the Democratic Russia movement [research_role_chain; priority 4; unresolved days 724]
   - Unresolved spans: 1990-01-01..1991-04-04 (no_evidence); 1991-04-05..1991-04-05 (attested_day); 1991-04-06..1991-07-14 (no_evidence)

@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 131763,
-      "sha256": "f29291247f0fc894278a4f3ff9f5eba9b9b7ca0257c3d3265c24ad2fa5fdc551"
+      "bytes": 134706,
+      "sha256": "24e9cf599390a320690f71f790619e643323f109514388b7f88b3dff7fc0b3c6"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 48949,
-      "sha256": "616283d52482af4e48bd39b7ca8724668cad1a19ce057196731b588b7fac134a"
+      "bytes": 55032,
+      "sha256": "428f79a42bc410cd5faab1c23d81c64bb2f06633d7eea9918df73f532004ebf0"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -76,13 +76,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 2224528,
-      "sha256": "03bd326b0acaddb96f33b71dad22e5f6ee906ec4649ce4de97fa2325e7a0f49e"
+      "bytes": 2320883,
+      "sha256": "207d4094a0594e6754f0a3ddc7fc9ab89f3611780e081dda2333979e9434288b"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1309163,
-      "sha256": "cad83677c1ce9e5d9aac472ea9cf00a6d5bca2dcb346cefd081aa8517d0ebad0"
+      "bytes": 1378296,
+      "sha256": "4341a287e2eafed413fc375a9bac506241bb3677f7eef7bc39e507bc50244a73"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -91,13 +91,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 626569,
-      "sha256": "e233892fe9771804d91718b5a7d187b0d6f1c6b2be6ce46bca9eafa85660b2c9"
+      "bytes": 680168,
+      "sha256": "a3c3b835b505d523ba436125a85eb09184df94f3c8015021f40277b0d4a8871c"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 317174,
-      "sha256": "52145e0e0df50adeb25a1767aa3b38eaf34cb64c4865c94a5fd13ebf9067373e"
+      "bytes": 360048,
+      "sha256": "731f2c47c30aaae1dc36ae5427976d7700ae02dc1fa2b12635755aad277b5bb1"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
@@ -111,8 +111,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 360379,
-      "sha256": "33cca0d7da6a58ee88e957b8ae7dce5b4ac3c20af0363057a79bb2b61d01aa94"
+      "bytes": 399146,
+      "sha256": "ba7a27399237dfc49cb9d1f0e569c72b42b687a475a91c28c7152c997ff1cdd5"
     },
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md",
@@ -268,6 +268,36 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-46/README.md",
       "bytes": 865,
       "sha256": "a4aae43d414ba307b56612915df2c0edef61b84076b7c00060126d1a165010c0",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-47/README.md",
+      "bytes": 596,
+      "sha256": "679126383c731ae56f2b2a84987883f44807ef1d526d27b187d7348fbbe0daf3",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-48/README.md",
+      "bytes": 298,
+      "sha256": "d0e6d23ddceb55441f40c143985a20f3f451e6c2baaa923698f1b1b4f194cfb3",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-49/README.md",
+      "bytes": 297,
+      "sha256": "3c9b460ee3a9b22ca428e566a9bbdda261e266ff820e4d7ed3696eabeb85ab35",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-50/README.md",
+      "bytes": 782,
+      "sha256": "56bc26534c95e60fbd5da17212384f1ee705e53461bd26da24d463575443070c",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-51/README.md",
+      "bytes": 837,
+      "sha256": "93bc1f02bb26f4695351812d898d113a2927c05bc802a68079cc27c6a5ce3adf",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -812,8 +842,8 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 319375,
-    "sha256": "a32a4d5424c47d9e9accfd38f8083f6402a0f03876fed2905e53c5c22b76342e"
+    "bytes": 331617,
+    "sha256": "87357248009e9669259b72143af0b0a49a40f9163ce12994fcc45d983be9b675"
   },
   "in_flight": [
     {
@@ -1866,6 +1896,96 @@
       ],
       "runtime_mapping_accepted": false,
       "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-47",
+      "state": "complete",
+      "case": "France",
+      "scope": "Socialist Party first-secretary observations, 1990–2026; bounded intake accepted with date-precision repairs, organization reconciliation and runtime mapping remain open",
+      "integration_revision": "32eb9977f505217070a9d3ae74a8824a0b77e113",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-47/README.md",
+          "bytes": 596,
+          "sha256": "679126383c731ae56f2b2a84987883f44807ef1d526d27b187d7348fbbe0daf3",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-48",
+      "state": "complete",
+      "case": "India",
+      "scope": "BSP, AAP and NPP national leadership; bounded intake accepted, no complete party chronology or runtime mapping",
+      "integration_revision": "ee884dfc5201b3652e274b33fc286db94693d1b0",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-48/README.md",
+          "bytes": 298,
+          "sha256": "d0e6d23ddceb55441f40c143985a20f3f451e6c2baaa923698f1b1b4f194cfb3",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-49",
+      "state": "complete",
+      "case": "USSR -> Russia",
+      "scope": "USSR government and Presidential evidence, 1990–1991; four Presidential observations accepted, ambiguous Premier signature remains claims-only, no runtime mapping",
+      "integration_revision": "9ec1583a779b6978ca96e78797ae8faa5227f8bd",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-49/README.md",
+          "bytes": 297,
+          "sha256": "3c9b460ee3a9b22ca428e566a9bbdda261e266ff820e4d7ed3696eabeb85ab35",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-50",
+      "state": "complete",
+      "case": "SaudiArabia",
+      "scope": "Saudi prime-minister evidence, 1990–2026; eleven observations accepted, three meeting-only holder uses withheld, no runtime mapping",
+      "integration_revision": "6248bde6b68f543b8c814d4db5d49f41bccc6efc",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-50/README.md",
+          "bytes": 782,
+          "sha256": "56bc26534c95e60fbd5da17212384f1ee705e53461bd26da24d463575443070c",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-51",
+      "state": "complete",
+      "case": "USSR -> Russia",
+      "scope": "RSFSR President and Vice-President, 1991–1993; bounded observations accepted, competing authority claims remain claims-only, no runtime mapping",
+      "integration_revision": "1299cfd835dcb87e52ecfb48b999441ae45fe42d",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-51/README.md",
+          "bytes": 837,
+          "sha256": "93bc1f02bb26f4695351812d898d113a2927c05bc802a68079cc27c6a5ce3adf",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
     }
   ],
   "cases": [
@@ -1880,12 +2000,12 @@
         "party_chains_unresolved": 16,
         "documented_research_organizations": 635,
         "documented_unmapped_organizations": 635,
-        "research_organizations_with_roles": 0,
+        "research_organizations_with_roles": 1,
         "research_institutions": 2,
-        "research_roles": 2,
-        "research_roles_unresolved": 2,
+        "research_roles": 3,
+        "research_roles_unresolved": 3,
         "research_holders_by_evidence": {
-          "c01_accepted": 35
+          "c01_accepted": 48
         },
         "seed_executive_observations": 1,
         "executive_gameplay_grants": 0
@@ -2924,7 +3044,9 @@
             {
               "organization": "fr_cnccfp_76",
               "name": "PARTI SOCIALISTE",
-              "roles": [],
+              "roles": [
+                "fr_ps_first_secretary"
+              ],
               "counted": false,
               "mapped_by_packet": false
             }
@@ -4611,6 +4733,463 @@
       "research_roles": [
         {
           "nation": "France",
+          "category": "organizations",
+          "entity": "fr_cnccfp_76",
+          "entity_name": "PARTI SOCIALISTE",
+          "id": "fr_ps_first_secretary",
+          "title": "Premier secrétaire",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13386,
+              "attested_within_period": 0,
+              "attested_day": 13,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1990-03-24",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1990-03-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1990-03-24",
+                "through": "1990-03-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "1990-03-25",
+                "through": "1992-01-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1992-01-07",
+                "through": "1992-01-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "1992-01-08",
+                "through": "1992-01-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1992-01-10",
+                "through": "1992-01-10",
+                "status": "attested_day"
+              },
+              {
+                "from": "1992-01-11",
+                "through": "1993-11-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1993-11-12",
+                "through": "1993-11-12",
+                "status": "attested_day"
+              },
+              {
+                "from": "1993-11-13",
+                "through": "1994-06-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1994-06-24",
+                "through": "1994-06-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "1994-06-25",
+                "through": "1995-10-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-10-18",
+                "through": "1995-10-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "1995-10-19",
+                "through": "1997-06-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-06-06",
+                "through": "1997-06-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-06-07",
+                "through": "1997-12-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-12-05",
+                "through": "1997-12-05",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-12-06",
+                "through": "2008-11-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-11-29",
+                "through": "2008-11-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-11-30",
+                "through": "2013-01-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2013-01-08",
+                "through": "2013-01-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "2013-01-09",
+                "through": "2014-04-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-04-19",
+                "through": "2014-04-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-04-20",
+                "through": "2018-07-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-07-09",
+                "through": "2018-07-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-07-10",
+                "through": "2023-03-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-03-11",
+                "through": "2023-03-11",
+                "status": "attested_day"
+              },
+              {
+                "from": "2023-03-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-03-25",
+                "through": "1992-01-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1992-01-11",
+                "through": "1993-11-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-10-19",
+                "through": "1997-06-05",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-12-06",
+                "through": "2008-11-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-11-30",
+                "through": "2013-01-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-04-20",
+                "through": "2018-07-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-07-10",
+                "through": "2023-03-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-03-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Pierre Mauroy",
+              "attested_on": "1990-03-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Pierre Mauroy",
+              "attested_on": "1992-01-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Laurent Fabius",
+              "attested_on": "1992-01-10",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Michel Rocard",
+              "attested_on": "1993-11-12",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Henri Emmanuelli",
+              "attested_on": "1994-06-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Lionel Jospin",
+              "attested_on": "1995-10-18",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Lionel Jospin",
+              "attested_on": "1997-06-06",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "François Hollande",
+              "attested_on": "1997-12-05",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Martine Aubry",
+              "attested_on": "2008-11-29",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "Harlem Désir",
+              "attested_on": "2013-01-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "Jean-Christophe Cambadélis",
+              "attested_on": "2014-04-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": "Olivier Faure",
+              "attested_on": "2018-07-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 12,
+              "name": "Olivier Faure",
+              "attested_on": "2023-03-11",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-47"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 24,
+          "leads": [
+            "https://archives-socialistes.fr/_recherche-images/download/5646/image/3210/0",
+            "https://archives-socialistes.fr/_recherche-images/download/5730/image/3293/0",
+            "https://archives-socialistes.fr/_recherche-images/download/5793/image/3355/0",
+            "https://archives-socialistes.fr/_recherche-images/download/5821/image/3381/0",
+            "https://archives-socialistes.fr/_recherche-images/download/5827/image/3384/0",
+            "https://archives-socialistes.fr/_recherche-images/download/5858/image/3414/0"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "France",
           "category": "institutions",
           "entity": "fr_presidency",
           "entity_name": "Présidence de la République",
@@ -5718,7 +6297,9 @@
       ],
       "documented_organizations": {
         "total": 635,
-        "with_roles": [],
+        "with_roles": [
+          "fr_cnccfp_76"
+        ],
         "discovery_work_orders": [
           "C01-France-DISC-B001",
           "C01-France-DISC-B002",
@@ -10759,12 +11340,12 @@
         "party_chains_unresolved": 4,
         "documented_research_organizations": 83,
         "documented_unmapped_organizations": 83,
-        "research_organizations_with_roles": 4,
+        "research_organizations_with_roles": 7,
         "research_institutions": 2,
-        "research_roles": 6,
-        "research_roles_unresolved": 6,
+        "research_roles": 9,
+        "research_roles_unresolved": 9,
         "research_holders_by_evidence": {
-          "c01_accepted": 25,
+          "c01_accepted": 29,
           "c01_integrated_pending": 31
         },
         "seed_executive_observations": 1,
@@ -12068,6 +12649,225 @@
         {
           "nation": "India",
           "category": "organizations",
+          "entity": "in_eci_20240323_np_01",
+          "entity_name": "Aam Aadmi Party",
+          "id": "in_aap_national_convenor",
+          "title": "National Convenor of the Aam Aadmi Party",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 9612,
+              "attested_within_period": 0,
+              "attested_day": 1,
+              "open_end": 3786,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "2013-10-07",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "2013-10-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2013-10-07",
+                "through": "2013-10-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2013-10-08",
+                "through": "2016-04-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-04-27",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "2013-10-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2013-10-07",
+                "through": "2013-10-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2013-10-08",
+                "through": "2016-04-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-04-27",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Arvind Kejriwal",
+              "attested_on": "2013-10-07",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-48"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Arvind Kejriwal",
+              "attested_on": null,
+              "from": "2016-04-27",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-48"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            }
+          ],
+          "source_count": 8,
+          "leads": [
+            "https://web.archive.org/web/20140819153447id_/http://nri.aamaadmiparty.org/news/arvind-kejriwal-national-convener-of-the-aam-aadmi-party-aap-to-interact-online-with-supporters",
+            "https://web.archive.org/web/20160804213413id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/Aam%20Aadmi%20Party%20year%202012-15.pdf",
+            "https://web.archive.org/web/20170329121746id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/AAP_Org_2016-19.pdf",
+            "https://web.archive.org/web/20161121224935id_/http://www.aamaadmiparty.org:80/aap-national-convenor-delhi-cm-arvind-kejriwal-on-the-demonetization-scam",
+            "https://web.archive.org/web/20210928010601id_/https://eci.gov.in/files/file/1260-commissions-order-to-shri-arvind-kejriwal-national-convener-aam-aadmi-party/",
+            "https://archive.aamaadmiparty.org/wp-json/wp/v2/posts/773305"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "India",
+          "category": "organizations",
+          "entity": "in_eci_20240323_np_02",
+          "entity_name": "Bahujan Samaj Party",
+          "id": "in_bsp_national_president",
+          "title": "National President of the Bahujan Samaj Party",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13398,
+              "attested_within_period": 0,
+              "attested_day": 1,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "2012-07-16",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "2012-07-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-07-16",
+                "through": "2012-07-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2012-07-17",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "2012-07-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-07-16",
+                "through": "2012-07-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2012-07-17",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Mayawati",
+              "attested_on": "2012-07-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-48"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 6,
+          "leads": [
+            "https://web.archive.org/web/20090328123255id_/http://bspindia.org:80/about-bsp.php",
+            "https://web.archive.org/web/20090331050921id_/http://bspindia.org:80/kumari-mayawati.php",
+            "https://web.archive.org/web/20090726014731id_/http://bspindia.org:80/bsp-press-releases.php",
+            "https://web.archive.org/web/20150801083802id_/http://eci.nic.in/eci_main/miscellaneous_statistics/PPS2_01032013.pdf",
+            "https://web.archive.org/web/20190516052807id_/https://www.eci.gov.in/files/file/9927-commissions-order-dated-15042019-to-ms-mayawati-and-shri-yogi-adityanath-along-with-letter-to-all-chief-electoral-officers/",
+            "https://web.archive.org/web/20211230002707id_/https://www.bspindia.org/download/pr/01-09-2021-BSP-PRESS-NOTE-REVIEW-MEETING-2.pdf"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "India",
+          "category": "organizations",
           "entity": "in_eci_20240323_np_03",
           "entity_name": "Bharatiya Janata Party",
           "id": "in_bjp_president",
@@ -13151,6 +13951,101 @@
         {
           "nation": "India",
           "category": "organizations",
+          "entity": "in_eci_20240323_np_06",
+          "entity_name": "National People’s Party",
+          "id": "in_npp_national_president",
+          "title": "National President of the National People's Party",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13398,
+              "attested_within_period": 0,
+              "attested_day": 1,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "2020-07-11",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "2020-07-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-07-11",
+                "through": "2020-07-11",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-07-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "2020-07-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-07-11",
+                "through": "2020-07-11",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-07-12",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Conrad K. Sangma",
+              "attested_on": "2020-07-11",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-48"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 5,
+          "leads": [
+            "https://web.archive.org/web/20191116212724id_/http://www.nppindia.in:80/leadership-and-key-people/",
+            "https://web.archive.org/web/20210225154913id_/https://nppindia.in/2020/07/11/npp-adopts-resolution-to-fight-discrimination-of-ne-citizens/",
+            "https://web.archive.org/web/20210225155801id_/https://nppindia.in/conrad-sangma/",
+            "https://web.archive.org/web/20220204184638id_/https://nppindia.in/wp-content/uploads/2022/02/Manipur-Election-2022-List-of-candidates.pdf",
+            "https://web.archive.org/web/20251013120752id_/https://nppindia.in/wp-content/uploads/2025/04/National-Committee-2025-28.pdf"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "India",
+          "category": "organizations",
           "entity": "in_eci_19980110_np_06",
           "entity_name": "Janata Dal",
           "id": "in_jd_president",
@@ -13863,9 +14758,12 @@
         "total": 83,
         "with_roles": [
           "in_eci_19980110_np_06",
+          "in_eci_20240323_np_01",
+          "in_eci_20240323_np_02",
           "in_eci_20240323_np_03",
           "in_eci_20240323_np_04",
-          "in_eci_20240323_np_05"
+          "in_eci_20240323_np_05",
+          "in_eci_20240323_np_06"
         ],
         "discovery_work_orders": [
           "C01-India-DISC-B001",
@@ -23840,7 +24738,7 @@
         "research_roles": 10,
         "research_roles_unresolved": 6,
         "research_holders_by_evidence": {
-          "c01_accepted": 51,
+          "c01_accepted": 62,
           "c01_integrated_pending": 16
         },
         "seed_executive_observations": 1,
@@ -24690,19 +25588,59 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13399,
+              "no_evidence": 13395,
               "attested_within_period": 0,
-              "attested_day": 0,
+              "attested_day": 4,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": null,
+            "first_evidence": "2004-10-03",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "2004-10-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-10-03",
+                "through": "2004-10-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-10-04",
+                "through": "2005-07-31",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2005-08-01",
+                "through": "2005-08-01",
+                "status": "attested_day"
+              },
+              {
+                "from": "2005-08-02",
+                "through": "2015-01-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2015-01-23",
+                "through": "2015-01-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2015-01-24",
+                "through": "2022-09-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-09-27",
+                "through": "2022-09-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-09-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -24710,6 +25648,41 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
+                "through": "2004-10-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2004-10-03",
+                "through": "2004-10-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2004-10-04",
+                "through": "2005-07-31",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2005-08-01",
+                "through": "2005-08-01",
+                "status": "attested_day"
+              },
+              {
+                "from": "2005-08-02",
+                "through": "2015-01-22",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2015-01-23",
+                "through": "2015-01-23",
+                "status": "attested_day"
+              },
+              {
+                "from": "2015-01-24",
+                "through": "2022-09-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-09-28",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -24749,13 +25722,207 @@
               "missing_fields": [
                 "holder identity and dates (claim-only observation)"
               ]
+            },
+            {
+              "position": 2,
+              "name": "Fahd bin Abdulaziz Al Saud",
+              "attested_on": "2004-10-03",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Abdullah bin Abdulaziz Al Saud",
+              "attested_on": "2005-08-01",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": null,
+              "claim": "sa_abdullah_pm_order_a29_20070322",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Salman bin Abdulaziz Al Saud",
+              "attested_on": "2015-01-23",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": null,
+              "claim": "sa_salman_pm_order_a68_20150129",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 7,
+              "name": null,
+              "claim": "sa_salman_pm_order_a138_20181227",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 8,
+              "name": null,
+              "claim": "sa_salman_pm_chairs_cabinet_20220517",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+              "attested_on": "2022-09-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": null,
+              "claim": "sa_mbs_pm_order_a62_20220927",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 11,
+              "name": null,
+              "claim": "sa_mbs_pm_chairs_cabinet_20221025",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 12,
+              "name": null,
+              "claim": "sa_mbs_pm_chairs_cabinet_20260616",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-50"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
             }
           ],
-          "source_count": 3,
+          "source_count": 13,
           "leads": [
             "https://laws.boe.gov.sa/Files/Download/?attId=ed4842e1-9543-40b9-973b-ada200d4ed10",
             "https://www.spa.gov.sa/2387811",
-            "https://www.spa.gov.sa/en/N2653199"
+            "https://www.spa.gov.sa/en/N2653199",
+            "https://portalapi.spa.gov.sa/api/v1/news/8329c804c8",
+            "https://portalapi.spa.gov.sa/api/v1/news/42f7ef2039",
+            "https://portalapi.spa.gov.sa/api/v1/news/eb5f56fa80"
           ],
           "in_flight": null
         },
@@ -25944,7 +27111,7 @@
         "research_roles": 17,
         "research_roles_unresolved": 16,
         "research_holders_by_evidence": {
-          "c01_accepted": 31,
+          "c01_accepted": 44,
           "c01_integrated_pending": 30,
           "s10_discovery_intake": 9
         },
@@ -27276,58 +28443,38 @@
           "coverage": {
             "window_days": 724,
             "days": {
-              "no_evidence": 722,
+              "no_evidence": 73,
               "attested_within_period": 0,
-              "attested_day": 2,
-              "open_end": 0,
+              "attested_day": 0,
+              "open_end": 651,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 724,
-            "first_evidence": "1990-03-20",
+            "first_evidence": "1990-03-15",
             "segments": [
               {
                 "from": "1990-01-01",
-                "through": "1990-03-19",
+                "through": "1990-03-14",
                 "status": "no_evidence"
               },
               {
-                "from": "1990-03-20",
-                "through": "1990-03-20",
-                "status": "attested_day"
-              },
-              {
-                "from": "1990-03-21",
-                "through": "1991-12-24",
-                "status": "no_evidence"
-              },
-              {
-                "from": "1991-12-25",
+                "from": "1990-03-15",
                 "through": "1991-12-25",
-                "status": "attested_day"
+                "status": "open_end"
               }
             ],
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
-                "through": "1990-03-19",
+                "through": "1990-03-14",
                 "status": "no_evidence"
               },
               {
-                "from": "1990-03-20",
-                "through": "1990-03-20",
-                "status": "attested_day"
-              },
-              {
-                "from": "1990-03-21",
-                "through": "1991-12-24",
-                "status": "no_evidence"
-              },
-              {
-                "from": "1991-12-25",
+                "from": "1990-03-15",
                 "through": "1991-12-25",
-                "status": "attested_day"
+                "status": "open_end"
               }
             ]
           },
@@ -27367,15 +28514,87 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "position": 2,
+              "name": "Михаил Сергеевич Горбачев",
+              "attested_on": null,
+              "from": "1990-03-15",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-49"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Михаил Сергеевич Горбачев",
+              "attested_on": "1991-01-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-49"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Михаил Сергеевич Горбачев",
+              "attested_on": "1991-08-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-49"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Михаил Сергеевич Горбачев",
+              "attested_on": "1991-10-05",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-49"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 5,
+          "source_count": 10,
           "leads": [
             "https://www.1000dokumente.de/index.php?title=Einrichtung_des_Amtes_des_Pr%C3%A4sidenten_der_UdSSR_sowie_%C3%84nderungen_und_Erg%C3%A4nzungen_der_Verfassung_(Grundgesetz)_der_UdSSR&oldid=9231",
             "https://history.state.gov/historicaldocuments/frus1989-92v31/d90",
             "https://catalog.archives.gov/medialz/presidential-libraries/bush/gb-nsc/321498139/1991-12-25--Gorbachev.pdf",
             "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-commonwealth-independent-states",
-            "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml"
+            "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+            "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf"
           ],
           "in_flight": null
         },
@@ -27753,7 +28972,7 @@
               ]
             }
           ],
-          "source_count": 9,
+          "source_count": 12,
           "leads": [
             "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
             "https://docs.historyrussia.org/system/pages/016/529/29/images/small/08390f990d8fd8b5127cefd8c1c749b501710421.jpg?1716491978",
@@ -28956,9 +30175,81 @@
               "missing_fields": [
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Борис Николаевич Ельцин",
+              "attested_on": "1991-07-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Борис Николаевич Ельцин",
+              "attested_on": "1991-11-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Борис Николаевич Ельцин",
+              "attested_on": "1991-12-26",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Борис Николаевич Ельцин",
+              "attested_on": "1992-01-03",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 6,
+          "source_count": 11,
           "leads": [
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011228&page=1&rdk=0",
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011539&page=1&rdk=0",
@@ -29043,15 +30334,105 @@
               "missing_fields": [
                 "until"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Александр Владимирович Руцкой",
+              "attested_on": "1991-07-29",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Александр Владимирович Руцкой",
+              "attested_on": "1991-12-05",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Александр Владимирович Руцкой",
+              "attested_on": "1992-01-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Александр Владимирович Руцкой",
+              "attested_on": "1993-04-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Александр Владимирович Руцкой",
+              "attested_on": "1993-09-01",
+              "from": null,
+              "until": "1993-10-03",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-51"
+              ],
+              "missing_fields": [
+                "from"
+              ]
             }
           ],
-          "source_count": 5,
+          "source_count": 13,
           "leads": [
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011228&page=1&rdk=0",
             "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011894&page=1&rdk=0",
             "https://www.prlib.ru/item/375688",
-            "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012050&page=1&rdk=0"
+            "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012050&page=1&rdk=0",
+            "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012167&page=1&rdk=0"
           ],
           "in_flight": null
         },
@@ -29246,7 +30627,7 @@
               ]
             }
           ],
-          "source_count": 53,
+          "source_count": 57,
           "leads": [
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102015844&page=1&rdk=0",
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020039&page=1&rdk=0",
@@ -34655,6 +36036,193 @@
           },
           "first_evidence": "1990-03-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "India",
+          "entity": "in_eci_20240323_np_01#in_aap_national_convenor",
+          "title": "National Convenor of the Aam Aadmi Party",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2013-10-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2013-10-07",
+              "through": "2013-10-07",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2013-10-08",
+              "through": "2016-04-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2016-04-27",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "Arvind Kejriwal",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Arvind Kejriwal",
+              "record": 1,
+              "missing": [
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20140819153447id_/http://nri.aamaadmiparty.org/news/arvind-kejriwal-national-convener-of-the-aam-aadmi-party-aap-to-interact-online-with-supporters",
+            "https://web.archive.org/web/20160804213413id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/Aam%20Aadmi%20Party%20year%202012-15.pdf",
+            "https://web.archive.org/web/20170329121746id_/http://eci.nic.in:80/eci_main/mis-Political_Parties/Organisational_Elections/AAP_Org_2016-19.pdf",
+            "https://web.archive.org/web/20161121224935id_/http://www.aamaadmiparty.org:80/aap-national-convenor-delhi-cm-arvind-kejriwal-on-the-demonetization-scam",
+            "https://web.archive.org/web/20210928010601id_/https://eci.gov.in/files/file/1260-commissions-order-to-shri-arvind-kejriwal-national-convener-aam-aadmi-party/",
+            "https://archive.aamaadmiparty.org/wp-json/wp/v2/posts/773305"
+          ],
+          "related_work_orders": [
+            "C01-India-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2013-10-07",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "India",
+          "entity": "in_eci_20240323_np_02#in_bsp_national_president",
+          "title": "National President of the Bahujan Samaj Party",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2012-07-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2012-07-16",
+              "through": "2012-07-16",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2012-07-17",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Mayawati",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20090328123255id_/http://bspindia.org:80/about-bsp.php",
+            "https://web.archive.org/web/20090331050921id_/http://bspindia.org:80/kumari-mayawati.php",
+            "https://web.archive.org/web/20090726014731id_/http://bspindia.org:80/bsp-press-releases.php",
+            "https://web.archive.org/web/20150801083802id_/http://eci.nic.in/eci_main/miscellaneous_statistics/PPS2_01032013.pdf",
+            "https://web.archive.org/web/20190516052807id_/https://www.eci.gov.in/files/file/9927-commissions-order-dated-15042019-to-ms-mayawati-and-shri-yogi-adityanath-along-with-letter-to-all-chief-electoral-officers/",
+            "https://web.archive.org/web/20211230002707id_/https://www.bspindia.org/download/pr/01-09-2021-BSP-PRESS-NOTE-REVIEW-MEETING-2.pdf"
+          ],
+          "related_work_orders": [
+            "C01-India-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2012-07-16",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "India",
+          "entity": "in_eci_20240323_np_06#in_npp_national_president",
+          "title": "National President of the National People's Party",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2020-07-10",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-07-11",
+              "through": "2020-07-11",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2020-07-12",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Conrad K. Sangma",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20191116212724id_/http://www.nppindia.in:80/leadership-and-key-people/",
+            "https://web.archive.org/web/20210225154913id_/https://nppindia.in/2020/07/11/npp-adopts-resolution-to-fight-discrimination-of-ne-citizens/",
+            "https://web.archive.org/web/20210225155801id_/https://nppindia.in/conrad-sangma/",
+            "https://web.archive.org/web/20220204184638id_/https://nppindia.in/wp-content/uploads/2022/02/Manipur-Election-2022-List-of-candidates.pdf",
+            "https://web.archive.org/web/20251013120752id_/https://nppindia.in/wp-content/uploads/2025/04/National-Committee-2025-28.pdf"
+          ],
+          "related_work_orders": [
+            "C01-India-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2020-07-11",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         }
       ]
     },
@@ -38371,6 +39939,48 @@
             {
               "field": "holder",
               "from": "1990-01-01",
+              "through": "2004-10-02",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2004-10-03",
+              "through": "2004-10-03",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2004-10-04",
+              "through": "2005-07-31",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2005-08-01",
+              "through": "2005-08-01",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2005-08-02",
+              "through": "2015-01-22",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2015-01-23",
+              "through": "2015-01-23",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2015-01-24",
+              "through": "2022-09-26",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-09-28",
               "through": "2026-09-07",
               "current_status": "no_evidence"
             },
@@ -38389,6 +39999,98 @@
               "missing": [
                 "holder identity and dates (claim-only observation)"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Fahd bin Abdulaziz Al Saud",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Abdullah bin Abdulaziz Al Saud",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_abdullah_pm_order_a29_20070322",
+              "record": "sa_abdullah_pm_order_a29_20070322",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Salman bin Abdulaziz Al Saud",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_pm_order_a68_20150129",
+              "record": "sa_salman_pm_order_a68_20150129",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_pm_order_a138_20181227",
+              "record": "sa_salman_pm_order_a138_20181227",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_salman_pm_chairs_cabinet_20220517",
+              "record": "sa_salman_pm_chairs_cabinet_20220517",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mohammed bin Salman bin Abdulaziz Al Saud",
+              "record": 9,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mbs_pm_order_a62_20220927",
+              "record": "sa_mbs_pm_order_a62_20220927",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mbs_pm_chairs_cabinet_20221025",
+              "record": "sa_mbs_pm_chairs_cabinet_20221025",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mbs_pm_chairs_cabinet_20260616",
+              "record": "sa_mbs_pm_chairs_cabinet_20260616",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
             }
           ],
           "declared_gaps": [],
@@ -38396,7 +40098,10 @@
           "leads": [
             "https://laws.boe.gov.sa/Files/Download/?attId=ed4842e1-9543-40b9-973b-ada200d4ed10",
             "https://www.spa.gov.sa/2387811",
-            "https://www.spa.gov.sa/en/N2653199"
+            "https://www.spa.gov.sa/en/N2653199",
+            "https://portalapi.spa.gov.sa/api/v1/news/8329c804c8",
+            "https://portalapi.spa.gov.sa/api/v1/news/42f7ef2039",
+            "https://portalapi.spa.gov.sa/api/v1/news/eb5f56fa80"
           ],
           "related_work_orders": [
             "C01-SaudiArabia-DISC-B001"
@@ -38406,7 +40111,8 @@
             "until": "2026-09-07",
             "pinned": false
           },
-          "first_evidence": null
+          "first_evidence": "2004-10-03",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
           "item": "research_role_chain",
@@ -39647,26 +41353,14 @@
             {
               "field": "holder",
               "from": "1990-01-01",
-              "through": "1990-03-19",
+              "through": "1990-03-14",
               "current_status": "no_evidence"
             },
             {
               "field": "holder",
-              "from": "1990-03-20",
-              "through": "1990-03-20",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "1990-03-21",
-              "through": "1991-12-24",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "1991-12-25",
+              "from": "1990-03-15",
               "through": "1991-12-25",
-              "current_status": "attested_day"
+              "current_status": "open_end"
             },
             {
               "field": "dates",
@@ -39685,6 +41379,41 @@
                 "from",
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Михаил Сергеевич Горбачев",
+              "record": 2,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Михаил Сергеевич Горбачев",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Михаил Сергеевич Горбачев",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Михаил Сергеевич Горбачев",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
             }
           ],
           "declared_gaps": [],
@@ -39694,7 +41423,8 @@
             "https://history.state.gov/historicaldocuments/frus1989-92v31/d90",
             "https://catalog.archives.gov/medialz/presidential-libraries/bush/gb-nsc/321498139/1991-12-25--Gorbachev.pdf",
             "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-commonwealth-independent-states",
-            "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml"
+            "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+            "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf"
           ],
           "related_work_orders": [
             "C01-USSR-DISC-B001"
@@ -39704,7 +41434,7 @@
             "until": "1991-12-25",
             "pinned": true
           },
-          "first_evidence": "1990-03-20"
+          "first_evidence": "1990-03-15"
         },
         {
           "item": "research_role_chain",
@@ -40342,6 +42072,50 @@
               "missing": [
                 "until"
               ]
+            },
+            {
+              "field": "dates",
+              "holder": "Александр Владимирович Руцкой",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Александр Владимирович Руцкой",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Александр Владимирович Руцкой",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Александр Владимирович Руцкой",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Александр Владимирович Руцкой",
+              "record": 5,
+              "missing": [
+                "from"
+              ]
             }
           ],
           "declared_gaps": [],
@@ -40351,7 +42125,8 @@
             "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
             "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011894&page=1&rdk=0",
             "https://www.prlib.ru/item/375688",
-            "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012050&page=1&rdk=0"
+            "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012050&page=1&rdk=0",
+            "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012167&page=1&rdk=0"
           ],
           "related_work_orders": [
             "C01-Russia-DISC-B002"
@@ -40476,6 +42251,42 @@
               "holder": "Борис Николаевич Ельцин",
               "record": 0,
               "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Борис Николаевич Ельцин",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Борис Николаевич Ельцин",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Борис Николаевич Ельцин",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Борис Николаевич Ельцин",
+              "record": 4,
+              "missing": [
+                "from",
                 "until"
               ]
             }
@@ -40702,9 +42513,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 74,
-    "research_roles_with_unresolved_days": 65,
+    "research_roles": 78,
+    "research_roles_with_unresolved_days": 69,
     "next_batches": 13,
-    "next_items": 97
+    "next_items": 100
   }
 }

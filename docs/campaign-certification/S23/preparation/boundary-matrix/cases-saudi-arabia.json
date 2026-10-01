@@ -22,10 +22,10 @@
      "production_party": 0,
      "executive": 1
     },
-    "cases": 721,
+    "cases": 753,
     "case_kinds": {
-     "attestation_day": 70,
-     "attestation_day_after": 70,
+     "attestation_day": 86,
+     "attestation_day_after": 86,
      "cutoff_day": 11,
      "cutoff_day_before": 11,
      "fictional_end_exclusive": 11,
@@ -40,7 +40,7 @@
      "yearly": 506
     },
     "observations_by_acceptance": {
-     "accepted": 51,
+     "accepted": 62,
      "pending": 13,
      "unattributed_intake": 3
     },
@@ -75,7 +75,7 @@
    },
    "headline": [
     "Research roles: 10 (6 with holder observations); 2 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 80 uncertain, 103 unknown and 148 unresearched.",
-    "Research holder observations by acceptance: accepted 51, pending 13, unattributed_intake 3.",
+    "Research holder observations by acceptance: accepted 62, pending 13, unattributed_intake 3.",
     "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
     "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -139,14 +139,18 @@
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-10-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#3","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-10-04","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-07-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#8","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2005-08-01","kinds":["attestation_day","attestation_day_after"],"historical":{"status":"attested","holders":[["sa_king#3","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2005-08-01","kinds":["attestation_day","attestation_day_after"],"historical":{"status":"attested","holders":[["sa_king#3","attested_on_day"],["sa_pm#4","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-08-02","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-10-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#3","bracketed_by_evidence"],["sa_king#9","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-10-21","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2007-03-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#3","bracketed_by_evidence"],["sa_pm#5","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2007-03-23","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -158,23 +162,33 @@
     {"date":"2014-05-21","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-01-22","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2015-01-23","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_king#3","stated_end_day"],["sa_king#4","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-23","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_king#3","stated_end_day"],["sa_king#4","attested_on_day"],["sa_pm#6","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-01-24","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#7","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-30","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-07-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#11","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-07-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-12-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#8","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-12-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#1","attested_on_day"],["sa_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-05-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#9","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-05-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#1","attested_on_day"],["sa_pm#1","attested_on_day"],["sa_pm#10","attested_on_day"],["sa_pm#11","attested_on_day"]]},"acceptance":["accepted","unattributed_intake"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2022-09-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-10-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#12","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-10-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-06-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#13","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-06-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-08-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#5","attested_on_day"],["sa_pm#2","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-08-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-09-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#12","attested_on_day"]]},"acceptance":["accepted"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -195,7 +209,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 75,
+    "cases": 89,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "attested": 1,
@@ -204,7 +218,7 @@
      "unknown": 11
     },
     "boundary_cases": 3,
-    "attestation_cases": 23,
+    "attestation_cases": 37,
     "yearly_image_bindings": {
      "bound": 1,
      "unbound": 36
@@ -502,7 +516,18 @@
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
     "sa_pm#1",
-    "sa_pm#2"
+    "sa_pm#2",
+    "sa_pm#3",
+    "sa_pm#4",
+    "sa_pm#5",
+    "sa_pm#6",
+    "sa_pm#7",
+    "sa_pm#8",
+    "sa_pm#9",
+    "sa_pm#10",
+    "sa_pm#11",
+    "sa_pm#12",
+    "sa_pm#13"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -521,9 +546,15 @@
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-10-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-10-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-08-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-08-02","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-03-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-03-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -532,19 +563,31 @@
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-23","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-24","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-30","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-12-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-12-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#1","attested_on_day"],["sa_pm#10","attested_on_day"],["sa_pm#11","attested_on_day"]],"multiple_holders":["Mohammed bin Salman bin Abdulaziz Al Saud","sa_mbs_pm_appointment","sa_mbs_pm_order_a62_20220927"]},"acceptance":["accepted","unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-09-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-10-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-10-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-06-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-06-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-08-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#2","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-08-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -563,13 +606,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 56,
+    "cases": 74,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 4
+    "attestation_cases": 22
    }
   },
   {
@@ -1929,6 +1972,88 @@
     "unattributed_intake": 1
    }
   },
+  "sa_pm#10": {
+   "role": "research:sa_pm",
+   "name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-09-27",
+   "claim_ids": [
+    "sa_mbs_pm_order_a61_20220927"
+   ],
+   "note": "Made Prime Minister by item First of Royal Order A/61 of 1/3/1444 AH (SPA, 27 September 2022), 'استثناءً من حكم المادة (السادسة والخمسين)' (SA-PM-04). Listed first as Prime Minister in A/62 the same day, styled 'ولي العهد رئيس مجلس الوزراء' chairing on 25 October 2022 and again on 16 June 2026.",
+   "uncertainty": "The order states no effective day, so from is null under Codex's C01-37 rule and attested_on is the order's day; Umm al-Qura's text of 7 October 2022 is a publication, not a start. No end is stated, so until is null; continuity to 7 September 2026 is not established.",
+   "sources": [
+    "sa_spa_order_a61_20220927"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#11": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "The same release, Royal Order A/62 dated 1/3/1444 AH, citing A/138 of 20/4/1440 AH and A/61: 'أولاً : إعادة تشكيل مجلس الوزراء على النحو التالي : 1ـ صاحب السمو الملكي الأمير / محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيساً لمجلس الوزراء.'",
+   "claim": "sa_mbs_pm_order_a62_20220927",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-09-27",
+   "uncertainty": "A second order of the same day, stating no effective day (item Second directs notification only): an observation on the appointment day, not a separate start. The other 34 members are not imported.",
+   "sources": [
+    "sa_spa_order_a61_20220927"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#12": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "SPA, date line Riyadh 29 Rabi al-Awwal 1444 / 25 October 2022: 'رأس صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيس مجلس الوزراء ــ حفظه الله ـ، الجلسة التي عقدها مجلس الوزراء، اليوم الثلاثاء، في قصر اليمامة بمدينة الرياض.'",
+   "claim": "sa_mbs_pm_chairs_cabinet_20221025",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-10-25",
+   "uncertainty": "The first session found chaired by the Crown Prince as Prime Minister after 27 September 2022 (SPA titles show the King chairing on 27 September and 4, 11 and 18 October). A point observation.",
+   "sources": [
+    "sa_spa_mbs_cabinet_20221025"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#13": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "SPA, date line Jeddah 01 Muharram 1448 / 16 June 2026: 'رأس صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد رئيس مجلس الوزراء -حفظه الله-، الجلسة التي عقدها مجلس الوزراء اليوم في جدة.'",
+   "claim": "sa_mbs_pm_chairs_cabinet_20260616",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-06-16",
+   "uncertainty": "A point observation 83 days before the cutoff; continuity to 7 September 2026 is not established. The later royal order of 13 August 2026 reconstituting the Council under his chairmanship is recorded by CLAUDE-C01-06 from SPA's English release (sa_mbs_cp_pm_obs_20260813, unchanged); its Arabic original (N2653088) stays a lead, as CLAUDE-C01-06 pins it.",
+   "sources": [
+    "sa_spa_mbs_cabinet_20260616"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "sa_pm#2": {
    "role": "research:sa_pm",
    "name": null,
@@ -1947,6 +2072,152 @@
    ],
    "source_classes": {
     "pending": 1
+   }
+  },
+  "sa_pm#3": {
+   "role": "research:sa_pm",
+   "name": "Fahd bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-10-03",
+   "claim_ids": [
+    "sa_fahd_pm_styled_20041003"
+   ],
+   "note": "SPA explicitly styles King Fahd 'رئيس مجلس الوزراء' in its Military Service Council report of 3 October 2004 (SA-PM-01). The 1996 and 2005 session-chairing facts remain institution claims only.",
+   "uncertainty": "No Saudi record for 1990-1995, accession or Council formation order of his was read, so from is null; the death announcement of 1 August 2005 states no day and does not name the office, so until is null. Session chairing without independent office identification does not establish a Prime Minister observation. Continuity is not established.",
+   "sources": [
+    "sa_spa_fahd_pm_styled_20041003"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#4": {
+   "role": "research:sa_pm",
+   "name": "Abdullah bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2005-08-01",
+   "claim_ids": [
+    "sa_abdullah_pm_order_a194_20050801"
+   ],
+   "note": "Royal Order A/194 of 26/6/1426 AH (SPA, 1 August 2005) continues all members of the Council of Ministers 'برئاستنا' (SA-PM-02). He reconstituted the Council under his chairmanship by A/29 (22 March 2007, effective from its date). The 29 December 2012 budget-session chairing is retained as an institution event only.",
+   "uncertainty": "A/194 states no effective day, so from is null and attested_on is the order's day. The 2007 effective day belongs to the reconstituted Council, not to his office. The Royal Court statement of 23 January 2015 gives his day of death styled King, not Prime Minister, so under the death-notice ruling until is null on sa_pm; continuity between observations is not established.",
+   "sources": [
+    "sa_spa_order_a194_20050801"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#5": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "SPA, date line Riyadh 3 Rabi al-Awwal 1428 / 22 March 2007: three royal orders 'صدرت اليوم الخميس'; Royal Order A/29 dated 3/3/1428 AH, in the name of 'عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and citing A/3 of 28/2/1424 AH and A/194 of 26/6/1426 AH, orders 'أولا : إعادة تشكيل مجلس الوزراء برئاستنا مع استمرار جميع أعضاء المجلس الحاليين في مناصبهم' and 'ثانيا : يعمل بهذا الأمر من تاريخه'.",
+   "claim": "sa_abdullah_pm_order_a29_20070322",
+   "from": null,
+   "until": null,
+   "attested_on": "2007-03-22",
+   "uncertainty": "Item Second makes the reconstitution effective from the order's date (3/3/1428 AH, 22 March 2007). That is the effective day of a reconstituted Council whose chairman was already attested on 1 August 2005, not the start of his office, so it is an observation and never a from. The recital's A/3 of 28/2/1424 AH (2003) was not found.",
+   "sources": [
+    "sa_spa_order_a29_20070322"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#6": {
+   "role": "research:sa_pm",
+   "name": "Salman bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-01-23",
+   "claim_ids": [
+    "sa_salman_pm_order_a54_20150123"
+   ],
+   "note": "Royal Order A/54 of 3/4/1436 AH (SPA, 23 January 2015) continues all members of the Council of Ministers 'برئاستنا' (SA-PM-03). He reconstituted the Council under his chairmanship by A/68 (29 January 2015) and A/138 (27 December 2018), and SPA styles him 'رئيس مجلس الوزراء' chairing the session of 17 May 2022.",
+   "uncertainty": "No effective day is stated, so from is null. Royal Order A/61 of 27 September 2022 makes the Crown Prince Prime Minister by exception to Article 56 and states no end for the King, so until is null and is never taken from the successor's appointment. After that order the King chairs only sessions he attends (A/61 item Second); those sessions are claims, not observations here.",
+   "sources": [
+    "sa_spa_order_a54_20150123"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#7": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "SPA, first addition (إضافة أولى) to 'صدور أوامر ملكية', filed at 22:26 Makkah time on 29 January 2015: Royal Order A/68 dated 9/4/1436 AH, in the name of 'سلمان بن عبدالعزيز آل سعود ملك المملكة العربية السعودية', orders 'أولاً : إعادة تشكيل مجلس الوزراء برئاستنا على النحو التالي', listing first 'صاحب السمو الملكي الأمير مقرن بن عبدالعزيز آل سعود ولي العهد نائباً لرئيس مجلس الوزراء'.",
+   "claim": "sa_salman_pm_order_a68_20150129",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-01-29",
+   "uncertainty": "An addition without its own date line: the order is dated 9/4/1436 AH only, and 29 January 2015 is the portal's filing day (published_at 2015-01-29T19:27:59Z; date_hijri field 1436-04-09). The part read ends 'to follow' (// يتبع //) and states no effective day. The Deputy Prime Ministers listed hold other offices.",
+   "sources": [
+    "sa_spa_order_a68_20150129"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#8": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "SPA, date line Riyadh 20 Rabi al-Akhir 1440 / 27 December 2018: royal orders 'صدر اليوم'; Royal Order A/138 dated 20/4/1440 AH, citing A/68 of 9/4/1436 AH 'الصادر بإعادة تشكيل مجلس الوزراء', orders 'أولاً : إعادة تشكيل مجلس الوزراء برئاستنا على النحو التالي', listing first 'صاحب السمو الملكي الأمير/ محمد بن سلمان بن عبدالعزيز آل سعود ولي العهد نائباً لرئيس مجلس الوزراء ووزيراً للدفاع'; it is signed 'سلمان بن عبدالعزيز آل سعود'.",
+   "claim": "sa_salman_pm_order_a138_20181227",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-12-27",
+   "uncertainty": "No effective day is stated (item Second directs notification only). The Crown Prince is listed as Deputy Prime Minister, another office. The release's other orders are not imported.",
+   "sources": [
+    "sa_spa_order_a138_20181227"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_pm#9": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "SPA, date line Jeddah 16 Shawwal 1443 / 17 May 2022: 'عقد مجلس الوزراء جلسته اليوم الثلاثاء ـ عبر الاتصال المرئي ـ، برئاسة خادم الحرمين الشريفين الملك سلمان بن عبدالعزيز آل سعود رئيس مجلس الوزراء،حفظه الله.'",
+   "claim": "sa_salman_pm_chairs_cabinet_20220517",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-05-17",
+   "uncertainty": "A Council of Ministers session statement that styles the King Prime Minister; a point observation. Never an end: the royal order of 27 September 2022 makes the Crown Prince Prime Minister and states no end of the King's premiership, so until stays null.",
+   "sources": [
+    "sa_spa_salman_cabinet_20220517"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-50"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "sa_shura_chair#1": {

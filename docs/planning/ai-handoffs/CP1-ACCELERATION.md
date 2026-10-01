@@ -28,8 +28,8 @@ The existing `CLAUDE-C06-TONGA-01` task has transferred to **Codex, in progress*
 its stable ID is retained for traceability. Do not open a duplicate Claude claim.
 The [accepted Tonga proposal](../../campaign-certification/C06/preparation/tonga-cast-01/README.md)
 remains immutable preparation. The separate production candidate is
-`328ff914f7be176047c698a0705587da0384ce5d` on `codex/tonga-country-cast-20261001`.
-Its [CI run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36876063103)
+`6829ecc75600c3fa11a2df8136f7c4a513c4941e` on `codex/tonga-country-cast-20261001`.
+Its [CI run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36878791848)
 was still running at this registration checkpoint; no native pass or live-game
 availability is inferred. Finish candidate validation and country review before
 integration or C06 completion. Follow [the campaign-leader art direction](CLAUDE-CAMPAIGN-LEADER-ART.md).

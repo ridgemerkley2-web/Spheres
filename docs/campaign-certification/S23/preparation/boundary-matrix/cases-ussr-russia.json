@@ -24,10 +24,10 @@
      "production_party": 3,
      "executive": 1
     },
-    "cases": 689,
+    "cases": 696,
     "case_kinds": {
-     "attestation_day": 23,
-     "attestation_day_after": 23,
+     "attestation_day": 26,
+     "attestation_day_after": 26,
      "creation_day_after": 1,
      "creation_day_before": 1,
      "creation_day_of": 1,
@@ -37,6 +37,9 @@
      "fictional_last_day": 12,
      "fictional_start_day": 12,
      "future_2030": 12,
+     "handover_day_after": 1,
+     "handover_day_before": 1,
+     "handover_day_of": 1,
      "observation_window_from_day_after": 3,
      "observation_window_from_day_before": 3,
      "observation_window_from_day_of": 3,
@@ -48,13 +51,14 @@
      "yearly": 552
     },
     "observations_by_acceptance": {
-     "accepted": 13,
+     "accepted": 17,
      "pending": 6,
      "unattributed_intake": 4
     },
     "research_yearly_status": {
      "inapplicable": 1,
-     "unknown": 258,
+     "uncertain": 36,
+     "unknown": 222,
      "unresearched": 37
     },
     "production_party_yearly_status": {
@@ -76,8 +80,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 258 unknown and 37 unresearched.",
-    "Research holder observations by acceptance: accepted 13, pending 6, unattributed_intake 4.",
+    "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 36 uncertain, 222 unknown and 37 unresearched.",
+    "Research holder observations by acceptance: accepted 17, pending 6, unattributed_intake 4.",
     "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
     "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -104,33 +108,33 @@
      "production_party": 5,
      "executive": 1
     },
-    "cases": 924,
+    "cases": 953,
     "case_kinds": {
-     "attestation_day": 28,
-     "attestation_day_after": 28,
+     "attestation_day": 41,
+     "attestation_day_after": 41,
      "cutoff_day": 15,
      "cutoff_day_before": 15,
      "fictional_end_exclusive": 15,
      "fictional_last_day": 15,
      "fictional_start_day": 15,
      "future_2030": 15,
-     "handover_day_after": 30,
-     "handover_day_before": 30,
-     "handover_day_of": 30,
+     "handover_day_after": 31,
+     "handover_day_before": 31,
+     "handover_day_of": 31,
      "reference_start": 15,
      "reference_start_day_before": 15,
      "yearly": 690
     },
     "observations_by_acceptance": {
-     "accepted": 18,
+     "accepted": 27,
      "pending": 24,
      "unattributed_intake": 5
     },
     "research_yearly_status": {
      "bracketed": 1,
      "established": 3,
-     "uncertain": 155,
-     "unknown": 174
+     "uncertain": 157,
+     "unknown": 172
     },
     "production_party_yearly_status": {
      "unresearched": 185
@@ -151,8 +155,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 155 uncertain, 174 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: accepted 18, pending 24, unattributed_intake 5.",
+    "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 157 uncertain, 172 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 27, pending 24, unattributed_intake 5.",
     "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
     "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
     "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
@@ -976,56 +980,67 @@
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
     "su_president#1",
-    "su_president#2"
+    "su_president#2",
+    "su_president#3",
+    "su_president#4",
+    "su_president#5",
+    "su_president#6"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"inapplicable","reason":"institution_not_yet_created_per_source"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-03-13","kinds":["creation_day_before"],"historical":{"status":"inapplicable","reason":"institution_not_yet_created_per_source"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-03-14","kinds":["creation_day_of"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-03-15","kinds":["creation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-03-14","kinds":["creation_day_of","handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-03-15","kinds":["creation_day_after","handover_day_of"],"historical":{"status":"boundary_day","holders":[["su_president#3","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-03-16","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-03-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_president#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-03-21","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-03-21","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-10-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_president#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-10-06","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-12-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_president#2","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-12-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-26","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["su_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1040,14 +1055,14 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 59,
+    "cases": 66,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "inapplicable": 1,
-     "unknown": 36
+     "uncertain": 36
     },
-    "boundary_cases": 3,
-    "attestation_cases": 4
+    "boundary_cases": 4,
+    "attestation_cases": 10
    }
   },
   {
@@ -1350,7 +1365,15 @@
     {"date":"1991-07-09","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"campaign_dependent","asset":"n/a"},
     {"date":"1991-07-10","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["ru_rsfsr_president#1","stated_start_day"]]},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
     {"date":"1991-07-11","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1991-07-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1991-07-20","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1991-11-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1991-11-20","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1991-12-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1991-12-27","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1992-01-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"campaign_dependent","asset":"n/a"},
+    {"date":"1992-01-04","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["ru_rsfsr_president#1","after_stated_start"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":"campaign_dependent","asset":"n/a"},
@@ -1424,7 +1447,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 78,
+    "cases": 86,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "established": 3,
@@ -1432,7 +1455,7 @@
      "unknown": 2
     },
     "boundary_cases": 27,
-    "attestation_cases": 0
+    "attestation_cases": 8
    }
   },
   {
@@ -2439,7 +2462,11 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_rsfsr_president#1"
+    "ru_rsfsr_president#1",
+    "ru_rsfsr_president#2",
+    "ru_rsfsr_president#3",
+    "ru_rsfsr_president#4",
+    "ru_rsfsr_president#5"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -2448,7 +2475,15 @@
     {"date":"1991-07-09","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-07-10","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["ru_rsfsr_president#1","stated_start_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-07-11","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-07-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-07-20","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-11-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-11-20","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-27","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-04","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
@@ -2499,14 +2534,14 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 55,
+    "cases": 63,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "uncertain": 35,
      "unknown": 2
     },
     "boundary_cases": 3,
-    "attestation_cases": 0
+    "attestation_cases": 8
    }
   },
   {
@@ -2529,17 +2564,35 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "ru_rsfsr_vice_president#1"
+    "ru_rsfsr_vice_president#1",
+    "ru_rsfsr_vice_president#2",
+    "ru_rsfsr_vice_president#3",
+    "ru_rsfsr_vice_president#4",
+    "ru_rsfsr_vice_president#5",
+    "ru_rsfsr_vice_president#6"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-07-09","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-07-09","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-07-10","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["ru_rsfsr_vice_president#1","stated_start_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-07-11","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-07-11","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-07-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_vice_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-07-30","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_vice_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-06","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_vice_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-17","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-04-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_vice_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-04-17","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"],["ru_rsfsr_vice_president#6","before_stated_end"]]},"acceptance":["accepted","pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-09-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["ru_rsfsr_vice_president#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-09-02","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["ru_rsfsr_vice_president#6","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-10-02","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["ru_rsfsr_vice_president#6","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-10-03","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["ru_rsfsr_vice_president#6","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-10-04","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["ru_rsfsr_vice_president#1","after_stated_start"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
@@ -2589,14 +2642,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 55,
+    "cases": 68,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "uncertain": 35,
-     "unknown": 2
+     "uncertain": 37
     },
-    "boundary_cases": 3,
-    "attestation_cases": 0
+    "boundary_cases": 6,
+    "attestation_cases": 10
    }
   },
   {
@@ -3888,6 +3940,94 @@
     "pending": 3
    }
   },
+  "ru_rsfsr_president#2": {
+   "role": "research:ru_rsfsr_president",
+   "name": "Борис Николаевич Ельцин",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-07-19",
+   "claim_ids": [
+    "ru_rsfsr_ukaz_8_signed_as_president_rsfsr_19910719"
+   ],
+   "note": "Observed on 1991-07-19: Decree No. 8 of the President of the RSFSR is signed 'Президент РСФСР Б.Ельцин' (Moscow, Kremlin, 19 July 1991). Boris Nikolaevich Yeltsin, named as in the C01-05 holder (resolution 1595-I); the decree prints only 'Б.Ельцин'.",
+   "uncertainty": "A signed decree gives attested_on only (C01-37, C01-38). Not joined to the C01-05 observation from 10 July 1991; no end is set or inferred.",
+   "sources": [
+    "ru_rsfsr_ukaz_8_19910719"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_president#3": {
+   "role": "research:ru_rsfsr_president",
+   "name": "Борис Николаевич Ельцин",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-11-19",
+   "claim_ids": [
+    "ru_rsfsr_rasp_98rp_signed_as_president_rsfsr_19911119"
+   ],
+   "note": "Observed on 1991-11-19: Order No. 98-рп of the President of the RSFSR, on the Vice-President's duties, is signed 'Президент РСФСР Б. ЕЛЬЦИН'.",
+   "uncertainty": "A signed order gives attested_on only (C01-37, C01-38); no from or until.",
+   "sources": [
+    "ru_rsfsr_rasp_98rp_19911119"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_president#4": {
+   "role": "research:ru_rsfsr_president",
+   "name": "Борис Николаевич Ельцин",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-12-26",
+   "claim_ids": [
+    "ru_rsfsr_ukaz_318_signed_as_president_rsfsr_19911226"
+   ],
+   "note": "Observed on 1991-12-26: Decree No. 318 is headed 'УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ СОВЕТСКОЙ ФЕДЕРАТИВНОЙ СОЦИАЛИСТИЧЕСКОЙ РЕСПУБЛИКИ' and signed 'Президент РСФСР Б.Ельцин', the day after Law 2094-I renamed the state.",
+   "uncertainty": "A signed decree gives attested_on only. Decree 316 of the same day is signed 'Президент Российской Федерации' (a styling claim on this role, not an observation); the two titles overlap until at least 3 January 1992. No ru_president observation is added and no holder is merged across the roles.",
+   "sources": [
+    "ru_rsfsr_ukaz_318_19911226"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_president#5": {
+   "role": "research:ru_rsfsr_president",
+   "name": "Борис Николаевич Ельцин",
+   "from": null,
+   "until": null,
+   "attested_on": "1992-01-03",
+   "claim_ids": [
+    "ru_rsfsr_ukaz_245n_signed_as_president_rsfsr_19920103"
+   ],
+   "note": "Observed on 1992-01-03: Decree No. 245-н, conferring an honorary title, is headed 'УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ СОВЕТСКОЙ ФЕДЕРАТИВНОЙ СОЦИАЛИСТИЧЕСКОЙ РЕСПУБЛИКИ' and signed 'Президент РСФСР Б.Ельцин' (Moscow, Kremlin, 3 January 1992).",
+   "uncertainty": "A signed decree gives attested_on only. The latest act signed 'Президент РСФСР' found in the portal's listing to 10 January 1992; it falls after the renaming of 25 December 1991, outside the gap ledger's applicability window for this role. Fallback if the reviewer closes this role's observations at the renaming: a styling claim only. No end is set; the office's later title is the ru_president question left open by CLAUDE-C01-14.",
+   "sources": [
+    "ru_rsfsr_ukaz_245n_19920103"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "ru_rsfsr_vice_president#1": {
    "role": "research:ru_rsfsr_vice_president",
    "name": "Александр Владимирович Руцкой",
@@ -3910,6 +4050,118 @@
    ],
    "source_classes": {
     "pending": 2
+   }
+  },
+  "ru_rsfsr_vice_president#2": {
+   "role": "research:ru_rsfsr_vice_president",
+   "name": "Александр Владимирович Руцкой",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-07-29",
+   "claim_ids": [
+    "ru_rsfsr_vp_rasp_1rv_signed_as_vice_president_19910729"
+   ],
+   "note": "Observed on 1991-07-29: Order No. 1-рв of the Vice-President of the RSFSR is signed 'Вице-президент РСФСР А. Руцкой'. Alexander Vladimirovich Rutskoi, named as in the C01-05 holder (resolution 1596-I); the order prints 'А. Руцкой'.",
+   "uncertainty": "The holder's own signed order gives attested_on only (C01-37, C01-38). Not joined to the C01-05 observation from 10 July 1991.",
+   "sources": [
+    "ru_rsfsr_vp_rasp_1rv_19910729"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_vice_president#3": {
+   "role": "research:ru_rsfsr_vice_president",
+   "name": "Александр Владимирович Руцкой",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-12-05",
+   "claim_ids": [
+    "ru_rsfsr_vp_rasp_8rv_signed_as_vice_president_19911205"
+   ],
+   "note": "Observed on 1991-12-05: Order No. 8-рв of the Vice-President of the RSFSR is signed 'Вице-президент РСФСР А. Руцкой'.",
+   "uncertainty": "A signed order gives attested_on only; no from or until.",
+   "sources": [
+    "ru_rsfsr_vp_rasp_8rv_19911205"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_vice_president#4": {
+   "role": "research:ru_rsfsr_vice_president",
+   "name": "Александр Владимирович Руцкой",
+   "from": null,
+   "until": null,
+   "attested_on": "1992-01-16",
+   "claim_ids": [
+    "ru_vp_rasp_1rv_signed_as_vice_president_rf_19920116"
+   ],
+   "note": "Observed on 1992-01-16: Order No. 1-рв is headed 'Р А С П О Р Я Ж Е Н И Е ВИЦЕ-ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ' and signed 'Вице-президент Российской Федерации А. Руцкой'.",
+   "uncertainty": "A signed order gives attested_on only. Filed on this role under the new title because no separate Russian Federation vice-presidency role exists; the role title is unchanged (a decision for the integrator).",
+   "sources": [
+    "ru_vp_rasp_1rv_19920116"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_vice_president#5": {
+   "role": "research:ru_rsfsr_vice_president",
+   "name": "Александр Владимирович Руцкой",
+   "from": null,
+   "until": null,
+   "attested_on": "1993-04-16",
+   "claim_ids": [
+    "ru_vs_4825i_rutskoi_styled_vice_president_19930416"
+   ],
+   "note": "Observed on 1993-04-16: Supreme Soviet resolution 4825-I takes note of the information of 'вице-президента Российской Федерации ... А. В. Руцкого'.",
+   "uncertainty": "An official record naming the office and the person attests the office on its date (C01-33, C01-35); no from or until.",
+   "sources": [
+    "ru_vs_res_4825i_19930416"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "ru_rsfsr_vice_president#6": {
+   "role": "research:ru_rsfsr_vice_president",
+   "name": "Александр Владимирович Руцкой",
+   "from": null,
+   "until": "1993-10-03",
+   "attested_on": "1993-09-01",
+   "claim_ids": [
+    "ru_ukaz_1328_rutskoi_styled_vice_president_19930901",
+    "ru_ukaz_1576_rutskoi_released_as_vice_president_19931003"
+   ],
+   "note": "Observed on 1993-09-01: Decree No. 1328 names 'Вице-президента Российской Федерации Руцкого Александра Владимировича' while suspending him from his duties. Until 1993-10-03: Decree No. 1576 releases him from the office of Vice-President of the Russian Federation and is in force 'с момента его подписания'; it is dated 3 October 1993.",
+   "uncertainty": "The end reads an effect-on-signature clause in a dated decree as stating the effective day, as CLAUDE-C01-19 did for decrees 861 and 300; fallback under the strict signature rule (review 1739eccb): until null, with the release a dated claim. Fallback if a suspension decree is not accepted as an attestation: the end moves to the 1993-04-16 observation. The suspension (1 September), the Presidium's and the Supreme Soviet's acting-President resolutions (21-22 September) and decree 1410 are claims only. No hour is printed.",
+   "sources": [
+    "ru_ukaz_1328_19930901",
+    "ru_ukaz_1576_19931003"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-51"
+   ],
+   "source_classes": {
+    "accepted": 2
    }
   },
   "su_cpsu_deputy_general_secretary#1": {
@@ -4326,6 +4578,95 @@
    ],
    "source_classes": {
     "pending": 1
+   }
+  },
+  "su_president#3": {
+   "role": "research:su_president",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": "1990-03-15",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "su_snd3p_gorbachev_oath_19900315",
+    "su_snd3p_assumption_of_office_declared_19900315"
+   ],
+   "note": "Named as the presiding officer prints him ('Михаил Сергеевич Горбачев'); the speaker line prints 'Горбачев М. С.'. From 15 March 1990: at the seventh sitting of the Congress that day he takes the oath and the presiding officer declares that he has assumed the office of President of the USSR (official stenographic report, printed p. 56); the law's rule that the person elected enters office from the moment of the oath is the existing claim su_first_president_congress_rule_19900314.",
+   "uncertainty": "The election result and resolution (15 March) and the ballot (14 March) are separate claims, not the start. No hour is printed. The two CLAUDE-C01-05 observations ('Mikhail Gorbachev', 20 March 1990 and 25 December 1991) stay first and unchanged; the name forms are not reconciled. No until is set.",
+   "sources": [
+    "su_snd3_steno_vol3_president"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-49"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "su_president#4": {
+   "role": "research:su_president",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-01-22",
+   "claim_ids": [
+    "su_pravda20_president_signs_decree_19910122"
+   ],
+   "note": "Attested on 22 January 1991: his decree on the withdrawal of the 50- and 100-rouble notes, printed in Pravda No. 20 of 23 January 1991, is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 22 января 1991 г.'.",
+   "uncertainty": "A signed decree as printed in the party newspaper (a facsimile hosted by a private Internet Archive upload): an attestation on the decree's date only.",
+   "sources": [
+    "su_pravda_no20_19910123"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-49"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "su_president#5": {
+   "role": "research:su_president",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-08-22",
+   "claim_ids": [
+    "su_ved35p_up2443_president_signs_19910822"
+   ],
+   "note": "Attested on 22 August 1991: decree УП-2443 in the official gazette (Vedomosti 1991 No. 35, art. 1008) is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 22 августа 1991 г.'.",
+   "uncertainty": "The Vice-President's decree of 18 August 1991 on assuming the President's duties, the statement of the 'Soviet leadership' and the acting styling are claims only; the Presidium's resolution of 21 August declaring the removal unlawful is a claim. No break, resumption day, start or end is recorded.",
+   "sources": [
+    "su_ved_1991_35_president"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-49"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "su_president#6": {
+   "role": "research:su_president",
+   "name": "Михаил Сергеевич Горбачев",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-10-05",
+   "claim_ids": [
+    "su_ved41p_up2668_president_signs_19911005"
+   ],
+   "note": "Attested on 5 October 1991: decree УП-2668 in the official gazette (Vedomosti 1991 No. 41, art. 1164) is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 5 октября 1991 г.', the latest Soviet-side signature reviewed.",
+   "uncertainty": "Not an end. The 25 December 1991 statement has no Soviet primary text in this packet (SU-PRES-04); the CLAUDE-C01-05 observation of that day rests on US records and sets no until.",
+   "sources": [
+    "su_ved_1991_41_president"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-49"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   },
   "su_soyuz_co_chair#1": {
