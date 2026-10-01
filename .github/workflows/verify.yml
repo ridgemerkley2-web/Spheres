@@ -92,6 +92,43 @@ jobs:
         with:
           name: browser-evidence-${{ matrix.os }}
           path: artifacts/browser-ci
+  # A separate country journey must not wait for the long workspace suite.
+  # Fixtures author calendar dates but never simulate or certify elapsed years.
+  tonga-browser:
+    if: github.event.deleted != true
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Verify Tonga boundary, save and institutional contracts
+        run: cargo test --locked --release -p spheres-sim --lib institutional_leadership -- --test-threads=1
+      - name: Verify Tonga government and portrait contracts
+        run: cargo test --locked --release -p spheres-web tonga_ -- --test-threads=1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/ui/package-lock.json
+      - run: cargo build --locked --release -p spheres-web
+      - run: npm ci --prefix tools/ui
+      - run: npx --prefix tools/ui playwright install --with-deps chromium
+      - name: Exercise Tonga institutions through the production browser
+        env:
+          SPHERES_EXPECTED_REVISION: ${{ github.sha }}
+        run: node tools/ui/ci-tonga.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tonga-browser-evidence-${{ matrix.os }}
+          retention-days: 7
+          path: artifacts/tonga-browser-ci
   # Exercise shipped bytes independently: an unrelated existing calibration or
   # source-browser failure must not hide portable-package diagnostics.
   package:
@@ -195,7 +232,7 @@ jobs:
   # Preserve the original required-check names, each covering every suite.
   verify:
     if: always() && github.event.deleted != true
-    needs: [javascript, native, package, town-browser, political-calibration]
+    needs: [javascript, native, package, town-browser, tonga-browser, political-calibration]
     strategy:
       fail-fast: false
       matrix:
@@ -208,6 +245,7 @@ jobs:
           NATIVE_RESULT: ${{ needs.native.result }}
           JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
           TOWN_BROWSER_RESULT: ${{ needs['town-browser'].result }}
+          TONGA_BROWSER_RESULT: ${{ needs['tonga-browser'].result }}
           POLITICAL_RESULT: ${{ needs['political-calibration'].result }}
           PACKAGE_RESULT: ${{ needs.package.result }}
-        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT','PACKAGE_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','TONGA_BROWSER_RESULT','POLITICAL_RESULT','PACKAGE_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
