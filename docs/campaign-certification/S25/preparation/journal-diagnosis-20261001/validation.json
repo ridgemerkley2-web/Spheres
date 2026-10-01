@@ -1,0 +1,57 @@
+{
+  "format": "spheres-s25-journal-validation/v1",
+  "utc": "2026-10-01T02:24:10.001994+00:00",
+  "base_revision": "c58ee025da50dfac164fc839b3fc021c39d483fe",
+  "tests": [
+    {
+      "log": "logs/regression-before.log",
+      "exit_code": 1,
+      "tests_run": 1,
+      "scope": "original code; expected red, injected flush diagnostic missing"
+    },
+    {
+      "log": "logs/regression-after.log",
+      "exit_code": 0,
+      "tests_run": 3,
+      "scope": "initial focused green"
+    },
+    {
+      "log": "logs/regression-final.log",
+      "exit_code": 0,
+      "tests_run": 5,
+      "scope": "five focused green"
+    },
+    {
+      "log": "logs/regression-reviewed.log",
+      "exit_code": 0,
+      "tests_run": 7,
+      "scope": "final seven focused green"
+    },
+    {
+      "log": "logs/campaign-tooling.log",
+      "exit_code": 0,
+      "tests_run": 76,
+      "scope": "earlier partial materialization: stability and distributed only; one symlink permission skip"
+    },
+    {
+      "log": "logs/campaign-tooling-complete.log",
+      "exit_code": 0,
+      "tests_run": 105,
+      "scope": "all four campaign test modules materialized; one existing directory-symlink permission skip"
+    }
+  ],
+  "commands": {
+    "focused": "python -B -X utf8 -m unittest test_stability_matrix.JournalFailureTests (cwd tools/campaign)",
+    "full": "python -B -X utf8 -m unittest discover -s tools/campaign -p test_*.py",
+    "byte_verification": "python -B -X utf8 docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/verify.py"
+  },
+  "fresh_volume_probes_passed": 2,
+  "retained_metadata_files_unchanged": 40,
+  "wer_reports_preserved": 2,
+  "independent_code_review": "nation_art_scope reviewed journal failure preservation, owned-child cleanup and final close; reported no further blocking defect after cleanup correction.",
+  "scope": "Runner journal repair only. Frozen dependent verifier unchanged. Synthetic tooling tests and fresh-volume I/O probes, not native campaign or root-cause repair.",
+  "native_builds": 0,
+  "native_campaigns": 0,
+  "qualification": false,
+  "s25_complete": false
+}
