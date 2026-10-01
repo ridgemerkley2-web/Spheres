@@ -7,6 +7,7 @@ import shutil
 from pathlib import Path
 import tempfile
 import threading
+import errno
 import unittest
 from unittest.mock import patch
 
@@ -320,6 +321,209 @@ class MatrixLifecycleTests(unittest.TestCase):
 
     def test_failed_attempt_retained_and_next_declared_cell_runs(self):
         self.run_synthetic(fail_first=True)
+
+
+class JournalFailureTests(unittest.TestCase):
+    """Exercise the observed lost-diagnostic path without running a campaign."""
+
+    def test_denied_journal_flush_retains_operation_trace_and_never_starts_native(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "synthetic-binary"
+            binary.write_bytes(b"not executable; no native process permitted")
+            out = root / "new-run"
+            real_open = Path.open
+
+            class BrokenJournal:
+                def __init__(self, stream):
+                    self.stream = stream
+                def __enter__(self):
+                    return self
+                def __exit__(self, *args):
+                    self.close()
+                def write(self, data):
+                    return self.stream.write(data)
+                def flush(self):
+                    raise PermissionError(errno.EACCES, "injected journal flush denied")
+                def close(self):
+                    self.stream.close()
+                def fileno(self):
+                    return self.stream.fileno()
+
+            def opened(path, *args, **kwargs):
+                stream = real_open(path, *args, **kwargs)
+                return BrokenJournal(stream) if path == out / "journal.jsonl" else stream
+
+            with patch.object(Path, "open", opened), patch.object(matrix.subprocess, "Popen") as native:
+                with self.assertRaisesRegex(PermissionError, "injected journal flush denied"):
+                    matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out)
+            native.assert_not_called()
+            record = matrix.read_json(out / "journal-failure.json")
+            self.assertEqual(record["operation"], "flush")
+            self.assertEqual(record["attempted_event"]["event"], "matrix_started")
+            self.assertEqual(record["error"]["errno"], errno.EACCES)
+            self.assertIn("injected journal flush denied", record["error"]["traceback"])
+            self.assertEqual(record["journal_path"], str(out / "journal.jsonl"))
+            self.assertFalse(record["passed"])
+            self.assertFalse(record["qualification"])
+            self.assertFalse(record["s25_complete"])
+            self.assertFalse((out / "result.json").exists())
+
+    def test_close_error_does_not_replace_primary_failure_or_overwrite_its_receipt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "journal.jsonl"
+            with self.assertRaisesRegex(PermissionError, "primary write denied"):
+                with matrix.DurableJournal(path) as journal:
+                    with patch.object(journal.stream, "write", side_effect=PermissionError(errno.EACCES, "primary write denied")):
+                        try:
+                            journal.append({"event": "cell_finished", "id": "fixture"})
+                        finally:
+                            original_close = journal.stream.close
+                            def broken_close():
+                                original_close()
+                                raise PermissionError(errno.EACCES, "secondary close denied")
+                            journal.stream.close = broken_close
+            primary = matrix.read_json(path.with_name("journal-failure.json"))
+            secondary = matrix.read_json(path.with_name("journal-close-failure.json"))
+            self.assertEqual(primary["operation"], "write")
+            self.assertIn("primary write denied", primary["error"]["message"])
+            self.assertEqual(secondary["operation"], "close")
+            self.assertIn("secondary close denied", secondary["error"]["message"])
+
+    def test_sync_failure_is_not_retried_or_promoted(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "journal.jsonl"
+            real_sync = matrix.os.fsync
+            with matrix.DurableJournal(path) as journal:
+                def sync(fd):
+                    if fd == journal.stream.fileno():
+                        raise PermissionError(errno.EACCES, "injected sync denied")
+                    return real_sync(fd)
+                with patch.object(matrix.os, "fsync", sync):
+                    with self.assertRaisesRegex(PermissionError, "injected sync denied"):
+                        journal.append({"event": "matrix_finished", "passed": True})
+                first_receipt = path.with_name("journal-failure.json").read_bytes()
+                first_data = path.read_bytes()
+                with self.assertRaisesRegex(OSError, "already failed"):
+                    journal.append({"event": "must_not_be_written"})
+                self.assertEqual(first_receipt, path.with_name("journal-failure.json").read_bytes())
+                self.assertEqual(first_data, path.read_bytes())
+            self.assertEqual(matrix.read_json(path.with_name("journal-failure.json"))["operation"], "fsync")
+
+    def test_guard_journal_failure_stops_owned_child_before_wait_timeout(self):
+        self.run_guard_failure()
+
+    def test_refused_child_stop_preserves_journal_error_and_stops_other_children(self):
+        self.run_guard_failure(refuse_first_stop=True)
+
+    def run_guard_failure(self, refuse_first_stop=False):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "synthetic-binary"
+            binary.write_bytes(b"no native executable")
+            started = threading.Event()
+            children = []
+            original_append = matrix.DurableJournal.append
+
+            class FakeProcess:
+                def __init__(self, *args, **kwargs):
+                    self.returncode = None
+                    self.killed = self.reaped = False
+                    self.stopped = threading.Event()
+                    self.identity = len(children)
+                    children.append(self)
+                    if len(children) == (2 if refuse_first_stop else 1):
+                        started.set()
+                def wait(self, timeout=None):
+                    self.reaped = self.stopped.wait(4)
+                    self.returncode = -9 if self.reaped else 99
+                    return self.returncode
+                def kill(self):
+                    if refuse_first_stop and self.identity == 0:
+                        raise PermissionError(errno.EACCES, "injected first child stop denied")
+                    self.killed = True
+                    self.returncode = -9
+                    self.stopped.set()
+
+            def disk_usage(path):
+                # The initial setup and launch pass; the background check fails.
+                low = threading.current_thread().name == "stability-storage-guard" and started.is_set()
+                return type("Usage", (), {"free": 0 if low else 10**12})()
+
+            def denied(journal, value):
+                if value["event"] == "resource_limit_matrix_halted":
+                    with patch.object(journal.stream, "flush", side_effect=PermissionError(errno.EACCES, "guard journal denied")):
+                        return original_append(journal, value)
+                return original_append(journal, value)
+
+            with patch.object(matrix.subprocess, "Popen", FakeProcess), \
+                    patch.object(matrix.shutil, "disk_usage", disk_usage), \
+                    patch.object(matrix.DurableJournal, "append", denied), \
+                    patch.object(threading, "excepthook") as guard_error:
+                with self.assertRaises(OSError):
+                    matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", root / "run",
+                                      scratch_root=root / "scratch", min_free_bytes=1,
+                                      jobs=2 if refuse_first_stop else 1)
+            self.assertEqual(len(children), 2 if refuse_first_stop else 1)
+            self.assertTrue(children[-1].killed and children[-1].reaped)
+            self.assertIn("guard journal denied", str(guard_error.call_args.args[0].exc_value))
+            if refuse_first_stop:
+                self.assertFalse(children[0].killed)
+                cleanup = matrix.read_json(root / "run" / f"child-stop-failure-{plan()['cells'][0]['id']}.json")
+                self.assertEqual(cleanup["error"]["errno"], errno.EACCES)
+                self.assertFalse(cleanup["passed"])
+            receipt = matrix.read_json(root / "run/journal-failure.json")
+            self.assertEqual(receipt["operation"], "flush")
+            self.assertEqual(receipt["attempted_event"]["event"], "resource_limit_matrix_halted")
+            self.assertFalse((root / "run/result.json").exists())
+
+    def test_close_failure_after_passing_cells_prevents_successful_aggregate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "synthetic-binary"
+            binary.write_bytes(b"not executable")
+            original_enter = matrix.DurableJournal.__enter__
+
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+                    cell = {k: request[k] for k in ("id", "country", "seed", "through")}
+                    native = Path(kwargs["env"]["SPHERES_S25_OUT"])
+                    matrix.write_json_new(native / "result.json", synthetic_native_report(native, cell))
+                    kwargs["stdout"].write(TestSummaryTests.GOOD.encode())
+                    self.returncode = 0
+                def wait(self, timeout=None):
+                    return self.returncode
+
+            def enter(journal):
+                original_enter(journal)
+                original_close = journal.stream.close
+                def denied():
+                    original_close()
+                    raise PermissionError(errno.EACCES, "final journal close denied")
+                journal.stream.close = denied
+                return journal
+
+            with patch.object(matrix.subprocess, "Popen", FakeProcess), \
+                    patch.object(matrix.DurableJournal, "__enter__", enter):
+                with self.assertRaisesRegex(PermissionError, "final journal close denied"):
+                    matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", root / "run")
+            self.assertEqual(len(list((root / "run/cells").glob("*/verdict.json"))), 2)
+            self.assertTrue(all(matrix.read_json(p)["passed"] for p in (root / "run/cells").glob("*/verdict.json")))
+            self.assertFalse((root / "run/result.json").exists())
+            self.assertEqual(matrix.read_json(root / "run/journal-close-failure.json")["operation"], "close")
+
+    def test_diagnostic_failure_does_not_overwrite_existing_evidence_or_mask_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "journal.jsonl"
+            receipt = path.with_name("journal-failure.json")
+            receipt.write_bytes(b"preserve existing evidence")
+            with matrix.DurableJournal(path) as journal:
+                with patch.object(journal.stream, "flush", side_effect=PermissionError(errno.EACCES, "original failure")):
+                    with self.assertRaisesRegex(PermissionError, "original failure") as raised:
+                        journal.append({"event": "fixture"})
+            self.assertIn("Could not retain journal-failure.json", raised.exception.__notes__[0])
+            self.assertEqual(receipt.read_bytes(), b"preserve existing evidence")
 
 
 class CanonicalArchiveTests(unittest.TestCase):

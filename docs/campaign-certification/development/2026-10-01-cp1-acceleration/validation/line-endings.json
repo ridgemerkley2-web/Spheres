@@ -1,0 +1,16 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "f6b74e99^",
+    "f6b74e99"
+  ],
+  "before_exit_code": 2,
+  "after_exit_code": 0,
+  "correction": "Treat retained Windows CRLF as a line ending with whitespace=cr-at-eol; preserve raw receipt bytes. Only verbatim log whitespace is exempt.",
+  "logs": [
+    "line-endings-before.log",
+    "line-endings-after.log"
+  ]
+}

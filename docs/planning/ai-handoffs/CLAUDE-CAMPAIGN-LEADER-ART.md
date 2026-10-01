@@ -54,6 +54,14 @@ without coordination. See [the bounded handoff](CODEX-C03-OPENING-01.md).
 
 ## Claude's current work
 
+The [CP1 acceleration assignment](CP1-ACCELERATION.md) makes Tonga the next
+complete country cast. `CLAUDE-C06-TONGA-01` is ready to claim after the accepted
+Codex identity proposal: reuse King IV, source the two existing 1990 identities,
+and resolve the five later identity checks before completing Tonga's cast. This is an
+assignment, not a claim that Claude has begun production. Keep current C01-44
+party research isolated and preserve its ownership. Do not let the Russia/DA
+archive holds prevent work on a ready Tonga batch.
+
 Updated 1 October 2026 against the live remote tips and completed independent
 reviews. The central queue records all four new packets. It contains 26
 completed bounded Claude tasks and two submissions still awaiting acceptance.
@@ -87,24 +95,26 @@ passes stopped at HTTP 429 without a Retry-After header; preserve those response
 and coordinate any future missing-only pass when normal service permits. Claude's
 next content sequence is:
 
-1. **Resolve the held Russia and DA source gaps.** Preserve the reviewed content,
-   unavailable and unattempted distinctions, and every failed response. Review the
-   actual passages when the remaining original identities become accessible.
-   Repeated rate-limit retries do not establish available evidence. Komeito is
-   accepted; do not restart that packet or undo its conservative corrections.
-2. **Reconcile accepted Tonga research into game identities and dated roles.**
+1. **Reconcile accepted Tonga research into game identities and dated roles.**
    Submit a focused mapping proposal and validation for Codex review; accepted
    research alone is not installed historical coverage.
-3. **Produce a reviewed Tonga cartoon batch of 6–8 actual campaign characters.**
+2. **Produce a reviewed Tonga cartoon batch of 6–8 actual campaign characters.**
    Claim exact person IDs and appearance windows after identity reconciliation.
    Prioritize the opening leader and government/party faces the player encounters.
-4. **Repeat country casts toward C06:** France, Japan, India, Brazil, South Africa,
+3. **Finish Tonga, then repeat country casts toward C06:** France, Japan, India, Brazil, South Africa,
    Saudi Arabia and the USSR/Russia case. Resolve source and identity gaps, add
    dated cartoons and clearly fictional successors, then obtain country signoff.
    Worldwide expansion follows the first certified-country casts.
+4. **Resolve the held Russia and DA source gaps as a separate work lane.**
+   Preserve the reviewed content, unavailable and unattempted distinctions, and
+   every failed response. Review actual passages when the remaining originals
+   become accessible. Do not delay an independent ready country batch for these
+   holds. Repeated rate-limit retries do not establish available evidence.
+   Komeito is accepted; do not restart it or undo its conservative corrections.
 
-The source repairs are existing bounded queue records. The Tonga and country-cast
-steps describe the next production sequence, not newly claimed or delivered work.
+The source repairs are existing bounded queue records. Tonga now has a queued
+production assignment and an active Codex identity proposal; no Claude production
+claim or completed delivery is implied by that assignment.
 Query the queue and check live branches before claiming a batch. The six earlier
 expanded tool/preparation packets are already accepted; do not redo them. S19
 guidance is maintenance for reproduced defects. E05 company mechanics remain
