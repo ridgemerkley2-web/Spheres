@@ -19,6 +19,15 @@
   "human_acceptance": false,
   "country_completion": false
  },
+ "independent_preparation_review": {
+  "reviewer": "Codex",
+  "reviewed_at": "2026-10-02",
+  "reviewed_tip": "c0382bbcb92852ff6e885292bb3ecfe9a7793a75",
+  "disposition": "Adopt the four references and prompts as preparation with the documentation corrections recorded here; generated-art approval and registration remain pending.",
+  "checks": "All four photographs visually inspected and prompts read. Four reference copies match retained originals, SHA256 and Commons SHA1; fifteen metadata pins and four prompt Git-byte hashes match. All nineteen copied holder objects match accepted research exactly.",
+  "corrections": "Job coverage is projected until rendering, review and registration; Viljoen requires explicit CC BY-SA 2.0 derivative licensing; separate office acceptance is described against the pinned ledger snapshot without changing it.",
+  "limits": "No new research, generated output, runtime installation, tenure inference, historical acceptance, human approval or country signoff. Broad artistic appearance windows remain subject to review of the actual outputs."
+ },
  "accepted_research": {
   "path": "docs/campaign-certification/C01/research/south-africa.json",
   "sha256": "79664fc62be19ec17602f2524e595ac90f7a06cc7c8bea13047c285b7d09cb4b",
@@ -129,7 +138,7 @@
   "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, conference, resignation or death; those remain claims.",
   "Requested windows are appearance intervals from the CLAUDE-C06-SOUTHAFRICA-01 handoff table with exclusive ends. Where a bound comes from party_leaders.json, leadership production or the handoff rather than accepted research, the person entry says so.",
   "Real history stops at 2026-09-07; every window in this batch ends on or before 2026-09-08 (exclusive).",
-  "Heads of state, ANC presidents and deputy presidents (C01-09, C01-16, C01-21) are not in this batch: their observations are integrated with historical acceptance pending.",
+  "The pinned C01 gap-ledger snapshot refreshed at 1fffb983 classifies 32 observations as c01_integrated_pending across three separate offices: C01-09 heads of state, C01-16 ANC presidents and C01-21 deputy presidents. Those observations are outside this batch. This preparation review changes no historical acceptance status; any later batch must consult the applicable office's current acceptance record.",
   "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, trousers, shoes, colours added to a black-and-white photograph, civilian dress replacing a uniform) is declared in the prompt and here.",
   "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly. Ported licences, NC/ND terms, government open licences not on the list, agency or press photos and TV or video stills are rejected. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled.",
   "A window without a qualifying photograph is recorded as not ready. No face is invented and no other person substitutes.",
@@ -164,7 +173,9 @@
    "constand-viljoen-1984"
   ],
   "references_with_uncertain_date": [],
-  "leadership_production_cartoon_jobs_closed_by_render_windows": 10,
+  "leadership_production_cartoon_jobs_projected_coverage_after_registration": 10,
+  "leadership_production_cartoon_jobs_closed_by_batch": 0,
+  "leadership_production_cartoon_jobs_currently_open": 24,
   "leadership_production_cartoon_jobs_left_open_not_ready": 14,
   "all_historical_officeholders_established": false,
   "continuous_terms_established": false,
@@ -231,7 +242,7 @@
         "from": "1995-01-01",
         "to": "2027-01-01",
         "status": "needs_source_and_visual_review",
-        "closure": "partial: only the requested window is closed"
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
        }
       ],
       "pipeline_window_scoped": [
@@ -240,7 +251,7 @@
         "from": "1995-01-01",
         "to": "2005-01-01",
         "status": "needs_source_and_visual_review",
-        "closure": "exact: from/to equal the requested window"
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
        }
       ],
       "pipeline_residual_after_registration": [
@@ -251,7 +262,7 @@
         "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
        }
       ],
-      "leadership_production_cartoon_jobs_closed": [
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
        "cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1",
        "cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"
       ]
@@ -369,7 +380,7 @@
         "from": "1990-01-01",
         "to": "2027-01-01",
         "status": "needs_source_and_visual_review",
-        "closure": "partial: only the requested window is closed"
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
        }
       ],
       "pipeline_window_scoped": [
@@ -378,7 +389,7 @@
         "from": "1994-03-31",
         "to": "2001-01-01",
         "status": "needs_source_and_visual_review",
-        "closure": "exact: from/to equal the requested window"
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
        }
       ],
       "pipeline_residual_after_registration": [
@@ -395,7 +406,7 @@
         "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
        }
       ],
-      "leadership_production_cartoon_jobs_closed": [
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
        "cartoon:constand_viljoen:1994-03-31:1995-01-01:v1",
        "cartoon:constand_viljoen:1995-01-01:2000-01-01:v1",
        "cartoon:constand_viljoen:2000-01-01:2001-01-01:v1"
@@ -437,7 +448,7 @@
        },
        {
         "problem": "The default-inventory job constand_viljoen-f4174a5400ed (1990-01-01 to 2027-01-01) was listed without a closure label.",
-        "disposition": "Fixed: filed under pipeline_default_inventory with closure 'partial: only the requested window is closed'; residual IDs are listed."
+        "disposition": "Filed under pipeline_default_inventory with projected partial coverage after rendering, visual review and registration; residual IDs are listed. No job is closed by preparation."
        },
        {
         "problem": "Batch level: ten Flickr page HTML files with GeoIP fields remained in the session scratchpad.",
@@ -553,7 +564,7 @@
         "from": "1990-01-01",
         "to": "2027-01-01",
         "status": "needs_source_and_visual_review",
-        "closure": "partial: only the requested window is closed"
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
        }
       ],
       "pipeline_window_scoped": [
@@ -562,7 +573,7 @@
         "from": "2001-06-21",
         "to": "2016-11-13",
         "status": "needs_source_and_visual_review",
-        "closure": "exact: from/to equal the requested window"
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
        }
       ],
       "pipeline_residual_after_registration": [
@@ -579,7 +590,7 @@
         "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
        }
       ],
-      "leadership_production_cartoon_jobs_closed": [
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
        "cartoon:pieter_mulder:2001-12-31:2005-01-01:v1",
        "cartoon:pieter_mulder:2005-01-01:2010-01-01:v1",
        "cartoon:pieter_mulder:2010-01-01:2015-01-01:v1",
@@ -719,7 +730,7 @@
         "from": "1990-01-01",
         "to": "2027-01-01",
         "status": "needs_source_and_visual_review",
-        "closure": "partial: only the requested window is closed"
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
        }
       ],
       "pipeline_window_scoped": [
@@ -728,7 +739,7 @@
         "from": "2025-07-16",
         "to": "2026-09-08",
         "status": "needs_source_and_visual_review",
-        "closure": "exact: from/to equal the requested window"
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
        }
       ],
       "pipeline_residual_after_registration": [
@@ -745,7 +756,7 @@
         "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
        }
       ],
-      "leadership_production_cartoon_jobs_closed": [
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
        "cartoon:corne_mulder:2025-07-16:2026-09-08:v1"
       ]
      },
@@ -1572,7 +1583,7 @@
   }
  ],
  "deferred_batch_2": {
-  "reason": "Heads of state, ANC presidents and deputy presidents (C01-09, C01-16, C01-21) are integrated with historical acceptance pending in the C01 gap ledger refreshed at 1fffb983 and CLAUDE-C01-NEXT.md; CP1 allows parallel art only for an already-reviewed batch. Proposed batch-2 windows, for a later claim only:",
+  "reason": "The pinned C01 gap ledger refreshed at 1fffb983 classifies the C01-09 state-office, C01-16 ANC-party-office and C01-21 deputy-state-office observations separately as c01_integrated_pending. This review grants none of those offices historical acceptance. Proposed batch-2 windows remain a later claim, to be checked against each office's current acceptance record:",
   "windows": [
    {
     "person_id": "f_w_de_klerk",
@@ -1766,7 +1777,9 @@
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
    "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY-SA 2.0', License 'cc-by-sa-2.0', LicenseUrl 'https://creativecommons.org/licenses/by-sa/2.0' (Creative Commons Attribution-Share Alike 2.0 Generic). The parent's Flickr licence was confirmed by the Flickr upload bot review on 19 September 2013; the crop inherits it and carries no separate review.",
-   "rights_statement": "Retained source statement: CC BY-SA 2.0, author Ian Barbour. Barbour's sibling Flickr caption (5971221735, same event) says he was General Viljoen's driver and sat in the front row, which supports that he took these photographs himself. Attribution and share-alike obligations apply and should be considered at registration.",
+    "rights_statement": "Retained source statement: CC BY-SA 2.0, author Ian Barbour. Barbour's sibling Flickr caption (5971221735, same event) says he was General Viljoen's driver and sat in the front row, which supports that he took these photographs himself. Registration must explicitly offer the cartoon adaptation and any copyrightable contributions under CC BY-SA 2.0, retain attribution and identify the adaptation; a generated label and source licence alone do not record this obligation.",
+    "required_derivative_license": "CC BY-SA 2.0",
+    "required_derivative_license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
    "people_in_frame": "A tight head-and-collar crop in which Viljoen's is the only complete face, seen in three-quarter view with eyes cast down, wearing a general's peaked cap with red band and cap badge. At the top-left and left edge are the out-of-focus partial face (cheek and ear) and gold-corded shoulder of a guardsman; at the right edge a partly visible figure, mostly pale with one dark green band; foliage behind. All of these are excluded by the prompt. The verifier found the partial face, which the preparer's record omitted; the assembler confirmed it on the reference. Identity was cross-checked by the preparer against the uncropped parent and the sibling frontal frame 5971221735.",
    "appearance_observed": "Lean long face with defined cheekbones and lined, slightly hollow cheeks, long straight nose, thin lips in a firm straight closed mouth, strong chin and jaw, light grayish eyebrows over deep-set eyes, close-trimmed silver-white hair at the temples and sides, fair weathered skin, clean shaven, no glasses.",
    "age_gap_note": "Viljoen was born on 28 October 1933 (general biographical knowledge, not C01 research; the registry has no birth date): Wikidata Q2568741 P569 1933-10-28, checked at assembly on 2026-10-01. He was about 50 in the September 1984 photograph and 60 to 67 across the window (1994-03-31 to 2000-12-31). The photograph is about 9.5 years before the window starts and about 16.3 years before it ends; the prompt discloses this and asks for a man of 60 to 67 with deeper lines around the eyes and mouth, keeping the same face structure and silver-white hair. The cap hides his crown, so the hair above the temples is an artistic interpretation; the open eyes, civilian suit, standing body, hands, trousers and shoes are artistic extensions of a small head-and-collar crop. The military cap, badge and uniform are explicitly excluded.",
@@ -1966,7 +1979,7 @@
  "source_ledger": {
   "evidence_directory": "D:/spheres-scratch/za-cast/refs",
   "status": "original_retention_ledger",
-  "copyright_note": "Original Commons and archive metadata (API JSON and page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+  "copyright_note": "Original Commons and archive metadata (API JSON and page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence. Generated cartoons retain the source rights on identity_source. Viljoen additionally requires explicit derivative_license CC BY-SA 2.0 and its licence URL, attribution and an adaptation notice; generated alone is not the derivative licence.",
   "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
   "downloads": [
    {

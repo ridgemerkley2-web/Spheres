@@ -4,12 +4,12 @@
   "reviewed_at": "2026-10-01",
   "historical_cutoff": "2026-09-07",
   "historical_window_start": "1990-01-01",
-  "status": "identity_and_coverage_review_proposal",
+  "status": "rendered_outputs_awaiting_independent_review_and_registration",
   "task": "CLAUDE-C06-FRANCE-01",
   "branch": "claude/c06-fr-01",
   "base": "2fd186d6",
   "claim_commit": "64ac669c",
-  "scope": "France cast batch 1: seven existing person IDs with accepted C01 holder observations (C01-23 president, C01-37 prime ministers, C01-47 PS first secretaries) and no art for the requested appearance windows, plus one prepared alternate. Each person has one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+  "scope": "France cast batch 1: seven existing person IDs with accepted C01 holder observations (C01-23 president, C01-37 prime ministers, C01-47 PS first secretaries) and no art for the requested appearance windows, plus one prepared alternate. Each person has one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Preparation submitted without generated images. Codex returned seven unchanged PNGs on 2026-10-02; see render-return-batch-01.json. Claude review and runtime registration remain open.",
   "prepared_by": "Claude: one preparation agent and one independent verification agent per person, assembled and mechanically corrected by Claude on 2026-10-01. This is not human review, not Codex review and not user approval.",
   "authority": {
     "runtime_installation": false,
@@ -125,10 +125,10 @@
     "Real history stops at 2026-09-07; every window in this batch lies before it.",
     "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, trousers, shoes, colours added to a black-and-white photograph) is declared in the prompt and here.",
     "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled; crops happen at registration.",
-    "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+    "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. The original preparation review flags remain false; the separate render return records actual Codex output inspection, not Claude registration or human acceptance.",
     "Each review batch contains at most ten people.",
     "HTTP response header captures that contain the client IP address or GeoIP cookies are never copied, cited, hashed or committed.",
-    "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
+    "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). Integration now provides per-file LF checkout rules. Historical CRLF hashes remain diagnostic only.",
     "Birth dates used for age notes are general biographical knowledge, not accepted C01 research."
   ],
   "coverage": {
@@ -154,11 +154,13 @@
       "francois-mitterrand-1994",
       "lionel-jospin-1998"
     ],
-    "leadership_production_cartoon_jobs_closed_by_primary_people": 13,
     "all_historical_officeholders_established": false,
     "continuous_terms_established": false,
     "all_likenesses_ready": false,
-    "rendered_portraits": 0
+    "rendered_portraits": 7,
+    "registered_portraits": 0,
+    "production_jobs_closed": 0,
+    "leadership_production_cartoon_jobs_targeted_by_primary_people": 13
   },
   "batches": [
     {
@@ -1976,7 +1978,7 @@
   "source_ledger": {
     "evidence_directory": "D:/spheres-scratch/france-cast/refs",
     "status": "original_retention_ledger",
-    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated route is recorded alongside each applicable source and derivative licence. Integration correction 2026-10-02: generated is a creation-route label, not a replacement licence. Mitterrand and Fabius adaptations are explicitly CC BY-SA 4.0 with attribution; all output derivative licences and credits are retained in render-return-batch-01.json.",
     "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
     "downloads": [
       {
@@ -2188,5 +2190,11 @@
       "The assembler made three further single requests on 2026-10-01 (Commons file history for the Juppé file, Commons metadata for the Mitterrand sibling frame, the EC Audiovisual record for the Jospin photograph); all returned HTTP 200."
     ],
     "not_listed": "HTTP response header captures in the scratch folders (for example henri_emmanuelli/hdr3.txt, martine_aubry/*.headers and francois_hollande/tmp/*.headers) contain the client IP address and GeoIP cookies. They are deliberately not listed, hashed, quoted or copied. Search scratch files, candidate downloads and view crops made by the preparers are also not ledgered; rejected candidates retained as alternates are cited with their sha256 where relevant."
+  },
+  "codex_return": {
+    "path": "docs/campaign-certification/C06/production/france/render-return-batch-01.json",
+    "sha256": "cd22f06e567f50238038b9acd6c8e30d834b21d4ffbf83ac4d4a8a6410e0e41f",
+    "date": "2026-10-02",
+    "authority": "Generation return only; historical holders, runtime manifest and country acceptance unchanged."
   }
 }

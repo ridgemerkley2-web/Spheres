@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "tasks": [
     {
       "id": "CLAUDE-C01-SOURCE-05",
@@ -819,6 +819,66 @@
       "submission_revision": "2fe2b752e05125e204832f5cd1f60b4c640af28d",
       "next": "Accepted bounded intake: 16 originals and their 16 metadata cards, 20 claims and nine holder observations independently read. First import 90f7f54c. Nine observations retain no effective starts. The 3 October 1993 end records the decree-stated release, not constitutional legitimacy or an interval of active service. Postrename signatures do not extend entity lifetimes; competing September declarations remain claims-only. The report separates retained originals from an unverified broader author-reported portal sweep. Prior data and the held C01-28 party packet remain separate. No runtime, art, complete-country or parent qualification. See docs/campaign-certification/C01/reviews/CLAUDE-C01-51-20261001/README.md.",
       "review_revision": "1299cfd835dcb87e52ecfb48b999441ae45fe42d"
+    },
+    {
+      "id": "CLAUDE-C06-FRANCE-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "in_progress",
+      "priority": 61,
+      "title": "France cast batch 1: references, cartoons and registration",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-FRANCE-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-fr-01",
+      "claim_revision": "64ac669c",
+      "reviewed_source_revision": "50d2460437c24c8d57f3f0b6f3b4749b50005de5",
+      "next": "Seven primary cartoons returned unchanged by Codex on 2026-10-02; Claude visual review, explicit source/derivative licensing, coordinated registration and coverage checks next. Aubry reserve unrendered. See render-return-batch-01.json. No runtime registration or country approval.",
+      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+    },
+    {
+      "id": "CLAUDE-C06-BRAZIL-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "in_progress",
+      "priority": 62,
+      "title": "Brazil cast batch 1: references, cartoons and registration",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-BRAZIL-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-br-01",
+      "claim_revision": "473f234a",
+      "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+      "next": "Corrected bounded preparation accepted: five jobs ready for rendering, Lupi 2015 held pending appearance-era correction. Seventeen holders preserved; receipt pin corrected to committed LF, coverage prospective, BY-SA obligations explicit. Tourinho remains unprepared with a source lead, not proof no likeness exists.",
+      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+    },
+    {
+      "id": "CLAUDE-C06-SOUTHAFRICA-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "in_progress",
+      "priority": 63,
+      "title": "South Africa cast batch 1: references, cartoons and registration",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-SOUTHAFRICA-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-za-01",
+      "claim_revision": "6f1961bb",
+      "reviewed_source_revision": "c0382bbcb92852ff6e885292bb3ecfe9a7793a75",
+      "next": "Four reference/prompt jobs independently reviewed as preparation; nineteen holder copies preserved. Render next, preserving Viljoen derivative CC BY-SA 2.0. Ten targeted production jobs remain open; no art or country approval. Separate historical acceptance classifications are unchanged.",
+      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+    },
+    {
+      "id": "CLAUDE-C06-JAPAN-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "in_progress",
+      "priority": 64,
+      "title": "Japan cast batch 1: references, cartoons and registration",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-JAPAN-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-jp-01",
+      "claim_revision": "bd78fd83",
+      "reviewed_source_revision": "7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725",
+      "next": "Six reference/prompt jobs reviewed; fourteen holders preserved. Murayama and Ota unsupported photo deadlines corrected, with capture-date uncertainty and illustrative ageing explicit. Review Yamaguchi long-era appearance before rendering/registration. Twelve targeted jobs are prospective, none closed.",
+      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
     }
   ]
 }

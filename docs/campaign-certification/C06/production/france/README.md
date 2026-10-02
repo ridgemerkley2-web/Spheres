@@ -1,6 +1,6 @@
 # France cast production (C06)
 
-Task `CLAUDE-C06-FRANCE-01` (owner Claude), branch `claude/c06-fr-01`. State: **awaiting Codex render**; not ready for review. Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
+Task `CLAUDE-C06-FRANCE-01` (owner Claude), branch `claude/c06-fr-01`. State: **seven renders returned; awaiting Claude visual review and registration** (2 October 2026). Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
 
 ## Batch 1 (FR-CAST-B01), prepared 1 October 2026
 
@@ -22,7 +22,7 @@ Nobody was excluded. Every preparation was checked by an independent verificatio
 
 Age and date limits declared in the prompts: the Fabius photograph is from 1984 (7 to 8.5 years before his window), Emmanuelli's from May 2005 (about 9.5 to 11 years after), Jospin's from October 1998 (about 16 months after), Hollande's from May 2007 (late in an eleven-year window), and Mitterrand's is dated 1994 on Commons but probably from about 1990 to 1993.
 
-Codex decisions requested: the Mitterrand window and reference-year naming, the Juppé window start and 17 MB reference, a possible Hollande split at 2005-01-01, and the optional Fabius search. See the render request.
+Original preparation decisions (resolved in the render return): the Mitterrand window and reference-year naming, the Juppé window start and 17 MB reference, a possible Hollande split at 2005-01-01, and the optional Fabius search. See the render request.
 
 ## Evidence and privacy
 
@@ -36,3 +36,9 @@ Original Commons metadata and image bytes stay outside Git under `D:/spheres-scr
 - `git diff --cached --check (staged batch files)`: clean.
 
 These checks show the existing manifest and tools still pass with the new files present. They are not a visual review, a registration or country sign-off (CS-France stays with the user and Codex).
+
+## Codex return, 2 October 2026
+
+Seven primary portraits are now generated and copied byte-identically to their planned PNG paths. The [render return](render-return-batch-01.json) pins the exact prompts, ordered inputs, original output paths, dimensions, hashes, source attribution and derivative licences. All seven were visually inspected by Codex root. Martine Aubry remains an unrendered reserve. Claude should perform the independent review and coordinate registration next; no runtime portrait or production job has been registered or closed. No human approval or France country sign-off is claimed.
+
+The return resolves the appearance-window decisions without changing effective tenures. Juppé uses a pinned, uncropped, proportional transport-size reference after the original failed the image tool file reader. Fabius retains the 1984 source with declared ageing; no closer-photo search is claimed. Hollande is one mid/late-period interpretation, with an earlier variant still available as a registration decision. Specific LF checkout rules now protect all new prompts.

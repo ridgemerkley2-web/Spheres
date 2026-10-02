@@ -1,6 +1,6 @@
 # South Africa cast production (C06)
 
-Task `CLAUDE-C06-SOUTHAFRICA-01` (owner Claude), branch `claude/c06-za-01`. State: **awaiting Codex render**; not ready for review. Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
+Task `CLAUDE-C06-SOUTHAFRICA-01` (owner Claude), branch `claude/c06-za-01`. State: **awaiting Codex render**; generated-art review remains pending. Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
 
 ## Batch 1 (ZA-CAST-B01), prepared 1 October 2026
 
@@ -18,7 +18,7 @@ The batch was planned as eight windows for six people (the IFP, Freedom Front an
 | `pieter_mulder` | 2001-06-21 to 2016-11-13 | `pieter-mulder-2013-reference-v1.jpg` (U.S. Department of Agriculture, photo by Blake Woodhams) | 2013-09-16 | CC BY 2.0 | `pieter-mulder-cartoon-2001-v1.txt` |
 | `corne_mulder` | 2025-07-16 to 2026-09-08 | `corne-mulder-2023-reference-v1.jpg` (Houses of the Oireachtas, Commons crop) | 2023-06-14 | CC BY 2.0 | `corne-mulder-cartoon-2025-v1.txt` |
 
-These four windows close 10 of the 24 leadership-production cartoon jobs for the six people.
+After successful rendering, visual review and registration, these four windows are projected to cover 10 of the 24 leadership-production cartoon jobs for the six people. Preparation closes zero jobs; all 24 remain open.
 
 ### Not ready (four windows; nothing copied, no prompt written)
 
@@ -36,7 +36,7 @@ Their 14 leadership-production jobs, their window-scoped pipeline jobs and the d
 Each window had one preparation agent and one independent verification agent. The verifiers confirmed all four not-ready verdicts. Their findings on the four render windows were fixed in the records and prompts:
 
 - Buthelezi: the verifier named Bush White House contact sheets from 1990 and 1991. The assembler fetched and inspected roll WHPO-P22804 (NARA NAID 543950122, 20 June 1991, Susan Biddle). It is a scanned contact sheet: six small frames of a crowded luncheon table, with printed labels and film-edge text. It cannot be used unchanged, so it and the seven other sheets are rejected, and a single-frame scan is left as an open item for Codex. The birth date now has a cited source (South African History Online; Wikidata Q554131). The reference bytes were also switched to the Commons original: same frame, sha1 verified against Commons. The preparer had used the Nationaal Archief's on-the-fly grayscale rendition while Commons returned HTTP 429.
-- Viljoen: the prompt now notes the partial face of a guardsman at the top-left of the crop. The birth date is cited (Wikidata Q2568741). The default-inventory job is labelled as partly closed.
+- Viljoen: the prompt now notes the partial face of a guardsman at the top-left of the crop. The birth date is cited (Wikidata Q2568741). The default-inventory job has projected partial coverage after rendering, review and registration.
 - Pieter Mulder: the preparer had his birth date wrong. It is 26 July 1951 (Wikidata Q770995), not 1954, so the prompt ages are corrected: 49 to 65 across the window, 62 in the photograph, drawn at about 57. A sixth Commons file is added to the rejected candidates, and the FlickrReview date is corrected.
 - Corné Mulder: the prompt now describes his glasses as browline frames (black top bars, silver lower rims), not plain dark frames.
 - Privacy: ten Flickr pages with GeoIP fields left in the session scratchpad by a preparer were deleted. None was cited or hashed.
@@ -56,7 +56,13 @@ Codex decisions requested (details in the render request):
 - whether a video frame may ever serve as a reference;
 - an `eol=lf` rule for the four prompts.
 
-The heads of state (de Klerk, Mandela, Mbeki, Zuma, Ramaphosa) are deliberately not in this batch, because their C01-09/16/21 observations still await acceptance. Proposed batch-2 windows and job IDs are under `deferred_batch_2` in the identity review.
+The pinned gap-ledger snapshot refreshed at `1fffb983` records 32 `c01_integrated_pending` observations across three separate offices: C01-09 heads of state, C01-16 ANC presidents and C01-21 deputy presidents. These office observations are outside this batch; this preparation review changes no historical acceptance status. Proposed batch-2 windows and job IDs are under `deferred_batch_2` and require the applicable office's current acceptance record, rather than a general acceptance inferred from the person's name.
+
+## Independent preparation review, 2 October 2026
+
+Codex reviewed exact submitted tip `c0382bbcb92852ff6e885292bb3ecfe9a7793a75`: **adopt the four references and prompts as preparation with these documentation corrections; hold generated-art approval and registration**. All four photographs were visually inspected and the prompts read. The four reference copies match retained originals and SHA256/Commons SHA1; fifteen supporting metadata pins and four prompt Git-byte hashes match. All nineteen copied holder objects match accepted research exactly. Age interpretations remain subject to visual review of the actual outputs.
+
+Viljoen's eventual cartoon adaptation must explicitly retain **CC BY-SA 2.0** as its derivative licence, with `derivative_license`, [licence URL](https://creativecommons.org/licenses/by-sa/2.0/), Ian Barbour attribution and an adaptation notice. The `generated` label and source rights on `identity_source` alone do not record that obligation. No rendered portrait, historical acceptance, human approval or country signoff is granted here.
 
 ## Evidence and privacy
 
@@ -74,3 +80,5 @@ The local sparse checkout was widened for the checks with `git sparse-checkout a
 - `git diff --cached --check` (staged batch files): clean.
 
 These checks show the existing manifest and tools still pass with the new files present. They are not a visual review, a registration or country sign-off (CS-SouthAfrica stays with the user and Codex).
+
+Integration note, 2 October 2026: all new prompts in this packet now have specific LF checkout rules in `.gitattributes`. The historical Windows CRLF values remain diagnostic; use the corrected exact LF hashes for generation.

@@ -51,7 +51,7 @@ Job IDs (from `python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out
 sha256 `5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec`, identical to the France inventory; the
 window-scoped IDs use the pipeline's own job content and digest for the exact window):
 
-| person_id | default-inventory job (partly closed) | window-scoped job | leadership-production cartoon jobs closed |
+| person_id | default-inventory job (prospective partial coverage) | window-scoped job | leadership-production cartoon jobs targeted after output review |
 |---|---|---|---|
 | tomiichi_murayama | `tomiichi_murayama-79b359476464` | `tomiichi_murayama-98fcf367bb0e` | `cartoon:tomiichi_murayama:1993-09-30:1995-01-01:v1`, `cartoon:tomiichi_murayama:1995-01-01:1996-01-01:v1`, `cartoon:tomiichi_murayama:1996-01-31:1996-09-01:v1` |
 | makoto_tanabe | `makoto_tanabe-7ccebadc09cf` | `makoto_tanabe-24b6b1ce9158` | `cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1` |
@@ -103,55 +103,16 @@ Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --
 
 ## Preparation
 
-Batch 1 (`JP-CAST-B01`) was prepared on 1 October 2026. Each person had one preparation agent and one independent
-verification agent. Claude assembled the results and fixed the verifiers' mechanical findings. For Murayama and Ota,
-Claude also fetched a few dated sources to settle the findings. No image was generated, edited or labelled. The next
-step is Codex's render: [render request](../../campaign-certification/C06/production/japan/render-request-batch-01.md).
-The [identity review](../../campaign-certification/C06/production/japan/identity-review-batch-01.json) and
-[README](../../campaign-certification/C06/production/japan/README.md) carry the observations, references and job IDs.
+Batch 1 (`JP-CAST-B01`) was prepared on 1 October 2026. Independent Codex review on 2 October inspected exact source tip `7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725`, all six likeness references/prompts, all fourteen accepted holder copies and the MLIT source flyer. The 114 input checks passed. This is preparation acceptance with corrected metadata, not generated-art or country acceptance.
 
-In (six primary renders):
+The [independent disposition](../../campaign-certification/C06/production/japan/independent-review-20261002.md), [render request](../../campaign-certification/C06/production/japan/render-request-batch-01.md) and [identity review](../../campaign-certification/C06/production/japan/identity-review-batch-01.json) carry the current exact inputs.
 
-| person_id | likeness reference (image date, licence) | prompt |
-|---|---|---|
-| tomiichi_murayama | Kantei official portrait (内閣官房内閣広報室), no capture date; the same sitting is on MOFA's APEC 1995 Osaka page, so no later than 1995; CC BY 4.0 | `tomiichi-murayama-cartoon-1993-v1.txt` |
-| makoto_tanabe | MOFA Protocol Office, 7 Apr 1992 (Commons crop of a handshake with Jiang Zemin); CC BY 4.0 | `makoto-tanabe-cartoon-1991-v1.txt` |
-| sadao_yamahana | Defense Agency 1993 record film, frame of 9 Aug 1993 (Commons crop); CC BY 3.0 | `sadao-yamahana-cartoon-1993-v1.txt` |
-| takako_doi | Akira Kamikura, 2 Jul 2005 (Flickr); CC BY 2.0 | `takako-doi-cartoon-1996-v1.txt` |
-| akihiro_ota | MLIT portrait, first Commons revision (MLIT flyer source), no later than 27 Dec 2012; CC BY 4.0 | `akihiro-ota-cartoon-2006-v1.txt` |
-| natsuo_yamaguchi | TICAD7 Photographs / MOFA TICAD, 29 Aug 2019; CC0 | `natsuo-yamaguchi-cartoon-2009-v1.txt` |
+- Murayama: retain the official Kantei portrait with unknown capture date. A 1999 capture of an APEC 1995 page and a separately captured 2001 image do not establish a hard 1995 photograph deadline. The corrected prompt uses illustrative age. The January 1996 bridge is appearance only.
+- Ota: retain the verified first Commons revision from the MLIT flyer. The 2012 Photoshop timestamp and 2013 PDF creation/modification date are metadata, not capture deadlines. The corrected prompt avoids a precise age gap.
+- Tanabe, Yamahana and Doi: usable within the documented source and artistic-age limitations. A licensed official film frame is not intrinsically excluded and creates no new user-permission requirement. Tanabe's primary album and a fresh full Yamahana video were not independently read.
+- Yamaguchi: the 2019 reference is usable, but separate early and later variants are recommended for the fifteen-year appearance window. The current broad request is still an editorial proposal; one age-64 likeness does not prove four era jobs complete.
+- All twelve mapped production jobs are targeted coverage only, requiring generation, registration and output review. Zero portraits have been rendered or approved in this preparation.
 
-Excluded: `takenori_kanzaki`. His only usable image is a frame from the Government Internet TV programme of
-26 September 2006. The batch rule rejects TV stills, and no registered precedent covers that source. The only other free
-image is a 1993 cabinet group photograph in which he is tiny. His reference copy and prompt were removed from the
-repository before staging. They are pinned in scratch (`D:/spheres-scratch/jp-cast/excluded/takenori_kanzaki/` and the
-refs folder) and can be restored unchanged if Codex rules that such frames qualify. His window, 1998-11-07 to
-2006-09-30, stays uncovered.
+The six original reference files remain byte-identical, and their names are retained identifiers. Only Murayama and Ota prompts changed and were re-pinned as LF bytes. Root will enforce LF for all six at integration. No historical holder object, person registry, runtime file or portrait manifest changed.
 
-Reserves: `tadatomo_yoshida` and `seiji_mataichi` were not prepared in this batch.
-
-Verifier findings fixed:
-- Murayama: the undated reference now has a terminus ante quem of 1995, from MOFA's APEC 1995 page. Provenance notes and
-  the rights, limitation and date fields are also fixed.
-- Yamahana: the suit colour; his own jacket, misread as a bystander; the EXIF wording; a hash fragment; a byte count.
-- Ota: the response.jp bytes are replaced by the MLIT-sourced first Commons revision. The date and credit are rewritten,
-  and the prompt describes the tighter crop.
-- Yamaguchi: an isolation clause, the name-card position and the hands wording.
-
-Tanabe and Doi passed outright.
-
-Open questions for Codex:
-- Murayama: accept a reference dated by terminus ante quem (Kaifu precedent), or switch to the dated 25 August 1994
-  alternate. Also the '1994' in the reference name and the January 1996 bridge.
-- Yamahana: confirm that a government film frame qualifies (koshiro_ishida precedent). Optionally end the window at
-  1993-10-01.
-- Ota: the GJSTU 2.0 to CC BY 4.0 route for MLIT and the archived first revision; the out-of-window reference with a
-  latest-likely date.
-- Yamaguchi: the 27 MB reference; a window split at 2015-01-01 or 2020-01-01.
-- Kanzaki: whether a government-owned CC BY 4.0 video frame qualifies.
-- Doi, at visual review: the glasses and the clothing colours taken from the 2000 photograph.
-- All: an `eol=lf` rule for the six prompt files (`.gitattributes` is outside this task's files).
-
-Worktree note: the sparse checkout gained `spheres-web/ui/{portraits,leader-art,display-art}` and
-`docs/campaign-certification/{S10,C04,verification}` so that the self-test and tool checks could read their inputs. No
-file there was changed.
+Kanzaki remains outside this six-person review pending his own source review; his earlier TV-frame exclusion is not a blanket rule. Yoshida and Mataichi were not prepared. See the country README for the original preparation checks and preserved source limitations.

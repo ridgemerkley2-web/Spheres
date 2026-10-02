@@ -43,7 +43,7 @@ IDs come from `jobs` over 1990-01-01 to 2027-01-01 and are closed only for the r
 `D:/spheres-scratch/za-cast/`, never into the repository. The eight primary windows close all 24 leadership-production
 cartoon jobs of these six people. The generated `CA-SouthAfrica-B00N` work-order IDs are not reused.
 
-| person_id | window | pipeline job, window-scoped | default-inventory job (partly closed) | leadership-production cartoon jobs closed |
+| person_id | window | pipeline job, window-scoped | default-inventory job (projected partial coverage) | leadership-production cartoon jobs projected after rendering, review and registration |
 |---|---|---|---|---|
 | mangosuthu_buthelezi | 1995-01-01 to 2005-01-01 | `mangosuthu_buthelezi-355a6013bb99` | `mangosuthu_buthelezi-571ede3793fd` | `cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1`, `cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1` |
 | mangosuthu_buthelezi | 2005-01-01 to 2019-08-25 | `mangosuthu_buthelezi-375dbc8d11f3` | `mangosuthu_buthelezi-571ede3793fd` | `cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1`, `cartoon:mangosuthu_buthelezi:2010-01-01:2015-01-01:v1`, `cartoon:mangosuthu_buthelezi:2015-01-01:2019-08-24:v1` |
@@ -62,18 +62,20 @@ split.
 
 ### Why these six people, and not the heads of state
 
-The C01 gap ledger (`docs/campaign-certification/C01/gap-ledger/ledger.json`, last refreshed at `1fffb983`) classes South
+The pinned C01 gap-ledger snapshot (`docs/campaign-certification/C01/gap-ledger/ledger.json`, refreshed at `1fffb983`) classes South
 Africa's 85 holder observations as 48 `c01_accepted` (C01-30: 22; C01-32: 14; C01-39: 12), 32 `c01_integrated_pending`
 (C01-09 heads of state, C01-16 ANC presidents and C01-21 deputy presidents: merged, historical acceptance pending; see
-also `CLAUDE-C01-NEXT.md`) and 5 `s10_discovery_intake`. The CP1 plan allows parallel artwork only for an
-already-reviewed batch. So the people the game shows first are **not in this batch**:
+also `CLAUDE-C01-NEXT.md`) and 5 `s10_discovery_intake`. These are separate state, party and deputy-state offices;
+this preparation review changes no historical acceptance status. A later batch must consult the applicable office's
+current acceptance record. The CP1 plan allows parallel artwork only for an already-reviewed batch. So the people the
+game shows first are **not in this batch**:
 
 - `f_w_de_klerk`, the country card's leader by `office_links` (since 1989-08-15): his 1990-1995 art covers both of his
   observations (1990-02-02, C01-09; 1994-05-10, C01-21), and both are acceptance pending. The open continuation is
   `cartoon:f_w_de_klerk:1995-01-01:1997-09-01:v1`.
 - `nelson_mandela`, `thabo_mbeki`, `jacob_zuma` and `cyril_ramaphosa` (presidency C01-09, ANC C01-16, deputy presidency
-  C01-21): every observation is acceptance pending. They are the first candidates for a batch 2 once Codex accepts
-  C01-09/16/21. Proposed windows covering every observation, for that later claim only: de Klerk 1995-01-01 to
+  C01-21): their observations are acceptance pending in that snapshot. They are candidates for a batch 2 subject to
+  the applicable office's acceptance record. Proposed windows covering every observation, for that later claim only: de Klerk 1995-01-01 to
   1997-09-01 (`f_w_de_klerk-0cced3f8af7c`), Mandela 1991-07-05 to 1999-06-16 (`nelson_mandela-c06c52ed048c`), Mbeki
   1994-05-25 to 2008-09-25 (`thabo_mbeki-11b2907e7522`), Zuma 1999-06-17 to 2018-02-14 (`jacob_zuma-3c08a45bb4a1`),
   Ramaphosa 2014-05-30 to 2026-09-08 (`cyril_ramaphosa-7933d998e312`).
@@ -160,7 +162,8 @@ edited or labelled. The next step is Codex's render:
 [README](../../campaign-certification/C06/production/south-africa/README.md) carry the observations, references, job
 IDs, rejected candidates and verifier dispositions.
 
-In (four renders, closing 10 of the 24 leadership-production cartoon jobs):
+Prepared (four proposed renders, projected to cover 10 of the 24 leadership-production cartoon jobs after rendering,
+visual review and registration; preparation closes zero jobs and all 24 remain open):
 
 | person_id | window | likeness reference (photograph date, licence) | prompt |
 |---|---|---|---|
@@ -187,7 +190,7 @@ Verifier findings fixed at assembly:
   rejected. The birth date is cited (South African History Online; Wikidata Q554131). The reference bytes were switched
   to the Commons original (same frame; sha1 verified), replacing the Nationaal Archief's on-the-fly rendition.
 - Viljoen: the partial guardsman face is named in the prompt; the birth date is cited (Wikidata Q2568741); the default
-  job is labelled as partly closed.
+  job has projected partial coverage after rendering, review and registration.
 - Pieter Mulder: the birth date is corrected to 26 July 1951 (Wikidata Q770995), with the prompt ages corrected; a
   sixth Commons file is listed; the FlickrReview date is corrected.
 - Corné Mulder: the glasses are described as browline frames.
@@ -204,7 +207,21 @@ Open questions for Codex:
 - For each not-ready window: a declared fallback, leaving it open, or a reserve. Also rule whether a CC BY video frame
   may ever serve as a reference (this batch says no).
 - An `eol=lf` rule in `.gitattributes` for the four prompts (each pin is the LF sha256 and also gives the CRLF hash).
-- Batch 2 (heads of state) once C01-09/16/21 are accepted.
+- Batch 2 requires the applicable state, ANC-party or deputy-state office's current acceptance record; no acceptance
+  is inferred across those offices.
+
+## Independent preparation review, 2 October 2026
+
+Codex reviewed submitted tip `c0382bbcb92852ff6e885292bb3ecfe9a7793a75`: adopt the four references and prompts as
+preparation with the documentation corrections above; generated-art approval and registration remain pending. Four
+photos were visually inspected and all prompts read. Reference originals, SHA256/Commons SHA1, fifteen metadata pins,
+four prompt Git-byte hashes and all nineteen exact holder copies matched. No new research or historical acceptance
+was granted. Age interpretations still require review of generated outputs.
+
+Viljoen's cartoon adaptation must be registered with derivative licence **CC BY-SA 2.0**, its
+[licence URL](https://creativecommons.org/licenses/by-sa/2.0/), Ian Barbour attribution and an adaptation notice.
+Use explicit `derivative_license` and `derivative_license_url` fields; `generated` plus `identity_source` rights alone
+does not record this share-alike obligation. No human approval or country signoff is claimed.
 
 Checks: `person_art_pipeline.py self-test` (21 OK) and `validate` (valid, 0 errors, 530 warnings); `workboard.py
 --check` PASS; `cartoon_review.py --check`, `leadership_production.py check` and `campaign_census.py --check` exit 0;

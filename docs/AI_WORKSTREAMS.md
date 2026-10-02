@@ -1,6 +1,6 @@
 # Work assignments
 
-**Updated 1 October 2026 · Integration branch: `codex/campaign-certification`.**
+**Updated 2 October 2026 · Integration branch: `codex/campaign-certification`.**
 
 Start with [the roadmap](../ROADMAP.md) for priorities. S01–S22 are complete;
 S23 is next and needs C06. G4 is earned; G5, CP1 and worldwide character coverage
@@ -31,7 +31,8 @@ requirements stay open; source findings do not count as completed role chains.
 
 | Owner | Work | Next action |
 |---|---|---|
-| Claude / Codex review | Historical research | **38 of 38 Claude-owned bounded tasks complete; no delivered Claude task awaits review.** The [final review](campaign-certification/C01/integrations/REVIEW-20261001-06/README.md) resolves Russia C01-28 and DA C01-39 and records all 17 remote-tip dispositions. Reviewed exclusions remain excluded; research acceptance does not install runtime identities, produce art or finish a country cast. |
+| Claude / Codex review | Historical research | **All 38 earlier Claude-owned bounded tasks complete. Four new C06 art tasks are tracked separately below.** The [final review](campaign-certification/C01/integrations/REVIEW-20261001-06/README.md) resolves Russia C01-28 and DA C01-39 and records all 17 remote-tip dispositions. Reviewed exclusions remain excluded; research acceptance does not install runtime identities, produce art or finish a country cast. |
+| Claude / Codex rendering | France, Brazil, South Africa and Japan cast preparation | **Four new submissions reviewed with corrections.** [2 October review](campaign-certification/C06/reviews/claude-20261002/README.md) records exact tips and limits. Seven French cartoons are returned for Claude review and coordinated registration; three other batches remain at preparation. Brazil Lupi 2015 is held for an era correction. No additional country or campaign gate is complete. |
 | Codex | Tonga country cast (`CLAUDE-C06-TONGA-01`, stable task ID) | **In progress.** [Production integration](campaign-certification/C06/production/tonga/integration-20261001/README.md) brings the dated cartoons and institutional leadership into the game branch. Native rules and the production-browser journey are accepted with [exact-source evidence](campaign-certification/C06/production/tonga/ci-browser-acceptance-20261001/README.md); 807 avatar/research and 25 focused UI tests pass locally. Fourteen requirements remain: Fatai Helu's likeness, eleven historical chains, final visual review and country signoff. Do not duplicate this assignment or count integrated artwork as completed C06. |
 | Codex | 24-cell campaign matrix (`CODEX-S25-MATRIX-01`) | [30 September terminal failure](campaign-certification/S25/preparation/local-matrix-20260930/README.md): 4 revalidated passes, 4 abnormal exits, 16 not started; verifier failed. The [runner journal repair](campaign-certification/S25/preparation/journal-diagnosis-20261001/README.md) is accepted with 105 tooling tests and one existing skip. Native access violations remain unexplained. The reviewed [Japan / seed 7 diagnostic](campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md) started at 03:26 UTC on 1 October with dump capture and resource guards; read its external terminal result for current status. No replacement full matrix or verifier has been launched. |
 | Codex | Political calibration (`CODEX-S27-A1-01`) | [Two correctness repairs](campaign-certification/S27/preparation/political-repairs-20260930/README.md) pass 1,990 ordinary native tests; A1 still fails at 0.571429. Urgent-response policy rejected. The [timing/A1 follow-up](campaign-certification/S27/preparation/a1-followup-20261001/README.md) records a 0.0623 ms/month resource assertion pass; quiet confirmation is still pending because of background app Git scans. Residual concentration remains unresolved; retain all original limits. |
@@ -126,3 +127,7 @@ record and runs `workboard.py --check`. Never force-push the integration branch.
 `ready_for_review` is not `complete`; only actual acceptance evidence closes a
 session. Keep research, runtime installation, artwork, human testing and release
 qualification as separate obligations.
+
+## Latest art handback, 2 October 2026
+
+[France render return](campaign-certification/C06/production/france/render-return-batch-01.json) contains seven generated PNGs with exact inputs, output hashes and source licences. Claude should review these and coordinate registration next. [Brazil](campaign-certification/C06/production/brazil/README.md), [South Africa](campaign-certification/C06/production/south-africa/README.md) and [Japan](campaign-certification/C06/production/japan/README.md) retain their individual corrections and holds. These bounded batches do not replace Tonga as the CP1 country priority.

@@ -2,7 +2,7 @@
 
 From Claude, task `CLAUDE-C06-SOUTHAFRICA-01`, branch `claude/c06-za-01`, 1 October 2026. State: **awaiting Codex render**. Nothing here is rendered, reviewed or approved yet.
 
-Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `96cc9eae0d46d8b6784c3bb1c351c2d8c77d99b1ca18b49d759b496ab8f32e1f`). It holds the accepted C01-30 observations, the verified references, the rejected candidates, the verifier dispositions and the four windows that are not ready.
+Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 over LF bytes `7c4cd24028f05249fc3e834130abe5cabd0d6c0bda7392091dee45d8f8a821a9`). It holds the accepted C01-30 observations, the verified references, the rejected candidates, the verifier dispositions and the four windows that are not ready, plus Codex's 2 October preparation review of submitted tip `c0382bbcb92852ff6e885292bb3ecfe9a7793a75`. Generated-art approval remains pending.
 
 ## What Codex does
 
@@ -15,6 +15,8 @@ For each of the 4 jobs below:
 3. Required output: 1024x1536 RGB, opaque. Make up to **3 attempts per portrait**.
 4. Return every attempt **unchanged**: the `exec-*.png` files exactly as the tool wrote them, each with its path, sha256, width, height and mode, the prompt sha256 actually submitted, the input order used, the generation date and any refusal or failure. Do not crop, resize, recolour, re-encode or otherwise edit them. You may say which attempt you would choose.
 5. Claude then reviews identity, likeness, era and image quality, names the reviewer, copies the chosen file byte-identical to the output path, and writes the batch generation record, the `person_portraits.json` records and the registration receipt. Review flags stay false until those checks actually happen. No human approval is claimed.
+
+The job lists below describe projected coverage after those steps; all 24 leadership-production cartoon jobs remain open during preparation. For Viljoen, registration must explicitly set `derivative_license` to `CC BY-SA 2.0` and `derivative_license_url` to `https://creativecommons.org/licenses/by-sa/2.0/`, retain Ian Barbour attribution and identify the cartoon adaptation. A `generated` label plus the source licence alone is insufficient.
 
 Line endings: the four prompt files are LF and no `.gitattributes` rule covers them yet (core.autocrlf=true on this machine). This task may not edit `.gitattributes`, so please add a rule at integration, as for `tonga-*.txt`, for example `tools/avatars/person-prompts/<each South Africa prompt>.txt text eol=lf`. Until then a Windows checkout writes CRLF; its hash is listed for each job.
 
@@ -42,8 +44,8 @@ Line endings: the four prompt files are LF and no `.gitattributes` rule covers t
   - Credit: Rob Bogaerts / Anefo; Nationaal Archief, Fotocollectie Anefo (archive 2.24.01.05), item 932-6173, 10 June 1983 (Chief Mangosuthu Gatsha Buthelezi arriving at Schiphol); CC0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.
   - In frame: Buthelezi alone: head-and-chest portrait, smiling at the camera, in a dark suit, white shirt, diagonal-striped tie and patterned pocket square. Behind him is a dark, blurred airport hall with bright windows, which the prompt excludes.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `mangosuthu_buthelezi-355a6013bb99`. Default-inventory job partly closed: `mangosuthu_buthelezi-571ede3793fd`.
-- Leadership-production cartoon jobs this window closes: `cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1`, `cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1`.
+- Pipeline job, window-scoped: `mangosuthu_buthelezi-355a6013bb99`. Default-inventory job with projected partial coverage after rendering, review and registration: `mangosuthu_buthelezi-571ede3793fd`.
+- Projected leadership-production cartoon job coverage after rendering, review and registration: `cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1`, `cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1`.
 - Settle first: Render with the 1983 Anefo reference and its declared 11.6 to 21.6 year gap, or first request a single-frame scan of a 20 June 1991 frame (rolls WHPO-P22804 to P22807, P22809 or P22810) or a 28 February 1990 frame (P10615, P10616) from the George H. W. Bush Library (US federal work, public domain, about 3.5 years before the window), which would replace this reference as v2 with a new prompt. Confirm the assembly swap of the reference bytes to the Commons original (same frame, licence and prompt).
 
 ### 2. Constand Viljoen (`constand_viljoen`)
@@ -59,8 +61,8 @@ Line endings: the four prompt files are LF and no `.gitattributes` rule covers t
   - Credit: Ian Barbour (Flickr: barbourians), September 1984, CC BY-SA 2.0, via Wikimedia Commons: 'Constand Viljoen 1984.jpg', a crop by Commons user TDKR Chicago 101 (CropTool, 13 September 2020) of '1984 PW Botha inspects the guard of honour.jpg' (Flickr 5971221747, uploaded by Flickr upload bot for Gbawden on 19 September 2013 and confirmed CC BY-SA 2.0 on that date). Adapted for Spheres; no endorsement implied.
   - In frame: A tight head-and-collar crop in which Viljoen's is the only complete face, seen in three-quarter view with eyes cast down, wearing a general's peaked cap with red band and cap badge. At the top-left and left edge are the out-of-focus partial face (cheek and ear) and gold-corded shoulder of a guardsman; at the right edge a partly visible figure, mostly pale with one dark green band; foliage behind. All of these are excluded by the prompt. The verifier found the partial face, which the preparer's record omitted; the assembler confirmed it on the reference. Identity was cross-checked by the preparer against the uncropped parent and the sibling frontal frame 5971221735.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `constand_viljoen-3725bb6de879`. Default-inventory job partly closed: `constand_viljoen-f4174a5400ed`.
-- Leadership-production cartoon jobs this window closes: `cartoon:constand_viljoen:1994-03-31:1995-01-01:v1`, `cartoon:constand_viljoen:1995-01-01:2000-01-01:v1`, `cartoon:constand_viljoen:2000-01-01:2001-01-01:v1`.
+- Pipeline job, window-scoped: `constand_viljoen-3725bb6de879`. Default-inventory job with projected partial coverage after rendering, review and registration: `constand_viljoen-f4174a5400ed`.
+- Projected leadership-production cartoon job coverage after rendering, review and registration: `cartoon:constand_viljoen:1994-03-31:1995-01-01:v1`, `cartoon:constand_viljoen:1995-01-01:2000-01-01:v1`, `cartoon:constand_viljoen:2000-01-01:2001-01-01:v1`.
 - Settle first: Accept the small (383x388), month-dated 1984 crop in uniform with its declared 9.5 to 16 year gap and civilian re-dressing.
 
 ### 3. Pieter Mulder (`pieter_mulder`)
@@ -76,8 +78,8 @@ Line endings: the four prompt files are LF and no `.gitattributes` rule covers t
   - Credit: U.S. Department of Agriculture, photo by Blake Woodhams, '20130916-OSEC-BW-0002' (Flickr 9785284212), Johannesburg, 16 September 2013; CC BY 2.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.
   - In frame: Mulder alone, waist-up, standing behind a wooden lectern and speaking into a microphone, holding papers; two water bottles and a glass on the lectern; gold damask wallpaper and a striped curtain behind; warm orange stage lighting. All of these are excluded by the prompt.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `pieter_mulder-a245f929c659`. Default-inventory job partly closed: `pieter_mulder-dde556c97c84`.
-- Leadership-production cartoon jobs this window closes: `cartoon:pieter_mulder:2001-12-31:2005-01-01:v1`, `cartoon:pieter_mulder:2005-01-01:2010-01-01:v1`, `cartoon:pieter_mulder:2010-01-01:2015-01-01:v1`, `cartoon:pieter_mulder:2015-01-01:2016-11-12:v1`.
+- Pipeline job, window-scoped: `pieter_mulder-a245f929c659`. Default-inventory job with projected partial coverage after rendering, review and registration: `pieter_mulder-dde556c97c84`.
+- Projected leadership-production cartoon job coverage after rendering, review and registration: `cartoon:pieter_mulder:2001-12-31:2005-01-01:v1`, `cartoon:pieter_mulder:2005-01-01:2010-01-01:v1`, `cartoon:pieter_mulder:2010-01-01:2015-01-01:v1`, `cartoon:pieter_mulder:2015-01-01:2016-11-12:v1`.
 - Settle first: Agree the window start 2001-06-21 (first accepted observation), earlier than leadership production's 2001-12-31. Decide whether to split the 15.4-year window (for example at 2010-01-01) if a qualifying 2001-2009 photograph turns up.
 
 ### 4. Corné Mulder (`corne_mulder`)
@@ -93,8 +95,8 @@ Line endings: the four prompt files are LF and no `.gitattributes` rule covers t
   - Credit: Houses of the Oireachtas, 'Corne Mulder.jpg', taken 14 June 2023 at Leinster House, Dublin; CC BY 2.0, via Wikimedia Commons. Commons crop (CropTool, user Lefcentreright, 17 November 2024, two steps) of 'Pemmy Majodina visits Ireland.jpg' (Flickr 52974699940, Houses of the Oireachtas stream). Adapted for Spheres; no endorsement implied.
   - In frame: Mulder alone, head and shoulders, outdoors in strong sun against the grey stone wall and a column of Leinster House. The parent is a group photograph of the South African whips' delegation and Irish hosts. The lighter grey area at the lower right is the sunlit side of his own dark navy jacket.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `corne_mulder-e523c7f55fc0`. Default-inventory job partly closed: `corne_mulder-4a324fa308a8`.
-- Leadership-production cartoon jobs this window closes: `cartoon:corne_mulder:2025-07-16:2026-09-08:v1`.
+- Pipeline job, window-scoped: `corne_mulder-e523c7f55fc0`. Default-inventory job with projected partial coverage after rendering, review and registration: `corne_mulder-4a324fa308a8`.
+- Projected leadership-production cartoon job coverage after rendering, review and registration: `cartoon:corne_mulder:2025-07-16:2026-09-08:v1`.
 - Settle first: Accept the CropTool derivative crop (no FlickrReview of its own; parent reviewed CC BY 2.0).
 
 ## Not ready (do not render)
