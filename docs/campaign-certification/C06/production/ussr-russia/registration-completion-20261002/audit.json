@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-02",
+  "base": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "country": "ussr-russia",
+  "reviewer": "Codex (/root/selector_leader_api), independent inspection of the identity references and root-rendered outputs; no human approval claimed",
+  "decision": "accepted_for_bounded_registration",
+  "shared_manifest_updated_by_this_agent": false,
+  "human_approval_claimed": false,
+  "country_complete": false,
+  "accepted_portrait_count": 1,
+  "source_review": {
+    "path": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+    "sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d"
+  },
+  "generation_record": {
+    "path": "tools/avatars/person-prompts/ussr-russia-cast-registration-20261002.json",
+    "sha256": "0456e561e0cb81cd78c8c9a7e7e56df612701d87a9e6a7d2b5f635a08d3e8be1"
+  },
+  "manifest_additions": {
+    "path": "docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/manifest-additions.json",
+    "sha256": "64463634f2c4548db074f7f749aee9d9d8ef026122b10b5d989c0b75ef422515"
+  },
+  "prior_attempts_preserved": {
+    "return_receipt": {
+      "path": "docs/campaign-certification/C06/production/ussr-russia/render-return-batch-01-20261002.json",
+      "sha256": "7b7af454caae0590e28e99c7a90dbbdae3e6b23fdc7351ab5ded41df73b90feb"
+    },
+    "retained_attempt_count": 1,
+    "superseded_candidates": [
+      "mikhail-gorbachev-cartoon-1991-v1"
+    ],
+    "skipped": [
+      {
+        "person_id": "nikolai_ryzhkov",
+        "display_name": "Nikolai Ryzhkov",
+        "requested_window": {
+          "from": "1990-01-01",
+          "to": "1990-11-25",
+          "to_exclusive": true,
+          "window_status": "conditional_on_c01_26_acceptance_or_codex_ruling",
+          "basis": "The start is the 1990 seed (spheres-sim/data/leaders_1990.json: the USSR row's second executive, Chairman of the Council of Ministers since 1985-09-27), not accepted research. The exclusive end is the day after his last C01-26 observation (1990-11-24). C01-26 is integrated but its acceptance is pending; no term end is asserted."
+        },
+        "preparation_status": "not_prepared",
+        "preparation_note": "Not prepared in this batch: no likeness reference was downloaded and no prompt was written, because he has no accepted holder observation and the reserve enters only on a Codex ruling. If Codex accepts C01-26 (or rules otherwise), a follow-up preparation must verify a reference and write nikolai-ryzhkov-cartoon-1990-v1.txt before any render.",
+        "batch_role": "reserve_conditional",
+        "category": "conditional_not_render_ready",
+        "generated": false
+      }
+    ]
+  },
+  "portrait_decisions": [
+    {
+      "job_id": "mikhail-gorbachev-cartoon-1991-v2",
+      "person_id": "mikhail_gorbachev",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed the 1991 source, held v1 and corrected v2. The v2 preserves a lateral forehead birthmark arc, substantial downward lobe and separated flecks on his anatomical right/viewer-left, closer to the source than the narrow v1 patch. Rounded face, gray receding hair, no glasses and serious expression retain identity. Full-body charcoal pinstripe suit/burgundy tie, both hands and shoes visible. Color and standing body are artistic; mark shape is stylized rather than a photographic tracing.",
+      "output_sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+      "prompt_sha256": "e8570730f68e31c46977eabbab6f6823bbaaae61f2946feb826b8b2c2214df4a",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "1991-01-01",
+        "to": "1991-12-26",
+        "to_exclusive": true,
+        "window_status": "needs_codex_agreement",
+        "basis": "Accepted C01-49 President of the USSR holder observations attested 1991-01-22, 1991-08-22 and 1991-10-05, and the accepted C01-41 CPSU General Secretary holder observation attested 1991-08-22 (all with from and until null). The start continues his existing 1990 art (mikhail-gorbachev-cartoon-1990-v1.png, 1990-01-01 to 1991-01-01). The exclusive end is the day after 25 December 1991, the gap ledger's audit boundary for USSR-identity roles ('not an accepted dissolution date'); it is not an accepted term end. He is the USSR card's leader by office_links (since 1985-03-11, registry). The window is an appearance interval, not a tenure, and the claim record marks it as needing Codex agreement."
+      },
+      "source_date_precision_preserved": "Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated."
+    }
+  ],
+  "untouched_authoritative_inputs": [
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "sha256": "ff3d166ec6b4b2b7406e48f6d55b907b632dfcb988350e5a307aeea4df5537e9"
+    }
+  ],
+  "limits": [
+    "Portrait intervals authorize illustrative appearance selection only, not continuous office tenure.",
+    "Unknown source capture dates and metadata precision are retained.",
+    "Source and derivative licence obligations remain separate and explicit.",
+    "No claimed Claude or human approval; this review was performed by Codex.",
+    "Country acceptance, source gaps, fictional successors and full campaign qualification remain separate."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "batch": "SURU-CAST-B01",
+  "nation": "USSR -> Russia",
+  "task": "CLAUDE-C06-RUSSIA-01",
+  "reviewed_at": "2026-10-02",
+  "registration_operator": "Codex; additive fragment awaiting root shared-manifest integration",
+  "review_owner": "Codex (/root/selector_leader_api), independent inspection of the identity references and root-rendered outputs; no human approval claimed",
+  "render_operator": "Codex root",
+  "human_approval_claimed": false,
+  "render_return": {
+    "path": "docs/campaign-certification/C06/production/ussr-russia/render-return-batch-01-20261002.json",
+    "sha256": "7b7af454caae0590e28e99c7a90dbbdae3e6b23fdc7351ab5ded41df73b90feb"
+  },
+  "correction_renders": {
+    "path": "docs/campaign-certification/C06/registration-completion-20261002/correction-renders.json",
+    "sha256": "631e3465cf1ef0056888f01acf95c3400b5972838c82bd5ca351866f1b8fb429"
+  },
+  "prior_attempts_preserved": {
+    "return_receipt": {
+      "path": "docs/campaign-certification/C06/production/ussr-russia/render-return-batch-01-20261002.json",
+      "sha256": "7b7af454caae0590e28e99c7a90dbbdae3e6b23fdc7351ab5ded41df73b90feb"
+    },
+    "retained_attempt_count": 1,
+    "superseded_candidates": [
+      "mikhail-gorbachev-cartoon-1991-v1"
+    ],
+    "skipped": [
+      {
+        "person_id": "nikolai_ryzhkov",
+        "display_name": "Nikolai Ryzhkov",
+        "requested_window": {
+          "from": "1990-01-01",
+          "to": "1990-11-25",
+          "to_exclusive": true,
+          "window_status": "conditional_on_c01_26_acceptance_or_codex_ruling",
+          "basis": "The start is the 1990 seed (spheres-sim/data/leaders_1990.json: the USSR row's second executive, Chairman of the Council of Ministers since 1985-09-27), not accepted research. The exclusive end is the day after his last C01-26 observation (1990-11-24). C01-26 is integrated but its acceptance is pending; no term end is asserted."
+        },
+        "preparation_status": "not_prepared",
+        "preparation_note": "Not prepared in this batch: no likeness reference was downloaded and no prompt was written, because he has no accepted holder observation and the reserve enters only on a Codex ruling. If Codex accepts C01-26 (or rules otherwise), a follow-up preparation must verify a reference and write nikolai-ryzhkov-cartoon-1990-v1.txt before any render.",
+        "batch_role": "reserve_conditional",
+        "category": "conditional_not_render_ready",
+        "generated": false
+      }
+    ]
+  },
+  "independent_render_review": "docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/audit.json",
+  "manifest_before_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_revision": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d"
+  },
+  "source_reference_records": {
+    "mikhail-gorbachev-1991": {
+      "record": {
+        "person_id": "mikhail_gorbachev",
+        "kind": "observed_portrait",
+        "reference_id": "mikhail-gorbachev-1991",
+        "asset": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+        "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+        "bytes": 3905097,
+        "width": 2800,
+        "height": 4050,
+        "mode": "L",
+        "source_url": "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "creator": "Leo Medvedev/Лев Леонидович Медведев",
+        "credit": "Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY-SA 4.0 with VRT permission ticket #2022050610007575 (category 'Items with VRTS permission confirmed'). The upload revision carried {{cc-by-sa-4.0}}{{PermissionTicket|id=2022050610007575}}; on 2023-10-21 (rev 813789119) the licence section was replaced by the {{Leo Medvedev}} template, and the current extmetadata still states CC BY-SA 4.0. The uploader is not the photographer; the licence rests on the VRT-reviewed grant, and whether Medvedev took the photograph for a press employer is not established (open item). Attribution and share-alike apply. The copied bytes are the original upload, unretouched.",
+        "source_license_statement": "Creative Commons Attribution-Share Alike 4.0 International. Attribution: Leo Medvedev/Лев Леонидович Медведев. The copyright holder's approval was received by e-mail and reviewed by a VRT member (ticket #2022050610007575). LicenseShortName is exactly 'CC BY-SA 4.0'; LicenseUrl is recorded exactly as Commons gives it, without a trailing slash.",
+        "depiction_date": {
+          "kind": "month",
+          "value": "1991-10",
+          "precision": "month; the uploader's statement at upload (rev 794636807)"
+        },
+        "date_precision": "Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated.",
+        "source_review": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+        "source_metadata_sha256": "3be8105281d3ecefafad26eb0c8dc4d04e82865cee535815429e73644b4ee882",
+        "vrt_ticket": "2022050610007575"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/mikhail-gorbachev-199110-leo-medvedev-original.jpg",
+        "bytes": 3905097,
+        "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/GorbachevMS.jpg",
+        "commons_sha1": "d819c604a3d67b6682eda55f1de1e68ab151577a"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-imageinfo-gorbachevms.json",
+        "bytes": 3652,
+        "sha256": "3be8105281d3ecefafad26eb0c8dc4d04e82865cee535815429e73644b4ee882"
+      },
+      "source_review": {
+        "path": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+        "sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "mikhail-gorbachev-cartoon-1991-v2",
+        "person_id": "mikhail_gorbachev",
+        "from": "1991-01-01",
+        "to": "1991-12-26",
+        "references": [
+          "mikhail-gorbachev-1991"
+        ],
+        "era_note": "Appearance interval 1991-01-01 to 1991-12-26 exclusive is accepted for illustration only, not office tenure or eligibility. Source date: 1991-10. Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated. Registry birth date 1931-03-02. The photograph (October 1991, month precision) shows him at 60. It lies inside the requested window, about 9 to 10 months after its start (1991-01-01, age 59) and about 2 to 3 months before its exclusive end (1991-12-26, age 60), so no age adjustment is asked for; the prompt asks for a man of 59 to 60. Declared artistic extensions: the full standing body, hands, trousers and shoes (from a head-and-shoulders photograph) and all colours (the photograph is black and white). No historical holder, office boundary or chronology is changed.",
+        "visual_review": "Viewed the 1991 source, held v1 and corrected v2. The v2 preserves a lateral forehead birthmark arc, substantial downward lobe and separated flecks on his anatomical right/viewer-left, closer to the source than the narrow v1 patch. Rounded face, gray receding hair, no glasses and serious expression retain identity. Full-body charcoal pinstripe suit/burgundy tie, both hands and shoes visible. Color and standing body are artistic; mark shape is stylized rather than a photographic tracing.",
+        "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+        "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+        "bytes": 1689207,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9c2d04c1-7f74-45dd-91d0-2718c37fe1fb.png"
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Mikhail Gorbachev, exact person mikhail_gorbachev, as an artistic interpretation of his appearance from January to late December 1991.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Leo Medvedev's (Lev Leonidovich Medvedev) CC BY-SA 4.0 black-and-white head-and-shoulders photograph of Mikhail Gorbachev in Moscow in October 1991 (the uploader gives the month; a later unsourced edit added the day 24), inside this appearance window. Preserve his recognizable face: broad rounded face with full cheeks, soft jowls and a rounded chin; high domed forehead running into a bald crown; short smooth gray-white hair only at the sides and back, combed back over and behind fairly large ears; his distinctive irregular birthmark must follow the actual broad shape in Image 2: a wide broken arch extending laterally from HIS RIGHT front crown, the viewer’s LEFT scalp above his right temple, across the upper bald crown toward the central upper forehead, with a substantial irregular downward lobe at the arch’s central-forehead end. The mark spans a broad area of the upper right scalp and crown; it is not a thin vertical stripe or a row of centered dots. Preserve the few smaller detached flecks separately on HIS RIGHT forehead above his right eyebrow, displaced toward the viewer’s LEFT of the main downward lobe. Follow the source’s position, width, asymmetry and curved contour faithfully, not a mirrored or centered symbolic mark. Render it as flat muted reddish-plum pigmentation with organic uneven edges, naturally integrated into the skin and never exaggerated or mocked; thick dark straight-to-slightly-arched brows, much darker than his hair; dark slightly deep-set eyes with soft bags beneath; broad nose with a rounded fleshy tip; thin closed lips with faint lines from nose to mouth; clean shaven; no glasses, as in this photograph. The photograph lies about nine to ten months after this appearance begins and two to three months before it ends, so no age adjustment is needed: show a man of 59 to 60 (he turns 60 on 2 March 1991), dignified and vigorous, without mocking exaggeration. His expression is calm, serious and attentive, mouth closed, head in a slight three-quarter turn as in the photograph.\nClothing: dark charcoal-gray civilian two-piece suit with very fine pinstripes, plain white shirt with a pointed collar, dark burgundy tie with a few thin lighter diagonal stripes, black shoes. Image 2 is black and white, so every color in the card is an artistic choice that follows its tones: light, slightly ruddy complexion, gray-white hair, and a muted reddish-plum tone for the birthmark. The standing body, hands, trousers and shoes are artistic extensions of a head-and-shoulders photograph. Average height with a solid, stocky build. No medals, sash, lapel pin, badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, birthmark and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the plain dark gray backdrop of the photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon in full natural color (not black and white, grayscale or sepia) with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, hammer and sickle, red star, extra people, podium, microphone, documents, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": {
+        "path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt",
+        "sha256": "e8570730f68e31c46977eabbab6f6823bbaaae61f2946feb826b8b2c2214df4a"
+      },
+      "referenced_images": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+          "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37"
+        }
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_return_entry": {
+        "person_id": "mikhail_gorbachev",
+        "job_id": "mikhail-gorbachev-cartoon-1991-v2",
+        "supersedes_candidate": "mikhail-gorbachev-cartoon-1991-v1",
+        "correction_reason": "The v1 render reduced the source birthmark arc to a narrow central patch. This revision specifies the broad lateral arc, substantial downward lobe, lateral flecks and exact anatomical side.",
+        "prompt_path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt",
+        "prompt_sha256": "e8570730f68e31c46977eabbab6f6823bbaaae61f2946feb826b8b2c2214df4a",
+        "inputs": [
+          {
+            "order": 1,
+            "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+            "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+            "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+          },
+          {
+            "order": 2,
+            "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+            "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+            "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37"
+          }
+        ],
+        "output_path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+        "output": {
+          "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+          "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9c2d04c1-7f74-45dd-91d0-2718c37fe1fb.png",
+          "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+          "bytes": 1689207,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG",
+          "opaque": true,
+          "byte_identical_to_original": true
+        },
+        "generator": "OpenAI built-in image_gen",
+        "generated_at": "2026-10-02",
+        "attempt": 1,
+        "edited": false,
+        "failure": null,
+        "human_approval": false,
+        "independent_review_pending": true
+      },
+      "source_rights": {
+        "source_license": "CC BY-SA 4.0",
+        "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "credit": "Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "derivative_license": "CC BY-SA 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "adaptation": "Cartoon redraw with explicitly interpretive age, standing body and colors; no endorsement implied."
+      }
+    }
+  ],
+  "scope": "Fixed cartoon appearances only. No accepted historical holder objects, party appointments, office chronology or campaign cutoff changed; no country or parent qualification."
+}

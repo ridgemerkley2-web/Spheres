@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "people": {
+    "mikhail_gorbachev": {
+      "name": "Mikhail Gorbachev",
+      "identity_sources": [
+        "https://en.wikipedia.org/wiki/Mikhail_Gorbachev",
+        "https://en.wikipedia.org/wiki/Nikolai_Ryzhkov",
+        "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg"
+      ],
+      "portraits": [
+        {
+          "from": "1991-01-01",
+          "to": "1991-12-26",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+          "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+          "bytes": 1689207,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body interpretation. Reference: Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Appearance interval 1991-01-01 to 1991-12-26 exclusive is accepted for illustration only, not office tenure or eligibility. Source date: 1991-10. Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated. Registry birth date 1931-03-02. The photograph (October 1991, month precision) shows him at 60. It lies inside the requested window, about 9 to 10 months after its start (1991-01-01, age 59) and about 2 to 3 months before its exclusive end (1991-12-26, age 60), so no age adjustment is asked for; the prompt asks for a man of 59 to 60. Declared artistic extensions: the full standing body, hands, trousers and shoes (from a head-and-shoulders photograph) and all colours (the photograph is black and white). No historical holder, office boundary or chronology is changed.",
+          "identity_source": {
+            "person_id": "mikhail_gorbachev",
+            "kind": "observed_portrait",
+            "reference_id": "mikhail-gorbachev-1991",
+            "asset": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+            "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+            "bytes": 3905097,
+            "width": 2800,
+            "height": 4050,
+            "mode": "L",
+            "source_url": "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "creator": "Leo Medvedev/Лев Леонидович Медведев",
+            "credit": "Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY-SA 4.0 with VRT permission ticket #2022050610007575 (category 'Items with VRTS permission confirmed'). The upload revision carried {{cc-by-sa-4.0}}{{PermissionTicket|id=2022050610007575}}; on 2023-10-21 (rev 813789119) the licence section was replaced by the {{Leo Medvedev}} template, and the current extmetadata still states CC BY-SA 4.0. The uploader is not the photographer; the licence rests on the VRT-reviewed grant, and whether Medvedev took the photograph for a press employer is not established (open item). Attribution and share-alike apply. The copied bytes are the original upload, unretouched.",
+            "source_license_statement": "Creative Commons Attribution-Share Alike 4.0 International. Attribution: Leo Medvedev/Лев Леонидович Медведев. The copyright holder's approval was received by e-mail and reviewed by a VRT member (ticket #2022050610007575). LicenseShortName is exactly 'CC BY-SA 4.0'; LicenseUrl is recorded exactly as Commons gives it, without a trailing slash.",
+            "depiction_date": {
+              "kind": "month",
+              "value": "1991-10",
+              "precision": "month; the uploader's statement at upload (rev 794636807)"
+            },
+            "date_precision": "Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated.",
+            "source_review": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+            "source_metadata_sha256": "3be8105281d3ecefafad26eb0c8dc4d04e82865cee535815429e73644b4ee882",
+            "vrt_ticket": "2022050610007575"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt",
+          "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/ussr-russia-cast-registration-20261002.json, job mikhail-gorbachev-cartoon-1991-v2; bounded Codex review in docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/audit.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex (/root/selector_leader_api), independent inspection of the identity references and root-rendered outputs; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Viewed the 1991 source, held v1 and corrected v2. The v2 preserves a lateral forehead birthmark arc, substantial downward lobe and separated flecks on his anatomical right/viewer-left, closer to the source than the narrow v1 patch. Rounded face, gray receding hair, no glasses and serious expression retain identity. Full-body charcoal pinstripe suit/burgundy tie, both hands and shoes visible. Color and standing body are artistic; mark shape is stylized rather than a photographic tracing.",
+          "derivative_license": "CC BY-SA 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+        }
+      ]
+    }
+  }
+}

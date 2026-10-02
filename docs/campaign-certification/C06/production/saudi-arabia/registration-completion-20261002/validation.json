@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "date": "2026-10-02",
+  "reviewer": "Codex /root/tonga_royal_identities",
+  "status": "pass_temporary_merged_manifest_validation",
+  "shared_manifest_edited": false,
+  "shared_manifest_sha256_before_and_after": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "pipeline_sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab",
+  "command": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-X",
+    "utf8",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\tools\\avatars\\person_art_pipeline.py",
+    "validate",
+    "--repo",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002",
+    "--manifest",
+    "<disposable>/manifest.json",
+    "--registry",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-sim\\data\\party_leaders.json"
+  ],
+  "temporary_merged_manifest_sha256": "3329e093beeaa2dd952d3614fde2c2cc4b5ab1c3002433062c3a4c150a75a982",
+  "pipeline_stdout_sha256": "be10a9ddb49426dff273bb58e0230971ae2a67ee11f17982ca12e1762ea9d3b8",
+  "pipeline_returncode": 0,
+  "pipeline_valid": true,
+  "errors": [],
+  "existing_missing_portrait_warning_count": 516,
+  "warning_scope": "Existing people without a portrait remain honest warnings; no batch result waives their gaps.",
+  "all_preexisting_portraits_preserved": true,
+  "all_untouched_people_preserved": true,
+  "new_portraits": 12,
+  "new_people": 0,
+  "total_proposed_portraits": 119,
+  "boundary_checks": [
+    {
+      "person_id": "harkishan_singh_surjeet",
+      "asset": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+      "from": "1992-01-31",
+      "exclusive_to": "2005-04-01",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "lal_krishna_advani",
+      "asset": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+      "from": "1995-01-01",
+      "exclusive_to": "2005-12-31",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "prakash_karat",
+      "asset": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+      "from": "2005-04-30",
+      "exclusive_to": "2015-04-01",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "rajnath_singh",
+      "asset": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+      "from": "2005-12-31",
+      "exclusive_to": "2014-07-09",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "nitin_gadkari",
+      "asset": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+      "from": "2009-12-19",
+      "exclusive_to": "2013-01-23",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "sitaram_yechury",
+      "asset": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+      "from": "2015-04-30",
+      "exclusive_to": "2024-09-12",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "jagat_prakash_nadda",
+      "asset": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+      "from": "2020-01-20",
+      "exclusive_to": "2026-01-20",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "m_a_baby",
+      "asset": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+      "from": "2025-04-06",
+      "exclusive_to": "2026-09-08",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+      "from": "1991-01-01",
+      "exclusive_to": "1996-01-01",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+      "from": "1996-01-01",
+      "exclusive_to": "2005-08-01",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+      "from": "1996-01-01",
+      "exclusive_to": "2005-08-01",
+      "before_start_start_last_day_exclusive_end_pass": true
+    },
+    {
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+      "from": "2005-08-01",
+      "exclusive_to": "2015-01-23",
+      "before_start_start_last_day_exclusive_end_pass": true
+    }
+  ],
+  "boundary_assertions_passed": 48,
+  "ogl_negative_controls": {
+    "third_party": "rejected",
+    "empty_licensor": "rejected",
+    "incorrect_policy_url": "rejected"
+  },
+  "exact_sharealike_and_ogl_licence_versions_preserved": true,
+  "artifact_pins": {
+    "india": {
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/india/registration-completion-20261002/manifest-fragment.json",
+        "sha256": "af4c1383f41ba19578cfb2a778ccaf6703bac46b7279429b4778dcbe862a10a8"
+      },
+      "generation": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d"
+      }
+    },
+    "saudi-arabia": {
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/saudi-arabia/registration-completion-20261002/manifest-fragment.json",
+        "sha256": "1fa88ab828e43b6f0a794a85a58457025dab3cfa421f86c32e1b6d576489b9b8"
+      },
+      "generation": {
+        "path": "tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json",
+        "sha256": "bc7d0b30d9bd7e17ba43c28cb08c18ea82be77841a857d9f67615ab2af10b25a"
+      }
+    }
+  },
+  "authority": {
+    "human_approval": false,
+    "claude_approval": false,
+    "runtime_registration": false,
+    "country_complete": false
+  },
+  "country_fragment": "saudi-arabia"
+}

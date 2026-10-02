@@ -22,11 +22,11 @@
     "spheres-sim/src/world.rs": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
     "spheres-web/data/fictional_portraits.json": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
     "spheres-web/data/future_candidates_2035.json": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
-    "spheres-web/data/person_portraits.json": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+    "spheres-web/data/person_portraits.json": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa",
     "spheres-web/src/government_view.rs": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
     "spheres-web/src/main.rs": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
-    "spheres-web/src/person_avatar_assets.rs": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
-    "spheres-web/src/person_portraits.rs": "1cdb635ad2b9bf683cf166e8d11a36be8751a0c273308ca2651a7d9731e9e657",
+    "spheres-web/src/person_avatar_assets.rs": "73ee08c14ea1fe836c8f1219acd24fc1f2e04a96acb303b618724b7ca6035175",
+    "spheres-web/src/person_portraits.rs": "899e7605fdfc78f4557ac32992e4ffc8bbff0bae6ca8e351b4286b647708bd50",
     "spheres-web/ui/government-ui.css": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
     "spheres-web/ui/government-ui.js": "c8bff0746bad3d2e2108646c1c63f4ab2cea6af9a37013e648899705409319ae",
     "spheres-web/ui/index.html": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
@@ -3130,7 +3130,7 @@
       },
       "tested_revision": "f5bd21932d687532d8fda9f428b2f35a377b3f9a",
       "scope": "Reviewed real production-browser journey: correct Crown and separate premier, 50 historical cards, four fictional previews, human-readable office labels, explicit commands/refusals, mobile layout and exact native save/reload preservation. Authored date fixtures do not establish elapsed campaign stability, complete history or human likeness approval.",
-      "reason": "The historical acceptance receipt and tested-source hashes are preserved. France 09cbb583 adds seven registrations to the shared portrait manifest; that whole-file hash changed. Tonga records are unchanged, but a current-source production-browser rerun has not occurred."
+      "reason": "The historical acceptance receipt and tested-source hashes remain unchanged. Additive France and six-batch portrait registration, refreshed embedded assets and the new native interval regression test change shared sources. Tonga portrait records are unchanged, but current-source production-browser acceptance has not been rerun."
     },
     "save_compatibility": {
       "status": "passed",

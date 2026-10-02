@@ -65,8 +65,8 @@
      "unknown": 76
     },
     "production_party_yearly_image_bindings": {
-     "bound": 13,
-     "unbound": 138
+     "bound": 45,
+     "unbound": 106
     },
     "executive_yearly_status": {
      "bracketed": 9,
@@ -74,7 +74,7 @@
      "uncertain": 10,
      "unknown": 14
     },
-    "people_without_bound_art_at_yearly_samples": 13,
+    "people_without_bound_art_at_yearly_samples": 10,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 28,
     "fictional_party_candidates": 28,
@@ -92,7 +92,7 @@
     "Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 67 uncertain, 327 unknown and 0 unresearched.",
     "Research holder observations by acceptance: accepted 48, pending 32, unattributed_intake 5.",
     "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
-    "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
+    "Registry holder portraits at yearly samples: 45 bound, 106 unbound (10 distinct people without served art).",
     "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:za_state_president, research:za_president_election): 4 of 37 yearly samples 1990-2026 identify a holder.",
@@ -520,16 +520,16 @@
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png","available"]]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png","available"]]},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png","available"]]},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"}],"asset":[]},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"}],"asset":[]},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"}],"asset":[]},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"}],"asset":[]},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","window":["1995-01-01","2005-01-01"]}],"asset":[["spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png","available"]]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1"}],"asset":[]},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_mangosuthu_buthelezi_19750321","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mangosuthu_buthelezi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1"}],"asset":[]},
@@ -579,8 +579,8 @@
     "boundary_cases": 3,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "bound": 5,
-     "unbound": 32
+     "bound": 15,
+     "unbound": 22
     }
    }
   },
@@ -656,29 +656,29 @@
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:constand_viljoen:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:constand_viljoen:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:constand_viljoen:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:constand_viljoen:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:constand_viljoen:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:constand_viljoen:2000-01-01:2001-01-01:v1"}],"asset":[]},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["za_ff_constand_viljoen_199403","uncertain_bounds"],["za_ff_pieter_mulder_2001","uncertain_bounds"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"},{"person":"pieter_mulder","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2001-12-31:2005-01-01:v1"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2001-12-31:2005-01-01:v1"}],"asset":[]},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2001-12-31:2005-01-01:v1"}],"asset":[]},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2015-01-01:2016-11-12:v1"}],"asset":[]},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2015-01-01:2016-11-12:v1"}],"asset":[]},
-    {"date":"2016-11-11","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:pieter_mulder:2015-01-01:2016-11-12:v1"}],"asset":[]},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","window":["1994-03-31","2001-01-01"]}],"asset":[["spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","available"]]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","window":["1994-03-31","2001-01-01"]}],"asset":[["spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","available"]]},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","window":["1994-03-31","2001-01-01"]}],"asset":[["spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","available"]]},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","window":["1994-03-31","2001-01-01"]}],"asset":[["spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","available"]]},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","window":["1994-03-31","2001-01-01"]}],"asset":[["spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","available"]]},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_constand_viljoen_199403","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","window":["1994-03-31","2001-01-01"]}],"asset":[["spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png","available"]]},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["za_ff_constand_viljoen_199403","uncertain_bounds"],["za_ff_pieter_mulder_2001","uncertain_bounds"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"constand_viljoen","as":"possible","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date"},{"person":"pieter_mulder","as":"possible","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date"}],"asset":[]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
+    {"date":"2016-11-11","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["za_ff_pieter_mulder_2001","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"pieter_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","window":["2001-06-21","2016-11-13"]}],"asset":[["spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png","available"]]},
     {"date":"2016-11-12","kinds":["handover_day_of"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[2]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2016-11-13","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[2]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[2]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
@@ -691,11 +691,11 @@
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[2]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[2]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2025-07-15","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[2]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
-    {"date":"2025-07-16","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]],"declared_gaps":[2]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[]},
-    {"date":"2025-07-17","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
+    {"date":"2025-07-16","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]],"declared_gaps":[2]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","window":["2025-07-16","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","available"]]},
+    {"date":"2025-07-17","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","window":["2025-07-16","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","available"]]},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","window":["2025-07-16","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","available"]]},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","window":["2025-07-16","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","available"]]},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","window":["2025-07-16","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png","available"]],"future":{"eligible":false,"reason":"before_fictional_window"}},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
@@ -721,7 +721,7 @@
     "boundary_cases": 6,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "unbound": 22
+     "bound": 22
     }
    }
   },
@@ -4693,36 +4693,46 @@
    "name": "Constand Viljoen",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "1994-03-31",
+     "to": "2001-01-01",
+     "asset": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "1994-03-31",
      "to": "2001-01-01"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:constand_viljoen:1994-03-31:1995-01-01:v1",
-    "cartoon:constand_viljoen:1995-01-01:2000-01-01:v1",
-    "cartoon:constand_viljoen:2000-01-01:2001-01-01:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "corne_mulder",
    "name": "Corné Mulder",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2025-07-16",
+     "to": "2026-09-08",
+     "asset": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2025-07-16",
      "to": "2026-09-08"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:corne_mulder:2025-07-16:2026-09-08:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "cyril_ramaphosa",
@@ -4836,6 +4846,13 @@
      "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png",
      "asset_status": "available",
      "extends_past_recorded_death": false
+    },
+    {
+     "from": "1995-01-01",
+     "to": "2005-01-01",
+     "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
     }
    ],
    "required_art_windows": [
@@ -4846,8 +4863,6 @@
    ],
    "board_status": "art_pending",
    "pending_art_jobs": [
-    "cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1",
-    "cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1",
     "cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1",
     "cartoon:mangosuthu_buthelezi:2010-01-01:2015-01-01:v1",
     "cartoon:mangosuthu_buthelezi:2015-01-01:2019-08-24:v1"
@@ -4924,20 +4939,23 @@
    "name": "Pieter Mulder",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2001-06-21",
+     "to": "2016-11-13",
+     "asset": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2001-12-31",
      "to": "2016-11-12"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:pieter_mulder:2001-12-31:2005-01-01:v1",
-    "cartoon:pieter_mulder:2005-01-01:2010-01-01:v1",
-    "cartoon:pieter_mulder:2010-01-01:2015-01-01:v1",
-    "cartoon:pieter_mulder:2015-01-01:2016-11-12:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "thabo_mbeki",

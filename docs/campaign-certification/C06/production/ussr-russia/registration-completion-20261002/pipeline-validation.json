@@ -1,0 +1,26 @@
+{
+  "valid": true,
+  "errors": [],
+  "warning_count": 519,
+  "manifest_before_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "candidate_manifest_sha256": "63647f0058157d8f4f26fd8da16fd5a772e0496b62973477b676f1595daa519e",
+  "added_portraits": 8,
+  "all_existing_portrait_records_preserved": true,
+  "shared_manifest_unchanged": true,
+  "validated_country_fragments": [
+    {
+      "country": "japan",
+      "count": 7,
+      "fragment": "docs/campaign-certification/C06/production/japan/registration-completion-20261002/manifest-additions.json",
+      "generation_record": "tools/avatars/person-prompts/japan-cast-registration-20261002.json"
+    },
+    {
+      "country": "ussr-russia",
+      "count": 1,
+      "fragment": "docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/manifest-additions.json",
+      "generation_record": "tools/avatars/person-prompts/ussr-russia-cast-registration-20261002.json"
+    }
+  ],
+  "command": "person_art_pipeline.validate_manifest(additive Japan 7 + USSR/Russia 1 temporary candidate, repository root, people_from_registry)",
+  "limit": "Python manifest and file-integrity validation only; no native, browser, human or country qualification claimed."
+}

@@ -1,0 +1,587 @@
+{
+  "version": 1,
+  "people": {
+    "harkishan_singh_surjeet": {
+      "name": "Harkishan Singh Surjeet",
+      "identity_sources": [
+        "https://cpim.org/wp-content/uploads/old/documents/Surjeet_centenary.pdf",
+        "https://commons.wikimedia.org/wiki/File:Bardhanhss.jpg"
+      ],
+      "portraits": [
+        {
+          "from": "1992-01-31",
+          "to": "2005-04-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+          "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+          "bytes": 1544874,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Bardhanhss.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: Soman, 'Bardhanhss.jpg' (Harkishan Singh Surjeet, A. B. Bardhan and D. Raja on the dais of the Communist Party of India's 19th Party Congress, Chandigarh, 28 or 29 March 2005), own work, CC BY 2.5, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2005-03-28 or 2005-03-29 (camera clock 28 March; the congress banner behind him gives 29 March). Approved illustrative appearance interval 1992-01-31 to 2005-04-01 (exclusive), exactly as requested. Born 23 March 1916 (Commons description of File:Surjith-6.JPG and the English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research). He is 89 in the photograph of 28 or 29 March 2005 and 75 to 89 in the window (1992-01-31 to 2005-03-31 inclusive). The photograph is 2 or 3 days before the window's last day and about 13 years 2 months after its start. The prompt asks for a slightly younger, sturdier, upright man of about 80 with the same white turban, white beard and dark glasses. The standing body, legs, charcoal-gray trousers, black shoes and hands are artistic extensions of a seated photograph cut off at his lap; the trouser colour follows the undated colour alternate File:Surjith-6.JPG, which is not a generation input. A group photograph of 1280x960: his face is about 170 px wide, turned three-quarters, with dark lenses hiding his eyes and his mouth open in speech. It is the only free photograph found that is dated inside the window. The colour alternate below shows the same turban, beard and tinted glasses at higher resolution but cannot be dated more closely than late July 2003 to August 2008. Art availability only: no new office boundary, tenure or historical acceptance. The source is from the final days of the 1992–2005 window; the younger, sturdier depiction is an explicit artistic treatment, not evidence of every year. The March 28/29 source-day ambiguity remains.",
+          "identity_source": {
+            "person_id": "harkishan_singh_surjeet",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+            "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+            "bytes": 123462,
+            "width": 1280,
+            "height": 960,
+            "mode": "RGB",
+            "license": "CC BY 2.5",
+            "license_url": "https://creativecommons.org/licenses/by/2.5",
+            "creator": "Soman",
+            "credit": "Soman, 'Bardhanhss.jpg' (Harkishan Singh Surjeet, A. B. Bardhan and D. Raja on the dais of the Communist Party of India's 19th Party Congress, Chandigarh, 28 or 29 March 2005), own work, CC BY 2.5, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY 2.5, one of three licences granted by the uploader, who is the photographer named in the description. Own work; not a government, agency or press photograph; no personality-rights template.",
+            "source_license_statement": "Commons file page: 'I, the copyright holder of this work, hereby publish it under the following licenses': GFDL 1.2 or later, CC BY-SA 3.0 Unported (migrated) and CC BY 2.5 ({{Self|GFDL|Cc-by-sa-3.0-migrated|Cc-by-2.5}}). API extmetadata: LicenseShortName exactly 'CC BY 2.5', License 'cc-by-2.5', LicenseUrl https://creativecommons.org/licenses/by/2.5, UsageTerms 'Creative Commons Attribution 2.5'. The CC BY 2.5 option is used.",
+            "reference_id": "harkishan-singh-surjeet-2005",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Bardhanhss.jpg",
+            "depiction_date": {
+              "kind": "month",
+              "value": "2005-03",
+              "candidate_days": [
+                "2005-03-28",
+                "2005-03-29"
+              ]
+            },
+            "photograph_date": "2005-03-28 or 2005-03-29 (camera clock 28 March; the congress banner behind him gives 29 March)",
+            "date_precision": "Commons gives no Date (the 2005 description's '|date =' is empty). The only machine date is the camera's EXIF DateTime 2005:03:28 06:36:49 (Minolta DiMAGE Xt, firmware 'Ver. 1.00'; no DateTimeOriginal tag). The description places the photograph on the dais of the open session of the Communist Party of India's 2005 congress in Chandigarh, and the red banner behind him reads '19th PARTY CONGRESS', '...NIST PARTY [OF I]NDIA' and a partly hidden '...H 29th...', i.e. 29 March 2005. The same uploader's camera of the same model read 2005-04-07 07:52:02 at the CPI(M) 18th Congress in New Delhi (File:Hssurjeet.jpg), so its clock was close to correct. No clock offset is proven, so both days are recorded; either is before the window's exclusive end of 2005-04-01.",
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "638734215b5be075b8a32a784ecc23d27dec29407aa62e6a42f7c80125187604"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/harkishan-singh-surjeet-cartoon-1992-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job harkishan-singh-surjeet-cartoon-1992-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Correct turbaned subject at left of the group reference; broad nose, white turban/beard and tinted rectangular glasses are retained. Shirt, two pens and complete upright figure match the prompt. No visible anatomy or framing defect. No human or Claude approval claimed.",
+          "derivative_license": "CC BY 2.5",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/2.5"
+        }
+      ]
+    },
+    "lal_krishna_advani": {
+      "name": "Lal Krishna Advani",
+      "identity_sources": [
+        "https://www.apbjp.org/eng/shri-l-k-advani/",
+        "https://www.apbjp.org/eng/history/",
+        "https://timescontent.timesofindia.com/photo/news/Janata-Dal/132427",
+        "https://commons.wikimedia.org/wiki/File:IDF_Aid_Mission_to_India,_January_2001_(11047435913).jpg"
+      ],
+      "portraits": [
+        {
+          "from": "1995-01-01",
+          "to": "2005-12-31",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+          "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+          "bytes": 1569347,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:IDF_Aid_Mission_to_India,_January_2001_(11047435913).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: IDF Spokesperson's Unit, 'IDF Aid Mission to India, January 2001', late January or early February 2001; source: Flickr idfonline 11047435913; licence CC BY-SA 3.0 by VRTS permission ticket 2021051710001034; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2001-01 (Commons; the photograph itself is from about 29 January to 9 February 2001). Approved illustrative appearance interval 1995-01-01 to 2005-12-31 (exclusive), exactly as requested. Born 8 November 1927 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research). He is 73 in the photograph (about 29 January to 9 February 2001) and 67 to 78 across the requested window (1995-01-01 to 2005-12-31, exclusive). The photograph is inside the window, about six years after its start and five years before its end, so the prompt keeps him about 73. The frame ends just below his hands: the coat's hem length (drawn ending at mid-thigh), the trousers, the shoes and the standing full body are artistic extensions; the pen clipped to his breast pocket is omitted on purpose; the prompt draws him with lips closed or a slight smile, not mid-speech. Group photograph of 1024x765; his face is clear and frontal. The costume (slate-blue bandhgala) differs from his existing 1990-1995 art (cream kurta, white dhoti, sandals); Codex may prefer costume continuity. The in-window 2005 State Department alternate shows a white kurta and dhoti with a brown sleeveless jacket. Art availability only: no new office boundary, tenure or historical acceptance. The source is late January/early February 2001. Appearance coverage spans gaps between party presidencies without establishing office tenure; source-derived costume differs from existing earlier artwork by design.",
+          "identity_source": {
+            "person_id": "lal_krishna_advani",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+            "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+            "bytes": 160687,
+            "width": 1024,
+            "height": 765,
+            "mode": "RGB",
+            "license": "CC BY-SA 3.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+            "creator": "IDF Spokesperson's Unit",
+            "credit": "IDF Spokesperson's Unit, 'IDF Aid Mission to India, January 2001', late January or early February 2001; source: Flickr idfonline 11047435913; licence CC BY-SA 3.0 by VRTS permission ticket 2021051710001034; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY-SA 3.0 (unported) granted by the copyright holder, the IDF Spokesperson's Unit, through VRTS ticket 2021051710001034. ShareAlike applies to the adapted cartoon.",
+            "source_license_statement": "Commons {{cc-by-sa-3.0}} with {{PermissionTicket|id=2021051710001034}} (Category: Items with VRTS permission confirmed); LicenseShortName 'CC BY-SA 3.0', UsageTerms 'Creative Commons Attribution-Share Alike 3.0' (unported). The Flickr page's own licence was NC: the Commons Flickr licence review failed on 2018-12-30 (Ronhjones, {{Unfree Flickr file|NC}}; revision history pinned in supporting_metadata). The CC BY-SA 3.0 rests on the copyright holder's VRTS permission, ticket 2021051710001034 (Wikimedia Israel / IDF Spokesperson's Unit, added by Geagea on 2021-05-17), not on Flickr.",
+            "reference_id": "lal-krishna-advani-2001",
+            "source_url": "https://commons.wikimedia.org/wiki/File:IDF_Aid_Mission_to_India,_January_2001_(11047435913).jpg",
+            "depiction_date": {
+              "kind": "month",
+              "value": "2001-01",
+              "probable_range": "2001-01-29 to 2001-02-09"
+            },
+            "photograph_date": "2001-01 (Commons; the photograph itself is from about 29 January to 9 February 2001)",
+            "date_precision": "Commons gives 2001-01, set by Geagea on 2021-05-17 (the 2016 upload said 2001), apparently from the mission's Flickr title 'IDF Aid Mission to India, January 2001'. The photograph shows the IDF field hospital in operation (tent interior, infant incubator). That hospital opened about five days after the Gujarat earthquake of 26 January 2001 and closed on 9 February 2001 (IFRC India/Gujarat Earthquake Situation Report 6, 6 February 2001, as read by the independent verifier; not saved locally), so the photograph dates from about 29 January to 9 February 2001 and may be from early February. He is 73 either way.",
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "54158e85cad21a081fc4cecc2f1de5dee11bf92f1d3420c359e5a25c0c684ef3"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/lal-krishna-advani-cartoon-1995-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job lal-krishna-advani-cartoon-1995-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Correct central subject of the group reference; bald crown, white side hair and moustache, glasses and slate-blue bandhgala are recognizable. Explaining hand gesture and other lowered hand are coherent; both shoes visible. No human or Claude approval claimed.",
+          "derivative_license": "CC BY-SA 3.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+        }
+      ]
+    },
+    "prakash_karat": {
+      "name": "Prakash Karat",
+      "identity_sources": [
+        "https://cpim.org/members-pb-7th-19th-congress/",
+        "https://cpim.org/prakash-karat-will-be-the-coordinator-of-pb-cc-as-an-interim-arrangement/",
+        "https://commons.wikimedia.org/wiki/File:PrakashKarat.jpg"
+      ],
+      "portraits": [
+        {
+          "from": "2005-04-30",
+          "to": "2015-04-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+          "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+          "bytes": 1608835,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:PrakashKarat.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: Erfanebrahimsait, 'PrakashKarat.jpg' (undated; camera stamp 16 March 2013 unreliable; taken between 2013 and 2017), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: Undated: between 2013-03-21 and 2017-09-17 (the camera stamp 2013-03-16 19:41:05 is impossible for the camera model). Approved illustrative appearance interval 2005-04-30 to 2015-04-01 (exclusive), exactly as requested. Born 7 February 1948 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research; the registry gives no birth date). He is 65 to 69 in the photograph (between 21 March 2013 and 17 September 2017) and 57 to 67 in the window (2005-04-30 to 2015-04-01, exclusive). The photograph may fall in the window's last two years or up to about 2.5 years after it ends. The prompt asks for a man of about 62, somewhat younger than the photograph, with fewer and shallower facial lines, keeping the same silver-gray hair, rimless glasses and broad face, and forbids inventing dark hair. The standing body, legs, light gray trousers, dark brown shoes and loose shirt hem are artistic extensions of a waist-up photograph. No exactly dated in-window photograph of comparable quality was found. File:Prakash Karat CPIM.jpg (Suthir, EXIF 29 May 2014, CC BY-SA 3.0) is inside the window but soft and mid-speech; it is the in-window alternate if Codex rejects the undated reference. Art availability only: no new office boundary, tenure or historical acceptance. The 2013 filename does not establish a capture date. Preserve the reviewed 2013-03-21–2017-09-17 interval and disclosed younger artistic treatment; this output does not resolve that date uncertainty.",
+          "identity_source": {
+            "person_id": "prakash_karat",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+            "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+            "bytes": 5069190,
+            "width": 5184,
+            "height": 3456,
+            "mode": "RGB",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "creator": "Erfanebrahimsait (Wikimedia Commons user), own work",
+            "credit": "Erfanebrahimsait, 'PrakashKarat.jpg' (undated; camera stamp 16 March 2013 unreliable; taken between 2013 and 2017), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY-SA 4.0, uploader's own work. The photograph serves only as the identity reference for an original cartoon; ShareAlike applies to the adaptation.",
+            "source_license_statement": "File page: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons Attribution-Share Alike 4.0 International'; API LicenseShortName 'CC BY-SA 4.0', License 'cc-by-sa-4.0'; categories CC-BY-SA-4.0, Self-published work. No personality-rights template on the page.",
+            "reference_id": "prakash-karat-2013",
+            "source_url": "https://commons.wikimedia.org/wiki/File:PrakashKarat.jpg",
+            "depiction_date": {
+              "kind": "range",
+              "earliest": "2013-03-21",
+              "latest": "2017-09-17",
+              "precision": "uncertain",
+              "unreliable_camera_stamp": "2013-03-16T19:41:05"
+            },
+            "photograph_date": "Undated: between 2013-03-21 and 2017-09-17 (the camera stamp 2013-03-16 19:41:05 is impossible for the camera model)",
+            "date_precision": "The EXIF DateTimeOriginal 2013:03:16 19:41:05 comes from a Canon EOS 700D (lens EF-S55-250mm f/4-5.6 IS II), a model Canon announced only on 21 March 2013 and sold from about April 2013, and the photograph is in bright daylight, not after dark at 19:41; the camera clock was evidently not set. The Commons Date field and structured-data inception merely repeat the EXIF value (UploadWizard), so they do not confirm it. The photograph was taken no earlier than the camera's announcement (2013-03-21) and no later than the upload (2017-09-17). The year '2013' in the reference_id and asset filename is therefore unreliable, as France's '1994' for Mitterrand; Codex is asked to rule on naming (bytes and sha256 unchanged).",
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "be7c4daea60d8d8ae07020cbd060cee5e60c63c601c9b7d436aaf04103ab5392"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/prakash-karat-cartoon-2005-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job prakash-karat-cartoon-2005-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Silver hair, rectangular spectacles, broad face and modest smile match the reference. White short-sleeved shirt, pen, light trousers and brown shoes match the prompt; complete body and hands are coherent. No human or Claude approval claimed.",
+          "derivative_license": "CC BY-SA 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+        }
+      ]
+    },
+    "rajnath_singh": {
+      "name": "Rajnath Singh",
+      "identity_sources": [
+        "https://maritimeindia.org/shri-rajnath-singh/",
+        "https://commons.wikimedia.org/wiki/File:Rajnath_Singh_at_Hunkar_Rally.jpg"
+      ],
+      "portraits": [
+        {
+          "from": "2005-12-31",
+          "to": "2014-07-09",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+          "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+          "bytes": 1697505,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Rajnath_Singh_at_Hunkar_Rally.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: Narendra Modi (official Flickr account), 'Shri Modi at Hunkar Rally in Patna', Patna, October 2013; CC BY-SA 2.0; Commons crop 'Rajnath Singh at Hunkar Rally.jpg' of 'Modi at Hunkar Rally in Patna.jpg', via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2013-10-27 or 2013-10-28 (Commons states 28 October 2013 08:14:38, the Flickr date; the file has no camera EXIF; the Hunkar Rally in Patna was held on 27 October 2013, general knowledge). Approved illustrative appearance interval 2005-12-31 to 2014-07-09 (exclusive), exactly as requested. Born 10 July 1951 (party_leaders.json born field). Photographed on 27 or 28 October 2013, aged 62. The window runs from 31 December 2005 (age 54) to 9 July 2014, exclusive (age 62). The photograph is about 7 years 10 months after the window starts and about 8 months before it ends. The prompt asks for a man of about 58 to 60, slightly younger than the photograph. The standing body, lower kurta, white pyjama trousers, plain black shoes and lowered hands are artistic extensions of a waist-up photograph with a raised victory-sign arm. Small source image: 346x638, with the face about 100 px wide. The first term (2006-2009) relies on about 4 to 8 years of mild de-ageing, because no qualifying 2005-2009 photograph was found. Fallback: the public-domain US State Department photographs of 18 December 2019, about 5.5 years after the window. Art availability only: no new office boundary, tenure or historical acceptance. Small late-October 2013 source and a modest younger treatment represent a wider 2005–2014 appearance interval; the October 27/28 date ambiguity remains.",
+          "identity_source": {
+            "person_id": "rajnath_singh",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+            "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+            "bytes": 142836,
+            "width": 346,
+            "height": 638,
+            "mode": "RGB",
+            "license": "CC BY-SA 2.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+            "creator": "Narendra Modi's official Flickr account (narendramodiofficial, Flickr user 92359345@N07); the Commons Author and Attribution fields read 'Narendra Modi' and no individual photographer is named. Crop extracted by Commons user Vibhijain (29 November 2013) from 'Modi at Hunkar Rally in Patna.jpg', which the Flickr upload bot uploaded on 31 October 2013.",
+            "credit": "Narendra Modi (official Flickr account), 'Shri Modi at Hunkar Rally in Patna', Patna, October 2013; CC BY-SA 2.0; Commons crop 'Rajnath Singh at Hunkar Rally.jpg' of 'Modi at Hunkar Rally in Patna.jpg', via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "CC BY-SA 2.0 from Narendra Modi's official Flickr account, confirmed at upload by the Flickr upload bot. The Flickr photo page (10531858963) returned HTTP 404 on 2026-10-02, so the current Flickr licence cannot be checked again, and the Commons upload-time confirmation is the retained evidence. The 404 response body was not kept because it contained IP-like strings. The photograph serves only as the identity reference for an original cartoon.",
+            "source_license_statement": "Creative Commons Attribution-Share Alike 2.0 Generic; Attribution: Narendra Modi. Commons says the file was originally posted to Flickr and uploaded with the Flickr upload bot on 31 October 2013, and that on that date it was confirmed to be licensed under the terms of the license indicated.",
+            "reference_id": "rajnath-singh-2013",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Rajnath_Singh_at_Hunkar_Rally.jpg",
+            "depiction_date": {
+              "kind": "month",
+              "value": "2013-10",
+              "candidate_days": [
+                "2013-10-27",
+                "2013-10-28"
+              ]
+            },
+            "photograph_date": "2013-10-27 or 2013-10-28 (Commons states 28 October 2013 08:14:38, the Flickr date; the file has no camera EXIF; the Hunkar Rally in Patna was held on 27 October 2013, general knowledge)",
+            "date_precision": null,
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "c0415f36ef00a2dc5a91fc486ea7fe872e1e31ce98ae1c8200143e1df088b7bb"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/rajnath-singh-cartoon-2005-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job rajnath-singh-cartoon-2005-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Bald crown, side hair, broad face and gentle smile are recognizable. Textured charcoal waistcoat over white kurta and pyjama follows the prompt; raised-arm source pose is appropriately replaced by two lowered hands. No human or Claude approval claimed.",
+          "derivative_license": "CC BY-SA 2.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+        }
+      ]
+    },
+    "nitin_gadkari": {
+      "name": "Nitin Gadkari",
+      "identity_sources": [
+        "https://jkbjp.in/about-bjp/bjp-history/timeline/",
+        "https://commons.wikimedia.org/wiki/File:UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_(BJP)_National_President,_Shri_Nitin_Gadkari_in_London,_19_July_2011._(5954466771).jpg"
+      ],
+      "portraits": [
+        {
+          "from": "2009-12-19",
+          "to": "2013-01-23",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+          "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+          "bytes": 1852262,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_(BJP)_National_President,_Shri_Nitin_Gadkari_in_London,_19_July_2011._(5954466771).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: UK Foreign and Commonwealth Office, Foreign Secretary William Hague meeting BJP National President Nitin Gadkari in London, 19 July 2011 (Flickr 5954466771), Open Government Licence v1.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2011-07-19. Approved illustrative appearance interval 2009-12-19 to 2013-01-23 (exclusive), exactly as requested. Born 27 May 1957 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research). He is 54 in this photograph of 19 July 2011, inside the window 2009-12-19 to 2013-01-23 (ages 52 to 55), so the prompt asks for no age adjustment. The trousers, shoes, lower legs and both hands are artistic extensions; a tiny pin beside his pen is omitted on purpose. The July 2011 heavy-set build stands for the whole window. One July 2011 appearance stands for the whole window. A rejected December 2012 portrait (File:Nitin Gadkari 1.JPG, provenance unverifiable) suggests a somewhat less full face late in the window; no free, verifiable late-2012 photograph supports a split. Art availability only: no new office boundary, tenure or historical acceptance. July 2011 reference falls inside the requested interval. Preserve the actual Open Government Licence v1.0 credit and reuse conditions; do not relabel this as public domain or a Creative Commons licence.",
+          "identity_source": {
+            "person_id": "nitin_gadkari",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+            "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+            "bytes": 790706,
+            "width": 2136,
+            "height": 1424,
+            "mode": "RGB",
+            "license": "Open Government Licence v1.0",
+            "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+            "creator": "Foreign and Commonwealth Office, United Kingdom",
+            "credit": "UK Foreign and Commonwealth Office, Foreign Secretary William Hague meeting BJP National President Nitin Gadkari in London, 19 July 2011 (Flickr 5954466771), Open Government Licence v1.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: Open Government Licence v1.0. Commons {{FCDO}}: 'This file comes from the Flickr stream of the Foreign, Commonwealth and Development Office and is copyrighted. Note : This permission only extends to content provided by the FCDO and does not include third-party content.' Commons records VRT permission ticket 2013061310007371 (category 'Items with VRTS permission confirmed'), the same ticket as the registered Tonga 2012 FCO reference. The author field is the FCO itself, so this is the FCO's own photograph, not third-party content. Uploaded 2014-04-13 by YiFeiBot from the FCO Flickr stream. The FCO Flickr page itself currently shows CC BY 2.0 for this photograph (checked once by the independent verifier on 2026-10-02, nothing saved), which is also in FREE_LICENSES and agrees with the OGL grant.",
+            "source_license_statement": "OGL v1.0 (Commons LicenseShortName; UsageTerms 'Open Government License version 1.0'; Commons LicenseUrl http://NationalArchives.gov.uk/doc/open-government-licence/version/1/; license template {{FCDO}}). The pipeline's OGL route is used with the source-specific grant fields, as for the registered Tonga 2012 FCO reference.",
+            "reference_id": "nitin-gadkari-2011",
+            "source_url": "https://commons.wikimedia.org/wiki/File:UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_(BJP)_National_President,_Shri_Nitin_Gadkari_in_London,_19_July_2011._(5954466771).jpg",
+            "depiction_date": {
+              "kind": "day",
+              "value": "2011-07-19"
+            },
+            "photograph_date": "2011-07-19",
+            "date_precision": "Commons date field '2011-07-19 17:39:32', the caption ('in London, 19 July 2011') and the file's EXIF DateTimeOriginal 2011:07:19 17:39:32 (Canon EOS 450D) all agree; the FCO Flickr page says 'Taken on July 19, 2011'.",
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "9d6fbc326a3bec4f3ad373d6470850b9548d1b1116907756bc5c02fa6561416a",
+            "licensor": "Foreign and Commonwealth Office, United Kingdom",
+            "third_party_material": false,
+            "original_source": "https://flickr.com/photos/foreignoffice/5954466771"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/nitin-gadkari-cartoon-2009-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job nitin-gadkari-cartoon-2009-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Correct right-hand subject from the two-person reference; rounded face, full black hair, moustache and warm smile match. Beige bandhgala with pen, matching trousers and brown shoes are coherent, with complete hands and feet. No human or Claude approval claimed.",
+          "derivative_license": "Open Government Licence v1.0",
+          "derivative_license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/"
+        }
+      ]
+    },
+    "sitaram_yechury": {
+      "name": "Sitaram Yechury",
+      "identity_sources": [
+        "https://cpim.org/homage-to-comrade-sitaram-yechury/",
+        "https://commons.wikimedia.org/wiki/File:Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg"
+      ],
+      "portraits": [
+        {
+          "from": "2015-04-30",
+          "to": "2024-09-12",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+          "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+          "bytes": 1624779,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: Batthini Vinay Kumar Goud, 'Sitaram Yechury at 2019 Hyderabad Book fair1 (cropped).jpg', 27 or 28 December 2019, own work, CC0 1.0, via Wikimedia Commons; crop by the photographer (CropTool, 2 January 2025) of 'Sitaram Yechury at 2019 Hyderabad Book fair1.jpg'. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2019-12-27 or 2019-12-28 (sources disagree). Approved illustrative appearance interval 2015-04-30 to 2024-09-12 (exclusive), exactly as requested. Born 12 August 1952 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research; the registry gives only his death on 2024-09-12). The photograph of 27 or 28 December 2019 is 1,702 or 1,703 days after the window start (2015-04-30) and 1,720 or 1,719 days before its last day (2024-09-11), almost exactly at the midpoint and a few days before the leadership-production boundary 2020-01-01. He is 67 in the photo and 62 to 72 in the window. The prompt targets about 67 with the same silver hair and glasses. Codex may split at 2020-01-01; the same reference fits both halves. No CC0/CC BY/CC BY-SA photograph of him as the sole subject was found nearer the window ends. The in-window government photographs are GODL-India, which is not on the list, or a press handout. Art availability only: no new office boundary, tenure or historical acceptance. The December 27/28, 2019 source-day ambiguity remains. One midpoint portrait represents the wider 2015–2024 artistic interval.",
+          "identity_source": {
+            "person_id": "sitaram_yechury",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+            "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+            "bytes": 1422511,
+            "width": 1828,
+            "height": 2345,
+            "mode": "RGB",
+            "license": "CC0 1.0",
+            "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "creator": "Batthini Vinay Kumar Goud",
+            "credit": "Batthini Vinay Kumar Goud, 'Sitaram Yechury at 2019 Hyderabad Book fair1 (cropped).jpg', 27 or 28 December 2019, own work, CC0 1.0, via Wikimedia Commons; crop by the photographer (CropTool, 2 January 2025) of 'Sitaram Yechury at 2019 Hyderabad Book fair1.jpg'. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Own work by the photographer, dedicated to the public domain under CC0 1.0 on Commons. Not a government, agency or press photograph.",
+            "source_license_statement": "Commons file page: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons CC0 1.0 Universal Public Domain Dedication'. The API LicenseShortName is 'CC0' and LicenseUrl is http://creativecommons.org/publicdomain/zero/1.0/deed.en. Recorded as 'CC0 1.0', matching the existing CC0 record in person_portraits.json; both strings are in FREE_LICENSES.",
+            "reference_id": "sitaram-yechury-2019",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg",
+            "depiction_date": {
+              "kind": "month",
+              "value": "2019-12",
+              "candidate_days": [
+                "2019-12-27",
+                "2019-12-28"
+              ]
+            },
+            "photograph_date": "2019-12-27 or 2019-12-28 (sources disagree)",
+            "date_precision": "Camera EXIF DateTimeOriginal 2019:12:28 19:03:11. The Commons date ('28 December 2019, 19:03:11') is derived from that EXIF value, so it is one source, not two. The book-launch poster in the photographer's wider frame of the same event (File:Sitaram Yechury at 2019 Hyderabad Book fair.jpg, 19:02:53) reads '27 Dec 2019'. Two web searches did not settle the day and no clock offset is proven, so both days are recorded.",
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "6af614ad6452c436a79909f239735cdd7c299c6789fabc5683984ab68c8d27f8"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job sitaram-yechury-cartoon-2015-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Wavy silver hair, thin rectangular glasses, broad face and ears are recognizable. Natural skin tones avoid the reference stage cast; white shirt, dark trousers and open-palm gesture match the prompt. No blocking defect. No human or Claude approval claimed.",
+          "derivative_license": "CC BY 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    "jagat_prakash_nadda": {
+      "name": "Jagat Prakash Nadda",
+      "identity_sources": [
+        "https://www.mohfw.gov.in/sites/default/files/jagatprakashnadda.pdf",
+        "https://commons.wikimedia.org/wiki/File:JP_Nadda_(Minister_of_Health_and_Family_Welfare,_India)_at_End_TB_Campaign.jpg"
+      ],
+      "portraits": [
+        {
+          "from": "2020-01-20",
+          "to": "2026-01-20",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+          "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+          "bytes": 1618160,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:JP_Nadda_(Minister_of_Health_and_Family_Welfare,_India)_at_End_TB_Campaign.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: AbhiSuryawanshi, 'JP Nadda (Minister of Health and Family Welfare, India) at End TB Campaign.jpg', 26 September 2018, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2018-09-26. Approved illustrative appearance interval 2020-01-20 to 2026-01-20 (exclusive), exactly as requested. Born 2 December 1960: the reference file's own Commons description says 'Jagat Prakash Nadda (born 2 December 1960)' (saved in commons-api-endtb-20180926.json, sha256 ee1135d4089095696b7f4f42e540c697155286eb888b7f1f4f75981135410ac1); the registry identity source https://www.mohfw.gov.in/sites/default/files/jagatprakashnadda.pdf is another. General biographical knowledge, not C01 research. Photographed on 26 September 2018, aged 57, as Union Minister of Health and Family Welfare. The window is 2020-01-20 to 2026-01-20 (exclusive), when he is 59 to 65. The photograph is about 1 year 4 months before the window opens and about 7 years 4 months before it closes. The prompt asks for a man of about 59 to 65, only slightly older, with the same black hair, spectacles and black moustache. The 2018 clothing is kept for the whole window as an artistic choice (in-window public dress was often a white kurta-pyjama with a saffron stole). The changed hand pose is an artistic extension. Predates the window. No qualifying in-window photograph exists on Commons: nearly all Nadda files are GODL-India, and the in-window non-GODL files are rejected below. Art availability only: no new office boundary, tenure or historical acceptance. The source precedes the window; age and dress continuity are disclosed artistic choices. Original Adobe RGB source bytes were preserved; no independent image transformation is inferred from file naming or display.",
+          "identity_source": {
+            "person_id": "jagat_prakash_nadda",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+            "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+            "bytes": 2657486,
+            "width": 4912,
+            "height": 7360,
+            "mode": "RGB",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "creator": "AbhiSuryawanshi",
+            "credit": "AbhiSuryawanshi, 'JP Nadda (Minister of Health and Family Welfare, India) at End TB Campaign.jpg', 26 September 2018, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "CC BY-SA 4.0 International (not ported). Attribution and share-alike obligations apply and should be considered at registration.",
+            "source_license_statement": "{{self|cc-by-sa-4.0}}; Commons extmetadata LicenseShortName 'CC BY-SA 4.0', UsageTerms 'Creative Commons Attribution-Share Alike 4.0', Credit 'Own work'.",
+            "reference_id": "jagat-prakash-nadda-2018",
+            "source_url": "https://commons.wikimedia.org/wiki/File:JP_Nadda_(Minister_of_Health_and_Family_Welfare,_India)_at_End_TB_Campaign.jpg",
+            "depiction_date": {
+              "kind": "day",
+              "value": "2018-09-26"
+            },
+            "photograph_date": "2018-09-26",
+            "date_precision": null,
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "ee1135d4089095696b7f4f42e540c697155286eb888b7f1f4f75981135410ac1"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/jagat-prakash-nadda-cartoon-2020-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job jagat-prakash-nadda-cartoon-2020-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Full face, black hair and moustache, rectangular glasses, aubergine bandhgala and magenta pocket square match the reference. Identity badge and group/display setting are excluded; both separate hands and brown shoes are visible. No human or Claude approval claimed.",
+          "derivative_license": "CC BY-SA 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+        }
+      ]
+    },
+    "m_a_baby": {
+      "name": "M. A. Baby",
+      "identity_sources": [
+        "https://cpim.org/leadership/",
+        "https://commons.wikimedia.org/wiki/File:MA_Baby_at_Kollam_2026_18.jpg"
+      ],
+      "portraits": [
+        {
+          "from": "2025-04-06",
+          "to": "2026-09-08",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+          "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+          "bytes": 1611973,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:MA_Baby_at_Kollam_2026_18.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation and full-body/age interpretation. Reference: Fotokannan, 'MA Baby at Kollam 2026 18.jpg' (6 July 2026, Kadammanitta kavitha puraskaram event, Kollam), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed reference date: 2026-07-06. Approved illustrative appearance interval 2025-04-06 to 2026-09-08 (exclusive), exactly as requested. No age gap. The photograph (6 July 2026) is inside the requested window, 2025-04-06 to 2026-09-08 (end exclusive): about fifteen months after the start and two months before the end. Born 5 April 1954 (Wikidata Q12053082, general biographical knowledge; not C01 research; the registry gives no birth date), he is 72 in the photograph and 71 to 72 across the window, so the prompt asks for no age adjustment.  Art availability only: no new office boundary, tenure or historical acceptance. Full body and mundu/sandals are disclosed artistic extensions of a head-and-shoulders source. Smile is slightly parted rather than strictly closed; a minor expression variation, with no effect on recognizable identity.",
+          "identity_source": {
+            "person_id": "m_a_baby",
+            "kind": "observed_portrait",
+            "asset": "spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+            "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+            "bytes": 8126087,
+            "width": 6000,
+            "height": 4000,
+            "mode": "RGB",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "creator": "Fotokannan",
+            "credit": "Fotokannan, 'MA Baby at Kollam 2026 18.jpg' (6 July 2026, Kadammanitta kavitha puraskaram event, Kollam), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY-SA 4.0, own work of the Commons user Fotokannan. Not a government, agency or press photograph. ShareAlike applies to the adapted cartoon.",
+            "source_license_statement": "Wikitext {{self|cc-by-sa-4.0}}, source {{own}}, author [[User:Fotokannan|Fotokannan]]; extmetadata LicenseShortName exactly 'CC BY-SA 4.0', LicenseUrl https://creativecommons.org/licenses/by-sa/4.0, UsageTerms 'Creative Commons Attribution-Share Alike 4.0'. The EXIF Copyright field '24/03/2021' is a camera setting artifact, not a rights statement.",
+            "reference_id": "m-a-baby-2026",
+            "source_url": "https://commons.wikimedia.org/wiki/File:MA_Baby_at_Kollam_2026_18.jpg",
+            "depiction_date": {
+              "kind": "day",
+              "value": "2026-07-06"
+            },
+            "photograph_date": "2026-07-06",
+            "date_precision": null,
+            "source_review": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+            "source_metadata_sha256": "17f63680052e38023a62235a5e26a1393b5d2b41e3dd55caf7f8eddaf9395ad9"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/m-a-baby-cartoon-2025-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job m-a-baby-cartoon-2025-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex agent /root/tonga_civilian_roster; Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Bald crown, white fringe/beard, dark rectangular glasses and broad face match the in-window reference. White shirt and mundu, brown sandals and complete hands are coherent; no blocking defect. Non-blocking deviations: M. A. Baby has a slightly parted smile rather than the strictly closed mouth requested; the independent review finds this non-blocking. No human or Claude approval claimed.",
+          "derivative_license": "CC BY-SA 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+        }
+      ]
+    }
+  }
+}

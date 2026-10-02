@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-02",
+  "base": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "country": "japan",
+  "reviewer": "Codex (/root/selector_leader_api), independent inspection of the identity references and root-rendered outputs; no human approval claimed",
+  "decision": "accepted_for_bounded_registration",
+  "shared_manifest_updated_by_this_agent": false,
+  "human_approval_claimed": false,
+  "country_complete": false,
+  "accepted_portrait_count": 7,
+  "source_review": {
+    "path": "docs/campaign-certification/C06/production/japan/identity-review-batch-01.json",
+    "sha256": "cb3ac83c278c34b5a146e9e41bfc41d039a97f675ffa321f9a2822eb7d30daaf"
+  },
+  "generation_record": {
+    "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+    "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9"
+  },
+  "manifest_additions": {
+    "path": "docs/campaign-certification/C06/production/japan/registration-completion-20261002/manifest-additions.json",
+    "sha256": "beba86f5b59b7758f2ac7ddedfdcec2e5e60c49dfd5612108e6b1caa2c6b099b"
+  },
+  "prior_attempts_preserved": {
+    "return_receipt": {
+      "path": "docs/campaign-certification/C06/production/japan/render-return-batch-01-20261002.json",
+      "sha256": "0b6302bd8fbe9533fea6e4101fcbbd5290939b3b4515629635093b554e477599"
+    },
+    "retained_attempt_count": 8,
+    "failed_transport_calls": [
+      {
+        "job_id": "natsuo-yamaguchi-cartoon-2015-v1",
+        "attempt": 1,
+        "stage": "reference transport before generation",
+        "prompt_sha256_submitted": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+        "inputs": [
+          {
+            "order": 1,
+            "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+            "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+            "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+          },
+          {
+            "order": 2,
+            "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+            "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+            "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg"
+          }
+        ],
+        "error": "unable to read referenced image: fs/readFile returned invalid base64 dataBase64: Invalid symbol 61, offset 18952891.",
+        "output": null,
+        "recovery": "Uncropped proportional 2048px transport copy; original retained; exact prompt unchanged. Successful output attempt 1 is the second tool call for this job."
+      }
+    ],
+    "superseded_candidates": [
+      "takako-doi-cartoon-1996-v1"
+    ],
+    "skipped": [
+      {
+        "job_id": "natsuo-yamaguchi-cartoon-2009-v1",
+        "status": "superseded",
+        "reason": "Two approved-request era jobs replace it; never submitted."
+      },
+      {
+        "person_id": "takenori_kanzaki",
+        "status": "excluded",
+        "reason": "Outside active seven jobs."
+      },
+      {
+        "person_id": "seiji_mataichi",
+        "status": "reserve_not_prepared"
+      },
+      {
+        "person_id": "tadatomo_yoshida",
+        "status": "reserve_not_prepared"
+      }
+    ]
+  },
+  "portrait_decisions": [
+    {
+      "job_id": "tomiichi-murayama-cartoon-1993-v1",
+      "person_id": "tomiichi_murayama",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed source and output: swept-back silver hair, long pale eyebrows, narrow lined face and modest expression are recognizable. Full-body navy suit and patterned tie, both hands and shoes visible, dark teal background, no text or extra person. Capture date is unknown; the appearance around seventy is an artistic choice corroborated only generally by the separately recorded 1994 reference.",
+      "output_sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+      "prompt_sha256": "8321abccdc8a9fe46af9fcfa966995c15b356e1bc03320fb07e279ca42a92af0",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "1993-09-30",
+        "to": "1996-09-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "No capture date is supplied by Commons or Kantei. The retained APEC 1995 page was captured on 1999-05-01; its 1995 copyright and September 1995 chronology are context, not proof that this portrait was already present in 1995. The linked image was captured separately on 2001-07-02 and depicts the same sitting as the chosen official portrait. Neither establishes a hard capture deadline inside the appearance window. The year in the retained reference identifier and filename is a legacy identifier, not date evidence."
+    },
+    {
+      "job_id": "makoto-tanabe-cartoon-1991-v1",
+      "person_id": "makoto_tanabe",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed source and output: high balding forehead, sparse gray hair, large square glasses and toothy smile match the reference. Full-body navy suit and patterned tie, both hands and shoes within margins, no badges/text/other people. The source is grainy and highly sharpened; full-body detail is invented. The source day is attributed to Commons descriptions rather than an independently read MOFA album.",
+      "output_sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+      "prompt_sha256": "0cd6d473e072f5a080cef12d241523d1ee43732c9784ece761790db065dc9ac9",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "1991-07-31",
+        "to": "1993-01-19",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "Commons' structured date field gives 1992-04 (month). The Commons descriptions of this file, its parent and the album give the day: '1992年4月7日、迎賓館にて、田辺誠・日本社会党委員長' (7 April 1992, at the State Guest House; parent category 'Asahi no Ma'), consistent with Jiang Zemin's April 1992 official visit. The day was not checked against the 97 MB album PDF (not downloaded; MOFA's site refuses non-browser clients). Either reading lies inside the window."
+    },
+    {
+      "job_id": "sadao-yamahana-cartoon-1993-v1",
+      "person_id": "sadao_yamahana",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed source and output: swept silver hair, broad cheeks, squared metal glasses and composed expression match the low-resolution official video frame. Full-body charcoal suit and pale tie, both hands/shoes visible, no extra people or text. Facial microdetail and standing body are interpretive; source is an official released video frame, not a high-resolution still portrait.",
+      "output_sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+      "prompt_sha256": "0f6270864427465f7d5aaa409ea87168e10a5e0c9e8184076726e972e62806aa",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "1993-01-19",
+        "to": "1993-09-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "Day stated by the Commons uploader ({{taken on|1993-08-09}}), matching the event shown: the commemorative photo session in the Kantei garden when the Hosokawa cabinet was formed (parent caption). The film is a 1993 annual record and gives no frame timestamp. Both embedded EXIF dates are post-1993 processing metadata, not the capture date: 2023-02-02 is the Commons crop, and DateTimeOriginal 2020-12-23 16:55:56 predates the video's listed YouTube publication of 2020-12-27, so its origin is unclear."
+    },
+    {
+      "job_id": "takako-doi-cartoon-1996-v2",
+      "person_id": "takako_doi",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed the 2005 source, held v1 and corrected v2. The v2 has clearer mature cheek shape, eye/mouth lines and neck folds; her short swept hair, glasses and reserved expression remain recognizable. This resolves the overly young v1 treatment within the simplified cartoon style. Beige jacket and checked skirt remain artistic clothing choices; glasses are not independently established for every year of 1996-2003. Both hands/shoes and margins are intact; no source crowd, signs or text transferred.",
+      "output_sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1",
+      "prompt_sha256": "44448917754e1e99dd24f189bbb8994793eb15a203af6f53f0011cf2c2a4efc1",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "1996-09-30",
+        "to": "2003-11-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "Exact day. The Commons {{Flickr}} template gives taken = 2005-07-02, and the file's EXIF DateTimeOriginal is 2005:07:02 16:45:59 (Ricoh Caplio GX). This was the last campaign day before the Tokyo Metropolitan Assembly election of 3 July 2005."
+    },
+    {
+      "job_id": "akihiro-ota-cartoon-2006-v1",
+      "person_id": "akihiro_ota",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed source and output: swept-back dark hair, rounded broad face, full cheeks, no glasses and restrained smile retain recognizable cues. Full-body navy suit and blue patterned tie, both hands/shoes visible, clean dark teal background. Source capture date is unknown; the younger early-sixties appearance is an illustration rather than proof of a dated 2006 likeness.",
+      "output_sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+      "prompt_sha256": "bd0fdc42e07e9ade28fcf5df7c6a77b90457ba7ebfb9adef63136767cd31cbab",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "2006-09-30",
+        "to": "2009-09-08",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "The chosen first Commons revision has no capture EXIF. Commons associates 2012-12-27 with editing metadata from a second Photoshop revision; that value does not establish a hard capture deadline for the chosen image. The MLIT flyer was visually inspected and contains this portrait and the printed minister name. Its CreationDate/ModDate are 2013-06-25; no printed publication date was found. Preserve both metadata observations without converting them to capture or appointment dates. The year in the retained reference filename is an identifier only."
+    },
+    {
+      "job_id": "natsuo-yamaguchi-cartoon-2009-v2",
+      "person_id": "natsuo_yamaguchi",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed source and output: dark side-swept hair, narrow eyes, longer face and slight smile match the 2013 photograph. Full-body navy suit/red tie replaces casual campaign clothing as explicitly requested; no podium, microphones, text or bystanders. Reads as the younger counterpart to the later variant; age about sixty is illustrative across the 2009-2015 interval.",
+      "output_sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+      "prompt_sha256": "bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "2009-09-08",
+        "to": "2015-01-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "Day, as the source states it: the Commons Information Date field reads 2013-07-07 and the file name ends 20130707; the embedded EXIF DateTimeOriginal is 2013:07:07 15:54:28 (camera clock, not independently verified). Not capture dates: the EXIF DateTime 2013:07:07 17:13:33 written by Windows Photo Viewer (a later save, probably a rotation) and the Commons upload of 22 July 2013. The election-campaign context agrees with the date but is not used to prove it."
+    },
+    {
+      "job_id": "natsuo-yamaguchi-cartoon-2015-v1",
+      "person_id": "natsuo_yamaguchi",
+      "decision": "accepted_for_bounded_registration",
+      "visual_review": "Viewed the unchanged documented transport copy of the original 2019 photograph and the output: side-swept hair with gray streaks, narrow eyes, slightly fuller older face and pale-blue tie retain the central named subject. No other conference attendee or text transferred. Full body, both hands and shoes visible. Later 2015-2024 appearance is based on age 67 in 2019, not the superseded single-window age 64 prompt.",
+      "output_sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+      "prompt_sha256": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+      "input_hashes_verified": true,
+      "source_original_hash_verified": true,
+      "metadata_original_hash_verified": true,
+      "generated_original_byte_identity": true,
+      "appearance_interval": {
+        "from": "2015-01-01",
+        "to": "2024-09-28",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_date_precision_preserved": "Day (time 14:54). The Commons Date field reads 29 August 2019, 14:54. The embedded EXIF DateTimeOriginal is 2019:08:29 14:54:59. The structured data gives Flickr publication on 29 August 2019."
+    }
+  ],
+  "untouched_authoritative_inputs": [
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435"
+    }
+  ],
+  "limits": [
+    "Portrait intervals authorize illustrative appearance selection only, not continuous office tenure.",
+    "Unknown source capture dates and metadata precision are retained.",
+    "Source and derivative licence obligations remain separate and explicit.",
+    "No claimed Claude or human approval; this review was performed by Codex.",
+    "Country acceptance, source gaps, fictional successors and full campaign qualification remain separate."
+  ]
+}

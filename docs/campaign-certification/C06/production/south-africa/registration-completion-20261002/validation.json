@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "country": "south-africa",
+  "status": "proposed_merge_validated_shared_manifest_unchanged",
+  "validated_at_utc": "2026-10-02T18:57:33.509507+00:00",
+  "checkout_revision": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "python": "D:\\spheres-offload\\codex-next-20260928\\tonga-cast-production-20261001\\civilian\\coverage-venv\\Scripts\\python.exe",
+  "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py validate --manifest <temporary combined Brazil+South-Africa manifest> --repo <review checkout>",
+  "exit_code": 0,
+  "valid": true,
+  "errors": [],
+  "warnings_count": 518,
+  "validated_portraits_total": 118,
+  "added_portraits_combined": 11,
+  "added_portraits_this_country": 4,
+  "fragment": {
+    "path": "docs/campaign-certification/C06/production/south-africa/registration-completion-20261002/manifest-fragment.json",
+    "sha256": "427112c6550d4047901a776b12ab4210e9bc9e25e9eb327de85664550a72ef0b",
+    "bytes": 27267
+  },
+  "generation_record": {
+    "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+    "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+    "bytes": 60152
+  },
+  "registration_review": {
+    "path": "docs/campaign-certification/C06/production/south-africa/registration-completion-20261002/registration-review.json",
+    "sha256": "0548b15ce13b89996aaba946188ca8ce695573bbef472ce327e8da4d612dc7ba",
+    "bytes": 14955
+  },
+  "base_manifest": {
+    "path": "spheres-web/data/person_portraits.json",
+    "sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+    "bytes": 535693
+  },
+  "registry": {
+    "path": "spheres-sim/data/party_leaders.json",
+    "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+    "bytes": 1282814
+  },
+  "temporary_combined_manifest_sha256": "a7624beab1190b7e04eef43c1796ae0248b82758867ae16dd74fed8a2be5f232",
+  "cli_stdout_sha256": "a240d868c587d6e942f762cc5c4d015ca369eac7b132aa6ed0889a3ca832a1fc",
+  "base_manifest_preserved": true,
+  "all_prior_portrait_objects_preserved": true,
+  "all_source_originals_prompt_and_input_pins_verified": true,
+  "all_selected_outputs_original_byte_identical": true,
+  "bounds_checks": [
+    {
+      "person_id": "mangosuthu_buthelezi",
+      "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+      "from": "1995-01-01",
+      "to_exclusive": "2005-01-01",
+      "first_and_last_day_exact_asset": true,
+      "exclusive_end_does_not_select_same_asset": true,
+      "missing_intervals": []
+    },
+    {
+      "person_id": "constand_viljoen",
+      "asset": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+      "from": "1994-03-31",
+      "to_exclusive": "2001-01-01",
+      "first_and_last_day_exact_asset": true,
+      "exclusive_end_does_not_select_same_asset": true,
+      "missing_intervals": []
+    },
+    {
+      "person_id": "pieter_mulder",
+      "asset": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+      "from": "2001-06-21",
+      "to_exclusive": "2016-11-13",
+      "first_and_last_day_exact_asset": true,
+      "exclusive_end_does_not_select_same_asset": true,
+      "missing_intervals": []
+    },
+    {
+      "person_id": "corne_mulder",
+      "asset": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+      "from": "2025-07-16",
+      "to_exclusive": "2026-09-08",
+      "first_and_last_day_exact_asset": true,
+      "exclusive_end_does_not_select_same_asset": true,
+      "missing_intervals": []
+    }
+  ],
+  "coverage_limit": "Pass proves these proposed portrait entries and their exact requested intervals. It does not close broader historical chains, reserves, country or campaign acceptance."
+}

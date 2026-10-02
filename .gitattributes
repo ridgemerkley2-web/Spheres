@@ -163,3 +163,8 @@ tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt text eol=lf
 
 # Preserve the byte-hashed render-return logs and receipts on every checkout.
 docs/campaign-certification/C06/render-return-20261002/** -text -whitespace
+
+# Versioned corrections and byte-hashed registration verification evidence.
+tools/avatars/person-prompts/takako-doi-cartoon-1996-v2.txt text eol=lf
+tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt text eol=lf
+docs/campaign-certification/C06/registration-completion-20261002/** -text -whitespace

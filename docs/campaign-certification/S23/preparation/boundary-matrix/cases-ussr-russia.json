@@ -86,7 +86,7 @@
     "Research roles: 8 (7 with holder observations); 0 of 296 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 36 uncertain, 222 unknown and 37 unresearched.",
     "Research holder observations by acceptance: accepted 17, pending 6, unattributed_intake 4.",
     "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
-    "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
+    "Campaign-start executive Mikhail Gorbachev: portrait bound on 1990-01-01; if retained, bound at 2 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.",
     "Future: 12 party candidates and 0 institutional candidates, 0 with a served portrait, 12 authorized for a national executive."
@@ -220,9 +220,9 @@
     {"date":"1990-07-30","kinds":["observation_window_through_day_before"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-07-31","kinds":["observation_window_through_day_of"],"historical":{"status":"period_attested","possible":[["su_cpsu_general_secretary#1","within_observation_window"]],"reason":"mixed:no_observation_covers_date,observation_window_not_an_exact_day_or_term"},"acceptance":["unattributed_intake"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
     {"date":"1990-08-01","kinds":["observation_window_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","window":["1990-01-01","1991-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png","available"]]},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1991-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#4","attested_on_day"],["su_supreme_soviet_chair#3","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1991-08-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png","window":["1991-01-01","1991-12-26"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png","available"]]},
+    {"date":"1991-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_cpsu_general_secretary#4","attested_on_day"],["su_supreme_soviet_chair#3","attested_on_day"]]},"acceptance":["accepted","pending"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png","window":["1991-01-01","1991-12-26"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png","available"]]},
+    {"date":"1991-08-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"bound","asset":"spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png","window":["1991-01-01","1991-12-26"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png","available"]]},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"mikhail_gorbachev","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -282,8 +282,8 @@
     "boundary_cases": 0,
     "attestation_cases": 9,
     "yearly_image_bindings": {
-     "bound": 1,
-     "unbound": 36
+     "bound": 2,
+     "unbound": 35
     }
    }
   },
@@ -5803,6 +5803,13 @@
      "from": "1990-01-01",
      "to": "1991-01-01",
      "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    },
+    {
+     "from": "1991-01-01",
+     "to": "1991-12-26",
+     "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
      "asset_status": "available",
      "extends_past_recorded_death": false
     }

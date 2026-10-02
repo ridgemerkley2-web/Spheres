@@ -64,15 +64,15 @@
      "uncertain": 3
     },
     "production_party_yearly_image_bindings": {
-     "bound": 15,
-     "unbound": 136
+     "bound": 44,
+     "unbound": 107
     },
     "executive_yearly_status": {
      "established": 9,
      "uncertain": 21,
      "unknown": 7
     },
-    "people_without_bound_art_at_yearly_samples": 29,
+    "people_without_bound_art_at_yearly_samples": 24,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 32,
     "fictional_party_candidates": 32,
@@ -89,7 +89,7 @@
     "Research roles: 7 (7 with holder observations); 9 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 1 are bracketed, 103 uncertain, 146 unknown and 0 unresearched.",
     "Research holder observations by acceptance: accepted 50, pending 44, unattributed_intake 5.",
     "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
-    "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
+    "Registry holder portraits at yearly samples: 44 bound, 107 unbound (24 distinct people without served art).",
     "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.",
@@ -504,14 +504,14 @@
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_198609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png","available"]],"campaign":{"observed":"fresh_campaign_start","holders":["takako_doi"],"verdict":"campaign_matches_reference"}},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_198609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png","available"]]},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_makoto_tanabe_199107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"makoto_tanabe","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1"}],"asset":[]},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_makoto_tanabe_199107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"makoto_tanabe","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1"}],"asset":[]},
-    {"date":"1993-01-18","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_jsp_makoto_tanabe_199107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"makoto_tanabe","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1"}],"asset":[]},
-    {"date":"1993-01-19","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_jsp_sadao_yamahana_19930119","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"sadao_yamahana","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1"}],"asset":[]},
-    {"date":"1993-01-20","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_jsp_sadao_yamahana_19930119","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"sadao_yamahana","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1"}],"asset":[]},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_tomiichi_murayama_199309","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:tomiichi_murayama:1993-09-30:1995-01-01:v1"}],"asset":[]},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_tomiichi_murayama_199309","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:tomiichi_murayama:1995-01-01:1996-01-01:v1"}],"asset":[]},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["jp_jsp_tomiichi_murayama_199309","uncertain_bounds"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_makoto_tanabe_199107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"makoto_tanabe","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png","window":["1991-07-31","1993-01-19"]}],"asset":[["spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png","available"]]},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_makoto_tanabe_199107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"makoto_tanabe","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png","window":["1991-07-31","1993-01-19"]}],"asset":[["spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png","available"]]},
+    {"date":"1993-01-18","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_jsp_makoto_tanabe_199107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"makoto_tanabe","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png","window":["1991-07-31","1993-01-19"]}],"asset":[["spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png","available"]]},
+    {"date":"1993-01-19","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_jsp_sadao_yamahana_19930119","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"sadao_yamahana","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png","window":["1993-01-19","1993-09-01"]}],"asset":[["spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png","available"]]},
+    {"date":"1993-01-20","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_jsp_sadao_yamahana_19930119","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"sadao_yamahana","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png","window":["1993-01-19","1993-09-01"]}],"asset":[["spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png","available"]]},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_tomiichi_murayama_199309","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","window":["1993-09-30","1996-09-01"]}],"asset":[["spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","available"]]},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_tomiichi_murayama_199309","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","window":["1993-09-30","1996-09-01"]}],"asset":[["spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","available"]]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["jp_jsp_tomiichi_murayama_199309","uncertain_bounds"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"possible","binding":"bound","asset":"spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","window":["1993-09-30","1996-09-01"]}],"asset":[["spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","available"]]},
     {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
@@ -568,8 +568,7 @@
     "boundary_cases": 3,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "bound": 2,
-     "unbound": 4
+     "bound": 6
     }
    }
   },
@@ -637,14 +636,14 @@
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["jp_jsp_tomiichi_murayama_199601","uncertain_bounds"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:1996-09-30:2000-01-01:v1"}],"asset":[]},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:1996-09-30:2000-01-01:v1"}],"asset":[]},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:1996-09-30:2000-01-01:v1"}],"asset":[]},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:2000-01-01:2003-11-01:v1"}],"asset":[]},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:2000-01-01:2003-11-01:v1"}],"asset":[]},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:2000-01-01:2003-11-01:v1"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:takako_doi:2000-01-01:2003-11-01:v1"}],"asset":[]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["jp_jsp_tomiichi_murayama_199601","uncertain_bounds"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"tomiichi_murayama","as":"possible","binding":"bound","asset":"spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","window":["1993-09-30","1996-09-01"]}],"asset":[["spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png","available"]]},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_takako_doi_199609","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takako_doi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","window":["1996-09-30","2003-11-01"]}],"asset":[["spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png","available"]]},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_mizuho_fukushima_200311","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"mizuho_fukushima","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:mizuho_fukushima:2003-11-30:2005-01-01:v1"}],"asset":[]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_mizuho_fukushima_200311","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"mizuho_fukushima","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:mizuho_fukushima:2005-01-01:2010-01-01:v1"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_jsp_mizuho_fukushima_200311","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"mizuho_fukushima","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:mizuho_fukushima:2005-01-01:2010-01-01:v1"}],"asset":[]},
@@ -694,7 +693,8 @@
     "boundary_cases": 0,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "unbound": 30
+     "bound": 7,
+     "unbound": 23
     }
    }
   },
@@ -1035,30 +1035,30 @@
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_takenori_kanzaki_19981107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takenori_kanzaki","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:takenori_kanzaki:2005-01-01:2006-09-30:v1"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_takenori_kanzaki_19981107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takenori_kanzaki","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:takenori_kanzaki:2005-01-01:2006-09-30:v1"}],"asset":[]},
     {"date":"2006-09-29","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_komeito_takenori_kanzaki_19981107","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"takenori_kanzaki","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:takenori_kanzaki:2005-01-01:2006-09-30:v1"}],"asset":[]},
-    {"date":"2006-09-30","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"}],"asset":[]},
-    {"date":"2006-10-01","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"}],"asset":[]},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"}],"asset":[]},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"}],"asset":[]},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"}],"asset":[]},
-    {"date":"2009-09-07","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"}],"asset":[]},
-    {"date":"2009-09-08","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1"}],"asset":[]},
-    {"date":"2009-09-09","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1"}],"asset":[]},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"}],"asset":[]},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"}],"asset":[]},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"}],"asset":[]},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"}],"asset":[]},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"}],"asset":[]},
-    {"date":"2024-09-27","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"}],"asset":[]},
+    {"date":"2006-09-30","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","window":["2006-09-30","2009-09-08"]}],"asset":[["spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","available"]]},
+    {"date":"2006-10-01","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","window":["2006-09-30","2009-09-08"]}],"asset":[["spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","available"]]},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","window":["2006-09-30","2009-09-08"]}],"asset":[["spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","available"]]},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","window":["2006-09-30","2009-09-08"]}],"asset":[["spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","available"]]},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","window":["2006-09-30","2009-09-08"]}],"asset":[["spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","available"]]},
+    {"date":"2009-09-07","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_komeito_akihiro_ota_20060930","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"akihiro_ota","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","window":["2006-09-30","2009-09-08"]}],"asset":[["spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png","available"]]},
+    {"date":"2009-09-08","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2009-09-09","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","window":["2009-09-08","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png","available"]]},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
+    {"date":"2024-09-27","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_komeito_natsuo_yamaguchi_20090908","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"natsuo_yamaguchi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","window":["2015-01-01","2024-09-28"]}],"asset":[["spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png","available"]]},
     {"date":"2024-09-28","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["jp_komeito_keiichi_ishii_20240928","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"keiichi_ishii","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:keiichi_ishii:2024-09-28:2024-11-09:v1"}],"asset":[]},
     {"date":"2024-09-29","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["jp_komeito_keiichi_ishii_20240928","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"keiichi_ishii","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:keiichi_ishii:2024-09-28:2024-11-09:v1"}],"asset":[]},
     {"date":"2024-11-08","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["jp_komeito_keiichi_ishii_20240928","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"keiichi_ishii","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:keiichi_ishii:2024-09-28:2024-11-09:v1"}],"asset":[]},
@@ -1097,7 +1097,8 @@
     "boundary_cases": 21,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "unbound": 28
+     "bound": 18,
+     "unbound": 10
     }
    }
   },
@@ -5769,17 +5770,23 @@
    "name": "Akihiro Ōta",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2006-09-30",
+     "to": "2009-09-08",
+     "asset": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2006-09-30",
      "to": "2009-09-08"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "eiichi_nagasue",
@@ -5963,17 +5970,23 @@
    "name": "Makoto Tanabe",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "1991-07-31",
+     "to": "1993-01-19",
+     "asset": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "1991-07-31",
      "to": "1993-01-19"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "mizuho_fukushima",
@@ -6005,20 +6018,30 @@
    "name": "Natsuo Yamaguchi",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2009-09-08",
+     "to": "2015-01-01",
+     "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    },
+    {
+     "from": "2015-01-01",
+     "to": "2024-09-28",
+     "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2009-09-08",
      "to": "2024-09-28"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1",
-    "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1",
-    "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
-    "cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "ryutaro_hashimoto",
@@ -6060,17 +6083,23 @@
    "name": "Sadao Yamahana",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "1993-01-19",
+     "to": "1993-09-01",
+     "asset": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "1993-01-19",
      "to": "1993-09-01"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "sanae_takaichi",
@@ -6179,6 +6208,13 @@
      "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png",
      "asset_status": "available",
      "extends_past_recorded_death": false
+    },
+    {
+     "from": "1996-09-30",
+     "to": "2003-11-01",
+     "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
     }
    ],
    "required_art_windows": [
@@ -6191,11 +6227,8 @@
      "to": "2003-11-01"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:takako_doi:1996-09-30:2000-01-01:v1",
-    "cartoon:takako_doi:2000-01-01:2003-11-01:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "takashi_yonezawa",
@@ -6302,7 +6335,15 @@
    "name": "Tomiichi Murayama",
    "born": null,
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "1993-09-30",
+     "to": "1996-09-01",
+     "asset": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "1993-09-30",
@@ -6313,12 +6354,8 @@
      "to": "1996-09-01"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:tomiichi_murayama:1993-09-30:1995-01-01:v1",
-    "cartoon:tomiichi_murayama:1995-01-01:1996-01-01:v1",
-    "cartoon:tomiichi_murayama:1996-01-31:1996-09-01:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "tomio_fujii",

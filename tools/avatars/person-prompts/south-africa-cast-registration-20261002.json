@@ -1,0 +1,732 @@
+{
+  "version": 1,
+  "batch": "ZA-CAST-B01",
+  "nation": "South Africa",
+  "task": "CLAUDE-C06-SOUTHAFRICA-01",
+  "reviewed_at": "2026-10-02",
+  "status": "reviewed_registration_proposal_pending_root_shared_manifest_merge",
+  "registration_operator": "Codex agent /root/tonga_civilian_roster (country fragments); Codex root integrates shared manifest",
+  "review_owner": "Codex agents as named per record; no Claude or human approval claimed",
+  "human_approval_claimed": false,
+  "claude_approval_claimed": false,
+  "render_return": {
+    "path": "docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json",
+    "sha256": "e394a48388251440a4696dc2ebd887647863f640e6678166164ed866be62b26a",
+    "bytes": 37226
+  },
+  "independent_render_review": {
+    "path": "docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+    "sha256": "182f697fd9e714fdf39260d7a81ed878c5867bad83658e0ddc61b9443df4378c",
+    "bytes": 74908
+  },
+  "source_review_revision": "c0382bbcb92852ff6e885292bb3ecfe9a7793a75",
+  "source_review_basis": "Exact active request; independent preparation and render audit followed by present Codex registration review. Earlier preparation/return records preserved unchanged.",
+  "manifest_before_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json": "7c4cd24028f05249fc3e834130abe5cabd0d6c0bda7392091dee45d8f8a821a9"
+  },
+  "source_reference_records": {
+    "mangosuthu-buthelezi-1983": {
+      "record": {
+        "person_id": "mangosuthu_buthelezi",
+        "kind": "observed_portrait",
+        "reference_id": "mangosuthu-buthelezi-1983",
+        "asset": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+        "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+        "bytes": 1221637,
+        "width": 2467,
+        "height": 3685,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+        "license": "CC0",
+        "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "creator": "Rob Bogaerts / Anefo",
+        "credit": "Rob Bogaerts / Anefo; Nationaal Archief, Fotocollectie Anefo (archive 2.24.01.05), item 932-6173, 10 June 1983 (Chief Mangosuthu Gatsha Buthelezi arriving at Schiphol); CC0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC0 (Creative Commons CC0 1.0 Universal), rights holder Nationaal Archief. Anefo is the historical Dutch photo agency whose collection the Nationaal Archief holds and has released under CC0; this is an archival public-domain dedication, not a live press-agency licence.",
+        "source_license_statement": "Commons extmetadata for this file: LicenseShortName 'CC0', License 'cc0', LicenseUrl 'http://creativecommons.org/publicdomain/zero/1.0/deed.en', UsageTerms 'Creative Commons Zero, Public Domain Dedication'; the file page ({{CC-zero}}) says the file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication. The Nationaal Archief record gives dcterms_rightsHolder 'Nationaal Archief, CC0'. 'cc0' and 'cc0 1.0' are both in FREE_LICENSES; the licence is recorded exactly as Commons states it.",
+        "depiction_date": "1983-06-10",
+        "source_review": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+        "source_metadata_sha256": "19d8d6d979bb75692313ed9fe1a6821623ebc18ba6320c40b79f181e303bc16d"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+        "bytes": 1221637,
+        "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Aankomst_en_vertrek%2C_politici%2C_portretten%2C_Buthelezi%2C_Mangosuthu%2C_Bestanddeelnr_932-6173.jpg",
+        "commons_sha1": "52aa2f789cb21228c3eea40ff2f3f41c627fe841"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6173.json",
+        "bytes": 4955,
+        "sha256": "19d8d6d979bb75692313ed9fe1a6821623ebc18ba6320c40b79f181e303bc16d"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-file-page-anefo-932-6173.html",
+        "bytes": 104977,
+        "sha256": "a931ae88ab964cd708dcc295d2465e9a026bec5e88b2258a1a48e7549844692e"
+      }
+    },
+    "constand-viljoen-1984": {
+      "record": {
+        "person_id": "constand_viljoen",
+        "kind": "observed_portrait",
+        "reference_id": "constand-viljoen-1984",
+        "asset": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+        "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+        "bytes": 35923,
+        "width": 383,
+        "height": 388,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Constand_Viljoen_1984.jpg",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+        "creator": "Ian Barbour",
+        "credit": "Ian Barbour (Flickr: barbourians), September 1984, CC BY-SA 2.0, via Wikimedia Commons: 'Constand Viljoen 1984.jpg', a crop by Commons user TDKR Chicago 101 (CropTool, 13 September 2020) of '1984 PW Botha inspects the guard of honour.jpg' (Flickr 5971221747, uploaded by Flickr upload bot for Gbawden on 19 September 2013 and confirmed CC BY-SA 2.0 on that date). Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY-SA 2.0, author Ian Barbour. Barbour's sibling Flickr caption (5971221735, same event) says he was General Viljoen's driver and sat in the front row, which supports that he took these photographs himself. Registration must explicitly offer the cartoon adaptation and any copyrightable contributions under CC BY-SA 2.0, retain attribution and identify the adaptation; a generated label and source licence alone do not record this obligation.",
+        "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY-SA 2.0', License 'cc-by-sa-2.0', LicenseUrl 'https://creativecommons.org/licenses/by-sa/2.0' (Creative Commons Attribution-Share Alike 2.0 Generic). The parent's Flickr licence was confirmed by the Flickr upload bot review on 19 September 2013; the crop inherits it and carries no separate review.",
+        "depiction_date": "1984-09",
+        "source_review": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+        "source_metadata_sha256": "31e9d42e9c392147efc9cd3cde430e62c824b000e179985679af7a827b36259f"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/Constand_Viljoen_1984.original.jpg",
+        "bytes": 35923,
+        "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Constand_Viljoen_1984.jpg",
+        "commons_sha1": "bc9a2690506e4be3c18395789f0bc90c46a7bf4d"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-api-viljoen-candidates.json",
+        "bytes": 20323,
+        "sha256": "31e9d42e9c392147efc9cd3cde430e62c824b000e179985679af7a827b36259f"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-file-page-constand-viljoen-1984.html",
+        "bytes": 99828,
+        "sha256": "32165eac53309e1460bfd71bdbb72e7464845b1ee264abc1ec2b9ec3ba8c1f70"
+      }
+    },
+    "pieter-mulder-2013": {
+      "record": {
+        "person_id": "pieter_mulder",
+        "kind": "observed_portrait",
+        "reference_id": "pieter-mulder-2013",
+        "asset": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+        "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+        "bytes": 1547241,
+        "width": 3000,
+        "height": 2000,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "creator": "Blake Woodhams (photographer, 'Photo by Blake Woodhams'; EXIF Artist 'blakewoodhams.co.za') for the U.S. Department of Agriculture, published on the USDA Flickr account 41284017@N08",
+        "credit": "U.S. Department of Agriculture, photo by Blake Woodhams, '20130916-OSEC-BW-0002' (Flickr 9785284212), Johannesburg, 16 September 2013; CC BY 2.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 2.0 as published by the U.S. Department of Agriculture on its official Flickr stream and confirmed by Commons FlickrReview (Gbawden) on 2013-09-19. The embedded EXIF Copyright reads 'by BWPeventphotography.co.za': the photograph was taken by a Johannesburg event photographer for the USDA trade mission and released by USDA; it is not a wire-agency or press photograph. Not treated as a public-domain US federal work.",
+        "source_license_statement": "Commons extmetadata LicenseShortName 'CC BY 2.0' (License cc-by-2.0, UsageTerms 'Creative Commons Attribution 2.0'). FlickrReview: uploaded by Flickr upload bot (for Gbawden) and confirmed under the indicated licence on 19 September 2013.",
+        "depiction_date": "2013-09-16",
+        "source_review": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+        "source_metadata_sha256": "0dfa45cffd67104dc9e898b60dbf08c6e19e1787c09f87166e23e35e076e9bb7"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+        "bytes": 1547241,
+        "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+        "commons_sha1": "616f445fcd977ade04db604d81383813bdb9ab5b"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-imageinfo-20130916-OSEC-BW-0002.json",
+        "bytes": 10514,
+        "sha256": "0dfa45cffd67104dc9e898b60dbf08c6e19e1787c09f87166e23e35e076e9bb7"
+      },
+      "metadata_file_page": null
+    },
+    "corne-mulder-2023": {
+      "record": {
+        "person_id": "corne_mulder",
+        "kind": "observed_portrait",
+        "reference_id": "corne-mulder-2023",
+        "asset": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+        "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+        "bytes": 98762,
+        "width": 301,
+        "height": 425,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Corne_Mulder.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "creator": "Houses of the Oireachtas",
+        "credit": "Houses of the Oireachtas, 'Corne Mulder.jpg', taken 14 June 2023 at Leinster House, Dublin; CC BY 2.0, via Wikimedia Commons. Commons crop (CropTool, user Lefcentreright, 17 November 2024, two steps) of 'Pemmy Majodina visits Ireland.jpg' (Flickr 52974699940, Houses of the Oireachtas stream). Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "CC BY 2.0, attribution 'Houses of the Oireachtas'. The chosen file is a derivative crop made by Commons user Lefcentreright on 2024-11-17 with CropTool from the Flickr-reviewed parent. The copied bytes are the crop's current version, unchanged; the Commons sha1 matches.",
+        "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY 2.0', License 'cc-by-2.0', UsageTerms 'Creative Commons Attribution 2.0', template {{cc-by-2.0}}. The parent passed FlickreviewR 2 on 2023-06-14 (reviewlicense cc-by-2.0, author Houses of the Oireachtas); the crop has no review of its own.",
+        "depiction_date": "2023-06-14",
+        "source_review": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+        "source_metadata_sha256": "03f663b929badcf5b6a07fff890cb94f115c72d53adbafec10448beecb44e777"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/Corne_Mulder.original.jpg",
+        "bytes": 98762,
+        "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Corne_Mulder.jpg",
+        "commons_sha1": "594a05e9b4570f601435536857b205b12088ad4b"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-corne-mulder-and-parent.json",
+        "bytes": 8970,
+        "sha256": "03f663b929badcf5b6a07fff890cb94f115c72d53adbafec10448beecb44e777"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-file-page-corne-mulder.html",
+        "bytes": 111170,
+        "sha256": "0c945d2a0d2e7fa4162ce492d6688f37784c9ffafcf380eec8c0426cc57760e0"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "mangosuthu-buthelezi-cartoon-1995-v1",
+        "person_id": "mangosuthu_buthelezi",
+        "from": "1995-01-01",
+        "to": "2005-01-01",
+        "references": [
+          "mangosuthu-buthelezi-1983"
+        ],
+        "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+        "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+        "bytes": 1603845,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-efe521bf-91a9-4586-af71-cd481d8b4736.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 1995-01-01 to 2005-01-01 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 1983-06-10. Photograph of 10 June 1983: 4,223 days (about 11.6 years) before the window's first day (1995-01-01) and 7,875 days (about 21.6 years) before its last day (2004-12-31). Buthelezi was born on 27 August 1928 (general biographical knowledge, not C01 research; the registry has no birth date): South African History Online, https://sahistory.org.za/people/chief-mangosuthu-gatsha-buthelezi ('Born 27 August 1928', checked at assembly on 2026-10-01), and Wikidata Q554131 P569 1928-08-27. He is 54 in the photograph and 66 to 76 in the window. The prompt asks for a man of about 70 with the same features, glasses and beard shape, a slightly fuller and softer face, a few lines, and moderate salt-and-pepper grey in hair, moustache and beard, and says this older treatment and the grey are artistic interpretations, not attested by a dated 1995-2004 photograph. Colours are artistic because the photograph is black and white.",
+        "visual_review": "Rounded face, large glasses, moustache and close beard match the 1983 reference. More gray, softer contours and lines provide the declared older interpretation. Civilian suit, both hands and shoes are coherent. Color and 1995-2004 age treatment are illustrative, not attested by a photograph from those years. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "mangosuthu_buthelezi-571ede3793fd",
+              "from": "1995-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "mangosuthu_buthelezi-355a6013bb99",
+              "from": "1995-01-01",
+              "to": "2005-01-01",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "2005-01-01",
+              "to": "2027-01-01",
+              "id": "mangosuthu_buthelezi-4640e6b6e46c",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            }
+          ],
+          "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+            "cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1",
+            "cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Mangosuthu Buthelezi, exact person mangosuthu_buthelezi, as an artistic interpretation of his appearance from January 1995 to the end of December 2004, when he was about 66 to 76 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Rob Bogaerts / Anefo's CC0 1.0 black-and-white photograph (Nationaal Archief, Fotocollectie Anefo, 932-6173) of Mangosuthu Buthelezi arriving at Schiphol airport on 10 June 1983, a head-and-chest portrait in which he is the only person. Preserve his recognizable face: broad rounded face with full cheeks, high rounded forehead, short tightly curled dark hair cropped close in a rounded shape with the hairline receding slightly at the temples, large squarish aviator-style eyeglasses with thin light metal frames and a straight double bridge, dark eyes that narrow when he smiles, broad nose, a thin moustache whose ends curve down into a short close beard along the jaw and a fuller beard on the chin, warm closed-mouth smile, deep brown complexion. He is 54 in the photograph, which is about eleven and a half years before this appearance begins and about twenty-one and a half years before it ends; show the age of a man of about 70, clearly older than the photograph: the same features, glasses and beard shape, with a slightly fuller and softer face, a few lines at the eyes and mouth, and moderate salt-and-pepper gray in the short hair, moustache and beard. This older treatment and the gray are artistic interpretations, not attested by a dated 1995-2004 photograph, and must not become mocking exaggeration. His expression is warm and dignified, with a modest friendly smile.\nClothing: simple dark charcoal two-piece civilian suit, white shirt with a pointed collar, tie with bold diagonal stripes in muted maroon and gold, a softly folded patterned pocket square in the breast pocket, black shoes. The reference is black and white, so these colors are artistic interpretations; the standing body, hands, trousers and shoes are artistic extensions of a head-and-chest photograph. Medium adult build. No hat, medals, sash, rosette, lapel badge, party emblem, walking stick, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, large glasses, beard and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the dark, blurred airport hall and bright windows behind him in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/mangosuthu-buthelezi-cartoon-1995-v1.txt",
+      "prompt_file_sha256": "d066930ed4fac85b0a1089e92c2ae6e471341e3407b1d421d9e9ed57964479c6",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/selector_leader_api",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+          "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+          "bytes": 1221637,
+          "width": 2467,
+          "height": 3685,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "mangosuthu_buthelezi",
+          "reference_id": "mangosuthu-buthelezi-1983"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+        "original_reference_sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+        "creator": "Rob Bogaerts / Anefo",
+        "credit": "Rob Bogaerts / Anefo; Nationaal Archief, Fotocollectie Anefo (archive 2.24.01.05), item 932-6173, 10 June 1983 (Chief Mangosuthu Gatsha Buthelezi arriving at Schiphol); CC0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC0",
+        "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "constand-viljoen-cartoon-1994-v1",
+        "person_id": "constand_viljoen",
+        "from": "1994-03-31",
+        "to": "2001-01-01",
+        "references": [
+          "constand-viljoen-1984"
+        ],
+        "asset": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+        "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+        "bytes": 1563480,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-bb1ec584-2283-4fb6-a2c6-2a65848ad336.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 1994-03-31 to 2001-01-01 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 1984-09. Viljoen was born on 28 October 1933 (general biographical knowledge, not C01 research; the registry has no birth date): Wikidata Q2568741 P569 1933-10-28, checked at assembly on 2026-10-01. He was about 50 in the September 1984 photograph and 60 to 67 across the window (1994-03-31 to 2000-12-31). The photograph is about 9.5 years before the window starts and about 16.3 years before it ends; the prompt discloses this and asks for a man of 60 to 67 with deeper lines around the eyes and mouth, keeping the same face structure and silver-white hair. The cap hides his crown, so the hair above the temples is an artistic interpretation; the open eyes, civilian suit, standing body, hands, trousers and shoes are artistic extensions of a small head-and-collar crop. The military cap, badge and uniform are explicitly excluded.",
+        "visual_review": "Angular face, nose, firm mouth and silver hair retain the small 1984 reference cues. Open eyes, uncovered crown and civilian clothing are artistic completions. Coherent full body with both hands/shoes; no military cap or insignia. The approximately 60-67 treatment is accepted for the requested illustration interval, with the decade-plus source gap explicit. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "constand_viljoen-f4174a5400ed",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "constand_viljoen-3725bb6de879",
+              "from": "1994-03-31",
+              "to": "2001-01-01",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "1994-03-31",
+              "id": "constand_viljoen-c51a00dfab36",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            },
+            {
+              "from": "2001-01-01",
+              "to": "2027-01-01",
+              "id": "constand_viljoen-cb3617438dd1",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            }
+          ],
+          "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+            "cartoon:constand_viljoen:1994-03-31:1995-01-01:v1",
+            "cartoon:constand_viljoen:1995-01-01:2000-01-01:v1",
+            "cartoon:constand_viljoen:2000-01-01:2001-01-01:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Constand Viljoen, exact person constand_viljoen, as an artistic interpretation of his appearance from the end of March 1994 to the end of December 2000, when he was a civilian party leader about 60 to 67 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Ian Barbour's CC BY-SA 2.0 color photograph of Constand Viljoen, then a general and Chief of the South African Defence Force, at P. W. Botha's inauguration as State President in September 1984 (Commons crop 'Constand Viljoen 1984.jpg' of Barbour's Flickr photograph of the guard-of-honour inspection; the source gives the month and year only). It is a tight head-and-collar crop in which his is the only complete face; ignore the out-of-focus partial face and gold-corded shoulder of a guardsman at the top-left and left edge, the partly visible pale figure at the right edge, the foliage, and his military peaked cap, cap badge and uniform collar. Preserve his recognizable face, seen in three-quarter view: lean long face with defined cheekbones and lined, slightly hollow cheeks, long straight nose, thin lips in a firm straight closed mouth, strong chin and jaw, light grayish eyebrows over deep-set eyes, close-trimmed silver-white hair at the temples and sides, fair weathered skin, clean shaven, no glasses. The photograph is about nine and a half years before this appearance begins and about sixteen years before it ends, when he was about 50; show a man of about 60 to 67 with somewhat deeper lines around the eyes and mouth, keeping the same face structure, silver-white hair and upright bearing, without mocking exaggeration. The cap hides the top of his head, so the hair above the temples is an artistic interpretation: a full head of short silver-white hair neatly combed back. His eyes are cast down in the photograph; draw them open and looking ahead, with a calm, composed and serious expression. Do not copy the photograph's warm faded color cast; use natural fair skin tones.\nClothing: plain dark charcoal single-breasted two-piece civilian suit, white shirt, plain dark navy tie, black shoes. These are artistic interpretations: Image 2 shows him in military uniform and a peaked cap, which must not be copied; the standing body, hands, trousers and shoes are artistic extensions of a head-and-collar photograph. Lean, upright build. No uniform, cap, beret, medals, ribbons, badges, collar patches, rank stars, braid, cords, lapel pin, party emblem, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, silver-white hair and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the foliage, guardsmen or parade behind him in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/constand-viljoen-cartoon-1994-v1.txt",
+      "prompt_file_sha256": "79f58149429784f37c9ccef47b98b6c8da4bcd3ddcdfa16cd8a9ecbdb1c5bb24",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/selector_leader_api",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+          "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+          "bytes": 35923,
+          "width": 383,
+          "height": 388,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "constand_viljoen",
+          "reference_id": "constand-viljoen-1984"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Constand_Viljoen_1984.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+        "original_reference_sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+        "creator": "Ian Barbour",
+        "credit": "Ian Barbour (Flickr: barbourians), September 1984, CC BY-SA 2.0, via Wikimedia Commons: 'Constand Viljoen 1984.jpg', a crop by Commons user TDKR Chicago 101 (CropTool, 13 September 2020) of '1984 PW Botha inspects the guard of honour.jpg' (Flickr 5971221747, uploaded by Flickr upload bot for Gbawden on 19 September 2013 and confirmed CC BY-SA 2.0 on that date). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+        "derivative_license": "CC BY-SA 2.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "pieter-mulder-cartoon-2001-v1",
+        "person_id": "pieter_mulder",
+        "from": "2001-06-21",
+        "to": "2016-11-13",
+        "references": [
+          "pieter-mulder-2013"
+        ],
+        "asset": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+        "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+        "bytes": 1616484,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-1ae458cd-d10f-4b18-a2f2-e092059ad807.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2001-06-21 to 2016-11-13 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2013-09-16. Photograph of 16 September 2013, inside the window: 4,470 days (about 12.2 years) after the window start 2001-06-21 and 1,153 days (about 3.2 years) before its last day 2016-11-12. Mulder was born on 26 July 1951 (general biographical knowledge, not C01 research: Wikidata Q770995 P569 1951-07-26, checked at assembly on 2026-10-01; English and Afrikaans Wikipedia per the verifier). He is 62 in the photograph and 49 to 65 across the window. The prompt asks for a man in his late fifties (about 57, the middle of the period), about five years younger than the photograph, keeping the photographed gray hair, glasses and full face. The 2001-12-31 to 2005-01-01 leadership job (ages 50 to 53) relies on de-ageing of about 9 to 12 years; his hair may have been less gray then, but no qualifying earlier photograph exists to check, so the prompt invents no other hair colour. The standing body below the chest, hands, trousers and shoes are artistic extensions of a waist-up lectern photograph.",
+        "visual_review": "Full face, rectangular glasses, short gray hair and slight head tilt agree with the 2013 lectern photograph. Navy suit/red dotted tie and full-body pose are coherent. Late-fifties artistic treatment is accepted; early-window gray hair and de-ageing are uncertain and do not become dated photographic facts. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "pieter_mulder-dde556c97c84",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "pieter_mulder-a245f929c659",
+              "from": "2001-06-21",
+              "to": "2016-11-13",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2001-06-21",
+              "id": "pieter_mulder-2f581c5280b6",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            },
+            {
+              "from": "2016-11-13",
+              "to": "2027-01-01",
+              "id": "pieter_mulder-074a007d426d",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            }
+          ],
+          "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+            "cartoon:pieter_mulder:2001-12-31:2005-01-01:v1",
+            "cartoon:pieter_mulder:2005-01-01:2010-01-01:v1",
+            "cartoon:pieter_mulder:2010-01-01:2015-01-01:v1",
+            "cartoon:pieter_mulder:2015-01-01:2016-11-12:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Pieter Mulder, exact person pieter_mulder, as an artistic interpretation of his appearance from late June 2001 to mid-November 2016, when he was about 49 to 65 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: the U.S. Department of Agriculture's CC BY 2.0 color photograph by Blake Woodhams of Pieter Mulder, then South Africa's Deputy Agriculture Minister, speaking at a lectern at the USDA Sub-Saharan Africa Trade Initiative Business Round Table in Johannesburg on 16 September 2013, inside the depicted period; he is the only person in it. Preserve his recognizable face: short, thick steel-gray hair with a few darker strands, brushed up and back from the forehead with a slight side part and trimmed short over the ears; thin silver-gray metal rectangular glasses; gray, fairly heavy straight brows; a broad, full, rounded face with heavy cheeks, soft jowls and a slightly double chin; a broad nose with a rounded fleshy tip; fair complexion with a ruddy pink tone; clean shaven; a heavy-set, broad-chested adult build. The photograph shows him at 62, about twelve years after this appearance begins and about three years before it ends; show a man in his late fifties (about 57, the middle of the period), about five years younger than the photograph, keeping the same gray hair, glasses and full face, without mocking exaggeration. His expression is calm, earnest and approachable, lips closed in a slight confident smile, not the open-mouthed speaking expression of the photograph.\nClothing: simple dark navy two-piece civilian suit, light blue shirt, red tie with a fine scattered pattern of small blue dots simplified to a few clean flecks, black shoes. Suit, shirt and tie colors follow the color reference, ignoring its warm orange stage-light cast; the standing body below the chest, hands, trousers and shoes are artistic extensions of a waist-up photograph taken behind a lectern, in which his hands are hidden or holding papers. No medals, sash, rosette, lapel badge, flag or invented insignia, and no papers in his hands.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, gray hair, glasses and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the gold damask wallpaper, striped curtain, wooden lectern, microphone, water bottles, glass or papers in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/pieter-mulder-cartoon-2001-v1.txt",
+      "prompt_file_sha256": "3bf5004a8f37214eb77cb5f1d192c75c2ba0653f5f994474b8f230a434b32b1d",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/selector_leader_api",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+          "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+          "bytes": 1547241,
+          "width": 3000,
+          "height": 2000,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "pieter_mulder",
+          "reference_id": "pieter-mulder-2013"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+        "original_reference_sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+        "creator": "Blake Woodhams (photographer, 'Photo by Blake Woodhams'; EXIF Artist 'blakewoodhams.co.za') for the U.S. Department of Agriculture, published on the USDA Flickr account 41284017@N08",
+        "credit": "U.S. Department of Agriculture, photo by Blake Woodhams, '20130916-OSEC-BW-0002' (Flickr 9785284212), Johannesburg, 16 September 2013; CC BY 2.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "corne-mulder-cartoon-2025-v1",
+        "person_id": "corne_mulder",
+        "from": "2025-07-16",
+        "to": "2026-09-08",
+        "references": [
+          "corne-mulder-2023"
+        ],
+        "asset": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+        "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+        "bytes": 1588691,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-cf46bd37-54c6-4ca1-be81-95303feb7267.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2025-07-16 to 2026-09-08 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2023-06-14. Born 28 September 1958 per the English Wikipedia infobox citing the IEC NPE2024 candidate list (general biographical knowledge, not C01 research; Wikidata has no birth date). He is 64 in the photograph (2023-06-14), 66 when the window opens (2025-07-16) and 67 on its last day (2026-09-07). The photograph is about 2 years 1 month before the window opens and about 3 years 3 months before it closes. The prompt asks for a man of 66 to 67, essentially as photographed and at most very slightly older. The standing body, hands, trousers, shoes and heavyset build are artistic extensions of a head-and-shoulders photograph.",
+        "visual_review": "High balding forehead, white side hair, dark glasses, rounded face and heavyset build agree with the 2023 head-and-shoulders source. Navy suit/red tie, visible hands and shoes; coherent slightly older treatment for 2025-2026. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "corne_mulder-4a324fa308a8",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "corne_mulder-e523c7f55fc0",
+              "from": "2025-07-16",
+              "to": "2026-09-08",
+              "status": "needs_source_and_visual_review",
+              "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2025-07-16",
+              "id": "corne_mulder-6a16e484e40e",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            },
+            {
+              "from": "2026-09-08",
+              "to": "2027-01-01",
+              "id": "corne_mulder-3e6946666f87",
+              "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+            }
+          ],
+          "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+            "cartoon:corne_mulder:2025-07-16:2026-09-08:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Corné Mulder, exact person corne_mulder, as an artistic interpretation of his appearance from mid-July 2025 to early September 2026, when he was about 66 to 67 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: the Houses of the Oireachtas' CC BY 2.0 color photograph of Corné Mulder taken on 14 June 2023 outside Leinster House, Dublin, during a visit by a South African parliamentary whips' delegation (a Commons head-and-shoulders crop of a group photograph). Preserve his recognizable face: broad, round face with full cheeks, a soft jaw and a slight double chin; a high, mostly bald crown with thin, fine white hair, wispy on top and short at the sides above the ears; rectangular browline glasses: a thin black bar along the top of each lens, with thin silver lower rims, bridge and temple arms; light eyes; very pale, sparse eyebrows; straight medium nose with a rounded tip; thin lips; fair, slightly ruddy complexion; clean shaven. The photograph is about two years before this appearance begins and about three years before it ends; show a man of 66 to 67, essentially as in the photograph and at most very slightly older, without mocking exaggeration. His expression is friendly and composed, with a modest closed-mouth smile.\nClothing: simple very dark navy two-piece civilian suit, white shirt, plain bright red tie, black shoes. Suit, shirt and tie colors follow the reference; strong sunlight makes one side of his jacket look gray there, but the whole suit is dark navy. The standing body, hands, trousers and shoes are artistic extensions of a head-and-shoulders photograph. Sturdy, slightly heavyset adult build, inferred from his face and neck rather than shown in the photograph. No medals, sash, rosette, lapel badge, party colors, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, white hair, glasses and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the sunlit gray stone wall and column of Leinster House behind him in the reference photograph or its harsh outdoor light; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/corne-mulder-cartoon-2025-v1.txt",
+      "prompt_file_sha256": "d0d1db4577c23590c2965a2c580f5e43eb8283a4141ad85e2c1d90bfddf8c018",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/selector_leader_api",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+          "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+          "bytes": 98762,
+          "width": 301,
+          "height": 425,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "corne_mulder",
+          "reference_id": "corne-mulder-2023"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Corne_Mulder.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+        "original_reference_sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+        "creator": "Houses of the Oireachtas",
+        "credit": "Houses of the Oireachtas, 'Corne Mulder.jpg', taken 14 June 2023 at Leinster House, Dublin; CC BY 2.0, via Wikimedia Commons. Commons crop (CropTool, user Lefcentreright, 17 November 2024, two steps) of 'Pemmy Majodina visits Ireland.jpg' (Flickr 52974699940, Houses of the Oireachtas stream). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    }
+  ],
+  "preserved_attempts_and_skips": {
+    "render_return": "docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json",
+    "all_original_attempts_retained": true,
+    "skipped": [
+      {
+        "person_id": "mangosuthu_buthelezi",
+        "display_name": "Mangosuthu Buthelezi",
+        "requested_window": {
+          "from": "2005-01-01",
+          "to": "2019-08-25",
+          "to_exclusive": true
+        },
+        "status": "not_ready_no_qualifying_photograph",
+        "reason": "No freely licensed, dated photograph of Buthelezi in or near 2005-2019 passes the batch rules. The closest photographs that pass the licence and date rules are the Anefo frames of 10 June 1983 (CC0), 21.6 years before the window starts and 36.2 years before it ends (age 54 against 76 to 90; born 27 August 1928, general biographical knowledge). Drawing him at 76 to 90 from them would invent most of his late-life appearance, so the window was not prepared.",
+        "category": "excluded_people",
+        "generated": false
+      },
+      {
+        "person_id": "velenkosini_hlabisa",
+        "display_name": "Velenkosini Hlabisa",
+        "requested_window": {
+          "from": "2019-08-24",
+          "to": "2026-09-08",
+          "to_exclusive": true
+        },
+        "status": "not_ready_no_qualifying_photograph",
+        "reason": "No qualifying likeness photograph of Hlabisa exists in the sources searched. Commons holds only an eNCA YouTube video still (2019-05-13, CC BY 3.0) and its crop, rejected as TV stills; every Flickr photograph of him is ND, NC-ND or all rights reserved.",
+        "category": "excluded_people",
+        "generated": false
+      },
+      {
+        "person_id": "kenneth_meshoe",
+        "display_name": "Kenneth Meshoe",
+        "requested_window": {
+          "from": "1993-12-31",
+          "to": "2010-01-01",
+          "to_exclusive": true
+        },
+        "status": "not_ready_no_qualifying_photograph",
+        "reason": "No qualifying likeness photograph of Meshoe was found for this window or any other date in the sources searched (Commons, Openverse, Flickr with free-licence filters, NARA catalog and Library of Congress). Commons holds only video stills.",
+        "category": "excluded_people",
+        "generated": false
+      },
+      {
+        "person_id": "kenneth_meshoe",
+        "display_name": "Kenneth Meshoe",
+        "requested_window": {
+          "from": "2010-01-01",
+          "to": "2026-09-08",
+          "to_exclusive": true
+        },
+        "status": "not_ready_no_qualifying_photograph",
+        "reason": "No qualifying likeness photograph exists for 2010-2026. The only in-window images on Commons are video frames (a 2013 or 2014 Vimeo screenshot and a 2019 YouTube still, both 'CC BY 3.0'), which the batch rejects; the ideal dated GovernmentZA solo photograph (2025-02-06) is CC BY-ND 2.0.",
+        "category": "excluded_people",
+        "generated": false
+      },
+      {
+        "person_id": "pieter_groenewald",
+        "requested_window": {
+          "from": "2016-12-27",
+          "to": "2025-07-16",
+          "to_exclusive": true,
+          "window_status": "needs_codex_agreement"
+        },
+        "status": "not prepared in this task; preparing a reserve needs Codex agreement on its window first",
+        "category": "reserve_not_prepared",
+        "generated": false
+      },
+      {
+        "person_id": "mzwanele_nyhontso",
+        "requested_window": {
+          "from": "2020-02-15",
+          "to": "2026-09-08",
+          "to_exclusive": true,
+          "window_status": "needs_codex_agreement"
+        },
+        "status": "not prepared in this task; preparing a reserve needs Codex agreement on its window first",
+        "category": "reserve_not_prepared",
+        "generated": false
+      }
+    ]
+  },
+  "authority": {
+    "country_complete": false,
+    "runtime_or_office_boundary_changes": false,
+    "shared_manifest_written_by_this_record": false
+  }
+}

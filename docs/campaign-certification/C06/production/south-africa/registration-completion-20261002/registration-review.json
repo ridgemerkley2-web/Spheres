@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "country": "South Africa",
+  "reviewer": "Codex agent /root/tonga_civilian_roster",
+  "reviewed_at": "2026-10-02",
+  "audit_checkout_revision": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "source_pins": [
+    {
+      "path": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+      "sha256": "7c4cd24028f05249fc3e834130abe5cabd0d6c0bda7392091dee45d8f8a821a9",
+      "bytes": 130767
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json",
+      "sha256": "e394a48388251440a4696dc2ebd887647863f640e6678166164ed866be62b26a",
+      "bytes": 37226
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md",
+      "sha256": "fe64ad382bf8457d8201bca7976d9077a16f300ef72fb75c571007dfc4d1de89",
+      "bytes": 19124
+    },
+    {
+      "path": "docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+      "sha256": "182f697fd9e714fdf39260d7a81ed878c5867bad83658e0ddc61b9443df4378c",
+      "bytes": 74908
+    },
+    {
+      "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+      "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+      "bytes": 60152
+    }
+  ],
+  "status": "all_current_requested_outputs_accepted_for_bounded_illustrative_registration",
+  "counts": {
+    "active_portraits": 4,
+    "accepted_for_proposed_registration": 4,
+    "held": 0,
+    "historical_holder_changes": 0
+  },
+  "authority": {
+    "human_approval": false,
+    "claude_approval": false,
+    "country_acceptance": false,
+    "source_history_complete": false
+  },
+  "jobs": [
+    {
+      "job_id": "mangosuthu-buthelezi-cartoon-1995-v1",
+      "stem": "mangosuthu-buthelezi-cartoon-1995-v1",
+      "person_id": "mangosuthu_buthelezi",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "1995-01-01",
+        "to": "2005-01-01",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "1995-01-01",
+        "to": "2005-01-01",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-30 IFP President holder observation attested 1995-10-24. The window continues his existing 1990-01-01 to 1995-01-01 portrait and lies inside registry term za_ifp_mangosuthu_buthelezi_19750321 (1975-03-21 to 2019-08-24, not C01 research). It is split at 2005-01-01 for age, at a leadership-production job boundary; the later window 2005-01-01 to 2019-08-25 is not ready (see excluded_people)."
+      },
+      "output_sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+      "visual_notes": "Rounded face, large glasses, moustache and close beard match the 1983 reference. More gray, softer contours and lines provide the declared older interpretation. Civilian suit, both hands and shoes are coherent. Color and 1995-2004 age treatment are illustrative, not attested by a photograph from those years. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Photograph of 10 June 1983: 4,223 days (about 11.6 years) before the window's first day (1995-01-01) and 7,875 days (about 21.6 years) before its last day (2004-12-31). Buthelezi was born on 27 August 1928 (general biographical knowledge, not C01 research; the registry has no birth date): South African History Online, https://sahistory.org.za/people/chief-mangosuthu-gatsha-buthelezi ('Born 27 August 1928', checked at assembly on 2026-10-01), and Wikidata Q554131 P569 1928-08-27. He is 54 in the photograph and 66 to 76 in the window. The prompt asks for a man of about 70 with the same features, glasses and beard shape, a slightly fuller and softer face, a few lines, and moderate salt-and-pepper grey in hair, moustache and beard, and says this older treatment and the grey are artistic interpretations, not attested by a dated 1995-2004 photograph. Colours are artistic because the photograph is black and white.",
+      "source_reference_id": "mangosuthu-buthelezi-1983",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6173.json",
+        "bytes": 4955,
+        "sha256": "19d8d6d979bb75692313ed9fe1a6821623ebc18ba6320c40b79f181e303bc16d"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "constand-viljoen-cartoon-1994-v1",
+      "stem": "constand-viljoen-cartoon-1994-v1",
+      "person_id": "constand_viljoen",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "1994-03-31",
+        "to": "2001-01-01",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "1994-03-31",
+        "to": "2001-01-01",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-30 Freedom Front Leader holder observation attested 1997-08-26. The bounds come from registry term za_ff_constand_viljoen_199403 (from month 1994-03, until year 2001; not C01 research) as leadership production dates it (1994-03-31 to 2001-01-01)."
+      },
+      "output_sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+      "visual_notes": "Angular face, nose, firm mouth and silver hair retain the small 1984 reference cues. Open eyes, uncovered crown and civilian clothing are artistic completions. Coherent full body with both hands/shoes; no military cap or insignia. The approximately 60-67 treatment is accepted for the requested illustration interval, with the decade-plus source gap explicit. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Viljoen was born on 28 October 1933 (general biographical knowledge, not C01 research; the registry has no birth date): Wikidata Q2568741 P569 1933-10-28, checked at assembly on 2026-10-01. He was about 50 in the September 1984 photograph and 60 to 67 across the window (1994-03-31 to 2000-12-31). The photograph is about 9.5 years before the window starts and about 16.3 years before it ends; the prompt discloses this and asks for a man of 60 to 67 with deeper lines around the eyes and mouth, keeping the same face structure and silver-white hair. The cap hides his crown, so the hair above the temples is an artistic interpretation; the open eyes, civilian suit, standing body, hands, trousers and shoes are artistic extensions of a small head-and-collar crop. The military cap, badge and uniform are explicitly excluded.",
+      "source_reference_id": "constand-viljoen-1984",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-api-viljoen-candidates.json",
+        "bytes": 20323,
+        "sha256": "31e9d42e9c392147efc9cd3cde430e62c824b000e179985679af7a827b36259f"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "pieter-mulder-cartoon-2001-v1",
+      "stem": "pieter-mulder-cartoon-2001-v1",
+      "person_id": "pieter_mulder",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2001-06-21",
+        "to": "2016-11-13",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2001-06-21",
+        "to": "2016-11-13",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-30 Freedom Front / FF Plus Leader holder observations attested 2001-06-21, 2003-09-28 and 2016-11-12. The window runs from the first accepted observation to the day after the last. It contains registry term za_ff_pieter_mulder_2001 (from year 2001, until 2016-11-12; not C01 research), which leadership production dates 2001-12-31 to 2016-11-12, so the window starts earlier than leadership production."
+      },
+      "output_sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+      "visual_notes": "Full face, rectangular glasses, short gray hair and slight head tilt agree with the 2013 lectern photograph. Navy suit/red dotted tie and full-body pose are coherent. Late-fifties artistic treatment is accepted; early-window gray hair and de-ageing are uncertain and do not become dated photographic facts. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Photograph of 16 September 2013, inside the window: 4,470 days (about 12.2 years) after the window start 2001-06-21 and 1,153 days (about 3.2 years) before its last day 2016-11-12. Mulder was born on 26 July 1951 (general biographical knowledge, not C01 research: Wikidata Q770995 P569 1951-07-26, checked at assembly on 2026-10-01; English and Afrikaans Wikipedia per the verifier). He is 62 in the photograph and 49 to 65 across the window. The prompt asks for a man in his late fifties (about 57, the middle of the period), about five years younger than the photograph, keeping the photographed gray hair, glasses and full face. The 2001-12-31 to 2005-01-01 leadership job (ages 50 to 53) relies on de-ageing of about 9 to 12 years; his hair may have been less gray then, but no qualifying earlier photograph exists to check, so the prompt invents no other hair colour. The standing body below the chest, hands, trousers and shoes are artistic extensions of a waist-up lectern photograph.",
+      "source_reference_id": "pieter-mulder-2013",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-imageinfo-20130916-OSEC-BW-0002.json",
+        "bytes": 10514,
+        "sha256": "0dfa45cffd67104dc9e898b60dbf08c6e19e1787c09f87166e23e35e076e9bb7"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "corne-mulder-cartoon-2025-v1",
+      "stem": "corne-mulder-cartoon-2025-v1",
+      "person_id": "corne_mulder",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2025-07-16",
+        "to": "2026-09-08",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2025-07-16",
+        "to": "2026-09-08",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-30 FF Plus Leader holder observations attested 2025-07-16 and 2026-03-25. Registry term za_ff_corne_mulder_20250716 (from day 2025-07-16, until open; not C01 research) to the 7 September 2026 cutoff (exclusive 2026-09-08)."
+      },
+      "output_sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+      "visual_notes": "High balding forehead, white side hair, dark glasses, rounded face and heavyset build agree with the 2023 head-and-shoulders source. Navy suit/red tie, visible hands and shoes; coherent slightly older treatment for 2025-2026. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Born 28 September 1958 per the English Wikipedia infobox citing the IEC NPE2024 candidate list (general biographical knowledge, not C01 research; Wikidata has no birth date). He is 64 in the photograph (2023-06-14), 66 when the window opens (2025-07-16) and 67 on its last day (2026-09-07). The photograph is about 2 years 1 month before the window opens and about 3 years 3 months before it closes. The prompt asks for a man of 66 to 67, essentially as photographed and at most very slightly older. The standing body, hands, trousers, shoes and heavyset build are artistic extensions of a head-and-shoulders photograph.",
+      "source_reference_id": "corne-mulder-2023",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-corne-mulder-and-parent.json",
+        "bytes": 8970,
+        "sha256": "03f663b929badcf5b6a07fff890cb94f115c72d53adbafec10448beecb44e777"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (independent of renderer), with earlier independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    }
+  ],
+  "limits": [
+    "Only the exact supplied appearance windows are accepted; no source tenure boundaries are installed.",
+    "A reviewed illustration may use candid artistic ageing where sources are earlier/later; no exact year-specific photographic proof is claimed.",
+    "Existing rejected attempts, superseded prompts, excluded people and reserves remain unchanged and unregistered.",
+    "Generation is the creation route, not a replacement licence. Source attributions and derivative licences survive registration."
+  ],
+  "merge_instruction": "For each existing exact person ID preserve all existing metadata and portraits, union identity_sources, and append only these new portraits; reject duplicate asset or overlapping interval. No historical role or eligibility writes."
+}

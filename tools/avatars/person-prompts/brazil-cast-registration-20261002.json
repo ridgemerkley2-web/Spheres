@@ -1,0 +1,1148 @@
+{
+  "version": 1,
+  "batch": "BR-CAST-B01",
+  "nation": "Brazil",
+  "task": "CLAUDE-C06-BRAZIL-01",
+  "reviewed_at": "2026-10-02",
+  "status": "reviewed_registration_proposal_pending_root_shared_manifest_merge",
+  "registration_operator": "Codex agent /root/tonga_civilian_roster (country fragments); Codex root integrates shared manifest",
+  "review_owner": "Codex agents as named per record; no Claude or human approval claimed",
+  "human_approval_claimed": false,
+  "claude_approval_claimed": false,
+  "render_return": {
+    "path": "docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json",
+    "sha256": "ca6acc174a6a43dda5a246770f26a9cb9415b73966c5c4373658ede75995d26f",
+    "bytes": 33884
+  },
+  "independent_render_review": {
+    "path": "docs/campaign-certification/C06/render-return-20261002/brazil-review.json",
+    "sha256": "929a8b5331eea5688878e0f10aceb2e65ec8866837a74a919c3033ce765e8e1b",
+    "bytes": 14499
+  },
+  "source_review_revision": "8fc53247ff23721bd355ca6962b0861a76fe6902",
+  "source_review_basis": "Exact active request; independent preparation and render audit followed by present Codex registration review. Earlier preparation/return records preserved unchanged.",
+  "manifest_before_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json": "b480afe609da93df46ad14249c91f5b1ed115b1d90f7b697deeb93ccd44a046e"
+  },
+  "source_reference_records": {
+    "michel-temer-2009": {
+      "record": {
+        "person_id": "michel_temer",
+        "kind": "observed_portrait",
+        "reference_id": "michel-temer-2009",
+        "asset": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "bytes": 1315244,
+        "width": 2000,
+        "height": 1312,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Dagoberto_Nogueira_Filho,_Carlos_Lupi_e_Michel_Temer.jpg",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "creator": "J. Batista (Câmara dos Deputados photographer; Commons Artist 'J. Batista/Câmara dos Deputados')",
+        "credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 3.0 as Commons states it, with attribution 'J. Batista/Câmara dos Deputados'. An institutional photograph from the Chamber of Deputies' image bank (Banco de Imagens da Câmara dos Deputados), not an agency or press photograph and not a ported licence. The copied bytes are the only Commons revision (uploaded 2019-05-30T22:19:46Z by Pássaro do Sol), unchanged; the EXIF lists Adobe Photoshop CS3 from the Chamber's own 2009 processing.",
+        "source_license_statement": "Commons: 'This media was produced by Chamber of Deputies of Brazil and was licensed as Creative Commons BY', quoting the Chamber's image bank, which says images may be used freely 'de acordo com a licença Creative Commons BY', with credit 'Nome do Fotógrafo/Câmara dos Deputados'. Commons applies Creative Commons Attribution 3.0 Unported (extmetadata LicenseShortName exactly 'CC BY 3.0'; UsageTerms 'Creative Commons Attribution 3.0'; License 'cc-by-3.0'; AttributionRequired true).",
+        "depiction_date": "2009-11-11",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/michel-temer-2009-camara-jbatista-original.jpg",
+        "bytes": 1315244,
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Dagoberto_Nogueira_Filho%2C_Carlos_Lupi_e_Michel_Temer.jpg",
+        "commons_sha1": "f962121d2fdeb6cafd4f7a804e8a59d8a64b7eb5"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/api-imageinfo-dagoberto-lupi-temer-2009.json",
+        "bytes": 5716,
+        "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+        "retrieved_at": "2026-10-01T22:44:39Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/filepage-dagoberto-lupi-temer-2009.html",
+        "bytes": 118556,
+        "sha256": "450f162acf43b4072c2d7f8d444c7b6878116d704f92585f2530b986ec128bd3",
+        "retrieved_at": "2026-10-01T22:40:43Z"
+      }
+    },
+    "michel-temer-2017": {
+      "record": {
+        "person_id": "michel_temer",
+        "kind": "observed_portrait",
+        "reference_id": "michel-temer-2017",
+        "asset": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+        "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+        "bytes": 2242245,
+        "width": 5906,
+        "height": 7087,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "creator": "Beto Barata/PR",
+        "credit": "Beto Barata/PR, 'Presidente Michel Temer - Foto Oficial Original.jpg' (official portrait 'Foto Oficial do Presidente da República', made in May 2017; dated 17 May 2017 on Commons), Michel Temer Flickr stream photo 24439184568, CC BY 2.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 2.0 (generic), attribution 'Beto Barata/PR'. An official Presidency photographer's portrait published on the office's own Flickr stream, not a wire or press-agency photo. Bytes copied unchanged.",
+        "source_license_statement": "Commons: originally posted to Flickr by 'Michel Temer - Fotos livres, com o crédito' (https://flickr.com/photos/52454189@N07/24439184568); reviewed on 12 November 2017 by FlickreviewR 2 and confirmed to be licensed under the terms of the cc-by-2.0. extmetadata LicenseShortName 'CC BY 2.0', License 'cc-by-2.0', LicenseUrl https://creativecommons.org/licenses/by/2.0.",
+        "depiction_date": "2017-05 (Commons gives 17 May 2017, from file metadata)",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "480634796a66fee9c1be40fb1bb53bb53956a1b2c6eab9ea571010e430e222ef"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+        "bytes": 2242245,
+        "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+        "commons_sha1": "eee3234f90c19a2fb74cd1c83f4db898ab5e9bbf"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/commons-api-imageinfo-Presidente_Michel_Temer_-_Foto_Oficial_Original.json",
+        "bytes": 2547,
+        "sha256": "480634796a66fee9c1be40fb1bb53bb53956a1b2c6eab9ea571010e430e222ef"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/fp-foto-oficial-original.html",
+        "bytes": 113361,
+        "sha256": "875be898b78e6dc6166a7edd78c153c8adec602175f246a2746eac3795c4b853"
+      }
+    },
+    "baleia-rossi-2021": {
+      "record": {
+        "person_id": "baleia_rossi",
+        "kind": "observed_portrait",
+        "reference_id": "baleia-rossi-2021",
+        "asset": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+        "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+        "bytes": 2079037,
+        "width": 1514,
+        "height": 2017,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:08-12-2021_Lan%C3%A7amento_da_pr%C3%A9-candidatura_de_Simone_Tebet_%C3%A0_Presid%C3%AAncia_da_Rep%C3%BAblica_(519)_(cropped).jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "creator": "MDB Nacional (party Flickr account pmdbnacional, 87134755@N04); the individual photographer is not named on Flickr, Commons or in the embedded EXIF/XMP",
+        "credit": "MDB Nacional, '08-12-2021 Lançamento da pré-candidatura de Simone Tebet à Presidência da República' (Flickr 51735864101), 8 December 2021, CC BY 2.0, via Wikimedia Commons; Commons crop '... (519) (cropped).jpg' by Commons user Przelijpdahl (CropTool, 18 January 2023). Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 2.0 (generic), attribution 'MDB Nacional'. The chosen file is a derivative crop (54% horizontally, 59% vertically) that Commons user Przelijpdahl made on 2023-01-18 with CropTool from the FlickreviewR-passed parent uploaded by Luiz79 on 2022-02-28 (3286x4929, sha1 01dfbce0ace515bb9c33a7cf3b725684341e1d10); the crop page carries no review of its own. The copied bytes are the crop's, unchanged. The party's own photo stream, not a news agency or press photo.",
+        "source_license_statement": "Commons LicenseShortName 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0' (file page: 'Creative Commons Attribution 2.0 Generic'); template {{cc-by-2.0}}. The parent carries {{FlickreviewR|status=passed|author=MDB Nacional|reviewlicense=cc-by-2.0|reviewdate=2022-02-28 19:42:36}}.",
+        "depiction_date": "2021-12-08",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "b2b55f61b1a975c3b3ff3e20cb1d5545167b07331404b70eb79a64abcd27d00f"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/Baleia_Rossi_2021-12-08_cropped.original.jpg",
+        "bytes": 2079037,
+        "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/08-12-2021_Lan%C3%A7amento_da_pr%C3%A9-candidatura_de_Simone_Tebet_%C3%A0_Presid%C3%AAncia_da_Rep%C3%BAblica_%28519%29_%28cropped%29.jpg",
+        "commons_sha1": "53f671643dcb88e8396d90ccb3e345078b07acc4"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-baleia-rossi-2021-cropped-and-parent.json",
+        "bytes": 8602,
+        "sha256": "b2b55f61b1a975c3b3ff3e20cb1d5545167b07331404b70eb79a64abcd27d00f"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-file-page-baleia-rossi-2021-12-08-cropped.html",
+        "bytes": 116960,
+        "sha256": "ab78e48cd75aee135f8e1e42cd95dbdd2342229febb306e1aaf6de5af15a7d92"
+      }
+    },
+    "leonel-brizola-1998": {
+      "record": {
+        "person_id": "leonel_brizola",
+        "kind": "observed_portrait",
+        "reference_id": "leonel-brizola-1998",
+        "asset": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+        "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+        "bytes": 7660996,
+        "width": 2959,
+        "height": 1941,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Leonel_Brizola_em_Palmeira_das_Miss%C3%B5es.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "creator": "Sérgio Neglia",
+        "credit": "Sérgio Neglia (embedded credit '© Serginho Neglia'), 'Leonel Brizola em Palmeira das Missões.jpg', 19 September 1998, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY-SA 4.0, attribution 'Sérgio Neglia'. The photographer's own work. The byte-identical copy also carries his embedded IPTC contact fields (a work phone number and e-mail), which Commons publishes in the same file; they are not quoted here. Any resulting adaptation must preserve attribution, disclosure of changes and CC BY-SA 4.0 share-alike requirements; record the derivative licence separately from the generated-method label.",
+        "source_license_statement": "Commons: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons Attribution-Share Alike 4.0 International' (self-published, cross-wiki upload from pt.wikipedia by User:Sérgio Neglia, 2021-08-18). Embedded IPTC Credit '© Serginho Neglia', Artist and Copyright '©Serginho Neglia'. The uploader matches the embedded photographer credit; there is no agency credit. Used in the pt.wikipedia Leonel Brizola article.",
+        "depiction_date": "1998-09-19",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "975e4ad580bab34033ec6c1cc920943d08601c121fbd82936244004d819feb58"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/leonel-brizola-1998-sergio-neglia-palmeira-das-missoes-original.jpg",
+        "bytes": 7660996,
+        "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Leonel_Brizola_em_Palmeira_das_Miss%C3%B5es.jpg",
+        "commons_sha1": "e3ece8f09fd76ac6e948eeb518c089580e8c8b76"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-api-imageinfo-Leonel_Brizola_em_Palmeira_das_Missoes.json",
+        "bytes": 5269,
+        "sha256": "975e4ad580bab34033ec6c1cc920943d08601c121fbd82936244004d819feb58",
+        "retrieved_at": "2026-10-01T22:48:07Z",
+        "note": "Contains the photographer's embedded IPTC contact fields as Commons publishes them; kept outside Git."
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-file-page-Leonel_Brizola_em_Palmeira_das_Missoes.html",
+        "bytes": 86990,
+        "sha256": "41e3dd17825485888b339263f5f5c9693bcc98b302cc44bafb9a1d30392c67e2",
+        "retrieved_at": "2026-10-01T22:48:28Z"
+      }
+    },
+    "carlos-lupi-2009": {
+      "record": {
+        "person_id": "carlos_lupi",
+        "kind": "observed_portrait",
+        "reference_id": "carlos-lupi-2009",
+        "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "bytes": 1315244,
+        "width": 2000,
+        "height": 1312,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Dagoberto_Nogueira_Filho,_Carlos_Lupi_e_Michel_Temer.jpg",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "creator": "J. Batista (Câmara dos Deputados photographer; Commons Artist 'J. Batista/Câmara dos Deputados')",
+        "credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: CC BY 3.0 as Commons states it, with attribution 'J. Batista/Câmara dos Deputados'. An institutional photograph from the Chamber of Deputies' image bank (Banco de Imagens da Câmara dos Deputados), not an agency or press photograph and not a ported licence. The copied bytes are the only Commons revision (uploaded 2019-05-30T22:19:46Z by Pássaro do Sol), unchanged; the EXIF lists Adobe Photoshop CS3 from the Chamber's own 2009 processing.",
+        "source_license_statement": "Commons: 'This media was produced by Chamber of Deputies of Brazil and was licensed as Creative Commons BY', quoting the Chamber's image bank, which says images may be used freely 'de acordo com a licença Creative Commons BY', with credit 'Nome do Fotógrafo/Câmara dos Deputados'. Commons applies Creative Commons Attribution 3.0 Unported (extmetadata LicenseShortName exactly 'CC BY 3.0'; UsageTerms 'Creative Commons Attribution 3.0'; License 'cc-by-3.0'; AttributionRequired true).",
+        "depiction_date": "2009-11-11",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/carlos-lupi-2009-camara-jbatista-original.jpg",
+        "bytes": 1315244,
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Dagoberto_Nogueira_Filho%2C_Carlos_Lupi_e_Michel_Temer.jpg",
+        "commons_sha1": "f962121d2fdeb6cafd4f7a804e8a59d8a64b7eb5"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-imageinfo-dagoberto-lupi-temer-2009.json",
+        "bytes": 5716,
+        "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+        "retrieved_at": "2026-10-01T22:44:39Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/filepage-dagoberto-lupi-temer-2009.html",
+        "bytes": 118556,
+        "sha256": "450f162acf43b4072c2d7f8d444c7b6878116d704f92585f2530b986ec128bd3",
+        "retrieved_at": "2026-10-01T22:40:43Z"
+      }
+    },
+    "carlos-lupi-2015": {
+      "record": {
+        "person_id": "carlos_lupi",
+        "kind": "observed_portrait",
+        "reference_id": "carlos-lupi-2015",
+        "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+        "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+        "bytes": 1696493,
+        "width": 3184,
+        "height": 2120,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Presid%C3%AAncia_do_Senado_(20659268666).jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "creator": "Jane de Araújo (Agência Senado photographer; embedded IPTC credit 'Jane de Araújo/Agência Senado'; Commons Author is the Flickr account 'Senado Federal')",
+        "credit": "Jane de Araújo/Agência Senado, 'Presidência do Senado (20659268666).jpg', visit of the PDT leadership to the President of the Senate, Brasília, 18 August 2015; CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 20659268666; licence confirmed by FlickreviewR on 31 August 2015). Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Published by Agência Senado, the Senate's institutional news service, on the Senado Federal Flickr stream under CC BY 2.0 Generic, as for the batch's 2023 Lupi reference. Not a news-agency wire photograph and not a ported licence. The embedded IPTC usage terms ask, citing Brazilian copyright law (Lei 9.610/1998, art. 79, par. 1), that the photographer be credited as 'Jane de Araújo/Agência Senado'; the credit above does so. Bytes copied unchanged from the only Commons file revision.",
+        "source_license_statement": "Commons extmetadata LicenseShortName exactly 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0', License 'cc-by-2.0', LicenseUrl https://creativecommons.org/licenses/by/2.0, AttributionRequired true. Wikitext: {{cc-by-2.0}} and {{User:FlickreviewR/reviewed-pass|Senado Federal|https://flickr.com/photos/49143546@N06/20659268666|2015-08-31 16:53:16|cc-by-2.0|}}. Generic, not ported.",
+        "depiction_date": "2015-08-18",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "13758b6725a0b1e28a481810fa0f6d8b51bb2325fa24cdb19bf9c1c64be90d99"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/carlos-lupi-2015-agencia-senado-presidencia-20659268666-original.jpg",
+        "bytes": 1696493,
+        "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Presid%C3%AAncia_do_Senado_%2820659268666%29.jpg",
+        "commons_sha1": "fa6bc6dcf72f570e87baaf3ddc9437f41ff22b8a",
+        "commons_sha1_matches_download": true
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/api-imageinfo-presidencia-do-senado-20659268666.json",
+        "bytes": 8747,
+        "sha256": "13758b6725a0b1e28a481810fa0f6d8b51bb2325fa24cdb19bf9c1c64be90d99",
+        "retrieved_at": "2026-10-02T13:36:28Z",
+        "content": "Commons API imageinfo (extmetadata, commonmetadata/EXIF/IPTC, size, sha1, upload user and time), categories and the current wikitext revision"
+      },
+      "metadata_file_page": null
+    },
+    "carlos-lupi-2023": {
+      "record": {
+        "person_id": "carlos_lupi",
+        "kind": "observed_portrait",
+        "reference_id": "carlos-lupi-2023",
+        "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+        "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+        "bytes": 687212,
+        "width": 1545,
+        "height": 2064,
+        "mode": "RGB",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Carlos_Lupi._CAS_-_Comiss%C3%A3o_de_Assuntos_Sociais_(cropped).jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "creator": "Geraldo Magela / Agência Senado",
+        "credit": "Geraldo Magela/Agência Senado, 'Carlos Lupi. CAS - Comissão de Assuntos Sociais (cropped).jpg', 24 October 2023, CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 53282670483; licence confirmed by FlickreviewR 2 on 30 January 2024 on the parent file); crop uploaded by Commons user Rodolfo Matias on 30 January 2024. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Copyright holder Senado Federal do Brasil (parent EXIF); published by Agência Senado, the Senate's institutional news service, on the Senado Federal Flickr stream under CC BY 2.0 Generic; FlickreviewR 2 confirmed cc-by-2.0 on the parent. The crop page has no review template of its own because the same uploader sent it from the same Flickr URL five minutes after the parent. Bytes copied unchanged from the crop's only revision.",
+        "source_license_statement": "Commons extmetadata LicenseShortName exactly 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0', LicenseUrl https://creativecommons.org/licenses/by/2.0; file page: 'Creative Commons Attribution 2.0 Generic'. Generic, not ported.",
+        "depiction_date": "2023-10-24",
+        "source_review": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+        "source_metadata_sha256": "42ebd71728c34853dd934818b040d3dc8aff9d4979aa2d4fb0d82d695104c107"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/carlos-lupi-2023-agencia-senado-cas-cropped-original.jpg",
+        "bytes": 687212,
+        "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Carlos_Lupi._CAS_-_Comiss%C3%A3o_de_Assuntos_Sociais_%28cropped%29.jpg",
+        "commons_sha1": "6a0702dfa83288b6daa517b867ba9909bf5b35e0"
+      },
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/api-imageinfo-carlos-lupi-cas-cropped.json",
+        "bytes": 3021,
+        "sha256": "42ebd71728c34853dd934818b040d3dc8aff9d4979aa2d4fb0d82d695104c107",
+        "retrieved_at": "2026-10-01T22:38:18Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/filepage-carlos-lupi-cas-cropped.html",
+        "bytes": 96385,
+        "sha256": "b4382661ee87e509ad71fb68ee0516737b8965dc97b2dfcd0ce2da3950a3c88b",
+        "retrieved_at": "2026-10-01T22:38:25Z"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "michel-temer-cartoon-2001-v1",
+        "person_id": "michel_temer",
+        "from": "2001-09-09",
+        "to": "2010-06-15",
+        "references": [
+          "michel-temer-2009"
+        ],
+        "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+        "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+        "bytes": 1647981,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-6fd82b29-1830-4594-9650-a971b71595f3.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2001-09-09 to 2010-06-15 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2009-11-11. Born 1940-09-23 (registry birth date). He is 69 in the photograph of 11 November 2009, which lies inside the window 2001-09-09 to 2010-06-15 (exclusive end): about 8 years 2 months after its start (age 60) and about 7 months before its end (69 on the last covered day). The prompt asks for a trim man of about 65 (the window's midpoint age), a little younger than the photograph, with slightly softer lines and the gray hair a touch darker, keeping the same swept-back hairline, dark brows and lean face. The darker-hair adjustment rests on the CC BY 2.0 photographs of 7 April 1999 (Michel Temer e Dalai Lama, Câmara archive via the Michel Temer Flickr stream), which show the same swept-back hair in a darker medium gray; they are before the window and are not render inputs. Artistic extensions, declared in the prompt: the standing full figure, the hands apart and relaxed (in the photograph they are held together in a presenting gesture), the trousers below the jacket hem and the shoes.",
+        "visual_review": "Correct right-hand man from the shared 2009 group photograph: swept silver hair, lean long face, narrow mouth, gray suit and burgundy tie. Full body, both hands and shoes; no blocking visual artifact. The treatment represents this editorial appearance interval, not uninterrupted party tenure. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "michel_temer-4a7a936add8d",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "michel_temer-0a0870c78f13",
+              "from": "2001-09-09",
+              "to": "2010-06-15",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2001-09-09",
+              "id": "michel_temer-bdfe55175b97",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            },
+            {
+              "from": "2019-01-01",
+              "to": "2027-01-01",
+              "id": "michel_temer-cdffc09f0892",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            }
+          ],
+          "pipeline_residual_note": "After both Temer windows (2001-09-09 to 2019-01-01) are registered.",
+          "leadership_production_cartoon_jobs_planned": [
+            "cartoon:michel_temer:2001-09-09:2005-01-01:v1",
+            "cartoon:michel_temer:2005-01-01:2009-03-10:v1",
+            "cartoon:michel_temer:2010-01-27:2010-06-15:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Michel Temer, exact person michel_temer, as an artistic interpretation of his appearance from early September 2001 to mid-June 2010.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: J. Batista / Câmara dos Deputados' CC BY 3.0 color flash photograph of Michel Temer, then President of the Chamber of Deputies, on 11 November 2009 at the Medalha Mérito Legislativo ceremony in the Chamber of Deputies, Brasília (Wikimedia Commons, from the Chamber's image bank). He is the silver-haired man standing at the right in the light gray suit and burgundy tie, his face turned slightly to his left in a three-quarter view; Carlos Lupi, holding an open green diploma folder, stands in the centre and Dagoberto Nogueira Filho at left. Preserve his recognizable face: silver-gray hair combed smoothly straight back from a high forehead and lying close on top, receding at the temples, with a little fullness behind the ears and at the nape down to the collar, leaving the ears uncovered; thick, gently arched dark gray-brown eyebrows, noticeably darker than his hair; deep-set dark brown eyes under heavy lids, with creases at the outer corners; long straight prominent nose; deep creases from nose to mouth; thin lips in a closed, faint, composed smile; lean lined face with defined cheekbones and a firm rounded chin; light olive, lightly tanned complexion; clean shaven; no glasses; slim upright build. The photograph shows him at 69, about eight years and two months after this appearance begins and about seven months before it ends; this appearance spans ages 60 to 69, so show a trim man of about 65, a little younger than the photograph, with slightly softer lines and the gray hair a touch darker, keeping the same swept-back hairline, dark brows and lean face, without mocking exaggeration. His expression is calm and courteous, with the same closed-lip faint smile as in the photograph.\nClothing: simple light gray single-breasted three-button two-piece civilian suit, plain white shirt, plain deep burgundy tie, black shoes. Suit, shirt and tie colors follow the color reference; the photograph ends at about the upper thighs, with both hands held together in front of his waist in a presenting gesture toward the man beside him, so the standing pose, the relaxed hands, the trousers below the jacket and the shoes are artistic extensions. No medals, sash, rosette, lapel badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible and apart, one relaxed open beside his hip and the other lightly resting near his jacket button; no presenting gesture. Face, silver swept-back hair, dark brows and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy Carlos Lupi, the diploma folder, Dagoberto Nogueira Filho, the seated audience, the flags, the ceiling spotlights or the hall in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, diploma, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt",
+      "prompt_file_sha256": "677621155322535fa13553350720014499f550e9b21d6affee9faf2b196d2a76",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "bytes": 1315244,
+          "width": 2000,
+          "height": 1312,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "michel_temer",
+          "reference_id": "michel-temer-2009"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Dagoberto_Nogueira_Filho,_Carlos_Lupi_e_Michel_Temer.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+        "original_reference_sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "creator": "J. Batista (Câmara dos Deputados photographer; Commons Artist 'J. Batista/Câmara dos Deputados')",
+        "credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "derivative_license": "CC BY 3.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/3.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "michel-temer-cartoon-2010-v1",
+        "person_id": "michel_temer",
+        "from": "2010-06-15",
+        "to": "2019-01-01",
+        "references": [
+          "michel-temer-2017"
+        ],
+        "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+        "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+        "bytes": 1552223,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-9e5c94a2-b21d-4298-b302-5decb7380041.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2010-06-15 to 2019-01-01 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2017-05 (Commons gives 17 May 2017, from file metadata). Born 1940-09-23 (registry birth date). The photograph (May 2017; Commons 17 May) falls inside the window 2010-06-15 to 2019-01-01 (exclusive): about 6 years 11 months after its start and about 1 year 7 months before its last day (2018-12-31), to within a month. He is 76 in the photograph and 69 to 78 across the window, whose midpoint is in September 2014 (age 73 to 74). The prompt asks for a trim man of about 74, very slightly younger than the photograph, with the same silver swept-back hair, dark brows and lean face. The standing body below mid-thigh, both visible hands and the shoes are declared artistic extensions.",
+        "visual_review": "Receding silver hair, long angular face, heavy-lidded gaze and mature facial lines agree with the 2017 official portrait. Navy suit and blue tie; full body, hands and shoes coherent. The younger early part of the requested interval is an artistic age interpretation. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "michel_temer-4a7a936add8d",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "michel_temer-555b84955d80",
+              "from": "2010-06-15",
+              "to": "2019-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2001-09-09",
+              "id": "michel_temer-bdfe55175b97",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            },
+            {
+              "from": "2019-01-01",
+              "to": "2027-01-01",
+              "id": "michel_temer-cdffc09f0892",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            }
+          ],
+          "pipeline_residual_note": "After both Temer windows (2001-09-09 to 2019-01-01) are registered.",
+          "leadership_production_cartoon_jobs_planned": []
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Michel Temer, exact person michel_temer, as an artistic interpretation of his appearance from mid-June 2010 to the end of December 2018.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Beto Barata/PR's CC BY 2.0 color photograph of Michel Temer, the official portrait published as 'Foto Oficial do Presidente da República' and dated 17 May 2017 on Wikimedia Commons (from the Michel Temer Flickr stream). Preserve his recognizable face: silver-gray hair combed smoothly straight back from the forehead and lying close to the head, receding at both temples, with a little fullness behind the ears; thick, gently arched dark gray-brown brows, noticeably darker than his hair; deep-set dark brown eyes under heavy lids, with creases at the outer corners; long straight prominent nose; thin lips in a closed, faint, composed smile; lean lined face with defined cheekbones and deep creases from nose to mouth; rounded chin; light olive, lightly tanned complexion; clean shaven; slim upright build. The photograph falls inside this appearance window, about six years and eleven months after it begins and about one year and seven months before it ends; he is 76 in the photograph and 69 to 78 across the window, so show a trim man of about 74, very slightly younger than the photograph, keeping the same silver swept-back hair, dark brows and lean face, without mocking exaggeration. His expression is calm, courteous and faintly smiling.\nClothing: simple near-black dark navy single-breasted two-piece civilian suit, white shirt, dark navy tie with thin pale gold diagonal stripes simplified to a few clean bands, black shoes. Suit, shirt and tie colors follow the color reference; the photograph ends at about mid-thigh, with his right hand in his trouser pocket and his left hand resting on a desk, so the standing pose, both visible hands, the lower legs and the shoes are artistic extensions. No medals, sash, rosette, lapel badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, silver hair, dark brows and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the Brazilian flag, the bookshelves of red-bound volumes, the wooden desk or the white border of the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/michel-temer-cartoon-2010-v1.txt",
+      "prompt_file_sha256": "d3bfc1cbdb8723577ae3da80e38e74e05c94c5c8f6fb79341d5a2aaacfa9c5c0",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+          "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+          "bytes": 2242245,
+          "width": 5906,
+          "height": 7087,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "michel_temer",
+          "reference_id": "michel-temer-2017"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Presidente_Michel_Temer_-_Foto_Oficial_Original.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+        "original_reference_sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+        "creator": "Beto Barata/PR",
+        "credit": "Beto Barata/PR, 'Presidente Michel Temer - Foto Oficial Original.jpg' (official portrait 'Foto Oficial do Presidente da República', made in May 2017; dated 17 May 2017 on Commons), Michel Temer Flickr stream photo 24439184568, CC BY 2.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 2.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "baleia-rossi-cartoon-2019-v1",
+        "person_id": "baleia_rossi",
+        "from": "2019-10-06",
+        "to": "2026-09-08",
+        "references": [
+          "baleia-rossi-2021"
+        ],
+        "asset": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+        "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+        "bytes": 1557704,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-54c6acd7-510c-4716-9022-a114e5df39f1.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2019-10-06 to 2026-09-08 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2021-12-08. Born 1972-06-09 (registry birth date). He is 49 in the photograph of 8 December 2021 and about 47 to 54 across the window (2019-10-06 to 2026-09-08 exclusive). The photograph falls inside the window, about 2 years 2 months after its start and about 4 years 9 months before its end; the prompt asks for a man of about 50. Research-only cross-checks from April 2019, June 2023 and 2026 show the same hairstyle and face, with slightly more gray at the temples by 2026. Chest-up photograph: the standing body, trousers, shoes and both hands are artistic extensions; the open-collar shirt without a tie follows the reference.",
+        "visual_review": "Dark receding hair, broad round face, full cheeks, friendly expression and heavyset build match the 2021 reference. Coherent civilian suit and full-body pose; no blocking visual artifact. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "baleia_rossi-438d8a547750",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "baleia_rossi-86cb96c29aa9",
+              "from": "2019-10-06",
+              "to": "2026-09-08",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2019-10-06",
+              "id": "baleia_rossi-c18677f5e0a9",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            },
+            {
+              "from": "2026-09-08",
+              "to": "2027-01-01",
+              "id": "baleia_rossi-515127485137",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            }
+          ],
+          "leadership_production_cartoon_jobs_planned": [
+            "cartoon:baleia_rossi:2019-10-06:2020-01-01:v1",
+            "cartoon:baleia_rossi:2020-01-01:2025-01-01:v1",
+            "cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Baleia Rossi, exact person baleia_rossi, as an artistic interpretation of his appearance from early October 2019 to early September 2026, when he was about 47 to 54 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: MDB Nacional's CC BY 2.0 color photograph of Baleia Rossi on 8 December 2021, speaking at a microphone at the launch of Simone Tebet's presidential pre-candidacy (Wikimedia Commons crop of the party's Flickr upload). Preserve his recognizable face: broad, full, slightly rounded face with soft full cheeks, a soft jawline and a little fullness under the chin; thick short dark brown hair brushed up and back from the forehead with a soft wave and slight side sweep, full on top, with gray flecks through the sides and at the temples and only slight recession at the temples; fairly straight, level dark brown brows of medium thickness; warm dark brown eyes, slightly hooded, with light smile creases; straight nose with a broad rounded tip; medium lips; fair complexion with a warm pinkish tone; ears visible at the sides; clean shaven; no glasses. The photograph falls inside this appearance window: about two years and two months after it begins and about four years and nine months before it ends, when he was 49. Show a man of about 50, close to the photograph, keeping its dark hair with gray at the sides; do not make him gray-haired or older. No mocking exaggeration of his full face or build. His expression is friendly and confident, with a modest closed-mouth smile, not mid-speech as in the photograph.\nClothing: simple dark charcoal-navy two-piece civilian suit with its fine pinstripe simplified to plain cloth, light blue shirt with an open collar and no tie, black shoes. Suit and shirt colors follow the color reference; the standing body, hands, trousers and shoes are artistic extensions of a chest-up photograph. Average, slightly solid adult build. No medals, sash, rosette, lapel badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, hair and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the microphones, the potted palm or the warm-lit wall of the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/baleia-rossi-cartoon-2019-v1.txt",
+      "prompt_file_sha256": "d1a0008ac591682d64e3aa4dfbd378e2789446181cde9f32486c8a203f77a8e4",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+          "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+          "bytes": 2079037,
+          "width": 1514,
+          "height": 2017,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "baleia_rossi",
+          "reference_id": "baleia-rossi-2021"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:08-12-2021_Lan%C3%A7amento_da_pr%C3%A9-candidatura_de_Simone_Tebet_%C3%A0_Presid%C3%AAncia_da_Rep%C3%BAblica_(519)_(cropped).jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+        "original_reference_sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+        "creator": "MDB Nacional (party Flickr account pmdbnacional, 87134755@N04); the individual photographer is not named on Flickr, Commons or in the embedded EXIF/XMP",
+        "credit": "MDB Nacional, '08-12-2021 Lançamento da pré-candidatura de Simone Tebet à Presidência da República' (Flickr 51735864101), 8 December 2021, CC BY 2.0, via Wikimedia Commons; Commons crop '... (519) (cropped).jpg' by Commons user Przelijpdahl (CropTool, 18 January 2023). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 2.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "leonel-brizola-cartoon-1995-v1",
+        "person_id": "leonel_brizola",
+        "from": "1995-01-01",
+        "to": "2004-06-21",
+        "references": [
+          "leonel-brizola-1998"
+        ],
+        "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+        "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+        "bytes": 1533241,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-5bf66ba2-5e2b-4b80-aed1-d137af400d09.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 1995-01-01 to 2004-06-21 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 1998-09-19. No gap: the photograph (19 September 1998) falls inside the window, about 3 years 8 months after it starts (1995-01-01) and about 5 years 9 months before its last day (2004-06-20), close to the window midpoint (1999-09-26). Birth date sources disagree (see birth_date_evidence): on 22 January 1922 he is 72 at the window start, 76 in the photograph and 82 at the end; on the registry's 22 November 1922 he is 72, 75 and 81. The prompt asks for a man in his mid-seventies, as in the photograph, and states '72 when this appearance begins and 81 or 82 when it ends'. The reference is a side profile and the hat hides his forehead and crown, so the receding swept-back crown is a declared artistic completion; a research-only 1280 px thumbnail of the rejected 2002 photograph (File:Niemeyer e Brizola.jpg) was viewed to confirm the bareheaded swept-back gray hair and uncovered ears. It is not shipped and not a generation input. The suit, white shirt, burgundy tie and standing body are artistic; the white collar and dark sleeve follow the photograph.",
+        "visual_review": "Recognizable nose, face profile, lined cheeks and gray hair, adapted from the 1998 hat photograph. Exposed crown/hair completion and suit/body are disclosed artistic extensions. Mid-seventies treatment is accepted as an illustration across the requested window; conflicting birth-month sources remain unresolved. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "leonel_brizola-cbbd6332435f",
+              "from": "1995-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "leonel_brizola-fa7af2b7d699",
+              "from": "1995-01-01",
+              "to": "2004-06-21",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "2004-06-21",
+              "to": "2027-01-01",
+              "id": "leonel_brizola-a07f461811a0",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open",
+              "note": "Starts on the day he died, so it is an artifact of the default 1990-2027 inventory, not an appearance gap."
+            }
+          ],
+          "leadership_production_cartoon_jobs_planned": [
+            "cartoon:leonel_brizola:1995-01-01:2000-01-01:v1",
+            "cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Leonel Brizola, exact person leonel_brizola, as an artistic interpretation of his appearance from January 1995 to June 2004.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Sérgio Neglia's CC BY-SA 4.0 color photograph of Leonel Brizola on 19 September 1998, speaking into a microphone at an election rally in Palmeira das Missões, Rio Grande do Sul; he is the large figure at the right, seen in side profile under a wide-brimmed hat. Preserve his recognizable face: long, prominent nose with a rounded, slightly downturned tip, narrowed eyes under heavy lids, thick, bushy dark-gray eyebrows, large ears with long lobes, deep lines from nose to mouth corners, thin lips, rounded chin with soft jowls and a full lower face, fair ruddy complexion, clean shaven. Turn his head to a slight three-quarter view toward the viewer while keeping the nose, brow and jaw of the profile. The hat hides the top of his head: draw him bareheaded, with gray hair receding from a high forehead and combed straight back over the crown, and thick, curly gray hair at the sides and back, behind the ears and down to the collar, leaving the large ears uncovered, as the hair visible under the hat shows; the forehead and crown are an artistic completion. The photograph falls inside this appearance, about three years and eight months after it begins and five years and nine months before it ends; show the age of a man in his mid-seventies, as in the photograph (he is 72 when this appearance begins and 81 or 82 when it ends), without mocking exaggeration. His expression is composed and resolute, with lips closed and a slight confident smile.\nClothing: simple dark navy two-piece civilian suit, white shirt, plain dark burgundy tie, black shoes. The white collar and the dark sleeve follow the photograph; the suit, tie, standing body, hands, trousers and shoes are artistic choices and extensions of a chest-up photograph. Do not copy his gaucho rally outfit (the wide-brimmed hat with its braided chin cord and the red poncho with black trim). No hat, poncho, chin cord, medals, sash, rosette, lapel badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible and empty, one relaxed open beside his hip and the other held lightly open at waist height in a modest speaking gesture. Face, swept-back gray hair with curly sides, prominent nose and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the rally crowd, red, yellow and white flags, placards, balloons, street, buildings, signs or microphone in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/leonel-brizola-cartoon-1995-v1.txt",
+      "prompt_file_sha256": "3170bb3479c8e23145ab28da573898cc0342c3f5c065475d8f9216f5339dc90d",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+          "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+          "bytes": 7660996,
+          "width": 2959,
+          "height": 1941,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "leonel_brizola",
+          "reference_id": "leonel-brizola-1998"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Leonel_Brizola_em_Palmeira_das_Miss%C3%B5es.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+        "original_reference_sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+        "creator": "Sérgio Neglia",
+        "credit": "Sérgio Neglia (embedded credit '© Serginho Neglia'), 'Leonel Brizola em Palmeira das Missões.jpg', 19 September 1998, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "derivative_license": "CC BY-SA 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "carlos-lupi-cartoon-2004-v1",
+        "person_id": "carlos_lupi",
+        "from": "2004-06-30",
+        "to": "2015-01-01",
+        "references": [
+          "carlos-lupi-2009"
+        ],
+        "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+        "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+        "bytes": 1478167,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-0f757768-f46c-41ad-a4fe-cc0fd60aece3.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2004-06-30 to 2015-01-01 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2009-11-11. Born 1957-03-16 (registry birth date). He is 52 (52 years 7 months) in the photograph of 11 November 2009, inside the window: about 5 years 4 months after its start of 2004-06-30 (age 47) and about 5 years 2 months before its exclusive end of 2015-01-01 (57 on the last covered day). No age adjustment is requested; the prompt asks for a man of about 52. Artistic extensions, declared in the prompt: the free hands (both hold the folder in the photograph), the legs below the upper thighs, the trousers and the shoes. Suit, shirt and tie colours come from the photograph; the lapel pin and the diploma are omitted.",
+        "visual_review": "Correct central man from the shared 2009 photograph: dark slicked-back hair, close beard, broad face, navy suit and red tie. Distinct from Temer despite identical source-photo bytes. Body, hands and shoes coherent. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "carlos_lupi-1a8bd5270f54",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "carlos_lupi-45b22e501a80",
+              "from": "2004-06-30",
+              "to": "2015-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2004-06-30",
+              "id": "carlos_lupi-e664a94b9464",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            },
+            {
+              "from": "2026-09-08",
+              "to": "2027-01-01",
+              "id": "carlos_lupi-7035d40937f6",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            }
+          ],
+          "pipeline_residual_note": "After all three active Lupi windows (2004-06-30 to 2026-09-08, split at 2015-01-01 and 2020-01-01) are registered; the residual ranges are the same as before the era split.",
+          "leadership_production_cartoon_jobs_planned": [
+            "cartoon:carlos_lupi:2004-06-30:2005-01-01:v1",
+            "cartoon:carlos_lupi:2005-01-01:2010-01-01:v1",
+            "cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"
+          ]
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Carlos Lupi, exact person carlos_lupi, as an artistic interpretation of his appearance from the end of June 2004 to the end of December 2014, when he was about 47 to 57 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: J. Batista / Câmara dos Deputados' CC BY 3.0 color flash photograph of Carlos Lupi on 11 November 2009 at the Medalha Mérito Legislativo ceremony in the Chamber of Deputies, Brasília (Wikimedia Commons, from the Chamber's image bank); he is the smiling central man holding an open green diploma folder, with Dagoberto Nogueira Filho at left and Michel Temer at right. Preserve his recognizable face: thick dark brown, almost black hair combed straight back from a high forehead, slightly receding at the temples, short at the sides above visible ears; a broad, round, fleshy face with full cheeks and a soft, heavy jawline; warm brown eyes that crinkle when he smiles; dark, slightly arched brows; broad straight nose with a rounded tip; wide open smile showing his upper teeth; warm tanned olive complexion; clean shaven; no glasses; stocky, heavyset build with a broad chest. The photograph shows him at 52, near the middle of this appearance (about five years and four months after it begins and about five years and two months before it ends), so show a man of about 52 with the same hair and face, without mocking exaggeration of his weight or features. His expression is cheerful and confident, with a broad warm smile.\nClothing: simple near-black charcoal two-piece civilian suit, white shirt, golden-yellow tie with faint diagonal stripes simplified to a few clean bands, black shoes. Suit, shirt and tie colors follow the color reference; the photograph ends at the upper thighs with both hands holding the diploma folder, so the free hands, the legs below the thighs, the trousers and the shoes are artistic extensions. Omit the small round pin on his left lapel. No medals, sash, rosette, lapel badge, flag or invented insignia, and no diploma, folder or papers in his hands.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button. Face, swept-back dark hair, smile and round silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy Dagoberto Nogueira Filho, Michel Temer, the seated audience, the flags, the ceiling spotlights or the hall in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, diploma, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt",
+      "prompt_file_sha256": "0c57b3987daa007d9bfb103b4269499a80f359b923b42e1eb6fd4a273c00cf56",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "bytes": 1315244,
+          "width": 2000,
+          "height": 1312,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "carlos_lupi",
+          "reference_id": "carlos-lupi-2009"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Dagoberto_Nogueira_Filho,_Carlos_Lupi_e_Michel_Temer.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+        "original_reference_sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "creator": "J. Batista (Câmara dos Deputados photographer; Commons Artist 'J. Batista/Câmara dos Deputados')",
+        "credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "derivative_license": "CC BY 3.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/3.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "carlos-lupi-cartoon-2015-v2",
+        "person_id": "carlos_lupi",
+        "from": "2015-01-01",
+        "to": "2020-01-01",
+        "references": [
+          "carlos-lupi-2015"
+        ],
+        "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+        "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+        "bytes": 1612861,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-e618846e-33cb-423d-8cce-6a223ef7cd2c.png",
+        "selected_attempt": 2,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2015-01-01 to 2020-01-01 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2015-08-18. Born 1957-03-16 (registry birth date). He is 58 in the photograph, inside window 2 of 3 (ages 57 to 62), about 7.5 months after its start and 4 years 4.5 months before its exclusive end. Artistic extensions declared in the prompt: the relaxed hand positions (clasped in the photograph) and the complete shoes (mostly hidden by trouser hems, with the frame ending at a table edge).",
+        "visual_review": "Selected attempt 2: dark swept-back hair with limited gray and short beard follow the 2015 photograph, avoiding the superseded all-gray early-window treatment. Full figure and hands/shoes present; opaque RGB output. The rejected transparent attempt remains in the original return and is not registered. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "carlos_lupi-1a8bd5270f54",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "carlos_lupi-400fe963352c",
+              "from": "2015-01-01",
+              "to": "2020-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2004-06-30",
+              "id": "carlos_lupi-e664a94b9464",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            },
+            {
+              "from": "2026-09-08",
+              "to": "2027-01-01",
+              "id": "carlos_lupi-7035d40937f6",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            }
+          ],
+          "pipeline_residual_note": "After all three active Lupi windows (2004-06-30 to 2026-09-08, split at 2015-01-01 and 2020-01-01) are registered; the residual ranges are the same as before the era split.",
+          "leadership_production_cartoon_jobs_planned": [
+            "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"
+          ],
+          "coverage_note": "Prospective only. No job is closed until the output is generated, reviewed and registered."
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Carlos Lupi, exact person carlos_lupi, as an artistic interpretation of his appearance from January 2015 to the end of December 2019, when he was about 57 to 62 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Jane de Araújo / Agência Senado's CC BY 2.0 color photograph of Carlos Lupi on 18 August 2015, when the President of the Brazilian Senate received him as president of the PDT together with the party's leaders in the Senate and the Chamber of Deputies (Wikimedia Commons, from the Senado Federal Flickr stream). Four men stand in a row; Lupi is the third from the left, the only bearded man, smiling in a bright blue suit with his hands clasped in front of him. Preserve his recognizable face: broad, fleshy face with a high forehead crossed by deep horizontal lines; dark charcoal hair with gray at the temples and sides, combed straight back with a slight wave from a hairline receding at the temples, short over the ears and fuller at the back; heavy straight dark brows; brown eyes narrowed by his smile, with crow's feet; broad nose with a wide, rounded fleshy tip; wide smile showing his upper teeth; full, neatly trimmed dark brown-black beard and mustache covering the cheeks, jaw and chin, with gray at the chin and along the sideburns and jaw; tanned olive-brown complexion; ears visible at the sides; no glasses; heavyset, broad-chested build with a rounded midsection. The photograph shows him at 58, early in this appearance window (about seven and a half months after it begins and about four years and four months before it ends), so show a man of about 58 to 60 with the photograph's dark charcoal hair and dark brown-black beard and their gray at the temples, sides, chin and sideburns; a little more gray than in the photograph is acceptable, but do not turn them into the salt-and-pepper hair and gray-brown beard of his later look or the gray hair and gray-and-white beard of 2023. This one portrait for the window follows the 2015 photograph and does not show how much he grayed in 2018 and 2019, when he was 60 to 62: a comparison photograph (not a reference) that its uploader dates 1 May 2018, with that date and its own-work claim unverified, already shows salt-and-pepper hair and a gray-brown beard, and no verified dated, freely licensed photograph of him from 2016 to 2019 was found. No mocking exaggeration of his nose, forehead lines or build. His expression is cheerful and confident, with a broad warm smile.\nClothing: simple bright royal-blue suit jacket with its faint windowpane check simplified to plain cloth, darker slate-navy trousers as in the photograph, white shirt, burgundy-red tie with white diagonal stripes simplified to a few clean bands, black shoes. Jacket, trousers, shirt and tie colors follow the color reference; the photograph is full length, but his long trouser hems cover most of his black shoes and a dark table edge crosses the bottom of the frame just below them, so the complete shoes and the relaxed hand positions are artistic extensions. No medals, sash, rosette, lapel badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button, not clasped in front of him as in the photograph. Face, swept-back dark hair, dark beard, smile and broad silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the three other men (Senate President Renan Calheiros, senator Acir Gurgacz and deputy André Figueiredo), the wood-paneled wall, the gilded coat of arms, the carved sofa, the framed paintings, the chairs, the granite floor, the carpet or the dark table edge across the bottom of the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt",
+      "prompt_file_sha256": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+          "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+          "bytes": 1696493,
+          "width": 3184,
+          "height": 2120,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "carlos_lupi",
+          "reference_id": "carlos-lupi-2015"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Presid%C3%AAncia_do_Senado_(20659268666).jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+        "original_reference_sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+        "creator": "Jane de Araújo (Agência Senado photographer; embedded IPTC credit 'Jane de Araújo/Agência Senado'; Commons Author is the Flickr account 'Senado Federal')",
+        "credit": "Jane de Araújo/Agência Senado, 'Presidência do Senado (20659268666).jpg', visit of the PDT leadership to the President of the Senate, Brasília, 18 August 2015; CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 20659268666; licence confirmed by FlickreviewR on 31 August 2015). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 2.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job": {
+        "stem": "carlos-lupi-cartoon-2020-v1",
+        "person_id": "carlos_lupi",
+        "from": "2020-01-01",
+        "to": "2026-09-08",
+        "references": [
+          "carlos-lupi-2023"
+        ],
+        "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+        "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+        "bytes": 1825058,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-fdbc92b5-d7ca-4984-b7a8-62e19a02895b.png",
+        "selected_attempt": 1,
+        "era_note": "Accepted by Codex for illustrative appearance only from 2020-01-01 to 2026-09-08 exclusive. This is not an appointment, term, eligibility grant or claim of a photograph for every covered year. Source photograph: 2023-10-24. Since the era fix of 2 October 2026 this reference serves window 3 of 3 (2020-01-01 to 2026-09-08) only; its age_gap_note above describes the superseded 2015-2026 window. The current age note is /batches/0/people/7/age_gap_note. File and bytes unchanged.",
+        "visual_review": "Later gray/salt-and-pepper hair and beard, broad face and heavier build agree with the 2023 source, visibly distinguishing this variant from 2015. Full body coherent. The tooth-showing smile is more open than requested but does not prevent identity recognition; accepted as a minor expression variation. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+        "pipeline_jobs": {
+          "pipeline_default_inventory": [
+            {
+              "id": "carlos_lupi-1a8bd5270f54",
+              "from": "1990-01-01",
+              "to": "2027-01-01",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+            }
+          ],
+          "pipeline_window_scoped": [
+            {
+              "id": "carlos_lupi-84f4126df75f",
+              "from": "2020-01-01",
+              "to": "2026-09-08",
+              "status": "needs_source_and_visual_review",
+              "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+            }
+          ],
+          "pipeline_residual_after_registration": [
+            {
+              "from": "1990-01-01",
+              "to": "2004-06-30",
+              "id": "carlos_lupi-e664a94b9464",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            },
+            {
+              "from": "2026-09-08",
+              "to": "2027-01-01",
+              "id": "carlos_lupi-7035d40937f6",
+              "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+            }
+          ],
+          "pipeline_residual_note": "After all three active Lupi windows (2004-06-30 to 2026-09-08, split at 2015-01-01 and 2020-01-01) are registered; the residual ranges are the same as before the era split.",
+          "leadership_production_cartoon_jobs_planned": [
+            "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
+            "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"
+          ],
+          "coverage_note": "Prospective only. No job is closed until the output is generated, reviewed and registered."
+        }
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Carlos Lupi, exact person carlos_lupi, as an artistic interpretation of his appearance from January 2020 to early September 2026, when he was about 62 to 69 years old.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Geraldo Magela / Agência Senado's CC BY 2.0 color photograph of Carlos Lupi on 24 October 2023, a Commons crop of him speaking as Minister of Social Security at a public hearing of the Brazilian Senate's Social Affairs Committee. Preserve his recognizable face: broad, fleshy face with a high forehead crossed by deep horizontal lines, hairline receding at the temples, short thick gray hair combed straight back with a slight wave and fuller over the ears and at the back, heavy straight dark-gray brows, dark brown eyes slightly narrowed under heavy lids with crow's feet and soft bags beneath, broad nose with a wide, rounded fleshy tip, wide mouth, full neatly trimmed salt-and-pepper beard and mustache covering the cheeks, jaw and chin, whitest around the mouth and chin and darker gray on the cheeks, tanned olive-brown weathered complexion, ears visible at the sides, no glasses. The photograph falls near the middle of this appearance window: about three years and ten months after it begins and about two years and ten months before it ends. Show the age of a man of about 66, close to the photograph, with salt-and-pepper to gray hair and a salt-and-pepper beard whitest around the mouth and chin: follow the photograph, or read the hair and beard very slightly darker, but never dark or mostly dark. Comparison photographs (not references) show salt-and-pepper hair and a gray-brown beard, a little darker than in October 2023, in a photograph its uploader dates 1 May 2018 (date and own-work claim unverified) and at his ministerial inauguration in January 2023, and mostly dark hair and beard in August 2015. No verified dated, freely licensed photograph of him from 2020 to 2022 was found, so this one portrait for the window follows the October 2023 photograph, which may show him near the grayest point of the window, and does not show exactly how he looked in 2020 to 2022. No mocking exaggeration of his nose, forehead lines or build. His expression is warm and confident, with a modest closed-mouth smile, not mid-speech as in the photograph.\nClothing: simple medium gray two-piece civilian suit with its faint blue-gray check simplified to plain cloth, white button-down shirt, muted rose-burgundy tie with its fine white pattern simplified to a few small light flecks, black shoes. Suit, shirt and tie colors follow the color reference; the standing body, hands, trousers and shoes are artistic extensions of a chest-up photograph. Sturdy, broad-shouldered adult build. Omit the small round blue lapel pin. No medals, sash, rosette, lapel badge, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly resting near his jacket button, not the pointing gesture of the photograph. Face, gray hair, beard and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the gray geometric wall panels, the microphone crossing his beard or the blurred white object at the lower-left corner of the reference photograph, and draw the full beard unobstructed; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt",
+      "prompt_file_sha256": "cc0a4c92eeea27ed6b37769a41ea8c3de6ff9edd75e10f47cbb1adea1070a218",
+      "generator": "OpenAI built-in image_gen",
+      "render_return_generator_label": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "render_operator": "Codex agent /root/tonga_civilian_roster",
+      "submitted_reference_inputs": [
+        {
+          "order": 1,
+          "role": "style_only",
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG"
+        },
+        {
+          "order": 2,
+          "role": "identity_reference",
+          "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+          "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+          "bytes": 687212,
+          "width": 1545,
+          "height": 2064,
+          "mode": "RGB",
+          "format": "JPEG",
+          "person_id": "carlos_lupi",
+          "reference_id": "carlos-lupi-2023"
+        }
+      ],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Carlos_Lupi._CAS_-_Comiss%C3%A3o_de_Assuntos_Sociais_(cropped).jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+        "original_reference_sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+        "creator": "Geraldo Magela / Agência Senado",
+        "credit": "Geraldo Magela/Agência Senado, 'Carlos Lupi. CAS - Comissão de Assuntos Sociais (cropped).jpg', 24 October 2023, CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 53282670483; licence confirmed by FlickreviewR 2 on 30 January 2024 on the parent file); crop uploaded by Commons user Rodolfo Matias on 30 January 2024. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 2.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph; body, clothing/color and age extensions as explicitly disclosed in exact prompt. No endorsement implied."
+      },
+      "registration_review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    }
+  ],
+  "preserved_attempts_and_skips": {
+    "render_return": "docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json",
+    "all_original_attempts_retained": true,
+    "skipped": [
+      {
+        "person_id": "carlos_lupi",
+        "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v1.txt",
+        "planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v1.png",
+        "reason": "Superseded held 2015–2026 prompt. Not submitted; replaced by 2015-v2 and 2020-v1."
+      },
+      {
+        "person_id": "daniel_sampaio_tourinho",
+        "reason": "Excluded/unprepared in active render request; no generation."
+      }
+    ]
+  },
+  "authority": {
+    "country_complete": false,
+    "runtime_or_office_boundary_changes": false,
+    "shared_manifest_written_by_this_record": false
+  }
+}

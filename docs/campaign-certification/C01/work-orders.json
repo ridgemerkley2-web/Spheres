@@ -1077,15 +1077,6 @@
     ],
     "members": [
       {
-        "job_id": "cartoon:akihiro_ota:2006-09-30:2009-09-08:v1",
-        "person_id": "akihiro_ota",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2006-09-30",
-        "to": "2009-09-08"
-      },
-      {
         "job_id": "cartoon:fumio_kishida:2021-10-01:2024-10-01:v1",
         "person_id": "fumio_kishida",
         "associated_nations": [
@@ -1165,6 +1156,15 @@
         ],
         "from": "1990-04-30",
         "to": "1994-06-01"
+      },
+      {
+        "job_id": "cartoon:keiichi_ishii:2024-09-28:2024-11-09:v1",
+        "person_id": "keiichi_ishii",
+        "associated_nations": [
+          "Japan"
+        ],
+        "from": "2024-09-28",
+        "to": "2024-11-09"
       }
     ],
     "maximum_reviewed_records": 10,
@@ -1181,15 +1181,6 @@
       "C01-Japan-ROLE-001"
     ],
     "members": [
-      {
-        "job_id": "cartoon:keiichi_ishii:2024-09-28:2024-11-09:v1",
-        "person_id": "keiichi_ishii",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2024-09-28",
-        "to": "2024-11-09"
-      },
       {
         "job_id": "cartoon:keizo_obuchi:1998-07-24:2000-01-01:v1",
         "person_id": "keizo_obuchi",
@@ -1216,15 +1207,6 @@
         ],
         "from": "1991-10-31",
         "to": "1993-07-30"
-      },
-      {
-        "job_id": "cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1",
-        "person_id": "makoto_tanabe",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "1991-07-31",
-        "to": "1993-01-19"
       },
       {
         "job_id": "cartoon:mizuho_fukushima:2003-11-30:2005-01-01:v1",
@@ -1270,57 +1252,6 @@
         ],
         "from": "2025-01-01",
         "to": "2026-09-08"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-Japan-B003",
-    "nation": "Japan",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Japan-ORG-001",
-      "C01-Japan-ROLE-001"
-    ],
-    "members": [
-      {
-        "job_id": "cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1",
-        "person_id": "natsuo_yamaguchi",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2009-09-08",
-        "to": "2010-01-01"
-      },
-      {
-        "job_id": "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1",
-        "person_id": "natsuo_yamaguchi",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2010-01-01",
-        "to": "2015-01-01"
-      },
-      {
-        "job_id": "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
-        "person_id": "natsuo_yamaguchi",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2015-01-01",
-        "to": "2020-01-01"
-      },
-      {
-        "job_id": "cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1",
-        "person_id": "natsuo_yamaguchi",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2020-01-01",
-        "to": "2024-09-28"
       },
       {
         "job_id": "cartoon:ryutaro_hashimoto:1995-10-01:1998-07-24:v1",
@@ -1339,7 +1270,22 @@
         ],
         "from": "2009-10-01",
         "to": "2010-01-01"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-Japan-B003",
+    "nation": "Japan",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-Japan-ORG-001",
+      "C01-Japan-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:sadakazu_tanigaki:2010-01-01:2012-10-01:v1",
         "person_id": "sadakazu_tanigaki",
@@ -1348,15 +1294,6 @@
         ],
         "from": "2010-01-01",
         "to": "2012-10-01"
-      },
-      {
-        "job_id": "cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1",
-        "person_id": "sadao_yamahana",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "1993-01-19",
-        "to": "1993-09-01"
       },
       {
         "job_id": "cartoon:sanae_takaichi:2025-10-04:2026-09-08:v1",
@@ -1375,22 +1312,7 @@
         ],
         "from": "2018-02-28",
         "to": "2020-01-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-Japan-B004",
-    "nation": "Japan",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Japan-ORG-001",
-      "C01-Japan-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:seiji_mataichi:2020-01-01:2020-02-01:v1",
         "person_id": "seiji_mataichi",
@@ -1453,7 +1375,22 @@
         ],
         "from": "2020-01-01",
         "to": "2020-09-14"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-Japan-B004",
+    "nation": "Japan",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-Japan-ORG-001",
+      "C01-Japan-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:tadatomo_yoshida:2013-10-31:2015-01-01:v1",
         "person_id": "tadatomo_yoshida",
@@ -1471,39 +1408,6 @@
         ],
         "from": "2015-01-01",
         "to": "2018-02-01"
-      },
-      {
-        "job_id": "cartoon:takako_doi:1996-09-30:2000-01-01:v1",
-        "person_id": "takako_doi",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "1996-09-30",
-        "to": "2000-01-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-Japan-B005",
-    "nation": "Japan",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Japan-ORG-001",
-      "C01-Japan-ROLE-001"
-    ],
-    "members": [
-      {
-        "job_id": "cartoon:takako_doi:2000-01-01:2003-11-01:v1",
-        "person_id": "takako_doi",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2000-01-01",
-        "to": "2003-11-01"
       },
       {
         "job_id": "cartoon:takashi_yonezawa:1994-06-30:1994-12-09:v1",
@@ -1576,22 +1480,13 @@
         ],
         "from": "1995-01-01",
         "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:tetsuzo_fuwa:2000-01-01:2000-11-01:v1",
-        "person_id": "tetsuzo_fuwa",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "2000-01-01",
-        "to": "2000-11-01"
       }
     ],
     "maximum_reviewed_records": 10,
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-Japan-B006",
+    "id": "CA-Japan-B005",
     "nation": "Japan",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -1602,31 +1497,13 @@
     ],
     "members": [
       {
-        "job_id": "cartoon:tomiichi_murayama:1993-09-30:1995-01-01:v1",
-        "person_id": "tomiichi_murayama",
+        "job_id": "cartoon:tetsuzo_fuwa:2000-01-01:2000-11-01:v1",
+        "person_id": "tetsuzo_fuwa",
         "associated_nations": [
           "Japan"
         ],
-        "from": "1993-09-30",
-        "to": "1995-01-01"
-      },
-      {
-        "job_id": "cartoon:tomiichi_murayama:1995-01-01:1996-01-01:v1",
-        "person_id": "tomiichi_murayama",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "1995-01-01",
-        "to": "1996-01-01"
-      },
-      {
-        "job_id": "cartoon:tomiichi_murayama:1996-01-31:1996-09-01:v1",
-        "person_id": "tomiichi_murayama",
-        "associated_nations": [
-          "Japan"
-        ],
-        "from": "1996-01-31",
-        "to": "1996-09-01"
+        "from": "2000-01-01",
+        "to": "2000-11-01"
       },
       {
         "job_id": "cartoon:tomio_fujii:1994-12-31:1995-01-01:v1",
@@ -1690,22 +1567,7 @@
         ],
         "from": "2007-09-23",
         "to": "2008-09-22"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-Japan-B007",
-    "nation": "Japan",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Japan-ORG-001",
-      "C01-Japan-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:yohei_kono:1993-07-30:1995-01-01:v1",
         "person_id": "yohei_kono",
@@ -1723,7 +1585,22 @@
         ],
         "from": "1995-01-01",
         "to": "1995-10-01"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-Japan-B006",
+    "nation": "Japan",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-Japan-ORG-001",
+      "C01-Japan-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:yoshihide_suga:2020-09-14:2021-10-01:v1",
         "person_id": "yoshihide_suga",
@@ -1886,75 +1763,6 @@
         "to": "2001-01-01"
       },
       {
-        "job_id": "cartoon:harkishan_singh_surjeet:1992-01-31:1995-01-01:v1",
-        "person_id": "harkishan_singh_surjeet",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "1992-01-31",
-        "to": "1995-01-01"
-      },
-      {
-        "job_id": "cartoon:harkishan_singh_surjeet:1995-01-01:2000-01-01:v1",
-        "person_id": "harkishan_singh_surjeet",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "1995-01-01",
-        "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:harkishan_singh_surjeet:2000-01-01:2005-01-01:v1",
-        "person_id": "harkishan_singh_surjeet",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2000-01-01",
-        "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:harkishan_singh_surjeet:2005-01-01:2005-04-01:v1",
-        "person_id": "harkishan_singh_surjeet",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2005-01-01",
-        "to": "2005-04-01"
-      },
-      {
-        "job_id": "cartoon:jagat_prakash_nadda:2020-01-20:2025-01-01:v1",
-        "person_id": "jagat_prakash_nadda",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2020-01-20",
-        "to": "2025-01-01"
-      },
-      {
-        "job_id": "cartoon:jagat_prakash_nadda:2025-01-01:2026-01-20:v1",
-        "person_id": "jagat_prakash_nadda",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2025-01-01",
-        "to": "2026-01-20"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-India-B002",
-    "nation": "India",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-India-ORG-001",
-      "C01-India-ROLE-001"
-    ],
-    "members": [
-      {
         "job_id": "cartoon:jana_krishnamurthi:2001-12-31:2002-01-01:v1",
         "person_id": "jana_krishnamurthi",
         "associated_nations": [
@@ -1971,42 +1779,6 @@
         ],
         "from": "1998-12-31",
         "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:lal_krishna_advani:1995-01-01:1998-01-01:v1",
-        "person_id": "lal_krishna_advani",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "1995-01-01",
-        "to": "1998-01-01"
-      },
-      {
-        "job_id": "cartoon:lal_krishna_advani:2004-10-27:2005-01-01:v1",
-        "person_id": "lal_krishna_advani",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2004-10-27",
-        "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:lal_krishna_advani:2005-01-01:2005-12-31:v1",
-        "person_id": "lal_krishna_advani",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2005-01-01",
-        "to": "2005-12-31"
-      },
-      {
-        "job_id": "cartoon:m_a_baby:2025-04-06:2026-09-08:v1",
-        "person_id": "m_a_baby",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2025-04-06",
-        "to": "2026-09-08"
       },
       {
         "job_id": "cartoon:m_venkaiah_naidu:2002-12-31:2004-10-27:v1",
@@ -2049,7 +1821,7 @@
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-India-B003",
+    "id": "CA-India-B002",
     "nation": "India",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -2059,24 +1831,6 @@
       "C01-India-ROLE-001"
     ],
     "members": [
-      {
-        "job_id": "cartoon:nitin_gadkari:2009-12-19:2010-01-01:v1",
-        "person_id": "nitin_gadkari",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2009-12-19",
-        "to": "2010-01-01"
-      },
-      {
-        "job_id": "cartoon:nitin_gadkari:2010-01-01:2013-01-01:v1",
-        "person_id": "nitin_gadkari",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2010-01-01",
-        "to": "2013-01-01"
-      },
       {
         "job_id": "cartoon:nitin_nabin:2026-01-20:2026-09-08:v1",
         "person_id": "nitin_nabin",
@@ -2105,33 +1859,6 @@
         "to": "1996-01-01"
       },
       {
-        "job_id": "cartoon:prakash_karat:2005-04-30:2010-01-01:v1",
-        "person_id": "prakash_karat",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2005-04-30",
-        "to": "2010-01-01"
-      },
-      {
-        "job_id": "cartoon:prakash_karat:2010-01-01:2015-01-01:v1",
-        "person_id": "prakash_karat",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2010-01-01",
-        "to": "2015-01-01"
-      },
-      {
-        "job_id": "cartoon:prakash_karat:2015-01-01:2015-04-01:v1",
-        "person_id": "prakash_karat",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2015-01-01",
-        "to": "2015-04-01"
-      },
-      {
         "job_id": "cartoon:prakash_karat:2024-09-29:2025-01-01:v1",
         "person_id": "prakash_karat",
         "associated_nations": [
@@ -2148,22 +1875,7 @@
         ],
         "from": "2025-01-01",
         "to": "2025-04-06"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-India-B004",
-    "nation": "India",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-India-ORG-001",
-      "C01-India-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:rahul_gandhi:2017-12-16:2019-08-10:v1",
         "person_id": "rahul_gandhi",
@@ -2172,24 +1884,6 @@
         ],
         "from": "2017-12-16",
         "to": "2019-08-10"
-      },
-      {
-        "job_id": "cartoon:rajnath_singh:2005-12-31:2009-12-19:v1",
-        "person_id": "rajnath_singh",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2005-12-31",
-        "to": "2009-12-19"
-      },
-      {
-        "job_id": "cartoon:rajnath_singh:2013-01-31:2014-07-09:v1",
-        "person_id": "rajnath_singh",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2013-01-31",
-        "to": "2014-07-09"
       },
       {
         "job_id": "cartoon:s_r_bommai:1995-01-01:1996-01-01:v1",
@@ -2219,24 +1913,6 @@
         "to": "1998-03-14"
       },
       {
-        "job_id": "cartoon:sitaram_yechury:2015-04-30:2020-01-01:v1",
-        "person_id": "sitaram_yechury",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2015-04-30",
-        "to": "2020-01-01"
-      },
-      {
-        "job_id": "cartoon:sitaram_yechury:2020-01-01:2024-09-12:v1",
-        "person_id": "sitaram_yechury",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2020-01-01",
-        "to": "2024-09-12"
-      },
-      {
         "job_id": "cartoon:sonia_gandhi:1998-03-14:2000-01-01:v1",
         "person_id": "sonia_gandhi",
         "associated_nations": [
@@ -2244,22 +1920,13 @@
         ],
         "from": "1998-03-14",
         "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:sonia_gandhi:2000-01-01:2005-01-01:v1",
-        "person_id": "sonia_gandhi",
-        "associated_nations": [
-          "India"
-        ],
-        "from": "2000-01-01",
-        "to": "2005-01-01"
       }
     ],
     "maximum_reviewed_records": 10,
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-India-B005",
+    "id": "CA-India-B003",
     "nation": "India",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -2269,6 +1936,15 @@
       "C01-India-ROLE-001"
     ],
     "members": [
+      {
+        "job_id": "cartoon:sonia_gandhi:2000-01-01:2005-01-01:v1",
+        "person_id": "sonia_gandhi",
+        "associated_nations": [
+          "India"
+        ],
+        "from": "2000-01-01",
+        "to": "2005-01-01"
+      },
       {
         "job_id": "cartoon:sonia_gandhi:2005-01-01:2010-01-01:v1",
         "person_id": "sonia_gandhi",
@@ -2447,87 +2123,6 @@
     ],
     "members": [
       {
-        "job_id": "cartoon:baleia_rossi:2019-10-06:2020-01-01:v1",
-        "person_id": "baleia_rossi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2019-10-06",
-        "to": "2020-01-01"
-      },
-      {
-        "job_id": "cartoon:baleia_rossi:2020-01-01:2025-01-01:v1",
-        "person_id": "baleia_rossi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2020-01-01",
-        "to": "2025-01-01"
-      },
-      {
-        "job_id": "cartoon:baleia_rossi:2025-01-01:2026-09-08:v1",
-        "person_id": "baleia_rossi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2025-01-01",
-        "to": "2026-09-08"
-      },
-      {
-        "job_id": "cartoon:carlos_lupi:2004-06-30:2005-01-01:v1",
-        "person_id": "carlos_lupi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2004-06-30",
-        "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:carlos_lupi:2005-01-01:2010-01-01:v1",
-        "person_id": "carlos_lupi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2005-01-01",
-        "to": "2010-01-01"
-      },
-      {
-        "job_id": "cartoon:carlos_lupi:2010-01-01:2015-01-01:v1",
-        "person_id": "carlos_lupi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2010-01-01",
-        "to": "2015-01-01"
-      },
-      {
-        "job_id": "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1",
-        "person_id": "carlos_lupi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2015-01-01",
-        "to": "2020-01-01"
-      },
-      {
-        "job_id": "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
-        "person_id": "carlos_lupi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2020-01-01",
-        "to": "2025-01-01"
-      },
-      {
-        "job_id": "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1",
-        "person_id": "carlos_lupi",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2025-01-01",
-        "to": "2026-09-08"
-      },
-      {
         "job_id": "cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1",
         "person_id": "daniel_sampaio_tourinho",
         "associated_nations": [
@@ -2535,22 +2130,7 @@
         ],
         "from": "2026-07-05",
         "to": "2026-09-08"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-Brazil-B002",
-    "nation": "Brazil",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Brazil-ORG-001",
-      "C01-Brazil-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:edinho_silva:2025-08-31:2026-09-08:v1",
         "person_id": "edinho_silva",
@@ -2631,22 +2211,13 @@
         ],
         "from": "1995-12-31",
         "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:jose_dirceu:2000-01-01:2002-01-01:v1",
-        "person_id": "jose_dirceu",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2000-01-01",
-        "to": "2002-01-01"
       }
     ],
     "maximum_reviewed_records": 10,
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-Brazil-B003",
+    "id": "CA-Brazil-B002",
     "nation": "Brazil",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -2656,6 +2227,15 @@
       "C01-Brazil-ROLE-001"
     ],
     "members": [
+      {
+        "job_id": "cartoon:jose_dirceu:2000-01-01:2002-01-01:v1",
+        "person_id": "jose_dirceu",
+        "associated_nations": [
+          "Brazil"
+        ],
+        "from": "2000-01-01",
+        "to": "2002-01-01"
+      },
       {
         "job_id": "cartoon:jose_eduardo_dutra:2010-12-31:2011-01-01:v1",
         "person_id": "jose_eduardo_dutra",
@@ -2673,24 +2253,6 @@
         ],
         "from": "2003-12-31",
         "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:leonel_brizola:1995-01-01:2000-01-01:v1",
-        "person_id": "leonel_brizola",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "1995-01-01",
-        "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:leonel_brizola:2000-01-01:2004-06-21:v1",
-        "person_id": "leonel_brizola",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2000-01-01",
-        "to": "2004-06-21"
       },
       {
         "job_id": "cartoon:luiz_henrique_da_silveira:1993-09-12:1995-01-01:v1",
@@ -2738,48 +2300,6 @@
         "to": "2007-01-01"
       },
       {
-        "job_id": "cartoon:michel_temer:2001-09-09:2005-01-01:v1",
-        "person_id": "michel_temer",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2001-09-09",
-        "to": "2005-01-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-Brazil-B004",
-    "nation": "Brazil",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Brazil-ORG-001",
-      "C01-Brazil-ROLE-001"
-    ],
-    "members": [
-      {
-        "job_id": "cartoon:michel_temer:2005-01-01:2009-03-10:v1",
-        "person_id": "michel_temer",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2005-01-01",
-        "to": "2009-03-10"
-      },
-      {
-        "job_id": "cartoon:michel_temer:2010-01-27:2010-06-15:v1",
-        "person_id": "michel_temer",
-        "associated_nations": [
-          "Brazil"
-        ],
-        "from": "2010-01-27",
-        "to": "2010-06-15"
-      },
-      {
         "job_id": "cartoon:orestes_quercia:1991-03-24:1993-04-23:v1",
         "person_id": "orestes_quercia",
         "associated_nations": [
@@ -2796,7 +2316,22 @@
         ],
         "from": "1995-10-01",
         "to": "1998-09-15"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-Brazil-B003",
+    "nation": "Brazil",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-Brazil-ORG-001",
+      "C01-Brazil-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:ricardo_berzoini:2007-12-31:2010-01-01:v1",
         "person_id": "ricardo_berzoini",
@@ -3007,42 +2542,6 @@
         "to": "1996-01-01"
       },
       {
-        "job_id": "cartoon:constand_viljoen:1994-03-31:1995-01-01:v1",
-        "person_id": "constand_viljoen",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "1994-03-31",
-        "to": "1995-01-01"
-      },
-      {
-        "job_id": "cartoon:constand_viljoen:1995-01-01:2000-01-01:v1",
-        "person_id": "constand_viljoen",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "1995-01-01",
-        "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:constand_viljoen:2000-01-01:2001-01-01:v1",
-        "person_id": "constand_viljoen",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2000-01-01",
-        "to": "2001-01-01"
-      },
-      {
-        "job_id": "cartoon:corne_mulder:2025-07-16:2026-09-08:v1",
-        "person_id": "corne_mulder",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2025-07-16",
-        "to": "2026-09-08"
-      },
-      {
         "job_id": "cartoon:cyril_ramaphosa:2017-12-18:2020-01-01:v1",
         "person_id": "cyril_ramaphosa",
         "associated_nations": [
@@ -3077,22 +2576,7 @@
         ],
         "from": "1995-01-01",
         "to": "1997-09-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-SouthAfrica-B002",
-    "nation": "SouthAfrica",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-SouthAfrica-ORG-001",
-      "C01-SouthAfrica-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:jacob_zuma:2007-12-18:2010-01-01:v1",
         "person_id": "jacob_zuma",
@@ -3128,7 +2612,22 @@
         ],
         "from": "1993-12-31",
         "to": "1995-01-01"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-SouthAfrica-B002",
+    "nation": "SouthAfrica",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-SouthAfrica-ORG-001",
+      "C01-SouthAfrica-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:kenneth_meshoe:1995-01-01:2000-01-01:v1",
         "person_id": "kenneth_meshoe",
@@ -3182,22 +2681,7 @@
         ],
         "from": "2020-01-01",
         "to": "2025-01-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-SouthAfrica-B003",
-    "nation": "SouthAfrica",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-SouthAfrica-ORG-001",
-      "C01-SouthAfrica-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:kenneth_meshoe:2025-01-01:2026-09-08:v1",
         "person_id": "kenneth_meshoe",
@@ -3206,24 +2690,6 @@
         ],
         "from": "2025-01-01",
         "to": "2026-09-08"
-      },
-      {
-        "job_id": "cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1",
-        "person_id": "mangosuthu_buthelezi",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "1995-01-01",
-        "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1",
-        "person_id": "mangosuthu_buthelezi",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2000-01-01",
-        "to": "2005-01-01"
       },
       {
         "job_id": "cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1",
@@ -3251,7 +2717,22 @@
         ],
         "from": "2015-01-01",
         "to": "2019-08-24"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-SouthAfrica-B003",
+    "nation": "SouthAfrica",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-SouthAfrica-ORG-001",
+      "C01-SouthAfrica-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:marthinus_van_schalkwyk:1997-09-30:2000-01-01:v1",
         "person_id": "marthinus_van_schalkwyk",
@@ -3287,22 +2768,7 @@
         ],
         "from": "1991-07-05",
         "to": "1995-01-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-SouthAfrica-B004",
-    "nation": "SouthAfrica",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-SouthAfrica-ORG-001",
-      "C01-SouthAfrica-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:nelson_mandela:1995-01-01:1997-12-01:v1",
         "person_id": "nelson_mandela",
@@ -3311,42 +2777,6 @@
         ],
         "from": "1995-01-01",
         "to": "1997-12-01"
-      },
-      {
-        "job_id": "cartoon:pieter_mulder:2001-12-31:2005-01-01:v1",
-        "person_id": "pieter_mulder",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2001-12-31",
-        "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:pieter_mulder:2005-01-01:2010-01-01:v1",
-        "person_id": "pieter_mulder",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2005-01-01",
-        "to": "2010-01-01"
-      },
-      {
-        "job_id": "cartoon:pieter_mulder:2010-01-01:2015-01-01:v1",
-        "person_id": "pieter_mulder",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2010-01-01",
-        "to": "2015-01-01"
-      },
-      {
-        "job_id": "cartoon:pieter_mulder:2015-01-01:2016-11-12:v1",
-        "person_id": "pieter_mulder",
-        "associated_nations": [
-          "SouthAfrica"
-        ],
-        "from": "2015-01-01",
-        "to": "2016-11-12"
       },
       {
         "job_id": "cartoon:thabo_mbeki:1997-12-31:2000-01-01:v1",
@@ -3398,7 +2828,7 @@
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-SouthAfrica-B005",
+    "id": "CA-SouthAfrica-B004",
     "nation": "SouthAfrica",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",

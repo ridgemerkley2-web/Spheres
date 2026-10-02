@@ -1,0 +1,344 @@
+{
+  "version": 1,
+  "date": "2026-10-02",
+  "authorization": "User requested Codex fill gaps in the six rendered batches and continue. This completes review and registration of their31 requested portraits; reserves, country histories and human acceptance remain separate.",
+  "base_revision": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "manifest_before_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "manifest_after_sha256": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa",
+  "portraits_added": 31,
+  "historical_portraits_before": 107,
+  "historical_portraits_after": 138,
+  "every_existing_portrait_preserved": true,
+  "historical_registry_unchanged": true,
+  "people_ids_unchanged": true,
+  "pipeline_valid": true,
+  "pipeline_errors": [],
+  "pipeline_existing_warning_count": 505,
+  "country_complete": false,
+  "human_approval": false,
+  "fragments": [
+    {
+      "country": "brazil",
+      "path": "docs/campaign-certification/C06/production/brazil/registration-completion-20261002/manifest-fragment.json",
+      "sha256": "148b9b773daf374afe8698a0a0e7fcd6856647b756aa85bbe6393c626d9571a9",
+      "portraits_added": 7
+    },
+    {
+      "country": "south-africa",
+      "path": "docs/campaign-certification/C06/production/south-africa/registration-completion-20261002/manifest-fragment.json",
+      "sha256": "427112c6550d4047901a776b12ab4210e9bc9e25e9eb327de85664550a72ef0b",
+      "portraits_added": 4
+    },
+    {
+      "country": "japan",
+      "path": "docs/campaign-certification/C06/production/japan/registration-completion-20261002/manifest-additions.json",
+      "sha256": "beba86f5b59b7758f2ac7ddedfdcec2e5e60c49dfd5612108e6b1caa2c6b099b",
+      "portraits_added": 7
+    },
+    {
+      "country": "india",
+      "path": "docs/campaign-certification/C06/production/india/registration-completion-20261002/manifest-fragment.json",
+      "sha256": "af4c1383f41ba19578cfb2a778ccaf6703bac46b7279429b4778dcbe862a10a8",
+      "portraits_added": 8
+    },
+    {
+      "country": "saudi-arabia",
+      "path": "docs/campaign-certification/C06/production/saudi-arabia/registration-completion-20261002/manifest-fragment.json",
+      "sha256": "1fa88ab828e43b6f0a794a85a58457025dab3cfa421f86c32e1b6d576489b9b8",
+      "portraits_added": 4
+    },
+    {
+      "country": "ussr-russia",
+      "path": "docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/manifest-additions.json",
+      "sha256": "64463634f2c4548db074f7f749aee9d9d8ef026122b10b5d989c0b75ef422515",
+      "portraits_added": 1
+    }
+  ],
+  "added_portraits": [
+    {
+      "country": "brazil",
+      "person_id": "michel_temer",
+      "from": "2001-09-09",
+      "to": "2010-06-15",
+      "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+      "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job michel-temer-cartoon-2001-v1; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "brazil",
+      "person_id": "michel_temer",
+      "from": "2010-06-15",
+      "to": "2019-01-01",
+      "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+      "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job michel-temer-cartoon-2010-v1; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "brazil",
+      "person_id": "baleia_rossi",
+      "from": "2019-10-06",
+      "to": "2026-09-08",
+      "asset": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+      "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job baleia-rossi-cartoon-2019-v1; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "brazil",
+      "person_id": "leonel_brizola",
+      "from": "1995-01-01",
+      "to": "2004-06-21",
+      "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+      "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job leonel-brizola-cartoon-1995-v1; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2004-06-30",
+      "to": "2015-01-01",
+      "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+      "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job carlos-lupi-cartoon-2004-v1; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2015-01-01",
+      "to": "2020-01-01",
+      "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job carlos-lupi-cartoon-2015-v2; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2020-01-01",
+      "to": "2026-09-08",
+      "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+      "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/brazil-cast-registration-20261002.json, job carlos-lupi-cartoon-2020-v1; original return docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "south-africa",
+      "person_id": "mangosuthu_buthelezi",
+      "from": "1995-01-01",
+      "to": "2005-01-01",
+      "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+      "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/south-africa-cast-registration-20261002.json, job mangosuthu-buthelezi-cartoon-1995-v1; original return docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "south-africa",
+      "person_id": "constand_viljoen",
+      "from": "1994-03-31",
+      "to": "2001-01-01",
+      "asset": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+      "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/south-africa-cast-registration-20261002.json, job constand-viljoen-cartoon-1994-v1; original return docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "south-africa",
+      "person_id": "pieter_mulder",
+      "from": "2001-06-21",
+      "to": "2016-11-13",
+      "asset": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+      "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/south-africa-cast-registration-20261002.json, job pieter-mulder-cartoon-2001-v1; original return docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "south-africa",
+      "person_id": "corne_mulder",
+      "from": "2025-07-16",
+      "to": "2026-09-08",
+      "asset": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+      "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+      "generation_record": "Exact prompt, ordered actual inputs, original output, rights and Codex review in tools/avatars/person-prompts/south-africa-cast-registration-20261002.json, job corne-mulder-cartoon-2025-v1; original return docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "tomiichi_murayama",
+      "from": "1993-09-30",
+      "to": "1996-09-01",
+      "asset": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+      "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job tomiichi-murayama-cartoon-1993-v1; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "makoto_tanabe",
+      "from": "1991-07-31",
+      "to": "1993-01-19",
+      "asset": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+      "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job makoto-tanabe-cartoon-1991-v1; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "sadao_yamahana",
+      "from": "1993-01-19",
+      "to": "1993-09-01",
+      "asset": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+      "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job sadao-yamahana-cartoon-1993-v1; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "takako_doi",
+      "from": "1996-09-30",
+      "to": "2003-11-01",
+      "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+      "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job takako-doi-cartoon-1996-v2; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "akihiro_ota",
+      "from": "2006-09-30",
+      "to": "2009-09-08",
+      "asset": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+      "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job akihiro-ota-cartoon-2006-v1; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "natsuo_yamaguchi",
+      "from": "2009-09-08",
+      "to": "2015-01-01",
+      "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+      "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job natsuo-yamaguchi-cartoon-2009-v2; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "japan",
+      "person_id": "natsuo_yamaguchi",
+      "from": "2015-01-01",
+      "to": "2024-09-28",
+      "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/japan-cast-registration-20261002.json, job natsuo-yamaguchi-cartoon-2015-v1; bounded Codex review in docs/campaign-certification/C06/production/japan/registration-completion-20261002/audit.json."
+    },
+    {
+      "country": "india",
+      "person_id": "harkishan_singh_surjeet",
+      "from": "1992-01-31",
+      "to": "2005-04-01",
+      "asset": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+      "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job harkishan-singh-surjeet-cartoon-1992-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "lal_krishna_advani",
+      "from": "1995-01-01",
+      "to": "2005-12-31",
+      "asset": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+      "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job lal-krishna-advani-cartoon-1995-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "prakash_karat",
+      "from": "2005-04-30",
+      "to": "2015-04-01",
+      "asset": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+      "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job prakash-karat-cartoon-2005-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "rajnath_singh",
+      "from": "2005-12-31",
+      "to": "2014-07-09",
+      "asset": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+      "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job rajnath-singh-cartoon-2005-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "nitin_gadkari",
+      "from": "2009-12-19",
+      "to": "2013-01-23",
+      "asset": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+      "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job nitin-gadkari-cartoon-2009-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "sitaram_yechury",
+      "from": "2015-04-30",
+      "to": "2024-09-12",
+      "asset": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+      "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job sitaram-yechury-cartoon-2015-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "jagat_prakash_nadda",
+      "from": "2020-01-20",
+      "to": "2026-01-20",
+      "asset": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+      "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job jagat-prakash-nadda-cartoon-2020-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "india",
+      "person_id": "m_a_baby",
+      "from": "2025-04-06",
+      "to": "2026-09-08",
+      "asset": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+      "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/india-cast-registration-20261002.json, job m-a-baby-cartoon-2025-v1; original return docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "from": "1991-01-01",
+      "to": "1996-01-01",
+      "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+      "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json, job fahd-bin-abdulaziz-cartoon-1991-v1; original return docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "from": "1996-01-01",
+      "to": "2005-08-01",
+      "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+      "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json, job fahd-bin-abdulaziz-cartoon-1996-v1; original return docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "from": "1996-01-01",
+      "to": "2005-08-01",
+      "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+      "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json, job abdullah-bin-abdulaziz-cartoon-1996-v1; original return docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "from": "2005-08-01",
+      "to": "2015-01-23",
+      "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+      "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+      "generation_record": "Exact submitted prompt, ordered input hashes, source rights, retained original and Codex review in tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json, job abdullah-bin-abdulaziz-cartoon-2005-v1; original return docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json remains unchanged."
+    },
+    {
+      "country": "ussr-russia",
+      "person_id": "mikhail_gorbachev",
+      "from": "1991-01-01",
+      "to": "1991-12-26",
+      "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+      "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+      "generation_record": "Exact submitted prompt, ordered inputs, original output and prior attempts are recorded in tools/avatars/person-prompts/ussr-russia-cast-registration-20261002.json, job mikhail-gorbachev-cartoon-1991-v2; bounded Codex review in docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/audit.json."
+    }
+  ],
+  "embedded_allowlist_precheck": {
+    "exit_code": 1,
+    "output": "Avatar allowlist differs. Run build_person_avatar_assets.py after reviewing manifest changes.",
+    "observed_before_registration": true,
+    "finding": "The baseline France7 registrations were absent from the embedded game allowlist. Regenerate the allowlist for all reviewed assets, including France and these31."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "base": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "authorization": "User asked Codex to fill the remaining gaps in the six returned batches. New versioned prompts address the two recorded likeness holds; original requests, returns and PNGs remain unchanged.",
+  "renders": [
+    {
+      "person_id": "takako_doi",
+      "job_id": "takako-doi-cartoon-1996-v2",
+      "supersedes_candidate": "takako-doi-cartoon-1996-v1",
+      "correction_reason": "The first two v1 attempts appeared too young for the requested age around seventy. This revised prompt removes the conflicting firmer/younger-face direction and explicitly preserves mature facial structure.",
+      "prompt_path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v2.txt",
+      "prompt_sha256": "44448917754e1e99dd24f189bbb8994793eb15a203af6f53f0011cf2c2a4efc1",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da"
+        }
+      ],
+      "output_path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-6fd3e79e-abd1-4de0-b1ec-7fdb685bb4e6.png",
+        "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1",
+        "bytes": 1681349,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "attempt": 1,
+      "edited": false,
+      "failure": null,
+      "human_approval": false,
+      "independent_review_pending": true
+    },
+    {
+      "person_id": "mikhail_gorbachev",
+      "job_id": "mikhail-gorbachev-cartoon-1991-v2",
+      "supersedes_candidate": "mikhail-gorbachev-cartoon-1991-v1",
+      "correction_reason": "The v1 render reduced the source birthmark arc to a narrow central patch. This revision specifies the broad lateral arc, substantial downward lobe, lateral flecks and exact anatomical side.",
+      "prompt_path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt",
+      "prompt_sha256": "e8570730f68e31c46977eabbab6f6823bbaaae61f2946feb826b8b2c2214df4a",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+          "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37"
+        }
+      ],
+      "output_path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9c2d04c1-7f74-45dd-91d0-2718c37fe1fb.png",
+        "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+        "bytes": 1689207,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "attempt": 1,
+      "edited": false,
+      "failure": null,
+      "human_approval": false,
+      "independent_review_pending": true
+    }
+  ]
+}

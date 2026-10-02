@@ -65,8 +65,8 @@
      "unresearched": 4
     },
     "production_party_yearly_image_bindings": {
-     "bound": 7,
-     "unbound": 93
+     "bound": 54,
+     "unbound": 46
     },
     "executive_yearly_status": {
      "boundary_day": 8,
@@ -74,7 +74,7 @@
      "uncertain": 25,
      "unknown": 1
     },
-    "people_without_bound_art_at_yearly_samples": 20,
+    "people_without_bound_art_at_yearly_samples": 16,
     "unbound_yearly_samples_without_art_job": [],
     "fictional_candidates": 24,
     "fictional_party_candidates": 24,
@@ -89,7 +89,7 @@
     "Research roles: 6 (6 with holder observations); 20 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 103 uncertain, 99 unknown and 0 unresearched.",
     "Research holder observations by acceptance: accepted 17, pending 39.",
     "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
-    "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
+    "Registry holder portraits at yearly samples: 54 bound, 46 unbound (16 distinct people without served art).",
     "Campaign-start executive Jose Sarney: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
     "Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.",
@@ -333,24 +333,24 @@
     {"date":"2001-05-15","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_maguito_vilela_20010515","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"maguito_vilela","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:maguito_vilela:2001-05-15:2001-09-09:v1"}],"asset":[]},
     {"date":"2001-05-16","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_maguito_vilela_20010515","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"maguito_vilela","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:maguito_vilela:2001-05-15:2001-09-09:v1"}],"asset":[]},
     {"date":"2001-09-08","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_maguito_vilela_20010515","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"maguito_vilela","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:maguito_vilela:2001-05-15:2001-09-09:v1"}],"asset":[]},
-    {"date":"2001-09-09","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2001-09-09:2005-01-01:v1"}],"asset":[]},
-    {"date":"2001-09-10","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2001-09-09:2005-01-01:v1"}],"asset":[]},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2001-09-09:2005-01-01:v1"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2001-09-09:2005-01-01:v1"}],"asset":[]},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2001-09-09:2005-01-01:v1"}],"asset":[]},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2005-01-01:2009-03-10:v1"}],"asset":[]},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2005-01-01:2009-03-10:v1"}],"asset":[]},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2005-01-01:2009-03-10:v1"}],"asset":[]},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2005-01-01:2009-03-10:v1"}],"asset":[]},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2005-01-01:2009-03-10:v1"}],"asset":[]},
-    {"date":"2009-03-09","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2005-01-01:2009-03-10:v1"}],"asset":[]},
+    {"date":"2001-09-09","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2001-09-10","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2009-03-09","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20010909","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
     {"date":"2009-03-10","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_iris_de_araujo_20090310","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"iris_de_araujo","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:iris_de_araujo:2009-03-10:2010-01-01:v1"}],"asset":[]},
     {"date":"2009-03-11","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_iris_de_araujo_20090310","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"iris_de_araujo","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:iris_de_araujo:2009-03-10:2010-01-01:v1"}],"asset":[]},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_iris_de_araujo_20090310","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"iris_de_araujo","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:iris_de_araujo:2010-01-01:2010-01-27:v1"}],"asset":[]},
     {"date":"2010-01-26","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_iris_de_araujo_20090310","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"iris_de_araujo","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:iris_de_araujo:2010-01-01:2010-01-27:v1"}],"asset":[]},
-    {"date":"2010-01-27","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20100127","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2010-01-27:2010-06-15:v1"}],"asset":[]},
-    {"date":"2010-01-28","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20100127","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2010-01-27:2010-06-15:v1"}],"asset":[]},
-    {"date":"2010-06-14","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20100127","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:michel_temer:2010-01-27:2010-06-15:v1"}],"asset":[]},
+    {"date":"2010-01-27","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20100127","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2010-01-28","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20100127","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
+    {"date":"2010-06-14","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_michel_temer_20100127","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"michel_temer","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","window":["2001-09-09","2010-06-15"]}],"asset":[["spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png","available"]]},
     {"date":"2010-06-15","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_valdir_raupp_20100615","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"valdir_raupp","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:valdir_raupp:2010-06-15:2014-03-11:v1"}],"asset":[]},
     {"date":"2010-06-16","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_valdir_raupp_20100615","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"valdir_raupp","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:valdir_raupp:2010-06-15:2014-03-11:v1"}],"asset":[]},
     {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_valdir_raupp_20100615","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"valdir_raupp","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:valdir_raupp:2010-06-15:2014-03-11:v1"}],"asset":[]},
@@ -369,17 +369,17 @@
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_romero_juca_20160405","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"romero_juca","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:romero_juca:2016-04-05:2019-10-06:v1"}],"asset":[]},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_romero_juca_20160405","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"romero_juca","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:romero_juca:2016-04-05:2019-10-06:v1"}],"asset":[]},
     {"date":"2019-10-05","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_pmdb_romero_juca_20160405","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"romero_juca","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:romero_juca:2016-04-05:2019-10-06:v1"}],"asset":[]},
-    {"date":"2019-10-06","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2019-10-06:2020-01-01:v1"}],"asset":[]},
-    {"date":"2019-10-07","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2019-10-06:2020-01-01:v1"}],"asset":[]},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
+    {"date":"2019-10-06","kinds":["handover_day_of"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2019-10-07","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]]},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","window":["2019-10-06","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png","available"]],"future":{"eligible":false,"reason":"before_fictional_window"}},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
@@ -403,7 +403,8 @@
     "boundary_cases": 42,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "unbound": 36
+     "bound": 15,
+     "unbound": 21
     }
    }
   },
@@ -853,43 +854,43 @@
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png","available"]]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png","available"]]},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png","available"]]},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:1995-01-01:2000-01-01:v1"}],"asset":[]},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"}],"asset":[]},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"}],"asset":[]},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"}],"asset":[]},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"}],"asset":[]},
-    {"date":"2004-06-20","kinds":["death_day_before","handover_day_before"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]],"possible":[["br_pdt_carlos_lupi_200406","uncertain_bounds"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"},{"person":"carlos_lupi","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
-    {"date":"2004-06-21","kinds":["death_day_of","handover_day_of"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["br_pdt_carlos_lupi_200406","uncertain_bounds"]],"declared_gaps":[0]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
-    {"date":"2004-06-22","kinds":["death_day_after","handover_day_after"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["br_pdt_carlos_lupi_200406","uncertain_bounds"]],"declared_gaps":[0]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2005-01-01:2010-01-01:v1"}],"asset":[]},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"}],"asset":[]},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"}],"asset":[]},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2020-01-01:2025-01-01:v1"}],"asset":[]},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[]},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2004-06-20","kinds":["death_day_before","handover_day_before"],"historical":{"status":"established","holders":[["br_pdt_leonel_brizola_1980","historical_on"]],"possible":[["br_pdt_carlos_lupi_200406","uncertain_bounds"]]},"acceptance":["production_registry"],"image":[{"person":"leonel_brizola","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","window":["1995-01-01","2004-06-21"]},{"person":"carlos_lupi","as":"possible","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date"}],"asset":[["spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png","available"]]},
+    {"date":"2004-06-21","kinds":["death_day_of","handover_day_of"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["br_pdt_carlos_lupi_200406","uncertain_bounds"]],"declared_gaps":[0]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"possible","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date"}],"asset":[]},
+    {"date":"2004-06-22","kinds":["death_day_after","handover_day_after"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["br_pdt_carlos_lupi_200406","uncertain_bounds"]],"declared_gaps":[0]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"possible","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date"}],"asset":[]},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","window":["2004-06-30","2015-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png","available"]]},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","window":["2015-01-01","2020-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","available"]]},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","window":["2015-01-01","2020-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","available"]]},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","window":["2015-01-01","2020-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","available"]]},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","window":["2015-01-01","2020-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","available"]]},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","window":["2015-01-01","2020-01-01"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png","available"]]},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]]},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"bound","asset":"spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","window":["2020-01-01","2026-09-08"]}],"asset":[["spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png","available"]],"future":{"eligible":false,"reason":"before_fictional_window"}},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
@@ -912,8 +913,7 @@
     "boundary_cases": 3,
     "attestation_cases": 0,
     "yearly_image_bindings": {
-     "bound": 5,
-     "unbound": 32
+     "bound": 37
     }
    }
   },
@@ -3907,19 +3907,23 @@
     "value": "1972-06-09"
    },
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2019-10-06",
+     "to": "2026-09-08",
+     "asset": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2019-10-06",
      "to": "2026-09-08"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:baleia_rossi:2019-10-06:2020-01-01:v1",
-    "cartoon:baleia_rossi:2020-01-01:2025-01-01:v1",
-    "cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "carlos_lupi",
@@ -3929,22 +3933,37 @@
     "value": "1957-03-16"
    },
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2004-06-30",
+     "to": "2015-01-01",
+     "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    },
+    {
+     "from": "2015-01-01",
+     "to": "2020-01-01",
+     "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    },
+    {
+     "from": "2020-01-01",
+     "to": "2026-09-08",
+     "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2004-06-30",
      "to": "2026-09-08"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:carlos_lupi:2004-06-30:2005-01-01:v1",
-    "cartoon:carlos_lupi:2005-01-01:2010-01-01:v1",
-    "cartoon:carlos_lupi:2010-01-01:2015-01-01:v1",
-    "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1",
-    "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
-    "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "daniel_sampaio_tourinho",
@@ -4182,6 +4201,13 @@
      "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
      "asset_status": "available",
      "extends_past_recorded_death": false
+    },
+    {
+     "from": "1995-01-01",
+     "to": "2004-06-21",
+     "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
     }
    ],
    "required_art_windows": [
@@ -4190,11 +4216,8 @@
      "to": "2004-06-21"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:leonel_brizola:1995-01-01:2000-01-01:v1",
-    "cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "luiz_gushiken",
@@ -4300,7 +4323,22 @@
     "value": "1940-09-23"
    },
    "died": null,
-   "portrait_windows": [],
+   "portrait_windows": [
+    {
+     "from": "2001-09-09",
+     "to": "2010-06-15",
+     "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    },
+    {
+     "from": "2010-06-15",
+     "to": "2019-01-01",
+     "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+     "asset_status": "available",
+     "extends_past_recorded_death": false
+    }
+   ],
    "required_art_windows": [
     {
      "from": "2001-09-09",
@@ -4311,12 +4349,8 @@
      "to": "2010-06-15"
     }
    ],
-   "board_status": "art_pending",
-   "pending_art_jobs": [
-    "cartoon:michel_temer:2001-09-09:2005-01-01:v1",
-    "cartoon:michel_temer:2005-01-01:2009-03-10:v1",
-    "cartoon:michel_temer:2010-01-27:2010-06-15:v1"
-   ]
+   "board_status": "known_windows_covered",
+   "pending_art_jobs": []
   },
   {
    "person": "orestes_quercia",

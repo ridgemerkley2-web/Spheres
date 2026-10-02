@@ -487,6 +487,57 @@ mod tests {
     }
 
     #[test]
+    fn registered_cartoon_eras_resolve_exact_assets_at_both_boundaries() {
+        fn previous_day(value: &str) -> String {
+            let (mut year, mut month, mut day) =
+                spheres_sim::data::parse_date(value).expect("valid portrait boundary");
+            if day > 1 {
+                day -= 1;
+            } else {
+                if month == 1 {
+                    year -= 1;
+                    month = 12;
+                } else {
+                    month -= 1;
+                }
+                day = spheres_sim::world::days_in_month(year, month);
+            }
+            format!("{year:04}-{month:02}-{day:02}")
+        }
+
+        assert_eq!(previous_day("2000-03-01"), "2000-02-29");
+        assert_eq!(previous_day("1900-03-01"), "1900-02-28");
+        assert_eq!(previous_day("1990-01-01"), "1989-12-31");
+        let mut checked = 0;
+        for (id, person) in manifest()["people"].as_object().unwrap() {
+            for art in person["portraits"].as_array().unwrap() {
+                assert!(["identity", "likeness", "era", "visual"].iter()
+                    .all(|key| art["review"][*key] == true), "unreviewed portrait for {id}");
+                let file = art["asset"].as_str().unwrap()
+                    .strip_prefix("spheres-web/ui/person-portraits/").unwrap();
+                let expected = format!("/art/people/{file}");
+                let first = art["from"].as_str().unwrap();
+                assert_eq!(portrait(id, first)["url"].as_str(), Some(expected.as_str()),
+                    "wrong first-day portrait for {id} at {first}");
+                let before = previous_day(first);
+                // A neighbouring reviewed variant may exist; it must not be this asset.
+                assert_ne!(portrait(id, &before)["url"].as_str(), Some(expected.as_str()),
+                    "portrait for {id} leaked before {first}");
+                if !art["to"].is_null() {
+                    let until = art["to"].as_str().unwrap();
+                    let last = previous_day(until);
+                    assert_eq!(portrait(id, &last)["url"].as_str(), Some(expected.as_str()),
+                        "wrong last-day portrait for {id} at {last}");
+                    assert_ne!(portrait(id, until)["url"].as_str(), Some(expected.as_str()),
+                        "portrait for {id} leaked across exclusive end {until}");
+                }
+                checked += 1;
+            }
+        }
+        assert!(checked >= 4, "reviewed pilot art must remain registered");
+    }
+
+    #[test]
     fn archived_models_remain_available_but_never_become_active_avatars() {
         let mut seen=std::collections::BTreeSet::new();
         for model in models()["characters"].as_array().unwrap() {

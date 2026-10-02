@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "country": "Brazil",
+  "reviewer": "Codex agent /root/tonga_civilian_roster",
+  "reviewed_at": "2026-10-02",
+  "audit_checkout_revision": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "source_pins": [
+    {
+      "path": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+      "sha256": "b480afe609da93df46ad14249c91f5b1ed115b1d90f7b697deeb93ccd44a046e",
+      "bytes": 207224
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json",
+      "sha256": "ca6acc174a6a43dda5a246770f26a9cb9415b73966c5c4373658ede75995d26f",
+      "bytes": 33884
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md",
+      "sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3",
+      "bytes": 31750
+    },
+    {
+      "path": "docs/campaign-certification/C06/render-return-20261002/brazil-review.json",
+      "sha256": "929a8b5331eea5688878e0f10aceb2e65ec8866837a74a919c3033ce765e8e1b",
+      "bytes": 14499
+    },
+    {
+      "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+      "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+      "bytes": 101967
+    }
+  ],
+  "status": "all_current_requested_outputs_accepted_for_bounded_illustrative_registration",
+  "counts": {
+    "active_portraits": 7,
+    "accepted_for_proposed_registration": 7,
+    "held": 0,
+    "historical_holder_changes": 0
+  },
+  "authority": {
+    "human_approval": false,
+    "claude_approval": false,
+    "country_acceptance": false,
+    "source_history_complete": false
+  },
+  "jobs": [
+    {
+      "job_id": "michel_temer-0a0870c78f13",
+      "stem": "michel-temer-cartoon-2001-v1",
+      "person_id": "michel_temer",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2001-09-09",
+        "to": "2010-06-15",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2001-09-09",
+        "to": "2010-06-15",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-34 MDB holder observation attested 2003-07-02 (brazil.json /organizations/0/roles/0/holder_claims/0), with from and until null. The bounds follow registry terms br_pmdb_michel_temer_20010909 (2001-09-09 to 2009-03-10) and br_pmdb_michel_temer_20100127 (2010-01-27 to 2010-06-15) in party_leaders.json, which are not accepted C01 research; they are also the leadership-production job boundaries. The window spans the registry's acting term of Íris de Araújo (br_pmdb_iris_de_araujo_20090310, 2009-03-10 to 2010-01-27) as appearance only; Temer was then President of the Chamber of Deputies. The window is an appearance interval, not a tenure."
+      },
+      "output_sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+      "visual_notes": "Correct right-hand man from the shared 2009 group photograph: swept silver hair, lean long face, narrow mouth, gray suit and burgundy tie. Full body, both hands and shoes; no blocking visual artifact. The treatment represents this editorial appearance interval, not uninterrupted party tenure. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Born 1940-09-23 (registry birth date). He is 69 in the photograph of 11 November 2009, which lies inside the window 2001-09-09 to 2010-06-15 (exclusive end): about 8 years 2 months after its start (age 60) and about 7 months before its end (69 on the last covered day). The prompt asks for a trim man of about 65 (the window's midpoint age), a little younger than the photograph, with slightly softer lines and the gray hair a touch darker, keeping the same swept-back hairline, dark brows and lean face. The darker-hair adjustment rests on the CC BY 2.0 photographs of 7 April 1999 (Michel Temer e Dalai Lama, Câmara archive via the Michel Temer Flickr stream), which show the same swept-back hair in a darker medium gray; they are before the window and are not render inputs. Artistic extensions, declared in the prompt: the standing full figure, the hands apart and relaxed (in the photograph they are held together in a presenting gesture), the trousers below the jacket hem and the shoes.",
+      "source_reference_id": "michel-temer-2009",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w1-jbatista/api-imageinfo-dagoberto-lupi-temer-2009.json",
+        "bytes": 5716,
+        "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+        "retrieved_at": "2026-10-01T22:44:39Z"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "michel_temer-555b84955d80",
+      "stem": "michel-temer-cartoon-2010-v1",
+      "person_id": "michel_temer",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2010-06-15",
+        "to": "2019-01-01",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2010-06-15",
+        "to": "2019-01-01",
+        "to_exclusive": true,
+        "window_status": "needs_codex_agreement",
+        "basis": "C01-34 MDB holder observation attested 2016-03-29 (brazil.json /organizations/0/roles/0/holder_claims/1, claim br_mdb_temer_styled_presidente_nacional_20160329), with from and until null. The start continues from the first Temer window. The exclusive end 2019-01-01 is the next presidency's stated start in C01-10 (merged, historical acceptance pending), used only as an appearance boundary. His vice-president and president observations (C01-10, C01-17) are not accepted and are not cited as the basis. No leadership-production cartoon job exists for this window. The window is an appearance interval, not a tenure, and needs Codex agreement."
+      },
+      "output_sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+      "visual_notes": "Receding silver hair, long angular face, heavy-lidded gaze and mature facial lines agree with the 2017 official portrait. Navy suit and blue tie; full body, hands and shoes coherent. The younger early part of the requested interval is an artistic age interpretation. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Born 1940-09-23 (registry birth date). The photograph (May 2017; Commons 17 May) falls inside the window 2010-06-15 to 2019-01-01 (exclusive): about 6 years 11 months after its start and about 1 year 7 months before its last day (2018-12-31), to within a month. He is 76 in the photograph and 69 to 78 across the window, whose midpoint is in September 2014 (age 73 to 74). The prompt asks for a trim man of about 74, very slightly younger than the photograph, with the same silver swept-back hair, dark brows and lean face. The standing body below mid-thigh, both visible hands and the shoes are declared artistic extensions.",
+      "source_reference_id": "michel-temer-2017",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/michel_temer/w2-2010/commons-api-imageinfo-Presidente_Michel_Temer_-_Foto_Oficial_Original.json",
+        "bytes": 2547,
+        "sha256": "480634796a66fee9c1be40fb1bb53bb53956a1b2c6eab9ea571010e430e222ef"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "baleia_rossi-86cb96c29aa9",
+      "stem": "baleia-rossi-cartoon-2019-v1",
+      "person_id": "baleia_rossi",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2019-10-06",
+        "to": "2026-09-08",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2019-10-06",
+        "to": "2026-09-08",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-34 MDB holder observations attested 2019-10-17, 2025-07-16 and 2026-06-07 (brazil.json /organizations/0/roles/0/holder_claims/2-4), each with from and until null. The start is registry term br_pmdb_baleia_rossi_20191006 (party_leaders.json, not accepted C01 research), which is also the first leadership-production job boundary. The exclusive end 2026-09-08 is the day after the 7 September 2026 cutoff. The window is an appearance interval, not a tenure."
+      },
+      "output_sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+      "visual_notes": "Dark receding hair, broad round face, full cheeks, friendly expression and heavyset build match the 2021 reference. Coherent civilian suit and full-body pose; no blocking visual artifact. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Born 1972-06-09 (registry birth date). He is 49 in the photograph of 8 December 2021 and about 47 to 54 across the window (2019-10-06 to 2026-09-08 exclusive). The photograph falls inside the window, about 2 years 2 months after its start and about 4 years 9 months before its end; the prompt asks for a man of about 50. Research-only cross-checks from April 2019, June 2023 and 2026 show the same hairstyle and face, with slightly more gray at the temples by 2026. Chest-up photograph: the standing body, trousers, shoes and both hands are artistic extensions; the open-collar shirt without a tie follows the reference.",
+      "source_reference_id": "baleia-rossi-2021",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/baleia_rossi/commons-api-baleia-rossi-2021-cropped-and-parent.json",
+        "bytes": 8602,
+        "sha256": "b2b55f61b1a975c3b3ff3e20cb1d5545167b07331404b70eb79a64abcd27d00f"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "leonel_brizola-fa7af2b7d699",
+      "stem": "leonel-brizola-cartoon-1995-v1",
+      "person_id": "leonel_brizola",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "1995-01-01",
+        "to": "2004-06-21",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "1995-01-01",
+        "to": "2004-06-21",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-34 PDT holder observations attested 1997-04-11, 1999-08-26 and 2004-06-02 (brazil.json /organizations/1/roles/0/holder_claims/0-2); the last has until 2004-06-21, the party's same-day report of his death in office. The start 1995-01-01 is where his existing 1990-01-01 to 1995-01-01 art ends (person_portraits.json, unchanged). The exclusive end equals that accepted until, which also matches registry term br_pdt_leonel_brizola_1980. The window is an appearance interval, not a tenure."
+      },
+      "output_sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+      "visual_notes": "Recognizable nose, face profile, lined cheeks and gray hair, adapted from the 1998 hat photograph. Exposed crown/hair completion and suit/body are disclosed artistic extensions. Mid-seventies treatment is accepted as an illustration across the requested window; conflicting birth-month sources remain unresolved. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "No gap: the photograph (19 September 1998) falls inside the window, about 3 years 8 months after it starts (1995-01-01) and about 5 years 9 months before its last day (2004-06-20), close to the window midpoint (1999-09-26). Birth date sources disagree (see birth_date_evidence): on 22 January 1922 he is 72 at the window start, 76 in the photograph and 82 at the end; on the registry's 22 November 1922 he is 72, 75 and 81. The prompt asks for a man in his mid-seventies, as in the photograph, and states '72 when this appearance begins and 81 or 82 when it ends'. The reference is a side profile and the hat hides his forehead and crown, so the receding swept-back crown is a declared artistic completion; a research-only 1280 px thumbnail of the rejected 2002 photograph (File:Niemeyer e Brizola.jpg) was viewed to confirm the bareheaded swept-back gray hair and uncovered ears. It is not shipped and not a generation input. The suit, white shirt, burgundy tie and standing body are artistic; the white collar and dark sleeve follow the photograph.",
+      "source_reference_id": "leonel-brizola-1998",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/leonel_brizola/commons-api-imageinfo-Leonel_Brizola_em_Palmeira_das_Missoes.json",
+        "bytes": 5269,
+        "sha256": "975e4ad580bab34033ec6c1cc920943d08601c121fbd82936244004d819feb58",
+        "retrieved_at": "2026-10-01T22:48:07Z",
+        "note": "Contains the photographer's embedded IPTC contact fields as Commons publishes them; kept outside Git."
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "carlos_lupi-45b22e501a80",
+      "stem": "carlos-lupi-cartoon-2004-v1",
+      "person_id": "carlos_lupi",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2004-06-30",
+        "to": "2015-01-01",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2004-06-30",
+        "to": "2015-01-01",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-34 PDT holder observation attested 2007-02-09 (brazil.json /organizations/1/roles/0/holder_claims/3), with from and until null. The window is an appearance interval, not a tenure. Its start 2004-06-30 comes from the leadership-production job boundaries and the month-precision registry term br_pdt_carlos_lupi_200406 (party_leaders.json, not accepted C01 research); the accepted record's own uncertainty note says his service from June 2004 to his election of 21 March 2005 is claims only. The exclusive end 2015-01-01 is the batch split with the second Lupi window (an existing leadership-production boundary, chosen for his change in appearance), not a research boundary."
+      },
+      "output_sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+      "visual_notes": "Correct central man from the shared 2009 photograph: dark slicked-back hair, close beard, broad face, navy suit and red tie. Distinct from Temer despite identical source-photo bytes. Body, hands and shoes coherent. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Born 1957-03-16 (registry birth date). He is 52 (52 years 7 months) in the photograph of 11 November 2009, inside the window: about 5 years 4 months after its start of 2004-06-30 (age 47) and about 5 years 2 months before its exclusive end of 2015-01-01 (57 on the last covered day). No age adjustment is requested; the prompt asks for a man of about 52. Artistic extensions, declared in the prompt: the free hands (both hold the folder in the photograph), the legs below the upper thighs, the trousers and the shoes. Suit, shirt and tie colours come from the photograph; the lapel pin and the diploma are omitted.",
+      "source_reference_id": "carlos-lupi-2009",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/api-imageinfo-dagoberto-lupi-temer-2009.json",
+        "bytes": 5716,
+        "sha256": "ec62ccd533fe180e1383bf2225e837193f12c02554f83bd8d94c58917656bc6d",
+        "retrieved_at": "2026-10-01T22:44:39Z"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "carlos_lupi-400fe963352c",
+      "stem": "carlos-lupi-cartoon-2015-v2",
+      "person_id": "carlos_lupi",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2015-01-01",
+        "to": "2020-01-01",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2015-01-01",
+        "to": "2020-01-01",
+        "to_exclusive": true,
+        "window_status": "proposed_era_split_pending_codex_review",
+        "basis": "Appearance interval, not a tenure. No accepted C01 holder observation of Lupi falls in 2015-2019: his re-elections of 18 March 2017 and 18 March 2019 are claims only in the accepted record's uncertainty note (brazil.json /organizations/1/roles/0/holder_claims/4). The window rests on registry term br_pdt_carlos_lupi_200406 (party_leaders.json, month-precision start, open end; not accepted C01 research) and on the leadership-production job cartoon:carlos_lupi:2015-01-01:2020-01-01:v1. Start 2015-01-01: the batch split with window 1 of 3 (unchanged). Exclusive end 2020-01-01: the era split above."
+      },
+      "output_sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+      "visual_notes": "Selected attempt 2: dark swept-back hair with limited gray and short beard follow the 2015 photograph, avoiding the superseded all-gray early-window treatment. Full figure and hands/shoes present; opaque RGB output. The rejected transparent attempt remains in the original return and is not registered. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Born 1957-03-16 (registry birth date). He is 58 in the photograph, inside window 2 of 3 (ages 57 to 62), about 7.5 months after its start and 4 years 4.5 months before its exclusive end. Artistic extensions declared in the prompt: the relaxed hand positions (clasped in the photograph) and the complete shoes (mostly hidden by trouser hems, with the frame ending at a table edge).",
+      "source_reference_id": "carlos-lupi-2015",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/api-imageinfo-presidencia-do-senado-20659268666.json",
+        "bytes": 8747,
+        "sha256": "13758b6725a0b1e28a481810fa0f6d8b51bb2325fa24cdb19bf9c1c64be90d99",
+        "retrieved_at": "2026-10-02T13:36:28Z",
+        "content": "Commons API imageinfo (extmetadata, commonmetadata/EXIF/IPTC, size, sha1, upload user and time), categories and the current wikitext revision"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    },
+    {
+      "job_id": "carlos_lupi-84f4126df75f",
+      "stem": "carlos-lupi-cartoon-2020-v1",
+      "person_id": "carlos_lupi",
+      "disposition": "accepted_for_bounded_illustrative_registration",
+      "appearance_window": {
+        "from": "2020-01-01",
+        "to": "2026-09-08",
+        "to_exclusive": true
+      },
+      "original_requested_window_basis": {
+        "from": "2020-01-01",
+        "to": "2026-09-08",
+        "to_exclusive": true,
+        "window_status": "proposed_era_split_pending_codex_review",
+        "basis": "Appearance interval, not a tenure. Contains all three accepted C01-34 PDT holder observations of the superseded window (attested 2021-12-21, 2025-05-21 and 2026-09-04; brazil.json /organizations/1/roles/0/holder_claims/4-6, each with from and until null), whose exact holder dictionaries are copied into identity-review-batch-01.json /batches/0/people/7/observations and remain unchanged in the superseded /batches/0/people/5/observations. Start 2020-01-01: the era split above. Exclusive end 2026-09-08: the day after the 7 September 2026 cutoff; registry term br_pdt_carlos_lupi_200406 is open."
+      },
+      "output_sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+      "visual_notes": "Later gray/salt-and-pepper hair and beard, broad face and heavier build agree with the 2023 source, visibly distinguishing this variant from 2015. Full body coherent. The tooth-showing smile is more open than requested but does not prevent identity recognition; accepted as a minor expression variation. Single subject, cel-shaded adult cartoon, dark-teal backdrop with subtle tonal variation, no text or flags; no pixel-flat background claim.",
+      "source_date_and_age_limit": "Since the era fix of 2 October 2026 this reference serves window 3 of 3 (2020-01-01 to 2026-09-08) only; its age_gap_note above describes the superseded 2015-2026 window. The current age note is /batches/0/people/7/age_gap_note. File and bytes unchanged.",
+      "source_reference_id": "carlos-lupi-2023",
+      "source_metadata_materially_read": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/api-imageinfo-carlos-lupi-cas-cropped.json",
+        "bytes": 3021,
+        "sha256": "42ebd71728c34853dd934818b040d3dc8aff9d4979aa2d4fb0d82d695104c107",
+        "retrieved_at": "2026-10-01T22:38:18Z"
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_civilian_roster (registration review; Brazil renderer self-review supplemented by independent Codex agent /root/tonga_royal_identities audit at docs/campaign-certification/C06/render-return-20261002/brazil-review.json)",
+        "reviewed_at": "2026-10-02",
+        "human_approval": false,
+        "claude_approval": false
+      }
+    }
+  ],
+  "limits": [
+    "Only the exact supplied appearance windows are accepted; no source tenure boundaries are installed.",
+    "A reviewed illustration may use candid artistic ageing where sources are earlier/later; no exact year-specific photographic proof is claimed.",
+    "Existing rejected attempts, superseded prompts, excluded people and reserves remain unchanged and unregistered.",
+    "Generation is the creation route, not a replacement licence. Source attributions and derivative licences survive registration."
+  ],
+  "merge_instruction": "For each existing exact person ID preserve all existing metadata and portraits, union identity_sources, and append only these new portraits; reject duplicate asset or overlapping interval. No historical role or eligibility writes."
+}

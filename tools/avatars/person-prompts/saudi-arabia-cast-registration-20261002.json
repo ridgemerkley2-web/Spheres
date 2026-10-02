@@ -1,0 +1,560 @@
+{
+  "version": 1,
+  "batch": "SA-CAST-B01",
+  "nation": "Saudi Arabia",
+  "task": "CLAUDE-C06-SAUDIARABIA-01",
+  "reviewed_at": "2026-10-02",
+  "registration_operator": "Codex agent /root/tonga_royal_identities",
+  "status": "reviewed_fragment_ready_for_root_merge",
+  "review_owner": "Codex agent /root/tonga_royal_identities (independent of Saudi renderer /root/selector_leader_api)",
+  "render_operator": "Codex agent /root/selector_leader_api",
+  "human_approval_claimed": false,
+  "claude_approval_claimed": false,
+  "registration_applied_by_this_record": false,
+  "source_request_commit": "ede909edd7577b777a4cd73479a1b6a57e6e0744",
+  "review_checkout_commit": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "authorization_scope": "User requested filling the current render-batch gaps and completing registration. These twelve existing requested windows only; no new historical boundaries or country completion.",
+  "render_return": {
+    "path": "docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json",
+    "sha256": "c56daee537d9c395a801a098904afea54df94477c9c1d447e2039deae8e2221f"
+  },
+  "independent_render_review": {
+    "path": "docs/campaign-certification/C06/render-return-20261002/za-sa-ru-review.json",
+    "sha256": "182f697fd9e714fdf39260d7a81ed878c5867bad83658e0ddc61b9443df4378c"
+  },
+  "manifest_before_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "registry_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "source_review_sha256": {
+    "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json": "64533730456f558e232c9b3db16dfc2ce5322e0d4028ba5808220212f9901e38"
+  },
+  "source_review_basis": "Immutable pre-registration identity preparation, preserved unchanged. This new record records the actual Codex review and requested-window ruling; old render-return flags remain historical.",
+  "source_reference_records": {
+    "fahd-bin-abdulaziz-1992": {
+      "record": {
+        "person_id": "fahd_bin_abdulaziz_al_saud",
+        "kind": "observed_portrait",
+        "asset": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+        "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+        "bytes": 152062,
+        "width": 600,
+        "height": 410,
+        "mode": "RGB",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+        "creator": "White House Photo Office (individual photographer not named)",
+        "credit": "George H. W. Bush Presidential Library and Museum, official White House photograph P38849-17, 'President George H. W. Bush meets with Saudi Arabian King Fahd in Riyadh, Saudi Arabia', 31 December 1992; public domain (PD-USGov), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: official White House photograph P38849-17, identified on its Commons record as a work of the US federal government made in official duties and therefore public domain under 17 USC 105 ({{PD-USGov}}); Commons also applies the Public Domain Mark 1.0. Attribution is not required; the credit is kept for provenance. The copied bytes are the only Commons file revision, unretouched, and byte-identical to the Library's own file as archived on 2020-10-25.",
+        "source_license_statement": "{{PD-USGov}}: work of a US federal government employee made in the course of official duties, in the public domain under 17 USC 105. Commons extmetadata LicenseShortName is exactly 'Public domain' (License 'pd', no LicenseUrl); the file page also carries a Public Domain Mark 1.0 tag (https://creativecommons.org/publicdomain/mark/1.0/).",
+        "reference_id": "fahd-bin-abdulaziz-1992",
+        "source_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh,_Saudi_Arabia.jpg",
+        "depiction_date": {
+          "kind": "day",
+          "value": "1992-12-31"
+        },
+        "photograph_date": "1992-12-31",
+        "date_precision": "Day. The Commons date field gives 1992-12-31, and the White House Digest of 31 December 1992 independently says the President met King Fahd in Riyadh that morning. The photograph is White House roll P38849-17 in the Library's presidential gallery (1989-1993); the roll number itself encodes no day.",
+        "source_review": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+        "source_metadata_sha256": "0b5ec803c0539a93ab224544255de70dc07695adfa9ad5f8498dfe5c3802213a"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/fahd-1992-bush-library-riyadh-original.jpg",
+        "bytes": 152062,
+        "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh%2C_Saudi_Arabia.jpg",
+        "commons_sha1": "e2c64de0d9efa2b754de2d75de8ea2de614571f4"
+      },
+      "retained_metadata": {
+        "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-imageinfo-bush-fahd-riyadh-19921231.json",
+        "bytes": 4811,
+        "sha256": "0b5ec803c0539a93ab224544255de70dc07695adfa9ad5f8498dfe5c3802213a",
+        "retrieved_at": "2026-10-02T12:08:16Z"
+      },
+      "retained_file_page": {
+        "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/filepage-bush-fahd-riyadh-19921231.html",
+        "bytes": 88360,
+        "sha256": "1dae6fa82b1506b09dbf245595ddf9c43611e6b45dbacdbd3b7a208a8e667c1d",
+        "retrieved_at": "2026-10-02T12:08:36Z"
+      }
+    },
+    "fahd-bin-abdulaziz-1998": {
+      "record": {
+        "person_id": "fahd_bin_abdulaziz_al_saud",
+        "kind": "observed_portrait",
+        "asset": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+        "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+        "bytes": 1397076,
+        "width": 2496,
+        "height": 1821,
+        "mode": "RGB",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "creator": "Helene C. Stikkel (U.S. Department of Defense photographer)",
+        "credit": "Helene C. Stikkel, U.S. Department of Defense photo 981013-D-2987S-196 (Released), 13 October 1998, Al-Yamamah Palace, Riyadh; public domain (PD-USGov-Military), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the only Commons file revision (Slick-o-bot, 2012-08-25, sha1 b598b3b5679edb1fbfdca8bab206268b8a823e36), unretouched.",
+        "source_license_statement": "{{PD-USGov-Military}}: work of a U.S. military or Department of Defense employee taken as part of official duties; Commons LicenseShortName exactly 'Public domain' (License 'pd', no LicenseUrl).",
+        "reference_id": "fahd-bin-abdulaziz-1998",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+        "depiction_date": {
+          "kind": "day",
+          "value": "1998-10-13"
+        },
+        "photograph_date": "1998-10-13",
+        "date_precision": "Day: Commons {{Taken on|1998-10-13}}, the DoD VIRIN 981013-D-2987S-196 (date-coded 981013), and the embedded IPTC caption 'on Oct. 13, 1998 ... DoD photo by Helene C. Stikkel. (Released)'.",
+        "source_review": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+        "source_metadata_sha256": "066b8d0c3c22b245d5ae69fbe93b7aeeb1ff48780b1c714c4eefa97ebe0b2a73"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/stikkel-cohen-fahd-19981013-original.jpg",
+        "bytes": 1397076,
+        "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+        "commons_sha1": "b598b3b5679edb1fbfdca8bab206268b8a823e36"
+      },
+      "retained_metadata": {
+        "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cohen-fahd-19981013.json",
+        "bytes": 17004,
+        "sha256": "066b8d0c3c22b245d5ae69fbe93b7aeeb1ff48780b1c714c4eefa97ebe0b2a73"
+      },
+      "retained_file_page": {
+        "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/filepage-stikkel-cohen-fahd-19981013.html",
+        "bytes": 120859,
+        "sha256": "5b87bafe5a9595ee4b5c2a73ba69f664e4b3a69c5f64e0bd36f6dc5da9db15af"
+      }
+    },
+    "abdullah-bin-abdulaziz-1998": {
+      "record": {
+        "person_id": "abdullah_bin_abdulaziz_al_saud",
+        "kind": "observed_portrait",
+        "asset": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+        "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+        "bytes": 1194034,
+        "width": 1850,
+        "height": 2990,
+        "mode": "RGB",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "creator": "R. D. Ward, U.S. Department of Defense",
+        "credit": "R. D. Ward / U.S. Department of Defense, Defense.gov News Photo 981103-D-9880W-172, Riyadh, 3 November 1998; public domain (work of a U.S. military or Department of Defense employee, PD-USGov-Military) via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the Commons file (Slick-o-bot import, 2012-08-24, sha1 d50522dc33b3df4b122613151c178307b47357c1), unretouched.",
+        "source_license_statement": "Commons LicenseShortName 'Public domain' (template PD-USGov-Military): 'This file is a work of a U.S. military or Department of Defense employee, taken or made as part of that person's official duties. As a work of the U.S. federal government, the file is in the public domain in the United States.' DoD release ID 981103-D-9880W-172; original source link on Commons: http://www.defense.gov/photos/newsphoto.aspx?newsphotoid=1655 (not fetched).",
+        "reference_id": "abdullah-bin-abdulaziz-1998",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+        "depiction_date": {
+          "kind": "day",
+          "value": "1998-11-03"
+        },
+        "photograph_date": "1998-11-03",
+        "date_precision": "Day: Commons 'Taken on 3 November 1998'; the DoD ID 981103 encodes the date; the description says 'following their meeting on Nov. 3, 1998, in Riyadh'.",
+        "source_review": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+        "source_metadata_sha256": "4a49d3933664a52594883337df826ba410ec35cd35f3e662218ed7e1bd87afd9"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/Defense.gov_News_Photo_981103-D-9880W-172.original.jpg",
+        "bytes": 1194034,
+        "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+        "commons_sha1": "d50522dc33b3df4b122613151c178307b47357c1"
+      },
+      "retained_metadata": {
+        "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-imageinfo-Defense.gov_News_Photo_981103-D-9880W-172.json",
+        "bytes": 15061,
+        "sha256": "4a49d3933664a52594883337df826ba410ec35cd35f3e662218ed7e1bd87afd9",
+        "retrieved_at": "2026-10-02T12:12:53Z"
+      },
+      "retained_file_page": {
+        "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-Defense.gov_News_Photo_981103-D-9880W-172.html",
+        "bytes": 115079,
+        "sha256": "881175987f5c947d6f67bdfe472303609286bc8e9f9da76e422e59d895a1f0d3",
+        "retrieved_at": "2026-10-02T12:14:31Z"
+      }
+    },
+    "abdullah-bin-abdulaziz-2007": {
+      "record": {
+        "person_id": "abdullah_bin_abdulaziz_al_saud",
+        "kind": "observed_portrait",
+        "asset": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+        "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+        "bytes": 297987,
+        "width": 648,
+        "height": 848,
+        "mode": "RGB",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "creator": "Cherie A. Thurlby (U.S. Department of Defense photographer)",
+        "credit": "Cherie A. Thurlby / U.S. Department of Defense, DoD photo 070117-D-7203T-016, 17 January 2007; public domain U.S. military photograph; Commons crop 'King Abdullah bin Abdul al-Saud January 2007.jpg' via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "rights_statement": "Retained source statement: public domain in the United States as an official U.S. military work (PD-USGov-Military). Commons gives the source as dodmedia.osd.mil DVIC SDAN 070117-D-7203T-016. The current file version (648x848) was uploaded by Commons user Stemoc on 2015-01-23 with the comment 'restoring original crop (can't find original image) with better crop and EXIF data'; it replaced a 776x1032 version uploaded four minutes earlier. The copied bytes are the current version's, unchanged. They carry no Exif IFD, but their embedded IPTC-IIM and XMP metadata give DateCreated 2007-01-17, By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016 (the 'EXIF data' of the upload comment). Not a Saudi Press Agency or Royal Court photograph.",
+        "source_license_statement": "This file is a work of a U.S. military or Department of Defense employee, taken or made as part of that person's official duties. As a work of the U.S. federal government, the file is in the public domain in the United States. (Commons {{PD-USGov-Military}}; extmetadata LicenseShortName 'Public domain', Copyrighted false.)",
+        "reference_id": "abdullah-bin-abdulaziz-2007",
+        "source_url": "https://commons.wikimedia.org/wiki/File:King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+        "depiction_date": {
+          "kind": "day",
+          "value": "2007-01-17"
+        },
+        "photograph_date": "2007-01-17",
+        "date_precision": "Exact day, from three agreeing sources: the Commons Date field (2007-01-17), the DoD caption (the meeting with Defense Secretary Gates at the king's hunting lodge, Jan. 17, 2007), and the file's embedded metadata. The file has no Exif IFD, but its embedded IPTC-IIM and XMP metadata (ExifTool 9.70) give DateCreated 2007-01-17 (IPTC 20070117), By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016, matching the Commons Date field and the DoD caption. Commons shows the same values in the file page's Metadata section.",
+        "source_review": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+        "source_metadata_sha256": "61084c24ce2f5739086844625c80626c5ce3be66d9d98f4b40069a20a85b90e9"
+      },
+      "original": {
+        "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/King_Abdullah_bin_Abdul_al-Saud_January_2007.original.jpg",
+        "bytes": 297987,
+        "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+        "commons_sha1": "3c5b56e7977ca024537c455651e9b049952affcf"
+      },
+      "retained_metadata": {
+        "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-king-abdullah-january-2007.json",
+        "bytes": 8063,
+        "sha256": "61084c24ce2f5739086844625c80626c5ce3be66d9d98f4b40069a20a85b90e9"
+      },
+      "retained_file_page": {
+        "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-king-abdullah-january-2007.html",
+        "bytes": 131065,
+        "sha256": "e6f6462cca6780f27da6679dd3f63a637dc8f4ab937412aae5c120b3dfcdd2b6"
+      }
+    }
+  },
+  "generations": [
+    {
+      "job": {
+        "stem": "fahd-bin-abdulaziz-cartoon-1991-v1",
+        "person_id": "fahd_bin_abdulaziz_al_saud",
+        "from": "1991-01-01",
+        "to": "1996-01-01",
+        "requested_window": {
+          "from": "1991-01-01",
+          "to": "1996-01-01",
+          "to_exclusive": true,
+          "window_status": "needs_codex_agreement",
+          "basis": "Window from the CLAUDE-C06-SAUDIARABIA-01 handoff. Fahd is the country card's leader by office_links (since 1982-06-13). The window continues his existing 1990 art (1990-01-01 to 1991-01-01) and ends at the accepted 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101), used as an appearance boundary only. No accepted holder observation lies inside it."
+        },
+        "references": [
+          "fahd-bin-abdulaziz-1992"
+        ],
+        "era_note": "Observed reference date: 1992-12-31. Approved illustrative appearance interval 1991-01-01 to 1996-01-01 (exclusive), exactly as requested. No age gap: the photograph (31 December 1992) lies inside the requested window 1991-01-01 to 1996-01-01, about two years after its start and three years before its exclusive end. Fahd's birth year is given variously as about 1920 to 1923 in general biographical sources (not C01 research; leaders_1990.json leaves it null), so he is roughly 69 to 72 in the photograph and in his late sixties to mid seventies across the window; the prompt asks for one dignified appearance of a man of about seventy with no frailty. The 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101) is used only as the window's appearance boundary; reports of a late-1995 stroke are general knowledge and are not depicted. Artistic extensions declared in the prompt: the standing pose, the lower robe hem and the plain black low shoes (feet out of frame in a seated photograph). Small 600 x 410 scan; Fahd's face is only about 45 px wide, so the prompt asks for a simple, faithful face rather than invented detail. The live Commons 'source' link (bush41library.tamu.edu/audiovisual/photos/37) now redirects to the Library homepage, but its archived capture (20201017203816) lists the file as official White House photograph P38849-17, and the Library's archived file (20201025020135) is byte-identical to the Commons bytes. The individual White House photographer is not named. Date and place are also corroborated by the White House Digest of 31 December 1992. Art availability only: no new office boundary, tenure or historical acceptance. Small 600×410 source limits facial detail; standing pose, robe hem and shoes are declared extensions.",
+        "visual_review": "Correct right seated subject is isolated from the 1992 group photo. Broad rounded face, dark moustache and chin beard, white ghutra, black agal, beige-gold bisht, grey-blue thobe and clasped hands match. No bystander or palace scene is copied. No human or Claude approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+        "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+        "bytes": 1562458,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-fdc040a1-ea1b-4bdd-b580-1a54e09c361b.png",
+        "byte_identical_to_original": true
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of King Fahd bin Abdulaziz Al Saud, exact person fahd_bin_abdulaziz_al_saud, as an artistic interpretation of his appearance from January 1991 to the end of 1995.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: the public-domain George H. W. Bush Presidential Library color photograph of President Bush meeting King Fahd in Riyadh on 31 December 1992, inside this appearance window. It is a small 600 x 410 scan, so keep the face simple and faithful rather than inventing fine detail. IMPORTANT identity selection: Fahd is the seated man on the RIGHT, facing the camera and smiling, in the light beige cloak with gold edging and his hands clasped on his lap. He is NOT Bush on the left in the dark suit and NOT the man in the middle leaning toward Bush. Depict Fahd ALONE. Preserve his recognizable face: broad, full, rounded face with full cheeks and a heavy jaw, medium olive-tan complexion, dark fairly heavy brows, heavy-lidded eyes narrowed by his smile, prominent broad nose, short dark moustache and a small neat dark beard on the chin, no glasses. Show a heavy-set, broad-shouldered man of about seventy (his birth year is given variously as about 1920 to 1923 in general biographical sources, so he is in his late sixties to mid seventies across this appearance), dignified, with no frailty, illness or mocking exaggeration. His expression is warm, composed and gently smiling.\nClothing as observed in this photograph: plain white ghutra headcloth falling over the shoulders, held by a black double-cord agal; a pale gray-blue thobe with its buttoned collar showing at the neck; a light beige, oatmeal-colored bisht cloak with broad gold embroidered edging down both front edges; a plain dark-strapped wristwatch on his left wrist. The standing pose, the lower robe hem and the shoes are artistic extensions of a seated photograph whose feet are out of frame; draw plain simple black low shoes. No crown, sash, medals, badge, sunglasses, dagger, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, loosely clasped in front of his waist as in the photograph. Face and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; no setting, chairs, table, flowers, carved doors, flag or other people from the reference photograph.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1991-v1.txt",
+      "prompt_file_sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "submitted_reference_inputs": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "order": 1,
+          "role": "style_only"
+        },
+        {
+          "asset": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+          "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+          "bytes": 152062,
+          "width": 600,
+          "height": 410,
+          "mode": "RGB",
+          "order": 2,
+          "role": "identity_reference",
+          "person_id": "fahd_bin_abdulaziz_al_saud",
+          "reference_id": "fahd-bin-abdulaziz-1992"
+        }
+      ],
+      "attempt": 1,
+      "failures": [],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh,_Saudi_Arabia.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+        "original_reference_sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+        "creator": "White House Photo Office (individual photographer not named)",
+        "credit": "George H. W. Bush Presidential Library and Museum, official White House photograph P38849-17, 'President George H. W. Bush meets with Saudi Arabian King Fahd in Riyadh, Saudi Arabia', 31 December 1992; public domain (PD-USGov), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+        "rights_statement": "Retained source statement: official White House photograph P38849-17, identified on its Commons record as a work of the US federal government made in official duties and therefore public domain under 17 USC 105 ({{PD-USGov}}); Commons also applies the Public Domain Mark 1.0. Attribution is not required; the credit is kept for provenance. The copied bytes are the only Commons file revision, unretouched, and byte-identical to the Library's own file as archived on 2020-10-25.",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated full-body cartoon; age/color/pose extensions explicitly disclosed in prompt and era note; no endorsement implied."
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_royal_identities (independent of Saudi renderer /root/selector_leader_api); Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+        "reviewed_at": "2026-10-02"
+      },
+      "visual_deviations": [],
+      "appearance_window_decision": "Accepted by Codex for this exact illustrative art interval only; no alteration of historical records or requested bounds."
+    },
+    {
+      "job": {
+        "stem": "fahd-bin-abdulaziz-cartoon-1996-v1",
+        "person_id": "fahd_bin_abdulaziz_al_saud",
+        "from": "1996-01-01",
+        "to": "2005-08-01",
+        "requested_window": {
+          "from": "1996-01-01",
+          "to": "2005-08-01",
+          "to_exclusive": true,
+          "window_status": "appearance_interval_from_handoff",
+          "basis": "From the first accepted observation (C01-45 King, 1996-01-01) to the Royal Court statement of 1 August 2005 announcing his death (claim sa_fahd_death_announced_20050801), used as an appearance boundary only, not a reign end. The split from the 1991 window is for appearance (the accepted decree records his withdrawal for rest); Codex may rule one window."
+        },
+        "references": [
+          "fahd-bin-abdulaziz-1998"
+        ],
+        "era_note": "Observed reference date: 1998-10-13. Approved illustrative appearance interval 1996-01-01 to 2005-08-01 (exclusive), exactly as requested. No out-of-window gap: the photograph (1998-10-13) lies inside the requested window 1996-01-01 to 2005-08-01, about 2 years 9 months after its start and about 6 years 9 months before its end. Fahd's birth year is uncertain (sources give about 1920-1923; leaders_1990.json leaves it null); by general biographical knowledge (about 1921), not C01 research, he is about 77 in the photograph and roughly 74 to 84 across the window. The prompt shows the photograph's age (late seventies) without exaggerated frailty. The standing pose, the full standing fall of the robes and the hand positions are artistic extensions of a seated photograph, and the walking cane he holds is omitted. His later-window decline (general knowledge, not C01 research) is not depicted. Multi-person source (Cohen at left, an unidentified Saudi official in the middle); the prompt isolates Fahd at right and any crop happens at registration. Fahd is seated with a cane, so standing is an artistic extension. Art availability only: no new office boundary, tenure or historical acceptance. Age follows the in-window 1998 reference; standing posture and omitted cane are prompt-authorized artistic changes.",
+        "visual_review": "Correct right seated subject is isolated from the 1998 photo, with full cheeks, dark moustache/chin beard and no glasses. Black-and-gold cloak and white headcloth distinguish this era from the earlier beige cloak. Both hands and shoes visible; cane omitted as requested. Non-blocking deviations: The black cloak is rendered largely opaque rather than showing the requested sheer translucency; this is a non-blocking clothing simplification. No human or Claude approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+        "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+        "bytes": 1623986,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-7552d022-cb96-45f1-8356-6049711dc3a5.png",
+        "byte_identical_to_original": true
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Fahd bin Abdulaziz Al Saud, King of Saudi Arabia, exact person fahd_bin_abdulaziz_al_saud, as an artistic interpretation of his appearance from the beginning of January 1996 to the end of July 2005.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Helene C. Stikkel's public-domain U.S. Department of Defense color photograph 981013-D-2987S-196 of 13 October 1998, showing Secretary of Defense William S. Cohen meeting King Fahd at Al-Yamamah Palace in Riyadh. Use ONLY the elderly man seated in the gilded armchair on the RIGHT (white headdress with a black cord, black cloak with gold edging, a walking cane in his hand) for identity; he is NOT Cohen in the dark suit on the left and NOT the Saudi official in the black cloak seated in the middle behind the small table. Preserve his recognizable face: a broad, full, rounded face with heavy cheeks, soft jowls and a double chin; heavy-lidded dark eyes under dark brows; a prominent, broad, fleshy nose; a short neat black moustache and a short trimmed black chin beard, with clean-shaven cheeks; medium olive-tan complexion; no glasses. The photograph falls inside this appearance window, about two years and nine months after it begins and about six years and nine months before it ends; he is about 77 in it (his birth year is uncertain, about 1921 by general biographical knowledge, not C01 research), and the window spans roughly ages 74 to 84. Show the age of the photograph: a heavy-set, elderly man in his late seventies, dignified and calm, without mocking exaggeration and without exaggerated frailty. His expression is composed and benign, with a slight gentle smile.\nClothing: white ghutra head cloth framing the face and falling to the shoulders, held by a black double-cord agal; white thobe with a buttoned high collar and long white sleeves; an open, thin, sheer black bisht cloak, through which the white thobe shows as soft gray, with broad gold embroidered bands along both front edges and around the neckline and narrow gold edging at the sleeve openings, falling below the knees; a small gold wristwatch with a dark strap on his left wrist; black socks and plain black leather shoes. Colors follow the color reference. Both his hands, the lower robes and his shoes are visible in the photograph, but he is seated and holds a walking cane, so the standing pose, the full standing fall of the robes and the hand positions are artistic extensions, and the cane is omitted. No crown, sash, medals, badges, sunglasses, flag, dagger or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other resting lightly at his waist in front of the cloak's gold edging. Face, white headdress with black cord, black beard and the black-and-gold cloak should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the green Saudi flag, gilded panels and doors, armchairs, sofa, telephone table, flowers, carpet or other people from the reference photograph; no setting or furniture.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1996-v1.txt",
+      "prompt_file_sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "submitted_reference_inputs": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "order": 1,
+          "role": "style_only"
+        },
+        {
+          "asset": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+          "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+          "bytes": 1397076,
+          "width": 2496,
+          "height": 1821,
+          "mode": "RGB",
+          "order": 2,
+          "role": "identity_reference",
+          "person_id": "fahd_bin_abdulaziz_al_saud",
+          "reference_id": "fahd-bin-abdulaziz-1998"
+        }
+      ],
+      "attempt": 1,
+      "failures": [],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+        "original_reference_sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+        "creator": "Helene C. Stikkel (U.S. Department of Defense photographer)",
+        "credit": "Helene C. Stikkel, U.S. Department of Defense photo 981013-D-2987S-196 (Released), 13 October 1998, Al-Yamamah Palace, Riyadh; public domain (PD-USGov-Military), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the only Commons file revision (Slick-o-bot, 2012-08-25, sha1 b598b3b5679edb1fbfdca8bab206268b8a823e36), unretouched.",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated full-body cartoon; age/color/pose extensions explicitly disclosed in prompt and era note; no endorsement implied."
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_royal_identities (independent of Saudi renderer /root/selector_leader_api); Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+        "reviewed_at": "2026-10-02"
+      },
+      "visual_deviations": [
+        "The black cloak is rendered largely opaque rather than showing the requested sheer translucency; this is a non-blocking clothing simplification."
+      ],
+      "appearance_window_decision": "Accepted by Codex for this exact illustrative art interval only; no alteration of historical records or requested bounds."
+    },
+    {
+      "job": {
+        "stem": "abdullah-bin-abdulaziz-cartoon-1996-v1",
+        "person_id": "abdullah_bin_abdulaziz_al_saud",
+        "from": "1996-01-01",
+        "to": "2005-08-01",
+        "requested_window": {
+          "from": "1996-01-01",
+          "to": "2005-08-01",
+          "to_exclusive": true,
+          "window_status": "appearance_interval_from_handoff",
+          "basis": "From the first accepted observation (C01-45 Crown Prince, 1996-01-01) to the start of his King window. Codex may move the start to 1990-01-01 on the leaders_1990.json heir record (Crown Prince and First Deputy Prime Minister since 1982-06-13; not C01 research); that window's job is abdullah_bin_abdulaziz_al_saud-0ae5f49261bc.",
+          "alternative_start": {
+            "from": "1990-01-01",
+            "job_id": "abdullah_bin_abdulaziz_al_saud-0ae5f49261bc",
+            "basis": "seed heir record in leaders_1990.json, not C01 research"
+          }
+        },
+        "references": [
+          "abdullah-bin-abdulaziz-1998"
+        ],
+        "era_note": "Observed reference date: 1998-11-03. Approved illustrative appearance interval 1996-01-01 to 2005-08-01 (exclusive), exactly as requested. The photograph (3 November 1998) lies inside the requested window, 1037 days (about 2 years 10 months) after its start (1996-01-01) and 2462 days (about 6 years 9 months) before its last day (2005-07-31). By general biographical knowledge (born about 1924; not C01 research or registry data) he is about 74 in the photograph and about 71 to 81 across the window. The prompt keeps him about 75, as photographed, with no large age adjustment. If Codex moves the start to 1990-01-01, the photograph is about 8.8 years after the start (ages 65 to 81) and the prompt needs a v2. Multi-person walking photograph; his feet are mostly hidden by the robes (one dark brown shoe toe visible), so the shoes, standing pose and full-length extension are declared artistic interpretation. Commons has no qualifying photograph of him from 1996-1997 or 1999-2001: the year categories 'Abdullah of Saudi Arabia in 1996', '1997', '1999', '2000' and '2004' do not exist on Commons, and the 2001 category holds only an unrelated 2019 file. Art availability only: no new office boundary, tenure or historical acceptance. Full standing extension and feet are artistic interpretations of the walking group photo.",
+        "visual_review": "Correct center-right white-headcloth subject is selected, rather than the red-headcloth bystander. Longer face, metal glasses, heavy moustache and separate chin beard remain distinct from Fahd. Brown-gold cloak, gathering hand and visible shoes match the prompt. No human or Claude approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+        "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+        "bytes": 1566975,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-71bd59d0-cb65-4554-a992-134a09066674.png",
+        "byte_identical_to_original": true
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Abdullah bin Abdulaziz Al Saud, exact person abdullah_bin_abdulaziz_al_saud, as an artistic interpretation of his appearance from January 1996 to the end of July 2005.\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: R. D. Ward's public-domain U.S. Department of Defense color photograph 981103-D-9880W-172 of 3 November 1998 in Riyadh, in which Secretary of Defense William Cohen walks with Crown Prince Abdullah after their meeting. IMPORTANT identity selection: Abdullah is the tall man at the center right in a PLAIN WHITE headcloth with a black double cord, thin metal-rimmed glasses and a dark brown cloak with gold edging. He is NOT William Cohen at the left in the dark suit and red tie, NOT the man in glasses and a suit just behind Cohen, NOT the officer in the green beret, NOT the man at the far right in a red-and-white checked headcloth and glasses, and NOT any other person in the background. Depict Abdullah ALONE. Preserve his recognizable face: long, strong face framed by the headcloth, heavy-lidded dark eyes behind thin gold-toned metal-rimmed rounded-rectangular glasses with clear lenses, heavy brows, large broad nose with a rounded tip and wide nostrils, thick full black moustache curving slightly down at the corners, a separate short, neat, rounded black chin beard below the lower lip, clean-shaven cheeks, deep lines from nose to mouth and a medium olive-tan complexion. The photograph lies inside this appearance, about two years and ten months after it begins and six years and nine months before it ends. By general biographical knowledge (born about 1924; not project research) he is about 74 in the photograph and about 71 to 81 across the appearance, so keep him about 75, as photographed, with no large age adjustment and without mocking exaggeration. His expression is solemn and composed, lips closed.\nClothing, as in the reference: plain white ghutra headcloth draped over the shoulders and held by a double black agal cord, white thobe with a closed collar showing at the neck and white cuffs at the wrists, and a full-length very dark brown, almost black-brown, bisht cloak with restrained gold embroidered edging along the front opening and sleeve openings; the white thobe hem shows above simple dark brown leather shoes. Tall, solidly broad adult build. The standing pose, the shoes and the full-length extension are artistic interpretations of a walking photograph in which his feet are mostly hidden by the robes. No crown, sash, medals, badges, sword, dagger, prayer beads, sunglasses, flag or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, one relaxed open beside his hip and the other lightly gathering the front edge of the bisht at his waist, as in the reference. Face, glasses, white headcloth, black moustache and chin beard and the dark cloak silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the palace hall, gilded walls, columns, chandeliers, marble floor or any of the other people in the reference photograph; no setting, furniture or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-1996-v1.txt",
+      "prompt_file_sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "submitted_reference_inputs": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "order": 1,
+          "role": "style_only"
+        },
+        {
+          "asset": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+          "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+          "bytes": 1194034,
+          "width": 1850,
+          "height": 2990,
+          "mode": "RGB",
+          "order": 2,
+          "role": "identity_reference",
+          "person_id": "abdullah_bin_abdulaziz_al_saud",
+          "reference_id": "abdullah-bin-abdulaziz-1998"
+        }
+      ],
+      "attempt": 1,
+      "failures": [],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+        "original_reference_sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+        "creator": "R. D. Ward, U.S. Department of Defense",
+        "credit": "R. D. Ward / U.S. Department of Defense, Defense.gov News Photo 981103-D-9880W-172, Riyadh, 3 November 1998; public domain (work of a U.S. military or Department of Defense employee, PD-USGov-Military) via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the Commons file (Slick-o-bot import, 2012-08-24, sha1 d50522dc33b3df4b122613151c178307b47357c1), unretouched.",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated full-body cartoon; age/color/pose extensions explicitly disclosed in prompt and era note; no endorsement implied."
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_royal_identities (independent of Saudi renderer /root/selector_leader_api); Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+        "reviewed_at": "2026-10-02"
+      },
+      "visual_deviations": [],
+      "appearance_window_decision": "Accepted by Codex for this exact illustrative art interval only; no alteration of historical records or requested bounds."
+    },
+    {
+      "job": {
+        "stem": "abdullah-bin-abdulaziz-cartoon-2005-v1",
+        "person_id": "abdullah_bin_abdulaziz_al_saud",
+        "from": "2005-08-01",
+        "to": "2015-01-23",
+        "requested_window": {
+          "from": "2005-08-01",
+          "to": "2015-01-23",
+          "to_exclusive": true,
+          "window_status": "appearance_interval_from_handoff",
+          "basis": "From the accepted 1 August 2005 PM observation (C01-50) to the Royal Court statement that he died at 1 a.m. on 23 January 2015 (claim sa_abdullah_death_20150123), used as an appearance boundary only."
+        },
+        "references": [
+          "abdullah-bin-abdulaziz-2007"
+        ],
+        "era_note": "Observed reference date: 2007-01-17. Approved illustrative appearance interval 2005-08-01 to 2015-01-23 (exclusive), exactly as requested. From general biographical knowledge (born 1 August 1924; sources vary, some give 1923), not C01 research: he is about 82 in the 17 January 2007 photograph and about 81 to 90 across the window (2005-08-01 to 2015-01-23). The photograph is about 1.5 years after the window starts and about 8 years before it ends. The prompt keeps the photograph's appearance (an upright man in his early eighties with a jet-black moustache and goatee, light-gold rimless glasses and a red-and-white shemagh with a black agal) for the whole window. It asks for no further ageing and no cane, walker or wheelchair, and it says so. The standing body, both hands, the coat and thobe hems and the shoes are artistic extensions of a head-and-shoulders crop, guided by the same-day full-length companion frame. Head-and-shoulders Commons crop of a DoD frame; the defunct dodmedia.osd.mil source page was not re-checked. Clothing below the shoulders comes from the same-day companion frame, which is not a render input. Art availability only: no new office boundary, tenure or historical acceptance. As explicitly requested, the early-eighties 2007 likeness is used across the 2005–2015 art window without inventing additional ageing. Body clothing beyond the crop follows the declared companion-photo interpretation.",
+        "visual_review": "Reference-specific red-and-white headcloth, light metal glasses, thick moustache and dark squared goatee are present. Long plain black coat, grey thobe, open hands and shoes follow the prompt; no gold trim or extra people. No human or Claude approval claimed.",
+        "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+        "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+        "bytes": 1598334,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "original_output": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-31c70a8d-41d1-4df6-9b2e-ad853827ce14.png",
+        "byte_identical_to_original": true
+      },
+      "exact_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character avatar for Spheres, portrait aspect ratio 2:3, 1024 x 1536 RGB.\nCreate one original, respectful full-body cartoon of Abdullah bin Abdulaziz Al Saud, exact person abdullah_bin_abdulaziz_al_saud, as an artistic interpretation of his appearance from August 2005 to January 2015, when he was about 81 to 90 years old (ages from general biographical knowledge, not project research).\nImage 1 is the approved Margaret Thatcher GAME STYLE reference only (STYLE ONLY): match its confident dark outlines, simplified expressive face, graphic cel shading, slightly enlarged head and approximately 5.5-head adult proportions, compact full-body framing and quiet opaque dark teal backdrop. Do not copy her identity, face, hairstyle, handbag, clothing or pose.\nImage 2 is the exact-person likeness reference: Cherie A. Thurlby's public domain U.S. Department of Defense color photograph of King Abdullah on 17 January 2007 at his hunting lodge in Saudi Arabia, during a meeting with Defense Secretary Robert Gates (Wikimedia Commons crop of DoD photo 070117-D-7203T-016; Gates is outside the crop). Preserve his recognizable face: a broad, full, rounded elderly face with heavy jowls, full cheeks and deep lines from nose to mouth; medium olive-tan complexion with a warm ruddy tone; dark brown eyes under heavy hooded lids, with soft bags beneath and a gentle sideways glance; a large, broad, fleshy nose with a rounded tip; a thick, wide jet-black moustache covering the upper lip; a dense jet-black squared goatee on the chin only, with the cheeks and jaw clean shaven; thin light-gold rimless glasses with clear oval-rectangular lenses. His headdress is a red-and-white checked shemagh worn with its front edge low over the forehead and its sides falling over both shoulders, held by a thick black double-cord agal. The photograph shows him at about 82, about one and a half years into this appearance window; the window ends about eight years after the photograph, when he was about 90. Keep the photograph's appearance throughout, an upright, dignified man in his early eighties with the same jet-black moustache and goatee, glasses and headdress; do not age him further and add no cane, walker or wheelchair. His expression is calm and kindly, with a slight closed-mouth smile, without mocking exaggeration.\nClothing: a long plain black buttoned coat reaching below the knees, worn over an ankle-length medium gray thobe, with a pale blue collar just visible at the throat, and plain black leather shoes. Image 2 shows only the black collar and shoulders of this outfit; the coat length, gray thobe and black shoes follow a companion full-length DoD photograph from the same visit (070117-D-7203T-014, not supplied as an image), and the standing body, hands, robe hems and shoes are artistic extensions of the head-and-shoulders crop. Tall, heavyset, broad-shouldered build. No gold trim, medals, sash, badge, flag, weapon, dagger or invented insignia.\nComposition: exactly one man centered standing in a relaxed slight three-quarter pose, head to both shoes fully visible with comfortable margins; both hands visible, relaxed and open beside his hips. Face, glasses, moustache, goatee, red-and-white headdress and silhouette should read clearly at 106 x 152 pixels.\nBackground: intentionally opaque flat dark teal #192D34 with only a very subtle tonal gradient, matching Image 1; do not copy the pale curtains behind him in the reference photograph; no setting, furniture, palace interior or other people.\nStyle constraints: clearly drawn 2D cartoon with crisp silhouettes and restrained cel shading, no photographic skin texture, no realistic painterly miniature, no 3D render, no giant chibi head. No text, letters, Arabic script, captions, borders, watermark, flags, insignia, extra people, podium, microphone, weapon or checkerboard. Generate the complete finished card, not a mockup.\n",
+      "prompt_record": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-2005-v1.txt",
+      "prompt_file_sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "submitted_reference_inputs": [
+        {
+          "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "order": 1,
+          "role": "style_only"
+        },
+        {
+          "asset": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+          "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+          "bytes": 297987,
+          "width": 648,
+          "height": 848,
+          "mode": "RGB",
+          "order": 2,
+          "role": "identity_reference",
+          "person_id": "abdullah_bin_abdulaziz_al_saud",
+          "reference_id": "abdullah-bin-abdulaziz-2007"
+        }
+      ],
+      "attempt": 1,
+      "failures": [],
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+        "original_reference_sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+        "creator": "Cherie A. Thurlby (U.S. Department of Defense photographer)",
+        "credit": "Cherie A. Thurlby / U.S. Department of Defense, DoD photo 070117-D-7203T-016, 17 January 2007; public domain U.S. military photograph; Commons crop 'King Abdullah bin Abdul al-Saud January 2007.jpg' via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "rights_statement": "Retained source statement: public domain in the United States as an official U.S. military work (PD-USGov-Military). Commons gives the source as dodmedia.osd.mil DVIC SDAN 070117-D-7203T-016. The current file version (648x848) was uploaded by Commons user Stemoc on 2015-01-23 with the comment 'restoring original crop (can't find original image) with better crop and EXIF data'; it replaced a 776x1032 version uploaded four minutes earlier. The copied bytes are the current version's, unchanged. They carry no Exif IFD, but their embedded IPTC-IIM and XMP metadata give DateCreated 2007-01-17, By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016 (the 'EXIF data' of the upload comment). Not a Saudi Press Agency or Royal Court photograph.",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "adaptation": "AI-generated full-body cartoon; age/color/pose extensions explicitly disclosed in prompt and era note; no endorsement implied."
+      },
+      "review": {
+        "identity": true,
+        "likeness": true,
+        "era": true,
+        "visual": true,
+        "reviewer": "Codex agent /root/tonga_royal_identities (independent of Saudi renderer /root/selector_leader_api); Codex /root/tonga_royal_identities registration review of source, likeness, era and visual quality on 2026-10-02; no human or Claude approval claimed",
+        "reviewed_at": "2026-10-02"
+      },
+      "visual_deviations": [],
+      "appearance_window_decision": "Accepted by Codex for this exact illustrative art interval only; no alteration of historical records or requested bounds."
+    }
+  ],
+  "limits": [
+    "Appearance bounds are exclusive art-selection windows, not new office terms, death dates or historical acceptance.",
+    "Age, color, pose, clothing and full-body extrapolations remain exactly as disclosed in the source preparation and prompt.",
+    "All original reference and generated bytes are retained. No new generation, image transformation or human/Claude approval is claimed.",
+    "Only the active current batch is proposed; excluded, superseded, unprepared reserve and later country work remains open."
+  ]
+}
