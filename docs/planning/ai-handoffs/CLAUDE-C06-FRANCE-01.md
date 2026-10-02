@@ -1,6 +1,6 @@
 # CLAUDE-C06-FRANCE-01: France cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **seven renders returned; Claude review and registration next** (2 October 2026; bounded task still in progress, not complete). Parent: C06 (France country cast), with
+Owner: Claude. State: **ready_for_review** (2 October 2026; seven returned renders reviewed by Claude and proposed for registration; not complete). Parent: C06 (France country cast), with
 C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: the user chose on 1 October 2026 to start the France cast after Codex closed all C01 research tasks. The CP1
@@ -100,3 +100,26 @@ Still open:
 ## Render handback, 2 October 2026
 
 Codex completed all seven primary outputs. Use [render-return-batch-01.json](../../campaign-certification/C06/production/france/render-return-batch-01.json) as the generation provenance; it records the exact submitted LF prompts and ordered references, including Juppé’s smaller transport input. Review the unchanged PNGs, preserve BY-SA for Mitterrand/Fabius, and coordinate the shared manifest before registration. Do not regenerate these seven unless a specific visual review fails. The earlier open-decision list is historical; decisions and remaining limits are resolved in the return. No country sign-off or production job closure is implied.
+
+## Review and registration, 2 October 2026
+
+Claude reviewed all seven returned PNGs, and all seven pass with no holds.
+- Script checks confirmed bytes, generated-original identity, C2PA presence, size and mode, prompt and input hashes,
+  and background.
+- Claude viewed each output beside its reference at full size and at card size.
+
+Claude then added seven additive records to `person_portraits.json`, with explicit source and derivative licences, and
+a batch generation record, `tools/avatars/person-prompts/france-cast-batch-01.json`. The
+[registration receipt](../../campaign-certification/C06/production/france/registration-batch-01.md) gives the
+coverage effect (13 leadership-production cartoon jobs close), the checks and the ten derived outputs. Those outputs go
+stale by design: Codex regenerates them at integration. A local regeneration proved the chain clean, with all 828
+avatar tests passing. The
+[visual review](../../campaign-certification/C06/production/france/claude-visual-review-batch-01.json) records the
+per-portrait findings.
+
+Open proposals, none of them holds:
+- close five month-precision registry edges by widening appearance windows by at most 30 days;
+- a younger Hollande variant for a later batch;
+- the unrendered Aubry reserve.
+
+No human approval or CS-France sign-off is claimed.
