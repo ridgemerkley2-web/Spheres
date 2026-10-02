@@ -1,0 +1,1757 @@
+{
+ "version": 1,
+ "nation": "Saudi Arabia",
+ "reviewed_at": "2026-10-02",
+ "historical_cutoff": "2026-09-07",
+ "historical_window_start": "1990-01-01",
+ "status": "identity_and_coverage_review_proposal",
+ "task": "CLAUDE-C06-SAUDIARABIA-01",
+ "branch": "claude/c06-sa-01",
+ "base": "2fd186d6",
+ "claim_commit": "b152afee",
+ "scope": "Saudi Arabia cast batch 1: four appearance windows for the only two Saudi person IDs in the registry (Fahd and Abdullah bin Abdulaziz Al Saud), with accepted C01-45 (King, Crown Prince) and C01-50 (Prime Minister) holder observations and no art for these windows. No reserve exists. Each window has one dated, public-domain likeness photograph copied byte-identical into the repository and one exact prompt. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+ "prepared_by": "Claude: one preparation agent and one independent verification agent per portrait window, assembled and mechanically corrected by Claude on 2026-10-02. This is not human review, not Codex review and not user approval.",
+ "authority": {
+  "runtime_installation": false,
+  "office_eligibility": false,
+  "continuous_terms": false,
+  "art_approval": false,
+  "human_acceptance": false,
+  "country_completion": false
+ },
+ "accepted_research": {
+  "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+  "sha256": "731f2c47c30aaae1dc36ae5427976d7700ae02dc1fa2b12635755aad277b5bb1",
+  "packets_used": [
+   "C01-45",
+   "C01-50"
+  ],
+  "packets_not_used_as_anchor": {
+   "C01-06": "c01_integrated_pending holder dictionaries; cited by location only."
+  },
+  "receipts": [
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/README.md",
+    "sha256": "7337fa6e5526231c81b2a4a11ed79ab5d7ad553b1aed0592ebf791dcf129f05f",
+    "packet": "C01-45"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/manifest.json",
+    "sha256": "2469f1566a3510df09f24195a08f8a90b9bb8d0ce56740f029a2ddcd57914e73",
+    "packet": "C01-45"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-45-20261001/holder-review.json",
+    "sha256": "924689676321bd8041b87d451d849c2cdb68c5159784c7fa19d146a114a9b654",
+    "packet": "C01-45"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/README.md",
+    "sha256": "21ebdd83881e29f7534ee2c20414e61049157b9ba757bf290fa8e2e67f263eb3",
+    "packet": "C01-45"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-45-followup-20261001/manifest.json",
+    "sha256": "a8ad41b5f1d547334c265fcd231530da3c87cf4ebe7bd96121ac18dcfa0c511e",
+    "packet": "C01-45"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/README.md",
+    "sha256": "3d45ec8dc8e4ffbb6df307e9d88ba23b51e45f8f223f792dfa35985187d0587e",
+    "packet": "C01-50"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-50-20261001/manifest.json",
+    "sha256": "3aeff31da2061f86612babf02fc5ebe618a13678ebe93b9022be60e55564ef2e",
+    "packet": "C01-50"
+   }
+  ],
+  "gap_ledger": {
+   "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+   "sha256": "a7b3c1f1924394743cfebfc1fc7cac7ee24970f40451616273f91aafa374962b",
+   "note": "Classes every observation used here as c01_accepted (packets CLAUDE-C01-45 and CLAUDE-C01-50) and the C01-06 holder dictionaries as c01_integrated_pending."
+  }
+ },
+ "registry_inputs": {
+  "party_leaders": {
+   "path": "spheres-sim/data/party_leaders.json",
+   "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+  },
+  "leaders_1990": {
+   "path": "spheres-sim/data/leaders_1990.json",
+   "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008"
+  },
+  "person_portraits": {
+   "path": "spheres-web/data/person_portraits.json",
+   "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+  },
+  "leadership_production": {
+   "path": "spheres-web/data/leadership_production_2035.json",
+   "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+  },
+  "person_art_pipeline": {
+   "path": "tools/avatars/person_art_pipeline.py",
+   "sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab"
+  },
+  "style_anchor": {
+   "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+   "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+   "width": 1024,
+   "height": 1536,
+   "mode": "RGB",
+   "use": "STYLE ONLY"
+  },
+  "pipeline_jobs_inventory": {
+   "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/sa-cast/jobs.json",
+   "path": "D:/spheres-scratch/sa-cast/jobs.json",
+   "bytes": 767375,
+   "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+   "job_version": "person-cartoon-v4",
+   "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+   "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+   "fresh_rebuild_identical": true,
+   "fresh_rebuild_note": "The assembler re-ran jobs (full inventory and the 1991-1996 window) on 2026-10-02; both outputs were byte-identical to the pinned files and were then deleted.",
+   "window_job_files": [
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-1991-01-01-1996-01-01.json",
+     "bytes": 730439,
+     "sha256": "71bc716bcaa06fd4eae04dda0a26e0fd5f2423b38be40ff4d86af96c925a8f37",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 1991-01-01 --to 1996-01-01 --out D:/spheres-scratch/sa-cast/window-jobs-1991-01-01-1996-01-01.json"
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-1996-01-01-2005-08-01.json",
+     "bytes": 734980,
+     "sha256": "505d70b53a76f2f51d410aaddc347c3244f4dae59305013576e677e53cd05103",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 1996-01-01 --to 2005-08-01 --out D:/spheres-scratch/sa-cast/window-jobs-1996-01-01-2005-08-01.json"
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-2005-08-01-2015-01-23.json",
+     "bytes": 740707,
+     "sha256": "b9e77c5ea5880403ec8ec7ee73f2ca6802e34c7a0c910748554bdb24b4b4ad13",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 2005-08-01 --to 2015-01-23 --out D:/spheres-scratch/sa-cast/window-jobs-2005-08-01-2015-01-23.json"
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-1990-01-01-2005-08-01.json",
+     "bytes": 741349,
+     "sha256": "e767a2fc8e681624120dca5f374a127911581b683999bde8f62ed000f0800cbd",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 1990-01-01 --to 2005-08-01 --out D:/spheres-scratch/sa-cast/window-jobs-1990-01-01-2005-08-01.json"
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-1990-01-01-1996-01-01.json",
+     "bytes": 733513,
+     "sha256": "09642850ac7dcf3c787779ebb4689eb4978cbef09265c5a6f71d7a150d304159",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 1990-01-01 --to 1996-01-01 --out D:/spheres-scratch/sa-cast/window-jobs-1990-01-01-1996-01-01.json"
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-2005-08-01-2027-01-01.json",
+     "bytes": 751691,
+     "sha256": "2cf8e6e43c22e379ea2d23a5c33ccbe48ae44406872d4cc17aed8b3e00c6cfdf",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 2005-08-01 --to 2027-01-01 --out D:/spheres-scratch/sa-cast/window-jobs-2005-08-01-2027-01-01.json"
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/window-jobs-2015-01-23-2027-01-01.json",
+     "bytes": 728772,
+     "sha256": "49b0a4b5012d8d4b2bd566b58c24ca8d69e8e9b65da1da2543be20f30deb37b1",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 2015-01-23 --to 2027-01-01 --out D:/spheres-scratch/sa-cast/window-jobs-2015-01-23-2027-01-01.json"
+    }
+   ]
+  }
+ },
+ "rules": [
+  "All holder dictionaries and claim-only observations below are copied exactly from accepted C01 research (saudi-arabia.json). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+  "Point observations are never expanded to full terms. No start or end is inferred from a successor, pledge, death announcement, delegation or order; those remain claims. The death announcements and the 1 January 1996 delegation decree are used only as exclusive appearance boundaries.",
+  "Requested windows are appearance intervals from the CLAUDE-C06-SAUDIARABIA-01 handoff with exclusive ends. Where a bound comes from office_links, leaders_1990.json or the handoff rather than accepted research, the portrait entry says so.",
+  "The batch has two people and four portrait windows; each window is one render job, keyed person_id:start-year in 'portraits'.",
+  "Real history stops at 2026-09-07; every window in this batch lies before it.",
+  "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, robe hems, shoes, omitted cane) is declared in the prompt and here.",
+  "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly (all four are 'Public domain' US federal works). Saudi Press Agency and Royal Court photographs, GODL-India files and ported licences were rejected. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled; crops happen at registration.",
+  "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+  "Each review batch contains at most ten people.",
+  "HTTP response header captures are never saved, copied, cited, hashed or committed; HTTP 429 response bodies were deleted.",
+  "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
+  "Birth dates and ages used in age notes are general biographical knowledge, not accepted C01 research; the registry gives no birth date for either person."
+ ],
+ "coverage": {
+  "people_count": 2,
+  "portrait_windows": 4,
+  "primary_portraits": 4,
+  "reserve_people": 0,
+  "excluded_people": 0,
+  "holder_observation_count": 10,
+  "holder_observation_count_by_role": {
+   "sa_king": 5,
+   "sa_pm": 3,
+   "sa_crown_prince": 2
+  },
+  "holder_observation_count_by_packet": {
+   "C01-45": 7,
+   "C01-50": 3
+  },
+  "pending_c01_06_holders_not_used_as_anchor": 3,
+  "likeness_reference_count": 4,
+  "usable_likeness_reference_count": 4,
+  "research_only_likeness_reference_count": 0,
+  "references_inside_requested_window": [
+   "fahd-bin-abdulaziz-1992",
+   "fahd-bin-abdulaziz-1998",
+   "abdullah-bin-abdulaziz-1998",
+   "abdullah-bin-abdulaziz-2007"
+  ],
+  "references_with_uncertain_date": [],
+  "windows_without_accepted_observation": [
+   "fahd_bin_abdulaziz_al_saud:1991"
+  ],
+  "leadership_production_cartoon_jobs_closed_by_primary_portraits": 0,
+  "all_historical_officeholders_established": false,
+  "continuous_terms_established": false,
+  "all_likenesses_ready": false,
+  "rendered_portraits": 0
+ },
+ "batches": [
+  {
+   "id": "SA-CAST-B01",
+   "render_request": "docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md",
+   "people": [
+    {
+     "person_id": "fahd_bin_abdulaziz_al_saud",
+     "display_name": "Fahd bin Abdulaziz Al Saud",
+     "registry_name": "Fahd bin Abdulaziz Al Saud",
+     "identity_status": "existing_identity",
+     "observed_names": [
+      "Fahd bin Abdulaziz Al Saud"
+     ],
+     "registry_facts": "party_leaders.json: the one Saudi office_links row (Fahd, since 1982-06-13). leaders_1990.json leaves his birth date null. person_portraits.json: one portrait, 1990-01-01 to 1991-01-01 (fahd-bin-abdulaziz-cartoon-1990-v1.png), unchanged.",
+     "portrait_keys": [
+      "fahd_bin_abdulaziz_al_saud:1991",
+      "fahd_bin_abdulaziz_al_saud:1996"
+     ],
+     "pipeline_residual_after_registration": [
+      "fahd_bin_abdulaziz_al_saud-d3ec1b0b9097 (2005-08-01 to 2027-01-01)"
+     ]
+    },
+    {
+     "person_id": "abdullah_bin_abdulaziz_al_saud",
+     "display_name": "Abdullah bin Abdulaziz Al Saud",
+     "registry_name": "Abdullah bin Abdulaziz Al Saud",
+     "identity_status": "existing_identity",
+     "observed_names": [
+      "Abdullah bin Abdulaziz Al Saud"
+     ],
+     "registry_facts": "party_leaders.json holds his person ID; no office_links row. leaders_1990.json records him as Crown Prince and First Deputy Prime Minister since 1982-06-13 (seed heir record, not C01 research). No portrait exists.",
+     "portrait_keys": [
+      "abdullah_bin_abdulaziz_al_saud:1996",
+      "abdullah_bin_abdulaziz_al_saud:2005"
+     ],
+     "pipeline_residual_after_registration": [
+      "abdullah_bin_abdulaziz_al_saud-0aa00159df24 (1990-01-01 to 1996-01-01)",
+      "abdullah_bin_abdulaziz_al_saud-9bb74634df25 (2015-01-23 to 2027-01-01)"
+     ]
+    }
+   ],
+   "portraits": [
+    {
+     "portrait_key": "fahd_bin_abdulaziz_al_saud:1991",
+     "person_id": "fahd_bin_abdulaziz_al_saud",
+     "batch_role": "primary",
+     "requested_window": {
+      "from": "1991-01-01",
+      "to": "1996-01-01",
+      "to_exclusive": true,
+      "window_status": "needs_codex_agreement",
+      "basis": "Window from the CLAUDE-C06-SAUDIARABIA-01 handoff. Fahd is the country card's leader by office_links (since 1982-06-13). The window continues his existing 1990 art (1990-01-01 to 1991-01-01) and ends at the accepted 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101), used as an appearance boundary only. No accepted holder observation lies inside it."
+     },
+     "observations": [],
+     "observations_not_used_as_anchor": [
+      {
+       "packet": "C01-06",
+       "evidence_class": "c01_integrated_pending",
+       "research_location": "/institutions/0/roles/0/holder_claims/1",
+       "name": "Fahd bin Abdulaziz Al Saud",
+       "attested_on": "1990-08-08",
+       "from": null,
+       "until": null,
+       "note": "C01-06 King observation, acceptance pending; it lies inside the existing 1990 art (1990-01-01 to 1991-01-01), not inside this window."
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "sa_fahd_delegation_19960101",
+       "attested_on": "1996-01-01",
+       "source_id": "sa_embassy_fahd_delegates_19960101",
+       "research_location": "/sources/103/claims/2",
+       "use": "Accepted C01-45 claim; used only as this window's exclusive appearance end. It is not a reign end and not a holder observation."
+      }
+     ],
+     "jobs": {
+      "pipeline_window_scoped": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-912f7750444a",
+        "from": "1991-01-01",
+        "to": "1996-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_default_inventory": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-b847f208ede0",
+        "from": "1991-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_alternative_if_codex_rules_one_window": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-f17eedfe6634",
+        "from": "1991-01-01",
+        "to": "2005-08-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-d3ec1b0b9097",
+        "from": "2005-08-01",
+        "to": "2027-01-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open (after both Fahd windows are registered)"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [],
+      "leadership_production_note": "None exist: leadership production marks Fahd known_windows_covered (his only required window, 1990-01-01 to 1990-01-02, is covered by the 1990 art)."
+     },
+     "likeness_reference_ids": [
+      "fahd-bin-abdulaziz-1992"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1991-v1.txt",
+      "sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "1c7bb088db42d2f75cf6e15a0c3b5a11bdf5fe481ec43b6c6aa41ca1481005bb",
+      "git_blob": "4cdf248ab645b9a84936c640dcf52131544fbe92",
+      "bytes": 3400,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID and the existing 1990 portrait (fahd-bin-abdulaziz-cartoon-1990-v1.png, reference P17638-18). This window adds a second appearance from an in-window photograph of 31 December 1992.",
+       "evidence": [
+        "fahd-bin-abdulaziz-1992",
+        "spheres-web/data/person_portraits.json people.fahd_bin_abdulaziz_al_saud.portraits[0]"
+       ]
+      },
+      {
+       "finding": "Fahd is the seated man on the right; Bush (left) and the unidentified man in the middle are excluded by the prompt.",
+       "evidence": [
+        "fahd-bin-abdulaziz-1992"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per portrait window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "Provenance incomplete: the record called the Commons source link dead with 'no library photo number' and left the creator as the Commons Artist string. The Bush Library's archived gallery lists the file as P38849-17, and the archived Library file is byte-identical to the Commons bytes.",
+        "disposition": "Fixed: the assembler re-fetched once each, with the same User-Agent, the Wayback CDX lines for photo-view/1122/P38849-17.jpg, the archived file (20201025020135, byte-identical by cmp) and the archived gallery page (20201017203816), saved them under refs/fahd_bin_abdulaziz_al_saud/wayback/ and pinned them in supporting_metadata. 'Official White House photograph P38849-17' is now in credit, rights_statement and limitation; creator is 'White House Photo Office (individual photographer not named)' with the Commons Artist string kept as commons_artist_field. The prompt is unchanged (naming the number there was optional)."
+       },
+       {
+        "problem": "The supporting_metadata entry for the wikitext revisions said 'the last 10 file-page revisions'; the file holds 12 (2020-08-27 to 2026-03-08) and ends with an rvcontinue, so the 2020-08-07 upload and 2020-08-09 revisions were not retrieved.",
+        "disposition": "Fixed: the content string now states 12 revisions, the range, the missing earliest revisions and that the later edits change categories only."
+       },
+       {
+        "problem": "The job_ids list did not say that the default-inventory job b847f208ede0 (1991-01-01 to 2027-01-01) is only partly closed.",
+        "disposition": "Fixed: jobs are recorded as pipeline_window_scoped (exact) and pipeline_default_inventory (partial), with leadership_production_cartoon_jobs_closed empty."
+       }
+      ]
+     },
+     "preparer_notes": [
+      "Commons search was partly rate-limited: six full-text searches (King Fahd 1994, King Fahd 1995, Fahd Cheney 1991, Fahd Perry, Fahd Baker 1991, Fahd Christopher) returned HTTP 429; the preparer backed off, did not retry them and deleted the 429 bodies. The full Category:Fahd of Saudi Arabia listing, Category:George H. W. Bush in Saudi Arabia in 1992, and searches for 'Fahd Clinton', 'King Fahd 1991', 'King Fahd 1993' and 'Fahd Saudi king meets' succeeded and found no other qualifying in-window photograph. A 1994 Clinton or Perry photograph on Commons cannot be ruled out.",
+      "Fahd's age in the prompt (about seventy; birth year about 1920-1923 by source) is general biographical knowledge, not C01 research; the registry leaves his birth date null."
+     ],
+     "missing_records": [
+      "No accepted holder observation of Fahd inside 1991-1995. The window rests on office_links and continuity with the 1990 art; it needs Codex agreement."
+     ],
+     "open_items_for_codex": [
+      "Agree or amend the window 1991-01-01 to 1996-01-01 (no accepted observation inside; it continues the 1990 art and ends at the accepted delegation decree, used as an appearance boundary).",
+      "Keep the split at 1996-01-01 or rule one window 1991-01-01 to 2005-08-01 (fahd_bin_abdulaziz_al_saud-f17eedfe6634); one window would need a v2 of whichever prompt is kept.",
+      "Optionally prefer the PDM 1.0 URL over Template:PD-USGov as license_url at registration; the bytes are unaffected."
+     ]
+    },
+    {
+     "portrait_key": "fahd_bin_abdulaziz_al_saud:1996",
+     "person_id": "fahd_bin_abdulaziz_al_saud",
+     "batch_role": "primary",
+     "requested_window": {
+      "from": "1996-01-01",
+      "to": "2005-08-01",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "From the first accepted observation (C01-45 King, 1996-01-01) to the Royal Court statement of 1 August 2005 announcing his death (claim sa_fahd_death_announced_20050801), used as an appearance boundary only, not a reign end. The split from the 1991 window is for appearance (the accepted decree records his withdrawal for rest); Codex may rule one window."
+     },
+     "observations": [
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_king",
+       "holder_claim": "sa_fahd_king_obs_19960101",
+       "claim": {
+        "id": "sa_fahd_king_obs_19960101",
+        "text": "Release dated January 1, 1996 on the Royal Embassy's January 1996 page: 'The Custodian of The Two Holy Mosques King Fahd Bin Abdulaziz directed the following Royal Decree to Crown Prince His Royal Highness Prince Abdullah Bin Abdulziz, the deputy Premier and head of the National Guard'.",
+        "attested_on": "1996-01-01",
+        "locator": "January 1996 page; item 'KING FAHD DELEGATES CROWN PRINCE TO UNDERTAKE STATE'S AFFAIRS', date line and first sentence",
+        "uncertainty": "An English release of the Royal Embassy, not the Arabic decree. It attests his title on this day only: it gives no accession date and does not change his CLAUDE-C01-06 holder, whose attested_on (1990-08-08) rests on a foreign record."
+       },
+       "source_id": "sa_embassy_fahd_delegates_19960101",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/0/holder_claims/5",
+         "claim": "/sources/103/claims/0"
+        }
+       }
+      },
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_king",
+       "holder_claim": "sa_fahd_chairs_cabinet_19960212",
+       "claim": {
+        "id": "sa_fahd_chairs_cabinet_19960212",
+        "text": "Release dated February 13, 1996 on the Royal Embassy's February 1996 page: 'Custodian of the Two Holy Mosques King Fahd Bin Abdul Aziz yesterday evening chaired the regular weekly meeting of the Council of Ministers'.",
+        "attested_on": "1996-02-12",
+        "locator": "February 1996 page; item 'COUNCIL OF MINISTERS MEETING', February 13, 1996, first sentence",
+        "uncertainty": "'Yesterday evening' resolves from the February 13, 1996 date line to 12 February 1996. It falls inside the delegation that the February 22 item says ended on 21 February; the releases do not reconcile the two, and neither day is a boundary."
+       },
+       "source_id": "sa_embassy_fahd_resumes_19960222",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/0/holder_claims/6",
+         "claim": "/sources/104/claims/0"
+        }
+       }
+      },
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_king",
+       "holder_claim": "sa_fahd_king_order_a193_20050731",
+       "claim": {
+        "id": "sa_fahd_king_order_a193_20050731",
+        "text": "SPA, date line Riyadh 25 Jumada II 1426 / 31 July 2005: a royal order 'issued today' (صدر أمر ملكي اليوم), Royal Order A/193 dated 25/6/1426 AH, opens 'نحن فهد بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and creates an excellent-rank post of special adviser in the Riyadh Region emirate.",
+        "attested_on": "2005-07-31",
+        "locator": "Date line; order number and date; preamble; item First; trailer 1456 (14:56 Makkah time)",
+        "uncertainty": "An order issued in his name the day before the Royal Court announced his death; an order gives attested_on only. It is the last Saudi attestation of him as King in this packet and is never an end date."
+       },
+       "source_id": "sa_spa_order_a193_20050731",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/0/holder_claims/7",
+         "claim": "/sources/106/claims/0"
+        }
+       }
+      },
+      {
+       "packet": "C01-50",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_prime_minister",
+       "role_id": "sa_pm",
+       "holder": {
+        "name": "Fahd bin Abdulaziz Al Saud",
+        "attested_on": "2004-10-03",
+        "from": null,
+        "until": null,
+        "sources": [
+         "sa_spa_fahd_pm_styled_20041003"
+        ],
+        "claim_ids": [
+         "sa_fahd_pm_styled_20041003"
+        ],
+        "note": "SPA explicitly styles King Fahd 'رئيس مجلس الوزراء' in its Military Service Council report of 3 October 2004 (SA-PM-01). The 1996 and 2005 session-chairing facts remain institution claims only.",
+        "uncertainty": "No Saudi record for 1990-1995, accession or Council formation order of his was read, so from is null; the death announcement of 1 August 2005 states no day and does not name the office, so until is null. Session chairing without independent office identification does not establish a Prime Minister observation. Continuity is not established."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": "/institutions/1/roles/0/holder_claims/2"
+       }
+      }
+     ],
+     "observations_not_used_as_anchor": [],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "sa_fahd_delegation_19960101",
+       "attested_on": "1996-01-01",
+       "source_id": "sa_embassy_fahd_delegates_19960101",
+       "research_location": "/sources/103/claims/2",
+       "use": "Accepted C01-45 claim: delegation of state affairs to the Crown Prince for rest; claim only."
+      },
+      {
+       "claim_id": "sa_fahd_delegation_ended_19960221",
+       "attested_on": "1996-02-21",
+       "source_id": "sa_embassy_fahd_resumes_19960222",
+       "research_location": "/sources/104/claims/1",
+       "use": "Accepted C01-45 claim: end of the delegation; claim only."
+      },
+      {
+       "claim_id": "sa_fahd_death_announced_20050801",
+       "attested_on": "2005-08-01",
+       "source_id": "sa_spa_fahd_death_20050801_ar",
+       "research_location": "/sources/11/claims/0",
+       "use": "Royal Court death announcement; used only as this window's exclusive appearance end."
+      },
+      {
+       "claim_id": "sa_fahd_pm_chairs_cabinet_19960304",
+       "attested_on": "1996-03-04",
+       "source_id": "sa_embassy_fahd_cabinet_19960305",
+       "research_location": "/sources/121/claims/0",
+       "use": "C01-50 withheld meeting-only use; claim only."
+      },
+      {
+       "claim_id": "sa_fahd_pm_chairs_cabinet_20050425",
+       "attested_on": "2005-04-25",
+       "source_id": "sa_spa_fahd_cabinet_20050425",
+       "research_location": "/sources/123/claims/0",
+       "use": "C01-50 withheld meeting-only use; claim only."
+      }
+     ],
+     "jobs": {
+      "pipeline_window_scoped": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-23affa4e0bcb",
+        "from": "1996-01-01",
+        "to": "2005-08-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_default_inventory": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-b847f208ede0",
+        "from": "1991-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "id": "fahd_bin_abdulaziz_al_saud-d3ec1b0b9097",
+        "from": "2005-08-01",
+        "to": "2027-01-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [],
+      "leadership_production_note": "None exist (Fahd is known_windows_covered)."
+     },
+     "likeness_reference_ids": [
+      "fahd-bin-abdulaziz-1998"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1996-v1.txt",
+      "sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "46e06c2dc04234b8e3776a1cc90b1701697e5dc8e50dbd1d3ed1adb68d9702a1",
+      "git_blob": "519c72e9bb85030dee60e50a7aa3f41b7d631906",
+      "bytes": 4133,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+     "identity_review": [
+      {
+       "finding": "Fahd is the elderly man seated in the gilded armchair at right (Commons description and embedded IPTC caption); the 13 October 1998 photograph lies inside the window.",
+       "evidence": [
+        "fahd-bin-abdulaziz-1998"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per portrait window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The prompt called his complexion 'light olive-tan'. Sampled cheek and forehead values (about RGB 162-192, 92-138, 79-122) are a medium warm tan, darker than Cohen beside him, and the adjacent 1991 prompt says 'medium olive-tan'.",
+        "disposition": "Fixed: line 5 of the prompt now says 'medium olive-tan complexion'; the LF sha256, CRLF sha256, git blob and byte count are re-pinned here and in the render request."
+       },
+       {
+        "problem": "The reference record lacked the 'source_license_statement' and 'rights_statement' fields that every France reference carries.",
+        "disposition": "Fixed: both fields added in the France shape (PD-USGov-Military; only Commons file revision, Slick-o-bot, 2012-08-25, sha1 b598b3b5...)."
+       }
+      ]
+     },
+     "preparer_notes": [
+      "The unedited DoD original (2496x1821, the only Commons file revision) was used rather than the planner's lead, a 681x866 BeFunky-edited crop of the same frame.",
+      "The first Commons API request got HTTP 429; the body was discarded and the request retried with backoff. All later requests went one at a time. No response headers were saved. One guessed upload URL returned 404 and nothing was kept from it."
+     ],
+     "missing_records": [],
+     "open_items_for_codex": [
+      "Keep the split at 1996-01-01 or rule one Fahd window (see the 1991 entry)."
+     ]
+    },
+    {
+     "portrait_key": "abdullah_bin_abdulaziz_al_saud:1996",
+     "person_id": "abdullah_bin_abdulaziz_al_saud",
+     "batch_role": "primary",
+     "requested_window": {
+      "from": "1996-01-01",
+      "to": "2005-08-01",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "From the first accepted observation (C01-45 Crown Prince, 1996-01-01) to the start of his King window. Codex may move the start to 1990-01-01 on the leaders_1990.json heir record (Crown Prince and First Deputy Prime Minister since 1982-06-13; not C01 research); that window's job is abdullah_bin_abdulaziz_al_saud-0ae5f49261bc.",
+      "alternative_start": {
+       "from": "1990-01-01",
+       "job_id": "abdullah_bin_abdulaziz_al_saud-0ae5f49261bc",
+       "basis": "seed heir record in leaders_1990.json, not C01 research"
+      }
+     },
+     "observations": [
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_crown_prince",
+       "holder_claim": "sa_abdullah_cp_obs_19960101",
+       "claim": {
+        "id": "sa_abdullah_cp_obs_19960101",
+        "text": "The same release addresses the decree to 'Crown Prince His Royal Highness Prince Abdullah Bin Abdulziz, the deputy Premier and head of the National Guard' and prints his reply as from 'the Crown Prince, His Royal Highness Prince Abdullah Bin Abdul Aziz'.",
+        "attested_on": "1996-01-01",
+        "locator": "January 1996 page; same item, first and second paragraphs",
+        "uncertainty": "A point observation that predates his CLAUDE-C01-06 Crown Prince holder's attested_on (2005-08-01), which is kept unchanged; whether the holder should be dated from it is a ruling question. It does not date the start of his crown-princeship. 'Abdulziz' is printed so in the decree sentence."
+       },
+       "source_id": "sa_embassy_fahd_delegates_19960101",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/1/holder_claims/9",
+         "claim": "/sources/103/claims/1"
+        }
+       }
+      },
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_crown_prince",
+       "holder_claim": "sa_abdullah_cp_obs_20050730",
+       "claim": {
+        "id": "sa_abdullah_cp_obs_20050730",
+        "text": "SPA, date line Riyadh 24 Jumada II 1426 / 30 July 2005: 'استقبل صاحب السمو الملكي الأمير عبدالله بن عبدالعزيز ولي العهد نائب رئيس مجلس الوزراء رئيس الحرس الوطني' the Russian ambassador, on the end of his posting, in his office at the Royal Court in al-Yamamah Palace 'اليوم' (today).",
+        "attested_on": "2005-07-30",
+        "locator": "Date line; first paragraph; trailer 1729 (17:29 Makkah time)",
+        "uncertainty": "His last Saudi attestation as Crown Prince before the 1 August 2005 accession statement: a point observation that predates his CLAUDE-C01-06 holder's attested_on, which stays unchanged. It does not date the start of his crown-princeship."
+       },
+       "source_id": "sa_spa_cp_abdullah_obs_20050730",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/1/holder_claims/10",
+         "claim": "/sources/105/claims/0"
+        }
+       }
+      }
+     ],
+     "observations_not_used_as_anchor": [],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "sa_fahd_delegation_19960101",
+       "attested_on": "1996-01-01",
+       "source_id": "sa_embassy_fahd_delegates_19960101",
+       "research_location": "/sources/103/claims/2",
+       "use": "The decree addressed to the Crown Prince on 1 January 1996; claim only."
+      }
+     ],
+     "jobs": {
+      "pipeline_window_scoped": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-236612642866",
+        "from": "1996-01-01",
+        "to": "2005-08-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_default_inventory": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-c6fae3497c05",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_alternative_if_codex_moves_start": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-0ae5f49261bc",
+        "from": "1990-01-01",
+        "to": "2005-08-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-0aa00159df24",
+        "from": "1990-01-01",
+        "to": "1996-01-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-9bb74634df25",
+        "from": "2015-01-23",
+        "to": "2027-01-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open (after both Abdullah windows are registered)"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [],
+      "leadership_production_note": "None exist: leadership production marks Abdullah eligibility_research_required with no required window."
+     },
+     "likeness_reference_ids": [
+      "abdullah-bin-abdulaziz-1998"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-1996-v1.txt",
+      "sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "f69770b99422234f19ad872f4385af9dc265278e361701f8b5971926cc75f1c0",
+      "git_blob": "4ee89a8473bbe3be2fdf7458fffdc450a6b0d755",
+      "bytes": 4192,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+     "identity_review": [
+      {
+       "finding": "Abdullah is the tall man at centre right in the plain white ghutra, glasses and dark brown bisht (Commons description); identity cross-checked against the US Treasury photograph of 25 September 1998. The far-right man in a checked headcloth is excluded by the prompt.",
+       "evidence": [
+        "abdullah-bin-abdulaziz-1998"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per portrait window)",
+      "initial_verdict_ok": true,
+      "problems_and_dispositions": [
+       {
+        "problem": "Non-blocking: the record said the 1996, 1997, 1999, 2000 and 2004 year categories are 'empty'; a live categoryinfo query shows they do not exist on Commons.",
+        "disposition": "Fixed: the limitation now says they do not exist on Commons."
+       },
+       {
+        "problem": "Non-blocking: File:Bush-abdullah1.jpg (514x343, Public domain) from the preparer's own 2005 category listing was missing from rejected_candidates.",
+        "disposition": "Fixed: added to rejected_candidates."
+       }
+      ]
+     },
+     "preparer_notes": [
+      "Commons category 'Abdullah of Saudi Arabia in 1990' holds a US Navy public-domain lead for the residual 1990-1996 job: File:Abdullah desert storm (cropped).jpg (PH1 Dewayne B. Smith, 1274x1910; Quayle with Prince Abdullah). Its Commons date 1990-01-01 looks like a year-only placeholder. Not downloaded or verified.",
+      "If Codex moves the start to 1990-01-01, the prompt's window sentence ('from January 1996') and its age range (71 to 81) need a v2.",
+      "The Commons API returned HTTP 429 twice; the preparer backed off 60 to 90 seconds and then made one request at a time. No response headers were saved."
+     ],
+     "missing_records": [],
+     "open_items_for_codex": [
+      "Keep the start 1996-01-01 or move it to 1990-01-01 (abdullah_bin_abdulaziz_al_saud-0ae5f49261bc) on the seed heir record; a 1990 start needs a v2 prompt."
+     ]
+    },
+    {
+     "portrait_key": "abdullah_bin_abdulaziz_al_saud:2005",
+     "person_id": "abdullah_bin_abdulaziz_al_saud",
+     "batch_role": "primary",
+     "requested_window": {
+      "from": "2005-08-01",
+      "to": "2015-01-23",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "From the accepted 1 August 2005 PM observation (C01-50) to the Royal Court statement that he died at 1 a.m. on 23 January 2015 (claim sa_abdullah_death_20150123), used as an appearance boundary only."
+     },
+     "observations": [
+      {
+       "packet": "C01-50",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_prime_minister",
+       "role_id": "sa_pm",
+       "holder": {
+        "name": "Abdullah bin Abdulaziz Al Saud",
+        "attested_on": "2005-08-01",
+        "from": null,
+        "until": null,
+        "sources": [
+         "sa_spa_order_a194_20050801"
+        ],
+        "claim_ids": [
+         "sa_abdullah_pm_order_a194_20050801"
+        ],
+        "note": "Royal Order A/194 of 26/6/1426 AH (SPA, 1 August 2005) continues all members of the Council of Ministers 'برئاستنا' (SA-PM-02). He reconstituted the Council under his chairmanship by A/29 (22 March 2007, effective from its date). The 29 December 2012 budget-session chairing is retained as an institution event only.",
+        "uncertainty": "A/194 states no effective day, so from is null and attested_on is the order's day. The 2007 effective day belongs to the reconstituted Council, not to his office. The Royal Court statement of 23 January 2015 gives his day of death styled King, not Prime Minister, so under the death-notice ruling until is null on sa_pm; continuity between observations is not established."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": "/institutions/1/roles/0/holder_claims/3"
+       }
+      },
+      {
+       "packet": "C01-50",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_prime_minister",
+       "role_id": "sa_pm",
+       "holder_claim": "sa_abdullah_pm_order_a29_20070322",
+       "claim": {
+        "id": "sa_abdullah_pm_order_a29_20070322",
+        "text": "SPA, date line Riyadh 3 Rabi al-Awwal 1428 / 22 March 2007: three royal orders 'صدرت اليوم الخميس'; Royal Order A/29 dated 3/3/1428 AH, in the name of 'عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and citing A/3 of 28/2/1424 AH and A/194 of 26/6/1426 AH, orders 'أولا : إعادة تشكيل مجلس الوزراء برئاستنا مع استمرار جميع أعضاء المجلس الحاليين في مناصبهم' and 'ثانيا : يعمل بهذا الأمر من تاريخه'.",
+        "attested_on": "2007-03-22",
+        "locator": "Date line; Royal Order A/29, number, date, recitals and items First and Second; trailer 1800 (18:00 Makkah time)",
+        "uncertainty": "Item Second makes the reconstitution effective from the order's date (3/3/1428 AH, 22 March 2007). That is the effective day of a reconstituted Council whose chairman was already attested on 1 August 2005, not the start of his office, so it is an observation and never a from. The recital's A/3 of 28/2/1424 AH (2003) was not found."
+       },
+       "source_id": "sa_spa_order_a29_20070322",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/1/roles/0/holder_claims/4",
+         "claim": "/sources/125/claims/0"
+        }
+       }
+      },
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_king",
+       "holder_claim": "sa_abdullah_king_order_a136_20061020",
+       "claim": {
+        "id": "sa_abdullah_king_order_a136_20061020",
+        "text": "Royal Order A/136, reproduced in the same Royal Court statement, opens 'نحن عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية'.",
+        "attested_on": "2006-10-20",
+        "locator": "Royal Order A/136, preamble",
+        "uncertainty": "An order issued in his name: a dated in-office attestation only, not a boundary."
+       },
+       "source_id": "sa_spa_order_a136_20061020",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/0/holder_claims/8",
+         "claim": "/sources/108/claims/1"
+        }
+       }
+      },
+      {
+       "packet": "C01-45",
+       "evidence_class": "c01_accepted",
+       "organization_or_institution_id": "sa_crown",
+       "role_id": "sa_king",
+       "holder_claim": "sa_abdullah_king_order_a145_20140520",
+       "claim": {
+        "id": "sa_abdullah_king_order_a145_20140520",
+        "text": "SPA, date line Jeddah 21 Rajab 1435 / 20 May 2014: Royal Order A/145 dated 21/7/1435 AH, issued 'today', opens 'نحن عبدالله بن عبدالعزيز آل سعود ملك المملكة العربية السعودية' and is signed 'عبدالله بن عبدالعزيز آل سعود'.",
+        "attested_on": "2014-05-20",
+        "locator": "Date line; order number and date; preamble; signature; trailer 15:42 (Makkah time)",
+        "uncertainty": "An order issued in his name: a dated in-office attestation only, not a boundary."
+       },
+       "source_id": "sa_spa_order_a145_20140520",
+       "research_locations": {
+        "docs/campaign-certification/C01/research/saudi-arabia.json": {
+         "holder_claim": "/institutions/0/roles/0/holder_claims/9",
+         "claim": "/sources/113/claims/0"
+        }
+       }
+      }
+     ],
+     "observations_not_used_as_anchor": [
+      {
+       "packet": "C01-06",
+       "evidence_class": "c01_integrated_pending",
+       "research_location": "/institutions/0/roles/0/holder_claims/2",
+       "name": "Abdullah bin Abdulaziz Al Saud",
+       "attested_on": "2005-08-01",
+       "from": null,
+       "until": "2015-01-23",
+       "note": "C01-06 King holder, acceptance pending; it falls inside this window but is not used as an anchor."
+      },
+      {
+       "packet": "C01-06",
+       "evidence_class": "c01_integrated_pending",
+       "research_location": "/institutions/0/roles/1/holder_claims/1",
+       "name": "Abdullah bin Abdulaziz Al Saud",
+       "attested_on": "2005-08-01",
+       "from": null,
+       "until": null,
+       "note": "C01-06 Crown Prince holder, acceptance pending; attested 2005-08-01, inside this window; not used as an anchor."
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "sa_abdullah_death_20150123",
+       "attested_on": "2015-01-23",
+       "source_id": "sa_spa_abdullah_death_20150123_en",
+       "research_location": "/sources/20/claims/0",
+       "use": "Royal Court statement of his death; used only as this window's exclusive appearance end."
+      },
+      {
+       "claim_id": "sa_abdullah_pm_chairs_cabinet_20121229",
+       "attested_on": "2012-12-29",
+       "source_id": "sa_spa_abdullah_cabinet_20121229",
+       "research_location": "/sources/126/claims/0",
+       "use": "C01-50 withheld meeting-only use; claim only."
+      }
+     ],
+     "jobs": {
+      "pipeline_window_scoped": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-a0b3ce91e5c0",
+        "from": "2005-08-01",
+        "to": "2015-01-23",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_default_inventory": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-c6fae3497c05",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-9bb74634df25",
+        "from": "2015-01-23",
+        "to": "2027-01-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "id": "abdullah_bin_abdulaziz_al_saud-0aa00159df24",
+        "from": "1990-01-01",
+        "to": "1996-01-01",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open (after both Abdullah windows are registered)"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [],
+      "leadership_production_note": "None exist (Abdullah is eligibility_research_required)."
+     },
+     "likeness_reference_ids": [
+      "abdullah-bin-abdulaziz-2007"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-2005-v1.txt",
+      "sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "4fb95dbc158f53d18069c9467980d7b9133264b7619b4abac8f3b89473b9a46a",
+      "git_blob": "1c20f1494d207b82ca60e58a840f3894356654b0",
+      "bytes": 3948,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+     "identity_review": [
+      {
+       "finding": "King Abdullah alone in a head-and-shoulders crop of DoD photo 070117-D-7203T-016 (17 January 2007), inside the window; the verifier visually confirmed the identity, and the same-day companion frame -014 supports the clothing.",
+       "evidence": [
+        "abdullah-bin-abdulaziz-2007"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per portrait window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The provenance notes said the bytes have 'no EXIF, despite the upload comment' and that 'the file itself has no EXIF', implying no embedded date. The file has no Exif IFD, but its IPTC-IIM and XMP blocks give DateCreated 2007-01-17, By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016.",
+        "disposition": "Fixed: rights_statement and date_precision now describe the embedded IPTC-IIM and XMP metadata, which the assembler re-read from the repository bytes (embedded_metadata), as a third agreeing date source. The reference bytes, sha256 values and job IDs are unchanged."
+       },
+       {
+        "problem": "Assembler's own consistency check (not a verifier finding): the prompt called his complexion 'light olive-tan with a warm ruddy tone'. Sampled lit skin in the reference (about RGB 156-183, 100-134, 65-103) is a medium warm tan, the same range the Fahd verifier called medium, and the sibling 1996 prompt says 'medium olive-tan'.",
+        "disposition": "Fixed: the prompt now says 'medium olive-tan complexion with a warm ruddy tone'; its pins are recomputed here and in the render request."
+       }
+      ]
+     },
+     "preparer_notes": [
+      "The photograph shows him at about 82, 1.5 years into a window that runs to about age 90; the prompt keeps the photograph's appearance throughout with no further ageing and no cane, walker or wheelchair. Ages rest on a birth date of 1 August 1924 (general biographical knowledge; some sources give 1923), not C01 research.",
+      "The Commons API returned HTTP 429 once; the preparer waited 60 s and retried once, which succeeded. The 429 body was deleted and no header dump was saved."
+     ],
+     "missing_records": [],
+     "open_items_for_codex": [
+      "Accept or amend keeping the 2007 appearance (about 82) for the whole window to January 2015 (about 90), with no further ageing."
+     ]
+    }
+   ]
+  }
+ ],
+ "excluded_people": [],
+ "blocked_people_without_registry_id": {
+  "note": "Accepted holders with no registry person ID; batch-2 candidates once Codex adds registry identities. Not prepared here.",
+  "proposed_first": [
+   "Salman bin Abdulaziz Al Saud",
+   "Mohammed bin Salman bin Abdulaziz Al Saud"
+  ],
+  "others": [
+   "Sultan bin Abdulaziz Al Saud",
+   "Nayef bin Abdulaziz Al Saud",
+   "Muqrin bin Abdulaziz Al Saud",
+   "Mohammed bin Nayef bin Abdulaziz Al Saud",
+   "Muhammad bin Jubair (Shura chair)",
+   "Saleh bin Abdullah bin Humaid (Shura chair)",
+   "Abdullah Al Al-Sheikh (Shura chair)",
+   "Mishaal bin Abdulaziz Al Saud (Allegiance Commission chair)",
+   "Khalid Al-Tuwaijri (Allegiance Commission secretary general)"
+  ]
+ },
+ "likeness_references": [
+  {
+   "id": "fahd-bin-abdulaziz-1992",
+   "person_id": "fahd_bin_abdulaziz_al_saud",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh,_Saudi_Arabia.jpg",
+   "commons_title": "File:President George H. W. Bush meets with Saudi Arabian King Fahd in Riyadh, Saudi Arabia.jpg",
+   "retrieved_at": "2026-10-02T12:10:19Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-imageinfo-bush-fahd-riyadh-19921231.json",
+    "bytes": 4811,
+    "sha256": "0b5ec803c0539a93ab224544255de70dc07695adfa9ad5f8498dfe5c3802213a",
+    "retrieved_at": "2026-10-02T12:08:16Z"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/filepage-bush-fahd-riyadh-19921231.html",
+    "bytes": 88360,
+    "sha256": "1dae6fa82b1506b09dbf245595ddf9c43611e6b45dbacdbd3b7a208a8e667c1d",
+    "retrieved_at": "2026-10-02T12:08:36Z"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-wikitext-revisions-bush-fahd-riyadh-19921231.json",
+     "bytes": 11165,
+     "sha256": "a621f42a02cefdea2b04592dbec945ae528ece4f1eb59b227e6c89fbe76eeaef",
+     "retrieved_at": "2026-10-02T12:08:25Z",
+     "content": "Commons API wikitext of the 12 most recent file-page revisions (443840743 of 2020-08-27 to 1177798599 of 2026-03-08; the response ends with rvcontinue 20200809104813|437991233, so the 2020-08-07 upload and 2020-08-09 revisions were not retrieved): {{PD-USGov}}, date=1992-12-31, the author and the source are unchanged in all 12; the 2024-12-26 anonymous edit and the 2025-08-29 and 2026-03-08 edits change categories only (one briefly added 'George H. W. Bush in Saudi Arabia in 2005' and it was removed two minutes later)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/bush41library-audiovisual-photos-37.html",
+     "bytes": 43625,
+     "sha256": "a57be8a7f53930e5cf89a396d4222d106753df7eec67a66baf0c8bc4a161f849",
+     "retrieved_at": "2026-10-02T12:09:01Z",
+     "content": "Live fetch of the Commons 'source' link https://bush41library.tamu.edu/audiovisual/photos/37: it now redirects to the Bush Library homepage (https://www.bush41library.gov/). Kept only as evidence that the live link is dead; the archived page below carries the photograph number."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/cdx-photo-view-1122-P38849-17.txt",
+     "bytes": 652,
+     "sha256": "f5aaa029547843bbd666cb6503ad8fe35f1ba4fc941827f77090aa8f511efc24",
+     "retrieved_at": "2026-10-02T12:24:32Z",
+     "source_url": "https://web.archive.org/cdx/search/cdx?url=bush41library.tamu.edu/photo-view/1122/P38849-17.jpg&fl=timestamp,original,mimetype,statuscode,digest,length",
+     "content": "Wayback CDX lines for https://bush41library.tamu.edu/photo-view/1122/P38849-17.jpg: captures 20151019191051, 20170208191451, 20201025020135, 20211125092147 (warc/revisit) and 20240115021329, all with content digest 4LDE3YGZ56RLOVG6FV255DVC3ZQUK4PU, which is the base32 form of the Commons SHA-1 e2c64de0d9efa2b754de2d75de8ea2de614571f4."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/wayback-20201025020135-P38849-17.jpg",
+     "bytes": 152062,
+     "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+     "retrieved_at": "2026-10-02T12:24:41Z",
+     "source_url": "https://web.archive.org/web/20201025020135id_/https://bush41library.tamu.edu/photo-view/1122/P38849-17.jpg",
+     "content": "The Bush Library's own file P38849-17 as archived on 2020-10-25 (original bytes, id_ capture): 152062 bytes, byte-identical (cmp) to the Commons original and to the repository reference."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/wayback-20201017203816-audiovisual-photos-37.html",
+     "bytes": 62617,
+     "sha256": "27d96cab72fa3f854d66d2f4a07c866a97ee9c9c32816d197f3857835962ab2d",
+     "retrieved_at": "2026-10-02T12:26:24Z",
+     "source_url": "https://web.archive.org/web/20201017203816id_/https://bush41library.tamu.edu/audiovisual/photos/37",
+     "content": "Archived Commons 'source' page: the Library's 'Select Photos from the Archives' gallery, section 'President of the United States (1989-1993)'. It links /photo-view/1122/P38849-17.jpg with the title 'P38849-17', and in the same gallery /photo-view/3643/41-AV-P17638-18-11211990.jpg titled 'P17638-18', the photograph behind Fahd's existing 1990 reference."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/corroboration/presidency-ucsb-digest-other-white-house-announcements-11733.html",
+     "bytes": 62163,
+     "sha256": "305ae34c4a34afb9f3bae3fc86fac0ca141a5619d337ad72968c9893ef467ab1",
+     "retrieved_at": "2026-10-02T12:11:10Z",
+     "source_url": "https://www.presidency.ucsb.edu/documents/digest-other-white-house-announcements-11733",
+     "content": "American Presidency Project, 'Digest of Other White House Announcements', 31 December 1992: the President arrived in Riyadh that morning and met King Fahd before travelling on to Somalia. Corroborates the Commons date and place."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/corroboration/presidency-ucsb-search-fahd-19921231.html",
+     "bytes": 63126,
+     "sha256": "7a37143843289e262d9faf290fcae36619be536798fff658814e6f55cd738ad5",
+     "retrieved_at": "2026-10-02T12:11:04Z",
+     "content": "American Presidency Project search page (keyword Fahd, 1992-12-29 to 1993-01-03): one record, the Digest above."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/fahd-1992-bush-library-riyadh-original.jpg",
+    "bytes": 152062,
+    "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh%2C_Saudi_Arabia.jpg",
+    "commons_sha1": "e2c64de0d9efa2b754de2d75de8ea2de614571f4"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+   "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+   "bytes": 152062,
+   "asset_byte_identical_to_original": true,
+   "commons_file_revision": {
+    "timestamp": "2020-08-07T18:45:24Z",
+    "uploader": "RandomUserGuy1738",
+    "sha1": "e2c64de0d9efa2b754de2d75de8ea2de614571f4",
+    "width": 600,
+    "height": 410,
+    "bytes": 152062,
+    "note": "Only file revision on Commons."
+   },
+   "source_photo_number": "P38849-17 (official White House photograph; George H. W. Bush Presidential Library roll number, from the Library's archived gallery)",
+   "width": 600,
+   "height": 410,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "1992-12-31",
+   "depiction_date": {
+    "kind": "day",
+    "value": "1992-12-31"
+   },
+   "date_precision": "Day. The Commons date field gives 1992-12-31, and the White House Digest of 31 December 1992 independently says the President met King Fahd in Riyadh that morning. The photograph is White House roll P38849-17 in the Library's presidential gallery (1989-1993); the roll number itself encodes no day.",
+   "creator": "White House Photo Office (individual photographer not named)",
+   "commons_artist_field": "Credit: George H.W. Bush Presidential Library and Museum",
+   "credit": "George H. W. Bush Presidential Library and Museum, official White House photograph P38849-17, 'President George H. W. Bush meets with Saudi Arabian King Fahd in Riyadh, Saudi Arabia', 31 December 1992; public domain (PD-USGov), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "Public domain",
+   "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+   "source_license_statement": "{{PD-USGov}}: work of a US federal government employee made in the course of official duties, in the public domain under 17 USC 105. Commons extmetadata LicenseShortName is exactly 'Public domain' (License 'pd', no LicenseUrl); the file page also carries a Public Domain Mark 1.0 tag (https://creativecommons.org/publicdomain/mark/1.0/).",
+   "rights_statement": "Retained source statement: official White House photograph P38849-17, identified on its Commons record as a work of the US federal government made in official duties and therefore public domain under 17 USC 105 ({{PD-USGov}}); Commons also applies the Public Domain Mark 1.0. Attribution is not required; the credit is kept for provenance. The copied bytes are the only Commons file revision, unretouched, and byte-identical to the Library's own file as archived on 2020-10-25.",
+   "license_note": "The 'Public domain' + Template:PD-USGov pairing is already used by an existing identity_source in person_portraits.json; Codex may prefer the PDM 1.0 URL. The bytes are unaffected either way.",
+   "people_in_frame": "Three seated men in a reception room with carved wooden doors, a Saudi flag behind the left chair and a flower arrangement on a small table. LEFT: President George H. W. Bush in a dark suit. MIDDLE: an unidentified man in white ghutra, black agal and light bisht leaning toward Bush. RIGHT: King Fahd, facing the camera and smiling, hands clasped on his lap; the frame cuts off below his knees, so his feet are not visible. The prompt selects Fahd alone and excludes the others, the flag, furniture and setting.",
+   "observed_appearance": "Broad, full, rounded face with full cheeks and heavy jaw; medium olive-tan complexion; dark fairly heavy brows; heavy-lidded eyes narrowed by a broad smile; prominent broad nose; short dark moustache and small neat dark chin beard; no glasses. Plain white ghutra with black double-cord agal; pale gray-blue thobe with buttoned collar; light beige (oatmeal) bisht with broad gold embroidered edging; dark-strapped wristwatch on the left wrist. Heavy-set, broad-shouldered build.",
+   "age_gap_note": "No age gap: the photograph (31 December 1992) lies inside the requested window 1991-01-01 to 1996-01-01, about two years after its start and three years before its exclusive end. Fahd's birth year is given variously as about 1920 to 1923 in general biographical sources (not C01 research; leaders_1990.json leaves it null), so he is roughly 69 to 72 in the photograph and in his late sixties to mid seventies across the window; the prompt asks for one dignified appearance of a man of about seventy with no frailty. The 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101) is used only as the window's appearance boundary; reports of a late-1995 stroke are general knowledge and are not depicted. Artistic extensions declared in the prompt: the standing pose, the lower robe hem and the plain black low shoes (feet out of frame in a seated photograph).",
+   "limitation": "Small 600 x 410 scan; Fahd's face is only about 45 px wide, so the prompt asks for a simple, faithful face rather than invented detail. The live Commons 'source' link (bush41library.tamu.edu/audiovisual/photos/37) now redirects to the Library homepage, but its archived capture (20201017203816) lists the file as official White House photograph P38849-17, and the Library's archived file (20201025020135) is byte-identical to the Commons bytes. The individual White House photographer is not named. Date and place are also corroborated by the White House Digest of 31 December 1992.",
+   "fallback": "spheres-web/ui/person-portraits/references/fahd-1990-reference.jpg (official White House photograph P17638-18, 21 November 1990, PDM-1.0) stays available unchanged but is not needed; it predates the window by about six weeks.",
+   "rejected_candidates": [
+    "File:President George H. W. Bush and King Fahd bin Abdulaziz Al Saud discuss the situation in Iraq.jpg (existing fahd-1990-reference.jpg; Bush Library, 1990-11-21, PDM-1.0): valid licence but predates the window by about six weeks and is already used by the 1990 art. Kept only as the fallback.",
+    "File:President George H. W. Bush and King Fahd bin Abdulaziz Al Saud share a laugh.jpg (Bush Library, 1990-11-21, Public domain): before the window.",
+    "File:British troops and units from other coalition countries gather for review by King Fahd of Saudi Arabia - DN-ST-92-08942.jpg (PHC D. W. Holmes, DoD, 1991-03-08, Public domain): in window and free, but Fahd is not in frame (British colour party and troops only); screened from a Commons 1280px thumbnail.",
+    "File:Members of the 62nd Engineer Battalion salute King Fahd of Saudi Arabia.JPEG (PHC D. W. Holmes, 1991-03-08, Public domain): Fahd not in frame (saluting US troops only).",
+    "File:The color guard of the 1st Cavalry Division dips the colors of the U.S. Army Central Support Command to King Fahd of Saudi Arabia.JPEG (PHC D. W. Holmes, 1991-03-08, Public domain): Fahd not in frame (colour guard and troops only).",
+    "File:Members of the 1ST Cavalry Division salute as their color guard ... King Fahd ... - DPLA - 1f69f4ea57edfc8aac81fa356b5a66bd.jpeg (same 1991-03-08 review series, Public domain): not viewed; the description names no visible king, and its three viewed sibling frames show only troops.",
+    "File:Defense.gov News Photo of King Fahd (cropped).jpg / Defense.gov News Photo 981013-D-2987S-196 (Helene C. Stikkel, 1998-10-13, Public domain): after the window (used for the 1996-2005 window).",
+    "File:Dick Cheney and King Fahd of Saudi Arabia.jpg (David Bohrer, 2002-03-16, Public domain): after the window.",
+    "Bundesarchiv B 145 Bild-F063237-0004/0008/0012 (Ulrich Wienke, 1982-06-17): ported licence 'CC BY-SA 3.0 de' not in FREE_LICENSES, and out of window.",
+    "File:Fahd of Saudi Arabia Portrait.jpg / (cropped) and صورة لفهد بن عبد العزيز 1982.jpg (1982, Public domain): out of window, unknown author.",
+    "File:Fahd Bin Abdul Aziz Al Saud1.jpg and File:King Fahd Bin Abdul-Aziz1.jpg (unknown date and author): undated.",
+    "File:Minister Van Eekelen (Def.) ontvangt Prins Fahd ... Bestanddeelnr 934-0829.jpg (Anefo, 1987-09-22, CC0): out of window, and the subject is styled 'Prins Fahd' in 1987, when Fahd was already King, so probably a different prince.",
+    "File:الملك فهد.jpg (2018-04-09 upload, CC BY-SA 4.0) and File:38- King Fahd and King Salman (My Trip To Al-Jenadriyah 32).jpg (CC BY-SA 4.0): uploader photographs of displays or reproductions, not dated photographs of Fahd in the window.",
+    "Reagan-era 1985 White House files and Carter-era 1977-1978 NARA files (Public domain): out of window."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  },
+  {
+   "id": "fahd-bin-abdulaziz-1998",
+   "person_id": "fahd_bin_abdulaziz_al_saud",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+   "commons_title": "File:Defense.gov News Photo 981013-D-2987S-196.jpg",
+   "retrieved_at": "2026-10-02T12:09:49Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cohen-fahd-19981013.json",
+    "bytes": 17004,
+    "sha256": "066b8d0c3c22b245d5ae69fbe93b7aeeb1ff48780b1c714c4eefa97ebe0b2a73"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/filepage-stikkel-cohen-fahd-19981013.html",
+    "bytes": 120859,
+    "sha256": "5b87bafe5a9595ee4b5c2a73ba69f664e4b3a69c5f64e0bd36f6dc5da9db15af"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-parents.json",
+     "bytes": 59942,
+     "sha256": "41ac3d3b82dbaf2523446dd286756d297e54112e96a86391dfcddb905f7f726c",
+     "content": "Commons API imageinfo histories and wikitext for the original and both derived crops (CropTool crop and BeFunky-edited crop)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cropped.json",
+     "bytes": 14417,
+     "sha256": "140a950d4e8a99066bd309607bf5a9c29e51f3f82d654211c948f7a2bc2b5ca3",
+     "content": "Commons API record of the planner's lead file (BeFunky-edited crop)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-category-fahd.json",
+     "bytes": 26628,
+     "sha256": "219608183a77fc41f3ce58899f4d99883b7c331676def2a7ed81175dfed81b9f",
+     "content": "Commons Category:Fahd of Saudi Arabia file listing (licence, date, size) used for the in-window search."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-cheney-fahd-20020316.json",
+     "bytes": 5868,
+     "sha256": "ff0c99f1f7f8fa41aa1883275438b1f18286dd8f7cfb9f461f3cdb624ef6582c",
+     "content": "Commons API record of the Cheney/Fahd 2002-03-16 file (identity check)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/wh-vpphotoessay-part1-08.html",
+     "bytes": 14141,
+     "sha256": "75c9b3c61bdd2750abc70ecde89e6ef43d35394078aa7789ffa8ccbd2c6dadc3",
+     "content": "White House archive source page of the Cheney/Fahd photo (caption and image filenames)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/bohrer-cheney-fahd-20020316-commons.jpg",
+     "bytes": 38568,
+     "sha256": "f115e358fba7f728da61bb058f3c99d4ac8b9366b384c2a3f040eaecababf282",
+     "content": "Commons bytes of the rejected Cheney/Fahd file, kept only as identity-check evidence; not copied to the repository."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/stikkel-cohen-fahd-19981013-original.jpg",
+    "bytes": 1397076,
+    "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+    "commons_sha1": "b598b3b5679edb1fbfdca8bab206268b8a823e36"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+   "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+   "bytes": 1397076,
+   "asset_byte_identical_to_original": true,
+   "commons_file_revision": {
+    "timestamp": "2012-08-25T00:24:18Z",
+    "uploader": "Slick-o-bot",
+    "sha1": "b598b3b5679edb1fbfdca8bab206268b8a823e36",
+    "width": 2496,
+    "height": 1821,
+    "bytes": 1397076,
+    "note": "Only revision of the file (import by User:Slick-o-bot/Defense.gov News Photos); wikitext revision 1199227841 of 2026-04-17 by SchlurcherBot is a category/maintenance edit, not a file change."
+   },
+   "source_photo_number": "981013-D-2987S-196 (DoD VIRIN)",
+   "dod_source_url": "http://www.defense.gov/photos/newsphoto.aspx?newsphotoid=1596 (Commons source field; not fetched)",
+   "width": 2496,
+   "height": 1821,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "1998-10-13",
+   "depiction_date": {
+    "kind": "day",
+    "value": "1998-10-13"
+   },
+   "date_precision": "Day: Commons {{Taken on|1998-10-13}}, the DoD VIRIN 981013-D-2987S-196 (date-coded 981013), and the embedded IPTC caption 'on Oct. 13, 1998 ... DoD photo by Helene C. Stikkel. (Released)'.",
+   "creator": "Helene C. Stikkel (U.S. Department of Defense photographer)",
+   "credit": "Helene C. Stikkel, U.S. Department of Defense photo 981013-D-2987S-196 (Released), 13 October 1998, Al-Yamamah Palace, Riyadh; public domain (PD-USGov-Military), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "Public domain",
+   "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+   "source_license_statement": "{{PD-USGov-Military}}: work of a U.S. military or Department of Defense employee taken as part of official duties; Commons LicenseShortName exactly 'Public domain' (License 'pd', no LicenseUrl).",
+   "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the only Commons file revision (Slick-o-bot, 2012-08-25, sha1 b598b3b5679edb1fbfdca8bab206268b8a823e36), unretouched.",
+   "people_in_frame": "Fahd is the elderly man seated in the gilded armchair at RIGHT: white ghutra with black agal, white thobe, sheer black bisht with broad gold bands, gold wristwatch with dark strap on left wrist, ring on right hand, walking cane in his right hand, black shoes; the frame shows him head to shoes. William S. Cohen (dark suit) sits on the sofa at left; an unidentified Saudi official in a black gold-edged bisht sits in the middle behind a small table. A Saudi flag, gilded panels, flowers and carpet are in frame. Identity rests on the Commons description and the embedded IPTC caption 'Cohen (left) meets with King Fahd ... (right)'.",
+   "age_gap_note": "No out-of-window gap: the photograph (1998-10-13) lies inside the requested window 1996-01-01 to 2005-08-01, about 2 years 9 months after its start and about 6 years 9 months before its end. Fahd's birth year is uncertain (sources give about 1920-1923; leaders_1990.json leaves it null); by general biographical knowledge (about 1921), not C01 research, he is about 77 in the photograph and roughly 74 to 84 across the window. The prompt shows the photograph's age (late seventies) without exaggerated frailty. The standing pose, the full standing fall of the robes and the hand positions are artistic extensions of a seated photograph, and the walking cane he holds is omitted. His later-window decline (general knowledge, not C01 research) is not depicted.",
+   "limitation": "Multi-person source (Cohen at left, an unidentified Saudi official in the middle); the prompt isolates Fahd at right and any crop happens at registration. Fahd is seated with a cane, so standing is an artistic extension.",
+   "rejected_candidates": [
+    "File:Defense.gov News Photo of King Fahd (cropped).jpg (planner lead; Helene C. Stikkel/DoD, 1998-10-13, Public domain, 681x866): the same DoD frame. Its current revision (2018-07-14, Emiya1980) says it was re-cropped with the BeFunky online photo editor, so it is an edited re-encode. The unedited DoD original 981013-D-2987S-196 was chosen instead.",
+    "File:Defense.gov News Photo 981013-D-2987S-196 (cropped).jpg (Asmithca, CropTool precise-mode crop, 2018-04-15, 870x1161, Public domain): a re-encoded derivative of the chosen original; not needed because crops happen at registration.",
+    "File:Dick Cheney and King Fahd of Saudi Arabia.jpg (David Bohrer, White House, 2002-03-16, Public domain {{PD-USGov-POTUS}}, 397x263): identity consistent with Fahd (White House archive caption: Vice President and Lynne Cheney greet King Fahd in Jeddah, 16 March 2002; the same essay labels the Crown Prince separately). Rejected as the likeness reference because his face is about 25 px tall and Lynne Cheney partly blocks him; kept only as corroboration.",
+    "File:Fahd bin Abdul Aziz.jpg (dated 1998-10-13, 652x622, Public domain): not downloaded; same day's date and apparently another derivative of the same DoD session, so the unedited original is preferred.",
+    "File:الملك فهد.jpg (CC BY-SA 4.0, 2018-04-09 upload date, no photograph date), File:Fahd Bin Abdul Aziz Al Saud1.jpg, File:King Fahd Bin Abdul-Aziz1.jpg and File:King Fahd bin Abdul Aziz.jpg (Public domain, unknown date, 169-435 px wide): no photograph date and no verifiable provenance.",
+    "Out of window: George H. W. Bush Library photos of 1990-11-21 and 1992-12-31, the Reagan state visit of 1985-02-11, the 1982 portraits, the Carter-era 1977-1978 NARA photos and Nationaal Archief 1987-09-22 (CC0).",
+    "Bundesarchiv B 145 Bild-F063237-0004/0008/0012 (1982-06-17): the ported licence 'CC BY-SA 3.0 de' is not in FREE_LICENSES, and the photos are out of window."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  },
+  {
+   "id": "abdullah-bin-abdulaziz-1998",
+   "person_id": "abdullah_bin_abdulaziz_al_saud",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+   "commons_title": "File:Defense.gov News Photo 981103-D-9880W-172.jpg",
+   "retrieved_at": "2026-10-02T12:13:57Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-imageinfo-Defense.gov_News_Photo_981103-D-9880W-172.json",
+    "bytes": 15061,
+    "sha256": "4a49d3933664a52594883337df826ba410ec35cd35f3e662218ed7e1bd87afd9",
+    "retrieved_at": "2026-10-02T12:12:53Z"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-Defense.gov_News_Photo_981103-D-9880W-172.html",
+    "bytes": 115079,
+    "sha256": "881175987f5c947d6f67bdfe472303609286bc8e9f9da76e422e59d895a1f0d3",
+    "retrieved_at": "2026-10-02T12:14:31Z"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-by-year.json",
+     "bytes": 1042,
+     "sha256": "bd829fd5081c1204663f974dc88d7caceac301de82ebe25532f28fb88a61b83f",
+     "content": "Commons year-category existence listing for 'Abdullah of Saudi Arabia in <year>' (1990-2005)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-1998.json",
+     "bytes": 2353,
+     "sha256": "1468082f66bf57bc06abeed6b0bf0368d837c34f9014c067aac92f911984fcd9",
+     "content": "Commons Category:Abdullah of Saudi Arabia in 1998 listing (5 files)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-2005.json",
+     "bytes": 4172,
+     "sha256": "7de7cb055e450c70bdb305aed0ef42205252091bd10f097c92a8eb7e2f8e7eae",
+     "content": "Commons Category:Abdullah of Saudi Arabia in 2005 listing; includes File:Bush-abdullah1.jpg."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/api-rubin.json",
+     "bytes": 2660,
+     "sha256": "3e51a102a79cb6be8324b01f41a0889d253a7279c870f7640898a8367c751740",
+     "content": "Commons API record of the US Treasury Rubin/Crown Prince photograph of 1998-09-25 (identity cross-check)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/rubin-1998-09-25.jpg",
+     "bytes": 1863042,
+     "sha256": "9053c012efc86744492fd2b540cbe14dc4a33a186ccf4b8d187bf638f0d27c05",
+     "commons_sha1": "443c03013c3c4bf936fedc42cfea9e5a9fbfd028",
+     "content": "Bytes of the Treasury photograph, downloaded as a candidate and used only to cross-check identity; not copied to the repository."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/api-obuchi-akasaka-1998-1.json",
+     "bytes": 2967,
+     "sha256": "eb48997197df9b6c51599d72170556c147c6fe38c4ce6e60b6d18946d91cabe5",
+     "content": "Commons API record of the Obuchi/Abdullah Akasaka Palace file (licence check)."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/Defense.gov_News_Photo_981103-D-9880W-172.original.jpg",
+    "bytes": 1194034,
+    "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+    "commons_sha1": "d50522dc33b3df4b122613151c178307b47357c1"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+   "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+   "bytes": 1194034,
+   "asset_byte_identical_to_original": true,
+   "commons_file_revision": {
+    "timestamp": "2012-08-24T23:54:51Z",
+    "uploader": "Slick-o-bot",
+    "sha1": "d50522dc33b3df4b122613151c178307b47357c1",
+    "width": 1850,
+    "height": 2990,
+    "bytes": 1194034,
+    "note": "Only file revision in the saved Commons imageinfo record."
+   },
+   "source_photo_number": "981103-D-9880W-172 (DoD release ID)",
+   "dod_source_url": "http://www.defense.gov/photos/newsphoto.aspx?newsphotoid=1655 (Commons source field; not fetched)",
+   "width": 1850,
+   "height": 2990,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "1998-11-03",
+   "depiction_date": {
+    "kind": "day",
+    "value": "1998-11-03"
+   },
+   "date_precision": "Day: Commons 'Taken on 3 November 1998'; the DoD ID 981103 encodes the date; the description says 'following their meeting on Nov. 3, 1998, in Riyadh'.",
+   "creator": "R. D. Ward, U.S. Department of Defense",
+   "credit": "R. D. Ward / U.S. Department of Defense, Defense.gov News Photo 981103-D-9880W-172, Riyadh, 3 November 1998; public domain (work of a U.S. military or Department of Defense employee, PD-USGov-Military) via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "Public domain",
+   "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+   "source_license_statement": "Commons LicenseShortName 'Public domain' (template PD-USGov-Military): 'This file is a work of a U.S. military or Department of Defense employee, taken or made as part of that person's official duties. As a work of the U.S. federal government, the file is in the public domain in the United States.' DoD release ID 981103-D-9880W-172; original source link on Commons: http://www.defense.gov/photos/newsphoto.aspx?newsphotoid=1655 (not fetched).",
+   "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the Commons file (Slick-o-bot import, 2012-08-24, sha1 d50522dc33b3df4b122613151c178307b47357c1), unretouched.",
+   "commons_description": "Secretary of Defense William Cohen (left) walks with Crown Prince Abdallah bin Abd al-Aziz Al Saud (right), following their meeting on Nov. 3, 1998, in Riyadh, Saudi Arabia.",
+   "people_in_frame": "Full-length colour photograph. Abdullah is the tall man at centre right in a plain white ghutra with a double black agal, thin gold-toned metal-rimmed glasses, a black moustache and a separate black chin beard, a white thobe and a very dark brown bisht with gold edging. His left hand gathers the bisht at his waist and his right hangs at his side. William Cohen is at left (dark suit, red tie). Also in frame: a US official in glasses and a suit behind Cohen, a Saudi officer in a green beret, a uniformed officer at the left edge, and several Saudi men in red-and-white checked headcloths, including a bespectacled, goateed man at the far right. Palace hall with gilded walls, columns, chandeliers and a marble floor. The prompt excludes all of these.",
+   "identity_check": "The Commons description names him. His face matches the US Treasury public-domain photograph of 25 September 1998 (Rubin at Blair House; downloaded, not selected): the same glasses, black moustache and separate goatee.",
+   "age_gap_note": "The photograph (3 November 1998) lies inside the requested window, 1037 days (about 2 years 10 months) after its start (1996-01-01) and 2462 days (about 6 years 9 months) before its last day (2005-07-31). By general biographical knowledge (born about 1924; not C01 research or registry data) he is about 74 in the photograph and about 71 to 81 across the window. The prompt keeps him about 75, as photographed, with no large age adjustment. If Codex moves the start to 1990-01-01, the photograph is about 8.8 years after the start (ages 65 to 81) and the prompt needs a v2.",
+   "limitation": "Multi-person walking photograph; his feet are mostly hidden by the robes (one dark brown shoe toe visible), so the shoes, standing pose and full-length extension are declared artistic interpretation. Commons has no qualifying photograph of him from 1996-1997 or 1999-2001: the year categories 'Abdullah of Saudi Arabia in 1996', '1997', '1999', '2000' and '2004' do not exist on Commons, and the 2001 category holds only an unrelated 2019 file.",
+   "rejected_candidates": [
+    "File:Secretary of the Treasury Robert Rubin meets with the Saudi Crown Prince, Abdullah bin Abdel-Aziz al-Saud.jpg (US Treasury, 1998-09-25, Public domain, 1500x1197): qualifies and lies inside the window, but he is seated in a red-and-white shemagh and his face is about 75 px tall, against about 180 px in the selected DoD frame, which also shows him full length. Downloaded as a candidate (sha256 9053c012efc86744492fd2b540cbe14dc4a33a186ccf4b8d187bf638f0d27c05, sha1 443c03013c3c4bf936fedc42cfea9e5a9fbfd028) and used only to cross-check identity.",
+    "File:Keizō Obuchi and Abdullah bin Abdulaziz al Saud at Akasaka Palace 1998 (1)-(3).jpg (geihinkan.go.jp, 1998-10-21): the Commons licence string is 'CC BY 4.0', tagged GJSTU-2.0 (Japan Government Standard Terms of Use 2.0). Not selected: 1024x679 handshakes with Obuchi, a smaller face than the public-domain DoD frame, and a licence that rests on a Japanese government terms mapping. Not downloaded.",
+    "File:Abdullah of Saudi Arabia.jpg and File:Saudi Crown Prince Abdullah and George W. Bush.jpg (Tina Hager, White House, 2002-04-25, Public domain): only 200x250 and 515x375, two people in the larger file.",
+    "File:Bush-abdullah1.jpg (Public domain, 514x343, undated in the metadata read, two-person frame): too small next to the 1850x2990 DoD frame; not downloaded (added from the independent verifier's review).",
+    "File:Cheney abdullah.jpg (David Bohrer, 2002-03-16, Public domain): 293x397, too small.",
+    "File:President George W. Bush meets with Prince Abdullah Bin Abd Al Aziz of Saudi Arabia and King Abdullah Bin Al Hussein of Jordan.jpg (Eric Draper, 2003-06-03, Public domain): 515x344 group photograph.",
+    "File:Abdullah and Vladimir Putin (2003-09-02) 01-08.jpg (kremlin.ru, CC BY 4.0): at most 500x308 or 334x500, too small, with Putin as co-subject.",
+    "File:Abdullah Al-Ahmar and Abdullah Ibn Saud.jpg (2003-04-08, 'Unknown author', Public domain claim): provenance unverifiable.",
+    "File:مقابلتي مع خادم الحرمين الشرفين الملك عبدالله بن عبدالعزيز ال سعود رحمه الله.jpg (Drmisa01, CC BY-SA 4.0, dated 2004-01-01): the date looks like a placeholder and the own-work claim is unverified. Not examined further.",
+    "File:Ahmed Saleh and King Abdullah of Saudi Arabia (cropped).webp and other files credited to the Saudi Press Agency (tagged CC BY-SA 4.0): agency photographs, rejected.",
+    "GODL-India files from the Republic Day 2006 visit: the GODL-India licence is not in FREE_LICENSES, and the files fall after the window.",
+    "Carl Albert Center files of 9 July 1976 (CC BY-SA 4.0): about 20 years before the window.",
+    "David Bohrer White House files of 5 August 2005 (Cheney and George H. W. Bush with the newly crowned King): after the window's exclusive end, so they belong to the King window.",
+    "Thurlby 2007 DoD, Cheney 2007 Tabuk and Kerry 2014 State Department files: King-era and outside this window."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  },
+  {
+   "id": "abdullah-bin-abdulaziz-2007",
+   "person_id": "abdullah_bin_abdulaziz_al_saud",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+   "commons_title": "File:King Abdullah bin Abdul al-Saud January 2007.jpg",
+   "retrieved_at": "2026-10-02T12:10:23Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-king-abdullah-january-2007.json",
+    "bytes": 8063,
+    "sha256": "61084c24ce2f5739086844625c80626c5ce3be66d9d98f4b40069a20a85b90e9"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-king-abdullah-january-2007.html",
+    "bytes": 131065,
+    "sha256": "e6f6462cca6780f27da6679dd3f63a637dc8f4ab937412aae5c120b3dfcdd2b6"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-search-thurlby.json",
+     "bytes": 6201,
+     "sha256": "6fc6cd06e86d8887aea9457afc6f02d9dab4985cee02c05b2ee189f343cfe462",
+     "content": "Commons search results for Thurlby/King Abdullah files (in-window search)."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-cat-2007.json",
+     "bytes": 10803,
+     "sha256": "b3d59098c24f68020e1da3bd741af07b3805061411b34adfc17333bb090d47fc",
+     "content": "Commons Category:Abdullah of Saudi Arabia in 2007 listing."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-cand-dod-2007.json",
+     "bytes": 94921,
+     "sha256": "87f9a034acf9edaa71c36b3469c2aa35f69b45a980547787fd5958fab7717b2f",
+     "content": "Commons API records of the DoD 070117 candidate frames."
+    },
+    {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-companion-070117-D-7203T-014-thumb1280.jpg",
+     "bytes": 283400,
+     "sha256": "4c3e0e3304a517d86436de21b3704e4c582e48ce78208fcf2d0aac7eaf11b275",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_070117-D-7203T-014.jpg",
+     "content": "1280px Commons thumbnail of the same-day full-length companion frame (Thurlby/DoD, Public domain); used for the clothing description only, never as a render input."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/King_Abdullah_bin_Abdul_al-Saud_January_2007.original.jpg",
+    "bytes": 297987,
+    "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+    "commons_sha1": "3c5b56e7977ca024537c455651e9b049952affcf"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+   "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+   "bytes": 297987,
+   "asset_byte_identical_to_original": true,
+   "commons_file_revision": {
+    "timestamp": "2015-01-23T15:54:15Z",
+    "uploader": "Stemoc",
+    "sha1": "3c5b56e7977ca024537c455651e9b049952affcf",
+    "width": 648,
+    "height": 848,
+    "bytes": 297987,
+    "comment": "restoring original crop (can't find original image) with better crop and EXIF data",
+    "earlier_revision": {
+     "timestamp": "2015-01-23T15:50:07Z",
+     "uploader": "Stemoc",
+     "width": 776,
+     "height": 1032,
+     "bytes": 331606
+    }
+   },
+   "source_photo_number": "070117-D-7203T-016 (DoD VIRIN; Commons crop)",
+   "width": 648,
+   "height": 848,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "2007-01-17",
+   "depiction_date": {
+    "kind": "day",
+    "value": "2007-01-17"
+   },
+   "date_precision": "Exact day, from three agreeing sources: the Commons Date field (2007-01-17), the DoD caption (the meeting with Defense Secretary Gates at the king's hunting lodge, Jan. 17, 2007), and the file's embedded metadata. The file has no Exif IFD, but its embedded IPTC-IIM and XMP metadata (ExifTool 9.70) give DateCreated 2007-01-17 (IPTC 20070117), By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016, matching the Commons Date field and the DoD caption. Commons shows the same values in the file page's Metadata section.",
+   "embedded_metadata": {
+    "exif_ifd": false,
+    "iptc_iim": {
+     "ObjectName": "070117-D-7203T-016",
+     "DateCreated": "20070117",
+     "By-line": "CHERIE A. THURLBY",
+     "Country": "SAUDI ARABIA 3",
+     "Headline": "Enduring Freedom"
+    },
+    "xmp": {
+     "x:xmptk": "Image::ExifTool 9.70",
+     "photoshop:DateCreated": "2007-01-17",
+     "dc:creator": "CHERIE A. THURLBY",
+     "dc:title": "070117-D-7203T-016"
+    },
+    "read_by": "assembler, from the repository reference bytes (sha256 90fb0896...ae82)"
+   },
+   "creator": "Cherie A. Thurlby (U.S. Department of Defense photographer)",
+   "credit": "Cherie A. Thurlby / U.S. Department of Defense, DoD photo 070117-D-7203T-016, 17 January 2007; public domain U.S. military photograph; Commons crop 'King Abdullah bin Abdul al-Saud January 2007.jpg' via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "Public domain",
+   "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+   "source_license_statement": "This file is a work of a U.S. military or Department of Defense employee, taken or made as part of that person's official duties. As a work of the U.S. federal government, the file is in the public domain in the United States. (Commons {{PD-USGov-Military}}; extmetadata LicenseShortName 'Public domain', Copyrighted false.)",
+   "rights_statement": "Retained source statement: public domain in the United States as an official U.S. military work (PD-USGov-Military). Commons gives the source as dodmedia.osd.mil DVIC SDAN 070117-D-7203T-016. The current file version (648x848) was uploaded by Commons user Stemoc on 2015-01-23 with the comment 'restoring original crop (can't find original image) with better crop and EXIF data'; it replaced a 776x1032 version uploaded four minutes earlier. The copied bytes are the current version's, unchanged. They carry no Exif IFD, but their embedded IPTC-IIM and XMP metadata give DateCreated 2007-01-17, By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016 (the 'EXIF data' of the upload comment). Not a Saudi Press Agency or Royal Court photograph.",
+   "people_in_frame": "Abdullah alone, head and shoulders, glancing slightly to his left, in front of pale cream curtains. Gates, named in the caption as being at left, is outside the crop.",
+   "companion_frame": {
+    "title": "File:Defense.gov News Photo 070117-D-7203T-014.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_070117-D-7203T-014.jpg",
+    "creator": "Cherie A. Thurlby",
+    "photograph_date": "2007-01-17",
+    "license": "Public domain",
+    "use": "Clothing description only; not a render input. It shows him walking full length beside Gates: a long black buttoned coat over a gray ankle-length thobe, a pale blue collar, black leather shoes, the same red-and-white shemagh and black agal.",
+    "thumbnail": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-companion-070117-D-7203T-014-thumb1280.jpg",
+     "bytes": 283400,
+     "sha256": "4c3e0e3304a517d86436de21b3704e4c582e48ce78208fcf2d0aac7eaf11b275"
+    }
+   },
+   "age_gap_note": "From general biographical knowledge (born 1 August 1924; sources vary, some give 1923), not C01 research: he is about 82 in the 17 January 2007 photograph and about 81 to 90 across the window (2005-08-01 to 2015-01-23). The photograph is about 1.5 years after the window starts and about 8 years before it ends. The prompt keeps the photograph's appearance (an upright man in his early eighties with a jet-black moustache and goatee, light-gold rimless glasses and a red-and-white shemagh with a black agal) for the whole window. It asks for no further ageing and no cane, walker or wheelchair, and it says so. The standing body, both hands, the coat and thobe hems and the shoes are artistic extensions of a head-and-shoulders crop, guided by the same-day full-length companion frame.",
+   "limitation": "Head-and-shoulders Commons crop of a DoD frame; the defunct dodmedia.osd.mil source page was not re-checked. Clothing below the shoulders comes from the same-day companion frame, which is not a render input.",
+   "rejected_candidates": [
+    "File:King Abdullah bin Abdul al-Saud Jan2007.jpg (Cherie A. Thurlby/DoD, 2007-01-17, Public domain, 728x732): another Commons crop from the same meeting. Not downloaded; the portrait-oriented 648x848 crop (the planner's lead) was preferred.",
+    "File:Defense.gov News Photo 070117-D-7203T-014.jpg (Thurlby/DoD, 2007-01-17, Public domain, 4040x2672): a full-length walking frame beside Gates. His face is small in a busy group scene, so it is used only as the clothing companion and not as the likeness reference.",
+    "File:Defense.gov photo essay 070117-D-7203T-015.jpg and -017.jpg (Thurlby/DoD, 2007-01-17, Public domain): a meeting frame and a departure frame centred on Gates. Not downloaded; the solo close-up is clearer.",
+    "File:Defense.gov photo essay 070117-D-7203T-012.jpg (2007-01-17): shows Gates meeting Prince Khalid bin Sultan at the airport, not Abdullah.",
+    "File:Defense.gov News Photo 070417-D-7203T-003.jpg (2007-04-17): Gates with U.S. Marines in Amman, in the context of King Abdullah II of Jordan. Wrong person.",
+    "File:Defense.gov News Photo 070731-D-7203T-020.jpg (Thurlby/DoD, 2007-07-31, Jeddah, Public domain): a group meeting with Gates and Rice. Not evaluated further once the solo in-window close-up was found.",
+    "Category:Abdullah of Saudi Arabia in 2007: about 60 frames of the 12 May 2007 Cheney meetings at Tabuk from White House/NARA via DPLA. Group and handshake frames, not evaluated one by one; licences not checked.",
+    "File:Putin in Saudi Arabia (2007-02-11) 01/02.jpg, File:Vladimir Putin in Saudi Arabia 11-12 February 2007-1/-4/-6.jpg, File:RIAN archive 144447 Russian president's visit to Saudi Arabia.jpg and File:Shaimiev in Saudi Arabia (2007-02-11).jpg: Kremlin.ru, RIA Novosti or Tatarstan group frames. Not evaluated; licences not checked.",
+    "File:2007 06 25 lech kaczynski krolarabii01-06.jpg (Polish state visit, 25 June 2007) and File:Mrs. Laura Bush meets with His Majesty King Abdullah Bin Abd al-Aziz Al Saud.jpg: not evaluated; licences not checked.",
+    "Planner lead not pursued: State Department photographs of Kerry with King Abdullah, 2014 (Public domain per the lead). Near the end of the window and not checked, because an exactly dated in-window PD solo close-up qualified first.",
+    "Rejected by rule without checking: any Saudi Press Agency or Royal Court photographs (no allowed licence, even when tagged CC BY-SA 4.0), and GODL-India files."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  }
+ ],
+ "source_ledger": {
+  "evidence_directory": "D:/spheres-scratch/sa-cast/refs",
+  "status": "original_retention_ledger",
+  "copyright_note": "Original Commons metadata (API JSON and file-page HTML), Wayback captures and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each a US federal public-domain work; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+  "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+  "downloads": [
+   {
+    "reference_id": "fahd-bin-abdulaziz-1992",
+    "image": {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/fahd-1992-bush-library-riyadh-original.jpg",
+     "bytes": 152062,
+     "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh%2C_Saudi_Arabia.jpg",
+     "commons_sha1": "e2c64de0d9efa2b754de2d75de8ea2de614571f4"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-imageinfo-bush-fahd-riyadh-19921231.json",
+     "bytes": 4811,
+     "sha256": "0b5ec803c0539a93ab224544255de70dc07695adfa9ad5f8498dfe5c3802213a",
+     "retrieved_at": "2026-10-02T12:08:16Z"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/filepage-bush-fahd-riyadh-19921231.html",
+     "bytes": 88360,
+     "sha256": "1dae6fa82b1506b09dbf245595ddf9c43611e6b45dbacdbd3b7a208a8e667c1d",
+     "retrieved_at": "2026-10-02T12:08:36Z"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-wikitext-revisions-bush-fahd-riyadh-19921231.json",
+      "bytes": 11165,
+      "sha256": "a621f42a02cefdea2b04592dbec945ae528ece4f1eb59b227e6c89fbe76eeaef",
+      "retrieved_at": "2026-10-02T12:08:25Z",
+      "content": "Commons API wikitext of the 12 most recent file-page revisions (443840743 of 2020-08-27 to 1177798599 of 2026-03-08; the response ends with rvcontinue 20200809104813|437991233, so the 2020-08-07 upload and 2020-08-09 revisions were not retrieved): {{PD-USGov}}, date=1992-12-31, the author and the source are unchanged in all 12; the 2024-12-26 anonymous edit and the 2025-08-29 and 2026-03-08 edits change categories only (one briefly added 'George H. W. Bush in Saudi Arabia in 2005' and it was removed two minutes later)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/bush41library-audiovisual-photos-37.html",
+      "bytes": 43625,
+      "sha256": "a57be8a7f53930e5cf89a396d4222d106753df7eec67a66baf0c8bc4a161f849",
+      "retrieved_at": "2026-10-02T12:09:01Z",
+      "content": "Live fetch of the Commons 'source' link https://bush41library.tamu.edu/audiovisual/photos/37: it now redirects to the Bush Library homepage (https://www.bush41library.gov/). Kept only as evidence that the live link is dead; the archived page below carries the photograph number."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/cdx-photo-view-1122-P38849-17.txt",
+      "bytes": 652,
+      "sha256": "f5aaa029547843bbd666cb6503ad8fe35f1ba4fc941827f77090aa8f511efc24",
+      "retrieved_at": "2026-10-02T12:24:32Z",
+      "source_url": "https://web.archive.org/cdx/search/cdx?url=bush41library.tamu.edu/photo-view/1122/P38849-17.jpg&fl=timestamp,original,mimetype,statuscode,digest,length",
+      "content": "Wayback CDX lines for https://bush41library.tamu.edu/photo-view/1122/P38849-17.jpg: captures 20151019191051, 20170208191451, 20201025020135, 20211125092147 (warc/revisit) and 20240115021329, all with content digest 4LDE3YGZ56RLOVG6FV255DVC3ZQUK4PU, which is the base32 form of the Commons SHA-1 e2c64de0d9efa2b754de2d75de8ea2de614571f4."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/wayback-20201025020135-P38849-17.jpg",
+      "bytes": 152062,
+      "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+      "retrieved_at": "2026-10-02T12:24:41Z",
+      "source_url": "https://web.archive.org/web/20201025020135id_/https://bush41library.tamu.edu/photo-view/1122/P38849-17.jpg",
+      "content": "The Bush Library's own file P38849-17 as archived on 2020-10-25 (original bytes, id_ capture): 152062 bytes, byte-identical (cmp) to the Commons original and to the repository reference."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/wayback-20201017203816-audiovisual-photos-37.html",
+      "bytes": 62617,
+      "sha256": "27d96cab72fa3f854d66d2f4a07c866a97ee9c9c32816d197f3857835962ab2d",
+      "retrieved_at": "2026-10-02T12:26:24Z",
+      "source_url": "https://web.archive.org/web/20201017203816id_/https://bush41library.tamu.edu/audiovisual/photos/37",
+      "content": "Archived Commons 'source' page: the Library's 'Select Photos from the Archives' gallery, section 'President of the United States (1989-1993)'. It links /photo-view/1122/P38849-17.jpg with the title 'P38849-17', and in the same gallery /photo-view/3643/41-AV-P17638-18-11211990.jpg titled 'P17638-18', the photograph behind Fahd's existing 1990 reference."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/corroboration/presidency-ucsb-digest-other-white-house-announcements-11733.html",
+      "bytes": 62163,
+      "sha256": "305ae34c4a34afb9f3bae3fc86fac0ca141a5619d337ad72968c9893ef467ab1",
+      "retrieved_at": "2026-10-02T12:11:10Z",
+      "source_url": "https://www.presidency.ucsb.edu/documents/digest-other-white-house-announcements-11733",
+      "content": "American Presidency Project, 'Digest of Other White House Announcements', 31 December 1992: the President arrived in Riyadh that morning and met King Fahd before travelling on to Somalia. Corroborates the Commons date and place."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/corroboration/presidency-ucsb-search-fahd-19921231.html",
+      "bytes": 63126,
+      "sha256": "7a37143843289e262d9faf290fcae36619be536798fff658814e6f55cd738ad5",
+      "retrieved_at": "2026-10-02T12:11:04Z",
+      "content": "American Presidency Project search page (keyword Fahd, 1992-12-29 to 1993-01-03): one record, the Digest above."
+     }
+    ]
+   },
+   {
+    "reference_id": "fahd-bin-abdulaziz-1998",
+    "image": {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/stikkel-cohen-fahd-19981013-original.jpg",
+     "bytes": 1397076,
+     "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+     "commons_sha1": "b598b3b5679edb1fbfdca8bab206268b8a823e36"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cohen-fahd-19981013.json",
+     "bytes": 17004,
+     "sha256": "066b8d0c3c22b245d5ae69fbe93b7aeeb1ff48780b1c714c4eefa97ebe0b2a73"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/filepage-stikkel-cohen-fahd-19981013.html",
+     "bytes": 120859,
+     "sha256": "5b87bafe5a9595ee4b5c2a73ba69f664e4b3a69c5f64e0bd36f6dc5da9db15af"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-parents.json",
+      "bytes": 59942,
+      "sha256": "41ac3d3b82dbaf2523446dd286756d297e54112e96a86391dfcddb905f7f726c",
+      "content": "Commons API imageinfo histories and wikitext for the original and both derived crops (CropTool crop and BeFunky-edited crop)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cropped.json",
+      "bytes": 14417,
+      "sha256": "140a950d4e8a99066bd309607bf5a9c29e51f3f82d654211c948f7a2bc2b5ca3",
+      "content": "Commons API record of the planner's lead file (BeFunky-edited crop)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-category-fahd.json",
+      "bytes": 26628,
+      "sha256": "219608183a77fc41f3ce58899f4d99883b7c331676def2a7ed81175dfed81b9f",
+      "content": "Commons Category:Fahd of Saudi Arabia file listing (licence, date, size) used for the in-window search."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-cheney-fahd-20020316.json",
+      "bytes": 5868,
+      "sha256": "ff0c99f1f7f8fa41aa1883275438b1f18286dd8f7cfb9f461f3cdb624ef6582c",
+      "content": "Commons API record of the Cheney/Fahd 2002-03-16 file (identity check)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/wh-vpphotoessay-part1-08.html",
+      "bytes": 14141,
+      "sha256": "75c9b3c61bdd2750abc70ecde89e6ef43d35394078aa7789ffa8ccbd2c6dadc3",
+      "content": "White House archive source page of the Cheney/Fahd photo (caption and image filenames)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/bohrer-cheney-fahd-20020316-commons.jpg",
+      "bytes": 38568,
+      "sha256": "f115e358fba7f728da61bb058f3c99d4ac8b9366b384c2a3f040eaecababf282",
+      "content": "Commons bytes of the rejected Cheney/Fahd file, kept only as identity-check evidence; not copied to the repository."
+     }
+    ]
+   },
+   {
+    "reference_id": "abdullah-bin-abdulaziz-1998",
+    "image": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/Defense.gov_News_Photo_981103-D-9880W-172.original.jpg",
+     "bytes": 1194034,
+     "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+     "commons_sha1": "d50522dc33b3df4b122613151c178307b47357c1"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-imageinfo-Defense.gov_News_Photo_981103-D-9880W-172.json",
+     "bytes": 15061,
+     "sha256": "4a49d3933664a52594883337df826ba410ec35cd35f3e662218ed7e1bd87afd9",
+     "retrieved_at": "2026-10-02T12:12:53Z"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-Defense.gov_News_Photo_981103-D-9880W-172.html",
+     "bytes": 115079,
+     "sha256": "881175987f5c947d6f67bdfe472303609286bc8e9f9da76e422e59d895a1f0d3",
+     "retrieved_at": "2026-10-02T12:14:31Z"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-by-year.json",
+      "bytes": 1042,
+      "sha256": "bd829fd5081c1204663f974dc88d7caceac301de82ebe25532f28fb88a61b83f",
+      "content": "Commons year-category existence listing for 'Abdullah of Saudi Arabia in <year>' (1990-2005)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-1998.json",
+      "bytes": 2353,
+      "sha256": "1468082f66bf57bc06abeed6b0bf0368d837c34f9014c067aac92f911984fcd9",
+      "content": "Commons Category:Abdullah of Saudi Arabia in 1998 listing (5 files)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-2005.json",
+      "bytes": 4172,
+      "sha256": "7de7cb055e450c70bdb305aed0ef42205252091bd10f097c92a8eb7e2f8e7eae",
+      "content": "Commons Category:Abdullah of Saudi Arabia in 2005 listing; includes File:Bush-abdullah1.jpg."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/api-rubin.json",
+      "bytes": 2660,
+      "sha256": "3e51a102a79cb6be8324b01f41a0889d253a7279c870f7640898a8367c751740",
+      "content": "Commons API record of the US Treasury Rubin/Crown Prince photograph of 1998-09-25 (identity cross-check)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/rubin-1998-09-25.jpg",
+      "bytes": 1863042,
+      "sha256": "9053c012efc86744492fd2b540cbe14dc4a33a186ccf4b8d187bf638f0d27c05",
+      "commons_sha1": "443c03013c3c4bf936fedc42cfea9e5a9fbfd028",
+      "content": "Bytes of the Treasury photograph, downloaded as a candidate and used only to cross-check identity; not copied to the repository."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/api-obuchi-akasaka-1998-1.json",
+      "bytes": 2967,
+      "sha256": "eb48997197df9b6c51599d72170556c147c6fe38c4ce6e60b6d18946d91cabe5",
+      "content": "Commons API record of the Obuchi/Abdullah Akasaka Palace file (licence check)."
+     }
+    ]
+   },
+   {
+    "reference_id": "abdullah-bin-abdulaziz-2007",
+    "image": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/King_Abdullah_bin_Abdul_al-Saud_January_2007.original.jpg",
+     "bytes": 297987,
+     "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+     "commons_sha1": "3c5b56e7977ca024537c455651e9b049952affcf"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-king-abdullah-january-2007.json",
+     "bytes": 8063,
+     "sha256": "61084c24ce2f5739086844625c80626c5ce3be66d9d98f4b40069a20a85b90e9"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-king-abdullah-january-2007.html",
+     "bytes": 131065,
+     "sha256": "e6f6462cca6780f27da6679dd3f63a637dc8f4ab937412aae5c120b3dfcdd2b6"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-search-thurlby.json",
+      "bytes": 6201,
+      "sha256": "6fc6cd06e86d8887aea9457afc6f02d9dab4985cee02c05b2ee189f343cfe462",
+      "content": "Commons search results for Thurlby/King Abdullah files (in-window search)."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-cat-2007.json",
+      "bytes": 10803,
+      "sha256": "b3d59098c24f68020e1da3bd741af07b3805061411b34adfc17333bb090d47fc",
+      "content": "Commons Category:Abdullah of Saudi Arabia in 2007 listing."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-cand-dod-2007.json",
+      "bytes": 94921,
+      "sha256": "87f9a034acf9edaa71c36b3469c2aa35f69b45a980547787fd5958fab7717b2f",
+      "content": "Commons API records of the DoD 070117 candidate frames."
+     },
+     {
+      "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-companion-070117-D-7203T-014-thumb1280.jpg",
+      "bytes": 283400,
+      "sha256": "4c3e0e3304a517d86436de21b3704e4c582e48ce78208fcf2d0aac7eaf11b275",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_070117-D-7203T-014.jpg",
+      "content": "1280px Commons thumbnail of the same-day full-length companion frame (Thurlby/DoD, Public domain); used for the clothing description only, never as a render input."
+     }
+    ]
+   }
+  ],
+  "access_limits": [
+   "Wikimedia Commons returned HTTP 429 several times during preparation (parallel agents on one IP). Requests were made one at a time with back-offs; six Fahd full-text searches were not retried. Nothing was bypassed.",
+   "The Fahd 1991 verifier's Wayback thumbnail requests got HTTP 429 five times in one loop before it backed off; those bodies were deleted.",
+   "The assembler made four Wayback requests on 2026-10-02: a CDX digest-filter query that returned an empty 200 (deleted), the CDX URL query, the archived P38849-17 file and the archived gallery page. The gallery request first got HTTP 429; its body was deleted and it succeeded once after a 90-second back-off.",
+   "The defense.gov and dodmedia.osd.mil source pages named on the DoD files were not fetched."
+  ],
+  "not_listed": "No HTTP response header captures were saved. Search scratch (refs/fahd_bin_abdulaziz_al_saud/search/, the candidates/ category listings other than those cited, planner/ search JSON) and preparers' downscaled view copies in session scratchpads are not ledgered; rejected candidates retained as evidence are cited with their sha256 where relevant."
+ }
+}

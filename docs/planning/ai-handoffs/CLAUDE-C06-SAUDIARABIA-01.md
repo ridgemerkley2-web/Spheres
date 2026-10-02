@@ -1,6 +1,6 @@
 # CLAUDE-C06-SAUDIARABIA-01: Saudi Arabia cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **claimed** (2 October 2026; in progress, not complete). Parent: C06 (Saudi Arabia country cast),
+Owner: Claude. State: **awaiting Codex render** (2 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (Saudi Arabia country cast),
 with C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: on 1 October 2026, after the France, Japan, Brazil and South Africa batches were prepared
@@ -183,3 +183,63 @@ Inputs at claim (sha256 of the committed bytes at `2fd186d6`):
 
 Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --check`; `leadership_production.py check`;
 `campaign_census.py --check`; `python -m unittest discover -s tools/avatars`; `workboard.py --check`; `git diff --check`.
+
+## Preparation
+
+Batch 1 (`SA-CAST-B01`) was prepared on 2 October 2026. Each of the four portrait windows had one preparation agent
+and one independent verification agent; Claude assembled the results and fixed the verifiers' mechanical findings. No
+image was generated, edited or labelled. The next step is Codex's render:
+[render request](../../campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md). The
+[identity review](../../campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json) and
+[README](../../campaign-certification/C06/production/saudi-arabia/README.md) carry the observations, references and job
+IDs.
+
+In (four primary renders; every photograph is exactly dated, lies inside its window and is a US federal public-domain
+work whose Commons licence string is exactly `Public domain`):
+
+| person_id | window | likeness reference (photograph date, licence) | prompt |
+|---|---|---|---|
+| fahd_bin_abdulaziz_al_saud | 1991-01-01 to 1996-01-01 | Bush Library, official White House photograph P38849-17, Riyadh, 31 Dec 1992; Public domain (PD-USGov) | `fahd-bin-abdulaziz-cartoon-1991-v1.txt` |
+| fahd_bin_abdulaziz_al_saud | 1996-01-01 to 2005-08-01 | Helene C. Stikkel / DoD 981013-D-2987S-196, Riyadh, 13 Oct 1998; Public domain (PD-USGov-Military) | `fahd-bin-abdulaziz-cartoon-1996-v1.txt` |
+| abdullah_bin_abdulaziz_al_saud | 1996-01-01 to 2005-08-01 | R. D. Ward / DoD 981103-D-9880W-172, Riyadh, 3 Nov 1998; Public domain (PD-USGov-Military) | `abdullah-bin-abdulaziz-cartoon-1996-v1.txt` |
+| abdullah_bin_abdulaziz_al_saud | 2005-08-01 to 2015-01-23 | Cherie A. Thurlby / DoD 070117-D-7203T-016 (Commons crop), 17 Jan 2007; Public domain (PD-USGov-Military) | `abdullah-bin-abdulaziz-cartoon-2005-v1.txt` |
+
+Reserve: none. The registry holds no third Saudi person ID.
+
+Excluded: nobody. The verifier passed the Abdullah 1996-2005 window with two record nits, both fixed. The other
+findings were fixed in the records and prompts:
+- Fahd 1991: provenance now cites White House photograph P38849-17. Wayback holds the Bush Library's own file
+  (byte-identical to the reference) and its gallery page. Both were re-fetched once each and pinned under
+  `D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/`. The creator field is now clean, the
+  wikitext-revision count is corrected, and the job IDs are recorded in the France shape.
+- Fahd 1996: the complexion in the prompt is now "medium olive-tan", and the reference has `source_license_statement`
+  and `rights_statement`.
+- Abdullah 2005: the record now describes the embedded IPTC and XMP date, by-line and DoD number. It no longer says
+  "no EXIF".
+- Assembler's own finding: the Abdullah 2005 prompt's "light olive-tan" became "medium olive-tan", to match the
+  photograph and the 1996 prompt.
+
+Prompt pins after the fixes (LF sha256, as committed):
+- `fahd-bin-abdulaziz-cartoon-1991-v1.txt`: `b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb`
+- `fahd-bin-abdulaziz-cartoon-1996-v1.txt`: `bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86`
+- `abdullah-bin-abdulaziz-cartoon-1996-v1.txt`: `c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084`
+- `abdullah-bin-abdulaziz-cartoon-2005-v1.txt`: `9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614`
+
+Still open for Codex:
+- the Fahd 1991-1996 window, which has no accepted observation inside it;
+- the Fahd split at 1996-01-01, or the single window `fahd_bin_abdulaziz_al_saud-f17eedfe6634`. One window needs a v2
+  prompt, so please rule before rendering Fahd;
+- Abdullah's start: 1996-01-01, or 1990-01-01 (`abdullah_bin_abdulaziz_al_saud-0ae5f49261bc`). A 1990 start needs a v2
+  prompt;
+- keeping Abdullah's January 2007 appearance (about 82) to the end of his window in January 2015, with no further
+  ageing;
+- optionally, the PDM 1.0 URL instead of `Template:PD-USGov` for the Fahd 1992 `license_url`;
+- an `eol=lf` rule in `.gitattributes` for the four prompts. That file is not on this task's list; each pin also gives
+  the CRLF-checkout hash;
+- registry identities for batch 2: Salman and Mohammed bin Salman first, then Sultan, Nayef, Muqrin, Mohammed bin Nayef,
+  the Shura chairs Jubair, Humaid and Al Al-Sheikh, the Allegiance Commission chair Mishaal and its secretary general
+  Tuwaijri.
+
+Residual pipeline jobs that stay open after registration: `fahd_bin_abdulaziz_al_saud-d3ec1b0b9097`,
+`abdullah_bin_abdulaziz_al_saud-0aa00159df24` and `abdullah_bin_abdulaziz_al_saud-9bb74634df25`. No leadership-production
+cartoon job is closed, because none exists for either person.
