@@ -126,8 +126,8 @@
     "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, convention, resignation intent, retrospective or continuation statement; those remain claims.",
     "Requested windows are appearance intervals from the CLAUDE-C06-JAPAN-01 handoff with exclusive ends, built from leadership-production required windows. Where a bound comes from party_leaders.json or leadership production rather than accepted research, the person entry says so.",
     "Real history stops at 2026-09-07; every window in this batch lies before it.",
-    "Image dates describe the source image, never the appearance window. Where no capture date exists, the record says so and gives the evidence-based bound (terminus ante quem). Every age gap and every artistic extension (standing body, hands, trousers, shoes, clothing colours) is declared in the prompt and here.",
-    "Likeness references are dated images of the exact person whose licence string, as stated by Commons, matches FREE_LICENSES exactly. Two exceptions are put to Codex rather than assumed: Yamahana's reference is a government film frame (registered koshiro_ishida precedent), and Murayama's and Ota's are dated by terminus ante quem. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled; crops happen at registration.",
+    "Image dates describe the source image, never the appearance window. An unknown capture date stays unknown. Page copyright notices, later archive captures and editing or PDF-creation metadata are recorded separately and do not establish hard capture deadlines. Artistic ageing and body/clothing extensions are disclosed.",
+    "Likeness references identify the exact person and preserve the stated source licence and original bytes. The independent review permits the documented licensed official Yamahana film frame. Murayama and Ota use undated official portraits with illustrative ageing; neither has a proved capture deadline. Registration and output review remain future work.",
     "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
     "Each review batch contains at most ten people.",
     "HTTP response header captures, and any response body that contains the client IP address or GeoIP data, are never copied, cited, hashed or committed.",
@@ -158,21 +158,21 @@
       "natsuo-yamaguchi-2019"
     ],
     "references_outside_requested_window": [
-      "takako-doi-2005",
-      "akihiro-ota-2012"
-    ],
-    "references_dated_by_terminus_ante_quem": [
-      "tomiichi-murayama-1994",
-      "akihiro-ota-2012"
+      "takako-doi-2005"
     ],
     "references_from_video_frames": [
       "sadao-yamahana-1993"
     ],
-    "leadership_production_cartoon_jobs_closed_by_primary_people": 12,
     "all_historical_officeholders_established": false,
     "continuous_terms_established": false,
     "all_likenesses_ready": false,
-    "rendered_portraits": 0
+    "rendered_portraits": 0,
+    "references_with_unknown_capture_date": [
+      "tomiichi-murayama-1994",
+      "akihiro-ota-2012"
+    ],
+    "leadership_production_cartoon_jobs_targeted_by_primary_people": 12,
+    "coverage_status": "Prospective mapping only: no targeted job closes until generation, registration and output review; no output exists in this preparation."
   },
   "batches": [
     {
@@ -301,7 +301,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
               }
             ],
             "pipeline_window_scoped": [
@@ -310,7 +310,7 @@
                 "from": "1993-09-30",
                 "to": "1996-09-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "closure": "prospective exact window coverage after generation, registration and visual review"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -327,7 +327,7 @@
                 "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_targeted": [
               "cartoon:tomiichi_murayama:1993-09-30:1995-01-01:v1",
               "cartoon:tomiichi_murayama:1995-01-01:1996-01-01:v1",
               "cartoon:tomiichi_murayama:1996-01-31:1996-09-01:v1"
@@ -338,11 +338,11 @@
           ],
           "prompt": {
             "path": "tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt",
-            "sha256": "2faa578f7bc920a711c8fe5e193217a29f269404dc2283ff11f60b8455a4f436",
+            "sha256": "8321abccdc8a9fe46af9fcfa966995c15b356e1bc03320fb07e279ca42a92af0",
             "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
-            "sha256_if_checked_out_crlf": "699b2d925ad299a4c83cc5b0a3f7f88ddc5b82766889ed7544fb9d18f76f8805",
-            "git_blob": "f855aabec081704188db0ad4c33f873af04f8690",
-            "bytes": 3764,
+            "sha256_if_checked_out_crlf": "d26f373f3d3dca052c632f181affc7cb45ef22e3fcc1c1e5441115e90aa0ffdb",
+            "git_blob": "c85479b0eda0bcc7fbd608b1007cb6aa1221db7b",
+            "bytes": 3798,
             "lines": 9
           },
           "planned_output": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
@@ -355,7 +355,7 @@
               ]
             },
             {
-              "finding": "The likeness reference is the Kantei's official portrait, byte-identical to the Kantei's live image. It has no capture date, but the assembler established that the same sitting was published by MOFA on its APEC 1995 Osaka page (copyright 1995), so it was taken no later than 1995. This mirrors the registered Kaifu reference (Kantei official portrait, 'exact capture date not established'), with a stronger date bound.",
+              "finding": "The exact official Kantei portrait is usable as an undated likeness. APEC 1995-era association is plausible from the archived page and matching sitting, but the later page/image captures do not establish the former hard 1995 deadline.",
               "evidence": [
                 "tomiichi-murayama-1994",
                 "spheres-web/data/person_portraits.json people.toshiki_kaifu.portraits[0].identity_source"
@@ -368,11 +368,11 @@
             "problems_and_dispositions": [
               {
                 "problem": "BLOCKING. The likeness reference is not a dated photograph: Commons gives 'Unknown date' and the Kantei page gives none; the preparer still returned ok=true, and the 'probably about 1994' inference was weaker than recorded.",
-                "disposition": "Resolved as far as the record allows (the verifier's fix b). The assembler fetched MOFA's 'Profile of Prime Minister Tomiichi Murayama' page for APEC 1995 Osaka (raw Wayback capture of 1999-05-01; 'Copyright : 1995'; chronology through September 1995) and its image (Wayback, 2001-07-02), which matches Commons 'Tomiichi Murayama 19940630 (Black and White).jpg' pixel for pixel. That image is the same sitting, apparently the same exposure, as the chosen colour portrait. The photograph is therefore dated by a terminus ante quem of 1995. photograph_date, depiction_date, date_precision, credit, age_gap_note and the prompt now say so (prompt re-pinned). A capture date is still not attested, so Codex is asked to accept a reference dated by terminus ante quem (open item); the exactly dated alternate (fix c) stays pinned in scratch."
+                "disposition": "The original preparer inferred a hard 1995 deadline from an APEC 1995 page captured in 1999 and an image captured in 2001. Independent Codex review of exact source tip 7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725 on 2026-10-02 corrects that inference: capture date remains unknown, period association is labelled as inference, and the prompt and metadata are re-pinned. The dated alternate and original evidence remain unchanged."
               },
               {
                 "problem": "The reference_id 'tomiichi-murayama-1994' and the filename carry a year that is not the photograph's date.",
-                "disposition": "Kept pending an explicit Codex ruling and labelled in date_precision: '1994' is the cabinet-formation year and the Commons year of the MOFA black-and-white copy, not an attested capture date. Renaming (for example to tomiichi-murayama-official-reference-v1.jpg) would not change the bytes or sha256, and the prompt does not cite the filename (open item)."
+                "disposition": "Independent review retains the reference filename as a stable identifier. The year is not capture-date evidence; the current date fields and prompt state that the capture date is unknown. No rename or new user decision is required for this bounded correction."
               },
               {
                 "problem": "The provenance record omitted the 2025 'extracted from (large)' annotation on the chosen file's page, implied that the (large) file matches the 2020-2021 overwrites, and dated the overwrites 'In 2020'.",
@@ -389,9 +389,8 @@
             "The Prime Minister observation (C01-12) is not historically accepted."
           ],
           "open_items_for_codex": [
-            "Accept a likeness reference dated by terminus ante quem (published by MOFA no later than 1995; capture date not stated) rather than by capture date. Precedent: the registered toshiki_kaifu identity_source (Kantei official portrait, 'exact capture date not established'). If refused, switch to the exactly dated in-window alternate File:Vo Van Kiet and Tomiichi Murayama.jpg (1994-08-25, CC BY 4.0, pinned in scratch), which needs a new prompt and gives a weaker likeness (face about 40 px wide).",
-            "Rule whether the reference keeps '1994' in its reference_id and filename or is renamed (for example tomiichi-murayama-official-reference-v1.jpg); the bytes and sha256 stay identical either way.",
-            "Agree or amend the window's bridge over the January 1996 rename month (1996-01-01 to 1996-01-31), which no leadership-production term and no accepted observation covers."
+            "At output review, assess the undated official likeness and the explicitly illustrative age of about 70. The retained 1994 reference filename is an identifier, not a date claim.",
+            "The January 1996 bridge is appearance coverage only; preserve the absence of an accepted office observation or production term across that gap."
           ]
         },
         {
@@ -453,7 +452,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
               }
             ],
             "pipeline_window_scoped": [
@@ -462,7 +461,7 @@
                 "from": "1991-07-31",
                 "to": "1993-01-19",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "closure": "prospective exact window coverage after generation, registration and visual review"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -479,7 +478,7 @@
                 "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_targeted": [
               "cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1"
             ]
           },
@@ -520,8 +519,8 @@
             "No accepted start or end; the single accepted observation is a point observation (1991-08-20)."
           ],
           "open_items_for_codex": [
-            "Optional: confirm the GJSTU 2.0 to CC BY 4.0 licence route (the Commons licence string is exactly 'CC BY 4.0'; MOFA's terms page returned HTTP 403, so any third-party exception there was not read).",
-            "Optional: the day 1992-04-07 comes from the Commons description; the structured date is 1992-04 (either is inside the window)."
+            "Current MOFA terms were read in the independent review, including third-party exceptions. The earlier 403 remains in historical evidence. Preserve attribution and the limit that the primary album was not independently read.",
+            "The day 1992-04-07 remains attributed to the Commons caption; structured date April 1992 also fits the window."
           ]
         },
         {
@@ -583,7 +582,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
               }
             ],
             "pipeline_window_scoped": [
@@ -592,7 +591,7 @@
                 "from": "1993-01-19",
                 "to": "1993-09-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "closure": "prospective exact window coverage after generation, registration and visual review"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -609,7 +608,7 @@
                 "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_targeted": [
               "cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1"
             ]
           },
@@ -676,8 +675,8 @@
             "No accepted start or end; the single accepted observation is a point observation (1993-01-25)."
           ],
           "open_items_for_codex": [
-            "Rule that a still frame from a government-produced, producer-released CC BY film qualifies as a likeness reference here, citing the registered koshiro_ishida identity_source (references/koshiro-ishida-august-1993.jpg; same film, same day, same CC BY 3.0 licence). If refused, no qualifying reference exists and the person should be excluded.",
-            "Optional: extend the window end from 1993-09-01 to 1993-10-01 on the strength of the 24 September 1993 continuation claim and the month-only registry end; the reference fits either."
+            "At output review, inspect likeness carefully because the licensed official film frame is soft. Film-frame origin itself is not a rejection reason or a new permission requirement.",
+            "Keep the requested exclusive end 1993-09-01 in this batch. No new historical end or September extension is approved by this preparation."
           ]
         },
         {
@@ -829,7 +828,7 @@
                 "from": "1995-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
               }
             ],
             "pipeline_window_scoped": [
@@ -838,7 +837,7 @@
                 "from": "1996-09-30",
                 "to": "2003-11-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "closure": "prospective exact window coverage after generation, registration and visual review"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -855,11 +854,11 @@
                 "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "note": "The pipeline's default inventory job for Doi starts at 1995-01-01 because her 1990 cartoon covers 1990-01-01 to 1995-01-01.",
+            "leadership_production_cartoon_jobs_targeted": [
               "cartoon:takako_doi:1996-09-30:2000-01-01:v1",
               "cartoon:takako_doi:2000-01-01:2003-11-01:v1"
-            ],
-            "note": "The pipeline's default inventory job for Doi starts at 1995-01-01 because her 1990 cartoon covers 1990-01-01 to 1995-01-01."
+            ]
           },
           "likeness_reference_ids": [
             "takako-doi-2005"
@@ -963,7 +962,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
               }
             ],
             "pipeline_window_scoped": [
@@ -972,7 +971,7 @@
                 "from": "2006-09-30",
                 "to": "2009-09-08",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "closure": "prospective exact window coverage after generation, registration and visual review"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -989,7 +988,7 @@
                 "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_targeted": [
               "cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"
             ]
           },
@@ -998,11 +997,11 @@
           ],
           "prompt": {
             "path": "tools/avatars/person-prompts/akihiro-ota-cartoon-2006-v1.txt",
-            "sha256": "6b423954a9667778cde3472b3ee286ab96583c280fec19ad92d4523232356185",
+            "sha256": "bd0fdc42e07e9ade28fcf5df7c6a77b90457ba7ebfb9adef63136767cd31cbab",
             "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
-            "sha256_if_checked_out_crlf": "fb1f8ad6c177a100fcbb2fffb57d53cbb7e0b8861cfc74092ea5d431caad2aad",
-            "git_blob": "ef2dbe555a2d96618bb265a809a196b41be4ab82",
-            "bytes": 3572,
+            "sha256_if_checked_out_crlf": "8e7ae1d8de8ea883dbd2c722663f1da5d3a4714e85a9e0f6c5c5157fa4e39a82",
+            "git_blob": "3714107162c89167c65ecfa0736d8fbe0c2f9348",
+            "bytes": 3602,
             "lines": 9
           },
           "planned_output": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
@@ -1031,11 +1030,11 @@
               },
               {
                 "problem": "date_precision attributed the 2012-12-27 timestamp to the MLIT document and claimed the portrait was published for his appointment; the timestamp is the Exif editing time of the second (Photoshop Elements 9.0) revision.",
-                "disposition": "Fixed: date_precision rewritten from the Commons file history (fetched by the assembler); the appointment claim is dropped. The prompt now says the portrait was used in a 2013 ministry flyer and is dated 27 December 2012 on Commons from an editing timestamp, so it was taken no later than then; the age-gap figures are kept and qualified."
+                "disposition": "Independent Codex review on 2026-10-02 corrects the remaining overclaim. The selected first revision has no capture EXIF; the second revision editing timestamp and the flyer PDF CreationDate/ModDate are metadata only. The prompt no longer claims a hard 2012 deadline or exact age gap. Original metadata bytes and the first-revision provenance are preserved."
               },
               {
                 "problem": "akihiro_ota-a22bdc6a183b (default inventory, 1990-01-01 to 2027-01-01) sat unlabelled in the job list.",
-                "disposition": "Fixed: jobs are labelled in the France shape (default inventory partly closed, window-scoped exact, residuals open, leadership-production job closed)."
+                "disposition": "Fixed: jobs are labelled in the France shape (prospective default/window-scoped coverage, residuals open and targeted leadership-production jobs; none is completed at preparation)."
               }
             ]
           },
@@ -1043,8 +1042,7 @@
             "No accepted end; the accepted observation gives only a start."
           ],
           "open_items_for_codex": [
-            "Confirm the GJSTU 2.0 to CC BY 4.0 licence route for an MLIT portrait (the same route the brief allows for Kantei images; MLIT now uses PDL1.0) and the use of an archived first Commons revision as the reference.",
-            "Accept a reference about 3.3 years after the window with a latest-likely date (taken no later than 2012-12-27); no usable in-window photograph exists."
+            "At output review, assess the undated official MLIT likeness and explicitly illustrative ages 60 to 63. The first-revision bytes and printed ministry attribution were verified; retain source credit and alteration notice."
           ]
         },
         {
@@ -1062,7 +1060,8 @@
             "to_exclusive": true,
             "window_status": "appearance_interval_from_handoff",
             "basis": "Equals the leadership-production required windows from registry term jp_komeito_natsuo_yamaguchi_20090908 (day 2009-09-08 to day 2024-09-28). The seven accepted C01-31 observations (2009-09-08 to 2022-09-25) lie inside it. The fifteen-year window may be split by Codex at 2015-01-01 or 2020-01-01.",
-            "possible_split": "At 2015-01-01 or 2020-01-01 (leadership-production job boundaries). The 2019 reference falls in the 2015-2020 segment; an earlier portrait would need a roughly 2010-2014 reference."
+            "possible_split": "At 2015-01-01 or 2020-01-01 (leadership-production job boundaries). The 2019 reference falls in the 2015-2020 segment; an earlier portrait would need a roughly 2010-2014 reference.",
+            "era_caveat": "The 2019 source depicts about age 64, while this proposed fifteen-year interval spans about ages 57 to 72. One image is not proof of age-appropriate likeness for every year. A separate earlier variant is recommended; this preparation does not close four era jobs."
           },
           "observations": [
             {
@@ -1257,7 +1256,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
               }
             ],
             "pipeline_window_scoped": [
@@ -1266,7 +1265,7 @@
                 "from": "2009-09-08",
                 "to": "2024-09-28",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "closure": "prospective exact window coverage after generation, registration and visual review"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -1283,7 +1282,7 @@
                 "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_targeted": [
               "cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1",
               "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1",
               "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
@@ -1426,7 +1425,7 @@
           }
         }
       ],
-      "reason": "No qualifying likeness reference. The only usable image, File:Takenori Kanzaki 20060926.jpg (CC BY 4.0 via GJSTU 2.0, 内閣広報室, 2006-09-26, 400x360), is a frame from the Government Internet TV programme '安倍内閣の発足-平成18年9月26日' (gov-online prg753; the archived source page has only a video player, data-movie-id 16832), not a photograph. The batch rule asks for a dated photograph and rejects TV stills, and the handoff already defers tetsuzo_fuwa partly because his only near-modern image is a video still. Unlike Yamahana's frame, no registered precedent covers this source. The only other free Commons image is the 1993-08-09 Hosokawa cabinet group photograph, about five years before the window, in which he is a tiny figure. The verifier recommended holding him; the assembler excluded him and removed his prepared files from the repository.",
+      "reason": "Historical preparer decision on 1 October 2026, retained for scope: No qualifying likeness reference. The only usable image, File:Takenori Kanzaki 20060926.jpg (CC BY 4.0 via GJSTU 2.0, 内閣広報室, 2006-09-26, 400x360), is a frame from the Government Internet TV programme '安倍内閣の発足-平成18年9月26日' (gov-online prg753; the archived source page has only a video player, data-movie-id 16832), not a photograph. The batch rule asks for a dated photograph and rejects TV stills, and the handoff already defers tetsuzo_fuwa partly because his only near-modern image is a video still. Unlike Yamahana's frame, no registered precedent covers this source. The only other free Commons image is the 1993-08-09 Hosokawa cabinet group photograph, about five years before the window, in which he is a tiny figure. The verifier recommended holding him; the assembler excluded him and removed his prepared files from the repository.",
       "verification": {
         "verifier": "independent Claude verification agent (per person)",
         "initial_verdict_ok": false,
@@ -1520,7 +1519,8 @@
           }
         ]
       },
-      "restore_condition": "If Codex or the user rules that a government-owned video frame licensed CC BY 4.0 (GJSTU 2.0) qualifies, copy the reference original and the prompt back unchanged (sha256 values above), record the ruling here and in the README, and render him in a later batch. Otherwise leave him uncovered."
+      "restore_condition": "If Codex or the user rules that a government-owned video frame licensed CC BY 4.0 (GJSTU 2.0) qualifies, copy the reference original and the prompt back unchanged (sha256 values above), record the ruling here and in the README, and render him in a later batch. Otherwise leave him uncovered.",
+      "independent_disposition": "Not part of the six-person independent source review. Its separate source needs material verification before restoring the reference/prompt; a licensed official film frame is not intrinsically barred. This record establishes no new user-permission rule."
     }
   ],
   "reserves_not_prepared": [
@@ -1628,7 +1628,7 @@
           "bytes": 22893,
           "sha256": "1b2d38584916732a2b733786db5dc84e0f4231ff90fdbd749ca7abb10c5831ce",
           "retrieved_at": "2026-10-01T23:58:11Z",
-          "content": "That page's image/tomiichi.gif as archived on 2 July 2001 (250x330 GIF87a). It matches the Commons black-and-white JPEG pixel for pixel (correlation 0.99999, mean absolute difference 0.08 grey levels): the Commons file is MOFA's 1995 page image."
+          "content": "That page's image/tomiichi.gif as archived on 2 July 2001 (250x330 GIF87a). It matches the Commons black-and-white JPEG pixel for pixel (correlation 0.99999, mean absolute difference 0.08 grey levels): the Commons file matches the image retained in the 2001 capture; presence on the page in 1995 is inferred, not established."
         },
         {
           "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/warp-fetch-outcome.txt",
@@ -1654,24 +1654,23 @@
       "height": 410,
       "mode": "RGB",
       "format": "JPEG",
-      "photograph_date": "Capture date not stated; taken no later than 1995 (the same sitting is on MOFA's APEC 1995 Osaka profile page, copyright 1995); probably about 1994, unattested",
+      "photograph_date": "Capture date unknown; APEC 1995-era association is an inference, not a proved capture deadline",
       "depiction_date": {
-        "kind": "terminus_ante_quem",
-        "value": "1995",
-        "basis": "MOFA's APEC 1995 Osaka profile page (copyright 1995; chronology through September 1995) shows the same sitting in black and white",
-        "probable": "about 1994 (official portrait of the Prime Minister who took office on 1994-06-30; unattested)",
-        "title_association": "1994-06-30 (cabinet formation; not a capture date)"
+        "kind": "unknown",
+        "value": null,
+        "context": "A 1999-05-01 capture of an APEC 1995 page carries a 1995 copyright notice; its image was captured separately on 2001-07-02. This suggests period association but proves no 1995 photograph deadline.",
+        "title_association": "1994-06-30 is the cabinet formation date, not a capture date."
       },
-      "date_precision": "No capture date. Commons gives 'Unknown date' ({{Unknown|date}}) and the Kantei page gives none; the '19940630' in the Commons title is the day the cabinet was formed (Kantei: 平成6年6月30日成立). The assembler established a terminus ante quem: the same sitting, apparently the same exposure, appears in black and white as image/tomiichi.gif on MOFA's 'Profile of Prime Minister Tomiichi Murayama' page for APEC 1995 Osaka, which carries 'Copyright : 1995' and whose chronology ends in September 1995 (raw Wayback capture of 1999-05-01; the GIF, captured 2001-07-02, matches Commons 'Tomiichi Murayama 19940630 (Black and White).jpg', which Commons dates to 1994 without a source for the year). The photograph was therefore taken no later than 1995. The earlier Kantei archive copy on a brown backdrop (File:Tomiichi Murayama 19940630 A.gif, from a 1997 page) is a different sitting and does not bear on this one. The '1994' in reference_id and filename is kept pending a Codex ruling; it is the cabinet-formation year and the Commons year of the MOFA copy, not an attested capture date.",
+      "date_precision": "No capture date is supplied by Commons or Kantei. The retained APEC 1995 page was captured on 1999-05-01; its 1995 copyright and September 1995 chronology are context, not proof that this portrait was already present in 1995. The linked image was captured separately on 2001-07-02 and depicts the same sitting as the chosen official portrait. Neither establishes a hard capture deadline inside the appearance window. The year in the retained reference identifier and filename is a legacy identifier, not date evidence.",
       "creator": "内閣官房内閣広報室 (Cabinet Public Relations Office, Cabinet Secretariat, Government of Japan)",
-      "credit": "Cabinet Public Relations Office (内閣官房内閣広報室), Government of Japan: official portrait of Tomiichi Murayama, 81st Prime Minister, from 「歴代内閣ホームページ情報：村山富市 内閣総理大臣（第81代）」（首相官邸ホームページ）(https://www.kantei.go.jp/jp/rekidainaikaku/081.html); capture date not stated (published by MOFA no later than 1995); Government of Japan Standard Terms of Use 2.0 (compatible with CC BY 4.0); via Wikimedia Commons 'Tomiichi Murayama 19940630.jpg' (licence review by Leoboudv, 9 March 2019). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.",
+      "credit": "Cabinet Public Relations Office (内閣官房内閣広報室), Government of Japan: official portrait of Tomiichi Murayama, 81st Prime Minister, from 「歴代内閣ホームページ情報：村山富市 内閣総理大臣（第81代）」（首相官邸ホームページ）(https://www.kantei.go.jp/jp/rekidainaikaku/081.html); capture date unknown; the APEC 1995-era association is inferred from later archived material; Government of Japan Standard Terms of Use 2.0 (compatible with CC BY 4.0); via Wikimedia Commons 'Tomiichi Murayama 19940630.jpg' (licence review by Leoboudv, 9 March 2019). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.",
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0",
       "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY 4.0', License 'cc-by-4.0', via template Gjstu-2.0 (terms https://www.kantei.go.jp/jp/terms.html, attr 首相官邸ホームページ). The licence review says the file 'was reviewed on 9 March 2019 by reviewer Leoboudv, who confirmed that it was available there under the stated license on that date.' The template notes that GJSTU 2.0 was replaced in 2024 by the Public Data License 1.0, and the Kantei terms now cite PDL1.0. The Commons string recorded here is CC BY 4.0.",
       "rights_statement": "Retained source statement: CC BY 4.0 via {{Gjstu-2.0}} (Government of Japan Standard Terms of Use 2.0), attribution 首相官邸ホームページ; Commons licence review by Leoboudv on 2019-03-09. A government work of 内閣官房内閣広報室. Commons shows a personality-rights warning ({{Personality rights}}; extmetadata Restrictions 'personality'): the photograph serves only as the identity reference for an original cartoon. The current Kantei terms (PDL1.0, 公共データ利用規約 第1.0版) ask that an edited use state 加工して作成 and name who edited it; the credit says the portrait was adapted (redrawn as a cartoon) for Spheres.",
       "upload_history_note": "The current version is the original upload of 2019-03-09 by Scanyaro (318x410), and its bytes match the image the Kantei serves today (fetched by the preparer and again by the verifier on 2026-10-01; same sha256). From March 2020 to May 2021 the file went through a series of unsourced 'better quality' overwrites (503x637, 1361x1764, 626x800, 636x820, 866x1116; among them Hellbat31 on 2021-04-18 and Lee Gok Da on 2021-05-14); FMSky reverted it to the original on 2022-01-23. The file page now also carries {{extracted from|Tomiichi Murayama 19940630 (large).jpg}} and the category 'Extracted images', added in its latest revision (2025-10-05T13:35:37Z), two minutes after that file was uploaded (2025-10-05T13:33:03Z, Taro2968332). A 2025 upload cannot be the source of bytes uploaded on 2019-03-09, so provenance rests on byte identity with the Kantei's live image, not on that annotation.",
       "people_in_frame": "Murayama alone; head and shoulders, studio portrait on a plain light gray backdrop. He wears a Diet member's lapel badge, which the prompt omits.",
-      "age_gap_note": "Murayama was born on 3 March 1924 (Kantei page) and was 70 when he took office on 30 June 1994. The window, 1993-09-30 to 1996-08-31, covers ages 69 to 72. The photograph was taken no later than 1995 (see date_precision) and is probably from about 1994; he looks about 70 in it. The prompt asks for a man of about 70, matching the photograph, and states the terminus ante quem. The exactly dated in-window photograph of 25 August 1994 (dated_corroboration) shows the same swept-back silver hair, pale eyebrows and slim build; the prompt's 'slim, slight' body rests on it. That photograph is not a generation input.",
+      "age_gap_note": "The requested appearance window covers ages 69 to 72; the prompt depicts about 70 as an artistic age choice. The source capture date is unknown, so no exact source age or age gap is established. The separately dated 25 August 1994 corroborating photograph supports silver hair, pale eyebrows and a slim build but is not a generation input.",
       "dated_corroboration": {
         "commons_title": "File:Vo Van Kiet and Tomiichi Murayama.jpg",
         "source_page_url": "https://commons.wikimedia.org/wiki/File:Vo_Van_Kiet_and_Tomiichi_Murayama.jpg",
@@ -1702,7 +1701,7 @@
         ],
         "use": "Research corroboration and a pinned alternate only; not copied into the repository and not a generation input. Both men full length, walking past an honour guard, Murayama on the right; his face is only about 40 px wide. The Commons page has no licence review (IP upload of 2024-01-25), and its permission template cites the Kantei terms although the source is archives.go.jp."
       },
-      "limitation": "Capture date not attested; dated by a terminus ante quem (published by MOFA no later than 1995). Small (318x410). The exactly dated in-window alternate (25 August 1994, CC BY 4.0) is pinned in scratch, but his face there is only about 40 px wide.",
+      "limitation": "Undated 318x410 official portrait. A later capture of a 1995-themed page is not proof of an in-window capture date. The dated 25 August 1994 alternate remains pinned in scratch; its face is about 40 pixels wide.",
       "rejected_candidates": [
         "File:Tomiichi Murayama 19940630 (large).jpg (720x793, CC BY 4.0, 'Unknown date', claims source kantei 081.html; uploaded 2025-10-05 by Taro2968332; no licence review): the same sitting in a wider frame, apparently a scan of a print (dust, screen texture). Its bytes cannot be traced to the Kantei, which serves only the 318x410 image. Its SHA-1 3e12028252abbbcece7e0cbcc77cc659527c8cce and size match none of the 2020-2021 overwrite versions of the base file. Kept in scratch only, sha256 a3c33c717addc230c427f9faba1b5632ef22ffcc6d4cdf098af3840292a04b98.",
         "File:Tomiichi Murayama 19940630 (Black and White).jpg (250x330, CC BY 4.0, MOFA, Commons date 1994): the same sitting as MOFA published it on its APEC 1995 page; smaller and black and white. Used only to date the chosen portrait (see date_precision).",
@@ -1799,7 +1798,7 @@
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0",
       "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY 4.0', License 'cc-by-4.0', UsageTerms 'Creative Commons Attribution 4.0', Attribution '外務省 (MOFA)', LicenseUrl https://creativecommons.org/licenses/by/4.0. Wikitext licence template: {{GJSTU-2.0|terms=https://www.mofa.go.jp/about/legalmatters.html|attr=外務省 (MOFA)}}; the rendered page says the work is under the Government of Japan Standard Terms of Use (Ver. 2.0), 'compatible with the Creative Commons Attribution License 4.0 International', and then 'This file is licensed under the Creative Commons Attribution 4.0 International license.'",
-      "rights_statement": "Retained source statement: CC BY 4.0 via GJSTU 2.0, attribution 外務省 (MOFA). Official MOFA protocol-office photograph from a 1992 diplomatic photo album that MOFA released as a PDF in 2023; not an agency or press photo and not a TV still. The chosen file is a Commons CropTool crop (Taro2968332, 2025-07-28T11:46:28Z; 'cropped 71 % horizontally, 46 % vertically') of the two-person extraction 'Makoto Tanabe and Jiang Zemin 19920407.jpg' (same user, 2025-07-28T11:38:39Z), itself extracted from the Commons copy of the MOFA PDF. Neither crop page carries a separate licence review. MOFA's terms page could not be read (HTTP 403), so any third-party-content exception in MOFA's terms was not independently checked.",
+      "rights_statement": "Retained source statement: CC BY 4.0 via GJSTU 2.0, attribution 外務省 (MOFA). Official MOFA protocol-office photograph from a 1992 diplomatic photo album that MOFA released as a PDF in 2023; not an agency or press photo and not a TV still. The chosen file is a Commons CropTool crop (Taro2968332, 2025-07-28T11:46:28Z; 'cropped 71 % horizontally, 46 % vertically') of the two-person extraction 'Makoto Tanabe and Jiang Zemin 19920407.jpg' (same user, 2025-07-28T11:38:39Z), itself extracted from the Commons copy of the MOFA PDF. Neither crop page carries a separate licence review. At original preparation the MOFA terms request returned HTTP 403. Independent review on 2026-10-02 read the current MOFA terms, including third-party-content exceptions. The primary album was not independently read, so this is attributed MOFA/Commons provenance, not a blanket finding that every album image lacks third-party rights.",
       "provenance_check": "Confirmed: the upload comment and the {{Extracted from}} template name the parent, and a research-only thumbnail of the parent shows the same man (left), same glasses, tie, lapel badge, gold-framed panel and dark green-and-gold damask wall, shaking hands with Jiang Zemin (right).",
       "people_in_frame": "Tanabe alone, head to upper chest, broad open smile; Jiang Zemin is removed by the crop. A gold-framed wall panel and dark green-and-gold damask wall are behind him, and a small round gold Diet-member lapel badge is on his left lapel; the prompt excludes all of these.",
       "appearance_observed": "Long oval face with full cheeks; largely bald domed crown with a few thin gray strands combed back, gray-white hair at the sides and back; very sparse pale eyebrows; large squared metal glasses with a brown tortoiseshell-toned top bar and thin gold lower rims; narrow eyes crinkled by a wide grin showing teeth; broad rounded nose; ears standing slightly out; very dark navy suit, white point-collar shirt, dark navy tie with red and light-blue paisley medallions. The parent shows a slim build to about mid-thigh.",
@@ -2029,7 +2028,7 @@
           "bytes": 128768,
           "sha256": "d7b684ab05264abdfee382381226782ac052cb4763351cb876aeed2690430738",
           "retrieved_at": "2026-10-01T23:18:03Z",
-          "content": "The MLIT flyer that the first Commons revision names as its source (https://www.mlit.go.jp/common/001001960.pdf). The version online now is dated 2013-06-25 (XMP CreateDate and /CreationDate) and embeds the same portrait at 339x507, the size of the first Commons revision. Research only."
+          "content": "The MLIT flyer that the first Commons revision names as its source (https://www.mlit.go.jp/common/001001960.pdf). The version online now carries PDF creation/modification metadata dated 2013-06-25; this is not a printed publication date and embeds the same portrait at 339x507, the size of the first Commons revision. Research only."
         },
         {
           "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/pdf-extracted-obj17.jpg",
@@ -2116,22 +2115,23 @@
       "height": 507,
       "mode": "RGB",
       "format": "JPEG",
-      "photograph_date": "No later than 2012-12-27 (Commons date, from an editing timestamp; see date_precision); capture date unknown",
+      "photograph_date": "Capture date unknown; 2012-12-27 is editing metadata in another Commons revision",
       "depiction_date": {
-        "kind": "terminus_ante_quem",
-        "value": "2012-12-27",
-        "basis": "Exif DateTimeDigitized/DateTime of the edited second Commons revision of the same photograph; the MLIT flyer that carries it is dated 2013-06-25"
+        "kind": "unknown",
+        "value": null,
+        "editing_metadata": "A different Commons revision carries Photoshop DateTimeDigitized/DateTime on 2012-12-27; the chosen first revision has no capture EXIF.",
+        "document_metadata": "The inspected MLIT PDF has CreationDate/ModDate 2013-06-25. This is document metadata, not a printed publication date or a capture deadline."
       },
-      "date_precision": "Commons states 'taken on 2012-12-27 01:35:03 (according to Exif data)', and the first revision's upload description already used that value. The chosen first revision has no Exif. The value is the Exif DateTimeDigitized (2012:12:27 10:35:03 JST; DateTime 10:42:22) of the second revision (370x504, uploaded 24 seconds later as 'Better quality version', source not stated), written by Adobe Photoshop Elements 9.0: an editing time of an edited copy, not a capture date and not an MLIT document date. It is a latest-likely date; the capture date is unknown and may be earlier. The MLIT flyer cited as the source is dated 2013-06-25. Nothing on record shows that the portrait was published for his appointment as minister.",
+      "date_precision": "The chosen first Commons revision has no capture EXIF. Commons associates 2012-12-27 with editing metadata from a second Photoshop revision; that value does not establish a hard capture deadline for the chosen image. The MLIT flyer was visually inspected and contains this portrait and the printed minister name. Its CreationDate/ModDate are 2013-06-25; no printed publication date was found. Preserve both metadata observations without converting them to capture or appointment dates. The year in the retained reference filename is an identifier only.",
       "creator": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan), as the Commons author field and MLIT's flyer credit it; no photographer is named",
-      "credit": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan): portrait of Akihiro Ōta from the MLIT flyer https://www.mlit.go.jp/common/001001960.pdf (2013); dated 27 December 2012 on Commons from an editing timestamp; CC BY 4.0 (Government of Japan Standard Terms of Use Ver. 2.0, stated compatible with CC BY 4.0), attribution 国土交通省; via Wikimedia Commons, first revision (23 July 2023, TKsdik8900) of 'Akihiro Ōta 20121227.jpg'. Adapted for Spheres; no endorsement implied.",
+      "credit": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan): official portrait of Akihiro Ōta in https://www.mlit.go.jp/common/001001960.pdf; capture date unknown (the PDF carries creation/modification metadata dated 2013-06-25). CC BY 4.0 via the stated Government of Japan terms, attribution 国土交通省; current MLIT PDL 1.0 terms preserve the compatible reuse route. Wikimedia Commons first revision (23 July 2023, TKsdik8900) of 'Akihiro Ōta 20121227.jpg'. Adapted for Spheres; no endorsement implied.",
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0",
       "source_license_statement": "Commons LicenseShortName 'CC BY 4.0', LicenseUrl https://creativecommons.org/licenses/by/4.0, structured data P275 'Creative Commons Attribution 4.0 International'. The wikitext permission is {{Gjstu-2.0|terms=https://www.mlit.go.jp/link.html|attr=国土交通省}}, rendered as 'licensed under the Government of Japan Standard Terms of Use (Ver.2.0) ... compatible with the Creative Commons Attribution License 4.0 International'. The first revision's own upload description carries the same permission and names the MLIT PDF as its source.",
       "rights_statement": "Retained source statement: CC BY 4.0 via {{Gjstu-2.0}}, attribution 国土交通省; MLIT's site now uses PDL1.0, also CC BY 4.0-compatible. The copied bytes are the first Commons revision, whose upload names the MLIT PDF as its source; they show the same head-and-shoulders area as the portrait in that PDF. The current Commons revision (510x768) came from response.jp, a commercial news site, holds image area that no MLIT publication on record contains, and is not used. MLIT credits the portrait to itself and names no photographer, so whether it was produced by government staff is not independently established. The file has no Commons licence review.",
       "people_in_frame": "Ota alone, head and shoulders to the upper chest, in a studio portrait against a plain pale gray backdrop: dark navy suit, white shirt, blue tie with a small white geometric pattern, no visible lapel pin, no glasses. Nothing else is in frame.",
-      "age_gap_note": "Taking the Commons date of 27 December 2012 (a latest-likely date), the photograph is 1207 days (about 3.3 years) after the window's last day (2009-09-07) and 2280 days (about 6.2 years) after its start (2006-09-30). Ota (born 6 October 1945, general knowledge) is 67 then and 60 to 63 in the window; if the photograph is older, the gap is smaller. The prompt asks for a slightly younger man with firmer cheeks and fewer lines, keeping the same dark swept-back hair and broad face. The preparer viewed the in-window public-domain US Consulate photograph 'Schieffer and members of the New Komeito.jpg' (2008-03-20 on Commons; 200x138; research-only/, sha256 d015fa56843882c7660f4b0b0d7495b7ac7603fa36ff97ba718b52cf7635fbf4) to confirm the same dark swept-back hair, broad smiling face and no glasses in 2008; it is not shipped and not a generation input.",
-      "limitation": "No usable photograph exists inside the window (the in-window Commons files are 200-pixel group photographs and a 40x50 crop). Low resolution (339x507). Capture date unknown; latest-likely 2012-12-27.",
+      "age_gap_note": "The requested appearance is ages 60 to 63. Because the source capture date is unknown, no precise source age or 3.3-year gap is established. A younger treatment with firmer cheeks and fewer lines is an artistic interpretation, not a dated likeness attestation. The separately viewed 2008 group photograph corroborates dark swept-back hair, a broad smiling face and no glasses, but is not a generation input.",
+      "limitation": "The reviewed in-window candidates were tiny group photographs or a 40x50 crop; no usable in-window reference was found in that search. The chosen official portrait is 339x507 and undated. Editing metadata and PDF creation metadata do not establish capture dates.",
       "rejected_candidates": [
         "Current revision of File:Akihiro Ōta 20121227.jpg (510x768, uploaded 2024-09-28 'from https://response.jp/imgs/thumb_h2/607583.jpg'): a commercial news site's copy with a wider frame than any MLIT publication on record; rejected on provenance (the preparer's original choice; corrected after verification).",
         "Second revision of the same file (370x504, 2023-07-23T10:15:28Z, 'Better quality version', source not stated, edited in Photoshop Elements 9.0): unsourced.",
@@ -2144,7 +2144,7 @@
         "File:Shinzō Abe Cabinet 20121226.jpg and File:Abe Government 20121226 2.jpg: Kantei, CC BY 4.0, 2012-12-26; cabinet group photographs with Ota small.",
         "File:Transportation Deputy Secretary Porcari at APEC Ministerial Meeting (Akihiro Ota crop).jpg and crop 2: public domain (US State Dept EAP Media Hub), 2013-09-05; further from the window.",
         "File:V.Dombrovskis tiekas ar zemes infrastruktūras, transporta un tūrisma ministru Akohiro Ohtu (8643915261).jpg: CC BY-SA 2.0, 2013; further from the window.",
-        "MLIT PDF 001001960.pdf embedded image (339x507): the same portrait in a document dated 2013-06-25; not a Commons file. Research only.",
+        "MLIT PDF 001001960.pdf embedded image (339x507): the same portrait in a document with PDF creation/modification metadata dated 2013-06-25; not a Commons file. Research only.",
         "The Commons search for 太田昭宏 was blocked by repeated HTTP 429 and not completed; coverage relies on the English search (42 hits, first 30 reviewed) and the full Category:Akihiro Ōta tree."
       ],
       "approved_source_license": true,
@@ -2220,7 +2220,7 @@
       "rights_statement": "Retained source statement: CC0 1.0 (LicenseShortName exactly 'CC0'), dedicated by the TICAD7 Photographs (MOFA TICAD) Flickr account; FlickreviewR 2 confirmed the licence on 2019-09-01. No attribution is required; the credit is kept for transparency. The copied bytes are the untouched 8256x5504 original.",
       "people_in_frame": "Yamaguchi is the central, sharply focused speaker. Also in frame: a bespectacled delegate with an earpiece on his right (viewer's left), in front of whom his name card stands; probably Ichiro Aisawa at the right edge (a name card reading 'Mr. Ichiro Aisawa' is nearby, but cards in this frame are offset from the people they belong to); the back of a head in the right foreground; seated audience, staff and two video cameras on tripods behind. Name cards, water bottles, glasses and microphones are on the table. His right hand is partly visible resting on the table edge between his name card and the water bottle, and a shirt cuff shows by the glass. The prompt excludes everything except Yamaguchi.",
       "appearance_observed": "Thick dark charcoal hair finely threaded with gray, combed straight back with volume and slightly receding at the temples; long oval face with high cheekbones and lean cheeks; deep nasolabial lines; narrow dark eyes with creased outer corners; fairly straight dark brows; straight nose; prominent ears; light warm complexion; clean shaven; no glasses; slim. Dark navy fine-pinstripe suit, white shirt and pale sky-blue tie with a small white pattern. Three lapel pins (House of Councillors badge, Africa pin, SDG wheel) and an interpretation earpiece are visible; all are omitted in the prompt.",
-      "age_gap_note": "Photograph of 29 August 2019: 3,642 days (about 10.0 years) after the window start of 2009-09-08; 1,857 days (about 5.1 years) before the exclusive window end of 2024-09-28; 893 days (about 2.4 years) after the window midpoint of 2017-03-19. Yamaguchi (born 12 July 1952, general knowledge) is 67 in the photo and 57 to 72 across the window (64 at the midpoint). The prompt asks for a man of about 64, slightly younger than the photograph, with the same dark swept-back hair showing only fine gray. If Codex splits the window at 2015-01-01, this reference fits the later portrait; a 2009-2015 portrait would need a roughly 2010-2014 reference.",
+      "age_gap_note": "Photograph of 29 August 2019: 3,642 days (about 10.0 years) after the window start of 2009-09-08; 1,857 days (about 5.1 years) before the exclusive window end of 2024-09-28; 893 days (about 2.4 years) after the window midpoint of 2017-03-19. Yamaguchi (born 12 July 1952, general knowledge) is 67 in the photo and 57 to 72 across the window (64 at the midpoint). The prompt asks for a man of about 64, slightly younger than the photograph, with the same dark swept-back hair showing only fine gray. If Codex splits the window at 2015-01-01, this reference fits the later portrait; a 2009-2015 portrait would need a roughly 2010-2014 reference. Independent review recommends a later 2015-2024 variant from this source and a separately verified earlier reference for 2009-2015. This is an editorial recommendation; the authored requested interval and prompt are preserved pending that choice, and no variant is approved now.",
       "limitation": "Multi-person, seated, waist-up source: his hands are only partly visible on the table, and the standing pose, trousers and shoes are artistic extensions. The original is 27,276,808 bytes, larger than any existing reference (the largest is about 9.95 MB) and larger than France's 17 MB Juppé reference; Commons has no extracted crop. Of the candidates found, the qualifying photograph closest to the midpoint is the 2016-04-18 Kantei file (CC BY 4.0), but it is only 159x212 px.",
       "rejected_candidates": [
         "File:Natsuo Yamaguchi.jpg and File:Natsuo Yamaguchi (cropped).jpg (2016-04-18, Kantei 内閣官房内閣広報室, CC BY 4.0): closest to the midpoint, but only 159x212 and 152x212 px.",
@@ -2332,7 +2332,7 @@
             "bytes": 22893,
             "sha256": "1b2d38584916732a2b733786db5dc84e0f4231ff90fdbd749ca7abb10c5831ce",
             "retrieved_at": "2026-10-01T23:58:11Z",
-            "content": "That page's image/tomiichi.gif as archived on 2 July 2001 (250x330 GIF87a). It matches the Commons black-and-white JPEG pixel for pixel (correlation 0.99999, mean absolute difference 0.08 grey levels): the Commons file is MOFA's 1995 page image."
+            "content": "That page's image/tomiichi.gif as archived on 2 July 2001 (250x330 GIF87a). It matches the Commons black-and-white JPEG pixel for pixel (correlation 0.99999, mean absolute difference 0.08 grey levels): the Commons file matches the image retained in the 2001 capture; presence on the page in 1995 is inferred, not established."
           },
           {
             "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/warp-fetch-outcome.txt",
@@ -2523,7 +2523,7 @@
             "bytes": 128768,
             "sha256": "d7b684ab05264abdfee382381226782ac052cb4763351cb876aeed2690430738",
             "retrieved_at": "2026-10-01T23:18:03Z",
-            "content": "The MLIT flyer that the first Commons revision names as its source (https://www.mlit.go.jp/common/001001960.pdf). The version online now is dated 2013-06-25 (XMP CreateDate and /CreationDate) and embeds the same portrait at 339x507, the size of the first Commons revision. Research only."
+            "content": "The MLIT flyer that the first Commons revision names as its source (https://www.mlit.go.jp/common/001001960.pdf). The version online now carries PDF creation/modification metadata dated 2013-06-25; this is not a printed publication date and embeds the same portrait at 339x507, the size of the first Commons revision. Research only."
           },
           {
             "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/pdf-extracted-obj17.jpg",
@@ -2608,5 +2608,23 @@
       "The assembler made seven single requests on 2026-10-01 between 23:55Z and 23:59Z: the Commons black-and-white Murayama file, the WARP page (HTTP 403), a Wayback availability lookup, the raw 1999 Wayback capture of MOFA's page, its archived image, the Commons file history of the Ota file and that file's first revision. All except the WARP page returned HTTP 200."
     ],
     "not_listed": "HTTP response header captures, and the one 429 body that contained the client IP (deleted by the Tanabe preparer), are not listed, hashed, quoted or copied. YouTube watch-page HTML (Yamahana) was not saved because it embeds the client IP. Search scratch files, candidate downloads and inspection crops are not ledgered unless cited above; rejected candidates retained as alternates are cited with their sha256 where relevant."
+  },
+  "independent_review": {
+    "reviewed_on": "2026-10-02",
+    "reviewer": "Codex independent preparation review",
+    "exact_submitted_tip": "7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725",
+    "disposition": "Preparation usable after the recorded date-precision corrections; no output approved or registered.",
+    "record": "independent-review-20261002.md",
+    "mechanical_checks_passed": 114,
+    "accepted_holder_records_preserved": 14,
+    "material_scope": "All six references and prompts inspected; Ota primary MLIT flyer visually inspected; exact holder copies and source hashes checked.",
+    "limits": [
+      "Tanabe primary 74-page album was not independently read; Commons caption precision remains attributed.",
+      "Fresh Yamahana full-video read was throttled; retained official-channel licence metadata and individually captioned Commons crop were used.",
+      "The current Kantei terms URL returned 404; retained earlier terms and Commons licence review remain the evidence.",
+      "Current MLIT and MOFA terms were read; third-party exceptions remain applicable."
+    ],
+    "no_new_historical_authority": true,
+    "no_rendered_outputs": true
   }
 }

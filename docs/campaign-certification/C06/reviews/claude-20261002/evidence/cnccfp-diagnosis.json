@@ -1,0 +1,66 @@
+{
+  "decision": "test-only extraction compatibility repair",
+  "root_cause": "pypdf6.10 layout mode interleaves ten wrapped party names and decision columns;6.17 does not; plain row order works in both.",
+  "changed_paths": [
+    "tools/avatars/test_import_cnccfp_census.py"
+  ],
+  "importer_unchanged": true,
+  "pdf_sha256": "127fc6028a49240e41a204db7bcb4a6258c23280a7316af93542b920a471899d",
+  "before": {
+    "python": "3.12.14",
+    "pypdf": "6.10.0",
+    "tests": 10,
+    "failures": 1
+  },
+  "after": [
+    {
+      "python": "3.12.14",
+      "pypdf": "6.10.0",
+      "tests": 11,
+      "failures": 0
+    },
+    {
+      "python": "3.13.12",
+      "pypdf": "6.17.0",
+      "tests": 11,
+      "failures": 0
+    }
+  ],
+  "retained_guards": [
+    "all60 full normalized names against the independently numbered table",
+    "all60 exact one-based PDF page locators",
+    "unique code membership and no remaining unmatched expected rows",
+    "both AD columns and Non-respect required",
+    "unparsed ADAD markers fail",
+    "4-5 digit postal field never treated as a party ID",
+    "original full snapshot byte/hash guards unchanged"
+  ],
+  "new_negative_controls": [
+    "wrong Respect decision on AD AD row",
+    "AD CS certification mismatch",
+    "invalid postal column must not silently drop AD AD row"
+  ],
+  "test_sha256_lf": "0515b180162bd0f3a5496e1f42029e6537b9cebd2babcbc2429d65a3fe13c18a",
+  "evidence": {
+    "cnccfp-probe-6.10.0.json": {
+      "bytes": 35609,
+      "sha256": "5bf1160ffc84a8cea8db1eb212f19e094ac13e4271678e5b3118a3ebc4b201d9"
+    },
+    "cnccfp-probe-6.17.0.json": {
+      "bytes": 31936,
+      "sha256": "e6369539a53230721b02a07ceae49bb40f9accba8f8c35c3ef964c18a8d3daac"
+    },
+    "cnccfp-before-bundled.log": {
+      "bytes": 811,
+      "sha256": "b8f270dff1519b84459d956980946aa24fa8bb8ee52508d57c2deb2df3fc3f80"
+    },
+    "cnccfp-after-bundled.log": {
+      "bytes": 115,
+      "sha256": "e1b0d9c6aaadef83fae9e8d80e6e33650fc94dac327ea29a59273d06dc7ee601"
+    },
+    "cnccfp-after-clean-venv.log": {
+      "bytes": 115,
+      "sha256": "ee39e892c5a3e7358a886da22376eb7c1644485246e3a79f503707dfdc0738d9"
+    }
+  }
+}

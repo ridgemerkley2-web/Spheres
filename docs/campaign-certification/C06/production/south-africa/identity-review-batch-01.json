@@ -1,0 +1,2100 @@
+{
+ "version": 1,
+ "nation": "South Africa",
+ "reviewed_at": "2026-10-01",
+ "historical_cutoff": "2026-09-07",
+ "historical_window_start": "1990-01-01",
+ "status": "identity_and_coverage_review_proposal",
+ "task": "CLAUDE-C06-SOUTHAFRICA-01",
+ "branch": "claude/c06-za-01",
+ "base": "2fd186d6",
+ "claim_commit": "6f1961bb",
+ "scope": "South Africa cast batch 1: eight requested appearance windows for six existing person IDs with accepted C01-30 holder observations (IFP presidents, Freedom Front / FF Plus leaders, ACDP president) and no art for those windows. Four windows (Buthelezi 1995-2004, Viljoen, Pieter Mulder, Corné Mulder) each have one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Four windows (Buthelezi 2005-2019, Hlabisa, both Meshoe windows) have no qualifying photograph and are recorded as not ready. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+ "prepared_by": "Claude: one preparation agent and one independent verification agent per window, assembled and mechanically corrected by Claude on 2026-10-01. This is not human review, not Codex review and not user approval.",
+ "authority": {
+  "runtime_installation": false,
+  "office_eligibility": false,
+  "continuous_terms": false,
+  "art_approval": false,
+  "human_acceptance": false,
+  "country_completion": false
+ },
+ "independent_preparation_review": {
+  "reviewer": "Codex",
+  "reviewed_at": "2026-10-02",
+  "reviewed_tip": "c0382bbcb92852ff6e885292bb3ecfe9a7793a75",
+  "disposition": "Adopt the four references and prompts as preparation with the documentation corrections recorded here; generated-art approval and registration remain pending.",
+  "checks": "All four photographs visually inspected and prompts read. Four reference copies match retained originals, SHA256 and Commons SHA1; fifteen metadata pins and four prompt Git-byte hashes match. All nineteen copied holder objects match accepted research exactly.",
+  "corrections": "Job coverage is projected until rendering, review and registration; Viljoen requires explicit CC BY-SA 2.0 derivative licensing; separate office acceptance is described against the pinned ledger snapshot without changing it.",
+  "limits": "No new research, generated output, runtime installation, tenure inference, historical acceptance, human approval or country signoff. Broad artistic appearance windows remain subject to review of the actual outputs."
+ },
+ "accepted_research": {
+  "path": "docs/campaign-certification/C01/research/south-africa.json",
+  "sha256": "79664fc62be19ec17602f2524e595ac90f7a06cc7c8bea13047c285b7d09cb4b",
+  "packets_used": [
+   "C01-30"
+  ],
+  "receipts": [
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
+    "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9",
+    "packet": "C01-30"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/manifest.json",
+    "sha256": "d047849606a2beb6fe0462b672850cff28527e870cb9eb4cbb929f53d077f66e",
+    "packet": "C01-30"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/claim-review.json",
+    "sha256": "f435954c955114d78a76928a07f052cb5739f136c11cfd4bc830d99234d0c640",
+    "packet": "C01-30"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md",
+    "sha256": "e0d8901edcf739b52d2d915d0687d5d5385cf33edac80a9b122caee310aa2afd",
+    "packet": "C01-32",
+    "note": "Pinned for completeness; C01-32 (PAC presidents) holds only the reserve Nyhontso's observations, none used in this batch."
+   }
+  ],
+  "gap_ledger": {
+   "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+   "sha256": "a7b3c1f1924394743cfebfc1fc7cac7ee24970f40451616273f91aafa374962b",
+   "refreshed_at": "1fffb983",
+   "south_africa_holder_observations": {
+    "c01_accepted": 48,
+    "c01_integrated_pending": 32,
+    "s10_discovery_intake": 5
+   },
+   "note": "Every observation used here is c01_accepted (CLAUDE-C01-30)."
+  }
+ },
+ "registry_inputs": {
+  "party_leaders": {
+   "path": "spheres-sim/data/party_leaders.json",
+   "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+  },
+  "person_portraits": {
+   "path": "spheres-web/data/person_portraits.json",
+   "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+  },
+  "leadership_production": {
+   "path": "spheres-web/data/leadership_production_2035.json",
+   "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+  },
+  "pipeline": {
+   "path": "tools/avatars/person_art_pipeline.py",
+   "sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab"
+  },
+  "style_anchor": {
+   "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+   "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+   "width": 1024,
+   "height": 1536,
+   "mode": "RGB",
+   "use": "STYLE ONLY"
+  },
+  "pipeline_jobs_inventory": {
+   "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/za-cast/jobs.json",
+   "path": "D:/spheres-scratch/za-cast/jobs.json",
+   "bytes": 767375,
+   "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+   "job_version": "person-cartoon-v4",
+   "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+   "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+   "identical_to_france_inventory": true,
+   "window_and_residual_job_ids": [
+    {
+     "path": "D:/spheres-scratch/za-cast/assemble/window-jobs-batch1.json",
+     "bytes": 2106,
+     "sha256": "f25537e70b55172048c81f7e7af7fa9dcaab2e193095d9649a78cd767c345c7f"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/assemble/window-jobs-not-ready.json",
+     "bytes": 2248,
+     "sha256": "f15089e9cfa239e007ae8910017c09da0776abd9bd366a42afce185e2b5a3829"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/assemble/plan.json",
+     "bytes": 26936,
+     "sha256": "40e1bbff9dbbf0da8fdd009af2fa259d6a7fe4381a49ee142d4b131f841dc3e7"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/assemble/window_jobs.py",
+     "bytes": 1739,
+     "sha256": "cdc3cc816715531534667391bed0e478c9ea187ac5f866519b418004baa37f85"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/assemble/plan.py",
+     "bytes": 6120,
+     "sha256": "46091c05a059f07d4d317456d3614bea5f88efea11ef8de85097d163e3bc58c1"
+    }
+   ],
+   "cross_check": "At assembly, `person_art_pipeline.py jobs --from 2005-01-01 --to 2027-01-01` emitted mangosuthu_buthelezi-4640e6b6e46c, equal to the computed residual for Buthelezi after this batch; the claim cross-checked one window the same way."
+  }
+ },
+ "rules": [
+  "All holder dictionaries below are copied exactly from accepted C01 research (south-africa.json, packet C01-30). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+  "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, conference, resignation or death; those remain claims.",
+  "Requested windows are appearance intervals from the CLAUDE-C06-SOUTHAFRICA-01 handoff table with exclusive ends. Where a bound comes from party_leaders.json, leadership production or the handoff rather than accepted research, the person entry says so.",
+  "Real history stops at 2026-09-07; every window in this batch ends on or before 2026-09-08 (exclusive).",
+  "The pinned C01 gap-ledger snapshot refreshed at 1fffb983 classifies 32 observations as c01_integrated_pending across three separate offices: C01-09 heads of state, C01-16 ANC presidents and C01-21 deputy presidents. Those observations are outside this batch. This preparation review changes no historical acceptance status; any later batch must consult the applicable office's current acceptance record.",
+  "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, trousers, shoes, colours added to a black-and-white photograph, civilian dress replacing a uniform) is declared in the prompt and here.",
+  "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly. Ported licences, NC/ND terms, government open licences not on the list, agency or press photos and TV or video stills are rejected. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled.",
+  "A window without a qualifying photograph is recorded as not ready. No face is invented and no other person substitutes.",
+  "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+  "Each review batch contains at most ten people.",
+  "HTTP response header captures and pages that contain the client IP address or GeoIP fields are never copied, cited, hashed or committed.",
+  "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
+  "Birth dates used for age notes are general biographical knowledge with a cited source, not accepted C01 research; the registry is not edited."
+ ],
+ "coverage": {
+  "requested_windows": 8,
+  "windows_in_render": 4,
+  "windows_not_ready": 4,
+  "people_count": 6,
+  "people_in_render": 4,
+  "people_wholly_not_ready": 2,
+  "reserve_people_prepared": 0,
+  "holder_observation_count": 19,
+  "holder_observation_count_by_role": {
+   "za_ifp_president": 8,
+   "za_ff_leader": 6,
+   "za_acdp_president": 5
+  },
+  "holder_observations_in_render_windows": 7,
+  "likeness_reference_count": 4,
+  "usable_likeness_reference_count": 4,
+  "research_only_likeness_reference_count": 0,
+  "references_inside_requested_window": [
+   "pieter-mulder-2013"
+  ],
+  "references_with_month_precision": [
+   "constand-viljoen-1984"
+  ],
+  "references_with_uncertain_date": [],
+  "leadership_production_cartoon_jobs_projected_coverage_after_registration": 10,
+  "leadership_production_cartoon_jobs_closed_by_batch": 0,
+  "leadership_production_cartoon_jobs_currently_open": 24,
+  "leadership_production_cartoon_jobs_left_open_not_ready": 14,
+  "all_historical_officeholders_established": false,
+  "continuous_terms_established": false,
+  "all_likenesses_ready": false,
+  "rendered_portraits": 0
+ },
+ "batches": [
+  {
+   "id": "ZA-CAST-B01",
+   "render_request": "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md",
+   "people": [
+    {
+     "person_id": "mangosuthu_buthelezi",
+     "display_name": "Mangosuthu Buthelezi",
+     "registry_name": "Mangosuthu Buthelezi",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Mangosuthu Buthelezi"
+     ],
+     "requested_window": {
+      "from": "1995-01-01",
+      "to": "2005-01-01",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "C01-30 IFP President holder observation attested 1995-10-24. The window continues his existing 1990-01-01 to 1995-01-01 portrait and lies inside registry term za_ifp_mangosuthu_buthelezi_19750321 (1975-03-21 to 2019-08-24, not C01 research). It is split at 2005-01-01 for age, at a leadership-production job boundary; the later window 2005-01-01 to 2019-08-25 is not ready (see excluded_people)."
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "za_iec_n2024_034",
+       "organization_name": "INKATHA FREEDOM PARTY",
+       "role_id": "za_ifp_president",
+       "holder": {
+        "name": "Mangosuthu Buthelezi",
+        "attested_on": "1995-10-24",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ifp_press_release_19951024"
+        ],
+        "claim_ids": [
+         "za_ifp_press_release_president_buthelezi_19951024"
+        ],
+        "note": "Observed on 24 October 1995: an IFP press release of that day refers to \"IFP President, Dr M G Buthelezi\".",
+        "uncertainty": "No start: the IFP's retrospective pages say he was unanimously elected President when Inkatha became the IFP in July 1990 (14 July on the 1997 and 2000 pages, 10 July on the later timeline), but they are election references with no structured date and never a start. No end: none is stated. His posts as a Minister and his parliamentary seat are state offices and are not used."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/0"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      }
+     ],
+     "registry_terms_not_c01_research": [
+      {
+       "id": "za_ifp_mangosuthu_buthelezi_19750321",
+       "from": "1975-03-21 (day)",
+       "until": "2019-08-24 (day)"
+      }
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "mangosuthu_buthelezi-571ede3793fd",
+        "from": "1995-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "mangosuthu_buthelezi-355a6013bb99",
+        "from": "1995-01-01",
+        "to": "2005-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "2005-01-01",
+        "to": "2027-01-01",
+        "id": "mangosuthu_buthelezi-4640e6b6e46c",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+       "cartoon:mangosuthu_buthelezi:1995-01-01:2000-01-01:v1",
+       "cartoon:mangosuthu_buthelezi:2000-01-01:2005-01-01:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "mangosuthu-buthelezi-1983"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/mangosuthu-buthelezi-cartoon-1995-v1.txt",
+      "sha256": "d066930ed4fac85b0a1089e92c2ae6e471341e3407b1d421d9e9ed57964479c6",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "30caea89743a656bf4cbf2924137ab245f9840e0759c55bc5cc3e87c28df9759",
+      "git_blob": "edb5856cfe81222fda67fff7fac3fe393e8fce60",
+      "bytes": 3656,
+      "lines": 9,
+      "encoding": "ASCII"
+     },
+     "planned_output": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID and the existing 1990-1995 portrait. This window adds a second appearance for 1995-2004 from the closest usable qualifying photograph, the Anefo frame of 10 June 1983; the 11.6 to 21.6 year gap and the grey are declared artistic interpretations.",
+       "evidence": [
+        "mangosuthu-buthelezi-1983"
+       ]
+      },
+      {
+       "finding": "Closer public-domain Bush White House material of 1990 and 1991 exists only as contact sheets that cannot be used unchanged; a single-frame scan would be a closer reference (open item).",
+       "evidence": [
+        "NARA NAID 543950122 (WHPO-P22804)"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The reference is not shown to be as close as possible to the window: public-domain Bush White House Photo Office contact sheets of 20 June 1991 (WHPO-P22804 to P22807, P22809, P22810) and 28 February 1990 (P10615, P10616) were never evaluated, and the limitation sentence overstated what was searched and omitted the 1977 Carter photographs.",
+        "disposition": "Evaluated at assembly. The NARA record for WHPO-P22804 (NAID 543950122; useRestriction 'Unrestricted') and its digital object (3141x4340) were fetched and inspected: a scanned contact sheet with six small frames of a crowded luncheon table, Buthelezi's face only a few dozen pixels, and printed labels and film-edge text. It cannot be used unchanged as image 2, so all eight sheets are rejected (the other seven by format, not downloaded) and listed in rejected_candidates. The 1983 Anefo frame stays the reference. The limitation is rescoped to the sources actually searched and names the 1977-05-05 Carter photographs. A single-frame scan from the Bush Library is recorded as an open item for Codex."
+       },
+       {
+        "problem": "The birth date 27 August 1928, on which every age in the prompt depends, had no cited source.",
+        "disposition": "Fixed: age_gap_note cites South African History Online (https://sahistory.org.za/people/chief-mangosuthu-gatsha-buthelezi, 'Born 27 August 1928', checked at assembly) and Wikidata Q554131 P569, labelled general biographical knowledge, not C01 research. The prompt is unchanged."
+       },
+       {
+        "problem": "Preparer's own deviation: the committed bytes were the Nationaal Archief's on-the-fly grayscale rendition, not the Commons original, because Commons returned HTTP 429.",
+        "disposition": "Fixed at assembly: the Commons original (sha1 52aa2f789cb21228c3eea40ff2f3f41c627fe841, equal to the Commons API sha1) was found in the person's refs folder and copied unchanged to the repository path; sha256 91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0, 2467x3685 RGB JPEG. The NA rendition and TIFF master are kept outside Git as alternates. Licence recorded as Commons states it ('CC0')."
+       },
+       {
+        "problem": "Preparer's note: a possible filename collision with the sibling 2005-2019 window's reference.",
+        "disposition": "No collision: the 2005-2019 window found no qualifying photograph and copied no reference."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted C01 holder observation of Buthelezi between 1995-10-24 and 2012-12-16; no accepted start or end."
+     ],
+     "open_items_for_codex": [
+      "Render with the 1983 Anefo reference and its declared 11.6 to 21.6 year gap, or first request a single-frame scan of a 20 June 1991 frame (rolls WHPO-P22804 to P22807, P22809 or P22810) or a 28 February 1990 frame (P10615, P10616) from the George H. W. Bush Library; a US federal work under 'public domain' about 3.5 years before the window would replace this reference as v2 with a new prompt.",
+      "Confirm the reference byte swap to the Commons original (same frame, licence and prompt)."
+     ]
+    },
+    {
+     "person_id": "constand_viljoen",
+     "display_name": "Constand Viljoen",
+     "registry_name": "Constand Viljoen",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Constand Viljoen"
+     ],
+     "requested_window": {
+      "from": "1994-03-31",
+      "to": "2001-01-01",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "C01-30 Freedom Front Leader holder observation attested 1997-08-26. The bounds come from registry term za_ff_constand_viljoen_199403 (from month 1994-03, until year 2001; not C01 research) as leadership production dates it (1994-03-31 to 2001-01-01)."
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "za_iec_n2024_051",
+       "organization_name": "VRYHEIDSFRONT PLUS",
+       "role_id": "za_ff_leader",
+       "holder": {
+        "name": "Constand Viljoen",
+        "attested_on": "1997-08-26",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ff_viljoen_media_release_19970826"
+        ],
+        "claim_ids": [
+         "za_ff_viljoen_media_release_leader_19970826"
+        ],
+        "note": "Observed on 26 August 1997: a Freedom Front media release of that day is issued by him in the capacity \"Leier: Vryheidsfront\".",
+        "uncertainty": "No start: his founding of the party (before the April 1994 election) is an organization claim, and no party record found states the day he became Leader. No end: his retirement is dated only \"2001\", and his successor's election is not used as his end; his death, reported on 3 April 2020 as a former leader, is a separate claim."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/50/roles/0/holder_claims/0"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      }
+     ],
+     "registry_terms_not_c01_research": [
+      {
+       "id": "za_ff_constand_viljoen_199403",
+       "from": "1994-03 (month)",
+       "until": "2001 (year)"
+      }
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "constand_viljoen-f4174a5400ed",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "constand_viljoen-3725bb6de879",
+        "from": "1994-03-31",
+        "to": "2001-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "1994-03-31",
+        "id": "constand_viljoen-c51a00dfab36",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2001-01-01",
+        "to": "2027-01-01",
+        "id": "constand_viljoen-cb3617438dd1",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+       "cartoon:constand_viljoen:1994-03-31:1995-01-01:v1",
+       "cartoon:constand_viljoen:1995-01-01:2000-01-01:v1",
+       "cartoon:constand_viljoen:2000-01-01:2001-01-01:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "constand-viljoen-1984"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/constand-viljoen-cartoon-1994-v1.txt",
+      "sha256": "79f58149429784f37c9ccef47b98b6c8da4bcd3ddcdfa16cd8a9ecbdb1c5bb24",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "030a41b15471bbafa7f2eeab29a2e26705b1c6c43619bb5af6c1f20e41b7db78",
+      "git_blob": "aa1d065b7003aebef5e9da5a0bd2b8593e927c8e",
+      "bytes": 3949,
+      "lines": 9,
+      "encoding": "ASCII"
+     },
+     "planned_output": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+     "identity_review": [
+      {
+       "finding": "New appearance for an existing person ID with no portrait. The only qualifying photograph of Viljoen as the main subject is a small September 1984 crop in military dress; the prompt draws him as a civilian party leader aged 60 to 67 and excludes every uniform element and insignia.",
+       "evidence": [
+        "constand-viljoen-1984"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The prompt said the crop is one 'in which he is the only face', but an out-of-focus partial face of a guardsman is visible at the top-left; the right-edge figure is mostly pale, not plainly a green uniform.",
+        "disposition": "Fixed: prompt line 5 now reads 'in which his is the only complete face; ignore the out-of-focus partial face and gold-corded shoulder of a guardsman at the top-left and left edge, the partly visible pale figure at the right edge, ...'; people_in_frame is corrected; the prompt is re-pinned (LF and CRLF sha256, bytes, git blob). The assembler viewed the reference and confirms the partial face."
+       },
+       {
+        "problem": "The birth date 28 October 1933 had no cited source.",
+        "disposition": "Fixed: age_gap_note cites Wikidata Q2568741 P569 1933-10-28 (checked at assembly), labelled general biographical knowledge, not C01 research. The prompt is unchanged for this."
+       },
+       {
+        "problem": "The default-inventory job constand_viljoen-f4174a5400ed (1990-01-01 to 2027-01-01) was listed without a closure label.",
+        "disposition": "Filed under pipeline_default_inventory with projected partial coverage after rendering, visual review and registration; residual IDs are listed. No job is closed by preparation."
+       },
+       {
+        "problem": "Batch level: ten Flickr page HTML files with GeoIP fields remained in the session scratchpad.",
+        "disposition": "Fixed at assembly: the ten files belonged to the Hlabisa preparer (searches for Velenkosini, Hlabisa, a Ramaphosa control, G20 disaster-risk queries and the GovernmentZA photo 47091843382 relicensing check). They were deleted unread beyond attribution; none was cited or hashed. A grep of D:/spheres-scratch/za-cast/refs found no GeoIP fields."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end; the only accepted observation is 1997-08-26."
+     ],
+     "open_items_for_codex": [
+      "Accept the small, month-dated 1984 crop in uniform with its declared 9.5 to 16 year gap and civilian re-dressing, or leave the window open until a 1994-2000 photograph is found."
+     ]
+    },
+    {
+     "person_id": "pieter_mulder",
+     "display_name": "Pieter Mulder",
+     "registry_name": "Pieter Mulder",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Pieter Mulder"
+     ],
+     "requested_window": {
+      "from": "2001-06-21",
+      "to": "2016-11-13",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "C01-30 Freedom Front / FF Plus Leader holder observations attested 2001-06-21, 2003-09-28 and 2016-11-12. The window runs from the first accepted observation to the day after the last. It contains registry term za_ff_pieter_mulder_2001 (from year 2001, until 2016-11-12; not C01 research), which leadership production dates 2001-12-31 to 2016-11-12, so the window starts earlier than leadership production."
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "za_iec_n2024_051",
+       "organization_name": "VRYHEIDSFRONT PLUS",
+       "role_id": "za_ff_leader",
+       "holder": {
+        "name": "Pieter Mulder",
+        "attested_on": "2001-06-21",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ff_mulder_budget_debate_speech_20010621"
+        ],
+        "claim_ids": [
+         "za_ff_mulder_speech_newly_elected_party_leader_20010621"
+        ],
+        "note": "Observed on 21 June 2001: in his speech of that day he calls himself \"a newly elected party leader\".",
+        "uncertainty": "No start: the party's records date his election only to March 2001 (English curriculum vitae and this speech) or April 2001 (Afrikaans curriculum vitae), and no day of taking office is printed. No end: none is stated."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/50/roles/0/holder_claims/1"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      },
+      {
+       "organization_or_institution_id": "za_iec_n2024_051",
+       "organization_name": "VRYHEIDSFRONT PLUS",
+       "role_id": "za_ff_leader",
+       "holder": {
+        "name": "Pieter Mulder",
+        "attested_on": "2003-09-28",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ff_vfplus_media_release_20030928"
+        ],
+        "claim_ids": [
+         "za_ff_release_mulder_vf_leader_20030928"
+        ],
+        "note": "Observed on 28 September 2003: the Freedom Front's release of that day names him \"VF leier\".",
+        "uncertainty": "No start and no end: none is stated. The merger and the name Vryheidsfront Plus announced on 27 September 2003 are organization claims, and the pledge of loyalty to him as leader of the Freedom Front Plus is a claim, not an election or a start."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/50/roles/0/holder_claims/2"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      },
+      {
+       "organization_or_institution_id": "za_iec_n2024_051",
+       "organization_name": "VRYHEIDSFRONT PLUS",
+       "role_id": "za_ff_leader",
+       "holder": {
+        "name": "Pieter Mulder",
+        "attested_on": "2016-11-12",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ff_mulder_not_available_release_20161112"
+        ],
+        "claim_ids": [
+         "za_ff_release_mulder_vf_plus_leader_20161112"
+        ],
+        "note": "Observed on 12 November 2016: the release of that day styles him \"VF Plus-leier\" as he declines to stand again at the triennial elective congress.",
+        "uncertainty": "No start. No end: his decision not to stand again and his successor's designation the same day state no day on which his office ended; the 2013 re-election is a claim."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/50/roles/0/holder_claims/3"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      }
+     ],
+     "registry_terms_not_c01_research": [
+      {
+       "id": "za_ff_pieter_mulder_2001",
+       "from": "2001 (year)",
+       "until": "2016-11-12 (day)"
+      }
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "pieter_mulder-dde556c97c84",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "pieter_mulder-a245f929c659",
+        "from": "2001-06-21",
+        "to": "2016-11-13",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2001-06-21",
+        "id": "pieter_mulder-2f581c5280b6",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2016-11-13",
+        "to": "2027-01-01",
+        "id": "pieter_mulder-074a007d426d",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+       "cartoon:pieter_mulder:2001-12-31:2005-01-01:v1",
+       "cartoon:pieter_mulder:2005-01-01:2010-01-01:v1",
+       "cartoon:pieter_mulder:2010-01-01:2015-01-01:v1",
+       "cartoon:pieter_mulder:2015-01-01:2016-11-12:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "pieter-mulder-2013"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/pieter-mulder-cartoon-2001-v1.txt",
+      "sha256": "3bf5004a8f37214eb77cb5f1d192c75c2ba0653f5f994474b8f230a434b32b1d",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "25c183ba88162c3261e8dee004618a3a1e5b8e842138a1641fb6a7c21d751a12",
+      "git_blob": "670c949f1ac5f23c322bfd73c4b59e1f551f67f7",
+      "bytes": 3598,
+      "lines": 9,
+      "encoding": "ASCII"
+     },
+     "planned_output": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+     "identity_review": [
+      {
+       "finding": "New appearance for an existing person ID with no portrait. The reference is inside the window (16 September 2013) but late in a 15.4-year span; the prompt targets about age 57.",
+       "evidence": [
+        "pieter-mulder-2013"
+       ]
+      },
+      {
+       "finding": "Distinct from his brother corne_mulder (reference corne-mulder-2023).",
+       "evidence": [
+        "pieter-mulder-2013",
+        "corne-mulder-2023"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The birth date was wrong: the preparer used 23 November 1954 (uncited); English and Afrikaans Wikipedia and Wikidata Q770995 give 26 July 1951, so every age in the prompt and the age note was wrong.",
+        "disposition": "Fixed: Wikidata Q770995 P569 1951-07-26 confirmed at assembly. Prompt line 3 now says 'about 49 to 65 years old'; line 5 says he is 62 in the photograph and asks for 'a man in his late fifties (about 57, the middle of the period), about five years younger than the photograph'. The prompt is re-pinned and age_gap_note rewritten (62 in the photograph, 49 to 65 across the window)."
+       },
+       {
+        "problem": "Search completeness: a Commons phrase search returns a sixth Mulder file, File:20130916-OSEC-BW-0001 (9785286411).jpg, missing from rejected_candidates.",
+        "disposition": "Fixed: added to rejected_candidates (same day and minute, same photographer, doubtful PD tag, no date advantage); the search note records both queries. The choice of reference is unchanged."
+       },
+       {
+        "problem": "The rights caveat dated the FlickrReview '2013-09-16/19'; the review was on 19 September 2013 only.",
+        "disposition": "Fixed: the record says FlickrReview (Gbawden) on 2013-09-19."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end; no accepted observation between 2003-09-28 and 2016-11-12."
+     ],
+     "open_items_for_codex": [
+      "Agree the window start 2001-06-21 (first accepted observation), earlier than leadership production's 2001-12-31.",
+      "Decide whether to split the 15.4-year window, for example at 2010-01-01, if a qualifying 2001-2009 photograph is found; the first leadership job relies on 9 to 12 years of declared de-ageing."
+     ]
+    },
+    {
+     "person_id": "corne_mulder",
+     "display_name": "Corné Mulder",
+     "registry_name": "Corné Mulder",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Corné Mulder"
+     ],
+     "requested_window": {
+      "from": "2025-07-16",
+      "to": "2026-09-08",
+      "to_exclusive": true,
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "C01-30 FF Plus Leader holder observations attested 2025-07-16 and 2026-03-25. Registry term za_ff_corne_mulder_20250716 (from day 2025-07-16, until open; not C01 research) to the 7 September 2026 cutoff (exclusive 2026-09-08)."
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "za_iec_n2024_051",
+       "organization_name": "VRYHEIDSFRONT PLUS",
+       "role_id": "za_ff_leader",
+       "holder": {
+        "name": "Corné Mulder",
+        "attested_on": "2025-07-16",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ff_presidency_budget_debate_item_20250716"
+        ],
+        "claim_ids": [
+         "za_ff_item_leader_corne_mulder_20250716"
+        ],
+        "note": "Observed on 16 July 2025: the party's item of that day calls him \"leier van die VF Plus\".",
+        "uncertainty": "No start: no party record found of his election or of the day he took up the office; his designation as parliamentary leader on 22 July 2024 is a different office. No end: none is stated."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/50/roles/0/holder_claims/7"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      },
+      {
+       "organization_or_institution_id": "za_iec_n2024_051",
+       "organization_name": "VRYHEIDSFRONT PLUS",
+       "role_id": "za_ff_leader",
+       "holder": {
+        "name": "Corné Mulder",
+        "attested_on": "2026-03-25",
+        "from": null,
+        "until": null,
+        "sources": [
+         "za_ff_new_members_release_20260325"
+        ],
+        "claim_ids": [
+         "za_ff_release_leader_corne_mulder_20260325"
+        ],
+        "note": "Observed on 25 March 2026: the party's release of that day calls him \"leader of the Freedom Front Plus\".",
+        "uncertainty": "No start and no end: none is stated. No acting leader, vacancy or change was found in Freedom Front Plus records up to the cutoff."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/south-africa.json": "/organizations/50/roles/0/holder_claims/8"
+       },
+       "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+      }
+     ],
+     "registry_terms_not_c01_research": [
+      {
+       "id": "za_ff_corne_mulder_20250716",
+       "from": "2025-07-16 (day)",
+       "until": "open"
+      }
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "corne_mulder-4a324fa308a8",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected partial coverage after rendering, visual review and registration; currently open"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "corne_mulder-e523c7f55fc0",
+        "from": "2025-07-16",
+        "to": "2026-09-08",
+        "status": "needs_source_and_visual_review",
+        "closure": "projected exact coverage after rendering, visual review and registration: from/to equal the requested window; currently open"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2025-07-16",
+        "id": "corne_mulder-6a16e484e40e",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2026-09-08",
+        "to": "2027-01-01",
+        "id": "corne_mulder-3e6946666f87",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_projected_coverage_after_registration": [
+       "cartoon:corne_mulder:2025-07-16:2026-09-08:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "corne-mulder-2023"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/corne-mulder-cartoon-2025-v1.txt",
+      "sha256": "d0d1db4577c23590c2965a2c580f5e43eb8283a4141ad85e2c1d90bfddf8c018",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "ed22a865652872374cdfb4ff1002a21c740638394e2c82068504fc6b44284ee9",
+      "git_blob": "d225aa99e9b03f7163e8ede18ef2afb891b104a0",
+      "bytes": 3330,
+      "lines": 9,
+      "encoding": "UTF-8 (non-ASCII: é)"
+     },
+     "planned_output": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+     "identity_review": [
+      {
+       "finding": "New appearance for an existing person ID with no portrait, from a June 2023 photograph about two years before the window.",
+       "evidence": [
+        "corne-mulder-2023"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per window)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The prompt and record described plain thin dark frames; the reference shows two-tone browline frames (black top bars, thin silver lower rims, bridge and temples).",
+        "disposition": "Fixed: prompt line 5 now reads 'rectangular browline glasses: a thin black bar along the top of each lens, with thin silver lower rims, bridge and temple arms'; appearance_observed is corrected; the prompt is re-pinned. The assembler viewed the reference and confirms the frames."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end."
+     ],
+     "open_items_for_codex": [
+      "Accept the CropTool derivative crop (no FlickrReview of its own; parent reviewed CC BY 2.0) as the reference."
+     ]
+    }
+   ]
+  }
+ ],
+ "excluded_people": [
+  {
+   "person_id": "mangosuthu_buthelezi",
+   "display_name": "Mangosuthu Buthelezi",
+   "status": "not_ready_no_qualifying_photograph",
+   "requested_window": {
+    "from": "2005-01-01",
+    "to": "2019-08-25",
+    "to_exclusive": true
+   },
+   "observations": [
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Mangosuthu Buthelezi",
+      "attested_on": "2012-12-16",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_elective_conference_resolutions_2012"
+      ],
+      "claim_ids": [
+       "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216"
+      ],
+      "note": "Observed on 16 December 2012: the resolutions of the 2012 Elective National Conference, dated that day, mandate \"its President, Prince Mangosuthu Buthelezi\".",
+      "uncertainty": "No start and no end: the resolutions acclaim his re-election but print no day of the vote or of taking office."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/1"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Mangosuthu Buthelezi",
+      "attested_on": "2019-01-20",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_extended_nc_statement_buthelezi_20190120"
+      ],
+      "claim_ids": [
+       "za_ifp_statement_president_buthelezi_20190120"
+      ],
+      "note": "Observed on 20 January 2019: his statement of that day is headed as by the President of the Inkatha Freedom Party.",
+      "uncertainty": "No start and no end: his October 2017 intention not to stand again, recalled here, is a claim and never an end."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/2"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Mangosuthu Buthelezi",
+      "attested_on": "2019-08-24",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_conference_address_buthelezi_20190824"
+      ],
+      "claim_ids": [
+       "za_ifp_conference_address_president_buthelezi_20190824"
+      ],
+      "note": "Observed on 24 August 2019: his address to the 35th National General Conference, datelined that day, is headed as by the President of the Inkatha Freedom Party and is his last as President.",
+      "uncertainty": "No start. No end: his valedictory statement, the result published on 25 August 2019, the \"former IFP President\" reference and the later timeline's \"officially retires\" entry state no day his office ended, or are retrospective; his successor's election is not used as his end, and his death on 9 September 2023 (as President Emeritus) is a separate claim."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/3"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    }
+   ],
+   "jobs": {
+    "pipeline_default_inventory": [
+     {
+      "id": "mangosuthu_buthelezi-571ede3793fd",
+      "from": "1995-01-01",
+      "to": "2027-01-01",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: this window is not ready, nothing is closed"
+     }
+    ],
+    "pipeline_window_scoped": [
+     {
+      "id": "mangosuthu_buthelezi-375dbc8d11f3",
+      "from": "2005-01-01",
+      "to": "2019-08-25",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: not ready"
+     }
+    ],
+    "leadership_production_cartoon_jobs_left_open": [
+     "cartoon:mangosuthu_buthelezi:2005-01-01:2010-01-01:v1",
+     "cartoon:mangosuthu_buthelezi:2010-01-01:2015-01-01:v1",
+     "cartoon:mangosuthu_buthelezi:2015-01-01:2019-08-24:v1"
+    ]
+   },
+   "reason": "No freely licensed, dated photograph of Buthelezi in or near 2005-2019 passes the batch rules. The closest photographs that pass the licence and date rules are the Anefo frames of 10 June 1983 (CC0), 21.6 years before the window starts and 36.2 years before it ends (age 54 against 76 to 90; born 27 August 1928, general biographical knowledge). Drawing him at 76 to 90 from them would invent most of his late-life appearance, so the window was not prepared.",
+   "sources_searched": [
+    "Wikimedia Commons: Category:Mangosuthu Buthelezi (12 files); full-text searches for 'Buthelezi', 'Mangosuthu', 'Inkatha', 'Prince Buthelezi', 'Chief Buthelezi' and the uploader name; depicts haswbstatement:P180=Q554131 (11 files).",
+    "Commons Chinese and Japanese name forms (verifier, correctly encoded UTF-8 re-run): 布騰列齊, 布特雷齊, 布特萊齊, 布特莱齐, 印卡塔 and ブテレジ find no photograph beyond the files already listed (only the two 2018 {{GWOIA}} Taiwan files). The preparer's search-zh.json is a FAILED query (the shell mangled the characters and Commons returned 144,253,653 unrelated hits); it is not evidence.",
+    "Openverse ('Buthelezi' pages 1-7 and further name and party queries).",
+    "Flickr free-licence searches (CC BY and CC BY-SA 2.0 and 4.0, CC0, PDM, US Government work, no known restrictions). These unauthenticated searches match title, description and tag text only and cannot find untitled photographs; Chinese-name Flickr searches (verifier) return 0.",
+    "DVIDS; the GroundUp image gallery (verifier). The EC Audiovisual Service search page renders only through JavaScript and returned nothing readable."
+   ],
+   "rejected_candidates": [
+    "File:周代表唯中為南非印卡塔自由黨（Inkatha Freedom Party, IFP）黨魁布騰列齊親王（Prince Mangosuthu Buthelezi）掛戴獎章.jpg and File:布騰列齊親王（Prince Mangosuthu Buthelezi）致詞.jpg (Taipei Liaison Office in Cape Town, 2018-02-28, {{GWOIA}}, Commons string 'Attribution'): government open licence not on FREE_LICENSES.",
+    "File:Mangosuthu Buthelezi, May 2019.png and its crop (eNCA on YouTube, CC BY 3.0, 2019-05-13): TV news video still, rejected by batch rule.",
+    "File:Buthelezi.jpg, File:Buthelezi2.jpg and File:Buthelezi2 (cropped).jpg (Ernmuhl at lb.wikipedia, CC BY-SA 3.0): undated; only the 2005-11-08 upload date and no EXIF; probably about 1989. The original bytes of File:Buthelezi.jpg were not downloaded (429 back-off exhausted); this does not change the conclusion.",
+    "File:Aankomst en vertrek, politici, portretten, Buthelezi, Mangosuthu, Bestanddeelnr 932-6173.jpg and 932-6172.jpg (1983-06-10, CC0): pass the licence and date rules but are 21.6 to 36.2 years before this window; 932-6173 is the reference for the 1995-2004 window.",
+    "File:The Cabinet Room. President Carter greets Chief Gatsha Buthelezi, Chief Executive Councillor of the Kwa Zulu Tribe of South Africa. - DPLA - 4a22c27aa7761a18a9133a201fbde5b3.jpg and '...Councilor... - DPLA - 7970d32b12a77fb6e826d7a5776a5859.jpg' (White House Staff Photographers, 1977-05-05, 'Public domain'): qualifying licence but 27.7 to 42.3 years before the window (age 48); added from the verifier.",
+    "File:Mangosuthu Buthelezi (1983).jpg and its crop (licence 'CC BY-SA 3.0 nl'): ported licence; outside the window.",
+    "Flickr 4812294269 'Michael Johns and Mangosuthu Buthelezi, Washington, D.C., June 19, 1991' (PDM applied by a person who is in the photograph): 1991, unclear authorship of the PDM claim.",
+    "GovernmentZA (GCIS) Flickr photographs of Buthelezi, 2014-2018 (SoNA debates, Day of Reconciliation 2014, Parliament elects President 2014): CC BY-ND 2.0, ND rejected.",
+    "GroundUp image gallery, Ashraf Hendricks: SONA 2019, 7 February 2019 (photo/1195, photo/1200) and No Confidence Vote, 8 August 2017 (photo/683, 684, 685, 688), captions naming Buthelezi: CC BY-ND 4.0 (ND rejected); press photographs. Added from the verifier.",
+    "Flickr 4760120961 'Contemporary portrait of Chief Mangosuthu Buthelezi' and Flickr 54919591590 (autographed print): all rights reserved.",
+    "File:NY National Guard meet with local Mayor during Shared Accord.jpg (US Army, public domain, 2022): does not depict Buthelezi."
+   ],
+   "repository_files": "None: no reference was copied and no prompt was written for this window.",
+   "verification": {
+    "verifier": "independent Claude verification agent (per window)",
+    "initial_verdict_ok": false,
+    "verdict_on_not_ready": "confirmed independently",
+    "problems_and_dispositions": [
+     {
+      "problem": "The claim that only the 1983 Anefo frames pass the licence and date rules omitted two 1977-05-05 Carter White House photographs ('Public domain').",
+      "disposition": "Fixed: reason reworded to 'the closest photographs that pass'; both Carter files added to rejected_candidates."
+     },
+     {
+      "problem": "search-zh.json comes from a mangled query and sat unlabelled beside the real evidence.",
+      "disposition": "Fixed in the record: labelled a failed query and not ledgered as evidence; the verifier's correctly encoded re-run is recorded under sources_searched. The scratch file itself is left in place, unlisted."
+     },
+     {
+      "problem": "The GroundUp gallery (six in-window CC BY-ND 4.0 press photographs) was missing.",
+      "disposition": "Fixed: added to sources searched and rejected_candidates."
+     },
+     {
+      "problem": "The Flickr negative was stated as exhaustive, but text search cannot find untitled photographs.",
+      "disposition": "Fixed: sources_searched says so, and the options name the US Embassy South Africa stream (101005855@N06, CC BY 2.0) and the Democratic Alliance stream (51152817@N05, mostly CC BY-SA 2.0) as places an in-window photograph could exist; any find needs a caption naming him."
+     },
+     {
+      "problem": "The not-ready record did not cite the accepted holder observations for the window.",
+      "disposition": "Fixed: observations lists holder_claims 1-3 (2012-12-16, 2019-01-20, 2019-08-24), all inside the window."
+     }
+    ]
+   },
+   "search_evidence": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/cat-imageinfo.json",
+     "bytes": 41717,
+     "sha256": "5c4cae4aff65214e3a9593309e4b482e24a9d743f80263c7a03c6412075860ec"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/cand-imageinfo.json",
+     "bytes": 16519,
+     "sha256": "d2c1365939dc0f945a1acce12c73ea9426ecab9bafbde27c946b60addb64089b"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/filepage-Buthelezi.jpg.html",
+     "bytes": 98636,
+     "sha256": "3cddee3c509cb228e27bdd5b57de6685176a465aa2533c3fde30d3b636558afd"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/related-imageinfo.json",
+     "bytes": 16443,
+     "sha256": "b8d3ba3e701235cdd1c933ef73071592aa5e8df44a580466d39fb341682fe99a"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/taiwan-wikitext.json",
+     "bytes": 6919,
+     "sha256": "8f85be8a1d52ac603c5f6c0f23af2fd89c5929af6db3a8289b0ffd75f9326239"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/search-depicts.json",
+     "bytes": 3273,
+     "sha256": "e03603c1b265bb381a300eb9e090bf75490e09725fc29f78fc3225649bc45442"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/search/flickr-search-summary.txt",
+     "bytes": 5323,
+     "sha256": "ee63cdd063d97ce249a852d0d8a2ca0236b3fc744e9625dca40603ec80b8e1f9"
+    }
+   ],
+   "options_for_codex": [
+    "(a) accept Anefo 932-6173 (CC0, 1983-06-10) for this window with an explicitly declared artistic ageing of about 30 years and a new prompt;",
+    "(b) leave the window open until an in-window photograph under a listed licence turns up (for example an IFP or GCIS release under CC BY or CC BY-SA, or a captioned photograph in the US Embassy South Africa or Democratic Alliance Flickr streams);",
+    "(c) let a reserve take the slot (pieter_groenewald or mzwanele_nyhontso; each window needs Codex agreement)."
+   ],
+   "birth_date_note": "Born 27 August 1928 (South African History Online; Wikidata Q554131), general biographical knowledge, not C01 research."
+  },
+  {
+   "person_id": "velenkosini_hlabisa",
+   "display_name": "Velenkosini Hlabisa",
+   "status": "not_ready_no_qualifying_photograph",
+   "requested_window": {
+    "from": "2019-08-24",
+    "to": "2026-09-08",
+    "to_exclusive": true
+   },
+   "observations": [
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Velenkosini Hlabisa",
+      "attested_on": "2019-09-12",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_rally_advisory_20190912"
+      ],
+      "claim_ids": [
+       "za_ifp_advisory_president_hlabisa_20190912"
+      ],
+      "note": "Observed on 12 September 2019: the IFP's media advisory of that day names \"IFP President Velenkosini Hlabisa\".",
+      "uncertainty": "No start: the conference result (published 25 August 2019, \"last night\") and his acceptance address of 24 August 2019 are claims, and no IFP record found states the day he assumed the office. No end: none is stated. His seat in the provincial legislature is a state office and is not used."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/4"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Velenkosini Hlabisa",
+      "attested_on": "2023-09-09",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_statement_passing_buthelezi_20230909"
+      ],
+      "claim_ids": [
+       "za_ifp_statement_president_hlabisa_20230909"
+      ],
+      "note": "Observed on 9 September 2023: the IFP's statement on Buthelezi's death is issued by him as President of the IFP.",
+      "uncertainty": "No start and no end: none is stated. The same byline's legislature office is not used."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/5"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Velenkosini Hlabisa",
+      "attested_on": "2024-08-10",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_extended_nc_resolutions_20240810"
+      ],
+      "claim_ids": [
+       "za_ifp_extended_nc_thanks_president_hlabisa_20240810"
+      ],
+      "note": "Observed on 10 August 2024: the Extended National Council's resolutions of that day thank \"the IFP President Hon. Velenkosini Hlabisa MP\".",
+      "uncertainty": "No start and no end: none is stated. His post as a Minister from 2024 is a state office and never feeds the party office."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/6"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_034",
+     "organization_name": "INKATHA FREEDOM PARTY",
+     "role_id": "za_ifp_president",
+     "holder": {
+      "name": "Velenkosini Hlabisa",
+      "attested_on": "2026-02-01",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_ifp_rally_advisory_abaqulusi_20260201"
+      ],
+      "claim_ids": [
+       "za_ifp_advisory_president_hlabisa_20260201"
+      ],
+      "note": "Observed on 1 February 2026: the IFP's release of that day names \"The President of the Inkatha Freedom Party, Hon. Velenkosini Hlabisa\".",
+      "uncertainty": "No start and no end: none is stated. No National General Conference, acting President or change was found in IFP records up to the cutoff."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/33/roles/0/holder_claims/7"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    }
+   ],
+   "jobs": {
+    "pipeline_default_inventory": [
+     {
+      "id": "velenkosini_hlabisa-92ddaa2ee32a",
+      "from": "1990-01-01",
+      "to": "2027-01-01",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: this window is not ready, nothing is closed"
+     }
+    ],
+    "pipeline_window_scoped": [
+     {
+      "id": "velenkosini_hlabisa-5f182018a18c",
+      "from": "2019-08-24",
+      "to": "2026-09-08",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: not ready"
+     }
+    ],
+    "leadership_production_cartoon_jobs_left_open": [
+     "cartoon:velenkosini_hlabisa:2019-08-24:2020-01-01:v1",
+     "cartoon:velenkosini_hlabisa:2020-01-01:2025-01-01:v1",
+     "cartoon:velenkosini_hlabisa:2025-01-01:2026-09-08:v1"
+    ]
+   },
+   "reason": "No qualifying likeness photograph of Hlabisa exists in the sources searched. Commons holds only an eNCA YouTube video still (2019-05-13, CC BY 3.0) and its crop, rejected as TV stills; every Flickr photograph of him is ND, NC-ND or all rights reserved.",
+   "sources_searched": [
+    "Wikimedia Commons: Category:Velenkosini Hlabisa (two files), searches for Velenkosini, Fiki Hlabisa, Hlabisa IFP, Hlabisa minister, Hlabisa GovernmentZA, Hlabisa Cogta and Chinese-language name forms, Category:Inkatha Freedom Party and Category:Politicians of the Inkatha Freedom Party; Wikidata Q66737976 P18 and the en, af, et and zu Wikipedia articles (all the same eNCA still).",
+    "Flickr: GovernmentZA/GCIS (CC BY-ND 2.0 and 4.0), WMO (CC BY-NC-ND 2.0), COGTA (all rights reserved); free-licence-filtered searches (licences 4,5,8,9,10,11,12) for Hlabisa, Velenkosini, Inkatha Freedom Party, IFP president, IFP Hlabisa, Buthelezi funeral and Prince Buthelezi memorial returned nothing of him.",
+    "DVIDS ('Hlabisa': no results); web searches of US Embassy, State Department, USAID, EC Audiovisual, Kremlin.ru and Russian MFA: nothing. Openverse now needs authentication and was not used."
+   ],
+   "rejected_candidates": [
+    "File:Velenkosini Hlabisa.jpg (eNCA, YouTube 'IFP briefs media on party's performance', 2019-05-13, CC BY 3.0, 260x427): TV/video still; also before the window.",
+    "File:Velenkosini Hlabisa (3x4 cropped).jpg (crop of the same still, 228x301): TV/video still.",
+    "Flickr governmentza 54216757160 and 54312086494 ('Minister Velenkosini Hlabisa arrives at Parliamentary Precinct ahead of the SONA'), 54901495409, 54216359426 and 54901550295: CC BY-ND 2.0, ND not allowed.",
+    "Flickr governmentza 54006262708, 54312278175, 54901550290 and related (GNU party-leader meetings): CC BY-ND 4.0, ND; group photos.",
+    "Flickr worldmeteorologicalorganization 54919591590 and 54570842926: CC BY-NC-ND 2.0.",
+    "Flickr 120502412@N02 (COGTA) 54570842996 and 53866925008: all rights reserved.",
+    "Getty Images, the IFP leader page, the Parliament of South Africa profile and news-agency photos: agency/press or unlicensed.",
+    "File:NY National Guard meet with local Mayor during Shared Accord.jpg (public domain, US Army, 2022-07-15): shows uMhlathuze Mayor X. Ngwezi, not Hlabisa; never substitute another person."
+   ],
+   "repository_files": "None: no reference was copied and no prompt was written for this window.",
+   "verification": {
+    "verifier": "independent Claude verification agent (per window)",
+    "initial_verdict_ok": true,
+    "verdict_on_not_ready": "confirmed",
+    "problems_and_dispositions": []
+   },
+   "search_evidence": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/velenkosini_hlabisa/search-hlabisa.json",
+     "bytes": 8287,
+     "sha256": "fa8ae33b7c8dd6a8e64b7f23341b37b5861f740dff4a70018a3f184b81a7d5ba"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/velenkosini_hlabisa/cat-members.json",
+     "bytes": 197,
+     "sha256": "0cf55babd2409ae056df65b061ff692d28466c0c2ae982e86990d34cf0b997e1"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/velenkosini_hlabisa/commons-api-existing-two.json",
+     "bytes": 4461,
+     "sha256": "1be4ebea3064985f942520489809ed493772b763551532c4599f13f8886715dd"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/velenkosini_hlabisa/flickr-licence-evidence.json",
+     "bytes": 2331,
+     "sha256": "adc2f52d665bbda45bb6dff1ef9e002d6de3448b030107aa6e69a1fa0f8dc822"
+    }
+   ],
+   "options_for_codex": [
+    "(a) a new freely licensed photograph uploaded to Commons with a qualifying licence string (for example taken by a Wikimedian at a public IFP event, or a VRT permission release from the IFP or GCIS for a specific photograph);",
+    "(b) a Commons licence review proving that a GovernmentZA photograph of him was CC BY 2.0 before the stream was relicensed to CC BY-ND (the 2018 photo 47091843382 was reviewed as CC BY 2.0 on Commons but now shows CC BY-ND 2.0); a lead only, not used;",
+    "(c) a reserve (pieter_groenewald or mzwanele_nyhontso) takes the slot."
+   ],
+   "birth_date_note": "Wikipedia gives 4 January 1965 and Wikidata Q66737976 P569 gives 5 January 1965 (general biographical knowledge; the sources disagree). Not used, since no prompt was written."
+  },
+  {
+   "person_id": "kenneth_meshoe",
+   "display_name": "Kenneth Meshoe",
+   "status": "not_ready_no_qualifying_photograph",
+   "requested_window": {
+    "from": "1993-12-31",
+    "to": "2010-01-01",
+    "to_exclusive": true
+   },
+   "observations": [
+    {
+     "organization_or_institution_id": "za_iec_n2024_008",
+     "organization_name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+     "role_id": "za_acdp_president",
+     "holder": {
+      "name": "Kenneth Meshoe",
+      "attested_on": "1999-05-01",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_acdp_home_page_19990501"
+      ],
+      "claim_ids": [
+       "za_acdp_home_page_president_meshoe_19990501"
+      ],
+      "note": "Observed on 1 May 1999: the ACDP home page as served that day presents him as \"President ACDP\".",
+      "uncertainty": "No start: no ACDP record found states the day he became President; the December 1993 founding and his founding of the party are organization claims, and the May 1998 newsletter is month-only. No end: none is stated."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/7/roles/0/holder_claims/0"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_008",
+     "organization_name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+     "role_id": "za_acdp_president",
+     "holder": {
+      "name": "Kenneth Meshoe",
+      "attested_on": "2001-10-31",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_acdp_meshoe_nepad_speech_20011031"
+      ],
+      "claim_ids": [
+       "za_acdp_meshoe_speech_as_president_20011031"
+      ],
+      "note": "Observed on 31 October 2001: his speech on NEPAD is headed as by the President of the African Christian Democratic Party.",
+      "uncertainty": "No start and no end: no ACDP record found states either, and no ACDP election of its President was found."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/7/roles/0/holder_claims/1"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    }
+   ],
+   "jobs": {
+    "pipeline_default_inventory": [
+     {
+      "id": "kenneth_meshoe-d1adc8679437",
+      "from": "1990-01-01",
+      "to": "2027-01-01",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: this window is not ready, nothing is closed"
+     }
+    ],
+    "pipeline_window_scoped": [
+     {
+      "id": "kenneth_meshoe-de5779eb28ae",
+      "from": "1993-12-31",
+      "to": "2010-01-01",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: not ready"
+     }
+    ],
+    "leadership_production_cartoon_jobs_left_open": [
+     "cartoon:kenneth_meshoe:1993-12-31:1995-01-01:v1",
+     "cartoon:kenneth_meshoe:1995-01-01:2000-01-01:v1",
+     "cartoon:kenneth_meshoe:2000-01-01:2005-01-01:v1",
+     "cartoon:kenneth_meshoe:2005-01-01:2010-01-01:v1"
+    ]
+   },
+   "reason": "No qualifying likeness photograph of Meshoe was found for this window or any other date in the sources searched (Commons, Openverse, Flickr with free-licence filters, NARA catalog and Library of Congress). Commons holds only video stills.",
+   "sources_searched": [
+    "Wikimedia Commons: Category:Kenneth Meshoe (four files, of which three images and one audio file); full-text 'Meshoe' (5 hits, one an unrelated PDF).",
+    "Category:African Christian Democratic Party holds one file, 'Ferlon Christians.png' (a different person), and the subcategory Category:Kenneth Meshoe. A Commons search for 'African Christian Democratic Party' (35 hits) returns seat diagrams, the Meshoe screenshots, File:Ferlon Christians.png, File:GOOD party campaign bus.jpg, File:RL31697 (IA RL31697-crs).pdf and File:Behar Herald 15-03-2018.pdf; none is a free photograph of Meshoe. (Corrected from the verifier.)",
+    "Openverse ('Meshoe', three pages).",
+    "Flickr: free-licence search (licences 4,5,7,8,9,10) for 'Meshoe': no matches. The unfiltered 'Kenneth Meshoe' search returns 16 items, including the GovernmentZA, ACDP-SA and other licence-0 photos listed in rejected_candidates. (Corrected from the verifier: the preparer had reported one non-GovernmentZA photo.)",
+    "NARA catalog and Library of Congress (verifier): no digitised or captioned photograph of him. NARA returns Clinton Library textual records from his March 1998 South Africa visit, 'Daily Schedule of the President, February-April 1998 [binder] [2]' (naId 278139083) and 'Schedules for the First Lady March 1998 [2]' (naId 655769046), OCR matches whose context was not inspected: a possible lead to an in-window public-domain White House Photo Office photograph of 1998 (he was about 44)."
+   ],
+   "rejected_candidates": [
+    "File:K Meshoe Toronto 2013.png (378x457 PNG, sha1 2a74ae032a1802940a89f202acd075c1e4887a79; 'CC BY 3.0' by Miroslav Marinov, no LicenseReview): a 'Screenshot' of Vimeo video 84111995, a video still. Commons date 2014-01-14 (the title says Toronto 2013; the recording date is unverified and the source video now returns 404), about 3 to 4 years after the window.",
+    "File:K Meshoe Toronto 2013 (cropped).png (274x366 PNG, sha1 295845e8c3630959d896ff7a6be87251a31b1b71): crop of the same Vimeo screenshot; rejected for the same reasons.",
+    "File:Rev. Kenneth Meshoe MP.jpg (204x283 JPEG, sha1 db3ce88f9c37c249b4a940fb87356b08f0f040b6; 'CC BY 3.0' via {{YouTube CC-BY}}, licence-reviewed by Leoboudv on 2020-05-10; COUNTDOWN TO CHRIST; 2019-11-06): a still from YouTube video QxI7pG65qR4, about 10 years after the window, very low resolution.",
+    "File:Kenneth Meshoe.jpg (Commons curid 147701089, uploaded 2024-04-24 by EuKoketsolion as 'own work', CC0 1.0): deleted 2024-04-25 as a copyright violation of the parliament.gov.za member photo (person-details/214).",
+    "GovernmentZA (GCIS) Flickr photos, e.g. 54311105318 'Dr. Kenneth Meshoe arrives at Parliamentary Precinct ahead of the SONA' and the SONA 2013/2014/2016/2019 sets and 15819970242: CC BY-ND 2.0 (ND); 2013-2025, outside the window.",
+    "Flickr 1353874963 'Kenneth Meshoe' (Michael_Riccio): licence 0, all rights reserved; the photo page returned 404 anonymously.",
+    "Flickr ACDP-SA (83645148@N06), the party's own account: 'Kenneth Meshoe Addresses the ACDP FCOP', 'Kenneth Meshoe addresses the ACDP FCOP 2', 'ACDP President and MPL, Rev Kenneth Meshoe', 'ACDP President Kenneth Meshoe shares a joke during lunch' and 'ACDP President speaking at FCOP': licence 0, all rights reserved, not in FREE_LICENSES; dates not checked. Added from the verifier; a lead for asking the party to relicense specific photographs as CC BY or CC BY-SA.",
+    "Flickr 'acdp election poster' (wooze66) and 'ACDP' (Vaughanoblapski!): licence 0, all rights reserved; not checked for Meshoe. Added from the verifier.",
+    "parliament.gov.za member profile photo (person-details/214): copyrighted Parliament image; not downloaded.",
+    "File:En-us-Kenneth Meshoe from SAF pronunciation (Voice of America).ogg: audio, not a photograph."
+   ],
+   "repository_files": "None: no reference was copied and no prompt was written for this window.",
+   "verification": {
+    "verifier": "independent Claude verification agent (per window)",
+    "initial_verdict_ok": false,
+    "verdict_on_not_ready": "holds",
+    "problems_and_dispositions": [
+     {
+      "problem": "rejected_candidates omitted five ACDP-SA Flickr photos and two other licence-0 ACDP images, and the narrative said the unfiltered search found one photo.",
+      "disposition": "Fixed: listed as licence 0, all rights reserved; the account recorded as a relicensing lead; the narrative corrected."
+     },
+     {
+      "problem": "'Exists for any date' overstated the evidence; the Clinton Library March 1998 lead was not recorded.",
+      "disposition": "Fixed: reworded to 'none found' with the places searched; naId 278139083 and 655769046 recorded as a lead. Status stays not_ready_no_qualifying_photograph."
+     },
+     {
+      "problem": "Two small errors in the ACDP search narrative (search hits and category contents).",
+      "disposition": "Fixed to match the saved JSON (commons-api-category-acdp.json and search-commons-AfricanChristianDemocraticParty.json)."
+     },
+     {
+      "problem": "The Vimeo screenshot's Commons date 2014-01-14 was reported as the recording date although the title says 2013.",
+      "disposition": "Fixed: recorded as 'Commons date 2014-01-14 (title says Toronto 2013; recording date unverified, source video now 404)' with a gap of about 3 to 4 years after this window."
+     }
+    ]
+   },
+   "search_evidence": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/commons-api-imageinfo-candidates.json",
+     "bytes": 8469,
+     "sha256": "c6613a33a95800c0cef26bc26c0f9cf4d0fbf2db2ae2276702fa5fa44150ede8"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/commons-api-category-kenneth-meshoe.json",
+     "bytes": 374,
+     "sha256": "b654b674e203770b352ec6f1ce03d9b388b630147f9e5b8a2c0c3b992d14453d"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/commons-api-deletelog-kenneth-meshoe-jpg.json",
+     "bytes": 668,
+     "sha256": "7ee1e933cbe4711e877bc9c142b38ad5075b7b80a59abc8c7e38205ce9bbaf2f"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/commons-api-logevents-eukoketsolion.json",
+     "bytes": 2182,
+     "sha256": "312876cba1eaa1479c00a121834d2d29b17161e8528ccd5f8e990a30866db019"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/commons-api-pageid-147701089.json",
+     "bytes": 86,
+     "sha256": "281eb6f60e64c7186cb7a413a1e3893e4b519648151fabc05785eb81489fb44f"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/commons-api-category-acdp.json",
+     "bytes": 176,
+     "sha256": "c9139df80118d6e9678979a3d09641d70cf5ac10049f6735dfc2e017ee383ce1"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/search-meshoe-files.json",
+     "bytes": 2667,
+     "sha256": "bb2560f06eb95ae51e8cff8201511aca3b291021dfa3e770e2947ca85da88bc1"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/search-kenneth-meshoe-all.json",
+     "bytes": 2685,
+     "sha256": "f7dbf11b411748939ee382bba036e4237b0a00305c033e6019a4edf6c4d678c5"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/search-commons-AfricanChristianDemocraticParty.json",
+     "bytes": 16584,
+     "sha256": "39cfdd97103a097224e9eeac132032ceb71684b7bf635904b2c00e61ac6163f5"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/openverse-meshoe.json",
+     "bytes": 25229,
+     "sha256": "8fe617bc74486509a4da89dbbe2f1177a196237739fffe683af8df24f63c8ca8"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/openverse-meshoe-p2.json",
+     "bytes": 30535,
+     "sha256": "102f22e5005048181e95098c0d41467c2606f4a947a1702c3188248c1657c793"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/openverse-meshoe-p3.json",
+     "bytes": 5876,
+     "sha256": "accec45659a97c6a862870c1db087902dc1de7afc0acacf2bb17f5e0b05cb045"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/wikidata-search-meshoe.json",
+     "bytes": 500,
+     "sha256": "eddd7c8a6d470c0907a55d9e5bf893c10c176587cb1632fd7b67c4bd66e2a537"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/wikidata-Q3643383-claims.json",
+     "bytes": 18882,
+     "sha256": "0ca21e890081116b718f067ebe4ecbe937bcaad2148981efc39c5461027afb9b"
+    }
+   ],
+   "options_for_codex": [
+    "(a) follow the Clinton Library lead (March 1998 visit) with an archival request for a captioned White House Photo Office frame (US federal work, 'public domain');",
+    "(b) ask the ACDP to release specific ACDP-SA Flickr photographs under CC BY or CC BY-SA;",
+    "(c) let a reserve take the slot (pieter_groenewald or mzwanele_nyhontso; each window needs Codex agreement)."
+   ],
+   "birth_date_note": "Born 1954 (Wikidata Q3643383 P569, year precision; general biographical knowledge, not C01 research): about 39 to 56 across this window."
+  },
+  {
+   "person_id": "kenneth_meshoe",
+   "display_name": "Kenneth Meshoe",
+   "status": "not_ready_no_qualifying_photograph",
+   "requested_window": {
+    "from": "2010-01-01",
+    "to": "2026-09-08",
+    "to_exclusive": true
+   },
+   "observations": [
+    {
+     "organization_or_institution_id": "za_iec_n2024_008",
+     "organization_name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+     "role_id": "za_acdp_president",
+     "holder": {
+      "name": "Kenneth Meshoe",
+      "attested_on": "2014-02-18",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_acdp_manifesto_launch_notice_20140218"
+      ],
+      "claim_ids": [
+       "za_acdp_manifesto_notice_president_meshoe_20140218"
+      ],
+      "note": "Observed on 18 February 2014: the ACDP's manifesto-launch notice names \"ACDP President Dr Kenneth Meshoe\".",
+      "uncertainty": "No start and no end: none is stated; the announced address of 22 February 2014 is prospective and not recorded."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/7/roles/0/holder_claims/2"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_008",
+     "organization_name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+     "role_id": "za_acdp_president",
+     "holder": {
+      "name": "Kenneth Meshoe",
+      "attested_on": "2018-02-14",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_acdp_leader_statement_20180214"
+      ],
+      "claim_ids": [
+       "za_acdp_leader_meshoe_statement_20180214"
+      ],
+      "note": "Observed on 14 February 2018: the ACDP's press article issued by him that day calls him \"ACDP Leader\".",
+      "uncertainty": "No start and no end: none is stated. The leadership page as served on 1 April 2019 is a continuation claim."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/7/roles/0/holder_claims/3"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    },
+    {
+     "organization_or_institution_id": "za_iec_n2024_008",
+     "organization_name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+     "role_id": "za_acdp_president",
+     "holder": {
+      "name": "Kenneth Meshoe",
+      "attested_on": "2026-03-04",
+      "from": null,
+      "until": null,
+      "sources": [
+       "za_acdp_president_statement_lekota_20260304"
+      ],
+      "claim_ids": [
+       "za_acdp_president_meshoe_statement_20260304"
+      ],
+      "note": "Observed on 4 March 2026: the ACDP's statement of that day is headed \"Statement by ACDP President, Rev Kenneth Meshoe MP\".",
+      "uncertainty": "No start and no end: none is stated. No acting President, vacancy or change was found in ACDP statements read between March and September 2026."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/south-africa.json": "/organizations/7/roles/0/holder_claims/4"
+     },
+     "evidence_class": "c01_accepted (CLAUDE-C01-30)"
+    }
+   ],
+   "jobs": {
+    "pipeline_default_inventory": [
+     {
+      "id": "kenneth_meshoe-d1adc8679437",
+      "from": "1990-01-01",
+      "to": "2027-01-01",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: this window is not ready, nothing is closed"
+     }
+    ],
+    "pipeline_window_scoped": [
+     {
+      "id": "kenneth_meshoe-a800a182982b",
+      "from": "2010-01-01",
+      "to": "2026-09-08",
+      "status": "needs_source_and_visual_review",
+      "closure": "open: not ready"
+     }
+    ],
+    "leadership_production_cartoon_jobs_left_open": [
+     "cartoon:kenneth_meshoe:2010-01-01:2015-01-01:v1",
+     "cartoon:kenneth_meshoe:2015-01-01:2020-01-01:v1",
+     "cartoon:kenneth_meshoe:2020-01-01:2025-01-01:v1",
+     "cartoon:kenneth_meshoe:2025-01-01:2026-09-08:v1"
+    ]
+   },
+   "reason": "No qualifying likeness photograph exists for 2010-2026. The only in-window images on Commons are video frames (a 2013 or 2014 Vimeo screenshot and a 2019 YouTube still, both 'CC BY 3.0'), which the batch rejects; the ideal dated GovernmentZA solo photograph (2025-02-06) is CC BY-ND 2.0.",
+   "sources_searched": [
+    "Wikimedia Commons: Category:Kenneth Meshoe, full-text 'Meshoe' (5 hits) and depicts haswbstatement:P180=Q3643383 (3 hits, all video frames).",
+    "Flickr: 0 results for 'Kenneth Meshoe' or 'Meshoe' under the commercial-use-and-modifications CC filter, 'No known copyright restrictions' and 'U.S. Government works'; GovernmentZA photographs checked for licence (CC BY-ND 2.0).",
+    "Openverse (no other free photograph); VOA search (2 articles, no photograph of him)."
+   ],
+   "rejected_candidates": [
+    "File:Rev._Kenneth_Meshoe_MP.jpg (YouTube CC-BY video frame, 'CC BY 3.0', COUNTDOWN TO CHRIST, 2019-11-06, 204x283, licence-reviewed 2020-05-10): a video frame, not a photograph. The best fallback only if Codex or the user rules that a CC BY video frame may serve as an identity reference.",
+    "File:K_Meshoe_Toronto_2013.png (Vimeo screenshot, 'CC BY 3.0', Miroslav Marinov, no LicenseReview; Commons date 2014-01-14, title says 2013; 378x457; the Wikidata P18 image): a video frame.",
+    "File:K_Meshoe_Toronto_2013_(cropped).png (274x366): crop of the same screenshot.",
+    "GovernmentZA Flickr 54311105318 'Dr. Kenneth Meshoe arrives at Parliamentary Precinct ahead of the SONA' (taken 2025-02-06): CC BY-ND 2.0 (checked 2026-10-01), ND not allowed.",
+    "GovernmentZA Flickr group photos 8474332028, 8494684104, 14463208814, 15819970242, 24842385412 and 48101620012 (2013-2019): CC BY-ND 2.0; group or event scenes.",
+    "Flickr 1353874963 'Kenneth Meshoe' (Michael_Riccio): all rights reserved.",
+    "Flickr ACDP-SA (83645148@N06) photos of Meshoe: licence 0, all rights reserved (from the first window's verifier).",
+    "Commons File:Kenneth_Meshoe.jpg (uploaded 2024-04-24): deleted 2024-04-25 as a copyright violation of parliament.gov.za; the parliament portrait itself is not free.",
+    "VOA article 2986996 (2015-10-01): mentions Meshoe, no photograph of him."
+   ],
+   "repository_files": "None: no reference was copied and no prompt was written for this window.",
+   "verification": {
+    "verifier": "independent Claude verification agent (per window)",
+    "initial_verdict_ok": true,
+    "verdict_on_not_ready": "confirmed",
+    "problems_and_dispositions": []
+   },
+   "search_evidence": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/w2010-commons-search-depicts-Q3643383.json",
+     "bytes": 977,
+     "sha256": "724711f8f2bd4ff5540e8122e1a03485cf0391284b105c1ae123507b8aa718ec"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/w2010-flickr-54311105318-extract.json",
+     "bytes": 587,
+     "sha256": "3dc378aea11941c982a34bd994b473ddfc33d362a9a14c76613a532eee7db03e"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/kenneth_meshoe/w2010-openverse-acdp.json",
+     "bytes": 39626,
+     "sha256": "25231588e5c8c6303f246b6017d46d9681e7d438d71a09a551c7c792fc43c354"
+    }
+   ],
+   "options_for_codex": [
+    "(a) rule whether a CC BY video frame may serve as an identity reference (the batch rules say no); if yes, File:Rev._Kenneth_Meshoe_MP.jpg (2019, in the window) is the best fallback, though only 204x283;",
+    "(b) ask the ACDP or GCIS to release a specific photograph under CC BY or CC BY-SA;",
+    "(c) let a reserve take the slot."
+   ],
+   "birth_date_note": "Born 1954 (Wikidata Q3643383, year precision; general biographical knowledge): about 56 to 72 across this window."
+  }
+ ],
+ "reserves_not_prepared": [
+  {
+   "person_id": "pieter_groenewald",
+   "requested_window": {
+    "from": "2016-12-27",
+    "to": "2025-07-16",
+    "to_exclusive": true,
+    "window_status": "needs_codex_agreement"
+   },
+   "accepted_observations": "C01-30 FF Plus Leader attested 2016-12-27, 2020-04-02, 2024-08-22 (/organizations/50/roles/0/holder_claims/4-6).",
+   "basis": "No registry term: the registry declares an FF gap 2016-11-12 to 2025-07-16. First accepted observation to Corné Mulder's first, used only as an appearance boundary.",
+   "jobs": {
+    "pipeline_window_scoped": "pieter_groenewald-d4a731ce349a",
+    "pipeline_default_inventory": "pieter_groenewald-04ce91397002",
+    "leadership_production_cartoon_jobs": "none exist (no registry term)"
+   },
+   "photo_lead": "'Pieter Groenewald.jpg', Commons upload dated 2018-11-14, CC BY-SA 4.0 (planner's Commons API lead; unverified).",
+   "planned_prompt": "tools/avatars/person-prompts/pieter-groenewald-cartoon-2016-v1.txt (not written)",
+   "status": "not prepared in this task; preparing a reserve needs Codex agreement on its window first"
+  },
+  {
+   "person_id": "mzwanele_nyhontso",
+   "requested_window": {
+    "from": "2020-02-15",
+    "to": "2026-09-08",
+    "to_exclusive": true,
+    "window_status": "needs_codex_agreement"
+   },
+   "accepted_observations": "C01-32 PAC President attested 2020-02-15, 2021-07-19, 2021-12-31, 2026-08-29; the research records the leadership as disputed.",
+   "basis": "No registry term (registry PAC gap from 1996). First accepted observation to the cutoff.",
+   "jobs": {
+    "pipeline_window_scoped": "mzwanele_nyhontso-d8537325291e",
+    "pipeline_default_inventory": "mzwanele_nyhontso-c2c1d5472e9d",
+    "leadership_production_cartoon_jobs": "none exist (no registry term)"
+   },
+   "photo_lead": "none; the planner found no Commons photograph.",
+   "planned_prompt": "tools/avatars/person-prompts/mzwanele-nyhontso-cartoon-2020-v1.txt (not written)",
+   "status": "not prepared in this task; preparing a reserve needs Codex agreement on its window first"
+  }
+ ],
+ "deferred_batch_2": {
+  "reason": "The pinned C01 gap ledger refreshed at 1fffb983 classifies the C01-09 state-office, C01-16 ANC-party-office and C01-21 deputy-state-office observations separately as c01_integrated_pending. This review grants none of those offices historical acceptance. Proposed batch-2 windows remain a later claim, to be checked against each office's current acceptance record:",
+  "windows": [
+   {
+    "person_id": "f_w_de_klerk",
+    "from": "1995-01-01",
+    "to": "1997-09-01",
+    "pipeline_window_scoped": "f_w_de_klerk-0cced3f8af7c"
+   },
+   {
+    "person_id": "nelson_mandela",
+    "from": "1991-07-05",
+    "to": "1999-06-16",
+    "pipeline_window_scoped": "nelson_mandela-c06c52ed048c"
+   },
+   {
+    "person_id": "thabo_mbeki",
+    "from": "1994-05-25",
+    "to": "2008-09-25",
+    "pipeline_window_scoped": "thabo_mbeki-11b2907e7522"
+   },
+   {
+    "person_id": "jacob_zuma",
+    "from": "1999-06-17",
+    "to": "2018-02-14",
+    "pipeline_window_scoped": "jacob_zuma-3c08a45bb4a1"
+   },
+   {
+    "person_id": "cyril_ramaphosa",
+    "from": "2014-05-30",
+    "to": "2026-09-08",
+    "pipeline_window_scoped": "cyril_ramaphosa-7933d998e312"
+   }
+  ],
+  "job_ids_file": {
+   "path": "D:/spheres-scratch/za-cast/assemble/blocked-window-jobs.json",
+   "bytes": 2596,
+   "sha256": "60b85982ebbfa6c0a8f27801936fa1ab818ba32060928abc641c1de8ad8deba8"
+  }
+ },
+ "likeness_references": [
+  {
+   "id": "mangosuthu-buthelezi-1983",
+   "person_id": "mangosuthu_buthelezi",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+   "commons_title": "File:Aankomst en vertrek, politici, portretten, Buthelezi, Mangosuthu, Bestanddeelnr 932-6173.jpg",
+   "archival_record_url": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ad2a7582-d0b4-102d-bcf8-003048976d84",
+   "archival_handle": "https://proxy.handle.net/10648/ad2a7582-d0b4-102d-bcf8-003048976d84",
+   "retrieved_at": "2026-10-01T23:32:33Z",
+   "retrieved_at_note": "File write time of the Commons original in the refs folder. It was fetched by a batch agent after the preparer's 429 back-offs ended; the request time itself was not logged. Its sha1 equals the Commons API sha1, so the bytes are the Commons original.",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6173.json",
+    "bytes": 4955,
+    "sha256": "19d8d6d979bb75692313ed9fe1a6821623ebc18ba6320c40b79f181e303bc16d"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-file-page-anefo-932-6173.html",
+    "bytes": 104977,
+    "sha256": "a931ae88ab964cd708dcc295d2465e9a026bec5e88b2258a1a48e7549844692e"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/nationaal-archief-record-932-6173.html",
+     "bytes": 27583,
+     "sha256": "d10d62cf25c72ea6f11292fc1eb8a6285432941c1e63e963a474cdc2f94dc688",
+     "content": "Nationaal Archief record page for 2.24.01.05 item 932-6173 (dcterms_date 1983-06-10; rightsHolder 'Nationaal Archief, CC0'); retrieved 2026-10-01T22:52:25Z by the preparer."
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6172-6173.json",
+     "bytes": 10190,
+     "sha256": "9bdd8c0dc39182c0621f121360dbae0e1feab734a6f48fec1acb67d68222c521",
+     "content": "Commons API imageinfo for both CC0 frames 932-6172 and 932-6173 (candidate comparison); preparer."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+    "bytes": 1221637,
+    "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Aankomst_en_vertrek%2C_politici%2C_portretten%2C_Buthelezi%2C_Mangosuthu%2C_Bestanddeelnr_932-6173.jpg",
+    "commons_sha1": "52aa2f789cb21228c3eea40ff2f3f41c627fe841"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+   "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+   "bytes": 1221637,
+   "asset_byte_identical_to_original": true,
+   "width": 2467,
+   "height": 3685,
+   "mode": "RGB",
+   "format": "JPEG",
+   "content": "black-and-white photograph (24 x 36 mm negative) stored as a 3-channel RGB JPEG",
+   "photograph_date": "1983-06-10",
+   "depiction_date": {
+    "kind": "day",
+    "value": "1983-06-10"
+   },
+   "date_precision": "Exact day. The Nationaal Archief record gives dcterms_date 1983-06-10 (reportage: Chief Mangosuthu Gatsha Buthelezi arriving at Schiphol). Commons extmetadata DateTimeOriginal is 1983-06-10 and the file page gives Datum '10 juni 1983'.",
+   "creator": "Rob Bogaerts / Anefo",
+   "credit": "Rob Bogaerts / Anefo; Nationaal Archief, Fotocollectie Anefo (archive 2.24.01.05), item 932-6173, 10 June 1983 (Chief Mangosuthu Gatsha Buthelezi arriving at Schiphol); CC0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "source_license_statement": "Commons extmetadata for this file: LicenseShortName 'CC0', License 'cc0', LicenseUrl 'http://creativecommons.org/publicdomain/zero/1.0/deed.en', UsageTerms 'Creative Commons Zero, Public Domain Dedication'; the file page ({{CC-zero}}) says the file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication. The Nationaal Archief record gives dcterms_rightsHolder 'Nationaal Archief, CC0'. 'cc0' and 'cc0 1.0' are both in FREE_LICENSES; the licence is recorded exactly as Commons states it.",
+   "rights_statement": "Retained source statement: CC0 (Creative Commons CC0 1.0 Universal), rights holder Nationaal Archief. Anefo is the historical Dutch photo agency whose collection the Nationaal Archief holds and has released under CC0; this is an archival public-domain dedication, not a live press-agency licence.",
+   "byte_source_note": "Changed at assembly. The preparer could not download the Commons original (HTTP 429 from 22:52Z to 23:22Z) and copied the Nationaal Archief's own on-the-fly iipsrv JPEG rendition of the same negative (grayscale, 674,919 bytes, sha256 0f6fdf41087b687c4cdbfb9eca641791fb684236cc21790d8a39b64b990eb5ba). A batch agent later retrieved the Commons original into the same refs folder; its sha1 matches the Commons API sha1 (52aa2f78...). The assembler replaced the untracked repository copy with the Commons original bytes, unchanged, so the reference is stable and verifiable against Commons. The frame, licence and prompt are unchanged.",
+   "alternate_bytes_not_used": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/NL-HaNA_2.24.01.05_0_932-6173-default.jpg",
+     "bytes": 674919,
+     "sha256": "0f6fdf41087b687c4cdbfb9eca641791fb684236cc21790d8a39b64b990eb5ba",
+     "url": "https://service.archief.nl/gaf/api/file/v1/default/b361bda5-c5e5-4528-be04-8aaeb843442a",
+     "retrieved_at": "2026-10-01T23:07:56Z",
+     "note": "Nationaal Archief default JPEG rendition (iipsrv, grayscale mode L, 2467x3685) of 932-6173; the preparer's original copy. Same frame: mean absolute difference 0.63/255 against the Commons thumbnail, 82.25 for frame 932-6172 as a control."
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/NL-HaNA_2.24.01.05_0_932-6173.tif",
+     "bytes": 9104920,
+     "sha256": "445f28e07264a67a51097903e1ec903339963c3ad398ee45072b6e218f369f7f",
+     "url": "https://service.archief.nl/gaf/api/file/v1/original/b361bda5-c5e5-4528-be04-8aaeb843442a",
+     "retrieved_at": "2026-10-01T23:03:16Z",
+     "note": "Uncompressed grayscale TIFF master (Leaf Aptus 22 scan). Evidence only; TIFF is not an accepted reference format."
+    }
+   ],
+   "people_in_frame": "Buthelezi alone: head-and-chest portrait, smiling at the camera, in a dark suit, white shirt, diagonal-striped tie and patterned pocket square. Behind him is a dark, blurred airport hall with bright windows, which the prompt excludes.",
+   "appearance_observed": "Broad rounded face with full cheeks. High rounded forehead. Short, tightly curled dark hair with the hairline receding slightly at the temples. Large squarish aviator-style glasses with thin light metal frames and a straight double bridge. Thin moustache curving down into a short close beard along the jaw, fuller on the chin. Warm closed-mouth smile.",
+   "age_gap_note": "Photograph of 10 June 1983: 4,223 days (about 11.6 years) before the window's first day (1995-01-01) and 7,875 days (about 21.6 years) before its last day (2004-12-31). Buthelezi was born on 27 August 1928 (general biographical knowledge, not C01 research; the registry has no birth date): South African History Online, https://sahistory.org.za/people/chief-mangosuthu-gatsha-buthelezi ('Born 27 August 1928', checked at assembly on 2026-10-01), and Wikidata Q554131 P569 1928-08-27. He is 54 in the photograph and 66 to 76 in the window. The prompt asks for a man of about 70 with the same features, glasses and beard shape, a slightly fuller and softer face, a few lines, and moderate salt-and-pepper grey in hair, moustache and beard, and says this older treatment and the grey are artistic interpretations, not attested by a dated 1995-2004 photograph. Colours are artistic because the photograph is black and white.",
+   "limitation": "The reference is 11.6 to 21.6 years before the window. Searched: Wikimedia Commons (Category:Mangosuthu Buthelezi, full-text 'Buthelezi' and 'Mangosuthu OR Gatsha', depicts P180=Q554131), web searches and the sibling agent's Openverse and Flickr result files; the verifier searched the George H. W. Bush Library digital research room; the assembler fetched NARA catalog record 543950122. In those sources no qualifying single-subject photograph from 1984 to 2004 was found. Closer public-domain US federal material exists only as Bush White House contact sheets of 28 February 1990 and 20 June 1991, which cannot be used unchanged (see rejected candidates); Commons also holds two Carter White House staff photographs of 5 May 1977 (Public domain), further from the window than 1983. The EC Audiovisual Service was not searched (JavaScript-only search page).",
+   "rejected_candidates": [
+    "NARA / George H. W. Bush Library, White House Photo Office roll WHPO-P22804 (NAID 543950122; record fetched by the assembler 2026-10-01, D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/assemble-nara/naid-543950122.json; useRestriction and accessRestriction 'Unrestricted'; 20 June 1991; photographer Susan Biddle per the sheet label; US federal work, public domain): the digital object 41-AV-P22804-06201991.jpg (3141x4340, 5,807,770 bytes, sha256 ca873d52f261cf433a43b900cced8547bcd363f8baf9e3dd8ab3a7e99f53b9e9) was downloaded and inspected. It is a scanned contact sheet: mostly unexposed black film, six small colour frames (about 580x380 px each) of the luncheon in the Old Family Dining Room with a dozen or more people at the table, in which Buthelezi's face is a few dozen pixels, plus printed film-edge text ('KODAK 5028 VPH', frame numbers), a caption label 'Lunch with Chief Buthelezi' and a label 'P022804 20 JUN 91 SUSAN BIDDLE'. It cannot serve unchanged as image 2 (no image may be cropped or edited) and its printed text would risk text in the render.",
+    "NARA / Bush Library rolls WHPO-P22805, P22806, P22807, P22809 and P22810 (20 June 1991; Oval Office meeting, South Lawn walk, tour line, Red Room, Diplomatic Reception Room and departure statements per the catalog's roll description): the same kind of item, a scanned contact sheet of a whole film roll with other people (Bush, Quayle, Scowcroft, Gates, Sununu) and printed labels. Not downloaded; rejected by format for the same reason. The verifier counted 'seven' 1991 sheets but listed these six roll numbers with P22804.",
+    "NARA / Bush Library rolls WHPO-P10615 (NAID 502919534) and WHPO-P10616 (28 February 1990, photographer Biddle per the verifier): scanned contact sheets; not downloaded; rejected by format for the same reason.",
+    "File:Aankomst en vertrek, politici, portretten, Buthelezi, Mangosuthu, Bestanddeelnr 932-6172.jpg (Rob Bogaerts / Anefo, 1983-06-10, CC0): qualifying licence and the same day, but second choice. It is a three-quarter-length standing shot with a smaller face; he holds rolled newspapers with a legible tabloid headline (text risk) and a walking stick. Frame 932-6173 is the clearer single-subject face.",
+    "File:Mangosuthu Buthelezi (1983).jpg and File:Mangosuthu Buthelezi (1983) (cropped).jpg: the same Anefo series (handle ad2a7438, i.e. 932-6172) carrying the ported licence string 'CC BY-SA 3.0 nl', which is not in FREE_LICENSES.",
+    "File:Buthelezi.jpg, File:Buthelezi2.jpg and File:Buthelezi2 (cropped).jpg (Ernmuhl at lb.wikipedia, 'CC BY-SA 3.0'): the only date is the lb.wikipedia upload date 2005-11-08 and there is no EXIF, so the photograph date is unknown. A re-photographed colour print of Buthelezi seated among about nine people described as Members of the European Parliament; the same uploader's companion upload of MEPs visiting Jonas Savimbi is self-dated 1989, so this is probably from the 1980s. Not a dated photograph.",
+    "Flickr 4812294269 'Michael Johns and Mangosuthu Buthelezi, Washington, D.C., June 19, 1991' (michaeldjohns, Public Domain Mark 1.0; not on Commons): 432x291, two people, unnamed photographer at a Heritage Foundation event, and the PDM was applied by an uploader who appears in the photograph, not by a shown rights holder. Personal account.",
+    "File:Mangosuthu Buthelezi, May 2019.png and its crop (eNCA on YouTube, CC BY 3.0, 2019-05-13): TV or video stills are rejected; also 14 or more years after the window.",
+    "File:周代表唯中為南非印卡塔自由黨（Inkatha Freedom Party, IFP）黨魁布騰列齊親王（Prince Mangosuthu Buthelezi）掛戴獎章.jpg and File:布騰列齊親王（Prince Mangosuthu Buthelezi）致詞.jpg (Taipei Liaison Office in Cape Town, 2018-02-28, {{GWOIA}}): the Commons licence string 'Attribution' is not in FREE_LICENSES; also 13 or more years after the window.",
+    "File:The Cabinet Room. President Carter greets Chief Gatsha Buthelezi, Chief Executive Councillor of the Kwa Zulu Tribe of South Africa. - DPLA - 4a22c27aa7761a18a9133a201fbde5b3.jpg and the '...Councilor... - DPLA - 7970d32b12a77fb6e826d7a5776a5859.jpg' variant (White House Staff Photographers, 1977-05-05, 'Public domain'): qualifying licence, but about 17.7 to 27.7 years before the window, further than the 1983 frame. Not fetched.",
+    "GovernmentZA Flickr photographs of Buthelezi (2011-2020): 'CC BY-ND 2.0' (ND), and outside the window."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  },
+  {
+   "id": "constand-viljoen-1984",
+   "person_id": "constand_viljoen",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Constand_Viljoen_1984.jpg",
+   "commons_title": "File:Constand Viljoen 1984.jpg",
+   "retrieved_at": "2026-10-01T23:20:49Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-api-viljoen-candidates.json",
+    "bytes": 20323,
+    "sha256": "31e9d42e9c392147efc9cd3cde430e62c824b000e179985679af7a827b36259f"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-file-page-constand-viljoen-1984.html",
+    "bytes": 99828,
+    "sha256": "32165eac53309e1460bfd71bdbb72e7464845b1ee264abc1ec2b9ec3ba8c1f70"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-category-constand-viljoen.json",
+     "bytes": 279,
+     "sha256": "c77d87c7ac8d5590bed46e06a4c1a3d9d898fa2d186a94887ed15c7f7a605047",
+     "content": "Commons Category:Constand Viljoen listing (three files); preparer."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/Constand_Viljoen_1984.original.jpg",
+    "bytes": 35923,
+    "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Constand_Viljoen_1984.jpg",
+    "commons_sha1": "bc9a2690506e4be3c18395789f0bc90c46a7bf4d"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+   "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+   "bytes": 35923,
+   "asset_byte_identical_to_original": true,
+   "width": 383,
+   "height": 388,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "1984-09",
+   "depiction_date": {
+    "kind": "month",
+    "value": "1984-09"
+   },
+   "date_precision": "Month only. The Commons description reads 'Constand Viljoen in September 1984' and the Flickr parent caption places it at P. W. Botha's inauguration as State President in September 1984. The Commons/Flickr 'Date' 2011-07-24 23:03:28 is the scan or upload timestamp, not the photograph date. Ian Barbour's two captions disagree on when he was Viljoen's driver (1984 or 1985); the event date is unaffected.",
+   "creator": "Ian Barbour",
+   "credit": "Ian Barbour (Flickr: barbourians), September 1984, CC BY-SA 2.0, via Wikimedia Commons: 'Constand Viljoen 1984.jpg', a crop by Commons user TDKR Chicago 101 (CropTool, 13 September 2020) of '1984 PW Botha inspects the guard of honour.jpg' (Flickr 5971221747, uploaded by Flickr upload bot for Gbawden on 19 September 2013 and confirmed CC BY-SA 2.0 on that date). Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY-SA 2.0', License 'cc-by-sa-2.0', LicenseUrl 'https://creativecommons.org/licenses/by-sa/2.0' (Creative Commons Attribution-Share Alike 2.0 Generic). The parent's Flickr licence was confirmed by the Flickr upload bot review on 19 September 2013; the crop inherits it and carries no separate review.",
+    "rights_statement": "Retained source statement: CC BY-SA 2.0, author Ian Barbour. Barbour's sibling Flickr caption (5971221735, same event) says he was General Viljoen's driver and sat in the front row, which supports that he took these photographs himself. Registration must explicitly offer the cartoon adaptation and any copyrightable contributions under CC BY-SA 2.0, retain attribution and identify the adaptation; a generated label and source licence alone do not record this obligation.",
+    "required_derivative_license": "CC BY-SA 2.0",
+    "required_derivative_license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+   "people_in_frame": "A tight head-and-collar crop in which Viljoen's is the only complete face, seen in three-quarter view with eyes cast down, wearing a general's peaked cap with red band and cap badge. At the top-left and left edge are the out-of-focus partial face (cheek and ear) and gold-corded shoulder of a guardsman; at the right edge a partly visible figure, mostly pale with one dark green band; foliage behind. All of these are excluded by the prompt. The verifier found the partial face, which the preparer's record omitted; the assembler confirmed it on the reference. Identity was cross-checked by the preparer against the uncropped parent and the sibling frontal frame 5971221735.",
+   "appearance_observed": "Lean long face with defined cheekbones and lined, slightly hollow cheeks, long straight nose, thin lips in a firm straight closed mouth, strong chin and jaw, light grayish eyebrows over deep-set eyes, close-trimmed silver-white hair at the temples and sides, fair weathered skin, clean shaven, no glasses.",
+   "age_gap_note": "Viljoen was born on 28 October 1933 (general biographical knowledge, not C01 research; the registry has no birth date): Wikidata Q2568741 P569 1933-10-28, checked at assembly on 2026-10-01. He was about 50 in the September 1984 photograph and 60 to 67 across the window (1994-03-31 to 2000-12-31). The photograph is about 9.5 years before the window starts and about 16.3 years before it ends; the prompt discloses this and asks for a man of 60 to 67 with deeper lines around the eyes and mouth, keeping the same face structure and silver-white hair. The cap hides his crown, so the hair above the temples is an artistic interpretation; the open eyes, civilian suit, standing body, hands, trousers and shoes are artistic extensions of a small head-and-collar crop. The military cap, badge and uniform are explicitly excluded.",
+   "limitation": "Small (383x388), month-dated crop taken 9.5 to 16 years before the window, in military dress, three-quarter view with downcast eyes, with a partial second face at the top-left edge. No qualifying 1994-2000 photograph was found on Commons, Openverse, the NARA catalog (14 textual records only) or the Clinton Digital Library.",
+   "search_evidence": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/search-constand-viljoen.json",
+     "bytes": 1221,
+     "sha256": "769edfef6a916c6e41924b9703dc0044c30149730388dbdb33a5f562532c6fa7"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/search-viljoen.json",
+     "bytes": 38049,
+     "sha256": "9492dd445babfa9f5abb66d9baa6ef5b77af9a76b61fe46c8cfa3758a19a4c41"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/search-freedom-front.json",
+     "bytes": 19099,
+     "sha256": "38876867ecbde4d1d226b6b1b62c37818f3f088397ceffa292f09b52b953cfb7"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/openverse-constand-viljoen.json",
+     "bytes": 9733,
+     "sha256": "dd06274304a1e38d2212ff6de49607ebd491c35696eddb0c39b77a37e08d4c49"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/openverse-viljoen-freedom-front.json",
+     "bytes": 70,
+     "sha256": "90565712330a0b8758319de253863c5e42753136da866168c19628cbf3c7d136"
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/nara-catalog-search-constand-viljoen.json",
+     "bytes": 329361,
+     "sha256": "9da3b5aa9e98b451ddf6c07ae5e55f21ebabc434ce7ccdee659286c5acd1f94a"
+    }
+   ],
+   "rejected_candidates": [
+    "File:Constand Viljoen c. 1985.png (CC BY-SA 4.0, 'Own work' by Commons user Karsten buffalo, 300x388; the Wikidata P18 image): a digitised family-held print; the uploader is not shown to be the photographer, so the licence provenance is weak; the year is approximate.",
+    "File:1984 PW Botha inspects the guard of honour.jpg (Ian Barbour, CC BY-SA 2.0, 3543x2367, September 1984): the uncropped parent of the chosen file. P. W. Botha is the main subject and Viljoen is one of many people; recorded as provenance.",
+    "Flickr 6601307851 'General Constand Viljoen' (barbourians, CC BY-SA 2.0, 732x1024): an official SADF portrait print that Barbour says Viljoen gave him and signed. Barbour is not the photographer, so the CC licence does not come from the rights holder; the print carries a signature (text) and full uniform. Not on Commons.",
+    "Flickr 5971221735 '1984 PW Botha inaugurated as State President of SA' (barbourians, CC BY-SA 2.0, same event): a group of five; Viljoen is frontal but in uniform with his face shaded by the cap brim. Not on Commons; identity cross-check only.",
+    "GovernmentZA/GCIS Flickr, Kremlin.ru, EC Audiovisual, Nationaal Archief/Anefo and US federal photographs: no Viljoen photograph was found through the Commons and Openverse indexes or the NARA catalog. GovernmentZA's usual CC BY-ND 2.0 would not qualify anyway."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  },
+  {
+   "id": "pieter-mulder-2013",
+   "person_id": "pieter_mulder",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+   "commons_title": "File:20130916-OSEC-BW-0002 Pieter Mulder.jpg",
+   "upstream_flickr_url": "https://www.flickr.com/photos/41284017@N08/9785284212",
+   "retrieved_at": "2026-10-01T22:58:12Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-imageinfo-20130916-OSEC-BW-0002.json",
+    "bytes": 10514,
+    "sha256": "0dfa45cffd67104dc9e898b60dbf08c6e19e1787c09f87166e23e35e076e9bb7"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-category-Pieter_Mulder.json",
+     "bytes": 6500,
+     "sha256": "01b1168a42ae79e5315b76387091491b83c493daca32ecc948f38aab2b8dd2c1",
+     "content": "Commons API listing of Category:Pieter Mulder (five files, all USDA, all 16 September 2013); preparer, retrieved 2026-10-01T22:48:00Z."
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-search-Pieter_Mulder.json",
+     "bytes": 448,
+     "sha256": "7c200b839285e13e222d160f9c60f2cabf45620c0f3422d9930723188ecbb548",
+     "content": "Commons File-namespace search for Pieter Mulder / Freedom Front / Vryheidsfront: one hit, the chosen file; preparer, retrieved 2026-10-01T22:58:53Z."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+    "bytes": 1547241,
+    "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+    "commons_sha1": "616f445fcd977ade04db604d81383813bdb9ab5b"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+   "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+   "bytes": 1547241,
+   "asset_byte_identical_to_original": true,
+   "width": 3000,
+   "height": 2000,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "2013-09-16",
+   "depiction_date": {
+    "kind": "day",
+    "value": "2013-09-16"
+   },
+   "date_precision": "Day stated in the Commons/Flickr description ('in Johannesburg, South Africa on Sep. 16, 2013') and in the embedded EXIF DateTimeOriginal 2013:09:16 09:14:34 (Nikon D600); the two agree.",
+   "creator": "Blake Woodhams (photographer, 'Photo by Blake Woodhams'; EXIF Artist 'blakewoodhams.co.za') for the U.S. Department of Agriculture, published on the USDA Flickr account 41284017@N08",
+   "credit": "U.S. Department of Agriculture, photo by Blake Woodhams, '20130916-OSEC-BW-0002' (Flickr 9785284212), Johannesburg, 16 September 2013; CC BY 2.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source_license_statement": "Commons extmetadata LicenseShortName 'CC BY 2.0' (License cc-by-2.0, UsageTerms 'Creative Commons Attribution 2.0'). FlickrReview: uploaded by Flickr upload bot (for Gbawden) and confirmed under the indicated licence on 19 September 2013.",
+   "rights_statement": "Retained source statement: CC BY 2.0 as published by the U.S. Department of Agriculture on its official Flickr stream and confirmed by Commons FlickrReview (Gbawden) on 2013-09-19. The embedded EXIF Copyright reads 'by BWPeventphotography.co.za': the photograph was taken by a Johannesburg event photographer for the USDA trade mission and released by USDA; it is not a wire-agency or press photograph. Not treated as a public-domain US federal work.",
+   "people_in_frame": "Mulder alone, waist-up, standing behind a wooden lectern and speaking into a microphone, holding papers; two water bottles and a glass on the lectern; gold damask wallpaper and a striped curtain behind; warm orange stage lighting. All of these are excluded by the prompt.",
+   "appearance_observed": "Short thick steel-gray hair with darker strands, brushed up and back with a slight side part; thin silver-gray metal rectangular glasses; gray fairly heavy brows; broad full rounded face, heavy cheeks, soft jowls, slight double chin; broad nose with rounded tip; fair ruddy complexion; clean shaven; heavy-set build; dark navy suit, light blue shirt, red tie with small blue dots. Eye colour is not legible behind the glasses and is not stated in the prompt.",
+   "age_gap_note": "Photograph of 16 September 2013, inside the window: 4,470 days (about 12.2 years) after the window start 2001-06-21 and 1,153 days (about 3.2 years) before its last day 2016-11-12. Mulder was born on 26 July 1951 (general biographical knowledge, not C01 research: Wikidata Q770995 P569 1951-07-26, checked at assembly on 2026-10-01; English and Afrikaans Wikipedia per the verifier). He is 62 in the photograph and 49 to 65 across the window. The prompt asks for a man in his late fifties (about 57, the middle of the period), about five years younger than the photograph, keeping the photographed gray hair, glasses and full face. The 2001-12-31 to 2005-01-01 leadership job (ages 50 to 53) relies on de-ageing of about 9 to 12 years; his hair may have been less gray then, but no qualifying earlier photograph exists to check, so the prompt invents no other hair colour. The standing body below the chest, hands, trousers and shoes are artistic extensions of a waist-up lectern photograph.",
+   "limitation": "A single qualifying photograph from late in a 15.4-year window; no 2001-2012 or 2014-2016 photograph of Mulder with a FREE_LICENSES licence string was found on Commons. GovernmentZA/GCIS Flickr was not searched in this pass (its photographs are usually CC BY-ND).",
+   "search_note": "The preparer's combined Commons File-namespace search (Pieter Mulder / Freedom Front / Vryheidsfront) returned only the chosen file. The verifier's phrase search \"Pieter Mulder\" in namespace 6 returns six Mulder files: the five in Category:Pieter Mulder and File:20130916-OSEC-BW-0001 (9785286411).jpg, which is not in the category.",
+   "rejected_candidates": [
+    "File:20130916-OSEC-BW-0002 Pieter Mulder (cropped).jpg (740x1035, CC BY 2.0, 2013-09-16): a Commons crop of the same photograph; the full-resolution original was used.",
+    "File:20130916-OSEC-BW-0001 (9785286411).jpg (3000x2000, 2013-09-16 09:14, Mulder at the same lectern, 'Public domain' PD-USDA tag, not in Category:Pieter Mulder; added from the verifier): same day and minute and the same photographer, so no date advantage; the public-domain tag is doubtful for a contractor's photograph.",
+    "File:SA Deputy Minister of Agriculture Pieter Mulder with US Agriculture Deputy Secretary Krysta Harden.jpg (2000x3000, 'Public domain', 2013-09-16 10:08): two people shaking hands, same day and photographer, no date advantage; the public-domain tag is doubtful for a contractor's photograph (EXIF artist blakewoodhams.co.za).",
+    "File:SA Deputy Minister of Agriculture Pieter Mulder.jpg (860x1108, 'Public domain', a crop of the handshake photograph): same day, lower resolution, same doubtful public-domain basis.",
+    "File:20130916-OSEC-BW-0007 (9785556533).jpg (3000x2000, 'Public domain', 2013-09-16 10:07): seated group of opening speakers; several people in frame.",
+    "No 2001-2012 or 2014-2016 photograph of Mulder with a FREE_LICENSES licence string was found on Wikimedia Commons."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": false
+  },
+  {
+   "id": "corne-mulder-2023",
+   "person_id": "corne_mulder",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Corne_Mulder.jpg",
+   "commons_title": "File:Corne Mulder.jpg",
+   "retrieved_at": "2026-10-01T23:39:44Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-corne-mulder-and-parent.json",
+    "bytes": 8970,
+    "sha256": "03f663b929badcf5b6a07fff890cb94f115c72d53adbafec10448beecb44e777"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-file-page-corne-mulder.html",
+    "bytes": 111170,
+    "sha256": "0c945d2a0d2e7fa4162ce492d6688f37784c9ffafcf380eec8c0426cc57760e0"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-category-corne-mulder.json",
+     "bytes": 175,
+     "sha256": "dab7fa40ade97c56af1add81ed9c88f8d1da256965fb9868ee46f003681792d9",
+     "content": "Commons Category:Corné Mulder listing (two files); preparer."
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/enwiki-corne-mulder-wikitext.json",
+     "bytes": 5553,
+     "sha256": "cfd544e63a700989763de2cfe3e0fac9283b876921737d635f3b750c1f48ab62",
+     "content": "English Wikipedia wikitext (infobox birth date citing the IEC NPE2024 candidate list); preparer."
+    },
+    {
+     "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/wikidata-Q13034521-claims.json",
+     "bytes": 14322,
+     "sha256": "9708530076ab7fcf117f1a4811488a3c2091c8e3fae7134abb358ca1a0019d53",
+     "content": "Wikidata Q13034521 claims (P18 is the chosen file; no P569); preparer."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/Corne_Mulder.original.jpg",
+    "bytes": 98762,
+    "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Corne_Mulder.jpg",
+    "commons_sha1": "594a05e9b4570f601435536857b205b12088ad4b"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+   "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+   "bytes": 98762,
+   "asset_byte_identical_to_original": true,
+   "width": 301,
+   "height": 425,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "2023-06-14",
+   "depiction_date": {
+    "kind": "day",
+    "value": "2023-06-14"
+   },
+   "date_precision": "Commons date {{Taken on|2023-06-14 14:22:57}}; EXIF DateTimeOriginal 2023:06:14 14:22:57 (Canon EOS 6D Mark II); the parent description dates the event 14 June 2023.",
+   "creator": "Houses of the Oireachtas",
+   "credit": "Houses of the Oireachtas, 'Corne Mulder.jpg', taken 14 June 2023 at Leinster House, Dublin; CC BY 2.0, via Wikimedia Commons. Commons crop (CropTool, user Lefcentreright, 17 November 2024, two steps) of 'Pemmy Majodina visits Ireland.jpg' (Flickr 52974699940, Houses of the Oireachtas stream). Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY 2.0', License 'cc-by-2.0', UsageTerms 'Creative Commons Attribution 2.0', template {{cc-by-2.0}}. The parent passed FlickreviewR 2 on 2023-06-14 (reviewlicense cc-by-2.0, author Houses of the Oireachtas); the crop has no review of its own.",
+   "rights_statement": "CC BY 2.0, attribution 'Houses of the Oireachtas'. The chosen file is a derivative crop made by Commons user Lefcentreright on 2024-11-17 with CropTool from the Flickr-reviewed parent. The copied bytes are the crop's current version, unchanged; the Commons sha1 matches.",
+   "people_in_frame": "Mulder alone, head and shoulders, outdoors in strong sun against the grey stone wall and a column of Leinster House. The parent is a group photograph of the South African whips' delegation and Irish hosts. The lighter grey area at the lower right is the sunlit side of his own dark navy jacket.",
+   "appearance_observed": "Broad round face with full cheeks, a soft jaw and a slight double chin. High, mostly bald crown with thin, fine white hair. Rectangular browline glasses (thin black top bars, thin silver lower rims, bridge and temples), light eyes, very pale sparse brows, rounded nose tip, thin lips. Fair, slightly ruddy skin, clean shaven, closed-mouth smile. Very dark navy suit, white shirt, plain bright red tie. (Glasses corrected at assembly from the verifier's finding; the assembler viewed the reference and confirms the black top bars and light lower rims.)",
+   "identity_basis": "Commons title and Category:Corné Mulder; Wikidata Q13034521 P18 is this file; the en.wikipedia infobox uses it with the caption 'Mulder in 2023'. The parent describes the 14 June 2023 visit to Leinster House by a delegation of Whips from the Parliament of South Africa, when Mulder was the FF Plus chief whip. He is clearly different from his brother Pieter Mulder (reference pieter-mulder-2013), who has fuller grey hair combed back and thin metal glasses.",
+   "age_gap_note": "Born 28 September 1958 per the English Wikipedia infobox citing the IEC NPE2024 candidate list (general biographical knowledge, not C01 research; Wikidata has no birth date). He is 64 in the photograph (2023-06-14), 66 when the window opens (2025-07-16) and 67 on its last day (2026-09-07). The photograph is about 2 years 1 month before the window opens and about 3 years 3 months before it closes. The prompt asks for a man of 66 to 67, essentially as photographed and at most very slightly older. The standing body, hands, trousers, shoes and heavyset build are artistic extensions of a head-and-shoulders photograph.",
+   "limitation": "Small (301x425), harshly lit head-and-shoulders crop about two to three years before the window; no freely licensed 2024-2026 photograph on Commons. GovernmentZA/GCIS and Parliament of RSA Flickr streams were not searched directly.",
+   "rejected_candidates": [
+    "File:Corné Mulder.jpg (Puvircho at Afrikaans Wikipedia, CC0, 2009-08-02, 370x465, Commons sha1 09a633ed6eb697b4131c151b909cc2e67c058086): the licence qualifies, but it is about 16 years before the window and a small self-declared transfer from af.wikipedia. Fallback only; not downloaded.",
+    "File:Pemmy Majodina visits Ireland.jpg (Houses of the Oireachtas, CC BY 2.0, 2023-06-14, 6240x4160, passed FlickreviewR 2): the uncropped parent group photograph; recorded as provenance.",
+    "No other Commons file exists: Category:Corné Mulder holds only the two files above, no file has depicts P180=Q13034521, and text searches found only unrelated Mulders and Connie Mulder (his father)."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_assembler": true
+  }
+ ],
+ "source_ledger": {
+  "evidence_directory": "D:/spheres-scratch/za-cast/refs",
+  "status": "original_retention_ledger",
+  "copyright_note": "Original Commons and archive metadata (API JSON and page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence. Generated cartoons retain the source rights on identity_source. Viljoen additionally requires explicit derivative_license CC BY-SA 2.0 and its licence URL, attribution and an adaptation notice; generated alone is not the derivative licence.",
+  "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+  "downloads": [
+   {
+    "reference_id": "mangosuthu-buthelezi-1983",
+    "image": {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+     "bytes": 1221637,
+     "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Aankomst_en_vertrek%2C_politici%2C_portretten%2C_Buthelezi%2C_Mangosuthu%2C_Bestanddeelnr_932-6173.jpg",
+     "commons_sha1": "52aa2f789cb21228c3eea40ff2f3f41c627fe841"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6173.json",
+     "bytes": 4955,
+     "sha256": "19d8d6d979bb75692313ed9fe1a6821623ebc18ba6320c40b79f181e303bc16d"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-file-page-anefo-932-6173.html",
+     "bytes": 104977,
+     "sha256": "a931ae88ab964cd708dcc295d2465e9a026bec5e88b2258a1a48e7549844692e"
+    }
+   },
+   {
+    "reference_id": "constand-viljoen-1984",
+    "image": {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/Constand_Viljoen_1984.original.jpg",
+     "bytes": 35923,
+     "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Constand_Viljoen_1984.jpg",
+     "commons_sha1": "bc9a2690506e4be3c18395789f0bc90c46a7bf4d"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-api-viljoen-candidates.json",
+     "bytes": 20323,
+     "sha256": "31e9d42e9c392147efc9cd3cde430e62c824b000e179985679af7a827b36259f"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-file-page-constand-viljoen-1984.html",
+     "bytes": 99828,
+     "sha256": "32165eac53309e1460bfd71bdbb72e7464845b1ee264abc1ec2b9ec3ba8c1f70"
+    }
+   },
+   {
+    "reference_id": "pieter-mulder-2013",
+    "image": {
+     "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+     "bytes": 1547241,
+     "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+     "commons_sha1": "616f445fcd977ade04db604d81383813bdb9ab5b"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-imageinfo-20130916-OSEC-BW-0002.json",
+     "bytes": 10514,
+     "sha256": "0dfa45cffd67104dc9e898b60dbf08c6e19e1787c09f87166e23e35e076e9bb7"
+    }
+   },
+   {
+    "reference_id": "corne-mulder-2023",
+    "image": {
+     "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/Corne_Mulder.original.jpg",
+     "bytes": 98762,
+     "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Corne_Mulder.jpg",
+     "commons_sha1": "594a05e9b4570f601435536857b205b12088ad4b"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-corne-mulder-and-parent.json",
+     "bytes": 8970,
+     "sha256": "03f663b929badcf5b6a07fff890cb94f115c72d53adbafec10448beecb44e777"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-file-page-corne-mulder.html",
+     "bytes": 111170,
+     "sha256": "0c945d2a0d2e7fa4162ce492d6688f37784c9ffafcf380eec8c0426cc57760e0"
+    }
+   }
+  ],
+  "assembler_requests": [
+   {
+    "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/assemble-nara/naid-543950122.json",
+    "bytes": 5026,
+    "sha256": "b4c2085e9cb5f4efc7e65945cc7cb504a154438ee55bff5fca9276fd2a95681e",
+    "url": "https://catalog.archives.gov/proxy/records/search?naId=543950122",
+    "retrieved_at": "2026-10-01",
+    "content": "NARA catalog record WHPO-P22804 (rejected contact sheet)"
+   },
+   {
+    "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/assemble-nara/41-AV-P22804-06201991.jpg",
+    "bytes": 5807770,
+    "sha256": "ca873d52f261cf433a43b900cced8547bcd363f8baf9e3dd8ab3a7e99f53b9e9",
+    "url": "https://catalog.archives.gov/medialz/presidential-libraries/bush/gb-whpo/186364/P22804/41-AV-P22804-06201991.jpg",
+    "retrieved_at": "2026-10-01",
+    "content": "Scanned contact sheet P22804 (rejected; evidence only)"
+   },
+   {
+    "url": "https://www.wikidata.org/w/api.php (wbgetentities, enwiki titles Constand_Viljoen, Pieter_Mulder, Mangosuthu_Buthelezi)",
+    "retrieved_at": "2026-10-01",
+    "content": "P569 birth dates read from piped output, not saved: Q2568741 1933-10-28, Q770995 1951-07-26, Q554131 1928-08-27."
+   },
+   {
+    "url": "https://sahistory.org.za/people/chief-mangosuthu-gatsha-buthelezi",
+    "retrieved_at": "2026-10-01",
+    "content": "'Born 27 August 1928', read from piped output, not saved."
+   }
+  ],
+  "access_limits": [
+   "Wikimedia Commons and upload.wikimedia.org returned HTTP 429 repeatedly during preparation (an IP shared with parallel agents; once with Retry-After 600 s). Requests were made one at a time with back-offs; nothing was bypassed.",
+   "The EC Audiovisual Service search page renders results only through JavaScript and returned nothing readable; browser navigation to it was not used.",
+   "Openverse required authentication for the Hlabisa preparer and was not used there."
+  ],
+  "privacy_actions": [
+   "Preparers deleted 429 error bodies that showed the client IP and Flickr pages that embedded GeoIP or a session api_token, keeping only parsed extracts.",
+   "At assembly, ten GeoIP-bearing Flickr search and photo pages left by the Hlabisa preparer in the session scratchpad were deleted; none was cited or hashed. A grep of the refs folders for GeoIP fields found none; the remaining 'IP address' strings are MediaWiki boilerplate."
+  ],
+  "not_listed": "Search scratch files, candidate downloads, the preparers' helper scripts and research view crops are not ledgered except where cited above. mangosuthu_buthelezi/search/search-zh.json is a failed query (mangled characters) and is deliberately not listed as evidence."
+ }
+}

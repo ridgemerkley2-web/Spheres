@@ -1,0 +1,29 @@
+............................................................................................F.....................................................................................................................................................F........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+FAIL: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\test_cartoon_review.py", line 572, in test_committed_export_is_current_deterministic_and_read_only
+    self.assertEqual(cr.stale(files, cr.ROOT), [], 'regenerate with: python -X utf8 tools/avatars/cartoon_review.py')
+AssertionError: Lists differ: ['docs/campaign-certification/C03/preparat[115 chars].md'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json'
+
++ []
+- ['docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json',
+-  'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md'] : regenerate with: python -X utf8 tools/avatars/cartoon_review.py
+
+======================================================================
+FAIL: test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators (test_import_cnccfp_census.CnccfpImportTests.test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\test_import_cnccfp_census.py", line 171, in test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators
+    self.assertIsNotNone(row)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 827 tests in 143.772s
+
+FAILED (failures=2)

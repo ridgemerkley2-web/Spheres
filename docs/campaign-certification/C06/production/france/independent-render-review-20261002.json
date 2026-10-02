@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "kind": "independent_render_visual_review",
+  "batch": "FR-CAST-B01",
+  "reviewed_at": "2026-10-02",
+  "reviewer": "Codex agent /root/tonga_civilian_roster",
+  "reviewed_source_tip": "50d2460437c24c8d57f3f0b6f3b4749b50005de5",
+  "render_return": {
+    "path": "docs/campaign-certification/C06/production/france/render-return-batch-01.json",
+    "sha256": "cd22f06e567f50238038b9acd6c8e30d834b21d4ffbf83ac4d4a8a6410e0e41f"
+  },
+  "human_approval": false,
+  "claude_approval": false,
+  "runtime_acceptance": false,
+  "country_acceptance": false,
+  "registered_portraits": 0,
+  "summary": {
+    "outputs_visually_inspected": 7,
+    "identity_inputs_visually_inspected": 7,
+    "additional_juppe_original_visually_inspected": true,
+    "style_anchor_visually_inspected": true,
+    "visual_passes": 7,
+    "visual_holds": 0,
+    "critical_provenance_issues": []
+  },
+  "style_anchor": {
+    "order": 1,
+    "use": "STYLE ONLY",
+    "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+    "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+    "bytes": 1421494,
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB"
+  },
+  "common_visual_findings": "All seven retain confident dark outlines, restrained cel shading, adult cartoon proportions and an opaque dark-teal background consistent with the anchor. Heads, hands and shoes have margins; no clipping, extra limbs, text, watermark, insignia, other people or copied background elements were found. Similar suit poses follow the supplied prompts; faces remain differentiated. No output retouching was performed.",
+  "provenance_limits": [
+    "File checks independently confirm exact current prompt/input/output bytes against the return receipt and byte identity with the retained generated originals. They do not independently replay or reconstruct the original image-generation API calls.",
+    "Juppé uses the separately pinned reduced JPEG, not the 17 MB source bytes. The original transport failure is preserved in the return receipt. Its proportional resize is visually consistent; exact encoder/resampler settings are not stated in that receipt. Retain both files and record that derivation when assembling the registration record.",
+    "Existing CC BY/CC BY-SA credits and derivative obligations remain in the return receipt and must survive registration. No new licence investigation or online request was made.",
+    "This is an independent Codex visual review, not Claude review, human approval, historical-tenure acceptance, a browser check or runtime registration. Source date and age-reconstruction qualifications remain operative."
+  ],
+  "entries": [
+    {
+      "person_id": "francois_mitterrand",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+        "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc"
+      },
+      "prompt_sha256": "9384edce0aa124138909a5685c958abceb94fa7590c1c2546f79d2b98a756aa5",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/francois-mitterrand-1994-reference-v1.jpg",
+        "sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "High balding forehead, sparse side hair, hooded gaze, long nose and reserved expression follow the supplied reference. The generated facial planes and dark outline match the anchor; both hands and shoes are clean and fully visible.",
+      "limits": "Source year remains uncertain; the 1991–1995 use is the declared artistic interpretation, not independently dated appearance or tenure.",
+      "hold_reasons": []
+    },
+    {
+      "person_id": "michel_rocard",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+        "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6"
+      },
+      "prompt_sha256": "d6e36504fcb3980b9ec5ab7a32715dfbdccece26f092bb35306f7728d6271d29",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/michel-rocard-1991-reference-v1.jpg",
+        "sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "Receding swept-back hair, prominent ears, lean face, sideways gaze and pinstripe suit distinguish this portrait. The source color cast is appropriately absent. Complete silhouette, readable face and intact hands/shoes.",
+      "limits": "The 1991 source is near the requested age; no new precision or office boundary is established.",
+      "hold_reasons": []
+    },
+    {
+      "person_id": "laurent_fabius",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+        "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836"
+      },
+      "prompt_sha256": "9f2f006009031ccccd89cb50d8725603d1450e71299d855e160567ede34bfcab",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/laurent-fabius-1984-reference-v1.jpg",
+        "sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "Correct foreground subject from the group reference: high domed forehead, sparse crown, dark side hair and long narrow face. Added maturity is restrained; invented color/body remain coherent. No bystander, plane or badge carried over.",
+      "limits": "The seven-to-eight-year age adjustment and black-and-white color interpretation remain disclosed; no dated 1992 photograph is claimed.",
+      "hold_reasons": []
+    },
+    {
+      "person_id": "henri_emmanuelli",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+        "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b"
+      },
+      "prompt_sha256": "c172cbdf450f29518f86cc8c73adcf4fd404d87de0da44876930b0288fc4912d",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/henri-emmanuelli-2005-reference-v1.jpg",
+        "sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "Strong brows, deep-set eyes, long nose, broad lower lip and squared chin track the supplied reference. Darker gray hair and softened facial lines implement the requested younger treatment. Both hands and shoes remain visible; no lectern, sticker or slogan.",
+      "limits": "Approximately ten years of de-ageing is an artistic reconstruction. Passing this image does not verify his actual 1994–1995 hair color or appearance.",
+      "hold_reasons": []
+    },
+    {
+      "person_id": "alain_juppe",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+        "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937"
+      },
+      "prompt_sha256": "cd52698af05019d711a3420b3f3fd7c1c05c1b59a5a342dae3bfbc6e76671d58",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/alain-juppe-1996-generation-input-v1.jpg",
+        "sha256": "dfdf994dfc9c6ead26393d97e041cb63049fd921a02899dd774e72194c3bd4a8"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "The output follows the bald, gray-suited second-from-left subject, rather than the central folder holder. High domed head, narrow face and patterned navy tie remain distinct. Full body and both hands/shoes are intact.",
+      "limits": "The actual 1500×1050 input was inspected alongside the 5088×3562 original. Framing and subject identity cues are preserved; original source and actual-input hashes remain separate.",
+      "hold_reasons": []
+    },
+    {
+      "person_id": "lionel_jospin",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+        "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8"
+      },
+      "prompt_sha256": "6eb81e10d03c043a8d9b1021b4ae3dbdfdac9777a69723d5345572ce0fb33ca5",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/lionel-jospin-1998-reference-v1.jpg",
+        "sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "White swept-back hair, fine metal glasses, light eyes and friendly broad face follow the captioned reference. Glasses are coherent, teeth are restrained, and no flag fragment remains. Complete clean silhouette and limbs.",
+      "limits": "The small backward age interpretation and the source 12/13 October date disagreement remain disclosed.",
+      "hold_reasons": []
+    },
+    {
+      "person_id": "francois_hollande",
+      "disposition": "pass_independent_visual_review",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+        "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904"
+      },
+      "prompt_sha256": "1453824cbd45beee1e84333ee0baa3f0c963d4605de7f31270ca999a8f6ed2b0",
+      "actual_identity_input": {
+        "path": "spheres-web/ui/person-portraits/references/francois-hollande-2007-reference-v1.jpg",
+        "sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee"
+      },
+      "checks": {
+        "prompt_lf_and_hash": true,
+        "input_hashes_sizes_dimensions_modes": true,
+        "output_hash_size_dimensions_mode": true,
+        "output_byte_identical_to_generated_original": true,
+        "original_reference_rights_pin": true,
+        "captioned_reference_likeness": true,
+        "style_consistency": true,
+        "full_body_both_hands_and_shoes_visible": true,
+        "no_blocking_visual_defect": true
+      },
+      "visual_finding": "Rounded cheeks, receding dark hair, rimless glasses and warm closed smile follow the supplied reference. The source crossed arms/papers are replaced with plausible visible hands. No crowd or paper artifacts remain.",
+      "limits": "Pass as the requested mid/late-period interpretation. This single approximately age-50 cartoon does not demonstrate each year of the 1997–2008 interval; any earlier variant remains a separate era decision.",
+      "hold_reasons": []
+    }
+  ]
+}

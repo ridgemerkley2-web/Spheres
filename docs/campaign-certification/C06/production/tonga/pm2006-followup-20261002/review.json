@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-02",
+  "status": "bounded_research_hold_no_import",
+  "baseline_commit": "2fd186d6a79e7c2edd688d83d0269f60ff24d96b",
+  "scope": "Sevele's substantive 2006 appointment, separate from the settled 11 February acting appointment and Lavaka resignation",
+  "person_id": "to_feleti_sevele",
+  "institution_id": "to_prime_minister",
+  "role_id": "to_pm",
+  "accepted_baseline": {
+    "read_before_search": [
+      "docs/campaign-certification/C01/research/tonga.json",
+      "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+      "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+      "docs/campaign-certification/C01/research/sources/tonga-pmo-farewell-20060330-facts.json",
+      "docs/campaign-certification/C01/research/sources/tonga-pmo-marist-20060410-facts.json",
+      "docs/campaign-certification/C01/research/sources/tonga-pmo-psc-20060413-facts.json"
+    ],
+    "preserve_claims": [
+      "to_lavaka_ata_resignation_accepted_20060211",
+      "to_sevele_acting_pm_appointed_20060211",
+      "to_sevele_acting_pm_20060323",
+      "to_sevele_appointed_20060330",
+      "to_sevele_pm_20060407",
+      "to_sevele_acting_then_pm_20060413"
+    ],
+    "retained_original_search": "Read accepted receipt and factual extracts; limited external filename search found no retained original of the three relevant PMO responses. Existing receipt records matched original hashes but does not include bodies. No old PMO originals were fetched again.",
+    "holder_change": null
+  },
+  "new_sources": [
+    {
+      "id": "nz_beehive_peters_sevele_20060401",
+      "url": "https://www.beehive.govt.nz/release/peters-welcomes-seveles-appointment",
+      "title": "Peters welcomes Sevele's appointment",
+      "publisher": "New Zealand Government, Foreign Minister Winston Peters",
+      "published_date": "2006-04-01",
+      "locator": "Article paragraphs1-2 and5; web-reader lines50-65",
+      "material_read": "Complete release via web reader before direct retrieval; separate acting/formal appointment wording inspected.",
+      "observation": "Foreign-government release welcomes formal appointment and dates the King's confirmation to the previous afternoon. Read relative to its printed dateline, that is31March2006. It describes the preceding acting appointment separately.",
+      "candidate_attested_on": "2006-04-01",
+      "reported_confirmation_relative_date": "2006-03-31",
+      "from": null,
+      "until": null,
+      "limitations": "Confirmation and effective commencement are distinct. No Tonga instrument or stated effective day. Direct request returned a script challenge instead of article, so raw-original material retention is not satisfied; candidate claim remains held.",
+      "web_reader_file": "web-reader-results.txt",
+      "raw_response_file": "beehive-peters-20060401.body",
+      "raw_response_receipt": "beehive-peters-20060401.receipt.json",
+      "raw_response_type": "HTTP200 Incapsula script shell, not article",
+      "raw_response_bytes": 212,
+      "raw_response_sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "retry_or_bypass": false
+    },
+    {
+      "id": "matangi_sevele_20060331_public_abstract",
+      "url": "https://matangitonga.to/2006/03/31/tongas-king-appoints-dr-sevele-first-citizen-prime-minister",
+      "title": "Tonga's King appoints Dr Sevele as first citizen Prime Minister",
+      "publisher": "Matangi Tonga / Vava'u Press",
+      "published_date": "2006-03-31",
+      "displayed_update_date": "2016-04-28",
+      "locator": "Visible public article abstract immediately after first-publication timestamp; retained HTML lines281-292",
+      "observation": "Public abstract attributes confirmation to Sevele the previous night and reports appointment effective30March2006. Entire premium article is unavailable without subscription.",
+      "reported_effective_date": "2006-03-30",
+      "recommended_from": null,
+      "recommended_holder_change": null,
+      "limitations": "A public journalistic abstract reporting a participant statement, not an official instrument or complete contemporaneous interview. Labelled as archival content and updated2016. Do not treat unread premium content or public comments as evidence; no paywall bypass attempted.",
+      "raw_response_file": "matangi-sevele-20060331-public.body",
+      "raw_response_receipt": "matangi-sevele-20060331-public.receipt.json",
+      "raw_response_type": "HTTP200 public article abstract plus subscription notice/comments",
+      "raw_response_bytes": 77175,
+      "raw_response_sha256": "57017273cc108dd897c846b424c14d8e5736a909b1a2704cd5ab2deb10490325"
+    }
+  ],
+  "disposition": "Useful new official confirmation and participant-attributed news lead, but no new fully retained Tonga official source establishes substantive effective commencement. Keep existing holder attested7April2006 unchanged. The30March reported effect and31March confirmation inferred from the NZ dateline must remain separate source statements, not silently reconciled or declared a proven contradiction.",
+  "search_limit": {
+    "queries": [
+      "Sevele 30 March 2006 appointed site:gov.to",
+      "Sevele 30 March 2006 site:beehive.govt.nz",
+      "Tonga Sevele March 2006 appointed confirmed Prime Minister",
+      "Sevele appointed March 2006 site:pmo.gov.to",
+      "Sevele March30 site:gov.to",
+      "Sevele confirmed2006 site:royalpalace.to",
+      "Sevele appointment31March2006",
+      "Sevele Commencement Date",
+      "Sevele30March2006 site:foreignminister.gov.au",
+      "Sevele appointment March site:mic.gov.to"
+    ],
+    "direct_requests": 2,
+    "archive_requests": 0,
+    "unused_leads": "The Scoop-hosted2013 handbook PDF, scholarly retrospective discussion, Factbook mirrors and current encyclopedia summaries add no reviewed contemporaneous effective instrument. No acceptance from snippets alone.",
+    "stop": "Search stopped after ten targeted queries, two direct requests and identification of the precise remaining instrument/context requirement. No403/429 response; the200 script challenge was still treated as failed material access and not retried."
+  },
+  "next_useful_evidence": "Original Palace/PMO notice or signed instrument explicitly stating substantive commencement; alternatively the authorized complete31March2006 Matangi interview for context, followed by source-policy review. Neither requires re-fetching already accepted acting/resignation or retrospective timeline sources.",
+  "changes": "Only this external evidence folder written. No repository, holder, catalogue, build, server or save changes."
+}

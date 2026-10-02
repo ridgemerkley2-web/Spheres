@@ -1,0 +1,2200 @@
+{
+  "version": 1,
+  "nation": "France",
+  "reviewed_at": "2026-10-01",
+  "historical_cutoff": "2026-09-07",
+  "historical_window_start": "1990-01-01",
+  "status": "rendered_outputs_awaiting_independent_review_and_registration",
+  "task": "CLAUDE-C06-FRANCE-01",
+  "branch": "claude/c06-fr-01",
+  "base": "2fd186d6",
+  "claim_commit": "64ac669c",
+  "scope": "France cast batch 1: seven existing person IDs with accepted C01 holder observations (C01-23 president, C01-37 prime ministers, C01-47 PS first secretaries) and no art for the requested appearance windows, plus one prepared alternate. Each person has one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Preparation submitted without generated images. Codex returned seven unchanged PNGs on 2026-10-02; see render-return-batch-01.json. Claude review and runtime registration remain open.",
+  "prepared_by": "Claude: one preparation agent and one independent verification agent per person, assembled and mechanically corrected by Claude on 2026-10-01. This is not human review, not Codex review and not user approval.",
+  "authority": {
+    "runtime_installation": false,
+    "office_eligibility": false,
+    "continuous_terms": false,
+    "art_approval": false,
+    "human_acceptance": false,
+    "country_completion": false
+  },
+  "accepted_research": {
+    "path": "docs/campaign-certification/C01/research/france.json",
+    "sha256": "207d4094a0594e6754f0a3ddc7fc9ab89f3611780e081dda2333979e9434288b",
+    "supplement": {
+      "path": "docs/campaign-certification/C01/research/supplements/france.json",
+      "sha256": "9d64a41d80400befac9b8541b6c66b5f96da5bce5426c01100f4bfccef6ae27b"
+    },
+    "packets_used": [
+      "C01-23",
+      "C01-37",
+      "C01-47"
+    ],
+    "receipts": [
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md",
+        "sha256": "b6f3755e6c3942f6b4d2fe0e041cbbba2fad5100f951eff52c52978ba8f46e84",
+        "packet": "C01-23"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/review-2026-09-28/README.md",
+        "sha256": "7011f6159a476ad58410d015d066372636c1e512013d3554fcdce4fd1bece6df",
+        "packet": "C01-23"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-37/README.md",
+        "sha256": "b2e04a7865eefaeeb42338c44b082d5f3b2005b654192d3e35325dffb85d7493",
+        "packet": "C01-37"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-37/manifest.json",
+        "sha256": "5e35e4a046b4345bcf714686711af266b1e9bb8067568c87c2be49c41448d8a2",
+        "packet": "C01-37"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-38/README.md",
+        "sha256": "232c78225e45443303a77cebd7da8b044e1b157d28f2bcc640bca4d3784cad23",
+        "packet": "C01-38",
+        "note": "Pinned for completeness; C01-38 (prime ministers 2014-2026) holds no observation of these eight people."
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/README.md",
+        "sha256": "6a371f7989e6f9c1e7cf7bb05019b534bd878fd9545f36e7005f5eba31d0b52b",
+        "packet": "C01-47"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/manifest.json",
+        "sha256": "d43aea7c636708f97c04bfca5e5448d3728e4658a3539abc3a7b374cabcdfa01",
+        "packet": "C01-47"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-47-20261001/holder-review.json",
+        "sha256": "f6a0e0f7e5ec86c46b519c367dd0bc0340b9430eb759e81a818a9efab2a5a671",
+        "packet": "C01-47"
+      }
+    ]
+  },
+  "registry_inputs": {
+    "party_leaders": {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+    },
+    "person_portraits": {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+    },
+    "leadership_production": {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+    },
+    "style_anchor": {
+      "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+      "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "use": "STYLE ONLY"
+    },
+    "pipeline_jobs_inventory": {
+      "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/france-cast/jobs.json",
+      "path": "D:/spheres-scratch/france-cast/jobs.json",
+      "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+      "job_version": "person-cartoon-v4",
+      "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+      "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+      "fresh_rebuild_identical": true,
+      "window_and_residual_job_ids": [
+        {
+          "path": "D:/spheres-scratch/france-cast/assemble/window-jobs.json",
+          "bytes": 3648,
+          "sha256": "ff3465efbb1d1c2fc58c4a1b51939d51e822c65eba5a02a7c6598a4dad9fed89"
+        },
+        {
+          "path": "D:/spheres-scratch/france-cast/assemble/residual-jobs.json",
+          "bytes": 1843,
+          "sha256": "e379d756f2d433fc8426ebf4e6ef413e91480e3c70985f41253c8c8bbb4d5277"
+        }
+      ]
+    }
+  },
+  "rules": [
+    "All holder dictionaries below are copied exactly from accepted C01 research (supplements/france.json; identical in france.json). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+    "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, vote, resignation, farewell or cessation decree; those remain claims.",
+    "Requested windows are appearance intervals from the CLAUDE-C06-FRANCE-01 handoff table with exclusive ends. Where a bound comes from party_leaders.json, leadership production or the handoff rather than accepted research, the person entry says so.",
+    "Real history stops at 2026-09-07; every window in this batch lies before it.",
+    "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, trousers, shoes, colours added to a black-and-white photograph) is declared in the prompt and here.",
+    "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled; crops happen at registration.",
+    "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. The original preparation review flags remain false; the separate render return records actual Codex output inspection, not Claude registration or human acceptance.",
+    "Each review batch contains at most ten people.",
+    "HTTP response header captures that contain the client IP address or GeoIP cookies are never copied, cited, hashed or committed.",
+    "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). Integration now provides per-file LF checkout rules. Historical CRLF hashes remain diagnostic only.",
+    "Birth dates used for age notes are general biographical knowledge, not accepted C01 research."
+  ],
+  "coverage": {
+    "people_count": 8,
+    "primary_people": 7,
+    "reserve_people": 1,
+    "excluded_people": 0,
+    "holder_observation_count": 12,
+    "holder_observation_count_by_role": {
+      "fr_president": 1,
+      "fr_pm": 4,
+      "fr_ps_first_secretary": 7
+    },
+    "likeness_reference_count": 8,
+    "usable_likeness_reference_count": 8,
+    "research_only_likeness_reference_count": 0,
+    "references_inside_requested_window": [
+      "michel-rocard-1991",
+      "alain-juppe-1996",
+      "martine-aubry-2010"
+    ],
+    "references_with_uncertain_date": [
+      "francois-mitterrand-1994",
+      "lionel-jospin-1998"
+    ],
+    "all_historical_officeholders_established": false,
+    "continuous_terms_established": false,
+    "all_likenesses_ready": false,
+    "rendered_portraits": 7,
+    "registered_portraits": 0,
+    "production_jobs_closed": 0,
+    "leadership_production_cartoon_jobs_targeted_by_primary_people": 13
+  },
+  "batches": [
+    {
+      "id": "FR-CAST-B01",
+      "render_request": "docs/campaign-certification/C06/production/france/render-request-batch-01.md",
+      "people": [
+        {
+          "person_id": "francois_mitterrand",
+          "display_name": "François Mitterrand",
+          "registry_name": "Francois Mitterrand",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "François Mitterrand"
+          ],
+          "requested_window": {
+            "from": "1991-01-01",
+            "to": "1995-05-17",
+            "to_exclusive": true,
+            "window_status": "needs_codex_agreement",
+            "basis": "Handoff table: C01-23 presidents (fr_presidency / fr_president); current art ends 1991-01-01. Accepted C01-23 has one Mitterrand holder observation, attested_on 1990-01-04, with from and until null; no accepted holder observation falls inside 1991-1995. The exclusive end 1995-05-17 equals Jacques Chirac's holder observation of that date, which the research explicitly does not use as Mitterrand's end. The handoff says this window still needs Codex agreement."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_presidency",
+              "role_id": "fr_president",
+              "holder": {
+                "name": "François Mitterrand",
+                "attested_on": "1990-01-04",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_elysee_mitterrand_kohl_press_conference_19900104",
+                  "fr_an_jo_debats_19900827"
+                ],
+                "claim_ids": [
+                  "fr_mitterrand_kohl_press_conference_attestation_19900104",
+                  "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+                  "fr_mitterrand_message_to_parliament_read_19900827"
+                ],
+                "note": "Observed on 4 January 1990, the first in-text attestation in the period: at their joint press conference at Latché (Élysée archive transcript) Chancellor Kohl says 'Je suis d'accord avec M. Mitterrand' and speaks of working in 1990 with 'le Président de la République'. The Assemblée nationale's record of 27 August 1990 reads his decree of 22 August 1990 and his message of 27 August 1990, both signed FRANÇOIS MITTERRAND.",
+                "uncertainty": "No start: his second septennat began before the packet period; decision 88-60 PDR of 11 May 1988 ('prendra effet le 21 mai 1988 à 0 heure') and his investiture address of 21 May 1988 are claims on the role, not a holder date, as the Brazil, India and South Africa packets date the holder in office when the period opens by an in-period attestation. No end: no source reviewed states, as a record, the day his functions ended. His letter of 16 May 1995 announces the handover for 'Demain matin à onze heures' (prospective), decision 95-81 PDR gives only the outer limit of 21 May 1995 at 0 heure, his successor's address of 17 May 1995 speaks of the fourteen years 'qui viennent de s'écouler' without a day, and the Council's undated 2012 note dating the 1995 handover to 17 May is retrospective; all are claims, and Jacques Chirac's observation of 17 May 1995 is not used as this end."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/institutions/0/roles/0/holder_claims/0",
+                "docs/campaign-certification/C01/research/france.json": "/institutions/0/roles/0/holder_claims/0"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_mitterrand_accepts_pm_resignation_19950510",
+              "source_id": "fr_elysee_mitterrand_accepts_balladur_resignation_19950510",
+              "attested_on": "1995-05-10",
+              "classification": "latest in-office act found; not an end"
+            },
+            {
+              "claim_id": "fr_mitterrand_cessation_latest_bound_19950512",
+              "source_id": "fr_cc_decision_95_81_pdr_19950512",
+              "attested_on": "1995-05-12",
+              "classification": "outer limit stated in advance; never an until"
+            },
+            {
+              "claim_id": "fr_mitterrand_handover_announced_19950516",
+              "source_id": "fr_elysee_mitterrand_letter_19950516",
+              "attested_on": "1995-05-16",
+              "classification": "prospective; never an until"
+            },
+            {
+              "claim_id": "fr_cc_note_mitterrand_second_mandate_due_end_19950521",
+              "source_id": "fr_cc_note_mai_2012_duree_des_mandats",
+              "attested_on": "1995-05-21",
+              "classification": "retrospective note; claim only"
+            },
+            {
+              "claim_id": "fr_chirac_assumes_office_statement_19950517",
+              "source_id": "fr_elysee_chirac_address_elysee_19950517",
+              "attested_on": "1995-05-17",
+              "classification": "successor holder observation (Chirac); not Mitterrand's end"
+            },
+            {
+              "claim_id": "fr_chirac_armed_forces_message_as_president_19950517",
+              "source_id": "fr_elysee_chirac_armed_forces_message_19950517",
+              "attested_on": "1995-05-17",
+              "classification": "successor holder observation (Chirac); not Mitterrand's end"
+            }
+          ],
+          "registry_terms_not_c01_research": [],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "francois_mitterrand-97412cfcaffc",
+                "from": "1991-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "francois_mitterrand-0ec871bb367f",
+                "from": "1991-01-01",
+                "to": "1995-05-17",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1995-05-17",
+                "to": "2027-01-01",
+                "id": "francois_mitterrand-11a93aa1506a",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [],
+            "note": "No leadership-production cartoon job exists for Mitterrand. The pipeline job starts at 1991-01-01 because his 1990 cartoon covers 1990-01-01 to 1991-01-01."
+          },
+          "likeness_reference_ids": [
+            "francois-mitterrand-1994"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/francois-mitterrand-cartoon-1991-v1.txt",
+            "sha256": "9384edce0aa124138909a5685c958abceb94fa7590c1c2546f79d2b98a756aa5",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "27e751398366f635ff83acfa555222669ff6887b96e7feb19044e01da4e9bc29",
+            "git_blob": "f2c1bc171472a16af84c181d18925f7be3c7dbf2",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID and the existing 1990 portrait. This window adds a second appearance from a dated photograph near 1991-1995.",
+              "evidence": [
+                "francois-mitterrand-1994",
+                "spheres-web/data/person_portraits.json people.francois_mitterrand.portraits[0]"
+              ]
+            },
+            {
+              "finding": "The task text described the 1990 cartoon's identity_source as authored_identity; person_portraits.json records kind observed_portrait (Rob Croes/Anefo, 7 May 1988, CC0 1.0, references/francois-mitterrand-1988-reference.jpg). That record is unchanged.",
+              "evidence": [
+                "spheres-web/data/person_portraits.json"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The photograph's own date is not established; the record presented 1994 as fact (same-set sibling names Ugo Bergamo as Mayor of Venice, 1990-1993; Dumas and De Michelis left the foreign ministries in 1993 and 1992; the sibling is categorised 'François Mitterrand in 1984').",
+                "disposition": "Fixed in this record: photograph_date is '1994 (Commons author statement, year only; uncertain)', depiction_date has precision 'uncertain' and probable range about 1990-1993, date_precision states the conflict, age_gap_note gives 73-78, and the credit says 'dated 1994 on Commons (year uncertain)'. The assembler fetched and pinned the sibling's Commons record. The prompt now says the year is uncertain and the scene may be from about 1990 to 1993. The filename/reference_id year 1994 is kept pending a Codex ruling (open item)."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted holder observation of Mitterrand inside 1991-1995; no accepted end."
+          ],
+          "open_items_for_codex": [
+            "Agree or amend the requested window 1991-01-01 to 1995-05-17 (the handoff marks it as needing Codex agreement).",
+            "Rule whether the reference keeps the Commons-stated year 1994 in its reference_id and filename or is renamed (for example to an undated or 'c1992' name) before registration; the bytes and sha256 stay identical either way.",
+            "If the uncertain date is unacceptable, switch to the exactly dated Godefroy alternate (28 November 1991, CC BY 3.0, black-and-white side profile); that would need a new prompt."
+          ]
+        },
+        {
+          "person_id": "michel_rocard",
+          "display_name": "Michel Rocard",
+          "registry_name": "Michel Rocard",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "Michel Rocard"
+          ],
+          "requested_window": {
+            "from": "1990-01-01",
+            "to": "1994-06-19",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-37 Premier ministre holder observation attested 1990-01-24; C01-47 PS Premier secrétaire holder observation attested 1993-11-12. The exclusive end equals the date of the claims-only no-confidence vote fr_ps_rocard_no_confidence_vote_19940619, which accepted research does not treat as an end. The window is an appearance interval, not a tenure."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_prime_minister",
+              "role_id": "fr_pm",
+              "holder": {
+                "name": "Michel Rocard",
+                "attested_on": "1990-01-24",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_jorf_rocard_signs_decree_90_89_19900124",
+                  "fr_jorf_cessation_rocard_19910515"
+                ],
+                "claim_ids": [
+                  "fr_jorf_rocard_signs_decree_as_pm_19900124",
+                  "fr_jorf_rocard_functions_ended_19910515"
+                ],
+                "note": "Observed on 24 January 1990: decree no. 90-89 of that day opens 'Le Premier ministre,' and is signed 'MICHEL ROCARD'. A separate signed cessation instrument dated 1991-05-15 is retained among the cited claims; it does not supply an independently established effective end.",
+                "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/institutions/1/roles/0/holder_claims/0",
+                "docs/campaign-certification/C01/research/france.json": "/institutions/1/roles/0/holder_claims/0"
+              }
+            },
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "Michel Rocard",
+                "attested_on": "1993-11-12",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_vendredi_207_19931112"
+                ],
+                "claim_ids": [
+                  "fr_ps_rocard_in_office_19931112"
+                ],
+                "note": "Observed on 12 November 1993: Vendredi n°207 lists the secrétariat national headed by Michel Rocard as premier secrétaire and speaks of 'ses fonctions de premier secrétaire'; his election by the Le Bourget congress on 23 October 1993 ('samedi') is a separate claim.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/3",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/3"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_jorf_rocard_government_resignation_letter_19910515",
+              "source_id": "fr_jorf_cessation_rocard_19910515",
+              "attested_on": "1991-05-15",
+              "classification": "resignation letter; claim only"
+            },
+            {
+              "claim_id": "fr_ps_rocard_presides_direction_provisoire_19930406",
+              "source_id": "fr_ps_vendredi_183_19930409",
+              "attested_on": "1993-04-06",
+              "classification": "interim presidency; claims only"
+            },
+            {
+              "claim_id": "fr_ps_rocard_elected_by_congress_19931023",
+              "source_id": "fr_ps_vendredi_205_supplement_19931024",
+              "attested_on": "1993-10-23",
+              "classification": "election event; not a start"
+            },
+            {
+              "claim_id": "fr_ps_rocard_no_confidence_vote_19940619",
+              "source_id": "fr_ps_vendredi_234_19940624",
+              "attested_on": "1994-06-19",
+              "classification": "vote of no confidence; gives no end"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "fr_ps_michel_rocard_19930403_acting",
+            "fr_ps_michel_rocard_199310_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "michel_rocard-435bcbe4a1a4",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "michel_rocard-3e73d0165afa",
+                "from": "1990-01-01",
+                "to": "1994-06-19",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1994-06-19",
+                "to": "2027-01-01",
+                "id": "michel_rocard-7e38c5ecf301",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:michel_rocard:1993-04-03:1993-10-01:v1",
+              "cartoon:michel_rocard:1993-10-31:1994-06-19:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "michel-rocard-1991"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/michel-rocard-cartoon-1990-v1.txt",
+            "sha256": "d6e36504fcb3980b9ec5ab7a32715dfbdccece26f092bb35306f7728d6271d29",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "55291167b13b48376c88ec5d052fad9a518ceb26872e9579f0c034f39ad14e81",
+            "git_blob": "1eaa8e278b46455c2c8c2e37b98e77aa9ff4385a",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 1991 photograph lies inside the window and needs no significant age treatment.",
+              "evidence": [
+                "michel-rocard-1991"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": true,
+            "problems_and_dispositions": []
+          },
+          "missing_records": [],
+          "open_items_for_codex": []
+        },
+        {
+          "person_id": "laurent_fabius",
+          "display_name": "Laurent Fabius",
+          "registry_name": "Laurent Fabius",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "Laurent Fabius"
+          ],
+          "requested_window": {
+            "from": "1992-01-09",
+            "to": "1993-04-03",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-47 PS Premier secrétaire holder observation attested 1992-01-10 (claim fr_ps_fabius_styled_premier_secretaire_19920110). The bounds come from party_leaders.json term fr_ps_laurent_fabius_19920109_leader; the 9 January 1992 election and 3 April 1993 resignation are separate accepted claims, not accepted tenure boundaries."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "Laurent Fabius",
+                "attested_on": "1992-01-10",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_vendredi_127_19920110"
+                ],
+                "claim_ids": [
+                  "fr_ps_fabius_styled_premier_secretaire_19920110"
+                ],
+                "note": "Observed on 10 January 1992: Vendredi n°127 opens its political section 'Avec l'élection de Laurent Fabius, premier secrétaire'; his election by the comité directeur on 9 January 1992 ('jeudi') and his acceptance address are separate claims.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/2",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/2"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_ps_fabius_elected_by_comite_directeur_19920109",
+              "source_id": "fr_ps_vendredi_127_19920110",
+              "attested_on": "1992-01-09",
+              "classification": "election event; not a start"
+            },
+            {
+              "claim_id": "fr_ps_fabius_acceptance_address_19920110",
+              "source_id": "fr_ps_vendredi_127_19920110",
+              "attested_on": "1992-01-10",
+              "classification": "acceptance address; claim only"
+            },
+            {
+              "claim_id": "fr_ps_fabius_resigned_comite_directeur_19930403",
+              "source_id": "fr_ps_vendredi_183_19930409",
+              "attested_on": "1993-04-03",
+              "classification": "resignation report; not an accepted end"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "fr_ps_laurent_fabius_19920109_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "laurent_fabius-83f5d63841a0",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "laurent_fabius-eab265350133",
+                "from": "1992-01-09",
+                "to": "1993-04-03",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1992-01-09",
+                "id": "laurent_fabius-56d223d5ec38",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1993-04-03",
+                "to": "2027-01-01",
+                "id": "laurent_fabius-523f745f106d",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:laurent_fabius:1992-01-09:1993-04-03:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "laurent-fabius-1984"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/laurent-fabius-cartoon-1992-v1.txt",
+            "sha256": "9f2f006009031ccccd89cb50d8725603d1450e71299d855e160567ede34bfcab",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "0c619be94d2a467fe4fed7bb13e444f2e98e6735c2fa669c508af194c40438c1",
+            "git_blob": "b92fa3a6d12c09b29b596024fb83db1f815fccee",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The only qualifying photograph with Fabius as the main subject is from 28 August 1984; the 7-8.5 year gap is declared as an artistic interpretation.",
+              "evidence": [
+                "laurent-fabius-1984"
+              ]
+            },
+            {
+              "finding": "The man shaking Fabius's hand at left is unidentified; Dominique Baudis is in the right background. The preparer's naming is corrected here.",
+              "evidence": [
+                "laurent-fabius-1984",
+                "Commons frames 53Fi3643 and 53Fi3646 (independent verifier)"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The person beside Fabius was misidentified as Dominique Baudis.",
+                "disposition": "Fixed: people_in_frame and identity_review say Baudis is in the right background (light suit, lapel badge) and the man shaking his hand at left is unidentified."
+              },
+              {
+                "problem": "The prompt's Image 2 sentence called his suit light-gray, contradicting its own Clothing line and pointing at Baudis's suit.",
+                "disposition": "Fixed: the prompt now says medium-gray suit, adds 'the man in the light suit with a lapel badge in the right background' to the ignore list and calls the man at left gray-haired; the prompt sha256 is re-pinned."
+              },
+              {
+                "problem": "Rejected candidates omitted frames 53Fi3639, 3640, 3643 and 3645 and two Commons crops; the saved search covered only 300 of 459 hits.",
+                "disposition": "Fixed: those frames and crops are listed with the verifier's descriptions, and the record states that all 459 hits were reviewed (preparer 0-299, verifier 300-458)."
+              },
+              {
+                "problem": "A European Parliament / EC Audiovisual lead for 1989-1992 (MEP 1989-07-25 to 1992-04-02) is not recorded.",
+                "disposition": "Not mechanical; recorded as an open item. The assemble step did not search: the EP host answered the verifier with an apparent bot challenge (HTTP 202), which was not bypassed, and the EC Audiovisual search page renders results client-side. European Parliament historical photographs on Commons carry the non-qualifying 'European Parliament' licence string (as with Juppé 1995 and Jospin 1996); an EC Audiovisual CC BY 4.0 photograph could qualify."
+              }
+            ]
+          },
+          "missing_records": [],
+          "open_items_for_codex": [
+            "Optional before rendering: search the EC Audiovisual Service (and the EP Multimedia Centre, if reachable without bypassing a challenge) for a dated 1989-1992 photograph of Fabius as the main subject with an exact CC BY 4.0 licence. If one qualifies it would replace this reference as v2; otherwise render with 53Fi3647 and record the search outcome."
+          ]
+        },
+        {
+          "person_id": "henri_emmanuelli",
+          "display_name": "Henri Emmanuelli",
+          "registry_name": "Henri Emmanuelli",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "Henri Emmanuelli"
+          ],
+          "requested_window": {
+            "from": "1994-06-19",
+            "to": "1995-10-14",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-47 PS Premier secrétaire holder observation attested 1994-06-24 (claim fr_ps_emmanuelli_styled_premier_secretaire_19940624). The window equals registry term fr_ps_henri_emmanuelli_19940619_leader; the 19 June 1994 election is a separate event claim."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "Henri Emmanuelli",
+                "attested_on": "1994-06-24",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_vendredi_234_19940624"
+                ],
+                "claim_ids": [
+                  "fr_ps_emmanuelli_styled_premier_secretaire_19940624"
+                ],
+                "note": "Observed on 24 June 1994: Vendredi n°234 styles him 'le premier secrétaire'; his election by the Conseil national of 19 June 1994 is a separate claim.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/4",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/4"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_ps_emmanuelli_elected_by_conseil_national_19940619",
+              "source_id": "fr_ps_vendredi_234_19940624",
+              "attested_on": "1994-06-19",
+              "classification": "election event; not a start"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "fr_ps_henri_emmanuelli_19940619_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "henri_emmanuelli-39ed314c9b95",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "henri_emmanuelli-4b913639a6cc",
+                "from": "1994-06-19",
+                "to": "1995-10-14",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1994-06-19",
+                "id": "henri_emmanuelli-9ee4155e8161",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1995-10-14",
+                "to": "2027-01-01",
+                "id": "henri_emmanuelli-162c73285462",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:henri_emmanuelli:1994-06-19:1995-01-01:v1",
+              "cartoon:henri_emmanuelli:1995-01-01:1995-10-14:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "henri-emmanuelli-2005"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/henri-emmanuelli-cartoon-1994-v1.txt",
+            "sha256": "c172cbdf450f29518f86cc8c73adcf4fd404d87de0da44876930b0288fc4912d",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "3ef3a2e15fc59901db94af55b01a2a6a3199d30e7b55e8e32a4a4c8b197619f2",
+            "git_blob": "1b6904c7922740f9f115226778adda665966b0c6",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The only qualifying photograph is from May 2005, about 9.5 to 11 years after the window; the younger treatment is declared as an artistic interpretation.",
+              "evidence": [
+                "henri-emmanuelli-2005"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The prompt said the photograph is 'about ten years after this appearance begins'; it is about eleven.",
+                "disposition": "Fixed: the prompt now says 'about eleven years'; the prompt sha256 is re-pinned and age_gap_note gives 10 years 11 months and 9 years 7 months."
+              },
+              {
+                "problem": "A pinned scratch evidence file (hdr3.txt) contains response headers with the user's client IP and a GeoIP cookie.",
+                "disposition": "Fixed for the record: no header capture is copied, cited, hashed or committed; only the Commons API JSON and file-page HTML are cited. The scratch file was left in place outside Git (the assembler did not create it); its removal is left to the user."
+              },
+              {
+                "problem": "The credit line did not follow the Tonga model and source_license_statement / rights_statement were missing.",
+                "disposition": "Fixed: Tonga-style credit with title, date and 'Adapted for Spheres; no endorsement implied.', plus source_license_statement and rights_statement (own-work upload by Shimin Heiwa2 on 2007-09-29, month-only date, no EXIF, personality-rights warning)."
+              }
+            ]
+          },
+          "missing_records": [],
+          "open_items_for_codex": []
+        },
+        {
+          "person_id": "alain_juppe",
+          "display_name": "Alain Juppé",
+          "registry_name": "Alain Juppé",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "Alain Juppé"
+          ],
+          "requested_window": {
+            "from": "1994-11-30",
+            "to": "1997-06-01",
+            "to_exclusive": true,
+            "window_status": "orchestrator_choice_needs_codex_agreement",
+            "basis": "Window from the CLAUDE-C06-FRANCE-01 handoff table (orchestrator choice for both start and end). Accepted C01-37 research attests Juppé as Premier ministre only on 1995-05-18 and 1995-11-07, with no effective boundaries; nothing in accepted research dates him before 1995-05-18. The start 1994-11-30 equals the start of leadership-production job cartoon:alain_juppe:1994-11-30:1995-01-01:v1, which derives from the month-precision RPR acting-president registry term fr_rpr_alain_juppe_199411_acting (party_leaders.json, not accepted C01 research). The end 1997-06-01 equals the end of cartoon:alain_juppe:1995-10-31:1997-06-01:v1 (registry term fr_rpr_alain_juppe_199510_leader, until month 1997-06)."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_prime_minister",
+              "role_id": "fr_pm",
+              "holder": {
+                "name": "Alain Juppé",
+                "attested_on": "1995-05-18",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_jorf_composition_juppe_19950518"
+                ],
+                "claim_ids": [
+                  "fr_jorf_juppe_countersigns_composition_19950518"
+                ],
+                "note": "Observed on 18 May 1995: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, Alain Juppé'.",
+                "uncertainty": "No start: the appointment decree of 17 May 1995 (JORFTEXT000000718399) has no archive capture, and the composition decree's reference to it names nobody. No end: the decree of 7 November 1995 ending the first Government's functions was not retrieved (its likely identifier, JORFTEXT000000189843, has no capture), and his own reappointment of 7 November 1995 is never used as this end."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/institutions/1/roles/0/holder_claims/4",
+                "docs/campaign-certification/C01/research/france.json": "/institutions/1/roles/0/holder_claims/4"
+              }
+            },
+            {
+              "organization_or_institution_id": "fr_prime_minister",
+              "role_id": "fr_pm",
+              "holder": {
+                "name": "Alain Juppé",
+                "attested_on": "1995-11-07",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_jorf_nomination_juppe_19951107",
+                  "fr_jorf_cessation_juppe_19970602"
+                ],
+                "claim_ids": [
+                  "fr_jorf_juppe_appointed_pm_19951107",
+                  "fr_jorf_juppe_functions_ended_19970602"
+                ],
+                "note": "Observed on 1995-11-07: the signed instrument names Alain Juppé as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 1997-06-02 is retained among the cited claims; it does not supply an independently established effective end.",
+                "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/institutions/1/roles/0/holder_claims/5",
+                "docs/campaign-certification/C01/research/france.json": "/institutions/1/roles/0/holder_claims/5"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [],
+          "registry_terms_not_c01_research": [
+            "fr_rpr_alain_juppe_199411_acting",
+            "fr_rpr_alain_juppe_199510_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "alain_juppe-a03c353185c4",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "alain_juppe-d0ebd721cf60",
+                "from": "1994-11-30",
+                "to": "1997-06-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1994-11-30",
+                "id": "alain_juppe-787c8d5a6707",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1997-06-01",
+                "to": "2027-01-01",
+                "id": "alain_juppe-462eb8939c27",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:alain_juppe:1994-11-30:1995-01-01:v1",
+              "cartoon:alain_juppe:1995-01-01:1995-10-01:v1",
+              "cartoon:alain_juppe:1995-10-31:1997-06-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "alain-juppe-1996"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/alain-juppe-cartoon-1994-v1.txt",
+            "sha256": "cd52698af05019d711a3420b3f3fd7c1c05c1b59a5a342dae3bfbc6e76671d58",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "98597596f2560b19996a5ebeca7488eec7241db60b3af1d79fe7a4ec1e2efc7b",
+            "git_blob": "643b265f728e27b5dba9573334fa451128f19329",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 12 February 1996 photograph lies inside the window; Juppé is second from the left.",
+              "evidence": [
+                "alain-juppe-1996"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The provenance record did not say the downloaded bytes are the 2024-01-26 hi-res revision uploaded from speaker.tatarstan.ru, nor that the EXIF/XMP date 2007-11-08 is a scan date.",
+                "disposition": "Fixed: commons_file_revision (with the earlier 400x268 revision), hi_res_byte_source, date_precision and a credit naming both the photo report and the hi-res scan. The assembler fetched and pinned the Commons file history."
+              },
+              {
+                "problem": "The prompt and problem note said his hands are artistic extensions of a waist-up photograph; both hands are visible and the frame runs to mid-thigh.",
+                "disposition": "Fixed: the prompt's Clothing line now says both hands are visible in the photograph and only the standing pose, the trousers below the table edge and the shoes are extensions of a thigh-up group photograph; the prompt sha256 is re-pinned."
+              },
+              {
+                "problem": "requested_window.basis credited the whole window to C01-37, but nothing accepted supports the 1994-11-30 start.",
+                "disposition": "Fixed: the basis now names the handoff table as the source of both bounds and identifies the registry terms behind them."
+              },
+              {
+                "problem": "The in-window European Parliament CC BY 4.0 group photograph of 1994-12-09 was not in the rejected list.",
+                "disposition": "Fixed: added to rejected_candidates."
+              }
+            ]
+          },
+          "missing_records": [],
+          "open_items_for_codex": [
+            "Agree or amend the window start 1994-11-30, which rests on a registry RPR acting-president term rather than accepted C01 research.",
+            "Accept the 17 MB reference file size or substitute the smaller Archives nationales 1995 alternate."
+          ]
+        },
+        {
+          "person_id": "lionel_jospin",
+          "display_name": "Lionel Jospin",
+          "registry_name": "Lionel Jospin",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "Lionel Jospin"
+          ],
+          "requested_window": {
+            "from": "1995-10-14",
+            "to": "1997-06-07",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "Handoff table: C01-47 PS Premier secrétaire holder observations attested 1995-10-18 and 1997-06-06; C01-37 Premier ministre appointment instrument attested 1997-06-02. The start equals registry term fr_ps_lionel_jospin_19951014_leader; the window extends six days beyond leadership-production job cartoon:lionel_jospin:1995-10-14:1997-06-01:v1 to include the 1997-06-06 observation."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_prime_minister",
+              "role_id": "fr_pm",
+              "holder": {
+                "name": "Lionel Jospin",
+                "attested_on": "1997-06-02",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_jorf_nomination_jospin_19970602",
+                  "fr_jorf_cessation_jospin_20020506"
+                ],
+                "claim_ids": [
+                  "fr_jorf_jospin_appointed_pm_19970602",
+                  "fr_jorf_jospin_functions_ended_20020506"
+                ],
+                "note": "Observed on 1997-06-02: the signed instrument names Lionel Jospin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2002-05-06 is retained among the cited claims; it does not supply an independently established effective end.",
+                "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/institutions/1/roles/0/holder_claims/6",
+                "docs/campaign-certification/C01/research/france.json": "/institutions/1/roles/0/holder_claims/6"
+              }
+            },
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "Lionel Jospin",
+                "attested_on": "1995-10-18",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_vendredi_261_19951020"
+                ],
+                "claim_ids": [
+                  "fr_ps_jospin_receives_flnks_19951018"
+                ],
+                "note": "Observed on 18 October 1995: Vendredi of 20 October 1995 reports that a FLNKS delegation met 'Lionel Jospin, Premier secrétaire du Parti socialiste' on Wednesday 18 October; the members' vote result (no day printed) is a separate claim.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/5",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/5"
+              }
+            },
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "Lionel Jospin",
+                "attested_on": "1997-06-06",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_hebdo_023_19970606"
+                ],
+                "claim_ids": [
+                  "fr_ps_jospin_remains_premier_secretaire_19970606"
+                ],
+                "note": "Observed on 6 June 1997: in L'Hebdo des socialistes n°23, François Hollande states that Lionel Jospin 'reste Premier Secrétaire du parti jusqu'au prochain congrès' while delegating to a Premier secrétaire délégué.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/6",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/6"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_ps_jospin_members_vote_result_1995",
+              "source_id": "fr_ps_vendredi_261_19951020",
+              "attested_on": "1995-10-20",
+              "classification": "members' vote result; no printed day"
+            },
+            {
+              "claim_id": "fr_ps_jospin_secretariat_national_1995",
+              "source_id": "fr_ps_vendredi_261_19951020",
+              "attested_on": "1995-10-20",
+              "classification": "secretariat composition; no printed day"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "fr_ps_lionel_jospin_19951014_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "lionel_jospin-af1838a40839",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "lionel_jospin-75f8fcab4088",
+                "from": "1995-10-14",
+                "to": "1997-06-07",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1995-10-14",
+                "id": "lionel_jospin-3ca8b0bc631c",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1997-06-07",
+                "to": "2027-01-01",
+                "id": "lionel_jospin-8c9ce977d072",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:lionel_jospin:1995-10-14:1997-06-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "lionel-jospin-1998"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/lionel-jospin-cartoon-1995-v1.txt",
+            "sha256": "6eb81e10d03c043a8d9b1021b4ae3dbdfdac9777a69723d5345572ce0fb33ca5",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "97acd7be9f9dc1fd19871b6d81aa76dba404b1419222f30e09191729a22a2e51",
+            "git_blob": "5096aa4f7db977fbc1da3acb6499966dbfa0083b",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. No qualifying photograph exists inside the window; the October 1998 EC photograph is the closest, and the slightly younger treatment is declared.",
+              "evidence": [
+                "lionel-jospin-1998"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The photograph's date conflicts with its upstream source: EC Audiovisual P-002498/01-8 gives 12/10/1998, Commons 13 October 1998.",
+                "disposition": "Fixed: photograph_date records both days ('sources disagree'), depiction_date is month 1998-10 with both candidate days, date_precision explains, the age gap reads 493 or 494 days, and the prompt now says 'mid-October 1998 (12 or 13 October; its sources disagree)'. The assembler fetched and pinned the EC Audiovisual record; the prompt sha256 is re-pinned."
+              },
+              {
+                "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+                "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every France prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+              }
+            ]
+          },
+          "missing_records": [],
+          "open_items_for_codex": []
+        },
+        {
+          "person_id": "francois_hollande",
+          "display_name": "François Hollande",
+          "registry_name": "François Hollande",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "François Hollande"
+          ],
+          "requested_window": {
+            "from": "1997-06-30",
+            "to": "2008-11-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-47 PS Premier secrétaire: one accepted holder observation, attested 1997-12-05 (claim fr_ps_hollande_styled_premier_secretaire_19971205). The start precedes that observation and covers the claims-only delegated Premier secrétaire-délégué arrangement (registry term fr_ps_francois_hollande_199706_acting); the end follows registry term fr_ps_francois_hollande_199711_leader (until month 2008-11), not an accepted end.",
+            "possible_split": {
+              "at": "2005-01-01",
+              "jobs": [
+                {
+                  "from": "1997-06-30",
+                  "to": "2005-01-01",
+                  "id": "francois_hollande-856eb65c4557"
+                },
+                {
+                  "from": "2005-01-01",
+                  "to": "2008-11-01",
+                  "id": "francois_hollande-e4d9fafee75a"
+                }
+              ],
+              "note": "Review may split the window at 2005-01-01. The 2007 reference fits the later half well; the earlier half would rely on de-ageing by about 3 to 10 years or another reference."
+            }
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "François Hollande",
+                "attested_on": "1997-12-05",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_hebdo_043_19971205"
+                ],
+                "claim_ids": [
+                  "fr_ps_hollande_styled_premier_secretaire_19971205"
+                ],
+                "note": "Observed on 5 December 1997: L'Hebdo des socialistes n°43 prints a communiqué headed with his title of Premier secrétaire and lists him first in the new secrétariat national; the result of the members' election (91,18 %) is a separate claim.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/7",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/7"
+              }
+            }
+          ],
+          "observations_outside_window": [
+            {
+              "organization_or_institution_id": "fr_presidency",
+              "role_id": "fr_president",
+              "holder": {
+                "name": "François Hollande",
+                "attested_on": null,
+                "from": "2012-05-15",
+                "until": null,
+                "sources": [
+                  "fr_cc_debre_investiture_address_20120515",
+                  "fr_cc_note_mai_2012_duree_des_mandats",
+                  "fr_elysee_hollande_declaration_20120515",
+                  "fr_jorf_decree_prime_minister_20120515"
+                ],
+                "claim_ids": [
+                  "fr_cc_debre_2012_from_this_day_20120515",
+                  "fr_cc_note_links_debre_address_hollande_investiture",
+                  "fr_hollande_invested_statement_20120515",
+                  "fr_jorf_hollande_signs_pm_appointment_decree_20120515"
+                ],
+                "note": "From 15 May 2012: at the investiture ceremony the President of the Constitutional Council told the President of the Republic, identified by his 18 000 668 votes, 'A compter de ce jour, 15 mai 2012, et pour la durée de votre mandat, vous incarnez la France'; the Council's note links this address as Jean-Louis Debré's speech at the investiture of François Hollande, his own declaration of that day opens 'En ce jour où je suis investi de la plus haute charge de l'État', and the Journal officiel prints his decree of 15 May 2012 appointing the Prime Minister, signed François Hollande.",
+                "uncertainty": "No hour. The proclamation (10 May 2012), its publication (11 May 2012), the outer limit and the handover meeting at 10:00 are separate claims. No end: his interview of 10 May 2017 announces the handover for Sunday 14 May (prospective), decision 2017-171 PDR gives only the outer limit of 14 May 2017 at 24 heures, and the Council's 2017 activity report is retrospective; Emmanuel Macron's start is not used as this end."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/institutions/0/roles/0/holder_claims/4",
+                "docs/campaign-certification/C01/research/france.json": "/institutions/0/roles/0/holder_claims/4"
+              },
+              "scope": "outside the requested window; context only"
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_ps_hollande_premier_secretaire_delegue_1997",
+              "source_id": "fr_ps_hebdo_023_19970606",
+              "attested_on": "1997-06-06",
+              "classification": "delegated arrangement; claims only"
+            },
+            {
+              "claim_id": "fr_ps_hollande_members_vote_result_1997",
+              "source_id": "fr_ps_hebdo_043_19971205",
+              "attested_on": "1997-12-05",
+              "classification": "members' vote; an event, not a start"
+            },
+            {
+              "claim_id": "fr_ps_hollande_farewell_20081119",
+              "source_id": "fr_ps_hebdo_508_20081129",
+              "attested_on": "2008-11-19",
+              "classification": "farewell gathering; explicitly not an end"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "fr_ps_francois_hollande_199706_acting",
+            "fr_ps_francois_hollande_199711_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "francois_hollande-4cadb4cb57df",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "francois_hollande-cb70c49c38aa",
+                "from": "1997-06-30",
+                "to": "2008-11-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1997-06-30",
+                "id": "francois_hollande-f70e77e2e5e2",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "2008-11-01",
+                "to": "2027-01-01",
+                "id": "francois_hollande-5abfed580789",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:francois_hollande:1997-06-30:1997-11-01:v1",
+              "cartoon:francois_hollande:1997-11-30:2000-01-01:v1",
+              "cartoon:francois_hollande:2000-01-01:2005-01-01:v1",
+              "cartoon:francois_hollande:2005-01-01:2008-11-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "francois-hollande-2007"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/francois-hollande-cartoon-1997-v1.txt",
+            "sha256": "1453824cbd45beee1e84333ee0baa3f0c963d4605de7f31270ca999a8f6ed2b0",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "769259f5fc414992f121a06752c61772c95fc128c56ce2104f57a1eff1d6ce8d",
+            "git_blob": "a7622d1dcb7c40e20fd5ac40788a61133ef2265b",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 29 May 2007 photograph lies late in the window; the slightly younger treatment is declared.",
+              "evidence": [
+                "francois-hollande-2007"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": true,
+            "problems_and_dispositions": []
+          },
+          "missing_records": [],
+          "open_items_for_codex": [
+            "Decide whether to split the window at 2005-01-01 (see requested_window.possible_split)."
+          ]
+        },
+        {
+          "person_id": "martine_aubry",
+          "display_name": "Martine Aubry",
+          "registry_name": "Martine Aubry",
+          "identity_status": "existing_identity",
+          "batch_role": "reserve",
+          "observed_names": [
+            "Martine Aubry"
+          ],
+          "requested_window": {
+            "from": "2008-11-29",
+            "to": "2012-09-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-47 PS Premier secrétaire holder observation attested 2008-11-29 (claim fr_ps_aubry_styled_premiere_secretaire_20081129). The end is set by the handoff table; the registry interim break (2011-06-30 to 2011-10, terms fr_ps_martine_aubry_200811_leader and fr_ps_martine_aubry_201110_leader) is not attested by accepted research. Appearance interval only."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "fr_cnccfp_76",
+              "role_id": "fr_ps_first_secretary",
+              "holder": {
+                "name": "Martine Aubry",
+                "attested_on": "2008-11-29",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "fr_ps_hebdo_508_20081129"
+                ],
+                "claim_ids": [
+                  "fr_ps_aubry_styled_premiere_secretaire_20081129"
+                ],
+                "note": "Observed on 29 November 2008: the table of contents of L'Hebdo des socialistes n°508 lists 'Martine Aubry Première secrétaire'; her election declared at the Conseil national of 25 November 2008 is a separate claim.",
+                "uncertainty": "No start or end established: no reviewed party record states the day this person took up or left the office of Premier secrétaire. attested_on dates the cited party record only; elections, results, departures and resignations are separate claims and are never promoted to boundaries."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/supplements/france.json": "/organization_roles/0/roles/0/holder_claims/8",
+                "docs/campaign-certification/C01/research/france.json": "/organizations/15/roles/0/holder_claims/8"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "fr_ps_aubry_elected_20081125",
+              "source_id": "fr_ps_hebdo_508_20081129",
+              "attested_on": "2008-11-25",
+              "classification": "election declared at the close of the Conseil national; not a start"
+            },
+            {
+              "claim_id": "fr_ps_recolement_report_approved_20081125",
+              "source_id": "fr_ps_hebdo_508_20081129",
+              "attested_on": "2008-11-25",
+              "classification": "recount report approval; event claim"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "fr_ps_martine_aubry_200811_leader",
+            "fr_ps_martine_aubry_201110_leader"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "martine_aubry-b1bb5b714480",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "partial: only the requested window is closed"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "martine_aubry-4f7ab403d012",
+                "from": "2008-11-29",
+                "to": "2012-09-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2008-11-29",
+                "id": "martine_aubry-35666a159f0f",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "2012-09-01",
+                "to": "2027-01-01",
+                "id": "martine_aubry-f91951e7e70e",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_closed": [
+              "cartoon:martine_aubry:2008-11-30:2010-01-01:v1",
+              "cartoon:martine_aubry:2010-01-01:2011-06-30:v1",
+              "cartoon:martine_aubry:2011-10-31:2012-09-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "martine-aubry-2010"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/martine-aubry-cartoon-2008-v1.txt",
+            "sha256": "dc36c41ffb6300d273c37a4d0172bd6f2722338e311213889255b72eca3d6842",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "15f0e6312c96b0faa76afee8d79d9b7b334b04aebb1239a62f74751a5a062d1f",
+            "git_blob": "30756124eb342239b7930aeef6bfb07f491a044d",
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/martine-aubry-cartoon-2008-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 11 March 2010 photograph lies inside the window. Prepared as the batch alternate; all seven primary people passed after mechanical fixes, so she stays in reserve.",
+              "evidence": [
+                "martine-aubry-2010"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The pinned prompt hash holds only for LF bytes; with core.autocrlf=true a Windows checkout writes CRLF (sha256 15f0e6312c96b0faa76afee8d79d9b7b334b04aebb1239a62f74751a5a062d1f); the Mitterrand 1990 prompt is not an LF precedent (i/lf w/crlf).",
+                "disposition": "Recorded: the pin states its LF basis, the CRLF-checkout sha256 and git blob 30756124eb342239b7930aeef6bfb07f491a044d; Codex is asked to add an eol=lf rule (.gitattributes is outside this task's allowed files)."
+              },
+              {
+                "problem": "Scratch .headers files hold the user's IP and a GeoIP cookie.",
+                "disposition": "No header capture is copied, quoted, hashed or committed in any France record."
+              }
+            ]
+          },
+          "missing_records": [],
+          "open_items_for_codex": [
+            "Render only if one of the seven primary portraits is excluded at Codex review, or if Codex chooses to render the alternate."
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded_people": [],
+  "likeness_references": [
+    {
+      "id": "francois-mitterrand-1994",
+      "person_id": "francois_mitterrand",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Mitterrand_(cropped).jpg",
+      "commons_title": "File:François Mitterrand (cropped).jpg",
+      "retrieved_at": "2026-10-01T18:55:15Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/api-imageinfo-francois-mitterrand-cropped.json",
+        "bytes": 2271,
+        "sha256": "f97ed9d6c1767cab60a8fddc847d1a073644ab39c41579f624987965aeaffd28"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/filepage-gorup-cropped.html",
+        "bytes": 116384,
+        "sha256": "7089ed6c0243d46475b66a83d1781d8c7003579b55c93130e98a74a39f26e287"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/not-selected/filepage-gorup-parent.html",
+          "bytes": 110427,
+          "sha256": "18505fb39034ce430fc2342152cc44d2a12827a85850362b0aa2e901e7881621",
+          "retrieved_at": "2026-10-01",
+          "content": "Commons file page of the parent 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg' (preparer)."
+        },
+        {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/commons-api-sibling-de-michelis-bergamo-mitterand.json",
+          "bytes": 2931,
+          "sha256": "1814d9232520ee444dbb3d76a85ba05cfe94c798817c4fb6177b86a2df1b3827",
+          "retrieved_at": "2026-10-01T19:17:48Z",
+          "content": "Commons API record of the same author's sibling 'Gianni De Michelis, Ugo Bergamo and François Mitterand.jpg' (uploaded 2019-11-27T14:34:20Z, date 1994, described as showing 'the Mayor of Venice Ugo Bergamo', categorised 'François Mitterrand in 1984'); fetched by the assembler to pin the date conflict."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/francois-mitterrand-1994-gorup-de-besanez-cropped-original.jpg",
+        "bytes": 465501,
+        "sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Fran%C3%A7ois_Mitterrand_%28cropped%29.jpg",
+        "commons_sha1": "dfec5a520ce5376490e0bf7d3b134b895b3b90fb"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/francois-mitterrand-1994-reference-v1.jpg",
+      "sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b",
+      "bytes": 465501,
+      "asset_byte_identical_to_original": true,
+      "width": 927,
+      "height": 1302,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "1994 (Commons author statement, year only; uncertain)",
+      "depiction_date": {
+        "kind": "year",
+        "value": "1994",
+        "precision": "uncertain",
+        "probable_range": "about 1990-1993"
+      },
+      "date_precision": "The author, Gorup de Besanez, dates the photograph only to the year 1994, and that statement is not independently confirmed. The parent is a Nikon LS-5000 film scan digitised in 2019. It also shows Roland Dumas (foreign minister until March 1993) and Gianni De Michelis (foreign minister until June 1992). The author's sibling frame from the same scan session, also dated 1994 and located 'venezia', names 'the Mayor of Venice Ugo Bergamo' (mayor 1990-1993 per it.wikipedia, as reported by the independent verifier), and Commons files that sibling under 'François Mitterrand in 1984'. The scene is therefore probably from about 1990 to 1993. The reference_id and repository filename keep the Commons-stated year 1994 pending a Codex ruling; renaming would not change the bytes or the sha256.",
+      "creator": "Gorup de Besanez",
+      "credit": "Gorup de Besanez, 'François Mitterrand (cropped).jpg', dated 1994 on Commons (year uncertain), own work, CC BY-SA 4.0, via Wikimedia Commons; crop by Commons user Cheep (CropTool, 26 April 2021) of 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg'. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source_license_statement": "Creative Commons Attribution-Share Alike 4.0 International; the author's own-work grant on the file page ('I, the copyright holder of this work, hereby publish it under the following license').",
+      "rights_statement": "Retained source statement: CC BY-SA 4.0 (LicenseShortName exactly 'CC BY-SA 4.0'; LicenseUrl recorded exactly as Commons gives it, without a trailing slash). Attribution and share-alike apply. The file is a Commons crop of the author's own film scan; the copied bytes are the crop's latest revision, unretouched. The photograph's year is uncertain (see date_precision).",
+      "people_in_frame": "Mitterrand alone (head and shoulders); the crop removes Dumas and De Michelis.",
+      "age_gap_note": "Mitterrand was born on 26 October 1916. If the photograph is from 1994 as Commons states, he is 77 or 78 in it; if it is from about 1990-1993, as the same-set evidence suggests, he is about 73 to 77, and it may predate the window start of 1991-01-01. He is 74 at the window start and 78 at its exclusive end (1995-05-17). The prompt asks for one appearance across the window, a man in his mid-to-late seventies, without a frail caricature. The standing body, hands, trousers and shoes are artistic extensions of a head-and-shoulders photograph; suit, shirt and tie colours come from the photograph.",
+      "limitation": "Year-only, author-stated and probably inaccurate date. Exactly dated alternate retained outside Git: Roland Godefroy, Élysée, 28 November 1991, CC BY 3.0 (LicenseUrl https://creativecommons.org/licenses/by/3.0, Commons SHA-1 b70374bcce08762b634e863a8c191c2651b841e1, not-selected/candidate-godefroy-19911128.JPG sha256 63bf06de2a1ae5bb7aca8eb43f6ade6d66633d881a646383fe2b9916974392b5), a black-and-white side profile with a weaker likeness.",
+      "rejected_candidates": [
+        "File:François Mitterrand18.JPG (Roland Godefroy, CC BY 3.0, 28 Nov 1991, Élysée): licence and exact date qualify, but it is a black-and-white side profile at a microphone with little frontal detail. Kept as the alternate (see limitation).",
+        "File:Marc Monchal et Fançois Mitterrand.jpg (Martin.mchl, CC BY-SA 4.0, 10 Apr 1994): crowd scene photographed from a print, with flags and generals; Mitterrand is in partial profile at the edge and it is unclear the uploader took the photograph. Kept at not-selected/candidate-monchal-19940410.jpg (sha256 6e4fb286b8689054d33e20d031279a3b71acde4e0172f24a50d51a12bc2778db).",
+        "File:Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg (same author, licence and stated date): three people; the Commons crop of Mitterrand alone was used instead.",
+        "File:President George H. W. Bush is greeted by French President Francois Mitterrand at the Elysee Palace.jpg (Bush Library, public domain, 3 Jan 1993): only 600x386 with two people, small face; rejected from metadata, not viewed.",
+        "G7 family photos 1991, 1992, 1993 and 1994 (public domain presidential-library files; 1993 MOFA CC BY 4.0): large groups with tiny faces, 273 to 600 px wide.",
+        "EC Audiovisual (CC BY 4.0): Maastricht European Council 9 Dec 1991 (P-002371-03-18), a general view of the meeting room; File:François Mitterrand & Elizabeth II - Eurotunnel - 1994.jpg (6 May 1994), a two-person departure scene. Both rejected from metadata.",
+        "Clinton White House WHPO-P01475 to P01482 DPLA contact-sheet pages and 'Photograph Contact Sheets from March 4, 9-12, 14, 1993 (page 72 crop).jpg' (public domain, month precision): contact-sheet frames, not a single dated portrait.",
+        "Small or group files rejected from metadata: Limoges municipal archives 1993 (529x301 and a 225x300 crop); File:Mitterrand-Séguin (cropped).jpg (268x220); File:Mitterrand-Baumet.jpg (group); File:Mitterand ozal.jpg (two people, 695x472); File:Alphonse Niangoula et François Mitterrand.jpg (two people, 640x640)."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "michel-rocard-1991",
+      "person_id": "michel_rocard",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Rocard_1991_cropped-1.jpg",
+      "commons_title": "File:Rocard 1991 cropped-1.jpg",
+      "retrieved_at": "2026-10-01T18:59:27Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/michel_rocard/commons-api-rocard-1991-cropped-1-and-parent.json",
+        "bytes": 5026,
+        "sha256": "cf6b1fb165f4c183723438a34d6fa0be96836580686499ed99aff521a7cbb169"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/michel_rocard/commons-file-page-rocard-1991-cropped-1.html",
+        "bytes": 102204,
+        "sha256": "ec140317706d2b581acd26979c13760f6f22e97fc8b9c06b58a33bedd95fe7dc"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/michel_rocard/Rocard_1991_cropped-1.original.jpg",
+        "bytes": 830712,
+        "sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Rocard_1991_cropped-1.jpg",
+        "commons_sha1": "68b57112e0666f98602efd345e74e357ba0c0c43"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/michel-rocard-1991-reference-v1.jpg",
+      "sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9",
+      "bytes": 830712,
+      "asset_byte_identical_to_original": true,
+      "width": 806,
+      "height": 1075,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "1991",
+      "depiction_date": {
+        "kind": "year",
+        "value": "1991"
+      },
+      "date_precision": "Year only. Commons gives 1991 and the event as the opening of the Paris Salon du livre (category 'Salon du livre de Paris, 1991'); no month or day is asserted.",
+      "creator": "Jean Weber",
+      "credit": "Jean Weber / INRA, DIST; 1991; CC BY 2.0. Commons crop 'Rocard 1991 cropped-1.jpg' of 'Salon du livre 1991-22-cliche Jean Weber.jpg' (Flickr 31492990916, INRA DIST stream). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_license_statement": "Creative Commons Attribution 2.0 Generic (Flickr licence; the parent is in 'Flickr images reviewed by FlickreviewR 2').",
+      "rights_statement": "Retained source statement: CC BY 2.0, attribution 'Jean Weber / INRA, DIST'. The chosen file is a derivative crop that Commons user MiniYop made on 2026-07-21 with CropTool (rotated -6.4 degrees) from the Flickr-reviewed parent; the crop page carries no review of its own. The copied bytes are the crop's, unchanged.",
+      "people_in_frame": "Rocard is the clear main subject; a uniformed officer at the left edge and part of another person at the right are excluded by the prompt.",
+      "age_gap_note": "Rocard was born in August 1930; he is about 60-61 in the 1991 photograph and 59-63 across the window (1990-01-01 to 1994-06-19). No significant age adjustment is needed. The photograph has a yellow-green slide cast; the prompt asks for natural skin tones. It is a waist-up photo: the trousers, shoes, standing pose and both hands are artistic extensions; a small lapel pin is omitted on purpose.",
+      "limitation": "Year-only date; derivative crop of a reviewed Flickr upload.",
+      "rejected_candidates": [
+        "File:Rocard MEP 1994.jpg: licence 'European Parliament', not in FREE_LICENSES; probably after the window.",
+        "File:Michel Rocard, Bestanddeelnr 934-4187 (cropped).jpg (Rob Croes/Anefo, CC0, 1989-03-10): qualifies, but about 10 months before the window, 413x596 and cropped from a three-person group.",
+        "File:Premiers Brundtland (Noorwegen), Rocard (Frankrijk) en Lubbers, Bestanddeelnr 934-4187.jpg (CC0, 1989-03-10): group photo, before the window.",
+        "File:Rocard 1991 cropped-2.jpg (CC BY 2.0, 1991): a tighter crop of the same photograph; cropped-1 keeps more suit and tie.",
+        "File:Salon du livre 1991-22-cliche Jean Weber.jpg (CC BY 2.0, 1991): the uncropped parent, with other people more prominent; recorded as provenance.",
+        "File:Michel Rocard.jpg and File:Michel Rocard2.jpg (CC BY-SA 2.5, July 2006): about 12 years after the window.",
+        "File:Michel-Rocard-Louis-Le-Pensec.jpg (CC BY 2.0, 2009), File:Photo Hawke-Rocard-Mayet.jpg and File:Robert Hawke et Michel Rocard.jpg (CC BY-SA 4.0, 2011-2012), File:Roger Godino et Michel Rocard.jpg (CC BY-SA 4.0, 2013): far outside the window and shared with other people.",
+        "UNESCO 1989 conference TIFFs and other Salon du livre 1991 frames: not evaluated individually once an in-window solo-subject CC BY 2.0 photograph was found; UNESCO files often carry CC BY-SA 3.0 IGO, which would not qualify."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "laurent-fabius-1984",
+      "person_id": "laurent_fabius",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:28.08.1984._D._Baudis_et_L._Fabius._(1984)_-_53Fi3647.jpg",
+      "commons_title": "File:28.08.1984. D. Baudis et L. Fabius. (1984) - 53Fi3647.jpg",
+      "retrieved_at": "2026-10-01T18:59:34Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/laurent_fabius/commons-api-53Fi3647.json",
+        "bytes": 7341,
+        "sha256": "426b313f2a2c725acb8b141642d2c20f047c802b7115da69a2a570e3e1ae1813"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/laurent_fabius/commons-page-53Fi3647.html",
+        "bytes": 136264,
+        "sha256": "94a11d65a6472b95fd4191c7128a559115e877b6aae8fde142bd4c5dd2b2fb2f"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/laurent_fabius/28.08.1984-D-Baudis-et-L-Fabius-1984-53Fi3647.jpg",
+        "bytes": 700943,
+        "sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/28.08.1984._D._Baudis_et_L._Fabius._%281984%29_-_53Fi3647.jpg",
+        "commons_sha1": "dd09034248c7d2233d5bae965a6eeb1af2a4d31f"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/laurent-fabius-1984-reference-v1.jpg",
+      "sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664",
+      "bytes": 700943,
+      "asset_byte_identical_to_original": true,
+      "width": 2268,
+      "height": 1524,
+      "mode": "RGB",
+      "format": "JPEG",
+      "content": "black-and-white photograph stored as an RGB JPEG",
+      "photograph_date": "1984-08-28",
+      "depiction_date": {
+        "kind": "day",
+        "value": "1984-08-28"
+      },
+      "creator": "André Cros",
+      "credit": "André Cros / Fonds André Cros, Archives municipales de Toulouse, 53Fi3647, 28 August 1984; CC BY-SA 4.0 (deliberation n°27.3 of 23 June 2017 of the Town Council of the City of Toulouse); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source_license_statement": "This photograph is part of the Fonds André Cros, preserved by the city archives of Toulouse and released under CC BY-SA 4.0 license by the deliberation n°27.3 of June 23rd, 2017 of the Town Council of the City of Toulouse.",
+      "rights_statement": "Retained source statement: CC BY-SA 4.0 International (not ported). Attribution and share-alike obligations apply and should be considered at registration. Accession 53Fi3647, Archives municipales de Toulouse.",
+      "people_in_frame": "Fabius is the central man facing the camera in a medium-gray suit. Dominique Baudis is in the right background (light suit, lapel badge), as the independent verifier established by comparison with frames 53Fi3643 and 53Fi3646 of the same series. The smiling gray-haired man shaking Fabius's hand at left is unidentified. Other officials, a photographer and an aircraft are also in frame. The preparer's record had wrongly named the man at left as Baudis; this record and the prompt are corrected.",
+      "age_gap_note": "Photographed on 28 August 1984 at Toulouse-Blagnac airport, aged 38 (born 20 August 1946, general knowledge). The window is 1992-01-09 to 1993-04-03, when he is 45 to 46: the photograph is about 7 years 4 months before the window opens and about 8 years 7 months before it closes. The prompt asks for a subtly older man of 45 to 46 with the same receded hairline and dark side hair, as an explicit artistic interpretation. Suit, shirt and tie colours and the standing body are extensions of a black-and-white, waist-length photograph.",
+      "limitation": "Large age gap; black-and-white; other people in frame. A European Parliament / EC Audiovisual Service search for a dated 1989-1992 photograph (he was an MEP from 1989-07-25 to 1992-04-02 per Wikidata Q217070) has not been performed; see the person's open items.",
+      "rejected_candidates": [
+        "File:Signature of the Act of accession of Spain in the EC (9).jpg (Christian Lambiotte, European Communities, CC BY 4.0, 1985-06-12): formal group of about 30 leaders; Fabius is tiny.",
+        "File:Laurent Fabius.jpg (IMF, PD-imf.org, IMFC Prague, 2000): two people, about 7.5 years after the window, 823x1019; a possible secondary reference.",
+        "File:Laurent Fabius (2001).jpg (IMF, PD-imf.org, 2001-04-29): about 8 years after the window.",
+        "File:Laurent Fabius-FIG 2003.jpg (CC BY-SA 4.0, October 2003): about 10.5 years after the window.",
+        "File:Laurent Fabius 1981 (cropped).png (CEVIPOF Sciences Po, CC BY-SA 4.0): crop of a printed 1981 leaflet, not an original photograph; Commons date is the upload date.",
+        "File:Emile Touati with Laurent Fabius and Shimon Peres. December 1984.jpg and File:Fabius 1984 (cropped).jpg (CC BY-SA 3.0, 'Family album'): photographer unknown and uploader not the author; licence chain unclear; three people.",
+        "File:28.08.1984. L. Fabius. (1984) - 53Fi3647 (cropped).jpg and the (cropped2) variant: Commons derivative crops of the chosen original; the unedited original was used.",
+        "Same André Cros series 53Fi3641, 3642, 3644 and 3646 (28 Aug 1984, CC BY-SA 4.0): group or interior shots in which Fabius is seated, partly hidden or in profile.",
+        "Same series 53Fi3639 (28 Aug 1984, CC BY-SA 4.0): small face in a crowd (added from the independent verifier's review).",
+        "Same series 53Fi3640 (28 Aug 1984, CC BY-SA 4.0): walking group, small face (added from the independent verifier's review).",
+        "Same series 53Fi3643 (28 Aug 1984, CC BY-SA 4.0): Fabius smiling in three-quarter view with other men prominent; a real alternative, not chosen because 53Fi3647 is frontal and centred (added from the independent verifier's review).",
+        "Same series 53Fi3645 (28 Aug 1984, CC BY-SA 4.0): Fabius large, close three-quarter view, speaking; a real alternative, not chosen because 53Fi3647 is frontal with the mouth closed (added from the independent verifier's review).",
+        "Commons crops '53Fi3644 (cropped)' and 'Fabius 1984 cropped-1.jpg': derivatives of series frames; the unedited original 53Fi3647 was used (added from the independent verifier's review).",
+        "File:Laurent Fabius candidat présidentielle.jpg (CC0, 2006-10-01): about 13 years after the window.",
+        "File:Le Bébête show 0000.jpg / 0003.jpg: puppets, not photographs of the person.",
+        "Commons full-text search 'Laurent Fabius' (459 hits): the preparer reviewed offsets 0-299 and the independent verifier offsets 300-458; no photograph from 1985 to 1999 under any licence was found."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "henri-emmanuelli-2005",
+      "person_id": "henri_emmanuelli",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Henri_Emmanuelli_2005.jpg",
+      "commons_title": "File:Henri Emmanuelli 2005.jpg",
+      "retrieved_at": "2026-10-01T18:58:27Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/henri_emmanuelli/commons_api_imageinfo_Henri_Emmanuelli_2005.json",
+        "bytes": 2066,
+        "sha256": "006171b1d7ffa1c0911cfb3581cb0138106afdf59a8631ae597271992f2d2362"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/henri_emmanuelli/commons_file_page_Henri_Emmanuelli_2005.html",
+        "bytes": 89177,
+        "sha256": "d2c9d48f3d183531b5fa7817f1f0107e514aa7a4432c0bd39e28d2acead6fa9a"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/henri_emmanuelli/Henri_Emmanuelli_2005.original.jpg",
+        "bytes": 205372,
+        "sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Henri_Emmanuelli_2005.jpg",
+        "commons_sha1": "d482310e4eca6e440ddff8c6a618b3322d4e3e68"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/henri-emmanuelli-2005-reference-v1.jpg",
+      "sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b",
+      "bytes": 205372,
+      "asset_byte_identical_to_original": true,
+      "width": 1551,
+      "height": 798,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "2005-05",
+      "depiction_date": {
+        "kind": "month",
+        "value": "2005-05"
+      },
+      "date_precision": "Month only: Commons DateTimeOriginal and structured data P571 both give 2005-05. The file carries no EXIF.",
+      "creator": "Kenji-Baptiste OIKAWA",
+      "credit": "Kenji-Baptiste OIKAWA, 'Henri Emmanuelli 2005' (May 2005), CC BY 3.0 via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "source_license_statement": "Creative Commons Attribution 3.0 Unported (dual-licensed with GFDL 1.2 or later; CC BY 3.0 used).",
+      "rights_statement": "Own-work upload on 2007-09-29 by Commons user Shimin Heiwa2 naming Kenji-Baptiste OIKAWA as author, with the copyright-holder grant under GFDL 1.2+ and CC BY 3.0 Unported; CC BY 3.0 is the licence relied on. Month-only date, no EXIF. Commons shows a personality-rights warning (Restrictions: personality): the photograph serves only as the identity reference for an original cartoon.",
+      "people_in_frame": "Emmanuelli alone at a 2005 'Non' referendum rally lectern, in shirt sleeves, seen from slightly below; red backdrop, slogan banner, microphones and a campaign sticker are excluded by the prompt.",
+      "age_gap_note": "Photographed in May 2005, aged 59 (60 only if taken on 31 May; born 31 May 1945, general knowledge). The window is 1994-06-19 to 1995-10-14, when he is 49 to 50: the photograph is about 10 years 11 months after the window opens and about 9 years 7 months after it closes. The prompt asks for an about-fifty treatment with shallower lines and slightly darker iron-gray hair, explicitly an artistic interpretation; the jacket, its colours and the full body are artistic extensions of a waist-up shirt-sleeve photograph.",
+      "limitation": "About 9.5 to 11 years after the window; month precision; personality-rights warning. No free dated photograph from 1990 to 2004 was found on Commons (category and full-text search, 58 hits) or on the EC Audiovisual portal.",
+      "rejected_candidates": [
+        "File:Henri Emmanuelli 1981.png: Commons says CC BY-SA 4.0, but its stated archive.org source carries CC BY-NC-ND 4.0 with rights RESTRICTED; a scan of an unattributed leaflet photo; Commons date is the upload date.",
+        "File:Emmanuelli.jpg (CC BY-SA 4.0, Alexandre Wattiez, 2007-11-20, VRTS-confirmed): qualifies but about 12 years after the window; kept as a fallback.",
+        "File:Henri Emmanuelli à l'Assemblée Nationale, 2008.jpg (CC BY-SA 3.0, Benjamin Lemaire - Virtuo Presse / Agence Virtuo, 2008-02-05): press-agency credit and further from the window.",
+        "File:RMS et Henri Emmanuelli.jpg and 02-06 (CC BY 2.0, Yves Tennevin, 2008-07-03): Richard Stallman is a co-subject; 13 years after the window.",
+        "EC Audiovisual Service visit of Henri Emmanuelli to the EC (2009-04-26/27): not on Commons, no CC licence string recorded, 2009.",
+        "EC Audiovisual Service ECOFIN 916th meeting video (1984-03-12): video, stills excluded."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "alain-juppe-1996",
+      "person_id": "alain_juppe",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Shaimiev_and_Juppe_(1996-02-12).jpg",
+      "commons_title": "File:Shaimiev and Juppe (1996-02-12).jpg",
+      "retrieved_at": "2026-10-01T19:04:07Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/shaimiev-juppe-1996-commons-api.json",
+        "bytes": 3550,
+        "sha256": "97ae47ab8cc87f50c4b07f8b61e6780d29af2d807299c879742e701b7b7f7d59"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/shaimiev-juppe-1996-commons-page.html",
+        "bytes": 94977,
+        "sha256": "c6c3b769caefad8deb6a17c5d9af01c6a17ca0a391b5328df75564c25579d66d"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/wikitext3.json",
+          "bytes": 2334,
+          "sha256": "f49050aa931c0cd3ab645af2ac97401c3141be186f07d0117ba803cf23f75bd6",
+          "retrieved_at": "2026-10-01",
+          "content": "Commons wikitext of the file page (source field with the '(hi-res)' link; preparer)."
+        },
+        {
+          "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/commons-filehistory-shaimiev-juppe-1996.json",
+          "bytes": 1664,
+          "sha256": "eccbe3ff71bc2736726aa20c35aea926ddefe0cbfd1fb92b3f30c4552b879875",
+          "retrieved_at": "2026-10-01T19:17:41Z",
+          "content": "Commons file history (two revisions); fetched by the assembler to pin the revision the bytes came from."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/shaimiev-juppe-1996-original.jpg",
+        "bytes": 17080923,
+        "sha256": "c663649d218f7271c8280190ee13e057c61c8d7fed6c33bdefd896e87b9abff2",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Shaimiev_and_Juppe_%281996-02-12%29.jpg",
+        "commons_sha1": "4870bda79839621e649d65679f4f128d5d50cd99"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/alain-juppe-1996-reference-v1.jpg",
+      "sha256": "c663649d218f7271c8280190ee13e057c61c8d7fed6c33bdefd896e87b9abff2",
+      "bytes": 17080923,
+      "asset_byte_identical_to_original": true,
+      "commons_file_revision": {
+        "timestamp": "2024-01-26T19:45:12Z",
+        "uploader": "MasterRus21thCentury",
+        "sha1": "4870bda79839621e649d65679f4f128d5d50cd99",
+        "width": 5088,
+        "height": 3562,
+        "bytes": 17080923,
+        "upload_comment_source": "http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg",
+        "earlier_revision": {
+          "timestamp": "2023-09-01T05:56:53Z",
+          "uploader": "MasterRus21thCentury",
+          "width": 400,
+          "height": 268,
+          "sha1": "90372eebc2e6f84b38999d26d3cd20aea5badb63",
+          "source": "https://shaimiev.tatarstan.ru/pressa/photoreports/photoreport/4787153.htm"
+        }
+      },
+      "hi_res_byte_source": "http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg (the Commons source field's '(hi-res)' link, the State Council speaker's site)",
+      "width": 5088,
+      "height": 3562,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "1996-02-12",
+      "depiction_date": {
+        "kind": "day",
+        "value": "1996-02-12"
+      },
+      "date_precision": "Day, from the Commons record of the Tatarstan photo report (shaimiev.tatarstan.ru was unreachable to the verifier and the Wayback Machine was offline) plus '1996' printed on the banner in frame. The embedded EXIF/XMP date 2007-11-08 belongs to a 600 dpi Photoshop CS2 / FotoStation scan, not the photograph.",
+      "creator": "Госсоветник Татарстана (the State Counsellor of the Republic of Tatarstan website); the Commons category 'Photographs by Mikhail Kozlovsky' names a photographer, which the file page does not state as the author",
+      "credit": "Tatarstan.ru (photo report https://shaimiev.tatarstan.ru/pressa/photoreports/photoreport/4787153.htm; hi-res scan http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg), 12 February 1996, CC BY 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_license_statement": "{{tatarstan.ru}}: material from the official Tatarstan website under Creative Commons Attribution 4.0, attribution 'Tatarstan.ru'.",
+      "rights_statement": "Retained source statement: CC BY 4.0 with attribution Tatarstan.ru (LicenseShortName exactly 'CC BY 4.0'). The copied bytes are Commons revision 2024-01-26T19:45:12Z (5088x3562), uploaded from the speaker.tatarstan.ru hi-res scan; the original 2023 upload (400x268) came from the photo report, which dates and identifies the image and shows the same frame.",
+      "people_in_frame": "Juppé is the man standing second from the left (balding, gray suit, light-blue shirt); Mintimer Shaimiev holds a souvenir folder in the centre; Farid Mukhametshin and others also appear; table flags, a microphone and a Cyrillic banner are in frame. Both of Juppé's hands are visible (his right hand holds a small white card at the table edge, his left hangs beside the table flags) and the frame runs to about mid-thigh.",
+      "age_gap_note": "No meaningful age gap. Juppé was born on 15 August 1945 (general knowledge); he is 50 in the photograph and 49 to 51 across the window (1994-11-30 to 1997-06-01). Only the standing pose, the trousers below the table edge and the shoes are artistic extensions.",
+      "limitation": "Multi-person source; the later crop must isolate Juppé. The file is 17,080,923 bytes, larger than the current largest reference (about 9.9 MB); no repository size rule was found. Smaller qualifying alternate: File:Pose première pierre Stade de France 1995.jpg (Archives nationales, CC BY-SA 4.0, 1995-09-06, 1280x862; head bowed over a model).",
+      "rejected_candidates": [
+        "File:Juppé 1995.jpg (European Parliament, 1995-02-17, 3556x5315 solo portrait): LicenseShortName 'European Parliament' with no CC licence string or URL; not in FREE_LICENSES.",
+        "File:Retrospective of Helmut Kohl, former German Federal Chancellor and Honorary Citizen of Europe (P-034842-00-37).jpg (European Parliament photo, CC BY 4.0, 1994-12-09, 3337x2232): a group of eight including Balladur, Mitterrand, Kohl and Kinkel; Juppé is fourth from the left and smaller in frame than in the Tatarstan photograph; not chosen (added from the independent verifier's review).",
+        "File:Pose première pierre Stade de France 1995.jpg and crops (Archives nationales, CC BY-SA 4.0, 1995-09-06): low resolution, head bowed over a model; kept as the fallback alternate.",
+        "File:LeLorrain-Juppe-1996-1.jpg (CC BY-SA 4.0, 1996-04-14): distant overhead crowd shot.",
+        "File:StLaurentMaroni-Juppe-1996.jpg (CC BY-SA 4.0, 1996-04-17): distant street photo.",
+        "Brussels Extraordinary European Council 29-10-1993 and Copenhagen European Council 1993 (EC AVS, CC BY 4.0): large groups; captions name Balladur and Mitterrand for France.",
+        "File:Alain Juppé in Washington DC.jpg and crops (US State Dept, public domain, 2011), File:Alain Juppé.jpg (CC BY 2.0, 2008), File:Alain Juppé 2008.jpg and 2011 Defense.gov/State photos: 11 to 14 years after the window.",
+        "File:Bernard Quesson - Claude-Gérard Marcus - Alain Juppé - Jacques Chirac en 1988.jpg: multi-person and before the window."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "lionel-jospin-1998",
+      "person_id": "lionel_jospin",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Jospin_1998_(cropped).jpg",
+      "commons_title": "File:Jospin 1998 (cropped).jpg",
+      "retrieved_at": "2026-10-01T18:58:02Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/commons-api-imageinfo-Jospin_1998_cropped.json",
+        "bytes": 2768,
+        "sha256": "428b01a75f7507511b46ba0ce51ed45ffb6db5448e27d2f754d70fd531feb0b9"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/commons-file-page-Jospin_1998_cropped.html",
+        "bytes": 104112,
+        "sha256": "49eb5582e035c9eda4baf0a1dcd9b1e55724fe92a58348a48608f1a172331a23"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/ec-avs-P-002498-01-8.html",
+          "bytes": 268137,
+          "sha256": "85361c73b521dc4739dde51464345ae804d15745d2528243f2e6dc64985d78f9",
+          "retrieved_at": "2026-10-01T19:17:56Z",
+          "content": "EC Audiovisual Service record P-002498/01-8 (https://audiovisual.ec.europa.eu/en/media/photo/P-002498/01-8): 'Handshake between Lionel Jospin, on the left, and Jacques Santer', Date 12/10/1998, related reportage and video 12/10/1998 - 13/10/1998, Brussels - EC/Breydel; fetched by the assembler to pin the date conflict."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/Jospin_1998_(cropped).jpg",
+        "bytes": 290280,
+        "sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Jospin_1998_%28cropped%29.jpg",
+        "commons_sha1": "a3075d6674223116bf4091a90a708c753f5dbcdb"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/lionel-jospin-1998-reference-v1.jpg",
+      "sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612",
+      "bytes": 290280,
+      "asset_byte_identical_to_original": true,
+      "width": 723,
+      "height": 1121,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "1998-10-12 or 1998-10-13 (sources disagree)",
+      "depiction_date": {
+        "kind": "month",
+        "value": "1998-10",
+        "candidate_days": [
+          "1998-10-12",
+          "1998-10-13"
+        ]
+      },
+      "date_precision": "The upstream EC Audiovisual record P-002498/01-8 gives Date 12/10/1998 (its reportage is also 12/10/1998; the related video spans 12/10/1998 - 13/10/1998). Commons (this crop and its parent 'Lionel Jospin & Jacques Santer - 1998.jpg') states 13 October 1998. The embedded EXIF/IPTC/XMP holds no capture date, only 2006 digitising and modification dates. No systematic one-day portal shift is proven, so both days are recorded.",
+      "creator": "Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service",
+      "credit": "Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service, P-002498/01-8 (12 or 13 October 1998); © European Union; CC BY 4.0; Commons crop 'Jospin 1998 (cropped).jpg' (CropTool, 11 June 2024) of 'Lionel Jospin & Jacques Santer - 1998.jpg'. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_license_statement": "CC BY 4.0; Commons licence review: originally posted to https://audiovisual.ec.europa.eu/en/photo-details/P-002498~2F01-8 and reviewed on 9 July 2024 by reviewer Sikander, who confirmed it was available there under the stated licence on that date.",
+      "rights_statement": "Retained source statement: CC BY 4.0, rights holder (c) EC. The embedded EXIF credit reads 'EC/Isopress-Sénépart/Benoît Bourgeois': the Commission commissioned and published the photograph on its Audiovisual Service; it is not a third-party wire photograph, and the agency name is recorded for transparency.",
+      "people_in_frame": "Jospin alone in the crop (head and shoulders); Jacques Santer is removed by the Commons crop; a blue-and-yellow European flag star is behind him and excluded by the prompt.",
+      "age_gap_note": "Photograph of 12 or 13 October 1998: 493 or 494 days after the window's last day (1997-06-06) and about 3.0 years after its start (1995-10-14). Jospin (born 12 July 1937, general knowledge) is 61 in the photo and 58 to 59 in the window. The prompt asks for a slightly younger man with the same white hair and glasses. A research-only 500 px thumbnail of the non-free in-window European Parliament photograph of 14 February 1996 was viewed by the preparer to confirm the same hair and glasses; it is not shipped and not a generation input.",
+      "limitation": "No qualifying photograph exists inside the window; the in-window 1996 European Parliament files carry the non-qualifying 'European Parliament' licence string.",
+      "rejected_candidates": [
+        "File:Jospin 1996 (5x7 crop).jpg, File:Lionel Jospin, Klaus Hänsch 1996.jpg and its crop (1996-02-14, inside the window): licence string 'European Parliament', not in FREE_LICENSES; viewed only as a research thumbnail.",
+        "File:Lionel Jospin, le 30 septembre 1997.jpg (240x302) and File:Lionel Jospin 1997.jpg (46x69): 'own work' claim doubtful (same date and pixel height as an SIG-credited file), too small, after the window.",
+        "File:Bouchard2.jpg (1997-09-30): licence 'Attribution' (SIG), not in FREE_LICENSES; no source; two people; 450x302.",
+        "File:Lionel Jospin & Jacques Santer - 1998.jpg: same CC BY 4.0 photograph with Santer as co-subject; the single-subject crop was used. File:Jospin 1998 (cropped 2).jpg is a tighter crop.",
+        "File:Salon du livre 1991-41-cliche Lionel Jospin.jpg (CC BY 2.0, year 1991 only): at least 3.8 years before the window start.",
+        "File:Visite de la Cité internationale de Lyon, Raymond Barre et Lionel Jospin.jpg (CC BY 4.0): dated only 'between 1997 and 2001'; two people.",
+        "Bundesarchiv B 145 Bild-F065127-0013 (1983, ported 'CC BY-SA 3.0 de'); File:Lionel Jospin 1984.jpg and File:Lionel Jospin MEP 1984.jpg ('European Parliament'): non-qualifying licences, far before the window.",
+        "EC Audiovisual 1999-2001 files (CC BY 4.0): further from the window than October 1998."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "francois-hollande-2007",
+      "person_id": "francois_hollande",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Hollande,_Socialist_rally,_Z%C3%A9nith,_2007_05_29_n3.jpg",
+      "commons_title": "File:François Hollande, Socialist rally, Zénith, 2007 05 29 n3.jpg",
+      "retrieved_at": "2026-10-01",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/francois_hollande/commons-api-imageinfo.json",
+        "bytes": 3155,
+        "sha256": "8aa193f03577efffa482c931e89dd93790f48adf5c540d57e4ebcb8b831017cb"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/francois_hollande/commons-file-page.html",
+        "bytes": 136526,
+        "sha256": "2bb66a9b8e726bd842e7fca79996ace68efe1bcb6f3ce09d3bbcf86496d1bd29"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/francois_hollande/original-francois-hollande-zenith-2007-05-29-n3.jpg",
+        "bytes": 1639607,
+        "sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Fran%C3%A7ois_Hollande%2C_Socialist_rally%2C_Z%C3%A9nith%2C_2007_05_29_n3.jpg",
+        "commons_sha1": "5a6a0a6b848f38d91e17106bb88713d79d7bbd60"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/francois-hollande-2007-reference-v1.jpg",
+      "sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee",
+      "bytes": 1639607,
+      "asset_byte_identical_to_original": true,
+      "width": 1600,
+      "height": 2424,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "2007-05-29",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2007-05-29"
+      },
+      "creator": "Marie-Lan Nguyen (User:Jastrow), own work; named in the file page's Author field (the API extmetadata Artist value holds only the 'supported by Wikimédia France' template text)",
+      "credit": "© Marie-Lan Nguyen / Wikimedia Commons, CC BY 2.5; François Hollande at the Socialist Party rally at the Zénith, Paris, 29 May 2007; supported by Wikimédia France. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.5",
+      "license_url": "https://creativecommons.org/licenses/by/2.5",
+      "source_license_statement": "Creative Commons Attribution 2.5 Generic; the author's credit template asks for credit to Marie-Lan Nguyen (example '© Marie-Lan Nguyen / Wikimedia Commons').",
+      "rights_statement": "Retained source statement: CC BY 2.5, author's own upload. Commons shows a personality-rights warning (Restrictions: personality): the photograph serves only as the identity reference for an original cartoon.",
+      "people_in_frame": "Hollande seated, waist-up, arms crossed, holding handwritten papers; other people behind and beside him are excluded by the prompt.",
+      "age_gap_note": "Photographed on 29 May 2007, aged 52 (born 12 August 1954, general knowledge). The window runs from 30 June 1997 (age 42) to 1 November 2008 (age 54): the photograph is about 9 years 11 months after the window starts and about 1 year 5 months before it ends. The prompt asks for a man of about 50, very slightly younger than the photograph, with the same receding dark-brown hairline, rimless glasses and round face. The standing body is an artistic extension of a seated waist-up photograph.",
+      "limitation": "The reference dates from late in an eleven-year window; no qualifying 1997-2004 photograph was found. If review splits the window at 2005-01-01, this reference fits the later half; the earlier half would rely on de-ageing of about 3 to 10 years or need another reference.",
+      "rejected_candidates": [
+        "File:Francois Hollande 2005.jpg (CC BY 3.0/GFDL, 2005-05, Kenji-Baptiste OIKAWA): third-party upload from a personal website with conflicting licence statements; chain unverifiable; month-only date.",
+        "File:François Hollande.jpg (Manuel Canevet, Flickr, CC BY-SA 2.0): conflicting date evidence (2006-09-11 probably the Flickr upload date vs category 'in 2005'); File:François Hollande2.jpg is a 411x515 derivative.",
+        "File:François Hollande EP 2005.jpg and its crop (2005-06-29): licence string 'European Parliament', not in FREE_LICENSES.",
+        "File:Hollande francois.png (150x210) and File:Hollande francois 060129.jpg (348x225): too small; dated only by upload.",
+        "File:Francois zimeray et francois hollande, campagne des européennes 1999.jpg (CC BY-SA 3.0): 189x303, two people, year-only.",
+        "File:F. Hollande, Zenith 2007 (cropped).jpg: crop derivative of the chosen original.",
+        "Guillaume Paumier's Toulouse photographs of 2007-04-19 (CC BY-SA 2.5/3.0): could qualify; not reviewed visually.",
+        "No Commons photograph of Hollande dated 1997-2004 qualifies; the by-year categories begin at 2005."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    },
+    {
+      "id": "martine-aubry-2010",
+      "person_id": "martine_aubry",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Parti_socialiste_Paris_rally_regional_elections_2010-03-11_n05.jpg",
+      "commons_title": "File:Parti socialiste Paris rally regional elections 2010-03-11 n05.jpg",
+      "retrieved_at": "2026-10-01T18:55:29Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/martine_aubry/martine-aubry-2010-commons-api.json",
+        "bytes": 3323,
+        "sha256": "639f869a6892f45c8c12e877bd7b48bdb7cd260330d08da7d913da9784b47fa5"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/france-cast/refs/martine_aubry/martine-aubry-2010-commons-filepage.html",
+        "bytes": 122218,
+        "sha256": "a2586cf58cfece22254fbb833e6ee12314617edbdb044397853ff8b247ff0eeb"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/france-cast/refs/martine_aubry/martine-aubry-2010-03-11-original.jpg",
+        "bytes": 1055955,
+        "sha256": "5cb06f5a61a081ed1d9fee9a94adcabe1b0b9fd09427212ae037b393cbb7d0f0",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Parti_socialiste_Paris_rally_regional_elections_2010-03-11_n05.jpg",
+        "commons_sha1": "0642abd83e68a78c6f7bb40c4b3566ad27cf8280"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/martine-aubry-2010-reference-v1.jpg",
+      "sha256": "5cb06f5a61a081ed1d9fee9a94adcabe1b0b9fd09427212ae037b393cbb7d0f0",
+      "bytes": 1055955,
+      "asset_byte_identical_to_original": true,
+      "width": 1000,
+      "height": 1500,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "2010-03-11",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2010-03-11"
+      },
+      "date_precision": "Day; EXIF DateTimeOriginal 2010:03:11 21:12:30.",
+      "creator": "Marie-Lan Nguyen (Commons user Jastrow); own work",
+      "credit": "Marie-Lan Nguyen / Wikimedia Commons, 11 March 2010, CC BY 3.0. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "source_license_statement": "Creative Commons Attribution 3.0 Unported; the author's own-work grant ('I, the copyright holder of this work, hereby publish it under the following license').",
+      "rights_statement": "Retained source statement: CC BY 3.0 Unported. Commons shows a personality-rights warning (Restrictions: personality): the photograph serves only as the identity reference for an original cartoon.",
+      "people_in_frame": "Aubry speaking at the Cirque d'Hiver, Paris, mouth open mid-speech; a red podium sign with 'HUCHON 2010' lettering, two microphones and blurred bystanders are excluded by the prompt, which draws her with lips closed.",
+      "age_gap_note": "Inside the window (2008-11-29 to 2012-09-01): about 1.3 years after the start and 2.5 years before the end. She is 59 in the photograph and 58 to 62 across the window (born 8 August 1950, general knowledge). Full body, trousers and shoes are artistic extensions of a half-length photograph.",
+      "limitation": "Reserve only: prepared as the alternate for this batch; not part of the seven primary renders.",
+      "rejected_candidates": [
+        "File:Parti socialiste Paris rally regional elections 2010-03-11 n03.jpg (CC BY 3.0, same session): a second, nearly in-focus woman behind her; less frontal (search/cand-n03.jpg sha256 4773c41f5766cfb03efa9da6fcf42ecf75cc8a4b3ae2b3c01703981805b6b74b).",
+        "File:Parti socialiste Paris rally regional elections 2010-03-11 n06.jpg (CC BY 3.0, same session): good alternate without lettering, but three-quarter face and hands cut off (sha256 3bafd022f367b1c421fff4e3992f60cbdd5c7d2215ac6a647762354d188e5ac4).",
+        "File:Martine Aubry juin 2010.jpg (CC BY-SA 4.0, Nicolas Richoffer, 2010-06-30): qualifying metadata, not downloaded.",
+        "File:Martine Aubry - avril 2012 (1)/(2)/(3) and crop (CC BY-SA 2.0, Philippe J. via Flickr, 2012-04-17): qualifying, near the window end, about 10 MB; not downloaded.",
+        "File:Martine Aubry in Shanghai 20100506 - 1/2/3.jpg and File:Martine Aubry 2010.jpg (CC BY 3.0, Peter Potrowl, 2010-05-06): lower resolution; not downloaded.",
+        "File:Martine Aubry.jpg (2009 crop of a protest group photo), File:Martine Aubry.png (derivative of n05), File:DGAubrytribune.jpg (2008-11-19, before the window) and crowd shots: derivatives, outside the window or other main subjects."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": false
+    }
+  ],
+  "source_ledger": {
+    "evidence_directory": "D:/spheres-scratch/france-cast/refs",
+    "status": "original_retention_ledger",
+    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated route is recorded alongside each applicable source and derivative licence. Integration correction 2026-10-02: generated is a creation-route label, not a replacement licence. Mitterrand and Fabius adaptations are explicitly CC BY-SA 4.0 with attribution; all output derivative licences and credits are retained in render-return-batch-01.json.",
+    "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+    "downloads": [
+      {
+        "reference_id": "francois-mitterrand-1994",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/francois-mitterrand-1994-gorup-de-besanez-cropped-original.jpg",
+          "bytes": 465501,
+          "sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Fran%C3%A7ois_Mitterrand_%28cropped%29.jpg",
+          "commons_sha1": "dfec5a520ce5376490e0bf7d3b134b895b3b90fb"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/api-imageinfo-francois-mitterrand-cropped.json",
+          "bytes": 2271,
+          "sha256": "f97ed9d6c1767cab60a8fddc847d1a073644ab39c41579f624987965aeaffd28"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/filepage-gorup-cropped.html",
+          "bytes": 116384,
+          "sha256": "7089ed6c0243d46475b66a83d1781d8c7003579b55c93130e98a74a39f26e287"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/not-selected/filepage-gorup-parent.html",
+            "bytes": 110427,
+            "sha256": "18505fb39034ce430fc2342152cc44d2a12827a85850362b0aa2e901e7881621",
+            "retrieved_at": "2026-10-01",
+            "content": "Commons file page of the parent 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg' (preparer)."
+          },
+          {
+            "path": "D:/spheres-scratch/france-cast/refs/francois_mitterrand/commons-api-sibling-de-michelis-bergamo-mitterand.json",
+            "bytes": 2931,
+            "sha256": "1814d9232520ee444dbb3d76a85ba05cfe94c798817c4fb6177b86a2df1b3827",
+            "retrieved_at": "2026-10-01T19:17:48Z",
+            "content": "Commons API record of the same author's sibling 'Gianni De Michelis, Ugo Bergamo and François Mitterand.jpg' (uploaded 2019-11-27T14:34:20Z, date 1994, described as showing 'the Mayor of Venice Ugo Bergamo', categorised 'François Mitterrand in 1984'); fetched by the assembler to pin the date conflict."
+          }
+        ]
+      },
+      {
+        "reference_id": "michel-rocard-1991",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/michel_rocard/Rocard_1991_cropped-1.original.jpg",
+          "bytes": 830712,
+          "sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Rocard_1991_cropped-1.jpg",
+          "commons_sha1": "68b57112e0666f98602efd345e74e357ba0c0c43"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/michel_rocard/commons-api-rocard-1991-cropped-1-and-parent.json",
+          "bytes": 5026,
+          "sha256": "cf6b1fb165f4c183723438a34d6fa0be96836580686499ed99aff521a7cbb169"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/michel_rocard/commons-file-page-rocard-1991-cropped-1.html",
+          "bytes": 102204,
+          "sha256": "ec140317706d2b581acd26979c13760f6f22e97fc8b9c06b58a33bedd95fe7dc"
+        }
+      },
+      {
+        "reference_id": "laurent-fabius-1984",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/laurent_fabius/28.08.1984-D-Baudis-et-L-Fabius-1984-53Fi3647.jpg",
+          "bytes": 700943,
+          "sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/28.08.1984._D._Baudis_et_L._Fabius._%281984%29_-_53Fi3647.jpg",
+          "commons_sha1": "dd09034248c7d2233d5bae965a6eeb1af2a4d31f"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/laurent_fabius/commons-api-53Fi3647.json",
+          "bytes": 7341,
+          "sha256": "426b313f2a2c725acb8b141642d2c20f047c802b7115da69a2a570e3e1ae1813"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/laurent_fabius/commons-page-53Fi3647.html",
+          "bytes": 136264,
+          "sha256": "94a11d65a6472b95fd4191c7128a559115e877b6aae8fde142bd4c5dd2b2fb2f"
+        }
+      },
+      {
+        "reference_id": "henri-emmanuelli-2005",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/henri_emmanuelli/Henri_Emmanuelli_2005.original.jpg",
+          "bytes": 205372,
+          "sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Henri_Emmanuelli_2005.jpg",
+          "commons_sha1": "d482310e4eca6e440ddff8c6a618b3322d4e3e68"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/henri_emmanuelli/commons_api_imageinfo_Henri_Emmanuelli_2005.json",
+          "bytes": 2066,
+          "sha256": "006171b1d7ffa1c0911cfb3581cb0138106afdf59a8631ae597271992f2d2362"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/henri_emmanuelli/commons_file_page_Henri_Emmanuelli_2005.html",
+          "bytes": 89177,
+          "sha256": "d2c9d48f3d183531b5fa7817f1f0107e514aa7a4432c0bd39e28d2acead6fa9a"
+        }
+      },
+      {
+        "reference_id": "alain-juppe-1996",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/shaimiev-juppe-1996-original.jpg",
+          "bytes": 17080923,
+          "sha256": "c663649d218f7271c8280190ee13e057c61c8d7fed6c33bdefd896e87b9abff2",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Shaimiev_and_Juppe_%281996-02-12%29.jpg",
+          "commons_sha1": "4870bda79839621e649d65679f4f128d5d50cd99"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/shaimiev-juppe-1996-commons-api.json",
+          "bytes": 3550,
+          "sha256": "97ae47ab8cc87f50c4b07f8b61e6780d29af2d807299c879742e701b7b7f7d59"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/shaimiev-juppe-1996-commons-page.html",
+          "bytes": 94977,
+          "sha256": "c6c3b769caefad8deb6a17c5d9af01c6a17ca0a391b5328df75564c25579d66d"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/wikitext3.json",
+            "bytes": 2334,
+            "sha256": "f49050aa931c0cd3ab645af2ac97401c3141be186f07d0117ba803cf23f75bd6",
+            "retrieved_at": "2026-10-01",
+            "content": "Commons wikitext of the file page (source field with the '(hi-res)' link; preparer)."
+          },
+          {
+            "path": "D:/spheres-scratch/france-cast/refs/alain_juppe/commons-filehistory-shaimiev-juppe-1996.json",
+            "bytes": 1664,
+            "sha256": "eccbe3ff71bc2736726aa20c35aea926ddefe0cbfd1fb92b3f30c4552b879875",
+            "retrieved_at": "2026-10-01T19:17:41Z",
+            "content": "Commons file history (two revisions); fetched by the assembler to pin the revision the bytes came from."
+          }
+        ]
+      },
+      {
+        "reference_id": "lionel-jospin-1998",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/Jospin_1998_(cropped).jpg",
+          "bytes": 290280,
+          "sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Jospin_1998_%28cropped%29.jpg",
+          "commons_sha1": "a3075d6674223116bf4091a90a708c753f5dbcdb"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/commons-api-imageinfo-Jospin_1998_cropped.json",
+          "bytes": 2768,
+          "sha256": "428b01a75f7507511b46ba0ce51ed45ffb6db5448e27d2f754d70fd531feb0b9"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/commons-file-page-Jospin_1998_cropped.html",
+          "bytes": 104112,
+          "sha256": "49eb5582e035c9eda4baf0a1dcd9b1e55724fe92a58348a48608f1a172331a23"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/france-cast/refs/lionel_jospin/ec-avs-P-002498-01-8.html",
+            "bytes": 268137,
+            "sha256": "85361c73b521dc4739dde51464345ae804d15745d2528243f2e6dc64985d78f9",
+            "retrieved_at": "2026-10-01T19:17:56Z",
+            "content": "EC Audiovisual Service record P-002498/01-8 (https://audiovisual.ec.europa.eu/en/media/photo/P-002498/01-8): 'Handshake between Lionel Jospin, on the left, and Jacques Santer', Date 12/10/1998, related reportage and video 12/10/1998 - 13/10/1998, Brussels - EC/Breydel; fetched by the assembler to pin the date conflict."
+          }
+        ]
+      },
+      {
+        "reference_id": "francois-hollande-2007",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_hollande/original-francois-hollande-zenith-2007-05-29-n3.jpg",
+          "bytes": 1639607,
+          "sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Fran%C3%A7ois_Hollande%2C_Socialist_rally%2C_Z%C3%A9nith%2C_2007_05_29_n3.jpg",
+          "commons_sha1": "5a6a0a6b848f38d91e17106bb88713d79d7bbd60"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_hollande/commons-api-imageinfo.json",
+          "bytes": 3155,
+          "sha256": "8aa193f03577efffa482c931e89dd93790f48adf5c540d57e4ebcb8b831017cb"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/francois_hollande/commons-file-page.html",
+          "bytes": 136526,
+          "sha256": "2bb66a9b8e726bd842e7fca79996ace68efe1bcb6f3ce09d3bbcf86496d1bd29"
+        }
+      },
+      {
+        "reference_id": "martine-aubry-2010",
+        "image": {
+          "path": "D:/spheres-scratch/france-cast/refs/martine_aubry/martine-aubry-2010-03-11-original.jpg",
+          "bytes": 1055955,
+          "sha256": "5cb06f5a61a081ed1d9fee9a94adcabe1b0b9fd09427212ae037b393cbb7d0f0",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Parti_socialiste_Paris_rally_regional_elections_2010-03-11_n05.jpg",
+          "commons_sha1": "0642abd83e68a78c6f7bb40c4b3566ad27cf8280"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/france-cast/refs/martine_aubry/martine-aubry-2010-commons-api.json",
+          "bytes": 3323,
+          "sha256": "639f869a6892f45c8c12e877bd7b48bdb7cd260330d08da7d913da9784b47fa5"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/france-cast/refs/martine_aubry/martine-aubry-2010-commons-filepage.html",
+          "bytes": 122218,
+          "sha256": "a2586cf58cfece22254fbb833e6ee12314617edbdb044397853ff8b247ff0eeb"
+        }
+      }
+    ],
+    "access_limits": [
+      "Wikimedia Commons returned HTTP 429 several times during preparation (shared IP with parallel agents). Requests were made one at a time with back-offs of 30 to 200 seconds; nothing was bypassed.",
+      "europarl.europa.eu answered the Fabius verifier with HTTP 202, an apparent bot challenge; it was not bypassed.",
+      "shaimiev.tatarstan.ru was unreachable (connect timeout) for the Juppé verifier and the Wayback Machine was offline.",
+      "The assembler made three further single requests on 2026-10-01 (Commons file history for the Juppé file, Commons metadata for the Mitterrand sibling frame, the EC Audiovisual record for the Jospin photograph); all returned HTTP 200."
+    ],
+    "not_listed": "HTTP response header captures in the scratch folders (for example henri_emmanuelli/hdr3.txt, martine_aubry/*.headers and francois_hollande/tmp/*.headers) contain the client IP address and GeoIP cookies. They are deliberately not listed, hashed, quoted or copied. Search scratch files, candidate downloads and view crops made by the preparers are also not ledgered; rejected candidates retained as alternates are cited with their sha256 where relevant."
+  },
+  "codex_return": {
+    "path": "docs/campaign-certification/C06/production/france/render-return-batch-01.json",
+    "sha256": "cd22f06e567f50238038b9acd6c8e30d834b21d4ffbf83ac4d4a8a6410e0e41f",
+    "date": "2026-10-02",
+    "authority": "Generation return only; historical holders, runtime manifest and country acceptance unchanged."
+  }
+}

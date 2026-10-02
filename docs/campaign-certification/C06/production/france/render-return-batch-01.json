@@ -1,0 +1,529 @@
+{
+  "version": 1,
+  "batch": "FR-CAST-B01",
+  "task": "CLAUDE-C06-FRANCE-01",
+  "reviewed_source_tip": "50d2460437c24c8d57f3f0b6f3b4749b50005de5",
+  "status": "seven_rendered_outputs_returned_for_claude_review_and_registration",
+  "generated_by": "Codex root",
+  "generated_at": "2026-10-02",
+  "registered_portraits": 0,
+  "human_approval_claimed": false,
+  "country_completion": false,
+  "entries": [
+    {
+      "person_id": "francois_mitterrand",
+      "display_name": "François Mitterrand",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/francois-mitterrand-cartoon-1991-v1.txt",
+      "prompt_sha256": "9384edce0aa124138909a5685c958abceb94fa7590c1c2546f79d2b98a756aa5",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/francois-mitterrand-1994-reference-v1.jpg",
+          "sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b",
+          "bytes": 465501,
+          "width": 927,
+          "height": 1302,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-ca1f3a59-a0c8-4aab-b88e-b4fe84ecc081.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+        "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+        "bytes": 1496061,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1991-01-01",
+        "to": "1995-05-17",
+        "to_exclusive": true,
+        "window_status": "needs_codex_agreement",
+        "basis": "Handoff table: C01-23 presidents (fr_presidency / fr_president); current art ends 1991-01-01. Accepted C01-23 has one Mitterrand holder observation, attested_on 1990-01-04, with from and until null; no accepted holder observation falls inside 1991-1995. The exclusive end 1995-05-17 equals Jacques Chirac's holder observation of that date, which the research explicitly does not use as Mitterrand's end. The handoff says this window still needs Codex agreement."
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Mitterrand_(cropped).jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/francois-mitterrand-1994-reference-v1.jpg",
+        "original_reference_sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b",
+        "creator": "Gorup de Besanez",
+        "credit": "Gorup de Besanez, 'François Mitterrand (cropped).jpg', dated 1994 on Commons (year uncertain), own work, CC BY-SA 4.0, via Wikimedia Commons; crop by Commons user Cheep (CropTool, 26 April 2021) of 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg'. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "derivative_license": "CC BY-SA 4.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "person_id": "michel_rocard",
+      "display_name": "Michel Rocard",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/michel-rocard-cartoon-1990-v1.txt",
+      "prompt_sha256": "d6e36504fcb3980b9ec5ab7a32715dfbdccece26f092bb35306f7728d6271d29",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/michel-rocard-1991-reference-v1.jpg",
+          "sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9",
+          "bytes": 830712,
+          "width": 806,
+          "height": 1075,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-38896946-f8bd-4d02-a7ea-ed50718872a9.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+        "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
+        "bytes": 1812840,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1990-01-01",
+        "to": "1994-06-19",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-37 Premier ministre holder observation attested 1990-01-24; C01-47 PS Premier secrétaire holder observation attested 1993-11-12. The exclusive end equals the date of the claims-only no-confidence vote fr_ps_rocard_no_confidence_vote_19940619, which accepted research does not treat as an end. The window is an appearance interval, not a tenure."
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Rocard_1991_cropped-1.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/michel-rocard-1991-reference-v1.jpg",
+        "original_reference_sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9",
+        "creator": "Jean Weber",
+        "credit": "Jean Weber / INRA, DIST; 1991; CC BY 2.0. Commons crop 'Rocard 1991 cropped-1.jpg' of 'Salon du livre 1991-22-cliche Jean Weber.jpg' (Flickr 31492990916, INRA DIST stream). Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "derivative_license": "CC BY 2.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "person_id": "laurent_fabius",
+      "display_name": "Laurent Fabius",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/laurent-fabius-cartoon-1992-v1.txt",
+      "prompt_sha256": "9f2f006009031ccccd89cb50d8725603d1450e71299d855e160567ede34bfcab",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/laurent-fabius-1984-reference-v1.jpg",
+          "sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664",
+          "bytes": 700943,
+          "width": 2268,
+          "height": 1524,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-b041533e-0b53-4f93-ad30-f2b749400e5a.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+        "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+        "bytes": 1732155,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1992-01-09",
+        "to": "1993-04-03",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-47 PS Premier secrétaire holder observation attested 1992-01-10 (claim fr_ps_fabius_styled_premier_secretaire_19920110). The bounds come from party_leaders.json term fr_ps_laurent_fabius_19920109_leader; the 9 January 1992 election and 3 April 1993 resignation are separate accepted claims, not accepted tenure boundaries."
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:28.08.1984._D._Baudis_et_L._Fabius._(1984)_-_53Fi3647.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/laurent-fabius-1984-reference-v1.jpg",
+        "original_reference_sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664",
+        "creator": "André Cros",
+        "credit": "André Cros / Fonds André Cros, Archives municipales de Toulouse, 53Fi3647, 28 August 1984; CC BY-SA 4.0 (deliberation n°27.3 of 23 June 2017 of the Town Council of the City of Toulouse); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "derivative_license": "CC BY-SA 4.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "person_id": "henri_emmanuelli",
+      "display_name": "Henri Emmanuelli",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/henri-emmanuelli-cartoon-1994-v1.txt",
+      "prompt_sha256": "c172cbdf450f29518f86cc8c73adcf4fd404d87de0da44876930b0288fc4912d",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/henri-emmanuelli-2005-reference-v1.jpg",
+          "sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b",
+          "bytes": 205372,
+          "width": 1551,
+          "height": 798,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-964c7c37-fd9c-4b7b-8d36-c69079507b12.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+        "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
+        "bytes": 1574049,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1994-06-19",
+        "to": "1995-10-14",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-47 PS Premier secrétaire holder observation attested 1994-06-24 (claim fr_ps_emmanuelli_styled_premier_secretaire_19940624). The window equals registry term fr_ps_henri_emmanuelli_19940619_leader; the 19 June 1994 election is a separate event claim."
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Henri_Emmanuelli_2005.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/henri-emmanuelli-2005-reference-v1.jpg",
+        "original_reference_sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b",
+        "creator": "Kenji-Baptiste OIKAWA",
+        "credit": "Kenji-Baptiste OIKAWA, 'Henri Emmanuelli 2005' (May 2005), CC BY 3.0 via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "derivative_license": "CC BY 3.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "person_id": "alain_juppe",
+      "display_name": "Alain Juppé",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/alain-juppe-cartoon-1994-v1.txt",
+      "prompt_sha256": "cd52698af05019d711a3420b3f3fd7c1c05c1b59a5a342dae3bfbc6e76671d58",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/alain-juppe-1996-generation-input-v1.jpg",
+          "sha256": "dfdf994dfc9c6ead26393d97e041cb63049fd921a02899dd774e72194c3bd4a8",
+          "bytes": 357792,
+          "width": 1500,
+          "height": 1050,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-200324ee-4841-4689-87fb-2bebf366a0ff.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+        "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+        "bytes": 1647092,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1994-11-30",
+        "to": "1997-06-01",
+        "to_exclusive": true,
+        "window_status": "orchestrator_choice_needs_codex_agreement",
+        "basis": "Window from the CLAUDE-C06-FRANCE-01 handoff table (orchestrator choice for both start and end). Accepted C01-37 research attests Juppé as Premier ministre only on 1995-05-18 and 1995-11-07, with no effective boundaries; nothing in accepted research dates him before 1995-05-18. The start 1994-11-30 equals the start of leadership-production job cartoon:alain_juppe:1994-11-30:1995-01-01:v1, which derives from the month-precision RPR acting-president registry term fr_rpr_alain_juppe_199411_acting (party_leaders.json, not accepted C01 research). The end 1997-06-01 equals the end of cartoon:alain_juppe:1995-10-31:1997-06-01:v1 (registry term fr_rpr_alain_juppe_199510_leader, until month 1997-06)."
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Shaimiev_and_Juppe_(1996-02-12).jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/alain-juppe-1996-reference-v1.jpg",
+        "original_reference_sha256": "c663649d218f7271c8280190ee13e057c61c8d7fed6c33bdefd896e87b9abff2",
+        "creator": "Госсоветник Татарстана (the State Counsellor of the Republic of Tatarstan website); the Commons category 'Photographs by Mikhail Kozlovsky' names a photographer, which the file page does not state as the author",
+        "credit": "Tatarstan.ru (photo report https://shaimiev.tatarstan.ru/pressa/photoreports/photoreport/4787153.htm; hi-res scan http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg), 12 February 1996, CC BY 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "derivative_license": "CC BY 4.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "person_id": "lionel_jospin",
+      "display_name": "Lionel Jospin",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/lionel-jospin-cartoon-1995-v1.txt",
+      "prompt_sha256": "6eb81e10d03c043a8d9b1021b4ae3dbdfdac9777a69723d5345572ce0fb33ca5",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/lionel-jospin-1998-reference-v1.jpg",
+          "sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612",
+          "bytes": 290280,
+          "width": 723,
+          "height": 1121,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-95d0159c-1dcb-48e3-bf5e-e3ef4b1e97b0.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+        "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
+        "bytes": 1577428,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1995-10-14",
+        "to": "1997-06-07",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: C01-47 PS Premier secrétaire holder observations attested 1995-10-18 and 1997-06-06; C01-37 Premier ministre appointment instrument attested 1997-06-02. The start equals registry term fr_ps_lionel_jospin_19951014_leader; the window extends six days beyond leadership-production job cartoon:lionel_jospin:1995-10-14:1997-06-01:v1 to include the 1997-06-06 observation."
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Jospin_1998_(cropped).jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/lionel-jospin-1998-reference-v1.jpg",
+        "original_reference_sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612",
+        "creator": "Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service",
+        "credit": "Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service, P-002498/01-8 (12 or 13 October 1998); © European Union; CC BY 4.0; Commons crop 'Jospin 1998 (cropped).jpg' (CropTool, 11 June 2024) of 'Lionel Jospin & Jacques Santer - 1998.jpg'. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "derivative_license": "CC BY 4.0",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "person_id": "francois_hollande",
+      "display_name": "François Hollande",
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_file": "tools/avatars/person-prompts/francois-hollande-cartoon-1997-v1.txt",
+      "prompt_sha256": "1453824cbd45beee1e84333ee0baa3f0c963d4605de7f31270ca999a8f6ed2b0",
+      "submitted_text": "Exact UTF-8 LF prompt, no additional prompt or hidden edits.",
+      "referenced_images": [
+        {
+          "order": 1,
+          "use": "STYLE ONLY",
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB"
+        },
+        {
+          "order": 2,
+          "use": "exact-person likeness",
+          "path": "spheres-web/ui/person-portraits/references/francois-hollande-2007-reference-v1.jpg",
+          "sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee",
+          "bytes": 1639607,
+          "width": 1600,
+          "height": 2424,
+          "mode": "RGB"
+        }
+      ],
+      "generated_original_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-b8d9e33b-ca4e-4b5a-b2d9-334810504c45.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+        "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+        "bytes": 1437666,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "requested_appearance_window": {
+        "from": "1997-06-30",
+        "to": "2008-11-01",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "C01-47 PS Premier secrétaire: one accepted holder observation, attested 1997-12-05 (claim fr_ps_hollande_styled_premier_secretaire_19971205). The start precedes that observation and covers the claims-only delegated Premier secrétaire-délégué arrangement (registry term fr_ps_francois_hollande_199706_acting); the end follows registry term fr_ps_francois_hollande_199711_leader (until month 2008-11), not an accepted end.",
+        "possible_split": {
+          "at": "2005-01-01",
+          "jobs": [
+            {
+              "from": "1997-06-30",
+              "to": "2005-01-01",
+              "id": "francois_hollande-856eb65c4557"
+            },
+            {
+              "from": "2005-01-01",
+              "to": "2008-11-01",
+              "id": "francois_hollande-e4d9fafee75a"
+            }
+          ],
+          "note": "Review may split the window at 2005-01-01. The 2007 reference fits the later half well; the earlier half would rely on de-ageing by about 3 to 10 years or another reference."
+        }
+      },
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Hollande,_Socialist_rally,_Z%C3%A9nith,_2007_05_29_n3.jpg",
+        "original_reference": "spheres-web/ui/person-portraits/references/francois-hollande-2007-reference-v1.jpg",
+        "original_reference_sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee",
+        "creator": "Marie-Lan Nguyen (User:Jastrow), own work; named in the file page's Author field (the API extmetadata Artist value holds only the 'supported by Wikimédia France' template text)",
+        "credit": "© Marie-Lan Nguyen / Wikimedia Commons, CC BY 2.5; François Hollande at the Socialist Party rally at the Zénith, Paris, 29 May 2007; supported by Wikimédia France. Adapted for Spheres; no endorsement implied.",
+        "source_license": "CC BY 2.5",
+        "license_url": "https://creativecommons.org/licenses/by/2.5",
+        "derivative_license": "CC BY 2.5",
+        "adaptation": "AI-generated cartoon interpretation from credited photograph, with invented standing body/clothing where not visible; illustrative ageing as disclosed in the prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "Codex root",
+        "reviewed_at": "2026-10-02",
+        "review_scope": "Generation output personally inspected at full image display against previously viewed reference and established cartoon anchor. Full body, both hands and shoes, one named subject, legible face, no text or other people; illustrative era, not a documented photograph of that appearance date.",
+        "disposition": "Suitable for independent Claude review and registration proposal",
+        "human_approval_claimed": false,
+        "country_acceptance": false
+      }
+    }
+  ],
+  "decisions": {
+    "mitterrand": "Accept requested interval for appearance only. Keep 1994 filename as source-stated label with uncertain photograph date, not an established capture year or office boundary.",
+    "juppe": "Accept requested illustrative appearance interval; registry-derived November 1994 boundary does not establish effective office tenure. Preserve 17 MB original. Original input read failed before generation (invalid base64 padding); successful generation used the retained proportional 1500px-wide JPEG, with no crop or person alteration, pinned as actual input.",
+    "hollande": "Return one mid/late-period interpretation from the 2007 face for review. The eleven-year window is not a year-by-year likeness claim; Claude may propose an earlier split before registration.",
+    "fabius": "Use verified 1984 reference with explicitly disclosed ageing for 1992. Optional closer-photo search was not attempted and is not claimed.",
+    "aubry": "Prepared reserve remains unrendered.",
+    "background": "Outputs retain the generated dark-teal backdrop with slight tonal shading. No pixel-exact flat-background claim; no output retouching."
+  },
+  "next": "Claude: inspect each returned PNG against named reference, preserve explicit derivative licences and attribution, add batch/registration records through the existing pipeline, coordinate the shared person_portraits manifest with Codex, regenerate coverage and return focused checks. A generated PNG alone closes no production job."
+}
