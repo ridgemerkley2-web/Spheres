@@ -113,3 +113,31 @@ docs/campaign-certification/development/2026-09-30-integration/** -text -whitesp
 # Byte-pinned review evidence retains CRLF, including HTTP header separators.
 docs/campaign-certification/C01/integrations/CLAUDE-C01-36/** -whitespace
 docs/campaign-certification/C01/reviews/CLAUDE-C01-29/2026-09-30-resumed/** -whitespace
+
+# Preserve exact submitted bytes for the four C06 portrait batches reviewed 2026-10-02.
+tools/avatars/person-prompts/akihiro-ota-cartoon-2006-v1.txt text eol=lf
+tools/avatars/person-prompts/alain-juppe-cartoon-1994-v1.txt text eol=lf
+tools/avatars/person-prompts/baleia-rossi-cartoon-2019-v1.txt text eol=lf
+tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt text eol=lf
+tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v1.txt text eol=lf
+tools/avatars/person-prompts/constand-viljoen-cartoon-1994-v1.txt text eol=lf
+tools/avatars/person-prompts/corne-mulder-cartoon-2025-v1.txt text eol=lf
+tools/avatars/person-prompts/francois-hollande-cartoon-1997-v1.txt text eol=lf
+tools/avatars/person-prompts/francois-mitterrand-cartoon-1991-v1.txt text eol=lf
+tools/avatars/person-prompts/henri-emmanuelli-cartoon-1994-v1.txt text eol=lf
+tools/avatars/person-prompts/laurent-fabius-cartoon-1992-v1.txt text eol=lf
+tools/avatars/person-prompts/leonel-brizola-cartoon-1995-v1.txt text eol=lf
+tools/avatars/person-prompts/lionel-jospin-cartoon-1995-v1.txt text eol=lf
+tools/avatars/person-prompts/makoto-tanabe-cartoon-1991-v1.txt text eol=lf
+tools/avatars/person-prompts/mangosuthu-buthelezi-cartoon-1995-v1.txt text eol=lf
+tools/avatars/person-prompts/martine-aubry-cartoon-2008-v1.txt text eol=lf
+tools/avatars/person-prompts/michel-rocard-cartoon-1990-v1.txt text eol=lf
+tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt text eol=lf
+tools/avatars/person-prompts/michel-temer-cartoon-2010-v1.txt text eol=lf
+tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v1.txt text eol=lf
+tools/avatars/person-prompts/pieter-mulder-cartoon-2001-v1.txt text eol=lf
+tools/avatars/person-prompts/sadao-yamahana-cartoon-1993-v1.txt text eol=lf
+tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt text eol=lf
+tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt text eol=lf
+docs/campaign-certification/C06/reviews/claude-20261002/** -text -whitespace
+docs/campaign-certification/C06/production/tonga/pm2006-followup-20261002/** -text -whitespace

@@ -9,7 +9,7 @@
   "branch": "claude/c06-br-01",
   "base": "2fd186d6",
   "claim_commit": "473f234a",
-  "scope": "Brazil cast batch 1: the five registry people with accepted C01 holder observations (C01-34 MDB and PDT national presidents, C01-43 PRN/PTC/Agir national presidents), in seven requested appearance windows. Six windows (four people) are prepared, each with one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Daniel Tourinho is excluded because no qualifying likeness reference exists. There is no reserve. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+  "scope": "Brazil cast batch 1: the five registry people with accepted C01 holder observations (C01-34 MDB and PDT national presidents, C01-43 PRN/PTC/Agir national presidents), in seven requested appearance windows. Six windows (four people) are prepared, each with one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Daniel Tourinho is excluded because no qualifying likeness reference was found under this preparation's search and licence filter. Five prepared windows are render-ready; Lupi's 2015–2026 render is held pending an era correction. There is no reserve. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
   "prepared_by": "Claude: one preparation agent and one independent verification agent per requested window (seven windows, five people), assembled and mechanically corrected by Claude on 2026-10-01. This is not human review, not Codex review and not user approval.",
   "authority": {
     "runtime_installation": false,
@@ -51,7 +51,7 @@
       },
       {
         "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-43/README.md",
-        "sha256": "5ea442b89992c5dee10a3a5daedcd9f77a5ccc2bc6d71fe847a7cc63cea7f201",
+        "sha256": "7d4c7df7e34d8b902162b50a578e71e86f5be58501f14a94e75bdd8e8cca6c20",
         "packet": "C01-43"
       },
       {
@@ -161,7 +161,8 @@
     "Each review batch contains at most ten people.",
     "HTTP response header captures that contain the client IP address or GeoIP cookies are never copied, cited, hashed or committed.",
     "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
-    "Ages use the registry birth dates in party_leaders.json (Temer 1940-09-23, Baleia Rossi 1972-06-09, Lupi 1957-03-16, Brizola 1922-11-22, which conflicts with other sources). Birth dates are not accepted C01 research."
+    "Ages use the registry birth dates in party_leaders.json (Temer 1940-09-23, Baleia Rossi 1972-06-09, Lupi 1957-03-16, Brizola 1922-11-22, which conflicts with other sources). Birth dates are not accepted C01 research.",
+    "Adaptations from the Brizola reference must retain Sérgio Neglia attribution, disclose changes and preserve CC BY-SA 4.0 adaptation requirements. A generated label does not replace the source or derivative licence obligations."
   ],
   "coverage": {
     "people_count": 5,
@@ -193,14 +194,18 @@
       "michel-temer-2017",
       "leonel-brizola-1998"
     ],
-    "leadership_production_cartoon_jobs_closed_by_primary_people": 14,
     "leadership_production_cartoon_jobs_left_open": [
       "cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"
     ],
     "all_historical_officeholders_established": false,
     "continuous_terms_established": false,
     "all_likenesses_ready": false,
-    "rendered_portraits": 0
+    "rendered_portraits": 0,
+    "leadership_production_cartoon_jobs_planned_by_primary_people": 14,
+    "leadership_production_cartoon_jobs_closed_by_primary_people": 0,
+    "render_ready_jobs": 5,
+    "held_render_jobs": 1,
+    "planned_coverage_limit": "The fourteen jobs are potential coverage only after generation, registration and review, including resolution of the held Lupi era window; none is closed by preparation."
   },
   "batches": [
     {
@@ -261,7 +266,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
               }
             ],
             "pipeline_window_scoped": [
@@ -270,7 +275,7 @@
                 "from": "2001-09-09",
                 "to": "2010-06-15",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -288,7 +293,7 @@
               }
             ],
             "pipeline_residual_note": "After both Temer windows (2001-09-09 to 2019-01-01) are registered.",
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_planned": [
               "cartoon:michel_temer:2001-09-09:2005-01-01:v1",
               "cartoon:michel_temer:2005-01-01:2009-03-10:v1",
               "cartoon:michel_temer:2010-01-27:2010-06-15:v1"
@@ -350,7 +355,12 @@
           ],
           "open_items_for_codex": [
             "Optional: michel-temer-2009-reference-v1.jpg is byte-identical to carlos-lupi-2009-reference-v1.jpg (one three-person photograph). Keep both per-person paths, as the naming rule asks, or point both registrations at one file; the bytes and sha256 are the same either way."
-          ]
+          ],
+          "render_disposition": {
+            "status": "ready_for_render_as_art_proposal",
+            "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          }
         },
         {
           "person_id": "michel_temer",
@@ -400,7 +410,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
               }
             ],
             "pipeline_window_scoped": [
@@ -409,7 +419,7 @@
                 "from": "2010-06-15",
                 "to": "2019-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -427,7 +437,7 @@
               }
             ],
             "pipeline_residual_note": "After both Temer windows (2001-09-09 to 2019-01-01) are registered.",
-            "leadership_production_cartoon_jobs_closed": []
+            "leadership_production_cartoon_jobs_planned": []
           },
           "likeness_reference_ids": [
             "michel-temer-2017"
@@ -468,7 +478,12 @@
           "open_items_for_codex": [
             "Agree or amend the window 2010-06-15 to 2019-01-01 (start continues from window 1; end from C01-10, acceptance pending).",
             "Optional: the window is long (ages 69 to 78) and the reference is from May 2017. If Codex wants an early (vice-presidential) look, split the window and prepare a second reference from the 41 'Brasília - DF (4796...)' photographs of 13 July 2010 (Dilma Rousseff Flickr stream, 'CC BY-SA 2.0', 3506x2336-2338), 28 days after the window start. Not prepared here."
-          ]
+          ],
+          "render_disposition": {
+            "status": "ready_for_render_as_art_proposal",
+            "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          }
         },
         {
           "person_id": "baleia_rossi",
@@ -562,7 +577,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
               }
             ],
             "pipeline_window_scoped": [
@@ -571,7 +586,7 @@
                 "from": "2019-10-06",
                 "to": "2026-09-08",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -588,7 +603,7 @@
                 "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_planned": [
               "cartoon:baleia_rossi:2019-10-06:2020-01-01:v1",
               "cartoon:baleia_rossi:2020-01-01:2025-01-01:v1",
               "cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"
@@ -622,7 +637,12 @@
             "problems_and_dispositions": []
           },
           "missing_records": [],
-          "open_items_for_codex": []
+          "open_items_for_codex": [],
+          "render_disposition": {
+            "status": "ready_for_render_as_art_proposal",
+            "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          }
         },
         {
           "person_id": "leonel_brizola",
@@ -718,7 +738,7 @@
                 "from": "1995-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
               }
             ],
             "pipeline_window_scoped": [
@@ -727,7 +747,7 @@
                 "from": "1995-01-01",
                 "to": "2004-06-21",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -739,7 +759,7 @@
                 "note": "Starts on the day he died, so it is an artifact of the default 1990-2027 inventory, not an appearance gap."
               }
             ],
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_planned": [
               "cartoon:leonel_brizola:1995-01-01:2000-01-01:v1",
               "cartoon:leonel_brizola:2000-01-01:2004-06-21:v1"
             ]
@@ -782,8 +802,8 @@
                 "disposition": "Fixed: the phrase now reads 'thick, curly gray hair at the sides and back, behind the ears and down to the collar, leaving the large ears uncovered'. The file stays LF; its LF sha256, CRLF-checkout sha256 and git blob are re-pinned (they were ebeacdc5..., 38aa9495... and 176c7750...)."
               },
               {
-                "problem": "The flat job list did not say that leonel_brizola-cbbd6332435f is the default-inventory job (1995-01-01 to 2027-01-01), closed only in part.",
-                "disposition": "Fixed: jobs are labelled as in the France model. Window-scoped leonel_brizola-fa7af2b7d699 closes exactly; the default-inventory job is partly closed; the residual leonel_brizola-a07f461811a0 (2004-06-21 to 2027-01-01) stays open and is noted as a pipeline artifact starting on the day he died."
+                "problem": "The flat job list did not say that leonel_brizola-cbbd6332435f is the default-inventory job (1995-01-01 to 2027-01-01), planned to be covered only in part.",
+                "disposition": "Fixed: jobs are labelled as in the France model. Window-scoped leonel_brizola-fa7af2b7d699 would be covered exactly after registration; the default-inventory job would be partly covered after registration; the residual leonel_brizola-a07f461811a0 (2004-06-21 to 2027-01-01) stays open and is noted as a pipeline artifact starting on the day he died."
               }
             ]
           },
@@ -792,7 +812,12 @@
             "Rule on the registry birth date (1922-01-22 in the Chamber of Deputies open data and Wikidata, 1922-11-22 in party_leaders.json). This task does not edit the registry; the prompt's ages hold for both.",
             "The byte-identical reference carries the photographer's own embedded IPTC contact fields (a work phone number and e-mail), which Commons already publishes in the same file. Committing the copy republishes them; stripping them would break byte identity. Accept, or substitute a decision of your own before integration.",
             "Accept the 7.66 MB reference file size."
-          ]
+          ],
+          "render_disposition": {
+            "status": "ready_for_render_as_art_proposal",
+            "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          }
         },
         {
           "person_id": "carlos_lupi",
@@ -844,7 +869,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
               }
             ],
             "pipeline_window_scoped": [
@@ -853,7 +878,7 @@
                 "from": "2004-06-30",
                 "to": "2015-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -871,7 +896,7 @@
               }
             ],
             "pipeline_residual_note": "After both Lupi windows (2004-06-30 to 2026-09-08) are registered.",
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_planned": [
               "cartoon:carlos_lupi:2004-06-30:2005-01-01:v1",
               "cartoon:carlos_lupi:2005-01-01:2010-01-01:v1",
               "cartoon:carlos_lupi:2010-01-01:2015-01-01:v1"
@@ -913,7 +938,7 @@
               },
               {
                 "problem": "carlos_lupi-1a8bd5270f54 (default inventory, 1990-01-01 to 2027-01-01) was listed beside the window jobs as if it fell inside the window.",
-                "disposition": "Fixed: jobs are labelled window-scoped (carlos_lupi-45b22e501a80, exact), default inventory (partly closed) and leadership-production cartoon jobs (historical_art_jobs[81..83])."
+                "disposition": "Fixed: jobs are labelled window-scoped (carlos_lupi-45b22e501a80, exact), default inventory (planned partial coverage after registration) and leadership-production cartoon jobs (historical_art_jobs[81..83])."
               }
             ]
           },
@@ -922,7 +947,12 @@
           ],
           "open_items_for_codex": [
             "Agree the window start 2004-06-30, which rests on leadership production and the month-precision registry term rather than accepted C01 research."
-          ]
+          ],
+          "render_disposition": {
+            "status": "ready_for_render_as_art_proposal",
+            "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          }
         },
         {
           "person_id": "carlos_lupi",
@@ -938,7 +968,7 @@
             "from": "2015-01-01",
             "to": "2026-09-08",
             "to_exclusive": true,
-            "window_status": "appearance_interval_from_handoff",
+            "window_status": "held_pending_era_correction",
             "basis": "C01-34 PDT holder observations attested 2021-12-21, 2025-05-21 and 2026-09-04 (brazil.json /organizations/1/roles/0/holder_claims/4-6), each with from and until null. The start 2015-01-01 is the batch split with the first Lupi window (an existing leadership-production boundary), not a research boundary. The exclusive end 2026-09-08 is the day after the 7 September 2026 cutoff; registry term br_pdt_carlos_lupi_200406 (not accepted C01 research) is open. The window is an appearance interval, not a tenure."
           },
           "observations": [
@@ -1016,7 +1046,7 @@
                 "from": "1990-01-01",
                 "to": "2027-01-01",
                 "status": "needs_source_and_visual_review",
-                "closure": "partial: only the requested window is closed"
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
               }
             ],
             "pipeline_window_scoped": [
@@ -1025,7 +1055,7 @@
                 "from": "2015-01-01",
                 "to": "2026-09-08",
                 "status": "needs_source_and_visual_review",
-                "closure": "exact: from/to equal the requested window"
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -1043,7 +1073,7 @@
               }
             ],
             "pipeline_residual_note": "After both Lupi windows (2004-06-30 to 2026-09-08) are registered.",
-            "leadership_production_cartoon_jobs_closed": [
+            "leadership_production_cartoon_jobs_planned": [
               "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1",
               "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
               "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"
@@ -1078,8 +1108,14 @@
           },
           "missing_records": [],
           "open_items_for_codex": [
-            "Optional: the photograph is from late in a long window (ages 57 to 69); in 2015 his hair and beard were still mostly dark. The prompt keeps the 2023 gray look and says so. Codex may split the window at 2020-01-01 (an existing leadership-production boundary) with a 2015 Agência Senado CC BY 2.0 reference; that split is not prepared."
-          ]
+            "Required before rendering: narrow the later-era application or split the window and prepare a supported earlier appearance. Any split is an art boundary, not a new office or physical-change date. Preserve the current prompt bytes as the reviewed held proposal until the correction is explicitly authored and pinned."
+          ],
+          "render_disposition": {
+            "status": "held_pending_era_correction",
+            "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted.",
+            "reason": "The unchanged prompt mandates the gray 2023 appearance across 2015–2026 while acknowledging a different earlier appearance. Do not submit this render until the era window and prompt are revised or an earlier variant is prepared and reviewed."
+          }
         }
       ]
     }
@@ -1232,7 +1268,7 @@
           "cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"
         ]
       },
-      "reason": "No qualifying likeness reference. No dated photograph of him with a licence string that matches FREE_LICENSES was found on Wikimedia Commons, Wikidata or pt.wikipedia, and no free institutional photograph names him. The one photograph identified, his TSE 2010 candidate photo, is not on Commons; the TSE portal grants it under an unversioned 'Creative Commons Attribution' licence, so no exact FREE_LICENSES string can be recorded for this file; and it is 161x225 greyscale, from 2010 or earlier (before the window). The batch rejects TSE thumbnails of that size for Temer and Baleia Rossi too. No reference was copied and no prompt was written; no face is invented and nobody substitutes for him.",
+      "reason": "No qualifying likeness reference found under this preparation's search and licence filter; the bounded search does not establish absence. No dated photograph of him with a licence string that matches FREE_LICENSES was found on Wikimedia Commons, Wikidata or pt.wikipedia, and no free institutional photograph naming him was found in that search. The one photograph identified, his TSE 2010 candidate photo, is not on Commons; the TSE portal grants it under an unversioned 'Creative Commons Attribution' licence, so no exact FREE_LICENSES string can be recorded for this file; and it is 161x225 greyscale, from 2010 or earlier (before the window). The batch rejects TSE thumbnails of that size for Temer and Baleia Rossi too. No reference was copied and no prompt was written; no face is invented and nobody substitutes for him.",
       "files_in_repository": [],
       "search_summary": [
         "Commons full-text File search for the exact phrase 'Daniel Tourinho': 0 hits. All 105 hits of 'Tourinho filetype:bitmap' were read; none depicts him. 'Tourinho PTC' and 'Tourinho PRN': 0 hits; 'Tourinho Agir' and 'Tourinho Collor': PDFs only.",
@@ -1306,7 +1342,7 @@
       "open_items_for_codex": [
         "Rule whether the TSE portal's unversioned 'cc-by' grant may be recorded as 'CC BY 4.0' (as Commons' TSE-Dados-Abertos template reads it) for a candidate photograph that is not on Commons. If yes, a later batch can prepare the TSE 2010 photograph with a declared age gap (taken at an unknown age of at most 63; he is 67 to 79 in the window) and a declared lack of colour and body.",
         "Optional before that: search TSE consulta_cand 2012, 2016, 2020 and 2024 for DANIEL SAMPAIO TOURINHO, born 11/05/1947, for a newer candidate photograph closer to the window.",
-        "Otherwise leave him without a portrait; the pipeline forbids an authored identity for archival art."
+        "Keep him unprepared until an exact-person visual reference is independently inspected. The pipeline restriction applies to archival artwork, not all generated portraits: method:generated permits kind:authored_identity after proper exact-person visual research. Do not relabel an unversioned TSE grant as CC BY 4.0 or ship/adapt the TSE photo under an unverified licence; a separate research-only authored-identity route may be assessed."
       ]
     }
   ],
@@ -1587,7 +1623,7 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "source_license_statement": "Commons: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons Attribution-Share Alike 4.0 International' (self-published, cross-wiki upload from pt.wikipedia by User:Sérgio Neglia, 2021-08-18). Embedded IPTC Credit '© Serginho Neglia', Artist and Copyright '©Serginho Neglia'. The uploader matches the embedded photographer credit; there is no agency credit. Used in the pt.wikipedia Leonel Brizola article.",
-      "rights_statement": "Retained source statement: CC BY-SA 4.0, attribution 'Sérgio Neglia'. The photographer's own work. The byte-identical copy also carries his embedded IPTC contact fields (a work phone number and e-mail), which Commons publishes in the same file; they are not quoted here.",
+      "rights_statement": "Retained source statement: CC BY-SA 4.0, attribution 'Sérgio Neglia'. The photographer's own work. The byte-identical copy also carries his embedded IPTC contact fields (a work phone number and e-mail), which Commons publishes in the same file; they are not quoted here. Any resulting adaptation must preserve attribution, disclosure of changes and CC BY-SA 4.0 share-alike requirements; record the derivative licence separately from the generated-method label.",
       "people_in_frame": "Brizola is the large figure at the right, in side profile facing left, wearing a wide-brimmed olive-brown gaucho hat with a braided chin cord and a red poncho with black trim over a white collar and a dark navy jacket sleeve, holding a microphone. Behind him: a rally crowd, red, yellow and white flags, placards, balloons, a street, buildings and partly legible shop signs; the prompt excludes all of these.",
       "birth_date_evidence": [
         {
@@ -1868,7 +1904,7 @@
   "source_ledger": {
     "evidence_directory": "D:/spheres-scratch/br-cast/refs",
     "status": "original_retention_ledger",
-    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source. Brizola adaptations also retain the CC BY-SA 4.0 derivative obligations; generated is a method label, not a waiver of them.",
     "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
     "downloads": [
       {
@@ -2144,5 +2180,26 @@
       "The assembler made no network request; the Temer 2009 reference was copied locally from the Lupi window-1 preparer's download."
     ],
     "not_listed": "No HTTP response-header capture was kept by any preparer; the Flickr page body for the Temer 2017 photograph was discarded because it embeds a viewer-geolocation country code (only extracted fields are kept). Search scratch files, preview thumbnails viewed for selection (refs/michel_temer/work/preview/) and helper scripts are not ledgered individually; research-only thumbnails that informed a prompt are cited with their sha256 on the reference."
+  },
+  "independent_review": {
+    "reviewed_at": "2026-10-02",
+    "reviewer": "Codex independent Brazil preparation reviewer",
+    "source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
+    "disposition": "accepted_bounded_preparation_with_corrections_and_one_render_hold",
+    "holder_objects_compared_and_preserved": 17,
+    "reference_files_checked": 6,
+    "distinct_original_images_visually_inspected": 5,
+    "source_pins_checked": 109,
+    "source_pin_correction": "C01-43 README pin now hashes the committed LF blob; the submitted pin exactly matched its CRLF rendition.",
+    "source_and_rights": "Retained captions, Commons licence sections, parent Flickr-review records and original reference images read. Shared Lupi/Temer bytes are intentional and subject cues are distinct. Brizola birthday conflict remains recorded and does not block a mid-seventies artistic rendering.",
+    "render_ready": 5,
+    "render_held": [
+      "carlos-lupi-cartoon-2015-v1.txt"
+    ],
+    "external_review": {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002-evidence/brazil/review.json",
+      "sha256": "e78c138865c12c352b209993500ddac7018deedc1840d03365c276452d7f7f2c"
+    },
+    "limits": "No rendered output, registration, runtime identity, office eligibility, historical term or country signoff is accepted. Original preparation verification statements remain attributable to their authors; this disposition controls render readiness."
   }
 }
