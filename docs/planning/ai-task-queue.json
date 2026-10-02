@@ -879,6 +879,45 @@
       "reviewed_source_revision": "7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725",
       "next": "Six reference/prompt jobs reviewed; fourteen holders preserved. Murayama and Ota unsupported photo deadlines corrected, with capture-date uncertainty and illustrative ageing explicit. Review Yamaguchi long-era appearance before rendering/registration. Twelve targeted jobs are prospective, none closed.",
       "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+    },
+    {
+      "id": "CLAUDE-C06-RUSSIA-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "claimed",
+      "priority": 65,
+      "title": "USSR / Russia cast batch 1 preparation",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-RUSSIA-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-ru-01",
+      "claim_revision": "1d222c56d0a914246e98b2df583a76126fe79f27",
+      "next": "Newest push is a documentation-only claim, not a completed preparation. Await exact-person references, source rights, prompts and bounded identity review before Codex rendering. Proposed appearance windows and conditional reserves are not accepted historical tenure or art coverage. Preserve current campaign cutoff and coordinate shared registration."
+    },
+    {
+      "id": "CLAUDE-C06-SAUDIARABIA-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "claimed",
+      "priority": 66,
+      "title": "Saudi Arabia cast batch 1 preparation",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-SAUDIARABIA-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-sa-01",
+      "claim_revision": "b152afee72ddc2132322a72af12ee97f1040db54",
+      "next": "Newest push is a documentation-only claim, not a completed preparation. Await exact-person references, source rights, prompts and bounded identity review before Codex rendering. Proposed appearance windows and conditional reserves are not accepted historical tenure or art coverage. Preserve current campaign cutoff and coordinate shared registration."
+    },
+    {
+      "id": "CLAUDE-C06-INDIA-01",
+      "owner": "Claude",
+      "session": "C06",
+      "state": "claimed",
+      "priority": 67,
+      "title": "India cast batch 1 preparation",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-INDIA-01.md",
+      "depends_on": [],
+      "branch": "claude/c06-in-01",
+      "claim_revision": "d6ee1fcba53cf266cc495172d1b176d6d4c6b581",
+      "next": "Newest push is a documentation-only claim, not a completed preparation. Await exact-person references, source rights, prompts and bounded identity review before Codex rendering. Proposed appearance windows and conditional reserves are not accepted historical tenure or art coverage. Preserve current campaign cutoff and coordinate shared registration."
     }
   ]
 }

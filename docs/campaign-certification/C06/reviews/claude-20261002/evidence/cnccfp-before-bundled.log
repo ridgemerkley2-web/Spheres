@@ -1,0 +1,13 @@
+F.........
+======================================================================
+FAIL: test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators (test_import_cnccfp_census.CnccfpImportTests.test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\test_import_cnccfp_census.py", line 171, in test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators
+    self.assertIsNotNone(row)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.230s
+
+FAILED (failures=1)

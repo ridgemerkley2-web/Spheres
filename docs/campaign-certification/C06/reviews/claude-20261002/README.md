@@ -26,4 +26,20 @@ The country packets record the reviewing agents and limitations. Historical task
 
 ## Validation
 
-Results are recorded in validation.json after the final checks. No native build, campaign simulation or production browser restart is required for this preparation/art handback. The live runtime manifest remains unchanged.
+Final [validation](validation.json): 828 avatar tests, 69 planning tests and 21 portrait self-tests pass. Portrait validation has zero errors; workboard (44 markers, 66 tasks), gap ledger, cartoon export, leadership production and campaign census checks pass. The initial failed run and the PDF compatibility diagnosis remain in evidence/. Cartoon inventory reports zero integrity errors and its existing 34 warnings; portrait validation retains 530 existing optional-art warnings. These warnings are not treated as completed art. No native build, campaign simulation or production browser restart is required for this preparation/art handback. The live runtime manifest remains unchanged.
+
+## Later fetch: three new claims
+
+A second fetch on 2 October found these newer one-file documentation commits. Each is incorporated as a **claimed** bounded task; no reference, prompt, generated asset, implementation or completed delivery exists at these tips. Their proposed windows and reserve conditions remain proposals, and authored origin statements are not independent user-approval evidence.
+
+- USSR / Russia: `1d222c56d0a914246e98b2df583a76126fe79f27`.
+- Saudi Arabia: `b152afee72ddc2132322a72af12ee97f1040db54`.
+- India: `d6ee1fcba53cf266cc495172d1b176d6d4c6b581`.
+
+The workboard now holds 66 bounded tasks. The 38 earlier completed tasks remain complete; the four preparations and three new claims are additional work, not country completion.
+
+[Tonga PM2006 follow-up](../../production/tonga/pm2006-followup-20261002/README.md) preserves new confirmation evidence, the failed direct retrieval and the remaining effective-date hold. It installs no historical change and leaves all 14 Tonga requirements open.
+
+The three later claim documents also passed independent scope and byte-pin review: all 29 stated input hashes match their Git blobs. No preparation or rendering readiness is inferred from those plans. The PDF audit repair changes only the test file and passed 11 focused checks on both pypdf 6.10.0 and 6.17.0 before the full suite.
+
+A second run exposed a sparse-checkout issue after the three claim imports: the existing optional S10/c/manifest.json fixture was no longer materialized. The isolated checkout now includes that exact existing file persistently; its contents are unchanged. Both failed runs are retained, and the final full suite ran after that repair. No test or missing-input guard was disabled.
