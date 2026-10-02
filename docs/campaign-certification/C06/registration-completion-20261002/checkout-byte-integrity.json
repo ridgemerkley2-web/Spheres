@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-02T19:37:04.852479+00:00",
+  "reviewer": "Codex /root/tonga_royal_identities",
+  "status": "verified",
+  "scope": "Read-only audit of seven raw-byte evidence paths and independent integration pins. Only this addendum is written; no source, attribute, receipt, generated image or manifest is altered.",
+  "base_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+  "attribute_commit": "c8b4bf94fa350df7ed5c287738b571fa6629945e",
+  "byte_preservation_commit": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "reviewed_head": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "changed_paths": [
+    ".gitattributes",
+    "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md",
+    "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md",
+    "docs/campaign-certification/C06/production/india/render-request-batch-01.md",
+    "docs/campaign-certification/C06/production/japan/render-request-batch-01.md",
+    "docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md",
+    "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md",
+    "docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md"
+  ],
+  "attribute_check": {
+    "path": ".gitattributes",
+    "committed_sha256": "e1434f4879c870048fdbdd129707e4f374709a47a6f59a4dea66dce2420c39b1",
+    "only_seven_expected_rules_and_comment_added": true,
+    "added_text": "\n# These reviewed request/receipt files carry raw-byte hashes; preserve their original newlines.\ndocs/campaign-certification/C06/production/brazil/render-request-batch-01.md -text -whitespace\ndocs/campaign-certification/C06/production/india/render-request-batch-01.md -text -whitespace\ndocs/campaign-certification/C06/production/japan/render-request-batch-01.md -text -whitespace\ndocs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md -text -whitespace\ndocs/campaign-certification/C06/production/south-africa/render-request-batch-01.md -text -whitespace\ndocs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md -text -whitespace\ndocs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md -text -whitespace\n"
+  },
+  "evidence_files": [
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md",
+      "receipt_sha256": "b6f3755e6c3942f6b4d2fe0e041cbbba2fad5100f951eff52c52978ba8f46e84",
+      "working_sha256": "b6f3755e6c3942f6b4d2fe0e041cbbba2fad5100f951eff52c52978ba8f46e84",
+      "committed_sha256": "b6f3755e6c3942f6b4d2fe0e041cbbba2fad5100f951eff52c52978ba8f46e84",
+      "index_sha256": "b6f3755e6c3942f6b4d2fe0e041cbbba2fad5100f951eff52c52978ba8f46e84",
+      "bytes": 1916,
+      "base_blob_sha256": "68bfa15292b62ec2a6326b10bc7253170d14514a917515e53884ea12d9bd48f7",
+      "base_bytes": 1889,
+      "normalized_sha256": "68bfa15292b62ec2a6326b10bc7253170d14514a917515e53884ea12d9bd48f7",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md: text: unset",
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md: whitespace: unset"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md",
+      "receipt_sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3",
+      "working_sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3",
+      "committed_sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3",
+      "index_sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3",
+      "bytes": 31750,
+      "base_blob_sha256": "01bdbf0c268d6e4926598a727772a2b5c2f6d49f71e246ee64ede86db19b56f6",
+      "base_bytes": 31538,
+      "normalized_sha256": "01bdbf0c268d6e4926598a727772a2b5c2f6d49f71e246ee64ede86db19b56f6",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md: text: unset",
+        "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md: whitespace: unset"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/india/render-request-batch-01.md",
+      "receipt_sha256": "7bd3e3ffdda6d1d39058e23d964c721c759f7e20b6efa3260106385c2dd95a99",
+      "working_sha256": "7bd3e3ffdda6d1d39058e23d964c721c759f7e20b6efa3260106385c2dd95a99",
+      "committed_sha256": "7bd3e3ffdda6d1d39058e23d964c721c759f7e20b6efa3260106385c2dd95a99",
+      "index_sha256": "7bd3e3ffdda6d1d39058e23d964c721c759f7e20b6efa3260106385c2dd95a99",
+      "bytes": 26930,
+      "base_blob_sha256": "a2054a1b874301247510b2fffbe5873fd0819dfc45038689e3f034af716a8f78",
+      "base_bytes": 26713,
+      "normalized_sha256": "a2054a1b874301247510b2fffbe5873fd0819dfc45038689e3f034af716a8f78",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C06/production/india/render-request-batch-01.md: text: unset",
+        "docs/campaign-certification/C06/production/india/render-request-batch-01.md: whitespace: unset"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/japan/render-request-batch-01.md",
+      "receipt_sha256": "3bc250fb8529205af04e2c08ddfd85aeaf7db7e46f505fb20c99d79a991522d6",
+      "working_sha256": "3bc250fb8529205af04e2c08ddfd85aeaf7db7e46f505fb20c99d79a991522d6",
+      "committed_sha256": "3bc250fb8529205af04e2c08ddfd85aeaf7db7e46f505fb20c99d79a991522d6",
+      "index_sha256": "3bc250fb8529205af04e2c08ddfd85aeaf7db7e46f505fb20c99d79a991522d6",
+      "bytes": 30864,
+      "base_blob_sha256": "d642e2847a5779cd16c0ab335a321f8d7c7b204420327a6f90962112a7832441",
+      "base_bytes": 30631,
+      "normalized_sha256": "d642e2847a5779cd16c0ab335a321f8d7c7b204420327a6f90962112a7832441",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C06/production/japan/render-request-batch-01.md: text: unset",
+        "docs/campaign-certification/C06/production/japan/render-request-batch-01.md: whitespace: unset"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md",
+      "receipt_sha256": "074c3757fb1331c33c6d1285cef2c0546cf75292e476f6f7d2a30c11e6a06faf",
+      "working_sha256": "074c3757fb1331c33c6d1285cef2c0546cf75292e476f6f7d2a30c11e6a06faf",
+      "committed_sha256": "074c3757fb1331c33c6d1285cef2c0546cf75292e476f6f7d2a30c11e6a06faf",
+      "index_sha256": "074c3757fb1331c33c6d1285cef2c0546cf75292e476f6f7d2a30c11e6a06faf",
+      "bytes": 15729,
+      "base_blob_sha256": "22b4a468142667c779e78a838db7da55a9e276a5939990366b2dcde6f6339753",
+      "base_bytes": 15591,
+      "normalized_sha256": "22b4a468142667c779e78a838db7da55a9e276a5939990366b2dcde6f6339753",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md: text: unset",
+        "docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md: whitespace: unset"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md",
+      "receipt_sha256": "fe64ad382bf8457d8201bca7976d9077a16f300ef72fb75c571007dfc4d1de89",
+      "working_sha256": "fe64ad382bf8457d8201bca7976d9077a16f300ef72fb75c571007dfc4d1de89",
+      "committed_sha256": "fe64ad382bf8457d8201bca7976d9077a16f300ef72fb75c571007dfc4d1de89",
+      "index_sha256": "fe64ad382bf8457d8201bca7976d9077a16f300ef72fb75c571007dfc4d1de89",
+      "bytes": 19124,
+      "base_blob_sha256": "7b1532c66f42f4764951d9dab7668c5d374736676e32908a2342ab977c626d21",
+      "base_bytes": 18980,
+      "normalized_sha256": "7b1532c66f42f4764951d9dab7668c5d374736676e32908a2342ab977c626d21",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md: text: unset",
+        "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md: whitespace: unset"
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md",
+      "receipt_sha256": "5047272098678e737ae3e8606385f18f3d18ab5a369f7746954afaa8fe6db247",
+      "working_sha256": "5047272098678e737ae3e8606385f18f3d18ab5a369f7746954afaa8fe6db247",
+      "committed_sha256": "5047272098678e737ae3e8606385f18f3d18ab5a369f7746954afaa8fe6db247",
+      "index_sha256": "5047272098678e737ae3e8606385f18f3d18ab5a369f7746954afaa8fe6db247",
+      "bytes": 9574,
+      "base_blob_sha256": "2332b73f3dfc636a101748856350399ba0351ed41e1e4f45bd1e239e2dbf7b52",
+      "base_bytes": 9472,
+      "normalized_sha256": "2332b73f3dfc636a101748856350399ba0351ed41e1e4f45bd1e239e2dbf7b52",
+      "raw_equals_committed_and_index": true,
+      "receipt_pin_matches": true,
+      "normalized_content_identical_to_base": true,
+      "current_attributes": [
+        "docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md: text: unset",
+        "docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md: whitespace: unset"
+      ]
+    }
+  ],
+  "independent_integration_recheck": {
+    "receipt_path": "docs/campaign-certification/C06/registration-completion-20261002/independent-integration-review.json",
+    "receipt_sha256": "1cff600b03c5c4565a99b53c156106bfb2c7cbbd10877f45efde9efe54309730",
+    "pins_checked": 208,
+    "mismatches": [],
+    "all_match": true
+  },
+  "compatible_other_pins": [
+    "The older ZA/SA/RU review records authored and integrated Git blob hashes at its recorded historical revision separately from working bytes; those historical hashes remain unchanged.",
+    "C01-23 gap-ledger pins explicitly hash UTF-8 text normalized to LF; boundary summary has newline_normalized:true. Their normalized SHA256 remains 68bfa15292b62ec2a6326b10bc7253170d14514a917515e53884ea12d9bd48f7.",
+    "The C01-23 inventory pin identifies revision 44098c5a48f491f43fbcb74d121f290380af0b12 and Git blob c6f129cfe88ea6f1f1d72e1d364cbbfaa0a98ecd; it is historical Git evidence, not a competing current raw-byte pin."
+  ],
+  "limits": [
+    "No native build or runtime tests performed by this addendum. Concurrent root verification is outside this receipt.",
+    "Fresh-checkout integrity is established by exact committed/index blob equality and explicit -text attributes; no additional checkout was created."
+  ],
+  "errors": []
+}

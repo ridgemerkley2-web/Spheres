@@ -1,0 +1,2062 @@
+{
+  "schema_version": 1,
+  "status": "accepted_for_bounded_registration_integration",
+  "base_revision": "ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09",
+  "reviewed_at_utc": "2026-10-02T19:11:57.379554+00:00",
+  "reviewer": "Codex /root/tonga_royal_identities",
+  "scope": "Read-only comparison of combined portrait registry against base; 31 selected additions and France7 runtime entries. No native builds, source research, global edits or generated-art changes.",
+  "pins": {
+    "manifest": {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa",
+      "bytes": 745039
+    },
+    "registry": {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+      "bytes": 1282814
+    },
+    "runtime_allowlist": {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "sha256": "73ee08c14ea1fe836c8f1219acd24fc1f2e04a96acb303b618724b7ca6035175",
+      "bytes": 20089
+    }
+  },
+  "base_manifest_git_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "base_registry_git_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+  "allowlist_lf_sha256": "73ee08c14ea1fe836c8f1219acd24fc1f2e04a96acb303b618724b7ca6035175",
+  "counts": {
+    "old_portraits": 107,
+    "new_total": 138,
+    "added": 31,
+    "fragment_total": 31,
+    "old_records_preserved": 107,
+    "france_allowlisted": 7,
+    "runtime_keys": 146,
+    "pipeline_missing_art_warnings": 505
+  },
+  "country_fragments": [
+    {
+      "country": "brazil",
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/brazil/registration-completion-20261002/manifest-fragment.json",
+        "sha256": "148b9b773daf374afe8698a0a0e7fcd6856647b756aa85bbe6393c626d9571a9",
+        "bytes": 45483
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "added_portraits": 7
+    },
+    {
+      "country": "india",
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/india/registration-completion-20261002/manifest-fragment.json",
+        "sha256": "af4c1383f41ba19578cfb2a778ccaf6703bac46b7279429b4778dcbe862a10a8",
+        "bytes": 55969
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "added_portraits": 8
+    },
+    {
+      "country": "japan",
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/japan/registration-completion-20261002/manifest-additions.json",
+        "sha256": "beba86f5b59b7758f2ac7ddedfdcec2e5e60c49dfd5612108e6b1caa2c6b099b",
+        "bytes": 52918
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "added_portraits": 7
+    },
+    {
+      "country": "saudi-arabia",
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/saudi-arabia/registration-completion-20261002/manifest-fragment.json",
+        "sha256": "1fa88ab828e43b6f0a794a85a58457025dab3cfa421f86c32e1b6d576489b9b8",
+        "bytes": 28481
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json",
+        "sha256": "bc7d0b30d9bd7e17ba43c28cb08c18ea82be77841a857d9f67615ab2af10b25a",
+        "bytes": 59601
+      },
+      "added_portraits": 4
+    },
+    {
+      "country": "south-africa",
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/south-africa/registration-completion-20261002/manifest-fragment.json",
+        "sha256": "427112c6550d4047901a776b12ab4210e9bc9e25e9eb327de85664550a72ef0b",
+        "bytes": 27267
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+        "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+        "bytes": 60152
+      },
+      "added_portraits": 4
+    },
+    {
+      "country": "ussr-russia",
+      "fragment": {
+        "path": "docs/campaign-certification/C06/production/ussr-russia/registration-completion-20261002/manifest-additions.json",
+        "sha256": "64463634f2c4548db074f7f749aee9d9d8ef026122b10b5d989c0b75ef422515",
+        "bytes": 7666
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/ussr-russia-cast-registration-20261002.json",
+        "sha256": "0456e561e0cb81cd78c8c9a7e7e56df612701d87a9e6a7d2b5f635a08d3e8be1",
+        "bytes": 18741
+      },
+      "added_portraits": 1
+    }
+  ],
+  "added_portraits": [
+    {
+      "country": "brazil",
+      "person_id": "michel_temer",
+      "from": "2001-09-09",
+      "exclusive_to": "2010-06-15",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+        "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+        "bytes": 1647981
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-6fd82b29-1830-4594-9650-a971b71595f3.png",
+        "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+        "bytes": 1647981
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt",
+        "sha256": "677621155322535fa13553350720014499f550e9b21d6affee9faf2b196d2a76",
+        "bytes": 4038
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "bytes": 1315244
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "bytes": 1315244
+      },
+      "source_license": "CC BY 3.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/3.0",
+      "derivative_license": "CC BY 3.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/3.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "brazil",
+      "person_id": "michel_temer",
+      "from": "2010-06-15",
+      "exclusive_to": "2019-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+        "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+        "bytes": 1552223
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-9e5c94a2-b21d-4298-b302-5decb7380041.png",
+        "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+        "bytes": 1552223
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/michel-temer-cartoon-2010-v1.txt",
+        "sha256": "d3bfc1cbdb8723577ae3da80e38e74e05c94c5c8f6fb79341d5a2aaacfa9c5c0",
+        "bytes": 3503
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+          "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+          "bytes": 2242245
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+        "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+        "bytes": 2242245
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 2.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "brazil",
+      "person_id": "baleia_rossi",
+      "from": "2019-10-06",
+      "exclusive_to": "2026-09-08",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+        "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+        "bytes": 1557704
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-54c6acd7-510c-4716-9022-a114e5df39f1.png",
+        "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+        "bytes": 1557704
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/baleia-rossi-cartoon-2019-v1.txt",
+        "sha256": "d1a0008ac591682d64e3aa4dfbd378e2789446181cde9f32486c8a203f77a8e4",
+        "bytes": 3444
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+          "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+          "bytes": 2079037
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+        "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+        "bytes": 2079037
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 2.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "brazil",
+      "person_id": "leonel_brizola",
+      "from": "1995-01-01",
+      "exclusive_to": "2004-06-21",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+        "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+        "bytes": 1533241
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-5bf66ba2-5e2b-4b80-aed1-d137af400d09.png",
+        "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+        "bytes": 1533241
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/leonel-brizola-cartoon-1995-v1.txt",
+        "sha256": "3170bb3479c8e23145ab28da573898cc0342c3f5c065475d8f9216f5339dc90d",
+        "bytes": 3741
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+          "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+          "bytes": 7660996
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+        "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+        "bytes": 7660996
+      },
+      "source_license": "CC BY-SA 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "derivative_license": "CC BY-SA 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2004-06-30",
+      "exclusive_to": "2015-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+        "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+        "bytes": 1478167
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-0f757768-f46c-41ad-a4fe-cc0fd60aece3.png",
+        "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+        "bytes": 1478167
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt",
+        "sha256": "0c57b3987daa007d9bfb103b4269499a80f359b923b42e1eb6fd4a273c00cf56",
+        "bytes": 3594
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "bytes": 1315244
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+        "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "bytes": 1315244
+      },
+      "source_license": "CC BY 3.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/3.0",
+      "derivative_license": "CC BY 3.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/3.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2015-01-01",
+      "exclusive_to": "2020-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+        "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+        "bytes": 1612861
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-e618846e-33cb-423d-8cce-6a223ef7cd2c.png",
+        "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+        "bytes": 1612861
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt",
+        "sha256": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+        "bytes": 4890
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+          "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+          "bytes": 1696493
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+        "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+        "bytes": 1696493
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 2.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2020-01-01",
+      "exclusive_to": "2026-09-08",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+        "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+        "bytes": 1825058
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-fdbc92b5-d7ca-4984-b7a8-62e19a02895b.png",
+        "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+        "bytes": 1825058
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt",
+        "sha256": "cc0a4c92eeea27ed6b37769a41ea8c3de6ff9edd75e10f47cbb1adea1070a218",
+        "bytes": 4456
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/brazil-cast-registration-20261002.json",
+        "sha256": "e55f4bade74a66fef08172b0174e89a20553116e737405886dbb140355dbf658",
+        "bytes": 101967
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+          "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+          "bytes": 687212
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+        "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+        "bytes": 687212
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 2.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "harkishan_singh_surjeet",
+      "from": "1992-01-31",
+      "exclusive_to": "2005-04-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+        "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+        "bytes": 1544874
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-a4f5ff7c-d381-41d7-8009-dd0893b2ae67.png",
+        "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+        "bytes": 1544874
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/harkishan-singh-surjeet-cartoon-1992-v1.txt",
+        "sha256": "418df96663ae4260cdcbb850649c2a10864fb315972ac01309e5a62d9ab2b89e",
+        "bytes": 3751
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+          "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+          "bytes": 123462
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+        "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+        "bytes": 123462
+      },
+      "source_license": "CC BY 2.5",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.5",
+      "derivative_license": "CC BY 2.5",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/2.5",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "lal_krishna_advani",
+      "from": "1995-01-01",
+      "exclusive_to": "2005-12-31",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+        "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+        "bytes": 1569347
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-28096311-d26e-4ab4-8403-3f80e77d14a9.png",
+        "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+        "bytes": 1569347
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/lal-krishna-advani-cartoon-1995-v1.txt",
+        "sha256": "8faaa5d13c8681739406ca7b3c34dadb83ee84f557071c4b0f6cc23f3f3b1bc0",
+        "bytes": 3765
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+          "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+          "bytes": 160687
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+        "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+        "bytes": 160687
+      },
+      "source_license": "CC BY-SA 3.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "derivative_license": "CC BY-SA 3.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "prakash_karat",
+      "from": "2005-04-30",
+      "exclusive_to": "2015-04-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+        "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+        "bytes": 1608835
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-aa48719f-7432-4f52-b9ce-12e96fe551e3.png",
+        "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+        "bytes": 1608835
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/prakash-karat-cartoon-2005-v1.txt",
+        "sha256": "6929a21fa194c518b3c33da71108ad88e220d76910d9185166315259b900d6e8",
+        "bytes": 3565
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+          "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+          "bytes": 5069190
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+        "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+        "bytes": 5069190
+      },
+      "source_license": "CC BY-SA 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "derivative_license": "CC BY-SA 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "rajnath_singh",
+      "from": "2005-12-31",
+      "exclusive_to": "2014-07-09",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+        "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+        "bytes": 1697505
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-862b6685-e48a-4a75-83ac-c84a4f00051c.png",
+        "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+        "bytes": 1697505
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/rajnath-singh-cartoon-2005-v1.txt",
+        "sha256": "951e50844f61f5d49ce37a8bcd2002d54625a6bf8cdc138da1855047d03bb6b5",
+        "bytes": 3916
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+          "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+          "bytes": 142836
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+        "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+        "bytes": 142836
+      },
+      "source_license": "CC BY-SA 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "derivative_license": "CC BY-SA 2.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "nitin_gadkari",
+      "from": "2009-12-19",
+      "exclusive_to": "2013-01-23",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+        "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+        "bytes": 1852262
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-e94bfd37-b9f6-4fa2-948e-fb2496bddb75.png",
+        "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+        "bytes": 1852262
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/nitin-gadkari-cartoon-2009-v1.txt",
+        "sha256": "faebfd01a2aedb716f15380c69a31ae289fbd28a1ea6a7fa6d2bba68fc8b39bd",
+        "bytes": 3439
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+          "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+          "bytes": 790706
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+        "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+        "bytes": 790706
+      },
+      "source_license": "Open Government Licence v1.0",
+      "source_license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+      "derivative_license": "Open Government Licence v1.0",
+      "derivative_license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "sitaram_yechury",
+      "from": "2015-04-30",
+      "exclusive_to": "2024-09-12",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+        "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+        "bytes": 1624779
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-0c066c3e-ca86-4961-acce-028254fa9d25.png",
+        "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+        "bytes": 1624779
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt",
+        "sha256": "1e32883811ee3ce51a3ff91a3aa802926a1da5163eef4bd475dbd6890397899d",
+        "bytes": 3540
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+          "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+          "bytes": 1422511
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+        "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+        "bytes": 1422511
+      },
+      "source_license": "CC0 1.0",
+      "source_license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "jagat_prakash_nadda",
+      "from": "2020-01-20",
+      "exclusive_to": "2026-01-20",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+        "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+        "bytes": 1618160
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-b511ec0d-3c82-43cc-8a51-d523148734e6.png",
+        "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+        "bytes": 1618160
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/jagat-prakash-nadda-cartoon-2020-v1.txt",
+        "sha256": "1930455b813b99bd727ede047db90a290f652dfa41c1332e5985163421468088",
+        "bytes": 4079
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+          "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+          "bytes": 2657486
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+        "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+        "bytes": 2657486
+      },
+      "source_license": "CC BY-SA 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "derivative_license": "CC BY-SA 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "india",
+      "person_id": "m_a_baby",
+      "from": "2025-04-06",
+      "exclusive_to": "2026-09-08",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+        "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+        "bytes": 1611973
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-447cd4de-81ea-49a4-862c-51f331b65634.png",
+        "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+        "bytes": 1611973
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/m-a-baby-cartoon-2025-v1.txt",
+        "sha256": "2d1b6853ba359653247a0b3aaf2bd25144b04df7e594501c48b2c1e1abe5eaf9",
+        "bytes": 3423
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/india-cast-registration-20261002.json",
+        "sha256": "9b2a07ea6f96e9986e733f50d663b3735941d87e2caac9be0ef4d6552fd4643d",
+        "bytes": 111404
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+          "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+          "bytes": 8126087
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+        "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+        "bytes": 8126087
+      },
+      "source_license": "CC BY-SA 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "derivative_license": "CC BY-SA 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "tomiichi_murayama",
+      "from": "1993-09-30",
+      "exclusive_to": "1996-09-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+        "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+        "bytes": 1559685
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-07f93e53-f04b-4ffa-b972-20b6eb7632bb.png",
+        "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+        "bytes": 1559685
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt",
+        "sha256": "8321abccdc8a9fe46af9fcfa966995c15b356e1bc03320fb07e279ca42a92af0",
+        "bytes": 3798
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg",
+          "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+          "bytes": 49717
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg",
+        "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+        "bytes": 49717
+      },
+      "source_license": "CC BY 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "makoto_tanabe",
+      "from": "1991-07-31",
+      "exclusive_to": "1993-01-19",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+        "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+        "bytes": 1553213
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9a148acc-1b53-4040-9ed3-624a689cacb6.png",
+        "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+        "bytes": 1553213
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/makoto-tanabe-cartoon-1991-v1.txt",
+        "sha256": "0cd6d473e072f5a080cef12d241523d1ee43732c9784ece761790db065dc9ac9",
+        "bytes": 3566
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg",
+          "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+          "bytes": 86215
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg",
+        "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+        "bytes": 86215
+      },
+      "source_license": "CC BY 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "sadao_yamahana",
+      "from": "1993-01-19",
+      "exclusive_to": "1993-09-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+        "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+        "bytes": 1560733
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2af29adc-66c0-4e1a-9ed1-dca3aed227f9.png",
+        "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+        "bytes": 1560733
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/sadao-yamahana-cartoon-1993-v1.txt",
+        "sha256": "0f6270864427465f7d5aaa409ea87168e10a5e0c9e8184076726e972e62806aa",
+        "bytes": 3927
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg",
+          "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+          "bytes": 85556
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg",
+        "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+        "bytes": 85556
+      },
+      "source_license": "CC BY 3.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/3.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "takako_doi",
+      "from": "1996-09-30",
+      "exclusive_to": "2003-11-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+        "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1",
+        "bytes": 1681349
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-6fd3e79e-abd1-4de0-b1ec-7fdb685bb4e6.png",
+        "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1",
+        "bytes": 1681349
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v2.txt",
+        "sha256": "44448917754e1e99dd24f189bbb8994793eb15a203af6f53f0011cf2c2a4efc1",
+        "bytes": 4577
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+          "bytes": 708234
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+        "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+        "bytes": 708234
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "akihiro_ota",
+      "from": "2006-09-30",
+      "exclusive_to": "2009-09-08",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+        "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+        "bytes": 1536646
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-6de31f05-087d-4c47-a014-5e16773d9e43.png",
+        "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+        "bytes": 1536646
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/akihiro-ota-cartoon-2006-v1.txt",
+        "sha256": "bd0fdc42e07e9ade28fcf5df7c6a77b90457ba7ebfb9adef63136767cd31cbab",
+        "bytes": 3602
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg",
+          "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+          "bytes": 27547
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg",
+        "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+        "bytes": 27547
+      },
+      "source_license": "CC BY 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "natsuo_yamaguchi",
+      "from": "2009-09-08",
+      "exclusive_to": "2015-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+        "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+        "bytes": 1513624
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-55394862-aa38-4514-afa5-45caaefbc871.png",
+        "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+        "bytes": 1513624
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt",
+        "sha256": "bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6",
+        "bytes": 4573
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+          "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+          "bytes": 824703
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+        "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+        "bytes": 824703
+      },
+      "source_license": "CC BY 3.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/3.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "japan",
+      "person_id": "natsuo_yamaguchi",
+      "from": "2015-01-01",
+      "exclusive_to": "2024-09-28",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+        "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+        "bytes": 1559640
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-90d4c63a-3ac3-418f-8afb-6551c610fe13.png",
+        "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+        "bytes": 1559640
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt",
+        "sha256": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+        "bytes": 4103
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/japan-cast-registration-20261002.json",
+        "sha256": "f1f13a6daf7b999edc3e7d3f8c2aa8adf8004f497d4a508a44937c7bdd4efdd9",
+        "bytes": 117472
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+          "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+          "bytes": 795688
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+        "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+        "bytes": 27276808
+      },
+      "source_license": "CC0",
+      "source_license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "from": "1991-01-01",
+      "exclusive_to": "1996-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+        "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+        "bytes": 1562458
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-fdc040a1-ea1b-4bdd-b580-1a54e09c361b.png",
+        "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+        "bytes": 1562458
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1991-v1.txt",
+        "sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+        "bytes": 3400
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json",
+        "sha256": "bc7d0b30d9bd7e17ba43c28cb08c18ea82be77841a857d9f67615ab2af10b25a",
+        "bytes": 59601
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+          "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+          "bytes": 152062
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+        "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+        "bytes": 152062
+      },
+      "source_license": "Public domain",
+      "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "from": "1996-01-01",
+      "exclusive_to": "2005-08-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+        "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+        "bytes": 1623986
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-7552d022-cb96-45f1-8356-6049711dc3a5.png",
+        "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+        "bytes": 1623986
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1996-v1.txt",
+        "sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+        "bytes": 4133
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json",
+        "sha256": "bc7d0b30d9bd7e17ba43c28cb08c18ea82be77841a857d9f67615ab2af10b25a",
+        "bytes": 59601
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+          "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+          "bytes": 1397076
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+        "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+        "bytes": 1397076
+      },
+      "source_license": "Public domain",
+      "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "from": "1996-01-01",
+      "exclusive_to": "2005-08-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+        "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+        "bytes": 1566975
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-71bd59d0-cb65-4554-a992-134a09066674.png",
+        "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+        "bytes": 1566975
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-1996-v1.txt",
+        "sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+        "bytes": 4192
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json",
+        "sha256": "bc7d0b30d9bd7e17ba43c28cb08c18ea82be77841a857d9f67615ab2af10b25a",
+        "bytes": 59601
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+          "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+          "bytes": 1194034
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+        "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+        "bytes": 1194034
+      },
+      "source_license": "Public domain",
+      "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "saudi-arabia",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "from": "2005-08-01",
+      "exclusive_to": "2015-01-23",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+        "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+        "bytes": 1598334
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-31c70a8d-41d1-4df6-9b2e-ad853827ce14.png",
+        "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+        "bytes": 1598334
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-2005-v1.txt",
+        "sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+        "bytes": 3948
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/saudi-arabia-cast-registration-20261002.json",
+        "sha256": "bc7d0b30d9bd7e17ba43c28cb08c18ea82be77841a857d9f67615ab2af10b25a",
+        "bytes": 59601
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+          "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+          "bytes": 297987
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+        "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+        "bytes": 297987
+      },
+      "source_license": "Public domain",
+      "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "south-africa",
+      "person_id": "mangosuthu_buthelezi",
+      "from": "1995-01-01",
+      "exclusive_to": "2005-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+        "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+        "bytes": 1603845
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-efe521bf-91a9-4586-af71-cd481d8b4736.png",
+        "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+        "bytes": 1603845
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/mangosuthu-buthelezi-cartoon-1995-v1.txt",
+        "sha256": "d066930ed4fac85b0a1089e92c2ae6e471341e3407b1d421d9e9ed57964479c6",
+        "bytes": 3656
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+        "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+        "bytes": 60152
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+          "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+          "bytes": 1221637
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+        "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+        "bytes": 1221637
+      },
+      "source_license": "CC0",
+      "source_license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "south-africa",
+      "person_id": "constand_viljoen",
+      "from": "1994-03-31",
+      "exclusive_to": "2001-01-01",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+        "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+        "bytes": 1563480
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-bb1ec584-2283-4fb6-a2c6-2a65848ad336.png",
+        "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+        "bytes": 1563480
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/constand-viljoen-cartoon-1994-v1.txt",
+        "sha256": "79f58149429784f37c9ccef47b98b6c8da4bcd3ddcdfa16cd8a9ecbdb1c5bb24",
+        "bytes": 3949
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+        "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+        "bytes": 60152
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+          "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+          "bytes": 35923
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+        "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+        "bytes": 35923
+      },
+      "source_license": "CC BY-SA 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "derivative_license": "CC BY-SA 2.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "south-africa",
+      "person_id": "pieter_mulder",
+      "from": "2001-06-21",
+      "exclusive_to": "2016-11-13",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+        "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+        "bytes": 1616484
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-1ae458cd-d10f-4b18-a2f2-e092059ad807.png",
+        "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+        "bytes": 1616484
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/pieter-mulder-cartoon-2001-v1.txt",
+        "sha256": "3bf5004a8f37214eb77cb5f1d192c75c2ba0653f5f994474b8f230a434b32b1d",
+        "bytes": 3598
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+        "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+        "bytes": 60152
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+          "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+          "bytes": 1547241
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+        "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+        "bytes": 1547241
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "south-africa",
+      "person_id": "corne_mulder",
+      "from": "2025-07-16",
+      "exclusive_to": "2026-09-08",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+        "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+        "bytes": 1588691
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-cf46bd37-54c6-4ca1-be81-95303feb7267.png",
+        "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+        "bytes": 1588691
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/corne-mulder-cartoon-2025-v1.txt",
+        "sha256": "d0d1db4577c23590c2965a2c580f5e43eb8283a4141ad85e2c1d90bfddf8c018",
+        "bytes": 3330
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/south-africa-cast-registration-20261002.json",
+        "sha256": "07d3ed2c1dd78236e663a2f885fd636089e8b017348cad3fcb5bd8e8dff27346",
+        "bytes": 60152
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+          "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+          "bytes": 98762
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+        "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+        "bytes": 98762
+      },
+      "source_license": "CC BY 2.0",
+      "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+      "derivative_license": "CC BY 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    },
+    {
+      "country": "ussr-russia",
+      "person_id": "mikhail_gorbachev",
+      "from": "1991-01-01",
+      "exclusive_to": "1991-12-26",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+        "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+        "bytes": 1689207
+      },
+      "retained_original": {
+        "path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9c2d04c1-7f74-45dd-91d0-2718c37fe1fb.png",
+        "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+        "bytes": 1689207
+      },
+      "prompt": {
+        "path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt",
+        "sha256": "e8570730f68e31c46977eabbab6f6823bbaaae61f2946feb826b8b2c2214df4a",
+        "bytes": 4387
+      },
+      "generation_record": {
+        "path": "tools/avatars/person-prompts/ussr-russia-cast-registration-20261002.json",
+        "sha256": "0456e561e0cb81cd78c8c9a7e7e56df612701d87a9e6a7d2b5f635a08d3e8be1",
+        "bytes": 18741
+      },
+      "ordered_actual_inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+          "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+          "bytes": 3905097
+        }
+      ],
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+        "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+        "bytes": 3905097
+      },
+      "source_license": "CC BY-SA 4.0",
+      "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "derivative_license": "CC BY-SA 4.0",
+      "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "fragment_exact_equality": true,
+      "generation_and_retained_bytes_match": true
+    }
+  ],
+  "france_allowlist_checks": [
+    {
+      "person_id": "francois_mitterrand",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+        "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+        "bytes": 1496061
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    },
+    {
+      "person_id": "michel_rocard",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+        "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
+        "bytes": 1812840
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    },
+    {
+      "person_id": "laurent_fabius",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+        "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+        "bytes": 1732155
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    },
+    {
+      "person_id": "henri_emmanuelli",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+        "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
+        "bytes": 1574049
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    },
+    {
+      "person_id": "alain_juppe",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+        "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+        "bytes": 1647092
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    },
+    {
+      "person_id": "lionel_jospin",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+        "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
+        "bytes": 1577428
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    },
+    {
+      "person_id": "francois_hollande",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+        "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+        "bytes": 1437666
+      },
+      "allowlisted": true,
+      "old_record_unchanged": true
+    }
+  ],
+  "transport_cases": [
+    {
+      "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "original_reference": {
+        "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+        "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+        "bytes": 27276808
+      },
+      "actual_input": {
+        "order": 2,
+        "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+        "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+        "bytes": 795688
+      },
+      "derivation": {
+        "source_path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+        "source_sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+        "source_dimensions": [
+          8256,
+          5504
+        ],
+        "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+        "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+        "dimensions": [
+          2048,
+          1365
+        ],
+        "operation": "Uncropped proportional thumbnail, Pillow LANCZOS, maximum 2048 pixels, JPEG quality95 subsampling0, ICC profile retained if present. Input transport copy only; original source and all generated outputs unchanged.",
+        "reason": "Original 27276808-byte JPG failed both view_image and image_gen reference transport with invalid base64 dataBase64. One image_gen attempt failed before generation."
+      }
+    }
+  ],
+  "held_or_superseded_runtime_keys_rejected": [
+    "takako-doi-cartoon-1996-v1.png",
+    "mikhail-gorbachev-cartoon-1991-v1.png",
+    "carlos-lupi-cartoon-2015-v1.png",
+    "carlos-lupi-2015-v2-attempt-01-rejected-rgba.png"
+  ],
+  "pipeline": {
+    "valid": true,
+    "errors": [],
+    "warnings": 505
+  },
+  "errors": [],
+  "supplementary_checks": {
+    "original_return_preservation_count": 6,
+    "return_vs_generation_checks": [
+      {
+        "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      },
+      {
+        "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+        "original_return_or_correction_prompt_inputs_original_match": true
+      }
+    ],
+    "allowlist_delta": {
+      "before": 108,
+      "after": 146,
+      "added": 38,
+      "removed": 0,
+      "exact_added_set_31_plus_france7": true
+    },
+    "shared_group_reference": [
+      {
+        "person_id": "michel_temer",
+        "reference_asset": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+        "reference_sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "generated_asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+        "generated_sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+        "prompt": "tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt"
+      },
+      {
+        "person_id": "carlos_lupi",
+        "reference_asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+        "reference_sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+        "generated_asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+        "generated_sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+        "prompt": "tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt"
+      }
+    ],
+    "issues": []
+  },
+  "findings": [
+    {
+      "status": "pass",
+      "topic": "exact_addition_scope",
+      "detail": "Exactly 31 historical portrait records were added from the six reviewed country fragments. Each added full portrait dictionary equals its fragment; person IDs, saved names and unrelated person fields remain unchanged. Existing source URL lists changed only by the unions requested by those fragments."
+    },
+    {
+      "status": "pass",
+      "topic": "prior_state_preservation",
+      "detail": "All 107 previous portrait records and their order are unchanged. The 620-person registry is byte-identical to the base Git blob. All six original country render-return files remain byte-identical to their base Git blobs; their historical review states were not rewritten."
+    },
+    {
+      "status": "pass",
+      "topic": "provenance_and_rights",
+      "detail": "All 31 selected outputs match their retained tool-output originals byte-for-byte. The exact prompt text and SHA256, ordered actual input paths and hashes, source-reference records, derivative licences and appearance windows match the versioned generation records and source fragments. Referenced generation JSON paths resolve even when embedded in manifest prose. Open Government Licence v1.0 and the exact Creative Commons ShareAlike versions remain explicit."
+    },
+    {
+      "status": "pass",
+      "topic": "actual_input_transport",
+      "detail": "Yamaguchi's 2015 portrait used the separately recorded 2048-by-1365 transport copy, not the retained 8256-by-5504 original. Both hashes, the proportional uncropped resize operation and the earlier failed original-input transport attempt remain recorded. The identity source continues to identify the retained original; the actual supplied input is not conflated with it."
+    },
+    {
+      "status": "pass",
+      "topic": "runtime_asset_selection",
+      "detail": "The literal runtime allowlist adds exactly 38 keys: the 31 selected additions plus seven already registered France portraits. It removes no prior keys and includes all 138 historical assets. Held Doi and Gorbachev v1 outputs, the superseded Lupi 2015 v1 job, and the rejected Lupi attempt remain unavailable through this table."
+    },
+    {
+      "status": "reviewed_nonblocking_warning",
+      "topic": "duplicate_content_different_identities",
+      "detail": "The two warning entries concern byte-identical copies of a legitimate multi-person 11 November 2009 J. Batista / Câmara dos Deputados reference photograph. The Temer prompt selects the silver-haired man on the right; the Lupi prompt selects the central man holding the open green diploma folder. Their IDs, prompt files and generated output hashes are distinct. This is shared source photography, not duplicate generated character art. Warnings and originals are preserved.",
+      "evidence": [
+        {
+          "person_id": "michel_temer",
+          "reference_asset": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+          "reference_sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "generated_asset": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+          "generated_sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+          "prompt": "tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt"
+        },
+        {
+          "person_id": "carlos_lupi",
+          "reference_asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+          "reference_sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "generated_asset": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+          "generated_sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+          "prompt": "tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt"
+        }
+      ]
+    },
+    {
+      "status": "pass_with_stylization_limits",
+      "topic": "corrected_doi_likeness",
+      "detail": "Independently viewed the selected Doi v2 and its original 2005 reference during this integration review. The selected output retains a mature face and neck lines within the illustration style. Clothing and interpretation of the earlier requested window remain authored and do not create historical date or office evidence. The approved v2, not held v1, is registered."
+    },
+    {
+      "status": "pass_with_stylization_limits",
+      "topic": "corrected_gorbachev_likeness",
+      "detail": "Independently viewed the selected Gorbachev v2 after previously viewing the original reference and held v1. The corrected mark has a broader irregular lateral arc, lower lobe and flecks on anatomical right / viewer left, addressing the reduced-mark deviation. It remains a stylized likeness, not a traced facsimile. The accepted reference date remains October 1991 at month precision. The fresh v2 generation used the style anchor and original photograph in that order; it did not use v1 as an edit input."
+    }
+  ],
+  "verification_summary": {
+    "base_comparison": "Git blob at ed9786fbd5dca8eec152dc0e2b65b5266bbc0d09 compared with current files; equality checks are structural for manifests and byte-exact for the registry and preserved render returns.",
+    "checks": [
+      "Full previous-person and portrait preservation comparison.",
+      "Exact full-dictionary equality of all 31 additions with all six fragments.",
+      "SHA256 and retained-original byte identity for selected outputs, prompt text, actual ordered inputs and source references.",
+      "Generation-record versus original render-return or explicit correction-receipt correspondence for all 31 selected jobs.",
+      "Source and derivative licence consistency and approved_source_license validation for all 31 additions.",
+      "Literal runtime allowlist set comparison, registered-asset availability and explicit rejection of held/superseded assets.",
+      "Independent validate_manifest run: valid, zero errors, 505 existing missing-art warnings."
+    ],
+    "new_output_format": "All 31 selected PNGs are RGB, 1024 by 1536, with no transparency.",
+    "native_build_or_runtime_execution": false,
+    "global_files_modified": false,
+    "operational_note": "An initial inline all-pin recheck could not start because it exceeded the Windows process command-length limit. The same pin verification was then run by reading this receipt from disk; no validation was skipped."
+  },
+  "limits": [
+    "This receipt accepts the bounded registration merge and its declared appearance interpretations. It does not complete any country's broader historical research, office chain or cast coverage.",
+    "Existing 505 missing-art warnings and the two legitimate shared-photo warnings are not waived or suppressed.",
+    "The current pass checked all 31 new provenance chains and selected Doi/Gorbachev corrections visually; remaining source and likeness judgements build on the retained country and independent render reviews, rather than claiming a new visual review of every old portrait.",
+    "France scope here is preservation of seven already registered records and bytes plus runtime allowlist inclusion, not a new generation or transport audit.",
+    "Reviewer is Codex /root/tonga_royal_identities; no human or Claude approval is claimed.",
+    "No native build, browser run, new source retrieval or image generation was performed for this audit."
+  ]
+}

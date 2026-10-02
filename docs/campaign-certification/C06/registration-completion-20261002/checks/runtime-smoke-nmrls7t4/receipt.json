@@ -1,0 +1,1747 @@
+{
+  "version": 1,
+  "started_at": "2026-10-02T19:38:33.128267+00:00",
+  "passed": true,
+  "scope": "Actual-game HTTP PNG bytes and selected historical party-reference dates only",
+  "human_approval": false,
+  "country_completion": false,
+  "tonga_browser_acceptance": false,
+  "gameplay_or_save_mutations_requested": false,
+  "repo": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target\\release\\spheres-web.exe",
+  "helper_sha256": "fff7ae61e1614fbd888a5c58707cd52df51617c69b3ee09ac01793bd24b77ce4",
+  "evidence_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\docs\\campaign-certification\\C06\\registration-completion-20261002\\checks\\runtime-smoke-nmrls7t4",
+  "disposable_campaign_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\http-smoke-0a516dnq\\campaign",
+  "requests": [
+    {
+      "method": "GET",
+      "route": "/api/build",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 584,
+      "sha256": "94566ca98c6fbd5d86b553eda851c883b3a2051e3606e38758577d2529dd8cfb",
+      "body_file": "build.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/state",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 2154543,
+      "sha256": "c4e01dc769f2b8f8f6e59575a19e3487ae96d1d6d586ce84558fea1ab4228e2c",
+      "body_file": "state-before.json"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/michel-temer-cartoon-2001-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1647981,
+      "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/michel-temer-cartoon-2010-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1552223,
+      "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/baleia-rossi-cartoon-2019-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1557704,
+      "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/leonel-brizola-cartoon-1995-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1533241,
+      "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/carlos-lupi-cartoon-2004-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1478167,
+      "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/carlos-lupi-cartoon-2015-v2.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1612861,
+      "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/carlos-lupi-cartoon-2020-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1825058,
+      "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/mangosuthu-buthelezi-cartoon-1995-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1603845,
+      "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/constand-viljoen-cartoon-1994-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1563480,
+      "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/pieter-mulder-cartoon-2001-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1616484,
+      "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/corne-mulder-cartoon-2025-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1588691,
+      "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/tomiichi-murayama-cartoon-1993-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1559685,
+      "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/makoto-tanabe-cartoon-1991-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1553213,
+      "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/sadao-yamahana-cartoon-1993-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1560733,
+      "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/takako-doi-cartoon-1996-v2.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1681349,
+      "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/akihiro-ota-cartoon-2006-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1536646,
+      "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/natsuo-yamaguchi-cartoon-2009-v2.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1513624,
+      "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1559640,
+      "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/harkishan-singh-surjeet-cartoon-1992-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1544874,
+      "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/lal-krishna-advani-cartoon-1995-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1569347,
+      "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/prakash-karat-cartoon-2005-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1608835,
+      "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/rajnath-singh-cartoon-2005-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1697505,
+      "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/nitin-gadkari-cartoon-2009-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1852262,
+      "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/sitaram-yechury-cartoon-2015-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1624779,
+      "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/jagat-prakash-nadda-cartoon-2020-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1618160,
+      "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/m-a-baby-cartoon-2025-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1611973,
+      "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1562458,
+      "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1623986,
+      "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1566975,
+      "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1598334,
+      "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/mikhail-gorbachev-cartoon-1991-v2.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1689207,
+      "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/francois-mitterrand-cartoon-1991-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1496061,
+      "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/michel-rocard-cartoon-1990-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1812840,
+      "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/laurent-fabius-cartoon-1992-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1732155,
+      "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/henri-emmanuelli-cartoon-1994-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1574049,
+      "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/alain-juppe-cartoon-1994-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1647092,
+      "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/lionel-jospin-cartoon-1995-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1577428,
+      "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8"
+    },
+    {
+      "method": "GET",
+      "route": "/art/people/francois-hollande-cartoon-1997-v1.png",
+      "status": 200,
+      "mime": "image/png",
+      "bytes": 1437666,
+      "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2009-11-11",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 24746,
+      "sha256": "b71c7a0e0693f9daf15340d83ca4bac2f57316ba8f05b7488ca5db48a1aa2cd5",
+      "body_file": "reference-00-Brazil-2009-11-11.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2014-12-31",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 22440,
+      "sha256": "d33f046fc4d7395cc1031b99c4c11dfb0040e3cbfd77aae376b8c03e8e13a9ef",
+      "body_file": "reference-01-Brazil-2014-12-31.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2015-01-01",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 22000,
+      "sha256": "6ba973c3f19af34a0874ff0bc62f46c12cbba5a9a5c1b3a21d293e8c4167cc6f",
+      "body_file": "reference-02-Brazil-2015-01-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2019-12-31",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 28688,
+      "sha256": "68de21d24f5fc35612d3104e55fbd64ce577c85f8f4af8eae43d237b05e762f6",
+      "body_file": "reference-03-Brazil-2019-12-31.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2020-01-01",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 28632,
+      "sha256": "49aae328a6f6bca7349786ff16a93f2b495dbabb28af79209512bf5b41b767de",
+      "body_file": "reference-04-Brazil-2020-01-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2026-09-07",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 32070,
+      "sha256": "000316d305819e51f7ec479c92ae80c4f0d572733f82a4e06d64578d4427fb3f",
+      "body_file": "reference-05-Brazil-2026-09-07.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Japan&date=2014-12-31",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 29330,
+      "sha256": "dca7c6755d7266eb3ce92214015a2c3468c4cbb63668c4a842299171800fdc05",
+      "body_file": "reference-06-Japan-2014-12-31.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Japan&date=2015-01-01",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 28040,
+      "sha256": "fa79a27d342313da803f5dec13b629cb7b57cdb2925e5379ded1aba1093fd4e0",
+      "body_file": "reference-07-Japan-2015-01-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Japan&date=2024-09-27",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 28000,
+      "sha256": "4a3f90ca07490c84e4e27c7f2c0c15781938540df6c7718c4b6d45a4ade925a9",
+      "body_file": "reference-08-Japan-2024-09-27.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=France&date=2007-05-29",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 36964,
+      "sha256": "6e47b4044e8a0a5bfaf04bcddb733adcb0609379d503cc9916a4f9412332649e",
+      "body_file": "reference-09-France-2007-05-29.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=India&date=2021-01-01",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 30043,
+      "sha256": "7adc415c617120dc2d691c2f4fe0229417341ebb3901c6046b3216a8a1e9dd92",
+      "body_file": "reference-10-India-2021-01-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=SouthAfrica&date=2013-09-16",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 29210,
+      "sha256": "9f303a5e5c76ce2a6221b23d403f018a5a28a9c82876798beea33beee6d53958",
+      "body_file": "reference-11-SouthAfrica-2013-09-16.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=SouthAfrica&date=2026-03-25",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 29486,
+      "sha256": "66699f9f97f56b4db9b480527fe57700dc734ecf0e126973501b17c55f262a9a",
+      "body_file": "reference-12-SouthAfrica-2026-03-25.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=SaudiArabia&date=1996-01-01",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 3021,
+      "sha256": "88075fd1d546be02d62d26f9b9b510fa7b73bd5396a91c001b116a77f82901fd",
+      "body_file": "reference-13-SaudiArabia-1996-01-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=USSR&date=1991-01-01",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 5756,
+      "sha256": "c1343754becb1aaa52fdc92b3bff93bcc01a917ea520f1210d01ed4e2a083799",
+      "body_file": "reference-14-USSR-1991-01-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2026-02-30",
+      "status": 400,
+      "mime": "application/json",
+      "bytes": 41,
+      "sha256": "c2abb9c119a38b335ecc4d961450c6f9e286c0e3cad36ed7d61773504601938c",
+      "body_file": "rejected-date-00.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=1990-1-01",
+      "status": 400,
+      "mime": "application/json",
+      "bytes": 41,
+      "sha256": "c2abb9c119a38b335ecc4d961450c6f9e286c0e3cad36ed7d61773504601938c",
+      "body_file": "rejected-date-01.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=1989-12-31",
+      "status": 400,
+      "mime": "application/json",
+      "bytes": 78,
+      "sha256": "ebb8c0b99f2688a99b80bb2637fddcc15a2f88c2110c9ee00d5724f739bed96b",
+      "body_file": "rejected-date-02.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/party-leadership?nation=Brazil&date=2026-09-08",
+      "status": 400,
+      "mime": "application/json",
+      "bytes": 78,
+      "sha256": "ebb8c0b99f2688a99b80bb2637fddcc15a2f88c2110c9ee00d5724f739bed96b",
+      "body_file": "rejected-date-03.json"
+    },
+    {
+      "method": "GET",
+      "route": "/api/state",
+      "status": 200,
+      "mime": "application/json",
+      "bytes": 2154543,
+      "sha256": "c4e01dc769f2b8f8f6e59575a19e3487ae96d1d6d586ce84558fea1ab4228e2c",
+      "body_file": "state-after.json"
+    }
+  ],
+  "portraits": [
+    {
+      "path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+      "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+      "bytes": 1647981,
+      "country": "brazil",
+      "person_id": "michel_temer",
+      "from": "2001-09-09",
+      "to": "2010-06-15",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/michel-temer-cartoon-2001-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/michel-temer-cartoon-2001-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1647981,
+        "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+      "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+      "bytes": 1552223,
+      "country": "brazil",
+      "person_id": "michel_temer",
+      "from": "2010-06-15",
+      "to": "2019-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/michel-temer-cartoon-2010-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/michel-temer-cartoon-2010-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1552223,
+        "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+      "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+      "bytes": 1557704,
+      "country": "brazil",
+      "person_id": "baleia_rossi",
+      "from": "2019-10-06",
+      "to": "2026-09-08",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/baleia-rossi-cartoon-2019-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/baleia-rossi-cartoon-2019-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1557704,
+        "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+      "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+      "bytes": 1533241,
+      "country": "brazil",
+      "person_id": "leonel_brizola",
+      "from": "1995-01-01",
+      "to": "2004-06-21",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/leonel-brizola-cartoon-1995-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/leonel-brizola-cartoon-1995-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1533241,
+        "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+      "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+      "bytes": 1478167,
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2004-06-30",
+      "to": "2015-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/carlos-lupi-cartoon-2004-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/carlos-lupi-cartoon-2004-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1478167,
+        "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+      "bytes": 1612861,
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2015-01-01",
+      "to": "2020-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/carlos-lupi-cartoon-2015-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/carlos-lupi-cartoon-2015-v2.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1612861,
+        "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+      "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+      "bytes": 1825058,
+      "country": "brazil",
+      "person_id": "carlos_lupi",
+      "from": "2020-01-01",
+      "to": "2026-09-08",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/carlos-lupi-cartoon-2020-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/carlos-lupi-cartoon-2020-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1825058,
+        "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+      "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+      "bytes": 1603845,
+      "country": "south-africa",
+      "person_id": "mangosuthu_buthelezi",
+      "from": "1995-01-01",
+      "to": "2005-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/mangosuthu-buthelezi-cartoon-1995-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/mangosuthu-buthelezi-cartoon-1995-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1603845,
+        "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+      "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+      "bytes": 1563480,
+      "country": "south-africa",
+      "person_id": "constand_viljoen",
+      "from": "1994-03-31",
+      "to": "2001-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/constand-viljoen-cartoon-1994-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/constand-viljoen-cartoon-1994-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1563480,
+        "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+      "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+      "bytes": 1616484,
+      "country": "south-africa",
+      "person_id": "pieter_mulder",
+      "from": "2001-06-21",
+      "to": "2016-11-13",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/pieter-mulder-cartoon-2001-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/pieter-mulder-cartoon-2001-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1616484,
+        "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+      "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+      "bytes": 1588691,
+      "country": "south-africa",
+      "person_id": "corne_mulder",
+      "from": "2025-07-16",
+      "to": "2026-09-08",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/corne-mulder-cartoon-2025-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/corne-mulder-cartoon-2025-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1588691,
+        "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+      "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+      "bytes": 1559685,
+      "country": "japan",
+      "person_id": "tomiichi_murayama",
+      "from": "1993-09-30",
+      "to": "1996-09-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/tomiichi-murayama-cartoon-1993-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/tomiichi-murayama-cartoon-1993-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1559685,
+        "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+      "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+      "bytes": 1553213,
+      "country": "japan",
+      "person_id": "makoto_tanabe",
+      "from": "1991-07-31",
+      "to": "1993-01-19",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/makoto-tanabe-cartoon-1991-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/makoto-tanabe-cartoon-1991-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1553213,
+        "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+      "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+      "bytes": 1560733,
+      "country": "japan",
+      "person_id": "sadao_yamahana",
+      "from": "1993-01-19",
+      "to": "1993-09-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/sadao-yamahana-cartoon-1993-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/sadao-yamahana-cartoon-1993-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1560733,
+        "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v2.png",
+      "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1",
+      "bytes": 1681349,
+      "country": "japan",
+      "person_id": "takako_doi",
+      "from": "1996-09-30",
+      "to": "2003-11-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/takako-doi-cartoon-1996-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/takako-doi-cartoon-1996-v2.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1681349,
+        "sha256": "2c5a5a3053784f7901a78b0a3a4bd27a7f567d42dcf2af7f0a5d9f6a012865f1"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+      "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+      "bytes": 1536646,
+      "country": "japan",
+      "person_id": "akihiro_ota",
+      "from": "2006-09-30",
+      "to": "2009-09-08",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/akihiro-ota-cartoon-2006-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/akihiro-ota-cartoon-2006-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1536646,
+        "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+      "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+      "bytes": 1513624,
+      "country": "japan",
+      "person_id": "natsuo_yamaguchi",
+      "from": "2009-09-08",
+      "to": "2015-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/natsuo-yamaguchi-cartoon-2009-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/natsuo-yamaguchi-cartoon-2009-v2.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1513624,
+        "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+      "bytes": 1559640,
+      "country": "japan",
+      "person_id": "natsuo_yamaguchi",
+      "from": "2015-01-01",
+      "to": "2024-09-28",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1559640,
+        "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+      "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+      "bytes": 1544874,
+      "country": "india",
+      "person_id": "harkishan_singh_surjeet",
+      "from": "1992-01-31",
+      "to": "2005-04-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/harkishan-singh-surjeet-cartoon-1992-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/harkishan-singh-surjeet-cartoon-1992-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1544874,
+        "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+      "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+      "bytes": 1569347,
+      "country": "india",
+      "person_id": "lal_krishna_advani",
+      "from": "1995-01-01",
+      "to": "2005-12-31",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/lal-krishna-advani-cartoon-1995-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/lal-krishna-advani-cartoon-1995-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1569347,
+        "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+      "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+      "bytes": 1608835,
+      "country": "india",
+      "person_id": "prakash_karat",
+      "from": "2005-04-30",
+      "to": "2015-04-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/prakash-karat-cartoon-2005-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/prakash-karat-cartoon-2005-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1608835,
+        "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+      "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+      "bytes": 1697505,
+      "country": "india",
+      "person_id": "rajnath_singh",
+      "from": "2005-12-31",
+      "to": "2014-07-09",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/rajnath-singh-cartoon-2005-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/rajnath-singh-cartoon-2005-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1697505,
+        "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+      "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+      "bytes": 1852262,
+      "country": "india",
+      "person_id": "nitin_gadkari",
+      "from": "2009-12-19",
+      "to": "2013-01-23",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/nitin-gadkari-cartoon-2009-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/nitin-gadkari-cartoon-2009-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1852262,
+        "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+      "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+      "bytes": 1624779,
+      "country": "india",
+      "person_id": "sitaram_yechury",
+      "from": "2015-04-30",
+      "to": "2024-09-12",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/sitaram-yechury-cartoon-2015-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/sitaram-yechury-cartoon-2015-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1624779,
+        "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+      "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+      "bytes": 1618160,
+      "country": "india",
+      "person_id": "jagat_prakash_nadda",
+      "from": "2020-01-20",
+      "to": "2026-01-20",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/jagat-prakash-nadda-cartoon-2020-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/jagat-prakash-nadda-cartoon-2020-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1618160,
+        "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+      "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+      "bytes": 1611973,
+      "country": "india",
+      "person_id": "m_a_baby",
+      "from": "2025-04-06",
+      "to": "2026-09-08",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/m-a-baby-cartoon-2025-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/m-a-baby-cartoon-2025-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1611973,
+        "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+      "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+      "bytes": 1562458,
+      "country": "saudi-arabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "from": "1991-01-01",
+      "to": "1996-01-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1562458,
+        "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+      "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+      "bytes": 1623986,
+      "country": "saudi-arabia",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "from": "1996-01-01",
+      "to": "2005-08-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1623986,
+        "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+      "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+      "bytes": 1566975,
+      "country": "saudi-arabia",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "from": "1996-01-01",
+      "to": "2005-08-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1566975,
+        "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+      "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+      "bytes": 1598334,
+      "country": "saudi-arabia",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "from": "2005-08-01",
+      "to": "2015-01-23",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1598334,
+        "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v2.png",
+      "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8",
+      "bytes": 1689207,
+      "country": "ussr-russia",
+      "person_id": "mikhail_gorbachev",
+      "from": "1991-01-01",
+      "to": "1991-12-26",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/mikhail-gorbachev-cartoon-1991-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/mikhail-gorbachev-cartoon-1991-v2.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1689207,
+        "sha256": "008143bb114f1088a659cf740dd35520ab1f98a9c030ee74e4b0696bcd6f24e8"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+      "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+      "bytes": 1496061,
+      "country": "france",
+      "person_id": "francois_mitterrand",
+      "from": "1991-01-01",
+      "to": "1995-05-17",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/francois-mitterrand-cartoon-1991-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/francois-mitterrand-cartoon-1991-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1496061,
+        "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+      "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
+      "bytes": 1812840,
+      "country": "france",
+      "person_id": "michel_rocard",
+      "from": "1990-01-01",
+      "to": "1994-06-19",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/michel-rocard-cartoon-1990-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/michel-rocard-cartoon-1990-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1812840,
+        "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+      "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+      "bytes": 1732155,
+      "country": "france",
+      "person_id": "laurent_fabius",
+      "from": "1992-01-09",
+      "to": "1993-04-03",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/laurent-fabius-cartoon-1992-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/laurent-fabius-cartoon-1992-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1732155,
+        "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+      "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
+      "bytes": 1574049,
+      "country": "france",
+      "person_id": "henri_emmanuelli",
+      "from": "1994-06-19",
+      "to": "1995-10-14",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/henri-emmanuelli-cartoon-1994-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/henri-emmanuelli-cartoon-1994-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1574049,
+        "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+      "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+      "bytes": 1647092,
+      "country": "france",
+      "person_id": "alain_juppe",
+      "from": "1994-11-30",
+      "to": "1997-06-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/alain-juppe-cartoon-1994-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/alain-juppe-cartoon-1994-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1647092,
+        "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+      "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
+      "bytes": 1577428,
+      "country": "france",
+      "person_id": "lionel_jospin",
+      "from": "1995-10-14",
+      "to": "1997-06-07",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/lionel-jospin-cartoon-1995-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/lionel-jospin-cartoon-1995-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1577428,
+        "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8"
+      },
+      "passed": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+      "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+      "bytes": 1437666,
+      "country": "france",
+      "person_id": "francois_hollande",
+      "from": "1997-06-30",
+      "to": "2008-11-01",
+      "width": 1024,
+      "height": 1536,
+      "url": "/art/people/francois-hollande-cartoon-1997-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/art/people/francois-hollande-cartoon-1997-v1.png",
+        "status": 200,
+        "mime": "image/png",
+        "bytes": 1437666,
+        "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904"
+      },
+      "passed": true
+    }
+  ],
+  "reference_cases": [
+    {
+      "nation": "Brazil",
+      "date": "2009-11-11",
+      "party_id": "br_pdt",
+      "person_id": "carlos_lupi",
+      "expected_url": "/art/people/carlos-lupi-cartoon-2004-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2009-11-11",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 24746,
+        "sha256": "b71c7a0e0693f9daf15340d83ca4bac2f57316ba8f05b7488ca5db48a1aa2cd5",
+        "body_file": "reference-00-Brazil-2009-11-11.json"
+      },
+      "observed_urls": [
+        "/art/people/carlos-lupi-cartoon-2004-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Brazil",
+      "date": "2014-12-31",
+      "party_id": "br_pdt",
+      "person_id": "carlos_lupi",
+      "expected_url": "/art/people/carlos-lupi-cartoon-2004-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2014-12-31",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 22440,
+        "sha256": "d33f046fc4d7395cc1031b99c4c11dfb0040e3cbfd77aae376b8c03e8e13a9ef",
+        "body_file": "reference-01-Brazil-2014-12-31.json"
+      },
+      "observed_urls": [
+        "/art/people/carlos-lupi-cartoon-2004-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Brazil",
+      "date": "2015-01-01",
+      "party_id": "br_pdt",
+      "person_id": "carlos_lupi",
+      "expected_url": "/art/people/carlos-lupi-cartoon-2015-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2015-01-01",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 22000,
+        "sha256": "6ba973c3f19af34a0874ff0bc62f46c12cbba5a9a5c1b3a21d293e8c4167cc6f",
+        "body_file": "reference-02-Brazil-2015-01-01.json"
+      },
+      "observed_urls": [
+        "/art/people/carlos-lupi-cartoon-2015-v2.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Brazil",
+      "date": "2019-12-31",
+      "party_id": "br_pdt",
+      "person_id": "carlos_lupi",
+      "expected_url": "/art/people/carlos-lupi-cartoon-2015-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2019-12-31",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 28688,
+        "sha256": "68de21d24f5fc35612d3104e55fbd64ce577c85f8f4af8eae43d237b05e762f6",
+        "body_file": "reference-03-Brazil-2019-12-31.json"
+      },
+      "observed_urls": [
+        "/art/people/carlos-lupi-cartoon-2015-v2.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Brazil",
+      "date": "2020-01-01",
+      "party_id": "br_pdt",
+      "person_id": "carlos_lupi",
+      "expected_url": "/art/people/carlos-lupi-cartoon-2020-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2020-01-01",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 28632,
+        "sha256": "49aae328a6f6bca7349786ff16a93f2b495dbabb28af79209512bf5b41b767de",
+        "body_file": "reference-04-Brazil-2020-01-01.json"
+      },
+      "observed_urls": [
+        "/art/people/carlos-lupi-cartoon-2020-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Brazil",
+      "date": "2026-09-07",
+      "party_id": "br_pdt",
+      "person_id": "carlos_lupi",
+      "expected_url": "/art/people/carlos-lupi-cartoon-2020-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2026-09-07",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 32070,
+        "sha256": "000316d305819e51f7ec479c92ae80c4f0d572733f82a4e06d64578d4427fb3f",
+        "body_file": "reference-05-Brazil-2026-09-07.json"
+      },
+      "observed_urls": [
+        "/art/people/carlos-lupi-cartoon-2020-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Japan",
+      "date": "2014-12-31",
+      "party_id": "jp_komeito",
+      "person_id": "natsuo_yamaguchi",
+      "expected_url": "/art/people/natsuo-yamaguchi-cartoon-2009-v2.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Japan&date=2014-12-31",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 29330,
+        "sha256": "dca7c6755d7266eb3ce92214015a2c3468c4cbb63668c4a842299171800fdc05",
+        "body_file": "reference-06-Japan-2014-12-31.json"
+      },
+      "observed_urls": [
+        "/art/people/natsuo-yamaguchi-cartoon-2009-v2.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Japan",
+      "date": "2015-01-01",
+      "party_id": "jp_komeito",
+      "person_id": "natsuo_yamaguchi",
+      "expected_url": "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Japan&date=2015-01-01",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 28040,
+        "sha256": "fa79a27d342313da803f5dec13b629cb7b57cdb2925e5379ded1aba1093fd4e0",
+        "body_file": "reference-07-Japan-2015-01-01.json"
+      },
+      "observed_urls": [
+        "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "Japan",
+      "date": "2024-09-27",
+      "party_id": "jp_komeito",
+      "person_id": "natsuo_yamaguchi",
+      "expected_url": "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Japan&date=2024-09-27",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 28000,
+        "sha256": "4a3f90ca07490c84e4e27c7f2c0c15781938540df6c7718c4b6d45a4ade925a9",
+        "body_file": "reference-08-Japan-2024-09-27.json"
+      },
+      "observed_urls": [
+        "/art/people/natsuo-yamaguchi-cartoon-2015-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "France",
+      "date": "2007-05-29",
+      "party_id": "fr_ps",
+      "person_id": "francois_hollande",
+      "expected_url": "/art/people/francois-hollande-cartoon-1997-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=France&date=2007-05-29",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 36964,
+        "sha256": "6e47b4044e8a0a5bfaf04bcddb733adcb0609379d503cc9916a4f9412332649e",
+        "body_file": "reference-09-France-2007-05-29.json"
+      },
+      "observed_urls": [
+        "/art/people/francois-hollande-cartoon-1997-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "India",
+      "date": "2021-01-01",
+      "party_id": "in_bjp",
+      "person_id": "jagat_prakash_nadda",
+      "expected_url": "/art/people/jagat-prakash-nadda-cartoon-2020-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=India&date=2021-01-01",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 30043,
+        "sha256": "7adc415c617120dc2d691c2f4fe0229417341ebb3901c6046b3216a8a1e9dd92",
+        "body_file": "reference-10-India-2021-01-01.json"
+      },
+      "observed_urls": [
+        "/art/people/jagat-prakash-nadda-cartoon-2020-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "SouthAfrica",
+      "date": "2013-09-16",
+      "party_id": "za_ff",
+      "person_id": "pieter_mulder",
+      "expected_url": "/art/people/pieter-mulder-cartoon-2001-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=SouthAfrica&date=2013-09-16",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 29210,
+        "sha256": "9f303a5e5c76ce2a6221b23d403f018a5a28a9c82876798beea33beee6d53958",
+        "body_file": "reference-11-SouthAfrica-2013-09-16.json"
+      },
+      "observed_urls": [
+        "/art/people/pieter-mulder-cartoon-2001-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "SouthAfrica",
+      "date": "2026-03-25",
+      "party_id": "za_ff",
+      "person_id": "corne_mulder",
+      "expected_url": "/art/people/corne-mulder-cartoon-2025-v1.png",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=SouthAfrica&date=2026-03-25",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 29486,
+        "sha256": "66699f9f97f56b4db9b480527fe57700dc734ecf0e126973501b17c55f262a9a",
+        "body_file": "reference-12-SouthAfrica-2026-03-25.json"
+      },
+      "observed_urls": [
+        "/art/people/corne-mulder-cartoon-2025-v1.png"
+      ],
+      "passed": true
+    },
+    {
+      "nation": "SaudiArabia",
+      "date": "1996-01-01",
+      "party_id": null,
+      "person_id": null,
+      "expected_url": null,
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=SaudiArabia&date=1996-01-01",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 3021,
+        "sha256": "88075fd1d546be02d62d26f9b9b510fa7b73bd5396a91c001b116a77f82901fd",
+        "body_file": "reference-13-SaudiArabia-1996-01-01.json"
+      },
+      "passed": true
+    },
+    {
+      "nation": "USSR",
+      "date": "1991-01-01",
+      "party_id": null,
+      "person_id": null,
+      "expected_url": null,
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=USSR&date=1991-01-01",
+        "status": 200,
+        "mime": "application/json",
+        "bytes": 5756,
+        "sha256": "c1343754becb1aaa52fdc92b3bff93bcc01a917ea520f1210d01ed4e2a083799",
+        "body_file": "reference-14-USSR-1991-01-01.json"
+      },
+      "passed": true
+    }
+  ],
+  "negative_cases": [
+    {
+      "date": "2026-02-30",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2026-02-30",
+        "status": 400,
+        "mime": "application/json",
+        "bytes": 41,
+        "sha256": "c2abb9c119a38b335ecc4d961450c6f9e286c0e3cad36ed7d61773504601938c",
+        "body_file": "rejected-date-00.json"
+      },
+      "error": "Choose a valid calendar date.",
+      "passed": true
+    },
+    {
+      "date": "1990-1-01",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=1990-1-01",
+        "status": 400,
+        "mime": "application/json",
+        "bytes": 41,
+        "sha256": "c2abb9c119a38b335ecc4d961450c6f9e286c0e3cad36ed7d61773504601938c",
+        "body_file": "rejected-date-01.json"
+      },
+      "error": "Choose a valid calendar date.",
+      "passed": true
+    },
+    {
+      "date": "1989-12-31",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=1989-12-31",
+        "status": 400,
+        "mime": "application/json",
+        "bytes": 78,
+        "sha256": "ebb8c0b99f2688a99b80bb2637fddcc15a2f88c2110c9ee00d5724f739bed96b",
+        "body_file": "rejected-date-02.json"
+      },
+      "error": "Historical reference dates run from 1990-01-01 through 2026-09-07.",
+      "passed": true
+    },
+    {
+      "date": "2026-09-08",
+      "http": {
+        "method": "GET",
+        "route": "/api/party-leadership?nation=Brazil&date=2026-09-08",
+        "status": 400,
+        "mime": "application/json",
+        "bytes": 78,
+        "sha256": "ebb8c0b99f2688a99b80bb2637fddcc15a2f88c2110c9ee00d5724f739bed96b",
+        "body_file": "rejected-date-03.json"
+      },
+      "error": "Historical reference dates run from 1990-01-01 through 2026-09-07.",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "All 38 PNG URLs are checked. The party endpoint is not an arbitrary person/date API.",
+    "Saudi monarchs and USSR's unpopulated party holders are not invented as party leaders.",
+    "No POST, campaign advance, save/load, user server, or browser is used.",
+    "Appearance intervals do not establish office tenures or complete historical coverage."
+  ],
+  "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "source_pins": [
+    {
+      "path": "docs/campaign-certification/C06/registration-completion-20261002/registration.json",
+      "sha256": "ac7879b7ff3b533bb83ccefda2776c5320067574c5bd4fccdf4b6d223fe7caff",
+      "bytes": 23056
+    },
+    {
+      "path": "tools/avatars/person-prompts/france-cast-batch-01.json",
+      "sha256": "f07db13cf9b18597b17ebd48a9f84c55f1903bdaed6e1e9183700c9335a5b75a",
+      "bytes": 81145
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa",
+      "bytes": 745039
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+      "bytes": 1282814
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "sha256": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+      "bytes": 988003
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "sha256": "899e7605fdfc78f4557ac32992e4ffc8bbff0bae6ca8e351b4286b647708bd50",
+      "bytes": 34345
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "sha256": "73ee08c14ea1fe836c8f1219acd24fc1f2e04a96acb303b618724b7ca6035175",
+      "bytes": 20089
+    }
+  ],
+  "expected_portrait_count": 38,
+  "binary_sha256": "fb062fa57610128189e7bee12ae3cf56175e8cefb8ba3b0610865e9bdc4edb1a",
+  "binary_bytes": 502649048,
+  "base_url": "http://127.0.0.1:63142",
+  "command": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target\\release\\spheres-web.exe",
+    "--port",
+    "63142",
+    "--no-open"
+  ],
+  "owned_pid": 55380,
+  "build": {
+    "branch": "codex/cast-registration-20261002",
+    "built_at_unix_seconds": 1790969676,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "full_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+    "revision": "32d7f0aa3b8e",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\http-smoke-0a516dnq\\campaign",
+    "target_arch": "x86_64",
+    "target_os": "windows",
+    "version": "0.6.0"
+  },
+  "state_unchanged": true,
+  "save_directory_remained_empty": true,
+  "server_exit_before_cleanup": null,
+  "owned_process_stopped": true,
+  "server_exit_after_cleanup": 1,
+  "campaign_files_after_cleanup": [],
+  "finished_at": "2026-10-02T19:38:37.326560+00:00"
+}

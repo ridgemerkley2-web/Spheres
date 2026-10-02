@@ -1,0 +1,13 @@
+{
+  "name": "web-unit",
+  "command": [
+    "node",
+    "tools/ui/run-unit.cjs"
+  ],
+  "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+  "exit_code": 1,
+  "elapsed_seconds": 117.64,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-unit-2.log",
+  "log_sha256": "db422dc48e2ad96b285d81cc8eae24f0eb86e3344f00e79c972cb8115134791f",
+  "cargo_target": null
+}

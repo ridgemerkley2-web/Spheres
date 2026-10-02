@@ -1,5 +1,15 @@
 # Saudi Arabia cast production (C06)
 
+## Bounded batch 1 completed — 2 October 2026
+
+`CLAUDE-C06-SAUDIARABIA-01` is **complete for its 4 reviewed Saudi Arabia portraits**. Codex performed the output review, registration and correction review under the user’s instruction to finish these batches. The [completion record](../../registration-completion-20261002/README.md) and [verification receipt](../../registration-completion-20261002/verification.json) record the actual native and served-image checks. No Claude review or human approval is invented.
+
+The original preparation and return records remain unchanged. Unprepared reserves and additional windows remain outside this bounded result; the country cast, C06 and CP1 still require their own acceptance. The six completed batches add 31 historical portraits; the earlier seven French additions are also served by the refreshed embedded asset list.
+
+## Historical preparation checkpoint — preserved below
+
+The following preparation-era status and proposed decisions are retained as history. The completion record above supersedes their render-waiting status.
+
 Task `CLAUDE-C06-SAUDIARABIA-01` (owner Claude), branch `claude/c06-sa-01`. State: **awaiting Codex render**; not ready for review. Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
 
 ## Batch 1 (SA-CAST-B01), prepared 2 October 2026

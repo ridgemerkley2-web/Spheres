@@ -1,0 +1,18 @@
+{
+  "name": "web-build",
+  "command": [
+    "cargo",
+    "build",
+    "--offline",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web"
+  ],
+  "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "exit_code": 0,
+  "elapsed_seconds": 49.14,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-build.log",
+  "log_sha256": "a2b24c3d9f2bb75b5aeca460f4c45d820a1973c72e0734d801aa0d70e4653e5d",
+  "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target"
+}

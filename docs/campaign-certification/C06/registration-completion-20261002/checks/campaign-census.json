@@ -1,0 +1,17 @@
+{
+  "name": "campaign-census",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/campaign_census.py",
+    "--check"
+  ],
+  "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "exit_code": 0,
+  "elapsed_seconds": 0.27,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/campaign-census.log",
+  "log_sha256": "e31fb7a6e72db13379194280a8f303a5333c8d7fa799f5ffa410d589aa8e0719",
+  "cargo_target": null
+}

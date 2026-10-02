@@ -1,0 +1,17 @@
+{
+  "name": "registered-art",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/person_art_pipeline.py",
+    "validate"
+  ],
+  "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "exit_code": 0,
+  "elapsed_seconds": 0.62,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/registered-art-2.log",
+  "log_sha256": "c05e9726feb18988691cbf2d49a2ecb94a390ed0aca2aceac10e6df2e25deada",
+  "cargo_target": null
+}

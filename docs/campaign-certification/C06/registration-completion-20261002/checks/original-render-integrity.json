@@ -1,0 +1,17 @@
+{
+  "name": "original-render-integrity",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "docs/campaign-certification/C06/render-return-20261002/verify_outputs.py",
+    "--require-originals"
+  ],
+  "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "exit_code": 0,
+  "elapsed_seconds": 0.28,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/original-render-integrity.log",
+  "log_sha256": "5c6cc3481ae797c96517736420a8182444abe94caeb548858629c927bb429807",
+  "cargo_target": null
+}

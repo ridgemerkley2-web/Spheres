@@ -1,0 +1,17 @@
+{
+  "name": "leadership-production",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/leadership_production.py",
+    "check"
+  ],
+  "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "exit_code": 0,
+  "elapsed_seconds": 0.88,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/leadership-production.log",
+  "log_sha256": "407e08739cceda24be0413e3290460c0201cc06b084a297c23db555c00495c89",
+  "cargo_target": null
+}

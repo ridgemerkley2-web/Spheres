@@ -1,0 +1,24 @@
+{
+  "name": "resource-timing",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--lib",
+    "tests::the_resource_pass_stays_under_budget",
+    "--",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+  "exit_code": 0,
+  "elapsed_seconds": 8.92,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/resource-timing.log",
+  "log_sha256": "22a4fb29b64e6ab01b2309d876b2f9b23108de75d4295c59d8f802de323f38f0",
+  "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target"
+}

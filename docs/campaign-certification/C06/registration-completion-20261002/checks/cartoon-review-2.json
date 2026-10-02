@@ -1,0 +1,17 @@
+{
+  "name": "cartoon-review",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/cartoon_review.py",
+    "--check"
+  ],
+  "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+  "exit_code": 0,
+  "elapsed_seconds": 1.09,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/cartoon-review-2.log",
+  "log_sha256": "110b4bc4533eaf84aa2ce9a890b3fcd26ea4a8c605d11ce9b400029882c45768",
+  "cargo_target": null
+}

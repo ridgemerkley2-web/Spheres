@@ -1,0 +1,22 @@
+{
+  "name": "portrait-boundary-positive",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries",
+    "--",
+    "--exact",
+    "--nocapture"
+  ],
+  "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "exit_code": 0,
+  "elapsed_seconds": 104.22,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/portrait-boundary-positive.log",
+  "log_sha256": "135e49adc80e8231ab4403e967d7a6ea63465e4f427d8f3923831cdd1c0e6afd",
+  "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target"
+}

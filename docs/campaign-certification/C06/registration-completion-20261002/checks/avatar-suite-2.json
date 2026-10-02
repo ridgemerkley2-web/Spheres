@@ -1,0 +1,20 @@
+{
+  "name": "avatar-suite",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars"
+  ],
+  "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+  "exit_code": 0,
+  "elapsed_seconds": 182.55,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-suite-2.log",
+  "log_sha256": "8655eb51da5e9e298a8164bdaf2485a3acc7b9e473eec85a1f205d513c79535c",
+  "cargo_target": null
+}

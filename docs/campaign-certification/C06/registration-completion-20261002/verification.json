@@ -1,0 +1,617 @@
+{
+  "version": 1,
+  "date": "2026-10-02",
+  "status": "passed",
+  "native_passed": true,
+  "served_images_passed": true,
+  "scope": "Close six requested first cast batches: 31 additive portraits, two corrected illustrations, and serving the seven already-registered French portraits. No country-wide or CP1 qualification.",
+  "implementation_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "verification_head": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "source_notes": "Native full suite began at a982f752 and ended after the derived-only 57cd5a92 follow-up. Later commits only preserve raw evidence newline bytes/attributes. Native code and PNG bytes are unchanged across these verification revisions. Exact release identity is in the runtime receipt.",
+  "counts": {
+    "native_passed": 2006,
+    "native_ignored": 115,
+    "javascript_passed": 1831,
+    "javascript_skipped": 1,
+    "avatar_tests_passed": 828,
+    "planning_tests_passed": 69
+  },
+  "current_checks": {
+    "web-unit": {
+      "name": "web-unit",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+      "exit_code": 0,
+      "elapsed_seconds": 121.38,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-unit-3.log",
+      "log_sha256": "c16c5fe4c8b4829dcac44602e126c978929b92e61acdf69a6796382cef5d9515",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-unit-3.json",
+      "receipt_sha256": "6f791d539899afbf7138db4e538c28b82587869ca347f4c9869687c2a768bdda"
+    },
+    "avatar-suite": {
+      "name": "avatar-suite",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars"
+      ],
+      "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+      "exit_code": 0,
+      "elapsed_seconds": 182.55,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-suite-2.log",
+      "log_sha256": "8655eb51da5e9e298a8164bdaf2485a3acc7b9e473eec85a1f205d513c79535c",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-suite-2.json",
+      "receipt_sha256": "70fae1816e0fed6343cf668df90679b9d48a7e92493487617454b405ea0ed457"
+    },
+    "planning-suite": {
+      "name": "planning-suite",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 2.02,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/planning-suite-3.log",
+      "log_sha256": "7a8331daa6fe37a44ead122e60415c27f9563ac4eb7c7268f8e53ff617d8e08e",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/planning-suite-3.json",
+      "receipt_sha256": "197d49f609633ecb9cd265fb970e2496cfa9b194033d42be24e41aa586de6e25"
+    },
+    "avatar-allowlist": {
+      "name": "avatar-allowlist",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/build_person_avatar_assets.py",
+        "--check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.72,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-allowlist-2.log",
+      "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-allowlist-2.json",
+      "receipt_sha256": "ddde6b6e36fcf9a45ceabae777a246ec6c86d53a2dd8b6688b7537b807edf509"
+    },
+    "registered-art": {
+      "name": "registered-art",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "validate"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.62,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/registered-art-2.log",
+      "log_sha256": "c05e9726feb18988691cbf2d49a2ecb94a390ed0aca2aceac10e6df2e25deada",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/registered-art-2.json",
+      "receipt_sha256": "4405db3e6d9c411cd663311ac070830b0dcdcb6d48998aaf479b9537600ae11f"
+    },
+    "art-self-test": {
+      "name": "art-self-test",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "self-test"
+      ],
+      "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+      "exit_code": 0,
+      "elapsed_seconds": 0.36,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/art-self-test.log",
+      "log_sha256": "2c11ddcba2f372bdcc63ef402aa6d54b9a67d0aefe489277e7b339fa6e2735ae",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/art-self-test.json",
+      "receipt_sha256": "aada769c694081c71be4fdf506f46ad6b2fb2dff0d03cae2649751983b65af70"
+    },
+    "leadership-production": {
+      "name": "leadership-production",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.83,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/leadership-production-2.log",
+      "log_sha256": "407e08739cceda24be0413e3290460c0201cc06b084a297c23db555c00495c89",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/leadership-production-2.json",
+      "receipt_sha256": "6226ab7b029d6b2fd61f3bd8a9013f41c03bbf3e979c357b478cb624237e7ebf"
+    },
+    "cartoon-review": {
+      "name": "cartoon-review",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.76,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/cartoon-review-3.log",
+      "log_sha256": "110b4bc4533eaf84aa2ce9a890b3fcd26ea4a8c605d11ce9b400029882c45768",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/cartoon-review-3.json",
+      "receipt_sha256": "e342fa131a9777bfeb389b765571cdb4995711233407a69516d7d375682625de"
+    },
+    "campaign-census": {
+      "name": "campaign-census",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.24,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/campaign-census-2.log",
+      "log_sha256": "e31fb7a6e72db13379194280a8f303a5333c8d7fa799f5ffa410d589aa8e0719",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/campaign-census-2.json",
+      "receipt_sha256": "8830be57bc49e4fc41a4dc92c046765e7e87b43fdc726c87b44a3852bb2d7472"
+    },
+    "gap-ledger": {
+      "name": "gap-ledger",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 1.06,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/gap-ledger-3.log",
+      "log_sha256": "0dc9d475fc719be01827f34b6315990db28942aad309148fb38ec9baeab46d60",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/gap-ledger-3.json",
+      "receipt_sha256": "1330e0f94d513fc72ea8eee6cef3a8acb9c094e51f8690818f95a9b78ad084d7"
+    },
+    "boundary-matrix": {
+      "name": "boundary-matrix",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.58,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/boundary-matrix-3.log",
+      "log_sha256": "534931b2dadda9a6f7308873a64c591e26e588fddccee4ee327edcec62172a7a",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/boundary-matrix-3.json",
+      "receipt_sha256": "11b52b9809c1e721b079c38d35db37c2dc0caf619d2930e0cc2d563efc0a4488"
+    },
+    "tonga-coverage": {
+      "name": "tonga-coverage",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/tonga_cast_coverage.py"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.77,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/tonga-coverage-2.log",
+      "log_sha256": "f57d59e7fce6d63cd45bc3af2c41ec0b9ea0a457fe7c93ed904c9eda5bb6e9ee",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/tonga-coverage-2.json",
+      "receipt_sha256": "2b2b8c903cd2e57aea3339e1f81dc3199609e5c093d169d0c811032e07c0aa71"
+    },
+    "workboard": {
+      "name": "workboard",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.06,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/workboard-3.log",
+      "log_sha256": "a894f265e6af6bf7b1849c7fcb4ba2824c434a5cf9b7f1730e24c31c74a7d99a",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/workboard-3.json",
+      "receipt_sha256": "142b49be3568e08ef09a6793803d3e6de29269fb133b91dd726872c8d5e40563"
+    },
+    "original-render-integrity": {
+      "name": "original-render-integrity",
+      "command": [
+        "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs/campaign-certification/C06/render-return-20261002/verify_outputs.py",
+        "--require-originals"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 0.22,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/original-render-integrity-2.log",
+      "log_sha256": "5c6cc3481ae797c96517736420a8182444abe94caeb548858629c927bb429807",
+      "cargo_target": null,
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/original-render-integrity-2.json",
+      "receipt_sha256": "c5ee793346a990f4599f71a240278900e49961bff475bb714f2fb4ceb50fcc81"
+    },
+    "native": {
+      "name": "native",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--release",
+        "--workspace",
+        "--no-fail-fast",
+        "--",
+        "--skip",
+        "tests::the_resource_pass_stays_under_budget"
+      ],
+      "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+      "exit_code": 0,
+      "elapsed_seconds": 1078.47,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/native.log",
+      "log_sha256": "dbdbe7d3b20289561edaab595dfdcad8f99e21b865272349c343dea349d54eb6",
+      "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target",
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/native.json",
+      "receipt_sha256": "b4a6b33d66c7f6a5a7bfe870faba37b4e1f5252836ced7ce7eff734d4b872da2"
+    },
+    "resource-timing": {
+      "name": "resource-timing",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "tests::the_resource_pass_stays_under_budget",
+        "--",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+      "exit_code": 0,
+      "elapsed_seconds": 8.92,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/resource-timing.log",
+      "log_sha256": "22a4fb29b64e6ab01b2309d876b2f9b23108de75d4295c59d8f802de323f38f0",
+      "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target",
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/resource-timing.json",
+      "receipt_sha256": "a4db0ec11806f99a93d9800bdc1b6223e80c0de7eea8a9a7c997b48e0db7b124"
+    },
+    "portrait-boundary-positive": {
+      "name": "portrait-boundary-positive",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 104.22,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/portrait-boundary-positive.log",
+      "log_sha256": "135e49adc80e8231ab4403e967d7a6ea63465e4f427d8f3923831cdd1c0e6afd",
+      "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target",
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/portrait-boundary-positive.json",
+      "receipt_sha256": "b8d0778ee93adaece5c880b42aad686530d45d7dc51eeeb84f5f9a8d882658bf"
+    },
+    "web-build": {
+      "name": "web-build",
+      "command": [
+        "cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web"
+      ],
+      "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+      "exit_code": 0,
+      "elapsed_seconds": 49.14,
+      "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-build.log",
+      "log_sha256": "a2b24c3d9f2bb75b5aeca460f4c45d820a1973c72e0734d801aa0d70e4653e5d",
+      "cargo_target": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cast-registration-20261002\\native-target",
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-build.json",
+      "receipt_sha256": "f8f40d7b8942eb14acf16c03b5f7ba2985a1d56a45c3079dde158dd573fb5002"
+    }
+  },
+  "all_command_attempts": [
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-unit.json",
+      "exit_code": 1,
+      "sha256": "ddbf929d3b807a6bc38a6a31c2873d5e8b8cd90b9bf90f27778c69d7a3c31f0d"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-suite.json",
+      "exit_code": 1,
+      "sha256": "3c29164292a278b2e12aea8d1143dfd9cb713a5a7940397a6795083edbff74aa"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/planning-suite.json",
+      "exit_code": 0,
+      "sha256": "1178e7a91dcef95e9bed171bff14b4cb5bf47b08721c457351431af8dee607a1"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-allowlist.json",
+      "exit_code": 0,
+      "sha256": "cb5a7abbb06d4419820daa0a86fd88c862bf2521e1eca3650d62c5a7630f1364"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/registered-art.json",
+      "exit_code": 0,
+      "sha256": "bc660fea311b58ba25401b6649c636fe16481fbb90bfacf55d45d5d7abed3f77"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/art-self-test.json",
+      "exit_code": 0,
+      "sha256": "aada769c694081c71be4fdf506f46ad6b2fb2dff0d03cae2649751983b65af70"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/leadership-production.json",
+      "exit_code": 0,
+      "sha256": "b05d8353dd7596b33fa990a009b1c496793004dce99ad332e533f12d14f3cef0"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/cartoon-review.json",
+      "exit_code": 1,
+      "sha256": "6a2fb31e097290de8a35827c23a4c8f65c54867560389cf1c8837c1bc6a79c68"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/campaign-census.json",
+      "exit_code": 0,
+      "sha256": "ef17327e7cde21fcef0225f59f02d667d50cc0d35b3f5870a7820a20b618e3be"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/gap-ledger.json",
+      "exit_code": 0,
+      "sha256": "e2e47d6c7a74117938e8a597ee51b4f75f443887a2243a0f3db0f9ad95fa29a1"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/boundary-matrix.json",
+      "exit_code": 0,
+      "sha256": "544e7377faab517266d636740365fbd0fea4276e87677255cf57275ba924a153"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/tonga-coverage.json",
+      "exit_code": 0,
+      "sha256": "2ac1a4df27071698b20ca4832ee7dfbe1d413a7186788a7e9e50025740907f28"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/workboard.json",
+      "exit_code": 0,
+      "sha256": "f974f73c5b8353065340a273836de46ce24cf2017dd5031fadb8cad8a36b3e9d"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/original-render-integrity.json",
+      "exit_code": 0,
+      "sha256": "ef64049e95025b2bf45bd31959825fde8445bc2d8fdc6ee74c39847c6027c2db"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-unit-2.json",
+      "exit_code": 1,
+      "sha256": "f5507e62715cf4472e04157088da59614fd2f1c850165e917074dd0d7fec28e9"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-suite-2.json",
+      "exit_code": 0,
+      "sha256": "70fae1816e0fed6343cf668df90679b9d48a7e92493487617454b405ea0ed457"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/cartoon-review-2.json",
+      "exit_code": 0,
+      "sha256": "3a7e5353a4311fd8182cdb0c09090e366c945e6925ebb5921f755e59ae054b4a"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-unit-3.json",
+      "exit_code": 0,
+      "sha256": "6f791d539899afbf7138db4e538c28b82587869ca347f4c9869687c2a768bdda"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/native.json",
+      "exit_code": 0,
+      "sha256": "b4a6b33d66c7f6a5a7bfe870faba37b4e1f5252836ced7ce7eff734d4b872da2"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/resource-timing.json",
+      "exit_code": 0,
+      "sha256": "a4db0ec11806f99a93d9800bdc1b6223e80c0de7eea8a9a7c997b48e0db7b124"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/portrait-boundary-positive.json",
+      "exit_code": 0,
+      "sha256": "b8d0778ee93adaece5c880b42aad686530d45d7dc51eeeb84f5f9a8d882658bf"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/web-build.json",
+      "exit_code": 0,
+      "sha256": "f8f40d7b8942eb14acf16c03b5f7ba2985a1d56a45c3079dde158dd573fb5002"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-allowlist-2.json",
+      "exit_code": 0,
+      "sha256": "ddde6b6e36fcf9a45ceabae777a246ec6c86d53a2dd8b6688b7537b807edf509"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/registered-art-2.json",
+      "exit_code": 0,
+      "sha256": "4405db3e6d9c411cd663311ac070830b0dcdcb6d48998aaf479b9537600ae11f"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/leadership-production-2.json",
+      "exit_code": 0,
+      "sha256": "6226ab7b029d6b2fd61f3bd8a9013f41c03bbf3e979c357b478cb624237e7ebf"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/cartoon-review-3.json",
+      "exit_code": 0,
+      "sha256": "e342fa131a9777bfeb389b765571cdb4995711233407a69516d7d375682625de"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/campaign-census-2.json",
+      "exit_code": 0,
+      "sha256": "8830be57bc49e4fc41a4dc92c046765e7e87b43fdc726c87b44a3852bb2d7472"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/gap-ledger-2.json",
+      "exit_code": 0,
+      "sha256": "eea3dc8fc6ad1b43402e1594dd16f9ec39799b781367c8d257d08fb61cb39e2b"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/boundary-matrix-2.json",
+      "exit_code": 0,
+      "sha256": "88bba664f151598bad2f154b70a2b9a1eb1b475d656c7a876cfcd80cc8c1107f"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/tonga-coverage-2.json",
+      "exit_code": 0,
+      "sha256": "2b2b8c903cd2e57aea3339e1f81dc3199609e5c093d169d0c811032e07c0aa71"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/workboard-2.json",
+      "exit_code": 0,
+      "sha256": "22dd5469440d1b1eaffa4e80c33b0517ba83524d737e27cb3caadf3e2ea22f82"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/original-render-integrity-2.json",
+      "exit_code": 0,
+      "sha256": "c5ee793346a990f4599f71a240278900e49961bff475bb714f2fb4ceb50fcc81"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/planning-suite-2.json",
+      "exit_code": 0,
+      "sha256": "4af2e91328bb7ca425e877caa941505e36c4f0d61c50b733e2b9fb079926d88e"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/gap-ledger-3.json",
+      "exit_code": 0,
+      "sha256": "1330e0f94d513fc72ea8eee6cef3a8acb9c094e51f8690818f95a9b78ad084d7"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/boundary-matrix-3.json",
+      "exit_code": 0,
+      "sha256": "11b52b9809c1e721b079c38d35db37c2dc0caf619d2930e0cc2d563efc0a4488"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/workboard-3.json",
+      "exit_code": 0,
+      "sha256": "142b49be3568e08ef09a6793803d3e6de29269fb133b91dd726872c8d5e40563"
+    },
+    {
+      "receipt": "docs/campaign-certification/C06/registration-completion-20261002/checks/planning-suite-3.json",
+      "exit_code": 0,
+      "sha256": "197d49f609633ecb9cd265fb970e2496cfa9b194033d42be24e41aa586de6e25"
+    }
+  ],
+  "expected_negative_control": {
+    "name": "portrait-boundary-expected-negative",
+    "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--release",
+      "-p",
+      "spheres-web",
+      "person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries",
+      "--",
+      "--exact",
+      "--nocapture"
+    ],
+    "mutation": "Change the historical portrait exclusive end comparison from date < end to date <= end.",
+    "source_sha256_before": "899e7605fdfc78f4557ac32992e4ffc8bbff0bae6ca8e351b4286b647708bd50",
+    "mutated_sha256": "cd32d075446dac23fe5a10446712d89df0b1a1ce5bbaa917b331acddf06aa9fe",
+    "restored_exact_bytes": true,
+    "exit_code": 101,
+    "elapsed_seconds": 104.75,
+    "expected_failure_observed": true,
+    "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/portrait-boundary-expected-negative.log",
+    "log_sha256": "905e7efb3c0f32146d09c3be38c3a80b524f1f7cdd48048c27a54f41853470cf"
+  },
+  "runtime_smoke": {
+    "path": "docs/campaign-certification/C06/registration-completion-20261002/checks/runtime-smoke-nmrls7t4/receipt.json",
+    "sha256": "5a6a39aff2b1379340cd0851e873985eb992e6ffe8fb6f68071b3c49c2bee436",
+    "portraits": 38,
+    "reference_cases": 15,
+    "invalid_date_cases": 4,
+    "owned_process_stopped": true,
+    "state_unchanged": true,
+    "save_directory_remained_empty": true
+  },
+  "retained_failures": [
+    "First avatar/cartoon checks found two stale tracked:false fields. Regenerated after the v2 assets were tracked; the full 828-test rerun and export check pass.",
+    "First JavaScript run lacked tracked sparse-checkout fixtures and used the unavailable Windows Python alias. Restored repository files and configured the installed runtime. Second run found one further omitted COMPONENT_COVERAGE.md fixture. Third complete run passes unchanged tests.",
+    "The deliberately inclusive portrait end-date mutation fails the new regression test. The exact production bytes were restored, and the same test passes."
+  ],
+  "limits": [
+    "115 native tests remain intentionally ignored by the repository; the known political-calibration and campaign-qualification gates are not passed by this ordinary suite.",
+    "One existing JavaScript test remains skipped.",
+    "Historical portrait count is 138 for 115 people; 631 global historical-art jobs remain pending.",
+    "Country casts, C06, S23 and CP1 remain open; Tonga retains 15 open requirements including current-source browser acceptance.",
+    "The HTTP checks are not a full browser journey or human likeness/country approval.",
+    "France and South Africa batch2 remain separately claimed and are not included."
+  ]
+}

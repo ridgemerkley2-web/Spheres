@@ -1,0 +1,20 @@
+............................................................................................F...............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+FAIL: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\test_cartoon_review.py", line 572, in test_committed_export_is_current_deterministic_and_read_only
+    self.assertEqual(cr.stale(files, cr.ROOT), [], 'regenerate with: python -X utf8 tools/avatars/cartoon_review.py')
+AssertionError: Lists differ: ['docs/campaign-certification/C03/preparat[35 chars]son'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json'
+
+- ['docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json']
++ [] : regenerate with: python -X utf8 tools/avatars/cartoon_review.py
+
+----------------------------------------------------------------------
+Ran 828 tests in 176.852s
+
+FAILED (failures=1)

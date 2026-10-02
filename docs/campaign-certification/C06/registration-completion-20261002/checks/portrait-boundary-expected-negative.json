@@ -1,0 +1,26 @@
+{
+  "name": "portrait-boundary-expected-negative",
+  "source_revision": "57cd5a92f809c260959c38c42f8c7abdd8cc70b3",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries",
+    "--",
+    "--exact",
+    "--nocapture"
+  ],
+  "mutation": "Change the historical portrait exclusive end comparison from date < end to date <= end.",
+  "source_sha256_before": "899e7605fdfc78f4557ac32992e4ffc8bbff0bae6ca8e351b4286b647708bd50",
+  "mutated_sha256": "cd32d075446dac23fe5a10446712d89df0b1a1ce5bbaa917b331acddf06aa9fe",
+  "restored_exact_bytes": true,
+  "exit_code": 101,
+  "elapsed_seconds": 104.75,
+  "expected_failure_observed": true,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/portrait-boundary-expected-negative.log",
+  "log_sha256": "905e7efb3c0f32146d09c3be38c3a80b524f1f7cdd48048c27a54f41853470cf"
+}

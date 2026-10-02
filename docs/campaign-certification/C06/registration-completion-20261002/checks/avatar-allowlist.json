@@ -1,0 +1,17 @@
+{
+  "name": "avatar-allowlist",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/build_person_avatar_assets.py",
+    "--check"
+  ],
+  "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "exit_code": 0,
+  "elapsed_seconds": 1.09,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/avatar-allowlist.log",
+  "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a",
+  "cargo_target": null
+}

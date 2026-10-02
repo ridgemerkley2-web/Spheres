@@ -1,0 +1,17 @@
+{
+  "name": "boundary-matrix",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/certified_boundary_matrix.py",
+    "--check"
+  ],
+  "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "exit_code": 0,
+  "elapsed_seconds": 0.58,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/boundary-matrix-2.log",
+  "log_sha256": "534931b2dadda9a6f7308873a64c591e26e588fddccee4ee327edcec62172a7a",
+  "cargo_target": null
+}

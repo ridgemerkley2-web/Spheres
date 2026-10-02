@@ -1,0 +1,44 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\spheres-web)
+    Finished `release` profile [optimized] target(s) in 1m 44s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\cast-registration-20261002\native-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+
+thread 'person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries' (52896) panicked at spheres-web\src\person_portraits.rs:520:17:
+assertion `left == right` failed: wrong first-day portrait for abdullah_bin_abdulaziz_al_saud at 2005-08-01
+  left: None
+ right: Some("/art/people/abdullah-bin-abdulaziz-cartoon-2005-v1.png")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries ... FAILED
+
+failures:
+
+failures:
+    person_portraits::tests::registered_cartoon_eras_resolve_exact_assets_at_both_boundaries
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 484 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p spheres-web --bin spheres-web`

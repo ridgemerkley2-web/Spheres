@@ -1,0 +1,17 @@
+{
+  "name": "workboard",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/planning/workboard.py",
+    "--check"
+  ],
+  "source_revision": "32d7f0aa3b8e1f195e4ffd22a84046d4b5418abc",
+  "exit_code": 0,
+  "elapsed_seconds": 0.06,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/workboard-3.log",
+  "log_sha256": "a894f265e6af6bf7b1849c7fcb4ba2824c434a5cf9b7f1730e24c31c74a7d99a",
+  "cargo_target": null
+}

@@ -1,0 +1,17 @@
+{
+  "name": "art-self-test",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/avatars/person_art_pipeline.py",
+    "self-test"
+  ],
+  "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "exit_code": 0,
+  "elapsed_seconds": 0.36,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/art-self-test.log",
+  "log_sha256": "2c11ddcba2f372bdcc63ef402aa6d54b9a67d0aefe489277e7b339fa6e2735ae",
+  "cargo_target": null
+}

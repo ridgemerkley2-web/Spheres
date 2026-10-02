@@ -1,0 +1,20 @@
+{
+  "name": "planning-suite",
+  "command": [
+    "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/planning"
+  ],
+  "source_revision": "a982f752b6ae413c885a8a867fb46aaaa01a994f",
+  "exit_code": 0,
+  "elapsed_seconds": 2.48,
+  "log": "docs/campaign-certification/C06/registration-completion-20261002/checks/planning-suite.log",
+  "log_sha256": "45849807727d5ee2fd356bd76f2e2b98ad9de05f89366a55f2f2c6483a85b59f",
+  "cargo_target": null
+}
