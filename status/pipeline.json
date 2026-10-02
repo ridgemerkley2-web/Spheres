@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-01T14:15:44Z",
+  "updated": "2026-10-02T13:29:34Z",
   "mode": "lean parallel (user, 1 Oct 2026: \"Switch\"): research + packet_check, then submit; Codex reviews; respond only to Codex holds/requests",
   "packets": [
     {
       "n": "28",
       "title": "Russian party leaders, 1990–2026",
       "country": "Russia",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-ru-28",
       "head": "03141c43",
       "codex": "Codex review held: 12 archived originals (9 dvr.ru, 3 yabloko.ru) unreachable from its environment; 113/137 claims and 20/24 holders checked; nothing asked of Claude",
@@ -115,7 +115,7 @@
       "n": "39",
       "title": "Democratic Alliance federal leaders, 2000–2026",
       "country": "SouthAfrica",
-      "state": "fix",
+      "state": "accepted",
       "branch": "claude/c01-za-39",
       "head": "9cb02c20",
       "codex": "Codex held: IA HTTP 429 on its side; 22 sources unattempted"
@@ -142,15 +142,16 @@
       "n": "42",
       "title": "Japanese Communist Party chairs and DPFP representatives, 1990–2026",
       "country": "Japan",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-jp-42",
-      "head": "6d845541"
+      "head": "6d845541",
+      "codex": "Accepted (Codex REVIEW-20261001; queue: 38/38 Claude tasks complete)"
     },
     {
       "n": "43",
       "title": "PRN / PTC / Agir national presidents, 1990–2026",
       "country": "Brazil",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-br-43",
       "head": "8e3a72d3",
       "codex": "Codex reviewing original 68fb8f86; our fix commit adds the 2018-07-19 Tourinho observation"
@@ -159,7 +160,7 @@
       "n": "44",
       "title": "Tongan opposition party leaders (DPFI and PDP), 1990–2026",
       "country": "Tonga",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-to-44",
       "head": "e788b4ee",
       "codex": "Codex held (PMO original HTTP 429); its prose correction 9955de17 cherry-picked"
@@ -186,56 +187,50 @@
       "n": "47",
       "title": "Socialist Party first secretaries, 1990–2026",
       "country": "France",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-fr-47",
-      "head": "8226c419"
+      "head": "8226c419",
+      "codex": "Accepted (Codex REVIEW-20261001; queue: 38/38 Claude tasks complete)"
     },
     {
       "n": "48",
       "title": "BSP, AAP and NPP national leaders, 1990–2026",
       "country": "India",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-in-48",
-      "head": "bb0f86cd"
+      "head": "bb0f86cd",
+      "codex": "Accepted (Codex REVIEW-20261001; queue: 38/38 Claude tasks complete)"
     },
     {
       "n": "49",
       "title": "USSR heads of government and President: dated attestations, 1990–1991",
       "country": "USSR",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-su-49",
-      "head": "c601d991"
+      "head": "c601d991",
+      "codex": "Accepted (Codex REVIEW-20261001; queue: 38/38 Claude tasks complete)"
     },
     {
       "n": "50",
       "title": "Saudi prime ministers, 1990–2026",
       "country": "SaudiArabia",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-sa-50",
-      "head": "8b1a3c97"
+      "head": "8b1a3c97",
+      "codex": "Accepted (Codex REVIEW-20261001; queue: 38/38 Claude tasks complete)"
     },
     {
       "n": "51",
       "title": "RSFSR President and Vice-President, 1991–1993",
       "country": "Russia",
-      "state": "submitted",
+      "state": "accepted",
       "branch": "claude/c01-ru-51",
-      "head": "2fe2b752"
+      "head": "2fe2b752",
+      "codex": "Accepted (Codex REVIEW-20261001; queue: 38/38 Claude tasks complete)"
     }
   ],
-  "attention": [
-    "Lean flow: research + packet_check, then submit; Codex reviews.",
-    "C01-47 to 51 submitted."
-  ],
+  "attention": [],
   "log": [
-    "2026-09-29 C01-37 research done (claude/c01-fr-37@45eca96e: 31 sources, 48 claims, 16 holder obs, Rocard-Ayrault; Valls-Lecornu next work). Verifier launched. Active: 37 verify.",
-    "2026-09-29 C01-37 verified: 31/31 sources clean, 16 boundaries confirmed; 2 recording defects. Rulings: cessation decree = until on signing day; countersignature = attested_on only. Fix agent launched. Active: 37 fix.",
-    "2026-09-29 C01-37 fixed (1e74a0a1/eb700617) -> submitted, worktree removed. Batch 28-37 done except 31 (held until Codex merges C01-29). Loop now idles on a long heartbeat watching for the C01-29 merge and for-claude requests.",
-    "2026-09-30: user asked \"Do them one at a time?\" -> pipeline is now serial (one packet in research/verify/fix at a time). Codex accepted C01-29, 30, 32-37 (2ac34862 and follow-ups); C01-28 held on 12 originals unreachable from Codex. C01-31 unblocked. setup_packet accepts an `accepted` predecessor.",
-    "2026-09-30 C01-31 (Komeito) set up unstacked at 52b23d59 on ff01ee61 (census passes on integration again); research agent launched. Active: 31 research (serial mode).",
-    "2026-09-30 User flagged token cost. Hourly idle polling stopped (wake on agent notifications only); no new packets queued pending the users efficiency choices. C01-31 continues. Last batch cost ~10M agent tokens (research ~5.4M, verify ~3.0M, fix ~1.5M).",
-    "2026-09-30 Lean pipeline adopted (user): tools/packet_check.py (zero-token source re-hash + structure + suite), tools/slice.py, lean RESEARCH/VERIFY/FIX instructions with the rulings list, Sonnet checks, serial, no polling. Queued 38 France PMs 2014-26, 39 DA federal leaders, 40 CPI(M) general secretaries, 41 CPSU General Secretary 1990-91. A fresh session takes over after C01-31 (START_HERE.md).",
-    "2026-09-30 Codex's new roadmap/workboard (b31bdfab, 301f63cb): Claude's lane = continue existing claims, then reconcile accepted Tonga research into dated identities and a reviewed 6-8 cartoon batch, repeating country batches toward C06; no new research batch before existing claims finish. Queued 38-41 put on hold pending the user.",
     "2026-09-30 C01-31 research done (f15de3bc: 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS). Lean Sonnet checker launched.",
     "2026-09-30 User: \"Run multiple in parallel\" (ultracode on). Released 38-41, set up (claims f1420ba1, 03cd0bb9, c152e35e, 7778be5b on 02d2c5a2), launched workflow wf_9de7b1d4-86c: research -> packet_check -> two checker lenses per packet, results back to me for rulings and fixes. C01-31 checker still running.",
     "2026-09-30 C01-31 checked (Sonnet: clean, 376k tokens); my wording fixes fe855edd/696937ba; packet_check PASS -> submitted. Two new precedents added to the rulings list.",
@@ -247,6 +242,14 @@
     "2026-10-01 Wave-2 fixes done (wf_4697cdb5-d89). Codex had already accepted 38, 40, 41, 45, 46 (and 31) from our submissions with its own corrections; 39 and 44 held on IA 429 on its side; 43 in review. Applied leftover text fixes myself: 42 (6d845541), 44 (cherry-picked Codex 9955de17, e788b4ee). Worktrees 45, 46 removed.",
     "2026-10-01 User: \"Switch\" -> lean flow (no checker/fix rounds). Wave 3 queued+set up: 47 France PS first secretaries, 48 India BSP/AAP/NPP, 49 USSR government/President attestations, 50 Saudi PMs, 51 RSFSR President/VP; workflow wf_c66e503c-3d8 (research -> packet_check -> repair once).",
     "2026-10-01 Wave 3 done (wf_c66e503c-3d8, 12 agents, 3.0M tokens, ~600k/packet): 47 PS 13 obs (importer extension = Codex decision), 48 BSP/AAP/NPP 4 obs, 49 USSR President/Premier 5 obs, 50 Saudi PMs 4 obs, 51 RSFSR President/VP 9 obs. All submitted (lean flow). packet_check curl max-time raised 120 -> 900 s.",
-    "2026-10-01 C01-51 packet_check PASS after checker now prefers source_response_url (HTTP identities, C01-14/19 convention); all 16 sources match."
+    "2026-10-01 C01-51 packet_check PASS after checker now prefers source_response_url (HTTP identities, C01-14/19 convention); all 16 sources match.",
+    "2026-10-01 Codex closed all 38 Claude tasks (REVIEW-20261001-06): every packet through C01-51 accepted. Worktrees removed. Research pipeline idle: Codex CP1 plan says no more research batches as a substitute for country casts; next is coordinated Tonga support, then country casts (identities -> cartoons) toward C06.",
+    "2026-10-01 France cast batch 1 prepared (wf_6c7aa8d2-a4c, 17 agents, 2.5M tokens): claude/c06-fr-01 @50d24604, state awaiting Codex render; 7 licensed references + prompts + identity review + render request; Aubry reserve. Scratch header files with the users IP deleted.",
+    "2026-10-01 User: \"continue\". Codex has not rendered France yet. Started cast batch 1 prep in parallel for Japan, Brazil, South Africa (sparse worktrees <local>,br,za}, branches claude/c06-{jp,br,za}-01; workflow wf_99ab7ab1-ac8: plan+claim -> per-person prep/verify -> assemble render request).",
+    "2026-10-01 Cast batch 1 prepared for Japan (claude/c06-jp-01 @7f8c5ed1: 6 renders; Kanzaki excluded, only a TV still), Brazil (@38308665: 6 renders of Temer x2, Baleia Rossi, Brizola, Lupi x2; Tourinho excluded, no licensed photo), South Africa (@c0382bbc: 4 renders Buthelezi 1995-2005, Viljoen, P. Mulder, C. Mulder; 4 windows lack usable photos). wf_99ab7ab1-ac8: 50 agents, 8.7M tokens. With France: 23 portraits awaiting Codex render.",
+    "2026-10-02 Codex idle since 10-01 11:25 (no renders). Started cast batch 1 prep for India, Saudi Arabia, USSR/Russia (claude/c06-{in,sa,ru}-01, worktrees <local>,sa,ru}; wf_abc71ddc-9df). Workflow scriptPath runs fail with \"control characters\" when the file has CRLF: pass scripts inline.",
+    "2026-10-02 India/Saudi/Russia batch 1 prepared (wf_abc71ddc-9df, 36 agents, 6.2M): in @edf8655c (8 renders: Surjeet, Advani, Karat, Rajnath, Gadkari, Yechury, Nadda, Baby; Amit Shah excluded - BJP shoot \"own work\" doubtful; Nabin no photo), sa @ede909ed (4 renders: Fahd x2, Abdullah x2, all US-gov PD), ru @6cae02b5 (1 render: Gorbachev 1991; Ryzhkov reserve waits C01-26; 22 people lack registry IDs, Yeltsin first).",
+    "2026-10-02 Codex active again: c541d9b6 reviewed FR/BR/ZA/JP with corrections and RENDERED France (7 PNGs, render-return-batch-01.json); 1cbf6200 tracked in/sa/ru claims. Claude reviewed the 7 France PNGs (bytes, originals, C2PA, visual at full+card size: all pass) and registered them: claude/c06-fr-01 @09cbb583 (merge a300d0bd = integration tree), 7 additive person_portraits records, france-cast-batch-01.json, registration receipt; 13 leadership cartoon jobs close (699->686). Derived exports (10 files) left to Codex; local regen chain passed all 828 tests. State ready_for_review.",
+    "2026-10-02 Codex requests: Brazil Lupi 2015-2026 render held (2023 face for whole window); Japan Yamaguchi wants an earlier 2009-2015 reference. Branches br/jp merged with the integration tree (5b0910ff, 43a693ce); era-fix workflow wf_d0086625-a6f running."
   ]
 }
