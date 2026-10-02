@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-02T13:29:34Z",
+  "updated": "2026-10-02T14:15:44Z",
   "mode": "lean parallel (user, 1 Oct 2026: \"Switch\"): research + packet_check, then submit; Codex reviews; respond only to Codex holds/requests",
   "packets": [
     {
@@ -231,7 +231,6 @@
   ],
   "attention": [],
   "log": [
-    "2026-09-30 C01-31 research done (f15de3bc: 31 sources, 64 claims, 15 holder obs / 7 people; packet_check PASS). Lean Sonnet checker launched.",
     "2026-09-30 User: \"Run multiple in parallel\" (ultracode on). Released 38-41, set up (claims f1420ba1, 03cd0bb9, c152e35e, 7778be5b on 02d2c5a2), launched workflow wf_9de7b1d4-86c: research -> packet_check -> two checker lenses per packet, results back to me for rulings and fixes. C01-31 checker still running.",
     "2026-09-30 C01-31 checked (Sonnet: clean, 376k tokens); my wording fixes fe855edd/696937ba; packet_check PASS -> submitted. Two new precedents added to the rulings list.",
     "2026-09-30 Workflow wf_9de7b1d4-86c done (16 agents, 3.5M tokens): 38-41 researched, all sources matched; rulings made following Codex (1739eccb: instrument dates never boundaries; 988d5379: acceptance = dated observation) - rulings list updated; fix workflow wf_17a2225b-386 launched (fix + adversarial verify per packet). C01-38 agent sent the users email in one User-Agent to fr.wikipedia (disclosed; not in any commit; scratch redacted).",
@@ -250,6 +249,7 @@
     "2026-10-02 Codex idle since 10-01 11:25 (no renders). Started cast batch 1 prep for India, Saudi Arabia, USSR/Russia (claude/c06-{in,sa,ru}-01, worktrees <local>,sa,ru}; wf_abc71ddc-9df). Workflow scriptPath runs fail with \"control characters\" when the file has CRLF: pass scripts inline.",
     "2026-10-02 India/Saudi/Russia batch 1 prepared (wf_abc71ddc-9df, 36 agents, 6.2M): in @edf8655c (8 renders: Surjeet, Advani, Karat, Rajnath, Gadkari, Yechury, Nadda, Baby; Amit Shah excluded - BJP shoot \"own work\" doubtful; Nabin no photo), sa @ede909ed (4 renders: Fahd x2, Abdullah x2, all US-gov PD), ru @6cae02b5 (1 render: Gorbachev 1991; Ryzhkov reserve waits C01-26; 22 people lack registry IDs, Yeltsin first).",
     "2026-10-02 Codex active again: c541d9b6 reviewed FR/BR/ZA/JP with corrections and RENDERED France (7 PNGs, render-return-batch-01.json); 1cbf6200 tracked in/sa/ru claims. Claude reviewed the 7 France PNGs (bytes, originals, C2PA, visual at full+card size: all pass) and registered them: claude/c06-fr-01 @09cbb583 (merge a300d0bd = integration tree), 7 additive person_portraits records, france-cast-batch-01.json, registration receipt; 13 leadership cartoon jobs close (699->686). Derived exports (10 files) left to Codex; local regen chain passed all 828 tests. State ready_for_review.",
-    "2026-10-02 Codex requests: Brazil Lupi 2015-2026 render held (2023 face for whole window); Japan Yamaguchi wants an earlier 2009-2015 reference. Branches br/jp merged with the integration tree (5b0910ff, 43a693ce); era-fix workflow wf_d0086625-a6f running."
+    "2026-10-02 Codex requests: Brazil Lupi 2015-2026 render held (2023 face for whole window); Japan Yamaguchi wants an earlier 2009-2015 reference. Branches br/jp merged with the integration tree (5b0910ff, 43a693ce); era-fix workflow wf_d0086625-a6f running.",
+    "2026-10-02 Era fixes done (wf_d0086625-a6f, 6 agents, 1.3M): Brazil @8fc53247 - Lupi split at 2020-01-01 (new 2015-08-18 Agencia Senado CC BY 2.0 reference for 2015-2020; 2023 ref reused for 2020-2026-09-08; v1 prompt superseded, never render). Japan @9af78834 - Yamaguchi split at 2015-01-01 (new 7 Jul 2013 CC BY 3.0 own-work reference for 2009-2015; 2019 CC0 ref for 2015-2024-09-28; v1 superseded). Both await Codex review/render;.gitattributes LF rules for 4 new prompts left to Codex."
   ]
 }
