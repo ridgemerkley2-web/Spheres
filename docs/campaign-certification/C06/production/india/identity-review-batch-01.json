@@ -1,0 +1,2940 @@
+{
+ "version": 1,
+ "nation": "India",
+ "reviewed_at": "2026-10-02",
+ "historical_cutoff": "2026-09-07",
+ "historical_window_start": "1990-01-01",
+ "status": "identity_and_coverage_review_proposal",
+ "task": "CLAUDE-C06-INDIA-01",
+ "branch": "claude/c06-in-01",
+ "base": "2fd186d6",
+ "claim_commit": "d6ee1fcb",
+ "scope": "India cast batch 1: eight existing person IDs with accepted C01 holder observations (C01-27 BJP national presidents, C01-40 CPI(M) general secretaries) and no art for the requested appearance windows: seven primary people and one promoted reserve. One primary (amit_shah) was excluded at assembly and one reserve (nitin_nabin) is not ready. Each rendered person has one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+ "prepared_by": "Claude: one preparation agent and one independent verification agent per person, assembled and mechanically corrected by Claude on 2026-10-02; the assembler also replaced one reference (Surjeet) with a verifier-identified in-window photograph and excluded one person (Shah). This is not human review, not Codex review and not user approval.",
+ "authority": {
+  "runtime_installation": false,
+  "office_eligibility": false,
+  "continuous_terms": false,
+  "art_approval": false,
+  "human_acceptance": false,
+  "country_completion": false
+ },
+ "accepted_research": {
+  "path": "docs/campaign-certification/C01/research/india.json",
+  "sha256": "4341a287e2eafed413fc375a9bac506241bb3677f7eef7bc39e507bc50244a73",
+  "packets_used": [
+   "C01-27",
+   "C01-40"
+  ],
+  "receipts": [
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md",
+    "sha256": "6eefa2bf2dfeb1e48c5d90b46861c10ecb22f66ff8ae8704180f69255b105bb9",
+    "packet": "C01-27"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/review-2026-09-28/README.md",
+    "sha256": "dca0a37c5801162fe128e6291a321881522cd9fab5dbc964025bb469479a0926",
+    "packet": "C01-27"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/review-2026-09-28/manifest.json",
+    "sha256": "537b6f6cd0622edb2f7819a0f73dce4ecaf9e4c4e65bb742bee7864b05f4b0e0",
+    "packet": "C01-27"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-40/README.md",
+    "sha256": "e418f69f8bbb79f9ef2b9b90412d2825c5a8cda9c9d89d7679418c0add9f7fa0",
+    "packet": "C01-40"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-40/manifest.json",
+    "sha256": "6fd7961f415f9cc63a5741b324dfbc97a1cb5f86fde4f2cea383f75805b0d2a6",
+    "packet": "C01-40"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-40/holder-review.json",
+    "sha256": "dd174009bfad08e337c114431cec57d58bf47579c009ca4a419548100ef21c83",
+    "packet": "C01-40"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/README.md",
+    "sha256": "d5cf8304dd8be4d276b63ee6b5ed072151d06537ef9fd07dcd1cafd817045baa",
+    "packet": "C01-40",
+    "note": "Reviewed amendment: 20 sources, 26 claims, four observations, no new effective boundaries."
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-40-amendment-20261001/manifest.json",
+    "sha256": "caec975adc7ea9cf103fa39cfc9318562749116d48f2b36ac5b57adc80f76f13",
+    "packet": "C01-40"
+   },
+   {
+    "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+    "sha256": "a7b3c1f1924394743cfebfc1fc7cac7ee24970f40451616273f91aafa374962b",
+    "note": "Gap ledger (refreshed at 1fffb983): India 29 c01_accepted and 31 c01_integrated_pending holder observations; the reason the heads of state and government are not in this batch."
+   }
+  ]
+ },
+ "registry_inputs": {
+  "party_leaders": {
+   "path": "spheres-sim/data/party_leaders.json",
+   "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+  },
+  "person_portraits": {
+   "path": "spheres-web/data/person_portraits.json",
+   "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+  },
+  "leadership_production": {
+   "path": "spheres-web/data/leadership_production_2035.json",
+   "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+  },
+  "pipeline": {
+   "path": "tools/avatars/person_art_pipeline.py",
+   "sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab"
+  },
+  "style_anchor": {
+   "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+   "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+   "width": 1024,
+   "height": 1536,
+   "mode": "RGB",
+   "use": "STYLE ONLY"
+  },
+  "pipeline_jobs_inventory": {
+   "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/in-cast/jobs.json",
+   "path": "D:/spheres-scratch/in-cast/jobs.json",
+   "bytes": 767375,
+   "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+   "job_version": "person-cartoon-v4",
+   "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+   "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+   "identical_to": "the France and Japan inventories (same sha256)",
+   "window_and_residual_job_ids": [
+    {
+     "path": "D:/spheres-scratch/in-cast/assemble/window-and-residual-jobs.json",
+     "bytes": 6643,
+     "sha256": "9b9ba44781500157a08311e4e5df1d21bf561ba69d5aba1da0fd8c5404449b9d",
+     "content": "Computed by the assembler with the pipeline's own build_jobs over each window and each residual window (assemble/jobs_check.py); every window-scoped ID equals the claim record's."
+    }
+   ]
+  }
+ },
+ "rules": [
+  "All holder dictionaries below are copied exactly from accepted C01 research (india.json, C01-27 and C01-40 with its reviewed amendment). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+  "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, handover, death notice, farewell or \"former\"/\"outgoing\" styling; those remain claims.",
+  "Requested windows are appearance intervals from the CLAUDE-C06-INDIA-01 handoff table with exclusive ends. Where a bound comes from party_leaders.json, leadership production or the handoff rather than accepted research, the person entry says so.",
+  "Only accepted (c01_accepted) observations qualify a person here. Every Prime Minister, President and Congress-president observation is c01_integrated_pending, so those people are not in this batch.",
+  "Real history stops at 2026-09-07; every window in this batch lies before it.",
+  "Image dates describe the source photograph, never the appearance window. Every age gap and every artistic extension (standing body, hands, trousers, shoes, garment lengths) is declared in the prompt and here.",
+  "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly (the OGL v1.0 reference carries the pipeline's extra grant fields). GODL-India and other government open licences not on the list, ported licences, NC/ND terms, agency or press photos, TV stills and non-free files are rejected. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited or labelled.",
+  "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+  "Each review batch contains at most ten people.",
+  "HTTP response header captures and error bodies that contain the client IP address or GeoIP data are never kept, copied, cited, hashed or committed.",
+  "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
+  "Birth dates used for age notes are general biographical knowledge with a cited source, not accepted C01 research; the registry gives a birth date only for rajnath_singh."
+ ],
+ "coverage": {
+  "people_count": 10,
+  "primary_people": 8,
+  "reserve_people": 2,
+  "rendered_in_this_request": 8,
+  "excluded_people": 2,
+  "excluded_person_ids": [
+   "amit_shah",
+   "nitin_nabin"
+  ],
+  "holder_observation_count": 13,
+  "holder_observation_count_by_role": {
+   "in_cpm_general_secretary": 4,
+   "in_bjp_president": 9
+  },
+  "holder_observations_inside_existing_art": 1,
+  "likeness_reference_count": 8,
+  "usable_likeness_reference_count": 8,
+  "research_only_likeness_reference_count": 0,
+  "references_inside_requested_window": [
+   "harkishan-singh-surjeet-2005",
+   "lal-krishna-advani-2001",
+   "rajnath-singh-2013",
+   "nitin-gadkari-2011",
+   "sitaram-yechury-2019",
+   "m-a-baby-2026"
+  ],
+  "references_outside_requested_window": [
+   "jagat-prakash-nadda-2018"
+  ],
+  "references_with_uncertain_date": [
+   "prakash-karat-2013 (undated within 2013-03-21 to 2017-09-17)",
+   "lal-krishna-advani-2001 (about 2001-01-29 to 2001-02-09)",
+   "harkishan-singh-surjeet-2005 (28 or 29 March 2005)",
+   "rajnath-singh-2013 (27 or 28 October 2013)",
+   "sitaram-yechury-2019 (27 or 28 December 2019)"
+  ],
+  "leadership_production_cartoon_jobs_closed_by_rendered_people": 19,
+  "all_historical_officeholders_established": false,
+  "continuous_terms_established": false,
+  "all_likenesses_ready": false,
+  "rendered_portraits": 0
+ },
+ "batches": [
+  {
+   "id": "IN-CAST-B01",
+   "render_request": "docs/campaign-certification/C06/production/india/render-request-batch-01.md",
+   "people": [
+    {
+     "person_id": "harkishan_singh_surjeet",
+     "display_name": "Harkishan Singh Surjeet",
+     "registry_name": "Harkishan Singh Surjeet",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Harkishan Singh Surjeet"
+     ],
+     "requested_window": {
+      "from": "1992-01-31",
+      "to": "2005-04-01",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table: the one accepted C01-40 holder observation (attested_on 2004-03-02, from and until null) lies inside. The bounds come from registry term in_cpm_harkishan_singh_surjeet_199201 (month precision, 1992-01 to 2005-04) through the safe_art_window in leadership_production_2035.json; they are not accepted research dates, and the research does not use retrospective 1992 or 2005 statements as a start or end.",
+      "possible_split": "2000-01-01 (a leadership-production job boundary)",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_04",
+       "role_id": "in_cpm_general_secretary",
+       "holder": {
+        "name": "Harkishan Singh Surjeet",
+        "attested_on": "2004-03-02",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_pd_20040307_surjeet_letter_to_cec"
+        ],
+        "claim_ids": [
+         "in_pd_surjeet_gs_letter_to_cec_20040302"
+        ],
+        "note": "Observed on 2 March 2004: People's Democracy of 7 March 2004 prints 'the text of the letter written by CPI(M) general secretary, Harkishan Singh Surjeet to the Chief Election Commissioner on March 2' (Internet Archive capture of the party organ on cpim.org); the earliest single-day party record adopted for him in the period.",
+        "uncertainty": "No start: the party's 2005 bio-data says he was elected General Secretary 'in 1992 at the 14th Party Congress held at Madras' and he wrote in 2005 of serving 'as the general secretary since 1992', both retrospective and without a day; the party's 2001 page recalls his re-election on 11 October 1998, a re-election that is not a start. No end: on 11 April 2005 the party organ calls him 'the former CPI(M) general secretary' and he wrote that Prakash Karat 'has taken up the mantle', neither stating the day he left the office; his successor's election is not used as his end."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/3/roles/0/holder_claims/0"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_cpim_site_cc_elected_surjeet_gs_recalled_19981011",
+       "source_id": "in_cpim_site_party_committees_page_2001",
+       "attested_on": "1998-10-11",
+       "text": "The party website's 'Party Committees/Structure' page says the 16th Congress, 'held between October 5 and 11, 1998', elected a 75-member Central Committee, and that 'The Central Committee at its meeting held on October 11, 1998 at the conclusion of the Congress elected a 17 Member Polit Bureau, with Harkishan Singh Surjeet as the General Secretary'."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Surjeet'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_cpm_harkishan_singh_surjeet_199201"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "harkishan_singh_surjeet-69d8afb34e72",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "harkishan_singh_surjeet-85010e8ec9dc",
+        "from": "1992-01-31",
+        "to": "2005-04-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "1992-01-31",
+        "id": "harkishan_singh_surjeet-06cdcfec5f1e",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2005-04-01",
+        "to": "2027-01-01",
+        "id": "harkishan_singh_surjeet-abf7d1e4023a",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:harkishan_singh_surjeet:1992-01-31:1995-01-01:v1",
+       "cartoon:harkishan_singh_surjeet:1995-01-01:2000-01-01:v1",
+       "cartoon:harkishan_singh_surjeet:2000-01-01:2005-01-01:v1",
+       "cartoon:harkishan_singh_surjeet:2005-01-01:2005-04-01:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "harkishan-singh-surjeet-2005"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/harkishan-singh-surjeet-cartoon-1992-v1.txt",
+      "sha256": "418df96663ae4260cdcbb850649c2a10864fb315972ac01309e5a62d9ab2b89e",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "1b6e96a06084c87100c37694c8fa0d9c3c315b55de59a5eeefd2d6d592566c5d",
+      "git_blob": "f1c3c31219087d0431983dc64450e0eb5b6648ce",
+      "bytes": 3751,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. The assembler replaced the preparer's undated reference (Surjith-6.JPG, late July 2003 to August 2008) with the only free photograph found that is dated inside the window: Soman's File:Bardhanhss.jpg, 28 or 29 March 2005, at the window's very end. The younger treatment (about 80) is declared in the prompt.",
+       "evidence": [
+        "harkishan-singh-surjeet-2005"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "A rejected candidate was described wrongly and is a better reference than the chosen one: File:Bardhanhss.jpg was rejected as undated and 'not closer to the window', but its EXIF DateTime is 2005:03:28 06:36:49 (Minolta DiMAGE Xt, the camera whose clock read 2005-04-07 at the CPI(M) 18th Congress) and the banner behind him reads '19th PARTY CONGRESS ... [MARC]H 29', so it is inside the window, while the chosen Surjith-6.JPG cannot be dated more closely than late July 2003 to August 2008.",
+        "disposition": "Fixed by switching the reference. The assembler fetched File:Bardhanhss.jpg under the download rules (API JSON with EXIF, file page, original bytes; one request each, all HTTP 200), verified the Commons sha1, inspected it at full resolution and copied it byte-identical to references/harkishan-singh-surjeet-2005-reference-v1.jpg. Licence 'CC BY 2.5', creator Soman, photograph date 28 or 29 March 2005 (camera clock and banner). The v1 prompt was rewritten for it: white shirt with two pens, three-quarter view, dark rectangular glasses, ages 75 to 89 against 89 in the photograph, and exclusions of D. Raja leaning in with his hand on Surjeet's shoulder, A. B. Bardhan, the standing men, the chair and the banner. The undated copy references/harkishan-singh-surjeet-2003-reference-v1.jpg was removed from the repository (original bytes kept in scratch as the colour and detail alternate), so the '2003' naming question no longer arises."
+       },
+       {
+        "problem": "Minor errors in the Surjith-6 record: people_in_frame omits a grey-haired head partly hidden behind his left shoulder, and 'both hands on the chair arms' is wrong (his right hand rests on his thigh, his left on the chair arm).",
+        "disposition": "Fixed in the alternate's record (likeness_references[harkishan-singh-surjeet-2005].alternates[0]). Surjith-6 is no longer a render input, so no prompt change is needed for it."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end; the window bounds are registry-term bounds."
+     ],
+     "open_items_for_codex": [
+      "Decide whether to split the 13-year window at 2000-01-01; the same reference can serve both halves with an age-adjusted v2 prompt.",
+      "Agree the window bounds 1992-01-31 to 2005-04-01, which come from the registry term rather than accepted research."
+     ]
+    },
+    {
+     "person_id": "lal_krishna_advani",
+     "display_name": "Lal Krishna Advani",
+     "registry_name": "Lal Krishna Advani",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "L. K. Advani"
+     ],
+     "requested_window": {
+      "from": "1995-01-01",
+      "to": "2005-12-31",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table: C01-27 BJP holder observations attested 1997-07-16 and 2004-10-20 lie inside; his 1991-01-08 observation is inside his existing 1990-1995 art (lal-krishna-advani-cartoon-1990-v2.png). The window continues that art and covers registry terms in_bjp_lal_krishna_advani_1993 and in_bjp_lal_krishna_advani_20041027; the 2004-10-20 observation precedes that term's registry start of 2004-10-27. One portrait spans 1998-2004, when he was not party president (appearance only).",
+      "possible_split": "1995-01-01 to 1998-01-01 and 2004-10-20 to 2005-12-31",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "L. K. Advani",
+        "attested_on": "1997-07-16",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_org_swarna_jayanti_press_release_19970716"
+        ],
+        "claim_ids": [
+         "in_bjp_press_release_president_advani_19970716"
+        ],
+        "note": "Observed on 16 July 1997: the party's release headed 'Press Release by President, Shri Lal Krishna Advani', dated 16 July 1997, in which the author writes 'As President of the BJP'; the earliest single-day record adopted after his return to the presidency.",
+        "uncertainty": "No start: the address of 18 June 1993 thanking the National Council for electing its speaker 'once again President' names no speaker, the party's 2003 bio-data gives 'July, 1993' (retrospective), and no record states the day of the election or of his taking charge; the re-election of 10 November 1995 is stated without a day. No end: on 2 May 1998 the unnamed speaker announced the handover for 'tomorrow', the bio-data gives 'May 2, 1998' and a report of 2000 says Thakre took over at the session of 3 and 4 May 1998; none states the day the office ended."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/2"
+       }
+      },
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "L. K. Advani",
+        "attested_on": "2004-10-20",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_site_advani_statement_20041020"
+        ],
+        "claim_ids": [
+         "in_bjp_advani_statement_as_president_20041020"
+        ],
+        "note": "Observed on 20 October 2004: the party heads the statement of his press conference 'Statement issued by Shri L.K. Advani President'.",
+        "uncertainty": "No start: the office bearers resolved on 18 October 2004 to appoint him, with ratification by the National Council to follow, and his statement of 20 October recalls 'assuming the office ... two days ago', a recollection in passing that does not date a start (CLAUDE-C01-15 check C1); the National Council endorsed his election on 27 October 2004 (the party's release names the National Executive). No end: his resignation of June 2005 was rejected, and on 26 December 2005 he said it was the last meeting he would preside over; no record states the day his office ended, and Rajnath Singh's styling is not used as his end."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/6"
+       }
+      }
+     ],
+     "observations_inside_existing_art": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "L. K. Advani",
+        "attested_on": "1991-01-08",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_rs_written_answers_19910108_usq1586_rath_yatra"
+        ],
+        "claim_ids": [
+         "in_rs_sahay_advani_president_bjp_rath_yatra_19910108"
+        ],
+        "note": "Observed on 8 January 1991: in the Rajya Sabha's written answers the Minister of State for Home Affairs, Shri Subodh Kant Sahay, says 'Shri L. K. Advani, President BJP' conducted the Rath Yatra of 1990 (in English, on the official debates store; the date line is printed on the facing column), the earliest single-day record adopted in the period.",
+        "uncertainty": "No start: he became President before the period (the party's 2003 bio-data gives 'May 9, 1986', a retrospective list entry), and no record reviewed attests the holder on 1 January 1990 itself; the party's resolutions of April, July and November 1990 style him President under multi-day headings. No end: the farewell announcing Dr. Joshi's taking over 'tomorrow' is printed twice under conflicting headings (31 January and 1-3 February 1991) and names no speaker, the address of 1 February 1991 says only that he declined a third term, and the party's 1996 profile says 'until January 1991' (retrospective); Joshi's later observation is not used as his end."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/0"
+       },
+       "note": "Inside his existing 1990-1995 art (lal-krishna-advani-cartoon-1990-v2.png); not used for this window."
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_bjp_evolution_advani_president_swarna_jayanti_yatra_19970518",
+       "source_id": "in_bjp_elib_party_document_vol10_evolution_of_bjp",
+       "attested_on": "1997-05-18",
+       "text": "The same history says 'Shri L.K. Advani, President of BJP undertook the Swarna Jayanti Rath-Yatra from August Kranti Maidan, Mumbai on 18th May, 1997'."
+      },
+      {
+       "claim_id": "in_bjp_advani_new_president_to_be_declared_next_week_19980411",
+       "source_id": "in_bjp_site_advani_opening_remarks_ne_19980411",
+       "attested_on": "1998-04-11",
+       "text": "In his opening remarks to the National Executive on 11 April 1998 the speaker (named in the page heading only as 'Advani') says 'All the formalities of electing the new president will soon be over, and the Party's unanimous-but by no means anonymous-choice will be declared next week'; the new president is not named."
+      },
+      {
+       "claim_id": "in_bjp_advani_appointed_president_ratification_pending_20041018",
+       "source_id": "in_bjp_site_press_statement_naidu_resignation_20041018",
+       "attested_on": "2004-10-18",
+       "text": "The meeting then 'unanimously resolved to appoint Shri L.K. Advani as the new President of the Bharatiya Janata Party'; the statement adds that 'His appointment will be duly ratified at the meeting of the Party's National Council, which will be held shortly in New Delhi'."
+      },
+      {
+       "claim_id": "in_bjp_today_national_council_endorses_advani_election_20041027",
+       "source_id": "in_bjp_today_national_council_report_20041027",
+       "attested_on": "2004-10-27",
+       "text": "The party journal reports that 'On October 27th 2004, at the spacious Talkatora Stadium, New Delhi', 'Shri Lal Kishanchand Advani's election as Bharatiya Janata Party's National President was unanimously endorsed by BJP's supreme body - The National Council', on a resolution put by Shri Venkaiah Naidu that the Council passed unanimously."
+      },
+      {
+       "claim_id": "in_bjp_advani_elected_by_national_executive_20041027",
+       "source_id": "in_bjp_site_press_release_office_bearers_20041030",
+       "attested_on": "2004-10-27",
+       "text": "The release says 'Shri L.K. Advani, who was elected the President of the BJP at the meeting of the Party's National Executive on October 27, today constituted the new National Executive'."
+      },
+      {
+       "claim_id": "in_bjp_advani_constitutes_national_executive_20041030",
+       "source_id": "in_bjp_site_press_release_office_bearers_20041030",
+       "attested_on": "2004-10-30",
+       "text": "The same release says Advani 'today constituted the new National Executive of the Party and the new team of office bearers', the list being headed 'President' and 'Shri Lal Krishna Advani'."
+      },
+      {
+       "claim_id": "in_bjp_parliamentary_board_rejects_advani_resignation_20050608",
+       "source_id": "in_bjp_site_resolution_advani_resignation_20050608",
+       "attested_on": "2005-06-08",
+       "text": "The Parliamentary Board, the Central Office Bearers and the Chief Ministers of BJP-ruled States met on 8 June 2005 'to discuss the resignation submitted by Shri L.K. Advaniji', with Shri M. Venkaiah Naidu presiding; 'The meeting unequivocally rejected the resignation' and appealed to Shri Advani 'to continue to lead the party'."
+      },
+      {
+       "claim_id": "in_bjp_advani_styled_president_after_resignation_episode_20050615",
+       "source_id": "in_bjp_site_advani_speech_20050615",
+       "attested_on": "2005-06-15",
+       "text": "A week after the Parliamentary Board rejected his resignation, the party heads his speech of 15 June 2005 'Speech by Shri L.K. Advani President, BJP & Leader of the Opposition (Lok Sabha)'."
+      },
+      {
+       "claim_id": "in_bjp_advani_styled_president_opening_remarks_20051226",
+       "source_id": "in_bjp_site_advani_opening_remarks_ne_20051226",
+       "attested_on": "2005-12-26",
+       "text": "The party heads his remarks of 26 December 2005 'OPENING REMARKS BY BJP PRESIDENT SHRI L.K. ADVANI AT NATIONAL EXECUTIVE MEETING IN MUMBAI'."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Advani'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_bjp_lal_krishna_advani_1993",
+      "in_bjp_lal_krishna_advani_20041027"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "lal_krishna_advani-49f5deb5285b",
+        "from": "1995-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "lal_krishna_advani-a86e3e748579",
+        "from": "1995-01-01",
+        "to": "2005-12-31",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "2005-12-31",
+        "to": "2027-01-01",
+        "id": "lal_krishna_advani-2f63dd42e38d",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:lal_krishna_advani:1995-01-01:1998-01-01:v1",
+       "cartoon:lal_krishna_advani:2004-10-27:2005-01-01:v1",
+       "cartoon:lal_krishna_advani:2005-01-01:2005-12-31:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "lal-krishna-advani-2001"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/lal-krishna-advani-cartoon-1995-v1.txt",
+      "sha256": "8faaa5d13c8681739406ca7b3c34dadb83ee84f557071c4b0f6cc23f3f3b1bc0",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "b4dfbe9979757cb6dd3b5e228407603e4b142b6b228bb428a63a821ebf0b0761",
+      "git_blob": "3b210eb23d1e922f16c7f2bc75dc6e0e58a6818a",
+      "bytes": 3765,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID and his existing 1990-1995 portrait. This window continues it from a photograph of late January or early February 2001, inside the window.",
+       "evidence": [
+        "lal-krishna-advani-2001",
+        "spheres-web/data/person_portraits.json people.lal_krishna_advani.portraits[0]"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The identification basis was wrong: EarthDude's 2026-03-11 edit only renamed an existing category; the uploader FlickrWarrior identified him in 2016.",
+        "disposition": "Fixed: identification_basis gives the uploads, category and rename history with revision ids. The assembler fetched and pinned the Commons revision history (supporting_metadata), which confirms every revision cited."
+       },
+       {
+        "problem": "The date disclosure was wrong: the photograph shows the IDF field hospital in operation, which opened about five days after the 26 January 2001 earthquake and closed on 9 February 2001, so it dates from about 29 January to 9 February 2001; '2001-01' was set by Geagea in 2021.",
+        "disposition": "Fixed: photograph_date keeps the Commons '2001-01' with the real range, depiction_date gives the probable range, date_precision explains, and the prompt now says 'late January or early February 2001'. Prompt re-pinned."
+       },
+       {
+        "problem": "The licence provenance was not fully disclosed: the Flickr source was NC (licence review failed 2018-12-30); the CC BY-SA 3.0 rests on VRTS ticket 2021051710001034.",
+        "disposition": "Fixed in source_license_statement, rights_statement and credit. The licence still qualifies."
+       },
+       {
+        "problem": "The prompt presented the coat's mid-thigh length as shown in the reference, but the hem is below the frame.",
+        "disposition": "Fixed: the Clothing line now says the hem is below the photograph's frame and is drawn ending at mid-thigh, and that the photograph is cut off just below his hands. Prompt re-pinned."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [],
+     "open_items_for_codex": [
+      "Decide whether to split at 1998-01-01 / 2004-10-20 (one portrait spans 1998-2004, appearance only).",
+      "Costume continuity: the reference shows a slate-blue bandhgala, while his existing 1990-1995 art shows a cream kurta, white dhoti and sandals; accept or request a v2 prompt (the in-window 2005 State Department alternate shows a white kurta and dhoti with a brown sleeveless jacket)."
+     ]
+    },
+    {
+     "person_id": "prakash_karat",
+     "display_name": "Prakash Karat",
+     "registry_name": "Prakash Karat",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Prakash Karat"
+     ],
+     "requested_window": {
+      "from": "2005-04-30",
+      "to": "2015-04-01",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table: the accepted C01-40 holder observation attested 2011-09-10 lies inside; bounds from registry term in_cpm_prakash_karat_200504 (month precision) as in leadership production. His registry coordinator term in_cpm_prakash_karat_20240929 (2024-09-29 to 2025-04-06) is not claimed, because C01-40 keeps that arrangement as claims only.",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_04",
+       "role_id": "in_cpm_general_secretary",
+       "holder": {
+        "name": "Prakash Karat",
+        "attested_on": "2011-09-10",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_cpim_gs_note_to_nic_20110910"
+        ],
+        "claim_ids": [
+         "in_cpim_karat_gs_note_to_nic_20110910"
+        ],
+        "note": "Observed on 10 September 2011: the party release identifies Karat as General Secretary while publishing his note for the National Integration Council meeting in New Delhi that day. Earlier party-office styling remains in the claims; this is a conservative choice of evidence for the structured observation.",
+        "uncertainty": "No start established: the 2005 Central Committee election report gives no day of assumption. The newly elected descriptions at the 2005 and 2012 rallies remain claims and are not selected as holder dates in this amendment; their office styling is not rejected as false. No stated end: the April 2015 inaugural and outgoing-office descriptions do not give the day Karat left office, and a successor election supplies no such end. His 2024-2025 interim coordinatorship is a separate arrangement, not this office. The selected 2011 text survives here as a current REST representation, not an independently retrieved contemporary capture."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/3/roles/0/holder_claims/1"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_pd_rally_newly_elected_gs_karat_took_salute_20120409",
+       "source_id": "in_pd_20120415_rally_concludes_20th_congress",
+       "attested_on": "2012-04-09",
+       "text": "People's Democracy reports that at Kozhikode on April 9, when the delegates marched to the public meeting concluding the 20th Congress, 'the newly elected general secretary of CPI(M), Prakash Karat, took the salute from the dais' of the volunteers' march."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Karat'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_cpm_prakash_karat_200504"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "prakash_karat-eda827228641",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "prakash_karat-a6ef64a014c1",
+        "from": "2005-04-30",
+        "to": "2015-04-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2005-04-30",
+        "id": "prakash_karat-2b6efc4402b8",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2015-04-01",
+        "to": "2027-01-01",
+        "id": "prakash_karat-f5d9a4a8d316",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:prakash_karat:2005-04-30:2010-01-01:v1",
+       "cartoon:prakash_karat:2010-01-01:2015-01-01:v1",
+       "cartoon:prakash_karat:2015-01-01:2015-04-01:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "prakash-karat-2013"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/prakash-karat-cartoon-2005-v1.txt",
+      "sha256": "6929a21fa194c518b3c33da71108ad88e220d76910d9185166315259b900d6e8",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "459ac42ade0a796ce37ba017b2d5b8080ddebef0d728c4726e7286a7843333bc",
+      "git_blob": "135aea4ec5baa78107aa58979af6956e453ae660",
+      "bytes": 3565,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. The reference is undated within 2013-03-21 to 2017-09-17 (its camera stamp is impossible); it may fall in the window's last two years or up to about 2.5 years after it, and the younger treatment (about 62) is declared.",
+       "evidence": [
+        "prakash-karat-2013"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The photograph's stated date cannot be correct: the EXIF stamp 2013-03-16 19:41:05 comes from a Canon EOS 700D announced on 21 March 2013, in daylight; the Commons date only repeats the EXIF. The record's 'inside the window' and age-gap figures were unsupported.",
+        "disposition": "Fixed by option (a): photograph_date and depiction_date record the range 2013-03-21 to 2017-09-17, date_precision explains, age_gap_note gives 65 to 69 and up to about 2.5 years after the window, and the '2013' in the reference_id and asset name is flagged for a Codex ruling (as France's Mitterrand '1994'). The in-window alternate File:Prakash Karat CPIM.jpg is named for Codex."
+       },
+       {
+        "problem": "The prompt's age disclosure rested on the impossible date ('at 65 ... very slightly younger').",
+        "disposition": "Fixed: Image 2 now says the photograph was taken between spring 2013 and September 2017 (camera date unreliable), shows him at 65 to 69, and asks for a man of about 62, somewhat younger. Prompt re-pinned."
+       },
+       {
+        "problem": "The credit string carried the unreliable date as if it were the photograph date; the scratch filename also carries it.",
+        "disposition": "Fixed: the credit says 'undated; camera stamp 16 March 2013 unreliable'. The scratch filename is noted in image_original.filename_note; bytes and hashes unchanged."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end.",
+      "Coordinator-term jobs cartoon:prakash_karat:2024-09-29:2025-01-01:v1 and cartoon:prakash_karat:2025-01-01:2025-04-06:v1 stay open."
+     ],
+     "open_items_for_codex": [
+      "Rule on the undated reference and the '2013' in its reference_id and filename (bytes and sha256 unchanged either way), or switch to the in-window alternate File:Prakash Karat CPIM.jpg (Suthir, EXIF 29 May 2014, CC BY-SA 3.0; soft and mid-speech; would need a new prompt)."
+     ]
+    },
+    {
+     "person_id": "rajnath_singh",
+     "display_name": "Rajnath Singh",
+     "registry_name": "Rajnath Singh",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Rajnath Singh"
+     ],
+     "requested_window": {
+      "from": "2005-12-31",
+      "to": "2014-07-09",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table: accepted C01-27 holder observations attested 2006-01-02 and 2013-03-02 lie inside; registry terms in_bjp_rajnath_singh_20051231 (2005-12-31 to 2009-12-19) and in_bjp_rajnath_singh_201301 (2013-01 to 2014-07-09). The window covers Nitin Gadkari's presidency (2009-12-19 to 2013-01) as an appearance interval only and claims no office for Rajnath Singh in that period.",
+      "possible_split": "2009-12-19 and 2013-01-31",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "Rajnath Singh",
+        "attested_on": "2006-01-02",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_site_rajnath_singh_statement_20060102"
+        ],
+        "claim_ids": [
+         "in_bjp_rajnath_singh_styled_national_president_20060102"
+        ],
+        "note": "Observed on 2 January 2006: the party heads his statement 'The statement released by the BJP National President, Shri Rajnath Singh'.",
+        "uncertainty": "No start: the statement's 'I am accepting the office' is in the present tense and 'I have taken over' is undated, and on 20 January 2006 he said the responsibility was placed on him at the conclusion of the Silver Jubilee convention (dated 28-30 December 2005 by the party) without a day; no record of his election or its declaration was found. No end: the Parliamentary Board thanked him on 19 December 2009 'for the leadership provided by him to the party during his tenure as president', without a day."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/7"
+       }
+      },
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "Rajnath Singh",
+        "attested_on": "2013-03-02",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_site_rajnath_singh_presidential_address_national_council_20130302"
+        ],
+        "claim_ids": [
+         "in_bjp_rajnath_singh_presidential_address_national_council_20130302"
+        ],
+        "note": "Observed on 2 March 2013: the party's page dated that day is headed 'Presidential speech by Shri Rajnath Singh at BJP National Council Meeting at Talkatora Stadium' (the meeting of 2-3 March 2013).",
+        "uncertainty": "No start: the National Election Officer declared him elected unopposed on 23 January 2013 and the party calls him 'Newly Elected President' that day, but no record states the day he took charge ('after taking over the responsibility of the national president again' is undated); 2 March is the page's date, and the Hindi text of the address is filed as 3 March. No end: on 9 July 2014 the Parliamentary Board called him the 'outgoing Party President', without a day."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/10"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_bjp_rajnath_singh_styled_president_national_council_20060120",
+       "source_id": "in_bjp_site_rajnath_singh_national_council_address_20060120",
+       "attested_on": "2006-01-20",
+       "text": "The party heads the address 'Presidential Address by Shri Rajnath Singh President Bharatiya Janata Party National Council 20, January 2006, New Delhi'."
+      },
+      {
+       "claim_id": "in_bjp_parliamentary_board_thanks_rajnath_singh_for_tenure_20091219",
+       "source_id": "in_bjp_site_parliamentary_board_resolution_rajnath_singh_20091219",
+       "attested_on": "2009-12-19",
+       "text": "In a resolution dated 19 December 2009 and released by National General Secretary Ananth Kumar, 'The BJP Parliamentary Board placed on record its appreciation and gratitude to Shri Rajnath Singh for the leadership provided by him to the party during his tenure as president'."
+      },
+      {
+       "claim_id": "in_bjp_national_president_election_process_completed_20130123",
+       "source_id": "in_bjp_site_national_election_officer_declaration_rajnath_singh_20130123",
+       "attested_on": "2013-01-23",
+       "text": "Under the heading 'भारतीय जनता पार्टी संगठनात्मक चुनाव वर्ष–2013 / राष्ट्रीय अध्यक्ष का निर्वाचन' (BJP organisational elections 2013: election of the National President), the National Election Officer states that 'आज दिनांक 23 जनवरी, 2013 (बुधवार)' (today, Wednesday 23 January 2013) the constitutional process of electing the National President was completed at the party headquarters, 11 Ashoka Road, New Delhi, and that 'श्री राजनाथ सिंह जी' (Shri Rajnath Singh) was elected unanimously to the post for the session 2013-2015."
+      },
+      {
+       "claim_id": "in_bjp_rajnath_singh_styled_newly_elected_president_20130123",
+       "source_id": "in_bjp_site_rajnath_singh_acceptance_speech_newly_elected_20130123",
+       "attested_on": "2013-01-23",
+       "text": "The party's speeches item dated 'Wednesday, 23 January 2013' is titled and headed 'Acceptance speech by Sh. Rajnath Singh Newly Elected President of BJP at New Delhi'."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Rajnath'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_bjp_rajnath_singh_20051231",
+      "in_bjp_rajnath_singh_201301"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "rajnath_singh-909e17fd4488",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "rajnath_singh-a4531051316c",
+        "from": "2005-12-31",
+        "to": "2014-07-09",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2005-12-31",
+        "id": "rajnath_singh-7dcd7c68e4c7",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2014-07-09",
+        "to": "2027-01-01",
+        "id": "rajnath_singh-d60c5c24a42d",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:rajnath_singh:2005-12-31:2009-12-19:v1",
+       "cartoon:rajnath_singh:2013-01-31:2014-07-09:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "rajnath-singh-2013"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/rajnath-singh-cartoon-2005-v1.txt",
+      "sha256": "951e50844f61f5d49ce37a8bcd2002d54625a6bf8cdc138da1855047d03bb6b5",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "ca286ba09fdd22166916e75c8e6c8eeb1664b11166b25714da2be9ef2d0cd739",
+      "git_blob": "d50c92b1e971210ebf22de9701c9be5240337be6",
+      "bytes": 3916,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. The October 2013 photograph lies inside the window; the mild de-ageing for the 2006-2009 term (about 58 to 60) is declared.",
+       "evidence": [
+        "rajnath-singh-2013"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": true,
+      "problems_and_dispositions": [
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end."
+     ],
+     "open_items_for_codex": [
+      "Decide whether to split at 2009-12-19 / 2013-01-31 (the window spans Gadkari's presidency, appearance only). The reference is small (346x638); the 2019 State Department photographs are the high-resolution fallback."
+     ]
+    },
+    {
+     "person_id": "nitin_gadkari",
+     "display_name": "Nitin Gadkari",
+     "registry_name": "Nitin Gadkari",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Nitin Gadkari"
+     ],
+     "requested_window": {
+      "from": "2009-12-19",
+      "to": "2013-01-23",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table: accepted C01-27 holder observations attested 2009-12-24 and 2013-01-22; start from registry term in_bjp_nitin_gadkari_20091219 (ends in month 2013-01); end widened from leadership production's 2013-01-01 to the day after the last accepted observation, overlapping Rajnath Singh's window as appearance only.",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "Nitin Gadkari",
+        "attested_on": "2009-12-24",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_site_gadkari_first_press_conference_as_president_20091224"
+        ],
+        "claim_ids": [
+         "in_bjp_gadkari_first_press_conference_as_president_20091224"
+        ],
+        "note": "Observed on 24 December 2009: the party dates the statement in which he meets the national media 'in my first press conference as President of the BJP'.",
+        "uncertainty": "No start: the party's profile headed 'BJP National President' is dated 18 December 2009 on its page and 19 December 2009 in the site's listing, and no record gives the selecting body, the day of selection or the day he took charge; at the National Council of 18 February 2010 he said the leadership and the Council had elected him, without a day. No end here (see the observation of 22 January 2013)."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/8"
+       }
+      },
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "Nitin Gadkari",
+        "attested_on": "2013-01-22",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_site_gadkari_statement_no_second_term_20130122"
+        ],
+        "claim_ids": [
+         "in_bjp_gadkari_styled_national_president_statement_20130122"
+        ],
+        "note": "Observed on 22 January 2013: the party heads his statement 'Press statement issued by BJP National President, Shri Nitin Gadkari' and 'Statement by Sh. Nitin Gadkari, President'.",
+        "uncertainty": "No start (see the observation of 24 December 2009). No end: the same statement says he decided not to seek a second term, which is not a resignation, and by 27 January 2013 the party styles him 'former BJP National President'; no record states the day his office ended, and Rajnath Singh's election of 23 January 2013 is not used as his end."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/9"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_bjp_listing_dates_gadkari_profile_20091219",
+       "source_id": "in_bjp_site_press_release_listing_20091228",
+       "attested_on": "2009-12-19",
+       "text": "The party's Press Releases listing, as captured on 28 December 2009, lists 'Profile of Shri Nitin Gadkari BJP National President' and 'Resolution passed by BJP Parliamentary Board' each under 'Saturday, 19 December 2009'."
+      },
+      {
+       "claim_id": "in_bjp_gadkari_styled_national_president_indore_address_20100218",
+       "source_id": "in_bjp_site_gadkari_presidential_address_national_council_indore_20100218",
+       "attested_on": "2010-02-18",
+       "text": "The party's item dated 18 February 2010 prints the heading block 'Presidential Address By Shri Nitin Gadkari BJP National President National Council meeting of the BJP Indore (Madhya Pradesh)'."
+      },
+      {
+       "claim_id": "in_bjp_gadkari_announces_national_executive_as_president_20100316",
+       "source_id": "in_bjp_site_gadkari_announces_national_executive_20100316",
+       "attested_on": "2010-03-16",
+       "text": "The release dated 'Tuesday, 16 March 2010' ('BJP President Announces his Team') says 'Bharatiya Janata Party President Nitin Gadkari has announced party's National Executive' and that the President has also constituted the Parliamentary Board; the office-bearer list opens with the heading 'President' and the entry 'Shri. Nitin Gadkari'."
+      },
+      {
+       "claim_id": "in_bjp_gadkari_decides_not_to_seek_second_term_20130122",
+       "source_id": "in_bjp_site_gadkari_statement_no_second_term_20130122",
+       "attested_on": "2013-01-22",
+       "text": "In the statement (issued by O.P. Kohli, Headquarters Incharge) Gadkari says he has served the party 'finally as its president for one term' and has 'decided not to seek a second term as the president of the BJP', a decision he has conveyed to his colleagues."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Gadkari'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_bjp_nitin_gadkari_20091219"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "nitin_gadkari-1c5c2e857ab6",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "nitin_gadkari-8a3390e6cd1e",
+        "from": "2009-12-19",
+        "to": "2013-01-23",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2009-12-19",
+        "id": "nitin_gadkari-a9c5cf093e64",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2013-01-23",
+        "to": "2027-01-01",
+        "id": "nitin_gadkari-3cd46dd83d75",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:nitin_gadkari:2009-12-19:2010-01-01:v1",
+       "cartoon:nitin_gadkari:2010-01-01:2013-01-01:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "nitin-gadkari-2011"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/nitin-gadkari-cartoon-2009-v1.txt",
+      "sha256": "faebfd01a2aedb716f15380c69a31ae289fbd28a1ea6a7fa6d2bba68fc8b39bd",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "69870282bdd42a44d3e07e311863283787161227f73b085dcae2b416c86cf44b",
+      "git_blob": "a5bfff6c82bcfd7faa3728d5a7f81552521ab6f0",
+      "bytes": 3439,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. The 19 July 2011 FCO photograph lies inside the window; no age adjustment.",
+       "evidence": [
+        "nitin-gadkari-2011"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": true,
+      "problems_and_dispositions": [
+       {
+        "problem": "Not a blocker: the preparer did not fetch the FCO Flickr page; the verifier did once (nothing saved): credited to the FCO, 'Taken on July 19, 2011', currently CC BY 2.0, which agrees with the Commons OGL v1.0 grant.",
+        "disposition": "Applied: the reference's rights_statement and date_precision now note the Flickr page's CC BY 2.0 and date. The licence field, files and prompt are unchanged."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end."
+     ],
+     "open_items_for_codex": [
+      "Agree the end widened from 2013-01-01 to 2013-01-23 (the day after the accepted 2013-01-22 observation)."
+     ]
+    },
+    {
+     "person_id": "sitaram_yechury",
+     "display_name": "Sitaram Yechury",
+     "registry_name": "Sitaram Yechury",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "Sitaram Yechury"
+     ],
+     "requested_window": {
+      "from": "2015-04-30",
+      "to": "2024-09-12",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table: the accepted C01-40 holder observation attested 2015-05-06 with stated until 2024-09-12 (his death); registry term in_cpm_sitaram_yechury_201504 (from month 2015-04).",
+      "possible_split": "2020-01-01 (a leadership-production job boundary)",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_04",
+       "role_id": "in_cpm_general_secretary",
+       "holder": {
+        "name": "Sitaram Yechury",
+        "attested_on": "2015-05-06",
+        "from": null,
+        "until": "2024-09-12",
+        "sources": [
+         "in_cpim_gs_letter_to_naidu_20150508",
+         "in_cpim_pb_homage_yechury_20240912"
+        ],
+        "claim_ids": [
+         "in_cpim_yechury_gs_letter_to_naidu_20150506",
+         "in_cpim_pb_yechury_general_secretary_died_20240912"
+        ],
+        "note": "Observed on 6 May 2015: Yechury signs a letter of that date as General Secretary; the party release reproducing it is dated 8 May. Earlier party-office styling remains in the claims. The unchanged end, 12 September 2024, is the death date recorded with his office in the Polit Bureau statement.",
+        "uncertainty": "No start established: the April 2015 election claim names nobody, the Polit Bureau list has no day, and none of these records states when Yechury assumed office. The newly elected rally description of 19 April remains evidence but is not the selected holder date in this amendment; this is not a finding that its office styling was false. His 2018 and 2022 re-elections do not create new starts. The end remains the death date explicitly recorded with the office. The selected letter survives here as a current REST representation, not an independently retrieved contemporary capture."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/3/roles/0/holder_claims/2"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_cpim_cc_elected_yechury_gs_22nd_congress_20180422",
+       "source_id": "in_cpim_22nd_congress_new_cc_elected_20180422",
+       "attested_on": "2018-04-22",
+       "text": "The party's press release of 22 April 2018 lists the Central Committee and Central Control Commission elected at the 22nd Congress and the 17-member Polit Bureau elected at the first meeting of the new Central Committee, and ends 'The Central Committee also elected Sitaram Yechury as the General Secretary.'"
+      },
+      {
+       "claim_id": "in_cpim_cc_reelected_yechury_gs_23rd_congress_20220410",
+       "source_id": "in_cpim_23rd_congress_new_cc_elected_20220410",
+       "attested_on": "2022-04-10",
+       "text": "The party's post of 10 April 2022 lists the Central Committee elected at the 23rd Congress and the 17-member Polit Bureau elected at its first meeting, and says 'The Central Committee also re-elected Sitaram Yechury as the General Secretary'; it adds that the new Central Control Commission 'met today'."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Yechury'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_cpm_sitaram_yechury_201504"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "sitaram_yechury-cf3ef5171ade",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "sitaram_yechury-e1e306607c4e",
+        "from": "2015-04-30",
+        "to": "2024-09-12",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2015-04-30",
+        "id": "sitaram_yechury-9931975da24c",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2024-09-12",
+        "to": "2027-01-01",
+        "id": "sitaram_yechury-c474923595fc",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:sitaram_yechury:2015-04-30:2020-01-01:v1",
+       "cartoon:sitaram_yechury:2020-01-01:2024-09-12:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "sitaram-yechury-2019"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt",
+      "sha256": "1e32883811ee3ce51a3ff91a3aa802926a1da5163eef4bd475dbd6890397899d",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "7eb663c63a946f3c86c5fe70fc0b28263da6ff227b2cf0cd575a6ad3bf0c5605",
+      "git_blob": "6b463447c740d9f7e9d47c609781bf38ee8fa948",
+      "bytes": 3540,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. The December 2019 photograph lies almost exactly at the window's midpoint; no large age adjustment.",
+       "evidence": [
+        "sitaram-yechury-2019"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The photograph date was recorded as exact while two candidate days exist (EXIF 28 December; the same-event book-launch poster 27 December); the Commons date is derived from the EXIF.",
+        "disposition": "Fixed in the France Jospin shape: depiction_date is month 2019-12 with both candidate days, photograph_date '2019-12-27 or 2019-12-28 (sources disagree)', date_precision explains, the credit says '27 or 28 December 2019', and age_gap_note gives both day counts."
+       },
+       {
+        "problem": "The job list was flat: the 1990-2027 default-inventory job was listed beside the exact jobs without saying it is only partly closed.",
+        "disposition": "Fixed: jobs uses the France structure (default inventory partly closed, window-scoped exact, computed residuals not emitted, leadership-production jobs closed)."
+       },
+       {
+        "problem": "The prompt misdescribed the glasses as 'silver metal-framed' (they are semi-rimless with a slim silver top bar) and cited a date not visible in image 2.",
+        "disposition": "Fixed: 'thin rectangular semi-rimless glasses with a slim silver metal top bar and rimless lower edges'; the date clause now cites the book-launch poster in the photographer's wider frame. Prompt re-pinned."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start; the until 2024-09-12 is the stated death."
+     ],
+     "open_items_for_codex": [
+      "Decide whether to split at 2020-01-01; the same reference fits both halves."
+     ]
+    },
+    {
+     "person_id": "jagat_prakash_nadda",
+     "display_name": "Jagat Prakash Nadda",
+     "registry_name": "Jagat Prakash Nadda",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "observed_names": [
+      "J. P. Nadda"
+     ],
+     "requested_window": {
+      "from": "2020-01-20",
+      "to": "2026-01-20",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Start: accepted C01-27 holder 'J. P. Nadda' from 2020-01-20 (Kamal Sandesh Vol. 15 No. 03). Exclusive end: party_leaders.json term in_bjp_jagat_prakash_nadda_20200120 'until' 2026-01-20 and leadership_production_2035.json required_art_windows. The end is not accepted research; C01-27 does not use the 20 January 2026 handover as his until.",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "J. P. Nadda",
+        "attested_on": null,
+        "from": "2020-01-20",
+        "until": null,
+        "sources": [
+         "in_kamal_sandesh_vol15_no03_20200201"
+        ],
+        "claim_ids": [
+         "in_ks_nadda_took_charge_20200120"
+        ],
+        "note": "From 20 January 2020: the party organ Kamal Sandesh (Vol. 15, No. 03, 01-15 February, 2020) reports that he 'took charge from the outgoing Party National President and Union Home Minister Shri Amit Shah on 20 January, 2020', after his unopposed election that day.",
+        "uncertainty": "The start is day-only and rests on the party organ's report of the day's events. His National Working Presidency from 17 June 2019 is claims only. No end here (see the later observations)."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/14"
+       }
+      },
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "J. P. Nadda",
+        "attested_on": "2023-01-17",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_bjp_site_nadda_letter_to_karyakartas_20230117"
+        ],
+        "claim_ids": [
+         "in_bjp_nadda_styled_national_president_letter_20230117"
+        ],
+        "note": "Observed on 17 January 2023: the party's page of that day is headed 'Letter : Hon'ble BJP National President Shri J.P. Nadda to the Party Karyakartas', on the day the National Executive extended his tenure 'till June 2024'.",
+        "uncertainty": "No start (see the holder from 20 January 2020). No end: the extension names a month ('till June 2024'), which is not an until; no record of a further extension or of a constitutional amendment on the tenure was found."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/15"
+       }
+      },
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_03",
+       "role_id": "in_bjp_president",
+       "holder": {
+        "name": "J. P. Nadda",
+        "attested_on": "2025-12-15",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_kamal_sandesh_vol20_no24_20251216"
+        ],
+        "claim_ids": [
+         "in_ks_nadda_styled_national_president_20251215"
+        ],
+        "note": "Observed on 15 December 2025: Kamal Sandesh (Vol. 20, No. 24) reports that 'BJP National President and Union Minister Shri JP Nadda' was present when Nitin Nabin assumed charge as National Working President that day.",
+        "uncertainty": "No start (see the holder from 20 January 2020). No end: on 20 January 2026 he handed over charge to Nitin Nabin and the party called him 'Ex National President'; a handover statement and a predecessor reference are never an until, and the day is also his successor's start, which is not used as his end. The party still styled him National President on 25 December 2025 (a lead)."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/16"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_ks_nadda_elected_unopposed_11th_president_20200120",
+       "source_id": "in_kamal_sandesh_vol15_no03_20200201",
+       "attested_on": "2020-01-20",
+       "text": "The issue's report opens: '[B]JP National Working President Shri JP Nadda was elected unopposed as the 11th National President of BJP' (the drop cap is lost in the text layer)."
+      },
+      {
+       "claim_id": "in_ks_nadda_nomination_sole_candidate_20200120",
+       "source_id": "in_kamal_sandesh_vol15_no03_20200201",
+       "attested_on": "2020-01-20",
+       "text": "The report says the senior leaders arrived at the headquarters 'on 20 January, 2020' before the filing of nominations, that 'Shri Nadda's name was proposed by the senior party leaders, including outgoing National President and Union Home Minister Shri Amit Shah', and that 'Shri JP Nadda remained the only candidate for the top post'."
+      },
+      {
+       "claim_id": "in_ks_radha_mohan_singh_declares_nadda_elected_20200120",
+       "source_id": "in_kamal_sandesh_vol15_no03_20200201",
+       "attested_on": "2020-01-20",
+       "text": "After verification 'a formal announcement regarding Shri JP Nadda's election as President was made in the afternoon'; 'The election in-Charge and former Union Minister Shri Radha Mohan Singh made the official declaration of the election'."
+      },
+      {
+       "claim_id": "in_ks_amit_shah_hands_over_charge_20200120",
+       "source_id": "in_kamal_sandesh_vol15_no03_20200201",
+       "attested_on": "2020-01-20",
+       "text": "The report says 'Following the declaration of the result, outgoing party National President Shri Amit Shah handed over charge to Shri JP Nadda at the party Headquarters'."
+      },
+      {
+       "claim_id": "in_ks_national_executive_extends_nadda_tenure_to_june_2024_20230117",
+       "source_id": "in_kamal_sandesh_vol18_no03_20230201",
+       "attested_on": "2023-01-17",
+       "text": "The issue reports: 'On the second day of the National Executive Meet on 17 January 2023, BJP National President Shri JP Nadda's tenure was extended unanimously till June 2024. Defence Minister Shri Rajnath Singh moved the resolution and the National Executive endorsed it unanimously'."
+      },
+      {
+       "claim_id": "in_ks_nadda_took_charge_20200120_recalled",
+       "source_id": "in_kamal_sandesh_vol18_no03_20230201",
+       "attested_on": "2020-01-20",
+       "text": "The report recalls: 'Noteworthy, Shri JP Nadda took charge as the National President of BJP on January 20 2020'."
+      },
+      {
+       "claim_id": "in_ks_nadda_styled_national_president_convention_20240217",
+       "source_id": "in_ks_nadda_address_national_convention_20240217",
+       "attested_on": "2024-02-17",
+       "text": "Kamal Sandesh reports that 'the two-day National Convention of the BJP commenced at Bharat Mandapam in New Delhi on 17 February, 2024', that the BJP flag was unfurled by the Prime Minister and 'BJP National President Shri Jagat Prakash Nadda', who addressed the inaugural session."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Nadda'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_bjp_jagat_prakash_nadda_20200120"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "jagat_prakash_nadda-15e969dcbefe",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "jagat_prakash_nadda-feaabd468258",
+        "from": "2020-01-20",
+        "to": "2026-01-20",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2020-01-20",
+        "id": "jagat_prakash_nadda-6905cb654db8",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2026-01-20",
+        "to": "2027-01-01",
+        "id": "jagat_prakash_nadda-700200cba5c4",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:jagat_prakash_nadda:2020-01-20:2025-01-01:v1",
+       "cartoon:jagat_prakash_nadda:2025-01-01:2026-01-20:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "jagat-prakash-nadda-2018"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/jagat-prakash-nadda-cartoon-2020-v1.txt",
+      "sha256": "1930455b813b99bd727ede047db90a290f652dfa41c1332e5985163421468088",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "99faaeae883c631262e5f44d8a0bc03d59b86241b4ad17d49ea8524e5011b644",
+      "git_blob": "2535c0b1220d97b8ca615a47fef672ef4748c581",
+      "bytes": 4079,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. No qualifying in-window photograph exists; the 26 September 2018 photograph (16 months before the window) is used and the slight added maturity is declared.",
+       "evidence": [
+        "jagat-prakash-nadda-2018"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The accepted holder dictionaries were not copied exactly (note and uncertainty missing).",
+        "disposition": "Fixed: observations copy holder_claims 14, 15 and 16 whole from india.json, including note and uncertainty, with their research_locations."
+       },
+       {
+        "problem": "The birth date had no cited source.",
+        "disposition": "Fixed: age_gap_note cites the reference file's own Commons description ('born 2 December 1960', saved metadata sha256 ee1135d4...) and the registry identity source PDF, labelled general biographical knowledge, not C01 research."
+       },
+       {
+        "problem": "The PID-0014397 and PID-0057215 rejections misapplied the agency/press rule: their licence string 'Public domain' qualifies.",
+        "disposition": "Fixed: both rejected_candidates entries now rest on composition, resolution and date, and state that the licence string qualifies."
+       },
+       {
+        "problem": "The prompt's 'warm medium-brown complexion' is darker than the colour-managed photograph (about #DFA48D to #E0AB92).",
+        "disposition": "Fixed: 'warm light-to-medium wheatish-brown complexion'. Prompt re-pinned."
+       },
+       {
+        "problem": "Non-blocking: the record did not say that the JPEG embeds an Adobe RGB (1998) ICC profile.",
+        "disposition": "Fixed: icc_profile note added to the reference; the render request asks Codex to pass the bytes unchanged and to check colour in a colour-managed view."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted end."
+     ],
+     "open_items_for_codex": [
+      "Agree the exclusive end 2026-01-20 (registry and leadership production, not accepted research).",
+      "Era dress: the 2018 bandhgala is kept for the whole window; his in-window public dress was often a white kurta-pyjama with a saffron stole. Accept or request a v2 prompt."
+     ]
+    },
+    {
+     "person_id": "m_a_baby",
+     "display_name": "M. A. Baby",
+     "registry_name": "M. A. Baby",
+     "identity_status": "existing_identity",
+     "batch_role": "reserve_promoted_to_render",
+     "observed_names": [
+      "M. A. Baby"
+     ],
+     "requested_window": {
+      "from": "2025-04-06",
+      "to": "2026-09-08",
+      "window_status": "appearance_interval_from_handoff",
+      "basis": "Handoff table (reserve 1): registry term in_cpm_m_a_baby_20250406 (from 2025-04-06, open) to the 7 September 2026 cutoff; contains the accepted C01-40 observation attested 2025-05-12.",
+      "to_exclusive": true
+     },
+     "observations": [
+      {
+       "organization_or_institution_id": "in_eci_20240323_np_04",
+       "role_id": "in_cpm_general_secretary",
+       "holder": {
+        "name": "M. A. Baby",
+        "attested_on": "2025-05-12",
+        "from": null,
+        "until": null,
+        "sources": [
+         "in_cpim_gs_letter_to_pm_20250512"
+        ],
+        "claim_ids": [
+         "in_cpim_baby_gs_letter_to_pm_20250512"
+        ],
+        "note": "Observed on 12 May 2025: the party's release of that day says 'M. A. Baby, General Secretary of the Communist Party of India (Marxist) has written a letter today to the Prime Minister' (party website record).",
+        "uncertainty": "No start: the party's post of 6 April 2025 says 'The Central Committee elected MA Baby as the General Secretary', an election claim dated by the post's dateline, and no record states the day he assumed the office. No end: he is styled General Secretary on 24 August 2026, and no vacancy, resignation or interim arrangement is recorded before the cutoff of 7 September 2026."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/india.json": "/organizations/3/roles/0/holder_claims/3"
+       }
+      }
+     ],
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "in_cpim_cc_elected_baby_gs_24th_congress_20250406",
+       "source_id": "in_cpim_24th_congress_new_cc_elected_20250406",
+       "attested_on": "2025-04-06",
+       "text": "The party's post of 6 April 2025 lists the Central Committee elected at the 24th Congress and the 18-member Polit Bureau elected by the newly elected Central Committee, and says 'The Central Committee elected MA Baby as the General Secretary.'"
+      },
+      {
+       "claim_id": "in_cpim_baby_gs_memo_census_20260824",
+       "source_id": "in_cpim_memo_census_2027_20260824",
+       "attested_on": "2026-08-24",
+       "text": "The party's release of 24 August 2026 says 'On behalf of the Communist Party of India (Marxist), M. A. Baby, General Secretary, has submitted a Memo on Census 2027' to the Registrar General of India and Census Commissioner, and the memo is signed '(M. A. Baby) General Secretary'."
+      }
+     ],
+     "related_claims_note": "Computed by the assembler: claims in this role's claim_ids whose text names this person (case-insensitive 'Baby'), with an attested_on inside the requested window, excluding all holder claims (undated claims are not listed). Copied verbatim; each remains a claim, never a boundary or a holder observation.",
+     "registry_terms_not_c01_research": [
+      "in_cpm_m_a_baby_20250406"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "m_a_baby-31e12a5aba87",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "m_a_baby-a1a2a42a89bf",
+        "from": "2025-04-06",
+        "to": "2026-09-08",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-01-01",
+        "to": "2025-04-06",
+        "id": "m_a_baby-a0d263be9b3d",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       },
+       {
+        "from": "2026-09-08",
+        "to": "2027-01-01",
+        "id": "m_a_baby-7af96baec9bb",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [
+       "cartoon:m_a_baby:2025-04-06:2026-09-08:v1"
+      ]
+     },
+     "likeness_reference_ids": [
+      "m-a-baby-2026"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/m-a-baby-cartoon-2025-v1.txt",
+      "sha256": "2d1b6853ba359653247a0b3aaf2bd25144b04df7e594501c48b2c1e1abe5eaf9",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "66e5daf2c8eed3a81a5e954d9fa9a136677985f99987e1b23b0c8fd495237da8",
+      "git_blob": "4b00b123fb8c3170ace5817497f07293d964a6a3",
+      "bytes": 3423,
+      "lines": 9
+     },
+     "planned_output": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID. The 6 July 2026 photograph lies inside the window; no age adjustment. Promoted from reserve to the render because amit_shah was excluded at assembly.",
+       "evidence": [
+        "m-a-baby-2026"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "Minor wording error in photograph_date_basis: the minutes are the same (19:00:11 vs 19:00:40); only the seconds differ, and the description-page time is shared with frame 7.",
+        "disposition": "Fixed: the sentence now reads 'Same day; only the seconds differ (19:00:11 on the description page, a value frame 7 shares, so probably set once for the upload batch; 19:00:40 in the camera EXIF).' No hash or prompt changes."
+       },
+       {
+        "problem": "The prompt's LF sha256 pin will not hold across Windows checkouts (core.autocrlf=true, no eol rule).",
+        "disposition": "Recorded, not fixed here: .gitattributes is outside this task's allowed files. Every India prompt pin states its basis (LF bytes as committed), the CRLF-checkout sha256 and the git blob. Codex is asked to add an eol=lf rule as for tonga-*.txt."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end."
+     ],
+     "open_items_for_codex": [
+      "Rendered in place of amit_shah, who was excluded at assembly (see excluded_people)."
+     ]
+    }
+   ]
+  }
+ ],
+ "excluded_people": [
+  {
+   "person_id": "amit_shah",
+   "display_name": "Amit Shah",
+   "registry_name": "Amit Shah",
+   "batch_role": "primary",
+   "disposition": "excluded_at_assembly",
+   "requested_window": {
+    "from": "2014-07-09",
+    "to": "2020-01-20",
+    "to_exclusive": true,
+    "basis": "registry term in_bjp_amit_shah_20140709; C01-27 BJP accepted observations attested 2014-07-09, 2016-02-02 and 2019-06-17"
+   },
+   "observations": [
+    {
+     "organization_or_institution_id": "in_eci_20240323_np_03",
+     "role_id": "in_bjp_president",
+     "holder": {
+      "name": "Amit Shah",
+      "attested_on": "2014-07-09",
+      "from": null,
+      "until": null,
+      "sources": [
+       "in_bjp_site_profile_national_president_amit_shah_20140709"
+      ],
+      "claim_ids": [
+       "in_bjp_amit_shah_styled_national_president_profile_20140709"
+      ],
+      "note": "Observed on 9 July 2014: the party's release of that day is headed 'Profile of BJP National President, Shri Amit Shah', on the day the Parliamentary Board thanked the 'outgoing' President Rajnath Singh.",
+      "uncertainty": "No start: no party record of the decision naming him, its body or the day he took charge was found; at the National Council of 9 August 2014 he spoke of 'my election as the BJP's National President' without a day. No end here (see the observations of 2016 and 2019)."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/11"
+     }
+    },
+    {
+     "organization_or_institution_id": "in_eci_20240323_np_03",
+     "role_id": "in_bjp_president",
+     "holder": {
+      "name": "Amit Shah",
+      "attested_on": "2016-02-02",
+      "from": null,
+      "until": null,
+      "sources": [
+       "in_bjp_site_amit_shah_felicitation_20160202"
+      ],
+      "claim_ids": [
+       "in_bjp_amit_shah_styled_national_president_felicitation_20160202"
+      ],
+      "note": "Observed on 2 February 2016: the party's release of that day is headed 'Members from different communities felicitating BJP National President, Shri Amit Shah' and its Hindi body speaks of his being named BJP President again.",
+      "uncertainty": "No start: his re-election is reported on 24 January 2016 (nominations filed that day) without a declaration text, and a re-election is not a new start. No end here (see the observation of 2019)."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/12"
+     }
+    },
+    {
+     "organization_or_institution_id": "in_eci_20240323_np_03",
+     "role_id": "in_bjp_president",
+     "holder": {
+      "name": "Amit Shah",
+      "attested_on": "2019-06-17",
+      "from": null,
+      "until": null,
+      "sources": [
+       "in_ks_nadda_appointed_working_president_20190617"
+      ],
+      "claim_ids": [
+       "in_ks_amit_shah_styled_national_president_at_board_meeting_20190617"
+      ],
+      "note": "Observed on 17 June 2019: the party organ Kamal Sandesh reports the Parliamentary Board meeting of that day, attended by 'Union Home Minister and BJP National President Shri Amit Shah', which made J. P. Nadda National Working President.",
+      "uncertainty": "No start (see the observation of 2014). No end: his request to be relieved was reported that day, the party said he would continue as National President until the organisational elections, and on 20 January 2020 he handed over charge to J. P. Nadda; a handover statement is never an until, and the day is also his successor's taking charge, which is not used as his end."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/13"
+     }
+    }
+   ],
+   "registry_terms_not_c01_research": [
+    "in_bjp_amit_shah_20140709"
+   ],
+   "jobs_left_open": [
+    {
+     "kind": "pipeline_window_scoped",
+     "id": "amit_shah-cf9548aa05ad",
+     "from": "2014-07-09",
+     "to": "2020-01-20",
+     "status": "needs_source_and_visual_review",
+     "closure": "not closed: remains open"
+    },
+    {
+     "kind": "pipeline_default_inventory",
+     "id": "amit_shah-4ed982018cb1",
+     "from": "1990-01-01",
+     "to": "2027-01-01",
+     "status": "needs_source_and_visual_review",
+     "closure": "not closed: remains open"
+    }
+   ],
+   "leadership_production_cartoon_jobs_left_open": [
+    "cartoon:amit_shah:2014-07-09:2015-01-01:v1",
+    "cartoon:amit_shah:2015-01-01:2020-01-01:v1",
+    "cartoon:amit_shah:2020-01-01:2020-01-20:v1"
+   ],
+   "reason": "The only usable in-window reference has a provenance problem that cannot be fixed mechanically. File:Pic of Amit Shah IMG 9161.jpg (Duggempudi Ravinder Reddy, 2016-09-30, 'CC BY-SA 4.0', own work, no VRT ticket) is very probably from a commissioned BJP portrait session: the independent verifier found BJP Andhra Pradesh's 'Amit Shah HD Pics' download page (http://www.apbjp.org/eng/amit-shah-hd-pics/, 55 party photographs in the WordPress folder 2016/10), whose BJP-President-Amit-Shah-Photo-42.jpg and -43.jpg are 3648x5472 sibling frames of the same session (same rust-orange Nehru waistcoat, white kurta, textured brown backdrop, rimless spectacles and laugh; -43 is 13,677,580 bytes, Last-Modified 20 Jul 2020) and -46.jpg is from the same session in a grey waistcoat. The exact IMG_9161 frame was not among them (best thumbnail correlation 0.63, full-image 0.66), so no copyright violation is proven, but the session produced party publicity distributed for download in 2016, the uploader is a commercial portrait and events photographer, and under Indian Copyright Act s.17(b) the commissioner would own the copyright absent agreement. That puts the file close to the handoff's agency/press rejection; the batch already has a precedent (the Captgs 'own work' parent deleted on 2026-03-09). The uploader account has had two other files deleted for missing source or licence. The verifier's findings were made on 2026-10-02; nothing from apbjp.org was saved.",
+   "removed_from_repository": [
+    {
+     "path": "spheres-web/ui/person-portraits/references/amit-shah-2016-reference-v1.jpg",
+     "sha256": "85603528e370bba5fdbc4e8247afd065affcb923f677f0073ecf448d911a49d5",
+     "bytes": 13426209,
+     "note": "never committed; original bytes kept in scratch"
+    },
+    {
+     "path": "tools/avatars/person-prompts/amit-shah-cartoon-2014-v1.txt",
+     "sha256": "97c746f017106688e50dd15814bec964448ccc44759c7dc17e93eacb7d37eae6",
+     "note": "never committed; copy kept in scratch as excluded-prompt-amit-shah-cartoon-2014-v1.txt"
+    }
+   ],
+   "reference_considered": {
+    "commons_title": "File:Pic of Amit Shah IMG 9161.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Pic_of_Amit_Shah_IMG_9161.jpg",
+    "license": "CC BY-SA 4.0",
+    "creator": "Duggempudi Ravinder Reddy",
+    "photograph_date": "2016-09-30",
+    "width": 3648,
+    "height": 5472,
+    "image_original": {
+     "path": "D:/spheres-scratch/in-cast/refs/amit_shah/Pic_of_Amit_Shah_IMG_9161.jpg",
+     "bytes": 13426209,
+     "sha256": "85603528e370bba5fdbc4e8247afd065affcb923f677f0073ecf448d911a49d5",
+     "commons_sha1": "df4521574db272b7360749ba2ed5e31661222386"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/amit_shah/commons-api-imageinfo-Pic_of_Amit_Shah_IMG_9161.json",
+     "bytes": 2340,
+     "sha256": "93a42f6c422a449a2102e88ecf30cbd01c75e1b4b3f461fd3efaf503a8cfd13d"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/amit_shah/commons-file-page-Pic_of_Amit_Shah_IMG_9161.html",
+     "bytes": 104146,
+     "sha256": "6b2ecd919ed07688298237dde014093ce509f96fdee6b3e189b19a42ac77b4e3"
+    },
+    "exif": {
+     "path": "D:/spheres-scratch/in-cast/refs/amit_shah/api-exif-Pic_of_Amit_Shah_IMG_9161.json",
+     "bytes": 4575,
+     "sha256": "c6af0e4e79aff6e1973cbe9b9814f4e2aa566d335a7a4fb967ce60e45aeb842e"
+    }
+   },
+   "rejected_candidates": [
+    "File:Amit Shah new.jpg and File:Amit Shah.Jpg (Captgs, 2015-01-16, CC BY-SA 4.0): extracted from File:Amit Shah and Udit Raj.jpg, which Commons deleted on 2026-03-09 after it was found published earlier on orfonline.org.",
+    "File:Amit Shah Wikipedia.jpg (Clateano, 2019-02-01): a different person (the British actor Amit Shah).",
+    "All GODL-India files (Ministry of Home Affairs, PMO, PIB and others): GODL-India is not in FREE_LICENSES.",
+    "PMO / Narendra Modi Flickr CC BY-SA 2.0 files from 2014-2016: too small; Shah secondary."
+   ],
+   "future_routes": [
+    "VRT-confirmed, inside the window: File:Shri Satpal Maharaj With Hon'ble Guests at Sadbhawna Sammelan.jpg (Himanshu.engin, 2015-11-20, CC BY-SA 4.0, ticket 2016042710018395, 1600x1066); Shah central and full length, but his face is small (about 95x135 px) and lowered. Not downloaded in full.",
+    "VRT-confirmed, 39 days after the window: File:Mamata Banerji Naveen Patnaik Amit Shah at 24th Eastern Zonal Council Meet.jpg (Government of Odisha donation, CC BY 4.0, 2020-02-28, 1200x799); seated three-quarter view, small face.",
+    "A search for a public-domain U.S. federal photograph of him from 2019-2020 (White House, State Department, U.S. Embassy New Delhi)."
+   ],
+   "verification": {
+    "verifier": "independent Claude verification agent (per person)",
+    "initial_verdict_ok": false,
+    "problems_and_dispositions": [
+     {
+      "problem": "The provenance risk was understated and the file was marked usable while listed as 'not blocking' (see reason).",
+      "disposition": "Excluded at assembly: a reference switch is not a mechanical fix and the VRT-confirmed alternatives have small, lowered faces, so this window is recorded as not ready for this batch. The copied reference and prompt were deleted from the working tree before any commit; the original bytes and metadata stay in scratch. Reserve m_a_baby takes the render slot."
+     },
+     {
+      "problem": "The reference record lacked rights_statement, depiction_date and approved_source_license.",
+      "disposition": "Moot after the exclusion; a future batch must carry all three."
+     }
+    ]
+   }
+  },
+  {
+   "person_id": "nitin_nabin",
+   "display_name": "Nitin Nabin",
+   "registry_name": "Nitin Nabin",
+   "batch_role": "reserve",
+   "disposition": "not_ready_no_qualifying_photograph",
+   "requested_window": {
+    "from": "2026-01-20",
+    "to": "2026-09-08",
+    "to_exclusive": true,
+    "basis": "C01-27 BJP accepted from 2026-01-20 and attested_on 2026-08-17; registry term in_bjp_nitin_nabin_20260120 to the cutoff"
+   },
+   "observations": [
+    {
+     "organization_or_institution_id": "in_eci_20240323_np_03",
+     "role_id": "in_bjp_president",
+     "holder": {
+      "name": "Nitin Nabin",
+      "attested_on": null,
+      "from": "2026-01-20",
+      "until": null,
+      "sources": [
+       "in_bjp_site_nadda_felicitation_speech_20260120",
+       "in_kamal_sandesh_vol21_no02_20260116"
+      ],
+      "claim_ids": [
+       "in_bjp_nadda_says_nabin_assumed_charge_today_20260120",
+       "in_ks_nabin_assumes_charge_national_president_20260120"
+      ],
+      "note": "From 20 January 2026: the party's release of that day quotes the outgoing President saying 'Today is a very historic day, as the young, energetic and talented National President Shri Nitin Nabin has assumed charge as the National President', and Kamal Sandesh (Vol. 21, No. 02, published on 24 January 2026) says he 'formally assumed charge at the party headquarters in New Delhi on 20 January 2026'.",
+      "uncertainty": "The start is day-only. His National Working Presidency from 14 and 15 December 2025 is claims only, and the National Returning Officer's announcement of 19 January 2026 that only his name had been proposed is an election claim. No end here (see the observation of 17 August 2026)."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/17"
+     }
+    },
+    {
+     "organization_or_institution_id": "in_eci_20240323_np_03",
+     "role_id": "in_bjp_president",
+     "holder": {
+      "name": "Nitin Nabin",
+      "attested_on": "2026-08-17",
+      "from": null,
+      "until": null,
+      "sources": [
+       "in_ks_national_president_appoints_office_bearers_20260817"
+      ],
+      "claim_ids": [
+       "in_ks_nabin_appoints_national_office_bearers_20260817"
+      ],
+      "note": "Observed on 17 August 2026: Kamal Sandesh's page, as captured on 4 September 2026, says 'Bharatiya Janata Party Hon'ble National President Shri Nitin Nabin is pleased to appoint' the new national office bearers 'on 17 August 2026'.",
+      "uncertainty": "No start (see the holder from 20 January 2026). No end: no vacancy, resignation or acting President is recorded before the cutoff of 7 September 2026. The page prints 'Published on: 16 Aug, 2026', a day before the appointment day its text gives, and its metadata records a modification on 2 September 2026; its only capture (4 September 2026) is of the modified page, so the day is kept as the text prints it, and either day is before the cutoff."
+     },
+     "research_locations": {
+      "docs/campaign-certification/C01/research/india.json": "/organizations/2/roles/0/holder_claims/18"
+     }
+    }
+   ],
+   "registry_terms_not_c01_research": [
+    "in_bjp_nitin_nabin_20260120"
+   ],
+   "jobs_left_open": [
+    {
+     "kind": "pipeline_window_scoped",
+     "id": "nitin_nabin-364ea9efb3bd",
+     "from": "2026-01-20",
+     "to": "2026-09-08",
+     "status": "needs_source_and_visual_review",
+     "closure": "not closed: remains open"
+    },
+    {
+     "kind": "pipeline_default_inventory",
+     "id": "nitin_nabin-fe8bcee5af02",
+     "from": "1990-01-01",
+     "to": "2027-01-01",
+     "status": "needs_source_and_visual_review",
+     "closure": "not closed: remains open"
+    }
+   ],
+   "leadership_production_cartoon_jobs_left_open": [
+    "cartoon:nitin_nabin:2026-01-20:2026-09-08:v1"
+   ],
+   "reason": "No qualifying likeness photograph exists. The lead File:Dayal Shugani with Nitin Nabin.jpg passes the licence-string test (CC BY 4.0) but fails on provenance: the uploader is the journalist in the frame, the image carries a photography-studio logo, it has no camera EXIF (Picasa export, 1000x667), and it was uploaded 2026-08-24 without VRT permission. File:NANDA DAGLA WITH BJP PRESIDENT.jpg (CC0) fails for the same reason and has no photograph date. Rashtrapati Bhavan and PMO files are GODL-India; Bihar IPRD files carry 'Attribution'. No face was invented and no other person was substituted; no reference or prompt was written to the repository.",
+   "rejected_candidates_evidence": [
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_nabin/original-dayal-shugani-with-nitin-nabin.jpg",
+     "bytes": 195002,
+     "sha256": "e8badfc69790e13b99ec132aa145db967473ddf3bf9745e23f68be541602654c",
+     "commons_sha1": "d6f1b9c18811950d9c9a49fd556c2737c11fa871"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_nabin/commons-api-imageinfo.json",
+     "bytes": 3011,
+     "sha256": "69955cb6386928b60960f24d7242583750c9978bb8ca1c82ffbe20a8fb44a6f5"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_nabin/commons-file-page.html",
+     "bytes": 89223,
+     "sha256": "632ada8f2187caeae544383ee0966a84ac0e0202e91779fe2eb18f92dce02fb5"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_nabin/original-nanda-dagla-with-bjp-president.jpg",
+     "bytes": 597214,
+     "sha256": "5c2a448c56b1f06ed2a8525eb0fa791e170d4010faad94ab725274b056237e12",
+     "commons_sha1": "b37a795f4239c5ee9eb73ce137971fc9717bc879"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_nabin/nanda-dagla-api-imageinfo.json",
+     "bytes": 2502,
+     "sha256": "5e8ad6b2a09cf626a7397b15dc808edc6204f79ecd71cb15cac9dcc984f4fb0c"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_nabin/other-candidates.json",
+     "bytes": 11792,
+     "sha256": "2f8b33ebd36d5dc7302fc8c7adf2a4ee65a8352635fb100f21b1d5cb17f98c07"
+    }
+   ],
+   "future_routes": [
+    "A VRT-confirmed release by the actual photographer of either picture; a US federal public-domain photograph; or a CC BY / CC BY-SA photograph from an EC, EP, Kremlin.ru or other free-licensed foreign-government source. The next candidate in line, lalu_prasad_yadav, needs Codex agreement on a window."
+   ],
+   "verification": {
+    "verifier": "independent Claude verification agent (per person)",
+    "initial_verdict_ok": true,
+    "problems_and_dispositions": []
+   }
+  }
+ ],
+ "not_in_batch": "Heads of state and government, Congress presidents and deferred party leaders (murli_manohar_joshi, kushabhau_thakre, bangaru_laxman, m_venkaiah_naidu, lalu_prasad_yadav, s_r_bommai and others) are listed with reasons in docs/planning/ai-handoffs/CLAUDE-C06-INDIA-01.md.",
+ "likeness_references": [
+  {
+   "id": "harkishan-singh-surjeet-2005",
+   "person_id": "harkishan_singh_surjeet",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Bardhanhss.jpg",
+   "commons_title": "File:Bardhanhss.jpg",
+   "retrieved_at": "2026-10-02T12:56:08Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Bardhanhss.json",
+    "bytes": 5400,
+    "sha256": "638734215b5be075b8a32a784ecc23d27dec29407aa62e6a42f7c80125187604",
+    "retrieved_at": "2026-10-02T12:56:01Z",
+    "content": "Commons API imageinfo (url, size, sha1, extmetadata, commonmetadata incl. camera EXIF), latest revision wikitext and categories."
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/filepage-Bardhanhss.html",
+    "bytes": 103736,
+    "sha256": "46b2252f06b889af6fd7fb2c163fa0c3976164cf4ec75ad629f417452f94abe7",
+    "retrieved_at": "2026-10-02T12:59:23Z",
+    "privacy_check": "no client IP; wgUserName null; geoIP occurs only as a module name"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Surjith-6.json",
+     "bytes": 4131,
+     "sha256": "d0516787edb13e42553eb6f5cdbce0056f8d1acf674888d3a3c1da9c6ac06662",
+     "content": "Commons API imageinfo of the colour alternate File:Surjith-6.JPG (preparer, 2026-10-02T12:21:04Z)."
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/filepage-Surjith-6.html",
+     "bytes": 124128,
+     "sha256": "52733f90b6a4220c10f18a161d79c66d734eb80114eeb477b1fae546fae60aa8",
+     "content": "Commons file page of File:Surjith-6.JPG (preparer)."
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Hssurjeet.json",
+     "bytes": 5700,
+     "sha256": "4ad1dd6d5d7faade0e38f2860ee050a88cb1db74fa40f9a7af719985c7ad2cae",
+     "content": "Commons API imageinfo of the exactly dated alternate File:Hssurjeet.jpg (same uploader, same camera model; EXIF 2005-04-07 07:52:02)."
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-uploadlog-Fotokannan-20120916.json",
+     "bytes": 519,
+     "sha256": "845f3c2342c49f96e7c31591ff27b47f53df6535e2577865f91e8aabb244c934",
+     "content": "Fotokannan upload log for 2012-09-16 08:00-12:00Z: Surjith-6.JPG and Surjith-3.JPG at 10:14:37Z."
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Surjith-3.json",
+     "bytes": 117,
+     "sha256": "40f8628750f4135bfec06dd36bb66bf1160a92905458dcb5b2e12ac4746fa878",
+     "content": "File:Surjith-3.JPG is missing on Commons."
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-log-Surjith-3.json",
+     "bytes": 736,
+     "sha256": "493b0c86166a0d0cfd80ba5f0d7d394fa0bc745f5bfd1eba2def315fe27fea48",
+     "content": "Surjith-3.JPG deleted 2023-02-22T04:46:21Z by Krd: 'No permission since 14 February 2023'."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/Bardhanhss-original.jpg",
+    "bytes": 123462,
+    "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Bardhanhss.jpg",
+    "commons_sha1": "8194609829dc82b7818779cfe78dea83bc176d62"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+   "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+   "bytes": 123462,
+   "asset_byte_identical_to_original": true,
+   "width": 1280,
+   "height": 960,
+   "mode": "RGB",
+   "format": "JPEG",
+   "exif": {
+    "make": "Minolta Co., Ltd.",
+    "model": "DiMAGE Xt",
+    "software": "Ver. 1.00",
+    "DateTime": "2005:03:28 06:36:49",
+    "DateTimeOriginal": null,
+    "icc_profile": null
+   },
+   "photograph_date": "2005-03-28 or 2005-03-29 (camera clock 28 March; the congress banner behind him gives 29 March)",
+   "depiction_date": {
+    "kind": "month",
+    "value": "2005-03",
+    "candidate_days": [
+     "2005-03-28",
+     "2005-03-29"
+    ]
+   },
+   "date_precision": "Commons gives no Date (the 2005 description's '|date =' is empty). The only machine date is the camera's EXIF DateTime 2005:03:28 06:36:49 (Minolta DiMAGE Xt, firmware 'Ver. 1.00'; no DateTimeOriginal tag). The description places the photograph on the dais of the open session of the Communist Party of India's 2005 congress in Chandigarh, and the red banner behind him reads '19th PARTY CONGRESS', '...NIST PARTY [OF I]NDIA' and a partly hidden '...H 29th...', i.e. 29 March 2005. The same uploader's camera of the same model read 2005-04-07 07:52:02 at the CPI(M) 18th Congress in New Delhi (File:Hssurjeet.jpg), so its clock was close to correct. No clock offset is proven, so both days are recorded; either is before the window's exclusive end of 2005-04-01.",
+   "creator": "Soman",
+   "creator_basis": "Description 'Photo: [[User:Soman|Soman]]'; uploaded 2005-09-26T21:45:26Z by User:Soman with {{Self|...}}. Commons adds {{own assumed}} and {{Author assumed}} only because the 2005 template has empty machine-readable source and author fields.",
+   "credit": "Soman, 'Bardhanhss.jpg' (Harkishan Singh Surjeet, A. B. Bardhan and D. Raja on the dais of the Communist Party of India's 19th Party Congress, Chandigarh, 28 or 29 March 2005), own work, CC BY 2.5, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY 2.5",
+   "license_url": "https://creativecommons.org/licenses/by/2.5",
+   "source_license_statement": "Commons file page: 'I, the copyright holder of this work, hereby publish it under the following licenses': GFDL 1.2 or later, CC BY-SA 3.0 Unported (migrated) and CC BY 2.5 ({{Self|GFDL|Cc-by-sa-3.0-migrated|Cc-by-2.5}}). API extmetadata: LicenseShortName exactly 'CC BY 2.5', License 'cc-by-2.5', LicenseUrl https://creativecommons.org/licenses/by/2.5, UsageTerms 'Creative Commons Attribution 2.5'. The CC BY 2.5 option is used.",
+   "rights_statement": "Retained source statement: CC BY 2.5, one of three licences granted by the uploader, who is the photographer named in the description. Own work; not a government, agency or press photograph; no personality-rights template.",
+   "people_in_frame": "Surjeet seated at the left, turned three-quarters to his left and speaking with lips parted, framed from the turban to his lap; his left hand rests at his lap. D. Raja (gray hair, glasses, white shirt) leans in behind him with a hand on Surjeet's left shoulder; A. B. Bardhan (white hair, glasses, gray shirt, red CPI delegate badge) sits at the right; a man in a striped shirt and belt stands at the left edge and three men stand behind; a red banner with white lettering ('19th PARTY CONGRESS', '...NIST PARTY ... NDIA', '...H 29th...') and a white star fills the background; a chair edge is at the lower left. The prompt excludes all of them.",
+   "appearance_observed": "Large, neatly tied white turban (bluish-white in shade) with broad diagonal folds, covering the ears; dark rectangular glasses with thick black frames and dark blue-gray lenses that hide his eyes; broad nose with a rounded tip; furrowed brow; full white moustache and a full, bushy white beard to the upper chest; brown complexion with deep age lines; plain white long-sleeved collared shirt, buttoned, with two pens clipped in the left chest pocket. His face is about 170 px wide.",
+   "age_gap_note": "Born 23 March 1916 (Commons description of File:Surjith-6.JPG and the English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research). He is 89 in the photograph of 28 or 29 March 2005 and 75 to 89 in the window (1992-01-31 to 2005-03-31 inclusive). The photograph is 2 or 3 days before the window's last day and about 13 years 2 months after its start. The prompt asks for a slightly younger, sturdier, upright man of about 80 with the same white turban, white beard and dark glasses. The standing body, legs, charcoal-gray trousers, black shoes and hands are artistic extensions of a seated photograph cut off at his lap; the trouser colour follows the undated colour alternate File:Surjith-6.JPG, which is not a generation input.",
+   "limitation": "A group photograph of 1280x960: his face is about 170 px wide, turned three-quarters, with dark lenses hiding his eyes and his mouth open in speech. It is the only free photograph found that is dated inside the window. The colour alternate below shows the same turban, beard and tinted glasses at higher resolution but cannot be dated more closely than late July 2003 to August 2008.",
+   "alternates": [
+    {
+     "role": "colour and detail alternate (undated)",
+     "commons_title": "File:Surjith-6.JPG",
+     "source_page_url": "https://commons.wikimedia.org/wiki/File:Surjith-6.JPG",
+     "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Surjith-6.JPG",
+     "image_original": {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/Surjith-6-original.JPG",
+      "bytes": 1527509,
+      "sha256": "85ef86db869e586634dd8e412da07881351bfb80ce9a6ae6ac53b3d1c2f68cc7",
+      "commons_sha1": "f58858f2bdf076602de617cef2550fad1185a142"
+     },
+     "width": 2136,
+     "height": 2848,
+     "creator": "Fotokannan",
+     "license": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+     "photograph_date": "Undated: between late July 2003 and 1 August 2008. Commons and EXIF state 2003-02-07 02:12:56, which is impossible for the camera model (Fujifilm FinePix S7000, announced 28 July 2003); the EXIF Photoshop DateTime 2001-01-27 also precedes it. Uploaded 2012-09-16.",
+     "people_in_frame": "Surjeet seated in a wooden armchair on an outdoor stage, cut off at the thighs; his right hand rests on his thigh and his left hand on the chair arm. A grey-haired head is partly visible behind his left shoulder (to the right of his beard, in front of the banner). Also in frame: part of a man with glasses at the left edge, the torso and arm of a man in a checked shirt at the right, a white-clad figure at the far right and a white cloth in the foreground, against a red banner with partly legible white lettering under a pale canopy.",
+     "appearance_observed": "Large white turban; thin silver oval wire-rimmed glasses with gray-tinted reflective lenses; small dark mole on his right cheek beside the nostril; full bushy white beard; pale beige fine-check shirt with a pen in the left chest pocket, silver metal-strap watch, charcoal-gray trousers, black belt with a rectangular silver buckle.",
+     "status": "not in the repository; was the preparer's primary, replaced at assembly by the dated in-window photograph; its prompt is kept in scratch as superseded-prompt-surjith6-harkishan-singh-surjeet-cartoon-1992-v1.txt (sha256 69c22d4c8a612209c091f017a72e43422576b18166cdccafbd4fdc21d6ea73d8)",
+     "provenance_note": "Full native camera resolution with camera EXIF intact, supporting the own-work claim. A sibling upload, File:Surjith-3.JPG, was deleted on 2023-02-22 ('No permission since 14 February 2023'); Surjith-6.JPG is live and untagged."
+    },
+    {
+     "role": "exactly dated alternate, 6 days after the window",
+     "commons_title": "File:Hssurjeet.jpg",
+     "source_page_url": "https://commons.wikimedia.org/wiki/File:Hssurjeet.jpg",
+     "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Hssurjeet.jpg",
+     "image_original": {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/Hssurjeet-original.jpg",
+      "bytes": 42316,
+      "sha256": "b0bd6214280296d7b64bd83407eac20eb4ca95baa2b626f6447c38c95071db33",
+      "commons_sha1": "0cc744ad61b27a3d5aa7a07d33b3d7d8eae8eff5"
+     },
+     "width": 490,
+     "height": 587,
+     "creator": "Soman",
+     "license": "Public domain",
+     "license_template": "PD-self",
+     "photograph_date": "2005-04-07 (EXIF DateTimeOriginal 2005:04:07 07:52:02, Minolta DiMAGE Xt; Commons Date field 2005)",
+     "why_not_primary": "Black-and-white press-conference frame (ANI and Jain TV microphones), 490x587, dark glasses, a microphone in front of his mouth, head lowered."
+    }
+   ],
+   "rejected_candidates": [
+    "File:Hssurjeet (cropped).jpg (Soman, 'Public domain', 284x349): a smaller crop of the 2005-04-07 alternate; same limits at lower resolution.",
+    "File:Cpmcongress1293.JPG, File:Cpmcongress1302.JPG, File:Cpmcongress1316.JPG ('CC BY 2.5', author 'Soman assumed', EXIF 7 April 2005): group press-conference frames from the CPI(M) 18th Congress, after the window. Not downloaded or inspected.",
+    "File:Surjith-3.JPG (Fotokannan, same 2012-09-16 upload batch as Surjith-6.JPG): deleted from Commons on 2023-02-22 ('No permission since 14 February 2023'); unavailable.",
+    "No US federal, EC/EP, Kremlin or other allowed-licence photograph of Surjeet dated 1992-2005 was found in Category:Harkishan Singh Surjeet. PIB / GODL-India material was not considered, because those licences are not on the allowed list."
+   ],
+   "visual_inspection_by_assembler": true,
+   "approved_source_license": true
+  },
+  {
+   "id": "lal-krishna-advani-2001",
+   "person_id": "lal_krishna_advani",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:IDF_Aid_Mission_to_India,_January_2001_(11047435913).jpg",
+   "commons_title": "File:IDF Aid Mission to India, January 2001 (11047435913).jpg",
+   "retrieved_at": "2026-10-02T12:44:33Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-idf-aid-mission-india-2001-11047435913.json",
+    "bytes": 13357,
+    "sha256": "54158e85cad21a081fc4cecc2f1de5dee11bf92f1d3420c359e5a25c0c684ef3",
+    "retrieved_at": "2026-10-02T12:45:25Z"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-revisions-idf-aid-mission-india-2001-11047435913.json",
+     "bytes": 3248,
+     "sha256": "b106e343e79b4079bebaad1c2d7a5b52ed202f401b22c63386bd1864928174a5",
+     "retrieved_at": "2026-10-02T13:00:22Z",
+     "content": "Commons revision history of the file page (ids, timestamps, users, comments), fetched by the assembler to pin the identification and licence history."
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-candidates-imageinfo.json",
+     "bytes": 59423,
+     "sha256": "34d79eeb5463e0483db24e65de1d3b37bd2aff92569d9795822c6da09f80fb83",
+     "content": "Commons API imageinfo for the candidate files (preparer)."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/IDF_Aid_Mission_to_India_January_2001_11047435913.original.jpg",
+    "bytes": 160687,
+    "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/IDF_Aid_Mission_to_India%2C_January_2001_%2811047435913%29.jpg",
+    "commons_sha1": "92e374876122a96f9727b2043a4a16ce219596db"
+   },
+   "upstream_source_url": "https://www.flickr.com/photos/idfonline/11047435913/",
+   "asset": "spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+   "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+   "bytes": 160687,
+   "asset_byte_identical_to_original": true,
+   "width": 1024,
+   "height": 765,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "2001-01 (Commons; the photograph itself is from about 29 January to 9 February 2001)",
+   "depiction_date": {
+    "kind": "month",
+    "value": "2001-01",
+    "probable_range": "2001-01-29 to 2001-02-09"
+   },
+   "date_precision": "Commons gives 2001-01, set by Geagea on 2021-05-17 (the 2016 upload said 2001), apparently from the mission's Flickr title 'IDF Aid Mission to India, January 2001'. The photograph shows the IDF field hospital in operation (tent interior, infant incubator). That hospital opened about five days after the Gujarat earthquake of 26 January 2001 and closed on 9 February 2001 (IFRC India/Gujarat Earthquake Situation Report 6, 6 February 2001, as read by the independent verifier; not saved locally), so the photograph dates from about 29 January to 9 February 2001 and may be from early February. He is 73 either way.",
+   "creator": "IDF Spokesperson's Unit",
+   "credit": "IDF Spokesperson's Unit, 'IDF Aid Mission to India, January 2001', late January or early February 2001; source: Flickr idfonline 11047435913; licence CC BY-SA 3.0 by VRTS permission ticket 2021051710001034; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source_license_statement": "Commons {{cc-by-sa-3.0}} with {{PermissionTicket|id=2021051710001034}} (Category: Items with VRTS permission confirmed); LicenseShortName 'CC BY-SA 3.0', UsageTerms 'Creative Commons Attribution-Share Alike 3.0' (unported). The Flickr page's own licence was NC: the Commons Flickr licence review failed on 2018-12-30 (Ronhjones, {{Unfree Flickr file|NC}}; revision history pinned in supporting_metadata). The CC BY-SA 3.0 rests on the copyright holder's VRTS permission, ticket 2021051710001034 (Wikimedia Israel / IDF Spokesperson's Unit, added by Geagea on 2021-05-17), not on Flickr.",
+   "rights_statement": "Retained source statement: CC BY-SA 3.0 (unported) granted by the copyright holder, the IDF Spokesperson's Unit, through VRTS ticket 2021051710001034. ShareAlike applies to the adapted cartoon.",
+   "identification_basis": "The IDF caption names no one. The Commons uploader FlickrWarrior identified him: the file was uploaded on 2016-05-16 as File:Lal Krishna Advani - Israel Defence Forces - India 2001.jpg (rev 196402459), he added Category:Lal Krishna Advani on 2016-05-28 (rev 197451488), Geagea renamed the file on 2021-05-17 (rev 560994746), and EarthDude renamed the category to L. K. Advani on 2026-03-11 (rev 1179565326). This agrees visually with the captioned State Department photograph of 16 March 2005 ('Condoleezza Rice meets L.K. Advani'). He was Union Home Minister at the time.",
+   "people_in_frame": "Advani is the central elderly man in a slate-blue closed-collar bandhgala coat, gesturing with an open right palm; the frame ends just below his hands, before the coat hem. Also in frame and excluded by the prompt: two IDF medical officers at right (one with a stethoscope, one with red-tinted glasses), Indian army officers and a turbaned officer behind him, a woman in a red head-covering at left, a transparent infant incubator and the tent interior.",
+   "age_gap_note": "Born 8 November 1927 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research). He is 73 in the photograph (about 29 January to 9 February 2001) and 67 to 78 across the requested window (1995-01-01 to 2005-12-31, exclusive). The photograph is inside the window, about six years after its start and five years before its end, so the prompt keeps him about 73. The frame ends just below his hands: the coat's hem length (drawn ending at mid-thigh), the trousers, the shoes and the standing full body are artistic extensions; the pen clipped to his breast pocket is omitted on purpose; the prompt draws him with lips closed or a slight smile, not mid-speech.",
+   "limitation": "Group photograph of 1024x765; his face is clear and frontal. The costume (slate-blue bandhgala) differs from his existing 1990-1995 art (cream kurta, white dhoti, sandals); Codex may prefer costume continuity. The in-window 2005 State Department alternate shows a white kurta and dhoti with a brown sleeveless jacket.",
+   "alternates": [
+    {
+     "role": "in-window alternate and costume evidence",
+     "commons_title": "File:Condoleezza Rice meets L.K. Advani, New Delhi, 2005.jpg",
+     "source_page_url": "https://commons.wikimedia.org/wiki/File:Condoleezza_Rice_meets_L.K._Advani,_New_Delhi,_2005.jpg",
+     "license": "Public domain",
+     "photograph_date": "2005-03-16",
+     "creator": "U.S. Department of State (no machine-readable author on Commons)",
+     "width": 600,
+     "height": 464,
+     "image_original": {
+      "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/alt_Condoleezza_Rice_meets_LK_Advani_New_Delhi_2005.original.jpg",
+      "bytes": 73013,
+      "sha256": "29c8ecaf8c960150bbe0aa0bce0e39c294898857aa990d2148e07534cab42691"
+     },
+     "note": "Qualifies by licence (PD US DOS) and is in the window, but Advani is seated small at right (face about 40 px). Commons flags it 'Images without source' and 'Media lacking author information'. Not copied into the repository."
+    }
+   ],
+   "rejected_candidates": [
+    "File:L. K. Advani.jpg (Public domain, PD US DOS, from state.gov events/secretary/2002/12241.htm): only 188x222 and no exact date on Commons.",
+    "File:Advaniji-Thengadiji.jpg (CC0, dated 2004-10-14 on Commons, 'Organizer Photographer Team'): 230x208 thumbnail; the CC0 rests on an uploader statement that the RSS weekly released it; weak provenance.",
+    "File:L K Advani in 2004.jpg and the PIB files in Categories 'L. K. Advani in 2003', 'in 2004' and 'in 2005' (e.g. the Outstanding Parliamentarian Award, 21 March 2005): GODL-India, not in FREE_LICENSES.",
+    "File:L.K. Advani.jpg (GODL-India, PMO/PIB, 2012) and File:Lalkrishna Advani.jpg (GODL-India, 8 Nov 2022): licence not allowed and far outside the window.",
+    "File:Lkadvani.jpg (Public domain, US State Department, 20 July 2009, with Hillary Clinton): qualifies but about 3.5 years after the window.",
+    "File:Lal Krishna Advani.jpg and File:Lal Krishna Advani 2008-12-4.jpg (CC BY 4.0, Kremlin.ru, 5 Dec 2008): after the window and tiny crops (213x170, 140x190).",
+    "File:LKAdvani.jpg and File:LKAdvani1.jpg (CC BY-SA 3.0, own work by Anoopan, 9 April 2011): after the window.",
+    "File:Robert M. Gates and L.K. Advani.jpg: Gates was Defense Secretary from December 2006, so after the window; not fetched.",
+    "File:L. K. Advani greets Hillary Clinton, New Delhi, 2009.jpg, the Al Jazeera English Flickr files and the 2013-2024 files: after the window."
+   ],
+   "visual_inspection_by_assembler": true,
+   "approved_source_license": true
+  },
+  {
+   "id": "prakash-karat-2013",
+   "person_id": "prakash_karat",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:PrakashKarat.jpg",
+   "commons_title": "File:PrakashKarat.jpg",
+   "retrieved_at": "2026-10-02T12:21:30Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/prakash_karat/commons-api-imageinfo.json",
+    "bytes": 3677,
+    "sha256": "be7c4daea60d8d8ae07020cbd060cee5e60c63c601c9b7d436aaf04103ab5392"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/in-cast/refs/prakash_karat/commons-file-page.html",
+    "bytes": 109055,
+    "sha256": "65929a9c1f2acbf3aef5c764521c212aa7d3a055aa8cabea688c21f92b3dead7"
+   },
+   "supporting_metadata": [],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/prakash_karat/original-prakashkarat-2013-03-16.jpg",
+    "bytes": 5069190,
+    "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/PrakashKarat.jpg",
+    "commons_sha1": "d629332be093456a064614669d075cd3f71e7fae",
+    "filename_note": "The date in this scratch filename is the unreliable camera stamp, not the photograph date."
+   },
+   "commons_upload": "2017-09-17T15:52:49Z by Erfanebrahimsait (UploadWizard, single file version)",
+   "asset": "spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+   "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+   "bytes": 5069190,
+   "asset_byte_identical_to_original": true,
+   "width": 5184,
+   "height": 3456,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "Undated: between 2013-03-21 and 2017-09-17 (the camera stamp 2013-03-16 19:41:05 is impossible for the camera model)",
+   "depiction_date": {
+    "kind": "range",
+    "earliest": "2013-03-21",
+    "latest": "2017-09-17",
+    "precision": "uncertain",
+    "unreliable_camera_stamp": "2013-03-16T19:41:05"
+   },
+   "date_precision": "The EXIF DateTimeOriginal 2013:03:16 19:41:05 comes from a Canon EOS 700D (lens EF-S55-250mm f/4-5.6 IS II), a model Canon announced only on 21 March 2013 and sold from about April 2013, and the photograph is in bright daylight, not after dark at 19:41; the camera clock was evidently not set. The Commons Date field and structured-data inception merely repeat the EXIF value (UploadWizard), so they do not confirm it. The photograph was taken no earlier than the camera's announcement (2013-03-21) and no later than the upload (2017-09-17). The year '2013' in the reference_id and asset filename is therefore unreliable, as France's '1994' for Mitterrand; Codex is asked to rule on naming (bytes and sha256 unchanged).",
+   "creator": "Erfanebrahimsait (Wikimedia Commons user), own work",
+   "credit": "Erfanebrahimsait, 'PrakashKarat.jpg' (undated; camera stamp 16 March 2013 unreliable; taken between 2013 and 2017), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_license_statement": "File page: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons Attribution-Share Alike 4.0 International'; API LicenseShortName 'CC BY-SA 4.0', License 'cc-by-sa-4.0'; categories CC-BY-SA-4.0, Self-published work. No personality-rights template on the page.",
+   "rights_statement": "Retained source statement: CC BY-SA 4.0, uploader's own work. The photograph serves only as the identity reference for an original cartoon; ShareAlike applies to the adaptation.",
+   "people_in_frame": "Karat alone as the subject, waist-up, standing smiling at the open door of a silver car, in a white short-sleeved shirt with a pen in the chest pocket; a uniformed guard is partly visible in a booth in the background (excluded by the prompt, as are the car, booth, yellow barrier, building and trees).",
+   "identity_check": "Commons category 'Prakash Karat' and structured-data depicts Prakash Karat; used in Karat infoboxes on several wikis. Visually consistent (silver-gray hair, rimless glasses, broad face, white short-sleeved shirt) with a 960x1280 thumbnail of File:Prakash Karat CPIM.jpg (Suthir, 29 May 2014 by EXIF, CC BY-SA 3.0), viewed for cross-checking only and not retained.",
+   "age_gap_note": "Born 7 February 1948 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research; the registry gives no birth date). He is 65 to 69 in the photograph (between 21 March 2013 and 17 September 2017) and 57 to 67 in the window (2005-04-30 to 2015-04-01, exclusive). The photograph may fall in the window's last two years or up to about 2.5 years after it ends. The prompt asks for a man of about 62, somewhat younger than the photograph, with fewer and shallower facial lines, keeping the same silver-gray hair, rimless glasses and broad face, and forbids inventing dark hair. The standing body, legs, light gray trousers, dark brown shoes and loose shirt hem are artistic extensions of a waist-up photograph.",
+   "limitation": "No exactly dated in-window photograph of comparable quality was found. File:Prakash Karat CPIM.jpg (Suthir, EXIF 29 May 2014, CC BY-SA 3.0) is inside the window but soft and mid-speech; it is the in-window alternate if Codex rejects the undated reference.",
+   "file_size_note": "5.07 MB original (5184x3456); copied unchanged, not resized.",
+   "rejected_candidates": [
+    "File:PrakashKarat cropped.jpg (1232x1759, CC BY-SA 4.0): crop derivative of the chosen original; the original is retained instead.",
+    "File:Prakash Karat CPIM.jpg (Suthir, 29 May 2014 by EXIF, CC BY-SA 3.0, 2448x3264): inside the window but soft focus, seated and mid-speech; used only as an identity cross-check via a thumbnail; the in-window alternate if Codex rejects the undated reference.",
+    "File:Prakash Karat with Kodiyri Balakrishnan.jpg (Sanu N, 2015-02-23, CC BY-SA 4.0, 2592x1728): two people in frame; the chosen file is a sharper solo photograph.",
+    "File:Prakash Karat.jpg (Soman, 2005, 'Public domain', 299x370), File:Prakashkarat.JPG (Soman, 2005, 'Public domain', 510x831) and File:Prakashkarat2.JPG (Soman, 2005, 'Public domain', 637x490): closer to the window start but small and dated by year only; not downloaded or verified. A possible early-window cross-check if Codex splits the window.",
+    "Audio files in Category:Prakash Karat (VOA pronunciation .ogg, Lingua Libre .wav): not photographs."
+   ],
+   "visual_inspection_by_assembler": false,
+   "approved_source_license": true
+  },
+  {
+   "id": "rajnath-singh-2013",
+   "person_id": "rajnath_singh",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Rajnath_Singh_at_Hunkar_Rally.jpg",
+   "commons_title": "File:Rajnath Singh at Hunkar Rally.jpg",
+   "retrieved_at": "2026-10-02T12:28:42Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/commons-api-imageinfo.json",
+    "bytes": 3843,
+    "sha256": "c0415f36ef00a2dc5a91fc486ea7fe872e1e31ce98ae1c8200143e1df088b7bb"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/commons-file-page.html",
+    "bytes": 93626,
+    "sha256": "7b94954ce49002ef09b43583a63be3b8a97d746fe4cb12a6aedf4d9655b77653"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/commons-api-imageinfo-parent-modi-at-hunkar-rally-in-patna.json",
+     "bytes": 4088,
+     "sha256": "7d5c4577c2b88a8bd9bd59112b58057037b4a82c4477c0506cdbf307b665a82f",
+     "content": "File:Modi at Hunkar Rally in Patna.jpg, the parent the crop was extracted from: 1024x638, uploaded by Flickr upload bot on 2013-10-31T12:52:42Z from https://www.flickr.com/photos/92359345@N07/10531858963, Commons sha1 4b4610f6602a49d3243882f113f4854bfc463704, CC BY-SA 2.0"
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/original-rajnath-singh-at-hunkar-rally-2013.jpg",
+    "bytes": 142836,
+    "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Rajnath_Singh_at_Hunkar_Rally.jpg",
+    "commons_sha1": "96b1cc4382085fa3b8b7d6fea1f152c437634e77"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+   "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+   "bytes": 142836,
+   "asset_byte_identical_to_original": true,
+   "width": 346,
+   "height": 638,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "2013-10-27 or 2013-10-28 (Commons states 28 October 2013 08:14:38, the Flickr date; the file has no camera EXIF; the Hunkar Rally in Patna was held on 27 October 2013, general knowledge)",
+   "depiction_date": {
+    "kind": "month",
+    "value": "2013-10",
+    "candidate_days": [
+     "2013-10-27",
+     "2013-10-28"
+    ]
+   },
+   "creator": "Narendra Modi's official Flickr account (narendramodiofficial, Flickr user 92359345@N07); the Commons Author and Attribution fields read 'Narendra Modi' and no individual photographer is named. Crop extracted by Commons user Vibhijain (29 November 2013) from 'Modi at Hunkar Rally in Patna.jpg', which the Flickr upload bot uploaded on 31 October 2013.",
+   "credit": "Narendra Modi (official Flickr account), 'Shri Modi at Hunkar Rally in Patna', Patna, October 2013; CC BY-SA 2.0; Commons crop 'Rajnath Singh at Hunkar Rally.jpg' of 'Modi at Hunkar Rally in Patna.jpg', via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "source_license_statement": "Creative Commons Attribution-Share Alike 2.0 Generic; Attribution: Narendra Modi. Commons says the file was originally posted to Flickr and uploaded with the Flickr upload bot on 31 October 2013, and that on that date it was confirmed to be licensed under the terms of the license indicated.",
+   "rights_statement": "CC BY-SA 2.0 from Narendra Modi's official Flickr account, confirmed at upload by the Flickr upload bot. The Flickr photo page (10531858963) returned HTTP 404 on 2026-10-02, so the current Flickr licence cannot be checked again, and the Commons upload-time confirmation is the retained evidence. The 404 response body was not kept because it contained IP-like strings. The photograph serves only as the identity reference for an original cartoon.",
+   "people_in_frame": "Rajnath Singh alone, waist up, on stage, right hand raised in a victory sign with a gold ring on the ring finger. Also in frame: a red stage backdrop, partial Devanagari lettering (top left), part of a party emblem (bottom left), a dark screen edge (bottom right) and a sliver of another person at the right edge. The prompt excludes all of these and the raised-arm pose.",
+   "appearance_observed": "Bald, domed crown with a few fine wisps; short, thin gray-black hair at the sides and back; fairly large ears; dark, fairly straight brows; dark brown, slightly hooded eyes; broad nose with a rounded tip; deep nasolabial lines; gentle closed-mouth smile; warm medium-brown complexion; clean shaven; no glasses. Charcoal-gray textured sleeveless Nehru-style waistcoat with small dark buttons and a gold-colored pen at the left chest, over a long-sleeved white kurta.",
+   "age_gap_note": "Born 10 July 1951 (party_leaders.json born field). Photographed on 27 or 28 October 2013, aged 62. The window runs from 31 December 2005 (age 54) to 9 July 2014, exclusive (age 62). The photograph is about 7 years 10 months after the window starts and about 8 months before it ends. The prompt asks for a man of about 58 to 60, slightly younger than the photograph. The standing body, lower kurta, white pyjama trousers, plain black shoes and lowered hands are artistic extensions of a waist-up photograph with a raised victory-sign arm.",
+   "limitation": "Small source image: 346x638, with the face about 100 px wide. The first term (2006-2009) relies on about 4 to 8 years of mild de-ageing, because no qualifying 2005-2009 photograph was found. Fallback: the public-domain US State Department photographs of 18 December 2019, about 5.5 years after the window.",
+   "rejected_candidates": [
+    "File:Ghanshyam Gupta Zaveri with Rajnath Singh in 2008.jpg (CC BY-SA 4.0, 'own work' by Editorranjitksharma, year-only 2008, 1280x1268): a phone reproduction of a printed photograph; the own-work claim cannot cover the unnamed original photographer. Rejected on provenance.",
+    "File:JRHU - Third Convocation.jpg (CC BY 3.0, 14 January 2011, 670x450): crowded stage; Rajnath Singh at most a tiny, partly hidden figure.",
+    "File:Modi at Hunkar Rally in Patna.jpg (CC BY-SA 2.0, 1024x638): the parent of the chosen crop; same pixels for him, but Narendra Modi and others are in frame. Kept only as supporting metadata.",
+    "File:Rajnath Singh 2.jpg (131x231), File:Rajnath Singh at Hunkar Rally 2 (cropped).jpg (209x204) and File:Rajnath Singh during BJP executive meet.jpg (63x130): same Modi Flickr source, too small.",
+    "CC BY-SA 2.0 group scenes from the Modi/PMO Flickr (2013-2014, 400-630 px wide): too small for a likeness. Not inspected visually.",
+    "File:President Barack Obama and First Lady Michelle Obama attend a reception hosted by President Mukherjee ... .jpg (White House, public domain, 2015-01-26): after the window and his presence unconfirmed.",
+    "US State Department 'India 2+2 Ministerial Dialogue' photographs (public domain, 2019-12-18) and DoD 191218-D-WA993-1773 (CC BY 2.0): about 5.5 years after the window; fallback only.",
+    "2015-2022 own-work CC BY-SA 4.0 or CC0 uploads: all after the window.",
+    "All GODL-India files (about 580 Commons hits, including the in-window 2007-07-19 Ministry of Parliamentary Affairs photograph captioned 'BJP President, Shri Rajnath Singh'): GODL-India is not in FREE_LICENSES.",
+    "Bangladesh PID public-domain photographs (July 2018) and Japanese MOD CC BY 4.0 photographs (2019): years after the window."
+   ],
+   "visual_inspection_by_assembler": false,
+   "approved_source_license": true
+  },
+  {
+   "id": "nitin-gadkari-2011",
+   "person_id": "nitin_gadkari",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_(BJP)_National_President,_Shri_Nitin_Gadkari_in_London,_19_July_2011._(5954466771).jpg",
+   "commons_title": "File:UK Foreign Secretary William Hague meeting Bharatiya Janata Party (BJP) National President, Shri Nitin Gadkari in London, 19 July 2011. (5954466771).jpg",
+   "retrieved_at": "2026-10-02T12:24:54Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/commons-api-hague-gadkari-20110719.json",
+    "bytes": 4549,
+    "sha256": "9d6fbc326a3bec4f3ad373d6470850b9548d1b1116907756bc5c02fa6561416a",
+    "retrieved_at": "2026-10-02T12:20:13Z"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/commons-file-page-hague-gadkari-20110719.html",
+    "bytes": 116417,
+    "sha256": "d7e9397a06c524cabb8896863fa3c7cfbb460bf850ebb48b2e841eaf792dcc21"
+   },
+   "supporting_metadata": [],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/Hague_Gadkari_20110719_5954466771.original.jpg",
+    "bytes": 790706,
+    "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_%28BJP%29_National_President%2C_Shri_Nitin_Gadkari_in_London%2C_19_July_2011._%285954466771%29.jpg",
+    "commons_sha1": "40415e62346978715aab9ee284bb7610f9be2fe1"
+   },
+   "original_source": "https://flickr.com/photos/foreignoffice/5954466771",
+   "asset": "spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+   "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+   "bytes": 790706,
+   "asset_byte_identical_to_original": true,
+   "width": 2136,
+   "height": 1424,
+   "mode": "RGB",
+   "format": "JPEG",
+   "photograph_date": "2011-07-19",
+   "depiction_date": {
+    "kind": "day",
+    "value": "2011-07-19"
+   },
+   "date_precision": "Commons date field '2011-07-19 17:39:32', the caption ('in London, 19 July 2011') and the file's EXIF DateTimeOriginal 2011:07:19 17:39:32 (Canon EOS 450D) all agree; the FCO Flickr page says 'Taken on July 19, 2011'.",
+   "creator": "Foreign and Commonwealth Office, United Kingdom",
+   "licensor": "Foreign and Commonwealth Office, United Kingdom",
+   "credit": "UK Foreign and Commonwealth Office, Foreign Secretary William Hague meeting BJP National President Nitin Gadkari in London, 19 July 2011 (Flickr 5954466771), Open Government Licence v1.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "Open Government Licence v1.0",
+   "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+   "source_license_statement": "OGL v1.0 (Commons LicenseShortName; UsageTerms 'Open Government License version 1.0'; Commons LicenseUrl http://NationalArchives.gov.uk/doc/open-government-licence/version/1/; license template {{FCDO}}). The pipeline's OGL route is used with the source-specific grant fields, as for the registered Tonga 2012 FCO reference.",
+   "rights_statement": "Retained source statement: Open Government Licence v1.0. Commons {{FCDO}}: 'This file comes from the Flickr stream of the Foreign, Commonwealth and Development Office and is copyrighted. Note : This permission only extends to content provided by the FCDO and does not include third-party content.' Commons records VRT permission ticket 2013061310007371 (category 'Items with VRTS permission confirmed'), the same ticket as the registered Tonga 2012 FCO reference. The author field is the FCO itself, so this is the FCO's own photograph, not third-party content. Uploaded 2014-04-13 by YiFeiBot from the FCO Flickr stream. The FCO Flickr page itself currently shows CC BY 2.0 for this photograph (checked once by the independent verifier on 2026-10-02, nothing saved), which is also in FREE_LICENSES and agrees with the OGL grant.",
+   "third_party_material": false,
+   "people_in_frame": "Two men standing side by side, about three-quarter length (cut at the upper thigh): William Hague on the left (dark suit, yellow tie) and Nitin Gadkari on the right (light beige-silver bandhgala), both facing the camera, in an FCO interior with a gilt-framed oil painting, patterned wallpaper, a framed notice, a striped armchair and a sofa. The prompt excludes Hague and the whole setting.",
+   "age_gap_note": "Born 27 May 1957 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research). He is 54 in this photograph of 19 July 2011, inside the window 2009-12-19 to 2013-01-23 (ages 52 to 55), so the prompt asks for no age adjustment. The trousers, shoes, lower legs and both hands are artistic extensions; a tiny pin beside his pen is omitted on purpose. The July 2011 heavy-set build stands for the whole window.",
+   "limitation": "One July 2011 appearance stands for the whole window. A rejected December 2012 portrait (File:Nitin Gadkari 1.JPG, provenance unverifiable) suggests a somewhat less full face late in the window; no free, verifiable late-2012 photograph supports a split.",
+   "alternates": [
+    {
+     "role": "qualifying alternate, 11 days before the window",
+     "commons_title": "File:Nitin Gadkari.jpg",
+     "source_page_url": "https://commons.wikimedia.org/wiki/File:Nitin_Gadkari.jpg",
+     "image_original": {
+      "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/Nitin_Gadkari.gppande.original.jpg",
+      "bytes": 125860,
+      "sha256": "54acb53309d20a0c86ad2e47052d5ab66eeddd31db41f2a3db451c868cff9615",
+      "commons_sha1": "3d3f664d7abc4318ea3cbf4764096b69aa2eb0bc"
+     },
+     "metadata": {
+      "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/commons-api-nitin-gadkari-jpg-gppande.json",
+      "bytes": 13298,
+      "sha256": "09d53732ce47edd85ae971e7fe1db76e33f0f7ffb0d0b2b275dfea6d5f311fda"
+     },
+     "width": 1000,
+     "height": 1500,
+     "photograph_date": "2009-12-08",
+     "creator": "Gppande",
+     "license": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+     "note": "Own work, {{self|cc-by-sa-3.0|GFDL}}; uploaded 2010-02-09 with Date=2009-12-08 (EXIF 2009:12:08 22:31:39); a later anonymous edit set a wrong 2014-06-01 date, now tagged {{wrong date}}. Informal grey knit polo, bystanders. Not copied into the repository."
+    }
+   ],
+   "rejected_candidates": [
+    "File:Nitin Gadkari 1.JPG and its crop: CC0 on Commons, EXIF 2012-12-11, inside the window, but 'Personally obtained by e-mail from Nitin Gadkari Himself'; the author field names the subject, the permission field is empty and there is no VRT ticket. A 500px thumbnail was viewed only for appearance comparison.",
+    "File:Nitin Gadkari.jpg (Gppande, CC BY-SA 3.0, 2009-12-08): qualifies; kept as the alternate.",
+    "File:Rajive Kumar, IAS with Natin Gadkari.jpg and two sibling files: PIB / Ministry of Road Transport works tagged CC BY 3.0 on Commons, mislicensed government photos, group shots, mostly 2014-2017.",
+    "All GODL-India files in Category:Nitin Gadkari and its subcategories: GODL-India is not in FREE_LICENSES.",
+    "File:Biplab Deb with Nitin Gadkari.png (CC BY 3.0 claimed, credited ETV Andhra Pradesh, 2018): TV still, after the window.",
+    "File:JIT College Building Inauguration.jpg (CC BY-SA 3.0, 2013-01-28): 5 days after the window's exclusive end; group photo.",
+    "Later CC BY-SA 2.0/4.0 and CC0 files (2013-2025): far outside the window and shared with other people.",
+    "File:BJP National President (5954466771).jpg: a redirect to the chosen FCO file."
+   ],
+   "visual_inspection_by_assembler": false,
+   "approved_source_license": true
+  },
+  {
+   "id": "sitaram-yechury-2019",
+   "person_id": "sitaram_yechury",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg",
+   "commons_title": "File:Sitaram Yechury at 2019 Hyderabad Book fair1 (cropped).jpg",
+   "retrieved_at": "2026-10-02T12:20:14Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/commons-api-imageinfo-Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_cropped.json",
+    "bytes": 2507,
+    "sha256": "6af614ad6452c436a79909f239735cdd7c299c6789fabc5683984ab68c8d27f8",
+    "retrieved_at": "2026-10-02T12:21:10Z"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/commons-file-page-Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_cropped.html",
+    "bytes": 109006,
+    "sha256": "8b1fa37ae65ca5c814e5be468137c6c71f561c8c8de98887710fc2dd336c77fe",
+    "retrieved_at": "2026-10-02T12:21:14Z",
+    "privacy_check": "no client IP; wgUserName null; 'geoIP' occurs only as a module name"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/batthini-imageinfo.json",
+     "bytes": 13936,
+     "sha256": "a30c22f3e579b38d2e5879499b7f4c8f6c80ea88eb46af79c739de0cebb707f2",
+     "content": "Commons API imageinfo for the crop, its parent, the sibling 19:02:53 frame, Amardeep-Sitaram.jpg and the Polish Chancellery file"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/candidates-imageinfo.json",
+     "bytes": 26753,
+     "sha256": "b49377c737c33864163148e68dbfffdf8454e0d833aba7594c29dda4e87d7c2f",
+     "content": "Commons API imageinfo for the charcoal drawing, the PID-BD Hasina meeting, the GODL-India Lokmat award and a remembrance-meet file"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/search-yechury.json",
+     "bytes": 12943,
+     "sha256": "69c476d72f9b537597c366c3143cd6868e5eba444935331c62651aaadf7bf623",
+     "content": "Commons File-namespace search 'Yechury' (34 hits)"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/jobs-2015-04-30-2024-09-12.json",
+     "bytes": 728772,
+     "sha256": "3cd56bd51dbdc1874b7ebbfaecc6eef9bcb5371b3c7d93692873925187d22d9d",
+     "content": "person_art_pipeline.py jobs --from 2015-04-30 --to 2024-09-12 output, confirming sitaram_yechury-e1e306607c4e"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/research-thumbs/fair1-1280.jpg",
+     "bytes": 158183,
+     "sha256": "c633328810889b72b586ba1496444620bf632c590642538e46c570f382bcb7e2",
+     "content": "research-only 1280px Commons thumbnail of the uncropped parent frame (19:03:11); not shipped, not an input"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/research-thumbs/fair-1280.jpg",
+     "bytes": 250912,
+     "sha256": "18f274b685be1e8e67378d0e6bcf5307e55a2bfe919abe5058c09245f154297a",
+     "content": "research-only 1280px Commons thumbnail of the wide stage frame (19:02:53), whose book-launch poster reads 'Book Launch: Dismantling Jammu and Kashmir by Sitaram Yechuri, 27 Dec 2019'; not shipped, not an input"
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg",
+    "bytes": 1422511,
+    "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_%28cropped%29.jpg",
+    "commons_sha1": "dc3353aba106997b5978b377148f0aaee1ef6d45"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+   "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+   "bytes": 1422511,
+   "asset_byte_identical_to_original": true,
+   "width": 1828,
+   "height": 2345,
+   "mode": "RGB",
+   "format": "JPEG",
+   "exif": "Canon EOS 80D; DateTimeOriginal 2019:12:28 19:03:11",
+   "photograph_date": "2019-12-27 or 2019-12-28 (sources disagree)",
+   "depiction_date": {
+    "kind": "month",
+    "value": "2019-12",
+    "candidate_days": [
+     "2019-12-27",
+     "2019-12-28"
+    ]
+   },
+   "date_precision": "Camera EXIF DateTimeOriginal 2019:12:28 19:03:11. The Commons date ('28 December 2019, 19:03:11') is derived from that EXIF value, so it is one source, not two. The book-launch poster in the photographer's wider frame of the same event (File:Sitaram Yechury at 2019 Hyderabad Book fair.jpg, 19:02:53) reads '27 Dec 2019'. Two web searches did not settle the day and no clock offset is proven, so both days are recorded.",
+   "creator": "Batthini Vinay Kumar Goud",
+   "credit": "Batthini Vinay Kumar Goud, 'Sitaram Yechury at 2019 Hyderabad Book fair1 (cropped).jpg', 27 or 28 December 2019, own work, CC0 1.0, via Wikimedia Commons; crop by the photographer (CropTool, 2 January 2025) of 'Sitaram Yechury at 2019 Hyderabad Book fair1.jpg'. Adapted for Spheres; no endorsement implied.",
+   "license": "CC0 1.0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source_license_statement": "Commons file page: 'I, the copyright holder of this work, hereby publish it under the following license: ... Creative Commons CC0 1.0 Universal Public Domain Dedication'. The API LicenseShortName is 'CC0' and LicenseUrl is http://creativecommons.org/publicdomain/zero/1.0/deed.en. Recorded as 'CC0 1.0', matching the existing CC0 record in person_portraits.json; both strings are in FREE_LICENSES.",
+   "rights_statement": "Own work by the photographer, dedicated to the public domain under CC0 1.0 on Commons. Not a government, agency or press photograph.",
+   "people_in_frame": "Yechury alone, head and chest, speaking. A microphone is at the right and a pink/purple stage banner with Telugu lettering and '33' is behind him; the prompt excludes both and the pink-violet stage-light cast. The parent frame also shows an acrylic podium and part of a seated man, which the crop removes.",
+   "clothing_observed": "white long-sleeved collared shirt with a faint fine check and a breast pocket, open collar, no tie",
+   "glasses_observed": "thin rectangular semi-rimless glasses: a slim silver metal bar along the top of each lens, rimless lower edges (independent verifier, full-resolution face crop)",
+   "age_gap_note": "Born 12 August 1952 (English Wikipedia lead, saved in D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json; general biographical knowledge, not C01 research; the registry gives only his death on 2024-09-12). The photograph of 27 or 28 December 2019 is 1,702 or 1,703 days after the window start (2015-04-30) and 1,720 or 1,719 days before its last day (2024-09-11), almost exactly at the midpoint and a few days before the leadership-production boundary 2020-01-01. He is 67 in the photo and 62 to 72 in the window. The prompt targets about 67 with the same silver hair and glasses. Codex may split at 2020-01-01; the same reference fits both halves.",
+   "limitation": "No CC0/CC BY/CC BY-SA photograph of him as the sole subject was found nearer the window ends. The in-window government photographs are GODL-India, which is not on the list, or a press handout.",
+   "rejected_candidates": [
+    "File:Sitaram Yechury at 2019 Hyderabad Book fair1.jpg (6000x4000, CC0): parent of the chosen crop, with podium, banner and a seated man in frame; the photographer's own single-subject crop was used.",
+    "File:Sitaram Yechury at 2019 Hyderabad Book fair.jpg (6000x4000, CC0, 19:02:53): wide stage shot with seven other people; viewed only as a research thumbnail.",
+    "File:Amardeep-Sitaram.jpg (2048x1365, CC BY-SA 4.0, 2016-08-25): its description names Amardeep Singh as the subject and does not establish Yechury as the main subject.",
+    "File:Polsko-Indyjskie Forum Biznesu (34146512972).jpg (996x663, CC0, 2017-04-27): small group meeting photograph; Yechury is not the subject.",
+    "File:Sheikh Hasina and Sitaram Yechury meeting at Ganabhaban Dhaka 2015-05-28 (PID-0059386).jpg (2400x1196, 'Public domain'): a Bangladesh Press Information Department handout with Sheikh Hasina as co-subject.",
+    "File:Comrade Sitaram Yechury.jpg (CC0, 2023): a charcoal drawing, not a photograph.",
+    "GODL-India files from the Vice President's Secretariat, Ministry of Parliamentary Affairs and PIB, 2007-2017: GODL-India is not in FREE_LICENSES.",
+    "File:Sitaram Yechury CPIM.jpg (CC BY-SA 3.0, 21 April 2014): a year before the window start.",
+    "2005-2011 files by Soman, Biswarup Ganguly and Kannan Shanmugam (CC BY 2.5 / CC BY 3.0 / CC BY-SA 3.0): 4 to 10 years before the window.",
+    "Category:Sitaram Yechury remembrance meet in Vijayawada 2024 files: taken after his death and showing other people."
+   ],
+   "visual_inspection_by_assembler": false,
+   "approved_source_license": true
+  },
+  {
+   "id": "jagat-prakash-nadda-2018",
+   "person_id": "jagat_prakash_nadda",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:JP_Nadda_(Minister_of_Health_and_Family_Welfare,_India)_at_End_TB_Campaign.jpg",
+   "commons_title": "File:JP Nadda (Minister of Health and Family Welfare, India) at End TB Campaign.jpg",
+   "retrieved_at": "2026-10-02T12:28:53Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/jagat_prakash_nadda/commons-api-endtb-20180926.json",
+    "bytes": 5732,
+    "sha256": "ee1135d4089095696b7f4f42e540c697155286eb888b7f1f4f75981135410ac1"
+   },
+   "supporting_metadata": [],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/jagat_prakash_nadda/JP-Nadda-at-End-TB-Campaign-20180926.jpg",
+    "bytes": 2657486,
+    "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/JP_Nadda_%28Minister_of_Health_and_Family_Welfare%2C_India%29_at_End_TB_Campaign.jpg",
+    "commons_sha1": "e209e517e0a74f4391241098d115c8c56d5fe1eb"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+   "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+   "bytes": 2657486,
+   "asset_byte_identical_to_original": true,
+   "width": 4912,
+   "height": 7360,
+   "mode": "RGB",
+   "format": "JPEG",
+   "content": "color photograph, full length, head to shoes",
+   "icc_profile": "Adobe RGB (1998), embedded (EXIF ColorSpace 65535, Photoshop CS4). Viewed without colour management the photograph looks desaturated; pass the bytes unchanged and do colour checks in a colour-managed view.",
+   "exif": {
+    "make": "NIKON CORPORATION",
+    "model": "NIKON D800",
+    "DateTimeOriginal": "2018:09:26 16:47:54",
+    "software": "Adobe Photoshop CS4 Windows",
+    "DateTime": "2018:09:27 09:31:43"
+   },
+   "uploaded": "2018-10-09T02:15:51Z by AbhiSuryawanshi",
+   "photograph_date": "2018-09-26",
+   "depiction_date": {
+    "kind": "day",
+    "value": "2018-09-26"
+   },
+   "creator": "AbhiSuryawanshi",
+   "credit": "AbhiSuryawanshi, 'JP Nadda (Minister of Health and Family Welfare, India) at End TB Campaign.jpg', 26 September 2018, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_license_statement": "{{self|cc-by-sa-4.0}}; Commons extmetadata LicenseShortName 'CC BY-SA 4.0', UsageTerms 'Creative Commons Attribution-Share Alike 4.0', Credit 'Own work'.",
+   "rights_statement": "CC BY-SA 4.0 International (not ported). Attribution and share-alike obligations apply and should be considered at registration.",
+   "people_in_frame": "Nadda alone, standing full length and frontal beside a large circular WHO/Stop TB 'End TB' Sustainable Development Goals wheel display in a lobby, in a dark aubergine-brown bandhgala suit with a magenta pocket square, pale pink shirt cuffs and brown shoes, a UN identity badge clipped to his jacket and his hands clasped at the waist. His right elbow touches the left frame edge. Nobody else is in frame.",
+   "complexion_observed": "Warm light-to-medium wheatish brown: lit cheek and forehead samples about #DFA48D to #E0AB92 in a colour-managed view (independent verifier).",
+   "location_note": "New York, UN Headquarters, during UNGA week (the 26 Sep 2018 UN high-level meeting on TB), inferred from the photographer's same-day series titles and the in-frame placard and wall sign; the file's own description names no place.",
+   "age_gap_note": "Born 2 December 1960: the reference file's own Commons description says 'Jagat Prakash Nadda (born 2 December 1960)' (saved in commons-api-endtb-20180926.json, sha256 ee1135d4089095696b7f4f42e540c697155286eb888b7f1f4f75981135410ac1); the registry identity source https://www.mohfw.gov.in/sites/default/files/jagatprakashnadda.pdf is another. General biographical knowledge, not C01 research. Photographed on 26 September 2018, aged 57, as Union Minister of Health and Family Welfare. The window is 2020-01-20 to 2026-01-20 (exclusive), when he is 59 to 65. The photograph is about 1 year 4 months before the window opens and about 7 years 4 months before it closes. The prompt asks for a man of about 59 to 65, only slightly older, with the same black hair, spectacles and black moustache. The 2018 clothing is kept for the whole window as an artistic choice (in-window public dress was often a white kurta-pyjama with a saffron stole). The changed hand pose is an artistic extension.",
+   "limitation": "Predates the window. No qualifying in-window photograph exists on Commons: nearly all Nadda files are GODL-India, and the in-window non-GODL files are rejected below.",
+   "rejected_candidates": [
+    "File:JP Nadda (Minister of Health and Family Welfare, India) 1.jpg and ... 2.jpg (AbhiSuryawanshi, 2018-09-26, CC BY-SA 4.0): same day and outfit, full length outside UN HQ, but the face is much smaller, with flags behind him (and in 2.jpg a seated bystander).",
+    "AbhiSuryawanshi podium, in-motion and delegation frames (2018-09-25 to 27, CC BY-SA 4.0): at a podium mid-speech, lower body hidden, or group shots.",
+    "File:Bangladesh Awami League delegation meeting Jagat Prakash Nadda in Delhi 2023-08-07 (PID-0014397).jpg: its Commons licence string is exactly 'Public domain' ({{PD-BDGov-PID}}, Press Information Department of Bangladesh), which is in FREE_LICENSES, and it is inside the window. Rejected on composition and resolution: a group of eight in a 2294x1325 frame with his face only about 60 px wide, unsuitable as an identity reference. Kept as evidence of in-window dress (white kurta-pyjama, saffron stole, black shoes).",
+    "File:Manvendra Singh Chauhan with BJP President JP Nadda Ji.jpg and its crop File:J.P. Nadda 2024.jpg: the Commons date equals the upload date; 'own work' claimed by a single-upload account on a party handout-style meeting photo; another man dominant.",
+    "File:Palode santhosh with nadda ji.jpg (CC BY 4.0, 2023-07-24): 'own work' claimed by a party-named account for a party induction photo; Nadda in near-profile; four people; low resolution.",
+    "File:Vinod Singh with BJP President Sri J. P. Nadda.jpg (CC0, 720x410): photo date unknown; unverified own work; two people; very small.",
+    "File:Nadda.jpg (CC0, 2025-08-19): described as 'The Diva of Thailand'. Not this person.",
+    "File:Dr Nirmal Singh at the New Delhi BJP HQ.jpg (CC BY-SA 4.0, 2020-01-20): depicts J&K BJP leaders, not Nadda as subject.",
+    "File:Nitish Kumar, Samrat Chaudhary, J.P Nadda, Mangal Pandey and other leaders of NDA ... .jpg (2024-09-06, Government of Bihar IPRD): licence 'Attribution' is not in FREE_LICENSES; group shot.",
+    "About 960 further Nadda files (PIB and other Government of India sources): licence 'GODL-India', not in FREE_LICENSES.",
+    "2015-2016 tiny or event-screen images and group shots (CC BY-SA 4.0): about 4 years before the window.",
+    "File:India Post Payment Bank - Union Minister JP Nadda Launches - Vijayawada.ogv (CC BY 3.0, ETV Andhra Pradesh): TV video footage, not a photograph.",
+    "File:Bilateral Meeting Health Minister Bangladesh India Sonargaon Hotel Dhaka (PID-0057215).jpg (2015-11-20, 'Public domain', Bangladesh PID): its licence string qualifies; rejected as a group shot about 4 years before the window.",
+    "File:LIfe Achievers award 2023.jpg (CC BY-SA 4.0): shows Mallika Nadda, not J. P. Nadda."
+   ],
+   "visual_inspection_by_assembler": false,
+   "approved_source_license": true
+  },
+  {
+   "id": "m-a-baby-2026",
+   "person_id": "m_a_baby",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:MA_Baby_at_Kollam_2026_18.jpg",
+   "commons_title": "File:MA Baby at Kollam 2026 18.jpg",
+   "retrieved_at": "2026-10-02T12:25:49Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/api-imageinfo-ma-baby-at-kollam-2026-18.json",
+    "bytes": 4586,
+    "sha256": "17f63680052e38023a62235a5e26a1393b5d2b41e3dd55caf7f8eddaf9395ad9",
+    "retrieved_at": "2026-10-02T12:26:08Z"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/filepage-ma-baby-at-kollam-2026-18.html",
+    "bytes": 106895,
+    "sha256": "e22567ebab961e76c6b3013c4f5f2c90e0e9ddacfce47f9d299c2b7535c11978",
+    "retrieved_at": "2026-10-02T12:25:54Z"
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/candidates-imageinfo.json",
+     "bytes": 30062,
+     "sha256": "ea8de32a9b64a1291bae4484425c4266ccd24a68d92c45f74500b4aab4e82274",
+     "content": "Commons API imageinfo for the eight in-window candidates (Kollam reception 2025-04-10 frames 1-6; Kollam 2026 frames 7 and 18)"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/wikidata-Q12053082-P569.json",
+     "bytes": 732,
+     "sha256": "4a5d974cef677d1de569a09f87022c03a3989b59d6db197ff9c0c7c302e8996f",
+     "content": "Wikidata Q12053082 P569 date of birth +1954-04-05 (reference: imported from Wikipedia); general biographical knowledge, not C01 research"
+    },
+    {
+     "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/enwiki-m-a-baby-intro.json",
+     "bytes": 993,
+     "sha256": "222e7806221d158d8f950bff0596d15c9d2333c92c202708dacb6be3a63dcc75",
+     "content": "English Wikipedia intro extract and Wikidata item id (Q12053082) for M. A. Baby"
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/m-a-baby-2026-fotokannan-kollam-18-original.jpg",
+    "bytes": 8126087,
+    "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/MA_Baby_at_Kollam_2026_18.jpg",
+    "commons_sha1": "7a5a1fc23b244347fd06f488ce65e166e15a637f"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+   "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+   "bytes": 8126087,
+   "asset_byte_identical_to_original": true,
+   "width": 6000,
+   "height": 4000,
+   "mode": "RGB",
+   "format": "JPEG",
+   "exif_orientation": 1,
+   "photograph_date": "2026-07-06",
+   "depiction_date": {
+    "kind": "day",
+    "value": "2026-07-06"
+   },
+   "photograph_date_basis": "Commons date field '2026-07-06 19:00:11'; EXIF DateTimeOriginal 2026:07:06 19:00:40 (Canon EOS 750D); the event banner visible in sibling frames 7 and 21 reads 2026 July 6. Same day; only the seconds differ (19:00:11 on the description page, a value frame 7 shares, so probably set once for the upload batch; 19:00:40 in the camera EXIF).",
+   "creator": "Fotokannan",
+   "credit": "Fotokannan, 'MA Baby at Kollam 2026 18.jpg' (6 July 2026, Kadammanitta kavitha puraskaram event, Kollam), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_license_statement": "Wikitext {{self|cc-by-sa-4.0}}, source {{own}}, author [[User:Fotokannan|Fotokannan]]; extmetadata LicenseShortName exactly 'CC BY-SA 4.0', LicenseUrl https://creativecommons.org/licenses/by-sa/4.0, UsageTerms 'Creative Commons Attribution-Share Alike 4.0'. The EXIF Copyright field '24/03/2021' is a camera setting artifact, not a rights statement.",
+   "rights_statement": "Retained source statement: CC BY-SA 4.0, own work of the Commons user Fotokannan. Not a government, agency or press photograph. ShareAlike applies to the adapted cartoon.",
+   "people_in_frame": "M. A. Baby alone, head and shoulders, three-quarter view facing right, speaking with lips parted at a microphone; a blurred poster portrait of another man and a gray backdrop behind him. The prompt excludes the microphone, poster and backdrop and draws his lips closed.",
+   "identity_confirmation": "Commons description 'MA Baby at Kadammanitta kavitha puraskaram event July 2026', in Category:M. A. Baby. The same face (bald crown, white side hair, full white beard, rectangular dark-framed glasses) is on the 10 April 2025 'CPIM General Secretary M.A. Baby reception' banners (Kollam frames 2 and 5) and on the man walking at centre in Kollam frames 3 and 4. The 6 July 2026 event banner in sibling frames 7 and 21 names him.",
+   "age_gap_note": "No age gap. The photograph (6 July 2026) is inside the requested window, 2025-04-06 to 2026-09-08 (end exclusive): about fifteen months after the start and two months before the end. Born 5 April 1954 (Wikidata Q12053082, general biographical knowledge; not C01 research; the registry gives no birth date), he is 72 in the photograph and 71 to 72 across the window, so the prompt asks for no age adjustment.",
+   "clothing_basis": "Image 2 shows only a white collared shirt. The full-length white mundu and untucked shirt follow Fotokannan's in-window Kollam reception frames 3 and 4 (10 April 2025, CC BY-SA 4.0; not a render input). The sandals are an artistic choice: his footwear is not visible in any frame examined.",
+   "file_size_note": "8.13 MB original (6000x4000), copied unchanged.",
+   "rejected_candidates": [
+    "File:M.A. Baby CPM General secretary reception at Kollam 1.jpg, 2.jpg, 5.jpg and 6.jpg (Fotokannan, 2025-04-10, CC BY-SA 4.0): crowd, banners, lectern or audience; Baby small or not the person in frame.",
+    "File:M.A. Baby CPM General secretary reception at Kollam 3.jpg and 4.jpg (Fotokannan, 2025-04-10, CC BY-SA 4.0): in the window and show him walking full length in a white shirt and mundu, but his face is small among other older bearded or bald men. Kept as clothing evidence; 4.jpg is the first in-window alternate if a full-length reference is wanted.",
+    "File:MA Baby and P K Gopi at Kollam 2026 7.jpg (Fotokannan, 2026-07-06, CC BY-SA 4.0): good frontal face, but the poet P. K. Gopi sits prominently beside him. Second alternate.",
+    "File:P K Gopi at Kollam 2026 21.jpg and 23.jpg (Fotokannan, 2026-07-06): stage group scene or not examined.",
+    "File:M.A. Baby at/speaking at the 35th Vijayawada Book Festival.jpg (CC BY 4.0, 2025-01-07): about three months before the window.",
+    "Files from 2004-2021: four or more years before the window.",
+    "File:M A Baby.jpg (ldfkeralam.org, 240x310): licence 'CC BY-SA 2.5 in' is a ported licence, not on FREE_LICENSES; also tiny."
+   ],
+   "visual_inspection_by_assembler": false,
+   "approved_source_license": true
+  }
+ ],
+ "source_ledger": {
+  "evidence_directory": "D:/spheres-scratch/in-cast/refs",
+  "status": "original_retention_ledger",
+  "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+  "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+  "downloads": [
+   {
+    "reference_id": "harkishan-singh-surjeet-2005",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/Bardhanhss-original.jpg",
+     "bytes": 123462,
+     "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Bardhanhss.jpg",
+     "commons_sha1": "8194609829dc82b7818779cfe78dea83bc176d62"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Bardhanhss.json",
+     "bytes": 5400,
+     "sha256": "638734215b5be075b8a32a784ecc23d27dec29407aa62e6a42f7c80125187604",
+     "retrieved_at": "2026-10-02T12:56:01Z",
+     "content": "Commons API imageinfo (url, size, sha1, extmetadata, commonmetadata incl. camera EXIF), latest revision wikitext and categories."
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/filepage-Bardhanhss.html",
+     "bytes": 103736,
+     "sha256": "46b2252f06b889af6fd7fb2c163fa0c3976164cf4ec75ad629f417452f94abe7",
+     "retrieved_at": "2026-10-02T12:59:23Z",
+     "privacy_check": "no client IP; wgUserName null; geoIP occurs only as a module name"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Surjith-6.json",
+      "bytes": 4131,
+      "sha256": "d0516787edb13e42553eb6f5cdbce0056f8d1acf674888d3a3c1da9c6ac06662",
+      "content": "Commons API imageinfo of the colour alternate File:Surjith-6.JPG (preparer, 2026-10-02T12:21:04Z)."
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/filepage-Surjith-6.html",
+      "bytes": 124128,
+      "sha256": "52733f90b6a4220c10f18a161d79c66d734eb80114eeb477b1fae546fae60aa8",
+      "content": "Commons file page of File:Surjith-6.JPG (preparer)."
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Hssurjeet.json",
+      "bytes": 5700,
+      "sha256": "4ad1dd6d5d7faade0e38f2860ee050a88cb1db74fa40f9a7af719985c7ad2cae",
+      "content": "Commons API imageinfo of the exactly dated alternate File:Hssurjeet.jpg (same uploader, same camera model; EXIF 2005-04-07 07:52:02)."
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-uploadlog-Fotokannan-20120916.json",
+      "bytes": 519,
+      "sha256": "845f3c2342c49f96e7c31591ff27b47f53df6535e2577865f91e8aabb244c934",
+      "content": "Fotokannan upload log for 2012-09-16 08:00-12:00Z: Surjith-6.JPG and Surjith-3.JPG at 10:14:37Z."
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Surjith-3.json",
+      "bytes": 117,
+      "sha256": "40f8628750f4135bfec06dd36bb66bf1160a92905458dcb5b2e12ac4746fa878",
+      "content": "File:Surjith-3.JPG is missing on Commons."
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-log-Surjith-3.json",
+      "bytes": 736,
+      "sha256": "493b0c86166a0d0cfd80ba5f0d7d394fa0bc745f5bfd1eba2def315fe27fea48",
+      "content": "Surjith-3.JPG deleted 2023-02-22T04:46:21Z by Krd: 'No permission since 14 February 2023'."
+     }
+    ]
+   },
+   {
+    "reference_id": "lal-krishna-advani-2001",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/IDF_Aid_Mission_to_India_January_2001_11047435913.original.jpg",
+     "bytes": 160687,
+     "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/IDF_Aid_Mission_to_India%2C_January_2001_%2811047435913%29.jpg",
+     "commons_sha1": "92e374876122a96f9727b2043a4a16ce219596db"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-idf-aid-mission-india-2001-11047435913.json",
+     "bytes": 13357,
+     "sha256": "54158e85cad21a081fc4cecc2f1de5dee11bf92f1d3420c359e5a25c0c684ef3",
+     "retrieved_at": "2026-10-02T12:45:25Z"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-revisions-idf-aid-mission-india-2001-11047435913.json",
+      "bytes": 3248,
+      "sha256": "b106e343e79b4079bebaad1c2d7a5b52ed202f401b22c63386bd1864928174a5",
+      "retrieved_at": "2026-10-02T13:00:22Z",
+      "content": "Commons revision history of the file page (ids, timestamps, users, comments), fetched by the assembler to pin the identification and licence history."
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-candidates-imageinfo.json",
+      "bytes": 59423,
+      "sha256": "34d79eeb5463e0483db24e65de1d3b37bd2aff92569d9795822c6da09f80fb83",
+      "content": "Commons API imageinfo for the candidate files (preparer)."
+     }
+    ]
+   },
+   {
+    "reference_id": "prakash-karat-2013",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/prakash_karat/original-prakashkarat-2013-03-16.jpg",
+     "bytes": 5069190,
+     "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/PrakashKarat.jpg",
+     "commons_sha1": "d629332be093456a064614669d075cd3f71e7fae",
+     "filename_note": "The date in this scratch filename is the unreliable camera stamp, not the photograph date."
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/prakash_karat/commons-api-imageinfo.json",
+     "bytes": 3677,
+     "sha256": "be7c4daea60d8d8ae07020cbd060cee5e60c63c601c9b7d436aaf04103ab5392"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/prakash_karat/commons-file-page.html",
+     "bytes": 109055,
+     "sha256": "65929a9c1f2acbf3aef5c764521c212aa7d3a055aa8cabea688c21f92b3dead7"
+    },
+    "supporting": []
+   },
+   {
+    "reference_id": "rajnath-singh-2013",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/original-rajnath-singh-at-hunkar-rally-2013.jpg",
+     "bytes": 142836,
+     "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Rajnath_Singh_at_Hunkar_Rally.jpg",
+     "commons_sha1": "96b1cc4382085fa3b8b7d6fea1f152c437634e77"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/commons-api-imageinfo.json",
+     "bytes": 3843,
+     "sha256": "c0415f36ef00a2dc5a91fc486ea7fe872e1e31ce98ae1c8200143e1df088b7bb"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/commons-file-page.html",
+     "bytes": 93626,
+     "sha256": "7b94954ce49002ef09b43583a63be3b8a97d746fe4cb12a6aedf4d9655b77653"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/rajnath_singh/commons-api-imageinfo-parent-modi-at-hunkar-rally-in-patna.json",
+      "bytes": 4088,
+      "sha256": "7d5c4577c2b88a8bd9bd59112b58057037b4a82c4477c0506cdbf307b665a82f",
+      "content": "File:Modi at Hunkar Rally in Patna.jpg, the parent the crop was extracted from: 1024x638, uploaded by Flickr upload bot on 2013-10-31T12:52:42Z from https://www.flickr.com/photos/92359345@N07/10531858963, Commons sha1 4b4610f6602a49d3243882f113f4854bfc463704, CC BY-SA 2.0"
+     }
+    ]
+   },
+   {
+    "reference_id": "nitin-gadkari-2011",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/Hague_Gadkari_20110719_5954466771.original.jpg",
+     "bytes": 790706,
+     "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_%28BJP%29_National_President%2C_Shri_Nitin_Gadkari_in_London%2C_19_July_2011._%285954466771%29.jpg",
+     "commons_sha1": "40415e62346978715aab9ee284bb7610f9be2fe1"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/commons-api-hague-gadkari-20110719.json",
+     "bytes": 4549,
+     "sha256": "9d6fbc326a3bec4f3ad373d6470850b9548d1b1116907756bc5c02fa6561416a",
+     "retrieved_at": "2026-10-02T12:20:13Z"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/nitin_gadkari/commons-file-page-hague-gadkari-20110719.html",
+     "bytes": 116417,
+     "sha256": "d7e9397a06c524cabb8896863fa3c7cfbb460bf850ebb48b2e841eaf792dcc21"
+    },
+    "supporting": []
+   },
+   {
+    "reference_id": "sitaram-yechury-2019",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg",
+     "bytes": 1422511,
+     "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_%28cropped%29.jpg",
+     "commons_sha1": "dc3353aba106997b5978b377148f0aaee1ef6d45"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/commons-api-imageinfo-Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_cropped.json",
+     "bytes": 2507,
+     "sha256": "6af614ad6452c436a79909f239735cdd7c299c6789fabc5683984ab68c8d27f8",
+     "retrieved_at": "2026-10-02T12:21:10Z"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/commons-file-page-Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_cropped.html",
+     "bytes": 109006,
+     "sha256": "8b1fa37ae65ca5c814e5be468137c6c71f561c8c8de98887710fc2dd336c77fe",
+     "retrieved_at": "2026-10-02T12:21:14Z",
+     "privacy_check": "no client IP; wgUserName null; 'geoIP' occurs only as a module name"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/batthini-imageinfo.json",
+      "bytes": 13936,
+      "sha256": "a30c22f3e579b38d2e5879499b7f4c8f6c80ea88eb46af79c739de0cebb707f2",
+      "content": "Commons API imageinfo for the crop, its parent, the sibling 19:02:53 frame, Amardeep-Sitaram.jpg and the Polish Chancellery file"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/candidates-imageinfo.json",
+      "bytes": 26753,
+      "sha256": "b49377c737c33864163148e68dbfffdf8454e0d833aba7594c29dda4e87d7c2f",
+      "content": "Commons API imageinfo for the charcoal drawing, the PID-BD Hasina meeting, the GODL-India Lokmat award and a remembrance-meet file"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/search-yechury.json",
+      "bytes": 12943,
+      "sha256": "69c476d72f9b537597c366c3143cd6868e5eba444935331c62651aaadf7bf623",
+      "content": "Commons File-namespace search 'Yechury' (34 hits)"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/jobs-2015-04-30-2024-09-12.json",
+      "bytes": 728772,
+      "sha256": "3cd56bd51dbdc1874b7ebbfaecc6eef9bcb5371b3c7d93692873925187d22d9d",
+      "content": "person_art_pipeline.py jobs --from 2015-04-30 --to 2024-09-12 output, confirming sitaram_yechury-e1e306607c4e"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/research-thumbs/fair1-1280.jpg",
+      "bytes": 158183,
+      "sha256": "c633328810889b72b586ba1496444620bf632c590642538e46c570f382bcb7e2",
+      "content": "research-only 1280px Commons thumbnail of the uncropped parent frame (19:03:11); not shipped, not an input"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/sitaram_yechury/research-thumbs/fair-1280.jpg",
+      "bytes": 250912,
+      "sha256": "18f274b685be1e8e67378d0e6bcf5307e55a2bfe919abe5058c09245f154297a",
+      "content": "research-only 1280px Commons thumbnail of the wide stage frame (19:02:53), whose book-launch poster reads 'Book Launch: Dismantling Jammu and Kashmir by Sitaram Yechuri, 27 Dec 2019'; not shipped, not an input"
+     }
+    ]
+   },
+   {
+    "reference_id": "jagat-prakash-nadda-2018",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/jagat_prakash_nadda/JP-Nadda-at-End-TB-Campaign-20180926.jpg",
+     "bytes": 2657486,
+     "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/JP_Nadda_%28Minister_of_Health_and_Family_Welfare%2C_India%29_at_End_TB_Campaign.jpg",
+     "commons_sha1": "e209e517e0a74f4391241098d115c8c56d5fe1eb"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/jagat_prakash_nadda/commons-api-endtb-20180926.json",
+     "bytes": 5732,
+     "sha256": "ee1135d4089095696b7f4f42e540c697155286eb888b7f1f4f75981135410ac1"
+    },
+    "supporting": []
+   },
+   {
+    "reference_id": "m-a-baby-2026",
+    "image": {
+     "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/m-a-baby-2026-fotokannan-kollam-18-original.jpg",
+     "bytes": 8126087,
+     "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/MA_Baby_at_Kollam_2026_18.jpg",
+     "commons_sha1": "7a5a1fc23b244347fd06f488ce65e166e15a637f"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/api-imageinfo-ma-baby-at-kollam-2026-18.json",
+     "bytes": 4586,
+     "sha256": "17f63680052e38023a62235a5e26a1393b5d2b41e3dd55caf7f8eddaf9395ad9",
+     "retrieved_at": "2026-10-02T12:26:08Z"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/filepage-ma-baby-at-kollam-2026-18.html",
+     "bytes": 106895,
+     "sha256": "e22567ebab961e76c6b3013c4f5f2c90e0e9ddacfce47f9d299c2b7535c11978",
+     "retrieved_at": "2026-10-02T12:25:54Z"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/candidates-imageinfo.json",
+      "bytes": 30062,
+      "sha256": "ea8de32a9b64a1291bae4484425c4266ccd24a68d92c45f74500b4aab4e82274",
+      "content": "Commons API imageinfo for the eight in-window candidates (Kollam reception 2025-04-10 frames 1-6; Kollam 2026 frames 7 and 18)"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/wikidata-Q12053082-P569.json",
+      "bytes": 732,
+      "sha256": "4a5d974cef677d1de569a09f87022c03a3989b59d6db197ff9c0c7c302e8996f",
+      "content": "Wikidata Q12053082 P569 date of birth +1954-04-05 (reference: imported from Wikipedia); general biographical knowledge, not C01 research"
+     },
+     {
+      "path": "D:/spheres-scratch/in-cast/refs/m_a_baby/enwiki-m-a-baby-intro.json",
+      "bytes": 993,
+      "sha256": "222e7806221d158d8f950bff0596d15c9d2333c92c202708dacb6be3a63dcc75",
+      "content": "English Wikipedia intro extract and Wikidata item id (Q12053082) for M. A. Baby"
+     }
+    ]
+   }
+  ],
+  "assembler_requests": [
+   {
+    "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/api-imageinfo-Bardhanhss.json",
+    "bytes": 5400,
+    "sha256": "638734215b5be075b8a32a784ecc23d27dec29407aa62e6a42f7c80125187604",
+    "url": "https://commons.wikimedia.org/w/api.php (File:Bardhanhss.jpg imageinfo, revisions, categories)",
+    "status": 200
+   },
+   {
+    "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/Bardhanhss-original.jpg",
+    "bytes": 123462,
+    "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Bardhanhss.jpg",
+    "status": 200
+   },
+   {
+    "path": "D:/spheres-scratch/in-cast/refs/harkishan_singh_surjeet/filepage-Bardhanhss.html",
+    "bytes": 103736,
+    "sha256": "46b2252f06b889af6fd7fb2c163fa0c3976164cf4ec75ad629f417452f94abe7",
+    "url": "https://commons.wikimedia.org/wiki/File:Bardhanhss.jpg",
+    "status": 200
+   },
+   {
+    "path": "D:/spheres-scratch/in-cast/refs/lal_krishna_advani/commons-api-revisions-idf-aid-mission-india-2001-11047435913.json",
+    "bytes": 3248,
+    "sha256": "b106e343e79b4079bebaad1c2d7a5b52ed202f401b22c63386bd1864928174a5",
+    "url": "https://commons.wikimedia.org/w/api.php (revision history of the Advani reference)",
+    "status": 200
+   },
+   {
+    "path": "D:/spheres-scratch/in-cast/assemble/enwiki-birthdates-intro.json",
+    "bytes": 2278,
+    "sha256": "56aa33faa111c53952a8dd70ccb5d31d7662bef94251115a7c7f1d8eeb6b4022",
+    "url": "https://en.wikipedia.org/w/api.php (lead extracts and Wikidata ids for Surjeet, Advani, Karat, Gadkari, Yechury)",
+    "status": 200
+   }
+  ],
+  "access_limits": [
+   "Wikimedia Commons and upload.wikimedia.org returned HTTP 429 several times during preparation (shared IP with parallel agents). Requests were made one at a time with back-offs of 20 to 480 seconds; nothing was bypassed, and 429 bodies were deleted unsaved because they contain the client IP.",
+   "The Flickr photo page of the Rajnath Singh reference returned HTTP 404 on 2026-10-02; its body was deleted unsaved (IP-like strings).",
+   "The verifiers' single checks of the FCO Flickr page (Gadkari), the apbjp.org download page (Shah) and the IFRC situation report (Advani) were read without saving.",
+   "The assembler made five further single requests on 2026-10-02 (listed in assembler_requests); all returned HTTP 200."
+  ],
+  "not_listed": "Search results, candidate thumbnails and view crops made by the preparers and the assembler (for example harkishan_singh_surjeet/view/, rajnath_singh/candidates/, m_a_baby/selection-thumbs/) are research aids only and are not ledgered; rejected candidates retained as alternates are cited with their sha256 where relevant. No HTTP header capture is kept."
+ }
+}

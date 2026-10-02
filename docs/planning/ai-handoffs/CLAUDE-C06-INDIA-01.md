@@ -1,6 +1,6 @@
 # CLAUDE-C06-INDIA-01: India cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **claimed** (2 October 2026; in progress, not complete). Parent: C06 (India country cast), with
+Owner: Claude. State: **awaiting Codex render** (2 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (India country cast), with
 C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: the user asked on 1 October 2026 to continue the cast work in parallel after the France, Japan, Brazil and South
@@ -189,3 +189,86 @@ Inputs at claim (sha256 of the committed bytes at `2fd186d6`):
 
 Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --check`; `leadership_production.py check`;
 `campaign_census.py --check`; `python -m unittest discover -s tools/avatars`; `workboard.py --check`; `git diff --check`.
+
+## Preparation
+
+Batch 1 (`IN-CAST-B01`) was prepared on 2 October 2026. Each person had one preparation agent and one independent
+verification agent; Claude assembled the results, fixed the verifiers' mechanical findings, replaced one reference with a
+verifier-identified in-window photograph and excluded one person. No image was generated, edited or labelled. The next
+step is Codex's render:
+[render request](../../campaign-certification/C06/production/india/render-request-batch-01.md). The
+[identity review](../../campaign-certification/C06/production/india/identity-review-batch-01.json) and
+[README](../../campaign-certification/C06/production/india/README.md) carry the observations, references, exclusions
+and job IDs.
+
+In (eight renders: seven primary people and reserve 1, promoted because `amit_shah` was excluded):
+
+| person_id | likeness reference (photograph date, licence) | prompt |
+|---|---|---|
+| harkishan_singh_surjeet | Soman, CPI 19th Party Congress dais, Chandigarh, 28 or 29 Mar 2005; CC BY 2.5 | `harkishan-singh-surjeet-cartoon-1992-v1.txt` |
+| lal_krishna_advani | IDF Spokesperson's Unit, field hospital after the Gujarat earthquake, about 29 Jan to 9 Feb 2001 (Commons 2001-01); CC BY-SA 3.0 by VRTS permission | `lal-krishna-advani-cartoon-1995-v1.txt` |
+| prakash_karat | Erfanebrahimsait, undated between 21 Mar 2013 and 17 Sep 2017 (camera stamp 16 Mar 2013 impossible); CC BY-SA 4.0 | `prakash-karat-cartoon-2005-v1.txt` |
+| rajnath_singh | Narendra Modi official Flickr, Hunkar Rally, Patna, 27 or 28 Oct 2013; CC BY-SA 2.0 | `rajnath-singh-cartoon-2005-v1.txt` |
+| nitin_gadkari | UK FCO, London, 19 Jul 2011; Open Government Licence v1.0 (Flickr page now CC BY 2.0) | `nitin-gadkari-cartoon-2009-v1.txt` |
+| sitaram_yechury | Batthini Vinay Kumar Goud, Hyderabad Book Fair, 27 or 28 Dec 2019; CC0 1.0 | `sitaram-yechury-cartoon-2015-v1.txt` |
+| jagat_prakash_nadda | AbhiSuryawanshi, New York, 26 Sep 2018 (16 months before the window); CC BY-SA 4.0 | `jagat-prakash-nadda-cartoon-2020-v1.txt` |
+| m_a_baby (reserve, promoted) | Fotokannan, Kollam, 6 Jul 2026; CC BY-SA 4.0 | `m-a-baby-cartoon-2025-v1.txt` |
+
+Excluded and why:
+- `amit_shah` (primary): excluded at assembly. His only usable in-window reference, File:Pic of Amit Shah IMG 9161.jpg
+  (Duggempudi Ravinder Reddy, 30 Sep 2016, CC BY-SA 4.0, own work, no VRT ticket), is very probably from a commissioned
+  BJP portrait session: the verifier found 3648x5472 sibling frames of the same session on BJP Andhra Pradesh's
+  "Amit Shah HD Pics" download page (uploaded 2016/10). The own-work licence therefore cannot be relied on (Indian
+  Copyright Act s.17(b)), and the file is close to the agency/press rejection. The VRT-confirmed alternatives show only a
+  small, lowered face, and a reference switch is not a mechanical fix. The copied reference and prompt were deleted
+  before any commit; the jobs `amit_shah-cf9548aa05ad` and `cartoon:amit_shah:*` stay open. Future routes are in the
+  identity review.
+- `nitin_nabin` (reserve 2): not ready. Both freely labelled Commons candidates fail on provenance (the uploader is the
+  journalist in the frame, with a studio logo and no EXIF; a PR account's implausible CC0 "own work"). The rest are
+  GODL-India or "Attribution". No reference or prompt was written; his jobs stay open. Next in line is
+  `lalu_prasad_yadav`, whose window needs Codex agreement.
+
+Verifier findings fixed at assembly:
+- Surjeet: the verifier showed that a rejected candidate, Soman's File:Bardhanhss.jpg, is dated inside the window
+  (camera EXIF 2005-03-28; the banner reads "19th PARTY CONGRESS ... H 29th"). The assembler fetched it (API JSON,
+  original and file page, one request each), checked the Commons sha1, made it the reference
+  `harkishan-singh-surjeet-2005-reference-v1.jpg` and rewrote the prompt. The undated `...-2003-reference-v1.jpg` copy of
+  Surjith-6.JPG was removed from the working tree before any commit. Its original stays in scratch as the colour and
+  detail alternate, with its people-in-frame and hands description corrected.
+- Advani: the identification is now attributed to the uploader FlickrWarrior (2016, revision ids pinned from the
+  fetched revision history), not to the 2026 category rename. The date is now given as about 29 January to 9 February
+  2001, from the field hospital's operating dates. The licence provenance is disclosed (the Flickr source was NC; the
+  CC BY-SA 3.0 rests on VRTS ticket 2021051710001034). The prompt now declares the coat hem an extension.
+- Karat: the EXIF stamp of 16 March 2013 predates the Canon EOS 700D's announcement (21 March 2013). The date is now a
+  range, 2013-03-21 to 2017-09-17, and the prompt age (65 to 69 in the photograph, drawn about 62) and the credit are
+  corrected. The '2013' in the reference name is left for a Codex ruling.
+- Yechury: two candidate days (EXIF 28 December; same-event poster 27 December), the France job structure, and
+  semi-rimless glasses and the date clause in the prompt.
+- Nadda: the holder dictionaries are copied whole with note and uncertainty. The birth date cites the reference's own
+  Commons description. The PID rejections rest on composition, not the press rule. The complexion now reads "warm
+  light-to-medium wheatish-brown". An Adobe RGB ICC note is added.
+- Gadkari: a note records that the FCO Flickr page now shows CC BY 2.0. Baby: one wording fix. Rajnath Singh: passed.
+- Birth dates are cited (Commons descriptions, Wikidata, or English Wikipedia leads saved in scratch) and labelled
+  general biographical knowledge, not C01 research.
+
+Prompt pins after the fixes (LF sha256; the CRLF-checkout hash and git blob are in the identity review):
+`harkishan-singh-surjeet-cartoon-1992-v1.txt` 418df966..., `lal-krishna-advani-cartoon-1995-v1.txt` 8faaa5d1...,
+`prakash-karat-cartoon-2005-v1.txt` 6929a21f..., `rajnath-singh-cartoon-2005-v1.txt` 951e5084...,
+`nitin-gadkari-cartoon-2009-v1.txt` faebfd01..., `sitaram-yechury-cartoon-2015-v1.txt` 1e328838...,
+`jagat-prakash-nadda-cartoon-2020-v1.txt` 1930455b..., `m-a-baby-cartoon-2025-v1.txt` 2d1b6853....
+
+Open questions for Codex:
+- Window rulings: the Surjeet bounds (registry term) and a possible split at 2000-01-01; Advani's split into 1995-1998
+  and 2004-10-20 to 2005-12-31; Rajnath Singh's split at 2009-12-19 / 2013-01-31; the widened Gadkari end 2013-01-23;
+  Yechury's split at 2020-01-01; the Nadda end 2026-01-20 (registry, not accepted research).
+- The undated Karat reference and its '2013' name, or the in-window alternate File:Prakash Karat CPIM.jpg (EXIF 29 May
+  2014, CC BY-SA 3.0).
+- Costume: Advani's slate-blue bandhgala against his existing 1990-1995 kurta and dhoti art; Nadda's 2018 bandhgala
+  against his in-window kurta-pyjama and saffron stole.
+- An `eol=lf` rule for the eight India prompt files (`.gitattributes` is outside this task).
+- Karat's coordinator-term jobs (2024-09-29 to 2025-04-06) stay open; `amit_shah` and `nitin_nabin` windows stay open
+  for a later batch.
+
+Checks at preparation: `person_art_pipeline.py self-test` exit 0 (21 tests OK, after `git sparse-checkout add
+spheres-web/ui/leader-art spheres-web/ui/portraits`, which its fixtures need); `validate` exit 0 (valid, 0 errors, 530
+warnings; person_portraits.json unchanged); `workboard.py --check` PASS; `git diff --cached --check` clean.
