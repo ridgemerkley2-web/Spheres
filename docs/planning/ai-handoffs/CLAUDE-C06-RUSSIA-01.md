@@ -1,6 +1,6 @@
 # CLAUDE-C06-RUSSIA-01: USSR / Russia cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **claimed** (2 October 2026; in progress, not complete). Parent: C06 (the certified `USSR -> Russia`
+Owner: Claude. State: **awaiting Codex render** (2 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (the certified `USSR -> Russia`
 country case: people from both `ussr.json` and `russia.json`), with C03 cartoon production for these windows. Pending
 Codex registration and acceptance.
 
@@ -153,3 +153,68 @@ Inputs at claim (sha256 of the committed bytes at `2fd186d6`):
 
 Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --check`; `leadership_production.py check`;
 `campaign_census.py --check`; `python -m unittest discover -s tools/avatars`; `workboard.py --check`; `git diff --check`.
+
+## Preparation
+
+Batch 1 (`SURU-CAST-B01`) was prepared on 2 October 2026. Gorbachev had one preparation agent and one independent
+verification agent; Claude assembled the result and fixed the verifier's two mechanical findings. No image was
+generated, edited or labelled. The next step is Codex's render:
+[render request](../../campaign-certification/C06/production/ussr-russia/render-request-batch-01.md). The
+[identity review](../../campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json) and
+[README](../../campaign-certification/C06/production/ussr-russia/README.md) carry the observations, the reference, the
+job IDs and the 22 people without a registry ID.
+
+In (one primary render):
+
+| person_id | likeness reference (photograph date, licence) | prompt |
+|---|---|---|
+| mikhail_gorbachev | Leo Medvedev / Leo Medvedev's Archive, `File:GorbachevMS.jpg`, Moscow, October 1991 (month precision); CC BY-SA 4.0 with VRT ticket #2022050610007575; black and white, head and shoulders; `references/mikhail-gorbachev-1991-reference-v1.jpg`, sha256 `2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37` | `mikhail-gorbachev-cartoon-1991-v1.txt`, LF sha256 `817a5faedffbdb0b05442db86ae5af1c7e67edea60e50d210a470a21e2a75941` |
+
+Reserve: nikolai_ryzhkov is a conditional reserve and was **not prepared**: no reference, no prompt. He has no accepted
+observation; C01-26 is integrated but acceptance is pending. He enters only on a Codex ruling, and then needs a
+follow-up preparation and verification before any render.
+
+Excluded: nobody. The verifier found two problems, both fixed in the record and the prompt:
+- Photograph date. The day "24 October 1991" on Commons was added on 2025-07-09 by a third-party editor without a
+  source (rev 1054800689). The uploader's original statement (rev 794636807) is October 1991. The record now uses
+  month precision, and the revision history is pinned (`api-revisions-gorbachevms.json`, sha256
+  `7bf045eeae79deef057a389912b07c302fe933011ca84c51a363da844f8ae21b`).
+- Birthmark side. The prompt put the birthmark "mostly toward his left side". It is on his right side of the crown and
+  forehead (the viewer's left in the photograph). The prompt now says so and forbids mirroring. The assembler checked
+  the side on a downscaled copy.
+
+Rejected candidates are recorded in the identity review. They include NARA 186435 (the START signing, public domain), a
+weak likeness: he is seated with reading glasses, with three other men and flags. Also rejected are the Japanese MOFA
+April 1991 photographs (two people), year-only own-work files and post-window 1992 files. No Kremlin.ru or RIA Novosti
+photograph of Gorbachev from 1991 was found.
+
+Open questions for Codex:
+- Agree or amend the Gorbachev window 1991-01-01 to 1991-12-26; its end is the ledger's audit boundary, not an accepted
+  end.
+- Accept or reject the licence basis. The CC BY-SA 4.0 grant is VRT-confirmed and comes from the photographer's
+  archive; the uploader is not the photographer. Whether Medvedev took the photograph for a press employer in 1991 is
+  not established.
+- Accept the month-precision date.
+- Rule on spectacles continuity: the 1990 art has them; the 1991 reference and prompt do not.
+- The reference is greyscale (mode L). Any tool-side conversion must be transient and reported; the committed reference
+  stays unchanged.
+- Add an `eol=lf` rule for the prompt at integration (`.gitattributes` is outside this task's files).
+- Rule whether Ryzhkov enters (C01-26 acceptance).
+- For a batch 2, add registry person IDs (and a Russia `office_links` row) for the 22 people listed above, Yeltsin
+  first.
+- The committed gap ledger is stale against `docs/planning/ai-task-queue.json` at base `2fd186d6`, which predates this
+  batch; see "Checks" below.
+
+Checks (2 October 2026, with the batch files present):
+- `person_art_pipeline.py self-test` exit 0, 21 tests OK. `validate` exit 0: valid true, 0 errors, 530 warnings, 90
+  ready.
+- `workboard.py --check`: PASS.
+- `leadership_production.py check`, `campaign_census.py --check` and `cartoon_review.py --check`: exit 0.
+- `git diff --cached --check`: clean.
+- `python -m unittest discover -s tools/avatars`: 827 tests, 1 failure. The failure is
+  `test_certified_gap_ledger...test_committed_output_is_current`, and it already exists at the base: the ledger pins
+  the queue at `50273940...`, but the base commit's queue file is `eca5a364...`.
+- The worktree's sparse checkout gained `spheres-web/ui/portraits`, `spheres-web/ui/leader-art`,
+  `spheres-web/ui/display-art`, `docs/campaign-certification/C04`, `docs/campaign-certification/verification`,
+  `docs/campaign-certification/S10/c` and `docs/campaign-certification/S23/preparation/boundary-matrix`, so that these
+  checks could find their inputs. This changes only local worktree configuration.

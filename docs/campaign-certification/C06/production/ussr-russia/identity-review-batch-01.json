@@ -1,0 +1,991 @@
+{
+ "version": 1,
+ "nation": "USSR -> Russia",
+ "nations": [
+  "USSR",
+  "Russia"
+ ],
+ "reviewed_at": "2026-10-02",
+ "historical_cutoff": "2026-09-07",
+ "historical_window_start": "1990-01-01",
+ "status": "identity_and_coverage_review_proposal",
+ "task": "CLAUDE-C06-RUSSIA-01",
+ "branch": "claude/c06-ru-01",
+ "base": "2fd186d6",
+ "claim_commit": "1d222c56",
+ "scope": "USSR / Russia cast batch 1: the one registered person of the certified USSR -> Russia case with accepted C01 holder observations and no art for the requested window (Mikhail Gorbachev, 1991; C01-49 President of the USSR and C01-41 CPSU General Secretary), plus one conditional reserve (Nikolai Ryzhkov, 1990) who is not prepared because his only research (C01-26) is not yet accepted. Gorbachev has one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. The other 22 people with accepted observations have no registry person ID and are listed for a batch 2. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+ "prepared_by": "Claude: one preparation agent and one independent verification agent for Gorbachev, assembled and mechanically corrected by Claude on 2026-10-02. This is not human review, not Codex review and not user approval.",
+ "authority": {
+  "runtime_installation": false,
+  "office_eligibility": false,
+  "continuous_terms": false,
+  "art_approval": false,
+  "human_acceptance": false,
+  "country_completion": false
+ },
+ "accepted_research": {
+  "path": "docs/campaign-certification/C01/research/ussr.json",
+  "sha256": "ba7a27399237dfc49cb9d1f0e569c72b42b687a475a91c28c7152c997ff1cdd5",
+  "also_checked": {
+   "path": "docs/campaign-certification/C01/research/russia.json",
+   "sha256": "ff3d166ec6b4b2b7406e48f6d55b907b632dfcb988350e5a307aeea4df5537e9",
+   "note": "Holds no Gorbachev or Ryzhkov holder observation."
+  },
+  "gap_ledger": {
+   "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+   "sha256": "a7b3c1f1924394743cfebfc1fc7cac7ee24970f40451616273f91aafa374962b",
+   "case": "USSR -> Russia (/cases/7)",
+   "holder_observations": {
+    "c01_accepted": 68,
+    "c01_integrated_pending": 30,
+    "s10_discovery_intake": 9
+   },
+   "accepted_observations_of_registered_people": 7
+  },
+  "packets_used": [
+   "C01-41",
+   "C01-49"
+  ],
+  "packets_cited_not_accepted": [
+   "CLAUDE-C01-05 (Gorbachev 1991-12-25, c01_integrated_pending)",
+   "CLAUDE-C01-26 (Ryzhkov 1990-01-12 and 1990-11-24, c01_integrated_pending)"
+  ],
+  "receipts": [
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/README.md",
+    "sha256": "210c512749291702751f9d1184108673cdceb2cda5d99b4927a6a7baa026d650",
+    "packet": "C01-41"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/README.md",
+    "sha256": "5f2bf6f6447910de345a7b659136a59112fb0232ac3085195fab01343f574bc2",
+    "packet": "C01-41"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-41/review-2026-10-01/holder-review.json",
+    "sha256": "4d8c7867e7b7fc05132a26ee6a74a70271e6ab2cc15e17cfaf42ba34c33a8ee3",
+    "packet": "C01-41"
+   },
+   {
+    "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-49/README.md",
+    "sha256": "3c9b460ee3a9b22ca428e566a9bbdda261e266ff820e4d7ed3696eabeb85ab35",
+    "packet": "C01-49"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/README.md",
+    "sha256": "a076718a5fa7b4f94c483c9548fce576a9d57bae1634d76fa5f873994424953e",
+    "packet": "C01-49"
+   },
+   {
+    "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-49-20261001/claim-review.json",
+    "sha256": "493389846000931d257b76e15a51fc52190bceedffb5577b0a8a6fff63a9d9e1",
+    "packet": "C01-49"
+   }
+  ]
+ },
+ "registry_inputs": {
+  "party_leaders": {
+   "path": "spheres-sim/data/party_leaders.json",
+   "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+  },
+  "leaders_1990": {
+   "path": "spheres-sim/data/leaders_1990.json",
+   "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008"
+  },
+  "person_portraits": {
+   "path": "spheres-web/data/person_portraits.json",
+   "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+  },
+  "leadership_production": {
+   "path": "spheres-web/data/leadership_production_2035.json",
+   "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+  },
+  "person_art_pipeline": {
+   "path": "tools/avatars/person_art_pipeline.py",
+   "sha256": "b9715a5e841c7e8683bc3ec60a26754244b62d755150f06ebc0911be171487ab"
+  },
+  "style_anchor": {
+   "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+   "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+   "width": 1024,
+   "height": 1536,
+   "mode": "RGB",
+   "use": "STYLE ONLY"
+  },
+  "pipeline_jobs_inventory": {
+   "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/ru-cast/jobs.json",
+   "path": "D:/spheres-scratch/ru-cast/jobs.json",
+   "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+   "job_version": "person-cartoon-v4",
+   "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+   "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+   "fresh_rebuild_identical": true,
+   "identical_to_france_and_japan_inventories": true,
+   "window_inventories": [
+    {
+     "path": "D:/spheres-scratch/ru-cast/jobs-1991-01-01-1991-12-26.json",
+     "bytes": 670143,
+     "sha256": "d24c04a8a7594697af62c3c198959aa5ef93c5fe54c97c22a6455c8670ea04a7",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 1991-01-01 --to 1991-12-26 --out D:/spheres-scratch/ru-cast/jobs-1991-01-01-1991-12-26.json",
+     "fresh_rebuild_identical": true
+    },
+    {
+     "path": "D:/spheres-scratch/ru-cast/jobs-1990-01-01-1990-11-25.json",
+     "bytes": 667157,
+     "sha256": "bf751521791e80b25eb5c58f268ffd1dd7ed6ff8213efba1508fdc0925633ece",
+     "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --from 1990-01-01 --to 1990-11-25 --out D:/spheres-scratch/ru-cast/jobs-1990-01-01-1990-11-25.json",
+     "fresh_rebuild_identical": true
+    }
+   ],
+   "window_and_residual_job_ids": [
+    {
+     "path": "D:/spheres-scratch/ru-cast/assemble/window-jobs.json",
+     "bytes": 1666,
+     "sha256": "12891bd44500ca310636f6b8338130ceec71b124933b5c92320486eb72d9f306"
+    }
+   ]
+  }
+ },
+ "rules": [
+  "All holder dictionaries below are copied exactly from accepted C01 research (ussr.json). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+  "Point observations are never expanded to full terms. No start or end is inferred from a successor, resignation announcement, dissolution, suspension or later signature; those remain claims.",
+  "Requested windows are appearance intervals from the CLAUDE-C06-RUSSIA-01 claim with exclusive ends. Where a bound comes from party_leaders.json, leaders_1990.json or the gap ledger rather than accepted research, the person entry says so.",
+  "Pending observations (c01_integrated_pending) are cited only for context and are never used as accepted evidence.",
+  "Real history stops at 2026-09-07; every window in this batch lies before it.",
+  "Image dates describe the source photograph, never the appearance window, at the precision the source supports. Every age gap and every artistic extension (standing body, hands, trousers, shoes, colours added to a black-and-white photograph) is declared in the prompt and here.",
+  "Likeness references are dated photographs of the exact person whose licence string, as stated by Commons extmetadata, matches FREE_LICENSES exactly. Original bytes and metadata stay outside Git; the repository copy is byte-identical. Nothing was cropped, edited, converted or labelled.",
+  "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt file and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+  "Each review batch contains at most ten people. A person without a registry person ID is not prepared, because its art could not be registered and this task may not edit party_leaders.json.",
+  "HTTP response headers are never saved, copied, cited, hashed or committed.",
+  "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers the prompt yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside the pin.",
+  "Gorbachev's birth date is the registry value (party_leaders.json), not accepted C01 research."
+ ],
+ "coverage": {
+  "people_count": 2,
+  "primary_people": 1,
+  "reserve_people": 1,
+  "prepared_people": 1,
+  "excluded_people": 0,
+  "holder_observation_count": 4,
+  "holder_observation_count_by_role": {
+   "su_president": 3,
+   "su_cpsu_general_secretary": 1
+  },
+  "pending_observations_inside_requested_windows": 3,
+  "likeness_reference_count": 1,
+  "usable_likeness_reference_count": 1,
+  "research_only_likeness_reference_count": 0,
+  "references_inside_requested_window": [
+   "mikhail-gorbachev-1991"
+  ],
+  "references_with_month_precision_date": [
+   "mikhail-gorbachev-1991"
+  ],
+  "references_with_uncertain_date": [],
+  "leadership_production_cartoon_jobs_closed_by_primary_people": 0,
+  "people_with_accepted_observations_but_no_registry_id": 22,
+  "all_historical_officeholders_established": false,
+  "continuous_terms_established": false,
+  "all_likenesses_ready": false,
+  "rendered_portraits": 0
+ },
+ "batches": [
+  {
+   "id": "SURU-CAST-B01",
+   "render_request": "docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md",
+   "people": [
+    {
+     "person_id": "mikhail_gorbachev",
+     "display_name": "Mikhail Gorbachev",
+     "registry_name": "Mikhail Gorbachev",
+     "identity_status": "existing_identity",
+     "batch_role": "primary",
+     "preparation_status": "prepared",
+     "observed_names": [
+      "Михаил Сергеевич Горбачев",
+      "Mikhail Gorbachev"
+     ],
+     "registry_birth_date": {
+      "value": "1931-03-02",
+      "source": "spheres-sim/data/party_leaders.json people.mikhail_gorbachev.born (registry, not C01 research)"
+     },
+     "requested_window": {
+      "from": "1991-01-01",
+      "to": "1991-12-26",
+      "to_exclusive": true,
+      "window_status": "needs_codex_agreement",
+      "basis": "Accepted C01-49 President of the USSR holder observations attested 1991-01-22, 1991-08-22 and 1991-10-05, and the accepted C01-41 CPSU General Secretary holder observation attested 1991-08-22 (all with from and until null). The start continues his existing 1990 art (mikhail-gorbachev-cartoon-1990-v1.png, 1990-01-01 to 1991-01-01). The exclusive end is the day after 25 December 1991, the gap ledger's audit boundary for USSR-identity roles ('not an accepted dissolution date'); it is not an accepted term end. He is the USSR card's leader by office_links (since 1985-03-11, registry). The window is an appearance interval, not a tenure, and the claim record marks it as needing Codex agreement."
+     },
+     "observations": [
+      {
+       "packet": "C01-49",
+       "evidence": "c01_accepted",
+       "organization_or_institution_id": "su_presidency",
+       "role_id": "su_president",
+       "holder": {
+        "name": "Михаил Сергеевич Горбачев",
+        "attested_on": "1991-01-22",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_pravda_no20_19910123"
+        ],
+        "claim_ids": [
+         "su_pravda20_president_signs_decree_19910122"
+        ],
+        "note": "Attested on 22 January 1991: his decree on the withdrawal of the 50- and 100-rouble notes, printed in Pravda No. 20 of 23 January 1991, is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 22 января 1991 г.'.",
+        "uncertainty": "A signed decree as printed in the party newspaper (a facsimile hosted by a private Internet Archive upload): an attestation on the decree's date only."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/institutions/0/roles/0/holder_claims/3"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/4/holders/3"
+       }
+      },
+      {
+       "packet": "C01-49",
+       "evidence": "c01_accepted",
+       "organization_or_institution_id": "su_presidency",
+       "role_id": "su_president",
+       "holder": {
+        "name": "Михаил Сергеевич Горбачев",
+        "attested_on": "1991-08-22",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_ved_1991_35_president"
+        ],
+        "claim_ids": [
+         "su_ved35p_up2443_president_signs_19910822"
+        ],
+        "note": "Attested on 22 August 1991: decree УП-2443 in the official gazette (Vedomosti 1991 No. 35, art. 1008) is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 22 августа 1991 г.'.",
+        "uncertainty": "The Vice-President's decree of 18 August 1991 on assuming the President's duties, the statement of the 'Soviet leadership' and the acting styling are claims only; the Presidium's resolution of 21 August declaring the removal unlawful is a claim. No break, resumption day, start or end is recorded."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/institutions/0/roles/0/holder_claims/4"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/4/holders/4"
+       }
+      },
+      {
+       "packet": "C01-49",
+       "evidence": "c01_accepted",
+       "organization_or_institution_id": "su_presidency",
+       "role_id": "su_president",
+       "holder": {
+        "name": "Михаил Сергеевич Горбачев",
+        "attested_on": "1991-10-05",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_ved_1991_41_president"
+        ],
+        "claim_ids": [
+         "su_ved41p_up2668_president_signs_19911005"
+        ],
+        "note": "Attested on 5 October 1991: decree УП-2668 in the official gazette (Vedomosti 1991 No. 41, art. 1164) is signed 'Президент Союза Советских Социалистических Республик М. ГОРБАЧЕВ' and dated 'Москва, Кремль. 5 октября 1991 г.', the latest Soviet-side signature reviewed.",
+        "uncertainty": "Not an end. The 25 December 1991 statement has no Soviet primary text in this packet (SU-PRES-04); the CLAUDE-C01-05 observation of that day rests on US records and sets no until."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/institutions/0/roles/0/holder_claims/5"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/4/holders/5"
+       }
+      },
+      {
+       "packet": "C01-41",
+       "evidence": "c01_accepted",
+       "organization_or_institution_id": "su_cpsu",
+       "role_id": "su_cpsu_general_secretary",
+       "holder": {
+        "name": "Михаил Сергеевич Горбачев",
+        "attested_on": "1991-08-22",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_pravda_no201_19910822"
+        ],
+        "claim_ids": [
+         "su_pravda201_secretariat_statement_names_general_secretary_19910822"
+        ],
+        "note": "Attested on 22 August 1991: the Central Committee Secretariat's statement, printed undated in that day's Pravda, calls for a plenum 'с непременным участием Генерального секретаря ЦК КПСС М. С. Горбачева'.",
+        "uncertainty": "The latest reviewed record styling him in office. His own words of 26 August 1991 that he has laid down the duties state no day, and the statement of 24 August 1991 is known only from leads, so until is null; no end is inferred from them or from the party's suspension."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/organizations/0/roles/0/holder_claims/3"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/0/holders/3"
+       }
+      }
+     ],
+     "accepted_observations_covered_by_existing_art": {
+      "portrait": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png (1990-01-01 to 1991-01-01; record unchanged)",
+      "observations": [
+       {
+        "packet": "C01-41",
+        "role_id": "su_cpsu_general_secretary",
+        "attested_on": "1990-02-05",
+        "from": null,
+        "until": null,
+        "claim_ids": [
+         "su_pravda37_plenum_report_by_general_secretary_19900205"
+        ],
+        "research_locations": {
+         "docs/campaign-certification/C01/research/ussr.json": "/organizations/0/roles/0/holder_claims/1"
+        },
+        "gap_ledger_location": {
+         "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/0/holders/1"
+        }
+       },
+       {
+        "packet": "C01-41",
+        "role_id": "su_cpsu_general_secretary",
+        "attested_on": "1990-07-10",
+        "from": null,
+        "until": null,
+        "claim_ids": [
+         "su_pravda192_gorbachev_addresses_as_general_secretary_19900710"
+        ],
+        "research_locations": {
+         "docs/campaign-certification/C01/research/ussr.json": "/organizations/0/roles/0/holder_claims/2"
+        },
+        "gap_ledger_location": {
+         "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/0/holders/2"
+        }
+       },
+       {
+        "packet": "C01-49",
+        "role_id": "su_president",
+        "attested_on": null,
+        "from": "1990-03-15",
+        "until": null,
+        "claim_ids": [
+         "su_snd3p_gorbachev_oath_19900315",
+         "su_snd3p_assumption_of_office_declared_19900315"
+        ],
+        "research_locations": {
+         "docs/campaign-certification/C01/research/ussr.json": "/institutions/0/roles/0/holder_claims/2"
+        },
+        "gap_ledger_location": {
+         "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/4/holders/2"
+        }
+       }
+      ]
+     },
+     "pending_observations_inside_window": [
+      {
+       "packet": "CLAUDE-C01-05",
+       "evidence": "c01_integrated_pending",
+       "organization_or_institution_id": "su_presidency",
+       "role_id": "su_president",
+       "holder": {
+        "name": "Mikhail Gorbachev",
+        "attested_on": "1991-12-25",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_nara_bush_gorbachev_telcon_19911225"
+        ],
+        "claim_ids": [
+         "su_telcon_gorbachev_title_19911225"
+        ],
+        "note": "Office observation: the US memorandum of the call of 25 December 1991 names him President of the Soviet Union. His announced cessation that day is recorded in separate role claims (su_telcon_resignation_decrees_19911225, su_bush_address_resign_19911225).",
+        "uncertainty": "SURU-TR91-06: no Soviet instrument or effective moment has been accepted, so no until is set; the 25 December announcement is a dated claim, not a term boundary. The 1990 election and oath remain unsourced."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/institutions/0/roles/0/holder_claims/1"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/4/holders/1"
+       },
+       "use": "Inside the window but not accepted; cited for context only. It sets no until."
+      }
+     ],
+     "observations_not_used": "S10 discovery-intake rows (su_president 1990-03-20, su_cpsu_general_secretary July 1990 period, su_supreme_soviet_chair 1990-03-14) are neither accepted nor inside this window and are not used. russia.json holds no Gorbachev holder observation.",
+     "related_claims_not_holder_observations": [
+      {
+       "claim_id": "su_telcon_resignation_decrees_19911225",
+       "source_id": "su_nara_bush_gorbachev_telcon_19911225",
+       "attested_on": "1991-12-25",
+       "classification": "reported intent to resign; claim only, not a term boundary"
+      },
+      {
+       "claim_id": "su_bush_address_resign_19911225",
+       "source_id": "su_bush_address_cis_19911225",
+       "attested_on": "1991-12-25",
+       "classification": "foreign characterization of a decision to resign; claim only, not a term boundary"
+      }
+     ],
+     "registry_terms_not_c01_research": [
+      "office_links USSR person mikhail_gorbachev since 1985-03-11 (party_leaders.json); su_cpsu has no terms in the registry"
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "mikhail_gorbachev-6e5c079d8a6d",
+        "from": "1991-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window is closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "mikhail_gorbachev-73ead8847756",
+        "from": "1991-01-01",
+        "to": "1991-12-26",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1991-12-26",
+        "to": "2027-01-01",
+        "id": "mikhail_gorbachev-3b50feba8485",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [],
+      "note": "No leadership-production cartoon job exists for Gorbachev: his only required window (1990-01-01 to 1990-01-02) is covered by the 1990 art (status known_windows_covered). The pipeline job starts at 1991-01-01 because the 1990 cartoon covers 1990-01-01 to 1991-01-01."
+     },
+     "likeness_reference_ids": [
+      "mikhail-gorbachev-1991"
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v1.txt",
+      "sha256": "817a5faedffbdb0b05442db86ae5af1c7e67edea60e50d210a470a21e2a75941",
+      "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+      "sha256_if_checked_out_crlf": "3de939bc6137c969a3fbfb44b7b65bee933087c29134eeae7d055ee689ce2aca",
+      "git_blob": "ca3f0141a073d956cce0fb6a9e8582574cb875ee",
+      "lines": 9,
+      "bytes": 3916,
+      "superseded_draft_sha256": "87d7d488a65acfbcb8833ed537869e6438ae111a1d4b6243d4b66abf9a390d67",
+      "superseded_draft_note": "The preparer's draft (never committed) dated the photograph 24 October 1991 and put the birthmark 'mostly toward his left side'; both were corrected after independent verification (see verification)."
+     },
+     "planned_output": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v1.png",
+     "identity_review": [
+      {
+       "finding": "Preserve the existing person ID and the existing 1990 portrait, reference and prompt (all unchanged). This window adds a second appearance from a photograph dated October 1991, inside the window.",
+       "evidence": [
+        "mikhail-gorbachev-1991",
+        "spheres-web/data/person_portraits.json people.mikhail_gorbachev.portraits[0]"
+       ]
+      },
+      {
+       "finding": "The 1990 cartoon's identity_source is observed_portrait NARA 186420 (Susan Biddle, 9 September 1990, PDM-1.0), which shows spectacles; the 1991 reference shows none, so this prompt asks for no glasses. Continuity is an open item for Codex.",
+       "evidence": [
+        "spheres-web/data/person_portraits.json",
+        "mikhail-gorbachev-1991"
+       ]
+      },
+      {
+       "finding": "Birthmark placement checked by the assembler on a downscaled copy of the reference: the main arc starts on his right side of the crown (viewer's left in the photograph) and curves to about the middle of the upper forehead; the small separate spots lie above his right eye. The prompt states this side explicitly and forbids mirroring.",
+       "evidence": [
+        "mikhail-gorbachev-1991"
+       ]
+      }
+     ],
+     "verification": {
+      "verifier": "independent Claude verification agent (per person)",
+      "initial_verdict_ok": false,
+      "problems_and_dispositions": [
+       {
+        "problem": "The photograph's date provenance was misstated as 1991-10-24 'stated by the uploader'. The Commons revision history shows the uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20) gave |date=1991-10 and 'Moscow, October 1991' / 'Москва, октябрь 1991 года'; the day 24 was added on 2025-07-09 by a third-party editor, MasterRus21thCentury (rev 1054800689, summary 'corr'), with no cited source.",
+        "disposition": "Fixed in this record and the prompt: the assembler fetched and pinned the revision history (api-revisions-gorbachevms.json), confirmed the verifier's account, and recorded photograph_date '1991-10' with month precision attributed to the upload revision, with a note on the later unsourced edit. The prompt, credit, age_gap_note and date_precision now say October 1991; the scratch original was renamed from '...-19911024-...' to '...-199110-...' (bytes unchanged). The prompt hashes were recomputed. The reference filename year 1991 is unaffected."
+       },
+       {
+        "problem": "The prompt put the birthmark 'mostly toward his left side'. In Image 2 the head is turned toward the viewer's right, so the visible ear is his right ear; the stain's arc starts on the crown on his right side and curves down to about the forehead midline, and the small separate spots sit above his right eye. The wrong side could lead the renderer to mirror his most recognisable feature.",
+        "disposition": "Fixed in the prompt: the birthmark clause now describes an arc that starts on his right side of the crown (the viewer's left in Image 2) and curves down to about the middle of the upper forehead, with small separate spots on his right side above his right eye, 'placed exactly as in Image 2 and never mirrored'. The assembler confirmed the side on a downscaled view copy. Prompt hashes recomputed."
+       }
+      ]
+     },
+     "missing_records": [
+      "No accepted start or end of either office; the window end is the ledger's audit boundary, not a term end.",
+      "C01-05's 25 December 1991 President observation is integrated but not accepted."
+     ],
+     "open_items_for_codex": [
+      "Agree or amend the requested window 1991-01-01 to 1991-12-26 (exclusive), whose end is the gap ledger's audit boundary for USSR-identity roles, not an accepted end.",
+      "Accept or reject the licence basis: Commons gives 'CC BY-SA 4.0' backed by VRT ticket #2022050610007575 ('Items with VRTS permission confirmed'); the uploader Dmedvedev83 uploaded it as a work by Leo Medvedev from Leo Medvedev's Archive, not as the uploader's own work, and whether Medvedev took it for a press employer in 1991 is not established.",
+      "Accept the month-precision date (October 1991, the uploader's statement at upload); the day 24 now on Commons is a later unsourced third-party edit and is not used.",
+      "Rule on spectacles: the 1990 art draws them (its 9 September 1990 reference shows them); this 1991 reference shows none, so the prompt asks for none.",
+      "The reference is an 8-bit greyscale JPEG (mode L). If the image tool will not accept it, any conversion must be a transient tool-side copy reported with the return; the committed reference must not be converted.",
+      "Add an LF rule for the prompt at integration (for example `tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v1.txt text eol=lf`); this task may not edit .gitattributes."
+     ]
+    },
+    {
+     "person_id": "nikolai_ryzhkov",
+     "display_name": "Nikolai Ryzhkov",
+     "registry_name": "Nikolai Ryzhkov",
+     "identity_status": "existing_identity",
+     "batch_role": "reserve_conditional",
+     "preparation_status": "not_prepared",
+     "preparation_note": "Not prepared in this batch: no likeness reference was downloaded and no prompt was written, because he has no accepted holder observation and the reserve enters only on a Codex ruling. If Codex accepts C01-26 (or rules otherwise), a follow-up preparation must verify a reference and write nikolai-ryzhkov-cartoon-1990-v1.txt before any render.",
+     "observed_names": [
+      "Николай Иванович Рыжков"
+     ],
+     "registry_birth_date": null,
+     "requested_window": {
+      "from": "1990-01-01",
+      "to": "1990-11-25",
+      "to_exclusive": true,
+      "window_status": "conditional_on_c01_26_acceptance_or_codex_ruling",
+      "basis": "The start is the 1990 seed (spheres-sim/data/leaders_1990.json: the USSR row's second executive, Chairman of the Council of Ministers since 1985-09-27), not accepted research. The exclusive end is the day after his last C01-26 observation (1990-11-24). C01-26 is integrated but its acceptance is pending; no term end is asserted."
+     },
+     "observations": [],
+     "pending_observations": [
+      {
+       "packet": "CLAUDE-C01-26",
+       "evidence": "c01_integrated_pending",
+       "organization_or_institution_id": "su_government",
+       "role_id": "su_government_head",
+       "holder": {
+        "name": "Николай Иванович Рыжков",
+        "attested_on": "1990-01-12",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_sprsfsr_1990_8_art60_19900112"
+        ],
+        "claim_ids": [
+         "su_sprsfsr_60_ryzhkov_signs_as_chairman_19900112"
+        ],
+        "note": "Named as the Congress stenographic report of 26 December 1990 prints him in full ('Николая Ивановича Рыжкова', genitive); the gazette prints 'Н. Рыжков'. Attested on 12 January 1990: the joint resolution of the USSR and RSFSR Councils of Ministers No. 37, printed in the RSFSR government gazette (1990 No. 8, art. 60), is signed 'Председатель Совета Министров СССР Н. Рыжков'.",
+        "uncertainty": "The earliest in-office signature reviewed in the period; not proof of office on 1 January 1990, and the signature of 24 December 1989 is a role claim only. No reviewed source states the day he assumed office, so from is null; no end is set."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/institutions/3/roles/0/holder_claims/0"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/7/holders/0"
+       }
+      },
+      {
+       "packet": "CLAUDE-C01-26",
+       "evidence": "c01_integrated_pending",
+       "organization_or_institution_id": "su_government",
+       "role_id": "su_government_head",
+       "holder": {
+        "name": "Николай Иванович Рыжков",
+        "attested_on": "1990-11-24",
+        "from": null,
+        "until": null,
+        "sources": [
+         "su_ips_cm_res_1177_19901124"
+        ],
+        "claim_ids": [
+         "su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124"
+        ],
+        "note": "Attested on 24 November 1990: Council of Ministers resolution No. 1177 on the legal portal is signed 'Председатель Совета Министров СССР Н.РЫЖКОВ', the latest signature of his reviewed. A separate observation from 12 January 1990; the signature of 26 May 1990 (resolution 525) is a role claim.",
+        "uncertainty": "No reviewed source states the day his chairmanship ended: the reports of his heart attack and illness (26-27 December 1990), Law 1862-I, the Premier's approval of 14 January 1991 (its only recorded publication withdrawn; SU-GOV-05) and the pension resolution 1907-I (a lead) are not used as an end, so no until is set."
+       },
+       "research_locations": {
+        "docs/campaign-certification/C01/research/ussr.json": "/institutions/3/roles/0/holder_claims/1"
+       },
+       "gap_ledger_location": {
+        "docs/campaign-certification/C01/gap-ledger/ledger.json": "/cases/7/research_roles/7/holders/1"
+       }
+      }
+     ],
+     "jobs": {
+      "pipeline_default_inventory": [
+       {
+        "id": "nikolai_ryzhkov-2607eb5bdffa",
+        "from": "1990-01-01",
+        "to": "2027-01-01",
+        "status": "needs_source_and_visual_review",
+        "closure": "partial: only the requested window would be closed"
+       }
+      ],
+      "pipeline_window_scoped": [
+       {
+        "id": "nikolai_ryzhkov-524fe0aabf35",
+        "from": "1990-01-01",
+        "to": "1990-11-25",
+        "status": "needs_source_and_visual_review",
+        "closure": "exact: from/to equal the requested window"
+       }
+      ],
+      "pipeline_residual_after_registration": [
+       {
+        "from": "1990-11-25",
+        "to": "2027-01-01",
+        "id": "nikolai_ryzhkov-e9c18219a75b",
+        "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+       }
+      ],
+      "leadership_production_cartoon_jobs_closed": [],
+      "note": "No leadership-production cartoon job exists for Ryzhkov (status eligibility_research_required)."
+     },
+     "likeness_reference_ids": [],
+     "photograph_leads_unverified": [
+      "File:Nikolay Ryzhkov 1990.jpg and File:Nikolai Ryzhkov.jpg (Australian Department of Foreign Affairs and Trade, February 1990, listed on Commons as CC BY 4.0). Commons search metadata only (D:/spheres-scratch/ru-cast/plan/commons-search-ryzhkov.json); nothing downloaded; licence string, creator, date and identity unverified."
+     ],
+     "prompt": {
+      "path": "tools/avatars/person-prompts/nikolai-ryzhkov-cartoon-1990-v1.txt",
+      "status": "not written"
+     },
+     "planned_output": "spheres-web/ui/person-portraits/nikolai-ryzhkov-cartoon-1990-v1.png",
+     "age_note": "The registry has no birth date; any age in a future prompt must be cited as general biographical knowledge, not C01 research.",
+     "verification": {
+      "verifier": null,
+      "initial_verdict_ok": null,
+      "problems_and_dispositions": [],
+      "note": "Nothing to verify: not prepared."
+     },
+     "missing_records": [
+      "No accepted holder observation; C01-26 acceptance pending.",
+      "No registry birth date."
+     ],
+     "open_items_for_codex": [
+      "Rule whether Ryzhkov enters (accept C01-26 or rule otherwise). Only then prepare and verify his reference and prompt in a follow-up; do not render him from this batch."
+     ]
+    }
+   ]
+  }
+ ],
+ "excluded_people": [],
+ "people_without_registry_id": {
+  "note": "Accepted C01 holder observations of these 22 people (61 of the case's 68 accepted) cannot be turned into registered art: none has a person ID in party_leaders.json and this task may not add one. Proposed for a batch 2 once Codex adds IDs (and, for the Russia card, an office_links row), in this order: Yeltsin; then Rutskoy and Ivashko; then the party leaders matched to the game's party rows (Zyuganov, Zhirinovsky, Yavlinsky, Lapshin, Slutsky). Organization-to-party-row mapping stays with Codex.",
+  "people": [
+   {
+    "name": "Boris Yeltsin",
+    "research": "russia.json",
+    "packets": [
+     "C01-51"
+    ],
+    "roles": "RSFSR President (attested 1991-07-19, 1991-11-19, 1991-12-26, 1992-01-03)"
+   },
+   {
+    "name": "Alexander Rutskoy",
+    "research": "russia.json",
+    "packets": [
+     "C01-51"
+    ],
+    "roles": "RSFSR Vice-President (1991-07-29 to 1993-09-01; until 1993-10-03)"
+   },
+   {
+    "name": "Vladimir Ivashko",
+    "research": "ussr.json",
+    "packets": [
+     "C01-41"
+    ],
+    "roles": "CPSU Deputy General Secretary (1990-07-13, 1991-08-21)"
+   },
+   {
+    "name": "Gennady Zyuganov",
+    "research": "russia.json",
+    "packets": [
+     "C01-28",
+     "C01-46"
+    ],
+    "roles": "KPRF chairman; Duma faction head 2021-2026"
+   },
+   {
+    "name": "Vladimir Zhirinovsky",
+    "research": "russia.json",
+    "packets": [
+     "C01-28",
+     "C01-46"
+    ],
+    "roles": "LDPR chairman; Duma faction head to 2022-04-06"
+   },
+   {
+    "name": "Leonid Slutsky",
+    "research": "russia.json",
+    "packets": [
+     "C01-28",
+     "C01-46"
+    ],
+    "roles": "LDPR chairman 2022-2026; Duma faction head"
+   },
+   {
+    "name": "Grigory Yavlinsky",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Yabloko chairman (1998-03-14, 2001-12-23, 2004-07-04)"
+   },
+   {
+    "name": "Sergey Mitrokhin",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Yabloko chairman"
+   },
+   {
+    "name": "Emilia Slabunova",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Yabloko chairman"
+   },
+   {
+    "name": "Nikolai Rybakov",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Yabloko chairman"
+   },
+   {
+    "name": "Mikhail Lapshin",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Agrarian Party chairman"
+   },
+   {
+    "name": "Vladimir Plotnikov",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Agrarian Party chairman"
+   },
+   {
+    "name": "Yegor Gaidar",
+    "research": "russia.json",
+    "packets": [
+     "C01-28"
+    ],
+    "roles": "Democratic Choice of Russia chairman 1994-1997 (relation to the ru_vybor row not established)"
+   },
+   {
+    "name": "Vladimir Vasilyev",
+    "research": "russia.json",
+    "packets": [
+     "C01-46"
+    ],
+    "roles": "2021 Duma faction head"
+   },
+   {
+    "name": "Sergey Mironov",
+    "research": "russia.json",
+    "packets": [
+     "C01-46"
+    ],
+    "roles": "2021 Duma faction head"
+   },
+   {
+    "name": "Alexey Nechaev",
+    "research": "russia.json",
+    "packets": [
+     "C01-46"
+    ],
+    "roles": "2021 Duma faction head"
+   },
+   {
+    "name": "Viktor Dmitriev",
+    "research": "ussr.json",
+    "packets": [
+     "C01-35"
+    ],
+    "roles": "Democratic Russia co-chair (1991)"
+   },
+   {
+    "name": "Yuri Afanasyev",
+    "research": "ussr.json",
+    "packets": [
+     "C01-35"
+    ],
+    "roles": "Democratic Russia co-chair (1991)"
+   },
+   {
+    "name": "Lev Ponomarev",
+    "research": "ussr.json",
+    "packets": [
+     "C01-35"
+    ],
+    "roles": "Democratic Russia co-chair (1991)"
+   },
+   {
+    "name": "A. Murashev",
+    "research": "ussr.json",
+    "packets": [
+     "C01-35"
+    ],
+    "roles": "Democratic Russia co-chair (1991)"
+   },
+   {
+    "name": "Gleb Yakunin",
+    "research": "ussr.json",
+    "packets": [
+     "C01-35"
+    ],
+    "roles": "Democratic Russia co-chair (1991)"
+   },
+   {
+    "name": "Anatoly Chekhoev",
+    "research": "ussr.json",
+    "packets": [
+     "C01-35"
+    ],
+    "roles": "Soyuz deputies' group co-chair (1990-12-20)"
+   }
+  ]
+ },
+ "likeness_references": [
+  {
+   "id": "mikhail-gorbachev-1991",
+   "person_id": "mikhail_gorbachev",
+   "kind": "observed_portrait",
+   "status": "usable_pending_render_and_visual_review",
+   "source_page_url": "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg",
+   "commons_title": "File:GorbachevMS.jpg",
+   "retrieved_at": "2026-10-02T12:11:43Z",
+   "metadata_original": {
+    "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-imageinfo-gorbachevms.json",
+    "bytes": 3652,
+    "sha256": "3be8105281d3ecefafad26eb0c8dc4d04e82865cee535815429e73644b4ee882"
+   },
+   "metadata_file_page": {
+    "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/filepage-gorbachevms.html",
+    "bytes": 117288,
+    "sha256": "386ba6f99ebec763dbf4997f287422496c2d5c8773632cf0995f5bedaae9c01f"
+   },
+   "metadata_revision_history": {
+    "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-revisions-gorbachevms.json",
+    "bytes": 17750,
+    "sha256": "7bf045eeae79deef057a389912b07c302fe933011ca84c51a363da844f8ae21b",
+    "retrieved_at": "2026-10-02",
+    "content": "Commons API prop=revisions (ids|timestamp|user|comment|content, main slot) for File:GorbachevMS.jpg: all 16 revisions, from the upload (794636807, 2023-08-20) to 1054812324 (2025-07-09)."
+   },
+   "supporting_metadata": [
+    {
+     "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/category-photographs-by-lev-l-medvedev.json",
+     "bytes": 6629,
+     "sha256": "9a8ce1b69e121bf2049ebcfa37117162f19dabab16e684ce51661378a8fd4d37",
+     "content": "Commons API: wikitext and members of Category:Photographs by Lev L. Medvedev (linked to Category:Dmitry Lvovich Medvedev; an archive of Soviet/Russian portrait and city photographs)."
+    }
+   ],
+   "image_original": {
+    "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/mikhail-gorbachev-199110-leo-medvedev-original.jpg",
+    "bytes": 3905097,
+    "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/GorbachevMS.jpg",
+    "commons_sha1": "d819c604a3d67b6682eda55f1de1e68ab151577a"
+   },
+   "asset": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+   "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+   "bytes": 3905097,
+   "asset_byte_identical_to_original": true,
+   "width": 2800,
+   "height": 4050,
+   "mode": "L",
+   "format": "JPEG",
+   "photograph_date": "1991-10",
+   "depiction_date": {
+    "kind": "month",
+    "value": "1991-10",
+    "precision": "month; the uploader's statement at upload (rev 794636807)"
+   },
+   "date_precision": "Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated.",
+   "creator": "Leo Medvedev/Лев Леонидович Медведев",
+   "source_credit_exact": "Leo Medvedev’s Archive",
+   "uploader": "Dmedvedev83 (uploaded 2023-08-20T12:45:33Z, 'Uploaded a work by Leo Medvedev/Лев Леонидович Медведев from Leo Medvedev’s Archive with UploadWizard')",
+   "credit": "Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_license_statement": "Creative Commons Attribution-Share Alike 4.0 International. Attribution: Leo Medvedev/Лев Леонидович Медведев. The copyright holder's approval was received by e-mail and reviewed by a VRT member (ticket #2022050610007575). LicenseShortName is exactly 'CC BY-SA 4.0'; LicenseUrl is recorded exactly as Commons gives it, without a trailing slash.",
+   "rights_statement": "Retained source statement: CC BY-SA 4.0 with VRT permission ticket #2022050610007575 (category 'Items with VRTS permission confirmed'). The upload revision carried {{cc-by-sa-4.0}}{{PermissionTicket|id=2022050610007575}}; on 2023-10-21 (rev 813789119) the licence section was replaced by the {{Leo Medvedev}} template, and the current extmetadata still states CC BY-SA 4.0. The uploader is not the photographer; the licence rests on the VRT-reviewed grant, and whether Medvedev took the photograph for a press employer is not established (open item). Attribution and share-alike apply. The copied bytes are the original upload, unretouched.",
+   "vrt_ticket": "2022050610007575",
+   "people_in_frame": "Gorbachev alone: black-and-white head-and-shoulders portrait, head in three-quarter view toward the viewer's right, plain dark grey backdrop; dark pinstripe suit, white pointed-collar shirt, dark tie with thin light diagonal stripes; no glasses, no other people, no text or symbols.",
+   "age_gap_note": "Registry birth date 1931-03-02. The photograph (October 1991, month precision) shows him at 60. It lies inside the requested window, about 9 to 10 months after its start (1991-01-01, age 59) and about 2 to 3 months before its exclusive end (1991-12-26, age 60), so no age adjustment is asked for; the prompt asks for a man of 59 to 60. Declared artistic extensions: the full standing body, hands, trousers and shoes (from a head-and-shoulders photograph) and all colours (the photograph is black and white).",
+   "colour_note": "The reference is an 8-bit greyscale JPEG (PIL mode L). Every colour in the card (skin, the reddish-plum birthmark, the charcoal pinstripe suit, the burgundy tie) is an artistic choice, and the prompt says so. NARA 186435 (colour, 31 July 1991) shows a dark suit, a white shirt and a dark red patterned tie: corroboration only, not a render input.",
+   "limitation": "Month-precision date from the archive uploader; licence via a VRT-reviewed grant from the photographer's archive rather than the photographer's own upload; greyscale; head and shoulders only.",
+   "accepted_observations_inside_window": [
+    "C01-49 su_president 1991-01-22",
+    "C01-49 su_president 1991-08-22",
+    "C01-49 su_president 1991-10-05",
+    "C01-41 su_cpsu_general_secretary 1991-08-22"
+   ],
+   "rejected_candidates": [
+    "File:President Bush and President Gorbachev sign the Strategic Arms Reduction Treaty (START) in the Kremlin in Moscow... - NARA - 186435.tif (Susan Biddle, White House / NARA, 31 July 1991, 'Public domain', 3000x2043, 18,387,306 bytes, Commons SHA-1 b4230aaefd9845612dcf60cb1f90781c5f330a38): the licence and date qualify. Viewed through a Commons 1280px thumbnail: Gorbachev is seated at the signing table looking down through reading glasses, his face is small, three other men are in frame and US and Soviet flags are prominent, so it is a weak likeness. Kept as colour corroboration only (not-selected/nara-186435-thumb-1280.jpg, sha256 fcac292f0860be75a1203b6154e543b79fc7a18e4509f5cd7aac577a460ab2fe); original TIF not downloaded.",
+    "File:George Bush and Mikhail Gorbachev sign the START 1991.jpg (Susan Biddle, public domain, 31 July 1991, 600x399) and File:President George H.W. Bush and President Mikhail Gorbachev sign the START Treaty.jpg (US Department of State, public domain, 284x188): small versions of the same signing scene; rejected from metadata.",
+    "File:Takako Doi and Mikhail Gorbachev 19910417.jpg (Japanese MOFA Protocol Office, CC BY 4.0, 1792x1348): two people, extracted from a MOFA PDF album; Commons DateTimeOriginal 1991-04-07 conflicts with the filename's 19910417; rejected from metadata, not viewed.",
+    "File:Taro Nakayama and Mikhail Gorbachev 1991.jpg (MOFA Protocol Office, CC BY 4.0, month precision 1991-04, 1917x1374): two people, month-only date; rejected from metadata, not viewed.",
+    "File:Toshiki Kaifu and Mikhail Gorbachev 199104.jpg and its (cropped) version (Cabinet Public Relations Office, CC BY 4.0, 1991-04-18, 500x328 / 500x311): too small, two people.",
+    "File:Photo album of Mikhail Gorbachev's visit to Japan in 1991.pdf (MOFA, CC BY 4.0, 1991-04): a multi-page group album; not examined, because a single dated portrait was available.",
+    "File:Горбачев (3).jpg and File:Горбачев (4).jpg (uploader Kv.petrova, 'Own work', CC BY-SA 4.0, year-only date 1991, 1653x2339 / 480x725): the subject is shown meeting the poet's daughter Sara al-Ayadhi (two people); the own-work claim on an apparent 1991 print is unverified and the date is year-only; rejected from metadata.",
+    "File:President Bush addresses the Middle East Peace Conference at the Royal Palace in Madrid, Spain - NARA - 186439.tif (David Valdez, public domain, 30 Oct 1991): a conference-hall scene in which Gorbachev is not the subject; rejected from metadata.",
+    "File:Mikhail Gorbachev visits U.S. Capitol 1992 LCCN2017646196.jpg (public domain, 14 May 1992) and File:Mikhail Gorbachev visits the Chicago Board of Trade (2535053978).jpg (CC BY-SA 2.0, 7 May 1992): after the window.",
+    "File:Mikhail and Raisa Gorbachev in Ottawa 29 May 1990.jpg (CC BY 4.0, 1990): before the window, two people; the existing 1990 art already covers 1990.",
+    "File:Советская Татария 12-1991.jpg (public domain, newspaper issue scan): a newspaper page, not a photograph of the subject alone.",
+    "Kremlin.ru (CC BY 4.0) has no 1991 photographs of Gorbachev on Commons (its files start in 2000). No RIA Novosti (CC BY-SA 3.0) file of Gorbachev dated 1991 turned up in the Commons searches; the 1991 RIAN files found show Raisa Gorbacheva and Boris Yeltsin."
+   ],
+   "approved_source_license": true,
+   "visual_inspection_by_preparer": "Claude viewed local downscaled and cropped copies made in the session scratchpad; the original and repository bytes were not altered.",
+   "visual_inspection_by_assembler": "Claude (assembler) viewed a downscaled copy and a forehead crop made in its session scratchpad to confirm the birthmark side; repository and original bytes unchanged."
+  }
+ ],
+ "source_ledger": {
+  "evidence_directory": "D:/spheres-scratch/ru-cast/refs",
+  "status": "original_retention_ledger",
+  "copyright_note": "Original Commons metadata (API JSON, revision history and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copy listed in likeness_references is committed.",
+  "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+  "downloads": [
+   {
+    "reference_id": "mikhail-gorbachev-1991",
+    "image": {
+     "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/mikhail-gorbachev-199110-leo-medvedev-original.jpg",
+     "bytes": 3905097,
+     "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/GorbachevMS.jpg",
+     "commons_sha1": "d819c604a3d67b6682eda55f1de1e68ab151577a"
+    },
+    "metadata": {
+     "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-imageinfo-gorbachevms.json",
+     "bytes": 3652,
+     "sha256": "3be8105281d3ecefafad26eb0c8dc4d04e82865cee535815429e73644b4ee882"
+    },
+    "file_page": {
+     "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/filepage-gorbachevms.html",
+     "bytes": 117288,
+     "sha256": "386ba6f99ebec763dbf4997f287422496c2d5c8773632cf0995f5bedaae9c01f"
+    },
+    "revision_history": {
+     "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-revisions-gorbachevms.json",
+     "bytes": 17750,
+     "sha256": "7bf045eeae79deef057a389912b07c302fe933011ca84c51a363da844f8ae21b"
+    },
+    "supporting": [
+     {
+      "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/category-photographs-by-lev-l-medvedev.json",
+      "bytes": 6629,
+      "sha256": "9a8ce1b69e121bf2049ebcfa37117162f19dabab16e684ce51661378a8fd4d37"
+     }
+    ],
+    "search": [
+     {
+      "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/search/candidates-imageinfo.json",
+      "bytes": 17778,
+      "sha256": "b7869a0553c4cef219b8744408430e07639e5eb9cab13128ca57521ef4f4b862"
+     }
+    ],
+    "not_selected": [
+     {
+      "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/not-selected/nara-186435-thumb-1280.jpg",
+      "bytes": 170419,
+      "sha256": "fcac292f0860be75a1203b6154e543b79fc7a18e4509f5cd7aac577a460ab2fe",
+      "note": "Commons-generated 1280px thumbnail of NARA 186435, inspection only"
+     }
+    ]
+   }
+  ],
+  "access_limits": [
+   "Wikimedia Commons returned HTTP 429 twice during the preparer's search. Requests were then made one at a time after a back-off of about 90 seconds; nothing was bypassed. One 429 body (no headers) is kept at refs/mikhail_gorbachev/failed/429-cat-1991_Moscow_summit.txt; three duplicate bodies from the same burst were deleted and the affected queries were retried successfully.",
+   "The verifier fetched the Commons revision history once into its own scratchpad. The assembler made one further request on 2026-10-02 (Commons API revision history for File:GorbachevMS.jpg, saved as api-revisions-gorbachevms.json); it returned HTTP 200.",
+   "No reference for the Ryzhkov reserve was requested or downloaded."
+  ],
+  "not_listed": "No HTTP response headers were saved in this batch. Other search JSON under refs/mikhail_gorbachev/search/ and the planner's Commons search JSON under D:/spheres-scratch/ru-cast/plan/ are not ledgered individually; view crops made in session scratchpads are not retained."
+ }
+}
