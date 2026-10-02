@@ -1,7 +1,8 @@
 # CLAUDE-C06-SOUTHAFRICA-01: South Africa cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **claimed** (1 October 2026; in progress, not complete). Parent: C06 (South Africa country cast),
-with C03 cartoon production for these windows. Pending Codex registration and acceptance.
+Owner: Claude. State: **awaiting Codex render** (1 October 2026; batch 1 prepared; not ready_for_review, not complete).
+Parent: C06 (South Africa country cast), with C03 cartoon production for these windows. Pending Codex registration and
+acceptance.
 
 Origin: on 1 October 2026, after France batch 1 (`CLAUDE-C06-FRANCE-01`, branch `claude/c06-fr-01`) was prepared, the
 user asked to continue the cast work in parallel. This batch runs alongside France's pending render and the Brazil batch
@@ -148,3 +149,65 @@ Inputs at claim (sha256 of the committed bytes at `2fd186d6`):
 
 Checks: `person_art_pipeline.py self-test` and `validate`; `cartoon_review.py --check`; `leadership_production.py check`;
 `campaign_census.py --check`; `python -m unittest discover -s tools/avatars`; `workboard.py --check`; `git diff --check`.
+
+## Preparation
+
+Batch 1 (`ZA-CAST-B01`) was prepared on 1 October 2026. Each window had one preparation agent and one independent
+verification agent; Claude assembled the results and fixed the verifiers' mechanical findings. No image was generated,
+edited or labelled. The next step is Codex's render:
+[render request](../../campaign-certification/C06/production/south-africa/render-request-batch-01.md). The
+[identity review](../../campaign-certification/C06/production/south-africa/identity-review-batch-01.json) and
+[README](../../campaign-certification/C06/production/south-africa/README.md) carry the observations, references, job
+IDs, rejected candidates and verifier dispositions.
+
+In (four renders, closing 10 of the 24 leadership-production cartoon jobs):
+
+| person_id | window | likeness reference (photograph date, licence) | prompt |
+|---|---|---|---|
+| mangosuthu_buthelezi | 1995-01-01 to 2005-01-01 | Rob Bogaerts / Anefo, Nationaal Archief 932-6173, 10 Jun 1983; CC0 | `mangosuthu-buthelezi-cartoon-1995-v1.txt` |
+| constand_viljoen | 1994-03-31 to 2001-01-01 | Ian Barbour, Commons crop, Sep 1984 (month only); CC BY-SA 2.0 | `constand-viljoen-cartoon-1994-v1.txt` |
+| pieter_mulder | 2001-06-21 to 2016-11-13 | Blake Woodhams / U.S. Department of Agriculture, 16 Sep 2013; CC BY 2.0 | `pieter-mulder-cartoon-2001-v1.txt` |
+| corne_mulder | 2025-07-16 to 2026-09-08 | Houses of the Oireachtas, Commons crop, 14 Jun 2023; CC BY 2.0 | `corne-mulder-cartoon-2025-v1.txt` |
+
+Excluded as not ready (no dated photograph of the exact person with a `FREE_LICENSES` licence string; no reference
+copied, no prompt written; their 14 leadership-production jobs and pipeline jobs stay open):
+- `mangosuthu_buthelezi` 2005-01-01 to 2019-08-25: the closest qualifying photographs are from 1983 (age 54 against 76
+  to 90); in-window images are a TV still, 'Attribution' (GWOIA) files and CC BY-ND photographs.
+- `velenkosini_hlabisa` 2019-08-24 to 2026-09-08: only an eNCA video still on Commons; every Flickr photograph is ND,
+  NC-ND or all rights reserved.
+- `kenneth_meshoe` 1993-12-31 to 2010-01-01 and 2010-01-01 to 2026-09-08: only video stills on Commons; Flickr photographs
+  are ND or all rights reserved.
+
+The reserves (`pieter_groenewald`, `mzwanele_nyhontso`) were not prepared: neither has a registry term, so each window
+needs Codex agreement first.
+
+Verifier findings fixed at assembly:
+- Buthelezi: the 1990/1991 Bush White House contact sheets were evaluated (roll WHPO-P22804 fetched from NARA and
+  inspected; scanned contact sheets with small multi-person frames and printed labels cannot be used unchanged) and
+  rejected. The birth date is cited (South African History Online; Wikidata Q554131). The reference bytes were switched
+  to the Commons original (same frame; sha1 verified), replacing the Nationaal Archief's on-the-fly rendition.
+- Viljoen: the partial guardsman face is named in the prompt; the birth date is cited (Wikidata Q2568741); the default
+  job is labelled as partly closed.
+- Pieter Mulder: the birth date is corrected to 26 July 1951 (Wikidata Q770995), with the prompt ages corrected; a
+  sixth Commons file is listed; the FlickrReview date is corrected.
+- Corné Mulder: the glasses are described as browline frames.
+- Not-ready records: missing candidates, leads and corrected search narratives were added.
+- Privacy: ten GeoIP-bearing Flickr pages in the session scratchpad were deleted.
+
+Open questions for Codex:
+- Buthelezi 1995-2004: render from the 1983 frame (declared 11.6 to 21.6 year gap), or first obtain a single-frame
+  scan of the 20 June 1991 or 28 February 1990 Bush Library rolls (public domain, about 3.5 years before the window).
+- Viljoen: accept the small, month-dated 1984 crop in uniform, which the prompt re-dresses as civilian.
+- Pieter Mulder: agree the window start 2001-06-21 (before leadership production's 2001-12-31); a possible split at
+  2010-01-01 if an earlier photograph turns up.
+- Corné Mulder: accept the CropTool derivative crop.
+- For each not-ready window: a declared fallback, leaving it open, or a reserve. Also rule whether a CC BY video frame
+  may ever serve as a reference (this batch says no).
+- An `eol=lf` rule in `.gitattributes` for the four prompts (each pin is the LF sha256 and also gives the CRLF hash).
+- Batch 2 (heads of state) once C01-09/16/21 are accepted.
+
+Checks: `person_art_pipeline.py self-test` (21 OK) and `validate` (valid, 0 errors, 530 warnings); `workboard.py
+--check` PASS; `cartoon_review.py --check`, `leadership_production.py check` and `campaign_census.py --check` exit 0;
+`unittest discover -s tools/avatars` 827 tests with 1 failure, which was already present at the base (the C01
+gap-ledger pin of `docs/planning/ai-task-queue.json` predates base commit `2fd186d6`); `git diff --cached --check`
+clean. Local sparse-checkout additions were needed for these checks and are not committed.
