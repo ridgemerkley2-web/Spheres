@@ -1,12 +1,14 @@
 # Japan cast batch 1: render request for Codex (JP-CAST-B01)
 
-From Claude, task `CLAUDE-C06-JAPAN-01`, branch `claude/c06-jp-01`, 1 October 2026. State: **awaiting Codex render**. Nothing here is rendered, reviewed or approved yet.
+From Claude, task `CLAUDE-C06-JAPAN-01`, branch `claude/c06-jp-01`, 1 October 2026; Yamaguchi era fix added 2 October 2026. State: **awaiting Codex render**. Nothing here is rendered, reviewed or approved yet.
 
-Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `fb75b55833b32e2a2e6a6d7933065b5a05e29a2240b56e1b1d893c9e4c01eb3f`). It holds the accepted C01 observations, the verified references, the rejected candidates, the verifier dispositions and the excluded person.
+Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `cb3ac83c278c34b5a146e9e41bfc41d039a97f675ffa321f9a2822eb7d30daaf`, LF as committed). It holds the accepted C01 observations, the verified references, the rejected candidates, the verifier dispositions and the excluded person.
+
+Yamaguchi era split: [`yamaguchi-era-split-20261002.json`](yamaguchi-era-split-20261002.json) (sha256 `3e43bf7c81e8caeda044b267fe77bb3237c8306486d5da0376bf81f58c4757a5`, LF as committed). It replaces his single 2009-2024 job with two era parts (sections 6 and 7) and supersedes the v1 prompt and job (see the end of the primary jobs).
 
 ## What Codex does
 
-For each of the six primary jobs below, use the independent preparation disposition and retain its output-review limitations:
+For each of the seven primary jobs below (six people; Natsuo Yamaguchi has two era parts), use the independent preparation disposition and retain its output-review limitations. Do not render the superseded Yamaguchi v1 job:
 
 1. Check the inputs: the prompt file's sha256 equals the pinned value (`git show HEAD:<prompt path> | sha256sum`), and the style anchor and identity reference match their sha256.
 2. Generate with the built-in image tool (the pipeline requires generator `OpenAI built-in image_gen`). Submit the prompt file's text exactly as committed, with the images in this order:
@@ -16,7 +18,7 @@ For each of the six primary jobs below, use the independent preparation disposit
 4. Return every attempt **unchanged**: the `exec-*.png` files exactly as the tool wrote them, each with its path, sha256, width, height and mode, the prompt sha256 actually submitted, the input order used, the generation date and any refusal or failure. Do not crop, resize, recolour, re-encode or otherwise edit them. You may say which attempt you would choose.
 5. Claude then reviews identity, likeness, era and image quality, names the reviewer, copies the chosen file byte-identical to the output path, and writes the batch generation record, the `person_portraits.json` records and the registration receipt. Review flags stay false until those checks actually happen. No human approval is claimed.
 
-Line endings: the six prompt files are LF and no `.gitattributes` rule covers them yet (core.autocrlf=true on this machine). This task may not edit `.gitattributes`, so please add a rule at integration, as for `tonga-*.txt` and the France prompts, for example `tools/avatars/person-prompts/<each Japan prompt>.txt text eol=lf`. Until then a Windows checkout writes CRLF; its hash is listed for each job.
+Line endings: the six original prompt files now have LF checkout rules in `.gitattributes` (added at integration). The two new Yamaguchi era prompts (sections 6 and 7) do not yet, and core.autocrlf=true on this machine. This task may not edit `.gitattributes`, so please add at integration `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt text eol=lf` and `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt text eol=lf`. Until then a Windows checkout writes CRLF; its hash is listed for each job.
 
 ## Independent preparation disposition (2 October 2026)
 
@@ -29,6 +31,17 @@ Yamaguchi's 2019 source is usable, but a single age-64 image across 2009-2024 do
 Kanzaki stays outside this six-person batch pending his own source review; there is no blanket prohibition on licensed official video frames. Existing input references remain byte-identical, including the 27 MB Yamaguchi original. Year-containing Murayama/Ota reference filenames are identifiers, not capture-date claims. LF enforcement remains an integration concern for the exact hashes below.
 
 All mapped job coverage is prospective and requires generation, registration and output review. No output is generated or approved.
+
+## Yamaguchi era fix (2 October 2026)
+
+Prepared, independently verified and assembled by Claude workflow agents after the disposition above; not yet reviewed by Codex. The single 2009-09-08 to 2024-09-28 window is split at the leadership-production boundary 2015-01-01:
+
+- early part, 2009-09-08 to 2015-01-01: new reference, a 7 July 2013 photograph by Ogiyoshisan (CC BY 3.0, unported). He is 60 in it and 57 to 62 across the part;
+- later part, 2015-01-01 to 2024-09-28: the existing 29 August 2019 CC0 reference, reused unchanged. He is 67 in it (the "age-64" above was the superseded single window's midpoint age and the v1 prompt's target, not his age in the photograph) and 62 to 72 across the part. The photograph is 78 days before the part's midpoint of 2019-11-15.
+
+A 2020-01-01 split would leave the 2013 photograph covering ages 57 to 67. The split date is an art choice, not an office, tenure or physical-change date. The four leadership-production cartoon jobs are unchanged and divide two and two. No 2009-2012 photograph usable as a single-person likeness with a qualifying licence string was found on Commons; the rejected candidates and the search scope are in the era-split record. The v1 prompt file stays byte-identical as reviewed evidence and is superseded; do not render it.
+
+All coverage stays prospective: no job closes before generation, registration and output review, and appearance windows never establish office tenure.
 
 ## Primary jobs
 
@@ -118,22 +131,55 @@ All mapped job coverage is prospective and requires generation, registration and
 - Leadership-production cartoon jobs targeted after registration and visual review: `cartoon:akihiro_ota:2006-09-30:2009-09-08:v1`.
 - Output review: Retain the independent preparation disposition and documented likeness/era limitations.
 
-### 6. Natsuo Yamaguchi (`natsuo_yamaguchi`)
+### 6. Natsuo Yamaguchi, early part (`natsuo_yamaguchi`)
 
-- Appearance window: 2009-09-08 to 2024-09-28 (exclusive end); status `appearance_interval_from_handoff`.
-- Output path (after review): `spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v1.png`
-- Prompt file: `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v1.txt`
-  - sha256 (LF, as committed): `7ac461c81ecd482a38acf42bb1a7f95a888b54cd594bcbe3c3c2e63b5ac3d3ed`
-  - sha256 if your checkout wrote CRLF: `a1085cbf1defd6525dbfef8386502bc84edfe2e19a6730ff69eafeb8e5eee685`; git blob `5b27d2f84526a461e8450081edf9cf9bf35e01e2`
+- Appearance window: 2009-09-08 to 2015-01-01 (exclusive end); status `appearance_interval_era_part` (era split of 2 October 2026, [record](yamaguchi-era-split-20261002.json)).
+- Output path (after review): `spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png`
+- Prompt file: `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt`
+  - sha256 (LF, as committed): `bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6`
+  - sha256 if your checkout wrote CRLF: `ca9d98b4d5c6dfebb2fe816d98b781ee6a5406d7329665a79ae5f9c0de840299`; git blob `11d07e1a2fde4a03b58629b04a170ec0d66ce635`
 - Input 1, STYLE ONLY: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`, sha256 `8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef`
-- Input 2, identity reference: `spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg`, sha256 `7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354`, 8256x5504 RGB JPEG, 27,276,808 bytes
+- Input 2, identity reference: `spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg`, sha256 `733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17`, 1200x1600 RGB JPEG, 824,703 bytes (byte-identical to the single Commons file version; Commons SHA-1 `f6b1e05247d97514f3b63ebabd0ba94b4763cee1`)
+  - Image date: 2013-07-07, as the source states it (Commons Date field and file name); EXIF DateTimeOriginal 2013:07:07 15:54:28 is the camera clock. Not capture dates: the EXIF DateTime 17:13:33 (a later Windows Photo Viewer save) and the upload of 22 July 2013. Licence: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0), unported.
+  - Credit: Ogiyoshisan, 'Natsuo Yamaguchi IMG 5607 20130707.JPG' (own work), photograph of 7 July 2013, CC BY 3.0 (https://creativecommons.org/licenses/by/3.0), via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Natsuo_Yamaguchi_IMG_5607_20130707.JPG). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.
+  - In frame: Yamaguchi is the central, nearest man, waist-up, giving an outdoor street speech in the 2013 House of Councillors campaign in harsh sun (probably Umeda, Osaka, inferred from the same photographer's same-day IMG 5611, not stated for this file): white shirt with thin blue stripes and rolled-up sleeves, no jacket or tie, microphones in his right hand, left hand raised in a loose fist, wristwatch on his left wrist. Also in frame: a man in a white shirt and glasses at the left edge, a head behind his left shoulder, a dark figure and a blue panel at the right edge, microphones, cables, a railing, a black panel, a shrub and a building facade. The prompt excludes everything except Yamaguchi.
+  - Clothing colours (text only, not an input and not committed): File:Yamaguchi natsuo.jpg, street speech at Shinjuku West Exit, 2 January 2013, STB-1 own work, CC BY-SA 3.0 and GFDL: dark navy suit, white shirt, red tie with a small light dot pattern, Diet member's badge (omitted).
+- Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
+- Pipeline job, window-scoped: `natsuo_yamaguchi-0468451c3d0f`. Default-inventory job targeted for partial coverage: `natsuo_yamaguchi-a71007185b71`.
+- Leadership-production cartoon jobs targeted after registration and visual review: `cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1`, `cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1`.
+- Accepted C01-31 observations inside: 2009-09-08, 2012-09-22, 2014-09-21.
+- Age: he is 60 in the photograph (five days before his 61st birthday) and 57 to 62 across this part; the prompt asks for about 60, with very dark hair and no gray, and says one dated photograph is not evidence of every year.
+- Output review: the suit, tie, trousers, standing pose and shoes are artistic extensions of a shirtsleeved, slightly soft waist-up campaign photograph; check the likeness against it.
+- Settle first: Codex review of this new reference, this prompt and the 2015-01-01 split; so far they are Claude-prepared and Claude-verified only.
+
+### 7. Natsuo Yamaguchi, later part (`natsuo_yamaguchi`)
+
+- Appearance window: 2015-01-01 to 2024-09-28 (exclusive end); status `appearance_interval_era_part` (era split of 2 October 2026, [record](yamaguchi-era-split-20261002.json)).
+- Output path (after review): `spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png`
+- Prompt file: `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt`
+  - sha256 (LF, as committed): `167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2`
+  - sha256 if your checkout wrote CRLF: `2c1be3052db6d9f155390f343a92877c64cd3a42c4b67f3afa69d31047269746`; git blob `0c1f43baa981ac9e679e1629ef362194703ebc53`
+  - Differs from the superseded v1 prompt only in the window sentence and the age sentence.
+- Input 1, STYLE ONLY: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`, sha256 `8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef`
+- Input 2, identity reference (unchanged, reused): `spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg`, sha256 `7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354`, 8256x5504 RGB JPEG, 27,276,808 bytes
   - Image date: 2019-08-29. Licence: CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en).
   - Credit: TICAD7 Photographs / MOFA TICAD, 'Plenary Session 4' (Flickr 48640890007), 29 August 2019; CC0 1.0 Universal Public Domain Dedication; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.
   - In frame: Yamaguchi is the central, sharply focused speaker. Also in frame: a bespectacled delegate with an earpiece on his right (viewer's left), in front of whom his name card stands; probably Ichiro Aisawa at the right edge (a name card reading 'Mr. Ichiro Aisawa' is nearby, but cards in this frame are offset from the people they belong to); the back of a head in the right foreground; seated audience, staff and two video cameras on tripods behind. Name cards, water bottles, glasses and microphones are on the table. His right hand is partly visible resting on the table edge between his name card and the water bottle, and a shirt cuff shows by the glass. The prompt excludes everything except Yamaguchi.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `natsuo_yamaguchi-93769cc0a66c`. Default-inventory job targeted for partial coverage: `natsuo_yamaguchi-a71007185b71`.
-- Leadership-production cartoon jobs targeted after registration and visual review: `cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1`, `cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1`, `cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1`, `cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1`.
-- Settle first: Accept the 27,276,808-byte reference in Git (the untouched 8256x5504 original; larger than any existing reference and than France's 17 MB Juppé reference; Commons has no extracted crop). Decide whether to split the window at 2015-01-01 or 2020-01-01 (see requested_window.possible_split). For a 2009-2015 portrait, qualifying unviewed candidates are File:Natsuo Yamaguchi IMG 5607 20130707.JPG (CC BY 3.0) and the 2013-12-03 State Department public-domain Biden-meeting files.
+- Pipeline job, window-scoped: `natsuo_yamaguchi-af89e21deee1`. Default-inventory job targeted for partial coverage: `natsuo_yamaguchi-a71007185b71`.
+- Leadership-production cartoon jobs targeted after registration and visual review: `cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1`, `cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1`.
+- Accepted C01-31 observations inside: 2016-09-17, 2018-09-30, 2020-09-27, 2022-09-25.
+- Age: he is 67 in the photograph and 62 to 72 across this part; the photograph is 78 days before the part's midpoint of 2019-11-15. The prompt asks for about 67, as in the photograph, and says one dated photograph is not evidence of every year.
+- Output review: the standing pose, trousers and shoes are artistic extensions of a seated, waist-up photograph.
+- Settle first: Codex review of this prompt and the 2015-01-01 split.
+
+### Superseded: Natsuo Yamaguchi single window (do not render)
+
+Superseded on 2 October 2026 by sections 6 and 7. Kept for the record of what was reviewed:
+
+- Appearance window: 2009-09-08 to 2024-09-28; pipeline job `natsuo_yamaguchi-93769cc0a66c`; planned output `spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v1.png`.
+- Prompt file `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v1.txt` (LF sha256 `7ac461c81ecd482a38acf42bb1a7f95a888b54cd594bcbe3c3c2e63b5ac3d3ed`, CRLF `a1085cbf1defd6525dbfef8386502bc84edfe2e19a6730ff69eafeb8e5eee685`, git blob `5b27d2f84526a461e8450081edf9cf9bf35e01e2`), unchanged as reviewed evidence. Do not submit it.
+- Its open items: the 27,276,808-byte 2019 reference stays byte-identical in Git, as the independent review retained it, and is reused by section 7; the split question is answered by the era-split proposal at 2015-01-01.
 
 ## Excluded (do not render)
 

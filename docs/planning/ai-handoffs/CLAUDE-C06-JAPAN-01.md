@@ -1,6 +1,6 @@
 # CLAUDE-C06-JAPAN-01: Japan cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **awaiting Codex render** (1 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (Japan country cast), with
+Owner: Claude. State: **ready for Codex render** (2 October 2026: batch 1 prepared and corrected after Codex's independent preparation review; Yamaguchi era fix added, its two new jobs to be checked by Codex before rendering; not ready_for_review, not complete). Parent: C06 (Japan country cast), with
 C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: the user asked on 1 October 2026 to continue the cast work in parallel after France batch 1
@@ -116,3 +116,26 @@ The [independent disposition](../../campaign-certification/C06/production/japan/
 The six original reference files remain byte-identical, and their names are retained identifiers. Only Murayama and Ota prompts changed and were re-pinned as LF bytes. Root will enforce LF for all six at integration. No historical holder object, person registry, runtime file or portrait manifest changed.
 
 Kanzaki remains outside this six-person review pending his own source review; his earlier TV-frame exclusion is not a blanket rule. Yoshida and Mataichi were not prepared. See the country README for the original preparation checks and preserved source limitations.
+
+## Era fix, 2 October 2026
+
+The independent review recommended a separately reviewed early reference and a later variant for Natsuo Yamaguchi's fifteen-year window. Claude workflow agents (a preparer, an independent verifier and this assembler) produced the fix below. It is a proposal for Codex to check before rendering. It is not human, Codex or user approval.
+
+- Split at 2015-01-01, a leadership-production job edge; record [`yamaguchi-era-split-20261002.json`](../../campaign-certification/C06/production/japan/yamaguchi-era-split-20261002.json) (sha256 `3e43bf7c81e8caeda044b267fe77bb3237c8306486d5da0376bf81f58c4757a5`). The split date is an art choice, not an office, tenure or physical-change date. A 2020-01-01 split would leave the 2013 photograph covering ages 57 to 67.
+- Early part, 2009-09-08 to 2015-01-01 (accepted observations 2009-09-08, 2012-09-22, 2014-09-21):
+  - new reference `spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg` (sha256 `733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17`), a byte-identical copy of the single Commons version of File:Natsuo Yamaguchi IMG 5607 20130707.JPG. It is Ogiyoshisan's own work, photographed 7 July 2013 (the day as the source states it). The licence is exactly 'CC BY 3.0', unported;
+  - he is 60 in it and 57 to 62 across the part;
+  - new prompt `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt` (LF sha256 `bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6`), job `natsuo_yamaguchi-0468451c3d0f`, output `natsuo-yamaguchi-cartoon-2009-v2.png`, cartoon jobs 2009-09-08:2010-01-01 and 2010-01-01:2015-01-01;
+  - the suit, shirt and tie colours come as text only from a 2 January 2013 STB-1 photograph (CC BY-SA 3.0). It is not an input and is not committed.
+- Later part, 2015-01-01 to 2024-09-28 (accepted observations 2016-09-17, 2018-09-30, 2020-09-27, 2022-09-25):
+  - the 29 August 2019 CC0 reference is reused unchanged; he is 67 in it and 62 to 72 across the part;
+  - new prompt `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt` (LF sha256 `167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2`), job `natsuo_yamaguchi-af89e21deee1`, output `natsuo-yamaguchi-cartoon-2015-v1.png`, cartoon jobs 2015-01-01:2020-01-01 and 2020-01-01:2024-09-28.
+- Superseded and not rendered: prompt `natsuo-yamaguchi-cartoon-2009-v1.txt` (file unchanged), job `natsuo_yamaguchi-93769cc0a66c`, output `natsuo-yamaguchi-cartoon-2009-v1.png`. The window-scoped job in the table above is superseded the same way. The residual jobs `natsuo_yamaguchi-fb0a754eff9e` and `natsuo_yamaguchi-5aac700002a9` are unchanged and stay open.
+- Correction: the 2019 photograph shows him at 67, not "about age 64". 64 was the old window's midpoint age and the v1 prompt's target.
+- Verifier: no blocking problem. Its one finding was fixed: the early prompt's "plain red tie" now notes the small light dot pattern, and the prompt was re-pinned.
+- Search: no 2009-2012 photograph usable as a single-person likeness with a qualifying licence string was found on Commons. A sharper 2010-10-26 India PMO photograph is licensed 'GODL-India', which is not in FREE_LICENSES. The rejected candidates are listed in the record.
+- Repointed in this commit: the identity review (now sha256 `cb3ac83c278c34b5a146e9e41bfc41d039a97f675ffa321f9a2822eb7d30daaf`; era parts, both references, prompts, prospective job coverage, supersession and rejected candidates), the render request (sections 6 and 7 replace the single job; the v1 job is marked superseded) and the country README.
+- Outside this task: `.gitattributes` needs `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt text eol=lf` and `tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt text eol=lf`. Until then a core.autocrlf=true checkout writes CRLF; the CRLF hashes are in the render request.
+- Checks at assembly: `person_art_pipeline.py self-test` passed (21 tests). `validate` exited 0 (valid, 0 errors, the existing 530 warnings). `workboard.py --check`, `cartoon_review.py --check`, `leadership_production.py check`, `campaign_census.py --check` and `git diff --check` all exited 0. The verifier ran `unittest discover -s tools/avatars` and got one failure: `test_committed_matrix_is_current`, because this sparse checkout lacks the S23 matrix outputs. The other 827 tests passed.
+
+All coverage stays prospective. No job closes until generation, registration and output review, and appearance windows never establish office tenure. No image has been generated, edited or labelled. `person_portraits.json`, `party_leaders.json` and `.gitattributes` are untouched.

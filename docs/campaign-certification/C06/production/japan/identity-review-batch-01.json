@@ -9,8 +9,8 @@
   "branch": "claude/c06-jp-01",
   "base": "2fd186d6",
   "claim_commit": "bd78fd83",
-  "scope": "Japan cast batch 1: six existing person IDs with accepted C01 holder observations (C01-29 JSP/SDP chairs, C01-31 Komeito representatives) and no art for the requested appearance windows. Each has one freely licensed likeness reference copied byte-identical into the repository and one exact prompt. One prepared person (takenori_kanzaki) is excluded; the two handoff reserves were not prepared. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
-  "prepared_by": "Claude: one preparation agent and one independent verification agent per person, assembled and mechanically corrected by Claude on 2026-10-01; the assembler also fetched a few dated sources to settle verifier findings (Murayama, Ota). This is not human review, not Codex review and not user approval.",
+  "scope": "Japan cast batch 1: six existing person IDs with accepted C01 holder observations (C01-29 JSP/SDP chairs, C01-31 Komeito representatives) and no art for the requested appearance windows. Each has one freely licensed likeness reference copied byte-identical into the repository and one exact prompt. One prepared person (takenori_kanzaki) is excluded; the two handoff reserves were not prepared. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards. Era fix of 2 October 2026: Natsuo Yamaguchi's single window is split at 2015-01-01 into two appearance parts, each with its own dated reference and prompt (yamaguchi-era-split-20261002.json); the batch now has seven render jobs for six people.",
+  "prepared_by": "Claude: one preparation agent and one independent verification agent per person, assembled and mechanically corrected by Claude on 2026-10-01; the assembler also fetched a few dated sources to settle verifier findings (Murayama, Ota). This is not human review, not Codex review and not user approval. The Yamaguchi era fix (2 October 2026) was prepared, independently verified and assembled by Claude workflow agents; that is also not human, Codex or user review.",
   "authority": {
     "runtime_installation": false,
     "office_eligibility": false,
@@ -138,6 +138,8 @@
   "coverage": {
     "people_count": 6,
     "primary_people": 6,
+    "primary_render_jobs": 7,
+    "primary_render_jobs_note": "Six people; Natsuo Yamaguchi has two era parts (2009-09-08 to 2015-01-01 and 2015-01-01 to 2024-09-28), each a separate render job. His superseded single job (natsuo_yamaguchi-93769cc0a66c, prompt natsuo-yamaguchi-cartoon-2009-v1.txt) is not rendered.",
     "reserve_people_prepared": 0,
     "reserve_people_not_prepared": [
       "tadatomo_yoshida",
@@ -149,12 +151,13 @@
       "jp_sdp_chair": 6,
       "jp_komeito_representative": 8
     },
-    "likeness_reference_count": 6,
-    "usable_likeness_reference_count": 6,
+    "likeness_reference_count": 7,
+    "usable_likeness_reference_count": 7,
     "research_only_likeness_reference_count": 0,
     "references_inside_requested_window": [
       "makoto-tanabe-1992",
       "sadao-yamahana-1993",
+      "natsuo-yamaguchi-2013",
       "natsuo-yamaguchi-2019"
     ],
     "references_outside_requested_window": [
@@ -178,6 +181,14 @@
     {
       "id": "JP-CAST-B01",
       "render_request": "docs/campaign-certification/C06/production/japan/render-request-batch-01.md",
+      "render_jobs": 7,
+      "era_split_records": [
+        {
+          "person_id": "natsuo_yamaguchi",
+          "path": "docs/campaign-certification/C06/production/japan/yamaguchi-era-split-20261002.json",
+          "sha256": "3e43bf7c81e8caeda044b267fe77bb3237c8306486d5da0376bf81f58c4757a5"
+        }
+      ],
       "people": [
         {
           "person_id": "tomiichi_murayama",
@@ -1059,9 +1070,16 @@
             "to": "2024-09-28",
             "to_exclusive": true,
             "window_status": "appearance_interval_from_handoff",
-            "basis": "Equals the leadership-production required windows from registry term jp_komeito_natsuo_yamaguchi_20090908 (day 2009-09-08 to day 2024-09-28). The seven accepted C01-31 observations (2009-09-08 to 2022-09-25) lie inside it. The fifteen-year window may be split by Codex at 2015-01-01 or 2020-01-01.",
-            "possible_split": "At 2015-01-01 or 2020-01-01 (leadership-production job boundaries). The 2019 reference falls in the 2015-2020 segment; an earlier portrait would need a roughly 2010-2014 reference.",
-            "era_caveat": "The 2019 source depicts about age 64, while this proposed fifteen-year interval spans about ages 57 to 72. One image is not proof of age-appropriate likeness for every year. A separate earlier variant is recommended; this preparation does not close four era jobs."
+            "basis": "Equals the leadership-production required windows from registry term jp_komeito_natsuo_yamaguchi_20090908 (day 2009-09-08 to day 2024-09-28). The seven accepted C01-31 observations (2009-09-08 to 2022-09-25) lie inside it. This span is now the union of two appearance parts split at 2015-01-01 (see era_parts); no single portrait covers it.",
+            "split": {
+              "at": "2015-01-01",
+              "record": "docs/campaign-certification/C06/production/japan/yamaguchi-era-split-20261002.json",
+              "record_sha256": "3e43bf7c81e8caeda044b267fe77bb3237c8306486d5da0376bf81f58c4757a5",
+              "basis": "A leadership-production job boundary. The 2013 reference lies inside the early part (ages 57 to 62) and the 2019 reference lies 78 days before the midpoint of the later part (ages 62 to 72). The alternative boundary 2020-01-01 would leave the 2013 photograph covering ages 57 to 67. The split date is an art choice; it is not a sourced office, tenure or physical-change date.",
+              "status": "proposal by Claude (2 October 2026), awaiting Codex review before rendering"
+            },
+            "possible_split_superseded": "At 2015-01-01 or 2020-01-01 (leadership-production job boundaries). The 2019 reference falls in the 2015-2020 segment; an earlier portrait would need a roughly 2010-2014 reference.",
+            "era_caveat": "Corrected 2 October 2026: the 2019 source shows him at 67 (born 12 July 1952, general knowledge), not about 64; 64 was his age at the old single window's midpoint and the superseded v1 prompt's target age. The fifteen-year span covers about ages 57 to 72, so it is split into an early part (ages 57-62, 2013 reference at 60) and a later part (ages 62-72, 2019 reference at 67). One dated image per part is still not proof of age-appropriate likeness for every year; no era job closes before generation, registration and output review."
           },
           "observations": [
             {
@@ -1249,6 +1267,126 @@
           "registry_terms_not_c01_research": [
             "jp_komeito_natsuo_yamaguchi_20090908"
           ],
+          "era_parts": [
+            {
+              "part": "early",
+              "from": "2009-09-08",
+              "to": "2015-01-01",
+              "to_exclusive": true,
+              "window_status": "appearance_interval_era_part",
+              "accepted_c01_31_observations_inside": [
+                "2009-09-08",
+                "2012-09-22",
+                "2014-09-21"
+              ],
+              "likeness_reference_id": "natsuo-yamaguchi-2013",
+              "prompt": {
+                "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt",
+                "sha256": "bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6",
+                "sha256_basis": "LF bytes as written (equal to git show HEAD:<path> | sha256sum once committed)",
+                "sha256_if_checked_out_crlf": "ca9d98b4d5c6dfebb2fe816d98b781ee6a5406d7329665a79ae5f9c0de840299",
+                "git_blob": "11d07e1a2fde4a03b58629b04a170ec0d66ce635",
+                "bytes": 4573,
+                "lines": 9,
+                "gitattributes_rule_needed": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt text eol=lf",
+                "revision_note": "Re-pinned by the assembler after the verifier's tie finding: the Clothing line's 'plain red tie' now reads 'red tie (a small light dot pattern is visible in the January photograph; simplify it to a few clean flecks)'. The preparer's earlier pin (sha256 60f236c2e25be37b30f9b6f90696ff270c17b90632b14e0508b05de34ed04811, blob 5d99bc01d2ba0103710ef02b3966ba8d39285e50, 4,479 bytes) was never committed and is void."
+              },
+              "planned_output": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+              "inputs_in_order": [
+                {
+                  "order": 1,
+                  "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+                  "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+                  "use": "STYLE ONLY"
+                },
+                {
+                  "order": 2,
+                  "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+                  "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+                  "use": "identity reference"
+                }
+              ],
+              "required_output": "1024x1536 RGB PNG, opaque flat dark teal #192D34, full body, both hands and shoes visible, no text, flags, insignia or extra people",
+              "jobs": {
+                "pipeline_window_scoped": {
+                  "id": "natsuo_yamaguchi-0468451c3d0f",
+                  "from": "2009-09-08",
+                  "to": "2015-01-01",
+                  "status": "needs_source_and_visual_review",
+                  "closure": "prospective exact window coverage after generation, registration and visual review"
+                },
+                "pipeline_default_inventory_partly_targeted": "natsuo_yamaguchi-a71007185b71",
+                "leadership_production_cartoon_jobs_targeted": [
+                  "cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1",
+                  "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"
+                ]
+              },
+              "age_note": "Photograph of 7 July 2013: 1,398 days (about 3.8 years) after the early part's start of 2009-09-08 and 543 days (about 1.5 years) before its exclusive end of 2015-01-01; 428 days (about 1.2 years) after that part's midpoint of 2012-05-05. Yamaguchi (born 12 July 1952, general knowledge) is 60 in the photograph, five days before his 61st birthday, and 57 to 62 across the early part. The prompt asks for about 60, as in the photograph. One dated image is not proof of his appearance in every year of the part."
+            },
+            {
+              "part": "later",
+              "from": "2015-01-01",
+              "to": "2024-09-28",
+              "to_exclusive": true,
+              "window_status": "appearance_interval_era_part",
+              "accepted_c01_31_observations_inside": [
+                "2016-09-17",
+                "2018-09-30",
+                "2020-09-27",
+                "2022-09-25"
+              ],
+              "likeness_reference_id": "natsuo-yamaguchi-2019",
+              "prompt": {
+                "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt",
+                "sha256": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+                "sha256_basis": "LF bytes as written (equal to git show HEAD:<path> | sha256sum once committed)",
+                "sha256_if_checked_out_crlf": "2c1be3052db6d9f155390f343a92877c64cd3a42c4b67f3afa69d31047269746",
+                "git_blob": "0c1f43baa981ac9e679e1629ef362194703ebc53",
+                "bytes": 4103,
+                "lines": 9,
+                "gitattributes_rule_needed": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt text eol=lf"
+              },
+              "planned_output": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+              "inputs_in_order": [
+                {
+                  "order": 1,
+                  "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+                  "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+                  "use": "STYLE ONLY"
+                },
+                {
+                  "order": 2,
+                  "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+                  "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+                  "use": "identity reference"
+                }
+              ],
+              "required_output": "1024x1536 RGB PNG, opaque flat dark teal #192D34, full body, both hands and shoes visible, no text, flags, insignia or extra people",
+              "jobs": {
+                "pipeline_window_scoped": {
+                  "id": "natsuo_yamaguchi-af89e21deee1",
+                  "from": "2015-01-01",
+                  "to": "2024-09-28",
+                  "status": "needs_source_and_visual_review",
+                  "closure": "prospective exact window coverage after generation, registration and visual review"
+                },
+                "pipeline_default_inventory_partly_targeted": "natsuo_yamaguchi-a71007185b71",
+                "leadership_production_cartoon_jobs_targeted": [
+                  "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
+                  "cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"
+                ]
+              },
+              "age_note": "Photograph of 29 August 2019: 1,701 days (about 4.7 years) after 2015-01-01 and 1,857 days (about 5.1 years) before 2024-09-28; 78 days before the part's midpoint of 2019-11-15. He is 67 in it and 62 to 72 across the part; the prompt asks for about 67, as in the photograph, and says one image does not prove every year.",
+              "likeness_reference_reused": {
+                "asset": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+                "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+                "bytes": 27276808,
+                "photograph_date": "2019-08-29",
+                "license": "CC0",
+                "record": "identity-review-batch-01.json likeness_references[id=natsuo-yamaguchi-2019] (unchanged)"
+              }
+            }
+          ],
           "jobs": {
             "pipeline_default_inventory": [
               {
@@ -1261,11 +1399,29 @@
             ],
             "pipeline_window_scoped": [
               {
+                "id": "natsuo_yamaguchi-0468451c3d0f",
+                "from": "2009-09-08",
+                "to": "2015-01-01",
+                "part": "early",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              },
+              {
+                "id": "natsuo_yamaguchi-af89e21deee1",
+                "from": "2015-01-01",
+                "to": "2024-09-28",
+                "part": "later",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_window_scoped_superseded": [
+              {
                 "id": "natsuo_yamaguchi-93769cc0a66c",
                 "from": "2009-09-08",
                 "to": "2024-09-28",
-                "status": "needs_source_and_visual_review",
-                "closure": "prospective exact window coverage after generation, registration and visual review"
+                "status": "superseded 2 October 2026 by the two era-part jobs; do not render",
+                "closure": "none; superseded"
               }
             ],
             "pipeline_residual_after_registration": [
@@ -1287,27 +1443,83 @@
               "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1",
               "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
               "cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"
-            ]
+            ],
+            "leadership_production_cartoon_jobs_by_part": {
+              "early": [
+                "cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1",
+                "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1"
+              ],
+              "later": [
+                "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
+                "cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"
+              ]
+            },
+            "coverage_note": "All targeted coverage is prospective: no job closes until the part's output is generated, registered and reviewed. The residual pipeline jobs are unchanged and stay open. Appearance windows never establish office tenure."
           },
           "likeness_reference_ids": [
+            "natsuo-yamaguchi-2013",
             "natsuo-yamaguchi-2019"
           ],
-          "prompt": {
+          "prompts": [
+            {
+              "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt",
+              "sha256": "bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6",
+              "sha256_basis": "LF bytes as written (equal to git show HEAD:<path> | sha256sum once committed)",
+              "sha256_if_checked_out_crlf": "ca9d98b4d5c6dfebb2fe816d98b781ee6a5406d7329665a79ae5f9c0de840299",
+              "git_blob": "11d07e1a2fde4a03b58629b04a170ec0d66ce635",
+              "bytes": 4573,
+              "lines": 9,
+              "gitattributes_rule_needed": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt text eol=lf",
+              "revision_note": "Re-pinned by the assembler after the verifier's tie finding: the Clothing line's 'plain red tie' now reads 'red tie (a small light dot pattern is visible in the January photograph; simplify it to a few clean flecks)'. The preparer's earlier pin (sha256 60f236c2e25be37b30f9b6f90696ff270c17b90632b14e0508b05de34ed04811, blob 5d99bc01d2ba0103710ef02b3966ba8d39285e50, 4,479 bytes) was never committed and is void.",
+              "part": "early"
+            },
+            {
+              "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt",
+              "sha256": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+              "sha256_basis": "LF bytes as written (equal to git show HEAD:<path> | sha256sum once committed)",
+              "sha256_if_checked_out_crlf": "2c1be3052db6d9f155390f343a92877c64cd3a42c4b67f3afa69d31047269746",
+              "git_blob": "0c1f43baa981ac9e679e1629ef362194703ebc53",
+              "bytes": 4103,
+              "lines": 9,
+              "gitattributes_rule_needed": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt text eol=lf",
+              "part": "later"
+            }
+          ],
+          "superseded_prompt": {
             "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v1.txt",
             "sha256": "7ac461c81ecd482a38acf42bb1a7f95a888b54cd594bcbe3c3c2e63b5ac3d3ed",
             "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
             "sha256_if_checked_out_crlf": "a1085cbf1defd6525dbfef8386502bc84edfe2e19a6730ff69eafeb8e5eee685",
             "git_blob": "5b27d2f84526a461e8450081edf9cf9bf35e01e2",
             "bytes": 3954,
-            "lines": 9
+            "lines": 9,
+            "status": "superseded 2 October 2026 by the two era-part prompts; file unchanged as reviewed evidence; do not render"
           },
-          "planned_output": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v1.png",
+          "planned_outputs": [
+            {
+              "part": "early",
+              "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png"
+            },
+            {
+              "part": "later",
+              "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png"
+            }
+          ],
+          "superseded_planned_output": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v1.png",
           "identity_review": [
             {
               "finding": "Preserve the existing person ID. Identity rests on the Commons category 'Natsuo Yamaguchi', his central position as the speaker and the match with his known features; his name card stands on the table to his right, in front of the neighbouring delegate.",
               "evidence": [
                 "natsuo-yamaguchi-2019",
                 "docs/campaign-certification/C01/research/japan.json /organizations/14/roles/0/holder_claims/5"
+              ]
+            },
+            {
+              "finding": "The 2013 early-part reference shows the same person: the Commons descriptions name him in English ('Natsuo Yamaguchi (President of Kōmeitō).') and Japanese, the file is in Category:Natsuo Yamaguchi in 2013, his features match the 2019 reference, and the photographer's same-day IMG 5611 shows the same man in the same shirt above a campaign poster whose printed portrait matches him.",
+              "evidence": [
+                "natsuo-yamaguchi-2013",
+                "natsuo-yamaguchi-2019",
+                "docs/campaign-certification/C06/production/japan/yamaguchi-era-split-20261002.json"
               ]
             }
           ],
@@ -1327,14 +1539,44 @@
                 "problem": "The prompt said his hands are artistic extensions, but his right hand is partly visible resting on the table and a shirt cuff shows by the glass.",
                 "disposition": "Fixed: the prompt's Clothing line says his hands are only partly visible resting on the table and only the standing pose, trousers and shoes are extensions; people_in_frame and limitation say the same."
               }
-            ]
+            ],
+            "era_fix_verification": {
+              "verifier": "independent Claude verification agent (workflow subagent), 2 October 2026",
+              "verdict": "Preparer's result holds; no blocking problem and no rule violation.",
+              "problems_and_dispositions": [
+                {
+                  "problem": "Low severity: the early prompt said 'plain red tie', but the 2 January 2013 clothing-colour source shows a red tie with a small light dot or diamond pattern partly behind the microphones; 'plain' was unsupported.",
+                  "disposition": "Fixed by the assembler: the prompt now reads 'red tie (a small light dot pattern is visible in the January photograph; simplify it to a few clean flecks)'; LF and CRLF sha256, blob and byte count re-pinned above; clothing_colour_source.observed updated."
+                },
+                {
+                  "problem": "render-request-batch-01.md section 6, the identity-review entry and the README table still pointed at the superseded v1 prompt and job natsuo_yamaguchi-93769cc0a66c; .gitattributes needs two LF rules.",
+                  "disposition": "Pointers repointed and v1 marked superseded in the same commit. The two LF rules remain for Codex at integration (this task may not edit .gitattributes)."
+                },
+                {
+                  "problem": "Advisory: earlier packet text calls the 2019 source 'about age 64'; he is 67 in it (64 was the superseded single window's midpoint age and the v1 prompt's target).",
+                  "disposition": "The new pointers state 67; the identity review's era caveat is corrected with a note; Codex's own disposition text is quoted unchanged."
+                },
+                {
+                  "problem": "Advisory: File:The Prime Minister, Dr. Manmohan Singh with the Leader of New Komeito, Mr. Natsuo Yamaguchi, in Tokyo, Japan on October 26, 2010 (1).jpg (2200x3267, 2010-10-26) may be a better early likeness, but its licence string 'GODL-India' is not in FREE_LICENSES.",
+                  "disposition": "Correctly rejected under the licence rule; usable only if Codex rules otherwise. Not viewed by the verifier or the assembler."
+                },
+                {
+                  "problem": "Not caused by this work: python -m unittest discover -s tools/avatars has one failure, test_committed_matrix_is_current, because the sparse checkout lacks the S23 matrix outputs; the other 827 tests pass.",
+                  "disposition": "Recorded; no test disabled."
+                }
+              ],
+              "record": "yamaguchi-era-split-20261002.json (verification)"
+            }
           },
           "missing_records": [
             "No accepted start or end; the accepted observations are point observations."
           ],
           "open_items_for_codex": [
-            "Accept the 27,276,808-byte reference in Git (the untouched 8256x5504 original; larger than any existing reference and than France's 17 MB Juppé reference; Commons has no extracted crop).",
-            "Decide whether to split the window at 2015-01-01 or 2020-01-01 (see requested_window.possible_split). For a 2009-2015 portrait, qualifying unviewed candidates are File:Natsuo Yamaguchi IMG 5607 20130707.JPG (CC BY 3.0) and the 2013-12-03 State Department public-domain Biden-meeting files."
+            "Retained (independent review, 2 October 2026): the 27,276,808-byte 2019 original stays byte-identical in Git and is reused unchanged by the later part.",
+            "Era split proposed at 2015-01-01 (yamaguchi-era-split-20261002.json): review the new 2013 reference (CC BY 3.0, Ogiyoshisan), both new prompts and the split before rendering either part.",
+            "Add LF rules to .gitattributes for tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt and tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt (this task may not edit .gitattributes).",
+            "At output review: the early part's suit, tie, trousers, pose and shoes extend a shirtsleeved, slightly soft campaign photograph; one photograph per part does not prove every year.",
+            "Optional: the GODL-India 2010-10-26 photograph (2200x3267) might be a sharper early likeness, but 'GODL-India' is not in FREE_LICENSES; usable only if Codex rules otherwise (not viewed)."
           ]
         }
       ]
@@ -2152,10 +2394,99 @@
       "visual_inspection_note": "Assembler viewed both the first revision (the chosen bytes) and the 510x768 response.jp revision: same photograph, the first revision cropped at the upper chest."
     },
     {
+      "id": "natsuo-yamaguchi-2013",
+      "person_id": "natsuo_yamaguchi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_independent_review_render_and_visual_review",
+      "applies_to_part": "early",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Natsuo_Yamaguchi_IMG_5607_20130707.JPG",
+      "commons_title": "File:Natsuo Yamaguchi IMG 5607 20130707.JPG",
+      "commons_pageid": 27380609,
+      "retrieved_at": "2026-10-02T13:31:06Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Natsuo_Yamaguchi_IMG_5607_20130707.json",
+        "bytes": 5431,
+        "sha256": "026cdb4449d3a0fccfaed614ca6d5236e1048710c9346a8f404a9639849ad4b1",
+        "retrieved_at": "2026-10-02T13:36:01Z",
+        "content": "Commons API imageinfo (all file versions: one), extmetadata, commonmetadata, categories and current wikitext."
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Natsuo_Yamaguchi_IMG_5607_20130707.html",
+        "bytes": 92994,
+        "sha256": "50914de02e16b8a821181e49520b774564333aae1862591d431402e9cd200775",
+        "retrieved_at": "2026-10-02T13:36:14Z"
+      },
+      "retrieval_log": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/retrieval-log-era-split-20261002.json",
+        "bytes": 6941,
+        "sha256": "8b37b18c3c6cb2bcb8f3ee02d0b18b63737e31d72b1eaec3f1982f28c184efe5"
+      },
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/Natsuo_Yamaguchi_IMG_5607_20130707.JPG",
+        "bytes": 824703,
+        "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Natsuo_Yamaguchi_IMG_5607_20130707.JPG",
+        "commons_sha1": "f6b1e05247d97514f3b63ebabd0ba94b4763cee1",
+        "commons_sha1_matches_download": true,
+        "file_versions_on_commons": 1,
+        "uploaded": "2013-07-22T10:28:36Z",
+        "uploader": "Ogiyoshisan"
+      },
+      "asset": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+      "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+      "bytes": 824703,
+      "asset_byte_identical_to_original": true,
+      "width": 1200,
+      "height": 1600,
+      "mode": "RGB",
+      "format": "JPEG",
+      "camera": "Canon PowerShot SX260 HS (EXIF); EXIF Software 'Microsoft Windows Photo Viewer 6.1.7600.16385'",
+      "photograph_date": "2013-07-07",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2013-07-07"
+      },
+      "date_precision": "Day, as the source states it: the Commons Information Date field reads 2013-07-07 and the file name ends 20130707; the embedded EXIF DateTimeOriginal is 2013:07:07 15:54:28 (camera clock, not independently verified). Not capture dates: the EXIF DateTime 2013:07:07 17:13:33 written by Windows Photo Viewer (a later save, probably a rotation) and the Commons upload of 22 July 2013. The election-campaign context agrees with the date but is not used to prove it.",
+      "depiction": "Natsuo Yamaguchi, the central man, waist-up, giving an outdoor street speech during the 2013 House of Councillors election campaign in strong sunlight: white shirt with thin blue stripes and rolled-up sleeves, no jacket or tie, a cluster of microphones held in his right hand and his left hand raised in a loose fist, a silver metal wristwatch on his left wrist. The en description reads 'Natsuo Yamaguchi (President of Kōmeitō).' and the ja description '公明党代表山口那津男。投稿者が撮影' (taken by the uploader). Categories: Natsuo Yamaguchi in 2013; Japanese House of Councillors election, 2013; Taken with Canon PowerShot SX260 HS. The place is not stated for this file; the same photographer's same-day File:Japanese House of Councillors election, 2013 (07) IMG 5611 20130707.JPG, described as Umeda, Osaka, shows the same shop window, shrub and striped shirt, so Umeda is probable, not established.",
+      "creator": "Ogiyoshisan (Wikimedia Commons user), own work",
+      "credit": "Ogiyoshisan, 'Natsuo Yamaguchi IMG 5607 20130707.JPG' (own work), photograph of 7 July 2013, CC BY 3.0 (https://creativecommons.org/licenses/by/3.0), via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Natsuo_Yamaguchi_IMG_5607_20130707.JPG). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "source_license_statement": "Commons LicenseShortName exactly 'CC BY 3.0' (License 'cc-by-3.0', UsageTerms 'Creative Commons Attribution 3.0', AttributionRequired true); wikitext licence template {{cc-by-3.0}} with Source {{Own}} and Author Ogiyoshisan. Unported 3.0, not a jurisdiction port.",
+      "rights_statement": "CC BY 3.0 by the photographer Ogiyoshisan, own work. Attribution to Ogiyoshisan with the licence link and a statement that the image was adapted is required for the generated cartoon. No share-alike term. The copied bytes are the untouched 1200x1600 original (single Commons file version).",
+      "identity_basis": "The Commons descriptions name him (en and ja), the file is in Category:Natsuo Yamaguchi in 2013, his features match the 2019 reference (swept-back dark hair, long oval face, high cheekbones, prominent ears), and the photographer's same-day IMG 5611 (CC BY 3.0, viewed at 1280 px) shows the same man in the same shirt speaking from behind a railing above a campaign poster whose printed portrait matches him.",
+      "people_in_frame": "Yamaguchi is the central, nearest figure. Also in frame: a man in a white shirt and glasses partly visible at the left edge; the dark-haired head of a man behind Yamaguchi's left shoulder; a dark-clothed figure and a blue panel at the right edge. Microphones (one with a brown windscreen) and their cables, a metal railing and a black panel in the foreground; a shrub at the left; a building facade with a shop window behind. The prompt excludes everything except Yamaguchi.",
+      "appearance_observed": "Thick very dark, almost black hair combed back from the forehead with a slight sideways sweep into a full, rounded shape with volume on top, short at the sides with the ears uncovered; no gray discernible at this resolution; long oval face with high cheekbones and lean cheeks; smile lines; narrow dark eyes under heavy lids (squinting in the sun); fairly straight dark brows; straight nose with a slightly broad base; wide mouth (open, speaking); firm chin; prominent ears; light warm complexion; clean shaven; no glasses; slim. Clothing: white shirt with thin blue stripes, button-down collar, sleeves rolled to mid-forearm; dark trousers and belt partly visible; silver metal wristwatch. The slightly soft compact-camera image has JPEG noise and harsh sunlight.",
+      "age_gap_note": "Photograph of 7 July 2013: 1,398 days (about 3.8 years) after the early part's start of 2009-09-08 and 543 days (about 1.5 years) before its exclusive end of 2015-01-01; 428 days (about 1.2 years) after that part's midpoint of 2012-05-05. Yamaguchi (born 12 July 1952, general knowledge) is 60 in the photograph, five days before his 61st birthday, and 57 to 62 across the early part. The prompt asks for about 60, as in the photograph. One dated image is not proof of his appearance in every year of the part.",
+      "limitation": "Slightly soft compact-camera photograph in harsh sun; waist-up; campaign shirtsleeves rather than a suit. The suit, tie, trousers, standing pose and shoes are artistic extensions; suit, shirt and tie colours follow the 2 January 2013 photograph recorded under clothing_colour_source (text only, not an input).",
+      "approved_source_license": true,
+      "visual_inspection_by_preparer": true,
+      "visual_inspection_note": "The full 1200x1600 original was viewed, with face and hair crops; the same-day IMG 5611 and the 2 January 2013 file were viewed for corroboration.",
+      "era_split_record": "docs/campaign-certification/C06/production/japan/yamaguchi-era-split-20261002.json",
+      "clothing_colour_source": "Text-only colour source for the early prompt (not an input, not committed): File:Yamaguchi natsuo.jpg, 2 January 2013, STB-1 own work, CC BY-SA 3.0 and GFDL, sha256 b1d246b222e8c611bec4828228c24b9b033f1866e29b7f5ce118f6d4ec76bf70; see the era-split record.",
+      "rejected_candidates": [
+        "File:Yamaguchi natsuo.jpg (2013-01-02, STB-1 own work, CC BY-SA 3.0 and GFDL, 600x900): Qualifies (sharp, frontal, in a suit), but not chosen as the identity input: microphones cover his chin and lower face, it has half the linear resolution of IMG 5607, and its share-alike term would bind the derivative. Kept only as the text clothing-colour source.",
+        "File:Natsuo Yamaguchi Face.jpg (359x481) and File:Natsuo Yamaguchi Medium.jpg (426x602), MrTonas crops of File:Yamaguchi natsuo.jpg, CC BY-SA 3.0, EXIF 2013-01-02: Derivative crops of the file above; same limitations and lower resolution.",
+        "File:Japanese House of Councillors election, 2013 (07) IMG 5611 20130707.JPG (2013-07-07, Ogiyoshisan, CC BY 3.0, 1600x1200): Same speech in a wider shot with several other men and a campaign poster bearing his printed portrait; his face is smaller and turned. Used only for identity and place corroboration.",
+        "File:Vice President Biden Meets With Japanese Political Leaders (11192286255).jpg and its copy File:Natsuo Yamaguchi Shigeru Ishiba Hirofumi Nakasone Taro Aso Joe Biden Caroline Kennedy and Daniel R Russel 20131203.jpg (2013-12-03, U.S. Department of State, Public domain, 4695x3124): Licence qualifies, but Yamaguchi is the seated man at the extreme left edge, cut by the frame and turned; not a usable likeness (viewed at 1280 px).",
+        "File:Vice President Biden Meets Japanese Political Leaders (11182624255).jpg and File:Vice President Biden Meets With Japanese Political Leaders (11192318504).jpg (2013-12-03, Public domain, 4159x2768): Show only Taro Aso and Joe Biden; Yamaguchi is not in frame (viewed at 1280 px).",
+        "File:Natsuo Yamaguchi 201404.jpg (2014-04-26, Tonas2014 own work, CC BY-SA 4.0, 568x774): Qualifies and lies in the early part, but it is a soft phone-camera close-up with a bright lens flare across his forehead and nose, lower resolution and share-alike; a fallback only.",
+        "File:USMC-120513-M-0000W-001.jpg (2012-05-15, United States Marine Corps, Public domain, 2000x1333): Fifteen-person stage toast at the Okinawa reversion reception; faces too small and he is not individually identified in the frame.",
+        "Kantei/Cabinet Office CC BY 4.0 files: 20100217 Question Time 1.jpg (500x341), 31qt5.jpg (600x403), the two 2012-02-29 debate files (600x400), 国家基本政策委員会両院合同審査会 20120411 2.jpg (600x400), 20121114 Question Time 3.jpg (684x400), 20120515 Okinawa-4.jpg (630x468), 安全保障法制整備に関する与党協議についての報告会.jpg and its crop (2014-07-01, 600x360 and 524x349): Licence string qualifies, but all are small multi-person debate, meeting or reception images in which his face is too small for a likeness.",
+        "India PMO / Vice President's Secretariat files of 2010-10-26 (two), 2013-05-28 (three), 2014-01-06 and 2014-09-02 (two, plus the crop File:Natsuo Yamaguchi 2014.jpg): Licence string 'GODL-India', not in FREE_LICENSES.",
+        "File:総理の動き-国家基本政策委員会合同審査会（党首討論）-平成22年4月21日.webm: Video, not a photograph.",
+        "File:祈必勝 (16309739335).jpg (2014-12-14, CC BY-SA 2.0) and File:極東ノート (15425527104).jpg (2014-09-27, CC BY-SA 2.0): Street or campaign-office photographs showing Komeito posters with his printed portrait, not photographs of the person.",
+        "File:Stele from Kozu-Gu Osaka IMG 7982 R 20141207.JPG (CC BY-SA 4.0): Photograph of a shrine stele, not of the person.",
+        "File:Natsuo Yamaguchi-1.jpg and the USS Kitty Hawk file (2005-02-12, US Navy, Public domain): About 4.6 years before the window start."
+      ],
+      "search_scope": "Commons Category:Natsuo Yamaguchi and its subcategories (Natsuo Yamaguchi in 2013; Joe Biden and Natsuo Yamaguchi); full-text File-namespace searches for '山口那津男' (1,348 hits, mostly unrelated scanned newspapers) and '\"Natsuo Yamaguchi\" OR \"Yamaguchi Natsuo\"' (65 hits); imageinfo for every 2009-2014 candidate; the batch-1 preparer's 1 October search results were re-read. No 2009-2012 photograph usable as a single-person likeness with a qualifying licence string was found on Commons; the 2013 photographs are the earliest usable ones found in the window."
+    },
+    {
       "id": "natsuo-yamaguchi-2019",
       "person_id": "natsuo_yamaguchi",
       "kind": "observed_portrait",
       "status": "usable_pending_render_and_visual_review",
+      "applies_to_part": "later (2015-01-01 to 2024-09-28) since the 2 October 2026 era split; previously the whole superseded single window",
       "source_page_url": "https://commons.wikimedia.org/wiki/File:Plenary_Session_4_(48640890007).jpg",
       "commons_title": "File:Plenary Session 4 (48640890007).jpg",
       "retrieved_at": "2026-10-01T23:36:42Z",
@@ -2221,6 +2552,7 @@
       "people_in_frame": "Yamaguchi is the central, sharply focused speaker. Also in frame: a bespectacled delegate with an earpiece on his right (viewer's left), in front of whom his name card stands; probably Ichiro Aisawa at the right edge (a name card reading 'Mr. Ichiro Aisawa' is nearby, but cards in this frame are offset from the people they belong to); the back of a head in the right foreground; seated audience, staff and two video cameras on tripods behind. Name cards, water bottles, glasses and microphones are on the table. His right hand is partly visible resting on the table edge between his name card and the water bottle, and a shirt cuff shows by the glass. The prompt excludes everything except Yamaguchi.",
       "appearance_observed": "Thick dark charcoal hair finely threaded with gray, combed straight back with volume and slightly receding at the temples; long oval face with high cheekbones and lean cheeks; deep nasolabial lines; narrow dark eyes with creased outer corners; fairly straight dark brows; straight nose; prominent ears; light warm complexion; clean shaven; no glasses; slim. Dark navy fine-pinstripe suit, white shirt and pale sky-blue tie with a small white pattern. Three lapel pins (House of Councillors badge, Africa pin, SDG wheel) and an interpretation earpiece are visible; all are omitted in the prompt.",
       "age_gap_note": "Photograph of 29 August 2019: 3,642 days (about 10.0 years) after the window start of 2009-09-08; 1,857 days (about 5.1 years) before the exclusive window end of 2024-09-28; 893 days (about 2.4 years) after the window midpoint of 2017-03-19. Yamaguchi (born 12 July 1952, general knowledge) is 67 in the photo and 57 to 72 across the window (64 at the midpoint). The prompt asks for a man of about 64, slightly younger than the photograph, with the same dark swept-back hair showing only fine gray. If Codex splits the window at 2015-01-01, this reference fits the later portrait; a 2009-2015 portrait would need a roughly 2010-2014 reference. Independent review recommends a later 2015-2024 variant from this source and a separately verified earlier reference for 2009-2015. This is an editorial recommendation; the authored requested interval and prompt are preserved pending that choice, and no variant is approved now.",
+      "era_split_note": "Photograph of 29 August 2019: 1,701 days (about 4.7 years) after 2015-01-01 and 1,857 days (about 5.1 years) before 2024-09-28; 78 days before the part's midpoint of 2019-11-15. He is 67 in it and 62 to 72 across the part; the prompt asks for about 67, as in the photograph, and says one image does not prove every year. The age_gap_note above describes the superseded single window and is kept as reviewed history. Of its rejected_candidates, IMG 5607 has since been viewed and adopted as the early-part reference (natsuo-yamaguchi-2013).",
       "limitation": "Multi-person, seated, waist-up source: his hands are only partly visible on the table, and the standing pose, trousers and shoes are artistic extensions. The original is 27,276,808 bytes, larger than any existing reference (the largest is about 9.95 MB) and larger than France's 17 MB Juppé reference; Commons has no extracted crop. Of the candidates found, the qualifying photograph closest to the midpoint is the 2016-04-18 Kantei file (CC BY 4.0), but it is only 159x212 px.",
       "rejected_candidates": [
         "File:Natsuo Yamaguchi.jpg and File:Natsuo Yamaguchi (cropped).jpg (2016-04-18, Kantei 内閣官房内閣広報室, CC BY 4.0): closest to the midpoint, but only 159x212 and 152x212 px.",
@@ -2600,12 +2932,52 @@
             "content": "Commons' standard 1920px thumbnail of the photograph, used by the preparer, the verifier and the assembler to read the frame; research only, not shipped."
           }
         ]
+      },
+      {
+        "reference_id": "natsuo-yamaguchi-2013",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/Natsuo_Yamaguchi_IMG_5607_20130707.JPG",
+          "bytes": 824703,
+          "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Natsuo_Yamaguchi_IMG_5607_20130707.JPG",
+          "commons_sha1": "f6b1e05247d97514f3b63ebabd0ba94b4763cee1",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Natsuo_Yamaguchi_IMG_5607_20130707.json",
+          "bytes": 5431,
+          "sha256": "026cdb4449d3a0fccfaed614ca6d5236e1048710c9346a8f404a9639849ad4b1",
+          "retrieved_at": "2026-10-02T13:36:01Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Natsuo_Yamaguchi_IMG_5607_20130707.html",
+          "bytes": 92994,
+          "sha256": "50914de02e16b8a821181e49520b774564333aae1862591d431402e9cd200775",
+          "retrieved_at": "2026-10-02T13:36:14Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/retrieval-log-era-split-20261002.json",
+            "bytes": 6941,
+            "sha256": "8b37b18c3c6cb2bcb8f3ee02d0b18b63737e31d72b1eaec3f1982f28c184efe5",
+            "retrieved_at": "2026-10-02",
+            "content": "Era-split retrieval log (URLs, times, sizes, sha256 and User-Agent; no response headers, no contact data, no HTTP 429)."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/Yamaguchi_natsuo.jpg",
+            "bytes": 90452,
+            "sha256": "b1d246b222e8c611bec4828228c24b9b033f1866e29b7f5ce118f6d4ec76bf70",
+            "retrieved_at": "2026-10-02",
+            "content": "File:Yamaguchi natsuo.jpg (2013-01-02, STB-1, CC BY-SA 3.0): text-only clothing-colour source; not an input, not committed."
+          }
+        ]
       }
     ],
     "access_limits": [
       "Wikimedia Commons, upload.wikimedia.org and archive.org returned HTTP 429 many times during preparation (shared IP with parallel agents). Requests were made one at a time with back-offs from about 20 seconds to 20 minutes; nothing was bypassed. Kept 429 bodies (tomiichi_murayama/http429-*.txt) hold only the generic message and a request id.",
       "MOFA's terms page (Tanabe) and the WARP copy of MOFA's APEC 1995 page (Murayama, assembler) returned HTTP 403 to the non-browser User-Agent; neither was retried with a browser User-Agent.",
-      "The assembler made seven single requests on 2026-10-01 between 23:55Z and 23:59Z: the Commons black-and-white Murayama file, the WARP page (HTTP 403), a Wayback availability lookup, the raw 1999 Wayback capture of MOFA's page, its archived image, the Commons file history of the Ota file and that file's first revision. All except the WARP page returned HTTP 200."
+      "The assembler made seven single requests on 2026-10-01 between 23:55Z and 23:59Z: the Commons black-and-white Murayama file, the WARP page (HTTP 403), a Wayback availability lookup, the raw 1999 Wayback capture of MOFA's page, its archived image, the Commons file history of the Ota file and that file's first revision. All except the WARP page returned HTTP 200.",
+      "Era split, 2 October 2026: Commons API, file-page and upload requests were made one at a time with the SPHERES User-Agent; no HTTP 429 or other error (five Japanese titles in one batched query were mangled by the shell and re-queried). The verifier repeated the Commons API checks one at a time. Search evidence is in D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/search-early/."
     ],
     "not_listed": "HTTP response header captures, and the one 429 body that contained the client IP (deleted by the Tanabe preparer), are not listed, hashed, quoted or copied. YouTube watch-page HTML (Yamahana) was not saved because it embeds the client IP. Search scratch files, candidate downloads and inspection crops are not ledgered unless cited above; rejected candidates retained as alternates are cited with their sha256 where relevant."
   },
@@ -2626,5 +2998,18 @@
     ],
     "no_new_historical_authority": true,
     "no_rendered_outputs": true
+  },
+  "era_fix_20261002": {
+    "person_id": "natsuo_yamaguchi",
+    "record": "yamaguchi-era-split-20261002.json",
+    "record_sha256": "3e43bf7c81e8caeda044b267fe77bb3237c8306486d5da0376bf81f58c4757a5",
+    "origin": "The independent preparation review of 2 October 2026 recommended a separately reviewed early reference and a later variant for Yamaguchi's fifteen-year window.",
+    "summary": "Split at 2015-01-01. Early part 2009-09-08 to 2015-01-01: new reference natsuo-yamaguchi-2013 (Ogiyoshisan, 7 July 2013, CC BY 3.0), prompt natsuo-yamaguchi-cartoon-2009-v2.txt, output natsuo-yamaguchi-cartoon-2009-v2.png, job natsuo_yamaguchi-0468451c3d0f. Later part 2015-01-01 to 2024-09-28: existing reference natsuo-yamaguchi-2019 (CC0) reused unchanged, prompt natsuo-yamaguchi-cartoon-2015-v1.txt, output natsuo-yamaguchi-cartoon-2015-v1.png, job natsuo_yamaguchi-af89e21deee1. Superseded: prompt natsuo-yamaguchi-cartoon-2009-v1.txt (file unchanged), job natsuo_yamaguchi-93769cc0a66c, output natsuo-yamaguchi-cartoon-2009-v1.png.",
+    "status": "proposal awaiting Codex review and render; no output generated, registered or approved",
+    "gitattributes_rules_needed": [
+      "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt text eol=lf",
+      "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt text eol=lf"
+    ],
+    "unchanged": "All 14 accepted holder records, the other five people with their references and prompts, the v1 Yamaguchi prompt, the 2019 reference bytes, person_portraits.json, party_leaders.json and .gitattributes."
   }
 }
