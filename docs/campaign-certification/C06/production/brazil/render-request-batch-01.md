@@ -1,12 +1,12 @@
 # Brazil cast batch 1: render request for Codex (BR-CAST-B01)
 
-From Claude, task `CLAUDE-C06-BRAZIL-01`, branch `claude/c06-br-01`, 1 October 2026. State: **five render-ready art proposals; job 6 held pending era correction**. No generated output is rendered, reviewed or approved yet.
+From Claude, task `CLAUDE-C06-BRAZIL-01`, branch `claude/c06-br-01`, 1 October 2026. State: **five render-ready art proposals (jobs 1–5); the held job 6 is superseded and replaced by jobs 6a and 6b (Lupi era split at 2020-01-01, independently verified and fixed on 2 October 2026), which Codex renders after reviewing the split**. No generated output is rendered, reviewed or approved yet.
 
-Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `b11c86388940d46742cf5569e418c4cd63c73783c7612b6996ffa3e5be71ae84`). It holds the accepted C01 observations, the verified references, the rejected candidates, the verifier dispositions and the excluded person.
+Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `b480afe609da93df46ad14249c91f5b1ed115b1d90f7b697deeb93ccd44a046e`; before the era fix `b11c86388940d46742cf5569e418c4cd63c73783c7612b6996ffa3e5be71ae84`). It holds the accepted C01 observations, the verified references, the rejected candidates, the verifier dispositions, the excluded person and, since the era fix, the superseded Lupi window (`/batches/0/people/5`) and its two replacements (`/batches/0/people/6` and `/7`). Era fix record: [`lupi-era-correction-batch-01.json`](lupi-era-correction-batch-01.json) (sha256 `c0f45ad9e9f8c4e74302fce65ff5116981b6be43c4d4a539ec60ecc3276b3ce2`).
 
 ## What Codex does
 
-For jobs 1–5 below only (four people; Michel Temer has two render-ready windows). **Do not submit job 6 until its era correction and revised prompt/window have been reviewed.**
+For jobs 1–5 below (four people; Michel Temer has two render-ready windows), and for jobs 6a and 6b once Codex has reviewed the Lupi era split. **Never submit the superseded job 6 prompt, `carlos-lupi-cartoon-2015-v1.txt`.**
 
 1. Check the inputs: the prompt file's sha256 equals the pinned value (`git show HEAD:<prompt path> | sha256sum`), and the style anchor and identity reference match their sha256.
 2. Generate with the built-in image tool (the pipeline requires generator `OpenAI built-in image_gen`). Submit the prompt file's text exactly as committed, with the images in this order:
@@ -16,7 +16,7 @@ For jobs 1–5 below only (four people; Michel Temer has two render-ready window
 4. Return every attempt **unchanged**: the `exec-*.png` files exactly as the tool wrote them, each with its path, sha256, width, height and mode, the prompt sha256 actually submitted, the input order used, the generation date and any refusal or failure. Do not crop, resize, recolour, re-encode or otherwise edit them. You may say which attempt you would choose.
 5. Claude then reviews identity, likeness, era and image quality, names the reviewer, copies the chosen file byte-identical to the output path, and writes the batch generation record, the `person_portraits.json` records and the registration receipt. Review flags stay false until those checks actually happen. No human approval is claimed.
 
-Line endings: the six prompt files are LF and no `.gitattributes` rule covers them yet (core.autocrlf=true on this machine). This task may not edit `.gitattributes`, so please add a rule at integration. Until then a Windows checkout writes CRLF; its hash is listed for each job.
+Line endings: the six batch-1 prompt files now have LF rules in `.gitattributes` (added at Codex integration). The two era-fix prompts of jobs 6a and 6b are LF and no rule covers them yet (core.autocrlf=true on this machine). This task may not edit `.gitattributes`, so please add `tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt text eol=lf` and `tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt text eol=lf` at integration. Until then a Windows checkout writes CRLF; its hash is listed for those jobs.
 
 Jobs 1 and 5 use the same photograph (J. Batista / Câmara dos Deputados, 11 November 2009, Lupi centre and Temer right), committed under two per-person paths with identical bytes. Each prompt names its own subject and excludes the others.
 
@@ -29,11 +29,11 @@ Jobs 1 and 5 use the same photograph (J. Batista / Câmara dos Deputados, 11 Nov
 - `leonel_brizola` (1995 window): The byte-identical reference carries the photographer's own embedded IPTC contact fields (a work phone number and e-mail), which Commons already publishes in the same file. Committing the copy republishes them; stripping them would break byte identity. Accept, or substitute a decision of your own before integration.
 - `leonel_brizola` (1995 window): Accept the 7.66 MB reference file size.
 - `carlos_lupi` (2004 window): Agree the window start 2004-06-30, which rests on leadership production and the month-precision registry term rather than accepted C01 research.
-- `carlos_lupi` (2015 window): Required before rendering: the unchanged prompt mandates the gray 2023 look throughout 2015–2026 despite acknowledging the earlier darker appearance. Narrow the later-era application or prepare a supported earlier variant and review the revised prompt/window. A potential 2020 split is an art choice, not a sourced office or physical-change date. No correction is prepared here.
+- `carlos_lupi` (era split, jobs 6a and 6b): review the split at 2020-01-01 (an existing leadership-production job boundary used as an art boundary, not a sourced office or physical-change date), window 2 of 3 (2015-01-01 to 2020-01-01), which holds no accepted C01 observation and rests on registry term `br_pdt_carlos_lupi_200406` and the leadership-production job, the new reference `carlos-lupi-2015-reference-v1.jpg` (with its embedded Senate-archive IPTC contact fields and camera serial number, kept for byte identity) and both prompts. Rule on `File:Lupi.png` (uploader-dated 1 May 2018, CC BY-SA 4.0, own-work claim and date unverified): it shows Lupi grayer than in August 2015, so either accept the softened 6a wording and its disclosure for 2018–2019, or have its provenance verified and split window 2 of 3 again (for example at 2018-01-01). Job 6b no longer mandates the October 2023 gray throughout; it asks for salt-and-pepper to gray, never dark. Original hold (Codex review of `383086651685ff2f8ba6aaff3a575cc4ae67df70`): the unchanged job-6 prompt mandates the gray 2023 look throughout 2015–2026 despite acknowledging the earlier darker appearance.
 - `daniel_sampaio_tourinho` (excluded): Rule whether the TSE portal's unversioned 'cc-by' grant may be recorded as 'CC BY 4.0' (as Commons' TSE-Dados-Abertos template reads it) for a candidate photograph that is not on Commons. If yes, a later batch can prepare the TSE 2010 photograph with a declared age gap (taken at an unknown age of at most 63; he is 67 to 79 in the window) and a declared lack of colour and body.
 - `daniel_sampaio_tourinho` (excluded): Optional before that: search TSE consulta_cand 2012, 2016, 2020 and 2024 for DANIEL SAMPAIO TOURINHO, born 11/05/1947, for a newer candidate photograph closer to the window.
 - `daniel_sampaio_tourinho` (excluded): Keep Tourinho unprepared pending an independently inspected exact-person visual reference. The archival-method restriction does not forbid generated authored-identity portraits; that research-only route may be assessed separately, without inventing a licence or shipping/adapting an unverified TSE photograph.
-- All six prompts: add an LF rule to `.gitattributes` at integration, as for `tonga-*.txt`, for example `tools/avatars/person-prompts/<each Brazil prompt>.txt text eol=lf`; this task may not edit `.gitattributes`.
+- The two era-fix prompts (jobs 6a and 6b): add LF rules to `.gitattributes` at integration, as Codex did for the six batch-1 prompts; this task may not edit `.gitattributes`.
 
 The independent review of source tip `383086651685ff2f8ba6aaff3a575cc4ae67df70` accepts only bounded preparation. All 17 historical holder objects and all six prompt byte sequences remain unchanged. Preserve the CC BY-SA 4.0 requirements for any Brizola adaptation: source attribution, disclosed changes and the derivative licence must accompany the generated-method label. No job is closed before reviewed output and registration.
 
@@ -106,7 +106,7 @@ The independent review of source tip `383086651685ff2f8ba6aaff3a575cc4ae67df70` 
 - Leadership-production cartoon jobs this window could cover after generation, registration and review: `cartoon:leonel_brizola:1995-01-01:2000-01-01:v1`, `cartoon:leonel_brizola:2000-01-01:2004-06-21:v1`.
 - Settle first: Rule on the registry birth date (1922-01-22 in the Chamber of Deputies open data and Wikidata, 1922-11-22 in party_leaders.json). This task does not edit the registry; the prompt's ages hold for both. The byte-identical reference carries the photographer's own embedded IPTC contact fields (a work phone number and e-mail), which Commons already publishes in the same file. Committing the copy republishes them; stripping them would break byte identity. Accept, or substitute a decision of your own before integration. Accept the 7.66 MB reference file size.
 
-### 5. Carlos Lupi (`carlos_lupi`), window 1 of 2
+### 5. Carlos Lupi (`carlos_lupi`), window 1 of 3
 
 - Appearance window: 2004-06-30 to 2015-01-01 (exclusive end); status `appearance_interval_from_handoff`.
 - Output path (after review): `spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png`
@@ -123,22 +123,49 @@ The independent review of source tip `383086651685ff2f8ba6aaff3a575cc4ae67df70` 
 - Leadership-production cartoon jobs this window could cover after generation, registration and review: `cartoon:carlos_lupi:2004-06-30:2005-01-01:v1`, `cartoon:carlos_lupi:2005-01-01:2010-01-01:v1`, `cartoon:carlos_lupi:2010-01-01:2015-01-01:v1`.
 - Settle first: Agree the window start 2004-06-30, which rests on leadership production and the month-precision registry term rather than accepted C01 research.
 
-### 6. Carlos Lupi (`carlos_lupi`), window 2 of 2 — RENDER HELD
+### 6. Carlos Lupi (`carlos_lupi`), held 2015–2026 window — SUPERSEDED, DO NOT RENDER
 
-- Proposed appearance window: 2015-01-01 to 2026-09-08 (exclusive end); status `held_pending_era_correction`. The unchanged prompt is retained for review, not submission.
-- Output path (after review): `spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v1.png`
-- Prompt file: `tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v1.txt`
-  - sha256 (LF, as committed): `04a38571bc903f152d9b43952956fca94c88451bcbe0378ab0ae71fef4b41aa8`
-  - sha256 if your checkout wrote CRLF: `5a9a4653164518544b5b4dae74733fef1d5cdb9cd55f4ca9a051f42ce681f3af`; git blob `a8908c94889cb1f9f6faedcfe5a44648245980fa`
-- Input 1, STYLE ONLY: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`, sha256 `8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef`
-- Input 2, identity reference: `spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg`, sha256 `44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb`, 1545x2064 RGB JPEG, 687,212 bytes
+Superseded on 2 October 2026 by jobs 6a and 6b (era split at 2020-01-01; see [`lupi-era-correction-batch-01.json`](lupi-era-correction-batch-01.json) and identity review `/batches/0/people/5`). Never submit `tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v1.txt` (LF sha256 `04a38571bc903f152d9b43952956fca94c88451bcbe0378ab0ae71fef4b41aa8`). It stays in the repository unchanged as the reviewed held proposal, and its planned output `carlos-lupi-cartoon-2015-v1.png` is never created. The window 2015-01-01 to 2026-09-08 and its window-scoped job `carlos_lupi-7293a9e06d87` are no longer planned. Hold reason (Codex review of `383086651685ff2f8ba6aaff3a575cc4ae67df70`): the prompt mandates the gray 2023 look throughout 2015–2026 despite acknowledging the earlier darker appearance.
+
+### 6a. Carlos Lupi (`carlos_lupi`), window 2 of 3 — replaces job 6; render after Codex reviews the era split
+
+- Appearance window: 2015-01-01 to 2020-01-01 (exclusive end); status `proposed_era_split_pending_codex_review`. The end is the era split, an existing leadership-production job boundary used as an art boundary. Records: identity review `/batches/0/people/6`; [`lupi-era-correction-batch-01.json`](lupi-era-correction-batch-01.json) `/windows/0`.
+- Output path (after review): `spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png`
+- Prompt file: `tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt`
+  - sha256 (LF, as committed): `777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530`
+  - sha256 if your checkout wrote CRLF (no `.gitattributes` rule yet): `dfe48637c274a3314db55f1ee0fc35af873d8d619080776aaf51456445b85ca1`; git blob `88bde183da1b7e96c05d039f4357346044dc8787`; 4,890 bytes, 9 lines
+- Input order:
+  1. STYLE ONLY: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`, sha256 `8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef`
+  2. Identity reference: `spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg`, sha256 `fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6`, 3184x2120 RGB JPEG, 1,696,493 bytes
+  - Photograph date: 2015-08-18 (EXIF DateTimeOriginal 2015-08-18 12:22:13 and the Commons/Flickr import; no news report corroborates the day; the Commons upload of 2015-08-31 is not the capture date). Licence: CC BY 2.0 (https://creativecommons.org/licenses/by/2.0).
+  - Credit: Jane de Araújo/Agência Senado, 'Presidência do Senado (20659268666).jpg', visit of the PDT leadership to the President of the Senate, Brasília, 18 August 2015; CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 20659268666; licence confirmed by FlickreviewR on 31 August 2015). Adapted for Spheres; no endorsement implied.
+  - In frame: four men in a row; Lupi is third from the left, the only bearded man, frontal and full length, smiling, in a royal-blue windowpane jacket, slate-navy trousers, a white shirt and a burgundy tie with white stripes, hands clasped; dark charcoal hair with gray at the temples and sides, dark brown-black beard with gray at the chin and sideburns. Renan Calheiros, Acir Gurgacz, André Figueiredo, the paneled wall, coat of arms, sofa, paintings, chairs, floor and table edge are excluded by the prompt.
+  - Era limit, declared in the prompt: the photograph is 7.5 months into a window covering ages 57 to 62. An uploader-dated photograph of 1 May 2018 (`File:Lupi.png`, CC BY-SA 4.0, own-work claim and date unverified; a comparison, not a reference) shows him grayer, with salt-and-pepper hair and a gray-brown beard. The prompt allows a little more gray than in 2015 but does not show the 2018–2019 graying.
+- Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible; no text, flags, insignia or extra people. Up to **3 attempts**.
+- Return every attempt **unchanged**: the `exec-*.png` file exactly as the tool wrote it, with its path, sha256, width, height and mode, the prompt sha256 actually submitted, the input order used, the generation date and any refusal or failure (format below). No crop, resize, recolour or re-encode.
+- Pipeline job, window-scoped: `carlos_lupi-400fe963352c`. Default-inventory job planned to be partly covered after registration: `carlos_lupi-1a8bd5270f54` (1990-01-01 to 2027-01-01).
+- Leadership-production cartoon job this window could cover after generation, registration and review: `cartoon:carlos_lupi:2015-01-01:2020-01-01:v1`. Coverage is prospective; nothing is closed before reviewed registration.
+- Settle first: agree the split and this window (no accepted C01 observation); rule on `File:Lupi.png` (accept the softened wording, or verify it and split again near 2018); accept the reference's embedded Senate-archive IPTC contact fields and camera serial number; add the LF rule.
+
+### 6b. Carlos Lupi (`carlos_lupi`), window 3 of 3 — replaces job 6; render after Codex reviews the era split
+
+- Appearance window: 2020-01-01 to 2026-09-08 (exclusive end); status `proposed_era_split_pending_codex_review`. It contains the three accepted C01-34 PDT observations (2021-12-21, 2025-05-21, 2026-09-04). Records: identity review `/batches/0/people/7`; [`lupi-era-correction-batch-01.json`](lupi-era-correction-batch-01.json) `/windows/1`.
+- Output path (after review): `spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png`
+- Prompt file: `tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt`
+  - sha256 (LF, as committed): `cc0a4c92eeea27ed6b37769a41ea8c3de6ff9edd75e10f47cbb1adea1070a218`
+  - sha256 if your checkout wrote CRLF (no `.gitattributes` rule yet): `0e2fc6040e67b7cbe2bea70378478b35263d8c27ac7826aad3ff19936532c7e3`; git blob `8e69112342bd3b5193be572d2ffcddb63188b14f`; 4,456 bytes, 9 lines
+- Input order:
+  1. STYLE ONLY: `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`, sha256 `8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef`
+  2. Identity reference: `spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg`, sha256 `44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb`, 1545x2064 RGB JPEG, 687,212 bytes (the reviewed batch-1 reference, unchanged)
   - Photograph date: 2023-10-24. Licence: CC BY 2.0 (https://creativecommons.org/licenses/by/2.0).
   - Credit: Geraldo Magela/Agência Senado, 'Carlos Lupi. CAS - Comissão de Assuntos Sociais (cropped).jpg', 24 October 2023, CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 53282670483; licence confirmed by FlickreviewR 2 on 30 January 2024 on the parent file); crop uploaded by Commons user Rodolfo Matias on 30 January 2024. Adapted for Spheres; no endorsement implied.
   - In frame: Lupi alone, chest-up, speaking at a Senate committee with both index fingers raised; the microphone across his beard, the wall panels and the lapel pin are excluded, and the prompt asks for a closed-mouth smile and a neutral pose.
-- Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `carlos_lupi-7293a9e06d87`. Default-inventory job planned to be partly covered after registration: `carlos_lupi-1a8bd5270f54` (1990-01-01 to 2027-01-01).
-- Leadership-production cartoon jobs this window could cover after generation, registration and review: `cartoon:carlos_lupi:2015-01-01:2020-01-01:v1`, `cartoon:carlos_lupi:2020-01-01:2025-01-01:v1`, `cartoon:carlos_lupi:2025-01-01:2026-09-08:v1`.
-- Settle first: Required before rendering: the unchanged prompt mandates the gray 2023 look throughout 2015–2026 despite acknowledging the earlier darker appearance. Narrow the later-era application or prepare a supported earlier variant and review the revised prompt/window. A potential 2020 split is an art choice, not a sourced office or physical-change date. No correction is prepared here.
+  - Era limit, declared in the prompt: the photograph is near the middle of a window covering ages 62 to 69. The prompt asks for salt-and-pepper to gray hair and a salt-and-pepper beard, following the photograph or very slightly darker, never dark. Comparison photographs (1 May 2018, uploader-dated and unverified; January 2023) show him a little darker than in October 2023, which may be near the grayest point of the window; no verified dated photograph from 2020 to 2022 was found.
+- Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible; no text, flags, insignia or extra people. Up to **3 attempts**.
+- Return every attempt **unchanged**: the `exec-*.png` file exactly as the tool wrote it, with its path, sha256, width, height and mode, the prompt sha256 actually submitted, the input order used, the generation date and any refusal or failure (format below). No crop, resize, recolour or re-encode.
+- Pipeline job, window-scoped: `carlos_lupi-84f4126df75f`. Default-inventory job planned to be partly covered after registration: `carlos_lupi-1a8bd5270f54` (1990-01-01 to 2027-01-01).
+- Leadership-production cartoon jobs this window could cover after generation, registration and review: `cartoon:carlos_lupi:2020-01-01:2025-01-01:v1`, `cartoon:carlos_lupi:2025-01-01:2026-09-08:v1`. Coverage is prospective; nothing is closed before reviewed registration.
+- Settle first: agree this window and the reworded prompt (if one portrait still cannot represent 2020–2022, the window needs a narrower start or a verified 2020–2022 reference, and none was found on Commons); add the LF rule.
 
 ## Excluded (not rendered)
 

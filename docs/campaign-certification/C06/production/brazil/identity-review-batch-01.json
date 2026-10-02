@@ -9,7 +9,7 @@
   "branch": "claude/c06-br-01",
   "base": "2fd186d6",
   "claim_commit": "473f234a",
-  "scope": "Brazil cast batch 1: the five registry people with accepted C01 holder observations (C01-34 MDB and PDT national presidents, C01-43 PRN/PTC/Agir national presidents), in seven requested appearance windows. Six windows (four people) are prepared, each with one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Daniel Tourinho is excluded because no qualifying likeness reference was found under this preparation's search and licence filter. Five prepared windows are render-ready; Lupi's 2015–2026 render is held pending an era correction. There is no reserve. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+  "scope": "Brazil cast batch 1: the five registry people with accepted C01 holder observations (C01-34 MDB and PDT national presidents, C01-43 PRN/PTC/Agir national presidents), in seven requested appearance windows. Six windows (four people) are prepared, each with one dated, freely licensed likeness photograph copied byte-identical into the repository and one exact prompt. Daniel Tourinho is excluded because no qualifying likeness reference was found under this preparation's search and licence filter. Five prepared windows are render-ready; Lupi's 2015–2026 render is held pending an era correction. There is no reserve. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards. Era fix, 2 October 2026: Lupi's held 2015–2026 window is superseded by two proposed windows (2015-01-01 to 2020-01-01 and 2020-01-01 to 2026-09-08), pending Codex review; eight windows are now recorded, seven of them active.",
   "prepared_by": "Claude: one preparation agent and one independent verification agent per requested window (seven windows, five people), assembled and mechanically corrected by Claude on 2026-10-01. This is not human review, not Codex review and not user approval.",
   "authority": {
     "runtime_installation": false,
@@ -167,7 +167,7 @@
   "coverage": {
     "people_count": 5,
     "primary_people": 4,
-    "portrait_jobs": 6,
+    "portrait_jobs": 7,
     "reserve_people": 0,
     "excluded_people": 1,
     "holder_observation_count": 17,
@@ -178,9 +178,9 @@
     },
     "holder_observations_in_prepared_windows": 12,
     "holder_observations_of_excluded_people": 5,
-    "likeness_reference_count": 6,
-    "distinct_reference_images": 5,
-    "usable_likeness_reference_count": 6,
+    "likeness_reference_count": 7,
+    "distinct_reference_images": 6,
+    "usable_likeness_reference_count": 7,
     "research_only_likeness_reference_count": 0,
     "references_inside_requested_window": [
       "michel-temer-2009",
@@ -188,7 +188,8 @@
       "baleia-rossi-2021",
       "leonel-brizola-1998",
       "carlos-lupi-2009",
-      "carlos-lupi-2023"
+      "carlos-lupi-2023",
+      "carlos-lupi-2015"
     ],
     "references_with_limited_date_evidence": [
       "michel-temer-2017",
@@ -204,8 +205,17 @@
     "leadership_production_cartoon_jobs_planned_by_primary_people": 14,
     "leadership_production_cartoon_jobs_closed_by_primary_people": 0,
     "render_ready_jobs": 5,
-    "held_render_jobs": 1,
-    "planned_coverage_limit": "The fourteen jobs are potential coverage only after generation, registration and review, including resolution of the held Lupi era window; none is closed by preparation."
+    "held_render_jobs": 0,
+    "planned_coverage_limit": "The fourteen jobs are potential coverage only after generation, registration and review, including Codex review of the Lupi era split (windows 2 and 3 of 3); none is closed by preparation.",
+    "superseded_portrait_jobs": 1,
+    "superseded_render_jobs": [
+      "carlos-lupi-cartoon-2015-v1.txt (2015-01-01 to 2026-09-08)"
+    ],
+    "proposed_render_jobs_pending_codex_review": [
+      "carlos-lupi-cartoon-2015-v2.txt (2015-01-01 to 2020-01-01)",
+      "carlos-lupi-cartoon-2020-v1.txt (2020-01-01 to 2026-09-08)"
+    ],
+    "holder_dictionary_copies_note": "17 distinct accepted holder dictionaries, all unchanged. The three Lupi PDT dictionaries of 2021-12-21, 2025-05-21 and 2026-09-04 appear twice (the superseded /batches/0/people/5 and /batches/0/people/7), so the file holds 20 copies."
   },
   "batches": [
     {
@@ -825,7 +835,7 @@
           "registry_name": "Carlos Lupi",
           "identity_status": "existing_identity",
           "batch_role": "primary",
-          "window_of_person": "1 of 2",
+          "window_of_person": "1 of 3",
           "observed_names": [
             "Carlos Lupi"
           ],
@@ -895,7 +905,7 @@
                 "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
               }
             ],
-            "pipeline_residual_note": "After both Lupi windows (2004-06-30 to 2026-09-08) are registered.",
+            "pipeline_residual_note": "After all three active Lupi windows (2004-06-30 to 2026-09-08, split at 2015-01-01 and 2020-01-01) are registered; the residual ranges are the same as before the era split.",
             "leadership_production_cartoon_jobs_planned": [
               "cartoon:carlos_lupi:2004-06-30:2005-01-01:v1",
               "cartoon:carlos_lupi:2005-01-01:2010-01-01:v1",
@@ -960,7 +970,7 @@
           "registry_name": "Carlos Lupi",
           "identity_status": "existing_identity",
           "batch_role": "primary",
-          "window_of_person": "2 of 2",
+          "window_of_person": "2 of 2 (superseded by 2 of 3 and 3 of 3)",
           "observed_names": [
             "Carlos Lupi"
           ],
@@ -968,7 +978,7 @@
             "from": "2015-01-01",
             "to": "2026-09-08",
             "to_exclusive": true,
-            "window_status": "held_pending_era_correction",
+            "window_status": "superseded_by_era_split",
             "basis": "C01-34 PDT holder observations attested 2021-12-21, 2025-05-21 and 2026-09-04 (brazil.json /organizations/1/roles/0/holder_claims/4-6), each with from and until null. The start 2015-01-01 is the batch split with the first Lupi window (an existing leadership-production boundary), not a research boundary. The exclusive end 2026-09-08 is the day after the 7 September 2026 cutoff; registry term br_pdt_carlos_lupi_200406 (not accepted C01 research) is open. The window is an appearance interval, not a tenure."
           },
           "observations": [
@@ -1054,8 +1064,8 @@
                 "id": "carlos_lupi-7293a9e06d87",
                 "from": "2015-01-01",
                 "to": "2026-09-08",
-                "status": "needs_source_and_visual_review",
-                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+                "status": "superseded_not_planned",
+                "planned_coverage": "None: the window is superseded. The era split plans carlos_lupi-400fe963352c (2015-01-01 to 2020-01-01) and carlos_lupi-84f4126df75f (2020-01-01 to 2026-09-08) instead."
               }
             ],
             "pipeline_residual_after_registration": [
@@ -1077,7 +1087,8 @@
               "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1",
               "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
               "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"
-            ]
+            ],
+            "superseded_note": "The three leadership-production cartoon jobs listed here are now planned by /batches/0/people/6 (2015-2020) and /batches/0/people/7 (2020-2025, 2025-2026); coverage stays prospective."
           },
           "likeness_reference_ids": [
             "carlos-lupi-2023"
@@ -1090,7 +1101,8 @@
             "git_blob": "a8908c94889cb1f9f6faedcfe5a44648245980fa",
             "lines": 9,
             "bytes": 3910,
-            "encoding": "UTF-8, no BOM, LF"
+            "encoding": "UTF-8, no BOM, LF",
+            "status": "superseded_not_rendered"
           },
           "planned_output": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v1.png",
           "identity_review": [
@@ -1108,14 +1120,376 @@
           },
           "missing_records": [],
           "open_items_for_codex": [
-            "Required before rendering: narrow the later-era application or split the window and prepare a supported earlier appearance. Any split is an art boundary, not a new office or physical-change date. Preserve the current prompt bytes as the reviewed held proposal until the correction is explicitly authored and pinned."
+            "Superseded on 2 October 2026: the hold is answered by the proposed era split in /batches/0/people/6 and /batches/0/people/7 (lupi-era-correction-batch-01.json), pending Codex review. Never render carlos-lupi-cartoon-2015-v1.txt."
           ],
           "render_disposition": {
-            "status": "held_pending_era_correction",
+            "status": "superseded_not_rendered",
             "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
             "limits": "No tenure, office eligibility, generated-output review or registration is granted.",
-            "reason": "The unchanged prompt mandates the gray 2023 appearance across 2015–2026 while acknowledging a different earlier appearance. Do not submit this render until the era window and prompt are revised or an earlier variant is prepared and reviewed."
+            "reason": "The unchanged prompt mandates the gray 2023 appearance across 2015–2026 while acknowledging a different earlier appearance. Do not submit this render until the era window and prompt are revised or an earlier variant is prepared and reviewed.",
+            "superseded_at": "2026-10-02"
+          },
+          "superseded_by": {
+            "date": "2026-10-02",
+            "record": "docs/campaign-certification/C06/production/brazil/lupi-era-correction-batch-01.json",
+            "entries": [
+              "/batches/0/people/6 (window 2 of 3, 2015-01-01 to 2020-01-01)",
+              "/batches/0/people/7 (window 3 of 3, 2020-01-01 to 2026-09-08)"
+            ],
+            "note": "This entry is kept as the reviewed held proposal. Its holder dictionaries are unchanged and are copied exactly into /batches/0/people/7. Its prompt carlos-lupi-cartoon-2015-v1.txt is preserved byte for byte and must never be rendered; its planned output carlos-lupi-cartoon-2015-v1.png is never created."
           }
+        },
+        {
+          "person_id": "carlos_lupi",
+          "display_name": "Carlos Lupi",
+          "registry_name": "Carlos Lupi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "2 of 3",
+          "observed_names": [
+            "Carlos Lupi"
+          ],
+          "requested_window": {
+            "from": "2015-01-01",
+            "to": "2020-01-01",
+            "to_exclusive": true,
+            "window_status": "proposed_era_split_pending_codex_review",
+            "basis": "Appearance interval, not a tenure. No accepted C01 holder observation of Lupi falls in 2015-2019: his re-elections of 18 March 2017 and 18 March 2019 are claims only in the accepted record's uncertainty note (brazil.json /organizations/1/roles/0/holder_claims/4). The window rests on registry term br_pdt_carlos_lupi_200406 (party_leaders.json, month-precision start, open end; not accepted C01 research) and on the leadership-production job cartoon:carlos_lupi:2015-01-01:2020-01-01:v1. Start 2015-01-01: the batch split with window 1 of 3 (unchanged). Exclusive end 2020-01-01: the era split above."
+          },
+          "observations": [],
+          "registry_terms_not_c01_research": [
+            "br_pdt_carlos_lupi_200406"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "carlos_lupi-1a8bd5270f54",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "carlos_lupi-400fe963352c",
+                "from": "2015-01-01",
+                "to": "2020-01-01",
+                "status": "needs_source_and_visual_review",
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2004-06-30",
+                "id": "carlos_lupi-e664a94b9464",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2026-09-08",
+                "to": "2027-01-01",
+                "id": "carlos_lupi-7035d40937f6",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "pipeline_residual_note": "After all three active Lupi windows (2004-06-30 to 2026-09-08, split at 2015-01-01 and 2020-01-01) are registered; the residual ranges are the same as before the era split.",
+            "leadership_production_cartoon_jobs_planned": [
+              "cartoon:carlos_lupi:2015-01-01:2020-01-01:v1"
+            ],
+            "coverage_note": "Prospective only. No job is closed until the output is generated, reviewed and registered."
+          },
+          "likeness_reference_ids": [
+            "carlos-lupi-2015"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt",
+            "sha256": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+            "sha256_basis": "LF bytes as written (equal to git show HEAD:<path> | sha256sum once committed)",
+            "sha256_if_checked_out_crlf": "dfe48637c274a3314db55f1ee0fc35af873d8d619080776aaf51456445b85ca1",
+            "git_blob": "88bde183da1b7e96c05d039f4357346044dc8787",
+            "lines": 9,
+            "bytes": 4890,
+            "encoding": "UTF-8, no BOM, LF",
+            "derivation_note": "Lines 1-2, 4 and 9 are identical to the held carlos-lupi-cartoon-2015-v1.txt. Line 3 states the new window and ages; lines 5-8 describe the 18 August 2015 photograph, its clothing and its setting. Line 5 was reworded in the era fix after verification (hair and beard description; era wording).",
+            "status": "proposed_pending_codex_review"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+          "render_inputs": [
+            {
+              "order": 1,
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "use": "STYLE ONLY"
+            },
+            {
+              "order": 2,
+              "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+              "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+              "use": "identity reference"
+            }
+          ],
+          "required_output": "1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible; no text, flags, insignia or extra people.",
+          "age_gap_note": "Born 1957-03-16 (registry birth date; not accepted C01 research). He is 58 (58 years 5 months) in the photograph of 18 August 2015. The window covers ages 57 to 62. The photograph is about 7 months 17 days after the window starts and about 4 years 4 months 14 days before its exclusive end, about 1 year 10 months before its midpoint. The prompt asks for a man of about 58 to 60 with the photograph's dark charcoal hair and dark brown-black beard and their gray at the temples, sides, chin and sideburns, allows a little more gray, and forbids the later salt-and-pepper and 2023 gray looks. It declares that the portrait does not show how much he grayed in 2018 and 2019 (ages 60 to 62): an uploader-dated photograph of 1 May 2018 (File:Lupi.png; date and own-work claim unverified; a comparison, not a reference) already shows salt-and-pepper hair and a gray-brown beard, and no verified dated photograph from 2016 to 2019 was found.",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 18 August 2015 photograph lies early in the window; Lupi is the only bearded man of four, named in the caption and the embedded IPTC keyword, and Commons structured data depicts Carlos Lupi (Q9697177).",
+              "evidence": [
+                "carlos-lupi-2015"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (era correction), 2 October 2026",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "Material: File:Lupi.png (CC BY-SA 4.0, own work, dated 2018-05-01) was dismissed without inspection; it shows Lupi visibly grayer than in August 2015, so 'no qualifying dated photograph 2016-2022 found' overstated, the v2 instruction to keep the same dark look through 2019 was unsafe for 2018-2019, and the 2020 prompt's 'probably darker 2020-2022' inference was weaker.",
+                "disposition": "Fixed in records and prompts: the assembler fetched and inspected Lupi.png (metadata and original pinned outside Git) and recorded it under comparison_photographs_not_references with its inspection result; it is not adopted as a reference because its date and authorship rest only on the uploader's statement. Every 'no qualifying photograph 2016-2022' statement now reads 'none verified; one uploader-dated 2018 photograph exists'. v2 line 5 no longer asks for the same dark look through 2019 and discloses the likely 2018-2019 graying. The further split is put to Codex."
+              },
+              {
+                "problem": "Moderate: the 2020 prompt still told the renderer to keep the October 2023 gray hair and gray-and-white beard ('do not darken them') for the whole 2020-2026 window.",
+                "disposition": "Fixed: line 5 now asks for salt-and-pepper to gray hair and a salt-and-pepper beard, following the photograph or very slightly darker, never dark, and says October 2023 may be near the grayest point. The residual risk is an explicit open item."
+              },
+              {
+                "problem": "Minor: v2 said 'his white-haired look of 2023' (elsewhere gray) and described the hair as 'nearly black with fine gray strands'.",
+                "disposition": "Fixed: 'the gray hair and gray-and-white beard of 2023'; 'dark charcoal hair with gray at the temples and sides' and a 'dark brown-black beard ... with gray at the chin and along the sideburns and jaw', checked by the assembler against a face crop of the original."
+              },
+              {
+                "problem": "Minor: the handoff's earlier table and 'Still open' list still showed the 2015-2026 job and v1 prompt as current and the 2020 split as optional.",
+                "disposition": "Fixed: supersession pointers added in both places, and the era fix section replaces the preparer's appended section."
+              },
+              {
+                "problem": "Open (already flagged): .gitattributes LF rules for the two new prompts; acceptance of the embedded Senate-archive IPTC contact fields and camera serial; agreement on window 2 of 3; Flickr-only files not searched.",
+                "disposition": "Kept as open items for Codex; .gitattributes is outside this task."
+              }
+            ],
+            "note": "One verification covered both new windows; the full record is lupi-era-correction-batch-01.json /verification."
+          },
+          "missing_records": [
+            "No accepted C01 holder observation falls in this window; his re-elections of 18 March 2017 and 18 March 2019 are claims only in the accepted record's uncertainty note. The window rests on registry term br_pdt_carlos_lupi_200406 and the leadership-production job.",
+            "No verified dated photograph of Lupi from 2016 to 2019 was found on Commons; one uploader-dated photograph of 1 May 2018 (File:Lupi.png, CC BY-SA 4.0, own-work claim and date unverified) shows him grayer than in August 2015."
+          ],
+          "open_items_for_codex": [
+            "Agree the 2020-01-01 split (an art boundary at an existing leadership-production job boundary) and this window, which holds no accepted C01 observation; or narrow it.",
+            "Rule on File:Lupi.png: accept the prompt's softened wording and disclosure for 2018-2019, or have its provenance verified and split this window again (for example at 2018-01-01); a further split needs new window-scoped job IDs.",
+            "Accept the reference's embedded Senate-archive IPTC contact fields and camera serial number (byte identity), as asked for the Brizola reference.",
+            "Add an LF rule for tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt to .gitattributes at integration."
+          ],
+          "render_disposition": {
+            "status": "proposed_render_ready_after_codex_review",
+            "proposed_at": "2026-10-02",
+            "record": "docs/campaign-certification/C06/production/brazil/lupi-era-correction-batch-01.json",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          },
+          "supersedes": "/batches/0/people/5 (the held 2015-2026 window), with the other new window"
+        },
+        {
+          "person_id": "carlos_lupi",
+          "display_name": "Carlos Lupi",
+          "registry_name": "Carlos Lupi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "window_of_person": "3 of 3",
+          "observed_names": [
+            "Carlos Lupi"
+          ],
+          "requested_window": {
+            "from": "2020-01-01",
+            "to": "2026-09-08",
+            "to_exclusive": true,
+            "window_status": "proposed_era_split_pending_codex_review",
+            "basis": "Appearance interval, not a tenure. Contains all three accepted C01-34 PDT holder observations of the superseded window (attested 2021-12-21, 2025-05-21 and 2026-09-04; brazil.json /organizations/1/roles/0/holder_claims/4-6, each with from and until null), whose exact holder dictionaries are copied into identity-review-batch-01.json /batches/0/people/7/observations and remain unchanged in the superseded /batches/0/people/5/observations. Start 2020-01-01: the era split above. Exclusive end 2026-09-08: the day after the 7 September 2026 cutoff; registry term br_pdt_carlos_lupi_200406 is open."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2021-12-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_convencao_hibrida_20211221"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_signs_normative_resolution_003_2021_20211221"
+                ],
+                "note": "Observed on 21 December 2021: a PDT item of that day says that 'A resolução normativa 003/2021 é assinada pelo presidente nacional da legenda, Carlos Lupi.'",
+                "uncertainty": "The archived text is the post's revision of 4 January 2022, and the signed communiqué of 10 January 2022 (a continuation claim) is also a revised post. No start: his re-elections of 18 March 2017 and 18 March 2019 and the registry periods of the SGIP are claims; no contemporaneous day-dated PDT record of 2011-2016 was found. No end: the convention of 21 January 2022 printed no result in the records found, and his leave of 2023 is a claim."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/4"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2025-05-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_lupi_retorna_20250521"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_styled_presidente_nacional_20250521"
+                ],
+                "note": "Observed on 21 May 2025: the PDT item of that day, reporting his return decided 'nesta terça-feira (20)', attributes his statement to 'o presidente nacional do PDT'.",
+                "uncertainty": "No start: the executive's decision of 20 May 2025 is a return from leave, not a stated day of resumption. The styling sits in the report of the return and introduces a statement on the decisions of the meeting of 20 May; if Codex treats it like a styling on the day of an election, the resumed service is observed first on 4 September 2026 (the styling of 19 August 2026, whose event day carries a weekday slip, stays a continuation claim). André Figueiredo's service as 'presidente em exercício' from 2 February 2023 is a claim only and never a holder."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/5"
+              }
+            },
+            {
+              "organization_or_institution_id": "br_tse_fefc_2024_party_02",
+              "role_id": "br_pdt_president",
+              "holder": {
+                "name": "Carlos Lupi",
+                "attested_on": "2026-09-04",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "br_pdt_eleicoes_2026_20260904"
+                ],
+                "claim_ids": [
+                  "br_pdt_lupi_styled_presidente_nacional_20260904"
+                ],
+                "note": "Observed on 4 September 2026: a PDT item of that day says 'O presidente nacional do PDT, Carlos Lupi, reforça o papel estratégico do partido'.",
+                "uncertainty": "A second observation of the service resumed in May 2025, three days before the cutoff; the styling of 19 August 2026 is a continuation claim. No end is recorded."
+              },
+              "research_locations": {
+                "docs/campaign-certification/C01/research/brazil.json": "/organizations/1/roles/0/holder_claims/6"
+              }
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "br_pdt_carlos_lupi_200406"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "carlos_lupi-1a8bd5270f54",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "planned_coverage": "After generation, registration and review: partial: only the requested window would be covered"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "carlos_lupi-84f4126df75f",
+                "from": "2020-01-01",
+                "to": "2026-09-08",
+                "status": "needs_source_and_visual_review",
+                "planned_coverage": "After generation, registration and review: exact: from/to equal the requested window"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2004-06-30",
+                "id": "carlos_lupi-e664a94b9464",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              },
+              {
+                "from": "2026-09-08",
+                "to": "2027-01-01",
+                "id": "carlos_lupi-7035d40937f6",
+                "status": "computed with the pipeline's own build_jobs over the residual range; not emitted, remains open"
+              }
+            ],
+            "pipeline_residual_note": "After all three active Lupi windows (2004-06-30 to 2026-09-08, split at 2015-01-01 and 2020-01-01) are registered; the residual ranges are the same as before the era split.",
+            "leadership_production_cartoon_jobs_planned": [
+              "cartoon:carlos_lupi:2020-01-01:2025-01-01:v1",
+              "cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"
+            ],
+            "coverage_note": "Prospective only. No job is closed until the output is generated, reviewed and registered."
+          },
+          "likeness_reference_ids": [
+            "carlos-lupi-2023"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt",
+            "sha256": "cc0a4c92eeea27ed6b37769a41ea8c3de6ff9edd75e10f47cbb1adea1070a218",
+            "sha256_basis": "LF bytes as written (equal to git show HEAD:<path> | sha256sum once committed)",
+            "sha256_if_checked_out_crlf": "0e2fc6040e67b7cbe2bea70378478b35263d8c27ac7826aad3ff19936532c7e3",
+            "git_blob": "8e69112342bd3b5193be572d2ffcddb63188b14f",
+            "lines": 9,
+            "bytes": 4456,
+            "encoding": "UTF-8, no BOM, LF",
+            "derivation_note": "Lines 1-2 and 4 (style) and 6-9 (clothing, composition, background, style constraints) are identical to the held carlos-lupi-cartoon-2015-v1.txt. Line 3 states the new window and ages. Line 5 keeps the reviewed face description and replaces the placement, age and era wording: the photograph is near the middle of this window, the portrait shows a man of about 66 with salt-and-pepper to gray hair and a salt-and-pepper beard (never dark), and the era limits are disclosed. Reworded in the era fix after verification: it no longer mandates the October 2023 gray for the whole window.",
+            "status": "proposed_pending_codex_review"
+          },
+          "planned_output": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+          "render_inputs": [
+            {
+              "order": 1,
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "use": "STYLE ONLY"
+            },
+            {
+              "order": 2,
+              "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+              "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+              "use": "identity reference"
+            }
+          ],
+          "required_output": "1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible; no text, flags, insignia or extra people.",
+          "age_gap_note": "Born 1957-03-16 (registry birth date). He is 66 (66 years 7 months) in the photograph of 24 October 2023. The window covers ages 62 to 69. The photograph is about 3 years 9 months 23 days after the window starts and about 2 years 10 months 15 days before its exclusive end, about 5 months after its midpoint (early May 2023). The prompt asks for a man of about 66 with salt-and-pepper to gray hair and a salt-and-pepper beard, following the photograph or very slightly darker, never dark. Comparison photographs (not references) show salt-and-pepper hair and a gray-brown beard, a little darker than in October 2023, on 1 May 2018 (uploader's date, unverified) and at his ministerial inauguration of January 2023, and mostly dark hair and beard in August 2015. No verified dated photograph from 2020 to 2022 was found, so the October 2023 photograph may be near the grayest point of the window; the prompt says so.",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 24 October 2023 photograph (the reviewed batch-1 reference, unchanged) lies near the middle of the window; Lupi is alone in the Commons crop, and Commons structured data depicts Carlos Lupi (Q9697177).",
+              "evidence": [
+                "carlos-lupi-2023"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (era correction), 2 October 2026",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "Material: File:Lupi.png (CC BY-SA 4.0, own work, dated 2018-05-01) was dismissed without inspection; it shows Lupi visibly grayer than in August 2015, so 'no qualifying dated photograph 2016-2022 found' overstated, the v2 instruction to keep the same dark look through 2019 was unsafe for 2018-2019, and the 2020 prompt's 'probably darker 2020-2022' inference was weaker.",
+                "disposition": "Fixed in records and prompts: the assembler fetched and inspected Lupi.png (metadata and original pinned outside Git) and recorded it under comparison_photographs_not_references with its inspection result; it is not adopted as a reference because its date and authorship rest only on the uploader's statement. Every 'no qualifying photograph 2016-2022' statement now reads 'none verified; one uploader-dated 2018 photograph exists'. v2 line 5 no longer asks for the same dark look through 2019 and discloses the likely 2018-2019 graying. The further split is put to Codex."
+              },
+              {
+                "problem": "Moderate: the 2020 prompt still told the renderer to keep the October 2023 gray hair and gray-and-white beard ('do not darken them') for the whole 2020-2026 window.",
+                "disposition": "Fixed: line 5 now asks for salt-and-pepper to gray hair and a salt-and-pepper beard, following the photograph or very slightly darker, never dark, and says October 2023 may be near the grayest point. The residual risk is an explicit open item."
+              },
+              {
+                "problem": "Minor: v2 said 'his white-haired look of 2023' (elsewhere gray) and described the hair as 'nearly black with fine gray strands'.",
+                "disposition": "Fixed: 'the gray hair and gray-and-white beard of 2023'; 'dark charcoal hair with gray at the temples and sides' and a 'dark brown-black beard ... with gray at the chin and along the sideburns and jaw', checked by the assembler against a face crop of the original."
+              },
+              {
+                "problem": "Minor: the handoff's earlier table and 'Still open' list still showed the 2015-2026 job and v1 prompt as current and the 2020 split as optional.",
+                "disposition": "Fixed: supersession pointers added in both places, and the era fix section replaces the preparer's appended section."
+              },
+              {
+                "problem": "Open (already flagged): .gitattributes LF rules for the two new prompts; acceptance of the embedded Senate-archive IPTC contact fields and camera serial; agreement on window 2 of 3; Flickr-only files not searched.",
+                "disposition": "Kept as open items for Codex; .gitattributes is outside this task."
+              }
+            ],
+            "note": "One verification covered both new windows; the full record is lupi-era-correction-batch-01.json /verification."
+          },
+          "missing_records": [
+            "No verified dated photograph of Lupi from 2020 to 2022 was found on Commons; the October 2023 photograph may show him near the grayest point of the window."
+          ],
+          "open_items_for_codex": [
+            "Agree this window and the reworded prompt, which asks for salt-and-pepper to gray hair and a salt-and-pepper beard (never dark) instead of the October 2023 gray throughout.",
+            "Add an LF rule for tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt to .gitattributes at integration."
+          ],
+          "render_disposition": {
+            "status": "proposed_render_ready_after_codex_review",
+            "proposed_at": "2026-10-02",
+            "record": "docs/campaign-certification/C06/production/brazil/lupi-era-correction-batch-01.json",
+            "limits": "No tenure, office eligibility, generated-output review or registration is granted."
+          },
+          "supersedes": "/batches/0/people/5 (the held 2015-2026 window), with the other new window"
         }
       ]
     }
@@ -1898,7 +2272,135 @@
         "File:Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg (2009, CC BY 3.0): before this window (used for the first window)."
       ],
       "approved_source_license": true,
-      "visual_inspection_by_assembler": false
+      "visual_inspection_by_assembler": false,
+      "era_split_note": "Since the era fix of 2 October 2026 this reference serves window 3 of 3 (2020-01-01 to 2026-09-08) only; its age_gap_note above describes the superseded 2015-2026 window. The current age note is /batches/0/people/7/age_gap_note. File and bytes unchanged."
+    },
+    {
+      "id": "carlos-lupi-2015",
+      "person_id": "carlos_lupi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_codex_review_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Presid%C3%AAncia_do_Senado_(20659268666).jpg",
+      "commons_title": "File:Presidência do Senado (20659268666).jpg",
+      "upstream_source": "https://www.flickr.com/photos/agenciasenado/20659268666/ (Senado Federal Flickr stream, as cited on Commons; not fetched)",
+      "retrieved_at": "2026-10-02T13:36:46Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/api-imageinfo-presidencia-do-senado-20659268666.json",
+        "bytes": 8747,
+        "sha256": "13758b6725a0b1e28a481810fa0f6d8b51bb2325fa24cdb19bf9c1c64be90d99",
+        "retrieved_at": "2026-10-02T13:36:28Z",
+        "content": "Commons API imageinfo (extmetadata, commonmetadata/EXIF/IPTC, size, sha1, upload user and time), categories and the current wikitext revision"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/api-imageinfo-2015-candidates.json",
+          "bytes": 51437,
+          "sha256": "8d48c123f31841812661816292165edeab4ccbf73283621f7f08aa8ec0462795",
+          "content": "Commons imageinfo/extmetadata and 960 px thumbnail URLs for the 13 Commons candidate files of 2015 and File:Lupi.png"
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/thumbs/",
+          "content": "960 px Commons thumbnails viewed for candidate selection only (17117825428, 17181382628, 17367233272, 20497517938, 20659268386, 20659268666, 17305661365, 16685389453); not references"
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/carlos-lupi-2015-agencia-senado-presidencia-20659268666-original.jpg",
+        "bytes": 1696493,
+        "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Presid%C3%AAncia_do_Senado_%2820659268666%29.jpg",
+        "commons_sha1": "fa6bc6dcf72f570e87baaf3ddc9437f41ff22b8a",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+      "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+      "bytes": 1696493,
+      "width": 3184,
+      "height": 2120,
+      "mode": "RGB",
+      "format": "JPEG",
+      "asset_byte_identical_to_original": true,
+      "photograph_date": "2015-08-18",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2015-08-18"
+      },
+      "date_precision": "Day. Capture evidence: EXIF DateTimeOriginal and DateTimeDigitized 2015:08:18 12:22:13 (Nikon D3S); XMP metadata date 2015:08:18 12:22:36; Commons Date 2015-08-18 12:22 from the Flickr import. Not capture dates: EXIF DateTime 2015:08:18 14:58:40 (same-day processing); Commons upload 2015-08-31T02:38:16Z by Tm; FlickreviewR pass 2015-08-31 16:53:16. The two sibling frames of the same visit (20497517938, 20659268386) carry the same capture minute. The day is not corroborated by a separate news report in this preparation.",
+      "creator": "Jane de Araújo (Agência Senado photographer; embedded IPTC credit 'Jane de Araújo/Agência Senado'; Commons Author is the Flickr account 'Senado Federal')",
+      "credit": "Jane de Araújo/Agência Senado, 'Presidência do Senado (20659268666).jpg', visit of the PDT leadership to the President of the Senate, Brasília, 18 August 2015; CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 20659268666; licence confirmed by FlickreviewR on 31 August 2015). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_license_statement": "Commons extmetadata LicenseShortName exactly 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0', License 'cc-by-2.0', LicenseUrl https://creativecommons.org/licenses/by/2.0, AttributionRequired true. Wikitext: {{cc-by-2.0}} and {{User:FlickreviewR/reviewed-pass|Senado Federal|https://flickr.com/photos/49143546@N06/20659268666|2015-08-31 16:53:16|cc-by-2.0|}}. Generic, not ported.",
+      "rights_statement": "Published by Agência Senado, the Senate's institutional news service, on the Senado Federal Flickr stream under CC BY 2.0 Generic, as for the batch's 2023 Lupi reference. Not a news-agency wire photograph and not a ported licence. The embedded IPTC usage terms ask, citing Brazilian copyright law (Lei 9.610/1998, art. 79, par. 1), that the photographer be credited as 'Jane de Araújo/Agência Senado'; the credit above does so. Bytes copied unchanged from the only Commons file revision.",
+      "embedded_metadata_note": "The file carries the Senate photo archive's institutional IPTC contact fields (office address, a work e-mail and a website) and the camera serial number, as Commons publishes them. They are institutional, not personal, and are not quoted in these records. Committing the byte-identical copy republishes them; stripping them would break byte identity.",
+      "people_in_frame": "Four men stand in a row before the wood-paneled wall of the Presidency of the Senate, under a gilded coat of arms, in front of a carved dark sofa, with framed paintings and chairs at the sides and a dark table edge across the bottom. Lupi is third from the left: the only bearded man, frontal, smiling with upper teeth showing, bright royal-blue windowpane-check jacket, darker slate-navy trousers, white shirt, burgundy-red tie with white diagonal stripes, hands clasped in front at waist height, black shoes mostly covered by the trouser hems. The other three are Senate President Renan Calheiros, senator Acir Gurgacz and deputy André Figueiredo (named in the caption); the prompt excludes them and the setting. No lapel pin is visible on Lupi.",
+      "identity_evidence": "The Commons description names 'o presidente do PDT, Carlos Lupi'; Commons structured data depicts Carlos Lupi (Q9697177) (the file is returned by haswbstatement:P180=Q9697177); Commons category Carlos Lupi; embedded IPTC keyword 'Carlos Lupi'. He is the only bearded man of the four, and his face matches the batch's 2009 and 2023 references and the Agência Senado frames of 28 April 2015 that name him alone.",
+      "face_size": "Frontal face about 170 px wide in the 3184x2120 original (visual estimate).",
+      "age_gap_note": "Born 1957-03-16 (registry birth date). He is 58 in the photograph, inside window 2 of 3 (ages 57 to 62), about 7.5 months after its start and 4 years 4.5 months before its exclusive end. Artistic extensions declared in the prompt: the relaxed hand positions (clasped in the photograph) and the complete shoes (mostly hidden by trouser hems, with the frame ending at a table edge).",
+      "limitation": "A four-person group photograph, though Lupi is frontal, full length and unobstructed. Face about 170 px wide; no flash, ISO 2500 indoor light gives some softness and noise. Early in its window (2015) rather than near its middle (mid-2017): no verified dated 2016-2019 photograph was found, and an uploader-dated photograph of 1 May 2018 (File:Lupi.png, unverified) shows him grayer than here.",
+      "approved_source_license": true,
+      "approved_source_license_basis": "person_art_pipeline.approved_source_license({'license': 'CC BY 2.0', ...}) returns True: 'cc by 2.0' is in FREE_LICENSES.",
+      "visual_inspection_by_preparer": true,
+      "visual_inspection_note": "Viewed the 960 px Commons thumbnail and temporary enlarged inspection crops of the original (face, chest, feet), made outside the repository and the evidence folder and deleted after inspection. The reference itself is unedited.",
+      "visual_inspection_by_verifier": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_assembler_note": "The assembler viewed the 960 px thumbnail and a temporary face crop of the original (made in the session scratchpad, outside the repository and the evidence folder): dark charcoal hair with gray at the temples and sides; dark brown-black beard with gray at the chin and sideburns. The prompt wording follows this.",
+      "rejected_candidates": [
+        "File:Entrevistas Diversas (17117825428).jpg and (16685325693).jpg (Jonas Pereira/Agência Senado, 28 April 2015, CC BY 2.0): qualifying. A press scrum: chest-up, mouth open mid-speech, many microphones and hands across his chest. 17117825428 has the largest frontal face of the 2015 files and is the best alternate.",
+        "File:Visitas.Visitantes (17305661365).jpg (Jonas Pereira/Agência Senado, 28 April 2015, CC BY 2.0): qualifying. Seated beside Renan Calheiros, broad smile, thumbs-up gesture; alternate. Siblings 17305194201 and 17305194191 were not inspected; 16685389453 is a ten-man group photograph.",
+        "File:Plenário do Congresso (17181382628).jpg and (17367233272).jpg (Edilson Rodrigues/Agência Senado, 4 May 2015, CC BY 2.0): qualifying. Speaking at the Senate tribune in three-quarter view, mouth open, pointing, beside a flag; alternates.",
+        "File:Presidência do Senado (20497517938).jpg and (20659268386).jpg (Jane de Araújo/Agência Senado, 18 August 2015, CC BY 2.0): same visit as the chosen frame, but Lupi is turned away in profile.",
+        "File:Lupi.png (CC BY-SA 4.0, 'Own work' by Luis Moreira, dated 2018-05-01, 801x801 PNG): the licence string qualifies and it shows the exact person, but its date and own-work claim rest only on the uploader's statement (no capture metadata). Inspected in the era fix (it was not inspected at preparation): he is visibly grayer than in August 2015. Not adopted as a reference; recorded under comparison_photographs_not_references and cited in both prompts as an uploader-dated comparison.",
+        "File:Ciro Gomes na homologação de sua terceira candidatura à Presidência da República 1.jpg (Kauê Pinto, CC BY-SA 4.0, 2018-07-20): a photograph of Ciro Gomes; Lupi is not named or depicted in its metadata. Not inspected.",
+        "File:29.12.2022- Lula anuncia novos Ministros e Ministras - 52594315131.jpg and 52594739115.jpg (Lula Oficial, CC BY-SA 4.0): outside window 2 of 3; President Lula in frame; DateTimeOriginal 2022-05-23 conflicts with the title (batch 1). Not used for window 3 either: the October 2023 reference is already near that window's middle.",
+        "Agência Brasil files ('CC BY 3.0 br') and the other batch-1 rejections stand unchanged; no Agência Brasil or Câmara dos Deputados file of Lupi dated 2015-2019 was found on Commons."
+      ],
+      "comparison_photographs_not_references": [
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-entrevistas-diversas-16685325693-20150428.jpg",
+          "sha256": "317a2a08b7894ae24506c0c5909e59bb7ece922df4c31cd6a2e2cb5620ea6a04",
+          "source": "File:Entrevistas Diversas (16685325693).jpg, Jonas Pereira/Agência Senado, 28 April 2015, CC BY 2.0",
+          "observation": "Dark, nearly black slicked-back hair and a dark beard with some gray at the chin."
+        },
+        {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/w2-2015/not-selected/thumb960-posse-52625793002-20230101.jpg",
+          "sha256": "6a3f1a58d77058558fa7a7cb8a50a52e5a17be3952878673b940ddc1a1b4327e",
+          "source": "File:01.01.2023 - Posse de Carlos Lupi, Ministro de Estado da Previdência Social (52625793002).jpg, Palácio do Planalto, CC BY 2.0; titled 1 January 2023, Commons metadata date 2023-01-03",
+          "observation": "Salt-and-pepper hair and a graying beard, darker than in October 2023."
+        },
+        {
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:Lupi.png",
+          "commons_title": "File:Lupi.png",
+          "status": "inspected_comparison_not_adopted_as_reference",
+          "license": "CC BY-SA 4.0",
+          "license_note": "Commons LicenseShortName exactly 'CC BY-SA 4.0'; wikitext {{self|cc-by-sa-4.0}}. The string is in FREE_LICENSES.",
+          "creator_claim": "'Own work' by Luis Moreira (Commons user Luismoreira12, who has no user page), per the Information template.",
+          "photograph_date_claim": "2018-05-01, the Information template's date field only. No camera EXIF or other capture metadata exists, so this is the uploader's statement, not a verified capture date.",
+          "upload_history": "Uploaded 2018-08-28T20:16:40Z by Luismoreira12 (801x801 PNG). A 601x801 crop uploaded 2023-03-20T15:28:54Z by Przelijpdahl was reverted at 15:30:22Z by Yacàwotçã; the current bytes equal the 2018 upload (same sha1).",
+          "embedded_metadata": "No EXIF. One PNG text chunk holding a single IPTC dataset, 2:103 Original Transmission Reference, a 20-character random token of the kind social-media platforms write when re-saving images; this does not by itself disprove the own-work claim.",
+          "metadata": {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/lupi-png-2018/api-imageinfo-lupi-png.json",
+            "bytes": 7777,
+            "sha256": "48615347deecacdb397aaa4ac80ba6b5cfaee99c6372218c85979b8ea01ede30",
+            "retrieved_at": "2026-10-02T14:02:59Z",
+            "content": "Commons API imageinfo (all three revisions, extmetadata, commonmetadata, metadata), categories and the current wikitext"
+          },
+          "image_original": {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/lupi-png-2018/lupi-png-original.png",
+            "bytes": 918330,
+            "sha256": "53edff9f08caab27a976065917ef2998de39e5595122d0c737d25aa801796740",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Lupi.png",
+            "commons_sha1": "86dfa49d13e3d932ee623f04db0f20583db02d69",
+            "commons_sha1_matches_download": true,
+            "retrieved_at": "2026-10-02T14:03:14Z",
+            "note": "Retained outside Git for inspection only; not copied into the repository."
+          },
+          "identity": "The description names 'Carlos Lupi, presidente nacional do PDT'; Category:Carlos Lupi; returned by haswbstatement:P180=Q9697177. The face matches the 2009, 2015 and 2023 references.",
+          "observation": "Lupi alone, head and shoulders, turned three-quarter to his left, broad smile with upper teeth showing, beige jacket over a pink shirt, framed portraits behind. Salt-and-pepper hair (dark with much gray at the temples and sides) and a gray-brown beard, white at the chin: visibly grayer than on 18 August 2015, a little darker than in October 2023 and close to January 2023.",
+          "inspected_by": "the independent verification agent (2 October 2026) and the assembler (2 October 2026, original bytes)",
+          "disposition": "Not adopted as a likeness reference. The licence string qualifies and the subject is the exact person, but the date and the authorship rest only on the uploader's own statement: no capture metadata, a square 801x801 PNG, an IPTC transmission token, and an upload almost four months after the stated date. A press or party photograph re-posted as own work cannot be excluded on this evidence. Used only as era evidence: both new prompts cite it as an uploader-dated comparison. Whether to verify it and split window 2 of 3 again is put to Codex."
+        }
+      ],
+      "era_fix_record": "docs/campaign-certification/C06/production/brazil/lupi-era-correction-batch-01.json"
     }
   ],
   "source_ledger": {
@@ -2134,6 +2636,34 @@
             "content": "CPMI INSS 8 September 2025 frame described as Lupi's hearing; it shows another man; not used"
           }
         ]
+      },
+      {
+        "reference_id": "carlos-lupi-2015",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/carlos-lupi-2015-agencia-senado-presidencia-20659268666-original.jpg",
+          "bytes": 1696493,
+          "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Presid%C3%AAncia_do_Senado_%2820659268666%29.jpg",
+          "commons_sha1": "fa6bc6dcf72f570e87baaf3ddc9437f41ff22b8a"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/api-imageinfo-presidencia-do-senado-20659268666.json",
+          "bytes": 8747,
+          "sha256": "13758b6725a0b1e28a481810fa0f6d8b51bb2325fa24cdb19bf9c1c64be90d99",
+          "retrieved_at": "2026-10-02T13:36:28Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/api-imageinfo-2015-candidates.json",
+            "bytes": 51437,
+            "sha256": "8d48c123f31841812661816292165edeab4ccbf73283621f7f08aa8ec0462795",
+            "content": "Commons imageinfo/extmetadata and 960 px thumbnail URLs for the 13 Commons candidate files of 2015 and File:Lupi.png"
+          },
+          {
+            "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/thumbs/",
+            "content": "960 px Commons thumbnails viewed for candidate selection only (17117825428, 17181382628, 17367233272, 20497517938, 20659268386, 20659268666, 17305661365, 16685389453); not references"
+          }
+        ]
       }
     ],
     "superseded_reference_kept_outside_git": {
@@ -2177,9 +2707,29 @@
       "Wikimedia Commons and upload.wikimedia.org returned HTTP 429 repeatedly during preparation (an IP shared with parallel batch agents). Requests were made one at a time with back-offs of 20 to 360 seconds; nothing was bypassed.",
       "TSE DivulgaCandContas (Akamai 'Access Denied') and tse.jus.br news pages (HTTP 403) refused automated access to the Tourinho preparer; neither block was bypassed.",
       "The Brizola preparer stopped an orphaned copy of its own download helper (both processes started by that preparer); no other process was touched.",
-      "The assembler made no network request; the Temer 2009 reference was copied locally from the Lupi window-1 preparer's download."
+      "The assembler made no network request; the Temer 2009 reference was copied locally from the Lupi window-1 preparer's download.",
+      "Era fix (2 October 2026): the era-correction preparer and the assembler requested Commons one file at a time with the batch User-Agent; no 429 was received and no header capture was kept. The assembler fetched only File:Lupi.png's metadata and original. The new reference carries the Senate photo archive's institutional IPTC contact fields and the camera serial number, as Commons publishes them; they are not quoted in these records."
     ],
-    "not_listed": "No HTTP response-header capture was kept by any preparer; the Flickr page body for the Temer 2017 photograph was discarded because it embeds a viewer-geolocation country code (only extracted fields are kept). Search scratch files, preview thumbnails viewed for selection (refs/michel_temer/work/preview/) and helper scripts are not ledgered individually; research-only thumbnails that informed a prompt are cited with their sha256 on the reference."
+    "not_listed": "No HTTP response-header capture was kept by any preparer; the Flickr page body for the Temer 2017 photograph was discarded because it embeds a viewer-geolocation country code (only extracted fields are kept). Search scratch files, preview thumbnails viewed for selection (refs/michel_temer/work/preview/) and helper scripts are not ledgered individually; research-only thumbnails that informed a prompt are cited with their sha256 on the reference.",
+    "comparison_downloads_not_references": [
+      {
+        "comparison": "File:Lupi.png (uploader-dated 2018-05-01; not a reference)",
+        "image": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/lupi-png-2018/lupi-png-original.png",
+          "bytes": 918330,
+          "sha256": "53edff9f08caab27a976065917ef2998de39e5595122d0c737d25aa801796740",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Lupi.png",
+          "commons_sha1": "86dfa49d13e3d932ee623f04db0f20583db02d69"
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/br-cast/refs/carlos_lupi/era-2015/lupi-png-2018/api-imageinfo-lupi-png.json",
+          "bytes": 7777,
+          "sha256": "48615347deecacdb397aaa4ac80ba6b5cfaee99c6372218c85979b8ea01ede30",
+          "retrieved_at": "2026-10-02T14:02:59Z"
+        },
+        "note": "Retained outside Git; not copied into the repository."
+      }
+    ]
   },
   "independent_review": {
     "reviewed_at": "2026-10-02",
@@ -2201,5 +2751,31 @@
       "sha256": "e78c138865c12c352b209993500ddac7018deedc1840d03365c276452d7f7f2c"
     },
     "limits": "No rendered output, registration, runtime identity, office eligibility, historical term or country signoff is accepted. Original preparation verification statements remain attributable to their authors; this disposition controls render readiness."
+  },
+  "era_fix_prepared_by": "Claude, 2 October 2026: one era-correction preparation agent and one independent verification agent, assembled by Claude, who fixed the verifier's findings. Not human review, not Codex review and not user approval.",
+  "era_fix": {
+    "date": "2026-10-02",
+    "record": "docs/campaign-certification/C06/production/brazil/lupi-era-correction-batch-01.json",
+    "status": "proposal_pending_codex_review",
+    "identity_review_before_sha256": "b11c86388940d46742cf5569e418c4cd63c73783c7612b6996ffa3e5be71ae84",
+    "summary": "Codex held the Lupi 2015-2026 render because its prompt applied his gray 2023 look to the whole window. The window is split at 2020-01-01, an existing leadership-production job boundary used as an art boundary, not a sourced office or physical-change date. Window 2 of 3 gets a new reference (Jane de Araújo/Agência Senado, 18 August 2015, CC BY 2.0) and prompt carlos-lupi-cartoon-2015-v2.txt; window 3 of 3 reuses the 2023 reference with prompt carlos-lupi-cartoon-2020-v1.txt. The held prompt is preserved unchanged and superseded.",
+    "added": [
+      "/batches/0/people/6",
+      "/batches/0/people/7",
+      "/likeness_references/6",
+      "/source_ledger/downloads/6",
+      "/source_ledger/comparison_downloads_not_references"
+    ],
+    "changed": [
+      "/batches/0/people/4 window_of_person and pipeline_residual_note (labels only)",
+      "/batches/0/people/5 superseded in place (status fields, superseded_by, open item)",
+      "/likeness_references/5 era_split_note (added)",
+      "/coverage counts",
+      "/scope (appended sentence)",
+      "/source_ledger/access_limits (appended)"
+    ],
+    "unchanged": "All 17 accepted holder dictionaries, every prompt and reference file of batch 1, the independent_review block.",
+    "coverage": "Prospective only. No job is closed until the output is generated, reviewed and registered.",
+    "gitattributes": "The two new prompts need LF rules at integration (outside this task): 'tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt text eol=lf' and 'tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt text eol=lf'."
   }
 }
