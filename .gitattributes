@@ -168,3 +168,12 @@ docs/campaign-certification/C06/render-return-20261002/** -text -whitespace
 tools/avatars/person-prompts/takako-doi-cartoon-1996-v2.txt text eol=lf
 tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v2.txt text eol=lf
 docs/campaign-certification/C06/registration-completion-20261002/** -text -whitespace
+
+# These reviewed request/receipt files carry raw-byte hashes; preserve their original newlines.
+docs/campaign-certification/C06/production/brazil/render-request-batch-01.md -text -whitespace
+docs/campaign-certification/C06/production/india/render-request-batch-01.md -text -whitespace
+docs/campaign-certification/C06/production/japan/render-request-batch-01.md -text -whitespace
+docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md -text -whitespace
+docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md -text -whitespace
+docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md -text -whitespace
+docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md -text -whitespace
