@@ -1,0 +1,2630 @@
+{
+  "version": 1,
+  "nation": "Japan",
+  "reviewed_at": "2026-10-01",
+  "historical_cutoff": "2026-09-07",
+  "historical_window_start": "1990-01-01",
+  "status": "identity_and_coverage_review_proposal",
+  "task": "CLAUDE-C06-JAPAN-01",
+  "branch": "claude/c06-jp-01",
+  "base": "2fd186d6",
+  "claim_commit": "bd78fd83",
+  "scope": "Japan cast batch 1: six existing person IDs with accepted C01 holder observations (C01-29 JSP/SDP chairs, C01-31 Komeito representatives) and no art for the requested appearance windows. Each has one freely licensed likeness reference copied byte-identical into the repository and one exact prompt. One prepared person (takenori_kanzaki) is excluded; the two handoff reserves were not prepared. No image has been generated, edited or labelled; Codex renders and Claude reviews afterwards.",
+  "prepared_by": "Claude: one preparation agent and one independent verification agent per person, assembled and mechanically corrected by Claude on 2026-10-01; the assembler also fetched a few dated sources to settle verifier findings (Murayama, Ota). This is not human review, not Codex review and not user approval.",
+  "authority": {
+    "runtime_installation": false,
+    "office_eligibility": false,
+    "continuous_terms": false,
+    "art_approval": false,
+    "human_acceptance": false,
+    "country_completion": false
+  },
+  "accepted_research": {
+    "path": "docs/campaign-certification/C01/research/japan.json",
+    "sha256": "f92c7c36fc00a58bf6e8a0d2e80645147ec3052a62164ca7a5e48f67c8366435",
+    "supplement": null,
+    "supplement_note": "No supplements/japan.json exists; holder dictionaries are copied from japan.json.",
+    "packets_used": [
+      "C01-29",
+      "C01-31"
+    ],
+    "packets_not_relied_on": {
+      "C01-12": "Prime Minister observations integrated but historically pending (c01_integrated_pending)"
+    },
+    "gap_ledger": {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+      "sha256": "a7b3c1f1924394743cfebfc1fc7cac7ee24970f40451616273f91aafa374962b",
+      "note": "Japan research_holders_by_evidence: c01_accepted 50, c01_integrated_pending 44. jp_sdp_chair (C01-29) and jp_komeito_representative (C01-31) holders are c01_accepted; jp_pm (C01-12) holders are c01_integrated_pending."
+    },
+    "receipts": [
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-29/README.md",
+        "sha256": "8adb8d1a92ccb5d4bdb86c5e9248efd156386168cbc494a94588e98ecddce262",
+        "packet": "C01-29"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-29/2026-09-30-resumed/README.md",
+        "sha256": "a75cb9ece39644f5344585ac49d3e2c917946dd246944a665c906c3484ef52f4",
+        "packet": "C01-29"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-29/2026-09-30-resumed/manifest.json",
+        "sha256": "3a2a6fd034a470f10bab797b2bd95e23578987a104c0ff7f8175c0c28917c74b",
+        "packet": "C01-29"
+      },
+      {
+        "path": "docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md",
+        "sha256": "f46d563a968547ca25ed4a3b405a63d5ea646836ed93bd29b29fb1e9650cd70a",
+        "sha256_basis": "committed blob (git show HEAD:<path> | sha256sum); this Windows checkout writes CRLF",
+        "packet": "C01-29"
+      },
+      {
+        "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-31/README.md",
+        "sha256": "a1a347944a37e10ee7df8ad3887a9348f62468a8d7ffe75769925cd98a8a8ce6",
+        "sha256_basis": "committed blob (git show HEAD:<path> | sha256sum); this Windows checkout writes CRLF",
+        "packet": "C01-31"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/README.md",
+        "sha256": "faab3cf31c9806c73f2f397e57a25144995c7e9597a8688c8cd441bc5364e80a",
+        "packet": "C01-31"
+      },
+      {
+        "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-31-resumed-20261001/holder-review.json",
+        "sha256": "1473ba8a236a8a9a23c63c79a930ff4a85ee003ab222c923b3b1eaface243357",
+        "packet": "C01-31"
+      },
+      {
+        "path": "docs/campaign-certification/C01/research/japan-komeito-representatives-1990-2026-31.md",
+        "sha256": "39b160a15605edd33d9c3dd1a160170645010eb804b6d1d4cea5bcf9e5c62dc5",
+        "sha256_basis": "committed blob (git show HEAD:<path> | sha256sum); this Windows checkout writes CRLF",
+        "packet": "C01-31"
+      }
+    ]
+  },
+  "registry_inputs": {
+    "party_leaders": {
+      "path": "spheres-sim/data/party_leaders.json",
+      "sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077"
+    },
+    "person_portraits": {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+    },
+    "leadership_production": {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+    },
+    "style_anchor": {
+      "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+      "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "use": "STYLE ONLY"
+    },
+    "pipeline_jobs_inventory": {
+      "command": "python -B -X utf8 tools/avatars/person_art_pipeline.py jobs --out D:/spheres-scratch/jp-cast/jobs.json",
+      "path": "D:/spheres-scratch/jp-cast/jobs.json",
+      "sha256": "5f83d33def208c44f4a7a31e2b7f4ff5a8b3f15cf283abefba3455b7a87041ec",
+      "job_version": "person-cartoon-v4",
+      "registry_digest": "baa3d822beffd0d064fb4b73ef57261a67d2942bf3c4fcbd75be9e58c92805e9",
+      "manifest_digest": "41db40b69ded16406a87f220c829f0762ab2a9c41305f5323470ea9fb5c202ff",
+      "fresh_rebuild_identical": true,
+      "window_and_residual_job_ids": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/assemble/window-jobs.json",
+          "bytes": 8471,
+          "sha256": "191b4bc182d3b22a18e0f9352ce6d0efc1cbd490b7885b28897c5a21f2061d94"
+        }
+      ]
+    }
+  },
+  "rules": [
+    "All holder dictionaries below are copied exactly from accepted C01 research (japan.json). Grouping them under an existing person ID does not promote dates, prove a tenure or extend an office.",
+    "Only c01_accepted observations (C01-29, C01-31) qualify a person or a window. C01-12 Prime Minister observations are integrated but historically pending and are listed as not relied on.",
+    "Point observations are never expanded to full terms. No start or end is inferred from a successor, election, convention, resignation intent, retrospective or continuation statement; those remain claims.",
+    "Requested windows are appearance intervals from the CLAUDE-C06-JAPAN-01 handoff with exclusive ends, built from leadership-production required windows. Where a bound comes from party_leaders.json or leadership production rather than accepted research, the person entry says so.",
+    "Real history stops at 2026-09-07; every window in this batch lies before it.",
+    "Image dates describe the source image, never the appearance window. An unknown capture date stays unknown. Page copyright notices, later archive captures and editing or PDF-creation metadata are recorded separately and do not establish hard capture deadlines. Artistic ageing and body/clothing extensions are disclosed.",
+    "Likeness references identify the exact person and preserve the stated source licence and original bytes. The independent review permits the documented licensed official Yamahana film frame. Murayama and Ota use undated official portraits with illustrative ageing; neither has a proved capture deadline. Registration and output review remain future work.",
+    "Claude generates, edits and labels no image. Codex renders with its built-in image tool from the exact prompt files and input order in render-request-batch-01.md and returns the unchanged outputs; Claude then performs and records the identity, likeness, era and visual review. No review flag is true yet.",
+    "Each review batch contains at most ten people.",
+    "HTTP response header captures, and any response body that contains the client IP address or GeoIP data, are never copied, cited, hashed or committed.",
+    "Prompt sha256 values are over the LF bytes committed to Git (equal to `git show HEAD:<path> | sha256sum`). No .gitattributes rule covers these files yet, so a Windows checkout with core.autocrlf=true writes CRLF bytes; that hash is recorded beside each pin.",
+    "Birth dates used for age notes are general biographical knowledge, not accepted C01 research (Murayama's comes from the Kantei page).",
+    "Tracked repository inputs (research, receipts, registry, manifest, style anchor) are pinned by their committed blob bytes, so the pins hold on any checkout; where this Windows checkout writes CRLF, the entry says so."
+  ],
+  "coverage": {
+    "people_count": 6,
+    "primary_people": 6,
+    "reserve_people_prepared": 0,
+    "reserve_people_not_prepared": [
+      "tadatomo_yoshida",
+      "seiji_mataichi"
+    ],
+    "excluded_people": 1,
+    "holder_observation_count": 14,
+    "holder_observation_count_by_role": {
+      "jp_sdp_chair": 6,
+      "jp_komeito_representative": 8
+    },
+    "likeness_reference_count": 6,
+    "usable_likeness_reference_count": 6,
+    "research_only_likeness_reference_count": 0,
+    "references_inside_requested_window": [
+      "makoto-tanabe-1992",
+      "sadao-yamahana-1993",
+      "natsuo-yamaguchi-2019"
+    ],
+    "references_outside_requested_window": [
+      "takako-doi-2005"
+    ],
+    "references_from_video_frames": [
+      "sadao-yamahana-1993"
+    ],
+    "all_historical_officeholders_established": false,
+    "continuous_terms_established": false,
+    "all_likenesses_ready": false,
+    "rendered_portraits": 0,
+    "references_with_unknown_capture_date": [
+      "tomiichi-murayama-1994",
+      "akihiro-ota-2012"
+    ],
+    "leadership_production_cartoon_jobs_targeted_by_primary_people": 12,
+    "coverage_status": "Prospective mapping only: no targeted job closes until generation, registration and output review; no output exists in this preparation."
+  },
+  "batches": [
+    {
+      "id": "JP-CAST-B01",
+      "render_request": "docs/campaign-certification/C06/production/japan/render-request-batch-01.md",
+      "people": [
+        {
+          "person_id": "tomiichi_murayama",
+          "display_name": "Tomiichi Murayama",
+          "registry_name": "Tomiichi Murayama",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "村山富市"
+          ],
+          "requested_window": {
+            "from": "1993-09-30",
+            "to": "1996-09-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "The union of the leadership_production_2035 required windows of registry terms jp_jsp_tomiichi_murayama_199309 (safe_art_window 1993-09-30 to 1996-01-01) and jp_jsp_tomiichi_murayama_199601 (1996-01-31 to 1996-09-01), bridged across the January 1996 rename month. The only accepted holder observation relied on is C01-29 jp_sdp_chair, attested_on 1994-10-13, which lies inside it. The bridge 1996-01-01 to 1996-01-31 is an appearance-interval bridge, not a tenure claim: no leadership-production term covers it and no accepted observation dates it."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "村山富市",
+                "attested_on": "1994-10-13",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_diet_hr_budget_19941013"
+                ],
+                "claim_ids": [
+                  "jp_sdp_murayama_self_stated_chair_19941013"
+                ],
+                "note": "Observed on 13 October 1994: his own statement in the House of Representatives Budget Committee '私は党の委員長であり' (party-office wording only; the prime-ministership is excluded). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; his September 1993 election is not attested by a party record or a party officer's dated statement; the January 1996 renaming and his becoming 党首 are claims, and his September 1996 departure is attested only retrospectively; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/3"
+              }
+            }
+          ],
+          "observations_not_relied_on": [
+            {
+              "organization_or_institution_id": "jp_prime_minister",
+              "role_id": "jp_pm",
+              "holder": {
+                "name": "村山富市",
+                "attested_on": "1994-07-18",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_hr_plenary_19940718_murayama_speech"
+                ],
+                "claim_ids": [
+                  "jp_murayama_speaks_as_pm_19940718"
+                ],
+                "note": "Designated by both Houses on 29 June 1994 (the House of Representatives in a runoff; claims); observed on 18 July 1994, speaking as 内閣総理大臣 in his policy speech. Members referred to the 村山内閣 and to 村山総理 in committee on 6 July 1994; those references are claims and do not date this holder.",
+                "uncertainty": "No start and no end: 30 June 1994 rests only on his own recollection of 9 November 1994 and the Kantei's retrospective list (claims), and no record of the Imperial appointment ceremony was accessible. No source states the day his office ended; the notice of his Cabinet's resignation en masse of 11 January 1996 and 橋本龍太郎's designation are claims."
+              },
+              "evidence_class": "c01_integrated_pending",
+              "packet": "C01-12",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/institutions/7/roles/0/holder_claims/5"
+              },
+              "reason": "C01-12 holder observations are integrated but historically pending (gap ledger), so this one is not relied on."
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "jp_sdp_murayama_self_stated_chair_19941018",
+              "source_id": "jp_sdp_diet_hc_budget_19941018",
+              "attested_on": "1994-10-18",
+              "classification": "further self-statement as party chair; claim only"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_self_stated_chair_19950206",
+              "source_id": "jp_sdp_diet_hr_budget_19950206",
+              "attested_on": "1995-02-06",
+              "classification": "further self-statement as party chair; claim only"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_self_stated_chair_19950519",
+              "source_id": "jp_sdp_diet_hc_budget_19950519",
+              "attested_on": "1995-05-19",
+              "classification": "further self-statement as party chair; claim only"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_self_stated_chair_s99_19951011",
+              "source_id": "jp_sdp_diet_hr_budget_19951011_s99",
+              "attested_on": "1995-10-11",
+              "classification": "further self-statement as party chair; claim only"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_obituary_renaming_retrospective",
+              "source_id": "jp_sdp_statement_murayama_obituary_20251017",
+              "attested_on": null,
+              "classification": "2025 retrospective: January 1996 rename; claim only"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_obituary_first_party_leader_retrospective",
+              "source_id": "jp_sdp_statement_murayama_obituary_20251017",
+              "attested_on": null,
+              "classification": "2025 retrospective: first SDP leader in March 1996; claim only, not a start"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_obituary_handover_to_doi_retrospective",
+              "source_id": "jp_sdp_statement_murayama_obituary_20251017",
+              "attested_on": null,
+              "classification": "2025 retrospective: handover to Doi in 1996; not an end"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "jp_jsp_tomiichi_murayama_199309",
+            "jp_jsp_tomiichi_murayama_199601"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "tomiichi_murayama-79b359476464",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "tomiichi_murayama-98fcf367bb0e",
+                "from": "1993-09-30",
+                "to": "1996-09-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1993-09-30",
+                "id": "tomiichi_murayama-a777de1392f3",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1996-09-01",
+                "to": "2027-01-01",
+                "id": "tomiichi_murayama-a078a92e4056",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_targeted": [
+              "cartoon:tomiichi_murayama:1993-09-30:1995-01-01:v1",
+              "cartoon:tomiichi_murayama:1995-01-01:1996-01-01:v1",
+              "cartoon:tomiichi_murayama:1996-01-31:1996-09-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "tomiichi-murayama-1994"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt",
+            "sha256": "8321abccdc8a9fe46af9fcfa966995c15b356e1bc03320fb07e279ca42a92af0",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "d26f373f3d3dca052c632f181affc7cb45ef22e3fcc1c1e5441115e90aa0ffdb",
+            "git_blob": "c85479b0eda0bcc7fbd608b1007cb6aa1221db7b",
+            "bytes": 3798,
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. Murayama is the only head of government (Prime Minister 1994-1996) with an accepted observation; that observation is his own statement as party chair (C01-29). His Prime Minister observation (C01-12) is integrated but historically pending and is not relied on.",
+              "evidence": [
+                "tomiichi-murayama-1994",
+                "docs/campaign-certification/C01/research/japan.json /organizations/9/roles/0/holder_claims/3"
+              ]
+            },
+            {
+              "finding": "The exact official Kantei portrait is usable as an undated likeness. APEC 1995-era association is plausible from the archived page and matching sitting, but the later page/image captures do not establish the former hard 1995 deadline.",
+              "evidence": [
+                "tomiichi-murayama-1994",
+                "spheres-web/data/person_portraits.json people.toshiki_kaifu.portraits[0].identity_source"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "BLOCKING. The likeness reference is not a dated photograph: Commons gives 'Unknown date' and the Kantei page gives none; the preparer still returned ok=true, and the 'probably about 1994' inference was weaker than recorded.",
+                "disposition": "The original preparer inferred a hard 1995 deadline from an APEC 1995 page captured in 1999 and an image captured in 2001. Independent Codex review of exact source tip 7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725 on 2026-10-02 corrects that inference: capture date remains unknown, period association is labelled as inference, and the prompt and metadata are re-pinned. The dated alternate and original evidence remain unchanged."
+              },
+              {
+                "problem": "The reference_id 'tomiichi-murayama-1994' and the filename carry a year that is not the photograph's date.",
+                "disposition": "Independent review retains the reference filename as a stable identifier. The year is not capture-date evidence; the current date fields and prompt state that the capture date is unknown. No rename or new user decision is required for this bounded correction."
+              },
+              {
+                "problem": "The provenance record omitted the 2025 'extracted from (large)' annotation on the chosen file's page, implied that the (large) file matches the 2020-2021 overwrites, and dated the overwrites 'In 2020'.",
+                "disposition": "Fixed: upload_history_note states the annotation and why it cannot be the source (provenance rests on byte identity with the Kantei's live image), gives March 2020 to May 2021 for the overwrites, and the (large) rejection now says same sitting, wider print scan uploaded 2025-10-05, not traceable to the Kantei, no licence review, SHA-1 matching none of the overwrites."
+              },
+              {
+                "problem": "The reference record lacked rights_statement, limitation and date_precision and did not record the Commons personality-rights warning.",
+                "disposition": "Fixed: all three fields added; rights_statement records the {{Personality rights}} warning and the PDL1.0 edit notice (加工して作成)."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted start or end; the single accepted observation is a point observation (1994-10-13).",
+            "The Prime Minister observation (C01-12) is not historically accepted."
+          ],
+          "open_items_for_codex": [
+            "At output review, assess the undated official likeness and the explicitly illustrative age of about 70. The retained 1994 reference filename is an identifier, not a date claim.",
+            "The January 1996 bridge is appearance coverage only; preserve the absence of an accepted office observation or production term across that gap."
+          ]
+        },
+        {
+          "person_id": "makoto_tanabe",
+          "display_name": "Makoto Tanabe",
+          "registry_name": "Makoto Tanabe",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "田邊誠"
+          ],
+          "requested_window": {
+            "from": "1991-07-31",
+            "to": "1993-01-19",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "Equals the leadership-production required window (cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1) from registry term jp_jsp_makoto_tanabe_199107 (from month 1991-07, until day 1993-01-19). The single accepted observation (C01-29, 1991-08-20) lies inside it. The bounds come from the registry and production, not from accepted research, which states no start or end."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "田邊誠",
+                "attested_on": "1991-08-20",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_diet_hr_budget_19910820"
+                ],
+                "claim_ids": [
+                  "jp_sdp_tanabe_named_chair_by_secretary_general_19910820"
+                ],
+                "note": "Observed on 20 August 1991: the party secretary-general 山花貞夫's statement in the House of Representatives Budget Committee '過日の代表質問で田邊委員長が指摘しましたとおり'. Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; neither his 1991 selection nor his resignation (December 1992 to January 1993) is attested by a party record or a party officer's dated statement; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/1"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "jp_sdp_doi_profile_resigned_july_1991",
+              "source_id": "jp_sdp_doi_profile_2000_retrospective",
+              "attested_on": null,
+              "classification": "predecessor's retrospective resignation month; not Tanabe's start"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "jp_jsp_makoto_tanabe_199107"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "makoto_tanabe-7ccebadc09cf",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "makoto_tanabe-24b6b1ce9158",
+                "from": "1991-07-31",
+                "to": "1993-01-19",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1991-07-31",
+                "id": "makoto_tanabe-ba7841e0bda5",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1993-01-19",
+                "to": "2027-01-01",
+                "id": "makoto_tanabe-f6ee077fa240",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_targeted": [
+              "cartoon:makoto_tanabe:1991-07-31:1993-01-19:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "makoto-tanabe-1992"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/makoto-tanabe-cartoon-1991-v1.txt",
+            "sha256": "0cd6d473e072f5a080cef12d241523d1ee43732c9784ece761790db065dc9ac9",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "097f07cbf0c124139122eb102a372e5f327cdab90985cdeba27219fb213b0fd4",
+            "git_blob": "dcf26f96bdd0a4c239724f76b4e03907ab36919d",
+            "bytes": 3566,
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The research spells him 田邊誠 and the registry 田辺誠: 邊 is the traditional/variant form of 辺, with the same reading and office at a date inside the registry term (see the reference's identity_match). The research's 社会民主党 organization (jp_sangiin_pr_2025_10) is not mapped to game party jp_jsp by this review.",
+              "evidence": [
+                "makoto-tanabe-1992",
+                "docs/campaign-certification/C01/research/japan.json /organizations/9/roles/0/holder_claims/1"
+              ]
+            },
+            {
+              "finding": "The 7 April 1992 photograph lies inside the window; no age adjustment.",
+              "evidence": [
+                "makoto-tanabe-1992"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": true,
+            "problems_and_dispositions": []
+          },
+          "missing_records": [
+            "No accepted start or end; the single accepted observation is a point observation (1991-08-20)."
+          ],
+          "open_items_for_codex": [
+            "Current MOFA terms were read in the independent review, including third-party exceptions. The earlier 403 remains in historical evidence. Preserve attribution and the limit that the primary album was not independently read.",
+            "The day 1992-04-07 remains attributed to the Commons caption; structured date April 1992 also fits the window."
+          ]
+        },
+        {
+          "person_id": "sadao_yamahana",
+          "display_name": "Sadao Yamahana",
+          "registry_name": "Sadao Yamahana",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "山花貞夫"
+          ],
+          "requested_window": {
+            "from": "1993-01-19",
+            "to": "1993-09-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "Equals the leadership-production required window (cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1) from registry term jp_jsp_sadao_yamahana_19930119 (day 1993-01-19 to month 1993-09). The accepted C01-29 observation (1993-01-25) lies inside it. C01-29 also records his continuation statement of 24 September 1993 (a claim, not attested_on), and the registry end is month-only, so Codex may extend the window to 1993-10-01; the reference frame (1993-08-09) falls inside either end."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "山花貞夫",
+                "attested_on": "1993-01-25",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_diet_hr_plenary_19930125"
+                ],
+                "claim_ids": [
+                  "jp_sdp_yamahana_self_stated_chair_19930125"
+                ],
+                "note": "Observed on 25 January 1993: his own statement in the House of Representatives plenary that he has newly taken office as chair of 日本社会党 ('新しく日本社会党の委員長に就任いたしました'); 就任 without a day is not a start. Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; his statement of 24 September 1993 that he is still chair is a continuation; his later recollection, as a minister holding no party office, that he resigned gives no day and is a lead; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/2"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "jp_sdp_yamahana_still_chair_19930924",
+              "source_id": "jp_sdp_diet_hc_plenary_19930924",
+              "attested_on": "1993-09-24",
+              "classification": "continuation statement; claim only, not an attested_on; basis for a possible window end of 1993-10-01"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "jp_jsp_sadao_yamahana_19930119"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "sadao_yamahana-1037f3c061ac",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "sadao_yamahana-d987a53f065e",
+                "from": "1993-01-19",
+                "to": "1993-09-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "1993-01-19",
+                "id": "sadao_yamahana-cd634c059194",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "1993-09-01",
+                "to": "2027-01-01",
+                "id": "sadao_yamahana-208fd59ef5fa",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_targeted": [
+              "cartoon:sadao_yamahana:1993-01-19:1993-09-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "sadao-yamahana-1993"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/sadao-yamahana-cartoon-1993-v1.txt",
+            "sha256": "0f6270864427465f7d5aaa409ea87168e10a5e0c9e8184076726e972e62806aa",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "c21ba5d3d1db85012e470acb4ba8de8c2ca6f2dae62ee8e5187a5c3af27522c6",
+            "git_blob": "297ea9b4f4434e8cb8ecbe34d8d2bbdbdf06094a",
+            "bytes": 3927,
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. The 9 August 1993 frame lies inside the window; the parent caption names Yamahana as the man at left, and Commons structured data says 'depicts Sadao Yamahana'. Same-name files show his father Hideo and his son Ikuo and are excluded.",
+              "evidence": [
+                "sadao-yamahana-1993",
+                "docs/campaign-certification/C01/research/japan.json /organizations/9/roles/0/holder_claims/2"
+              ]
+            },
+            {
+              "finding": "The reference is a still frame from the Defense Agency's 1993 record film, not a photograph. No qualifying still photograph exists. It is accepted here only on the registered koshiro_ishida precedent (same film, same day, same licence, Codex visual QA 2026-09-07) and is put to Codex as a ruling before rendering.",
+              "evidence": [
+                "sadao-yamahana-1993",
+                "spheres-web/data/person_portraits.json people.koshiro_ishida.portraits[0].identity_source"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The prompt asked for a 'very dark navy' suit; the frame shows a dark charcoal-gray suit with no blue (sampled about RGB 78,80,72 after correction against the white collar).",
+                "disposition": "Fixed: the prompt says 'dark charcoal-gray two-piece civilian suit' and appearance_observed says dark charcoal-gray; prompt re-pinned."
+              },
+              {
+                "problem": "Part of Yamahana's own jacket (lower right, with a small round silver lapel badge) was treated as another man's shoulder.",
+                "disposition": "Fixed: people_in_frame corrected; the prompt no longer lists 'a dark shoulder at the lower right' among other men, says that area is his own jacket, lists the white collar and dark cloth behind his ear, and omits the small round lapel badge; prompt re-pinned. The assembler confirmed the reading on the original."
+              },
+              {
+                "problem": "The line-endings item in the preparer's problems contained a draft fragment and a wrong abbreviated hash.",
+                "disposition": "Fixed: that item is not carried forward; the prompt pins in this record are full hashes recomputed after the edits."
+              },
+              {
+                "problem": "date_precision said the EXIF dates came from the frame extraction and the crop, but DateTimeOriginal 2020-12-23 predates the video's YouTube publication of 2020-12-27.",
+                "disposition": "Fixed: date_precision now says both EXIF dates are post-1993 processing metadata of unclear origin and that the capture date rests on {{taken on|1993-08-09}} and the event caption."
+              },
+              {
+                "problem": "supporting_metadata gave bytes null for http-429-log.txt.",
+                "disposition": "Fixed: pinned at 1318 bytes with its sha256."
+              },
+              {
+                "problem": "Carried forward, not a defect: the reference is a video frame, so acceptance rests on the koshiro_ishida precedent; everything else (identity, date, licence, creator, byte-identical copy, job IDs, C01-29 citation) checks out.",
+                "disposition": "Recorded as a Codex ruling to settle before rendering; the low-resolution likeness caveat is kept for review after the render."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted start or end; the single accepted observation is a point observation (1993-01-25)."
+          ],
+          "open_items_for_codex": [
+            "At output review, inspect likeness carefully because the licensed official film frame is soft. Film-frame origin itself is not a rejection reason or a new permission requirement.",
+            "Keep the requested exclusive end 1993-09-01 in this batch. No new historical end or September extension is approved by this preparation."
+          ]
+        },
+        {
+          "person_id": "takako_doi",
+          "display_name": "Takako Doi",
+          "registry_name": "Takako Doi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "土井たか子"
+          ],
+          "requested_window": {
+            "from": "1996-09-30",
+            "to": "2003-11-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "Leadership-production window from registry SDP term jp_jsp_takako_doi_199609 (month 1996-09 to month 2003-11). The accepted C01-29 observations attested on 1996-11-30, 1998-01-21 and 2000-01-21 fall inside it. Her 1990-04-06 observation falls inside the existing 1990 art (1990-01-01 to 1995-01-01), which is untouched."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "土井たか子",
+                "attested_on": "1996-11-30",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_doi_kenren_kanjicho_meeting_19961130"
+                ],
+                "claim_ids": [
+                  "jp_sdp_doi_in_office_kanjicho_meeting_19961130"
+                ],
+                "note": "Observed on 30 November 1996: the party's report of its 都道府県連合幹事長会議, whose opening address was given by 土井たか子党首 (the page prints 11月30日; the year follows from the report and the party's index). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the day she took over from 村山富市 is not stated (the secretary-general's report of her 就任 gives no day; later retrospectives say 1996 and September 1996); the convention's confirmation of 22 December 1996 is a claim; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/4"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "土井たか子",
+                "attested_on": "1998-01-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_doi_reelection_shakaishinpo_19980121"
+                ],
+                "claim_ids": [
+                  "jp_sdp_doi_in_office_shakaishinpo_19980121"
+                ],
+                "note": "Observed on 21 January 1998: the party organ 社会新報 (issue of 21 January 1998) calling her 再選の土井党首 after her uncontested re-election. Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the re-notice (8 January) and the confirmation of her election (10 January) are claims; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/5"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "土井たか子",
+                "attested_on": "2000-01-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_doi_third_term_danwa_20000121"
+                ],
+                "claim_ids": [
+                  "jp_sdp_doi_in_office_third_term_danwa_20000121"
+                ],
+                "note": "Observed on 21 January 2000: her statement on her third election, dated 21 January 2000 and signed 社会民主党 党首 土井たか子. Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; her 2003 resignation was announced on 13 November and stated to the representatives' meeting on 15 November 2003, and no source states the day her office ended; no record of a 2002 election was found; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/6"
+              }
+            }
+          ],
+          "observations_outside_window": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_10",
+              "organization_name_in_research": "社会民主党",
+              "role_id": "jp_sdp_chair",
+              "holder": {
+                "name": "土井たか子",
+                "attested_on": "1990-04-06",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_sdp_diet_hr_budget_19900406"
+                ],
+                "claim_ids": [
+                  "jp_sdp_doi_named_chair_by_secretary_general_19900406"
+                ],
+                "note": "Observed on 6 April 1990: the party secretary-general 山口鶴男's statement in the House of Representatives Budget Committee that '土井委員長はかねがね強調いたしておられます', the first dated statement by a party officer naming her in the office found after 1 January 1990. Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; nothing attests 1 January 1990 itself; her September 1986 assumption and July 1991 resignation are month-only retrospective claims, and no party record of her 1991 resignation, of its acceptance or of an acting chair was found; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/9/roles/0/holder_claims/0"
+              },
+              "coverage_note": "Inside her existing 1990 art (1990-01-01 to 1995-01-01); not part of this window."
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "jp_sdp_doi_convention_approval_19961222",
+              "source_id": "jp_sdp_doi_second_rinji_convention_19961222",
+              "attested_on": "1996-12-22",
+              "classification": "convention confirmation; claim only, not a start"
+            },
+            {
+              "claim_id": "jp_sdp_murayama_obituary_handover_to_doi_retrospective",
+              "source_id": "jp_sdp_statement_murayama_obituary_20251017",
+              "attested_on": null,
+              "classification": "2025 retrospective; not a start"
+            },
+            {
+              "claim_id": "jp_sdp_doi_resignation_intent_20031113",
+              "source_id": "jp_sdp_doi_resignation_kaiken_20031113",
+              "attested_on": "2003-11-13",
+              "classification": "resignation intent; not an end"
+            },
+            {
+              "claim_id": "jp_sdp_doi_term_span_recalled",
+              "source_id": "jp_sdp_fukushima_eighth_convention_20031213",
+              "attested_on": null,
+              "classification": "successor's retrospective; claim only"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "jp_jsp_takako_doi_199609"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "takako_doi-79dea7fb7fdb",
+                "from": "1995-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "takako_doi-517fc7ec0833",
+                "from": "1996-09-30",
+                "to": "2003-11-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1995-01-01",
+                "to": "1996-09-30",
+                "id": "takako_doi-f2956c27026e",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "2003-11-01",
+                "to": "2027-01-01",
+                "id": "takako_doi-a558c1ae96fb",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "note": "The pipeline's default inventory job for Doi starts at 1995-01-01 because her 1990 cartoon covers 1990-01-01 to 1995-01-01.",
+            "leadership_production_cartoon_jobs_targeted": [
+              "cartoon:takako_doi:1996-09-30:2000-01-01:v1",
+              "cartoon:takako_doi:2000-01-01:2003-11-01:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "takako-doi-2005"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt",
+            "sha256": "14bc6db8eea91726074ea2c0cb21db7ac1f08e1c972226a5b4849f35074e5c96",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "f795625b0af36bae87486a3ab8f06d6d2d4f3b9ce0c4ff1ac9a0034fa81d8d87",
+            "git_blob": "8f8e7cd9503eff7bcb37b3c067504e57aabcfea9",
+            "bytes": 4221,
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID and her existing 1990 portrait (takako-doi-cartoon-1990-v1.png, 1990-01-01 to 1995-01-01; untouched). This is her second portrait.",
+              "evidence": [
+                "takako-doi-2005",
+                "spheres-web/data/person_portraits.json people.takako_doi.portraits[0]"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": true,
+            "problems_and_dispositions": []
+          },
+          "missing_records": [
+            "No accepted start or end; the accepted observations are point observations."
+          ],
+          "open_items_for_codex": [
+            "At visual review: keep or drop the thin metal-framed glasses, which are confirmed for 2005 but not for 1996-2003.",
+            "At visual review: the prompt takes the jacket and skirt colours from the small in-window 2000 photograph; a reviewer may prefer the 2005 outfit (ivory jacket, black-and-white striped top, gray trousers)."
+          ]
+        },
+        {
+          "person_id": "akihiro_ota",
+          "display_name": "Akihiro Ōta",
+          "registry_name": "Akihiro Ōta",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "太田昭宏"
+          ],
+          "requested_window": {
+            "from": "2006-09-30",
+            "to": "2009-09-08",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "Equals the leadership-production required window from registry term jp_komeito_akihiro_ota_20060930 (day 2006-09-30 to day 2009-09-08). The accepted C01-31 observation gives from 2006-09-30 (the receipt's explicit assumption statement) and no end; none is inferred."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "太田昭宏",
+                "attested_on": null,
+                "from": "2006-09-30",
+                "until": null,
+                "sources": [
+                  "jp_komeito_ota_sixth_convention_20061001",
+                  "jp_komeito_ota_address_sixth_convention_20061001"
+                ],
+                "claim_ids": [
+                  "jp_komeito_ota_in_office_convention_20060930",
+                  "jp_komeito_ota_assumption_stated_20060930"
+                ],
+                "note": "From 30 September 2006: his own address to the sixth national convention, which the party organ introduces as given at the convention of the 30th, saying that at today's convention he has taken office as 公明党代表 ('本日の党大会において…公明党代表に就任させていただきました'), with the party organ's same-day report naming 太田代表 after his election. Not a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No end is stated for this observation: his 2008 re-election was not found, and no source reviewed states the day his office ended in 2009; the convention's selection, 神崎武法前代表 and his own Diet statement of 3 October 2006 are claims, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/4"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "jp_komeito_ota_selected_20060930",
+              "source_id": "jp_komeito_ota_sixth_convention_20061001",
+              "attested_on": "2006-09-30",
+              "classification": "election report; the observation's from rests on the explicit assumption statement"
+            },
+            {
+              "claim_id": "jp_komeito_ota_former_20090908",
+              "source_id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+              "attested_on": "2009-09-08",
+              "classification": "successor's address; not Ota's end"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "jp_komeito_akihiro_ota_20060930"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "akihiro_ota-a22bdc6a183b",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "akihiro_ota-943abda7c780",
+                "from": "2006-09-30",
+                "to": "2009-09-08",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2006-09-30",
+                "id": "akihiro_ota-ffc8c64f53ae",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "2009-09-08",
+                "to": "2027-01-01",
+                "id": "akihiro_ota-fc8223b661c5",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_targeted": [
+              "cartoon:akihiro_ota:2006-09-30:2009-09-08:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "akihiro-ota-2012"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/akihiro-ota-cartoon-2006-v1.txt",
+            "sha256": "bd0fdc42e07e9ade28fcf5df7c6a77b90457ba7ebfb9adef63136767cd31cbab",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "8e7ae1d8de8ea883dbd2c722663f1da5d3a4714e85a9e0f6c5c5157fa4e39a82",
+            "git_blob": "3714107162c89167c65ecfa0736d8fbe0c2f9348",
+            "bytes": 3602,
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID; the registry name carries the macron (Akihiro Ōta).",
+              "evidence": [
+                "akihiro-ota-2012",
+                "docs/campaign-certification/C01/research/japan.json /organizations/14/roles/0/holder_claims/4"
+              ]
+            },
+            {
+              "finding": "The reference was replaced at assembly by the first Commons revision of the same file, whose upload names the MLIT flyer as its source; the preparer's choice was the current revision, uploaded from a commercial news site.",
+              "evidence": [
+                "akihiro-ota-2012"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The shipped bytes were the current Commons revision, uploaded 'from https://response.jp/imgs/thumb_h2/607583.jpg' (a commercial news site); they hold image area no MLIT publication on record contains, and the credit, rights_statement and 'government-produced' wording did not describe them.",
+                "disposition": "Fixed: the reference is now the first Commons revision (2023-07-23T10:15:04Z, TKsdik8900, source MLIT PDF; 339x507; 27547 bytes; sha1 7a510e49fb203ddaeff666fb53467c454cb59bfc verified; sha256 dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6), downloaded once by the assembler and copied unchanged over the same repository path. Credit, rights_statement, creator, file-revision record and rejected candidates are rewritten; the prompt's Image 2 sentence now describes a head-and-shoulders crop at the upper chest, and the clothing line calls the body an extension of a head-and-shoulders photograph; prompt re-pinned. The response.jp bytes remain only in scratch."
+              },
+              {
+                "problem": "date_precision attributed the 2012-12-27 timestamp to the MLIT document and claimed the portrait was published for his appointment; the timestamp is the Exif editing time of the second (Photoshop Elements 9.0) revision.",
+                "disposition": "Independent Codex review on 2026-10-02 corrects the remaining overclaim. The selected first revision has no capture EXIF; the second revision editing timestamp and the flyer PDF CreationDate/ModDate are metadata only. The prompt no longer claims a hard 2012 deadline or exact age gap. Original metadata bytes and the first-revision provenance are preserved."
+              },
+              {
+                "problem": "akihiro_ota-a22bdc6a183b (default inventory, 1990-01-01 to 2027-01-01) sat unlabelled in the job list.",
+                "disposition": "Fixed: jobs are labelled in the France shape (prospective default/window-scoped coverage, residuals open and targeted leadership-production jobs; none is completed at preparation)."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted end; the accepted observation gives only a start."
+          ],
+          "open_items_for_codex": [
+            "At output review, assess the undated official MLIT likeness and explicitly illustrative ages 60 to 63. The first-revision bytes and printed ministry attribution were verified; retain source credit and alteration notice."
+          ]
+        },
+        {
+          "person_id": "natsuo_yamaguchi",
+          "display_name": "Natsuo Yamaguchi",
+          "registry_name": "Natsuo Yamaguchi",
+          "identity_status": "existing_identity",
+          "batch_role": "primary",
+          "observed_names": [
+            "山口那津男"
+          ],
+          "requested_window": {
+            "from": "2009-09-08",
+            "to": "2024-09-28",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "Equals the leadership-production required windows from registry term jp_komeito_natsuo_yamaguchi_20090908 (day 2009-09-08 to day 2024-09-28). The seven accepted C01-31 observations (2009-09-08 to 2022-09-25) lie inside it. The fifteen-year window may be split by Codex at 2015-01-01 or 2020-01-01.",
+            "possible_split": "At 2015-01-01 or 2020-01-01 (leadership-production job boundaries). The 2019 reference falls in the 2015-2020 segment; an earlier portrait would need a roughly 2010-2014 reference.",
+            "era_caveat": "The 2019 source depicts about age 64, while this proposed fifteen-year interval spans about ages 57 to 72. One image is not proof of age-appropriate likeness for every year. A separate earlier variant is recommended; this preparation does not close four era jobs."
+          },
+          "observations": [
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2009-09-08",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_selection_greeting_20090909"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_greeting_20090908"
+                ],
+                "note": "Observed on 8 September 2009: the party organ's copy (9 September 2009) of the address of the new representative chosen at the extraordinary national meeting of representatives of the 8th, headed 山口那津男　代表; his own Diet statement of 30 October 2009 is a continuation. Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; his address says he has been chosen (選出, an election) and greets the meeting on taking office without a separate day; his 2010 re-election was not found; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/5"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2012-09-22",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_ninth_convention_20120923"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_convention_20120922"
+                ],
+                "note": "Observed on 22 September 2012: the party organ's report of the ninth national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/6"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2014-09-21",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_tenth_convention_20140922"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_convention_20140921"
+                ],
+                "note": "Observed on 21 September 2014: the party organ's report of the 10th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/7"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2016-09-17",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_eleventh_convention_20160918"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_convention_20160917"
+                ],
+                "note": "Observed on 17 September 2016: the party organ's report of the 11th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/8"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2018-09-30",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_twelfth_convention_20181001"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_convention_20180930"
+                ],
+                "note": "Observed on 30 September 2018: the party organ's report of the 12th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/9"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2020-09-27",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_thirteenth_convention_20200928"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_convention_20200927"
+                ],
+                "note": "Observed on 27 September 2020: the party organ's report of the 13th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/10"
+              }
+            },
+            {
+              "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+              "organization_name_in_research": "公明党",
+              "role_id": "jp_komeito_representative",
+              "holder": {
+                "name": "山口那津男",
+                "attested_on": "2022-09-25",
+                "from": null,
+                "until": null,
+                "sources": [
+                  "jp_komeito_yamaguchi_fourteenth_convention_20220926"
+                ],
+                "claim_ids": [
+                  "jp_komeito_yamaguchi_in_office_convention_20220925"
+                ],
+                "note": "Observed on 25 September 2022: the party organ's report of the 14th national convention naming 山口代表 after his re-election there (the day printed in the report). Not a start, a continuous term, a biography or a likeness authorization.",
+                "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim; the new two-year term's first day is not stated; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+              },
+              "evidence_class": "c01_accepted",
+              "research_locations": {
+                "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/11"
+              }
+            }
+          ],
+          "related_claims_not_holder_observations": [
+            {
+              "claim_id": "jp_komeito_yamaguchi_selected_20090908",
+              "source_id": "jp_komeito_yamaguchi_selection_greeting_20090909",
+              "attested_on": "2009-09-08",
+              "classification": "selection report; claim only"
+            },
+            {
+              "claim_id": "jp_komeito_ishii_in_office_convention_20240928",
+              "source_id": "jp_komeito_ishii_new_representative_interview_20240930",
+              "attested_on": "2024-09-28",
+              "classification": "successor in office; not Yamaguchi's end"
+            },
+            {
+              "claim_id": "jp_komeito_yamaguchi_former_eight_terms_recalled",
+              "source_id": "jp_komeito_ishii_new_representative_interview_20240930",
+              "attested_on": null,
+              "classification": "successor's retrospective; claim only"
+            }
+          ],
+          "registry_terms_not_c01_research": [
+            "jp_komeito_natsuo_yamaguchi_20090908"
+          ],
+          "jobs": {
+            "pipeline_default_inventory": [
+              {
+                "id": "natsuo_yamaguchi-a71007185b71",
+                "from": "1990-01-01",
+                "to": "2027-01-01",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective partial coverage after registration and visual review; residual intervals remain open"
+              }
+            ],
+            "pipeline_window_scoped": [
+              {
+                "id": "natsuo_yamaguchi-93769cc0a66c",
+                "from": "2009-09-08",
+                "to": "2024-09-28",
+                "status": "needs_source_and_visual_review",
+                "closure": "prospective exact window coverage after generation, registration and visual review"
+              }
+            ],
+            "pipeline_residual_after_registration": [
+              {
+                "from": "1990-01-01",
+                "to": "2009-09-08",
+                "id": "natsuo_yamaguchi-fb0a754eff9e",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              },
+              {
+                "from": "2024-09-28",
+                "to": "2027-01-01",
+                "id": "natsuo_yamaguchi-5aac700002a9",
+                "status": "computed with the pipeline's own job content and digest; not emitted, remains open"
+              }
+            ],
+            "leadership_production_cartoon_jobs_targeted": [
+              "cartoon:natsuo_yamaguchi:2009-09-08:2010-01-01:v1",
+              "cartoon:natsuo_yamaguchi:2010-01-01:2015-01-01:v1",
+              "cartoon:natsuo_yamaguchi:2015-01-01:2020-01-01:v1",
+              "cartoon:natsuo_yamaguchi:2020-01-01:2024-09-28:v1"
+            ]
+          },
+          "likeness_reference_ids": [
+            "natsuo-yamaguchi-2019"
+          ],
+          "prompt": {
+            "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v1.txt",
+            "sha256": "7ac461c81ecd482a38acf42bb1a7f95a888b54cd594bcbe3c3c2e63b5ac3d3ed",
+            "sha256_basis": "LF bytes as committed (git show HEAD:<path> | sha256sum)",
+            "sha256_if_checked_out_crlf": "a1085cbf1defd6525dbfef8386502bc84edfe2e19a6730ff69eafeb8e5eee685",
+            "git_blob": "5b27d2f84526a461e8450081edf9cf9bf35e01e2",
+            "bytes": 3954,
+            "lines": 9
+          },
+          "planned_output": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v1.png",
+          "identity_review": [
+            {
+              "finding": "Preserve the existing person ID. Identity rests on the Commons category 'Natsuo Yamaguchi', his central position as the speaker and the match with his known features; his name card stands on the table to his right, in front of the neighbouring delegate.",
+              "evidence": [
+                "natsuo-yamaguchi-2019",
+                "docs/campaign-certification/C01/research/japan.json /organizations/14/roles/0/holder_claims/5"
+              ]
+            }
+          ],
+          "verification": {
+            "verifier": "independent Claude verification agent (per person)",
+            "initial_verdict_ok": false,
+            "problems_and_dispositions": [
+              {
+                "problem": "The prompt identified Yamaguchi only as speaking 'behind a name card bearing his name', but the card stands in front of the bespectacled delegate on his right; the only identity cue pointed at the wrong man and there was no isolation clause.",
+                "disposition": "Fixed: the prompt now names him as the central man speaking, with swept-back dark hair, in the navy pinstripe suit and pale blue patterned tie, and tells the model to ignore every other person, listing the delegate in front of whom his card stands, the man at the right edge, the back of a head and the audience; prompt re-pinned."
+              },
+              {
+                "problem": "The record's depiction and visual-inspection notes rested identity on 'the name card in front of him', and people_in_frame named Ichiro Aisawa as 'identified by name card'.",
+                "disposition": "Fixed: depiction, visual_inspection_note and identity_review base identity on the Commons category, his central position and his features; people_in_frame says 'probably Ichiro Aisawa (a name card reading Mr. Ichiro Aisawa is nearby)'."
+              },
+              {
+                "problem": "The prompt said his hands are artistic extensions, but his right hand is partly visible resting on the table and a shirt cuff shows by the glass.",
+                "disposition": "Fixed: the prompt's Clothing line says his hands are only partly visible resting on the table and only the standing pose, trousers and shoes are extensions; people_in_frame and limitation say the same."
+              }
+            ]
+          },
+          "missing_records": [
+            "No accepted start or end; the accepted observations are point observations."
+          ],
+          "open_items_for_codex": [
+            "Accept the 27,276,808-byte reference in Git (the untouched 8256x5504 original; larger than any existing reference and than France's 17 MB Juppé reference; Commons has no extracted crop).",
+            "Decide whether to split the window at 2015-01-01 or 2020-01-01 (see requested_window.possible_split). For a 2009-2015 portrait, qualifying unviewed candidates are File:Natsuo Yamaguchi IMG 5607 20130707.JPG (CC BY 3.0) and the 2013-12-03 State Department public-domain Biden-meeting files."
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded_people": [
+    {
+      "person_id": "takenori_kanzaki",
+      "display_name": "Takenori Kanzaki",
+      "registry_name": "Takenori Kanzaki",
+      "batch_role": "excluded",
+      "requested_window": {
+        "from": "1998-11-07",
+        "to": "2006-09-30",
+        "to_exclusive": true,
+        "basis": "Leadership-production window from registry term jp_komeito_takenori_kanzaki_19981107 (day 1998-11-07 to day 2006-09-30). The accepted C01-31 observations (1998-11-08, 2002-11-03, 2004-10-31) lie inside it."
+      },
+      "observations": [
+        {
+          "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+          "organization_name_in_research": "公明党",
+          "role_id": "jp_komeito_representative",
+          "holder": {
+            "name": "神崎武法",
+            "attested_on": "1998-11-08",
+            "from": null,
+            "until": null,
+            "sources": [
+              "jp_komeito_founding_convention_report_19981108"
+            ],
+            "claim_ids": [
+              "jp_komeito_kanzaki_in_office_founding_report_19981108"
+            ],
+            "note": "Observed on 8 November 1998: the party organ's report (公明新聞, 8 November 1998) of the founding national convention of the new 公明党, naming 神崎代表 in the new officers' address after the convention's vote of confidence. Not a start, a continuous term, a biography or a likeness authorization.",
+            "uncertainty": "No start or end is stated by any source reviewed; the convention's day is printed only by his own Diet statement of 30 November 1998 (7 November), which is a claim about the organizations; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+          },
+          "evidence_class": "c01_accepted",
+          "research_locations": {
+            "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/1"
+          }
+        },
+        {
+          "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+          "organization_name_in_research": "公明党",
+          "role_id": "jp_komeito_representative",
+          "holder": {
+            "name": "神崎武法",
+            "attested_on": "2002-11-03",
+            "from": null,
+            "until": null,
+            "sources": [
+              "jp_komeito_kanzaki_reappointed_20021103",
+              "jp_komeito_kanzaki_fourth_convention_address_20021103"
+            ],
+            "claim_ids": [
+              "jp_komeito_kanzaki_in_office_reappointed_20021103",
+              "jp_komeito_kanzaki_self_stated_continuing_20021103"
+            ],
+            "note": "Observed on 3 November 2002: the party's report dated 3 November 2002 naming '新代表に再任された神崎代表' after the fourth national convention, with his own address of the same date line saying he continues as party representative by the delegates' confidence. Not a start, a continuous term, a biography or a likeness authorization.",
+            "uncertainty": "No start or end is stated by any source reviewed; the convention's day is not printed on these pages; the 2000 re-election was not found; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+          },
+          "evidence_class": "c01_accepted",
+          "research_locations": {
+            "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/2"
+          }
+        },
+        {
+          "organization_or_institution_id": "jp_sangiin_pr_2025_15",
+          "organization_name_in_research": "公明党",
+          "role_id": "jp_komeito_representative",
+          "holder": {
+            "name": "神崎武法",
+            "attested_on": "2004-10-31",
+            "from": null,
+            "until": null,
+            "sources": [
+              "jp_komeito_kanzaki_fifth_convention_address_20041101"
+            ],
+            "claim_ids": [
+              "jp_komeito_kanzaki_self_stated_again_20041031"
+            ],
+            "note": "Observed on 31 October 2004: his own address to the fifth national convention, which the party organ introduces as given by the representative re-elected at the convention of the 31st, saying that by the delegates' confidence he will again bear the heavy duty of party representative. Not a start, a continuous term, a biography or a likeness authorization.",
+            "uncertainty": "No start or end is stated by any source reviewed; the re-election is a claim, and a statement of continuing (再び) is not read as a start; elections, selections, recommendations, convention approvals, resignation announcements, predecessor references, acting and interim arrangements, other organizations' offices and retrospective records are claims only, and no end is inferred from a successor's selection."
+          },
+          "evidence_class": "c01_accepted",
+          "research_locations": {
+            "docs/campaign-certification/C01/research/japan.json": "/organizations/14/roles/0/holder_claims/3"
+          }
+        }
+      ],
+      "reason": "Historical preparer decision on 1 October 2026, retained for scope: No qualifying likeness reference. The only usable image, File:Takenori Kanzaki 20060926.jpg (CC BY 4.0 via GJSTU 2.0, 内閣広報室, 2006-09-26, 400x360), is a frame from the Government Internet TV programme '安倍内閣の発足-平成18年9月26日' (gov-online prg753; the archived source page has only a video player, data-movie-id 16832), not a photograph. The batch rule asks for a dated photograph and rejects TV stills, and the handoff already defers tetsuzo_fuwa partly because his only near-modern image is a video still. Unlike Yamahana's frame, no registered precedent covers this source. The only other free Commons image is the 1993-08-09 Hosokawa cabinet group photograph, about five years before the window, in which he is a tiny figure. The verifier recommended holding him; the assembler excluded him and removed his prepared files from the repository.",
+      "verification": {
+        "verifier": "independent Claude verification agent (per person)",
+        "initial_verdict_ok": false,
+        "problems_and_dispositions": [
+          {
+            "problem": "The reference is a video frame from Government Internet TV, which the task's rule rejects ('TV stills'), yet the preparer returned ok=true.",
+            "disposition": "Excluded: the reference copy and prompt were removed from the repository before staging. The original bytes stay in scratch and the prompt is preserved unchanged in scratch (pinned below), so they can be restored without change if Codex or the user rules that a government-owned CC BY 4.0 video frame qualifies."
+          },
+          {
+            "problem": "takenori_kanzaki-82f870c30a67 is the default-inventory job (1990-01-01 to 2027-01-01) and was listed beside the window-scoped jobs.",
+            "disposition": "Recorded in the France shape below; all of his jobs stay open."
+          }
+        ]
+      },
+      "jobs_left_open": {
+        "pipeline_default_inventory": [
+          {
+            "id": "takenori_kanzaki-82f870c30a67",
+            "from": "1990-01-01",
+            "to": "2027-01-01",
+            "status": "needs_source_and_visual_review"
+          }
+        ],
+        "pipeline_window_scoped_not_closed": [
+          {
+            "id": "takenori_kanzaki-3f485761c684",
+            "from": "1998-11-07",
+            "to": "2006-09-30",
+            "status": "needs_source_and_visual_review"
+          }
+        ],
+        "leadership_production_cartoon_jobs_not_closed": [
+          "cartoon:takenori_kanzaki:1998-11-07:2000-01-01:v1",
+          "cartoon:takenori_kanzaki:2000-01-01:2005-01-01:v1",
+          "cartoon:takenori_kanzaki:2005-01-01:2006-09-30:v1"
+        ]
+      },
+      "prepared_files_outside_git": {
+        "reference_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/Takenori_Kanzaki_20060926.jpg",
+          "bytes": 80108,
+          "sha256": "560c9667532483ce67ab9efffde0d475eba6d91e0a1d81b1db3dfbf431e515bc",
+          "commons_title": "File:Takenori Kanzaki 20060926.jpg",
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:Takenori_Kanzaki_20060926.jpg",
+          "commons_sha1": "02add77f10841bbd7bf2f5a684ee20e9ceb38a48",
+          "width": 400,
+          "height": 360,
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0",
+          "creator": "内閣広報室 (Cabinet Public Relations Office, Cabinet Secretariat)",
+          "photograph_date": "2006-09-26 (video frame)",
+          "removed_repo_copy": "spheres-web/ui/person-portraits/references/takenori-kanzaki-2006-reference-v1.jpg (never committed)"
+        },
+        "prompt": {
+          "path": "D:/spheres-scratch/jp-cast/excluded/takenori_kanzaki/takenori-kanzaki-cartoon-1998-v1.txt",
+          "bytes": 3532,
+          "sha256": "8f945ce2ba28f968fb8cc4d2e31e644313dd35980099e0fc4f000ae85acfce2a",
+          "git_blob": "d1bc6b5194d596f02a286cbcdcc175197174f5cf",
+          "removed_repo_path": "tools/avatars/person-prompts/takenori-kanzaki-cartoon-1998-v1.txt (never committed)"
+        },
+        "source_evidence": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/commons-api-imageinfo-Takenori_Kanzaki_20060926.json",
+            "bytes": 5047,
+            "sha256": "a9ad862f5956803cb5b6e8cdb33cb74047b3f0314b789cc510b0ddf60c1add95"
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/commons-file-page-Takenori_Kanzaki_20060926.html",
+            "bytes": 88632,
+            "sha256": "28cc1bf784c30fa13e63e21a495e14e285c19577545866d8275e1b910e331121"
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/wayback-20240816043415-gov-online-prg753.html",
+            "bytes": 49740,
+            "sha256": "c921861a9d76a1c7ff65ac36a79ffe1b1c183bc148cf69e8a1d64ebb43beb436"
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/wayback-20241015083200-gov-online-tos-content_rules.html",
+            "bytes": 56254,
+            "sha256": "a5a970d2e4e0e1b4f3a24081a97b362274f0140843d80063a27bc4974ba51622"
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/wayback-20241007171917-kantei-terms.html",
+            "bytes": 16985,
+            "sha256": "a424b8b9da2bdca4bbb1667291be8a9a383bd736a3322af92294a89e59d0f665"
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takenori_kanzaki/commons-search-kanzaki.json",
+            "bytes": 1958,
+            "sha256": "873afabf9ea79d994af515bd91287926a83b0f5a71a51e81be87cc620f514599"
+          }
+        ]
+      },
+      "restore_condition": "If Codex or the user rules that a government-owned video frame licensed CC BY 4.0 (GJSTU 2.0) qualifies, copy the reference original and the prompt back unchanged (sha256 values above), record the ruling here and in the README, and render him in a later batch. Otherwise leave him uncovered.",
+      "independent_disposition": "Not part of the six-person independent source review. Its separate source needs material verification before restoring the reference/prompt; a licensed official film frame is not intrinsically barred. This record establishes no new user-permission rule."
+    }
+  ],
+  "reserves_not_prepared": [
+    {
+      "person_id": "tadatomo_yoshida",
+      "window": {
+        "from": "2013-10-24",
+        "to": "2018-02-01",
+        "to_exclusive": true
+      },
+      "basis": "C01-29 jp_sdp_chair attested_on 2013-10-24; the leadership-production window (from 2013-10-31) widened to include it.",
+      "status": "reserve in the handoff; not prepared (no reference, no prompt)"
+    },
+    {
+      "person_id": "seiji_mataichi",
+      "window": {
+        "from": "2018-02-25",
+        "to": "2020-02-01",
+        "to_exclusive": true
+      },
+      "basis": "C01-29 jp_sdp_chair attested_on 2018-02-25; the leadership-production window (from 2018-02-28) widened to include it.",
+      "status": "reserve in the handoff; not prepared (no reference, no prompt)"
+    }
+  ],
+  "likeness_references": [
+    {
+      "id": "tomiichi-murayama-1994",
+      "person_id": "tomiichi_murayama",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Tomiichi_Murayama_19940630.jpg",
+      "commons_title": "File:Tomiichi Murayama 19940630.jpg",
+      "retrieved_at": "2026-10-01T22:55:44Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-Tomiichi_Murayama_19940630.json",
+        "bytes": 50924,
+        "sha256": "23dd8d78a7a75d5ea820f223d2571728140f567262b721bffb2b8fe654b07278",
+        "retrieved_at": "2026-10-01"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-file-page-Tomiichi_Murayama_19940630.html",
+        "bytes": 126392,
+        "sha256": "d20c587a0fa190875577577e6e43314f42b0a96f73330c18a5ae72ca87f6e423",
+        "retrieved_at": "2026-10-01T22:56:50Z"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-rekidainaikaku-081.html",
+          "bytes": 27436,
+          "sha256": "2bb20f70b477bffb82ba93f01899ee9890e4bddac1c13ad185fad0521cebbe47",
+          "retrieved_at": "2026-10-01",
+          "content": "Kantei page for the 81st Prime Minister (https://www.kantei.go.jp/jp/rekidainaikaku/081.html): shows this portrait (img/rekidai-index-81-murayama.jpg, alt 顔写真：村山 富市), birth date 大正13年3月3日, age at taking office 70, and 村山内閣 平成6年6月30日成立. It gives no photograph date."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-rekidai-index-81-murayama.jpg",
+          "bytes": 49717,
+          "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+          "retrieved_at": "2026-10-01",
+          "content": "The image the Kantei serves today at https://www.kantei.go.jp/jp/rekidainaikaku/img/rekidai-index-81-murayama.jpg; byte-identical (sha256 and sha1) to the Commons original, which confirms provenance."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-terms.html",
+          "bytes": 13088,
+          "sha256": "eaec2ac88702de206e7eacd2149519ef609e290a785c09757096ea3107bc863e",
+          "retrieved_at": "2026-10-01",
+          "content": "The Kantei's current terms: content now under 公共データ利用規約（第1.0版）（PDL1.0）, with no exclusion for portraits."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-candidates.json",
+          "bytes": 142792,
+          "sha256": "b0ec354d63d77ed94fb33556464db1b30a16283f1e837a1fde20716bfdd5febd",
+          "retrieved_at": "2026-10-01",
+          "content": "Preparer's Commons API records of candidate files, including 'Tomiichi Murayama 19940630 (Black and White).jpg' (250x330, author 外務省, date 1994, source the WARP copy of MOFA's APEC 1995 page, CC BY 4.0) and 'Tomiichi Murayama 19940630 (large).jpg'."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-wikitext-candidates.json",
+          "bytes": 10630,
+          "sha256": "8e35ef4a5ee3a4b8dd9cf369a91d0d22feee55b2c59989b9cd86c1515711b416",
+          "retrieved_at": "2026-10-01",
+          "content": "Preparer's Commons wikitext of the candidate files (the black-and-white file has |date=1994 and {{GJSTU-2.0|terms=https://www.mofa.go.jp/about/legalmatters.html|attr=外務省 (MOFA)}})."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/Tomiichi_Murayama_19940630_(Black_and_White).jpg",
+          "bytes": 57566,
+          "sha256": "360f7bf8157a0e132a1f3d6fcf1e937a0a15197db82b832535dfc7ad8783d83c",
+          "retrieved_at": "2026-10-01T23:55:14Z",
+          "content": "Assembler download of the Commons original 'Tomiichi Murayama 19940630 (Black and White).jpg' (250x330; sha1 d155c67a6a80cad5472f16f0e693701c25967e46 matches Commons). Same sitting as the chosen colour portrait: same suit, diamond-pattern tie, lapel badge, head pose, hair and expression; aligned against the colour file it correlates at about 0.92 after tone matching, so it is apparently the same exposure. Research only; not a generation input."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/wayback-available-mofa-apec-1995-tomiichi.json",
+          "bytes": 309,
+          "sha256": "e8adce9a5f1916e5b227a252879e576a636cb7d4251aec55118eb77977b696c3",
+          "retrieved_at": "2026-10-01T23:57:51Z",
+          "content": "Wayback Machine availability lookup for www.mofa.go.jp/policy/economy/apec/1995/tomiichi.html: closest capture 1999-05-01 (19990501165159)."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/wayback-19990501165159id-mofa-apec-1995-tomiichi.html",
+          "bytes": 5590,
+          "sha256": "6e52fb7763c62e2890900eb6f14ed534635ef55cdc59a3b6af33be0bd201192a",
+          "retrieved_at": "2026-10-01T23:58:01Z",
+          "content": "Raw Wayback capture (1 May 1999) of MOFA's page 'Profile of Prime Minister Tomiichi Murayama' in its 'APEC 1995 Osaka Official Information' section. It displays image/tomiichi.gif, carries 'Copyright : 1995 The Ministry of Foreign Affairs, Japan', and its chronology ends at September 1995 (visits to Saudi Arabia, Egypt, Syria, Israel and Jordan)."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/wayback-mofa-apec-1995-image-tomiichi.gif",
+          "bytes": 22893,
+          "sha256": "1b2d38584916732a2b733786db5dc84e0f4231ff90fdbd749ca7abb10c5831ce",
+          "retrieved_at": "2026-10-01T23:58:11Z",
+          "content": "That page's image/tomiichi.gif as archived on 2 July 2001 (250x330 GIF87a). It matches the Commons black-and-white JPEG pixel for pixel (correlation 0.99999, mean absolute difference 0.08 grey levels): the Commons file matches the image retained in the 2001 capture; presence on the page in 1995 is inferred, not established."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/warp-fetch-outcome.txt",
+          "bytes": 259,
+          "sha256": "7b7aac74dcbac2a765f64029c6f505146d03b4640a8458f53b76608cad2965e0",
+          "retrieved_at": "2026-10-01T23:57:37Z",
+          "content": "The WARP copy that Commons cites returned HTTP 403 to the non-browser User-Agent; not retried with a browser User-Agent; body not retained."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/Tomiichi_Murayama_19940630.jpg",
+        "bytes": 49717,
+        "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Tomiichi_Murayama_19940630.jpg",
+        "commons_sha1": "4391aee46aad275aa1197ca216c3c487c6c2ce58",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg",
+      "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+      "bytes": 49717,
+      "asset_byte_identical_to_original": true,
+      "width": 318,
+      "height": 410,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "Capture date unknown; APEC 1995-era association is an inference, not a proved capture deadline",
+      "depiction_date": {
+        "kind": "unknown",
+        "value": null,
+        "context": "A 1999-05-01 capture of an APEC 1995 page carries a 1995 copyright notice; its image was captured separately on 2001-07-02. This suggests period association but proves no 1995 photograph deadline.",
+        "title_association": "1994-06-30 is the cabinet formation date, not a capture date."
+      },
+      "date_precision": "No capture date is supplied by Commons or Kantei. The retained APEC 1995 page was captured on 1999-05-01; its 1995 copyright and September 1995 chronology are context, not proof that this portrait was already present in 1995. The linked image was captured separately on 2001-07-02 and depicts the same sitting as the chosen official portrait. Neither establishes a hard capture deadline inside the appearance window. The year in the retained reference identifier and filename is a legacy identifier, not date evidence.",
+      "creator": "内閣官房内閣広報室 (Cabinet Public Relations Office, Cabinet Secretariat, Government of Japan)",
+      "credit": "Cabinet Public Relations Office (内閣官房内閣広報室), Government of Japan: official portrait of Tomiichi Murayama, 81st Prime Minister, from 「歴代内閣ホームページ情報：村山富市 内閣総理大臣（第81代）」（首相官邸ホームページ）(https://www.kantei.go.jp/jp/rekidainaikaku/081.html); capture date unknown; the APEC 1995-era association is inferred from later archived material; Government of Japan Standard Terms of Use 2.0 (compatible with CC BY 4.0); via Wikimedia Commons 'Tomiichi Murayama 19940630.jpg' (licence review by Leoboudv, 9 March 2019). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY 4.0', License 'cc-by-4.0', via template Gjstu-2.0 (terms https://www.kantei.go.jp/jp/terms.html, attr 首相官邸ホームページ). The licence review says the file 'was reviewed on 9 March 2019 by reviewer Leoboudv, who confirmed that it was available there under the stated license on that date.' The template notes that GJSTU 2.0 was replaced in 2024 by the Public Data License 1.0, and the Kantei terms now cite PDL1.0. The Commons string recorded here is CC BY 4.0.",
+      "rights_statement": "Retained source statement: CC BY 4.0 via {{Gjstu-2.0}} (Government of Japan Standard Terms of Use 2.0), attribution 首相官邸ホームページ; Commons licence review by Leoboudv on 2019-03-09. A government work of 内閣官房内閣広報室. Commons shows a personality-rights warning ({{Personality rights}}; extmetadata Restrictions 'personality'): the photograph serves only as the identity reference for an original cartoon. The current Kantei terms (PDL1.0, 公共データ利用規約 第1.0版) ask that an edited use state 加工して作成 and name who edited it; the credit says the portrait was adapted (redrawn as a cartoon) for Spheres.",
+      "upload_history_note": "The current version is the original upload of 2019-03-09 by Scanyaro (318x410), and its bytes match the image the Kantei serves today (fetched by the preparer and again by the verifier on 2026-10-01; same sha256). From March 2020 to May 2021 the file went through a series of unsourced 'better quality' overwrites (503x637, 1361x1764, 626x800, 636x820, 866x1116; among them Hellbat31 on 2021-04-18 and Lee Gok Da on 2021-05-14); FMSky reverted it to the original on 2022-01-23. The file page now also carries {{extracted from|Tomiichi Murayama 19940630 (large).jpg}} and the category 'Extracted images', added in its latest revision (2025-10-05T13:35:37Z), two minutes after that file was uploaded (2025-10-05T13:33:03Z, Taro2968332). A 2025 upload cannot be the source of bytes uploaded on 2019-03-09, so provenance rests on byte identity with the Kantei's live image, not on that annotation.",
+      "people_in_frame": "Murayama alone; head and shoulders, studio portrait on a plain light gray backdrop. He wears a Diet member's lapel badge, which the prompt omits.",
+      "age_gap_note": "The requested appearance window covers ages 69 to 72; the prompt depicts about 70 as an artistic age choice. The source capture date is unknown, so no exact source age or age gap is established. The separately dated 25 August 1994 corroborating photograph supports silver hair, pale eyebrows and a slim build but is not a generation input.",
+      "dated_corroboration": {
+        "commons_title": "File:Vo Van Kiet and Tomiichi Murayama.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Vo_Van_Kiet_and_Tomiichi_Murayama.jpg",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Vo_Van_Kiet_and_Tomiichi_Murayama.jpg",
+        "photograph_date": "1994-08-25 (Commons)",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "creator": "国立公文書館 - 内閣官房内閣広報室 (National Archives of Japan exhibition 'Relations of Japan and Vietnam', http://www.archives.go.jp/event/jp_vn45/english/ch04.html)",
+        "original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/Vo_Van_Kiet_and_Tomiichi_Murayama.jpg",
+          "bytes": 891839,
+          "sha256": "c38ee3e3e20d0dcbce837ed9cf50b9cc1be712693fbbcf67a05524890bdf8c3f"
+        },
+        "commons_sha1": "b68b5a091fd0f75aa1f27ad2c94647c6cb7b3ac8",
+        "width": 1080,
+        "height": 707,
+        "metadata": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-candidates-2.json",
+            "bytes": 68068,
+            "sha256": "874d2cadef1a89169f872b73f6a194bb39d8cc06f77159f1fc00cd703970a958"
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-wikitext-Vo_Van_Kiet_and_Tomiichi_Murayama.json",
+            "bytes": 1253,
+            "sha256": "37c53b936222ea14b94c77fea9ef917b6cc429f6e5f72521f3457a74d8628f90"
+          }
+        ],
+        "use": "Research corroboration and a pinned alternate only; not copied into the repository and not a generation input. Both men full length, walking past an honour guard, Murayama on the right; his face is only about 40 px wide. The Commons page has no licence review (IP upload of 2024-01-25), and its permission template cites the Kantei terms although the source is archives.go.jp."
+      },
+      "limitation": "Undated 318x410 official portrait. A later capture of a 1995-themed page is not proof of an in-window capture date. The dated 25 August 1994 alternate remains pinned in scratch; its face is about 40 pixels wide.",
+      "rejected_candidates": [
+        "File:Tomiichi Murayama 19940630 (large).jpg (720x793, CC BY 4.0, 'Unknown date', claims source kantei 081.html; uploaded 2025-10-05 by Taro2968332; no licence review): the same sitting in a wider frame, apparently a scan of a print (dust, screen texture). Its bytes cannot be traced to the Kantei, which serves only the 318x410 image. Its SHA-1 3e12028252abbbcece7e0cbcc77cc659527c8cce and size match none of the 2020-2021 overwrite versions of the base file. Kept in scratch only, sha256 a3c33c717addc230c427f9faba1b5632ef22ffcc6d4cdf098af3840292a04b98.",
+        "File:Tomiichi Murayama 19940630 (Black and White).jpg (250x330, CC BY 4.0, MOFA, Commons date 1994): the same sitting as MOFA published it on its APEC 1995 page; smaller and black and white. Used only to date the chosen portrait (see date_precision).",
+        "File:Vo Van Kiet and Tomiichi Murayama.jpg (1080x707, CC BY 4.0, 1994-08-25, National Archives of Japan / Cabinet PR Office): exactly dated and inside the window, but a two-person full-length shot with an honour guard, his face about 40 px wide, and no Commons licence review. Kept as dated corroboration and a pinned alternate.",
+        "File:Tomiichi Murayama Cabinet 19940630.jpg (401x317, CC BY 4.0, 1994-06-30) and File:Tomiichi Murayama Cabinet 19950808.jpg (584x511, CC BY 4.0, 1995-08-08): cabinet group photographs; his face is too small.",
+        "File:Tomiichi Murayama 19940720.png, File:Tomiichi Murayama 19941016.png and their crops, File:Tokuichiro Tamazawa and Tomiichi Murayama 19941016.png, File:Tomiichi Murayama and Tokuichiro Tamazawa 19941030.png, and the Seishiro Eto 19951128 files (CC BY 3.0, 防衛庁記録 film via MOD YouTube): frames from a video record, not photographs.",
+        "File:Tomiichi Murayama 19940630 A.jpg / A.gif / A (cropped).jpg (267x402, CC BY 4.0, 'Unknown date', 1997 Kantei archived GIF): undated, smaller, GIF-derived, a different sitting on a brown backdrop.",
+        "File:Tomiichi Murayama cropped Tomiichi Murayama 199406.jpg (132x189), plus cropped 1 / cropped 2 of 19940630: smaller crops of the same official portrait. The 199406 crop's permission template cites mod.go.jp terms.",
+        "File:Suharto and Tomiichi Murayama 199411.gif and its three crops (511x340, CC BY 4.0, MOFA, 1994-11), and File:Yitzhak Rabin and Tomiichi Murayama 199412.jpg (439x259, CC BY 4.0, MOFA, 1994-12): small two-person photographs, dated to the month only.",
+        "File:20th G7 summit member 19940709.jpg, File:21st G7 summit member 19950616.jpg and its crops (80x148, 78x86), and File:22nd G7 Summit 19960629.jpg (public domain, White House / Clinton Library, about 275x180): group shots far too small.",
+        "File:Tomiichi Murayama (2015).jpg, its crop, and File:Murayama.Okabe.jpg / (cropped) (CC BY-SA 4.0, own work, 2015-11-28): about 19 years after the window, at age 91.",
+        "File:Young Tomiichi Murayama.png (public domain, c. 1939-1943): decades before the window.",
+        "File:MurayamaT kao.png, File:Signature of Tomiichi Murayama.png/.svg and File:村山富市抗战纪念馆题词.JPG: a kaō mark, signatures and a calligraphy inscription, not photographs of the person."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "Assembler viewed the full original, the MOFA black-and-white copy and an aligned side-by-side comparison of the two faces (inspection images only, kept in the session scratchpad; nothing generated, edited or labelled for use)."
+    },
+    {
+      "id": "makoto-tanabe-1992",
+      "person_id": "makoto_tanabe",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Makoto_Tanabe_19920407.jpg",
+      "commons_title": "File:Makoto Tanabe 19920407.jpg",
+      "retrieved_at": "2026-10-01T23:44:26Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-api-makoto-tanabe-19920407-and-parent.json",
+        "bytes": 8899,
+        "sha256": "482935b84e37a538577feadeb2bf0289e6269f1da60b6a331169dd171d59ebec",
+        "retrieved_at": "2026-10-01T22:52:10Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-file-page-makoto-tanabe-19920407.html",
+        "bytes": 87378,
+        "sha256": "4b20e001878d63f8a23ef778c0caefeaf8054eb274f3e1094a4a56bb953e0d1b",
+        "retrieved_at": "2026-10-01T23:45:33Z"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-api-photo-album-jiang-zemin-1992-pdf.json",
+          "bytes": 4958,
+          "sha256": "a513b7fe9f73f6f80f6120cd0ef34778fdf4e4fa4a7e15806df2088ec6fc149a",
+          "retrieved_at": "2026-10-01T23:45:08Z",
+          "content": "Commons API record of the source 'Photo album of Jiang Zemin's visit to Japan in 1992.pdf' (74 pages, 97,253,357 bytes; uploaded 2025-07-28 by Taro2968332 from the MOFA PDF; author 外務省大臣官房儀典官室; GJSTU-2.0 / CC BY 4.0; lists 'Makoto Tanabe and Jiang Zemin 19920407.jpg' among its extracted images). The PDF itself was not downloaded."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-search-tanabe-files.json",
+          "bytes": 28079,
+          "sha256": "29bf4e29723ed60cded39f97c04b1644e9980d91a5c78a726d0b4d61666032cc",
+          "retrieved_at": "2026-10-01T23:45:49Z",
+          "content": "Commons File-namespace search for \"Makoto Tanabe\" OR 田辺誠 OR 田邊誠 (302 hits; first 50 read)."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/not-selected/parent-thumb-960-research-only.jpg",
+          "bytes": 252591,
+          "sha256": "7a135fb6cf407853e2f4c600a800dbf5091ef935292a6a6f22db579f5633dbd5",
+          "retrieved_at": "2026-10-01T23:45:22Z",
+          "content": "Research-only 960px standard thumbnail of the parent 'Makoto Tanabe and Jiang Zemin 19920407.jpg', used to confirm the crop visually; not shipped, not a generation input."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/mofa-terms-fetch-outcome.txt",
+          "bytes": 210,
+          "sha256": "137e7b6407168a354b4c7f833fff1fcee0bb9fa0e3b0023bfedb8470c81a04f8",
+          "retrieved_at": "2026-10-01",
+          "content": "MOFA terms page https://www.mofa.go.jp/about/legalmatters.html returned HTTP 403 (CDN access denied) to the non-browser User-Agent; not retried with a browser UA; body not retained."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/Makoto_Tanabe_19920407.original.jpg",
+        "bytes": 86215,
+        "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Makoto_Tanabe_19920407.jpg",
+        "commons_sha1": "ffdc6b8e1cb1a2ee622462b8d7f0a738fa4afd7b",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg",
+      "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+      "bytes": 86215,
+      "asset_byte_identical_to_original": true,
+      "width": 581,
+      "height": 774,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "1992-04-07",
+      "depiction_date": {
+        "kind": "day",
+        "value": "1992-04-07",
+        "structured_commons_date": "1992-04"
+      },
+      "date_precision": "Commons' structured date field gives 1992-04 (month). The Commons descriptions of this file, its parent and the album give the day: '1992年4月7日、迎賓館にて、田辺誠・日本社会党委員長' (7 April 1992, at the State Guest House; parent category 'Asahi no Ma'), consistent with Jiang Zemin's April 1992 official visit. The day was not checked against the 97 MB album PDF (not downloaded; MOFA's site refuses non-browser clients). Either reading lies inside the window.",
+      "creator": "外務省大臣官房儀典官室 (Protocol Office, Minister's Secretariat, Ministry of Foreign Affairs of Japan)",
+      "credit": "外務省大臣官房儀典官室 (MOFA Protocol Office); Makoto Tanabe at the State Guest House, Tokyo, 7 April 1992, from MOFA's released photo album of Jiang Zemin's 1992 visit to Japan (https://www.mofa.go.jp/mofaj/annai/honsho/shiryo/shozo/pdfs/2023/2023-0620.pdf); attribution 外務省 (MOFA); CC BY 4.0 (Government of Japan Standard Terms of Use 2.0, compatible with CC BY 4.0), via Wikimedia Commons; Commons crop 'Makoto Tanabe 19920407.jpg' (CropTool, Taro2968332, 28 July 2025) of 'Makoto Tanabe and Jiang Zemin 19920407.jpg'. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_license_statement": "Commons extmetadata: LicenseShortName 'CC BY 4.0', License 'cc-by-4.0', UsageTerms 'Creative Commons Attribution 4.0', Attribution '外務省 (MOFA)', LicenseUrl https://creativecommons.org/licenses/by/4.0. Wikitext licence template: {{GJSTU-2.0|terms=https://www.mofa.go.jp/about/legalmatters.html|attr=外務省 (MOFA)}}; the rendered page says the work is under the Government of Japan Standard Terms of Use (Ver. 2.0), 'compatible with the Creative Commons Attribution License 4.0 International', and then 'This file is licensed under the Creative Commons Attribution 4.0 International license.'",
+      "rights_statement": "Retained source statement: CC BY 4.0 via GJSTU 2.0, attribution 外務省 (MOFA). Official MOFA protocol-office photograph from a 1992 diplomatic photo album that MOFA released as a PDF in 2023; not an agency or press photo and not a TV still. The chosen file is a Commons CropTool crop (Taro2968332, 2025-07-28T11:46:28Z; 'cropped 71 % horizontally, 46 % vertically') of the two-person extraction 'Makoto Tanabe and Jiang Zemin 19920407.jpg' (same user, 2025-07-28T11:38:39Z), itself extracted from the Commons copy of the MOFA PDF. Neither crop page carries a separate licence review. At original preparation the MOFA terms request returned HTTP 403. Independent review on 2026-10-02 read the current MOFA terms, including third-party-content exceptions. The primary album was not independently read, so this is attributed MOFA/Commons provenance, not a blanket finding that every album image lacks third-party rights.",
+      "provenance_check": "Confirmed: the upload comment and the {{Extracted from}} template name the parent, and a research-only thumbnail of the parent shows the same man (left), same glasses, tie, lapel badge, gold-framed panel and dark green-and-gold damask wall, shaking hands with Jiang Zemin (right).",
+      "people_in_frame": "Tanabe alone, head to upper chest, broad open smile; Jiang Zemin is removed by the crop. A gold-framed wall panel and dark green-and-gold damask wall are behind him, and a small round gold Diet-member lapel badge is on his left lapel; the prompt excludes all of these.",
+      "appearance_observed": "Long oval face with full cheeks; largely bald domed crown with a few thin gray strands combed back, gray-white hair at the sides and back; very sparse pale eyebrows; large squared metal glasses with a brown tortoiseshell-toned top bar and thin gold lower rims; narrow eyes crinkled by a wide grin showing teeth; broad rounded nose; ears standing slightly out; very dark navy suit, white point-collar shirt, dark navy tie with red and light-blue paisley medallions. The parent shows a slim build to about mid-thigh.",
+      "age_gap_note": "Tanabe was born on 25 February 1922 (general biographical knowledge, not C01 research). He is 70 in the photograph of 7 April 1992 and 69 to 70 across the window (1991-07-31 to 1993-01-18 inclusive). The photograph is inside the window, 251 days after its start and 287 days before its exclusive end, so no age adjustment is needed. It is a chest-up crop: the rest of the body, trousers, shoes, standing pose and both hands are artistic extensions, and the lapel badge is omitted on purpose. The 581x774 scan is heavily sharpened and grainy, with a warm cast; the prompt asks for natural skin tones.",
+      "limitation": "Low resolution (581x774) and heavy sharpening from the album scan. Month-only structured date, with the day taken from the Commons description. The licence reaches CC BY 4.0 through the GJSTU 2.0 compatibility statement.",
+      "identity_match": "Registry makoto_tanabe (native 田辺誠; term jp_jsp_makoto_tanabe_199107, Chair of the Japan Socialist Party (中央執行委員長), component jp_jsp_1945, from month 1991-07 until day 1993-01-19). Accepted C01-29 observation of jp_sdp_chair holder 田邊誠, attested_on 1991-08-20. 邊 is the traditional/variant form of 辺: same name, same reading (Tanabe Makoto), same office, at a date inside the registry term. The Commons photograph describes him as '田辺誠・日本社会党委員長' on 7 April 1992, also inside that term. The research leaves the mapping of its 社会民主党 organization (jp_sangiin_pr_2025_10) to game party jp_jsp unresolved; this match does not settle it.",
+      "rejected_candidates": [
+        "File:Makoto Tanabe and Jiang Zemin 19920407.jpg (CC BY 4.0 via GJSTU-2.0, 1992-04 / 7 April 1992, 1989x1421): the same photograph with Jiang Zemin as co-subject. The single-subject crop was used; this file is kept as verified provenance (research-only thumbnail).",
+        "File:Photo album of Jiang Zemin's visit to Japan in 1992.pdf (CC BY 4.0 via GJSTU-2.0, 74 pages, 97 MB): the source album, a multi-page PDF and not a usable reference file; not downloaded.",
+        "File:田辺誠肖像画.jpg: a painted portrait (肖像画), not a photograph, undated, with an own-work claim 'Provided from Mr. Tanabe, Makoto'; fails the dated-photograph rule.",
+        "Category:Makoto Tanabe holds only the two 19920407 files. A Commons File-namespace search for \"Makoto Tanabe\" OR 田辺誠 OR 田邊誠 (302 hits, first 50 read) found no other photograph of him."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "Assembler viewed the full original."
+    },
+    {
+      "id": "sadao-yamahana-1993",
+      "person_id": "sadao_yamahana",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.jpg",
+      "commons_title": "File:Sadao Yamahana Morihiro Hosokawa Cabinet 19930809-2.jpg",
+      "retrieved_at": "2026-10-01T23:20:45Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-api-imageinfo-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.json",
+        "bytes": 3849,
+        "sha256": "01ad8adcd8098cfcc17270c6bae764eccb3ae2553657587a1518916107e83b45",
+        "retrieved_at": "2026-10-01T22:40:09Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-file-page-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.html",
+        "bytes": 105308,
+        "sha256": "3d3d58562af40524a442f89dd1073d42e7ec8857b1bf39a748c74da36a1d3d8b",
+        "retrieved_at": "2026-10-01"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-file-page-Morihiro_Hosokawa_Cabinet_19930809-2.html",
+          "bytes": 95091,
+          "sha256": "899b985942776e4a116c6e6bb578a8e48e970103c0dad14c10e86ac5eb32696b",
+          "retrieved_at": "2026-10-01",
+          "content": "The parent frame's page (940x470, cropped from a 1280x720 upload of 2 February 2023). Caption: '首相官邸の庭での細川内閣発足時の記念撮影にて 左から山花貞夫政治改革担当相、細川護煕首相、羽田孜副総理兼外相'. Same author, source and licence; no licence-review tag."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/youtube-KFhAKAU2Q_8-licence-extract.json",
+          "bytes": 785,
+          "sha256": "53cc2cf54daf723ac536fca745daf8f07ce356d242fb2f15e520d29e6a0a2171",
+          "retrieved_at": "2026-10-01T23:21:15Z",
+          "content": "Independent check of the source video: title 平成５年防衛庁記録; owner channel 防衛省・自衛隊公式動画チャンネル【modchannel】 (UCNkXIXWbjb6EzW-XK6gL6dQ); publishDate 2020-12-27T07:00:04-08:00; licence shown 'Creative Commons Attribution license (reuse allowed)'. Only these fields were extracted; the watch-page HTML was not saved because it embeds the client IP."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-api-search-Yamahana.json",
+          "bytes": 215796,
+          "sha256": "16b0d23834d0f0b62e86e1927b3f8a8fd3c0ade5800fd3eeefcea9688b4ede46",
+          "retrieved_at": "2026-10-01",
+          "content": "Commons file search 'Yamahana OR 山花貞夫' (namespace File, first 50 hits) with imageinfo and extmetadata; covers all seven files in Category:Sadao Yamahana."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/http-429-log.txt",
+          "bytes": 1318,
+          "sha256": "3008a20b11090fca260573d6cd4417bc3c053a8b4539b62870d6bc57c6ff3a20",
+          "retrieved_at": "2026-10-01",
+          "content": "Log of the HTTP 429 back-offs (Commons API, upload.wikimedia.org, archive.org). No headers were saved."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.jpg",
+        "bytes": 85556,
+        "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.jpg",
+        "commons_sha1": "08e788cb32730206e0780ee485872c761e74d9c9",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg",
+      "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+      "bytes": 85556,
+      "asset_byte_identical_to_original": true,
+      "width": 275,
+      "height": 366,
+      "mode": "RGB",
+      "format": "JPEG",
+      "source_type": "Still frame from a government record film, not a still photograph: the Japan Defense Agency's own 1993 record film, published by the Ministry of Defense on its official YouTube channel under the YouTube CC BY option. It is not a TV broadcast still.",
+      "photograph_date": "1993-08-09",
+      "depiction_date": {
+        "kind": "day",
+        "value": "1993-08-09"
+      },
+      "date_precision": "Day stated by the Commons uploader ({{taken on|1993-08-09}}), matching the event shown: the commemorative photo session in the Kantei garden when the Hosokawa cabinet was formed (parent caption). The film is a 1993 annual record and gives no frame timestamp. Both embedded EXIF dates are post-1993 processing metadata, not the capture date: 2023-02-02 is the Commons crop, and DateTimeOriginal 2020-12-23 16:55:56 predates the video's listed YouTube publication of 2020-12-27, so its origin is unclear.",
+      "creator": "防衛庁 (Japan Defense Agency); film '平成5年防衛庁記録', published by the Ministry of Defense / JSDF official YouTube channel (modchannel)",
+      "credit": "Japan Defense Agency (防衛庁), '平成5年防衛庁記録' (1993 record film), Ministry of Defense official YouTube channel, video KFhAKAU2Q_8 (published 27 December 2020), CC BY 3.0. Still frame of 9 August 1993 extracted and cropped on Wikimedia Commons by Taro2968332 ('Sadao Yamahana Morihiro Hosokawa Cabinet 19930809-2.jpg', from 'Morihiro Hosokawa Cabinet 19930809-2.jpg'). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "source_license_statement": "Commons LicenseShortName 'CC BY 3.0', License 'cc-by-3.0', UsageTerms 'Creative Commons Attribution 3.0' (via {{youtube}}; unported, not NC, ND or ported). The YouTube CC template says the video was released under the Creative Commons option before August 2025. The YouTube page itself shows 'Creative Commons Attribution license (reuse allowed)' on the MOD official channel, checked 2026-10-01T23:21:15Z.",
+      "rights_statement": "Retained source statement: CC BY 3.0, the Ministry of Defense's own CC BY release of the Defense Agency's 1993 record film; a government film released by its producer, not a broadcaster's footage or an agency photo. Commons has no licence-review tag on the crop or its parent; the YouTube licence was checked independently. Precedent: the registered koshiro_ishida identity_source (references/koshiro-ishida-august-1993.jpg) is a Taro2968332 crop of the same film and day (the 'kaidan2' frame) under the same CC BY 3.0 licence.",
+      "people_in_frame": "Yamahana is the central man in large glasses, head and shoulders, turned toward the left in three-quarter view. The parent caption names, from the left, Yamahana, Prime Minister Morihiro Hosokawa and Tsutomu Hata. Other figures at the edges: part of another man's face at the upper right (probably Hosokawa, not identifiable in the crop), a white collar and dark cloth behind his ear at the right, and a man in a dark suit and white shirt behind him at the upper left. The dark area at the lower right is Yamahana's own charcoal jacket (left lapel and shoulder, continuous with his collar), with a small round silver lapel badge, probably the Diet member's badge, which the prompt omits. The prompt excludes the other figures and the outdoor garden.",
+      "appearance_observed": "Thick gray hair, silver on top and darker at the sides, swept up and back. Large thin light metal-framed glasses with broad, softly squared lenses. Straight dark-gray brows, narrow slightly hooded eyes, a broad fairly prominent nose, full cheeks with nasolabial lines and a rounded chin. Clean shaven. Dark charcoal-gray suit (sampled by the verifier at about RGB 78,80,72 after correction against the white collar: a neutral dark gray with a slight olive cast, no blue), white shirt, pale silver-gray tie. The frame is soft and low-resolution, so the prompt forbids invented fine detail.",
+      "age_gap_note": "Frame of 9 August 1993: inside the window, 202 days after its start (1993-01-19) and 22 days before its last day (1993-08-31); also inside a possible extension to 1993-10-01. Yamahana (born 26 February 1936, general knowledge) is 57 in the frame and 56 to 57 in the window. No age adjustment is requested. On that day he was also Minister of State for Political Reform; the frame shows the person, not an office.",
+      "limitation": "A 275x366 crop of a soft 1993 video frame, not a still photograph; expect a less certain likeness and review it carefully after the render. No still photograph qualifies: the Kantei CC BY 4.0 Hosokawa cabinet group photographs of the same day are 500x350 and 312x220, with faces too small. No licence-review tag on Commons.",
+      "rejected_candidates": [
+        "File:Morihiro Hosokawa Cabinet 19930809.jpg (Cabinet Secretariat Public Relations Office, CC BY 4.0, 1993-08-09, 500x350): a real photograph with a qualifying licence, inside the window, but the full-cabinet group photograph; each face is only a few pixels high (judged from size and subject; not downloaded).",
+        "File:Hosokawa Government 19930809.jpg (CC BY 4.0, 312x220): the same Kantei group photograph at a smaller size.",
+        "File:Morihiro Hosokawa Cabinet 19930809-2.jpg (same JDA film, CC BY 3.0, 940x470): the parent frame with three men; the single-subject Commons crop was used instead.",
+        "File:Hosokawa Cabinet 19930809 kaidan2.jpg and File:Morihiro Hosokawa Cabinet 19930809 kaidan1.jpg (same JDA film, CC BY 3.0, 940x470, 9 August 1993): coalition party leaders' meeting frames with four or five leaders; held as same-source alternates, not downloaded.",
+        "File:Morihiro Hosokawa Cabinet 19930809-3.jpg (same film): ministers raising a toast, with multiple subjects.",
+        "File:Yamahana Hideo.jpg (public domain, 1948): a different person, 山花秀雄 (by general knowledge his father).",
+        "Ikuo Yamahana files (2010-2012; CC BY 4.0 Kantei/MOFA, CC BY-SA 2.0 IAEA): a different person, 山花郁夫 (by general knowledge his son)."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "Assembler viewed the full original and confirmed the verifier's reading of the lower-right area (his own jacket with a small round lapel badge) and the dark charcoal suit."
+    },
+    {
+      "id": "takako-doi-2005",
+      "person_id": "takako_doi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Takako_Doi_in_Tokyo_congressist_election.jpg",
+      "commons_title": "File:Takako Doi in Tokyo congressist election.jpg",
+      "retrieved_at": "2026-10-01T22:43:40Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-api-takako-doi-2005-and-2000-question-time-03.json",
+        "bytes": 14509,
+        "sha256": "e487422ab2c62a5418e08fef8a4c32f6d76b6c9713e6e9525c0df50c0e85bfe7",
+        "retrieved_at": "2026-10-01"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-file-page-takako-doi-in-tokyo-congressist-election.html",
+        "bytes": 123143,
+        "sha256": "c7a0575a1e9d18a1b0d64f7eedeea12e3def91601ec823702850902ca162f0ab",
+        "retrieved_at": "2026-10-01"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/candidates/20000223_Question_Time_03.original.jpg",
+          "bytes": 28333,
+          "sha256": "ceb4a0f6dcbd7099df5b331a11d85802f0c89b646c34d585f57cf1a2ae572b67",
+          "retrieved_at": "2026-10-01",
+          "content": "Supporting in-window photograph 'File:20000223 Question Time 03.jpg' (首相官邸, 2000-02-23, CC BY 4.0 via {{Gjstu-2.0}}, 300x206, Commons sha1 d4bab389fd6b8f17037ab1b9feb15bf8157d2b4d). Doi stands at the right-hand lectern facing Obuchi in a camel jacket and a light gray check skirt; her face is about 15 px. Clothing-colour evidence only; not copied into the repository and not an input image."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/candidates/Takako_Doi_in_Tokyo_congressist_election_2.original.jpg",
+          "bytes": 49590,
+          "sha256": "038cbdc8e88f7d867ba13fe2aa67cea9bfdbc34ff688606891ba53bb712f9d63",
+          "retrieved_at": "2026-10-01",
+          "content": "Retouched 184x221 Commons extraction (2025) of the chosen photograph, downloaded unchanged only to confirm the glasses; not used."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/Takako_Doi_in_Tokyo_congressist_election.original.jpg",
+        "bytes": 708234,
+        "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Takako_Doi_in_Tokyo_congressist_election.jpg",
+        "commons_sha1": "7b33e5e640bc11af91bce6fe1166265b4caa6bca",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+      "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+      "bytes": 708234,
+      "asset_byte_identical_to_original": true,
+      "flickr_url": "https://www.flickr.com/photos/ux/23039536/",
+      "width": 1280,
+      "height": 960,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "2005-07-02",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2005-07-02"
+      },
+      "date_precision": "Exact day. The Commons {{Flickr}} template gives taken = 2005-07-02, and the file's EXIF DateTimeOriginal is 2005:07:02 16:45:59 (Ricoh Caplio GX). This was the last campaign day before the Tokyo Metropolitan Assembly election of 3 July 2005.",
+      "creator": "Akira Kamikura",
+      "credit": "Akira Kamikura, Flickr photo 23039536, 2 July 2005, CC BY 2.0, via Wikimedia Commons ('Takako Doi in Tokyo congressist election.jpg'; FlickreviewR passed cc-by-2.0 on 7 June 2007). Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_license_statement": "Commons extmetadata LicenseShortName 'CC BY 2.0', UsageTerms 'Creative Commons Attribution 2.0', page text 'Creative Commons Attribution 2.0 Generic'; wikitext {{cc-by-2.0}} plus {{User:FlickreviewR/reviewed-pass|kamikura|...|10:09, 7 June 2007 (UTC)|cc-by-2.0}} and {{Personality rights}}.",
+      "rights_statement": "Retained source statement: CC BY 2.0 Generic, attribution Akira Kamikura (Flickr 'ux'). The current Commons version is FlickreviewR's 7 June 2007 replacement with the 1280x960 Flickr original, and its sha1 matches the downloaded bytes; the copied bytes are unchanged. Commons shows a personality-rights warning: the photograph serves only as the identity reference for an original cartoon.",
+      "people_in_frame": "Doi is the woman in the centre in an ivory jacket, black-and-white striped top and gray trousers, stepping forward, looking down and holding out a microphone, seen from head to about the knees. Also in frame: a man in a dark jacket holding a microphone, a person wearing the candidate's sash, a woman in pink, a camera operator and passers-by, plus vertical banners and posters with Japanese lettering (one banner reads 社会民主党 土井たか子; posters show other people's printed faces), loudspeakers and a vehicle. Commons also categorises the file under Nobuto Hosaka and Mizuho Fukushima; neither identification is relied on, and Fukushima appears to be present only as a banner name. The prompt excludes everyone and everything except Doi.",
+      "age_gap_note": "Doi was born on 30 November 1928 (general biographical knowledge, not C01 research). She is 76 in the photograph of 2 July 2005 and about 67 to 74 across the window 1996-09-30 to 2003-11-01 (exclusive end). The photograph was taken about 1 year 8 months after the window ends and about 8 years 9 months after it begins. The prompt asks for a woman of about seventy, a few years younger than the photograph, and states that this younger treatment is an artistic interpretation. The only qualifying in-window photograph (Prime Minister's Office of Japan, 23 February 2000, CC BY 4.0) is 300x206 and too small for a facial likeness or to confirm glasses. The prompt keeps the thin metal-framed glasses of 2005 and says they are not confirmed for 1996-2003; it takes only the camel-beige jacket and light gray check skirt colours from the 2000 photograph, which is not an input image. The forward gaze, top, cut and buttons, standing pose, hands, legs and shoes are declared artistic interpretations, and the prompt says not to copy the 2005 outfit.",
+      "limitation": "The likeness photograph is from outside the window (20 months after it ends) and is a candid street shot with Doi looking down; her head is roughly 70 px tall in a 1280x960 frame. No clear dated 1996-2003 photograph with a qualifying licence was found on Commons.",
+      "rejected_candidates": [
+        "File:Takako Doi.jpg: licence 'KOGL Type 1' (National Archives of Korea, 2000-08-25, 430x556) is not in FREE_LICENSES.",
+        "File:Kim Dae-jung and Takako Doi.jpg: licence 'KOGL Type 1' (National Archives of Korea, 2000-08-25, 1941x1349) is not in FREE_LICENSES, and Doi shares the frame.",
+        "File:20000223 Question Time 03.jpg: CC BY 4.0, 首相官邸, 2000-02-23, inside the window, but only 300x206 with Doi's face about 15 px. Too small for likeness; kept only as clothing-colour evidence (not an input image).",
+        "File:20000223 Question Time 01.jpg (200x300) and File:20000223 Question Time 02.jpg (300x206): same CC BY 4.0 session, categorised for Obuchi and Hatoyama, not for Doi; not downloaded.",
+        "File:Takako Doi in Tokyo congressist election 2.jpg: CC BY 2.0, a retouched 184x221 extraction (Commons, 2025) of the chosen photograph; downloaded unchanged only to confirm the glasses; the unretouched 1280x960 parent is used.",
+        "File:Takako Doi 19910417.jpg: CC BY 4.0 (MOFA protocol office, dated 1991-04-07 on Commons), about 5.5 years before the window; already the identity source of the existing 1990 portrait.",
+        "File:Takako Doi and Mikhail Gorbachev 19910417.jpg and File:Photo album of Mikhail Gorbachev's visit to Japan in 1991.pdf: 1991, far before the window, with shared frames or a PDF album.",
+        "File:Overzicht van de jury, Bestanddeelnr 931-8205.jpg and File:Overzicht tijdens het verhoor van André Fontaine, rechts de jury, Bestanddeelnr 931-8236.jpg: CC0 Anefo, 23-24 November 1981, jury group shots, about 15 years before the window.",
+        "File:20010606touron.jpg: CC BY 4.0, 2001-06-06, 400x262, Koizumi's first party-leader debate; Doi is not named in its description or categories; not downloaded.",
+        "File:Ryoichi Hattori shamin.jpg: CC BY 3.0 YouTube still from 2014 of Ryoichi Hattori, not Doi."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "Assembler viewed the full original."
+    },
+    {
+      "id": "akihiro-ota-2012",
+      "person_id": "akihiro_ota",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Akihiro_%C5%8Cta_20121227.jpg",
+      "commons_title": "File:Akihiro Ōta 20121227.jpg",
+      "retrieved_at": "2026-10-01T23:59:43Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/assembler/commons-api-filehistory-Akihiro_Ota_20121227.json",
+        "bytes": 3275,
+        "sha256": "8179cae7b05439481b2ae61e5b64475146827e7dea0c8eca37efff64d93397cc",
+        "retrieved_at": "2026-10-01T23:59:30Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-file-page-Akihiro_Ota_20121227.html",
+        "bytes": 110313,
+        "sha256": "6c3e29a49afd676815e0fc6c3b7bd666b3ede6b823a598a42b224884d0bf9e49",
+        "retrieved_at": "2026-10-01T23:37:57Z"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-api-imageinfo-Akihiro_Ota_20121227.json",
+          "bytes": 7624,
+          "sha256": "2ff5061e145550512c63265cf5e585d3ac844bfa751d32db877f4d0d32533981",
+          "retrieved_at": "2026-10-01T22:49:49Z",
+          "content": "Preparer's Commons API imageinfo and current wikitext for the file (permission {{Gjstu-2.0|terms=https://www.mlit.go.jp/link.html|attr=国土交通省}}; structured data P275 CC BY 4.0) and for the rejected 'Official portrait of Akihiro Ota 2012.png'."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/mlit-001001960.pdf",
+          "bytes": 128768,
+          "sha256": "d7b684ab05264abdfee382381226782ac052cb4763351cb876aeed2690430738",
+          "retrieved_at": "2026-10-01T23:18:03Z",
+          "content": "The MLIT flyer that the first Commons revision names as its source (https://www.mlit.go.jp/common/001001960.pdf). The version online now carries PDF creation/modification metadata dated 2013-06-25; this is not a printed publication date and embeds the same portrait at 339x507, the size of the first Commons revision. Research only."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/pdf-extracted-obj17.jpg",
+          "bytes": 16399,
+          "sha256": "b20251bb8c9a15b51378776205de357b0288b59888a18e34db60465e393e973c",
+          "retrieved_at": "2026-10-01",
+          "content": "The preparer's unchanged extraction of that PDF's portrait stream (339x507). Its bytes differ from the first Commons revision (re-encoded), but the image and size are the same. Research only."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/mlit-terms-link.html",
+          "bytes": 10457,
+          "sha256": "8d73d659e9fa5f64a24499428e8a8599b160a954cb5ffb2aacac898ab19f200b",
+          "retrieved_at": "2026-10-01T23:38:24Z",
+          "content": "MLIT site terms (https://www.mlit.go.jp/link.html): content copyright MLIT unless otherwise stated, usable under PDL1.0, the 2024 successor of GJSTU 2.0; both are CC BY 4.0-compatible."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/imageinfo-2008-files.json",
+          "bytes": 13940,
+          "sha256": "cd3084d3a6f25c08c6e81c653abf45767eba27349824dfafebb539b8b5f5d639",
+          "retrieved_at": "2026-10-01",
+          "content": "Commons imageinfo for the three in-window 2008 files (rejected for size)."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/cat-2012.json",
+          "bytes": 19050,
+          "sha256": "4092122eb1c0599983b0e0520283ab2b3b2c7a32cb0c0975a8bc2aa7f1c94969",
+          "retrieved_at": "2026-10-01",
+          "content": "Category:Akihiro Ōta in 2012 members with licence and date metadata."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/Akihiro_Ota_20121227.jpg",
+          "bytes": 129511,
+          "sha256": "1b75bcc07a795a7f8adfa333245908f32d9356850620e54c5f51e2f588fc43b3",
+          "retrieved_at": "2026-10-01T23:35:47Z",
+          "content": "The preparer's download of the current Commons revision (510x768, sha1 dd28243dad06cd9b61747b84b7d71321ca2e98a4), uploaded 2024-09-28 'from https://response.jp/imgs/thumb_h2/607583.jpg', a commercial news site. Rejected on provenance; kept in scratch only."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/assembler/Akihiro_Ota_20121227-rev1-20230723T101504Z-339x507.jpg",
+        "bytes": 27547,
+        "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/archive/1/1f/20230723101527%21Akihiro_%C5%8Cta_20121227.jpg",
+        "commons_sha1": "7a510e49fb203ddaeff666fb53467c454cb59bfc",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg",
+      "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+      "bytes": 27547,
+      "asset_byte_identical_to_original": true,
+      "commons_file_revision": {
+        "timestamp": "2023-07-23T10:15:04Z",
+        "uploader": "TKsdik8900",
+        "sha1": "7a510e49fb203ddaeff666fb53467c454cb59bfc",
+        "width": 339,
+        "height": 507,
+        "bytes": 27547,
+        "archive_name": "20230723101527!Akihiro_Ōta_20121227.jpg",
+        "upload_comment_source": "https://www.mlit.go.jp/common/001001960.pdf",
+        "later_revisions": [
+          {
+            "timestamp": "2023-07-23T10:15:28Z",
+            "uploader": "TKsdik8900",
+            "width": 370,
+            "height": 504,
+            "sha1": "45faf18b1bdb9fa7e136e7547b3862c7199f665c",
+            "comment": "Better quality version",
+            "source": "not stated",
+            "exif": "Software 'Adobe Photoshop Elements 9.0 Windows', DateTimeDigitized 2012:12:27 10:35:03, DateTime 2012:12:27 10:42:22",
+            "use": "not used"
+          },
+          {
+            "timestamp": "2024-09-28T11:35:32Z",
+            "uploader": "TKsdik8900",
+            "width": 510,
+            "height": 768,
+            "sha1": "dd28243dad06cd9b61747b84b7d71321ca2e98a4",
+            "comment": "from https://response.jp/imgs/thumb_h2/607583.jpg",
+            "source": "response.jp (commercial automotive news site)",
+            "use": "current revision; rejected on provenance (the verifier found MLIT's PDF image is exactly its region (94,89)-(433,596) at the same scale)"
+          }
+        ]
+      },
+      "width": 339,
+      "height": 507,
+      "mode": "RGB",
+      "format": "JPEG",
+      "photograph_date": "Capture date unknown; 2012-12-27 is editing metadata in another Commons revision",
+      "depiction_date": {
+        "kind": "unknown",
+        "value": null,
+        "editing_metadata": "A different Commons revision carries Photoshop DateTimeDigitized/DateTime on 2012-12-27; the chosen first revision has no capture EXIF.",
+        "document_metadata": "The inspected MLIT PDF has CreationDate/ModDate 2013-06-25. This is document metadata, not a printed publication date or a capture deadline."
+      },
+      "date_precision": "The chosen first Commons revision has no capture EXIF. Commons associates 2012-12-27 with editing metadata from a second Photoshop revision; that value does not establish a hard capture deadline for the chosen image. The MLIT flyer was visually inspected and contains this portrait and the printed minister name. Its CreationDate/ModDate are 2013-06-25; no printed publication date was found. Preserve both metadata observations without converting them to capture or appointment dates. The year in the retained reference filename is an identifier only.",
+      "creator": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan), as the Commons author field and MLIT's flyer credit it; no photographer is named",
+      "credit": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan): official portrait of Akihiro Ōta in https://www.mlit.go.jp/common/001001960.pdf; capture date unknown (the PDF carries creation/modification metadata dated 2013-06-25). CC BY 4.0 via the stated Government of Japan terms, attribution 国土交通省; current MLIT PDL 1.0 terms preserve the compatible reuse route. Wikimedia Commons first revision (23 July 2023, TKsdik8900) of 'Akihiro Ōta 20121227.jpg'. Adapted for Spheres; no endorsement implied.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_license_statement": "Commons LicenseShortName 'CC BY 4.0', LicenseUrl https://creativecommons.org/licenses/by/4.0, structured data P275 'Creative Commons Attribution 4.0 International'. The wikitext permission is {{Gjstu-2.0|terms=https://www.mlit.go.jp/link.html|attr=国土交通省}}, rendered as 'licensed under the Government of Japan Standard Terms of Use (Ver.2.0) ... compatible with the Creative Commons Attribution License 4.0 International'. The first revision's own upload description carries the same permission and names the MLIT PDF as its source.",
+      "rights_statement": "Retained source statement: CC BY 4.0 via {{Gjstu-2.0}}, attribution 国土交通省; MLIT's site now uses PDL1.0, also CC BY 4.0-compatible. The copied bytes are the first Commons revision, whose upload names the MLIT PDF as its source; they show the same head-and-shoulders area as the portrait in that PDF. The current Commons revision (510x768) came from response.jp, a commercial news site, holds image area that no MLIT publication on record contains, and is not used. MLIT credits the portrait to itself and names no photographer, so whether it was produced by government staff is not independently established. The file has no Commons licence review.",
+      "people_in_frame": "Ota alone, head and shoulders to the upper chest, in a studio portrait against a plain pale gray backdrop: dark navy suit, white shirt, blue tie with a small white geometric pattern, no visible lapel pin, no glasses. Nothing else is in frame.",
+      "age_gap_note": "The requested appearance is ages 60 to 63. Because the source capture date is unknown, no precise source age or 3.3-year gap is established. A younger treatment with firmer cheeks and fewer lines is an artistic interpretation, not a dated likeness attestation. The separately viewed 2008 group photograph corroborates dark swept-back hair, a broad smiling face and no glasses, but is not a generation input.",
+      "limitation": "The reviewed in-window candidates were tiny group photographs or a 40x50 crop; no usable in-window reference was found in that search. The chosen official portrait is 339x507 and undated. Editing metadata and PDF creation metadata do not establish capture dates.",
+      "rejected_candidates": [
+        "Current revision of File:Akihiro Ōta 20121227.jpg (510x768, uploaded 2024-09-28 'from https://response.jp/imgs/thumb_h2/607583.jpg'): a commercial news site's copy with a wider frame than any MLIT publication on record; rejected on provenance (the preparer's original choice; corrected after verification).",
+        "Second revision of the same file (370x504, 2023-07-23T10:15:28Z, 'Better quality version', source not stated, edited in Photoshop Elements 9.0): unsourced.",
+        "File:Schieffer and members of the New Komeito.jpg: public domain (PD US DOS), U.S. Consulate General Tokyo, 2008-03-20 on Commons (its description says the meeting was 19 March). Inside the window, but only 200x138 and a group of six, with Ota's face about 15 px wide; viewed research-only to confirm his 2008 hair and that he wore no glasses.",
+        "File:Ota Akihiro 1-1.jpg: public domain crop of the Schieffer photo, 2008-03-20, only 40x50 pixels.",
+        "File:2008 International Symposium on Realizing a Universal Society.jpg: public domain (PD US DOS), U.S. Consulate General Tokyo, event 24 March 2008; only 200x141, five people joining hands.",
+        "File:Official portrait of Akihiro Ota 2012.png: 1086x1448 PNG that Commons marks 'Extracted from' the 420x560 crop, so an enlargement, not original bytes.",
+        "File:Akihiro Ōta 20121227 (cropped).jpg: 420x560 crop of the response.jp revision; a derivative.",
+        "File:Akihiro Ota Official.jpg: Kantei 96th Abe cabinet portrait, CC BY 4.0, year-only date 2012, only 170x225.",
+        "File:Shinzō Abe Cabinet 20121226.jpg and File:Abe Government 20121226 2.jpg: Kantei, CC BY 4.0, 2012-12-26; cabinet group photographs with Ota small.",
+        "File:Transportation Deputy Secretary Porcari at APEC Ministerial Meeting (Akihiro Ota crop).jpg and crop 2: public domain (US State Dept EAP Media Hub), 2013-09-05; further from the window.",
+        "File:V.Dombrovskis tiekas ar zemes infrastruktūras, transporta un tūrisma ministru Akohiro Ohtu (8643915261).jpg: CC BY-SA 2.0, 2013; further from the window.",
+        "MLIT PDF 001001960.pdf embedded image (339x507): the same portrait in a document with PDF creation/modification metadata dated 2013-06-25; not a Commons file. Research only.",
+        "The Commons search for 太田昭宏 was blocked by repeated HTTP 429 and not completed; coverage relies on the English search (42 hits, first 30 reviewed) and the full Category:Akihiro Ōta tree."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "Assembler viewed both the first revision (the chosen bytes) and the 510x768 response.jp revision: same photograph, the first revision cropped at the upper chest."
+    },
+    {
+      "id": "natsuo-yamaguchi-2019",
+      "person_id": "natsuo_yamaguchi",
+      "kind": "observed_portrait",
+      "status": "usable_pending_render_and_visual_review",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Plenary_Session_4_(48640890007).jpg",
+      "commons_title": "File:Plenary Session 4 (48640890007).jpg",
+      "retrieved_at": "2026-10-01T23:36:42Z",
+      "metadata_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Plenary_Session_4_48640890007_.json",
+        "bytes": 4580,
+        "sha256": "11742dbb430616c956633f13331688f3702e900de1a7397560cd701f62b3513b",
+        "retrieved_at": "2026-10-01T23:24:36Z"
+      },
+      "metadata_file_page": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Plenary_Session_4_48640890007_.html",
+        "bytes": 127538,
+        "sha256": "39e95e775df11ead58aea075edafbe66e79c71ad9900a2fe64a9d8b93b6aa6e1",
+        "retrieved_at": "2026-10-01T23:24:57Z"
+      },
+      "supporting_metadata": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/retrieval-log.json",
+          "bytes": 1064,
+          "sha256": "3aba32a5db4849d52f1012673f65a3fd5a8fbb69d4626a705269b9d7a08b5305",
+          "retrieved_at": "2026-10-01",
+          "content": "Preparer's retrieval log (URLs, times, sizes and sha256 of the three files above)."
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/search/previews/03-1920.jpg",
+          "bytes": 341037,
+          "sha256": "8eecad072acaafefa28d284a809e4721d81c446e259ddfd253d41d94f070393f",
+          "retrieved_at": "2026-10-01",
+          "content": "Commons' standard 1920px thumbnail of the photograph, used by the preparer, the verifier and the assembler to read the frame; research only, not shipped."
+        }
+      ],
+      "image_original": {
+        "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/Plenary_Session_4_(48640890007).jpg",
+        "bytes": 27276808,
+        "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Plenary_Session_4_%2848640890007%29.jpg",
+        "commons_sha1": "c9ff2c0fa8364254dafd086d16907990fbc68197",
+        "commons_sha1_matches_download": true
+      },
+      "asset": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+      "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+      "bytes": 27276808,
+      "asset_byte_identical_to_original": true,
+      "upstream_url": "https://flickr.com/photos/183216468@N06/48640890007",
+      "width": 8256,
+      "height": 5504,
+      "mode": "RGB",
+      "format": "JPEG",
+      "camera": "NIKON CORPORATION NIKON D850; processed in Adobe Photoshop Lightroom Classic 8.3",
+      "photograph_date": "2019-08-29",
+      "depiction_date": {
+        "kind": "day",
+        "value": "2019-08-29"
+      },
+      "date_precision": "Day (time 14:54). The Commons Date field reads 29 August 2019, 14:54. The embedded EXIF DateTimeOriginal is 2019:08:29 14:54:59. The structured data gives Flickr publication on 29 August 2019.",
+      "depiction": "Natsuo Yamaguchi, the central speaker, seated and speaking at the TICAD 7 'Plenary Session 4' (全体会合4) conference table, waist-up. The name card reading 'Mr. Natsuo Yamaguchi' stands on the table to his right, in front of the neighbouring delegate. Commons categories: Natsuo Yamaguchi; TICAD VII.",
+      "creator": "TICAD7 Photographs (Flickr account 183216468@N06, named 'MOFA TICAD' in the Commons Flickr review)",
+      "credit": "TICAD7 Photographs / MOFA TICAD, 'Plenary Session 4' (Flickr 48640890007), 29 August 2019; CC0 1.0 Universal Public Domain Dedication; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_license_statement": "Commons LicenseShortName 'CC0' (template Cc-zero: 'This file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication'). FlickreviewR 2 reviewed the Flickr original on 1 September 2019 and confirmed it was licensed under cc-zero. The structured data records the copyright status as dedicated to the public domain by the copyright holder.",
+      "rights_statement": "Retained source statement: CC0 1.0 (LicenseShortName exactly 'CC0'), dedicated by the TICAD7 Photographs (MOFA TICAD) Flickr account; FlickreviewR 2 confirmed the licence on 2019-09-01. No attribution is required; the credit is kept for transparency. The copied bytes are the untouched 8256x5504 original.",
+      "people_in_frame": "Yamaguchi is the central, sharply focused speaker. Also in frame: a bespectacled delegate with an earpiece on his right (viewer's left), in front of whom his name card stands; probably Ichiro Aisawa at the right edge (a name card reading 'Mr. Ichiro Aisawa' is nearby, but cards in this frame are offset from the people they belong to); the back of a head in the right foreground; seated audience, staff and two video cameras on tripods behind. Name cards, water bottles, glasses and microphones are on the table. His right hand is partly visible resting on the table edge between his name card and the water bottle, and a shirt cuff shows by the glass. The prompt excludes everything except Yamaguchi.",
+      "appearance_observed": "Thick dark charcoal hair finely threaded with gray, combed straight back with volume and slightly receding at the temples; long oval face with high cheekbones and lean cheeks; deep nasolabial lines; narrow dark eyes with creased outer corners; fairly straight dark brows; straight nose; prominent ears; light warm complexion; clean shaven; no glasses; slim. Dark navy fine-pinstripe suit, white shirt and pale sky-blue tie with a small white pattern. Three lapel pins (House of Councillors badge, Africa pin, SDG wheel) and an interpretation earpiece are visible; all are omitted in the prompt.",
+      "age_gap_note": "Photograph of 29 August 2019: 3,642 days (about 10.0 years) after the window start of 2009-09-08; 1,857 days (about 5.1 years) before the exclusive window end of 2024-09-28; 893 days (about 2.4 years) after the window midpoint of 2017-03-19. Yamaguchi (born 12 July 1952, general knowledge) is 67 in the photo and 57 to 72 across the window (64 at the midpoint). The prompt asks for a man of about 64, slightly younger than the photograph, with the same dark swept-back hair showing only fine gray. If Codex splits the window at 2015-01-01, this reference fits the later portrait; a 2009-2015 portrait would need a roughly 2010-2014 reference. Independent review recommends a later 2015-2024 variant from this source and a separately verified earlier reference for 2009-2015. This is an editorial recommendation; the authored requested interval and prompt are preserved pending that choice, and no variant is approved now.",
+      "limitation": "Multi-person, seated, waist-up source: his hands are only partly visible on the table, and the standing pose, trousers and shoes are artistic extensions. The original is 27,276,808 bytes, larger than any existing reference (the largest is about 9.95 MB) and larger than France's 17 MB Juppé reference; Commons has no extracted crop. Of the candidates found, the qualifying photograph closest to the midpoint is the 2016-04-18 Kantei file (CC BY 4.0), but it is only 159x212 px.",
+      "rejected_candidates": [
+        "File:Natsuo Yamaguchi.jpg and File:Natsuo Yamaguchi (cropped).jpg (2016-04-18, Kantei 内閣官房内閣広報室, CC BY 4.0): closest to the midpoint, but only 159x212 and 152x212 px.",
+        "File:7toron2.jpg (2016-12-07, Kantei, CC BY 4.0, 800x454): party-leader debate group shot whose description names Abe and Renho; not single-subject and too small; not viewed.",
+        "File:Toshihiro Nikai, Katsuya Okada, Natsuo Yamaguchi, Toranosuke Kayatama, Taro Yamamoto, Seiji Mataichi and Kyoko Nakayama.jpg (apparently 2016-08-15; CC BY 4.0; 1082x608): seven-person group, face too small.",
+        "File:安全保障法制整備に関する与党協議についての報告会 (cropped).jpg and its parent (2014-07-01, Kantei, CC BY 4.0, 524x349 and 600x360): small multi-person image.",
+        "File:Natsuo Yamaguchi 201404.jpg (2014-04-26, Tonas2014 own work, CC BY-SA 4.0, 568x774): qualifies, but about 2.9 years before the midpoint and lower resolution; not chosen.",
+        "File:極東ノート (15425527104).jpg (2014-09-27, CC BY-SA 2.0): a street photograph of a Komeito poster, not a photograph of the person.",
+        "India PMO / Vice President's Secretariat files of 2010-10-26, 2013-05-28, 2014-01-06 and 2014-09-02 (including File:Natsuo Yamaguchi 2014.jpg): licence string 'GODL-India', not in FREE_LICENSES.",
+        "File:Vice President Biden Meets With Japanese Political Leaders (11192286255).jpg and related 2013-12-03 State Department files (public domain, about 4159-4695 px wide): qualify, but multi-person groups about 3.3 years before the midpoint; not viewed. A candidate for a 2009-2015 split.",
+        "File:Natsuo Yamaguchi IMG 5607 20130707.JPG (2013-07-07, Ogiyoshisan, CC BY 3.0, 1200x1600): qualifies, about 3.7 years before the midpoint; not viewed. A candidate for a 2009-2015 split.",
+        "File:20100217 Question Time 1.jpg, File:31qt5.jpg, File:国家基本政策委員会両院合同審査会 20120411 2.jpg, File:20121114 Question Time 3.jpg and the 2012-02-29 handshake file (Kantei, CC BY 4.0, 500-684 px): small multi-person images near the window start.",
+        "File:20120515 Okinawa-4.jpg (内閣府, CC BY 4.0, 630x468) and File:USMC-120513-M-0000W-001.jpg (public domain): multi-person reception scenes.",
+        "Noukei314 Omori station files (CC BY-SA 4.0; EXIF 2021-10-30 conflicts with '2021-10-24' in the titles), File:Komeito leader Natsuo Yamaguchi addressing the public at Hakata Station Square.jpg (2022-06-29, CC BY-SA 4.0), 2022 Kantei files (CC BY 4.0) and 2023-08-16 Philippine PCO files (public domain): qualify, but 4.6 to 6.4 years after the midpoint.",
+        "File:Natsuo Yamaguchi-1.jpg and the USS Kitty Hawk file (2005-02-12, US Navy, public domain): 4.6 years before the window start."
+      ],
+      "approved_source_license": true,
+      "visual_inspection_by_assembler": true,
+      "visual_inspection_note": "Viewed as Commons' standard 1920px thumbnail (the 27 MB original was not opened). Identity rests on the Commons category 'Natsuo Yamaguchi', his central position as the speaker and the match with his known features; the name card stands to his right, in front of the neighbouring delegate, so it is not by itself the identity evidence."
+    }
+  ],
+  "source_ledger": {
+    "evidence_directory": "D:/spheres-scratch/jp-cast/refs",
+    "status": "original_retention_ledger",
+    "copyright_note": "Original Commons metadata (API JSON and file-page HTML) and original image bytes stay outside Git. Only the byte-identical reference copies listed in likeness_references are committed, each under its own free licence; the generated cartoons will carry 'generated' with the source rights kept on identity_source.",
+    "user_agent": "SPHERES-research/1.0 (historical game research); no personal contact data",
+    "downloads": [
+      {
+        "reference_id": "tomiichi-murayama-1994",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/Tomiichi_Murayama_19940630.jpg",
+          "bytes": 49717,
+          "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Tomiichi_Murayama_19940630.jpg",
+          "commons_sha1": "4391aee46aad275aa1197ca216c3c487c6c2ce58",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-Tomiichi_Murayama_19940630.json",
+          "bytes": 50924,
+          "sha256": "23dd8d78a7a75d5ea820f223d2571728140f567262b721bffb2b8fe654b07278",
+          "retrieved_at": "2026-10-01"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-file-page-Tomiichi_Murayama_19940630.html",
+          "bytes": 126392,
+          "sha256": "d20c587a0fa190875577577e6e43314f42b0a96f73330c18a5ae72ca87f6e423",
+          "retrieved_at": "2026-10-01T22:56:50Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-rekidainaikaku-081.html",
+            "bytes": 27436,
+            "sha256": "2bb20f70b477bffb82ba93f01899ee9890e4bddac1c13ad185fad0521cebbe47",
+            "retrieved_at": "2026-10-01",
+            "content": "Kantei page for the 81st Prime Minister (https://www.kantei.go.jp/jp/rekidainaikaku/081.html): shows this portrait (img/rekidai-index-81-murayama.jpg, alt 顔写真：村山 富市), birth date 大正13年3月3日, age at taking office 70, and 村山内閣 平成6年6月30日成立. It gives no photograph date."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-rekidai-index-81-murayama.jpg",
+            "bytes": 49717,
+            "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+            "retrieved_at": "2026-10-01",
+            "content": "The image the Kantei serves today at https://www.kantei.go.jp/jp/rekidainaikaku/img/rekidai-index-81-murayama.jpg; byte-identical (sha256 and sha1) to the Commons original, which confirms provenance."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-terms.html",
+            "bytes": 13088,
+            "sha256": "eaec2ac88702de206e7eacd2149519ef609e290a785c09757096ea3107bc863e",
+            "retrieved_at": "2026-10-01",
+            "content": "The Kantei's current terms: content now under 公共データ利用規約（第1.0版）（PDL1.0）, with no exclusion for portraits."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-candidates.json",
+            "bytes": 142792,
+            "sha256": "b0ec354d63d77ed94fb33556464db1b30a16283f1e837a1fde20716bfdd5febd",
+            "retrieved_at": "2026-10-01",
+            "content": "Preparer's Commons API records of candidate files, including 'Tomiichi Murayama 19940630 (Black and White).jpg' (250x330, author 外務省, date 1994, source the WARP copy of MOFA's APEC 1995 page, CC BY 4.0) and 'Tomiichi Murayama 19940630 (large).jpg'."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-wikitext-candidates.json",
+            "bytes": 10630,
+            "sha256": "8e35ef4a5ee3a4b8dd9cf369a91d0d22feee55b2c59989b9cd86c1515711b416",
+            "retrieved_at": "2026-10-01",
+            "content": "Preparer's Commons wikitext of the candidate files (the black-and-white file has |date=1994 and {{GJSTU-2.0|terms=https://www.mofa.go.jp/about/legalmatters.html|attr=外務省 (MOFA)}})."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/Tomiichi_Murayama_19940630_(Black_and_White).jpg",
+            "bytes": 57566,
+            "sha256": "360f7bf8157a0e132a1f3d6fcf1e937a0a15197db82b832535dfc7ad8783d83c",
+            "retrieved_at": "2026-10-01T23:55:14Z",
+            "content": "Assembler download of the Commons original 'Tomiichi Murayama 19940630 (Black and White).jpg' (250x330; sha1 d155c67a6a80cad5472f16f0e693701c25967e46 matches Commons). Same sitting as the chosen colour portrait: same suit, diamond-pattern tie, lapel badge, head pose, hair and expression; aligned against the colour file it correlates at about 0.92 after tone matching, so it is apparently the same exposure. Research only; not a generation input."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/wayback-available-mofa-apec-1995-tomiichi.json",
+            "bytes": 309,
+            "sha256": "e8adce9a5f1916e5b227a252879e576a636cb7d4251aec55118eb77977b696c3",
+            "retrieved_at": "2026-10-01T23:57:51Z",
+            "content": "Wayback Machine availability lookup for www.mofa.go.jp/policy/economy/apec/1995/tomiichi.html: closest capture 1999-05-01 (19990501165159)."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/wayback-19990501165159id-mofa-apec-1995-tomiichi.html",
+            "bytes": 5590,
+            "sha256": "6e52fb7763c62e2890900eb6f14ed534635ef55cdc59a3b6af33be0bd201192a",
+            "retrieved_at": "2026-10-01T23:58:01Z",
+            "content": "Raw Wayback capture (1 May 1999) of MOFA's page 'Profile of Prime Minister Tomiichi Murayama' in its 'APEC 1995 Osaka Official Information' section. It displays image/tomiichi.gif, carries 'Copyright : 1995 The Ministry of Foreign Affairs, Japan', and its chronology ends at September 1995 (visits to Saudi Arabia, Egypt, Syria, Israel and Jordan)."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/wayback-mofa-apec-1995-image-tomiichi.gif",
+            "bytes": 22893,
+            "sha256": "1b2d38584916732a2b733786db5dc84e0f4231ff90fdbd749ca7abb10c5831ce",
+            "retrieved_at": "2026-10-01T23:58:11Z",
+            "content": "That page's image/tomiichi.gif as archived on 2 July 2001 (250x330 GIF87a). It matches the Commons black-and-white JPEG pixel for pixel (correlation 0.99999, mean absolute difference 0.08 grey levels): the Commons file matches the image retained in the 2001 capture; presence on the page in 1995 is inferred, not established."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/assembler/warp-fetch-outcome.txt",
+            "bytes": 259,
+            "sha256": "7b7aac74dcbac2a765f64029c6f505146d03b4640a8458f53b76608cad2965e0",
+            "retrieved_at": "2026-10-01T23:57:37Z",
+            "content": "The WARP copy that Commons cites returned HTTP 403 to the non-browser User-Agent; not retried with a browser User-Agent; body not retained."
+          }
+        ]
+      },
+      {
+        "reference_id": "makoto-tanabe-1992",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/Makoto_Tanabe_19920407.original.jpg",
+          "bytes": 86215,
+          "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Makoto_Tanabe_19920407.jpg",
+          "commons_sha1": "ffdc6b8e1cb1a2ee622462b8d7f0a738fa4afd7b",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-api-makoto-tanabe-19920407-and-parent.json",
+          "bytes": 8899,
+          "sha256": "482935b84e37a538577feadeb2bf0289e6269f1da60b6a331169dd171d59ebec",
+          "retrieved_at": "2026-10-01T22:52:10Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-file-page-makoto-tanabe-19920407.html",
+          "bytes": 87378,
+          "sha256": "4b20e001878d63f8a23ef778c0caefeaf8054eb274f3e1094a4a56bb953e0d1b",
+          "retrieved_at": "2026-10-01T23:45:33Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-api-photo-album-jiang-zemin-1992-pdf.json",
+            "bytes": 4958,
+            "sha256": "a513b7fe9f73f6f80f6120cd0ef34778fdf4e4fa4a7e15806df2088ec6fc149a",
+            "retrieved_at": "2026-10-01T23:45:08Z",
+            "content": "Commons API record of the source 'Photo album of Jiang Zemin's visit to Japan in 1992.pdf' (74 pages, 97,253,357 bytes; uploaded 2025-07-28 by Taro2968332 from the MOFA PDF; author 外務省大臣官房儀典官室; GJSTU-2.0 / CC BY 4.0; lists 'Makoto Tanabe and Jiang Zemin 19920407.jpg' among its extracted images). The PDF itself was not downloaded."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-search-tanabe-files.json",
+            "bytes": 28079,
+            "sha256": "29bf4e29723ed60cded39f97c04b1644e9980d91a5c78a726d0b4d61666032cc",
+            "retrieved_at": "2026-10-01T23:45:49Z",
+            "content": "Commons File-namespace search for \"Makoto Tanabe\" OR 田辺誠 OR 田邊誠 (302 hits; first 50 read)."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/not-selected/parent-thumb-960-research-only.jpg",
+            "bytes": 252591,
+            "sha256": "7a135fb6cf407853e2f4c600a800dbf5091ef935292a6a6f22db579f5633dbd5",
+            "retrieved_at": "2026-10-01T23:45:22Z",
+            "content": "Research-only 960px standard thumbnail of the parent 'Makoto Tanabe and Jiang Zemin 19920407.jpg', used to confirm the crop visually; not shipped, not a generation input."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/mofa-terms-fetch-outcome.txt",
+            "bytes": 210,
+            "sha256": "137e7b6407168a354b4c7f833fff1fcee0bb9fa0e3b0023bfedb8470c81a04f8",
+            "retrieved_at": "2026-10-01",
+            "content": "MOFA terms page https://www.mofa.go.jp/about/legalmatters.html returned HTTP 403 (CDN access denied) to the non-browser User-Agent; not retried with a browser UA; body not retained."
+          }
+        ]
+      },
+      {
+        "reference_id": "sadao-yamahana-1993",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.jpg",
+          "bytes": 85556,
+          "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.jpg",
+          "commons_sha1": "08e788cb32730206e0780ee485872c761e74d9c9",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-api-imageinfo-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.json",
+          "bytes": 3849,
+          "sha256": "01ad8adcd8098cfcc17270c6bae764eccb3ae2553657587a1518916107e83b45",
+          "retrieved_at": "2026-10-01T22:40:09Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-file-page-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.html",
+          "bytes": 105308,
+          "sha256": "3d3d58562af40524a442f89dd1073d42e7ec8857b1bf39a748c74da36a1d3d8b",
+          "retrieved_at": "2026-10-01"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-file-page-Morihiro_Hosokawa_Cabinet_19930809-2.html",
+            "bytes": 95091,
+            "sha256": "899b985942776e4a116c6e6bb578a8e48e970103c0dad14c10e86ac5eb32696b",
+            "retrieved_at": "2026-10-01",
+            "content": "The parent frame's page (940x470, cropped from a 1280x720 upload of 2 February 2023). Caption: '首相官邸の庭での細川内閣発足時の記念撮影にて 左から山花貞夫政治改革担当相、細川護煕首相、羽田孜副総理兼外相'. Same author, source and licence; no licence-review tag."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/youtube-KFhAKAU2Q_8-licence-extract.json",
+            "bytes": 785,
+            "sha256": "53cc2cf54daf723ac536fca745daf8f07ce356d242fb2f15e520d29e6a0a2171",
+            "retrieved_at": "2026-10-01T23:21:15Z",
+            "content": "Independent check of the source video: title 平成５年防衛庁記録; owner channel 防衛省・自衛隊公式動画チャンネル【modchannel】 (UCNkXIXWbjb6EzW-XK6gL6dQ); publishDate 2020-12-27T07:00:04-08:00; licence shown 'Creative Commons Attribution license (reuse allowed)'. Only these fields were extracted; the watch-page HTML was not saved because it embeds the client IP."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-api-search-Yamahana.json",
+            "bytes": 215796,
+            "sha256": "16b0d23834d0f0b62e86e1927b3f8a8fd3c0ade5800fd3eeefcea9688b4ede46",
+            "retrieved_at": "2026-10-01",
+            "content": "Commons file search 'Yamahana OR 山花貞夫' (namespace File, first 50 hits) with imageinfo and extmetadata; covers all seven files in Category:Sadao Yamahana."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/http-429-log.txt",
+            "bytes": 1318,
+            "sha256": "3008a20b11090fca260573d6cd4417bc3c053a8b4539b62870d6bc57c6ff3a20",
+            "retrieved_at": "2026-10-01",
+            "content": "Log of the HTTP 429 back-offs (Commons API, upload.wikimedia.org, archive.org). No headers were saved."
+          }
+        ]
+      },
+      {
+        "reference_id": "takako-doi-2005",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/Takako_Doi_in_Tokyo_congressist_election.original.jpg",
+          "bytes": 708234,
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Takako_Doi_in_Tokyo_congressist_election.jpg",
+          "commons_sha1": "7b33e5e640bc11af91bce6fe1166265b4caa6bca",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-api-takako-doi-2005-and-2000-question-time-03.json",
+          "bytes": 14509,
+          "sha256": "e487422ab2c62a5418e08fef8a4c32f6d76b6c9713e6e9525c0df50c0e85bfe7",
+          "retrieved_at": "2026-10-01"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-file-page-takako-doi-in-tokyo-congressist-election.html",
+          "bytes": 123143,
+          "sha256": "c7a0575a1e9d18a1b0d64f7eedeea12e3def91601ec823702850902ca162f0ab",
+          "retrieved_at": "2026-10-01"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/candidates/20000223_Question_Time_03.original.jpg",
+            "bytes": 28333,
+            "sha256": "ceb4a0f6dcbd7099df5b331a11d85802f0c89b646c34d585f57cf1a2ae572b67",
+            "retrieved_at": "2026-10-01",
+            "content": "Supporting in-window photograph 'File:20000223 Question Time 03.jpg' (首相官邸, 2000-02-23, CC BY 4.0 via {{Gjstu-2.0}}, 300x206, Commons sha1 d4bab389fd6b8f17037ab1b9feb15bf8157d2b4d). Doi stands at the right-hand lectern facing Obuchi in a camel jacket and a light gray check skirt; her face is about 15 px. Clothing-colour evidence only; not copied into the repository and not an input image."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/candidates/Takako_Doi_in_Tokyo_congressist_election_2.original.jpg",
+            "bytes": 49590,
+            "sha256": "038cbdc8e88f7d867ba13fe2aa67cea9bfdbc34ff688606891ba53bb712f9d63",
+            "retrieved_at": "2026-10-01",
+            "content": "Retouched 184x221 Commons extraction (2025) of the chosen photograph, downloaded unchanged only to confirm the glasses; not used."
+          }
+        ]
+      },
+      {
+        "reference_id": "akihiro-ota-2012",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/assembler/Akihiro_Ota_20121227-rev1-20230723T101504Z-339x507.jpg",
+          "bytes": 27547,
+          "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/archive/1/1f/20230723101527%21Akihiro_%C5%8Cta_20121227.jpg",
+          "commons_sha1": "7a510e49fb203ddaeff666fb53467c454cb59bfc",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/assembler/commons-api-filehistory-Akihiro_Ota_20121227.json",
+          "bytes": 3275,
+          "sha256": "8179cae7b05439481b2ae61e5b64475146827e7dea0c8eca37efff64d93397cc",
+          "retrieved_at": "2026-10-01T23:59:30Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-file-page-Akihiro_Ota_20121227.html",
+          "bytes": 110313,
+          "sha256": "6c3e29a49afd676815e0fc6c3b7bd666b3ede6b823a598a42b224884d0bf9e49",
+          "retrieved_at": "2026-10-01T23:37:57Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-api-imageinfo-Akihiro_Ota_20121227.json",
+            "bytes": 7624,
+            "sha256": "2ff5061e145550512c63265cf5e585d3ac844bfa751d32db877f4d0d32533981",
+            "retrieved_at": "2026-10-01T22:49:49Z",
+            "content": "Preparer's Commons API imageinfo and current wikitext for the file (permission {{Gjstu-2.0|terms=https://www.mlit.go.jp/link.html|attr=国土交通省}}; structured data P275 CC BY 4.0) and for the rejected 'Official portrait of Akihiro Ota 2012.png'."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/mlit-001001960.pdf",
+            "bytes": 128768,
+            "sha256": "d7b684ab05264abdfee382381226782ac052cb4763351cb876aeed2690430738",
+            "retrieved_at": "2026-10-01T23:18:03Z",
+            "content": "The MLIT flyer that the first Commons revision names as its source (https://www.mlit.go.jp/common/001001960.pdf). The version online now carries PDF creation/modification metadata dated 2013-06-25; this is not a printed publication date and embeds the same portrait at 339x507, the size of the first Commons revision. Research only."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/pdf-extracted-obj17.jpg",
+            "bytes": 16399,
+            "sha256": "b20251bb8c9a15b51378776205de357b0288b59888a18e34db60465e393e973c",
+            "retrieved_at": "2026-10-01",
+            "content": "The preparer's unchanged extraction of that PDF's portrait stream (339x507). Its bytes differ from the first Commons revision (re-encoded), but the image and size are the same. Research only."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/mlit-terms-link.html",
+            "bytes": 10457,
+            "sha256": "8d73d659e9fa5f64a24499428e8a8599b160a954cb5ffb2aacac898ab19f200b",
+            "retrieved_at": "2026-10-01T23:38:24Z",
+            "content": "MLIT site terms (https://www.mlit.go.jp/link.html): content copyright MLIT unless otherwise stated, usable under PDL1.0, the 2024 successor of GJSTU 2.0; both are CC BY 4.0-compatible."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/imageinfo-2008-files.json",
+            "bytes": 13940,
+            "sha256": "cd3084d3a6f25c08c6e81c653abf45767eba27349824dfafebb539b8b5f5d639",
+            "retrieved_at": "2026-10-01",
+            "content": "Commons imageinfo for the three in-window 2008 files (rejected for size)."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/cat-2012.json",
+            "bytes": 19050,
+            "sha256": "4092122eb1c0599983b0e0520283ab2b3b2c7a32cb0c0975a8bc2aa7f1c94969",
+            "retrieved_at": "2026-10-01",
+            "content": "Category:Akihiro Ōta in 2012 members with licence and date metadata."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/Akihiro_Ota_20121227.jpg",
+            "bytes": 129511,
+            "sha256": "1b75bcc07a795a7f8adfa333245908f32d9356850620e54c5f51e2f588fc43b3",
+            "retrieved_at": "2026-10-01T23:35:47Z",
+            "content": "The preparer's download of the current Commons revision (510x768, sha1 dd28243dad06cd9b61747b84b7d71321ca2e98a4), uploaded 2024-09-28 'from https://response.jp/imgs/thumb_h2/607583.jpg', a commercial news site. Rejected on provenance; kept in scratch only."
+          }
+        ]
+      },
+      {
+        "reference_id": "natsuo-yamaguchi-2019",
+        "image": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/Plenary_Session_4_(48640890007).jpg",
+          "bytes": 27276808,
+          "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Plenary_Session_4_%2848640890007%29.jpg",
+          "commons_sha1": "c9ff2c0fa8364254dafd086d16907990fbc68197",
+          "commons_sha1_matches_download": true
+        },
+        "metadata": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Plenary_Session_4_48640890007_.json",
+          "bytes": 4580,
+          "sha256": "11742dbb430616c956633f13331688f3702e900de1a7397560cd701f62b3513b",
+          "retrieved_at": "2026-10-01T23:24:36Z"
+        },
+        "file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Plenary_Session_4_48640890007_.html",
+          "bytes": 127538,
+          "sha256": "39e95e775df11ead58aea075edafbe66e79c71ad9900a2fe64a9d8b93b6aa6e1",
+          "retrieved_at": "2026-10-01T23:24:57Z"
+        },
+        "supporting": [
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/retrieval-log.json",
+            "bytes": 1064,
+            "sha256": "3aba32a5db4849d52f1012673f65a3fd5a8fbb69d4626a705269b9d7a08b5305",
+            "retrieved_at": "2026-10-01",
+            "content": "Preparer's retrieval log (URLs, times, sizes and sha256 of the three files above)."
+          },
+          {
+            "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/search/previews/03-1920.jpg",
+            "bytes": 341037,
+            "sha256": "8eecad072acaafefa28d284a809e4721d81c446e259ddfd253d41d94f070393f",
+            "retrieved_at": "2026-10-01",
+            "content": "Commons' standard 1920px thumbnail of the photograph, used by the preparer, the verifier and the assembler to read the frame; research only, not shipped."
+          }
+        ]
+      }
+    ],
+    "access_limits": [
+      "Wikimedia Commons, upload.wikimedia.org and archive.org returned HTTP 429 many times during preparation (shared IP with parallel agents). Requests were made one at a time with back-offs from about 20 seconds to 20 minutes; nothing was bypassed. Kept 429 bodies (tomiichi_murayama/http429-*.txt) hold only the generic message and a request id.",
+      "MOFA's terms page (Tanabe) and the WARP copy of MOFA's APEC 1995 page (Murayama, assembler) returned HTTP 403 to the non-browser User-Agent; neither was retried with a browser User-Agent.",
+      "The assembler made seven single requests on 2026-10-01 between 23:55Z and 23:59Z: the Commons black-and-white Murayama file, the WARP page (HTTP 403), a Wayback availability lookup, the raw 1999 Wayback capture of MOFA's page, its archived image, the Commons file history of the Ota file and that file's first revision. All except the WARP page returned HTTP 200."
+    ],
+    "not_listed": "HTTP response header captures, and the one 429 body that contained the client IP (deleted by the Tanabe preparer), are not listed, hashed, quoted or copied. YouTube watch-page HTML (Yamahana) was not saved because it embeds the client IP. Search scratch files, candidate downloads and inspection crops are not ledgered unless cited above; rejected candidates retained as alternates are cited with their sha256 where relevant."
+  },
+  "independent_review": {
+    "reviewed_on": "2026-10-02",
+    "reviewer": "Codex independent preparation review",
+    "exact_submitted_tip": "7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725",
+    "disposition": "Preparation usable after the recorded date-precision corrections; no output approved or registered.",
+    "record": "independent-review-20261002.md",
+    "mechanical_checks_passed": 114,
+    "accepted_holder_records_preserved": 14,
+    "material_scope": "All six references and prompts inspected; Ota primary MLIT flyer visually inspected; exact holder copies and source hashes checked.",
+    "limits": [
+      "Tanabe primary 74-page album was not independently read; Commons caption precision remains attributed.",
+      "Fresh Yamahana full-video read was throttled; retained official-channel licence metadata and individually captioned Commons crop were used.",
+      "The current Kantei terms URL returned 404; retained earlier terms and Commons licence review remain the evidence.",
+      "Current MLIT and MOFA terms were read; third-party exceptions remain applicable."
+    ],
+    "no_new_historical_authority": true,
+    "no_rendered_outputs": true
+  }
+}

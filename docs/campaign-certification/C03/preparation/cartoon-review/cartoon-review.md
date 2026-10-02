@@ -27,17 +27,17 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 |---|---:|---|
 | historical | 100 | Historical person cartoons |
 | fictional | 8 | Fictional successor cartoons (not real people) |
-| unregistered | 5 | Tracked cartoon-root files bound by no manifest (not active avatars) |
+| unregistered | 12 | Tracked cartoon-root files bound by no manifest (not active avatars) |
 | missing | 406 | Known people with sourced art windows and no cartoon |
 
 108 active historical/fictional cartoon records have an asset path. 160 retired national-icon records are retained separately in `archived_selector`; they are not campaign leaders, active collections or active style references. Their byte pins, source/rights findings and original visual sample remain in this audit.
 
 | Audit scope | Errors | Warnings | Notices |
 |---|---:|---:|---:|
-| Active / unresolved | 0 | 17 | 532 |
+| Active / unresolved | 0 | 17 | 564 |
 | Archived national icons | 0 | 17 | 160 |
 
-762 image files inventoried, 762 present: `spheres-web/ui/person-portraits` 156, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
+794 image files inventoried, 794 present: `spheres-web/ui/person-portraits` 188, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
 
 ## Style references
 
@@ -60,7 +60,7 @@ Severity: **error** = integrity failure; **warning** = needs a decision; **notic
 | `reference_rights_not_recorded` | notice | 57 | The identity reference is not shipped and its rights are not recorded in the manifest. |
 | `sharealike_derivative_license_not_recorded` | warning | 17 | The identity reference is ShareAlike-licensed but no derivative licence is recorded for the artwork. |
 | `text_led_interpretation` | notice | 17 | No freely licensed identity photograph; the artwork is a text-led interpretation of a resolved identity. |
-| `unbound_file` | notice | 7 | A tracked image in an art root is not bound by any manifest or reference audit. |
+| `unbound_file` | notice | 39 | A tracked image in an art root is not bound by any manifest or reference audit. |
 
 ## Integrity errors
 
@@ -68,7 +68,7 @@ None: every bound file exists, has a readable header and matches its recorded ha
 
 ## Duplicate images bound to different identities
 
-None found among 762 files (exact SHA-256 comparison; 1 duplicate groups in total).
+None found among 794 files (exact SHA-256 comparison; 2 duplicate groups in total).
 
 ## Warnings
 

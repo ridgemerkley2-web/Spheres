@@ -1,0 +1,39 @@
+............................................................................................EE..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+ERROR: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\test_cartoon_review.py", line 570, in test_committed_export_is_current_deterministic_and_read_only
+    files = cr.outputs(cr.ROOT)
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\cartoon_review.py", line 1138, in outputs
+    export = build(root)
+             ^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\cartoon_review.py", line 1023, in build
+    return Builder(Path(root)).build()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\cartoon_review.py", line 345, in __init__
+    raise SystemExit(f'Tracked optional input is missing: {rel}. '
+SystemExit: Tracked optional input is missing: docs/campaign-certification/S10/c/manifest.json. Materialize this exact file in the sparse checkout before generating the export.
+
+======================================================================
+ERROR: test_header_dimensions_match_pillow_on_repository_images (test_cartoon_review.Repository.test_header_dimensions_match_pillow_on_repository_images)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\test_cartoon_review.py", line 591, in test_header_dimensions_match_pillow_on_repository_images
+    export = json.loads(cr.outputs(cr.ROOT)[cr.EXPORT_JSON])
+                        ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\cartoon_review.py", line 1138, in outputs
+    export = build(root)
+             ^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\cartoon_review.py", line 1023, in build
+    return Builder(Path(root)).build()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\claude-c06-review-20261002\tools\avatars\cartoon_review.py", line 345, in __init__
+    raise SystemExit(f'Tracked optional input is missing: {rel}. '
+SystemExit: Tracked optional input is missing: docs/campaign-certification/S10/c/manifest.json. Materialize this exact file in the sparse checkout before generating the export.
+
+----------------------------------------------------------------------
+Ran 828 tests in 137.403s
+
+FAILED (errors=2)

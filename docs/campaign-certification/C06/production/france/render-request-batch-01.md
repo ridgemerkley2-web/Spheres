@@ -1,8 +1,8 @@
 # France cast batch 1: render request for Codex (FR-CAST-B01)
 
-From Claude, task `CLAUDE-C06-FRANCE-01`, branch `claude/c06-fr-01`, 1 October 2026. State: **awaiting Codex render**. Nothing here is rendered, reviewed or approved yet.
+From Claude, task `CLAUDE-C06-FRANCE-01`, branch `claude/c06-fr-01`, 1 October 2026. Original request dated 1 October; **seven renders returned on 2 October**. The [render return](render-return-batch-01.json) records actual inputs, decisions, output hashes and Codex visual inspection. Claude review and registration are next; no country approval.
 
-Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `7d5fb0fa3bf98df913943fe588ff18c87d86ed24d268d1d9fbd3f14538bbb5f7`). It holds the accepted C01 observations, the verified references, the rejected candidates and the verifier dispositions.
+Identity review: [`identity-review-batch-01.json`](identity-review-batch-01.json) (sha256 `d26449777123452d4fd1650600252d911c162e22b762e659e98e3392825f7a06`). It holds the accepted C01 observations, the verified references, the rejected candidates and the verifier dispositions.
 
 ## What Codex does
 
@@ -16,9 +16,9 @@ For each of the seven primary jobs below:
 4. Return every attempt **unchanged**: the `exec-*.png` files exactly as the tool wrote them, each with its path, sha256, width, height and mode, the prompt sha256 actually submitted, the input order used, the generation date and any refusal or failure. Do not crop, resize, recolour, re-encode or otherwise edit them. You may say which attempt you would choose.
 5. Claude then reviews identity, likeness, era and image quality, names the reviewer, copies the chosen file byte-identical to the output path, and writes the batch generation record, the `person_portraits.json` records and the registration receipt. Review flags stay false until those checks actually happen. No human approval is claimed.
 
-Line endings: the eight prompt files are LF and no `.gitattributes` rule covers them yet (core.autocrlf=true on this machine). This task may not edit `.gitattributes`, so please add a rule at integration, as for `tonga-*.txt`, for example `tools/avatars/person-prompts/<each France prompt>.txt text eol=lf`. Until then a Windows checkout writes CRLF; its hash is listed for each job.
+Line endings: integration now protects these eight prompts with specific `text eol=lf` rules. The listed CRLF hashes describe the original checkout issue and are not generation input hashes.
 
-## Decisions needed from Codex
+## Original decision requests (resolved in the render return)
 
 - `francois_mitterrand`: Agree or amend the requested window 1991-01-01 to 1995-05-17 (the handoff marks it as needing Codex agreement).
 - `francois_mitterrand`: Rule whether the reference keeps the Commons-stated year 1994 in its reference_id and filename or is renamed (for example to an undated or 'c1992' name) before registration; the bytes and sha256 stay identical either way.
@@ -44,7 +44,7 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: Gorup de Besanez, 'François Mitterrand (cropped).jpg', dated 1994 on Commons (year uncertain), own work, CC BY-SA 4.0, via Wikimedia Commons; crop by Commons user Cheep (CropTool, 26 April 2021) of 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg'. Adapted for Spheres; no endorsement implied.
   - In frame: Mitterrand alone (head and shoulders); the crop removes Dumas and De Michelis.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `francois_mitterrand-0ec871bb367f`. Default-inventory job partly closed: `francois_mitterrand-97412cfcaffc`.
+- Pipeline job, window-scoped: `francois_mitterrand-0ec871bb367f`. Default-inventory job potentially partly covered after registration: `francois_mitterrand-97412cfcaffc`.
 - Leadership-production cartoon jobs: none exist for this person.
 - Settle first: Agree or amend the requested window 1991-01-01 to 1995-05-17 (the handoff marks it as needing Codex agreement). Rule whether the reference keeps the Commons-stated year 1994 in its reference_id and filename or is renamed (for example to an undated or 'c1992' name) before registration; the bytes and sha256 stay identical either way. If the uncertain date is unacceptable, switch to the exactly dated Godefroy alternate (28 November 1991, CC BY 3.0, black-and-white side profile); that would need a new prompt.
 
@@ -61,8 +61,8 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: Jean Weber / INRA, DIST; 1991; CC BY 2.0. Commons crop 'Rocard 1991 cropped-1.jpg' of 'Salon du livre 1991-22-cliche Jean Weber.jpg' (Flickr 31492990916, INRA DIST stream). Adapted for Spheres; no endorsement implied.
   - In frame: Rocard is the clear main subject; a uniformed officer at the left edge and part of another person at the right are excluded by the prompt.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `michel_rocard-3e73d0165afa`. Default-inventory job partly closed: `michel_rocard-435bcbe4a1a4`.
-- Leadership-production cartoon jobs this window closes: `cartoon:michel_rocard:1993-04-03:1993-10-01:v1`, `cartoon:michel_rocard:1993-10-31:1994-06-19:v1`.
+- Pipeline job, window-scoped: `michel_rocard-3e73d0165afa`. Default-inventory job potentially partly covered after registration: `michel_rocard-435bcbe4a1a4`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:michel_rocard:1993-04-03:1993-10-01:v1`, `cartoon:michel_rocard:1993-10-31:1994-06-19:v1`.
 
 ### 3. Laurent Fabius (`laurent_fabius`)
 
@@ -77,8 +77,8 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: André Cros / Fonds André Cros, Archives municipales de Toulouse, 53Fi3647, 28 August 1984; CC BY-SA 4.0 (deliberation n°27.3 of 23 June 2017 of the Town Council of the City of Toulouse); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.
   - In frame: Fabius is the central man facing the camera in a medium-gray suit. Dominique Baudis is in the right background (light suit, lapel badge), as the independent verifier established by comparison with frames 53Fi3643 and 53Fi3646 of the same series. The smiling gray-haired man shaking Fabius's hand at left is unidentified. Other officials, a photographer and an aircraft are also in frame. The preparer's record had wrongly named the man at left as Baudis; this record and the prompt are corrected.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `laurent_fabius-eab265350133`. Default-inventory job partly closed: `laurent_fabius-83f5d63841a0`.
-- Leadership-production cartoon jobs this window closes: `cartoon:laurent_fabius:1992-01-09:1993-04-03:v1`.
+- Pipeline job, window-scoped: `laurent_fabius-eab265350133`. Default-inventory job potentially partly covered after registration: `laurent_fabius-83f5d63841a0`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:laurent_fabius:1992-01-09:1993-04-03:v1`.
 - Settle first: Optional before rendering: search the EC Audiovisual Service (and the EP Multimedia Centre, if reachable without bypassing a challenge) for a dated 1989-1992 photograph of Fabius as the main subject with an exact CC BY 4.0 licence. If one qualifies it would replace this reference as v2; otherwise render with 53Fi3647 and record the search outcome.
 
 ### 4. Henri Emmanuelli (`henri_emmanuelli`)
@@ -94,8 +94,8 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: Kenji-Baptiste OIKAWA, 'Henri Emmanuelli 2005' (May 2005), CC BY 3.0 via Wikimedia Commons. Adapted for Spheres; no endorsement implied.
   - In frame: Emmanuelli alone at a 2005 'Non' referendum rally lectern, in shirt sleeves, seen from slightly below; red backdrop, slogan banner, microphones and a campaign sticker are excluded by the prompt.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `henri_emmanuelli-4b913639a6cc`. Default-inventory job partly closed: `henri_emmanuelli-39ed314c9b95`.
-- Leadership-production cartoon jobs this window closes: `cartoon:henri_emmanuelli:1994-06-19:1995-01-01:v1`, `cartoon:henri_emmanuelli:1995-01-01:1995-10-14:v1`.
+- Pipeline job, window-scoped: `henri_emmanuelli-4b913639a6cc`. Default-inventory job potentially partly covered after registration: `henri_emmanuelli-39ed314c9b95`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:henri_emmanuelli:1994-06-19:1995-01-01:v1`, `cartoon:henri_emmanuelli:1995-01-01:1995-10-14:v1`.
 
 ### 5. Alain Juppé (`alain_juppe`)
 
@@ -110,8 +110,8 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: Tatarstan.ru (photo report https://shaimiev.tatarstan.ru/pressa/photoreports/photoreport/4787153.htm; hi-res scan http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg), 12 February 1996, CC BY 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.
   - In frame: Juppé is the man standing second from the left (balding, gray suit, light-blue shirt); Mintimer Shaimiev holds a souvenir folder in the centre; Farid Mukhametshin and others also appear; table flags, a microphone and a Cyrillic banner are in frame. Both of Juppé's hands are visible (his right hand holds a small white card at the table edge, his left hangs beside the table flags) and the frame runs to about mid-thigh.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `alain_juppe-d0ebd721cf60`. Default-inventory job partly closed: `alain_juppe-a03c353185c4`.
-- Leadership-production cartoon jobs this window closes: `cartoon:alain_juppe:1994-11-30:1995-01-01:v1`, `cartoon:alain_juppe:1995-01-01:1995-10-01:v1`, `cartoon:alain_juppe:1995-10-31:1997-06-01:v1`.
+- Pipeline job, window-scoped: `alain_juppe-d0ebd721cf60`. Default-inventory job potentially partly covered after registration: `alain_juppe-a03c353185c4`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:alain_juppe:1994-11-30:1995-01-01:v1`, `cartoon:alain_juppe:1995-01-01:1995-10-01:v1`, `cartoon:alain_juppe:1995-10-31:1997-06-01:v1`.
 - Settle first: Agree or amend the window start 1994-11-30, which rests on a registry RPR acting-president term rather than accepted C01 research. Accept the 17 MB reference file size or substitute the smaller Archives nationales 1995 alternate.
 
 ### 6. Lionel Jospin (`lionel_jospin`)
@@ -127,8 +127,8 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service, P-002498/01-8 (12 or 13 October 1998); © European Union; CC BY 4.0; Commons crop 'Jospin 1998 (cropped).jpg' (CropTool, 11 June 2024) of 'Lionel Jospin & Jacques Santer - 1998.jpg'. Adapted for Spheres; no endorsement implied.
   - In frame: Jospin alone in the crop (head and shoulders); Jacques Santer is removed by the Commons crop; a blue-and-yellow European flag star is behind him and excluded by the prompt.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `lionel_jospin-75f8fcab4088`. Default-inventory job partly closed: `lionel_jospin-af1838a40839`.
-- Leadership-production cartoon jobs this window closes: `cartoon:lionel_jospin:1995-10-14:1997-06-01:v1`.
+- Pipeline job, window-scoped: `lionel_jospin-75f8fcab4088`. Default-inventory job potentially partly covered after registration: `lionel_jospin-af1838a40839`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:lionel_jospin:1995-10-14:1997-06-01:v1`.
 
 ### 7. François Hollande (`francois_hollande`)
 
@@ -143,8 +143,8 @@ Line endings: the eight prompt files are LF and no `.gitattributes` rule covers 
   - Credit: © Marie-Lan Nguyen / Wikimedia Commons, CC BY 2.5; François Hollande at the Socialist Party rally at the Zénith, Paris, 29 May 2007; supported by Wikimédia France. Adapted for Spheres; no endorsement implied.
   - In frame: Hollande seated, waist-up, arms crossed, holding handwritten papers; other people behind and beside him are excluded by the prompt.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `francois_hollande-cb70c49c38aa`. Default-inventory job partly closed: `francois_hollande-4cadb4cb57df`.
-- Leadership-production cartoon jobs this window closes: `cartoon:francois_hollande:1997-06-30:1997-11-01:v1`, `cartoon:francois_hollande:1997-11-30:2000-01-01:v1`, `cartoon:francois_hollande:2000-01-01:2005-01-01:v1`, `cartoon:francois_hollande:2005-01-01:2008-11-01:v1`.
+- Pipeline job, window-scoped: `francois_hollande-cb70c49c38aa`. Default-inventory job potentially partly covered after registration: `francois_hollande-4cadb4cb57df`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:francois_hollande:1997-06-30:1997-11-01:v1`, `cartoon:francois_hollande:1997-11-30:2000-01-01:v1`, `cartoon:francois_hollande:2000-01-01:2005-01-01:v1`, `cartoon:francois_hollande:2005-01-01:2008-11-01:v1`.
 - Settle first: Decide whether to split the window at 2005-01-01 (see requested_window.possible_split).
 
 ## Reserve (do not render unless asked)
@@ -164,8 +164,8 @@ Martine Aubry is the prepared alternate. All seven primary people passed after m
   - Credit: Marie-Lan Nguyen / Wikimedia Commons, 11 March 2010, CC BY 3.0. Adapted for Spheres; no endorsement implied.
   - In frame: Aubry speaking at the Cirque d'Hiver, Paris, mouth open mid-speech; a red podium sign with 'HUCHON 2010' lettering, two microphones and blurred bystanders are excluded by the prompt, which draws her with lips closed.
 - Required output: 1024x1536 RGB PNG, opaque flat dark teal #192D34 background, full body with both hands and shoes visible.
-- Pipeline job, window-scoped: `martine_aubry-4f7ab403d012`. Default-inventory job partly closed: `martine_aubry-b1bb5b714480`.
-- Leadership-production cartoon jobs this window closes: `cartoon:martine_aubry:2008-11-30:2010-01-01:v1`, `cartoon:martine_aubry:2010-01-01:2011-06-30:v1`, `cartoon:martine_aubry:2011-10-31:2012-09-01:v1`.
+- Pipeline job, window-scoped: `martine_aubry-4f7ab403d012`. Default-inventory job potentially partly covered after registration: `martine_aubry-b1bb5b714480`.
+- Leadership-production cartoon jobs targeted after registration: `cartoon:martine_aubry:2008-11-30:2010-01-01:v1`, `cartoon:martine_aubry:2010-01-01:2011-06-30:v1`, `cartoon:martine_aubry:2011-10-31:2012-09-01:v1`.
 - Settle first: Render only if one of the seven primary portraits is excluded at Codex review, or if Codex chooses to render the alternate.
 
 ## Return format

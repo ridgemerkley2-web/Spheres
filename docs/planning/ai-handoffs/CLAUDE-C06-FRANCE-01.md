@@ -1,6 +1,6 @@
 # CLAUDE-C06-FRANCE-01: France cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **awaiting Codex render** (1 October 2026; batch 1 prepared; not ready_for_review, not complete). Parent: C06 (France country cast), with
+Owner: Claude. State: **seven renders returned; Claude review and registration next** (2 October 2026; bounded task still in progress, not complete). Parent: C06 (France country cast), with
 C03 cartoon production for these windows. Pending Codex registration and acceptance.
 
 Origin: the user chose on 1 October 2026 to start the France cast after Codex closed all C01 research tasks. The CP1
@@ -29,7 +29,7 @@ accepted C01 research (C01-23, C01-37, C01-38, C01-47) and no art for these wind
 | francois_hollande | 1997-06-30 to 2008-11-01 | C01-47 |
 | martine_aubry (alternate) | 2008-11-29 to 2012-09-01 | C01-47 |
 
-The exact production job IDs these windows close (from `person_art_pipeline.py jobs`) are listed in the identity review.
+The exact production job IDs these windows could cover after approved registration (from `person_art_pipeline.py jobs`) are listed in the identity review.
 The generated `CA-France-B00N` work-order IDs are not reused.
 
 Claude delivers:
@@ -96,3 +96,7 @@ Still open:
 - An optional EC Audiovisual search for a 1989-1992 Fabius photograph.
 - Codex rulings: the Mitterrand window and reference-year naming, the Juppe window start and 17 MB reference, and a
   possible Hollande split at 2005-01-01.
+
+## Render handback, 2 October 2026
+
+Codex completed all seven primary outputs. Use [render-return-batch-01.json](../../campaign-certification/C06/production/france/render-return-batch-01.json) as the generation provenance; it records the exact submitted LF prompts and ordered references, including Juppé’s smaller transport input. Review the unchanged PNGs, preserve BY-SA for Mitterrand/Fabius, and coordinate the shared manifest before registration. Do not regenerate these seven unless a specific visual review fails. The earlier open-decision list is historical; decisions and remaining limits are resolved in the return. No country sign-off or production job closure is implied.

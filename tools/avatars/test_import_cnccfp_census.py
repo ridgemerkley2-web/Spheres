@@ -9,6 +9,33 @@ import unittest
 import import_cnccfp_census as importer
 
 
+def pdf_absence_rows(text):
+    """Corroborate this pinned annex's rows without layout-mode column mixing.
+
+    pypdf 6.10 layout mode interleaves wrapped names with the decision column;
+    plain extraction preserves the PDF's row order in both 6.10 and 6.17.
+    Keep the whole name and all status columns: names do not assign party IDs.
+    """
+    parts = re.split(r'du\s+CGI\s*\n', text, maxsplit=1)
+    if len(parts) != 2:
+        raise ValueError('Missing annex table header')
+    table = parts[1]
+    rows = re.finditer(
+        r'(.*?)\s+(?:Oui|Non)\s+(?:Oui|Non)\s+(\d{4,5})\s+'
+        r'(Respect|Non\s+-?respect)\s+([A-Z+]+)\s+([A-Z]+)[^\n]*(?:\n|$)',
+        table, re.S)
+    absent = []
+    for row in rows:
+        if 'AD' not in (row[4], row[5]):
+            continue
+        if (row[4], row[5]) != ('AD', 'AD') or re.sub(r'[\s-]', '', row[3]) != 'Nonrespect':
+            raise ValueError('Absent row needs Non-respect and both AD columns')
+        absent.append((row[1].strip(), row[2]))
+    if len(absent) != len(re.findall(r'\bAD\s+AD\b', table)):
+        raise ValueError('Unparsed AD row in annex')
+    return absent
+
+
 class CnccfpImportTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -161,20 +188,27 @@ class CnccfpImportTests(unittest.TestCase):
         self.assertEqual(len(absent), 60)
         seen = {}
         for page_index in range(24, 45):
-            text = reader.pages[page_index].extract_text(extraction_mode='layout')
-            for paragraph in re.split(r'\n\s*\n', text):
-                if not re.search(r'\bAD\s+AD\b', paragraph):
-                    continue
-                row = re.search(
-                    r'^(.*?)\s+(?:Oui|Non)\s+(?:Oui|Non)\s+(\d{4,5})\s+Non\s+-?respect\s+AD\s+AD\b',
-                    paragraph.strip(), re.S)
-                self.assertIsNotNone(row)
+            text = reader.pages[page_index].extract_text()
+            for name, postal_code in pdf_absence_rows(text):
                 # The annex prints 6400 for one postal code; it is not a party ID.
-                code = absent.pop(normalize(row[1]))
+                self.assertIn(normalize(name), absent, f'Unexpected PDF name on page {page_index + 1}: {name}')
+                code = absent.pop(normalize(name))
                 self.assertNotIn(code, seen)
                 seen[code] = page_index + 1
         self.assertEqual(absent, {})
         self.assertEqual(seen, importer.AD_PDF_PAGES)
+
+    def test_plain_pdf_audit_keeps_wrapped_names_and_rejects_bad_status_columns(self):
+        text = ('Dénomination and remaining headers\ndu CGI\n'
+                'FILED PARTY Non Non 75001 Respect DC CS\n'
+                'ABSENT LONG-\nNAME Non Non 6400\nNon\nrespect\nAD AD Sans objet\n')
+        self.assertEqual(pdf_absence_rows(text), [('ABSENT LONG-\nNAME', '6400')])
+        # Never silently lose an absence or accept the wrong decision/certification.
+        for changed in (text.replace('Non\nrespect', 'Respect'),
+                        text.replace('AD AD', 'AD CS'),
+                        text.replace('6400', 'not-a-postcode')):
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                pdf_absence_rows(changed)
 
 
 if __name__ == '__main__':

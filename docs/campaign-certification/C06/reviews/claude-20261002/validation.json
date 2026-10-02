@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-02",
+  "scope": "Four C06 preparation batches, seven France generated PNGs returned unregistered, three later task claims, bounded Tonga follow-up, generated export freshness and PDF audit compatibility.",
+  "integration_base": "2fd186d6a79e7c2edd688d83d0269f60ff24d96b",
+  "validation_before_final_receipt_commit": "c11dfc13c6551ec51078ac0f65a1c84084cdb0ed",
+  "checks": [
+    {
+      "name": "avatar-suite",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 138.47,
+      "log_sha256": "9da290df06ed218ca948c9e5e9f50efba56ed7b128e4fdf85ec6c56ae997e9d4",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-avatar-suite.log",
+      "tests": 828
+    },
+    {
+      "name": "planning-suite",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.44,
+      "log_sha256": "2bd6c7601410af9214e3ff545f9fe27945d86a44556f4be8fb2821ee3ac66c30",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-planning-suite.log",
+      "tests": 69
+    },
+    {
+      "name": "person-art-self-test",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.34,
+      "log_sha256": "66817ea491d90b53d7ea73f4d864c3596bd1c20c3d1c41d9c36b5cd664bfe8ba",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-person-art-self-test.log",
+      "tests": 21
+    },
+    {
+      "name": "person-art-validate",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.51,
+      "log_sha256": "3d8f55b1b157448d9f8c318dbd22592fbb547ff620923708d0896ac475bff499",
+      "summary": {
+        "valid": true,
+        "errors": [],
+        "warning_count": 530
+      },
+      "external_log": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002-evidence/check-person-art-validate.log"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.05,
+      "log_sha256": "a894f265e6af6bf7b1849c7fcb4ba2824c434a5cf9b7f1730e24c31c74a7d99a",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-workboard.log"
+    },
+    {
+      "name": "gap-ledger",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.22,
+      "log_sha256": "0dc9d475fc719be01827f34b6315990db28942aad309148fb38ec9baeab46d60",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-gap-ledger.log"
+    },
+    {
+      "name": "cartoon-review",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.75,
+      "log_sha256": "7f160b82442a5034a021d8b287f68393bbc3f220853d40c749624f0c3d720201",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-cartoon-review.log"
+    },
+    {
+      "name": "leadership-production",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.67,
+      "log_sha256": "59adfff8f0d5bce1843c08ec8557d7dfca6b203390dca1c6afdf53e9c9b24cf9",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-leadership-production.log"
+    },
+    {
+      "name": "campaign-census",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.27,
+      "log_sha256": "9db2cad4d80c8305ee4589f4411d58c88a799d87acdb149e3997d70d2112b587",
+      "log": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/check-campaign-census.log"
+    }
+  ],
+  "earlier_failures_preserved": [
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/initial-avatar-suite.log",
+      "sha256": "0f0a30e0b55e382e734660b0737b3dd97d015f7ef6bf0038e951061d00df72df",
+      "bytes": 2810
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/initial-cartoon-review.log",
+      "sha256": "c92d8c051c8944fbd50149bf9a8b95b36fdb086cdf77ba3c55753f5b4c433c28",
+      "bytes": 256
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/sparse-fixture-avatar-suite.log",
+      "sha256": "2b2d2c28dc5c376dd43d3eb53f9c85064d05a42289b047f86027c78d0bc21c74",
+      "bytes": 3987
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/sparse-fixture-cartoon-review.log",
+      "sha256": "9a78cff31a0293c47effc28144fccb7c539697c134207281836d6cbff2540971",
+      "bytes": 166
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/cnccfp-diagnosis.json",
+      "sha256": "4e01a70621924bfb32355b278cc96e3501912db8c66a6f25d901e4d270f4daf9",
+      "bytes": 2216
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/cnccfp-before-bundled.log",
+      "sha256": "b8f270dff1519b84459d956980946aa24fa8bb8ee52508d57c2deb2df3fc3f80",
+      "bytes": 811
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/cnccfp-after-bundled.log",
+      "sha256": "e1b0d9c6aaadef83fae9e8d80e6e33650fc94dac327ea29a59273d06dc7ee601",
+      "bytes": 115
+    },
+    {
+      "path": "docs/campaign-certification/C06/reviews/claude-20261002/evidence/cnccfp-after-clean-venv.log",
+      "sha256": "ee39e892c5a3e7358a886da22376eb7c1644485246e3a79f503707dfdc0738d9",
+      "bytes": 115
+    }
+  ],
+  "repairs": [
+    "Refreshed gap ledger after queue update; full input pins retained.",
+    "Regenerated cartoon export to inventory the new unregistered files; no runtime binding inferred.",
+    "PDF corroboration audit uses strict plain row extraction across tested pypdf versions; all60 names/page locators retained, plus malformed-row rejection. Importer and source snapshots unchanged."
+  ],
+  "facts": {
+    "france_rendered": 7,
+    "france_independent_visual_passes": 7,
+    "new_runtime_registrations": 0,
+    "canonical_markers": 44,
+    "bounded_tasks": 66,
+    "country_gates_closed": 0,
+    "human_approval_claimed": false
+  },
+  "runtime_and_data_paths_changed": [],
+  "native_build_or_campaign_run": "Not run: no game/runtime/data changes; existing browser/server and saved campaigns untouched."
+}
