@@ -1,7 +1,6 @@
 # CLAUDE-C06-FRANCE-01: France cast, batch 1 (identities, references, prompts; Codex renders)
 
-Owner: Claude. State: **ready_for_review** (2 October 2026; seven returned renders reviewed by Claude and proposed for registration; not complete). Parent: C06 (France country cast), with
-C03 cartoon production for these windows. Pending Codex registration and acceptance.
+Owner: Claude. State: **complete** (2 October 2026, bounded seven-portrait primary batch). Codex accepted registration `09cbb583` after 776 independent checks and regenerated the derived exports. [Acceptance and return index](../../campaign-certification/C06/render-return-20261002/README.md). Parent France country cast, C06 and CP1 remain open; the Aubry reserve is not rendered.
 
 Origin: the user chose on 1 October 2026 to start the France cast after Codex closed all C01 research tasks. The CP1
 plan (`CP1-ACCELERATION.md`) allows parallel artwork for another already-reviewed batch while Codex owns Tonga

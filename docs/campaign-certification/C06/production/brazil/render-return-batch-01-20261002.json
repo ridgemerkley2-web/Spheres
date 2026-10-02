@@ -1,0 +1,576 @@
+{
+  "version": 1,
+  "country": "Brazil",
+  "batch_id": "BR-CAST-B01",
+  "source_revision": "8fc53247ff23721bd355ca6962b0861a76fe6902",
+  "render_request_path": "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md",
+  "identity_review_path": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+  "identity_review_sha256": "b480afe609da93df46ad14249c91f5b1ed115b1d90f7b697deeb93ccd44a046e",
+  "status": "generated_and_returned_pending_independent_review_and_registration",
+  "generator": "OpenAI built-in image_gen",
+  "generated_date": "2026-10-02",
+  "preparer": "Codex agent /root/tonga_civilian_roster",
+  "authority": {
+    "human_approval": false,
+    "claude_approval": false,
+    "independent_output_review": false,
+    "registered": false,
+    "runtime_acceptance": false,
+    "country_signoff": false
+  },
+  "generation_contract": {
+    "exact_active_prompts": true,
+    "ordered_inputs": true,
+    "required_width": 1024,
+    "required_height": 1536,
+    "required_mode": "RGB",
+    "opaque": true,
+    "no_output_editing": true,
+    "originals_retained": true,
+    "max_attempts_per_job": 3
+  },
+  "active_job_count": 7,
+  "attempt_count": 8,
+  "selected_output_count": 7,
+  "tool_failures": [],
+  "attempts": [
+    {
+      "job_id": "michel_temer-0a0870c78f13",
+      "person_id": "michel_temer",
+      "appearance_window": {
+        "from": "2001-09-09",
+        "to": "2010-06-15",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:13:56 UTC",
+      "prompt_path": "tools/avatars/person-prompts/michel-temer-cartoon-2001-v1.txt",
+      "prompt_sha256_submitted": "677621155322535fa13553350720014499f550e9b21d6affee9faf2b196d2a76",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "use": "exact-person identity reference",
+          "source_credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 3.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/3.0",
+          "source_photograph_date": "2009-11-11"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-6fd82b29-1830-4594-9650-a971b71595f3.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Correct right-hand subject from the shared 2009 group reference; silver swept-back hair, lean face, gray suit and burgundy tie. Full figure, both hands and shoes visible; no observed blocking artifacts. Age treatment is artistic."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+        "bytes": 1647981,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:14:22.451631+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+      "copied_png_sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+      "copy_byte_identical": true
+    },
+    {
+      "job_id": "michel_temer-555b84955d80",
+      "person_id": "michel_temer",
+      "appearance_window": {
+        "from": "2010-06-15",
+        "to": "2019-01-01",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:14:34 UTC",
+      "prompt_path": "tools/avatars/person-prompts/michel-temer-cartoon-2010-v1.txt",
+      "prompt_sha256_submitted": "d3bfc1cbdb8723577ae3da80e38e74e05c94c5c8f6fb79341d5a2aaacfa9c5c0",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+          "sha256": "3d1fc06be507c6b1694fb6fcc8b8275b06cf073cfa33051955ad71f707bf97bc",
+          "use": "exact-person identity reference",
+          "source_credit": "Beto Barata/PR, 'Presidente Michel Temer - Foto Oficial Original.jpg' (official portrait 'Foto Oficial do Presidente da República', made in May 2017; dated 17 May 2017 on Commons), Michel Temer Flickr stream photo 24439184568, CC BY 2.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 2.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_photograph_date": "2017-05 (Commons gives 17 May 2017, from file metadata)"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-9e5c94a2-b21d-4298-b302-5decb7380041.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Recognizable older Temer with silver swept-back hair, dark brows, lean face, navy suit and striped tie. Full figure, both hands and shoes visible; no observed blocking artifacts."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+        "bytes": 1552223,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:15:14.733238+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+      "copied_png_sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+      "copy_byte_identical": true
+    },
+    {
+      "job_id": "baleia_rossi-86cb96c29aa9",
+      "person_id": "baleia_rossi",
+      "appearance_window": {
+        "from": "2019-10-06",
+        "to": "2026-09-08",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:15:29 UTC",
+      "prompt_path": "tools/avatars/person-prompts/baleia-rossi-cartoon-2019-v1.txt",
+      "prompt_sha256_submitted": "d1a0008ac591682d64e3aa4dfbd378e2789446181cde9f32486c8a203f77a8e4",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+          "sha256": "6e97ad854a7731eaf5751bf001e0e14aad7147a40ad6e0b065b6a8093909d398",
+          "use": "exact-person identity reference",
+          "source_credit": "MDB Nacional, '08-12-2021 Lançamento da pré-candidatura de Simone Tebet à Presidência da República' (Flickr 51735864101), 8 December 2021, CC BY 2.0, via Wikimedia Commons; Commons crop '... (519) (cropped).jpg' by Commons user Przelijpdahl (CropTool, 18 January 2023). Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 2.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_photograph_date": "2021-12-08"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-54c6acd7-510c-4716-9022-a114e5df39f1.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Recognizable broad face, wavy brown hair with gray at temples, open blue collar and dark suit. Full figure, both hands and shoes visible; no observed blocking artifacts."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+        "bytes": 1557704,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:15:57.278405+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+      "copied_png_sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+      "copy_byte_identical": true
+    },
+    {
+      "job_id": "leonel_brizola-fa7af2b7d699",
+      "person_id": "leonel_brizola",
+      "appearance_window": {
+        "from": "1995-01-01",
+        "to": "2004-06-21",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:16:12 UTC",
+      "prompt_path": "tools/avatars/person-prompts/leonel-brizola-cartoon-1995-v1.txt",
+      "prompt_sha256_submitted": "3170bb3479c8e23145ab28da573898cc0342c3f5c065475d8f9216f5339dc90d",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+          "sha256": "40a4a67c4e04cd4d0dccaca29645bffd48123bd41011d010e54d4ecc12109fd1",
+          "use": "exact-person identity reference",
+          "source_credit": "Sérgio Neglia (embedded credit '© Serginho Neglia'), 'Leonel Brizola em Palmeira das Missões.jpg', 19 September 1998, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY-SA 4.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source_photograph_date": "1998-09-19"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-5bf66ba2-5e2b-4b80-aed1-d137af400d09.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Recognizable older broad face, nose/profile and gray swept-back hair; full figure and both hands/shoes visible. Bareheaded crown, civilian clothing and body remain disclosed artistic completion. No observed blocking artifacts."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+        "bytes": 1533241,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:16:42.522322+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+      "copied_png_sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+      "copy_byte_identical": true
+    },
+    {
+      "job_id": "carlos_lupi-45b22e501a80",
+      "person_id": "carlos_lupi",
+      "appearance_window": {
+        "from": "2004-06-30",
+        "to": "2015-01-01",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:16:57 UTC",
+      "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2004-v1.txt",
+      "prompt_sha256_submitted": "0c57b3987daa007d9bfb103b4269499a80f359b923b42e1eb6fd4a273c00cf56",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+          "sha256": "ef8613540884a0f14847c16e9788307211a55b69e4bdafc206b03c8fee1daee8",
+          "use": "exact-person identity reference",
+          "source_credit": "J. Batista/Câmara dos Deputados, 'Dagoberto Nogueira Filho, Carlos Lupi e Michel Temer.jpg', Medalha Mérito Legislativo ceremony, Salão Negro, Chamber of Deputies, Brasília, 11 November 2009; CC BY 3.0, via Wikimedia Commons (Banco de Imagens da Câmara dos Deputados). Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 3.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/3.0",
+          "source_photograph_date": "2009-11-11"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-0f757768-f46c-41ad-a4fe-cc0fd60aece3.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Correct central subject from the shared 2009 group reference; clean-shaven, dark swept-back hair, broad smiling face, yellow tie and dark suit. Full figure and both hands/shoes visible; no observed blocking artifacts."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+        "bytes": 1478167,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:17:20.084572+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+      "copied_png_sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+      "copy_byte_identical": true
+    },
+    {
+      "job_id": "carlos_lupi-400fe963352c",
+      "person_id": "carlos_lupi",
+      "appearance_window": {
+        "from": "2015-01-01",
+        "to": "2020-01-01",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:17:29 UTC",
+      "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt",
+      "prompt_sha256_submitted": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+          "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+          "use": "exact-person identity reference",
+          "source_credit": "Jane de Araújo/Agência Senado, 'Presidência do Senado (20659268666).jpg', visit of the PDT leadership to the President of the Senate, Brasília, 18 August 2015; CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 20659268666; licence confirmed by FlickreviewR on 31 August 2015). Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 2.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_photograph_date": "2015-08-18"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-72f44c04-0581-4e83-a78e-851293080f44.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "selected": false,
+      "copied_planned_png_path": null,
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "held_background_mismatch",
+        "notes": "Likeness, clothing and full-body framing are usable, but black background with blue and warm glow fails the requested dark teal style. Retained unchanged; same exact prompt/inputs retried. File inspection additionally found RGBA rather than required RGB; alpha extrema (0, 254)."
+      },
+      "attempt_failures": [
+        {
+          "type": "output_visual_defect",
+          "detail": "Black background and colored glow instead of matching dark teal background."
+        },
+        {
+          "type": "output_format_defect",
+          "detail": "Original PNG is RGBA instead of RGB; alpha extrema (0, 254). Original retained unchanged."
+        }
+      ],
+      "edited": false,
+      "output": {
+        "sha256": "a6489597a71971d1af82ef086651ba438b553a1ed89d69647e3f890dc14f7528",
+        "bytes": 1521331,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGBA",
+        "format": "PNG",
+        "opaque": false,
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "file_modified_utc": "2026-10-02T18:18:08.277956+00:00"
+      },
+      "copy_byte_identical": null,
+      "preserved_copy_path": "docs/campaign-certification/C06/render-return-20261002/attempts/brazil/carlos-lupi-2015-v2-attempt-01-rejected-rgba.png",
+      "preserved_copy_sha256": "a6489597a71971d1af82ef086651ba438b553a1ed89d69647e3f890dc14f7528"
+    },
+    {
+      "job_id": "carlos_lupi-400fe963352c",
+      "person_id": "carlos_lupi",
+      "appearance_window": {
+        "from": "2015-01-01",
+        "to": "2020-01-01",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 2,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:18:23 UTC",
+      "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt",
+      "prompt_sha256_submitted": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+          "sha256": "fbaff7ed9f7313fef48c081d62689e6ce5490a08512b9b833ea4c65c3b3b23a6",
+          "use": "exact-person identity reference",
+          "source_credit": "Jane de Araújo/Agência Senado, 'Presidência do Senado (20659268666).jpg', visit of the PDT leadership to the President of the Senate, Brasília, 18 August 2015; CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 20659268666; licence confirmed by FlickreviewR on 31 August 2015). Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 2.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_photograph_date": "2015-08-18"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-e618846e-33cb-423d-8cce-6a223ef7cd2c.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Correct bearded third subject from the 2015 group reference; dark hair/beard with gray at temples/chin, bright blue jacket, striped burgundy tie, dark trousers. Full figure and both hands/shoes visible; selected second attempt has matching dark teal background. A faint check remains on jacket; acceptable source-derived simplification."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+        "bytes": 1612861,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:18:47.436851+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "copied_png_sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+      "copy_byte_identical": true
+    },
+    {
+      "job_id": "carlos_lupi-84f4126df75f",
+      "person_id": "carlos_lupi",
+      "appearance_window": {
+        "from": "2020-01-01",
+        "to": "2026-09-08",
+        "to_exclusive": true,
+        "scope": "artistic appearance only; no historical tenure or eligibility grant"
+      },
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generation_started_utc": "2026-10-02 18:19:00 UTC",
+      "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt",
+      "prompt_sha256_submitted": "cc0a4c92eeea27ed6b37769a41ea8c3de6ff9edd75e10f47cbb1adea1070a218",
+      "prompt_submission": "Exact UTF-8 LF file text, including final newline; no augmentation.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+          "sha256": "44a6d135f5b77300821f15b38b93fe0ca8134d7ad6608520475d48ebe39efbfb",
+          "use": "exact-person identity reference",
+          "source_credit": "Geraldo Magela/Agência Senado, 'Carlos Lupi. CAS - Comissão de Assuntos Sociais (cropped).jpg', 24 October 2023, CC BY 2.0, via Wikimedia Commons (Senado Federal Flickr 53282670483; licence confirmed by FlickreviewR 2 on 30 January 2024 on the parent file); crop uploaded by Commons user Rodolfo Matias on 30 January 2024. Adapted for Spheres; no endorsement implied.",
+          "source_license": "CC BY 2.0",
+          "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_photograph_date": "2023-10-24"
+        }
+      ],
+      "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-fdbc92b5-d7ca-4984-b7a8-62e19a02895b.png",
+      "planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+      "selected": true,
+      "copied_planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+      "output_inspection": {
+        "reviewer": "Codex agent /root/tonga_civilian_roster (generator self-inspection)",
+        "independent_review": false,
+        "status": "passes_initial_visual_inspection_pending_independent_review",
+        "notes": "Recognizable later Lupi with salt-and-pepper/gray hair and beard, broad smiling face, medium gray suit and rose tie. Full figure and both hands/shoes visible. Smile shows teeth rather than the requested closed mouth; minor expression variation, not mid-speech or a likeness blocker."
+      },
+      "attempt_failures": [],
+      "edited": false,
+      "output": {
+        "sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+        "bytes": 1825058,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "alpha_extrema": null,
+        "file_modified_utc": "2026-10-02T18:19:29.413910+00:00"
+      },
+      "copied_png_absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+      "copied_png_sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+      "copy_byte_identical": true
+    }
+  ],
+  "skipped": [
+    {
+      "person_id": "carlos_lupi",
+      "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v1.txt",
+      "planned_png_path": "spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v1.png",
+      "reason": "Superseded held 2015–2026 prompt. Not submitted; replaced by 2015-v2 and 2020-v1."
+    },
+    {
+      "person_id": "daniel_sampaio_tourinho",
+      "reason": "Excluded/unprepared in active render request; no generation."
+    }
+  ],
+  "unprepared_reserves": [],
+  "limits": [
+    "Generated art and initial self-inspection only; no registration, role boundary change, office eligibility, or country acceptance.",
+    "Appearance windows and source-photo age/date limitations remain those of the reviewed preparation.",
+    "All source licences and credits must accompany subsequent registration; Brizola adaptation requires CC BY-SA 4.0 attribution, change notice and derivative licence.",
+    "Original tool outputs remain untouched, including the rejected first Lupi 2015 attempt."
+  ],
+  "render_request_sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3",
+  "render_checkout_revision": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "verification": {
+    "all_prompts_and_inputs_match_pins": true,
+    "all_seven_selected_attempts_1024x1536_rgb_png": true,
+    "all_seven_selected_copies_byte_identical": true,
+    "all_eight_original_tool_files_retained": true,
+    "superseded_lupi_prompt_not_submitted": true,
+    "no_registrations_performed": true,
+    "preserved_failed_check": "Initial strict check against all eight files found the rejected first Lupi 2015 attempt was RGBA. It remains rejected and untouched; all seven selected files are RGB."
+  }
+}

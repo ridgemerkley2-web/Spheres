@@ -1,0 +1,218 @@
+{
+  "date": "2026-10-02",
+  "scope": "Portrait registration, unchanged render integrity, asset tooling and derived exports only; no native/browser/campaign qualification run.",
+  "checks": [
+    {
+      "name": "avatar-suite",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 148.56,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/avatar-suite.log",
+      "log_sha256": "c062049d0f6d6c883831f63c3411ed13640941c0769f5620d37ed32bf9cf41ac"
+    },
+    {
+      "name": "planning-suite",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.84,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/planning-suite.log",
+      "log_sha256": "11ff6cbb755ec3894acd8a739dee9fa17578315ac7f383da221a072855d9da0c"
+    },
+    {
+      "name": "person-art-self-test",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.38,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/person-art-self-test.log",
+      "log_sha256": "e3523b24f92ccde93628d4176688fd1c03388dc5610e9346f5fb6bfbfd17f1af"
+    },
+    {
+      "name": "person-art-validate",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.55,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/person-art-validate.log",
+      "log_sha256": "893c4726e3ab450ac16fefc794eb0bdf7c161e803093fa685a484546957fa4b6"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.06,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/workboard.log",
+      "log_sha256": "a894f265e6af6bf7b1849c7fcb4ba2824c434a5cf9b7f1730e24c31c74a7d99a"
+    },
+    {
+      "name": "gap-ledger",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_gap_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.19,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/gap-ledger.log",
+      "log_sha256": "0dc9d475fc719be01827f34b6315990db28942aad309148fb38ec9baeab46d60"
+    },
+    {
+      "name": "cartoon-review",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/cartoon_review.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.81,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/cartoon-review.log",
+      "log_sha256": "77f71072f1d1e4547f522523a8be9733f1deb647ab5e45b448bf6e217cf10d34"
+    },
+    {
+      "name": "leadership-production",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.72,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/leadership-production.log",
+      "log_sha256": "f7badd5809bb36786c67c3e076b4f902c7063796e5f8f95ced09e6aa9bd5200c"
+    },
+    {
+      "name": "campaign-census",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.22,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/campaign-census.log",
+      "log_sha256": "97a795eab6c77c33e1db964583edd5a8be488153058a9a56fa264501c0d94759"
+    },
+    {
+      "name": "boundary-matrix",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.55,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/boundary-matrix.log",
+      "log_sha256": "534931b2dadda9a6f7308873a64c591e26e588fddccee4ee327edcec62172a7a"
+    },
+    {
+      "name": "tonga-cast-coverage",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/tonga_cast_coverage.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.69,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/tonga-cast-coverage.log",
+      "log_sha256": "f57d59e7fce6d63cd45bc3af2c41ec0b9ea0a457fe7c93ed904c9eda5bb6e9ee"
+    },
+    {
+      "name": "output-integrity",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "docs/campaign-certification/C06/render-return-20261002/verify_outputs.py",
+        "--require-originals"
+      ],
+      "exit_code": 0,
+      "log": "docs/campaign-certification/C06/render-return-20261002/checks/output-integrity.log",
+      "log_sha256": "5c6cc3481ae797c96517736420a8182444abe94caeb548858629c927bb429807"
+    }
+  ],
+  "passed": true,
+  "test_counts": {
+    "avatars": 828,
+    "planning": 69,
+    "pipeline_self_tests": 21,
+    "total": 918
+  },
+  "registered_art_validation": {
+    "errors": 0,
+    "warnings": 524
+  },
+  "reviewed_checkout_base": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "render_integrity": {
+    "selected_jobs": 31,
+    "outputs": 33,
+    "intact_originals": 33,
+    "input_and_prompt_pins_match": true,
+    "superseded_jobs_rendered": 0
+  },
+  "output_review_scope": "Byte correctness is accepted for all outputs; identity/era acceptance is left to Claude. Doi and Gorbachev specific likeness concerns remain held for that review.",
+  "derived_files": {
+    "spheres-web/data/leadership_production_2035.json": "b42bb31247a4ed842bc8e16a393fb1affe6f75d8a9f2dbc374b1a1c16082169e",
+    "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json": "e5cbad01b1e4ba49409dcb5a3f2afd8f04dbeda324c9db39d4f74622c3b527b4",
+    "docs/campaign-certification/C01/census.json": "4a98469459ed686086045ee7b703404de0a1624642163bfff0a48dd9cbf45b5a",
+    "docs/campaign-certification/C01/work-orders.json": "a6cca2ec90caca99b7d10472875762b81ae289616a29b7c10a8fb26e7ca19a50",
+    "docs/campaign-certification/C01/gap-ledger/ledger.json": "058e93d579bbc1504378419280f2ced5723bfac85065f64436ace4577a70b3b1",
+    "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json": "9a4b00fb20ab17d873ab552a6378a26abff7a3b5b5bcf2310c3eb0942989ff66"
+  }
+}

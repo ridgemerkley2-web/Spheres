@@ -1,5 +1,7 @@
 # Remaining Tonga cast work — 1 October 2026
 
+Current update, 2 October: the fourteen requirements below remain, plus a **current-source production-browser refresh**. France’s seven additive registrations changed the shared portrait-manifest hash. Tonga’s entries and the historical accepted browser receipt are untouched; its passed result is not silently transferred to the new whole-file hash. See [source-refresh record](../../render-return-20261002/tonga-source-refresh.json). Current total: fifteen.
+
 Research window: **1990-01-01–2026-09-07**. No status changes. Inventory: 50 exact observations, 33 historical appearance identities, 42 historical cartoons, four fictional civilians. Fatai Helu is the only accepted person without a verified likeness; newly found holders may require additional art.
 
 Basis: combined checkout snapshot `f5bd21932d687532d8fda9f428b2f35a377b3f9a`; [eleven-chain assessment](acceptance-followup-20261001/chains-assessment.json) (assessment revision `a86aee1b0de5498ca30019c042f05e398dfc78a1`) and [country manifest](../../countries/tonga/manifest.json). The eleven unresolved dispositions contain 46 observations; four Crown observations are covered. Exact claim IDs and URLs are in assessment fields `accepted_support_claim_ids` and `source_support`; consult these before repeat retrievals.

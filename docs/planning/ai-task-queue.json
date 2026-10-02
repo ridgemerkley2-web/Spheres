@@ -629,7 +629,7 @@
       "depends_on": [
         "CODEX-C02-TO-01"
       ],
-      "next": "46 illustrations and 50 exact historical observations are integrated with separate Crown/premier behavior. Focused native/browser acceptance is unchanged. The bounded pm-transition-review-20261001 review records 1991 retirement/appointment events and Vaea's 2000 leave statement, with four existing portrait/date mappings verified; no new effective boundaries are installed. Fourteen requirements remain: eleven historical chains, Fatai Helu verified likeness, final visual review and country signoff. Follow docs/campaign-certification/C06/production/tonga/REMAINING-WORK.md. Preserve uncertain office boundaries and event-driven succession. C06/S23/CP1 remain open.",
+      "next": "46 illustrations and 50 exact historical observations are integrated with separate Crown/premier behavior. Native acceptance is unchanged. Previous browser acceptance remains historical; current-source refresh is pending after additive France shared-manifest registration. The bounded pm-transition-review-20261001 review records 1991 retirement/appointment events and Vaea's 2000 leave statement, with four existing portrait/date mappings verified; no new effective boundaries are installed. Fifteen requirements remain: a current-source browser refresh, eleven historical chains, Fatai Helu verified likeness, final visual review and country signoff. Follow docs/campaign-certification/C06/production/tonga/REMAINING-WORK.md. Preserve uncertain office boundaries and event-driven succession. C06/S23/CP1 remain open.",
       "branch": "codex/tonga-country-cast-20261001",
       "submission_revision": "6829ecc75600c3fa11a2df8136f7c4a513c4941e"
     },
@@ -824,16 +824,16 @@
       "id": "CLAUDE-C06-FRANCE-01",
       "owner": "Claude",
       "session": "C06",
-      "state": "in_progress",
+      "state": "complete",
       "priority": 61,
       "title": "France cast batch 1: references, cartoons and registration",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-FRANCE-01.md",
       "depends_on": [],
       "branch": "claude/c06-fr-01",
       "claim_revision": "64ac669c",
-      "reviewed_source_revision": "50d2460437c24c8d57f3f0b6f3b4749b50005de5",
-      "next": "Seven primary cartoons returned unchanged by Codex on 2026-10-02; Claude visual review, explicit source/derivative licensing, coordinated registration and coverage checks next. Aubry reserve unrendered. See render-return-batch-01.json. No runtime registration or country approval.",
-      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+      "reviewed_source_revision": "09cbb58324648254000ee24609f4a8d1885013b5",
+      "next": "Seven-portrait primary batch registration accepted from exact 09cbb583 after 776 independent checks; derived exports regenerated. Historical assets total 107; 13 pending production jobs closed. Aubry reserve remains unrendered. This completes the bounded batch only, not France country signoff or C06/CP1.",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md"
     },
     {
       "id": "CLAUDE-C06-BRAZIL-01",
@@ -846,9 +846,10 @@
       "depends_on": [],
       "branch": "claude/c06-br-01",
       "claim_revision": "473f234a",
-      "reviewed_source_revision": "383086651685ff2f8ba6aaff3a575cc4ae67df70",
-      "next": "Corrected bounded preparation accepted: five jobs ready for rendering, Lupi 2015 held pending appearance-era correction. Seventeen holders preserved; receipt pin corrected to committed LF, coverage prospective, BY-SA obligations explicit. Tourinho remains unprepared with a source lead, not proof no likeness exists.",
-      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+      "reviewed_source_revision": "8fc53247ff23721bd355ca6962b0861a76fe6902",
+      "next": "7 active renders returned unchanged with exact prompt, ordered input and output hashes. Claude must review identity, era, licensing and output quality before proposing coordinated registration. Superseded/excluded jobs skipped. No new registration or country acceptance. See render-return-20261002 index and country return.",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md",
+      "render_return": "docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json"
     },
     {
       "id": "CLAUDE-C06-SOUTHAFRICA-01",
@@ -862,8 +863,9 @@
       "branch": "claude/c06-za-01",
       "claim_revision": "6f1961bb",
       "reviewed_source_revision": "c0382bbcb92852ff6e885292bb3ecfe9a7793a75",
-      "next": "Four reference/prompt jobs independently reviewed as preparation; nineteen holder copies preserved. Render next, preserving Viljoen derivative CC BY-SA 2.0. Ten targeted production jobs remain open; no art or country approval. Separate historical acceptance classifications are unchanged.",
-      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+      "next": "4 active renders returned unchanged with exact prompt, ordered input and output hashes. Claude must review identity, era, licensing and output quality before proposing coordinated registration. Superseded/excluded jobs skipped. No new registration or country acceptance. See render-return-20261002 index and country return.",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md",
+      "render_return": "docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json"
     },
     {
       "id": "CLAUDE-C06-JAPAN-01",
@@ -876,48 +878,58 @@
       "depends_on": [],
       "branch": "claude/c06-jp-01",
       "claim_revision": "bd78fd83",
-      "reviewed_source_revision": "7f8c5ed1e8d5b8d4f5ee61e72376741d34ff1725",
-      "next": "Six reference/prompt jobs reviewed; fourteen holders preserved. Murayama and Ota unsupported photo deadlines corrected, with capture-date uncertainty and illustrative ageing explicit. Review Yamaguchi long-era appearance before rendering/registration. Twelve targeted jobs are prospective, none closed.",
-      "review_receipt": "docs/campaign-certification/C06/reviews/claude-20261002/README.md"
+      "reviewed_source_revision": "9af78834cf0eab210b70cc33f14d5833b4eb1bb1",
+      "next": "7 active renders returned unchanged with exact prompt, ordered input and output hashes. Claude must review identity, era, licensing and output quality before proposing coordinated registration. Superseded/excluded jobs skipped. No new registration or country acceptance. See render-return-20261002 index and country return.",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md",
+      "render_return": "docs/campaign-certification/C06/production/japan/render-return-batch-01-20261002.json"
     },
     {
       "id": "CLAUDE-C06-RUSSIA-01",
       "owner": "Claude",
       "session": "C06",
-      "state": "claimed",
+      "state": "in_progress",
       "priority": 65,
       "title": "USSR / Russia cast batch 1 preparation",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-RUSSIA-01.md",
       "depends_on": [],
       "branch": "claude/c06-ru-01",
       "claim_revision": "1d222c56d0a914246e98b2df583a76126fe79f27",
-      "next": "Newest push is a documentation-only claim, not a completed preparation. Await exact-person references, source rights, prompts and bounded identity review before Codex rendering. Proposed appearance windows and conditional reserves are not accepted historical tenure or art coverage. Preserve current campaign cutoff and coordinate shared registration."
+      "next": "1 active renders returned unchanged with exact prompt, ordered input and output hashes. Claude must review identity, era, licensing and output quality before proposing coordinated registration. Superseded/excluded jobs skipped. No new registration or country acceptance. See render-return-20261002 index and country return.",
+      "reviewed_source_revision": "6cae02b53179761cc0f2cd987f3209aeab933aab",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md",
+      "render_return": "docs/campaign-certification/C06/production/ussr-russia/render-return-batch-01-20261002.json"
     },
     {
       "id": "CLAUDE-C06-SAUDIARABIA-01",
       "owner": "Claude",
       "session": "C06",
-      "state": "claimed",
+      "state": "in_progress",
       "priority": 66,
       "title": "Saudi Arabia cast batch 1 preparation",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-SAUDIARABIA-01.md",
       "depends_on": [],
       "branch": "claude/c06-sa-01",
       "claim_revision": "b152afee72ddc2132322a72af12ee97f1040db54",
-      "next": "Newest push is a documentation-only claim, not a completed preparation. Await exact-person references, source rights, prompts and bounded identity review before Codex rendering. Proposed appearance windows and conditional reserves are not accepted historical tenure or art coverage. Preserve current campaign cutoff and coordinate shared registration."
+      "next": "4 active renders returned unchanged with exact prompt, ordered input and output hashes. Claude must review identity, era, licensing and output quality before proposing coordinated registration. Superseded/excluded jobs skipped. No new registration or country acceptance. See render-return-20261002 index and country return.",
+      "reviewed_source_revision": "ede909edd7577b777a4cd73479a1b6a57e6e0744",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md",
+      "render_return": "docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json"
     },
     {
       "id": "CLAUDE-C06-INDIA-01",
       "owner": "Claude",
       "session": "C06",
-      "state": "claimed",
+      "state": "in_progress",
       "priority": 67,
       "title": "India cast batch 1 preparation",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C06-INDIA-01.md",
       "depends_on": [],
       "branch": "claude/c06-in-01",
       "claim_revision": "d6ee1fcba53cf266cc495172d1b176d6d4c6b581",
-      "next": "Newest push is a documentation-only claim, not a completed preparation. Await exact-person references, source rights, prompts and bounded identity review before Codex rendering. Proposed appearance windows and conditional reserves are not accepted historical tenure or art coverage. Preserve current campaign cutoff and coordinate shared registration."
+      "next": "8 active renders returned unchanged with exact prompt, ordered input and output hashes. Claude must review identity, era, licensing and output quality before proposing coordinated registration. Superseded/excluded jobs skipped. No new registration or country acceptance. See render-return-20261002 index and country return.",
+      "reviewed_source_revision": "edf8655c3466b6c44b0cbe2857fe19c1617cffca",
+      "review_receipt": "docs/campaign-certification/C06/render-return-20261002/README.md",
+      "render_return": "docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json"
     }
   ]
 }

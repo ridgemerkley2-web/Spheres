@@ -1,6 +1,6 @@
 # France cast production (C06)
 
-Task `CLAUDE-C06-FRANCE-01` (owner Claude), branch `claude/c06-fr-01`. State: **ready_for_review: seven renders reviewed by Claude and proposed for registration** (2 October 2026; see [registration-batch-01.md](registration-batch-01.md)). Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
+Task `CLAUDE-C06-FRANCE-01` (owner Claude), branch `claude/c06-fr-01`. State: **complete for the seven-portrait primary batch** (2 October 2026). Codex accepted registration `09cbb583` after 776 independent checks and regenerated the five derived export sets. See the [acceptance package](../../render-return-20261002/README.md) and original [registration proposal](registration-batch-01.md). The Aubry reserve remains unrendered; France country signoff, C06 and CP1 remain open. The preparation history below is retained. Claude generates, edits and labels no image.
 
 ## Batch 1 (FR-CAST-B01), prepared 1 October 2026
 

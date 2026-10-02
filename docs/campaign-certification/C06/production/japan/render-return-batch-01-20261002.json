@@ -1,0 +1,546 @@
+{
+  "version": 1,
+  "nation": "Japan",
+  "batch": "JP-CAST-B01",
+  "status": "generated_unregistered_awaiting_claude_review",
+  "generated_at": "2026-10-02",
+  "reviewed_request_commit": "9af78834cf0eab210b70cc33f14d5833b4eb1bb1",
+  "request_path": "docs/campaign-certification/C06/production/japan/render-request-batch-01.md",
+  "request_sha256": "3bc250fb8529205af04e2c08ddfd85aeaf7db7e46f505fb20c99d79a991522d6",
+  "generator": "OpenAI built-in image_gen",
+  "counts": {
+    "active_jobs": 7,
+    "generation_calls": 9,
+    "successful_outputs": 8,
+    "failed_generation_calls": 1,
+    "registered": 0
+  },
+  "authority": {
+    "human_approved": false,
+    "country_complete": false,
+    "registration_complete": false
+  },
+  "input_transport_derivations": [
+    {
+      "source_path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+      "source_sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+      "source_dimensions": [
+        8256,
+        5504
+      ],
+      "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+      "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+      "dimensions": [
+        2048,
+        1365
+      ],
+      "operation": "Uncropped proportional thumbnail, Pillow LANCZOS, maximum 2048 pixels, JPEG quality95 subsampling0, ICC profile retained if present. Input transport copy only; original source and all generated outputs unchanged.",
+      "reason": "Original 27276808-byte JPG failed both view_image and image_gen reference transport with invalid base64 dataBase64. One image_gen attempt failed before generation."
+    }
+  ],
+  "failed_calls": [
+    {
+      "job_id": "natsuo-yamaguchi-cartoon-2015-v1",
+      "attempt": 1,
+      "stage": "reference transport before generation",
+      "prompt_sha256_submitted": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+          "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg"
+        }
+      ],
+      "error": "unable to read referenced image: fs/readFile returned invalid base64 dataBase64: Invalid symbol 61, offset 18952891.",
+      "output": null,
+      "recovery": "Uncropped proportional 2048px transport copy; original retained; exact prompt unchanged. Successful output attempt 1 is the second tool call for this job."
+    }
+  ],
+  "skipped": [
+    {
+      "job_id": "natsuo-yamaguchi-cartoon-2009-v1",
+      "status": "superseded",
+      "reason": "Two approved-request era jobs replace it; never submitted."
+    },
+    {
+      "person_id": "takenori_kanzaki",
+      "status": "excluded",
+      "reason": "Outside active seven jobs."
+    },
+    {
+      "person_id": "seiji_mataichi",
+      "status": "reserve_not_prepared"
+    },
+    {
+      "person_id": "tadatomo_yoshida",
+      "status": "reserve_not_prepared"
+    }
+  ],
+  "attempts": [
+    {
+      "person_id": "tomiichi_murayama",
+      "job_id": "tomiichi-murayama-cartoon-1993-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt",
+      "prompt_sha256_submitted": "8321abccdc8a9fe46af9fcfa966995c15b356e1bc03320fb07e279ca42a92af0",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg",
+          "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "1993-09-30",
+        "to": "1996-09-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "Cabinet Public Relations Office (内閣官房内閣広報室), Government of Japan: official portrait of Tomiichi Murayama, 81st Prime Minister, from 「歴代内閣ホームページ情報：村山富市 内閣総理大臣（第81代）」（首相官邸ホームページ）(https://www.kantei.go.jp/jp/rekidainaikaku/081.html); capture date unknown; later archive captures do not establish a 1995 deadline; Government of Japan Standard Terms of Use 2.0 (compatible with CC BY 4.0); via Wikimedia Commons 'Tomiichi Murayama 19940630.jpg' (licence review by Leoboudv, 9 March 2019). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-07f93e53-f04b-4ffa-b972-20b6eb7632bb.png",
+        "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+        "bytes": 1559685,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Swept silver hair, very long white brows, long face and full-body navy suit retain visible identity cues. Unknown source capture date remains a limitation.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "makoto_tanabe",
+      "job_id": "makoto-tanabe-cartoon-1991-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/makoto-tanabe-cartoon-1991-v1.txt",
+      "prompt_sha256_submitted": "0cd6d473e072f5a080cef12d241523d1ee43732c9784ece761790db065dc9ac9",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg",
+          "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "1991-07-31",
+        "to": "1993-01-19",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "外務省大臣官房儀典官室 (MOFA Protocol Office); Makoto Tanabe at the State Guest House, Tokyo, 7 April 1992, from MOFA's released photo album of Jiang Zemin's 1992 visit to Japan (https://www.mofa.go.jp/mofaj/annai/honsho/shiryo/shozo/pdfs/2023/2023-0620.pdf); attribution 外務省 (MOFA); CC BY 4.0 (Government of Japan Standard Terms of Use 2.0, compatible with CC BY 4.0), via Wikimedia Commons; Commons crop 'Makoto Tanabe 19920407.jpg' (CropTool, Taro2968332, 28 July 2025) of 'Makoto Tanabe and Jiang Zemin 19920407.jpg'. Adapted for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9a148acc-1b53-4040-9ed3-624a689cacb6.png",
+        "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+        "bytes": 1553213,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Balding gray hair, broad smile and large glasses retained; exact capture day remains attributed to Commons rather than independently read MOFA album.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "sadao_yamahana",
+      "job_id": "sadao-yamahana-cartoon-1993-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/sadao-yamahana-cartoon-1993-v1.txt",
+      "prompt_sha256_submitted": "0f6270864427465f7d5aaa409ea87168e10a5e0c9e8184076726e972e62806aa",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg",
+          "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "1993-01-19",
+        "to": "1993-09-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "Japan Defense Agency (防衛庁), '平成5年防衛庁記録' (1993 record film), Ministry of Defense official YouTube channel, video KFhAKAU2Q_8 (published 27 December 2020), CC BY 3.0. Still frame of 9 August 1993 extracted and cropped on Wikimedia Commons by Taro2968332 ('Sadao Yamahana Morihiro Hosokawa Cabinet 19930809-2.jpg', from 'Morihiro Hosokawa Cabinet 19930809-2.jpg'). Adapted for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2af29adc-66c0-4e1a-9ed1-dca3aed227f9.png",
+        "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+        "bytes": 1560733,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Gray swept hair, glasses and broad face retained. Soft official video frame limits likeness certainty.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "takako_doi",
+      "job_id": "takako-doi-cartoon-1996-v1",
+      "attempt": 1,
+      "selected_for_return": false,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt",
+      "prompt_sha256_submitted": "14bc6db8eea91726074ea2c0cb21db7ac1f08e1c972226a5b4849f35074e5c96",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "1996-09-30",
+        "to": "2003-11-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "Akira Kamikura, Flickr photo 23039536, 2 July 2005, CC BY 2.0, via Wikimedia Commons ('Takako Doi in Tokyo congressist election.jpg'; FlickreviewR passed cc-by-2.0 on 7 June 2007). Adapted for Spheres; no endorsement implied.",
+      "output": {
+        "path": "docs/campaign-certification/C06/render-return-20261002/attempts/japan/takako-doi-cartoon-1996-v1-attempt-1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/docs/campaign-certification/C06/render-return-20261002/attempts/japan/takako-doi-cartoon-1996-v1-attempt-1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-3c094579-ed1a-4e82-bc49-dd4e26d96e2e.png",
+        "sha256": "a0fbe9f219ba98de91322d173c5900d95afc8ce26db843b3cace8fa2c849ce0b",
+        "bytes": 1619664,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Attempt 2 has stronger neck and facial age cues than attempt 1, but both appear younger than the requested age around 70. Claude should decide whether another art pass is needed. Glasses and outfit interpretation remain explicit review items.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "takako_doi",
+      "job_id": "takako-doi-cartoon-1996-v1",
+      "attempt": 2,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt",
+      "prompt_sha256_submitted": "14bc6db8eea91726074ea2c0cb21db7ac1f08e1c972226a5b4849f35074e5c96",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "1996-09-30",
+        "to": "2003-11-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "Akira Kamikura, Flickr photo 23039536, 2 July 2005, CC BY 2.0, via Wikimedia Commons ('Takako Doi in Tokyo congressist election.jpg'; FlickreviewR passed cc-by-2.0 on 7 June 2007). Adapted for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-15e8df34-59fe-42ad-80a2-9d231ecf3ab4.png",
+        "sha256": "7bec1c73f681ad50e525ddb48e008c71cf0f682c0cb10714df092fdcb36916ef",
+        "bytes": 1629629,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Attempt 2 has stronger neck and facial age cues than attempt 1, but both appear younger than the requested age around 70. Claude should decide whether another art pass is needed. Glasses and outfit interpretation remain explicit review items.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "akihiro_ota",
+      "job_id": "akihiro-ota-cartoon-2006-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/akihiro-ota-cartoon-2006-v1.txt",
+      "prompt_sha256_submitted": "bd0fdc42e07e9ade28fcf5df7c6a77b90457ba7ebfb9adef63136767cd31cbab",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg",
+          "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "2006-09-30",
+        "to": "2009-09-08",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan): official portrait of Akihiro Ōta in https://www.mlit.go.jp/common/001001960.pdf; capture date unknown (the PDF carries creation/modification metadata dated 2013-06-25). CC BY 4.0 via the stated Government of Japan terms, attribution 国土交通省; current MLIT PDL 1.0 terms preserve the compatible reuse route. Wikimedia Commons first revision (23 July 2023, TKsdik8900) of 'Akihiro Ōta 20121227.jpg'. Adapted for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-6de31f05-087d-4c47-a014-5e16773d9e43.png",
+        "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+        "bytes": 1536646,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Rounded dark hair, broad face and patterned blue tie retained. Source capture date unknown; apparent 60-63 age is an artistic target.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "natsuo_yamaguchi",
+      "job_id": "natsuo-yamaguchi-cartoon-2009-v2",
+      "attempt": 1,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt",
+      "prompt_sha256_submitted": "bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+          "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg"
+        }
+      ],
+      "appearance_window": {
+        "from": "2009-09-08",
+        "to": "2015-01-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "Ogiyoshisan, 'Natsuo Yamaguchi IMG 5607 20130707.JPG' (own work), photograph of 7 July 2013, CC BY 3.0 (https://creativecommons.org/licenses/by/3.0), via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Natsuo_Yamaguchi_IMG_5607_20130707.JPG). Adapted (redrawn as a cartoon) for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-55394862-aa38-4514-afa5-45caaefbc871.png",
+        "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+        "bytes": 1513624,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Early variant has dark hair, red tie and younger facial treatment; central man from the 2013 reference used.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "natsuo_yamaguchi",
+      "job_id": "natsuo-yamaguchi-cartoon-2015-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt",
+      "prompt_sha256_submitted": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+      "prompt_submission": "Exact LF UTF-8 text, unchanged.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+          "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+          "original_requested_path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+          "original_requested_sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+          "input_transport_derivation": {
+            "source_path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+            "source_sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+            "source_dimensions": [
+              8256,
+              5504
+            ],
+            "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+            "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+            "dimensions": [
+              2048,
+              1365
+            ],
+            "operation": "Uncropped proportional thumbnail, Pillow LANCZOS, maximum 2048 pixels, JPEG quality95 subsampling0, ICC profile retained if present. Input transport copy only; original source and all generated outputs unchanged.",
+            "reason": "Original 27276808-byte JPG failed both view_image and image_gen reference transport with invalid base64 dataBase64. One image_gen attempt failed before generation."
+          }
+        }
+      ],
+      "appearance_window": {
+        "from": "2015-01-01",
+        "to": "2024-09-28",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "source_credit": "TICAD7 Photographs / MOFA TICAD, 'Plenary Session 4' (Flickr 48640890007), 29 August 2019; CC0 1.0 Universal Public Domain Dedication; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-90d4c63a-3ac3-418f-8afb-6551c610fe13.png",
+        "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+        "bytes": 1559640,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "viewed_generated_output": true,
+        "notes": "Later variant uses gray streaks and pale blue tie, with a visibly older treatment than the early variant. Input transport copy disclosed; original reference retained.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    }
+  ]
+}

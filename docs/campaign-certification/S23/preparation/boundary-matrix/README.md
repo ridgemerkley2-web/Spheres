@@ -149,6 +149,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 - Campaign-start comparison: historical_identity_not_established.
 - The national executive office has no paired research role, so its historical chain is unresearched.
 - Future: 60 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.
+- Unbound registry holders with no art job covering the sample date: alain_juppe, francois_hollande, henri_emmanuelli, laurent_fabius, lionel_jospin, michel_rocard.
 
 ### Japan
 
@@ -396,9 +397,16 @@ established holders at those samples; for the executive they count the campaign-
 
 ## Asset checks
 
-36 bound or referenced portrait assets checked; 6 not fully available; 0 manifest assets are shared across people.
+43 bound or referenced portrait assets checked; 13 not fully available; 0 manifest assets are shared across people.
 
+- `spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png`: not_on_served_allowlist
 - `spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png`: possible_wrong_person_binding
+- `spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png`: not_on_served_allowlist
+- `spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png`: not_on_served_allowlist
+- `spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png`: not_on_served_allowlist
+- `spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png`: not_on_served_allowlist
+- `spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png`: not_on_served_allowlist
+- `spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png`: not_on_served_allowlist
 - `spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png`: possible_wrong_person_binding
 - `spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png`: possible_wrong_person_binding
 - `spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png`: possible_wrong_person_binding

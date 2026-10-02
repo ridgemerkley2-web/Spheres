@@ -64,15 +64,15 @@
     "future_party_templates": 2556,
     "future_institutional_templates": 4,
     "represented_future_institutions": 1,
-    "historical_manifest_assets": 100,
+    "historical_manifest_assets": 107,
     "fictional_manifest_assets": 8,
-    "historical_art_snapshot_pending_jobs": 699,
+    "historical_art_snapshot_pending_jobs": 686,
     "people_with_unknown_appearance_eligibility": 156,
     "exhaustive_country_censuses": 0,
     "unrepresented_organizations": null,
     "work_orders_by_phase": {
       "fictional_editorial_review": 317,
-      "historical_cartoon_jobs": 180,
+      "historical_cartoon_jobs": 179,
       "institution_and_office_roles": 160,
       "known_historical_chains": 150,
       "organization_census": 160
@@ -139,8 +139,8 @@
     },
     {
       "path": "spheres-web/data/person_portraits.json",
-      "bytes": 494659,
-      "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825"
+      "bytes": 535693,
+      "sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc"
     },
     {
       "path": "spheres-web/data/fictional_portraits.json",
@@ -149,8 +149,8 @@
     },
     {
       "path": "spheres-web/data/leadership_production_2035.json",
-      "bytes": 6204564,
-      "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4"
+      "bytes": 6232567,
+      "sha256": "b42bb31247a4ed842bc8e16a393fb1affe6f75d8a9f2dbc374b1a1c16082169e"
     },
     {
       "path": "tools/avatars/leadership_production.py",

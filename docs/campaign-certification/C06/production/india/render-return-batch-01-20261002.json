@@ -1,0 +1,577 @@
+{
+  "version": 1,
+  "nation": "India",
+  "batch": "IN-CAST-B01",
+  "status": "generated_unregistered_awaiting_independent_review",
+  "generated_at": "2026-10-02",
+  "reviewed_request_commit": "edf8655c3466b6c44b0cbe2857fe19c1617cffca",
+  "request_path": "docs/campaign-certification/C06/production/india/render-request-batch-01.md",
+  "identity_review_path": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+  "identity_review_sha256": "57d1d9ea673312f9937a4a3355c56a180a0c6edf654ea8de22f8904bfd2e8c9c",
+  "generator": "OpenAI built-in image_gen",
+  "counts": {
+    "active_jobs": 8,
+    "attempts": 8,
+    "successful_outputs": 8,
+    "failed_generation_calls": 0,
+    "registered": 0
+  },
+  "authority": {
+    "human_approved": false,
+    "country_complete": false,
+    "registration_complete": false
+  },
+  "preflight": {
+    "prompt_hash_basis": "Exact Git LF bytes, also matched by normalized current working files.",
+    "style_and_reference_hashes_matched": true,
+    "reference_originals_visually_inspected": 8,
+    "prompt_files_read": 8,
+    "retained_metadata_license_and_identity_inspected": true,
+    "limits": "Appearance windows and declared age treatments do not establish office tenure. No new historical research or network retrieval."
+  },
+  "skipped": [
+    {
+      "person_id": "amit_shah",
+      "status": "excluded",
+      "reason": "Superseded by promoted M. A. Baby in active request; commission/ownership provenance unresolved. Removed Amit Shah prompt/reference were not submitted."
+    },
+    {
+      "person_id": "nitin_nabin",
+      "status": "reserve_not_prepared",
+      "reason": "No verified ready reference/prompt; no render."
+    }
+  ],
+  "attempts": [
+    {
+      "person_id": "harkishan_singh_surjeet",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/harkishan-singh-surjeet-cartoon-1992-v1.txt",
+      "prompt_sha256_submitted": "418df96663ae4260cdcbb850649c2a10864fb315972ac01309e5a62d9ab2b89e",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+          "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:Bardhanhss.jpg",
+          "source_license": "CC BY 2.5",
+          "source_license_url": "https://creativecommons.org/licenses/by/2.5",
+          "credit": "Soman, 'Bardhanhss.jpg' (Harkishan Singh Surjeet, A. B. Bardhan and D. Raja on the dais of the Communist Party of India's 19th Party Congress, Chandigarh, 28 or 29 March 2005), own work, CC BY 2.5, via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "1992-01-31",
+        "to": "2005-04-01",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: the one accepted C01-40 holder observation (attested_on 2004-03-02, from and until null) lies inside. The bounds come from registry term in_cpm_harkishan_singh_surjeet_199201 (month precision, 1992-01 to 2005-04) through the safe_art_window in leadership_production_2035.json; they are not accepted research dates, and the research does not use retrospective 1992 or 2005 statements as a start or end.",
+        "possible_split": "2000-01-01 (a leadership-production job boundary)",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-a4f5ff7c-d381-41d7-8009-dd0893b2ae67.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+        "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+        "bytes": 1544874,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Turban, tinted dark rectangular glasses, full white beard, two pens and full-body silhouette follow the exact reference/prompt; younger age treatment is declared in the prompt.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "lal_krishna_advani",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/lal-krishna-advani-cartoon-1995-v1.txt",
+      "prompt_sha256_submitted": "8faaa5d13c8681739406ca7b3c34dadb83ee84f557071c4b0f6cc23f3f3b1bc0",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+          "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:IDF_Aid_Mission_to_India,_January_2001_(11047435913).jpg",
+          "source_license": "CC BY-SA 3.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+          "credit": "IDF Spokesperson's Unit, 'IDF Aid Mission to India, January 2001', late January or early February 2001; source: Flickr idfonline 11047435913; licence CC BY-SA 3.0 by VRTS permission ticket 2021051710001034; via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "1995-01-01",
+        "to": "2005-12-31",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: C01-27 BJP holder observations attested 1997-07-16 and 2004-10-20 lie inside; his 1991-01-08 observation is inside his existing 1990-1995 art (lal-krishna-advani-cartoon-1990-v2.png). The window continues that art and covers registry terms in_bjp_lal_krishna_advani_1993 and in_bjp_lal_krishna_advani_20041027; the 2004-10-20 observation precedes that term's registry start of 2004-10-27. One portrait spans 1998-2004, when he was not party president (appearance only).",
+        "possible_split": "1995-01-01 to 1998-01-01 and 2004-10-20 to 2005-12-31",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-28096311-d26e-4ab4-8403-3f80e77d14a9.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+        "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+        "bytes": 1569347,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Bald crown, amber-brown spectacles, white moustache and blue bandhgala remain distinct; both hands and shoes visible.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "prakash_karat",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/prakash-karat-cartoon-2005-v1.txt",
+      "prompt_sha256_submitted": "6929a21fa194c518b3c33da71108ad88e220d76910d9185166315259b900d6e8",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+          "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:PrakashKarat.jpg",
+          "source_license": "CC BY-SA 4.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "credit": "Erfanebrahimsait, 'PrakashKarat.jpg' (undated; camera stamp 16 March 2013 unreliable; taken between 2013 and 2017), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "2005-04-30",
+        "to": "2015-04-01",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: the accepted C01-40 holder observation attested 2011-09-10 lies inside; bounds from registry term in_cpm_prakash_karat_200504 (month precision) as in leadership production. His registry coordinator term in_cpm_prakash_karat_20240929 (2024-09-29 to 2025-04-06) is not claimed, because C01-40 keeps that arrangement as claims only.",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-aa48719f-7432-4f52-b9ce-12e96fe551e3.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+        "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+        "bytes": 1608835,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Silver hair, rimless rectangular glasses, broad face and white short-sleeved shirt match the selected undated reference; younger treatment remains artistic.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "rajnath_singh",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/rajnath-singh-cartoon-2005-v1.txt",
+      "prompt_sha256_submitted": "951e50844f61f5d49ce37a8bcd2002d54625a6bf8cdc138da1855047d03bb6b5",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+          "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:Rajnath_Singh_at_Hunkar_Rally.jpg",
+          "source_license": "CC BY-SA 2.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+          "credit": "Narendra Modi (official Flickr account), 'Shri Modi at Hunkar Rally in Patna', Patna, October 2013; CC BY-SA 2.0; Commons crop 'Rajnath Singh at Hunkar Rally.jpg' of 'Modi at Hunkar Rally in Patna.jpg', via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "2005-12-31",
+        "to": "2014-07-09",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: accepted C01-27 holder observations attested 2006-01-02 and 2013-03-02 lie inside; registry terms in_bjp_rajnath_singh_20051231 (2005-12-31 to 2009-12-19) and in_bjp_rajnath_singh_201301 (2013-01 to 2014-07-09). The window covers Nitin Gadkari's presidency (2009-12-19 to 2013-01) as an appearance interval only and claims no office for Rajnath Singh in that period.",
+        "possible_split": "2009-12-19 and 2013-01-31",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-862b6685-e48a-4a75-83ac-c84a4f00051c.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+        "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+        "bytes": 1697505,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Bald crown, broad face, dark waistcoat and white kurta-pyjama follow the prompt; no stage, lettering or raised victory gesture copied.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "nitin_gadkari",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/nitin-gadkari-cartoon-2009-v1.txt",
+      "prompt_sha256_submitted": "faebfd01a2aedb716f15380c69a31ae289fbd28a1ea6a7fa6d2bba68fc8b39bd",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+          "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:UK_Foreign_Secretary_William_Hague_meeting_Bharatiya_Janata_Party_(BJP)_National_President,_Shri_Nitin_Gadkari_in_London,_19_July_2011._(5954466771).jpg",
+          "source_license": "Open Government Licence v1.0",
+          "source_license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+          "credit": "UK Foreign and Commonwealth Office, Foreign Secretary William Hague meeting BJP National President Nitin Gadkari in London, 19 July 2011 (Flickr 5954466771), Open Government Licence v1.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "2009-12-19",
+        "to": "2013-01-23",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: accepted C01-27 holder observations attested 2009-12-24 and 2013-01-22; start from registry term in_bjp_nitin_gadkari_20091219 (ends in month 2013-01); end widened from leadership production's 2013-01-01 to the day after the last accepted observation, overlapping Rajnath Singh's window as appearance only.",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-e94bfd37-b9f6-4fa2-948e-fb2496bddb75.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+        "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+        "bytes": 1852262,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Black side-parted hair, moustache, round face and light bandhgala follow Gadkari on the right; Hague and source room excluded.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "sitaram_yechury",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt",
+      "prompt_sha256_submitted": "1e32883811ee3ce51a3ff91a3aa802926a1da5163eef4bd475dbd6890397899d",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+          "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:Sitaram_Yechury_at_2019_Hyderabad_Book_fair1_(cropped).jpg",
+          "source_license": "CC0 1.0",
+          "source_license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "credit": "Batthini Vinay Kumar Goud, 'Sitaram Yechury at 2019 Hyderabad Book fair1 (cropped).jpg', 27 or 28 December 2019, own work, CC0 1.0, via Wikimedia Commons; crop by the photographer (CropTool, 2 January 2025) of 'Sitaram Yechury at 2019 Hyderabad Book fair1.jpg'. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "2015-04-30",
+        "to": "2024-09-12",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table: the accepted C01-40 holder observation attested 2015-05-06 with stated until 2024-09-12 (his death); registry term in_cpm_sitaram_yechury_201504 (from month 2015-04).",
+        "possible_split": "2020-01-01 (a leadership-production job boundary)",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-0c066c3e-ca86-4961-acce-028254fa9d25.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+        "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+        "bytes": 1624779,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Silver hair, glasses, broad face and white shirt retained; source stage tint and microphone excluded; both hands/shoes visible.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "jagat_prakash_nadda",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/jagat-prakash-nadda-cartoon-2020-v1.txt",
+      "prompt_sha256_submitted": "1930455b813b99bd727ede047db90a290f652dfa41c1332e5985163421468088",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+          "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:JP_Nadda_(Minister_of_Health_and_Family_Welfare,_India)_at_End_TB_Campaign.jpg",
+          "source_license": "CC BY-SA 4.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "credit": "AbhiSuryawanshi, 'JP Nadda (Minister of Health and Family Welfare, India) at End TB Campaign.jpg', 26 September 2018, own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "2020-01-20",
+        "to": "2026-01-20",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Start: accepted C01-27 holder 'J. P. Nadda' from 2020-01-20 (Kamal Sandesh Vol. 15 No. 03). Exclusive end: party_leaders.json term in_bjp_jagat_prakash_nadda_20200120 'until' 2026-01-20 and leadership_production_2035.json required_art_windows. The end is not accepted research; C01-27 does not use the 20 January 2026 handover as his until.",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-b511ec0d-3c82-43cc-8a51-d523148734e6.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+        "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+        "bytes": 1618160,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Dark moustache, spectacles, aubergine bandhgala and magenta pocket square retained; badge, ring and End TB setting excluded.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    },
+    {
+      "person_id": "m_a_baby",
+      "attempt": 1,
+      "generator": "OpenAI built-in image_gen",
+      "generated_at": "2026-10-02",
+      "prompt_path": "tools/avatars/person-prompts/m-a-baby-cartoon-2025-v1.txt",
+      "prompt_sha256_submitted": "2d1b6853ba359653247a0b3aaf2bd25144b04df7e594501c48b2c1e1abe5eaf9",
+      "prompt_submission": "Exact current LF UTF-8 text, unchanged; independently hash-checked before submission.",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "tool_side_conversion": null
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+          "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+          "use": "identity reference",
+          "tool_side_conversion": null,
+          "source_page_url": "https://commons.wikimedia.org/wiki/File:MA_Baby_at_Kollam_2026_18.jpg",
+          "source_license": "CC BY-SA 4.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "credit": "Fotokannan, 'MA Baby at Kollam 2026 18.jpg' (6 July 2026, Kadammanitta kavitha puraskaram event, Kollam), own work, CC BY-SA 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied."
+        }
+      ],
+      "appearance_window": {
+        "from": "2025-04-06",
+        "to": "2026-09-08",
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "Handoff table (reserve 1): registry term in_cpm_m_a_baby_20250406 (from 2025-04-06, open) to the 7 September 2026 cutoff; contains the accepted C01-40 observation attested 2025-05-12.",
+        "to_exclusive": true
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-447cd4de-81ea-49a4-862c-51f331b65634.png",
+        "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+        "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+        "bytes": 1611973,
+        "byte_identical_to_original": true,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true
+      },
+      "edited": false,
+      "refusal": null,
+      "failure": null,
+      "renderer_visual_screen": {
+        "reviewer": "Codex rendering agent",
+        "date": "2026-10-02",
+        "viewed_original_reference": true,
+        "viewed_generated_output": true,
+        "recommendation": "return_first_attempt_for_independent_review",
+        "notes": "Bald crown, white beard, dark glasses, white shirt/mundu and sandals retained; source microphone/poster excluded.",
+        "formal_identity_era_acceptance": false,
+        "human_approved": false,
+        "registered": false
+      }
+    }
+  ],
+  "notes": [
+    "All original tool output files retained in place; planned-path copies must be byte-identical.",
+    "No source photo converted, cropped, recolored or re-encoded, including the Nadda Adobe RGB reference.",
+    "Share-alike source obligations remain in per-attempt inputs; no manifest registration or human approval claimed.",
+    "No prompt revisions, global manifest, queue or derived export changes by this rendering task."
+  ],
+  "render_checkout_head": "42e1fb784fc6a6a16dd92783142683fde498b3f7"
+}

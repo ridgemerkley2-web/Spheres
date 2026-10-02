@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "batch": "SURU-CAST-B01",
+  "task": "CLAUDE-C06-RUSSIA-01",
+  "reviewed_source_tip": "6cae02b53179761cc0f2cd987f3209aeab933aab",
+  "reviewed_integrated_head": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "source_review": {
+    "path": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+    "sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d",
+    "basis": "Current integrated preparation including Codex corrections; source branch tip recorded separately."
+  },
+  "status": "generated_ready_for_independent_registration_review",
+  "generated_by": "/root/selector_leader_api",
+  "generated_at": "2026-10-02T18:28:27.436169Z",
+  "registered_portraits": 0,
+  "human_approval_claimed": false,
+  "country_completion": false,
+  "entries": [
+    {
+      "job_id": "mikhail-gorbachev-cartoon-1991-v1",
+      "person_id": "mikhail_gorbachev",
+      "display_name": "Mikhail Gorbachev",
+      "generator": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02T18:24:23.345000Z",
+      "prompt_file": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v1.txt",
+      "prompt_sha256": "817a5faedffbdb0b05442db86ae5af1c7e67edea60e50d210a470a21e2a75941",
+      "submitted_text": "Exact UTF-8 LF text of the pinned prompt; no extra instructions or transformations.",
+      "referenced_images": [
+        {
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG",
+          "order": 1,
+          "use": "style_only",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+          "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+          "bytes": 3905097,
+          "width": 2800,
+          "height": 4050,
+          "mode": "L",
+          "format": "JPEG",
+          "order": 2,
+          "use": "exact_person_likeness",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\references\\mikhail-gorbachev-1991-reference-v1.jpg"
+        }
+      ],
+      "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-7f0e13f1-6ba5-4e68-a73d-ab10a05474bd.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v1.png",
+        "sha256": "3652310d36d61e83e4d091c6878f08e2621c2f5e2adf0e50a6c5e1d32d6e9104",
+        "bytes": 1582504,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-10-02T18:22:56.659000Z",
+          "finished_at": "2026-10-02T18:24:23.345000Z",
+          "outcome": "image_returned",
+          "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-7f0e13f1-6ba5-4e68-a73d-ab10a05474bd.png"
+        }
+      ],
+      "failed_attempts": [],
+      "requested_appearance_window": {
+        "from": "1991-01-01",
+        "to": "1991-12-26",
+        "to_exclusive": true,
+        "window_status": "needs_codex_agreement",
+        "basis": "Accepted C01-49 President of the USSR holder observations attested 1991-01-22, 1991-08-22 and 1991-10-05, and the accepted C01-41 CPSU General Secretary holder observation attested 1991-08-22 (all with from and until null). The start continues his existing 1990 art (mikhail-gorbachev-cartoon-1990-v1.png, 1990-01-01 to 1991-01-01). The exclusive end is the day after 25 December 1991, the gap ledger's audit boundary for USSR-identity roles ('not an accepted dissolution date'); it is not an accepted term end. He is the USSR card's leader by office_links (since 1985-03-11, registry). The window is an appearance interval, not a tenure, and the claim record marks it as needing Codex agreement."
+      },
+      "appearance_window_decision": "Approved for this bounded generation only as an artistic interval; does not establish office tenure, registry appointments or year-specific photographic attestation.",
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg",
+        "creator": "Leo Medvedev/Лев Леонидович Медведев",
+        "credit": "Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "photograph_date": "1991-10",
+        "depiction_date": {
+          "kind": "month",
+          "value": "1991-10",
+          "precision": "month; the uploader's statement at upload (rev 794636807)"
+        },
+        "date_precision": "Month only. The uploader Dmedvedev83's original upload (rev 794636807, 2023-08-20T12:45:33Z) gives |date=1991-10 and the description 'Moscow, October 1991' / 'Москва, октябрь 1991 года'. On 2025-07-09 a third-party editor, MasterRus21thCentury, changed the date to 1991-10-24 and the description to 'October 24 1991' (rev 1054800689, summary 'corr') without citing a source; the current extmetadata (DateTimeOriginal 1991-10-24) reflects that edit and is not used. An IP edit of 2025-01-26 to 1991-10-01 was reverted. EXIF DateTime 2023:08:20 is the scan date. Not independently corroborated.",
+        "rights_statement": "Retained source statement: CC BY-SA 4.0 with VRT permission ticket #2022050610007575 (category 'Items with VRTS permission confirmed'). The upload revision carried {{cc-by-sa-4.0}}{{PermissionTicket|id=2022050610007575}}; on 2023-10-21 (rev 813789119) the licence section was replaced by the {{Leo Medvedev}} template, and the current extmetadata still states CC BY-SA 4.0. The uploader is not the photographer; the licence rests on the VRT-reviewed grant, and whether Medvedev took the photograph for a press employer is not established (open item). Attribution and share-alike apply. The copied bytes are the original upload, unretouched.",
+        "age_gap_note": "Registry birth date 1931-03-02. The photograph (October 1991, month precision) shows him at 60. It lies inside the requested window, about 9 to 10 months after its start (1991-01-01, age 59) and about 2 to 3 months before its exclusive end (1991-12-26, age 60), so no age adjustment is asked for; the prompt asks for a man of 59 to 60. Declared artistic extensions: the full standing body, hands, trousers and shoes (from a head-and-shoulders photograph) and all colours (the photograph is black and white).",
+        "limitation": "Month-precision date from the archive uploader; licence via a VRT-reviewed grant from the photographer's archive rather than the photographer's own upload; greyscale; head and shoulders only.",
+        "vrt_ticket": "2022050610007575",
+        "original_reference": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/mikhail-gorbachev-199110-leo-medvedev-original.jpg",
+        "original_reference_sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+        "derivative_license": "CC BY-SA 4.0",
+        "derivative_license_note": "The derivative must retain this share-alike licence and the recorded attribution when registered and distributed.",
+        "adaptation": "Original cartoon generated from a style reference and the credited likeness reference; artistic age, body, clothing and color interpretations as disclosed in the exact prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "/root/selector_leader_api",
+        "reviewed_at": "2026-10-02T18:28:27.436169Z",
+        "scope": "Exact style and identity inputs viewed before generation; original output visually inspected for likeness, framing, hands/shoes, single-subject cartoon style and unintended text.",
+        "observations": "Recognizable rounded face, receding gray-white hair and forehead birthmark on the anatomical right/viewer-left extending toward the center; no glasses. Full-color pinstriped charcoal suit and burgundy striped tie, both hands and shoes visible. Source grayscale remains unchanged; skin, clothes and background colors are artistic interpretation.",
+        "disposition": "ready_for_independent_registration_review",
+        "human_approval": false,
+        "country_acceptance": false
+      }
+    }
+  ],
+  "generation_failures": [],
+  "skipped_or_reserve": [
+    {
+      "person_id": "nikolai_ryzhkov",
+      "display_name": "Nikolai Ryzhkov",
+      "requested_window": {
+        "from": "1990-01-01",
+        "to": "1990-11-25",
+        "to_exclusive": true,
+        "window_status": "conditional_on_c01_26_acceptance_or_codex_ruling",
+        "basis": "The start is the 1990 seed (spheres-sim/data/leaders_1990.json: the USSR row's second executive, Chairman of the Council of Ministers since 1985-09-27), not accepted research. The exclusive end is the day after his last C01-26 observation (1990-11-24). C01-26 is integrated but its acceptance is pending; no term end is asserted."
+      },
+      "preparation_status": "not_prepared",
+      "preparation_note": "Not prepared in this batch: no likeness reference was downloaded and no prompt was written, because he has no accepted holder observation and the reserve enters only on a Codex ruling. If Codex accepts C01-26 (or rules otherwise), a follow-up preparation must verify a reference and write nikolai-ryzhkov-cartoon-1990-v1.txt before any render.",
+      "batch_role": "reserve_conditional",
+      "category": "conditional_not_render_ready",
+      "generated": false
+    }
+  ],
+  "deferred_batch_2": {
+    "generated": false,
+    "people": [],
+    "reason": "Outside the released batch; no claim of readiness or acceptance."
+  },
+  "decisions": {
+    "source_originals_preserved": true,
+    "generated_originals_preserved": true,
+    "output_transformations": [],
+    "global_manifest_changed": false,
+    "queue_or_derived_exports_changed": false,
+    "historical_holder_changes": false,
+    "retained_failure_history": "Preparation-source retrieval failures remain in the existing country source ledger; this render operation issued no network-source requests. No image-generation request failed."
+  },
+  "next": [
+    "Independently review output likeness and rights.",
+    "Register only accepted portraits with exact output/input/prompt hashes and derivative licences.",
+    "Regenerate derived exports after registration; no production job is closed by this return alone."
+  ]
+}

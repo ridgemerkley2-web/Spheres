@@ -1,0 +1,870 @@
+{
+  "version": 1,
+  "country": "Japan",
+  "batch": "JP-CAST-B01",
+  "reviewed_at_utc": "2026-10-02T18:40:08.769893+00:00",
+  "reviewer": "Codex agent /root/tonga_civilian_roster",
+  "independent_of_renderer": true,
+  "source_request_revision": "9af78834cf0eab210b70cc33f14d5833b4eb1bb1",
+  "audit_checkout_revision": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "scope": "Independent review of seven active jobs, eight successful PNGs, seven selected files and the nine-call return record. Exact prompts, ordered actual inputs, output hashes/geometry/original byte identity, all eight output images, style anchor and retained source rights were checked. Reference photos were inspected during preflight; Doi and actual Yamaguchi transport input were also re-inspected here. No registration or country acceptance.",
+  "source_pins": [
+    {
+      "path": "docs/campaign-certification/C06/production/japan/render-return-batch-01-20261002.json",
+      "sha256": "0b6302bd8fbe9533fea6e4101fcbbd5290939b3b4515629635093b554e477599"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/japan/render-request-batch-01.md",
+      "sha256": "3bc250fb8529205af04e2c08ddfd85aeaf7db7e46f505fb20c99d79a991522d6"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/japan/identity-review-batch-01.json",
+      "sha256": "cb3ac83c278c34b5a146e9e41bfc41d039a97f675ffa321f9a2822eb7d30daaf"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/japan/yamaguchi-era-split-20261002.json",
+      "sha256": "3e43bf7c81e8caeda044b267fe77bb3237c8306486d5da0376bf81f58c4757a5"
+    }
+  ],
+  "status": "six_selected_pass_one_selected_age_likeness_hold",
+  "counts": {
+    "active_jobs": 7,
+    "generation_calls_recorded": 9,
+    "successful_outputs_reviewed": 8,
+    "selected_outputs_reviewed": 7,
+    "selected_pass": 6,
+    "selected_hold": 1,
+    "unselected_attempts_preserved": 1,
+    "failed_calls_preserved": 1,
+    "blocking_visual_findings": 1,
+    "mechanical_failures": 0
+  },
+  "authority": {
+    "human_approval": false,
+    "claude_approval": false,
+    "independent_render_review": true,
+    "registered_by_this_review": false,
+    "runtime_acceptance": false,
+    "country_signoff": false
+  },
+  "mechanical_checks": {
+    "active_job_and_era_window_mapping": true,
+    "exact_source_prompt_blobs_and_return_pins": true,
+    "all_input_pins_and_order": true,
+    "all_eight_outputs_byte_identical_to_original_tool_files": true,
+    "all_eight_1024x1536_rgb_png": true,
+    "all_eight_output_images_visually_inspected": true,
+    "transport_derivation_independently_reproduced_byte_identical": true,
+    "no_country_return_or_image_edits": true
+  },
+  "jobs": [
+    {
+      "person_id": "tomiichi_murayama",
+      "job_id": "tomiichi-murayama-cartoon-1993-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt",
+        "sha256": "8321abccdc8a9fe46af9fcfa966995c15b356e1bc03320fb07e279ca42a92af0",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg",
+          "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b"
+        }
+      ],
+      "appearance_window": {
+        "from": "1993-09-30",
+        "to": "1996-09-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/tomiichi-murayama-cartoon-1993-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-07f93e53-f04b-4ffa-b972-20b6eb7632bb.png",
+        "sha256": "cbc0e4de4f4f8ab08de07e9b4508fe45348bf40e1e5d005ed5e7137ee3e3bc7e",
+        "bytes": 1559685,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Long face, swept silver hair and long pale eyebrows agree with the inspected official portrait. Navy suit and diamond-pattern tie are coherent; full body and both hands/shoes are visible. The source capture date remains unknown; requested age about 70 is an artistic choice.",
+      "reference": {
+        "id": "tomiichi-murayama-1994",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Tomiichi_Murayama_19940630.jpg",
+        "asset": "spheres-web/ui/person-portraits/references/tomiichi-murayama-1994-reference-v1.jpg",
+        "sha256": "0412c4e05e6a88db36ef8853b25d4abcf296dc549600057676d7cda3251b400b",
+        "photograph_date": "Capture date unknown; APEC 1995-era association is an inference, not a proved capture deadline",
+        "creator": "内閣官房内閣広報室 (Cabinet Public Relations Office, Cabinet Secretariat, Government of Japan)",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-Tomiichi_Murayama_19940630.json",
+          "bytes": 50924,
+          "sha256": "23dd8d78a7a75d5ea820f223d2571728140f567262b721bffb2b8fe654b07278",
+          "retrieved_at": "2026-10-01"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-file-page-Tomiichi_Murayama_19940630.html",
+          "bytes": 126392,
+          "sha256": "d20c587a0fa190875577577e6e43314f42b0a96f73330c18a5ae72ca87f6e423",
+          "retrieved_at": "2026-10-01T22:56:50Z"
+        }
+      }
+    },
+    {
+      "person_id": "makoto_tanabe",
+      "job_id": "makoto-tanabe-cartoon-1991-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/makoto-tanabe-cartoon-1991-v1.txt",
+        "sha256": "0cd6d473e072f5a080cef12d241523d1ee43732c9784ece761790db065dc9ac9",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg",
+          "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687"
+        }
+      ],
+      "appearance_window": {
+        "from": "1991-07-31",
+        "to": "1993-01-19",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/makoto-tanabe-cartoon-1991-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-9a148acc-1b53-4040-9ed3-624a689cacb6.png",
+        "sha256": "f55972b5dcf35f6d8be42d163ce9aa17beedd1e962474461a8f9cf1995b70c86",
+        "bytes": 1553213,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Bald crown, sparse side hair, large glasses, broad cheeks and tooth-showing smile agree with the retained 1992 reference. Full-body suit rendering is coherent. The source day is attributed to Commons; the primary album was not newly reviewed.",
+      "reference": {
+        "id": "makoto-tanabe-1992",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Makoto_Tanabe_19920407.jpg",
+        "asset": "spheres-web/ui/person-portraits/references/makoto-tanabe-1992-reference-v1.jpg",
+        "sha256": "ed698782f20e16860322b8a90d297b00b662f149a5a9f202b421c74b3f10f687",
+        "photograph_date": "1992-04-07",
+        "creator": "外務省大臣官房儀典官室 (Protocol Office, Minister's Secretariat, Ministry of Foreign Affairs of Japan)",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-api-makoto-tanabe-19920407-and-parent.json",
+          "bytes": 8899,
+          "sha256": "482935b84e37a538577feadeb2bf0289e6269f1da60b6a331169dd171d59ebec",
+          "retrieved_at": "2026-10-01T22:52:10Z"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-file-page-makoto-tanabe-19920407.html",
+          "bytes": 87378,
+          "sha256": "4b20e001878d63f8a23ef778c0caefeaf8054eb274f3e1094a4a56bb953e0d1b",
+          "retrieved_at": "2026-10-01T23:45:33Z"
+        }
+      }
+    },
+    {
+      "person_id": "sadao_yamahana",
+      "job_id": "sadao-yamahana-cartoon-1993-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/sadao-yamahana-cartoon-1993-v1.txt",
+        "sha256": "0f6270864427465f7d5aaa409ea87168e10a5e0c9e8184076726e972e62806aa",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg",
+          "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85"
+        }
+      ],
+      "appearance_window": {
+        "from": "1993-01-19",
+        "to": "1993-09-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/sadao-yamahana-cartoon-1993-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-2af29adc-66c0-4e1a-9ed1-dca3aed227f9.png",
+        "sha256": "26f222967bcd0de9846695bc8126a22eda69e81abe6cce8307c44d67a7a91b15",
+        "bytes": 1560733,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Silver swept hair, large angular glasses, broad face and three-quarter orientation agree with the small official film frame. Full body is coherent and hands/shoes are present. Fine facial detail is necessarily reconstructed from a soft source.",
+      "reference": {
+        "id": "sadao-yamahana-1993",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.jpg",
+        "asset": "spheres-web/ui/person-portraits/references/sadao-yamahana-1993-reference-v1.jpg",
+        "sha256": "a256049c2da071664809609e2021f910c22966d0633656299614d92e4489bb85",
+        "photograph_date": "1993-08-09",
+        "creator": "防衛庁 (Japan Defense Agency); film '平成5年防衛庁記録', published by the Ministry of Defense / JSDF official YouTube channel (modchannel)",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-api-imageinfo-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.json",
+          "bytes": 3849,
+          "sha256": "01ad8adcd8098cfcc17270c6bae764eccb3ae2553657587a1518916107e83b45",
+          "retrieved_at": "2026-10-01T22:40:09Z"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-file-page-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.html",
+          "bytes": 105308,
+          "sha256": "3d3d58562af40524a442f89dd1073d42e7ec8857b1bf39a748c74da36a1d3d8b",
+          "retrieved_at": "2026-10-01"
+        }
+      }
+    },
+    {
+      "person_id": "takako_doi",
+      "job_id": "takako-doi-cartoon-1996-v1",
+      "attempt": 1,
+      "selected_for_return": false,
+      "disposition": "hold_for_claude_age_and_likeness_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt",
+        "sha256": "14bc6db8eea91726074ea2c0cb21db7ac1f08e1c972226a5b4849f35074e5c96",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da"
+        }
+      ],
+      "appearance_window": {
+        "from": "1996-09-30",
+        "to": "2003-11-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "docs/campaign-certification/C06/render-return-20261002/attempts/japan/takako-doi-cartoon-1996-v1-attempt-1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-3c094579-ed1a-4e82-bc49-dd4e26d96e2e.png",
+        "sha256": "a0fbe9f219ba98de91322d173c5900d95afc8ce26db843b3cace8fa2c849ce0b",
+        "bytes": 1619664,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Short swept brown hair, glasses and face outline carry the requested identity cues, but both outputs have very smooth cheeks and forehead and read substantially younger than the requested approximately 70. Attempt 2 has somewhat clearer mouth/neck creases and is the better selected candidate; it still needs Claude age/likeness disposition. The 2005 reference is later than the requested window, and in-window glasses are an artistic interpretation.",
+      "reference": {
+        "id": "takako-doi-2005",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Takako_Doi_in_Tokyo_congressist_election.jpg",
+        "asset": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+        "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+        "photograph_date": "2005-07-02",
+        "creator": "Akira Kamikura",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-api-takako-doi-2005-and-2000-question-time-03.json",
+          "bytes": 14509,
+          "sha256": "e487422ab2c62a5418e08fef8a4c32f6d76b6c9713e6e9525c0df50c0e85bfe7",
+          "retrieved_at": "2026-10-01"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-file-page-takako-doi-in-tokyo-congressist-election.html",
+          "bytes": 123143,
+          "sha256": "c7a0575a1e9d18a1b0d64f7eedeea12e3def91601ec823702850902ca162f0ab",
+          "retrieved_at": "2026-10-01"
+        }
+      }
+    },
+    {
+      "person_id": "takako_doi",
+      "job_id": "takako-doi-cartoon-1996-v1",
+      "attempt": 2,
+      "selected_for_return": true,
+      "disposition": "hold_for_claude_age_and_likeness_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt",
+        "sha256": "14bc6db8eea91726074ea2c0cb21db7ac1f08e1c972226a5b4849f35074e5c96",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+          "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da"
+        }
+      ],
+      "appearance_window": {
+        "from": "1996-09-30",
+        "to": "2003-11-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1996-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-15e8df34-59fe-42ad-80a2-9d231ecf3ab4.png",
+        "sha256": "7bec1c73f681ad50e525ddb48e008c71cf0f682c0cb10714df092fdcb36916ef",
+        "bytes": 1629629,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Short swept brown hair, glasses and face outline carry the requested identity cues, but both outputs have very smooth cheeks and forehead and read substantially younger than the requested approximately 70. Attempt 2 has somewhat clearer mouth/neck creases and is the better selected candidate; it still needs Claude age/likeness disposition. The 2005 reference is later than the requested window, and in-window glasses are an artistic interpretation.",
+      "reference": {
+        "id": "takako-doi-2005",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Takako_Doi_in_Tokyo_congressist_election.jpg",
+        "asset": "spheres-web/ui/person-portraits/references/takako-doi-2005-reference-v1.jpg",
+        "sha256": "d7b1ebe60fcc7d6abf4e2e29272a01bb31a5b2e582f32e87a26dc05e1c5ef6da",
+        "photograph_date": "2005-07-02",
+        "creator": "Akira Kamikura",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-api-takako-doi-2005-and-2000-question-time-03.json",
+          "bytes": 14509,
+          "sha256": "e487422ab2c62a5418e08fef8a4c32f6d76b6c9713e6e9525c0df50c0e85bfe7",
+          "retrieved_at": "2026-10-01"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-file-page-takako-doi-in-tokyo-congressist-election.html",
+          "bytes": 123143,
+          "sha256": "c7a0575a1e9d18a1b0d64f7eedeea12e3def91601ec823702850902ca162f0ab",
+          "retrieved_at": "2026-10-01"
+        }
+      }
+    },
+    {
+      "person_id": "akihiro_ota",
+      "job_id": "akihiro-ota-cartoon-2006-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/akihiro-ota-cartoon-2006-v1.txt",
+        "sha256": "bd0fdc42e07e9ade28fcf5df7c6a77b90457ba7ebfb9adef63136767cd31cbab",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg",
+          "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6"
+        }
+      ],
+      "appearance_window": {
+        "from": "2006-09-30",
+        "to": "2009-09-08",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/akihiro-ota-cartoon-2006-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-6de31f05-087d-4c47-a014-5e16773d9e43.png",
+        "sha256": "f6d6c6f8cd2302c74f84d64da02f3c2a108932119c439f55515480c39872a5f4",
+        "bytes": 1536646,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Broad face, short swept dark hair, calm expression and blue patterned tie agree with the inspected official portrait. Full body, hands and shoes are coherent. Source capture date is unknown; the requested late-50s depiction is an artistic interpretation.",
+      "reference": {
+        "id": "akihiro-ota-2012",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Akihiro_%C5%8Cta_20121227.jpg",
+        "asset": "spheres-web/ui/person-portraits/references/akihiro-ota-2012-reference-v1.jpg",
+        "sha256": "dc66c2da51532403c4eb214191a34b8c28913a06d3fc6cc38a9982ae6997d4c6",
+        "photograph_date": "Capture date unknown; 2012-12-27 is editing metadata in another Commons revision",
+        "creator": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan), as the Commons author field and MLIT's flyer credit it; no photographer is named",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/assembler/commons-api-filehistory-Akihiro_Ota_20121227.json",
+          "bytes": 3275,
+          "sha256": "8179cae7b05439481b2ae61e5b64475146827e7dea0c8eca37efff64d93397cc",
+          "retrieved_at": "2026-10-01T23:59:30Z"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-file-page-Akihiro_Ota_20121227.html",
+          "bytes": 110313,
+          "sha256": "6c3e29a49afd676815e0fc6c3b7bd666b3ede6b823a598a42b224884d0bf9e49",
+          "retrieved_at": "2026-10-01T23:37:57Z"
+        }
+      }
+    },
+    {
+      "person_id": "natsuo_yamaguchi",
+      "job_id": "natsuo-yamaguchi-cartoon-2009-v2",
+      "attempt": 1,
+      "selected_for_return": true,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt",
+        "sha256": "bdd8f7a4b7410cde0312cbc839b2f1d711260403b71345680a41faf4ab278ee6",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+          "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17"
+        }
+      ],
+      "appearance_window": {
+        "from": "2009-09-08",
+        "to": "2015-01-01",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2009-v2.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-55394862-aa38-4514-afa5-45caaefbc871.png",
+        "sha256": "448eff0c1fc6cfd1d2a6dcaa2ce928a654c8235e0d69deb3f3d1e46c0d929a3b",
+        "bytes": 1513624,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Dark swept hair, oval face, prominent ears and slim build agree with the 2013 reference. Red dotted tie and suit follow the request. It reads younger than the later variant, with less gray; both hands and shoes are present. Standing suit pose is an artistic extension from a shirtsleeved campaign source.",
+      "reference": {
+        "id": "natsuo-yamaguchi-2013",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Natsuo_Yamaguchi_IMG_5607_20130707.JPG",
+        "asset": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2013-reference-v1.jpg",
+        "sha256": "733c566ef07a1e0b91623ff7549e301a5c8e73f09246ae9a2ed234c7f411dd17",
+        "photograph_date": "2013-07-07",
+        "creator": "Ogiyoshisan (Wikimedia Commons user), own work",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Natsuo_Yamaguchi_IMG_5607_20130707.json",
+          "bytes": 5431,
+          "sha256": "026cdb4449d3a0fccfaed614ca6d5236e1048710c9346a8f404a9639849ad4b1",
+          "retrieved_at": "2026-10-02T13:36:01Z",
+          "content": "Commons API imageinfo (all file versions: one), extmetadata, commonmetadata, categories and current wikitext."
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Natsuo_Yamaguchi_IMG_5607_20130707.html",
+          "bytes": 92994,
+          "sha256": "50914de02e16b8a821181e49520b774564333aae1862591d431402e9cd200775",
+          "retrieved_at": "2026-10-02T13:36:14Z"
+        }
+      }
+    },
+    {
+      "person_id": "natsuo_yamaguchi",
+      "job_id": "natsuo-yamaguchi-cartoon-2015-v1",
+      "attempt": 1,
+      "selected_for_return": true,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt",
+        "sha256": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs_in_order": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+          "sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461"
+        }
+      ],
+      "appearance_window": {
+        "from": "2015-01-01",
+        "to": "2024-09-28",
+        "to_exclusive": true,
+        "basis": "Render request only; does not establish tenure."
+      },
+      "output": {
+        "path": "spheres-web/ui/person-portraits/natsuo-yamaguchi-cartoon-2015-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-90d4c63a-3ac3-418f-8afb-6551c610fe13.png",
+        "sha256": "f4e6099151f52640e47743fa2b3570fa8acd7b5026975445b3bfa0018971bf87",
+        "bytes": 1559640,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "checks": {
+        "exact_original_tool_bytes": true,
+        "prompt_and_input_pins": true,
+        "visually_inspected": true,
+        "full_body_hands_and_shoes_visible": true,
+        "no_obvious_extra_digits_or_limbs": true,
+        "no_text_logo_badges_or_extra_people": true,
+        "style_consistent_with_thatcher_anchor": true
+      },
+      "visual_observations": "Gray threaded swept hair, longer face, pronounced cheek/mouth lines and pale blue tie agree with the central speaker in the 2019 source. The selected image provides a useful older contrast to the early variant. The standing body is an artistic extension from the seated group photograph.",
+      "reference": {
+        "id": "natsuo-yamaguchi-2019",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Plenary_Session_4_(48640890007).jpg",
+        "asset": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+        "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+        "photograph_date": "2019-08-29",
+        "creator": "TICAD7 Photographs (Flickr account 183216468@N06, named 'MOFA TICAD' in the Commons Flickr review)",
+        "license": "CC0",
+        "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "metadata_original": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Plenary_Session_4_48640890007_.json",
+          "bytes": 4580,
+          "sha256": "11742dbb430616c956633f13331688f3702e900de1a7397560cd701f62b3513b",
+          "retrieved_at": "2026-10-01T23:24:36Z"
+        },
+        "metadata_file_page": {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Plenary_Session_4_48640890007_.html",
+          "bytes": 127538,
+          "sha256": "39e95e775df11ead58aea075edafbe66e79c71ad9900a2fe64a9d8b93b6aa6e1",
+          "retrieved_at": "2026-10-01T23:24:57Z"
+        }
+      }
+    }
+  ],
+  "source_rights_review": [
+    {
+      "reference_id": "tomiichi-murayama-1994",
+      "licence": "CC BY 4.0",
+      "creator": "内閣官房内閣広報室 (Cabinet Public Relations Office, Cabinet Secretariat, Government of Japan)",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-api-imageinfo-Tomiichi_Murayama_19940630.json",
+          "sha256": "23dd8d78a7a75d5ea820f223d2571728140f567262b721bffb2b8fe654b07278"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/commons-file-page-Tomiichi_Murayama_19940630.html",
+          "sha256": "d20c587a0fa190875577577e6e43314f42b0a96f73330c18a5ae72ca87f6e423"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/tomiichi_murayama/kantei-terms.html",
+          "sha256": "eaec2ac88702de206e7eacd2149519ef609e290a785c09757096ea3107bc863e"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "Kantei current terms permit reuse with source and edited-use notices; portrait matches official bytes. Later archive captures do not prove an in-window photograph date."
+    },
+    {
+      "reference_id": "makoto-tanabe-1992",
+      "licence": "CC BY 4.0",
+      "creator": "外務省大臣官房儀典官室 (Protocol Office, Minister's Secretariat, Ministry of Foreign Affairs of Japan)",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-api-makoto-tanabe-19920407-and-parent.json",
+          "sha256": "482935b84e37a538577feadeb2bf0289e6269f1da60b6a331169dd171d59ebec"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/makoto_tanabe/commons-file-page-makoto-tanabe-19920407.html",
+          "sha256": "4b20e001878d63f8a23ef778c0caefeaf8054eb274f3e1094a4a56bb953e0d1b"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "Commons caption supplies day-level date; no new direct primary-album review. Earlier MOFA fetch failure is preserved; no claim of blanket third-party clearance."
+    },
+    {
+      "reference_id": "sadao-yamahana-1993",
+      "licence": "CC BY 3.0",
+      "creator": "防衛庁 (Japan Defense Agency); film '平成5年防衛庁記録', published by the Ministry of Defense / JSDF official YouTube channel (modchannel)",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-api-imageinfo-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.json",
+          "sha256": "01ad8adcd8098cfcc17270c6bae764eccb3ae2553657587a1518916107e83b45"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/commons-file-page-Sadao_Yamahana_Morihiro_Hosokawa_Cabinet_19930809-2.html",
+          "sha256": "3d3d58562af40524a442f89dd1073d42e7ec8857b1bf39a748c74da36a1d3d8b"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/sadao_yamahana/youtube-KFhAKAU2Q_8-licence-extract.json",
+          "sha256": "53cc2cf54daf723ac536fca745daf8f07ce356d242fb2f15e520d29e6a0a2171"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "Official MOD YouTube title/channel/licence extraction corroborates CC BY. Watch-page body was deliberately not retained by preparer; this review reads the retained extract and Commons metadata, not a fresh full-film or raw-page review."
+    },
+    {
+      "reference_id": "takako-doi-2005",
+      "licence": "CC BY 2.0",
+      "creator": "Akira Kamikura",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-api-takako-doi-2005-and-2000-question-time-03.json",
+          "sha256": "e487422ab2c62a5418e08fef8a4c32f6d76b6c9713e6e9525c0df50c0e85bfe7"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/takako_doi/commons-file-page-takako-doi-in-tokyo-congressist-election.html",
+          "sha256": "c7a0575a1e9d18a1b0d64f7eedeea12e3def91601ec823702850902ca162f0ab"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "CC BY2 by Akira Kamikura is supported; licence is not the hold. Age/likeness remains held."
+    },
+    {
+      "reference_id": "akihiro-ota-2012",
+      "licence": "CC BY 4.0",
+      "creator": "国土交通省 (Ministry of Land, Infrastructure, Transport and Tourism, Japan), as the Commons author field and MLIT's flyer credit it; no photographer is named",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/assembler/commons-api-filehistory-Akihiro_Ota_20121227.json",
+          "sha256": "8179cae7b05439481b2ae61e5b64475146827e7dea0c8eca37efff64d93397cc"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-file-page-Akihiro_Ota_20121227.html",
+          "sha256": "6c3e29a49afd676815e0fc6c3b7bd666b3ede6b823a598a42b224884d0bf9e49"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/commons-api-imageinfo-Akihiro_Ota_20121227.json",
+          "sha256": "2ff5061e145550512c63265cf5e585d3ac844bfa751d32db877f4d0d32533981"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/akihiro_ota/mlit-terms-link.html",
+          "sha256": "8d73d659e9fa5f64a24499428e8a8599b160a954cb5ffb2aacac898ab19f200b"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "Exact chosen 339x507 original revision is distinguished from the later commercial response.jp overwrite. MLIT PDL terms and Commons BY4 attribution are retained; no photographer identity or capture date is invented."
+    },
+    {
+      "reference_id": "natsuo-yamaguchi-2013",
+      "licence": "CC BY 3.0",
+      "creator": "Ogiyoshisan (Wikimedia Commons user), own work",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Natsuo_Yamaguchi_IMG_5607_20130707.json",
+          "sha256": "026cdb4449d3a0fccfaed614ca6d5236e1048710c9346a8f404a9639849ad4b1"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Natsuo_Yamaguchi_IMG_5607_20130707.html",
+          "sha256": "50914de02e16b8a821181e49520b774564333aae1862591d431402e9cd200775"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "Ogiyoshisan own-work CC BY3 unported, with attribution/adaptation notice. January clothing colours are text-only contextual observations, not an additional submitted image."
+    },
+    {
+      "reference_id": "natsuo-yamaguchi-2019",
+      "licence": "CC0",
+      "creator": "TICAD7 Photographs (Flickr account 183216468@N06, named 'MOFA TICAD' in the Commons Flickr review)",
+      "source_rights_material_read": [
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-api-imageinfo-Plenary_Session_4_48640890007_.json",
+          "sha256": "11742dbb430616c956633f13331688f3702e900de1a7397560cd701f62b3513b"
+        },
+        {
+          "path": "D:/spheres-scratch/jp-cast/refs/natsuo_yamaguchi/commons-file-page-Plenary_Session_4_48640890007_.html",
+          "sha256": "39e95e775df11ead58aea075edafbe66e79c71ad9900a2fe64a9d8b93b6aa6e1"
+        }
+      ],
+      "disposition": "retained_source_licence_supports_bounded_reference_use_preserve_credit_and_adaptation_notice",
+      "limitations": "CC0 by TICAD7 Photographs / MOFA TICAD. Exact source and uncropped transport derivative both retained."
+    }
+  ],
+  "transport_review": {
+    "source_path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+    "source_sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+    "source_dimensions": [
+      8256,
+      5504
+    ],
+    "source_bytes": 27276808,
+    "actual_input_path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-generation-input-v1.jpg",
+    "actual_input_sha256": "8498e9ae71551baf859fc0cfb0fa7d5522a37093e21f725933e6d11df9cca461",
+    "actual_input_dimensions": [
+      2048,
+      1365
+    ],
+    "actual_input_bytes": 795688,
+    "operation": "Uncropped proportional thumbnail, Pillow LANCZOS, maximum 2048 pixels, JPEG quality95 subsampling0, ICC profile retained if present. Input transport copy only; original source and all generated outputs unchanged.",
+    "independent_reproduction": "Exact bytes reproduced in memory from original using declared Pillow LANCZOS thumbnail/JPEG settings; original unchanged. Visually inspected actual uncropped transport copy; central speaker remains identifiable.",
+    "original_input_failure": {
+      "job_id": "natsuo-yamaguchi-cartoon-2015-v1",
+      "attempt": 1,
+      "stage": "reference transport before generation",
+      "prompt_sha256_submitted": "167d41df240fabe1a5c92cdaf6b8551363242bfcb417dab060f983af8c83d6e2",
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg",
+          "sha256": "7a027371b0e26341491ab8ea9393ddd13ed7db6c36d5843721a0a880d5724354",
+          "absolute_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/natsuo-yamaguchi-2019-reference-v1.jpg"
+        }
+      ],
+      "error": "unable to read referenced image: fs/readFile returned invalid base64 dataBase64: Invalid symbol 61, offset 18952891.",
+      "output": null,
+      "recovery": "Uncropped proportional 2048px transport copy; original retained; exact prompt unchanged. Successful output attempt 1 is the second tool call for this job."
+    },
+    "count_note": "Successful later Yamaguchi output is numbered attempt 1 among successful outputs but is the second generation-tool call for that job; return discloses this. Eight successful PNG records plus one pre-generation failure reconcile to nine calls."
+  },
+  "findings": [
+    {
+      "id": "JP-DOI-AGE-01",
+      "severity": "hold",
+      "job_id": "takako-doi-cartoon-1996-v1",
+      "attempts": [
+        1,
+        2
+      ],
+      "selected_attempt": 2,
+      "summary": "Both attempts read younger than the requested approximately 70. Attempt 2 improves age cues slightly but remains held for Claude age/likeness review.",
+      "required_next_step": "Claude must explicitly assess era/likeness before registration; no new render requested or performed by this audit."
+    }
+  ],
+  "non_blocking_notes": [
+    "All eight images use a near-flat dark teal field with subtle texture/shading, similar to the style anchor; this is not a claim that every background pixel equals #192D34.",
+    "Source date uncertainties for Murayama/Ota, Commons-attributed Tanabe day, soft Yamahana film frame and Doi age interpretation remain explicit.",
+    "Yamaguchi 2015 split is an editorial appearance split, not an office boundary. Neither source proves appearance in every year.",
+    "Historical holder objects and existing registrations are outside this render audit and were not changed."
+  ],
+  "skipped": [
+    {
+      "job_id": "natsuo-yamaguchi-cartoon-2009-v1",
+      "status": "superseded",
+      "reason": "Two approved-request era jobs replace it; never submitted."
+    },
+    {
+      "person_id": "takenori_kanzaki",
+      "status": "excluded",
+      "reason": "Outside active seven jobs."
+    },
+    {
+      "person_id": "seiji_mataichi",
+      "status": "reserve_not_prepared"
+    },
+    {
+      "person_id": "tadatomo_yoshida",
+      "status": "reserve_not_prepared"
+    }
+  ],
+  "review_limits": [
+    "The reviewer inspected retained files and the renderer return; it did not independently observe another agent tool invocation. Actual submitted-prompt/input assertions and call count are cross-checked against retained artifacts and renderer testimony, not fabricated tool telemetry.",
+    "No human approval, Claude registration approval, runtime acceptance or complete-country coverage is claimed."
+  ]
+}

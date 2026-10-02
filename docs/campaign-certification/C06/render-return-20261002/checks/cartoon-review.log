@@ -1,0 +1,17 @@
+{
+ "check": true,
+ "items": {
+  "historical": 107,
+  "fictional": 8,
+  "unregistered": 36,
+  "missing": 400
+ },
+ "findings_by_severity": {
+  "error": 0,
+  "warning": 34,
+  "notice": 751
+ },
+ "duplicate_groups_with_different_identities": 0,
+ "visual_review_entries": 8,
+ "approved_by_this_export": 0
+}

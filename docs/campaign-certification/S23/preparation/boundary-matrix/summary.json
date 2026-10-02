@@ -612,7 +612,14 @@
        "unresearched": 37
       },
       "people_without_bound_art_at_yearly_samples": 34,
-      "unbound_yearly_samples_without_art_job": [],
+      "unbound_yearly_samples_without_art_job": [
+       "alain_juppe",
+       "francois_hollande",
+       "henri_emmanuelli",
+       "laurent_fabius",
+       "lionel_jospin",
+       "michel_rocard"
+      ],
       "fictional_candidates": 60,
       "fictional_party_candidates": 60,
       "fictional_institutional_candidates": 0,
@@ -630,7 +637,8 @@
       "Campaign-start executive Francois Mitterrand: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "The national executive office has no paired research role, so its historical chain is unresearched.",
-      "Future: 60 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive."
+      "Future: 60 party candidates and 0 institutional candidates, 0 with a served portrait, 0 authorized for a national executive.",
+      "Unbound registry holders with no art job covering the sample date: alain_juppe, francois_hollande, henri_emmanuelli, laurent_fabius, lionel_jospin, michel_rocard."
      ]
     }
    ]
@@ -1312,6 +1320,23 @@
  ],
  "assets": [
   {
+   "asset": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+   "exists": true,
+   "bytes": 1647092,
+   "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+   "manifest_sha256": [
+    "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "alain_juppe"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/e-m-s-namboodiripad-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1443844,
@@ -1448,6 +1473,23 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+   "exists": true,
+   "bytes": 1437666,
+   "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+   "manifest_sha256": [
+    "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "francois_hollande"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1610252,
@@ -1465,6 +1507,23 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+   "exists": true,
+   "bytes": 1496061,
+   "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+   "manifest_sha256": [
+    "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "francois_mitterrand"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1474524,
@@ -1480,6 +1539,23 @@
    "shared_across_people": false,
    "filename_matches_person": true,
    "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+   "exists": true,
+   "bytes": 1574049,
+   "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
+   "manifest_sha256": [
+    "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "henri_emmanuelli"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
   },
   {
    "asset": "spheres-web/ui/person-portraits/hugo-napoleao-cartoon-1990-v1.png",
@@ -1584,6 +1660,23 @@
    "status": "available"
   },
   {
+   "asset": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+   "exists": true,
+   "bytes": 1732155,
+   "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+   "manifest_sha256": [
+    "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "laurent_fabius"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
+  },
+  {
    "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
    "exists": true,
    "bytes": 1414590,
@@ -1599,6 +1692,23 @@
    "shared_across_people": false,
    "filename_matches_person": true,
    "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+   "exists": true,
+   "bytes": 1577428,
+   "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
+   "manifest_sha256": [
+    "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "lionel_jospin"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
   },
   {
    "asset": "spheres-web/ui/person-portraits/luiz-gushiken-cartoon-1990-v1.png",
@@ -1633,6 +1743,23 @@
    "shared_across_people": false,
    "filename_matches_person": true,
    "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1812840,
+   "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
+   "manifest_sha256": [
+    "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": false,
+   "referenced_by": [
+    "michel_rocard"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "not_on_served_allowlist"
   },
   {
    "asset": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1990-v1.png",
@@ -1925,7 +2052,14 @@
   }
  ],
  "wrong_or_unavailable_assets": [
+  "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
   "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1990-v1.png",
+  "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+  "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+  "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+  "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+  "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+  "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
   "spheres-web/ui/person-portraits/tonga-kalolo-matalehu-fictional-2026-v1.png",
   "spheres-web/ui/person-portraits/tonga-lesieli-fotu-fictional-2026-v1.png",
   "spheres-web/ui/person-portraits/tonga-pisila-tukuafu-fictional-2026-v1.png",
@@ -1942,7 +2076,7 @@
   {
    "path": "docs/campaign-certification/C01/census.json",
    "bytes": 6414,
-   "sha256": "fb613fa65d9e2c2750bc2f6bff3d8bacdaa24ed32bdb281459f8028c838ad0f5",
+   "sha256": "4a98469459ed686086045ee7b703404de0a1624642163bfff0a48dd9cbf45b5a",
    "newline_normalized": true,
    "exists": true
   },
@@ -2704,8 +2838,8 @@
   },
   {
    "path": "spheres-web/data/leadership_production_2035.json",
-   "bytes": 6204564,
-   "sha256": "42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4",
+   "bytes": 6232567,
+   "sha256": "b42bb31247a4ed842bc8e16a393fb1affe6f75d8a9f2dbc374b1a1c16082169e",
    "newline_normalized": true,
    "exists": true
   },
@@ -2718,8 +2852,8 @@
   },
   {
    "path": "spheres-web/data/person_portraits.json",
-   "bytes": 494659,
-   "sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+   "bytes": 535693,
+   "sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
    "newline_normalized": true,
    "exists": true
   },
@@ -2735,6 +2869,13 @@
    "bytes": 31803,
    "sha256": "1cdb635ad2b9bf683cf166e8d11a36be8751a0c273308ca2651a7d9731e9e657",
    "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+   "bytes": 1647092,
+   "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+   "newline_normalized": false,
    "exists": true
   },
   {
@@ -2794,6 +2935,13 @@
    "exists": true
   },
   {
+   "path": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+   "bytes": 1437666,
+   "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
    "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1990-v1.png",
    "bytes": 1610252,
    "sha256": "7ac9ccc1a6bff5189768d161358b0c3629ae61939b9e4c0395de1ac5548b24c0",
@@ -2801,9 +2949,23 @@
    "exists": true
   },
   {
+   "path": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+   "bytes": 1496061,
+   "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
    "path": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
    "bytes": 1474524,
    "sha256": "84af0ef687c0af91e1a2028e7b33eef0abf7724d1a55b3399eb2795174922e57",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+   "bytes": 1574049,
+   "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
    "newline_normalized": false,
    "exists": true
   },
@@ -2850,9 +3012,23 @@
    "exists": true
   },
   {
+   "path": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+   "bytes": 1732155,
+   "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
    "path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
    "bytes": 1414590,
    "sha256": "47408b24cee227ddbc134d0dcfe7d8db7a0459bfb8c5f6f1ae481e6fae77e3e7",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+   "bytes": 1577428,
+   "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
    "newline_normalized": false,
    "exists": true
   },
@@ -2867,6 +3043,13 @@
    "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png",
    "bytes": 1486793,
    "sha256": "ac3a78b825e10e3b287281dcb9a02873cc2e98ac56a4640f5dafb81f7f1498de",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+   "bytes": 1812840,
+   "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
    "newline_normalized": false,
    "exists": true
   },

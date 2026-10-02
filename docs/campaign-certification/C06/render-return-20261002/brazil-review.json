@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "country": "Brazil",
+  "batch_id": "BR-CAST-B01",
+  "review_date": "2026-10-02",
+  "reviewer": "Codex agent /root/tonga_royal_identities",
+  "independent_of_renderer": true,
+  "status": "seven_selected_outputs_pass_bounded_independent_render_review",
+  "scope": "Audit the recorded eight attempts against the seven active request jobs, exact LF prompts, ordered inputs, retained reference originals and untouched original generated PNGs. Visually inspect all seven selected outputs, their six distinct source photographs, and the rejected attempt.",
+  "source_revision": "8fc53247ff23721bd355ca6962b0861a76fe6902",
+  "render_return_path": "docs/campaign-certification/C06/production/brazil/render-return-batch-01-20261002.json",
+  "render_return_before_sha256": "400d2353245553445b3a4fe5e28a3ddad3ade503d5a42d8bb8934a6e925e59b9",
+  "request": {
+    "path": "docs/campaign-certification/C06/production/brazil/render-request-batch-01.md",
+    "sha256": "9fd6d005e3b93b6eccaf649c68b595f9e9578f069828d5d988be0a592d04feb3"
+  },
+  "identity_review": {
+    "path": "docs/campaign-certification/C06/production/brazil/identity-review-batch-01.json",
+    "sha256": "b480afe609da93df46ad14249c91f5b1ed115b1d90f7b697deeb93ccd44a046e"
+  },
+  "counts": {
+    "active_jobs": 7,
+    "attempts": 8,
+    "selected_outputs": 7,
+    "retained_original_outputs": 8,
+    "visually_inspected_selected_outputs": 7,
+    "visually_inspected_distinct_reference_photographs": 6,
+    "rejected_outputs": 1,
+    "hash_mismatches": 0,
+    "blocking_selected_render_defects": 0
+  },
+  "mechanical_checks": [
+    {
+      "attempt_index": 0,
+      "job_id": "michel_temer-0a0870c78f13",
+      "attempt": 1,
+      "selected": true,
+      "prompt_sha256": "677621155322535fa13553350720014499f550e9b21d6affee9faf2b196d2a76",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "c01b7ea7f052f734716eb07a5111e25a190f942aa67d9006ab405fe65d33b252",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    },
+    {
+      "attempt_index": 1,
+      "job_id": "michel_temer-555b84955d80",
+      "attempt": 1,
+      "selected": true,
+      "prompt_sha256": "d3bfc1cbdb8723577ae3da80e38e74e05c94c5c8f6fb79341d5a2aaacfa9c5c0",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "b85e96ebb5cb4b6611d1a75bf6889a1c7f6488b6e2e4ef5027d04720512e51e1",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    },
+    {
+      "attempt_index": 2,
+      "job_id": "baleia_rossi-86cb96c29aa9",
+      "attempt": 1,
+      "selected": true,
+      "prompt_sha256": "d1a0008ac591682d64e3aa4dfbd378e2789446181cde9f32486c8a203f77a8e4",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "23b89204a9aecbcbf5456c998c61edb8ccdca8fc030fc24086cb474adb353395",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    },
+    {
+      "attempt_index": 3,
+      "job_id": "leonel_brizola-fa7af2b7d699",
+      "attempt": 1,
+      "selected": true,
+      "prompt_sha256": "3170bb3479c8e23145ab28da573898cc0342c3f5c065475d8f9216f5339dc90d",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "b74c7d034c0a73af872518a48bc12574d4732ef52d248cec3f0e251325a7d71b",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    },
+    {
+      "attempt_index": 4,
+      "job_id": "carlos_lupi-45b22e501a80",
+      "attempt": 1,
+      "selected": true,
+      "prompt_sha256": "0c57b3987daa007d9bfb103b4269499a80f359b923b42e1eb6fd4a273c00cf56",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "1b0c2827ddb3e3b6a50a0dbaefa3a850aa57e6f142e03ba1ed15ea38d8694117",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    },
+    {
+      "attempt_index": 5,
+      "job_id": "carlos_lupi-400fe963352c",
+      "attempt": 1,
+      "selected": false,
+      "prompt_sha256": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "a6489597a71971d1af82ef086651ba438b553a1ed89d69647e3f890dc14f7528",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "selected_copy_matches": null
+    },
+    {
+      "attempt_index": 6,
+      "job_id": "carlos_lupi-400fe963352c",
+      "attempt": 2,
+      "selected": true,
+      "prompt_sha256": "777d1e145a0ffe2ed9a2e02d4e83bf948d27f445083a160ecf6065c5704cc530",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "be19073f7c90c87b41d13439eea5038f050fd511014c9fe447b8ff476a47013b",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    },
+    {
+      "attempt_index": 7,
+      "job_id": "carlos_lupi-84f4126df75f",
+      "attempt": 1,
+      "selected": true,
+      "prompt_sha256": "cc0a4c92eeea27ed6b37769a41ea8c3de6ff9edd75e10f47cbb1adea1070a218",
+      "input_hashes_match": true,
+      "reference_bytes_match_retained_original": true,
+      "output_sha256": "145568d46f70179615c47a16b68273de513c3e50023f198c6cb2eb1062b90901",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "selected_copy_matches": true
+    }
+  ],
+  "visual_reviews": [
+    {
+      "attempt_index": 0,
+      "person_id": "michel_temer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/michel-temer-cartoon-2001-v1.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/michel-temer-2009-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Correct right-hand subject from the 2009 group photograph, distinct from central Lupi. Swept-back silver hair, dark brows, lean face, gray suit and burgundy tie follow the prompt; both hands and shoes clear."
+    },
+    {
+      "attempt_index": 1,
+      "person_id": "michel_temer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/michel-temer-cartoon-2010-v1.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/michel-temer-2017-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Same Temer identity in the later silver-haired variant; navy suit and striped tie align with the official portrait. Both hands and shoes clear."
+    },
+    {
+      "attempt_index": 2,
+      "person_id": "baleia_rossi",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/baleia-rossi-cartoon-2019-v1.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/baleia-rossi-2021-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Broad rounded face, wavy dark hair with gray temples, open blue collar and dark suit align with the reference. No microphone or setting retained."
+    },
+    {
+      "attempt_index": 3,
+      "person_id": "leonel_brizola",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/leonel-brizola-cartoon-1995-v1.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/leonel-brizola-1998-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Profile-derived prominent nose, heavy brows, large ears, curly gray sides/back and full lower face remain legible. Bareheaded crown, frontal detail and suit/body are disclosed artistic completion rather than details independently shown by the hat-covered photograph."
+    },
+    {
+      "attempt_index": 4,
+      "person_id": "carlos_lupi",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/carlos-lupi-cartoon-2004-v1.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2009-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Correct central man from the shared 2009 group photograph, distinct from Temer. Clean-shaven dark-haired Lupi, broad smile, yellow tie and dark suit match the request."
+    },
+    {
+      "attempt_index": 6,
+      "person_id": "carlos_lupi",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/carlos-lupi-cartoon-2015-v2.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2015-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Third man from the left in the 2015 group reference is preserved. Dark hair/beard with gray at temples/chin clearly distinguishes this era from the later gray variant. Blue jacket and dark trousers match. A faint jacket check remains despite the plain-cloth simplification requested; non-blocking source-derived detail."
+    },
+    {
+      "attempt_index": 7,
+      "person_id": "carlos_lupi",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/carlos-lupi-cartoon-2020-v1.png",
+      "reference_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/claude-c06-review-20261002/spheres-web/ui/person-portraits/references/carlos-lupi-2023-reference-v1.jpg",
+      "disposition": "pass_with_declared_artistic_limits",
+      "notes": "Later Lupi is visibly grayer than the 2015 version, with a salt-and-pepper beard, gray suit and rose tie. The output shows upper teeth rather than the requested closed-mouth smile; minor expression deviation, not a mistaken identity or mid-speech pose."
+    }
+  ],
+  "rejected_attempt": {
+    "attempt_index": 5,
+    "person_id": "carlos_lupi",
+    "prompt_path": "tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt",
+    "attempt": 1,
+    "original_tool_png_path": "C:/Users/ridge/.codex/generated_images/01a0f743-e513-7d43-9944-0f145c08bdc5/exec-72f44c04-0581-4e83-a78e-851293080f44.png",
+    "sha256": "a6489597a71971d1af82ef086651ba438b553a1ed89d69647e3f890dc14f7528",
+    "disposition": "remains_rejected",
+    "reason": "Independently confirmed RGBA with alpha extrema [0,254], failing RGB/opaque contract. Viewed image also has the black/blue/warm-glow background rather than the requested quiet dark teal.",
+    "preserved_copy_path": "docs/campaign-certification/C06/render-return-20261002/attempts/brazil/carlos-lupi-2015-v2-attempt-01-rejected-rgba.png",
+    "preserved_copy_sha256": "a6489597a71971d1af82ef086651ba438b553a1ed89d69647e3f890dc14f7528",
+    "preserved_copy_byte_identical": true
+  },
+  "nonblocking_variations": [
+    {
+      "attempt_index": 6,
+      "issue": "Faint jacket check remains although plain cloth was requested.",
+      "disposition": "Acceptable source-derived simplification; no new render requested."
+    },
+    {
+      "attempt_index": 7,
+      "issue": "Upper teeth visible instead of closed-mouth smile.",
+      "disposition": "Minor expression deviation, no identity or framing defect; recorded rather than represented as exact prompt compliance."
+    }
+  ],
+  "preserved_exclusions": [
+    "Superseded carlos-lupi-cartoon-2015-v1.txt was not present in the recorded attempts and its planned PNG does not exist.",
+    "Daniel Sampaio Tourinho remains excluded/unprepared; no substitution or invented face."
+  ],
+  "limits": [
+    "This is render/material integrity review, not a new historical-source acceptance, exact tenure grant, registry repair, runtime test or country sign-off.",
+    "Recorded prompt and input identities were independently matched to the current files and exact source Git commit; the generator's transport/request log was not independently replayed.",
+    "Source-license fields match preparation records; no new network/license investigation. Brizola's adapted artwork must retain CC BY-SA 4.0 with attribution and modification notice at registration.",
+    "Long windows, Lupi 2018–2019/2020–2022 aging limits and Brizola's hidden crown completion remain the explicit preparation limits.",
+    "No selected job, selected PNG, prompt, source reference, manifest or global export was changed. The return record receives only rejected-attempt preservation path/hash fields."
+  ],
+  "authority": {
+    "independent_render_review": true,
+    "human_approval": false,
+    "claude_approval": false,
+    "registered": false,
+    "historical_boundary_acceptance": false,
+    "country_signoff": false
+  },
+  "render_return_after_sha256": "ca6acc174a6a43dda5a246770f26a9cb9415b73966c5c4373658ede75995d26f",
+  "review_checkout_head": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "return_mutation_verification": "Removing exactly attempts[5].preserved_copy_path and attempts[5].preserved_copy_sha256 restores the full pre-audit JSON object exactly."
+}

@@ -234,33 +234,6 @@
     ],
     "members": [
       {
-        "job_id": "cartoon:alain_juppe:1994-11-30:1995-01-01:v1",
-        "person_id": "alain_juppe",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1994-11-30",
-        "to": "1995-01-01"
-      },
-      {
-        "job_id": "cartoon:alain_juppe:1995-01-01:1995-10-01:v1",
-        "person_id": "alain_juppe",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1995-01-01",
-        "to": "1995-10-01"
-      },
-      {
-        "job_id": "cartoon:alain_juppe:1995-10-31:1997-06-01:v1",
-        "person_id": "alain_juppe",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1995-10-31",
-        "to": "1997-06-01"
-      },
-      {
         "job_id": "cartoon:alain_madelin:1997-06-30:1998-05-01:v1",
         "person_id": "alain_madelin",
         "associated_nations": [
@@ -322,22 +295,7 @@
         ],
         "from": "2020-01-01",
         "to": "2025-01-01"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-France-B002",
-    "nation": "France",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-France-ORG-001",
-      "C01-France-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:fabien_roussel:2025-01-01:2026-09-08:v1",
         "person_id": "fabien_roussel",
@@ -364,7 +322,22 @@
         ],
         "from": "1995-01-01",
         "to": "2000-01-01"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-France-B002",
+    "nation": "France",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-France-ORG-001",
+      "C01-France-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:francois_bayrou:2000-01-01:2005-01-01:v1",
         "person_id": "francois_bayrou",
@@ -384,42 +357,6 @@
         "to": "2007-12-01"
       },
       {
-        "job_id": "cartoon:francois_hollande:1997-06-30:1997-11-01:v1",
-        "person_id": "francois_hollande",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1997-06-30",
-        "to": "1997-11-01"
-      },
-      {
-        "job_id": "cartoon:francois_hollande:1997-11-30:2000-01-01:v1",
-        "person_id": "francois_hollande",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1997-11-30",
-        "to": "2000-01-01"
-      },
-      {
-        "job_id": "cartoon:francois_hollande:2000-01-01:2005-01-01:v1",
-        "person_id": "francois_hollande",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "2000-01-01",
-        "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:francois_hollande:2005-01-01:2008-11-01:v1",
-        "person_id": "francois_hollande",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "2005-01-01",
-        "to": "2008-11-01"
-      },
-      {
         "job_id": "cartoon:francois_leotard:1990-01-01:1990-02-15:v1",
         "person_id": "francois_leotard",
         "associated_nations": [
@@ -427,22 +364,7 @@
         ],
         "from": "1990-01-01",
         "to": "1990-02-15"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-France-B003",
-    "nation": "France",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-France-ORG-001",
-      "C01-France-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:francois_leotard:1995-06-28:1998-09-17:v1",
         "person_id": "francois_leotard",
@@ -505,40 +427,13 @@
         ],
         "from": "2012-09-30",
         "to": "2012-10-01"
-      },
-      {
-        "job_id": "cartoon:harlem_desir:2012-10-31:2014-04-01:v1",
-        "person_id": "harlem_desir",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "2012-10-31",
-        "to": "2014-04-01"
-      },
-      {
-        "job_id": "cartoon:henri_emmanuelli:1994-06-19:1995-01-01:v1",
-        "person_id": "henri_emmanuelli",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1994-06-19",
-        "to": "1995-01-01"
-      },
-      {
-        "job_id": "cartoon:henri_emmanuelli:1995-01-01:1995-10-14:v1",
-        "person_id": "henri_emmanuelli",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1995-01-01",
-        "to": "1995-10-14"
       }
     ],
     "maximum_reviewed_records": 10,
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-France-B004",
+    "id": "CA-France-B003",
     "nation": "France",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -548,6 +443,15 @@
       "C01-France-ROLE-001"
     ],
     "members": [
+      {
+        "job_id": "cartoon:harlem_desir:2012-10-31:2014-04-01:v1",
+        "person_id": "harlem_desir",
+        "associated_nations": [
+          "France"
+        ],
+        "from": "2012-10-31",
+        "to": "2014-04-01"
+      },
       {
         "job_id": "cartoon:herve_de_charette:1990-01-01:1995-01-01:v1",
         "person_id": "herve_de_charette",
@@ -628,22 +532,13 @@
         ],
         "from": "2000-01-01",
         "to": "2005-01-01"
-      },
-      {
-        "job_id": "cartoon:jean_marie_le_pen:2005-01-01:2010-01-01:v1",
-        "person_id": "jean_marie_le_pen",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "2005-01-01",
-        "to": "2010-01-01"
       }
     ],
     "maximum_reviewed_records": 10,
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-France-B005",
+    "id": "CA-France-B004",
     "nation": "France",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -653,6 +548,15 @@
       "C01-France-ROLE-001"
     ],
     "members": [
+      {
+        "job_id": "cartoon:jean_marie_le_pen:2005-01-01:2010-01-01:v1",
+        "person_id": "jean_marie_le_pen",
+        "associated_nations": [
+          "France"
+        ],
+        "from": "2005-01-01",
+        "to": "2010-01-01"
+      },
       {
         "job_id": "cartoon:jean_marie_le_pen:2010-01-01:2011-01-16:v1",
         "person_id": "jean_marie_le_pen",
@@ -679,24 +583,6 @@
         ],
         "from": "2025-01-01",
         "to": "2026-09-08"
-      },
-      {
-        "job_id": "cartoon:laurent_fabius:1992-01-09:1993-04-03:v1",
-        "person_id": "laurent_fabius",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1992-01-09",
-        "to": "1993-04-03"
-      },
-      {
-        "job_id": "cartoon:lionel_jospin:1995-10-14:1997-06-01:v1",
-        "person_id": "lionel_jospin",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1995-10-14",
-        "to": "1997-06-01"
       },
       {
         "job_id": "cartoon:marie_george_buffet:2001-10-31:2005-01-01:v1",
@@ -742,13 +628,22 @@
         ],
         "from": "2015-01-01",
         "to": "2017-04-01"
+      },
+      {
+        "job_id": "cartoon:marine_le_pen:2017-05-15:2020-01-01:v1",
+        "person_id": "marine_le_pen",
+        "associated_nations": [
+          "France"
+        ],
+        "from": "2017-05-15",
+        "to": "2020-01-01"
       }
     ],
     "maximum_reviewed_records": 10,
     "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
   },
   {
-    "id": "CA-France-B006",
+    "id": "CA-France-B005",
     "nation": "France",
     "priority": "certified_first",
     "phase": "historical_cartoon_jobs",
@@ -758,15 +653,6 @@
       "C01-France-ROLE-001"
     ],
     "members": [
-      {
-        "job_id": "cartoon:marine_le_pen:2017-05-15:2020-01-01:v1",
-        "person_id": "marine_le_pen",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "2017-05-15",
-        "to": "2020-01-01"
-      },
       {
         "job_id": "cartoon:marine_le_pen:2020-01-01:2021-09-01:v1",
         "person_id": "marine_le_pen",
@@ -804,24 +690,6 @@
         "to": "2012-09-01"
       },
       {
-        "job_id": "cartoon:michel_rocard:1993-04-03:1993-10-01:v1",
-        "person_id": "michel_rocard",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1993-04-03",
-        "to": "1993-10-01"
-      },
-      {
-        "job_id": "cartoon:michel_rocard:1993-10-31:1994-06-19:v1",
-        "person_id": "michel_rocard",
-        "associated_nations": [
-          "France"
-        ],
-        "from": "1993-10-31",
-        "to": "1994-06-19"
-      },
-      {
         "job_id": "cartoon:michele_alliot_marie:1999-12-04:2000-01-01:v1",
         "person_id": "michele_alliot_marie",
         "associated_nations": [
@@ -847,22 +715,7 @@
         ],
         "from": "1999-04-30",
         "to": "1999-12-04"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-France-B007",
-    "nation": "France",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-France-ORG-001",
-      "C01-France-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:olivier_faure:2018-04-07:2020-01-01:v1",
         "person_id": "olivier_faure",
@@ -889,7 +742,22 @@
         ],
         "from": "2025-01-01",
         "to": "2026-09-08"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-France-B006",
+    "nation": "France",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-France-ORG-001",
+      "C01-France-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:paul_girod:1990-01-01:1990-02-15:v1",
         "person_id": "paul_girod",
@@ -952,22 +820,7 @@
         ],
         "from": "1990-01-01",
         "to": "1994-12-10"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
-    "id": "CA-France-B008",
-    "nation": "France",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-France-ORG-001",
-      "C01-France-ROLE-001"
-    ],
-    "members": [
+      },
       {
         "job_id": "cartoon:rachid_temal:2017-09-30:2018-04-07:v1",
         "person_id": "rachid_temal",
@@ -994,7 +847,22 @@
         ],
         "from": "1995-01-01",
         "to": "2000-01-01"
-      },
+      }
+    ],
+    "maximum_reviewed_records": 10,
+    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
+  },
+  {
+    "id": "CA-France-B007",
+    "nation": "France",
+    "priority": "certified_first",
+    "phase": "historical_cartoon_jobs",
+    "status": "open",
+    "depends_on": [
+      "C01-France-ORG-001",
+      "C01-France-ROLE-001"
+    ],
+    "members": [
       {
         "job_id": "cartoon:robert_hue:2000-01-01:2001-10-01:v1",
         "person_id": "robert_hue",

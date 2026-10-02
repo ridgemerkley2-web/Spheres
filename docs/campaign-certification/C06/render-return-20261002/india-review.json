@@ -1,0 +1,547 @@
+{
+  "version": 1,
+  "country": "India",
+  "batch": "IN-CAST-B01",
+  "reviewed_at_utc": "2026-10-02T18:29:20.863139+00:00",
+  "reviewer": "Codex agent /root/tonga_civilian_roster",
+  "independent_of_renderer": true,
+  "source_request_revision": "edf8655c3466b6c44b0cbe2857fe19c1617cffca",
+  "audit_checkout_revision": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "scope": "Independent review of active request, exact prompt/input/output pins, original output byte identity, file format and all eight selected PNGs against exact reference photos and the previously inspected Thatcher style anchor. No country preparation or historical record rewritten.",
+  "source_pins": [
+    {
+      "path": "docs/campaign-certification/C06/production/india/render-return-batch-01-20261002.json",
+      "sha256": "d861244e18a5af53e2a4debb2c179ed62e352666062ccfa71995ca994cf24dda"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/india/render-request-batch-01.md",
+      "sha256": "7bd3e3ffdda6d1d39058e23d964c721c759f7e20b6efa3260106385c2dd95a99"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/india/identity-review-batch-01.json",
+      "sha256": "57d1d9ea673312f9937a4a3355c56a180a0c6edf654ea8de22f8904bfd2e8c9c"
+    }
+  ],
+  "status": "pass_bounded_render_return_review",
+  "counts": {
+    "active_jobs": 8,
+    "attempts_in_return": 8,
+    "selected_outputs_reviewed": 8,
+    "pass": 8,
+    "hold": 0,
+    "blocking_findings": 0
+  },
+  "authority": {
+    "human_approval": false,
+    "claude_approval": false,
+    "independent_render_review": true,
+    "registered_by_this_review": false,
+    "runtime_acceptance": false,
+    "country_signoff": false
+  },
+  "mechanical_checks": {
+    "all_eight_jobs_match_active_identity_review_and_request": true,
+    "all_prompt_pins_match_source_commit_and_working_LF_files": true,
+    "all_input_pins_and_order_match_request": true,
+    "all_outputs_match_recorded_hashes_bytes_and_geometry": true,
+    "all_outputs_byte_identical_to_retained_tool_files": true,
+    "all_outputs_1024x1536_rgb_png": true,
+    "all_eight_selected_and_eight_reference_images_visually_inspected": true,
+    "no_image_or_country_return_edits": true
+  },
+  "jobs": [
+    {
+      "person_id": "harkishan_singh_surjeet",
+      "job_ids": [
+        "harkishan_singh_surjeet-85010e8ec9dc"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/harkishan-singh-surjeet-cartoon-1992-v1.txt",
+        "sha256": "418df96663ae4260cdcbb850649c2a10864fb315972ac01309e5a62d9ab2b89e",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/harkishan-singh-surjeet-2005-reference-v1.jpg",
+          "sha256": "f6b457cba512e64003f9780cfb04b6ef92dcacbe4b926056eb6f8090383a87b8",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/harkishan-singh-surjeet-cartoon-1992-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-a4f5ff7c-d381-41d7-8009-dd0893b2ae67.png",
+        "sha256": "d8c65df899d978fbcd71ed33cf23c7c4e505632efb8567eb86bb267896b3c1ff",
+        "bytes": 1544874,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Correct turbaned subject at left of the group reference; broad nose, white turban/beard and tinted rectangular glasses are retained. Shirt, two pens and complete upright figure match the prompt. No visible anatomy or framing defect.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "The source is from the final days of the 1992–2005 window; the younger, sturdier depiction is an explicit artistic treatment, not evidence of every year. The March 28/29 source-day ambiguity remains."
+      },
+      "source_reference": {
+        "id": "harkishan-singh-surjeet-2005",
+        "photograph_date": "2005-03-28 or 2005-03-29 (camera clock 28 March; the congress banner behind him gives 29 March)",
+        "license": "CC BY 2.5",
+        "license_url": "https://creativecommons.org/licenses/by/2.5",
+        "creator": "Soman"
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "lal_krishna_advani",
+      "job_ids": [
+        "lal_krishna_advani-a86e3e748579"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/lal-krishna-advani-cartoon-1995-v1.txt",
+        "sha256": "8faaa5d13c8681739406ca7b3c34dadb83ee84f557071c4b0f6cc23f3f3b1bc0",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/lal-krishna-advani-2001-reference-v1.jpg",
+          "sha256": "dd7ece8740ef8ae489466b2e3440bf5c3514e785a3bce33d55dd28ca8b9163eb",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1995-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-28096311-d26e-4ab4-8403-3f80e77d14a9.png",
+        "sha256": "bb66c37b94985aafdfa6aa11b6b775e89a8be49cdab105126ec9727d00ea1029",
+        "bytes": 1569347,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Correct central subject of the group reference; bald crown, white side hair and moustache, glasses and slate-blue bandhgala are recognizable. Explaining hand gesture and other lowered hand are coherent; both shoes visible.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "The source is late January/early February 2001. Appearance coverage spans gaps between party presidencies without establishing office tenure; source-derived costume differs from existing earlier artwork by design."
+      },
+      "source_reference": {
+        "id": "lal-krishna-advani-2001",
+        "photograph_date": "2001-01 (Commons; the photograph itself is from about 29 January to 9 February 2001)",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "creator": "IDF Spokesperson's Unit"
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "prakash_karat",
+      "job_ids": [
+        "prakash_karat-a6ef64a014c1"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/prakash-karat-cartoon-2005-v1.txt",
+        "sha256": "6929a21fa194c518b3c33da71108ad88e220d76910d9185166315259b900d6e8",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/prakash-karat-2013-reference-v1.jpg",
+          "sha256": "9f3d51f665cac02a360c9c851fc2e2db48034b24959ffd154d5b584b74861e87",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/prakash-karat-cartoon-2005-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-aa48719f-7432-4f52-b9ce-12e96fe551e3.png",
+        "sha256": "a6604ce5d653fd917a0a483aa93f53fa1e58b8a31d43ab0fb0426eba2d7ff75e",
+        "bytes": 1608835,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Silver hair, rectangular spectacles, broad face and modest smile match the reference. White short-sleeved shirt, pen, light trousers and brown shoes match the prompt; complete body and hands are coherent.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "The 2013 filename does not establish a capture date. Preserve the reviewed 2013-03-21–2017-09-17 interval and disclosed younger artistic treatment; this output does not resolve that date uncertainty."
+      },
+      "source_reference": {
+        "id": "prakash-karat-2013",
+        "photograph_date": "Undated: between 2013-03-21 and 2017-09-17 (the camera stamp 2013-03-16 19:41:05 is impossible for the camera model)",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "creator": "Erfanebrahimsait (Wikimedia Commons user), own work"
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "rajnath_singh",
+      "job_ids": [
+        "rajnath_singh-a4531051316c"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/rajnath-singh-cartoon-2005-v1.txt",
+        "sha256": "951e50844f61f5d49ce37a8bcd2002d54625a6bf8cdc138da1855047d03bb6b5",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/rajnath-singh-2013-reference-v1.jpg",
+          "sha256": "728d8f40f91b9f7c23bb67175c56066baf00391c43850bef3acab4b2c70e4348",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/rajnath-singh-cartoon-2005-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-862b6685-e48a-4a75-83ac-c84a4f00051c.png",
+        "sha256": "83770c8ae3aeec6446694f46cdf487ae4b7b519da8820b94b7c57e6532b69301",
+        "bytes": 1697505,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Bald crown, side hair, broad face and gentle smile are recognizable. Textured charcoal waistcoat over white kurta and pyjama follows the prompt; raised-arm source pose is appropriately replaced by two lowered hands.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "Small late-October 2013 source and a modest younger treatment represent a wider 2005–2014 appearance interval; the October 27/28 date ambiguity remains."
+      },
+      "source_reference": {
+        "id": "rajnath-singh-2013",
+        "photograph_date": "2013-10-27 or 2013-10-28 (Commons states 28 October 2013 08:14:38, the Flickr date; the file has no camera EXIF; the Hunkar Rally in Patna was held on 27 October 2013, general knowledge)",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+        "creator": "Narendra Modi's official Flickr account (narendramodiofficial, Flickr user 92359345@N07); the Commons Author and Attribution fields read 'Narendra Modi' and no individual photographer is named. Crop extracted by Commons user Vibhijain (29 November 2013) from 'Modi at Hunkar Rally in Patna.jpg', which the Flickr upload bot uploaded on 31 October 2013."
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "nitin_gadkari",
+      "job_ids": [
+        "nitin_gadkari-8a3390e6cd1e"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/nitin-gadkari-cartoon-2009-v1.txt",
+        "sha256": "faebfd01a2aedb716f15380c69a31ae289fbd28a1ea6a7fa6d2bba68fc8b39bd",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/nitin-gadkari-2011-reference-v1.jpg",
+          "sha256": "a62ff91b6c7038628b3fd26207b4d5dbfae3cd46a80022747509a2c8ef740138",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/nitin-gadkari-cartoon-2009-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-e94bfd37-b9f6-4fa2-948e-fb2496bddb75.png",
+        "sha256": "1d1d39af6cf62dc7c1b8f4f173d3750b75552512e3610d1eed2649a9f083dcd6",
+        "bytes": 1852262,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Correct right-hand subject from the two-person reference; rounded face, full black hair, moustache and warm smile match. Beige bandhgala with pen, matching trousers and brown shoes are coherent, with complete hands and feet.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "July 2011 reference falls inside the requested interval. Preserve the actual Open Government Licence v1.0 credit and reuse conditions; do not relabel this as public domain or a Creative Commons licence."
+      },
+      "source_reference": {
+        "id": "nitin-gadkari-2011",
+        "photograph_date": "2011-07-19",
+        "license": "Open Government Licence v1.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+        "creator": "Foreign and Commonwealth Office, United Kingdom"
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "sitaram_yechury",
+      "job_ids": [
+        "sitaram_yechury-e1e306607c4e"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt",
+        "sha256": "1e32883811ee3ce51a3ff91a3aa802926a1da5163eef4bd475dbd6890397899d",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/sitaram-yechury-2019-reference-v1.jpg",
+          "sha256": "2e10cebb6c0f03f9f3aafb6f1c8c3ea8e29ba3496dffd9be287aaf8efdc9041c",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/sitaram-yechury-cartoon-2015-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-0c066c3e-ca86-4961-acce-028254fa9d25.png",
+        "sha256": "1846d6810c633012592253f2097b5ee6c2070dbc56e4f7d9e3720b4b6cd09948",
+        "bytes": 1624779,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Wavy silver hair, thin rectangular glasses, broad face and ears are recognizable. Natural skin tones avoid the reference stage cast; white shirt, dark trousers and open-palm gesture match the prompt. No blocking defect.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "The December 27/28, 2019 source-day ambiguity remains. One midpoint portrait represents the wider 2015–2024 artistic interval."
+      },
+      "source_reference": {
+        "id": "sitaram-yechury-2019",
+        "photograph_date": "2019-12-27 or 2019-12-28 (sources disagree)",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "creator": "Batthini Vinay Kumar Goud"
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "jagat_prakash_nadda",
+      "job_ids": [
+        "jagat_prakash_nadda-feaabd468258"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/jagat-prakash-nadda-cartoon-2020-v1.txt",
+        "sha256": "1930455b813b99bd727ede047db90a290f652dfa41c1332e5985163421468088",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/jagat-prakash-nadda-2018-reference-v1.jpg",
+          "sha256": "af91b1f05401ccafaa78e2c22226c16a0e6e70dcc11cb0518c53f8299a10825c",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/jagat-prakash-nadda-cartoon-2020-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-b511ec0d-3c82-43cc-8a51-d523148734e6.png",
+        "sha256": "d84c63c52b468be8b66119a77424137198cb2579bd957a1e8a056fe77944ca3a",
+        "bytes": 1618160,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Full face, black hair and moustache, rectangular glasses, aubergine bandhgala and magenta pocket square match the reference. Identity badge and group/display setting are excluded; both separate hands and brown shoes are visible.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "The source precedes the window; age and dress continuity are disclosed artistic choices. Original Adobe RGB source bytes were preserved; no independent image transformation is inferred from file naming or display."
+      },
+      "source_reference": {
+        "id": "jagat-prakash-nadda-2018",
+        "photograph_date": "2018-09-26",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "creator": "AbhiSuryawanshi"
+      },
+      "source_and_age_limit_retained": true
+    },
+    {
+      "person_id": "m_a_baby",
+      "job_ids": [
+        "m_a_baby-a1a2a42a89bf"
+      ],
+      "attempt": 1,
+      "disposition": "pass_bounded_visual_and_provenance_review",
+      "prompt": {
+        "path": "tools/avatars/person-prompts/m-a-baby-cartoon-2025-v1.txt",
+        "sha256": "2d1b6853ba359653247a0b3aaf2bd25144b04df7e594501c48b2c1e1abe5eaf9",
+        "exact_source_git_blob": true,
+        "exact_return_pin": true
+      },
+      "inputs": [
+        {
+          "order": 1,
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "use": "STYLE ONLY",
+          "bytes_match_pin": true
+        },
+        {
+          "order": 2,
+          "path": "spheres-web/ui/person-portraits/references/m-a-baby-2026-reference-v1.jpg",
+          "sha256": "4ac001ff5468ccf511b7b0a6cb0952f89b0f053b8bd8dcf9278084f7ae52a637",
+          "use": "identity reference",
+          "bytes_match_pin": true
+        }
+      ],
+      "output": {
+        "path": "spheres-web/ui/person-portraits/m-a-baby-cartoon-2025-v1.png",
+        "original_tool_output_path": "C:/Users/ridge/.codex/generated_images/01a0f743-9d98-77f1-821a-4a2d81ab40fb/exec-447cd4de-81ea-49a4-862c-51f331b65634.png",
+        "sha256": "57e367f2edd9a53247b90f512e7aa94ffec7ac9d576eb15f4ccb5cb6972b623e",
+        "bytes": 1611973,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "opaque": true,
+        "byte_identical_to_original": true
+      },
+      "visual_review": {
+        "selected_png_viewed": true,
+        "identity_reference_viewed": true,
+        "style_anchor_comparison": "Matches established bold outline, cel-shaded full-body cartoon and dark teal background.",
+        "likeness_and_composition": "Bald crown, white fringe/beard, dark rectangular glasses and broad face match the in-window reference. White shirt and mundu, brown sandals and complete hands are coherent; no blocking defect.",
+        "full_body_hands_and_footwear_visible": true,
+        "no_blocking_visual_defect": true,
+        "retained_limit": "Full body and mundu/sandals are disclosed artistic extensions of a head-and-shoulders source. Smile is slightly parted rather than strictly closed; a minor expression variation, with no effect on recognizable identity."
+      },
+      "source_reference": {
+        "id": "m-a-baby-2026",
+        "photograph_date": "2026-07-06",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "creator": "Fotokannan"
+      },
+      "source_and_age_limit_retained": true
+    }
+  ],
+  "skipped": [
+    {
+      "person_id": "amit_shah",
+      "status": "excluded",
+      "reason": "Superseded by promoted M. A. Baby in active request; commission/ownership provenance unresolved. Removed Amit Shah prompt/reference were not submitted."
+    },
+    {
+      "person_id": "nitin_nabin",
+      "status": "reserve_not_prepared",
+      "reason": "No verified ready reference/prompt; no render."
+    }
+  ],
+  "findings": [],
+  "continuing_limits": [
+    "Pass is limited to these generated portraits and their recorded provenance, not full historical coverage, office eligibility, registration, country or human approval.",
+    "Recorded tool identity and exact submitted prompt/input order are renderer attestations corroborated by the pinned artifacts; this review did not execute or independently observe the renderer tool calls.",
+    "Source-photo date uncertainty, artistic de-ageing, costume choices and extended anatomy remain explicit in the active request.",
+    "Later registration must retain source attribution and change notices, applicable CC BY-SA derivative licences, and the Gadkari Open Government Licence v1.0 conditions.",
+    "No excluded Amit Shah or unprepared Nitin Nabin portrait is counted."
+  ],
+  "validation_method": "Read-only Python/Pillow checks of exact active identity/request mapping, SHA256, source Git prompt blobs, input ordering, raw original/copied output byte comparison and image geometry; direct view_image inspection of all eight selected outputs and eight identity references. No native or gameplay checks were run."
+}

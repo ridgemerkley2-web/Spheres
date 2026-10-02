@@ -26,7 +26,7 @@
     "spheres-sim/src/government.rs": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
     "spheres-sim/data/party_leaders.json": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
     "spheres-sim/data/tonga_institutional_leadership.json": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
-    "spheres-web/data/person_portraits.json": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+    "spheres-web/data/person_portraits.json": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
     "spheres-web/data/fictional_portraits.json": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea"
   },
   "counts": {
@@ -42,12 +42,12 @@
     "parties_with_declared_history_gaps": 623,
     "known_historical_people": 620,
     "known_party_terms": 393,
-    "validated_cartoon_people": 90,
-    "validated_cartoon_assets": 100,
+    "validated_cartoon_people": 96,
+    "validated_cartoon_assets": 107,
     "validated_fictional_cartoon_people": 8,
     "validated_fictional_cartoon_assets": 8,
-    "validated_cartoon_total_assets": 108,
-    "pending_historical_art_jobs": 699,
+    "validated_cartoon_total_assets": 115,
+    "pending_historical_art_jobs": 686,
     "people_without_researched_eligibility": 156,
     "countries_with_complete_all_party_history": 0,
     "images_generated_by_this_tool": 0
@@ -78161,13 +78161,8 @@
                 "from": "1992-01-09",
                 "to": "1993-04-03"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1992-01-09",
-                  "to": "1993-04-03"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_michel_rocard_19930403_acting",
@@ -78187,13 +78182,8 @@
                 "from": "1993-04-03",
                 "to": "1993-10-01"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1993-04-03",
-                  "to": "1993-10-01"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_michel_rocard_199310_leader",
@@ -78213,13 +78203,8 @@
                 "from": "1993-10-31",
                 "to": "1994-06-19"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1993-10-31",
-                  "to": "1994-06-19"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_henri_emmanuelli_19940619_leader",
@@ -78239,13 +78224,8 @@
                 "from": "1994-06-19",
                 "to": "1995-10-14"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1994-06-19",
-                  "to": "1995-10-14"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_lionel_jospin_19951014_leader",
@@ -78265,13 +78245,8 @@
                 "from": "1995-10-14",
                 "to": "1997-06-01"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1995-10-14",
-                  "to": "1997-06-01"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_francois_hollande_199706_acting",
@@ -78291,13 +78266,8 @@
                 "from": "1997-06-30",
                 "to": "1997-11-01"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1997-06-30",
-                  "to": "1997-11-01"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_francois_hollande_199711_leader",
@@ -78317,13 +78287,8 @@
                 "from": "1997-11-30",
                 "to": "2008-11-01"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1997-11-30",
-                  "to": "2008-11-01"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_ps_martine_aubry_200811_leader",
@@ -78674,13 +78639,8 @@
                 "from": "1994-11-30",
                 "to": "1995-10-01"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1994-11-30",
-                  "to": "1995-10-01"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_rpr_alain_juppe_199510_leader",
@@ -78700,13 +78660,8 @@
                 "from": "1995-10-31",
                 "to": "1997-06-01"
               },
-              "art_status": "missing",
-              "missing_art_windows": [
-                {
-                  "from": "1995-10-31",
-                  "to": "1997-06-01"
-                }
-              ]
+              "art_status": "covered",
+              "missing_art_windows": []
             },
             {
               "id": "fr_rpr_philippe_seguin_19970706_leader",
@@ -110977,13 +110932,76 @@
           "to": "1997-06-01"
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:alain_juppe:1994-11-30:1995-01-01:v1",
-        "cartoon:alain_juppe:1995-01-01:1995-10-01:v1",
-        "cartoon:alain_juppe:1995-10-31:1997-06-01:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1994-11-30",
+          "to": "1997-06-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+          "sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+          "bytes": 1647092,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Shaimiev_and_Juppe_(1996-02-12).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: Tatarstan.ru (photo report https://shaimiev.tatarstan.ru/pressa/photoreports/photoreport/4787153.htm; hi-res scan http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg), 12 February 1996, CC BY 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (1996-02-12). Appearance window 1994-11-30 to 1997-06-01 (exclusive) is an illustrative interpretation, not an office term; window status: orchestrator_choice_needs_codex_agreement. No meaningful age gap. Juppé was born on 15 August 1945 (general knowledge); he is 50 in the photograph and 49 to 51 across the window (1994-11-30 to 1997-06-01). Only the standing pose, the trousers below the table edge and the shoes are artistic extensions. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "alain_juppe",
+            "kind": "observed_portrait",
+            "reference_id": "alain-juppe-1996",
+            "asset": "spheres-web/ui/person-portraits/references/alain-juppe-1996-reference-v1.jpg",
+            "sha256": "c663649d218f7271c8280190ee13e057c61c8d7fed6c33bdefd896e87b9abff2",
+            "bytes": 17080923,
+            "width": 5088,
+            "height": 3562,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Shaimiev_and_Juppe_(1996-02-12).jpg",
+            "license": "CC BY 4.0",
+            "license_url": "https://creativecommons.org/licenses/by/4.0",
+            "creator": "Госсоветник Татарстана (the State Counsellor of the Republic of Tatarstan website); the Commons category 'Photographs by Mikhail Kozlovsky' names a photographer, which the file page does not state as the author",
+            "credit": "Tatarstan.ru (photo report https://shaimiev.tatarstan.ru/pressa/photoreports/photoreport/4787153.htm; hi-res scan http://www.speaker.tatarstan.ru/fs/a_photo_photos/122_pic.jpg), 12 February 1996, CC BY 4.0, via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY 4.0 with attribution Tatarstan.ru (LicenseShortName exactly 'CC BY 4.0'). The copied bytes are Commons revision 2024-01-26T19:45:12Z (5088x3562), uploaded from the speaker.tatarstan.ru hi-res scan; the original 2023 upload (400x268) came from the photo report, which dates and identifies the image and shows the same frame.",
+            "source_license_statement": "{{tatarstan.ru}}: material from the official Tatarstan website under Creative Commons Attribution 4.0, attribution 'Tatarstan.ru'.",
+            "depiction_date": "1996-02-12",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "97ae47ab8cc87f50c4b07f8b61e6780d29af2d807299c879742e701b7b7f7d59",
+            "generation_input": {
+              "asset": "spheres-web/ui/person-portraits/references/alain-juppe-1996-generation-input-v1.jpg",
+              "sha256": "dfdf994dfc9c6ead26393d97e041cb63049fd921a02899dd774e72194c3bd4a8",
+              "bytes": 357792,
+              "width": 1500,
+              "height": 1050,
+              "mode": "RGB",
+              "derivation": "Proportional, uncropped transport-size JPEG of the original reference (1500 px wide); the original failed the image tool reader before generation (render-return decisions.juppe). Exact encoder/resampler settings are not recorded. Same photograph, same rights."
+            }
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/alain-juppe-cartoon-1994-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job alain-juppe-cartoon-1994-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Bald dome with close-cropped sides, long face, light-blue striped shirt and navy patterned tie as in the 1996 reference (second from left in the frame); charcoal suit. Recognizable at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "alain_madelin",
@@ -115155,14 +115173,67 @@
           "to": "2008-11-01"
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:francois_hollande:1997-06-30:1997-11-01:v1",
-        "cartoon:francois_hollande:1997-11-30:2000-01-01:v1",
-        "cartoon:francois_hollande:2000-01-01:2005-01-01:v1",
-        "cartoon:francois_hollande:2005-01-01:2008-11-01:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1997-06-30",
+          "to": "2008-11-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+          "sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+          "bytes": 1437666,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Hollande,_Socialist_rally,_Z%C3%A9nith,_2007_05_29_n3.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: © Marie-Lan Nguyen / Wikimedia Commons, CC BY 2.5; François Hollande at the Socialist Party rally at the Zénith, Paris, 29 May 2007; supported by Wikimédia France. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (2007-05-29). Appearance window 1997-06-30 to 2008-11-01 (exclusive) is an illustrative interpretation, not an office term; window status: appearance_interval_from_handoff. Photographed on 29 May 2007, aged 52 (born 12 August 1954, general knowledge). The window runs from 30 June 1997 (age 42) to 1 November 2008 (age 54): the photograph is about 9 years 11 months after the window starts and about 1 year 5 months before it ends. The prompt asks for a man of about 50, very slightly younger than the photograph, with the same receding dark-brown hairline, rimless glasses and round face. The standing body is an artistic extension of a seated waist-up photograph. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "francois_hollande",
+            "kind": "observed_portrait",
+            "reference_id": "francois-hollande-2007",
+            "asset": "spheres-web/ui/person-portraits/references/francois-hollande-2007-reference-v1.jpg",
+            "sha256": "fbb52a4ff4ec0fe45b644386aaa720f298e824f64f06f625acf127f1a0af1fee",
+            "bytes": 1639607,
+            "width": 1600,
+            "height": 2424,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Hollande,_Socialist_rally,_Z%C3%A9nith,_2007_05_29_n3.jpg",
+            "license": "CC BY 2.5",
+            "license_url": "https://creativecommons.org/licenses/by/2.5",
+            "creator": "Marie-Lan Nguyen (User:Jastrow), own work; named in the file page's Author field (the API extmetadata Artist value holds only the 'supported by Wikimédia France' template text)",
+            "credit": "© Marie-Lan Nguyen / Wikimedia Commons, CC BY 2.5; François Hollande at the Socialist Party rally at the Zénith, Paris, 29 May 2007; supported by Wikimédia France. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY 2.5, author's own upload. Commons shows a personality-rights warning (Restrictions: personality): the photograph serves only as the identity reference for an original cartoon.",
+            "source_license_statement": "Creative Commons Attribution 2.5 Generic; the author's credit template asks for credit to Marie-Lan Nguyen (example '© Marie-Lan Nguyen / Wikimedia Commons').",
+            "depiction_date": "2007-05-29",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "8aa193f03577efffa482c931e89dd93790f48adf5c540d57e4ebcb8b831017cb"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/francois-hollande-cartoon-1997-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job francois-hollande-cartoon-1997-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Receding dark-brown hair, rimless glasses, round face and half-smile as in the 2007 reference; dark suit, white shirt, dotted blue tie. One mid-window appearance (about fifty), not a year-by-year likeness for 1997-2008. Recognizable at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY 2.5",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/2.5",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "francois_leotard",
@@ -115319,6 +115390,63 @@
           },
           "visual_note": "Receding gray hair, prominent nose, thin lips and reserved expression match the observed Mitterrand reference; full-body silhouette and outlines remain clear.",
           "_index": 0
+        },
+        {
+          "from": "1991-01-01",
+          "to": "1995-05-17",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+          "sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+          "bytes": 1496061,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Mitterrand_(cropped).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: Gorup de Besanez, 'François Mitterrand (cropped).jpg', dated 1994 on Commons (year uncertain), own work, CC BY-SA 4.0, via Wikimedia Commons; crop by Commons user Cheep (CropTool, 26 April 2021) of 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg'. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (1994 (Commons author statement, year only; uncertain)). Appearance window 1991-01-01 to 1995-05-17 (exclusive) is an illustrative interpretation, not an office term; window status: needs_codex_agreement. Mitterrand was born on 26 October 1916. If the photograph is from 1994 as Commons states, he is 77 or 78 in it; if it is from about 1990-1993, as the same-set evidence suggests, he is about 73 to 77, and it may predate the window start of 1991-01-01. He is 74 at the window start and 78 at its exclusive end (1995-05-17). The prompt asks for one appearance across the window, a man in his mid-to-late seventies, without a frail caricature. The standing body, hands, trousers and shoes are artistic extensions of a head-and-shoulders photograph; suit, shirt and tie colours come from the photograph. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "francois_mitterrand",
+            "kind": "observed_portrait",
+            "reference_id": "francois-mitterrand-1994",
+            "asset": "spheres-web/ui/person-portraits/references/francois-mitterrand-1994-reference-v1.jpg",
+            "sha256": "bb949d1cce4a2dcef0f7e1685676ac43721201257a7d80e3a3a271fb13e7a93b",
+            "bytes": 465501,
+            "width": 927,
+            "height": 1302,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Mitterrand_(cropped).jpg",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "creator": "Gorup de Besanez",
+            "credit": "Gorup de Besanez, 'François Mitterrand (cropped).jpg', dated 1994 on Commons (year uncertain), own work, CC BY-SA 4.0, via Wikimedia Commons; crop by Commons user Cheep (CropTool, 26 April 2021) of 'Roland Dumas, François Mitterrand and Gianni De Michelis in 1994.jpg'. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY-SA 4.0 (LicenseShortName exactly 'CC BY-SA 4.0'; LicenseUrl recorded exactly as Commons gives it, without a trailing slash). Attribution and share-alike apply. The file is a Commons crop of the author's own film scan; the copied bytes are the crop's latest revision, unretouched. The photograph's year is uncertain (see date_precision).",
+            "source_license_statement": "Creative Commons Attribution-Share Alike 4.0 International; the author's own-work grant on the file page ('I, the copyright holder of this work, hereby publish it under the following license').",
+            "depiction_date": "1994 (Commons author statement, year only; uncertain)",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "f97ed9d6c1767cab60a8fddc847d1a073644ab39c41579f624987965aeaffd28"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/francois-mitterrand-cartoon-1991-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job francois-mitterrand-cartoon-1991-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Receding grey hair over a high domed forehead, heavy-lidded upward gaze, long nose and full lower lip as in the reference; navy suit, white shirt, striped burgundy-navy tie. Reads as an older Mitterrand at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY-SA 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "_index": 1
         }
       ],
       "pending_art_job_ids": [],
@@ -116990,12 +117118,67 @@
           "to": "1995-10-14"
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:henri_emmanuelli:1994-06-19:1995-01-01:v1",
-        "cartoon:henri_emmanuelli:1995-01-01:1995-10-14:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1994-06-19",
+          "to": "1995-10-14",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+          "sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
+          "bytes": 1574049,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Henri_Emmanuelli_2005.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: Kenji-Baptiste OIKAWA, 'Henri Emmanuelli 2005' (May 2005), CC BY 3.0 via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (2005-05). Appearance window 1994-06-19 to 1995-10-14 (exclusive) is an illustrative interpretation, not an office term; window status: appearance_interval_from_handoff. Photographed in May 2005, aged 59 (60 only if taken on 31 May; born 31 May 1945, general knowledge). The window is 1994-06-19 to 1995-10-14, when he is 49 to 50: the photograph is about 10 years 11 months after the window opens and about 9 years 7 months after it closes. The prompt asks for an about-fifty treatment with shallower lines and slightly darker iron-gray hair, explicitly an artistic interpretation; the jacket, its colours and the full body are artistic extensions of a waist-up shirt-sleeve photograph. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "henri_emmanuelli",
+            "kind": "observed_portrait",
+            "reference_id": "henri-emmanuelli-2005",
+            "asset": "spheres-web/ui/person-portraits/references/henri-emmanuelli-2005-reference-v1.jpg",
+            "sha256": "c902f7767f098e234478f786d0b7067244f252a563f2fe140c4fa74476e2b65b",
+            "bytes": 205372,
+            "width": 1551,
+            "height": 798,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Henri_Emmanuelli_2005.jpg",
+            "license": "CC BY 3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0",
+            "creator": "Kenji-Baptiste OIKAWA",
+            "credit": "Kenji-Baptiste OIKAWA, 'Henri Emmanuelli 2005' (May 2005), CC BY 3.0 via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Own-work upload on 2007-09-29 by Commons user Shimin Heiwa2 naming Kenji-Baptiste OIKAWA as author, with the copyright-holder grant under GFDL 1.2+ and CC BY 3.0 Unported; CC BY 3.0 is the licence relied on. Month-only date, no EXIF. Commons shows a personality-rights warning (Restrictions: personality): the photograph serves only as the identity reference for an original cartoon.",
+            "source_license_statement": "Creative Commons Attribution 3.0 Unported (dual-licensed with GFDL 1.2 or later; CC BY 3.0 used).",
+            "depiction_date": "2005-05",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "006171b1d7ffa1c0911cfb3581cb0138106afdf59a8631ae597271992f2d2362"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/henri-emmanuelli-cartoon-1994-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job henri-emmanuelli-cartoon-1994-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Swept iron-grey hair, strong brows, lined lean face and firm mouth as in the 2005 reference, drawn younger (about fifty) as the prompt discloses; navy suit and red tie are an artistic outfit (the photo shows a shirt at a lectern). Distinct at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY 3.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/3.0",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "herve_de_charette",
@@ -120473,11 +120656,67 @@
           "to": "1993-04-03"
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:laurent_fabius:1992-01-09:1993-04-03:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1992-01-09",
+          "to": "1993-04-03",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+          "sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+          "bytes": 1732155,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:28.08.1984._D._Baudis_et_L._Fabius._(1984)_-_53Fi3647.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: André Cros / Fonds André Cros, Archives municipales de Toulouse, 53Fi3647, 28 August 1984; CC BY-SA 4.0 (deliberation n°27.3 of 23 June 2017 of the Town Council of the City of Toulouse); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (1984-08-28). Appearance window 1992-01-09 to 1993-04-03 (exclusive) is an illustrative interpretation, not an office term; window status: appearance_interval_from_handoff. Photographed on 28 August 1984 at Toulouse-Blagnac airport, aged 38 (born 20 August 1946, general knowledge). The window is 1992-01-09 to 1993-04-03, when he is 45 to 46: the photograph is about 7 years 4 months before the window opens and about 8 years 7 months before it closes. The prompt asks for a subtly older man of 45 to 46 with the same receded hairline and dark side hair, as an explicit artistic interpretation. Suit, shirt and tie colours and the standing body are extensions of a black-and-white, waist-length photograph. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "laurent_fabius",
+            "kind": "observed_portrait",
+            "reference_id": "laurent-fabius-1984",
+            "asset": "spheres-web/ui/person-portraits/references/laurent-fabius-1984-reference-v1.jpg",
+            "sha256": "b6779f1fe737d239cbd674fab3987c6658d314b265af7c078a93b90732424664",
+            "bytes": 700943,
+            "width": 2268,
+            "height": 1524,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:28.08.1984._D._Baudis_et_L._Fabius._(1984)_-_53Fi3647.jpg",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "creator": "André Cros",
+            "credit": "André Cros / Fonds André Cros, Archives municipales de Toulouse, 53Fi3647, 28 August 1984; CC BY-SA 4.0 (deliberation n°27.3 of 23 June 2017 of the Town Council of the City of Toulouse); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY-SA 4.0 International (not ported). Attribution and share-alike obligations apply and should be considered at registration. Accession 53Fi3647, Archives municipales de Toulouse.",
+            "source_license_statement": "This photograph is part of the Fonds André Cros, preserved by the city archives of Toulouse and released under CC BY-SA 4.0 license by the deliberation n°27.3 of June 23rd, 2017 of the Town Council of the City of Toulouse.",
+            "depiction_date": "1984-08-28",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "426b313f2a2c725acb8b141642d2c20f047c802b7115da69a2a570e3e1ae1813"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/laurent-fabius-cartoon-1992-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job laurent-fabius-cartoon-1992-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Receded crown with dark side hair, oval face and slight smile as in the 1984 reference, drawn a little older as the prompt asks; grey suit, striped shirt, navy tie. Recognizable at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY-SA 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "leanne_wood",
@@ -120764,11 +121003,67 @@
           "to": "1997-06-01"
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:lionel_jospin:1995-10-14:1997-06-01:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1995-10-14",
+          "to": "1997-06-07",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+          "sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
+          "bytes": 1577428,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Jospin_1998_(cropped).jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service, P-002498/01-8 (12 or 13 October 1998); © European Union; CC BY 4.0; Commons crop 'Jospin 1998 (cropped).jpg' (CropTool, 11 June 2024) of 'Lionel Jospin & Jacques Santer - 1998.jpg'. Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (1998-10-12 or 1998-10-13 (sources disagree)). Appearance window 1995-10-14 to 1997-06-07 (exclusive) is an illustrative interpretation, not an office term; window status: appearance_interval_from_handoff. Photograph of 12 or 13 October 1998: 493 or 494 days after the window's last day (1997-06-06) and about 3.0 years after its start (1995-10-14). Jospin (born 12 July 1937, general knowledge) is 61 in the photo and 58 to 59 in the window. The prompt asks for a slightly younger man with the same white hair and glasses. A research-only 500 px thumbnail of the non-free in-window European Parliament photograph of 14 February 1996 was viewed by the preparer to confirm the same hair and glasses; it is not shipped and not a generation input. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "lionel_jospin",
+            "kind": "observed_portrait",
+            "reference_id": "lionel-jospin-1998",
+            "asset": "spheres-web/ui/person-portraits/references/lionel-jospin-1998-reference-v1.jpg",
+            "sha256": "c5166b264aaa5f901b25c44d45fe19fac0ed937038cdaab46cc28e2cd167f612",
+            "bytes": 290280,
+            "width": 723,
+            "height": 1121,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Jospin_1998_(cropped).jpg",
+            "license": "CC BY 4.0",
+            "license_url": "https://creativecommons.org/licenses/by/4.0",
+            "creator": "Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service",
+            "credit": "Benoît Bourgeois / European Communities, 1998 / EC - Audiovisual Service, P-002498/01-8 (12 or 13 October 1998); © European Union; CC BY 4.0; Commons crop 'Jospin 1998 (cropped).jpg' (CropTool, 11 June 2024) of 'Lionel Jospin & Jacques Santer - 1998.jpg'. Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY 4.0, rights holder (c) EC. The embedded EXIF credit reads 'EC/Isopress-Sénépart/Benoît Bourgeois': the Commission commissioned and published the photograph on its Audiovisual Service; it is not a third-party wire photograph, and the agency name is recorded for transparency.",
+            "source_license_statement": "CC BY 4.0; Commons licence review: originally posted to https://audiovisual.ec.europa.eu/en/photo-details/P-002498~2F01-8 and reviewed on 9 July 2024 by reviewer Sikander, who confirmed it was available there under the stated licence on that date.",
+            "depiction_date": "1998-10-12 or 1998-10-13 (sources disagree)",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "428b01a75f7507511b46ba0ce51ed45ffb6db5448e27d2f754d70fd531feb0b9"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/lionel-jospin-cartoon-1995-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job lionel-jospin-cartoon-1995-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Wavy white hair, rimless glasses and smile as in the reference, drawn slightly younger as the prompt asks; navy suit, light-blue shirt and striped tie follow the photograph. Distinct at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY 4.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/4.0",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "liz_truss",
@@ -122439,12 +122734,67 @@
           "to": "1994-06-19"
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:michel_rocard:1993-04-03:1993-10-01:v1",
-        "cartoon:michel_rocard:1993-10-31:1994-06-19:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1994-06-19",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+          "sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
+          "bytes": 1812840,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-10-02",
+          "license": "generated",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Rocard_1991_cropped-1.jpg",
+          "credit": "Spheres cartoon generated with OpenAI image_gen; artistic adaptation, full-body extension and age interpretation. Reference: Jean Weber / INRA, DIST; 1991; CC BY 2.0. Commons crop 'Rocard 1991 cropped-1.jpg' of 'Salon du livre 1991-22-cliche Jean Weber.jpg' (Flickr 31492990916, INRA DIST stream). Adapted for Spheres; no endorsement implied.",
+          "era_note": "Observed likeness from the credited photograph (1991). Appearance window 1990-01-01 to 1994-06-19 (exclusive) is an illustrative interpretation, not an office term; window status: appearance_interval_from_handoff. Rocard was born in August 1930; he is about 60-61 in the 1991 photograph and 59-63 across the window (1990-01-01 to 1994-06-19). No significant age adjustment is needed. The photograph has a yellow-green slide cast; the prompt asks for natural skin tones. It is a waist-up photo: the trousers, shoes, standing pose and both hands are artistic extensions; a small lapel pin is omitted on purpose. No office boundary or tenure is inferred.",
+          "identity_source": {
+            "person_id": "michel_rocard",
+            "kind": "observed_portrait",
+            "reference_id": "michel-rocard-1991",
+            "asset": "spheres-web/ui/person-portraits/references/michel-rocard-1991-reference-v1.jpg",
+            "sha256": "16842eea37ebc930b4c18851b2ed617d8f3d6fa650a1788360337b01464090c9",
+            "bytes": 830712,
+            "width": 806,
+            "height": 1075,
+            "mode": "RGB",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Rocard_1991_cropped-1.jpg",
+            "license": "CC BY 2.0",
+            "license_url": "https://creativecommons.org/licenses/by/2.0",
+            "creator": "Jean Weber",
+            "credit": "Jean Weber / INRA, DIST; 1991; CC BY 2.0. Commons crop 'Rocard 1991 cropped-1.jpg' of 'Salon du livre 1991-22-cliche Jean Weber.jpg' (Flickr 31492990916, INRA DIST stream). Adapted for Spheres; no endorsement implied.",
+            "rights_statement": "Retained source statement: CC BY 2.0, attribution 'Jean Weber / INRA, DIST'. The chosen file is a derivative crop that Commons user MiniYop made on 2026-07-21 with CropTool (rotated -6.4 degrees) from the Flickr-reviewed parent; the crop page carries no review of its own. The copied bytes are the crop's, unchanged.",
+            "source_license_statement": "Creative Commons Attribution 2.0 Generic (Flickr licence; the parent is in 'Flickr images reviewed by FlickreviewR 2').",
+            "depiction_date": "1991",
+            "source_review": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+            "source_metadata_sha256": "cf6b1fb165f4c183723438a34d6fa0be96836580686499ed99aff521a7cbb169"
+          },
+          "supplemental_identity_sources": [],
+          "prompt_record": "tools/avatars/person-prompts/michel-rocard-cartoon-1990-v1.txt",
+          "generation_record": "Exact submitted prompt, ordered reference inputs, source rights and byte-identical original output recorded in tools/avatars/person-prompts/france-cast-batch-01.json, job michel-rocard-cartoon-1990-v1; Codex render return docs/campaign-certification/C06/production/france/render-return-batch-01.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Claude (Opus 5.5): personally inspected identity reference and generated output; independent Codex visual review in docs/campaign-certification/C06/production/france/independent-render-review-20261002.json; no human approval claimed",
+            "reviewed_at": "2026-10-02"
+          },
+          "visual_note": "Claude (Opus 5.5) personally inspected the returned PNG beside its identity reference at full size and at 106x152 card size: Slicked-back dark hair, narrow face with prominent cheekbones and sideways glance as in the reference; grey pinstripe suit and dotted burgundy tie follow the photograph. Distinct at card size. Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel). No human approval claimed.",
+          "derivative_license": "CC BY 2.0",
+          "derivative_license_url": "https://creativecommons.org/licenses/by/2.0",
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "michel_temer",
@@ -131994,69 +132344,6 @@
       "note": "Requested appearance window only; it does not extend an office, affiliation or life."
     },
     {
-      "id": "cartoon:alain_juppe:1994-11-30:1995-01-01:v1",
-      "person_id": "alain_juppe",
-      "name": "Alain Juppé",
-      "from": "1994-11-30",
-      "to": "1995-01-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.economie.gouv.fr/saef/alain-juppe",
-        "https://www.france-politique.fr/chronologie-rpr.htm",
-        "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:alain_juppe:1995-01-01:1995-10-01:v1",
-      "person_id": "alain_juppe",
-      "name": "Alain Juppé",
-      "from": "1995-01-01",
-      "to": "1995-10-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.economie.gouv.fr/saef/alain-juppe",
-        "https://www.france-politique.fr/chronologie-rpr.htm",
-        "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:alain_juppe:1995-10-31:1997-06-01:v1",
-      "person_id": "alain_juppe",
-      "name": "Alain Juppé",
-      "from": "1995-10-31",
-      "to": "1997-06-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.economie.gouv.fr/saef/alain-juppe",
-        "https://www.france-politique.fr/chronologie-rpr.htm",
-        "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
       "id": "cartoon:alain_madelin:1997-06-30:1998-05-01:v1",
       "person_id": "alain_madelin",
       "name": "Alain Madelin",
@@ -135324,86 +135611,6 @@
       "note": "Requested appearance window only; it does not extend an office, affiliation or life."
     },
     {
-      "id": "cartoon:francois_hollande:1997-06-30:1997-11-01:v1",
-      "person_id": "francois_hollande",
-      "name": "François Hollande",
-      "from": "1997-06-30",
-      "to": "1997-11-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:francois_hollande:1997-11-30:2000-01-01:v1",
-      "person_id": "francois_hollande",
-      "name": "François Hollande",
-      "from": "1997-11-30",
-      "to": "2000-01-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:francois_hollande:2000-01-01:2005-01-01:v1",
-      "person_id": "francois_hollande",
-      "name": "François Hollande",
-      "from": "2000-01-01",
-      "to": "2005-01-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:francois_hollande:2005-01-01:2008-11-01:v1",
-      "person_id": "francois_hollande",
-      "name": "François Hollande",
-      "from": "2005-01-01",
-      "to": "2008-11-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
       "id": "cartoon:francois_leotard:1990-01-01:1990-02-15:v1",
       "person_id": "francois_leotard",
       "name": "François Léotard",
@@ -136441,46 +136648,6 @@
         "https://www.worldstatesmen.org/Cambodia.html",
         "https://en.wikipedia.org/wiki/Heng_Samrin",
         "https://en.wikipedia.org/wiki/Hun_Sen"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:henri_emmanuelli:1994-06-19:1995-01-01:v1",
-      "person_id": "henri_emmanuelli",
-      "name": "Henri Emmanuelli",
-      "from": "1994-06-19",
-      "to": "1995-01-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:henri_emmanuelli:1995-01-01:1995-10-14:v1",
-      "person_id": "henri_emmanuelli",
-      "name": "Henri Emmanuelli",
-      "from": "1995-01-01",
-      "to": "1995-10-14",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
       ],
       "requirements": [
         "dated likeness reference",
@@ -139470,26 +139637,6 @@
       "note": "Requested appearance window only; it does not extend an office, affiliation or life."
     },
     {
-      "id": "cartoon:laurent_fabius:1992-01-09:1993-04-03:v1",
-      "person_id": "laurent_fabius",
-      "name": "Laurent Fabius",
-      "from": "1992-01-09",
-      "to": "1993-04-03",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
       "id": "cartoon:leanne_wood:2012-03-15:2015-01-01:v1",
       "person_id": "leanne_wood",
       "name": "Leanne Wood",
@@ -139641,26 +139788,6 @@
       "identity_sources": [
         "https://www.democrats.org.au/our-people/",
         "https://www.democrats.org.au/constitution/"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:lionel_jospin:1995-10-14:1997-06-01:v1",
-      "person_id": "lionel_jospin",
-      "name": "Lionel Jospin",
-      "from": "1995-10-14",
-      "to": "1997-06-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
       ],
       "requirements": [
         "dated likeness reference",
@@ -140983,52 +141110,6 @@
       "identity_sources": [
         "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
         "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:michel_rocard:1993-04-03:1993-10-01:v1",
-      "person_id": "michel_rocard",
-      "name": "Michel Rocard",
-      "from": "1993-04-03",
-      "to": "1993-10-01",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand",
-        "https://en.wikipedia.org/wiki/Michel_Rocard",
-        "https://www.worldstatesmen.org/France.html",
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:michel_rocard:1993-10-31:1994-06-19:v1",
-      "person_id": "michel_rocard",
-      "name": "Michel Rocard",
-      "from": "1993-10-31",
-      "to": "1994-06-19",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand",
-        "https://en.wikipedia.org/wiki/Michel_Rocard",
-        "https://www.worldstatesmen.org/France.html",
-        "https://www.parti-socialiste.paris/histoire",
-        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
       ],
       "requirements": [
         "dated likeness reference",

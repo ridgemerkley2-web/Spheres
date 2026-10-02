@@ -141,3 +141,25 @@ tools/avatars/person-prompts/takako-doi-cartoon-1996-v1.txt text eol=lf
 tools/avatars/person-prompts/tomiichi-murayama-cartoon-1993-v1.txt text eol=lf
 docs/campaign-certification/C06/reviews/claude-20261002/** -text -whitespace
 docs/campaign-certification/C06/production/tonga/pm2006-followup-20261002/** -text -whitespace
+
+# Exact prompts for the 2 October active cast render requests.
+tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-1996-v1.txt text eol=lf
+tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-2005-v1.txt text eol=lf
+tools/avatars/person-prompts/carlos-lupi-cartoon-2015-v2.txt text eol=lf
+tools/avatars/person-prompts/carlos-lupi-cartoon-2020-v1.txt text eol=lf
+tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1991-v1.txt text eol=lf
+tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1996-v1.txt text eol=lf
+tools/avatars/person-prompts/harkishan-singh-surjeet-cartoon-1992-v1.txt text eol=lf
+tools/avatars/person-prompts/jagat-prakash-nadda-cartoon-2020-v1.txt text eol=lf
+tools/avatars/person-prompts/lal-krishna-advani-cartoon-1995-v1.txt text eol=lf
+tools/avatars/person-prompts/m-a-baby-cartoon-2025-v1.txt text eol=lf
+tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v1.txt text eol=lf
+tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2009-v2.txt text eol=lf
+tools/avatars/person-prompts/natsuo-yamaguchi-cartoon-2015-v1.txt text eol=lf
+tools/avatars/person-prompts/nitin-gadkari-cartoon-2009-v1.txt text eol=lf
+tools/avatars/person-prompts/prakash-karat-cartoon-2005-v1.txt text eol=lf
+tools/avatars/person-prompts/rajnath-singh-cartoon-2005-v1.txt text eol=lf
+tools/avatars/person-prompts/sitaram-yechury-cartoon-2015-v1.txt text eol=lf
+
+# Preserve the byte-hashed render-return logs and receipts on every checkout.
+docs/campaign-certification/C06/render-return-20261002/** -text -whitespace

@@ -1,0 +1,434 @@
+{
+  "version": 1,
+  "batch": "SA-CAST-B01",
+  "task": "CLAUDE-C06-SAUDIARABIA-01",
+  "reviewed_source_tip": "ede909edd7577b777a4cd73479a1b6a57e6e0744",
+  "reviewed_integrated_head": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "source_review": {
+    "path": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+    "sha256": "64533730456f558e232c9b3db16dfc2ce5322e0d4028ba5808220212f9901e38",
+    "basis": "Current integrated preparation including Codex corrections; source branch tip recorded separately."
+  },
+  "status": "generated_ready_for_independent_registration_review",
+  "generated_by": "/root/selector_leader_api",
+  "generated_at": "2026-10-02T18:28:27.436169Z",
+  "registered_portraits": 0,
+  "human_approval_claimed": false,
+  "country_completion": false,
+  "entries": [
+    {
+      "job_id": "fahd-bin-abdulaziz-cartoon-1991-v1",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "display_name": "Fahd bin Abdulaziz Al Saud",
+      "generator": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02T18:18:47.394000Z",
+      "prompt_file": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1991-v1.txt",
+      "prompt_sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+      "submitted_text": "Exact UTF-8 LF text of the pinned prompt; no extra instructions or transformations.",
+      "referenced_images": [
+        {
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG",
+          "order": 1,
+          "use": "style_only",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+          "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+          "bytes": 152062,
+          "width": 600,
+          "height": 410,
+          "mode": "RGB",
+          "format": "JPEG",
+          "order": 2,
+          "use": "exact_person_likeness",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\references\\fahd-bin-abdulaziz-1992-reference-v1.jpg"
+        }
+      ],
+      "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-fdc040a1-ea1b-4bdd-b580-1a54e09c361b.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+        "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+        "bytes": 1562458,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-10-02T18:17:52.917000Z",
+          "finished_at": "2026-10-02T18:18:47.394000Z",
+          "outcome": "image_returned",
+          "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-fdc040a1-ea1b-4bdd-b580-1a54e09c361b.png"
+        }
+      ],
+      "failed_attempts": [],
+      "requested_appearance_window": {
+        "from": "1991-01-01",
+        "to": "1996-01-01",
+        "to_exclusive": true,
+        "window_status": "needs_codex_agreement",
+        "basis": "Window from the CLAUDE-C06-SAUDIARABIA-01 handoff. Fahd is the country card's leader by office_links (since 1982-06-13). The window continues his existing 1990 art (1990-01-01 to 1991-01-01) and ends at the accepted 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101), used as an appearance boundary only. No accepted holder observation lies inside it."
+      },
+      "appearance_window_decision": "Approved for this bounded generation only as an artistic interval; does not establish office tenure, registry appointments or year-specific photographic attestation.",
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh,_Saudi_Arabia.jpg",
+        "creator": "White House Photo Office (individual photographer not named)",
+        "credit": "George H. W. Bush Presidential Library and Museum, official White House photograph P38849-17, 'President George H. W. Bush meets with Saudi Arabian King Fahd in Riyadh, Saudi Arabia', 31 December 1992; public domain (PD-USGov), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+        "photograph_date": "1992-12-31",
+        "depiction_date": {
+          "kind": "day",
+          "value": "1992-12-31"
+        },
+        "date_precision": "Day. The Commons date field gives 1992-12-31, and the White House Digest of 31 December 1992 independently says the President met King Fahd in Riyadh that morning. The photograph is White House roll P38849-17 in the Library's presidential gallery (1989-1993); the roll number itself encodes no day.",
+        "rights_statement": "Retained source statement: official White House photograph P38849-17, identified on its Commons record as a work of the US federal government made in official duties and therefore public domain under 17 USC 105 ({{PD-USGov}}); Commons also applies the Public Domain Mark 1.0. Attribution is not required; the credit is kept for provenance. The copied bytes are the only Commons file revision, unretouched, and byte-identical to the Library's own file as archived on 2020-10-25.",
+        "age_gap_note": "No age gap: the photograph (31 December 1992) lies inside the requested window 1991-01-01 to 1996-01-01, about two years after its start and three years before its exclusive end. Fahd's birth year is given variously as about 1920 to 1923 in general biographical sources (not C01 research; leaders_1990.json leaves it null), so he is roughly 69 to 72 in the photograph and in his late sixties to mid seventies across the window; the prompt asks for one dignified appearance of a man of about seventy with no frailty. The 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101) is used only as the window's appearance boundary; reports of a late-1995 stroke are general knowledge and are not depicted. Artistic extensions declared in the prompt: the standing pose, the lower robe hem and the plain black low shoes (feet out of frame in a seated photograph).",
+        "limitation": "Small 600 x 410 scan; Fahd's face is only about 45 px wide, so the prompt asks for a simple, faithful face rather than invented detail. The live Commons 'source' link (bush41library.tamu.edu/audiovisual/photos/37) now redirects to the Library homepage, but its archived capture (20201017203816) lists the file as official White House photograph P38849-17, and the Library's archived file (20201025020135) is byte-identical to the Commons bytes. The individual White House photographer is not named. Date and place are also corroborated by the White House Digest of 31 December 1992.",
+        "original_reference": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/fahd-1992-bush-library-riyadh-original.jpg",
+        "original_reference_sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence.",
+        "adaptation": "Original cartoon generated from a style reference and the credited likeness reference; artistic age, body, clothing and color interpretations as disclosed in the exact prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "/root/selector_leader_api",
+        "reviewed_at": "2026-10-02T18:28:27.436169Z",
+        "scope": "Exact style and identity inputs viewed before generation; original output visually inspected for likeness, framing, hands/shoes, single-subject cartoon style and unintended text.",
+        "observations": "Correct right-hand subject from the group reference isolated. Rounded face, moustache and chin beard, white ghutra and black agal, beige/gold bisht over pale thobe. Both hands and black shoes visible. No other person, text or setting.",
+        "disposition": "ready_for_independent_registration_review",
+        "human_approval": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "job_id": "fahd-bin-abdulaziz-cartoon-1996-v1",
+      "person_id": "fahd_bin_abdulaziz_al_saud",
+      "display_name": "Fahd bin Abdulaziz Al Saud",
+      "generator": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02T18:19:14.382000Z",
+      "prompt_file": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1996-v1.txt",
+      "prompt_sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+      "submitted_text": "Exact UTF-8 LF text of the pinned prompt; no extra instructions or transformations.",
+      "referenced_images": [
+        {
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG",
+          "order": 1,
+          "use": "style_only",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+          "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+          "bytes": 1397076,
+          "width": 2496,
+          "height": 1821,
+          "mode": "RGB",
+          "format": "JPEG",
+          "order": 2,
+          "use": "exact_person_likeness",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\references\\fahd-bin-abdulaziz-1998-reference-v1.jpg"
+        }
+      ],
+      "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-7552d022-cb96-45f1-8356-6049711dc3a5.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+        "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+        "bytes": 1623986,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-10-02T18:17:52.917000Z",
+          "finished_at": "2026-10-02T18:19:14.382000Z",
+          "outcome": "image_returned",
+          "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-7552d022-cb96-45f1-8356-6049711dc3a5.png"
+        }
+      ],
+      "failed_attempts": [],
+      "requested_appearance_window": {
+        "from": "1996-01-01",
+        "to": "2005-08-01",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "From the first accepted observation (C01-45 King, 1996-01-01) to the Royal Court statement of 1 August 2005 announcing his death (claim sa_fahd_death_announced_20050801), used as an appearance boundary only, not a reign end. The split from the 1991 window is for appearance (the accepted decree records his withdrawal for rest); Codex may rule one window."
+      },
+      "appearance_window_decision": "Approved for this bounded generation only as an artistic interval; does not establish office tenure, registry appointments or year-specific photographic attestation.",
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+        "creator": "Helene C. Stikkel (U.S. Department of Defense photographer)",
+        "credit": "Helene C. Stikkel, U.S. Department of Defense photo 981013-D-2987S-196 (Released), 13 October 1998, Al-Yamamah Palace, Riyadh; public domain (PD-USGov-Military), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "photograph_date": "1998-10-13",
+        "depiction_date": {
+          "kind": "day",
+          "value": "1998-10-13"
+        },
+        "date_precision": "Day: Commons {{Taken on|1998-10-13}}, the DoD VIRIN 981013-D-2987S-196 (date-coded 981013), and the embedded IPTC caption 'on Oct. 13, 1998 ... DoD photo by Helene C. Stikkel. (Released)'.",
+        "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the only Commons file revision (Slick-o-bot, 2012-08-25, sha1 b598b3b5679edb1fbfdca8bab206268b8a823e36), unretouched.",
+        "age_gap_note": "No out-of-window gap: the photograph (1998-10-13) lies inside the requested window 1996-01-01 to 2005-08-01, about 2 years 9 months after its start and about 6 years 9 months before its end. Fahd's birth year is uncertain (sources give about 1920-1923; leaders_1990.json leaves it null); by general biographical knowledge (about 1921), not C01 research, he is about 77 in the photograph and roughly 74 to 84 across the window. The prompt shows the photograph's age (late seventies) without exaggerated frailty. The standing pose, the full standing fall of the robes and the hand positions are artistic extensions of a seated photograph, and the walking cane he holds is omitted. His later-window decline (general knowledge, not C01 research) is not depicted.",
+        "limitation": "Multi-person source (Cohen at left, an unidentified Saudi official in the middle); the prompt isolates Fahd at right and any crop happens at registration. Fahd is seated with a cane, so standing is an artistic extension.",
+        "original_reference": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/stikkel-cohen-fahd-19981013-original.jpg",
+        "original_reference_sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence.",
+        "adaptation": "Original cartoon generated from a style reference and the credited likeness reference; artistic age, body, clothing and color interpretations as disclosed in the exact prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "/root/selector_leader_api",
+        "reviewed_at": "2026-10-02T18:28:27.436169Z",
+        "scope": "Exact style and identity inputs viewed before generation; original output visually inspected for likeness, framing, hands/shoes, single-subject cartoon style and unintended text.",
+        "observations": "Correct right-hand subject from the 1998 reference isolated. Older rounded face without glasses, white headcloth, black agal and black/gold cloak. Cane omitted as prompted, both hands and shoes visible. Era treatment is illustrative.",
+        "disposition": "ready_for_independent_registration_review",
+        "human_approval": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "job_id": "abdullah-bin-abdulaziz-cartoon-1996-v1",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "display_name": "Abdullah bin Abdulaziz Al Saud",
+      "generator": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02T18:23:34.428000Z",
+      "prompt_file": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-1996-v1.txt",
+      "prompt_sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+      "submitted_text": "Exact UTF-8 LF text of the pinned prompt; no extra instructions or transformations.",
+      "referenced_images": [
+        {
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG",
+          "order": 1,
+          "use": "style_only",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+          "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+          "bytes": 1194034,
+          "width": 1850,
+          "height": 2990,
+          "mode": "RGB",
+          "format": "JPEG",
+          "order": 2,
+          "use": "exact_person_likeness",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\references\\abdullah-bin-abdulaziz-1998-reference-v1.jpg"
+        }
+      ],
+      "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-71bd59d0-cb65-4554-a992-134a09066674.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+        "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+        "bytes": 1566975,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-10-02T18:22:56.659000Z",
+          "finished_at": "2026-10-02T18:23:34.428000Z",
+          "outcome": "image_returned",
+          "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-71bd59d0-cb65-4554-a992-134a09066674.png"
+        }
+      ],
+      "failed_attempts": [],
+      "requested_appearance_window": {
+        "from": "1996-01-01",
+        "to": "2005-08-01",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "From the first accepted observation (C01-45 Crown Prince, 1996-01-01) to the start of his King window. Codex may move the start to 1990-01-01 on the leaders_1990.json heir record (Crown Prince and First Deputy Prime Minister since 1982-06-13; not C01 research); that window's job is abdullah_bin_abdulaziz_al_saud-0ae5f49261bc.",
+        "alternative_start": {
+          "from": "1990-01-01",
+          "job_id": "abdullah_bin_abdulaziz_al_saud-0ae5f49261bc",
+          "basis": "seed heir record in leaders_1990.json, not C01 research"
+        }
+      },
+      "appearance_window_decision": "Approved for this bounded generation only as an artistic interval; does not establish office tenure, registry appointments or year-specific photographic attestation.",
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+        "creator": "R. D. Ward, U.S. Department of Defense",
+        "credit": "R. D. Ward / U.S. Department of Defense, Defense.gov News Photo 981103-D-9880W-172, Riyadh, 3 November 1998; public domain (work of a U.S. military or Department of Defense employee, PD-USGov-Military) via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "photograph_date": "1998-11-03",
+        "depiction_date": {
+          "kind": "day",
+          "value": "1998-11-03"
+        },
+        "date_precision": "Day: Commons 'Taken on 3 November 1998'; the DoD ID 981103 encodes the date; the description says 'following their meeting on Nov. 3, 1998, in Riyadh'.",
+        "rights_statement": "Retained source statement: public domain in the United States (PD-USGov-Military); the bytes are the Commons file (Slick-o-bot import, 2012-08-24, sha1 d50522dc33b3df4b122613151c178307b47357c1), unretouched.",
+        "age_gap_note": "The photograph (3 November 1998) lies inside the requested window, 1037 days (about 2 years 10 months) after its start (1996-01-01) and 2462 days (about 6 years 9 months) before its last day (2005-07-31). By general biographical knowledge (born about 1924; not C01 research or registry data) he is about 74 in the photograph and about 71 to 81 across the window. The prompt keeps him about 75, as photographed, with no large age adjustment. If Codex moves the start to 1990-01-01, the photograph is about 8.8 years after the start (ages 65 to 81) and the prompt needs a v2.",
+        "limitation": "Multi-person walking photograph; his feet are mostly hidden by the robes (one dark brown shoe toe visible), so the shoes, standing pose and full-length extension are declared artistic interpretation. Commons has no qualifying photograph of him from 1996-1997 or 1999-2001: the year categories 'Abdullah of Saudi Arabia in 1996', '1997', '1999', '2000' and '2004' do not exist on Commons, and the 2001 category holds only an unrelated 2019 file.",
+        "original_reference": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/Defense.gov_News_Photo_981103-D-9880W-172.original.jpg",
+        "original_reference_sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence.",
+        "adaptation": "Original cartoon generated from a style reference and the credited likeness reference; artistic age, body, clothing and color interpretations as disclosed in the exact prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "/root/selector_leader_api",
+        "reviewed_at": "2026-10-02T18:28:27.436169Z",
+        "scope": "Exact style and identity inputs viewed before generation; original output visually inspected for likeness, framing, hands/shoes, single-subject cartoon style and unintended text.",
+        "observations": "Correct center-right white-headcloth subject from the 1998 group reference isolated. Thin metal glasses, thick dark moustache and rounded chin beard, white ghutra, brown/gold bisht; one hand gathers the robe while the other hangs naturally. Both shoes visible. No red-headcloth bystander or other people.",
+        "disposition": "ready_for_independent_registration_review",
+        "human_approval": false,
+        "country_acceptance": false
+      }
+    },
+    {
+      "job_id": "abdullah-bin-abdulaziz-cartoon-2005-v1",
+      "person_id": "abdullah_bin_abdulaziz_al_saud",
+      "display_name": "Abdullah bin Abdulaziz Al Saud",
+      "generator": "OpenAI built-in image_gen.imagegen",
+      "generated_at": "2026-10-02T18:23:56.896000Z",
+      "prompt_file": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-2005-v1.txt",
+      "prompt_sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+      "submitted_text": "Exact UTF-8 LF text of the pinned prompt; no extra instructions or transformations.",
+      "referenced_images": [
+        {
+          "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+          "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+          "bytes": 1421494,
+          "width": 1024,
+          "height": 1536,
+          "mode": "RGB",
+          "format": "PNG",
+          "order": 1,
+          "use": "style_only",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png"
+        },
+        {
+          "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+          "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+          "bytes": 297987,
+          "width": 648,
+          "height": 848,
+          "mode": "RGB",
+          "format": "JPEG",
+          "order": 2,
+          "use": "exact_person_likeness",
+          "supplied_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\claude-c06-review-20261002\\spheres-web\\ui\\person-portraits\\references\\abdullah-bin-abdulaziz-2007-reference-v1.jpg"
+        }
+      ],
+      "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-31c70a8d-41d1-4df6-9b2e-ad853827ce14.png",
+      "output": {
+        "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+        "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+        "bytes": 1598334,
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB",
+        "format": "PNG",
+        "byte_identical_to_generated_original": true
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-10-02T18:22:56.659000Z",
+          "finished_at": "2026-10-02T18:23:56.896000Z",
+          "outcome": "image_returned",
+          "generated_original_path": "C:\\Users\\ridge\\.codex\\generated_images\\01a0f48c-5cbf-7153-a94e-abd2cef13dd3\\exec-31c70a8d-41d1-4df6-9b2e-ad853827ce14.png"
+        }
+      ],
+      "failed_attempts": [],
+      "requested_appearance_window": {
+        "from": "2005-08-01",
+        "to": "2015-01-23",
+        "to_exclusive": true,
+        "window_status": "appearance_interval_from_handoff",
+        "basis": "From the accepted 1 August 2005 PM observation (C01-50) to the Royal Court statement that he died at 1 a.m. on 23 January 2015 (claim sa_abdullah_death_20150123), used as an appearance boundary only."
+      },
+      "appearance_window_decision": "Approved for this bounded generation only as an artistic interval; does not establish office tenure, registry appointments or year-specific photographic attestation.",
+      "runtime_registered": false,
+      "production_jobs_closed": 0,
+      "source_rights": {
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+        "creator": "Cherie A. Thurlby (U.S. Department of Defense photographer)",
+        "credit": "Cherie A. Thurlby / U.S. Department of Defense, DoD photo 070117-D-7203T-016, 17 January 2007; public domain U.S. military photograph; Commons crop 'King Abdullah bin Abdul al-Saud January 2007.jpg' via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+        "license": "Public domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+        "photograph_date": "2007-01-17",
+        "depiction_date": {
+          "kind": "day",
+          "value": "2007-01-17"
+        },
+        "date_precision": "Exact day, from three agreeing sources: the Commons Date field (2007-01-17), the DoD caption (the meeting with Defense Secretary Gates at the king's hunting lodge, Jan. 17, 2007), and the file's embedded metadata. The file has no Exif IFD, but its embedded IPTC-IIM and XMP metadata (ExifTool 9.70) give DateCreated 2007-01-17 (IPTC 20070117), By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016, matching the Commons Date field and the DoD caption. Commons shows the same values in the file page's Metadata section.",
+        "rights_statement": "Retained source statement: public domain in the United States as an official U.S. military work (PD-USGov-Military). Commons gives the source as dodmedia.osd.mil DVIC SDAN 070117-D-7203T-016. The current file version (648x848) was uploaded by Commons user Stemoc on 2015-01-23 with the comment 'restoring original crop (can't find original image) with better crop and EXIF data'; it replaced a 776x1032 version uploaded four minutes earlier. The copied bytes are the current version's, unchanged. They carry no Exif IFD, but their embedded IPTC-IIM and XMP metadata give DateCreated 2007-01-17, By-line CHERIE A. THURLBY and ObjectName 070117-D-7203T-016 (the 'EXIF data' of the upload comment). Not a Saudi Press Agency or Royal Court photograph.",
+        "age_gap_note": "From general biographical knowledge (born 1 August 1924; sources vary, some give 1923), not C01 research: he is about 82 in the 17 January 2007 photograph and about 81 to 90 across the window (2005-08-01 to 2015-01-23). The photograph is about 1.5 years after the window starts and about 8 years before it ends. The prompt keeps the photograph's appearance (an upright man in his early eighties with a jet-black moustache and goatee, light-gold rimless glasses and a red-and-white shemagh with a black agal) for the whole window. It asks for no further ageing and no cane, walker or wheelchair, and it says so. The standing body, both hands, the coat and thobe hems and the shoes are artistic extensions of a head-and-shoulders crop, guided by the same-day full-length companion frame.",
+        "limitation": "Head-and-shoulders Commons crop of a DoD frame; the defunct dodmedia.osd.mil source page was not re-checked. Clothing below the shoulders comes from the same-day companion frame, which is not a render input.",
+        "original_reference": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/King_Abdullah_bin_Abdul_al-Saud_January_2007.original.jpg",
+        "original_reference_sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+        "derivative_license": "CC BY 4.0",
+        "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence.",
+        "adaptation": "Original cartoon generated from a style reference and the credited likeness reference; artistic age, body, clothing and color interpretations as disclosed in the exact prompt. No endorsement implied."
+      },
+      "codex_visual_review": {
+        "reviewer": "/root/selector_leader_api",
+        "reviewed_at": "2026-10-02T18:28:27.436169Z",
+        "scope": "Exact style and identity inputs viewed before generation; original output visually inspected for likeness, framing, hands/shoes, single-subject cartoon style and unintended text.",
+        "observations": "Red-and-white checked headcloth, clear metal glasses, heavy moustache and dark chin beard match the 2007 likeness. Long black civilian coat over gray thobe, no gold trim, both hands at sides and both shoes visible. This uses the 2007 appearance throughout the requested art interval, without claiming further ageing to 2015.",
+        "disposition": "ready_for_independent_registration_review",
+        "human_approval": false,
+        "country_acceptance": false
+      }
+    }
+  ],
+  "generation_failures": [],
+  "skipped_or_reserve": [],
+  "deferred_batch_2": {
+    "generated": false,
+    "people": [],
+    "reason": "Outside the released batch; no claim of readiness or acceptance."
+  },
+  "decisions": {
+    "source_originals_preserved": true,
+    "generated_originals_preserved": true,
+    "output_transformations": [],
+    "global_manifest_changed": false,
+    "queue_or_derived_exports_changed": false,
+    "historical_holder_changes": false,
+    "retained_failure_history": "Preparation-source retrieval failures remain in the existing country source ledger; this render operation issued no network-source requests. No image-generation request failed."
+  },
+  "next": [
+    "Independently review output likeness and rights.",
+    "Register only accepted portraits with exact output/input/prompt hashes and derivative licences.",
+    "Regenerate derived exports after registration; no production job is closed by this return alone."
+  ]
+}

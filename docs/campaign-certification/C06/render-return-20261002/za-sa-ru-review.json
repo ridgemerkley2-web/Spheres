@@ -1,0 +1,1398 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-02 18:41:39 UTC",
+  "reviewer": "/root/tonga_royal_identities",
+  "status": "independent_render_audit_complete_with_one_likeness_hold",
+  "reviewed_checkout_head": "42e1fb784fc6a6a16dd92783142683fde498b3f7",
+  "scope": "Nine returned images and all nine recorded attempts: South Africa 4, Saudi Arabia 4, USSR/Russia 1. Read-only country-return audit; only this receipt is written.",
+  "counts": {
+    "active_jobs": 9,
+    "returned_outputs": 9,
+    "recorded_attempts": 9,
+    "recorded_generation_failures": 0,
+    "byte_identity_pass": 9,
+    "prompt_and_input_pin_pass": 9,
+    "format_pass": 9,
+    "no_blocking_visual_discrepancy": 8,
+    "visual_hold_for_claude_review": 1,
+    "runtime_registrations": 0
+  },
+  "disposition": "All nine are intact render returns. Eight have no blocking visual discrepancy in this bounded comparison. Gorbachev requires explicit Claude likeness review of the narrowed birthmark before registration. No image is registered or represented as human approved by this receipt.",
+  "authority": {
+    "human_approval": false,
+    "runtime_registration": false,
+    "country_acceptance": false,
+    "office_research_acceptance": false,
+    "production_jobs_closed": 0
+  },
+  "method": [
+    "Read the active requests and integrated identity reviews; compared exact active output sets, excluding the unprepared conditional Ryzhkov reserve.",
+    "SHA-256 over raw LF prompt bytes equals each return pin, integrated preparation pin, exact authored source-commit Git blob and integrated HEAD Git blob.",
+    "Checked two recorded inputs in order: approved Thatcher style anchor first, exact person's retained likeness reference second. Verified paths, hashes, byte counts, dimensions, modes and formats. No source-image conversion was recorded or detected.",
+    "Compared each repository reference with its retained external original and checked all recursively pinned external records under the nine used likeness references.",
+    "Compared every planned output byte-for-byte by SHA-256 and size against the retained generated original, and inspected with Pillow: all nine are RGB PNG at 1024×1536, with no alpha channel.",
+    "Personally viewed all nine selected outputs against all nine identity references and read all nine exact prompts. Compared subject selection, salient facial features, clothing, framing, visible hands/shoes, background and forbidden text/extra people.",
+    "Read the retained Commons metadata for source credits/licenses; preserved the earlier preflight findings on group-photo identities, original publication dates, derivative obligations and Gorbachev's month-only date.",
+    "Recorded authored and integrated Git document hashes separately from Windows CRLF working bytes; requests normalize exactly to their integrated LF Git blobs."
+  ],
+  "mechanical_errors": [],
+  "audit_scope_correction": "An initial audit count included Ryzhkov's placeholder prompt object despite status 'not written'. A follow-up exact active-set comparison required an actual prompt SHA-256 and confirmed 4+4+1 active jobs. This was an audit-script scope correction, not a missing render.",
+  "limits": [
+    "Return metadata records exact prompt submission and input order. This audit checks those declarations against retained files and requests; it does not independently replay the tool transport.",
+    "Approval remains false in all three country returns. This bounded audit is not Claude's registration review, historical-holder acceptance, new tenure evidence or whole-country completion.",
+    "Appearance windows and age extrapolations are art-use proposals only. Existing office observations, registry terms and unresolved research are not changed.",
+    "VRT-backed Gorbachev CC BY-SA 4.0 remains the retained permission basis; no independent employer-rights chain is newly established. Viljoen adaptations require CC BY-SA 2.0 with attribution/change notice.",
+    "Excluded, superseded, reserve and deferred jobs remain ungenerated; no new asset search or generation was performed."
+  ],
+  "countries": [
+    {
+      "country": "south-africa",
+      "request_commit": "c0382bbcb92852ff6e885292bb3ecfe9a7793a75",
+      "country_return_snapshot": {
+        "path": "docs/campaign-certification/C06/production/south-africa/render-return-batch-01-20261002.json",
+        "sha256": "e394a48388251440a4696dc2ebd887647863f640e6678166164ed866be62b26a",
+        "bytes": 37226
+      },
+      "integrated_source_review": {
+        "path": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+        "sha256": "7c4cd24028f05249fc3e834130abe5cabd0d6c0bda7392091dee45d8f8a821a9",
+        "bytes": 130767
+      },
+      "source_documents": [
+        {
+          "path": "docs/campaign-certification/C06/production/south-africa/render-request-batch-01.md",
+          "authored_request_tip_sha256": "854657940bc7155b9697c1e54acb41cabdf00bff0b0d0dff89509298885797af",
+          "integrated_git_blob_sha256": "7b1532c66f42f4764951d9dab7668c5d374736676e32908a2342ab977c626d21",
+          "working_bytes_sha256": "fe64ad382bf8457d8201bca7976d9077a16f300ef72fb75c571007dfc4d1de89",
+          "working_LF_equals_integrated_blob": true
+        },
+        {
+          "path": "docs/campaign-certification/C06/production/south-africa/identity-review-batch-01.json",
+          "authored_request_tip_sha256": "96cc9eae0d46d8b6784c3bb1c351c2d8c77d99b1ca18b49d759b496ab8f32e1f",
+          "integrated_git_blob_sha256": "7c4cd24028f05249fc3e834130abe5cabd0d6c0bda7392091dee45d8f8a821a9",
+          "working_bytes_sha256": "7c4cd24028f05249fc3e834130abe5cabd0d6c0bda7392091dee45d8f8a821a9",
+          "working_LF_equals_integrated_blob": true
+        }
+      ],
+      "active_job_ids": [
+        "mangosuthu-buthelezi-cartoon-1995-v1",
+        "constand-viljoen-cartoon-1994-v1",
+        "pieter-mulder-cartoon-2001-v1",
+        "corne-mulder-cartoon-2025-v1"
+      ],
+      "skip_disposition": [
+        {
+          "person_id": "mangosuthu_buthelezi",
+          "category": "excluded_people",
+          "generated": false
+        },
+        {
+          "person_id": "velenkosini_hlabisa",
+          "category": "excluded_people",
+          "generated": false
+        },
+        {
+          "person_id": "kenneth_meshoe",
+          "category": "excluded_people",
+          "generated": false
+        },
+        {
+          "person_id": "kenneth_meshoe",
+          "category": "excluded_people",
+          "generated": false
+        },
+        {
+          "person_id": "pieter_groenewald",
+          "category": "reserve_not_prepared",
+          "generated": false
+        },
+        {
+          "person_id": "mzwanele_nyhontso",
+          "category": "reserve_not_prepared",
+          "generated": false
+        }
+      ],
+      "retained_evidence_pins": [
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6173.json",
+          "sha256": "19d8d6d979bb75692313ed9fe1a6821623ebc18ba6320c40b79f181e303bc16d",
+          "bytes": 4955
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-file-page-anefo-932-6173.html",
+          "sha256": "a931ae88ab964cd708dcc295d2465e9a026bec5e88b2258a1a48e7549844692e",
+          "bytes": 104977
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/nationaal-archief-record-932-6173.html",
+          "sha256": "d10d62cf25c72ea6f11292fc1eb8a6285432941c1e63e963a474cdc2f94dc688",
+          "bytes": 27583
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/commons-api-imageinfo-anefo-932-6172-6173.json",
+          "sha256": "9bdd8c0dc39182c0621f121360dbae0e1feab734a6f48fec1acb67d68222c521",
+          "bytes": 10190
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+          "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+          "bytes": 1221637
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/NL-HaNA_2.24.01.05_0_932-6173-default.jpg",
+          "sha256": "0f6fdf41087b687c4cdbfb9eca641791fb684236cc21790d8a39b64b990eb5ba",
+          "bytes": 674919
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/NL-HaNA_2.24.01.05_0_932-6173.tif",
+          "sha256": "445f28e07264a67a51097903e1ec903339963c3ad398ee45072b6e218f369f7f",
+          "bytes": 9104920
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-api-viljoen-candidates.json",
+          "sha256": "31e9d42e9c392147efc9cd3cde430e62c824b000e179985679af7a827b36259f",
+          "bytes": 20323
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-file-page-constand-viljoen-1984.html",
+          "sha256": "32165eac53309e1460bfd71bdbb72e7464845b1ee264abc1ec2b9ec3ba8c1f70",
+          "bytes": 99828
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/commons-category-constand-viljoen.json",
+          "sha256": "c77d87c7ac8d5590bed46e06a4c1a3d9d898fa2d186a94887ed15c7f7a605047",
+          "bytes": 279
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/Constand_Viljoen_1984.original.jpg",
+          "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+          "bytes": 35923
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/search-constand-viljoen.json",
+          "sha256": "769edfef6a916c6e41924b9703dc0044c30149730388dbdb33a5f562532c6fa7",
+          "bytes": 1221
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/search-viljoen.json",
+          "sha256": "9492dd445babfa9f5abb66d9baa6ef5b77af9a76b61fe46c8cfa3758a19a4c41",
+          "bytes": 38049
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/search-freedom-front.json",
+          "sha256": "38876867ecbde4d1d226b6b1b62c37818f3f088397ceffa292f09b52b953cfb7",
+          "bytes": 19099
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/openverse-constand-viljoen.json",
+          "sha256": "dd06274304a1e38d2212ff6de49607ebd491c35696eddb0c39b77a37e08d4c49",
+          "bytes": 9733
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/openverse-viljoen-freedom-front.json",
+          "sha256": "90565712330a0b8758319de253863c5e42753136da866168c19628cbf3c7d136",
+          "bytes": 70
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/nara-catalog-search-constand-viljoen.json",
+          "sha256": "9da3b5aa9e98b451ddf6c07ae5e55f21ebabc434ce7ccdee659286c5acd1f94a",
+          "bytes": 329361
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-imageinfo-20130916-OSEC-BW-0002.json",
+          "sha256": "0dfa45cffd67104dc9e898b60dbf08c6e19e1787c09f87166e23e35e076e9bb7",
+          "bytes": 10514
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-category-Pieter_Mulder.json",
+          "sha256": "01b1168a42ae79e5315b76387091491b83c493daca32ecc948f38aab2b8dd2c1",
+          "bytes": 6500
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/commons-api-search-Pieter_Mulder.json",
+          "sha256": "7c200b839285e13e222d160f9c60f2cabf45620c0f3422d9930723188ecbb548",
+          "bytes": 448
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+          "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+          "bytes": 1547241
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-corne-mulder-and-parent.json",
+          "sha256": "03f663b929badcf5b6a07fff890cb94f115c72d53adbafec10448beecb44e777",
+          "bytes": 8970
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-file-page-corne-mulder.html",
+          "sha256": "0c945d2a0d2e7fa4162ce492d6688f37784c9ffafcf380eec8c0426cc57760e0",
+          "bytes": 111170
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/commons-api-category-corne-mulder.json",
+          "sha256": "dab7fa40ade97c56af1add81ed9c88f8d1da256965fb9868ee46f003681792d9",
+          "bytes": 175
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/enwiki-corne-mulder-wikitext.json",
+          "sha256": "cfd544e63a700989763de2cfe3e0fac9283b876921737d635f3b750c1f48ab62",
+          "bytes": 5553
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/wikidata-Q13034521-claims.json",
+          "sha256": "9708530076ab7fcf117f1a4811488a3c2091c8e3fae7134abb358ca1a0019d53",
+          "bytes": 14322
+        },
+        {
+          "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/Corne_Mulder.original.jpg",
+          "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+          "bytes": 98762
+        }
+      ],
+      "entries": [
+        {
+          "job_id": "mangosuthu-buthelezi-cartoon-1995-v1",
+          "person_id": "mangosuthu_buthelezi",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/mangosuthu-buthelezi-cartoon-1995-v1.txt",
+            "sha256": "d066930ed4fac85b0a1089e92c2ae6e471341e3407b1d421d9e9ed57964479c6",
+            "bytes": 3656
+          },
+          "prompt_authored_git_sha256": "d066930ed4fac85b0a1089e92c2ae6e471341e3407b1d421d9e9ed57964479c6",
+          "prompt_integrated_git_sha256": "d066930ed4fac85b0a1089e92c2ae6e471341e3407b1d421d9e9ed57964479c6",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/mangosuthu-buthelezi-1983-reference-v1.jpg",
+              "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+              "bytes": 1221637,
+              "width": 2467,
+              "height": 3685,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/za-cast/refs/mangosuthu_buthelezi/Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+            "sha256": "91523be5d17fca2244286cc138ad23fe125b338d477d04a3535b47ffa6389fe0",
+            "bytes": 1221637
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-efe521bf-91a9-4586-af71-cd481d8b4736.png",
+            "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+            "bytes": 1603845,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1995-v1.png",
+            "sha256": "202975349ead2ee610b036f1f149a32ce845d3afa0d2a327ebe651167cf96793",
+            "bytes": 1603845,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "1995-01-01",
+            "to": "2005-01-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-30 IFP President holder observation attested 1995-10-24. The window continues his existing 1990-01-01 to 1995-01-01 portrait and lies inside registry term za_ifp_mangosuthu_buthelezi_19750321 (1975-03-21 to 2019-08-24, not C01 research). It is split at 2005-01-01 for age, at a leadership-production job boundary; the later window 2005-01-01 to 2019-08-25 is not ready (see excluded_people)."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:Aankomst_en_vertrek,_politici,_portretten,_Buthelezi,_Mangosuthu,_Bestanddeelnr_932-6173.jpg",
+            "creator": "Rob Bogaerts / Anefo",
+            "credit": "Rob Bogaerts / Anefo; Nationaal Archief, Fotocollectie Anefo (archive 2.24.01.05), item 932-6173, 10 June 1983 (Chief Mangosuthu Gatsha Buthelezi arriving at Schiphol); CC0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "CC0",
+            "source_license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "photograph_date": "1983-06-10",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Rounded face, large aviator glasses, thin moustache and close beard remain distinct. Salt-and-pepper curls and softened older features follow the declared ageing interpretation; charcoal suit, striped tie, both hands and shoes, and dark teal backdrop match the prompt.",
+            "limitations": [
+              "The 1983 source does not attest 1995–2004 appearance; grey hair, age treatment, color and full body are declared artistic interpretations."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        },
+        {
+          "job_id": "constand-viljoen-cartoon-1994-v1",
+          "person_id": "constand_viljoen",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/constand-viljoen-cartoon-1994-v1.txt",
+            "sha256": "79f58149429784f37c9ccef47b98b6c8da4bcd3ddcdfa16cd8a9ecbdb1c5bb24",
+            "bytes": 3949
+          },
+          "prompt_authored_git_sha256": "79f58149429784f37c9ccef47b98b6c8da4bcd3ddcdfa16cd8a9ecbdb1c5bb24",
+          "prompt_integrated_git_sha256": "79f58149429784f37c9ccef47b98b6c8da4bcd3ddcdfa16cd8a9ecbdb1c5bb24",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/constand-viljoen-1984-reference-v1.jpg",
+              "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+              "bytes": 35923,
+              "width": 383,
+              "height": 388,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/za-cast/refs/constand_viljoen/Constand_Viljoen_1984.original.jpg",
+            "sha256": "36245e927a9193ba27f980875dd4718ef72ab7ebd20d6abb3c175b0a7775d3e4",
+            "bytes": 35923
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-bb1ec584-2283-4fb6-a2c6-2a65848ad336.png",
+            "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+            "bytes": 1563480,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/constand-viljoen-cartoon-1994-v1.png",
+            "sha256": "2345a91beae52b3ac72780488a40a11b3720f9193a3f1186d31f757c54bea8ba",
+            "bytes": 1563480,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "1994-03-31",
+            "to": "2001-01-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-30 Freedom Front Leader holder observation attested 1997-08-26. The bounds come from registry term za_ff_constand_viljoen_199403 (from month 1994-03, until year 2001; not C01 research) as leadership production dates it (1994-03-31 to 2001-01-01)."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:Constand_Viljoen_1984.jpg",
+            "creator": "Ian Barbour",
+            "credit": "Ian Barbour (Flickr: barbourians), September 1984, CC BY-SA 2.0, via Wikimedia Commons: 'Constand Viljoen 1984.jpg', a crop by Commons user TDKR Chicago 101 (CropTool, 13 September 2020) of '1984 PW Botha inspects the guard of honour.jpg' (Flickr 5971221747, uploaded by Flickr upload bot for Gbawden on 19 September 2013 and confirmed CC BY-SA 2.0 on that date). Adapted for Spheres; no endorsement implied.",
+            "source_license": "CC BY-SA 2.0",
+            "source_license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+            "photograph_date": "1984-09",
+            "derivative_license": "CC BY-SA 2.0",
+            "derivative_license_note": "The derivative must retain this share-alike licence and the recorded attribution when registered and distributed."
+          },
+          "visual_review": {
+            "observations": "Lean face, straight nose, firm mouth and strong chin are retained in a civilian charcoal suit with navy tie. No military cap or insignia. Both hands and shoes are visible. The generated head turns in a different direction from the crop, without changing the requested identity.",
+            "limitations": [
+              "The small 1984 crop hides the crown and has downcast eyes. Full hairstyle, open-eye appearance, standing body and 1994–2000 age treatment cannot be established from the photo and remain the prompt's declared reconstruction."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        },
+        {
+          "job_id": "pieter-mulder-cartoon-2001-v1",
+          "person_id": "pieter_mulder",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/pieter-mulder-cartoon-2001-v1.txt",
+            "sha256": "3bf5004a8f37214eb77cb5f1d192c75c2ba0653f5f994474b8f230a434b32b1d",
+            "bytes": 3598
+          },
+          "prompt_authored_git_sha256": "3bf5004a8f37214eb77cb5f1d192c75c2ba0653f5f994474b8f230a434b32b1d",
+          "prompt_integrated_git_sha256": "3bf5004a8f37214eb77cb5f1d192c75c2ba0653f5f994474b8f230a434b32b1d",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/pieter-mulder-2013-reference-v1.jpg",
+              "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+              "bytes": 1547241,
+              "width": 3000,
+              "height": 2000,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/za-cast/refs/pieter_mulder/20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+            "sha256": "697749a02f43cb1cef5928479738640a12aa4cf4741d8f6ef6bb92139231d59f",
+            "bytes": 1547241
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-1ae458cd-d10f-4b18-a2f2-e092059ad807.png",
+            "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+            "bytes": 1616484,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/pieter-mulder-cartoon-2001-v1.png",
+            "sha256": "b1c49e765bd2fae9c9be87e343bafafc38efd51c12606f76bcc7268fc1481f46",
+            "bytes": 1616484,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "2001-06-21",
+            "to": "2016-11-13",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-30 Freedom Front / FF Plus Leader holder observations attested 2001-06-21, 2003-09-28 and 2016-11-12. The window runs from the first accepted observation to the day after the last. It contains registry term za_ff_pieter_mulder_2001 (from year 2001, until 2016-11-12; not C01 research), which leadership production dates 2001-12-31 to 2016-11-12, so the window starts earlier than leadership production."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:20130916-OSEC-BW-0002_Pieter_Mulder.jpg",
+            "creator": "Blake Woodhams (photographer, 'Photo by Blake Woodhams'; EXIF Artist 'blakewoodhams.co.za') for the U.S. Department of Agriculture, published on the USDA Flickr account 41284017@N08",
+            "credit": "U.S. Department of Agriculture, photo by Blake Woodhams, '20130916-OSEC-BW-0002' (Flickr 9785284212), Johannesburg, 16 September 2013; CC BY 2.0; via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "CC BY 2.0",
+            "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+            "photograph_date": "2013-09-16",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Full cheeks, broad nose, rectangular light metal glasses and short grey hair match the 2013 subject. Navy suit, pale blue shirt and dotted red tie are retained. Lectern and microphone omitted; full body, hands and shoes complete.",
+            "limitations": [
+              "One stylized late-fifties interpretation covers the requested 2001–2016 art window; this is not a claim of a separately observed likeness at every date."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        },
+        {
+          "job_id": "corne-mulder-cartoon-2025-v1",
+          "person_id": "corne_mulder",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/corne-mulder-cartoon-2025-v1.txt",
+            "sha256": "d0d1db4577c23590c2965a2c580f5e43eb8283a4141ad85e2c1d90bfddf8c018",
+            "bytes": 3330
+          },
+          "prompt_authored_git_sha256": "d0d1db4577c23590c2965a2c580f5e43eb8283a4141ad85e2c1d90bfddf8c018",
+          "prompt_integrated_git_sha256": "d0d1db4577c23590c2965a2c580f5e43eb8283a4141ad85e2c1d90bfddf8c018",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/corne-mulder-2023-reference-v1.jpg",
+              "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+              "bytes": 98762,
+              "width": 301,
+              "height": 425,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/za-cast/refs/corne_mulder/Corne_Mulder.original.jpg",
+            "sha256": "5c2e7e0caa54ba0e500b4127528663d3b53b6e55c4f4013a0df5682f90fb57e8",
+            "bytes": 98762
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-cf46bd37-54c6-4ca1-be81-95303feb7267.png",
+            "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+            "bytes": 1588691,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/corne-mulder-cartoon-2025-v1.png",
+            "sha256": "73695cec342ce2545eae2269ab1a49d71ffcefce0508787ab05b1d058c929dab",
+            "bytes": 1588691,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "2025-07-16",
+            "to": "2026-09-08",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "C01-30 FF Plus Leader holder observations attested 2025-07-16 and 2026-03-25. Registry term za_ff_corne_mulder_20250716 (from day 2025-07-16, until open; not C01 research) to the 7 September 2026 cutoff (exclusive 2026-09-08)."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:Corne_Mulder.jpg",
+            "creator": "Houses of the Oireachtas",
+            "credit": "Houses of the Oireachtas, 'Corne Mulder.jpg', taken 14 June 2023 at Leinster House, Dublin; CC BY 2.0, via Wikimedia Commons. Commons crop (CropTool, user Lefcentreright, 17 November 2024, two steps) of 'Pemmy Majodina visits Ireland.jpg' (Flickr 52974699940, Houses of the Oireachtas stream). Adapted for Spheres; no endorsement implied.",
+            "source_license": "CC BY 2.0",
+            "source_license_url": "https://creativecommons.org/licenses/by/2.0",
+            "photograph_date": "2023-06-14",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Broad rounded face, mostly bald crown with wispy white hair, browline glasses and restrained smile match the named 2023 crop. Navy suit, plain red tie, both hands and shoes, and teal background match.",
+            "limitations": [
+              "Body is an artistic extension of the head-and-shoulders crop; the small 2023-to-2025/26 age adjustment remains illustrative."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        }
+      ]
+    },
+    {
+      "country": "saudi-arabia",
+      "request_commit": "ede909edd7577b777a4cd73479a1b6a57e6e0744",
+      "country_return_snapshot": {
+        "path": "docs/campaign-certification/C06/production/saudi-arabia/render-return-batch-01-20261002.json",
+        "sha256": "c56daee537d9c395a801a098904afea54df94477c9c1d447e2039deae8e2221f",
+        "bytes": 33038
+      },
+      "integrated_source_review": {
+        "path": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+        "sha256": "64533730456f558e232c9b3db16dfc2ce5322e0d4028ba5808220212f9901e38",
+        "bytes": 116642
+      },
+      "source_documents": [
+        {
+          "path": "docs/campaign-certification/C06/production/saudi-arabia/render-request-batch-01.md",
+          "authored_request_tip_sha256": "22b4a468142667c779e78a838db7da55a9e276a5939990366b2dcde6f6339753",
+          "integrated_git_blob_sha256": "22b4a468142667c779e78a838db7da55a9e276a5939990366b2dcde6f6339753",
+          "working_bytes_sha256": "074c3757fb1331c33c6d1285cef2c0546cf75292e476f6f7d2a30c11e6a06faf",
+          "working_LF_equals_integrated_blob": true
+        },
+        {
+          "path": "docs/campaign-certification/C06/production/saudi-arabia/identity-review-batch-01.json",
+          "authored_request_tip_sha256": "64533730456f558e232c9b3db16dfc2ce5322e0d4028ba5808220212f9901e38",
+          "integrated_git_blob_sha256": "64533730456f558e232c9b3db16dfc2ce5322e0d4028ba5808220212f9901e38",
+          "working_bytes_sha256": "64533730456f558e232c9b3db16dfc2ce5322e0d4028ba5808220212f9901e38",
+          "working_LF_equals_integrated_blob": true
+        }
+      ],
+      "active_job_ids": [
+        "fahd-bin-abdulaziz-cartoon-1991-v1",
+        "fahd-bin-abdulaziz-cartoon-1996-v1",
+        "abdullah-bin-abdulaziz-cartoon-1996-v1",
+        "abdullah-bin-abdulaziz-cartoon-2005-v1"
+      ],
+      "skip_disposition": [],
+      "retained_evidence_pins": [
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-imageinfo-bush-fahd-riyadh-19921231.json",
+          "sha256": "0b5ec803c0539a93ab224544255de70dc07695adfa9ad5f8498dfe5c3802213a",
+          "bytes": 4811
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/filepage-bush-fahd-riyadh-19921231.html",
+          "sha256": "1dae6fa82b1506b09dbf245595ddf9c43611e6b45dbacdbd3b7a208a8e667c1d",
+          "bytes": 88360
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/api-wikitext-revisions-bush-fahd-riyadh-19921231.json",
+          "sha256": "a621f42a02cefdea2b04592dbec945ae528ece4f1eb59b227e6c89fbe76eeaef",
+          "bytes": 11165
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/bush41library-audiovisual-photos-37.html",
+          "sha256": "a57be8a7f53930e5cf89a396d4222d106753df7eec67a66baf0c8bc4a161f849",
+          "bytes": 43625
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/cdx-photo-view-1122-P38849-17.txt",
+          "sha256": "f5aaa029547843bbd666cb6503ad8fe35f1ba4fc941827f77090aa8f511efc24",
+          "bytes": 652
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/wayback-20201025020135-P38849-17.jpg",
+          "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+          "bytes": 152062
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/wayback/wayback-20201017203816-audiovisual-photos-37.html",
+          "sha256": "27d96cab72fa3f854d66d2f4a07c866a97ee9c9c32816d197f3857835962ab2d",
+          "bytes": 62617
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/corroboration/presidency-ucsb-digest-other-white-house-announcements-11733.html",
+          "sha256": "305ae34c4a34afb9f3bae3fc86fac0ca141a5619d337ad72968c9893ef467ab1",
+          "bytes": 62163
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/corroboration/presidency-ucsb-search-fahd-19921231.html",
+          "sha256": "7a37143843289e262d9faf290fcae36619be536798fff658814e6f55cd738ad5",
+          "bytes": 63126
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/fahd-1992-bush-library-riyadh-original.jpg",
+          "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+          "bytes": 152062
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cohen-fahd-19981013.json",
+          "sha256": "066b8d0c3c22b245d5ae69fbe93b7aeeb1ff48780b1c714c4eefa97ebe0b2a73",
+          "bytes": 17004
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/filepage-stikkel-cohen-fahd-19981013.html",
+          "sha256": "5b87bafe5a9595ee4b5c2a73ba69f664e4b3a69c5f64e0bd36f6dc5da9db15af",
+          "bytes": 120859
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-parents.json",
+          "sha256": "41ac3d3b82dbaf2523446dd286756d297e54112e96a86391dfcddb905f7f726c",
+          "bytes": 59942
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-stikkel-cropped.json",
+          "sha256": "140a950d4e8a99066bd309607bf5a9c29e51f3f82d654211c948f7a2bc2b5ca3",
+          "bytes": 14417
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-category-fahd.json",
+          "sha256": "219608183a77fc41f3ce58899f4d99883b7c331676def2a7ed81175dfed81b9f",
+          "bytes": 26628
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/api-cheney-fahd-20020316.json",
+          "sha256": "ff0c99f1f7f8fa41aa1883275438b1f18286dd8f7cfb9f461f3cdb624ef6582c",
+          "bytes": 5868
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/wh-vpphotoessay-part1-08.html",
+          "sha256": "75c9b3c61bdd2750abc70ecde89e6ef43d35394078aa7789ffa8ccbd2c6dadc3",
+          "bytes": 14141
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/bohrer-cheney-fahd-20020316-commons.jpg",
+          "sha256": "f115e358fba7f728da61bb058f3c99d4ac8b9366b384c2a3f040eaecababf282",
+          "bytes": 38568
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/stikkel-cohen-fahd-19981013-original.jpg",
+          "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+          "bytes": 1397076
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-imageinfo-Defense.gov_News_Photo_981103-D-9880W-172.json",
+          "sha256": "4a49d3933664a52594883337df826ba410ec35cd35f3e662218ed7e1bd87afd9",
+          "bytes": 15061
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-Defense.gov_News_Photo_981103-D-9880W-172.html",
+          "sha256": "881175987f5c947d6f67bdfe472303609286bc8e9f9da76e422e59d895a1f0d3",
+          "bytes": 115079
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-by-year.json",
+          "sha256": "bd829fd5081c1204663f974dc88d7caceac301de82ebe25532f28fb88a61b83f",
+          "bytes": 1042
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-1998.json",
+          "sha256": "1468082f66bf57bc06abeed6b0bf0368d837c34f9014c067aac92f911984fcd9",
+          "bytes": 2353
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/cat-2005.json",
+          "sha256": "7de7cb055e450c70bdb305aed0ef42205252091bd10f097c92a8eb7e2f8e7eae",
+          "bytes": 4172
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/api-rubin.json",
+          "sha256": "3e51a102a79cb6be8324b01f41a0889d253a7279c870f7640898a8367c751740",
+          "bytes": 2660
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/rubin-1998-09-25.jpg",
+          "sha256": "9053c012efc86744492fd2b540cbe14dc4a33a186ccf4b8d187bf638f0d27c05",
+          "bytes": 1863042
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/candidates/api-obuchi-akasaka-1998-1.json",
+          "sha256": "eb48997197df9b6c51599d72170556c147c6fe38c4ce6e60b6d18946d91cabe5",
+          "bytes": 2967
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/Defense.gov_News_Photo_981103-D-9880W-172.original.jpg",
+          "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+          "bytes": 1194034
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-api-king-abdullah-january-2007.json",
+          "sha256": "61084c24ce2f5739086844625c80626c5ce3be66d9d98f4b40069a20a85b90e9",
+          "bytes": 8063
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/commons-file-page-king-abdullah-january-2007.html",
+          "sha256": "e6f6462cca6780f27da6679dd3f63a637dc8f4ab937412aae5c120b3dfcdd2b6",
+          "bytes": 131065
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-search-thurlby.json",
+          "sha256": "6fc6cd06e86d8887aea9457afc6f02d9dab4985cee02c05b2ee189f343cfe462",
+          "bytes": 6201
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-cat-2007.json",
+          "sha256": "b3d59098c24f68020e1da3bd741af07b3805061411b34adfc17333bb090d47fc",
+          "bytes": 10803
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-cand-dod-2007.json",
+          "sha256": "87f9a034acf9edaa71c36b3469c2aa35f69b45a980547787fd5958fab7717b2f",
+          "bytes": 94921
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/w2005-companion-070117-D-7203T-014-thumb1280.jpg",
+          "sha256": "4c3e0e3304a517d86436de21b3704e4c582e48ce78208fcf2d0aac7eaf11b275",
+          "bytes": 283400
+        },
+        {
+          "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/King_Abdullah_bin_Abdul_al-Saud_January_2007.original.jpg",
+          "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+          "bytes": 297987
+        }
+      ],
+      "entries": [
+        {
+          "job_id": "fahd-bin-abdulaziz-cartoon-1991-v1",
+          "person_id": "fahd_bin_abdulaziz_al_saud",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1991-v1.txt",
+            "sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+            "bytes": 3400
+          },
+          "prompt_authored_git_sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+          "prompt_integrated_git_sha256": "b6c2539c63ac0d31bdcb9b46e8c19a828e72e350117d140b49e1b865709828eb",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1992-reference-v1.jpg",
+              "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+              "bytes": 152062,
+              "width": 600,
+              "height": 410,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/fahd-1992-bush-library-riyadh-original.jpg",
+            "sha256": "5980e5254377d826244ab965e1b650c5070a20353fb8ea6f1af8a3ea67e77fa4",
+            "bytes": 152062
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-fdc040a1-ea1b-4bdd-b580-1a54e09c361b.png",
+            "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+            "bytes": 1562458,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1991-v1.png",
+            "sha256": "44d14aa47a14553a82e0a71474dfd31dda7113df815cae882d1a2c40dbe1ac46",
+            "bytes": 1562458,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "1991-01-01",
+            "to": "1996-01-01",
+            "to_exclusive": true,
+            "window_status": "needs_codex_agreement",
+            "basis": "Window from the CLAUDE-C06-SAUDIARABIA-01 handoff. Fahd is the country card's leader by office_links (since 1982-06-13). The window continues his existing 1990 art (1990-01-01 to 1991-01-01) and ends at the accepted 1 January 1996 delegation decree (C01-45 claim sa_fahd_delegation_19960101), used as an appearance boundary only. No accepted holder observation lies inside it."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_meets_with_Saudi_Arabian_King_Fahd_in_Riyadh,_Saudi_Arabia.jpg",
+            "creator": "White House Photo Office (individual photographer not named)",
+            "credit": "George H. W. Bush Presidential Library and Museum, official White House photograph P38849-17, 'President George H. W. Bush meets with Saudi Arabian King Fahd in Riyadh, Saudi Arabia', 31 December 1992; public domain (PD-USGov), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "Public domain",
+            "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov",
+            "photograph_date": "1992-12-31",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Correct right seated subject is isolated from the 1992 group photo. Broad rounded face, dark moustache and chin beard, white ghutra, black agal, beige-gold bisht, grey-blue thobe and clasped hands match. No bystander or palace scene is copied.",
+            "limitations": [
+              "Small 600×410 source limits facial detail; standing pose, robe hem and shoes are declared extensions."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        },
+        {
+          "job_id": "fahd-bin-abdulaziz-cartoon-1996-v1",
+          "person_id": "fahd_bin_abdulaziz_al_saud",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/fahd-bin-abdulaziz-cartoon-1996-v1.txt",
+            "sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+            "bytes": 4133
+          },
+          "prompt_authored_git_sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+          "prompt_integrated_git_sha256": "bedda1e071b620c748b17f2e9e23868abdf4d709ab61bede163800a91fb8be86",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/fahd-bin-abdulaziz-1998-reference-v1.jpg",
+              "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+              "bytes": 1397076,
+              "width": 2496,
+              "height": 1821,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/sa-cast/refs/fahd_bin_abdulaziz_al_saud/w1996/stikkel-cohen-fahd-19981013-original.jpg",
+            "sha256": "5d55840a9e9f72bd0c9e85a86c2ce6b42070662fbb369d5bf057544b9bc1bf6a",
+            "bytes": 1397076
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-7552d022-cb96-45f1-8356-6049711dc3a5.png",
+            "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+            "bytes": 1623986,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/fahd-bin-abdulaziz-cartoon-1996-v1.png",
+            "sha256": "025a2209a1c7c35699e38027e82a264e8e279e16c081fdb34cf532eb11cc6b22",
+            "bytes": 1623986,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "1996-01-01",
+            "to": "2005-08-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "From the first accepted observation (C01-45 King, 1996-01-01) to the Royal Court statement of 1 August 2005 announcing his death (claim sa_fahd_death_announced_20050801), used as an appearance boundary only, not a reign end. The split from the 1991 window is for appearance (the accepted decree records his withdrawal for rest); Codex may rule one window."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981013-D-2987S-196.jpg",
+            "creator": "Helene C. Stikkel (U.S. Department of Defense photographer)",
+            "credit": "Helene C. Stikkel, U.S. Department of Defense photo 981013-D-2987S-196 (Released), 13 October 1998, Al-Yamamah Palace, Riyadh; public domain (PD-USGov-Military), via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "Public domain",
+            "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+            "photograph_date": "1998-10-13",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Correct right seated subject is isolated from the 1998 photo, with full cheeks, dark moustache/chin beard and no glasses. Black-and-gold cloak and white headcloth distinguish this era from the earlier beige cloak. Both hands and shoes visible; cane omitted as requested.",
+            "deviations": [
+              "The black cloak is rendered largely opaque rather than showing the requested sheer translucency; this is a non-blocking clothing simplification."
+            ],
+            "limitations": [
+              "Age follows the in-window 1998 reference; standing posture and omitted cane are prompt-authorized artistic changes."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        },
+        {
+          "job_id": "abdullah-bin-abdulaziz-cartoon-1996-v1",
+          "person_id": "abdullah_bin_abdulaziz_al_saud",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-1996-v1.txt",
+            "sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+            "bytes": 4192
+          },
+          "prompt_authored_git_sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+          "prompt_integrated_git_sha256": "c58709f80c63f395148cca942143fa8bdb98affe15df3a263d224d007b2f6084",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-1998-reference-v1.jpg",
+              "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+              "bytes": 1194034,
+              "width": 1850,
+              "height": 2990,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/Defense.gov_News_Photo_981103-D-9880W-172.original.jpg",
+            "sha256": "243d6325a0c36e6e949a64985fadb9c89de87e2686a64fdd9d916b2a624cac64",
+            "bytes": 1194034
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-71bd59d0-cb65-4554-a992-134a09066674.png",
+            "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+            "bytes": 1566975,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-1996-v1.png",
+            "sha256": "e156435644bc426e2f64ca72ce00fdea365bd0ae22bc726164fd76c65017de19",
+            "bytes": 1566975,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "1996-01-01",
+            "to": "2005-08-01",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "From the first accepted observation (C01-45 Crown Prince, 1996-01-01) to the start of his King window. Codex may move the start to 1990-01-01 on the leaders_1990.json heir record (Crown Prince and First Deputy Prime Minister since 1982-06-13; not C01 research); that window's job is abdullah_bin_abdulaziz_al_saud-0ae5f49261bc.",
+            "alternative_start": {
+              "from": "1990-01-01",
+              "job_id": "abdullah_bin_abdulaziz_al_saud-0ae5f49261bc",
+              "basis": "seed heir record in leaders_1990.json, not C01 research"
+            }
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:Defense.gov_News_Photo_981103-D-9880W-172.jpg",
+            "creator": "R. D. Ward, U.S. Department of Defense",
+            "credit": "R. D. Ward / U.S. Department of Defense, Defense.gov News Photo 981103-D-9880W-172, Riyadh, 3 November 1998; public domain (work of a U.S. military or Department of Defense employee, PD-USGov-Military) via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "Public domain",
+            "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+            "photograph_date": "1998-11-03",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Correct center-right white-headcloth subject is selected, rather than the red-headcloth bystander. Longer face, metal glasses, heavy moustache and separate chin beard remain distinct from Fahd. Brown-gold cloak, gathering hand and visible shoes match the prompt.",
+            "limitations": [
+              "Full standing extension and feet are artistic interpretations of the walking group photo."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        },
+        {
+          "job_id": "abdullah-bin-abdulaziz-cartoon-2005-v1",
+          "person_id": "abdullah_bin_abdulaziz_al_saud",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/abdullah-bin-abdulaziz-cartoon-2005-v1.txt",
+            "sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+            "bytes": 3948
+          },
+          "prompt_authored_git_sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+          "prompt_integrated_git_sha256": "9a2c0e346a3291f7a34b871bb194b687fe13f1229a4168f3c3dad3d79ddc6614",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/abdullah-bin-abdulaziz-2007-reference-v1.jpg",
+              "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+              "bytes": 297987,
+              "width": 648,
+              "height": 848,
+              "mode": "RGB",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/sa-cast/refs/abdullah_bin_abdulaziz_al_saud/King_Abdullah_bin_Abdul_al-Saud_January_2007.original.jpg",
+            "sha256": "90fb0896a31cb8b44e38af7298f20637125927ce6161de79545706806421ae82",
+            "bytes": 297987
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-31c70a8d-41d1-4df6-9b2e-ad853827ce14.png",
+            "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+            "bytes": 1598334,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/abdullah-bin-abdulaziz-cartoon-2005-v1.png",
+            "sha256": "53a89ecef9194d4d8a7bc585b29236399103dcfa6bf6464eafe82e6838a71d5d",
+            "bytes": 1598334,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "2005-08-01",
+            "to": "2015-01-23",
+            "to_exclusive": true,
+            "window_status": "appearance_interval_from_handoff",
+            "basis": "From the accepted 1 August 2005 PM observation (C01-50) to the Royal Court statement that he died at 1 a.m. on 23 January 2015 (claim sa_abdullah_death_20150123), used as an appearance boundary only."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:King_Abdullah_bin_Abdul_al-Saud_January_2007.jpg",
+            "creator": "Cherie A. Thurlby (U.S. Department of Defense photographer)",
+            "credit": "Cherie A. Thurlby / U.S. Department of Defense, DoD photo 070117-D-7203T-016, 17 January 2007; public domain U.S. military photograph; Commons crop 'King Abdullah bin Abdul al-Saud January 2007.jpg' via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "Public domain",
+            "source_license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military",
+            "photograph_date": "2007-01-17",
+            "derivative_license": "CC BY 4.0",
+            "derivative_license_note": "Spheres generated-art attribution licence; retain the separate source credit and licence."
+          },
+          "visual_review": {
+            "observations": "Reference-specific red-and-white headcloth, light metal glasses, thick moustache and dark squared goatee are present. Long plain black coat, grey thobe, open hands and shoes follow the prompt; no gold trim or extra people.",
+            "limitations": [
+              "As explicitly requested, the early-eighties 2007 likeness is used across the 2005–2015 art window without inventing additional ageing. Body clothing beyond the crop follows the declared companion-photo interpretation."
+            ],
+            "disposition": "no_blocking_discrepancy_in_bounded_review",
+            "human_approval": false
+          }
+        }
+      ]
+    },
+    {
+      "country": "ussr-russia",
+      "request_commit": "6cae02b53179761cc0f2cd987f3209aeab933aab",
+      "country_return_snapshot": {
+        "path": "docs/campaign-certification/C06/production/ussr-russia/render-return-batch-01-20261002.json",
+        "sha256": "7b7af454caae0590e28e99c7a90dbbdae3e6b23fdc7351ab5ded41df73b90feb",
+        "bytes": 11363
+      },
+      "integrated_source_review": {
+        "path": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+        "sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d",
+        "bytes": 53597
+      },
+      "source_documents": [
+        {
+          "path": "docs/campaign-certification/C06/production/ussr-russia/render-request-batch-01.md",
+          "authored_request_tip_sha256": "2332b73f3dfc636a101748856350399ba0351ed41e1e4f45bd1e239e2dbf7b52",
+          "integrated_git_blob_sha256": "2332b73f3dfc636a101748856350399ba0351ed41e1e4f45bd1e239e2dbf7b52",
+          "working_bytes_sha256": "5047272098678e737ae3e8606385f18f3d18ab5a369f7746954afaa8fe6db247",
+          "working_LF_equals_integrated_blob": true
+        },
+        {
+          "path": "docs/campaign-certification/C06/production/ussr-russia/identity-review-batch-01.json",
+          "authored_request_tip_sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d",
+          "integrated_git_blob_sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d",
+          "working_bytes_sha256": "c7e896c2de1d26d1db1b12a44759bd8265220cf99665e90c5b9b8e82d601a32d",
+          "working_LF_equals_integrated_blob": true
+        }
+      ],
+      "active_job_ids": [
+        "mikhail-gorbachev-cartoon-1991-v1"
+      ],
+      "skip_disposition": [
+        {
+          "person_id": "nikolai_ryzhkov",
+          "category": "conditional_not_render_ready",
+          "generated": false
+        }
+      ],
+      "retained_evidence_pins": [
+        {
+          "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-imageinfo-gorbachevms.json",
+          "sha256": "3be8105281d3ecefafad26eb0c8dc4d04e82865cee535815429e73644b4ee882",
+          "bytes": 3652
+        },
+        {
+          "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/filepage-gorbachevms.html",
+          "sha256": "386ba6f99ebec763dbf4997f287422496c2d5c8773632cf0995f5bedaae9c01f",
+          "bytes": 117288
+        },
+        {
+          "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/api-revisions-gorbachevms.json",
+          "sha256": "7bf045eeae79deef057a389912b07c302fe933011ca84c51a363da844f8ae21b",
+          "bytes": 17750
+        },
+        {
+          "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/category-photographs-by-lev-l-medvedev.json",
+          "sha256": "9a8ce1b69e121bf2049ebcfa37117162f19dabab16e684ce51661378a8fd4d37",
+          "bytes": 6629
+        },
+        {
+          "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/mikhail-gorbachev-199110-leo-medvedev-original.jpg",
+          "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+          "bytes": 3905097
+        }
+      ],
+      "entries": [
+        {
+          "job_id": "mikhail-gorbachev-cartoon-1991-v1",
+          "person_id": "mikhail_gorbachev",
+          "prompt": {
+            "path": "tools/avatars/person-prompts/mikhail-gorbachev-cartoon-1991-v1.txt",
+            "sha256": "817a5faedffbdb0b05442db86ae5af1c7e67edea60e50d210a470a21e2a75941",
+            "bytes": 3916
+          },
+          "prompt_authored_git_sha256": "817a5faedffbdb0b05442db86ae5af1c7e67edea60e50d210a470a21e2a75941",
+          "prompt_integrated_git_sha256": "817a5faedffbdb0b05442db86ae5af1c7e67edea60e50d210a470a21e2a75941",
+          "ordered_inputs": [
+            {
+              "path": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+              "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+              "bytes": 1421494,
+              "width": 1024,
+              "height": 1536,
+              "mode": "RGB",
+              "format": "PNG",
+              "order": 1,
+              "use": "style_only"
+            },
+            {
+              "path": "spheres-web/ui/person-portraits/references/mikhail-gorbachev-1991-reference-v1.jpg",
+              "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+              "bytes": 3905097,
+              "width": 2800,
+              "height": 4050,
+              "mode": "L",
+              "format": "JPEG",
+              "order": 2,
+              "use": "exact_person_likeness"
+            }
+          ],
+          "retained_reference_original": {
+            "path": "D:/spheres-scratch/ru-cast/refs/mikhail_gorbachev/mikhail-gorbachev-199110-leo-medvedev-original.jpg",
+            "sha256": "2eea574ab17e9fa4dc824ebbe09bda5307214dfd74996f2f4a79fe24e2676d37",
+            "bytes": 3905097
+          },
+          "generated_original": {
+            "path": "C:/Users/ridge/.codex/generated_images/01a0f48c-5cbf-7153-a94e-abd2cef13dd3/exec-7f0e13f1-6ba5-4e68-a73d-ab10a05474bd.png",
+            "sha256": "3652310d36d61e83e4d091c6878f08e2621c2f5e2adf0e50a6c5e1d32d6e9104",
+            "bytes": 1582504,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "planned_output": {
+            "path": "spheres-web/ui/person-portraits/mikhail-gorbachev-cartoon-1991-v1.png",
+            "sha256": "3652310d36d61e83e4d091c6878f08e2621c2f5e2adf0e50a6c5e1d32d6e9104",
+            "bytes": 1582504,
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB",
+            "format": "PNG"
+          },
+          "mechanical_checks": {
+            "all_pass": true,
+            "original_retained": true,
+            "copy_byte_identical": true,
+            "prompt_exact_lf": true,
+            "input_order_matches_request": true,
+            "appearance_window_matches_request": true,
+            "recorded_attempts": 1,
+            "recorded_failures": 0,
+            "opaque_rgb_png": true
+          },
+          "appearance_window": {
+            "from": "1991-01-01",
+            "to": "1991-12-26",
+            "to_exclusive": true,
+            "window_status": "needs_codex_agreement",
+            "basis": "Accepted C01-49 President of the USSR holder observations attested 1991-01-22, 1991-08-22 and 1991-10-05, and the accepted C01-41 CPSU General Secretary holder observation attested 1991-08-22 (all with from and until null). The start continues his existing 1990 art (mikhail-gorbachev-cartoon-1990-v1.png, 1990-01-01 to 1991-01-01). The exclusive end is the day after 25 December 1991, the gap ledger's audit boundary for USSR-identity roles ('not an accepted dissolution date'); it is not an accepted term end. He is the USSR card's leader by office_links (since 1985-03-11, registry). The window is an appearance interval, not a tenure, and the claim record marks it as needing Codex agreement."
+          },
+          "rights": {
+            "source_page_url": "https://commons.wikimedia.org/wiki/File:GorbachevMS.jpg",
+            "creator": "Leo Medvedev/Лев Леонидович Медведев",
+            "credit": "Leo Medvedev (Lev Leonidovich Medvedev) / Leo Medvedev's Archive, 'GorbachevMS.jpg', Moscow, October 1991; CC BY-SA 4.0, permission confirmed by the Wikimedia Volunteer Response Team (ticket #2022050610007575); via Wikimedia Commons. Adapted for Spheres; no endorsement implied.",
+            "source_license": "CC BY-SA 4.0",
+            "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+            "photograph_date": "1991-10",
+            "derivative_license": "CC BY-SA 4.0",
+            "derivative_license_note": "The derivative must retain this share-alike licence and the recorded attribution when registered and distributed."
+          },
+          "visual_review": {
+            "observations": "Rounded face, receding grey-white hair, no glasses, closed mouth and stocky suit silhouette match the reference. Full-color charcoal pinstripes, burgundy tie, hands/shoes and teal background match the requested illustration. The birthmark remains on the anatomical right/viewer-left toward the forehead center, rather than being mirrored.",
+            "deviations": [
+              "The source's broad irregular birthmark arc is simplified into a much narrower, near-vertical central patch with two aligned small dots. Correct sidedness does not establish the prompt's requested exact contour and placement fidelity."
+            ],
+            "limitations": [
+              "October 1991 is month precision; the later unsourced day 24 is not accepted. All colors and the full standing body are artistic interpretation of an unchanged grayscale JPEG. The visual deviation must be resolved by Claude's review before registration; no rerender is requested in this return round."
+            ],
+            "disposition": "hold_for_claude_birthmark_likeness_review",
+            "human_approval": false
+          }
+        }
+      ]
+    }
+  ]
+}

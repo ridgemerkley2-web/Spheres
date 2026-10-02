@@ -1,0 +1,3943 @@
+{
+  "reviewed_tip": "09cbb58324648254000ee24609f4a8d1885013b5",
+  "parent": "a300d0bd2addca03a04d5869530792bc6dd1e9b3",
+  "scope_paths": [
+    "docs/campaign-certification/C06/production/france/README.md",
+    "docs/campaign-certification/C06/production/france/claude-visual-review-batch-01.json",
+    "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+    "docs/campaign-certification/C06/production/france/registration-batch-01.md",
+    "docs/planning/ai-handoffs/CLAUDE-C06-FRANCE-01.md",
+    "spheres-web/data/person_portraits.json",
+    "tools/avatars/person-prompts/france-cast-batch-01.json"
+  ],
+  "checks": [
+    {
+      "kind": "same_person_registry_set",
+      "pass": true
+    },
+    {
+      "kind": "exact_seven_people",
+      "pass": true,
+      "changed": [
+        "alain_juppe",
+        "francois_hollande",
+        "francois_mitterrand",
+        "henri_emmanuelli",
+        "laurent_fabius",
+        "lionel_jospin",
+        "michel_rocard"
+      ]
+    },
+    {
+      "kind": "generation_count",
+      "pass": true
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "margaret_thatcher"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_major"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "william_hague"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "iain_duncan_smith"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michael_howard"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "david_cameron"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "theresa_may"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "boris_johnson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "liz_truss"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rishi_sunak"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kemi_badenoch"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "neil_kinnock"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_smith"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "margaret_beckett"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tony_blair"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gordon_brown"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "harriet_harman"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ed_miliband"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jeremy_corbyn"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "keir_starmer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andy_burnham"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paddy_ashdown"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "charles_kennedy"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "menzies_campbell"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "vince_cable"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nick_clegg"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tim_farron"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jo_swinson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ed_davey"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sal_brinton"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mark_pack"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gordon_wilson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alex_salmond"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_swinney"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nicola_sturgeon"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "humza_yousaf"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "dafydd_elis_thomas"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "dafydd_wigley"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ieuan_wyn_jones"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "leanne_wood"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "adam_price"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "llyr_gruffydd"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rhun_ap_iorwerth"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mohammad_najibullah"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sultan_ali_keshtmand"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ramiz_alia"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "adil_carcani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "chadli_bendjedid"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mouloud_hamrouche"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_eduardo_dos_santos"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "carlos_menem"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bob_hawke"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "franz_vranitzky"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kurt_waldheim"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lynden_pindling"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "isa_bin_salman_al_khalifa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "khalifa_bin_salman_al_khalifa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hamad_bin_isa_al_khalifa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hussain_muhammad_ershad"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kazi_zafar_ahmed"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wilfried_martens"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "baudouin_belgium"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "george_cadle_price"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jigme_singye_wangchuck"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jaime_paz_zamora"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "quett_masire"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_sarney"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fernando_collor_de_mello"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hassanal_bolkiah"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "petar_mladenov"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "georgi_atanasov"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "heng_samrin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hun_sen"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paul_biya"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "brian_mulroney"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jeanne_sauve"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "aristides_pereira"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pedro_pires"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andre_kolingba"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hissene_habre"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "patricio_aylwin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jiang_zemin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "deng_xiaoping"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "li_peng"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yang_shangkun"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "virgilio_barco"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "denis_sassou_nguesso"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alphonse_poaty_souchlaty"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "oscar_arias"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fidel_castro"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "raul_castro"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "vaclav_havel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marian_calfa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "poul_schluter"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "margrethe_ii_denmark"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "joaquin_balaguer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rodrigo_borja"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hosni_mubarak"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "atef_sedki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alfredo_cristiani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "teodoro_obiang_nguema_mbasogo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mengistu_haile_mariam"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hailu_yimenu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kamisese_mara"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "penaia_ganilau"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "harri_holkeri"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mauno_koivisto"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "omar_bongo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "leon_mebiame"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "helmut_kohl"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "richard_von_weizsacker"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hans_modrow"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jerry_rawlings"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "christos_sartzetakis"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "vinicio_cerezo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "desmond_hoyte"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hamilton_green"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "prosper_avril"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_azcona"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rafael_leonardo_callejas"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "miklos_nemeth"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "matyas_szuros"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "steingrimur_hermannsson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "vigdis_finnbogadottir"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "v_p_singh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "r_venkataraman"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "suharto"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sudharmono"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ali_khamenei"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "akbar_hashemi_rafsanjani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "saddam_hussein"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "izzat_ibrahim_al_douri"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "charles_haughey"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "des_omalley"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yitzhak_shamir"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "shimon_peres"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "giulio_andreotti"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "francesco_cossiga"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michael_manley"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "toshiki_kaifu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hussein_bin_talal"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mudar_badran"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hassan_bin_talal"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "daniel_arap_moi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jaber_al_ahmad_al_sabah"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "saad_al_abdullah_al_salim_al_sabah"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kaysone_phomvihane"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "phoumi_vongvichit"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "elias_hrawi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "selim_hoss"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michel_aoun"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "justin_lekhanya"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "moshoeshoe_ii_lesotho"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "muammar_gaddafi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "miftah_al_usta_umar"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "umar_mustafa_al_muntasir"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jacques_santer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "didier_ratsiraka"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "victor_ramahatra"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hastings_kamuzu_banda"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mahathir_mohamad"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "azlan_shah"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "maumoon_abdul_gayoom"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "eddie_fenech_adami"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "censu_tabone"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "anerood_jugnauth"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "carlos_salinas_de_gortari"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jambyn_batmonkh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "dumaagiin_sodnom"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hassan_ii_morocco"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "azzedine_laraki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "joaquim_chissano"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mario_da_graca_machungo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "saw_maung"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "birendra_bir_bikram_shah_dev"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marich_man_singh_shrestha"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ruud_lubbers"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wim_kok"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "geoffrey_palmer_new_zealand"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "daniel_ortega"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sergio_ramirez"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ibrahim_babangida"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kim_il_sung"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yon_hyong_muk"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kim_jong_il"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jan_peder_syse"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "qaboos_bin_said"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "benazir_bhutto"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ghulam_ishaq_khan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ricardo_arias_calderon"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rabbie_namaliu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andres_rodriguez_pedotti"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alan_garcia"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "guillermo_larco_cox"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "corazon_aquino"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "salvador_laurel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tadeusz_mazowiecki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wojciech_jaruzelski"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "anibal_cavaco_silva"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mario_soares"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "khalifa_bin_hamad_al_thani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hamad_bin_khalifa_al_thani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ion_iliescu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "petre_roman"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tofilau_eti_alesana"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "malietoa_tanumafili_ii"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "manuel_pinto_da_costa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "celestino_rocha_da_costa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fahd_bin_abdulaziz_al_saud"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "abdullah_bin_abdulaziz_al_saud"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "abdou_diouf"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "france_albert_rene"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lee_kuan_yew"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "goh_chok_tong"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wee_kim_wee"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "solomon_mamaloni"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "george_lepping"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "f_w_de_klerk"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "roh_tae_woo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kang_young_hoon"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "felipe_gonzalez"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "juan_carlos_i_spain"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ranasinghe_premadasa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "d_b_wijetunga"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "omar_al_bashir"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ramsewak_shankar"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "henck_arron"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "desi_bouterse"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mswati_iii_eswatini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "obed_dlamini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ingvar_carlsson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "carl_xvi_gustaf_sweden"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "arnold_koller"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jean_pascal_delamuraz"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hafez_al_assad"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mahmoud_zuabi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lee_teng_hui"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lee_huan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ali_hassan_mwinyi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "julius_nyerere"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "joseph_warioba"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "chatichai_choonhavan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bhumibol_adulyadej"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "taufaahau_tupou_iv"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fatafehi_tuipelehake"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "siaosi_taufaahau_manumataongo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "a_n_r_robinson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "noor_hassanali"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "zine_el_abidine_ben_ali"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hamed_karoui"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "turgut_ozal"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yildirim_akbulut"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "zayed_bin_sultan_al_nahyan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rashid_bin_saeed_al_maktoum"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "khalifa_bin_zayed_al_nahyan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "elizabeth_ii"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "george_h_w_bush"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tom_foley"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "george_j_mitchell"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mikhail_gorbachev"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nikolai_ryzhkov"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yoweri_museveni"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "samson_kisekka"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "julio_maria_sanguinetti"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "luis_alberto_lacalle"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "walter_lini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fred_timakata"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "carlos_andres_perez"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nguyen_van_linh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "do_muoi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "vo_chi_cong"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ali_abdullah_saleh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ali_salem_al_beidh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "abdul_aziz_abdul_ghani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yasin_said_numan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ante_markovic"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "janez_drnovsek"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mobutu_sese_seko"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kengo_wa_dondo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kenneth_kaunda"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "malimba_masheke"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "robert_mugabe"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kiichi_miyazawa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yohei_kono"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ryutaro_hashimoto"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "keizo_obuchi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yoshiro_mori"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "junichiro_koizumi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "shinzo_abe"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yasuo_fukuda"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "taro_aso"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sadakazu_tanigaki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yoshihide_suga"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fumio_kishida"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "shigeru_ishiba"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sanae_takaichi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "takako_doi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "makoto_tanabe"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sadao_yamahana"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tomiichi_murayama"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mizuho_fukushima"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tadatomo_yoshida"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "seiji_mataichi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "koshiro_ishida"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tomio_fujii"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "toshiko_hamayotsu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "takenori_kanzaki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "akihiro_ota"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "natsuo_yamaguchi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "keiichi_ishii"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tetsuo_saito"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "toshiko_takeya"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tetsuzo_fuwa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kazuo_shii"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tomoko_tamura"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "eiichi_nagasue"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "keigo_ouchi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "takashi_yonezawa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ron_brown"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lee_atwater"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jeanie_austin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "robert_h_michel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "dick_gephardt"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bob_dole"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pierre_mauroy"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "martine_aubry"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "harlem_desir"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jean_christophe_cambadelis"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rachid_temal"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "olivier_faure"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jacques_chirac"
+    },
+    {
+      "kind": "prior_portraits_preserved",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "single_additive_portrait",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "prior_identity_sources_preserved",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "other_person_fields_preserved",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "output_hash_and_size",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "original_output_byte_identity",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "output_png_rgb_dimensions",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "appearance_window_matches_return",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "named_visual_review_and_hash",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "source_and_derivative_licences_preserved",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "exact_source_credit_and_original_hash",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "no_window_overlap",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "philippe_seguin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nicolas_sarkozy"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michele_alliot_marie"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "georges_marchais"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "robert_hue"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marie_george_buffet"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pierre_laurent"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fabien_roussel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "valery_giscard_d_estaing"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "francois_leotard"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "francois_bayrou"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gerard_longuet"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alain_madelin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pierre_mehaignerie"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "yves_galland"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andre_rossinot"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "thierry_cornillet"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "francois_loos"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andre_santini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "herve_de_charette"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paul_girod"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pierre_andre_wiltzer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jean_marie_le_pen"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marine_le_pen"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jean_francois_jalkh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "steeve_briois"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jordan_bardella"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wolfgang_schaeuble"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "angela_merkel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "annegret_kramp_karrenbauer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "armin_laschet"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "friedrich_merz"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "theo_waigel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "edmund_stoiber"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "erwin_huber"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "horst_seehofer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "markus_soeder"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hans_jochen_vogel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bjoern_engholm"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "johannes_rau"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rudolf_scharping"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "oskar_lafontaine"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gerhard_schroeder"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "franz_muentefering"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "matthias_platzeck"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kurt_beck"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "frank_walter_steinmeier"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sigmar_gabriel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "martin_schulz"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "olaf_scholz"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andrea_nahles"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "malu_dreyer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "manuela_schwesig"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "thorsten_schaefer_guembel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "saskia_esken"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "norbert_walter_borjans"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lars_klingbeil"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "baerbel_bas"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "otto_graf_lambsdorff"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "klaus_kinkel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wolfgang_gerhardt"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "guido_westerwelle"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "philipp_roesler"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "christian_lindner"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "christian_duerr"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wolfgang_kubicki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ralf_fuecks"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ruth_hammerbacher"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "verena_krieger"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "renate_damus"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "heide_ruehle"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hans_christian_stroebele"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "christine_weiske"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ludger_volmer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marianne_birthler"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "juergen_trittin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "krista_sager"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gunda_roestel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "antje_radcke"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "renate_kuenast"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "fritz_kuhn"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "claudia_roth"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "angelika_beer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "reinhard_buetikofer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "cem_oezdemir"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "simone_peter"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "annalena_baerbock"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "robert_habeck"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ricarda_lang"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "omid_nouripour"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "franziska_brantner"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "felix_banaszak"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hu_jintao"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "xi_jinping"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rajiv_gandhi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "p_v_narasimha_rao"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sitaram_kesri"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sonia_gandhi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rahul_gandhi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mallikarjun_kharge"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lal_krishna_advani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "murli_manohar_joshi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kushabhau_thakre"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bangaru_laxman"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jana_krishnamurthi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "m_venkaiah_naidu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rajnath_singh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nitin_gadkari"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "amit_shah"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jagat_prakash_nadda"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nitin_nabin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "e_m_s_namboodiripad"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "harkishan_singh_surjeet"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "prakash_karat"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sitaram_yechury"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "m_a_baby"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "s_r_bommai"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sharad_yadav"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lalu_prasad_yadav"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "arnaldo_forlani"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mino_martinazzoli"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "achille_occhetto"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bettino_craxi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "giorgio_benvenuto"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ottaviano_del_turco"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gianfranco_fini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pino_rauti"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "giorgio_la_malfa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "giorgio_bogi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "francesco_nucara"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "saverio_collura"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "corrado_de_rinaldis_saponaro"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "antonio_cariglia"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "carlo_vizzini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "enrico_ferri"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gianfranco_schietroma"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "renato_altissimo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "raffaele_costa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ulysses_guimaraes"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jarbas_vasconcelos"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "orestes_quercia"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_fogaca"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "luiz_henrique_da_silveira"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paes_de_andrade"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jader_barbalho"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "maguito_vilela"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michel_temer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "iris_de_araujo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "valdir_raupp"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "romero_juca"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "baleia_rossi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "luiz_gushiken"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "luiz_inacio_lula_da_silva"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_dirceu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_genoino"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tarso_genro"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marco_aurelio_garcia"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "ricardo_berzoini"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jose_eduardo_dutra"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "rui_falcao"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "gleisi_hoffmann"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "edinho_silva"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "hugo_napoleao"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "leonel_brizola"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "carlos_lupi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "daniel_sampaio_tourinho"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paulo_maluf"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "oliver_tambo"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nelson_mandela"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "thabo_mbeki"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jacob_zuma"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "cyril_ramaphosa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "marthinus_van_schalkwyk"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mangosuthu_buthelezi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "velenkosini_hlabisa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "zach_de_beer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "denis_worrall"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "wynand_malan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "geordin_hill_lewis"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "zephania_mothopeng"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "clarence_makwetu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "narius_moloto"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mzwanele_nyhontso"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "constand_viljoen"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pieter_mulder"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "pieter_groenewald"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "corne_mulder"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kenneth_meshoe"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kim_campbell"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jean_charest"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "elsie_wayne"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "joe_clark"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "peter_mackay"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_turner"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jean_chretien"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paul_martin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bill_graham"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "stephane_dion"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michael_ignatieff"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bob_rae"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "justin_trudeau"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mark_carney"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "audrey_mclaughlin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alexa_mcdonough"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jack_layton"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "nycole_turmel"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "thomas_mulcair"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "jagmeet_singh"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "don_davies"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "avi_lewis"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "preston_manning"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "paul_keating"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kim_beazley"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "simon_crean"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mark_latham"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "kevin_rudd"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "julia_gillard"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "chris_bowen"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "bill_shorten"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "anthony_albanese"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andrew_peacock"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_hewson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "alexander_downer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_howard"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "brendan_nelson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "malcolm_turnbull"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tony_abbott"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "scott_morrison"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "peter_dutton"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "sussan_ley"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "angus_taylor"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "charles_blunt"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "tim_fischer"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_anderson"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "mark_vaile"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "warren_truss"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "barnaby_joyce"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michael_mccormack"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "david_littleproud"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "matt_canavan"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "janine_haines"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "michael_macklin"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "janet_powell"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "john_coulter"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "cheryl_kernot"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "meg_lees"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "natasha_stott_despoja"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "aden_ridgeway"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "brian_greig"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "andrew_bartlett"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "lyn_allison"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "leonie_green"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_aisake_valu_eke"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_baron_vaea_pm_1992"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_fatafehi_fakafanua"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_fatai_helu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_feleti_sevele"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_fusitua_speaker_1996"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_james_cecil_cocker"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_langi_kavaliku"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_lord_tuivakano_pm_2010"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_lord_vaea_speaker_2025"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_poasi_mataele_tei"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_pohiva_tuionetoa"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_samiu_kuita_vaipulu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_samuela_akilisi_pohiva"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_semisi_kioa_lafu_sika"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_siaosi_ofakivahafolau_sovaleni"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_sione_vuna_faotusia"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_taniela_likuohihifo_fusimalohi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_tesina_fuko"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_tevita_lavemaau"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_tevita_poasi_tupou"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_ulukalala_lavaka_ata_pm_2000"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_viliami_tau_tangi"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_viliami_uasike_latu"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_siaosi_manumataongo_tukuaho_1985"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_lord_tuihaangana_deputy_speaker_2025"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_lord_tuilakepa_speaker_2008"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_lord_lasike_speaker_2011"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_lord_maafu_dpm_2017"
+    },
+    {
+      "kind": "unrelated_person_unchanged",
+      "pass": true,
+      "person_id": "to_veikune_speaker_2001"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "francois_mitterrand",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "francois_mitterrand",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "michel_rocard",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "michel_rocard",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "laurent_fabius",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "laurent_fabius",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "henri_emmanuelli",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "henri_emmanuelli",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "alain_juppe",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "alain_juppe",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "lionel_jospin",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "lionel_jospin",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "exact_lf_prompt_and_submitted_text",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "generation_job_output",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "generation_job_window",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "source_rights_preserved_in_batch",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "ordered_input_roles",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "francois_hollande",
+      "role": "style_only"
+    },
+    {
+      "kind": "ordered_input_exact_bytes",
+      "pass": true,
+      "person_id": "francois_hollande",
+      "role": "identity_reference"
+    },
+    {
+      "kind": "source_record_exact_manifest_match",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "source_original_byte_identity",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "francois_mitterrand"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "michel_rocard"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "laurent_fabius"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "henri_emmanuelli"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "alain_juppe"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "lionel_jospin"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "francois_hollande"
+    },
+    {
+      "kind": "historical_person_preparation_unchanged",
+      "pass": true,
+      "person_id": "martine_aubry"
+    },
+    {
+      "kind": "no_country_or_human_approval",
+      "pass": true
+    },
+    {
+      "kind": "prior_render_receipt_hash",
+      "pass": true,
+      "path": "docs/campaign-certification/C06/production/france/render-return-batch-01.json"
+    },
+    {
+      "kind": "prior_render_receipt_hash",
+      "pass": true,
+      "path": "docs/campaign-certification/C06/production/france/independent-render-review-20261002.json"
+    },
+    {
+      "kind": "manifest_before_pin",
+      "pass": true
+    },
+    {
+      "kind": "incoming_manifest_pipeline_contract",
+      "pass": true,
+      "errors": []
+    }
+  ],
+  "checks_count": 776,
+  "failures": [],
+  "manifest_pipeline": {
+    "valid": true,
+    "errors": [],
+    "warnings": 524
+  },
+  "source_review_pins": [
+    {
+      "path": "docs/campaign-certification/C06/production/france/identity-review-batch-01.json",
+      "pin": "d26449777123452d4fd1650600252d911c162e22b762e659e98e3392825f7a06",
+      "matches_parent": true,
+      "matches_registered_tip": false
+    }
+  ],
+  "tonga_whole_manifest_pin_impacts": [
+    {
+      "json_pointer": "/source_pins/spheres-web/data/person_portraits.json",
+      "pinned_sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "new_manifest_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc"
+    },
+    {
+      "json_pointer": "/checks/production_browser/source_pins/spheres-web/data/person_portraits.json",
+      "pinned_sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "new_manifest_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc"
+    }
+  ],
+  "new_manifest_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+  "visual_review_scope": "Reviewed exact registration records and bytes against prior independently named render/visual receipts; no new visual signoff or replay of image generation claimed.",
+  "repository_changes": []
+}

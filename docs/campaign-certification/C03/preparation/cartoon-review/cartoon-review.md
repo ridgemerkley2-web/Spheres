@@ -10,11 +10,11 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 
 | Role | Path | Bytes | SHA-256 |
 |---|---|---:|---|
-| historical_portraits | `spheres-web/data/person_portraits.json` | 494659 | `45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825` |
+| historical_portraits | `spheres-web/data/person_portraits.json` | 535693 | `cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc` |
 | fictional_portraits | `spheres-web/data/fictional_portraits.json` | 17844 | `e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea` |
 | selector_figures | `spheres-web/data/nation_figures.json` | 408800 | `f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962` |
 | display_derivatives | `spheres-web/ui/display-art/manifest.json` | 133156 | `afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb` |
-| production_inventory | `spheres-web/data/leadership_production_2035.json` | 6204564 | `42bdb24bf47cd31367b25069ca2a2381ebff44b9d5dcc55d884550777b8df7c4` |
+| production_inventory | `spheres-web/data/leadership_production_2035.json` | 6232567 | `b42bb31247a4ed842bc8e16a393fb1affe6f75d8a9f2dbc374b1a1c16082169e` |
 | fictional_catalog | `spheres-web/data/future_candidates_2035.json` | 3278599 | `ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd` |
 | person_registry | `spheres-sim/data/party_leaders.json` | 1282814 | `b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077` |
 | reference_audit_uk | `spheres-web/ui/person-portraits/references/source-review-uk-v1.json` | 5505 | `16baa8bba813953530af586c621f783548a2a501033f7b62bcb37c2aff5d40f1` |
@@ -25,19 +25,19 @@ Dates use from inclusive, to exclusive. Historical period 1990-01-01 → 2026-09
 
 | Collection | Items | Source |
 |---|---:|---|
-| historical | 100 | Historical person cartoons |
+| historical | 107 | Historical person cartoons |
 | fictional | 8 | Fictional successor cartoons (not real people) |
-| unregistered | 12 | Tracked cartoon-root files bound by no manifest (not active avatars) |
-| missing | 406 | Known people with sourced art windows and no cartoon |
+| unregistered | 36 | Tracked cartoon-root files bound by no manifest (not active avatars) |
+| missing | 400 | Known people with sourced art windows and no cartoon |
 
-108 active historical/fictional cartoon records have an asset path. 160 retired national-icon records are retained separately in `archived_selector`; they are not campaign leaders, active collections or active style references. Their byte pins, source/rights findings and original visual sample remain in this audit.
+115 active historical/fictional cartoon records have an asset path. 160 retired national-icon records are retained separately in `archived_selector`; they are not campaign leaders, active collections or active style references. Their byte pins, source/rights findings and original visual sample remain in this audit.
 
 | Audit scope | Errors | Warnings | Notices |
 |---|---:|---:|---:|
-| Active / unresolved | 0 | 17 | 564 |
+| Active / unresolved | 0 | 17 | 591 |
 | Archived national icons | 0 | 17 | 160 |
 
-794 image files inventoried, 794 present: `spheres-web/ui/person-portraits` 188, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
+841 image files inventoried, 841 present: `spheres-web/ui/person-portraits` 235, `spheres-web/ui/portraits` 143, `spheres-web/ui/leader-art` 160, `spheres-web/ui/display-art` 303.
 
 ## Style references
 
@@ -56,11 +56,11 @@ Severity: **error** = integrity failure; **warning** = needs a decision; **notic
 | `identity_reference_generated` | warning | 2 | The identity reference named in the prompt record is an earlier generated study, not a source photograph. |
 | `interval_after_death` | notice | 3 | The appearance interval continues after the recorded death date. |
 | `interval_outside_period` | warning | 15 | An appearance interval extends outside its declared historical or fictional period. |
-| `missing_art` | notice | 406 | A known person has sourced art windows but no cartoon. |
+| `missing_art` | notice | 400 | A known person has sourced art windows but no cartoon. |
 | `reference_rights_not_recorded` | notice | 57 | The identity reference is not shipped and its rights are not recorded in the manifest. |
 | `sharealike_derivative_license_not_recorded` | warning | 17 | The identity reference is ShareAlike-licensed but no derivative licence is recorded for the artwork. |
 | `text_led_interpretation` | notice | 17 | No freely licensed identity photograph; the artwork is a text-led interpretation of a resolved identity. |
-| `unbound_file` | notice | 39 | A tracked image in an art root is not bound by any manifest or reference audit. |
+| `unbound_file` | notice | 72 | A tracked image in an art root is not bound by any manifest or reference audit. |
 
 ## Integrity errors
 
@@ -68,7 +68,7 @@ None: every bound file exists, has a readable header and matches its recorded ha
 
 ## Duplicate images bound to different identities
 
-None found among 794 files (exact SHA-256 comparison; 2 duplicate groups in total).
+None found among 841 files (exact SHA-256 comparison; 2 duplicate groups in total).
 
 ## Warnings
 
@@ -119,7 +119,7 @@ None found among 794 files (exact SHA-256 comparison; 2 duplicate groups in tota
   - David Cameron: 1287 days of sourced art windows are not covered: 2013-01-01 → 2016-07-11 (end excluded)
   - Paddy Ashdown: 1681 days of sourced art windows are not covered: 1995-01-01 → 1999-08-09 (end excluded)
   - Tony Blair: 1635 days of sourced art windows are not covered: 2003-01-01 → 2007-06-24 (end excluded)
-- **Missing art** (406 people with sourced art windows and no cartoon), by country: Germany 59, Australia 39, France 35, United Kingdom 33, Japan 32, Brazil 23, Canada 20, India 20, Italy 13, South Africa 11, China 2, United States 2; one each in 117 other countries.
+- **Missing art** (400 people with sourced art windows and no cartoon), by country: Germany 59, Australia 39, United Kingdom 33, Japan 32, France 29, Brazil 23, Canada 20, India 20, Italy 13, South Africa 11, China 2, United States 2; one each in 117 other countries.
 
 ## Source and rights gaps
 
@@ -133,7 +133,7 @@ None found among 794 files (exact SHA-256 comparison; 2 duplicate groups in tota
 
 - archived selector: free-text production review recorded: 160
 - fictional: design and visual recorded true: 8
-- historical: identity, likeness, era and visual all recorded true: 100
+- historical: identity, likeness, era and visual all recorded true: 107
 
 These are decisions recorded by earlier production passes. This export reproduces them; it does not re-decide or endorse them.
 
