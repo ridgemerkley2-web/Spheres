@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "kind": "claude_visual_review",
+  "batch": "FR-CAST-B01",
+  "reviewed_at": "2026-10-02",
+  "reviewer": "Claude (Opus 5.5)",
+  "method": "Each returned PNG viewed at full size beside its identity reference and at 106x152 card size; bytes, original identity, C2PA presence, prompt and input hashes recomputed by script.",
+  "human_approval": false,
+  "country_acceptance": false,
+  "common_findings": "Full body with the whole head, both hands (one at the waist, one at the side, fingers visible) and both shoes inside the frame; one subject; no text, flags, insignia, watermark or other people; outlined cel-shaded adult cartoon in the anchor style; opaque dark-teal background with gentle vignette shading (border mean within 11 levels of #192D34 on every channel).",
+  "summary": {
+    "outputs": 7,
+    "passes": 7,
+    "holds": 0
+  },
+  "portraits": [
+    {
+      "person_id": "francois_mitterrand",
+      "output": "spheres-web/ui/person-portraits/francois-mitterrand-cartoon-1991-v1.png",
+      "output_sha256": "0728fe1e49a49a779ad096a6baab346a87b3c6f076dfaaf7e70bd63363cb3dcc",
+      "reference": "francois-mitterrand-1994",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Receding grey hair over a high domed forehead, heavy-lidded upward gaze, long nose and full lower lip as in the reference; navy suit, white shirt, striped burgundy-navy tie. Reads as an older Mitterrand at card size."
+    },
+    {
+      "person_id": "michel_rocard",
+      "output": "spheres-web/ui/person-portraits/michel-rocard-cartoon-1990-v1.png",
+      "output_sha256": "2a5f73e9f37805bfe870cfebfeef94c2c34a2751631fc1d698b555501bf103e6",
+      "reference": "michel-rocard-1991",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Slicked-back dark hair, narrow face with prominent cheekbones and sideways glance as in the reference; grey pinstripe suit and dotted burgundy tie follow the photograph. Distinct at card size."
+    },
+    {
+      "person_id": "laurent_fabius",
+      "output": "spheres-web/ui/person-portraits/laurent-fabius-cartoon-1992-v1.png",
+      "output_sha256": "faa8801f0d909c176aabbee6bf849784f2e003a88ca64b0b18d0ca202ca81836",
+      "reference": "laurent-fabius-1984",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Receded crown with dark side hair, oval face and slight smile as in the 1984 reference, drawn a little older as the prompt asks; grey suit, striped shirt, navy tie. Recognizable at card size."
+    },
+    {
+      "person_id": "henri_emmanuelli",
+      "output": "spheres-web/ui/person-portraits/henri-emmanuelli-cartoon-1994-v1.png",
+      "output_sha256": "2919c257e5574ae45d6717e87744b157e84d967f3bac02f8c105129dc2aafd0b",
+      "reference": "henri-emmanuelli-2005",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Swept iron-grey hair, strong brows, lined lean face and firm mouth as in the 2005 reference, drawn younger (about fifty) as the prompt discloses; navy suit and red tie are an artistic outfit (the photo shows a shirt at a lectern). Distinct at card size."
+    },
+    {
+      "person_id": "alain_juppe",
+      "output": "spheres-web/ui/person-portraits/alain-juppe-cartoon-1994-v1.png",
+      "output_sha256": "b2385863c4d628928788eb1d88e0652f59b315e68f2698cdd0b20512efd7a937",
+      "reference": "alain-juppe-1996",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Bald dome with close-cropped sides, long face, light-blue striped shirt and navy patterned tie as in the 1996 reference (second from left in the frame); charcoal suit. Recognizable at card size."
+    },
+    {
+      "person_id": "lionel_jospin",
+      "output": "spheres-web/ui/person-portraits/lionel-jospin-cartoon-1995-v1.png",
+      "output_sha256": "6c3e3b2a7eeb99d7f62641e2b6e3bfc9980601ce045a65f2bf1060a4810c0fa8",
+      "reference": "lionel-jospin-1998",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Wavy white hair, rimless glasses and smile as in the reference, drawn slightly younger as the prompt asks; navy suit, light-blue shirt and striped tie follow the photograph. Distinct at card size."
+    },
+    {
+      "person_id": "francois_hollande",
+      "output": "spheres-web/ui/person-portraits/francois-hollande-cartoon-1997-v1.png",
+      "output_sha256": "18d59a5ea6fa4591caed088dc6b61660cde81aeaadbacd89b12ae63198c5a904",
+      "reference": "francois-hollande-2007",
+      "checks": {
+        "output_bytes_match_return": true,
+        "byte_identical_to_generated_original": true,
+        "c2pa_manifest_present": true,
+        "size_mode": "1024x1536 RGB PNG",
+        "prompt_bytes_match": true,
+        "reference_inputs_match": true
+      },
+      "identity": true,
+      "likeness": true,
+      "era": true,
+      "visual": true,
+      "disposition": "pass",
+      "findings": "Receding dark-brown hair, rimless glasses, round face and half-smile as in the 2007 reference; dark suit, white shirt, dotted blue tie. One mid-window appearance (about fifty), not a year-by-year likeness for 1997-2008. Recognizable at card size."
+    }
+  ],
+  "notes": [
+    "Hollande: one mid-window appearance from the 2007 face covers 1997-06-30 to 2008-11-01; a younger 1997-2002 variant is a possible later batch, not a hold.",
+    "Emmanuelli: the lectern photograph shows shirt sleeves; the suit and red tie are an artistic outfit.",
+    "Backgrounds carry slight vignette shading (no pixel-flat claim), consistent with existing registered cartoons."
+  ]
+}

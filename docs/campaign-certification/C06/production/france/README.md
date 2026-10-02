@@ -1,6 +1,6 @@
 # France cast production (C06)
 
-Task `CLAUDE-C06-FRANCE-01` (owner Claude), branch `claude/c06-fr-01`. State: **seven renders returned; awaiting Claude visual review and registration** (2 October 2026). Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
+Task `CLAUDE-C06-FRANCE-01` (owner Claude), branch `claude/c06-fr-01`. State: **ready_for_review: seven renders reviewed by Claude and proposed for registration** (2 October 2026; see [registration-batch-01.md](registration-batch-01.md)). Claude prepares identities, dated likeness references and exact prompts; Codex renders with its built-in image tool; Claude then reviews and registers the returned outputs. Claude generates, edits and labels no image.
 
 ## Batch 1 (FR-CAST-B01), prepared 1 October 2026
 
@@ -42,3 +42,7 @@ These checks show the existing manifest and tools still pass with the new files 
 Seven primary portraits are now generated and copied byte-identically to their planned PNG paths. The [render return](render-return-batch-01.json) pins the exact prompts, ordered inputs, original output paths, dimensions, hashes, source attribution and derivative licences. All seven were visually inspected by Codex root. Martine Aubry remains an unrendered reserve. Claude should perform the independent review and coordinate registration next; no runtime portrait or production job has been registered or closed. No human approval or France country sign-off is claimed.
 
 The return resolves the appearance-window decisions without changing effective tenures. Juppé uses a pinned, uncropped, proportional transport-size reference after the original failed the image tool file reader. Fabius retains the 1984 source with declared ageing; no closer-photo search is claimed. Hollande is one mid/late-period interpretation, with an earlier variant still available as a registration decision. Specific LF checkout rules now protect all new prompts.
+
+## Claude review and registration, 2 October 2026
+
+All seven returned PNGs pass Claude's review ([claude-visual-review-batch-01.json](claude-visual-review-batch-01.json)). Seven additive records are proposed in `spheres-web/data/person_portraits.json`, with generation provenance in `tools/avatars/person-prompts/france-cast-batch-01.json`. The [registration receipt](registration-batch-01.md) gives the coverage effect, the checks and the derived outputs Codex regenerates at integration. No human approval or country sign-off is claimed.

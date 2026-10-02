@@ -4,7 +4,7 @@
   "reviewed_at": "2026-10-01",
   "historical_cutoff": "2026-09-07",
   "historical_window_start": "1990-01-01",
-  "status": "rendered_outputs_awaiting_independent_review_and_registration",
+  "status": "rendered_outputs_reviewed_by_claude_registration_proposed",
   "task": "CLAUDE-C06-FRANCE-01",
   "branch": "claude/c06-fr-01",
   "base": "2fd186d6",
@@ -158,8 +158,8 @@
     "continuous_terms_established": false,
     "all_likenesses_ready": false,
     "rendered_portraits": 7,
-    "registered_portraits": 0,
-    "production_jobs_closed": 0,
+    "registered_portraits": 7,
+    "production_jobs_closed": 13,
     "leadership_production_cartoon_jobs_targeted_by_primary_people": 13
   },
   "batches": [
@@ -2196,5 +2196,12 @@
     "sha256": "cd22f06e567f50238038b9acd6c8e30d834b21d4ffbf83ac4d4a8a6410e0e41f",
     "date": "2026-10-02",
     "authority": "Generation return only; historical holders, runtime manifest and country acceptance unchanged."
+  },
+  "registration": {
+    "receipt": "docs/campaign-certification/C06/production/france/registration-batch-01.md",
+    "claude_visual_review": "docs/campaign-certification/C06/production/france/claude-visual-review-batch-01.json",
+    "generation_record": "tools/avatars/person-prompts/france-cast-batch-01.json",
+    "date": "2026-10-02",
+    "status": "proposed for Codex integration; no human approval or country sign-off"
   }
 }
