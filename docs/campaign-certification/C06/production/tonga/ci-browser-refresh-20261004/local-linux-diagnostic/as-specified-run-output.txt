@@ -1,0 +1,16 @@
+browserType.launch: Executable doesn't exist at /opt/pw-browsers/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell
+╔═════════════════════════════════════════════════════════════════════════╗
+║ Looks like Playwright Test or Playwright was just installed or updated. ║
+║ Please run the following command to download new browsers:              ║
+║                                                                         ║
+║     npx playwright install                                              ║
+║                                                                         ║
+║ <3 Playwright Team                                                      ║
+╚═════════════════════════════════════════════════════════════════════════╝
+    at main (/home/user/Spheres/tools/ui/ci-tonga.cjs:30:26) {
+  name: 'Error'
+}
+
+real	0m2.991s
+user	0m5.503s
+sys	0m0.480s
